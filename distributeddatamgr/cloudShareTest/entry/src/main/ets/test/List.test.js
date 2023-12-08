@@ -12,13 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import cloudSharingTestCallBack from './cloudDataCallBack'
-import cloudSharingTestPromise from './cloudDataPromise'
-import testQuerySharingResource from './querySharingResource'
-
+import cloudSharingTestCallBack from './cloudDataCallBack.test.js'
+import cloudSharingTestPromise from './cloudDataPromise.test.js'
+import testQuerySharingResource from './querySharingResource.test.js'
 export default function testsuite() {
     cloudSharingTestCallBack()
 	cloudSharingTestPromise()
 	testQuerySharingResource()
-	
 }

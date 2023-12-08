@@ -14,8 +14,6 @@
  */
 
 
-//import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'deccjsunit/index'
-
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium';
 import cloudData from '@ohos.data.cloudData';
 import data_Rdb from '@ohos.data.relationalStore';
@@ -56,10 +54,9 @@ let participants2 = {
   attachInfo: 'attachInfo2'
 }
 let participants = [participants1, participants2];
-//const rowCount = 1;
 
-export default function cloudSharingTestPromise() {
-  describe('cloudSharingTestPromise', function () {
+export default function cloudSharingTestCallBack() {
+  describe('cloudSharingTestCallBack', function () {
     beforeAll(async function (done) {
       console.log(TAG+"************* Unit Test Start *************")
       console.info("beforeAll");
@@ -105,12 +102,12 @@ export default function cloudSharingTestPromise() {
       await rdbStore.executeSql(DROP_TABLE_EMPLOYEE, null);
       await data_Rdb.deleteRdbStore(context, STORE_NAME);
       rdbStore = null;
-      console.log(TAG+"************* Unit Test end *************")
+      console.log(TAG+"************* Unit Test End *************")
     })
     /**
-     * @tc.name allocResourceAndShare storeid value is undefined(promise)
+     * @tc.name allocResourceAndShare storeid value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_0100
-     * @tc.desc allocResourceAndShare storeid value is undefined(promise)
+     * @tc.desc allocResourceAndShare storeid value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -120,15 +117,14 @@ export default function cloudSharingTestPromise() {
       try {
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(undefined, predicates, participants).then(async(resultSet) =>
-        {
-           expect(null).assertFail();
-           done()
-         }).catch((err)=>{
-           expect(null).assertFail();
-           console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+        cloudData.sharing.allocResourceAndShare(undefined, predicates, participants, (err, resultSet) => {
+          if (err) {
+            expect(null).assertFail();
+            console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+          }
+          expect(null).assertFail();
           done()
-         })
+        })
       } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code:"+err.code)
@@ -137,9 +133,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest001 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare storeid value is null(promise)
+     * @tc.name allocResourceAndShare storeid value is null(callback)
      * @tc.number SUB_DDM_CloudData_0200
-     * @tc.desc allocResourceAndShare storeid value is null(promise)
+     * @tc.desc allocResourceAndShare storeid value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -149,14 +145,14 @@ export default function cloudSharingTestPromise() {
       try {
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(null, predicates, participants).then(async(resultSet)=> {
+        cloudData.sharing.allocResourceAndShare(null, predicates, participants, (err, resultSet) => {
+          if (err) {
+            expect(null).assertFail();
+            console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
           done()
-          }).catch((err)=>{
-          expect(null).assertFail();
-          console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
-          done()
-          })
+        })
       } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code:"+err.code)
@@ -165,9 +161,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest002 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare storeid value is "AAA"(promise)
+     * @tc.name allocResourceAndShare storeid value is "AAA"(callback)
      * @tc.number SUB_DDM_CloudData_0300
-     * @tc.desc allocResourceAndShare storeid value is "AAA"(promise)
+     * @tc.desc allocResourceAndShare storeid value is "AAA"(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -177,25 +173,24 @@ export default function cloudSharingTestPromise() {
       try {
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare("AAA", predicates, participants).then(async(resultSet)=>{
+        cloudData.sharing.allocResourceAndShare("AAA", predicates, participants, (err, resultSet) => {
+          if (err) {
+             expect(err.code == 202).assertTrue();
+             console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
         done()
       }
       console.log(TAG + "************* allocResourceAndShareTest003 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare storeid value is '#'(promise)
+     * @tc.name allocResourceAndShare storeid value is '#'(callback)
      * @tc.number SUB_DDM_CloudData_0400
-     * @tc.desc allocResourceAndShare storeid value is '#'(promise)
+     * @tc.desc allocResourceAndShare storeid value is '#'(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -205,25 +200,24 @@ export default function cloudSharingTestPromise() {
       try {
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare('#', predicates, participants).then(async(resultSet)=>{
+        cloudData.sharing.allocResourceAndShare('#', predicates, participants, (err, resultSet) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
         done()
       }
       console.log(TAG + "************* allocResourceAndShareTest004 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare storeid value is 123(promise)
+     * @tc.name allocResourceAndShare storeid value is 123(callback)
      * @tc.number SUB_DDM_CloudData_0500
-     * @tc.desc allocResourceAndShare storeid value is 123(promise)
+     * @tc.desc allocResourceAndShare storeid value is 123(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -233,12 +227,12 @@ export default function cloudSharingTestPromise() {
       try {
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(123, predicates, participants).then(async(resultSet)=>{
-            expect(null).assertFail();
-            done()
-        }).catch((err)=>{
+        cloudData.sharing.allocResourceAndShare(123, predicates, participants, (err, resultSet) => {
+          if (err) {
             expect(null).assertFail();
             console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+          }
+          expect(null).assertFail();
           done()
         })
       } catch (err) {
@@ -249,9 +243,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest005 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare storeid value is (promise)
+     * @tc.name allocResourceAndShare storeid value is (callback)
      * @tc.number SUB_DDM_CloudData_0600
-     * @tc.desc allocResourceAndShare storeid value is (promise)
+     * @tc.desc allocResourceAndShare storeid value is (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -261,12 +255,12 @@ export default function cloudSharingTestPromise() {
       try {
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(predicates, participants).then(async(resultSet)=>{
+        cloudData.sharing.allocResourceAndShare(predicates, participants, (err, resultSet) => {
+          if (err) {
+            expect(null).assertFail();
+            console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-           expect(null).assertFail();
-           console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
@@ -277,9 +271,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest006 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare predicates value is undefined(promise)
+     * @tc.name allocResourceAndShare predicates value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_0700
-     * @tc.desc allocResourceAndShare predicates value is undefined(promise)
+     * @tc.desc allocResourceAndShare predicates value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -287,12 +281,12 @@ export default function cloudSharingTestPromise() {
     it('allocResourceAndShareTest007', 0, async function (done) {
       console.log(TAG + "************* allocResourceAndShareTest007 start *************");
       try {
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, undefined, participants).then(async(resultSet)=>{
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, undefined, participants, (err, resultSet) => {
+          if (err) {
+            expect(null).assertFail();
+            console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
@@ -303,9 +297,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest007 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare predicates value is null(promise)
+     * @tc.name allocResourceAndShare predicates value is null(callback)
      * @tc.number SUB_DDM_CloudData_0800
-     * @tc.desc allocResourceAndShare predicates value is null(promise)
+     * @tc.desc allocResourceAndShare predicates value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -313,12 +307,12 @@ export default function cloudSharingTestPromise() {
     it('allocResourceAndShareTest008', 0, async function (done) {
       console.log(TAG + "************* allocResourceAndShareTest008 start *************");
       try {
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, null, participants).then(async(resultSet)=>{
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, null, participants, (err, resultSet) => {
+          if (err) {
+            expect(null).assertFail();
+            console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
@@ -329,9 +323,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest008 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare predicates value is not predicates.equalTo(promise)
+     * @tc.name allocResourceAndShare predicates value is not predicates.equalTo(callback)
      * @tc.number SUB_DDM_CloudData_0900
-     * @tc.desc allocResourceAndShare predicates  value is not predicates.equalTo(promise)
+     * @tc.desc allocResourceAndShare predicates  value is not predicates.equalTo(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -341,25 +335,24 @@ export default function cloudSharingTestPromise() {
       try {
         let predicates = new data_Rdb.RdbPredicates("employee");
         //predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME,predicates, participants).then(async(resultSet)=>{
+        cloudData.sharing.allocResourceAndShare(STORE_NAME,predicates, participants, (err, resultSet) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.messge"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
         done()
       }
       console.log(TAG + "************* allocResourceAndShareTest009 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare predicates value is 123(promise)
+     * @tc.name allocResourceAndShare predicates value is 123(callback)
      * @tc.number SUB_DDM_CloudData_1000
-     * @tc.desc allocResourceAndShare predicates  value is 123(promise)
+     * @tc.desc allocResourceAndShare predicates  value is 123(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -367,12 +360,12 @@ export default function cloudSharingTestPromise() {
     it('allocResourceAndShareTest010', 0, async function (done) {
       console.log(TAG + "************* allocResourceAndShareTest010 start *************");
       try {
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME,123, participants).then(async(resultSet)=>{
+        cloudData.sharing.allocResourceAndShare(STORE_NAME,123, participants, (err, resultSet) => {
+          if (err) {
+            expect(null).assertFail();
+            console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
@@ -383,9 +376,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest010 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare predicates value is "AAA"(promise)
+     * @tc.name allocResourceAndShare predicates value is "AAA"(callback)
      * @tc.number SUB_DDM_CloudData_1100
-     * @tc.desc allocResourceAndShare predicates  value is "AAA"(promise)
+     * @tc.desc allocResourceAndShare predicates  value is "AAA"(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -393,15 +386,15 @@ export default function cloudSharingTestPromise() {
     it('allocResourceAndShareTest011', 0, async function (done) {
       console.log(TAG + "************* allocResourceAndShareTest011 start *************");
       try {
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, "AAA",participants).then(async(resultSet)=>{
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, "AAA",participants, (err, resultSet) => {
+          if (err) {
+            expect(null).assertFail();
+            console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
           done()
         })
-      }catch (err) {
+      } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code:"+err.code)
         done()
@@ -409,9 +402,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest011 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare predicates value is (promise)
+     * @tc.name allocResourceAndShare predicates value is (callback)
      * @tc.number SUB_DDM_CloudData_1200
-     * @tc.desc allocResourceAndShare predicates  value is (promise)
+     * @tc.desc allocResourceAndShare predicates  value is (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -419,12 +412,12 @@ export default function cloudSharingTestPromise() {
     it('allocResourceAndShareTest012', 0, async function (done) {
       console.log(TAG + "************* allocResourceAndShareTest012 start *************");
       try {
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME,participants).then(async(resultSet)=>{
+        cloudData.sharing.allocResourceAndShare(STORE_NAME,participants,(err, resultSet) => {
+          if (err) {
+            expect(null).assertFail();
+            console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
@@ -435,9 +428,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest012 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare participants value is undefined(promise)
+     * @tc.name allocResourceAndShare participants value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_1300
-     * @tc.desc allocResourceAndShare participants  value is undefined(promise)
+     * @tc.desc allocResourceAndShare participants  value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -447,15 +440,15 @@ export default function cloudSharingTestPromise() {
       try {
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, undefined).then(async(resultSet)=>{
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, undefined, (err, resultSet) => {
+          if (err) {
+            expect(null).assertFail();
+            console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
           done()
         })
-      }catch (err) {
+      } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code:"+err.code)
         done()
@@ -463,9 +456,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest013 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare participants value is null(promise)
+     * @tc.name allocResourceAndShare participants value is null(callback)
      * @tc.number SUB_DDM_CloudData_1400
-     * @tc.desc allocResourceAndShare participants  value is null(promise)
+     * @tc.desc allocResourceAndShare participants  value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -475,14 +468,14 @@ export default function cloudSharingTestPromise() {
       try {
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, null).then(async(resultSet) => {
-          expect(null).assertFail();
-          done()
-          }).catch((err)=>{
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, null, (err, resultSet) => {
+          if (err) {
             expect(null).assertFail();
             console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
-            done()
-          })
+          }
+          expect(null).assertFail();
+          done()
+        })
       } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code:"+err.code)
@@ -491,9 +484,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest014 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare participants-identity value is  string(promise)
+     * @tc.name allocResourceAndShare participants-identity value is  string(callback)
      * @tc.number SUB_DDM_CloudData_1500
-     * @tc.desc allocResourceAndShare participants-identity value is  string(promise)
+     * @tc.desc allocResourceAndShare participants-identity value is  string(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -510,25 +503,24 @@ export default function cloudSharingTestPromise() {
         let participantstest = [participants3, participants4];
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest).then(async(resultSet) => {
-              expect(null).assertFail();
-              done()
-          }).catch((err)=>{
-           expect(err.code == 202).assertTrue();
-           console.log(TAG+"err.code"+err.code+"err.message"+err.message)
-            done()
-          })
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest, (err, resultSet) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.messge"+err.message)
+          }
+          expect(null).assertFail();
+          done()
+        })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
         done()
       }
       console.log(TAG + "************* allocResourceAndShareTest015 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare participants-identity value is null(promise)
+     * @tc.name allocResourceAndShare participants-identity value is null(callback)
      * @tc.number SUB_DDM_CloudData_1600
-     * @tc.desc allocResourceAndShare participants-identity value is null(promise)
+     * @tc.desc allocResourceAndShare participants-identity value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -545,14 +537,16 @@ export default function cloudSharingTestPromise() {
         let participantstest = [participants3, participants4];
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest).then(async(resultSet) => {
-            expect(null).assertFail();
-            done()
-          }).catch((err)=>{
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest, (err, resultSet) => {
+          if (err) {
             expect(null).assertFail();
             console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
-            done()
-          })
+          }
+          else{
+            expect(null).assertFail();
+          }
+          done()
+        })
       } catch (err) {
         expect(err.code).assertEqual('401')
         console.log(TAG+"err.code:"+err.code)
@@ -561,9 +555,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest016 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare participants-identity value is undefined(promise)
+     * @tc.name allocResourceAndShare participants-identity value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_1700
-     * @tc.desc allocResourceAndShare participants-identity value is undefined(promise)
+     * @tc.desc allocResourceAndShare participants-identity value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -580,14 +574,16 @@ export default function cloudSharingTestPromise() {
         let participantstest = [participants3, participants4];
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest).then(async(resultSet) => {
-          expect(null).assertFail();
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest, (err, resultSet) => {
+          if (err) {
+            expect(null).assertFail();
+            console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+          }
+          else{
+            expect(null).assertFail();
+          }
           done()
-          }).catch((err)=>{
-          expect(null).assertFail();
-          console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
-          done()
-          })
+        })
       } catch (err) {
         expect(err.code).assertEqual('401')
         console.log(TAG+"err.code:"+err.code)
@@ -596,9 +592,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest017 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare participants-identity value is string, Other parameters value is null(promise)
+     * @tc.name allocResourceAndShare participants-identity value is string, Other parameters value is null(callback)
      * @tc.number SUB_DDM_CloudData_1800
-     * @tc.desc allocResourceAndShare participants-identity value is string, Other parameters value is null(promise)
+     * @tc.desc allocResourceAndShare participants-identity value is string, Other parameters value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -623,14 +619,16 @@ export default function cloudSharingTestPromise() {
         let participantstest = [participants3, participants4];
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest).then(async(resultSet) => {
-           expect(null).assertFail()
-           done()
-          }).catch((err)=>{
-           expect(err.code == 202).assertTrue();
-           console.log(TAG+"err.code"+err.code+"err.message"+err.message)
-           done()
-          })
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest, (err, resultSet) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.messge"+err.message)
+          }
+          else{
+            expect(null).assertFail();
+            done()
+          }
+        })
       } catch (err) {
         expect(null).assertFail();
         console.log(TAG+"err.code:"+err.code)
@@ -640,9 +638,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest018 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare participants-identity value is string, Other parameters value is undefined(promise)
+     * @tc.name allocResourceAndShare participants-identity value is string, Other parameters value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_1900
-     * @tc.desc allocResourceAndShare participants-identity value is string, Other parameters value is undefined(promise)
+     * @tc.desc allocResourceAndShare participants-identity value is string, Other parameters value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -667,12 +665,12 @@ export default function cloudSharingTestPromise() {
         let participantstest = [participants3, participants4];
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest).then(async(resultSet) => {
-          expect(null).assertFail()
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest, (err, resultSet) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.messge"+err.message)
+          }
+          expect(null).assertFail();
           done()
         })
       } catch (err) {
@@ -683,9 +681,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest019 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare participants-identity value is int, Other parameters value is undefined(promise)
+     * @tc.name allocResourceAndShare participants-identity value is int, Other parameters value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_2000
-     * @tc.desc allocResourceAndShare participants-identity value is int, Other parameters value is undefined(promise)
+     * @tc.desc allocResourceAndShare participants-identity value is int, Other parameters value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -710,14 +708,16 @@ export default function cloudSharingTestPromise() {
         let participantstest = [participants3, participants4];
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest).then(async(resultSet) => {
-           expect(null).assertFail();
-           done()
-          }).catch((err)=>{
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest, (err, resultSet) => {
+          if (err) {
             expect(null).assertFail();
             console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
-            done()
-          })
+          }
+          else{
+            expect(null).assertFail();
+          }
+          done()
+        })
       } catch (err) {
         expect(err.code).assertEqual('401')
         console.log(TAG+"err.code:"+err.code)
@@ -726,9 +726,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest020 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare participants-identity value is string, Other parameters value is int(promise)
+     * @tc.name allocResourceAndShare participants-identity value is string, Other parameters value is int(callback)
      * @tc.number SUB_DDM_CloudData_2100
-     * @tc.desc allocResourceAndShare participants-identity value is string, Other parameters value is int(promise)
+     * @tc.desc allocResourceAndShare participants-identity value is string, Other parameters value is int(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -753,12 +753,14 @@ export default function cloudSharingTestPromise() {
         let participantstest = [participants3, participants4];
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest).then(async(resultSet) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest, (err, resultSet) => {
+          if (err) {
+            expect(null).assertFail();
+            console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
+          }
+          else{
+            expect(null).assertFail();
+          }
           done()
         })
       } catch (err) {
@@ -769,9 +771,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest021 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare columns value is string[](promise)
+     * @tc.name allocResourceAndShare columns value is string[](callback)
      * @tc.number SUB_DDM_CloudData_2200
-     * @tc.desc allocResourceAndShare columns value is string[](promise)
+     * @tc.desc allocResourceAndShare columns value is string[](callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -782,25 +784,25 @@ export default function cloudSharingTestPromise() {
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
         let columns = ["id", "name", "age"]
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participants, columns).then(async(resultSet) => {
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participants, columns, (err, resultSet) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.messge"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* allocResourceAndShareTest022 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare columns value is null(promise)
+     * @tc.name allocResourceAndShare columns value is null(callback)
      * @tc.number SUB_DDM_CloudData_2300
-     * @tc.desc allocResourceAndShare columns value is null(promise)
+     * @tc.desc allocResourceAndShare columns value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -810,25 +812,25 @@ export default function cloudSharingTestPromise() {
       try {
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participants).then(async(resultSet) => {
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participants, null, (err, resultSet) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.messge"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* allocResourceAndShareTest023 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare columns value is undefined(promise)
+     * @tc.name allocResourceAndShare columns value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_2400
-     * @tc.desc allocResourceAndShare columns value is undefined(promise)
+     * @tc.desc allocResourceAndShare columns value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -838,25 +840,25 @@ export default function cloudSharingTestPromise() {
       try {
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participants, undefined).then(async(resultSet) => {
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participants, undefined, (err, resultSet) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.messge"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* allocResourceAndShareTest024 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare columns value is int(promise)
+     * @tc.name allocResourceAndShare columns value is int(callback)
      * @tc.number SUB_DDM_CloudData_2500
-     * @tc.desc allocResourceAndShare columns value is int(promise)
+     * @tc.desc allocResourceAndShare columns value is int(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -866,25 +868,25 @@ export default function cloudSharingTestPromise() {
       try {
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participants, 123).then(async(resultSet) => {
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participants, 123, (err, resultSet) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.messge"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          console.log(TAG+"err.code:"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
-        expect(err.code).assertEqual('401')
-        console.log(TAG+"err.code:"+err.code)
+        expect(null).assertFail();
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* allocResourceAndShareTest025 end *************");
     })
     /**
-     * @tc.name participants-privilege value is (promise)
+     * @tc.name participants-privilege value is (callback)
      * @tc.number SUB_DDM_CloudData_10300
-     * @tc.desc participants-privilege value is(promise)
+     * @tc.desc participants-privilege value is(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -902,7 +904,7 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo1'
         }
         let participants4 = {
-          identity: '6666',
+          identity: '66666',
           role: cloudData.sharing.Role.ROLE_INVITER,
           state: cloudData.sharing.State.STATE_UNKNOWN,
           privilege: privilege2,
@@ -911,25 +913,25 @@ export default function cloudSharingTestPromise() {
         let participantstest = [participants3, participants4];
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-       await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest).then(async(resultSet) => {
-         expect(null).assertFail();
-         done()
-       }).catch((err)=>{
-         expect(err.code == 202).assertTrue();
-         console.log(TAG+"err.code"+err.code+"err.message"+err.message)
-         done()
-       })
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest,(err, resultSet) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.messge"+err.message)
+          }
+          expect(null).assertFail();
+          done()
+        })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* allocResourceAndShareTest026 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare participants-privilege value is not boolean(promise)
+     * @tc.name allocResourceAndShare participants-privilege value is not boolean(callback)
      * @tc.number SUB_DDM_CloudData_10400
-     * @tc.desc allocResourceAndShare participants-privilege value is not boolean(promise)
+     * @tc.desc allocResourceAndShare participants-privilege value is not boolean(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -959,7 +961,7 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo1'
         }
         let participants4 = {
-          identity: '6666',
+          identity: '66666',
           role: cloudData.sharing.Role.ROLE_INVITER,
           state: cloudData.sharing.State.STATE_UNKNOWN,
           privilege: privilege2,
@@ -968,12 +970,15 @@ export default function cloudSharingTestPromise() {
         let participantstest = [participants3, participants4];
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest).then(async(resultSet) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-           expect(null).assertFail();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest,(err, resultSet) => {
+          if (err) {
+            expect(null).assertFail();
+          }
+          else {
+            // expect(resultSet.rowCount).assertEqual(0);
+            // console.log(TAG+"resultSet.rowCount"+resultSet.rowCount)
+            expect(null).assertFail();
+          }
           done()
         })
       } catch (err) {
@@ -984,9 +989,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest027 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare participants-privilege value is null(promise)
+     * @tc.name allocResourceAndShare participants-privilege value is null(callback)
      * @tc.number SUB_DDM_CloudData_10500
-     * @tc.desc allocResourceAndShare participants-privilege value is null(promise)
+     * @tc.desc allocResourceAndShare participants-privilege value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1025,25 +1030,25 @@ export default function cloudSharingTestPromise() {
         let participantstest = [participants3, participants4];
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest).then(async(resultSet) => {
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest,(err, resultSet) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.messge"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
+        console.log(TAG+"err.code"+err.code)
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
         done()
       }
       console.log(TAG + "************* allocResourceAndShareTest028 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare participants-privilege value is undefined(promise)
+     * @tc.name allocResourceAndShare participants-privilege value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_10600
-     * @tc.desc allocResourceAndShare participants-privilege value is undefined(promise)
+     * @tc.desc allocResourceAndShare participants-privilege value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1082,25 +1087,25 @@ export default function cloudSharingTestPromise() {
         let participantstest = [participants3, participants4];
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest).then(async(resultSet) => {
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest,(err, resultSet) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.messge"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
+        console.log(TAG+"err.code"+err.code)
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
         done()
       }
       console.log(TAG + "************* allocResourceAndShareTest029 end *************");
     })
     /**
-     * @tc.name allocResourceAndShare participants not contain indetity (promise)
+     * @tc.name allocResourceAndShare participants not contain indetity (callback)
      * @tc.number SUB_DDM_CloudData_12100
-     * @tc.desc allocResourceAndShareparticipants not contain indetity(promise)
+     * @tc.desc allocResourceAndShareparticipants not contain indetity(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1123,12 +1128,11 @@ export default function cloudSharingTestPromise() {
         let participantstest = [participants3, participants4];
         let predicates = new data_Rdb.RdbPredicates("employee");
         predicates.equalTo("id", 1);
-        await cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest).then(async(err, resultSet) => {
+        cloudData.sharing.allocResourceAndShare(STORE_NAME, predicates, participantstest,(err, resultSet) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          console.log(TAG+"err.code"+err.code)
           done()
         })
       } catch (err) {
@@ -1139,9 +1143,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* allocResourceAndShareTest030 end *************");
     })
     /**
-     * @tc.name share sharingResoure value is undefined(promise)
+     * @tc.name share sharingResoure value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_2600
-     * @tc.desc share sharingResoure value is undefined(promise)
+     * @tc.desc share sharingResoure value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1149,24 +1153,24 @@ export default function cloudSharingTestPromise() {
     it("shareTest001", 0, async function (done) {
       console.log(TAG + "************* shareTest001 start *************");
       try {
-        await cloudData.sharing.share(undefined, participants).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.share(undefined, participants, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
+        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        expect(err.code).assertEqual('401');
         done()
       }
       console.log(TAG + "************* shareTest001 end *************");
     })
     /**
-     * @tc.name share participants-identity value is string,Other Parameters value is undefined(promise)
+     * @tc.name share participants-identity value is string,Other Parameters value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_2700
-     * @tc.desc share participants-identity value is string,Other Parameters value is undefined(promise)
+     * @tc.desc share participants-identity value is string,Other Parameters value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1182,32 +1186,34 @@ export default function cloudSharingTestPromise() {
           attachInfo: undefined
         }
         let participants4 = {
-          identity: '666666',
+          identity: '6666',
           role: undefined,
           state: undefined,
           privilege: undefined,
           attachInfo: undefined
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.share(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.share(SHARING_RESOURCE, participantstest, (err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.messge"+err.message)
+          }
           expect(null).assertFail();
           done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
-          done()
+
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
-        done()
+        console.log(TAG+"err.code"+err.code)
+        done();
       }
+
       console.log(TAG + "************* shareTest002 end *************");
     })
     /**
-     * @tc.name share participants-identity value is string,Other Parameters value is null(promise)
+     * @tc.name share participants-identity value is string,Other Parameters value is null(callback)
      * @tc.number SUB_DDM_CloudData_2800
-     * @tc.desc share participants-identity value is string,Other Parameters value is null(promise)
+     * @tc.desc share participants-identity value is string,Other Parameters value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1230,25 +1236,26 @@ export default function cloudSharingTestPromise() {
           attachInfo: null
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.share(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.share(SHARING_RESOURCE, participantstest, (err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.messge"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
-        done()
+        console.log(TAG+"err.code"+err.code)
+        done();
       }
+
       console.log(TAG + "************* shareTest003 end *************");
     })
     /**
-     * @tc.name share participants-identity value is string,Other Parameters value is (promise)
+     * @tc.name share participants-identity value is string,Other Parameters value is (callback)
      * @tc.number SUB_DDM_CloudData_2900
-     * @tc.desc share participants-identity value is string,Other Parameters value is (promise)
+     * @tc.desc share participants-identity value is string,Other Parameters value is (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1260,28 +1267,29 @@ export default function cloudSharingTestPromise() {
           identity: '55555',
         }
         let participants4 = {
-          identity: '66666',
+          identity: '6666',
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.share(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.share(SHARING_RESOURCE, participantstest, (err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code:"+err.code+"err.messge"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
-        done()
+        console.log(TAG+"err.code"+err.code)
+        done();
       }
+
       console.log(TAG + "************* shareTest00311 end *************");
     })
     /**
-     * @tc.name share participants-identity value is undefined(promise)
+     * @tc.name share participants-identity value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_3000
-     * @tc.desc share participants-identity value is undefined(promise)
+     * @tc.desc share participants-identity value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1296,24 +1304,24 @@ export default function cloudSharingTestPromise() {
           identity: undefined,
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.share(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.share(SHARING_RESOURCE, participantstest, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
+        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        expect(err.code).assertEqual('401');
-        done()
+        done();
       }
       console.log(TAG + "************* shareTest004 end *************");
     })
     /**
-     * @tc.name share participants-identity value is null(promise)
+     * @tc.name share participants-identity value is null(callback)
      * @tc.number SUB_DDM_CloudData_3100
-     * @tc.desc share participants-identity value is null(promise)
+     * @tc.desc share participants-identity value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1328,25 +1336,24 @@ export default function cloudSharingTestPromise() {
           identity: null,
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.share(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.share(SHARING_RESOURCE, participantstest, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
+        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        expect(err.code).assertEqual('401');
-        done()
+        done();
       }
-
       console.log(TAG + "************* shareTest005 end *************");
     })
     /**
-     * @tc.name share participants value is undefined(promise)
+     * @tc.name share participants value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_3200
-     * @tc.desc share participants value is undefined(promise)
+     * @tc.desc share participants value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1354,24 +1361,24 @@ export default function cloudSharingTestPromise() {
     it("shareTest006", 0, async function (done) {
       console.log(TAG + "************* shareTest006 start *************");
       try {
-        await cloudData.sharing.share(SHARING_RESOURCE, undefined).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.share(SHARING_RESOURCE, undefined, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
+        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        expect(err.code).assertEqual('401');
-        done()
+        done();
       }
       console.log(TAG + "************* shareTest006 end *************");
     })
     /**
-     * @tc.name share participants value is null(promise)
+     * @tc.name share participants value is null(callback)
      * @tc.number SUB_DDM_CloudData_3300
-     * @tc.desc share participants value is null(promise)
+     * @tc.desc share participants value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1379,24 +1386,24 @@ export default function cloudSharingTestPromise() {
     it("shareTest007", 0, async function (done) {
       console.log(TAG + "************* shareTest007 start *************");
       try {
-        await cloudData.sharing.share(SHARING_RESOURCE, null).then(async(result) => {
+        cloudData.sharing.share(SHARING_RESOURCE, null, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
+        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        expect(err.code).assertEqual('401');
-        done()
+        done();
       }
       console.log(TAG + "************* shareTest007 end *************");
     })
     /**
-     * @tc.name share sharingResoure  value is null(promise)
+     * @tc.name share sharingResoure  value is null(callback)
      * @tc.number SUB_DDM_CloudData_3400
-     * @tc.desc share sharingResoure value is null(promise)
+     * @tc.desc share sharingResoure value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1404,24 +1411,24 @@ export default function cloudSharingTestPromise() {
     it("shareTest008", 0, async function (done) {
       console.log(TAG + "************* shareTest008 start *************");
       try {
-        await cloudData.sharing.share(null, participants).then(async(result) => {
+        cloudData.sharing.share(null, participants, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
+        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        expect(err.code).assertEqual('401');
-        done()
+        done();
       }
       console.log(TAG + "************* shareTest008 end *************");
     })
     /**
-     * @tc.name share sharingResoure  value is null,paiticipants value is null(promise)
+     * @tc.name share sharingResoure  value is null,paiticipants value is null(callback)
      * @tc.number SUB_DDM_CloudData_3500
-     * @tc.desc share sharingResoure  value is null,paiticipants value is null(promise)
+     * @tc.desc share sharingResoure  value is null,paiticipants value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1429,24 +1436,24 @@ export default function cloudSharingTestPromise() {
     it("shareTest009", 0, async function (done) {
       console.log(TAG + "************* shareTest009 start *************");
       try {
-        await cloudData.sharing.share(null,null).then(async(result) => {
+        cloudData.sharing.share(null, null, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
+        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        expect(err.code).assertEqual('401');
-        done()
+        done();
       }
       console.log(TAG + "************* shareTest009 end *************");
     })
     /**
-     * @tc.name share sharingResoure  value is undefined,paiticipants value is undefined(promise)
+     * @tc.name share sharingResoure  value is undefined,paiticipants value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_3600
-     * @tc.desc share sharingResoure  value is undefined,paiticipants value is undefined(promise)
+     * @tc.desc share sharingResoure  value is undefined,paiticipants value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1454,25 +1461,25 @@ export default function cloudSharingTestPromise() {
     it("shareTest010", 0, async function (done) {
       console.log(TAG + "************* shareTest010 start *************");
       try {
-        await cloudData.sharing.share(undefined,undefined).then(async(result) => {
+        cloudData.sharing.share(undefined,undefined,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
+        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        expect(err.code).assertEqual('401');
-        done()
+        done();
       }
 
       console.log(TAG + "************* shareTest010 end *************");
     })
     /**
-     * @tc.name share sharingRsource value is (promise)
+     * @tc.name share sharingRsource value is (callback)
      * @tc.number SUB_DDM_CloudData_3700
-     * @tc.desc share sharingRsource value is (promise)
+     * @tc.desc share sharingRsource value is (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1480,24 +1487,24 @@ export default function cloudSharingTestPromise() {
     it("shareTest011", 0, async function (done) {
       console.log(TAG + "************* shareTest011 start *************");
       try {
-        await cloudData.sharing.share(participants).then(async(result) => {
+        cloudData.sharing.share(participants, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
+        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        expect(err.code).assertEqual('401');
-        done()
+        done();
       }
       console.log(TAG + "************* shareTest011 end *************");
     })
     /**
-     * @tc.name share sharingRsource value is int (promise)
+     * @tc.name share sharingRsource value is int (callback)
      * @tc.number SUB_DDM_CloudData_3800
-     * @tc.desc share sharingRsource value is int (promise)
+     * @tc.desc share sharingRsource value is int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1505,24 +1512,24 @@ export default function cloudSharingTestPromise() {
     it("shareTest012", 0, async function (done) {
       console.log(TAG + "************* shareTest012 start *************");
       try {
-        await cloudData.sharing.share(1, participants).then(async(result) => {
+        cloudData.sharing.share(1, participants, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
+        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        expect(err.code).assertEqual('401');
-        done()
+        done();
       }
       console.log(TAG + "************* shareTest012 end *************");
     })
     /**
-     * @tc.name share participants value is  (promise)
+     * @tc.name share participants value is  (callback)
      * @tc.number SUB_DDM_CloudData_3900
-     * @tc.desc share participants value is  (promise)
+     * @tc.desc share participants value is  (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1530,24 +1537,24 @@ export default function cloudSharingTestPromise() {
     it("shareTest013", 0, async function (done) {
       console.log(TAG + "************* shareTest013 start *************");
       try {
-        await cloudData.sharing.share(SHARING_RESOURCE).then(async(result) => {
+        cloudData.sharing.share(SHARING_RESOURCE,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
+        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        expect(err.code).assertEqual('401');
-        done()
+        done();
       }
       console.log(TAG + "************* shareTest013 end *************");
     })
     /**
-     * @tc.name share participants value is int (promise)
+     * @tc.name share participants value is int (callback)
      * @tc.number SUB_DDM_CloudData_4000
-     * @tc.desc share participants value is int (promise)
+     * @tc.desc share participants value is int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1555,24 +1562,24 @@ export default function cloudSharingTestPromise() {
     it("shareTest014", 0, async function (done) {
       console.log(TAG + "************* shareTest014 start *************");
       try {
-        await cloudData.sharing.share(SHARING_RESOURCE,3).then(async(result) => {
+        cloudData.sharing.share(SHARING_RESOURCE,3, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
+        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        expect(err.code).assertEqual('401');
-        done()
+        done();
       }
       console.log(TAG + "************* shareTest014 end *************");
     })
     /**
-     * @tc.name share participants-identity value is int (promise)
+     * @tc.name share participants-identity value is int (callback)
      * @tc.number SUB_DDM_CloudData_4100
-     * @tc.desc share participants-identity value is int (promise)
+     * @tc.desc share participants-identity value is int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1595,24 +1602,24 @@ export default function cloudSharingTestPromise() {
           attachInfo: null
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.share(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.share(SHARING_RESOURCE, participantstest, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
+        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        expect(err.code).assertEqual('401');
-        done()
+        done();
       }
       console.log(TAG + "************* shareTest015 end *************");
     })
     /**
-     * @tc.name share participants-identity value is string,other Parameters value is int (promise)
+     * @tc.name share participants-identity value is string,other Parameters value is int (callback)
      * @tc.number SUB_DDM_CloudData_4200
-     * @tc.desc shareparticipants-identity value is string,other Parameters value is int (promise)
+     * @tc.desc shareparticipants-identity value is string,other Parameters value is int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1635,24 +1642,24 @@ export default function cloudSharingTestPromise() {
           attachInfo: 12
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.share(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.share(SHARING_RESOURCE, participantstest, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
+        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        expect(err.code).assertEqual('401');
-        done()
+        done();
       }
       console.log(TAG + "************* shareTest016 end *************");
     })
     /**
-     * @tc.name share participants-privilege value is (promise)
+     * @tc.name share participants-privilege value is (callback)
      * @tc.number SUB_DDM_CloudData_10700
-     * @tc.desc share participants-privilege value is(promise)
+     * @tc.desc share participants-privilege value is(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1677,25 +1684,25 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.share(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.share(SHARING_RESOURCE, participantstest,(err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* shareTest017 end *************");
     })
     /**
-     * @tc.name Share participants-privilege value is not boolean(promise)
+     * @tc.name Share participants-privilege value is not boolean(callback)
      * @tc.number SUB_DDM_CloudData_10800
-     * @tc.desc Share participants-privilege value is not boolean(promise)
+     * @tc.desc Share participants-privilege value is not boolean(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1732,11 +1739,11 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.share(SHARING_RESOURCE, participantstest).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
+        cloudData.sharing.share(SHARING_RESOURCE, participantstest,(err, result)  => {
+          if (err) {
+            expect(null).assertFail();
+          }
+           expect(null).assertFail();
           done()
         })
       } catch (err) {
@@ -1747,9 +1754,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* shareTest018 end *************");
     })
     /**
-     * @tc.name Share participants-privilege value is null(promise)
+     * @tc.name Share participants-privilege value is null(callback)
      * @tc.number SUB_DDM_CloudData_10900
-     * @tc.desc Share participants-privilege value is null(promise)
+     * @tc.desc Share participants-privilege value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1786,25 +1793,25 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.share(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.share(SHARING_RESOURCE, participantstest,(err, result)  =>{
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
+        console.log(TAG+"err.code"+err.code)
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
         done()
       }
       console.log(TAG + "************* shareTest019 end *************");
     })
     /**
-     * @tc.name Share participants-privilege value is undefined(promise)
+     * @tc.name Share participants-privilege value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_11000
-     * @tc.desc Share participants-privilege value is undefined(promise)
+     * @tc.desc Share participants-privilege value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1841,25 +1848,25 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.share(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.share(SHARING_RESOURCE, participantstest,(err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
+        console.log(TAG+"err.code"+err.code)
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
         done()
       }
       console.log(TAG + "************* shareTest020 end *************");
     })
     /**
-     * @tc.name Share participants not contain identity(promise)
+     * @tc.name Share participants not contain identity(callback)
      * @tc.number SUB_DDM_CloudData_12200
-     * @tc.desc Share participants not contain identity(promise)
+     * @tc.desc Share participants not contain identity(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1880,13 +1887,13 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.share(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.share(SHARING_RESOURCE, participantstest,(err, result) => {
+          if (err) {
             expect(null).assertFail();
-            done()
-          }).catch((err)=>{
-            expect(null).assertFail();
-            done()
-          })
+          }
+           expect(null).assertFail();
+          done()
+        })
       } catch (err) {
         console.log(TAG+"err.code"+err.code)
         expect(err.code).assertEqual('401');
@@ -1895,9 +1902,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* shareTest021 end *************");
     })
     /**
-     * @tc.name unshare sharingResoure value is undefined (promise)
+     * @tc.name unshare sharingResoure value is undefined (callback)
      * @tc.number SUB_DDM_CloudData_4300
-     * @tc.desc unshare sharingResoure value is undefined (promise)
+     * @tc.desc unshare sharingResoure value is undefined (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1905,10 +1912,10 @@ export default function cloudSharingTestPromise() {
     it("unshareTest001", 0, async function (done) {
       console.log(TAG + "************* unshareTest001 start *************");
       try {
-        await cloudData.sharing.unshare(undefined, participants).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.unshare(undefined, participants, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -1921,9 +1928,9 @@ export default function cloudSharingTestPromise() {
     })
 
     /**
-     * @tc.name unshare participants value is undefined (promise)
+     * @tc.name unshare participants value is undefined (callback)
      * @tc.number SUB_DDM_CloudData_4400
-     * @tc.desc unshare participants value is undefined (promise)
+     * @tc.desc unshare participants value is undefined (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1931,24 +1938,24 @@ export default function cloudSharingTestPromise() {
     it("unshareTest002", 0, async function (done) {
       console.log(TAG + "************* unshareTest002 start *************");
       try {
-        await cloudData.sharing.unshare(SHARING_RESOURCE, undefined).then(async(result) => {
+        cloudData.sharing.unshare(SHARING_RESOURCE, undefined, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
-        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        done()
+        expect(err.code == 401).assertTrue();
+        done();
       }
       console.log(TAG + "************* unshareTest002 end *************");
     })
     /**
-     * @tc.name unshare participants value is null (promise)
+     * @tc.name unshare participants value is null (callback)
      * @tc.number SUB_DDM_CloudData_4500
-     * @tc.desc unshare participants value is null (promise)
+     * @tc.desc unshare participants value is null (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1956,24 +1963,24 @@ export default function cloudSharingTestPromise() {
     it("unshareTest003", 0, async function (done) {
       console.log(TAG + "************* unshareTest003 start *************");
       try {
-        await cloudData.sharing.unshare(SHARING_RESOURCE, null).then(async(result) => {
+        cloudData.sharing.unshare(SHARING_RESOURCE, null, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
-        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        done()
+        expect(err.code == 401).assertTrue();
+        done();
       }
       console.log(TAG + "************* unshareTest003 end *************");
     })
     /**
-     * @tc.name unshare sharingResoure value is null (promise)
+     * @tc.name unshare sharingResoure value is null (callback)
      * @tc.number SUB_DDM_CloudData_4600
-     * @tc.desc unshare sharingResoure value is null (promise)
+     * @tc.desc unshare sharingResoure value is null (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -1981,24 +1988,24 @@ export default function cloudSharingTestPromise() {
     it("unshareTest004", 0, async function (done) {
       console.log(TAG + "************* unshareTest004 start *************");
       try {
-        await cloudData.sharing.unshare(null, participants).then(async(result) => {
+        cloudData.sharing.unshare(null, participants, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
-        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        done()
+        expect(err.code == 401).assertTrue();
+        done();
       }
       console.log(TAG + "************* unshareTest004 end *************");
     })
     /**
-     * @tc.name unshare sharingResoure value is null,participants value is null (promise)
+     * @tc.name unshare sharingResoure value is null,participants value is null (callback)
      * @tc.number SUB_DDM_CloudData_4700
-     * @tc.desc unshare sharingResoure value is null,participants value is null (promise)
+     * @tc.desc unshare sharingResoure value is null,participants value is null (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2006,25 +2013,25 @@ export default function cloudSharingTestPromise() {
     it("unshareTest005", 0, async function (done) {
       console.log(TAG + "************* unshareTest005 start *************");
       try {
-        await cloudData.sharing.unshare(null, null).then(async(result) => {
+        cloudData.sharing.unshare(null, null, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
-        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        done()
+        expect(err.code == 401).assertTrue();
+        done();
       }
 
       console.log(TAG + "************* unshareTest005 end *************");
     })
     /**
-     * @tc.name unshare sharingResoure value is undefined,participants value is undefined (promise)
+     * @tc.name unshare sharingResoure value is undefined,participants value is undefined (callback)
      * @tc.number SUB_DDM_CloudData_4800
-     * @tc.desc unshare sharingResoure value is undefined,participants value is undefined (promise)
+     * @tc.desc unshare sharingResoure value is undefined,participants value is undefined (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2032,24 +2039,25 @@ export default function cloudSharingTestPromise() {
     it("unshareTest006", 0, async function (done) {
       console.log(TAG + "************* unshareTest006 start *************");
       try {
-        await cloudData.sharing.unshare(undefined, undefined).then(async(result) => {
+        cloudData.sharing.unshare(undefined, undefined, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
-        expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        done()
+        expect(err.code == 401).assertTrue();
+        done();
       }
+
       console.log(TAG + "************* unshareTest006 end *************");
     })
     /**
-     * @tc.name unshare participants-identity value is string,other parameters value is undenfined (promise)
+     * @tc.name unshare sharingResoure value is undefined,participants-identity value is string,other parameters value is undenfined (callback)
      * @tc.number SUB_DDM_CloudData_4900
-     * @tc.desc unshare participants-identity value is string,other parameters value is undenfined (promise)
+     * @tc.desc unshare sharingResoure value is undefined,participants-identity value is string,other parameters value is undenfined (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2071,26 +2079,27 @@ export default function cloudSharingTestPromise() {
           privilege: undefined,
           attachInfo: undefined
         }
-        let participantstest = [participants3, participants4]
-        await cloudData.sharing.unshare(SHARING_RESOURCE, participantstest).then(async(result) => {
+        let participantstest = [participants3, participants4];
+        cloudData.sharing.unshare(SHARING_RESOURCE, participantstest, (err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
-          done()
+          done();
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
-        done()
+        console.log(TAG+"err.code"+err.code)
+        done();
       }
+
       console.log(TAG + "************* unshareTest007 end *************");
     })
     /**
-     * @tc.name unshare participants-identity value is string,other parameters value is null (promise)
+     * @tc.name unshare sharingResoure value is undefined,participants-identity value is string,other parameters value is null (callback)
      * @tc.number SUB_DDM_CloudData_5000
-     * @tc.desc unshare participants-identity value is string,other parameters value is null (promise)
+     * @tc.desc unshare sharingResoure value is undefined,participants-identity value is string,other parameters value is null (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2112,26 +2121,26 @@ export default function cloudSharingTestPromise() {
           privilege: null,
           attachInfo: null
         }
-        let participantstest = [participants3, participants4]
-        await cloudData.sharing.unshare(SHARING_RESOURCE, participantstest).then(async(result) => {
+        let participantstest = [participants3, participants4];
+        cloudData.sharing.unshare(SHARING_RESOURCE, participantstest, (err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
-          done()
+          done();
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
-        done()
+        console.log(TAG+"err.code"+err.code)
+        done();
       }
       console.log(TAG + "************* unshareTest008 end *************");
     })
     /**
-     * @tc.name unshare participants-identity value is string(promise)
+     * @tc.name unshare participants-identity value is string(callback)
      * @tc.number SUB_DDM_CloudData_5100
-     * @tc.desc unshare participants-identity value is string(promise)
+     * @tc.desc unshare participants-identity value is string(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2145,26 +2154,26 @@ export default function cloudSharingTestPromise() {
         let participants4 = {
           identity: '6666'
         }
-        let participantstest = [participants3, participants4]
-        await cloudData.sharing.unshare(SHARING_RESOURCE, participantstest).then(async(result) => {
+        let participantstest = [participants3, participants4];
+        cloudData.sharing.unshare(SHARING_RESOURCE, participantstest, (err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
-          done()
+          done();
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* unshareTest009 end *************");
     })
     /**
-     * @tc.name unshare participants-identity value is undefined(promise)
+     * @tc.name unshare participants-identity value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_5200
-     * @tc.desc unshare participants-identity value is undefined(promise)
+     * @tc.desc unshare participants-identity value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2178,11 +2187,11 @@ export default function cloudSharingTestPromise() {
         let participants4 = {
           identity: undefined
         }
-        let participantstest = [participants3, participants4]
-        await cloudData.sharing.unshare(SHARING_RESOURCE, participantstest).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        let participantstest = [participants3, participants4];
+        cloudData.sharing.unshare(SHARING_RESOURCE, participantstest, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -2194,14 +2203,15 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* unshareTest010 end *************");
     })
     /**
-     * @tc.name unshare participants-identity value is null(promise)
+     * @tc.name unshare participants-identity value is null(callback)
      * @tc.number SUB_DDM_CloudData_5300
-     * @tc.desc unshare participants-identity value is null(promise)
+     * @tc.desc unshare participants-identity value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
      */
     it("unshareTest011", 0, async function (done) {
+      console.log(TAG + "************* unshareTest011 start *************");
       try {
         let participants3 = {
           identity: null
@@ -2209,25 +2219,25 @@ export default function cloudSharingTestPromise() {
         let participants4 = {
           identity: null
         }
-        let participantstest = [participants3, participants4]
-        await cloudData.sharing.unshare(SHARING_RESOURCE, participantstest).then(async(result) => {
+        let participantstest = [participants3, participants4];
+        cloudData.sharing.unshare(SHARING_RESOURCE, participantstest, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        done()
+        done();
       }
       console.log(TAG + "************* unshareTest011 end *************");
     })
     /**
-     * @tc.name unshare sharingResoure  value is null(promise)
+     * @tc.name unshare sharingResoure  value is null(callback)
      * @tc.number SUB_DDM_CloudData_5400
-     * @tc.desc unshare sharingResoure  value is null(promise)
+     * @tc.desc unshare sharingResoure  value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2235,24 +2245,24 @@ export default function cloudSharingTestPromise() {
     it("unshareTest012", 0, async function (done) {
       console.log(TAG + "************* unshareTest012 start *************");
       try {
-        await cloudData.sharing.unshare(participants).then(async(result) => {
+        cloudData.sharing.unshare(participants, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        done()
+        done();
       }
       console.log(TAG + "************* unshareTest012 end *************");
     })
     /**
-     * @tc.name unshare sharingResoure  value is int(promise)
+     * @tc.name unshare sharingResoure  value is int(callback)
      * @tc.number SUB_DDM_CloudData_5500
-     * @tc.desc unshare sharingResoure  value is int(promise)
+     * @tc.desc unshare sharingResoure  value is int(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2260,24 +2270,24 @@ export default function cloudSharingTestPromise() {
     it("unshareTest013", 0, async function (done) {
       console.log(TAG + "************* unshareTest013 start *************");
       try {
-        await cloudData.sharing.unshare(1,participants).then(async(result) => {
+        cloudData.sharing.unshare(1, participants, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        done()
+        done();
       }
       console.log(TAG + "************* unshareTest013 end *************");
     })
     /**
-     * @tc.name unshare participants  value is (promise)
+     * @tc.name unshare participants  value is (callback)
      * @tc.number SUB_DDM_CloudData_5600
-     * @tc.desc unshare participants  value is (promise)
+     * @tc.desc unshare participants  value is (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2285,24 +2295,24 @@ export default function cloudSharingTestPromise() {
     it("unshareTest014", 0, async function (done) {
       console.log(TAG + "************* unshareTest014 start *************");
       try {
-        await cloudData.sharing.unshare(SHARING_RESOURCE).then(async(result) => {
+        cloudData.sharing.unshare(SHARING_RESOURCE,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        done()
+        done();
       }
       console.log(TAG + "************* unshareTest014 end *************");
     })
     /**
-     * @tc.name unshare participants  value is int (promise)
+     * @tc.name unshare participants  value is int (callback)
      * @tc.number SUB_DDM_CloudData_5700
-     * @tc.desc unshare participants  value int (promise)
+     * @tc.desc unshare participants  value int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2310,24 +2320,24 @@ export default function cloudSharingTestPromise() {
     it("unshareTest015", 0, async function (done) {
       console.log(TAG + "************* unshareTest015 start *************");
       try {
-        await cloudData.sharing.unshare(SHARING_RESOURCE,3).then(async(result) => {
+        cloudData.sharing.unshare(SHARING_RESOURCE,3, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        done()
+        done();
       }
       console.log(TAG + "************* unshareTest015 end *************");
     })
     /**
-     * @tc.name unshare participants-identity  value is int (promise)
+     * @tc.name unshare participants-identity  value is int (callback)
      * @tc.number SUB_DDM_CloudData_5800
-     * @tc.desc nshare participants-identity  value is int (promise)
+     * @tc.desc nshare participants-identity  value is int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2350,24 +2360,24 @@ export default function cloudSharingTestPromise() {
           attachInfo: null
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.unshare(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.unshare(SHARING_RESOURCE, participantstest, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        done()
+        done();
       }
       console.log(TAG + "************* unshareTest016 end *************");
     })
     /**
-     * @tc.name unshare participants-identity  value is string,other parameters value is int(promise)
+     * @tc.name unshare participants-identity  value is string,other parameters value is int(callback)
      * @tc.number SUB_DDM_CloudData_5900
-     * @tc.desc nshare participants-identity  value is string,other parameters value is int (promise)
+     * @tc.desc nshare participants-identity  value is string,other parameters value is int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2390,24 +2400,24 @@ export default function cloudSharingTestPromise() {
           attachInfo: 12
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.unshare(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.unshare(SHARING_RESOURCE, participantstest, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
-        done()
+        done();
       }
       console.log(TAG + "************* unshareTest017 end *************");
     })
     /**
-     * @tc.name unshare participants-privilege value is (promise)
+     * @tc.name unshare participants-privilege value is (callback)
      * @tc.number SUB_DDM_CloudData_11100
-     * @tc.desc unshare participants-privilege value is(promise)
+     * @tc.desc unshare participants-privilege value is(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2432,25 +2442,25 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.unshare(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.unshare(SHARING_RESOURCE, participantstest,(err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* unshareTest018 end *************");
     })
     /**
-     * @tc.name unShare participants-privilege value is not boolean(promise)
+     * @tc.name unShare participants-privilege value is not boolean(callback)
      * @tc.number SUB_DDM_CloudData_11200
-     * @tc.desc unShare participants-privilege value is not boolean(promise)
+     * @tc.desc unShare participants-privilege value is not boolean(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2487,24 +2497,24 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.unshare(SHARING_RESOURCE, participantstest).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.unshare(SHARING_RESOURCE, participantstest,(err, result)  => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
-          console.log(TAG+"err.code"+err.code)
-          expect(err.code).assertEqual('401');
+        console.log(TAG+"err.code"+err.code)
+        expect(err.code).assertEqual('401');
         done()
       }
       console.log(TAG + "************* unshareTest019 end *************");
     })
     /**
-     * @tc.name unShare participants-privilege value is null(promise)
+     * @tc.name unShare participants-privilege value is null(callback)
      * @tc.number SUB_DDM_CloudData_11300
-     * @tc.desc unShare participants-privilege value is null(promise)
+     * @tc.desc unShare participants-privilege value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2541,25 +2551,25 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.unshare(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.unshare(SHARING_RESOURCE, participantstest,(err, result)  =>{
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
+        console.log(TAG+"err.code"+err.code)
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
         done()
       }
       console.log(TAG + "************* unshareTest020 end *************");
     })
     /**
-     * @tc.name unShare participants-privilege value is undefined(promise)
+     * @tc.name unShare participants-privilege value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_11400
-     * @tc.desc unShare participants-privilege value is undefined(promise)
+     * @tc.desc unShare participants-privilege value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2596,25 +2606,25 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.unshare(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.unshare(SHARING_RESOURCE, participantstest,(err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
+        console.log(TAG+"err.code"+err.code)
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
         done()
       }
       console.log(TAG + "************* unshareTest021 end *************");
     })
     /**
-     * @tc.name unShare participants not contain identity(promise)
+     * @tc.name unShare participants not contain identity(callback)
      * @tc.number SUB_DDM_CloudData_12300
-     * @tc.desc unShare participants not contain identity(promise)
+     * @tc.desc unShare participants not contain identity(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2635,13 +2645,13 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.unshare(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.unshare(SHARING_RESOURCE, participantstest,(err, result) => {
+          if (err) {
             expect(null).assertFail();
-            done()
-          }).catch((err)=>{
-             expect(null).assertFail();
-             done()
-          })
+          }
+          expect(null).assertFail();
+          done()
+        })
       } catch (err) {
         console.log(TAG+"err.code"+err.code)
         expect(err.code).assertEqual('401');
@@ -2650,9 +2660,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* unshareTest022 end *************");
     })
     /**
-     * @tc.name exit sharingResoure value is undefined(promise)
+     * @tc.name exit sharingResoure value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_6000
-     * @tc.desc exit sharingResoure value is undefined(promise)
+     * @tc.desc exit sharingResoure value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2660,12 +2670,12 @@ export default function cloudSharingTestPromise() {
     it("exitTest001", 0, async function (done) {
       console.log(TAG + "************* exitTest001 start *************");
       try {
-        await cloudData.sharing.exit(undefined).then(async(result) => {
+        cloudData.sharing.exit(undefined,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
         expect(err.code == 401).assertTrue();
@@ -2675,9 +2685,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* exitTest001 end *************");
     })
     /**
-     * @tc.name exit sharingResoure value is null(promise)
+     * @tc.name exit sharingResoure value is null(callback)
      * @tc.number SUB_DDM_CloudData_6100
-     * @tc.desc exit sharingResoure value is null(promise)
+     * @tc.desc exit sharingResoure value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2685,12 +2695,12 @@ export default function cloudSharingTestPromise() {
     it("exitTest002", 0, async function (done) {
       console.log(TAG + "************* exitTest002 start *************");
       try {
-        await cloudData.sharing.exit(null).then(async(result) => {
+        cloudData.sharing.exit(null,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
         expect(err.code == 401).assertTrue();
@@ -2700,9 +2710,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* exitTest002 end *************");
     })
     /**
-     * @tc.name exit sharingResoure value is (promise)
+     * @tc.name exit sharingResoure value is (callback)
      * @tc.number SUB_DDM_CloudData_6200
-     * @tc.desc exit sharingResoure value is (promise)
+     * @tc.desc exit sharingResoure value is (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2710,12 +2720,12 @@ export default function cloudSharingTestPromise() {
     it("exitTest003", 0, async function (done) {
       console.log(TAG + "************* exitTest003 start *************");
       try {
-        await cloudData.sharing.exit().then(async(result) => {
+        cloudData.sharing.exit((err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
         expect(err.code == 401).assertTrue();
@@ -2725,9 +2735,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* exitTest003 end *************");
     })
     /**
-     * @tc.name exit sharingResoure value is int (promise)
+     * @tc.name exit sharingResoure value is int (callback)
      * @tc.number SUB_DDM_CloudData_6300
-     * @tc.desc exit sharingResoure value is int (promise)
+     * @tc.desc exit sharingResoure value is int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2735,13 +2745,13 @@ export default function cloudSharingTestPromise() {
     it("exitTest004", 0, async function (done) {
       console.log(TAG + "************* exitTest004 start *************");
       try {
-        await cloudData.sharing.exit(1).then(async(result) => {
+        cloudData.sharing.exit(1,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
-          }).catch((err)=>{
-          expect(null).assertFail();
-          done()
-          })
+        })
       } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
@@ -2750,9 +2760,35 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* exitTest004 end *************");
     })
     /**
-     * @tc.name changePrivilegeTest sharingResoure value is undefined (promise)
+     * @tc.name exit sharingResoure value is string (callback)
+     * @tc.number SUB_DDM_CloudData_63001
+     * @tc.desc exit sharingResoure value is string (callback)
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it("exitTest005", 0, async function (done) {
+      console.log(TAG + "************* exitTest005 start *************");
+      try {
+        cloudData.sharing.exit(SHARING_RESOURCE,(err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
+          expect(null).assertFail();
+          done()
+        })
+      } catch (err) {
+        expect(null).assertFail();
+        console.log(TAG+"err.code"+err.code)
+        done();
+      }
+      console.log(TAG + "************* exitTest005 end *************");
+    })
+    /**
+     * @tc.name changePrivilegeTest sharingResoure value is undefined (callback)
      * @tc.number SUB_DDM_CloudData_6400
-     * @tc.desc changePrivilegeTest sharingResoure value is undefined(promise)
+     * @tc.desc changePrivilegeTest sharingResoure value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2765,26 +2801,25 @@ export default function cloudSharingTestPromise() {
         let changed2 = participants2;
         changed2.privilege = privilegeEnable;
         const changePart = [changed1, changed2];
-        await cloudData.sharing.changePrivilege(undefined, changePart).then(async(result) => {
+        cloudData.sharing.changePrivilege(undefined, changePart, ((err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
-        })
+        }))
       } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
         done()
       }
-
       console.log(TAG + "************* changePrivilegeTest001 end *************");
     })
 
     /**
-     * @tc.name changePrivilegeTest participants value is undefined (promise)
+     * @tc.name changePrivilegeTest participants value is undefined (callback)
      * @tc.number SUB_DDM_CloudData_6500
-     * @tc.desc changePrivilegeTest participants value is undefined(promise)
+     * @tc.desc changePrivilegeTest participants value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2792,13 +2827,13 @@ export default function cloudSharingTestPromise() {
     it("changePrivilegeTest002", 0, async function (done) {
       console.log(TAG + "************* changePrivilegeTest002 start *************");
       try {
-        await cloudData.sharing.changePrivilege(SHARING_RESOURCE, undefined).then(async(result) => {
+        cloudData.sharing.changePrivilege(SHARING_RESOURCE, undefined, ((err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
-        })
+        }))
       } catch (err) {
         expect(err.code == 401).assertTrue();
         console.log(TAG+"err.code"+err.code)
@@ -2807,9 +2842,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changePrivilegeTest002 end *************");
     })
     /**
-     * @tc.name changePrivilegeTest participants value is null (promise)
+     * @tc.name changePrivilegeTest participants value is null (callback)
      * @tc.number SUB_DDM_CloudData_6600
-     * @tc.desc changePrivilegeTest participants value is null(promise)
+     * @tc.desc changePrivilegeTest participants value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2817,10 +2852,10 @@ export default function cloudSharingTestPromise() {
     it("changePrivilegeTest003", 0, async function (done) {
       console.log(TAG + "************* changePrivilegeTest003 start *************");
       try {
-        await cloudData.sharing.changePrivilege(SHARING_RESOURCE, null).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changePrivilege(SHARING_RESOURCE, null, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -2832,9 +2867,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changePrivilegeTest003 end *************");
     })
     /**
-     * @tc.name changePrivilegeTest sharingResoure  value is null (promise)
+     * @tc.name changePrivilegeTest sharingResoure  value is null (callback)
      * @tc.number SUB_DDM_CloudData_6700
-     * @tc.desc changePrivilegeTest sharingResoure  value is null(promise)
+     * @tc.desc changePrivilegeTest sharingResoure  value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2847,10 +2882,10 @@ export default function cloudSharingTestPromise() {
         let changed2 = participants2;
         changed2.privilege = privilegeEnable;
         const changePart = [changed1, changed2];
-        await cloudData.sharing.changePrivilege(null,changePart).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changePrivilege(null,changePart,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -2862,9 +2897,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changePrivilegeTest004 end *************");
     })
     /**
-     * @tc.name changePrivilegeTest sharingResoure value is null,participants value is null(promise)
+     * @tc.name changePrivilegeTest sharingResoure value is null,participants value is null(callback)
      * @tc.number SUB_DDM_CloudData_6800
-     * @tc.desc changePrivilegeTest sharingResoure value is null,participants value is null(promise)
+     * @tc.desc changePrivilegeTest sharingResoure value is null,participants value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2872,10 +2907,10 @@ export default function cloudSharingTestPromise() {
     it("changePrivilegeTest005", 0, async function (done) {
       console.log(TAG + "************* changePrivilegeTest005 start *************");
       try {
-        await cloudData.sharing.changePrivilege(null,null).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changePrivilege(null,null,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -2887,9 +2922,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changePrivilegeTest005 end *************");
     })
     /**
-     * @tc.name changePrivilegeTest sharingResoure value is undefined,participants value is undefined(promise)
+     * @tc.name changePrivilegeTest sharingResoure value is undefined,participants value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_6900
-     * @tc.desc changePrivilegeTest sharingResoure value is undefined,participants value is undefined(promise)
+     * @tc.desc changePrivilegeTest sharingResoure value is undefined,participants value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2897,10 +2932,10 @@ export default function cloudSharingTestPromise() {
     it("changePrivilegeTest006", 0, async function (done) {
       console.log(TAG + "************* changePrivilegeTest006 start *************");
       try {
-        await cloudData.sharing.changePrivilege(undefined,undefined).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changePrivilege(undefined,undefined,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -2912,9 +2947,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changePrivilegeTest006 end *************");
     })
     /**
-     * @tc.name changePrivilegeTest sharingResoure value is ,participants value is (promise)
+     * @tc.name changePrivilegeTest sharingResoure value is ,participants value is (callback)
      * @tc.number SUB_DDM_CloudData_7000
-     * @tc.desc changePrivilegeTest sharingResoure value is ,participants value is (promise)
+     * @tc.desc changePrivilegeTest sharingResoure value is ,participants value is (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2922,10 +2957,10 @@ export default function cloudSharingTestPromise() {
     it("changePrivilegeTest007", 0, async function (done) {
       console.log(TAG + "************* changePrivilegeTest007 start *************");
       try {
-        await cloudData.sharing.changePrivilege().then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changePrivilege((err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -2937,9 +2972,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changePrivilegeTest008 end *************");
     })
     /**
-     * @tc.name changePrivilegeTest participants value is int(promise)
+     * @tc.name changePrivilegeTest participants value is int(callback)
      * @tc.number SUB_DDM_CloudData_7100
-     * @tc.desc changePrivilegeTest participants value is int (promise)
+     * @tc.desc changePrivilegeTest participants value is int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2947,10 +2982,10 @@ export default function cloudSharingTestPromise() {
     it("changePrivilegeTest009", 0, async function (done) {
       console.log(TAG + "************* changePrivilegeTest009 start *************");
       try {
-        await cloudData.sharing.changePrivilege(SHARING_RESOURCE,3).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changePrivilege(SHARING_RESOURCE,3,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -2962,9 +2997,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changePrivilegeTest009 end *************");
     })
     /**
-     * @tc.name changePrivilegeTest sharingResoure value is int(promise)
+     * @tc.name changePrivilegeTest sharingResoure value is int(callback)
      * @tc.number SUB_DDM_CloudData_7200
-     * @tc.desc changePrivilegeTest sharingResoure value is int (promise)
+     * @tc.desc changePrivilegeTest sharingResoure value is int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -2977,10 +3012,10 @@ export default function cloudSharingTestPromise() {
         let changed2 = participants2;
         changed2.privilege = privilegeEnable;
         const changePart = [changed1, changed2];
-        await cloudData.sharing.changePrivilege(1,changePart).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changePrivilege(1,changePart,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -2992,9 +3027,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changePrivilegeTest010 end *************");
     })
     /**
-     * @tc.name changePrivilegeTest sharingResoure value is (promise)
+     * @tc.name changePrivilegeTest sharingResoure value is (callback)
      * @tc.number SUB_DDM_CloudData_7300
-     * @tc.desc changePrivilegeTest sharingResoure value is (promise)
+     * @tc.desc changePrivilegeTest sharingResoure value is (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3007,10 +3042,10 @@ export default function cloudSharingTestPromise() {
         let changed2 = participants2;
         changed2.privilege = privilegeEnable;
         const changePart = [changed1, changed2];
-        await cloudData.sharing.changePrivilege(changePart).then(async(result) => {
-          expect(null).assertFail();
-          done()
-          }).catch((err)=>{
+        cloudData.sharing.changePrivilege(changePart,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -3022,9 +3057,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changePrivilegeTest011 end *************");
     })
     /**
-     * @tc.name changePrivilege participants-privilege value is (promise)
+     * @tc.name changePrivilege participants-privilege value is (callback)
      * @tc.number SUB_DDM_CloudData_11500
-     * @tc.desc changePrivilege participants-privilege value is(promise)
+     * @tc.desc changePrivilege participants-privilege value is(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3049,25 +3084,25 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.changePrivilege(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.changePrivilege(SHARING_RESOURCE, participantstest,(err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* changePrivilegeTest012 end *************");
     })
     /**
-     * @tc.name changePrivilege participants-privilege value is not boolean(promise)
+     * @tc.name changePrivilege participants-privilege value is not boolean(callback)
      * @tc.number SUB_DDM_CloudData_11600
-     * @tc.desc changePrivilege participants-privilege value is not boolean(promise)
+     * @tc.desc changePrivilege participants-privilege value is not boolean(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3104,11 +3139,13 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.changePrivilege(SHARING_RESOURCE, participantstest).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
+        cloudData.sharing.changePrivilege(SHARING_RESOURCE, participantstest,(err, result)  => {
+          if (err) {
+            expect(null).assertFail();
+          }
+          else {
+            expect(null).assertFail();
+          }
           done()
         })
       } catch (err) {
@@ -3119,9 +3156,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changePrivilegeTest013 end *************");
     })
     /**
-     * @tc.name changePrivilege participants-privilege value is null(promise)
+     * @tc.name changePrivilege participants-privilege value is null(callback)
      * @tc.number SUB_DDM_CloudData_11700
-     * @tc.desc changePrivilege participants-privilege value is null(promise)
+     * @tc.desc changePrivilege participants-privilege value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3158,25 +3195,25 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.changePrivilege(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.changePrivilege(SHARING_RESOURCE, participantstest,(err, result)  =>{
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
+        console.log(TAG+"err.code"+err.code)
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
         done()
       }
       console.log(TAG + "************* changePrivilegeTest014 end *************");
     })
     /**
-     * @tc.name changePrivilege participants-privilege value is undefined(promise)
+     * @tc.name changePrivilege participants-privilege value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_11800
-     * @tc.desc changePrivilege participants-privilege value is undefined(promise)
+     * @tc.desc changePrivilege participants-privilege value is undefined(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3213,25 +3250,25 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.changePrivilege(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.changePrivilege(SHARING_RESOURCE, participantstest,(err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG+"err.code"+err.code+"err.message"+err.message)
           done()
         })
       } catch (err) {
+        console.log(TAG+"err.code"+err.code)
         expect(null).assertFail();
-        console.log(TAG+"err.code:"+err.code)
         done()
       }
       console.log(TAG + "************* changePrivilegeTest015 end *************");
     })
     /**
-     * @tc.name changePrivilege participants not contain identity(promise)
+     * @tc.name changePrivilege participants not contain identity(callback)
      * @tc.number SUB_DDM_CloudData_12400
-     * @tc.desc changePrivilege participants not contain identity(promise)
+     * @tc.desc changePrivilege participants not contain identity(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3252,13 +3289,13 @@ export default function cloudSharingTestPromise() {
           attachInfo: 'attachInfo2'
         }
         let participantstest = [participants3, participants4];
-        await cloudData.sharing.changePrivilege(SHARING_RESOURCE, participantstest).then(async(result) => {
+        cloudData.sharing.changePrivilege(SHARING_RESOURCE, participantstest,(err, result) => {
+          if (err) {
             expect(null).assertFail();
-            done()
-          }).catch((err)=>{
-             expect(null).assertFail();
-             done()
-          })
+          }
+           expect(null).assertFail();
+           done()
+        })
       } catch (err) {
         console.log(TAG+"err.code"+err.code)
         expect(err.code).assertEqual('401');
@@ -3267,9 +3304,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changePrivilegeTest016 end *************");
     })
     /**
-     * @tc.name queryParticipants sharingResoure value is undefined(promise)
+     * @tc.name queryParticipants sharingResoure value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_7400
-     * @tc.desc queryParticipants sharingResoure value is undefined (promise)
+     * @tc.desc queryParticipants sharingResoure value is undefined (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3277,24 +3314,24 @@ export default function cloudSharingTestPromise() {
     it("queryParticipantsTest001", 0, async function (done) {
       console.log(TAG + "************* queryParticipantsTest001 start *************");
       try {
-        await cloudData.sharing.queryParticipants(undefined).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.queryParticipants(undefined, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
+        expect(err.code).assertEqual('401');
         console.log(TAG+"err.code"+err.code)
-        expect(err.code == 401).assertTrue();
-        done()
+        done();
       }
       console.log(TAG + "************* queryParticipantsTest002 end *************");
     })
     /**
-     * @tc.name queryParticipants sharingResoure value is null(promise)
+     * @tc.name queryParticipants sharingResoure value is null(callback)
      * @tc.number SUB_DDM_CloudData_7500
-     * @tc.desc queryParticipants sharingResoure value is null (promise)
+     * @tc.desc queryParticipants sharingResoure value is null (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3302,24 +3339,24 @@ export default function cloudSharingTestPromise() {
     it("queryParticipantsTest002", 0, async function (done) {
       console.log(TAG + "************* queryParticipantsTest002 start *************");
       try {
-        await cloudData.sharing.queryParticipants(null).then(async(result) => {
+        cloudData.sharing.queryParticipants(null,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
-        done()
+        console.log(TAG+"err.code"+err.code)
+        done();
       }
       console.log(TAG + "************* queryParticipantsTest002 end *************");
     })
     /**
-     * @tc.name queryParticipants sharingResoure value is int(promise)
+     * @tc.name queryParticipants sharingResoure value is int(callback)
      * @tc.number SUB_DDM_CloudData_7600
-     * @tc.desc queryParticipants sharingResoure value is int (promise)
+     * @tc.desc queryParticipants sharingResoure value is int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3327,24 +3364,24 @@ export default function cloudSharingTestPromise() {
     it("queryParticipantsTest003", 0, async function (done) {
       console.log(TAG + "************* queryParticipantsTest003 start *************");
       try {
-        await cloudData.sharing.queryParticipants(1).then(async(result) => {
+        cloudData.sharing.queryParticipants(1,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
-        done()
+        console.log(TAG+"err.code"+err.code)
+        done();
       }
       console.log(TAG + "************* queryParticipantsTest003 end *************");
     })
     /**
-     * @tc.name queryParticipants sharingResoure value is (promise)
+     * @tc.name queryParticipants sharingResoure value is (callback)
      * @tc.number SUB_DDM_CloudData_7700
-     * @tc.desc queryParticipants sharingResoure value is (promise)
+     * @tc.desc queryParticipants sharingResoure value is (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3352,24 +3389,50 @@ export default function cloudSharingTestPromise() {
     it("queryParticipantsTest004", 0, async function (done) {
       console.log(TAG + "************* queryParticipantsTest004 start *************");
       try {
-        await cloudData.sharing.queryParticipants().then(async(result) => {
+        cloudData.sharing.queryParticipants((err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
-        done()
+        console.log(TAG+"err.code"+err.code)
+        done();
       }
       console.log(TAG + "************* queryParticipantsTest004 end *************");
     })
     /**
-     * @tc.name queryParticipantsByInvitation sharingResoure value is undefined(promise)
+     * @tc.name exit sharingResoure value is string (callback)
+     * @tc.number SUB_DDM_CloudData_77001
+     * @tc.desc exit sharingResoure value is string (callback)
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it("queryParticipantsTest005", 0, async function (done) {
+      console.log(TAG + "************* queryParticipantsTest005 start *************");
+      try {
+        cloudData.sharing.queryParticipants(SHARING_RESOURCE,(err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
+          expect(null).assertFail();
+          done()
+        })
+      } catch (err) {
+        expect(null).assertFail();
+        console.log(TAG+"err.code"+err.code)
+        done();
+      }
+      console.log(TAG + "************* queryParticipantsTest005 end *************");
+    })
+    /**
+     * @tc.name queryParticipantsByInvitation invitationCode value is undefined(callback)
      * @tc.number SUB_DDM_CloudData_7800
-     * @tc.desc queryParticipantsByInvitation sharingResoure value is undefined (promise)
+     * @tc.desc queryParticipantsByInvitation invitationCode value is undefined (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3377,24 +3440,24 @@ export default function cloudSharingTestPromise() {
     it("queryParticipantsByInvitationTest001", 0, async function (done) {
       console.log(TAG + "************* queryParticipantsByInvitationTest001 start *************");
       try {
-        await cloudData.sharing.queryParticipantsByInvitation(undefined).then(async(result) => {
+        cloudData.sharing.queryParticipantsByInvitation(undefined, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
-        done()
+        console.log(TAG+"err.code"+err.code)
+        done();
       }
       console.log(TAG + "************* queryParticipantsByInvitationTest001 end *************");
     })
     /**
-     * @tc.name queryParticipantsByInvitation sharingResoure value is null(promise)
+     * @tc.name queryParticipantsByInvitation invitationCode value is null(callback)
      * @tc.number SUB_DDM_CloudData_7900
-     * @tc.desc queryParticipantsByInvitation sharingResoure value is null (promise)
+     * @tc.desc queryParticipantsByInvitation invitationCode value is null (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3402,24 +3465,24 @@ export default function cloudSharingTestPromise() {
     it("queryParticipantsByInvitationTest002", 0, async function (done) {
       console.log(TAG + "************* queryParticipantsByInvitationTest002 start *************");
       try {
-        await cloudData.sharing.queryParticipantsByInvitation(null).then(async(result) => {
+        cloudData.sharing.queryParticipantsByInvitation(null,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
-        done()
+        console.log(TAG+"err.code"+err.code)
+        done();
       }
       console.log(TAG + "************* queryParticipantsByInvitationTest002 end *************");
     })
     /**
-     * @tc.name queryParticipantsByInvitation sharingResoure value is int(promise)
+     * @tc.name queryParticipantsByInvitation invitationCode value is int(callback)
      * @tc.number SUB_DDM_CloudData_8000
-     * @tc.desc queryParticipantsByInvitation sharingResoure value is int (promise)
+     * @tc.desc queryParticipantsByInvitation invitationCode value is int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3427,24 +3490,24 @@ export default function cloudSharingTestPromise() {
     it("queryParticipantsByInvitationTest003", 0, async function (done) {
       console.log(TAG + "************* queryParticipantsByInvitationTest003 start *************");
       try {
-        await cloudData.sharing.queryParticipantsByInvitation(1).then(async(result) => {
+        cloudData.sharing.queryParticipantsByInvitation(1,(err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
-        done()
+        console.log(TAG+"err.code"+err.code)
+        done();
       }
       console.log(TAG + "************* queryParticipantsByInvitationTest003 end *************");
     })
     /**
-     * @tc.name queryParticipantsByInvitation sharingResoure value is (promise)
+     * @tc.name queryParticipantsByInvitation invitationCode value is (callback)
      * @tc.number SUB_DDM_CloudData_8100
-     * @tc.desc queryParticipantsByInvitation sharingResoure value is (promise)
+     * @tc.desc queryParticipantsByInvitation invitationCode value is (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3452,24 +3515,50 @@ export default function cloudSharingTestPromise() {
     it("queryParticipantsByInvitationTest004", 0, async function (done) {
       console.log(TAG + "************* queryParticipantsByInvitationTest004 start *************");
       try {
-        await cloudData.sharing.queryParticipantsByInvitation().then(async(result) => {
+        cloudData.sharing.queryParticipantsByInvitation((err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
+          done();
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
-        done()
+        console.log(TAG+"err.code"+err.code)
+        done();
       }
       console.log(TAG + "************* queryParticipantsByInvitationTest004 end *************");
     })
     /**
-     * @tc.name confirmInvitation invitationCode value undefined (promise)
+     * @tc.name queryParticipantsTest sharingResoureinvitationCode value is string (callback)
+     * @tc.number SUB_DDM_CloudData_81001
+     * @tc.desc queryParticipantsTest sharingResoure invitationCodevalue is string (callback)
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it("queryParticipantsByInvitationTest005", 0, async function (done) {
+      console.log(TAG + "************* queryParticipantsByInvitationTest005 start *************");
+      try {
+        cloudData.sharing.queryParticipantsByInvitation(INVITATION_CODE,(err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
+          expect(null).assertFail();
+          done()
+        })
+      } catch (err) {
+        expect(null).assertFail();
+        console.log(TAG+"err.code"+err.code)
+        done();
+      }
+      console.log(TAG + "************* queryParticipantsTest005 end *************");
+    })
+    /**
+     * @tc.name confirmInvitation invitationCode value undefined (callback)
      * @tc.number SUB_DDM_CloudData_8200
-     * @tc.desc confirmInvitation invitationCode value undefined (promise)
+     * @tc.desc confirmInvitation invitationCode value undefined (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3477,25 +3566,25 @@ export default function cloudSharingTestPromise() {
     it("confirmInvitationTest001", 0, async function (done) {
       console.log(TAG + "************* confirmInvitationTest001 start *************");
       try {
-        await cloudData.sharing.confirmInvitation(undefined, cloudData.sharing.State.STATE_SUSPENDED).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.confirmInvitation(undefined, cloudData.sharing.State.STATE_SUSPENDED, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
+        console.log(TAG+"err.code"+err.code)
         done()
       }
 
       console.log(TAG + "************* confirmInvitationTest001 end *************");
     })
     /**
-     * @tc.name confirmInvitation invitationCode value null (promise)
+     * @tc.name confirmInvitation invitationCode value null (callback)
      * @tc.number SUB_DDM_CloudData_8300
-     * @tc.desc confirmInvitation invitationCode value null (promise)
+     * @tc.desc confirmInvitation invitationCode value null (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3503,24 +3592,24 @@ export default function cloudSharingTestPromise() {
     it("confirmInvitationTest002", 0, async function (done) {
       console.log(TAG + "************* confirmInvitationTest002 start *************");
       try {
-        await cloudData.sharing.confirmInvitation(null, cloudData.sharing.State.STATE_SUSPENDED).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.confirmInvitation(null, cloudData.sharing.State.STATE_SUSPENDED, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* confirmInvitationTest002 end *************");
     })
     /**
-     * @tc.name confirmInvitation state value int (promise)
+     * @tc.name confirmInvitation state value int (callback)
      * @tc.number SUB_DDM_CloudData_8400
-     * @tc.desc confirmInvitation state value int (promise)
+     * @tc.desc confirmInvitation state value int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3528,25 +3617,25 @@ export default function cloudSharingTestPromise() {
     it("confirmInvitationTest003", 0, async function (done) {
       console.log(TAG + "************* confirmInvitationTest003 start *************");
       try {
-        await cloudData.sharing.confirmInvitation(INVITATION_CODE, 100).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.confirmInvitation(INVITATION_CODE, 100, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* confirmInvitationTest003 end *************");
     })
 
     /**
-     * @tc.name confirmInvitation state value undefined (promise)
+     * @tc.name confirmInvitation state value undefined (callback)
      * @tc.number SUB_DDM_CloudData_8500
-     * @tc.desc confirmInvitation state value undefined (promise)
+     * @tc.desc confirmInvitation state value undefined (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3554,24 +3643,24 @@ export default function cloudSharingTestPromise() {
     it("confirmInvitationTest004", 0, async function (done) {
       console.log(TAG + "************* confirmInvitationTest004 start *************");
       try {
-        await cloudData.sharing.confirmInvitation(INVITATION_CODE, undefined).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.confirmInvitation(INVITATION_CODE, undefined, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* confirmInvitationTest004 end *************");
     })
     /**
-     * @tc.name confirmInvitation state value null (promise)
+     * @tc.name confirmInvitation state value null (callback)
      * @tc.number SUB_DDM_CloudData_8500
-     * @tc.desc confirmInvitation state value null (promise)
+     * @tc.desc confirmInvitation state value null (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3579,24 +3668,24 @@ export default function cloudSharingTestPromise() {
     it("confirmInvitationTest005", 0, async function (done) {
       console.log(TAG + "************* confirmInvitationTest005 start *************");
       try {
-        await cloudData.sharing.confirmInvitation(INVITATION_CODE, null).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.confirmInvitation(INVITATION_CODE, null, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* confirmInvitationTest005 end *************");
     })
     /**
-     * @tc.name confirmInvitation invitationCode value is null,state value is null (promise)
+     * @tc.name confirmInvitation invitationCode value is null,state value is null (callback)
      * @tc.number SUB_DDM_CloudData_8600
-     * @tc.desc confirmInvitation invitationCode value is null,state value is null (promise)
+     * @tc.desc confirmInvitation invitationCode value is null,state value is null (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3604,24 +3693,24 @@ export default function cloudSharingTestPromise() {
     it("confirmInvitationTest006", 0, async function (done) {
       console.log(TAG + "************* confirmInvitationTest006 start *************");
       try {
-        await cloudData.sharing.confirmInvitation(null,null).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.confirmInvitation(null, null, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* confirmInvitationTest006 end *************");
     })
     /**
-     * @tc.name confirmInvitation invitationCode value is undefined,state value is undefined (promise)
+     * @tc.name confirmInvitation invitationCode value is undefined,state value is undefined (callback)
      * @tc.number SUB_DDM_CloudData_8700
-     * @tc.desc confirmInvitation invitationCode value is undefined,state value is undefined (promise)
+     * @tc.desc confirmInvitation invitationCode value is undefined,state value is undefined (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3629,24 +3718,24 @@ export default function cloudSharingTestPromise() {
     it("confirmInvitationTest007", 0, async function (done) {
       console.log(TAG + "************* confirmInvitationTest007 start *************");
       try {
-        await cloudData.sharing.confirmInvitation(undefined,undefined).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.confirmInvitation(undefined,undefined, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* confirmInvitationTest007 end *************");
     })
     /**
-     * @tc.name confirmInvitation invitationCode value is (promise)
+     * @tc.name confirmInvitation invitationCode value is (callback)
      * @tc.number SUB_DDM_CloudData_8800
-     * @tc.desc confirmInvitation invitationCode value is (promise)
+     * @tc.desc confirmInvitation invitationCode value is (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3654,24 +3743,24 @@ export default function cloudSharingTestPromise() {
     it("confirmInvitationTest008", 0, async function (done) {
       console.log(TAG + "************* confirmInvitationTest008 start *************");
       try {
-        await cloudData.sharing.confirmInvitation(cloudData.sharing.State.STATE_SUSPENDED).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.confirmInvitation(cloudData.sharing.State.STATE_SUSPENDED, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* confirmInvitationTest008 end *************");
     })
     /**
-     * @tc.name confirmInvitation invitationCode value is int(promise)
+     * @tc.name confirmInvitation invitationCode value is int(callback)
      * @tc.number SUB_DDM_CloudData_8900
-     * @tc.desc confirmInvitation invitationCode value is int (promise)
+     * @tc.desc confirmInvitation invitationCode value is int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3679,24 +3768,24 @@ export default function cloudSharingTestPromise() {
     it("confirmInvitationTest009", 0, async function (done) {
       console.log(TAG + "************* confirmInvitationTest009 start *************");
       try {
-        await cloudData.sharing.confirmInvitation(12,cloudData.sharing.State.STATE_SUSPENDED).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.confirmInvitation(12,cloudData.sharing.State.STATE_SUSPENDED, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* confirmInvitationTest009 end *************");
     })
     /**
-     * @tc.name confirmInvitation invitationCode value is ,state value is  (promise)
+     * @tc.name confirmInvitation invitationCode value is ,state value is  (callback)
      * @tc.number SUB_DDM_CloudData_9000
-     * @tc.desc confirmInvitation invitationCode value is ,state value is  (promise)
+     * @tc.desc confirmInvitation invitationCode value is ,state value is  (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3704,24 +3793,24 @@ export default function cloudSharingTestPromise() {
     it("confirmInvitationTest010", 0, async function (done) {
       console.log(TAG + "************* confirmInvitationTest010 start *************");
       try {
-        await cloudData.sharing.confirmInvitation().then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.confirmInvitation((err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
         expect(err.code == 401).assertTrue();
+        console.log(TAG+"err.code"+err.code)
         done()
       }
       console.log(TAG + "************* confirmInvitationTest010 end *************");
     })
     /**
-     * @tc.name confirmInvitation state value is  (promise)
+     * @tc.name confirmInvitation state value is  (callback)
      * @tc.number SUB_DDM_CloudData_9100
-     * @tc.desc confirmInvitation state value is  (promise)
+     * @tc.desc confirmInvitation state value is  (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3729,10 +3818,10 @@ export default function cloudSharingTestPromise() {
     it("confirmInvitationTest011", 0, async function (done) {
       console.log(TAG + "************* confirmInvitationTest011 start *************");
       try {
-        await cloudData.sharing.confirmInvitation(INVITATION_CODE).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.confirmInvitation(INVITATION_CODE, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -3744,9 +3833,35 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* confirmInvitationTest011 end *************");
     })
     /**
-     * @tc.name changeConfirmation sharingResource value is  undefined (promise)
+     * @tc.name confirmInvitation invitationCode value is string, state value isState (callback)
+     * @tc.number SUB_DDM_CloudData_91000
+     * @tc.desc confirmInvitation state value is  (callback)
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it("confirmInvitationTest012", 0, async function (done) {
+      console.log(TAG + "************* confirmInvitationTest012 start *************");
+      try {
+        cloudData.sharing.confirmInvitation(INVITATION_CODE,cloudData.sharing.State.STATE_SUSPENDED ,(err, result) => {
+          if (err) {
+            expect(err.code == 202).assertTrue();
+            console.log(TAG+"err.code"+err.code+"err.message"+err.message)
+          }
+          expect(null).assertFail();
+          done()
+        })
+      } catch (err) {
+        console.log(TAG+"err.code"+err.code)
+        expect(null).assertFail();
+        done()
+      }
+      console.log(TAG + "************* confirmInvitationTest012 end *************");
+    })
+    /**
+     * @tc.name changeConfirmation sharingResource value is  undefined (callback)
      * @tc.number SUB_DDM_CloudData_9200
-     * @tc.desc changeConfirmation sharingResource value is  undefined (promise)
+     * @tc.desc changeConfirmation sharingResource value is  undefined (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3754,10 +3869,10 @@ export default function cloudSharingTestPromise() {
     it("changeConfirmationTest001", 0, async function (done) {
       console.log(TAG + "************* changeConfirmationTest001 start *************");
       try {
-        await cloudData.sharing.changeConfirmation(undefined, cloudData.sharing.State.STATE_SUSPENDED).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changeConfirmation(undefined, cloudData.sharing.State.STATE_SUSPENDED, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -3770,9 +3885,9 @@ export default function cloudSharingTestPromise() {
     })
 
     /**
-     * @tc.name changeConfirmation state value is  int (promise)
+     * @tc.name changeConfirmation state value is  int (callback)
      * @tc.number SUB_DDM_CloudData_9300
-     * @tc.desc changeConfirmation state value is  int (promise)
+     * @tc.desc changeConfirmation state value is  int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3780,25 +3895,25 @@ export default function cloudSharingTestPromise() {
     it("changeConfirmationTest002", 0, async function (done) {
       console.log(TAG + "************* changeConfirmationTest002 start *************");
       try {
-        await cloudData.sharing.changeConfirmation(SHARING_RESOURCE, 100).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changeConfirmation(SHARING_RESOURCE, 100, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
       } catch (err) {
         console.log(TAG+"err.code"+err.code)
-        expect(err.code == 401).assertTrue();
+        expect(err.code).assertEqual('401');
         done()
       }
       console.log(TAG + "************* changeConfirmationTest002 end *************");
     })
 
     /**
-     * @tc.name changeConfirmation state value is  undefined (promise)
+     * @tc.name changeConfirmation state value is  undefined (callback)
      * @tc.number SUB_DDM_CloudData_9400
-     * @tc.desc changeConfirmation state value is  undefined (promise)
+     * @tc.desc changeConfirmation state value is  undefined (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3806,10 +3921,10 @@ export default function cloudSharingTestPromise() {
     it("changeConfirmationTest003", 0, async function (done) {
       console.log(TAG + "************* changeConfirmationTest003 start *************");
       try {
-        await cloudData.sharing.changeConfirmation(SHARING_RESOURCE, undefined).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changeConfirmation(SHARING_RESOURCE, undefined, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -3821,9 +3936,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changeConfirmationTest003 end *************");
     })
     /**
-     * @tc.name changeConfirmation sharingResource value is null,state value is  null (promise)
+     * @tc.name changeConfirmation sharingResource value is null,state value is  null (callback)
      * @tc.number SUB_DDM_CloudData_9500
-     * @tc.desc changeConfirmation sharingResource value is null,state value is  null (promise)
+     * @tc.desc changeConfirmation sharingResource value is null,state value is  null (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3831,10 +3946,10 @@ export default function cloudSharingTestPromise() {
     it("changeConfirmationTest004", 0, async function (done) {
       console.log(TAG + "************* changeConfirmationTest004 start *************");
       try {
-        await cloudData.sharing.changeConfirmation(null, null).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changeConfirmation(null, null, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -3846,9 +3961,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changeConfirmationTest004 end *************");
     })
     /**
-     * @tc.name changeConfirmation sharingResource value is undefined,state value is undefined (promise)
+     * @tc.name changeConfirmation sharingResource value is undefined,state value is undefined (callback)
      * @tc.number SUB_DDM_CloudData_9600
-     * @tc.desc changeConfirmation sharingResource value is undefined,state value is undefined (promise)
+     * @tc.desc changeConfirmation sharingResource value is undefined,state value is undefined (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3856,10 +3971,10 @@ export default function cloudSharingTestPromise() {
     it("changeConfirmationTest005", 0, async function (done) {
       console.log(TAG + "************* changeConfirmationTest005 start *************");
       try {
-        await cloudData.sharing.changeConfirmation(undefined, undefined).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changeConfirmation(undefined, undefined, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -3871,9 +3986,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changeConfirmationTest005 end *************");
     })
     /**
-     * @tc.name changeConfirmation state value is null (promise)
+     * @tc.name changeConfirmation state value is null (callback)
      * @tc.number SUB_DDM_CloudData_9700
-     * @tc.desc changeConfirmation state value is null (promise)
+     * @tc.desc changeConfirmation state value is null (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3881,10 +3996,10 @@ export default function cloudSharingTestPromise() {
     it("changeConfirmationTest006", 0, async function (done) {
       console.log(TAG + "************* changeConfirmationTest006 start *************");
       try {
-        await cloudData.sharing.changeConfirmation(SHARING_RESOURCE, null).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changeConfirmation(SHARING_RESOURCE, null, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -3896,9 +4011,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changeConfirmationTest006 end *************");
     })
     /**
-     * @tc.name changeConfirmation sharingResource value is null(promise)
+     * @tc.name changeConfirmation sharingResource value is null(callback)
      * @tc.number SUB_DDM_CloudData_9800
-     * @tc.desc changeConfirmation sharingResource value is null(promise)
+     * @tc.desc changeConfirmation sharingResource value is null(callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3906,10 +4021,10 @@ export default function cloudSharingTestPromise() {
     it("changeConfirmationTest007", 0, async function (done) {
       console.log(TAG + "************* changeConfirmationTest007 start *************");
       try {
-        await cloudData.sharing.changeConfirmation(null, cloudData.sharing.State.STATE_SUSPENDED).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changeConfirmation(null, cloudData.sharing.State.STATE_SUSPENDED, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -3921,9 +4036,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changeConfirmationTest007 end *************");
     })
     /**
-     * @tc.name changeConfirmation sharingResource value is int (promise)
+     * @tc.name changeConfirmation sharingResource value is int (callback)
      * @tc.number SUB_DDM_CloudData_9900
-     * @tc.desc changeConfirmation sharingResource value is int (promise)
+     * @tc.desc changeConfirmation sharingResource value is int (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3931,10 +4046,10 @@ export default function cloudSharingTestPromise() {
     it("changeConfirmationTest008", 0, async function (done) {
       console.log(TAG + "************* changeConfirmationTest008 start *************");
       try {
-        await cloudData.sharing.changeConfirmation(1, cloudData.sharing.State.STATE_SUSPENDED).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changeConfirmation(1, cloudData.sharing.State.STATE_SUSPENDED, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -3946,9 +4061,9 @@ export default function cloudSharingTestPromise() {
       console.log(TAG + "************* changeConfirmationTest008 end *************");
     })
     /**
-     * @tc.name changeConfirmation sharingResource value is ,state value is  (promise)
+     * @tc.name changeConfirmation sharingResource value is ,state value is  (callback)
      * @tc.number SUB_DDM_CloudData_10000
-     * @tc.desc changeConfirmation sharingResource value is ,state value is  (promise)
+     * @tc.desc changeConfirmation sharingResource value is ,state value is  (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -3956,35 +4071,10 @@ export default function cloudSharingTestPromise() {
     it("changeConfirmationTest009", 0, async function (done) {
       console.log(TAG + "************* changeConfirmationTest009 start *************");
       try {
-        await cloudData.sharing.changeConfirmation().then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
-          expect(null).assertFail();
-          done()
-        })
-      } catch (err) {
-        console.log(TAG+"err.code"+err.code)
-        expect(err.code == 401).assertTrue();
-        done()
-      }
-      console.log(TAG + "************* changeConfirmationTest009 end *************");
-    })
-    /**
-     * @tc.name changeConfirmation sharingResource value is (promise)
-     * @tc.number SUB_DDM_CloudData_10100
-     * @tc.desc changeConfirmation sharingResource value is  (promise)
-     * @tc.size MediumTest
-     * @tc.type Function
-     * @tc.level Level 1
-     */
-    it("changeConfirmationTest010", 0, async function (done) {
-      console.log(TAG + "************* changeConfirmationTest010 start *************");
-      try {
-        await cloudData.sharing.changeConfirmation(cloudData.sharing.State.STATE_SUSPENDED).then(async(result) => {
-          expect(null).assertFail();
-          done()
-        }).catch((err)=>{
+        cloudData.sharing.changeConfirmation((err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
           expect(null).assertFail();
           done()
         })
@@ -3994,12 +4084,36 @@ export default function cloudSharingTestPromise() {
         done()
       }
 
+      console.log(TAG + "************* changeConfirmationTest009 end *************");
+    })
+    /**
+     * @tc.name changeConfirmation sharingResource value is (callback)
+     * @tc.number SUB_DDM_CloudData_10100
+     * @tc.desc changeConfirmation sharingResource value is  (callback)
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level 1
+     */
+    it("changeConfirmationTest010", 0, async function (done) {
+      console.log(TAG + "************* changeConfirmationTest010 start *************");
+      try {
+        cloudData.sharing.changeConfirmation(cloudData.sharing.State.STATE_SUSPENDED, (err, result) => {
+          if (err) {
+            expect(null).assertFail();
+          }
+          expect(null).assertFail();
+        })
+      } catch (err) {
+        console.log(TAG+"err.code"+err.code)
+        expect(err.code == 401).assertTrue();
+        done()
+      }
       console.log(TAG + "************* changeConfirmationTest010 end *************");
     })
     /**
-     * @tc.name changeConfirmation state value is (promise)
-     * @tc.number SUB_DDM_CloudData_10200
-     * @tc.desc changeConfirmation state value is  (promise)
+     * @tc.name changeConfirmation state value is (callback)
+     * @tc.number SUB_DDM_CloudData_10800
+     * @tc.desc changeConfirmation state value is  (callback)
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 1
@@ -4007,45 +4121,45 @@ export default function cloudSharingTestPromise() {
     it("changeConfirmationTest011", 0, async function (done) {
       console.log(TAG + "************* changeConfirmationTest011 start *************");
       try {
-        await cloudData.sharing.changeConfirmation(SHARING_RESOURCE).then(async(result) => {
+        cloudData.sharing.changeConfirmation(SHARING_RESOURCE, (err, result) => {
+          if (err) {
             expect(null).assertFail();
-            done()
-          }).catch((err)=>{
-            expect(null).assertFail();
-            done()
-          })
+          }
+          expect(null).assertFail();
+          done()
+        })
       } catch (err) {
-        console.log(TAG+"err.code"+err.code)
+        console.log(TAG + "err.code" + err.code)
         expect(err.code == 401).assertTrue();
         done()
       }
       console.log(TAG + "************* changeConfirmationTest011 end *************");
     })
-    /**
-     * @tc.name changeConfirmation sharingResource value is string, state value is State (callback)
-     * @tc.number SUB_DDM_CloudData_11900
-     * @tc.desc changeConfirmation sharingResource  value is string, state value is State (callback)
-     * @tc.size MediumTest
-     * @tc.type Function
-     * @tc.level Level 1
-     */
-    it("changeConfirmationTest012", 0, async function (done) {
-      console.log(TAG + "************* changeConfirmationTest012 start *************");
-      try {
-        await cloudData.sharing.changeConfirmation(SHARING_RESOURCE, cloudData.sharing.State.STATE_SUSPENDED).then(async(result) => {
+      /**
+       * @tc.name changeConfirmation sharingResource value is string, state value is State (callback)
+       * @tc.number SUB_DDM_CloudData_11900
+       * @tc.desc changeConfirmation sharingResource value is string, state value is State (callback)
+       * @tc.size MediumTest
+       * @tc.type Function
+       * @tc.level Level 1
+       */
+      it("changeConfirmationTest012", 0, async function (done) {
+        console.log(TAG + "************* changeConfirmationTest012 start *************");
+        try {
+          cloudData.sharing.changeConfirmation(SHARING_RESOURCE, cloudData.sharing.State.STATE_SUSPENDED, (err, result) => {
+            if (err) {
+              expect(err.code == 202).assertTrue();
+              console.log(TAG + "err.code" + err.code + "err.message" + err.message)
+            }
+            expect(null).assertFail();
+            done()
+          })
+        } catch (err) {
+          console.log(TAG + "err.code" + err.code)
           expect(null).assertFail();
           done()
-        }).catch((err)=>{
-          expect(err.code == 202).assertTrue();
-          console.log(TAG + "err.code" + err.code + "err.message" + err.message)
-          done()
-        })
-      } catch (err) {
-        console.log(TAG+"err.code"+err.code)
-        expect(null).assertFail();
-        done()
-      }
-      console.log(TAG + "************* changeConfirmationTest012 end *************");
+        }
+        console.log(TAG + "************* changeConfirmationTest012 end *************");
+      })
     })
-  })
 }
