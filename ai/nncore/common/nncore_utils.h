@@ -89,13 +89,13 @@ std::string ConcatPath(const std::string &str1, const std::string &str2);
 void DeleteFolder(const std::string &path);
 bool CreateFolder(const std::string &path);
 
-//模型相关
-void ConstructAddModel(OH_NNModel **model);
-void ConstructCompilation(OH_NNCompilation **compilation);
-void CreateExecutor(OH_NNExecutor **executor);
-void CreateDynamicExecutor(OH_NNExecutor **executor);
-void GetExecutorInputOutputTensor(OH_NNExecutor* executor, std::vector<NN_Tensor*>& inputTensors, size_t& inputCount, 
-                                  std::vector<NN_Tensor*>& outputTensors, size_t& outputCount);
+// //模型相关
+// void ConstructAddModel(OH_NNModel **model);
+// void ConstructCompilation(OH_NNCompilation **compilation);
+// void CreateExecutor(OH_NNExecutor **executor);
+// void CreateDynamicExecutor(OH_NNExecutor **executor);
+// void GetExecutorInputOutputTensor(OH_NNExecutor* executor, std::vector<NN_Tensor*>& inputTensors, size_t& inputCount, 
+//                                   std::vector<NN_Tensor*>& outputTensors, size_t& outputCount);
 } // namespace Test
 } // namespace NeuralNetworkRuntime
 } // namespace OHOS

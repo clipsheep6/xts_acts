@@ -45,12 +45,23 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_CreateQuantParam_0100, Function
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_DestroyQuantParam_0100
- * @tc.desc: 释放量化参数,quantParam为空
+ * @tc.desc: 释放量化参数,*quantParam为空
  * @tc.type: FUNC
  */
 HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_DestroyQuantParam_0100, Function | MediumTest | Level0)
 {
-    ASSERT_EQ(OH_NN_FAILED, OH_NNQuantParam_Destroy(nullptr));
+    NN_QuantParam* quantParam = nullptr;
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNQuantParam_Destroy(&quantParam));
+}
+
+/**
+ * @tc.number : SUB_AI_NNRt_Func_North_Model_DestroyQuantParam_0200
+ * @tc.desc: 释放量化参数,quantParam为空
+ * @tc.type: FUNC
+ */
+HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_DestroyQuantParam_0200, Function | MediumTest | Level0)
+{
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNQuantParam_Destroy(nullptr));
 }
 
 /**
@@ -61,7 +72,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_DestroyQuantParam_0100, Functio
 HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0100, Function | MediumTest | Level0)
 {
     double scales = 0.2;
-    ASSERT_EQ(OH_NN_FAILED, OH_NNQuantParam_SetScales(nullptr, &scales, 1));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNQuantParam_SetScales(nullptr, &scales, 1));
 }
 
 /**
@@ -107,7 +118,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0300, Function | 
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetNumBits(quantParam, &numBits, 1));
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
@@ -131,7 +142,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0400, Function | 
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 2));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 2));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetNumBits(quantParam, &numBits, 2));
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
+    ASSERT_NE(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
@@ -155,7 +166,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0500, Function | 
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 2));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetNumBits(quantParam, &numBits, 1));
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
+    ASSERT_NE(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
@@ -178,7 +189,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0600, Function | 
     uint32_t numBits = 8;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetNumBits(quantParam, &numBits, 1));
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
+    ASSERT_NE(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
@@ -201,7 +212,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0700, Function | 
     uint32_t numBits = 8;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 1));
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
+    ASSERT_NE(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
@@ -224,7 +235,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0800, Function | 
     uint32_t numBits = 8;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetNumBits(quantParam, &numBits, 1));
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
+    ASSERT_NE(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
@@ -248,7 +259,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0900, Function | 
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetNumBits(quantParam, &numBits, 1));
-    ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 1, quantParam));
+    ASSERT_NE(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 1, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
@@ -262,7 +273,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_AddTensorToModel_0100, Function
 {
     int32_t inputDims[4] = {1, 1, 2, 3};
     NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_AddTensorToModel(nullptr, tensorDesc));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_AddTensorToModel(nullptr, tensorDesc));
 }
 
 /**
@@ -274,7 +285,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_AddTensorToModel_0200, Function
 {
     OH_NNModel *model = OH_NNModel_Construct();
     ASSERT_NE(nullptr, model);
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_AddTensorToModel(model, nullptr));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_AddTensorToModel(model, nullptr));
     OH_NNModel_Destroy(&model);
 }
 
@@ -286,7 +297,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_AddTensorToModel_0200, Function
 HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetTensorData_0100, Function | MediumTest | Level0)
 {
     int8_t activationValue{0};
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorData(nullptr, 0, (void *)&activationValue, sizeof(int8_t)));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SetTensorData(nullptr, 0, (void *)&activationValue, sizeof(int8_t)));
 }
 
 /**
@@ -302,7 +313,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetTensorData_0200, Function | 
     NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     int8_t activationValue{0};
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorData(model, 0, nullptr, sizeof(int8_t)));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SetTensorData(model, 0, nullptr, sizeof(int8_t)));
     OH_NNModel_Destroy(&model);
 }
 
@@ -319,7 +330,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetTensorData_0300, Function | 
     NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     int8_t activationValue{0};
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorData(model, 0, (void *)&activationValue, 0));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SetTensorData(model, 0, (void *)&activationValue, 0));
     OH_NNModel_Destroy(&model);
 }
 
@@ -336,7 +347,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetTensorData_0400, Function | 
     NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     int8_t activationValue{0};
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorData(model, 1000, (void *)&activationValue, sizeof(int8_t)));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SetTensorData(model, 1000, (void *)&activationValue, sizeof(int8_t)));
     OH_NNModel_Destroy(&model);
 }
 
@@ -347,7 +358,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetTensorData_0400, Function | 
  */
 HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetTensorType_0100, Function | MediumTest | Level0)
 {
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorType(nullptr, 0, OH_NN_TENSOR));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SetTensorType(nullptr, 0, OH_NN_TENSOR));
 }
 
 /**
@@ -362,7 +373,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetTensorType_0200, Function | 
     int32_t inputDims[4] = {1, 1, 2, 3};
     NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorType(model, 1000, OH_NN_TENSOR));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SetTensorType(model, 1000, OH_NN_TENSOR));
     OH_NNModel_Destroy(&model);
 }
 

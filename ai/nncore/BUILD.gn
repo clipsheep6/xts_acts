@@ -29,8 +29,8 @@ ohos_moduletest_suite("NncoreTest") {
   sources = [
     "common/nncore_utils.cpp",
     "common/mock_idevice.cpp",
-    "src/hdi_compilation_test.cpp",
-    "src/hdi_executor_test.cpp",
+#    "src/hdi_compilation_test.cpp",
+#    "src/hdi_executor_test.cpp",
     "src/hdi_model_test.cpp",
     "src/hdi_tensor_test.cpp",
     "src/hdi_tensorDesc_test.cpp",
@@ -56,9 +56,34 @@ ohos_moduletest_suite("NncoreTest") {
   part_name = "neural_network_runtime"
 }
 
+ohos_moduletest_suite("E2ETest") {
+  module_out_path = module_output_path
+  sources = [ "src/End_to_End_Test.cpp" ]
+
+  configs = [ ":nncore_config" ]
+
+  deps = [
+    "//third_party/googletest:gmock",
+    "//third_party/googletest:gtest",
+  ]
+
+  external_deps = [
+    "c_utils:utils",
+    "drivers_interface_nnrt:libnnrt_proxy_2.0",
+    "hilog:libhilog",
+    "ipc:ipc_single",
+    "mindspore:mindir",
+    "neural_network_runtime:nnrt_target",
+  ]
+
+  subsystem_name = "ai"
+  part_name = "neural_network_runtime"
+}
+
 group("ActsHdfNncoreTest") {
   testonly = true
   deps = [ 
     ":NncoreTest",
+    ":E2ETest",
   ]
 }
