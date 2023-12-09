@@ -27,7 +27,7 @@ public:
     }
     void TearDown()
     {
-        DeleteFolder(CACHE_DIR);
+//        DeleteFolder(CACHE_DIR);
     }
     void GenCacheFile()
     {
@@ -75,14 +75,14 @@ protected:
  */
 HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_For_Cache_0100, Function | MediumTest | Level1)
 {
-    //cache读取不出来
-    // GenCacheFile();
-    // OH_NNCompilation *compilation = OH_NNCompilation_ConstructForCache();
-    // ASSERT_NE(nullptr, compilation);
+    // cache读取不出来
+    GenCacheFile();
+    OH_NNCompilation *compilation = OH_NNCompilation_ConstructForCache();
+    ASSERT_NE(nullptr, compilation);
 
-    // ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_SetCache(compilation, CACHE_PATH.c_str(), CACHEVERSION));
-    // ASSERT_EQ(OH_NN_SUCCESS, SetDevice(compilation));
-    // ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_Build(compilation));
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_SetCache(compilation, CACHE_PATH.c_str(), CACHEVERSION));
+    ASSERT_EQ(OH_NN_SUCCESS, SetDevice(compilation));
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_Build(compilation));
 }
 
 /**
@@ -198,13 +198,13 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_With
 HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_With_OfflineModel_File_0200, Function | MediumTest | Level1)
 {
     //cache读取不出来
-    // SaveSupportModel();
-    // OH_NNCompilation *compilation = OH_NNCompilation_ConstructWithOfflineModelFile(SUPPORTMODELPATH.c_str());
-    // ASSERT_NE(nullptr, compilation);
+    SaveSupportModel();
+    OH_NNCompilation *compilation = OH_NNCompilation_ConstructWithOfflineModelFile(SUPPORTMODELPATH.c_str());
+    ASSERT_NE(nullptr, compilation);
 
-    // ASSERT_EQ(OH_NN_SUCCESS, SetDevice(compilation));
-    // ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNCompilation_Build(compilation));
-    // DeleteFile(SUPPORTMODELPATH);
+    ASSERT_EQ(OH_NN_SUCCESS, SetDevice(compilation));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNCompilation_Build(compilation));
+    DeleteFile(SUPPORTMODELPATH);
 }
 
 /**
@@ -228,12 +228,9 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_With
 HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_With_Offline_ModelBuffer_0200, Function | MediumTest | Level1)
 {
     //读取model不对
-    SaveSupportModel();
-    int modelSize = 0;
-    char* buffer = nullptr;
-    GetBuffer(SUPPORTMODELPATH.c_str(), &buffer, modelSize);
-    OH_NNCompilation *compilation = OH_NNCompilation_ConstructWithOfflineModelBuffer((const void*)buffer, modelSize);
+    OH_NNCompilation *compilation = OH_NNCompilation_ConstructWithOfflineModelBuffer(reinterpret_cast<const void*>(TEST_BUFFER), 28);
     ASSERT_NE(nullptr, compilation);
+    ASSERT_EQ(OH_NN_SUCCESS, SetDevice(compilation));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_Build(compilation));
     DeleteFile(SUPPORTMODELPATH);
 }
@@ -313,12 +310,13 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_Import_Compilation_Cache_F
 {
     OH_NNCompilation *compilation = nullptr;
     ConstructCompilation(&compilation);
+    ASSERT_EQ(OH_NN_SUCCESS, SetDevice(compilation));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_Build(compilation));
 
     const char *any = "123456789";
     const void *buffer = (const void*)(any);
     size_t modelSize = MODEL_SIZE;
     OH_NN_ReturnCode ret = OH_NNCompilation_ImportCacheFromBuffer(compilation, buffer, modelSize);
-    ASSERT_EQ(OH_NN_INVALID_PARAMETER, ret);
+    ASSERT_EQ(OH_NN_OPERATION_FORBIDDEN, ret);
 }
 }

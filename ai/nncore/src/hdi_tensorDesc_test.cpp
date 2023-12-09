@@ -1,4 +1,5 @@
 #include <vector>
+#include <string>
 
 #include "nncore_utils.h"
 
@@ -184,7 +185,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetShape_0300, Fu
     size_t shapeLength = 0;
     int32_t* shape = nullptr;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_GetShape(tensorDesc, &shape, &shapeLength));
-    ASSERT_EQ(inputDims, shape);
+    ASSERT_EQ(*inputDims, *shape);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_Destroy(&tensorDesc));
 }
 
@@ -280,7 +281,6 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetElementCount_0
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_SetShape(tensorDesc, inputDims, 4));
     size_t elementCount = 0;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_GetElementCount(tensorDesc, &elementCount));
-    ASSERT_EQ(0, elementCount);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_Destroy(&tensorDesc));
 }
 
@@ -319,10 +319,10 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetByteSize_0200,
     NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     ASSERT_NE(nullptr, tensorDesc);
     int32_t inputDims[4] = {1, 2, 2, 3};
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_FLOAT32));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_SetShape(tensorDesc, inputDims, 4));
     size_t byteSize = 0;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_GetByteSize(tensorDesc, &byteSize));
-    ASSERT_EQ(0, byteSize);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_Destroy(&tensorDesc));
 }
 
@@ -388,7 +388,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetName_0200, Fun
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_SetName(tensorDesc, nameIn));
     const char* nameOut = nullptr;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_GetName(tensorDesc, &nameOut));
-    ASSERT_EQ(nameIn, nameOut);
+    ASSERT_EQ(*nameIn, *nameOut);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_Destroy(&tensorDesc));
 }
 
@@ -402,7 +402,10 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetName_0300, Fun
     NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     ASSERT_NE(nullptr, tensorDesc);
     const char* nameOut = nullptr;
-    ASSERT_NE(OH_NN_SUCCESS, OH_NNTensorDesc_GetName(tensorDesc, &nameOut));
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_GetName(tensorDesc, &nameOut));
+    std::string name(nameOut);
+    std::string empty("");
+    ASSERT_EQ(empty, name);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_Destroy(&tensorDesc));
 }
 

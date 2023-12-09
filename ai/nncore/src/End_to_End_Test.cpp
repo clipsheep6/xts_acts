@@ -2,7 +2,7 @@
 #include <vector>
 #include <gtest/gtest.h>
 
-#include "interfaces/kits/c/neural_network_runtime/neural_network_runtime_compat.h"
+#include "interfaces/kits/c/neural_network_runtime/neural_network_runtime.h"
 #include "common/log.h"
 
 using namespace testing::ext;

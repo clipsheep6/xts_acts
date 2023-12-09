@@ -247,19 +247,25 @@ HWTEST_F(TensorTest, SUB_AI_NNRt_Func_North_Tensor_CreateTensorWithFd_0500, Func
  */
 HWTEST_F(TensorTest, SUB_AI_NNRt_Func_North_Tensor_CreateTensorWithFd_0600, Function | MediumTest | Level0)
 {
-    int32_t inputDims[4] = {1, 1, 2, 3};
+    int32_t inputDims[4] = {1, 1, 2, 515};
     NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     size_t deviceId = 0;
     testGetDevicesID(&deviceId);
     size_t byteSize = 0;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_GetByteSize(tensorDesc, &byteSize));
-    size_t size = 10;
+    size_t size = byteSize;
     NN_Tensor* tensor = OH_NNTensor_Create(deviceId, tensorDesc);
     ASSERT_NE(nullptr, tensor);
     int fd = -1;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensor_GetFd(tensor, &fd));
-    size_t offset = size - byteSize;
+    inputDims[3] = 3;
     NN_TensorDesc* tensorDescTmp = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    size_t byteSizeTmp = 0;
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_GetByteSize(tensorDescTmp, &byteSizeTmp));
+    LOGE("byteSizeTmp = %{public}zu", byteSizeTmp);
+    LOGE("size = %{public}zu", size);
+    size_t offset = size - byteSizeTmp;
+    LOGE("offset = %{public}zu", offset);
     NN_Tensor* tensortmp = OH_NNTensor_CreateWithFd(deviceId, tensorDescTmp, fd, size, offset);
     ASSERT_NE(nullptr, tensortmp);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensor_Destroy(&tensor));
@@ -381,10 +387,13 @@ HWTEST_F(TensorTest, SUB_AI_NNRt_Func_North_Tensor_GetSize_0300, Function | Medi
     NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     size_t deviceId = 0;
     testGetDevicesID(&deviceId);
-    NN_Tensor* tensor = OH_NNTensor_CreateWithSize(deviceId, tensorDesc, 4);
+    size_t byteSize = 0;
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_GetByteSize(tensorDesc, &byteSize));
+    size_t size = byteSize + 2;
+    NN_Tensor* tensor = OH_NNTensor_CreateWithSize(deviceId, tensorDesc, size);
     ASSERT_NE(nullptr, tensor);
-    size_t size = 0;
-    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensor_GetSize(tensor, &size));
+    size_t sizeTmp = 0;
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensor_GetSize(tensor, &sizeTmp));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensor_Destroy(&tensor));
 }
 
@@ -395,7 +404,7 @@ HWTEST_F(TensorTest, SUB_AI_NNRt_Func_North_Tensor_GetSize_0300, Function | Medi
  */
 HWTEST_F(TensorTest, SUB_AI_NNRt_Func_North_Tensor_GetSize_0400, Function | MediumTest | Level0)
 {
-    int32_t inputDims[4] = {1, 1, 2, 3};
+    int32_t inputDims[4] = {1, 1, 2, 515};
     NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     size_t deviceId = 0;
     testGetDevicesID(&deviceId);
@@ -403,9 +412,17 @@ HWTEST_F(TensorTest, SUB_AI_NNRt_Func_North_Tensor_GetSize_0400, Function | Medi
     ASSERT_NE(nullptr, tensor);
     int fd = -1;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensor_GetFd(tensor, &fd));
-    NN_Tensor* tensortmp = OH_NNTensor_CreateWithFd(deviceId, tensorDesc, fd, 4, 0);
-    size_t size = 0;
-    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensor_GetSize(tensortmp, &size));
+    size_t byteSize = 0;
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_GetByteSize(tensorDesc, &byteSize));
+    size_t size = byteSize;
+    inputDims[3] = 3;
+    NN_TensorDesc* tensorDescTmp = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    size_t byteSizeTmp = 0;
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_GetByteSize(tensorDescTmp, &byteSizeTmp));
+    size_t offset = size - byteSizeTmp;
+    NN_Tensor* tensortmp = OH_NNTensor_CreateWithFd(deviceId, tensorDescTmp, fd, size, offset);
+    size_t sizeTmp = 0;
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensor_GetSize(tensortmp, &sizeTmp));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensor_Destroy(&tensor));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensor_Destroy(&tensortmp));
 }
@@ -474,18 +491,22 @@ HWTEST_F(TensorTest, SUB_AI_NNRt_Func_North_Tensor_GetOffset_0200, Function | Me
  */
 HWTEST_F(TensorTest, SUB_AI_NNRt_Func_North_Tensor_GetOffset_0300, Function | MediumTest | Level0)
 {
-    int32_t inputDims[4] = {1, 1, 2, 3};
+    int32_t inputDims[4] = {1, 1, 2, 515};
     NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     size_t deviceId = 0;
     testGetDevicesID(&deviceId);
     size_t byteSize = 0;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_GetByteSize(tensorDesc, &byteSize));
-    size_t size = 10;
+    size_t size = byteSize + 2;
     NN_Tensor* tensor = OH_NNTensor_CreateWithSize(deviceId, tensorDesc, size);
     ASSERT_NE(nullptr, tensor);
     int fd = -1;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensor_GetFd(tensor, &fd));
-    size_t offset = size - byteSize;
+    inputDims[3] = 3;
+    NN_TensorDesc* tensorDescTmp = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
+    size_t byteSizeTmp = 0;
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_GetByteSize(tensorDescTmp, &byteSizeTmp));
+    size_t offset = size - byteSizeTmp;
     NN_Tensor* tensortmp = OH_NNTensor_CreateWithFd(deviceId, tensorDesc, fd, size, offset);
     ASSERT_NE(nullptr, tensortmp);
     size_t offsettmp = 0;
