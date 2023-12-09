@@ -4,7 +4,6 @@
 #include <thread>
 
 #include "nncore_utils.h"
-#include "model.h"
 
 using namespace testing::ext;
 using namespace OHOS::NeuralNetworkRuntime::Test;
@@ -185,7 +184,6 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0600, Function | 
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     NN_QuantParam* quantParam = OH_NNQuantParam_Create();
     double scales = 0.2;
-    int32_t zeroPoints = 0;
     uint32_t numBits = 8;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetNumBits(quantParam, &numBits, 1));
@@ -209,7 +207,6 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0700, Function | 
     NN_QuantParam* quantParam = OH_NNQuantParam_Create();
     double scales = 0.2;
     int32_t zeroPoints = 0;
-    uint32_t numBits = 8;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 1));
     ASSERT_NE(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
@@ -230,7 +227,6 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0800, Function | 
     NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
     NN_QuantParam* quantParam = OH_NNQuantParam_Create();
-    double scales = 0.2;
     int32_t zeroPoints = 0;
     uint32_t numBits = 8;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 1));
@@ -312,7 +308,6 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetTensorData_0200, Function | 
     int32_t inputDims[4] = {1, 1, 2, 3};
     NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNModel_AddTensorToModel(model, tensorDesc));
-    int8_t activationValue{0};
     ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SetTensorData(model, 0, nullptr, sizeof(int8_t)));
     OH_NNModel_Destroy(&model);
 }

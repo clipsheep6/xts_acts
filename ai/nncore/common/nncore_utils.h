@@ -19,10 +19,10 @@
 #include <sys/stat.h>
 #include <gtest/gtest.h>
 
-#include "interfaces/kits/c/neural_network_runtime/neural_network_runtime_compat.h"
+#include "interfaces/kits/c/neural_network_runtime/neural_network_runtime.h"
 #include "common/log.h"
 #include "mock_idevice.h"
-#include "const.h"
+#include "nncore_const.h"
 
 namespace OHOS {
 namespace NeuralNetworkRuntime {
@@ -67,6 +67,89 @@ struct OHNNCompileParam {
     OH_NN_Priority priority = OH_NN_PRIORITY_NONE;
     bool enableFp16 = false;
 };
+
+struct AddModel {
+    // ADD MODEL
+    float inputValue0[4] = {0, 1, 2, 3};
+    float inputValue1[4] = {0, 1, 2, 3};
+    int8_t activationValue = OH_NN_FUSED_NONE;
+    float outputValue[4] = {0};
+    float expectValue[4] = {0, 2, 4, 6};
+
+    OHNNOperandTest input0 = {OH_NN_FLOAT32, OH_NN_TENSOR, TENSOR_SHAPE, inputValue0, ADD_DATA_LENGTH};
+    OHNNOperandTest input1 = {OH_NN_FLOAT32, OH_NN_TENSOR, TENSOR_SHAPE, inputValue1, ADD_DATA_LENGTH};
+    OHNNOperandTest activation = {OH_NN_INT8, OH_NN_ADD_ACTIVATIONTYPE, {}, &activationValue, sizeof(int8_t)};
+    OHNNOperandTest output = {OH_NN_FLOAT32, OH_NN_TENSOR, TENSOR_SHAPE, outputValue, ADD_DATA_LENGTH};
+    OHNNGraphArgs graphArgs = {.operationType = OH_NN_OPS_ADD,
+                               .operands = {input0, input1, activation, output},
+                               .paramIndices = {2},
+                               .inputIndices = {0, 1},
+                               .outputIndices = {3}};
+};
+
+struct AvgPoolDynamicModel {
+    // AVG POOL MODEL
+    float inputValue[9] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
+    uint64_t kernelValue[2] = {2, 2};
+    uint64_t strideValue[2] = {1, 1};
+    int8_t padValue = 1;
+    int8_t activationValue = OH_NN_FUSED_NONE;
+    float outputValue[4] = {0};
+    float expectValue[4] = {2, 3, 5, 6};
+
+    OHNNOperandTest dynamicInput = {OH_NN_FLOAT32, OH_NN_TENSOR, {-1, -1, -1, -1}, inputValue, AVG_INPUT_LENGTH};
+    OHNNOperandTest kernel = {OH_NN_INT64, OH_NN_AVG_POOL_KERNEL_SIZE, {2}, kernelValue, sizeof(kernelValue)};
+    OHNNOperandTest strides = {OH_NN_INT64, OH_NN_AVG_POOL_STRIDE, {2}, strideValue, sizeof(strideValue)};
+    OHNNOperandTest padMode = {OH_NN_INT8, OH_NN_AVG_POOL_PAD_MODE, {}, &padValue, sizeof(padValue)};
+    OHNNOperandTest activation = {OH_NN_INT8, OH_NN_AVG_POOL_ACTIVATION_TYPE, {}, &activationValue, sizeof(int8_t)};
+    OHNNOperandTest output = {OH_NN_FLOAT32, OH_NN_TENSOR, {-1, -1, -1, -1}, outputValue, sizeof(outputValue)};
+
+    OHNNGraphArgs graphArgs = {.operationType = OH_NN_OPS_AVG_POOL,
+                               .operands = {dynamicInput, kernel, strides, padMode, activation, output},
+                               .paramIndices = {1, 2, 3, 4},
+                               .inputIndices = {0},
+                               .outputIndices = {5}};
+};
+
+struct TopKModel {
+    // TopK Model
+    float valueX[6] = {0, 1, 2, 3, 4, 5};
+    int8_t valueK = 2;
+    bool valueSorted = true;
+    float valueOutput1[2];
+    int32_t valueOutput2[2];
+
+    OHNNOperandTest x = {OH_NN_FLOAT32, OH_NN_TENSOR, {1, 6}, valueX, 6 * sizeof(float)};
+    OHNNOperandTest k = {OH_NN_INT8, OH_NN_TENSOR, {}, &valueK, sizeof(int8_t)};
+    OHNNOperandTest sorted = {OH_NN_BOOL, OH_NN_TOP_K_SORTED, {}, &valueSorted, sizeof(bool)};
+    OHNNOperandTest output1 = {OH_NN_FLOAT32, OH_NN_TENSOR, {1, 2}, valueOutput1, 2 * sizeof(float)};
+    OHNNOperandTest output2 = {OH_NN_INT32, OH_NN_TENSOR, {1, 2}, valueOutput2, 2 * sizeof(int32_t)};
+
+    OHNNGraphArgs graphArgs = {.operationType = OH_NN_OPS_TOP_K,
+                               .operands = {x, k, sorted, output1, output2},
+                               .paramIndices = {2},
+                               .inputIndices = {0, 1},
+                               .outputIndices = {3, 4}};
+};
+
+class AddTopKModel {
+    // Build two ops Model
+private:
+    AddModel addModel;
+    TopKModel topKModel;
+
+public:
+    OHNNGraphArgsMulti graphArgs = {
+        .operationTypes = {OH_NN_OPS_ADD, OH_NN_OPS_TOP_K},
+        .operands = {{addModel.input0, addModel.input1, addModel.activation, addModel.output},
+            {topKModel.k, topKModel.sorted, topKModel.output1, topKModel.output2}},
+        .paramIndices = {{2}, {5}},
+        .inputIndices = {{0, 1}, {3, 4}},
+        .outputIndices = {{3}, {6, 7}},
+        .graphInput = {0, 1, 4},
+        .graphOutput = {6, 7}};
+};
+
 NN_TensorDesc* createTensorDesc(const int32_t* shape, size_t shapeNum, OH_NN_DataType dataType, OH_NN_Format format);
 int BuildSingleOpGraph(OH_NNModel *model, const OHNNGraphArgs &graphArgs);
 int ExecutorWithMemory(OH_NNExecutor *executor, const OHNNGraphArgs &graphArgs, OH_NN_Memory *OHNNMemory[],
@@ -74,7 +157,6 @@ int ExecutorWithMemory(OH_NNExecutor *executor, const OHNNGraphArgs &graphArgs, 
 void Free(OH_NNModel *model = nullptr, OH_NNCompilation *compilation = nullptr, OH_NNExecutor *executor = nullptr);
 int CompileGraphMock(OH_NNCompilation *compilation, const OHNNCompileParam &compileParam);
 int ExecuteGraphMock(OH_NNExecutor *executor, const OHNNGraphArgs &graphArgs, float* expect);
-
 OH_NN_ReturnCode SetDevice(OH_NNCompilation *compilation);
 int BuildMultiOpGraph(OH_NNModel *model, const OHNNGraphArgsMulti &graphArgs);
 OH_NN_UInt32Array GetUInt32Array(std::vector<uint32_t> indices);
@@ -89,13 +171,13 @@ std::string ConcatPath(const std::string &str1, const std::string &str2);
 void DeleteFolder(const std::string &path);
 bool CreateFolder(const std::string &path);
 
-// //模型相关
-// void ConstructAddModel(OH_NNModel **model);
-// void ConstructCompilation(OH_NNCompilation **compilation);
-// void CreateExecutor(OH_NNExecutor **executor);
-// void CreateDynamicExecutor(OH_NNExecutor **executor);
-// void GetExecutorInputOutputTensor(OH_NNExecutor* executor, std::vector<NN_Tensor*>& inputTensors, size_t& inputCount, 
-//                                   std::vector<NN_Tensor*>& outputTensors, size_t& outputCount);
+//nncore创建相关
+void ConstructAddModel(OH_NNModel **model);
+void ConstructCompilation(OH_NNCompilation **compilation);
+void CreateExecutor(OH_NNExecutor **executor);
+void CreateDynamicExecutor(OH_NNExecutor **executor);
+void GetExecutorInputOutputTensor(OH_NNExecutor* executor, std::vector<NN_Tensor*>& inputTensors, size_t& inputCount, 
+                                  std::vector<NN_Tensor*>& outputTensors, size_t& outputCount);
 } // namespace Test
 } // namespace NeuralNetworkRuntime
 } // namespace OHOS

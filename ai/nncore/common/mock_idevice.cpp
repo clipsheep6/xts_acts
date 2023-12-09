@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-#include "const.h"
+#include "nncore_const.h"
 #include "mock_idevice.h"
 
 namespace OHOS {

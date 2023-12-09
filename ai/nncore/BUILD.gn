@@ -29,8 +29,8 @@ ohos_moduletest_suite("NncoreTest") {
   sources = [
     "common/nncore_utils.cpp",
     "common/mock_idevice.cpp",
-#    "src/hdi_compilation_test.cpp",
-#    "src/hdi_executor_test.cpp",
+    "src/hdi_compilation_test.cpp",
+    "src/hdi_executor_test.cpp",
     "src/hdi_model_test.cpp",
     "src/hdi_tensor_test.cpp",
     "src/hdi_tensorDesc_test.cpp",

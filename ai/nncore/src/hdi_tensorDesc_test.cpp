@@ -1,6 +1,5 @@
 #include <vector>
 
-#include "const.h"
 #include "nncore_utils.h"
 
 using namespace testing::ext;
@@ -27,7 +26,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescCreate_0100, Func
  */
 HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescDestroy_0100, Function | MediumTest | Level1)
 {
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_Destroy(nullptr));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_Destroy(nullptr));
 }
 
 /**
@@ -38,7 +37,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescDestroy_0100, Fun
 HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescDestroy_0200, Function | MediumTest | Level1)
 {
     NN_TensorDesc* tensorDesc = nullptr;
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_Destroy(&tensorDesc));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_Destroy(&tensorDesc));
 }
 
 /**
@@ -60,7 +59,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescDestroy_0300, Fun
  */
 HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescSetDataType_0100, Function | MediumTest | Level1)
 {
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_SetDataType(nullptr, OH_NN_UNKNOWN));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_SetDataType(nullptr, OH_NN_UNKNOWN));
 }
 
 /**
@@ -72,9 +71,9 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescSetDataType_0200,
 {
     NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     ASSERT_NE(nullptr, tensorDesc);
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_UNKNOWN));
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_FLOAT64));
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_BOOL));
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_UNKNOWN));
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_FLOAT64));
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_SetDataType(tensorDesc, OH_NN_BOOL));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_Destroy(&tensorDesc));
 }
 
@@ -102,7 +101,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescSetDataType_0300,
 HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetDataType_0100, Function | MediumTest | Level1)
 {
     OH_NN_DataType dataType;
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_GetDataType(nullptr, &dataType));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_GetDataType(nullptr, &dataType));
 }
 
 /**
@@ -128,7 +127,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetDataType_0200,
 HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescSetShape_0100, Function | MediumTest | Level1)
 {
     int32_t inputDims[4] = {1, 2, 2, 3};
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_SetShape(nullptr, inputDims, 4));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_SetShape(nullptr, inputDims, 4));
 }
 
 /**
@@ -140,7 +139,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescSetShape_0200, Fu
 {
     NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     ASSERT_NE(nullptr, tensorDesc);
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_SetShape(tensorDesc, nullptr, 0));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_SetShape(tensorDesc, nullptr, 0));
 }
 
 /**
@@ -152,7 +151,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetShape_0100, Fu
 {
     size_t shapeLength = 0;
     int32_t* shape = nullptr;
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_GetShape(nullptr, &shape, &shapeLength));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_GetShape(nullptr, &shape, &shapeLength));
 }
 
 /**
@@ -196,7 +195,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetShape_0300, Fu
  */
 HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescSetFormat_0100, Function | MediumTest | Level1)
 {
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_SetFormat(nullptr, OH_NN_FORMAT_NONE));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_SetFormat(nullptr, OH_NN_FORMAT_NONE));
 }
 
 /**
@@ -223,7 +222,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescSetFormat_0200, F
 HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetFormat_0100, Function | MediumTest | Level1)
 {
     OH_NN_Format format = OH_NN_FORMAT_NONE;
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_GetFormat(nullptr, &format));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_GetFormat(nullptr, &format));
 }
 
 /**
@@ -264,8 +263,8 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetFormat_0300, F
  */
 HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetElementCount_0100, Function | MediumTest | Level1)
 {
-    size_t elementCount = -1;
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_GetElementCount(nullptr, &elementCount));
+    size_t elementCount = 0;
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_GetElementCount(nullptr, &elementCount));
 }
 
 /**
@@ -279,7 +278,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetElementCount_0
     ASSERT_NE(nullptr, tensorDesc);
     int32_t inputDims[4] = {1, 2, 2, 3};
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_SetShape(tensorDesc, inputDims, 4));
-    size_t elementCount = -1;
+    size_t elementCount = 0;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_GetElementCount(tensorDesc, &elementCount));
     ASSERT_EQ(0, elementCount);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_Destroy(&tensorDesc));
@@ -294,8 +293,8 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetElementCount_0
 {
     NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     ASSERT_NE(nullptr, tensorDesc);
-    size_t elementCount = -1;
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_GetElementCount(tensorDesc, &elementCount));
+    size_t elementCount = 0;
+    ASSERT_NE(OH_NN_SUCCESS, OH_NNTensorDesc_GetElementCount(tensorDesc, &elementCount));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_Destroy(&tensorDesc));
 }
 
@@ -306,8 +305,8 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetElementCount_0
  */
 HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetByteSize_0100, Function | MediumTest | Level1)
 {
-    size_t byteSize = -1;
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_GetByteSize(nullptr, &byteSize));
+    size_t byteSize = 0;
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_GetByteSize(nullptr, &byteSize));
 }
 
 /**
@@ -321,7 +320,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetByteSize_0200,
     ASSERT_NE(nullptr, tensorDesc);
     int32_t inputDims[4] = {1, 2, 2, 3};
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_SetShape(tensorDesc, inputDims, 4));
-    size_t byteSize = -1;
+    size_t byteSize = 0;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_GetByteSize(tensorDesc, &byteSize));
     ASSERT_EQ(0, byteSize);
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_Destroy(&tensorDesc));
@@ -336,8 +335,8 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetByteSize_0300,
 {
     NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     ASSERT_NE(nullptr, tensorDesc);
-    size_t byteSize = -1;
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_GetByteSize(tensorDesc, &byteSize));
+    size_t byteSize = 0;
+    ASSERT_NE(OH_NN_SUCCESS, OH_NNTensorDesc_GetByteSize(tensorDesc, &byteSize));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_Destroy(&tensorDesc));
 }
 
@@ -349,7 +348,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetByteSize_0300,
 HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescSetName_0100, Function | MediumTest | Level1)
 {
     const char* name = "tensorDesc";
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_SetName(nullptr, name));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_SetName(nullptr, name));
 }
 
 /**
@@ -361,7 +360,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescSetName_0200, Fun
 {
     NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     ASSERT_NE(nullptr, tensorDesc);
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_SetName(tensorDesc, nullptr));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_SetName(tensorDesc, nullptr));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_Destroy(&tensorDesc));
 }
 
@@ -373,7 +372,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescSetName_0200, Fun
 HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetName_0100, Function | MediumTest | Level1)
 {
     const char* name = nullptr;
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_GetName(nullptr, &name));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_GetName(nullptr, &name));
 }
 
 /**
@@ -403,7 +402,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescGetName_0300, Fun
     NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     ASSERT_NE(nullptr, tensorDesc);
     const char* nameOut = nullptr;
-    ASSERT_EQ(OH_NN_FAILED, OH_NNTensorDesc_GetName(tensorDesc, &nameOut));
+    ASSERT_NE(OH_NN_SUCCESS, OH_NNTensorDesc_GetName(tensorDesc, &nameOut));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_Destroy(&tensorDesc));
 }
 
