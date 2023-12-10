@@ -158,8 +158,7 @@ HWTEST_F(ExecutorTest, SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0200, Functi
     OH_NNExecutor* executor = nullptr;
     CreateExecutor(&executor);
     GetExecutorInputOutputTensor(executor, inputTensors, inputCount, outputTensors, outputCount);
-    inputTensors.clear();
-    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNExecutor_RunSync(executor, inputTensors.data(), inputCount, outputTensors.data(), outputCount));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNExecutor_RunSync(executor, nullptr, inputCount, outputTensors.data(), outputCount));
 }
 
 /**
@@ -175,8 +174,7 @@ HWTEST_F(ExecutorTest, SUB_AI_NNRt_Core_Func_North_Executor_RunSync_0300, Functi
     OH_NNExecutor* executor = nullptr;
     CreateExecutor(&executor);
     GetExecutorInputOutputTensor(executor, inputTensors, inputCount, outputTensors, outputCount);
-    outputTensors.clear();
-    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNExecutor_RunSync(executor, inputTensors.data(), inputCount, outputTensors.data(), outputCount));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNExecutor_RunSync(executor, inputTensors.data(), inputCount, nullptr, outputCount));
 }
 
 /**
@@ -319,8 +317,7 @@ HWTEST_F(ExecutorTest, SUB_AI_NNRt_Core_Func_North_Executor_RunASync_0200, Funct
     int32_t timeout = 60;
     void* userData = (void*) executor;
     GetExecutorInputOutputTensor(executor, inputTensors, inputCount, outputTensors, outputCount);
-    inputCount = 0;
-    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNExecutor_RunAsync(executor, inputTensors.data(), inputCount, outputTensors.data(), outputCount, timeout, userData));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNExecutor_RunAsync(executor, inputTensors.data(), 0, outputTensors.data(), outputCount, timeout, userData));
 }
 
 /**
@@ -338,8 +335,7 @@ HWTEST_F(ExecutorTest, SUB_AI_NNRt_Core_Func_North_Executor_RunASync_0300, Funct
     int32_t timeout = 60;
     void* userData = (void*) executor;
     GetExecutorInputOutputTensor(executor, inputTensors, inputCount, outputTensors, outputCount);
-    outputCount = 0;
-    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNExecutor_RunAsync(executor, inputTensors.data(), inputCount, outputTensors.data(), outputCount, timeout, userData));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNExecutor_RunAsync(executor, inputTensors.data(), inputCount, outputTensors.data(), 0, timeout, userData));
 }
 
 /**
