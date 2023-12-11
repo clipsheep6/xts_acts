@@ -40,6 +40,7 @@ public:
         ASSERT_EQ(OH_NN_SUCCESS, CompileGraphMock(compilation, compileParam));
         ASSERT_TRUE(CheckPath(CACHE_PATH) == PathType::FILE);
         ASSERT_TRUE(CheckPath(CACHE_INFO_PATH) == PathType::FILE);
+        OH_NNCompilation_Destroy(&compilation);
     }
     void SaveSupportModel()
     {
@@ -48,9 +49,9 @@ public:
         std::ofstream ofs(SUPPORTMODELPATH.c_str(), std::ios::out | std::ios::binary);
         if (ofs) {
             ofs.write(reinterpret_cast<char*>(model), sizeof(reinterpret_cast<char*>(model)));
-            printf("SaveSupportModel %d", sizeof(reinterpret_cast<char*>(model)));
             ofs.close();
         }
+        OH_NNModel_Destroy(&model);
     }
     void GetBuffer(std::string filePath, char **buffer, int &cacheSize)
     {
@@ -82,6 +83,7 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_For_
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_SetCache(compilation, CACHE_DIR.c_str(), CACHEVERSION));
     ASSERT_EQ(OH_NN_SUCCESS, SetDevice(compilation));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_Build(compilation));
+    OH_NNCompilation_Destroy(&compilation);
 }
 
 /**
@@ -94,6 +96,7 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_For_
     OH_NNCompilation *compilation = OH_NNCompilation_ConstructForCache();
     ASSERT_NE(nullptr, compilation);
     ASSERT_EQ(OH_NN_FAILED, OH_NNCompilation_Build(compilation));
+    OH_NNCompilation_Destroy(&compilation);
 }
 
 /**
@@ -124,6 +127,7 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_AddExtension_Config_To_Com
     const size_t configValueSize = 1;
     OH_NN_ReturnCode ret = OH_NNCompilation_AddExtensionConfig(compilation, nullptr, configValue, configValueSize);
     ASSERT_EQ(OH_NN_INVALID_PARAMETER, ret);
+    OH_NNCompilation_Destroy(&compilation);
 }
 
 /**
@@ -143,6 +147,7 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_AddExtension_Config_To_Com
 
     OH_NN_ReturnCode ret = OH_NNCompilation_AddExtensionConfig(compilation, configName, configValue, configValueSize);
     ASSERT_EQ(OH_NN_INVALID_PARAMETER, ret);
+    OH_NNCompilation_Destroy(&compilation);
 }
 
 /**
@@ -159,6 +164,7 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_AddExtension_Config_To_Com
     const size_t configValueSize = 1;
     OH_NN_ReturnCode ret = OH_NNCompilation_AddExtensionConfig(compilation, configName, nullptr, configValueSize);
     ASSERT_EQ(OH_NN_INVALID_PARAMETER, ret);
+    OH_NNCompilation_Destroy(&compilation);
 }
 
 /**
@@ -176,6 +182,7 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_AddExtension_Config_To_Com
     const size_t configValueSize = 0;
     OH_NN_ReturnCode ret = OH_NNCompilation_AddExtensionConfig(compilation, configName, configValue, configValueSize);
     ASSERT_EQ(OH_NN_INVALID_PARAMETER, ret);
+    OH_NNCompilation_Destroy(&compilation);
 }
 
 /**
@@ -203,6 +210,7 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_With
     ASSERT_EQ(OH_NN_SUCCESS, SetDevice(compilation));
     ASSERT_EQ(OH_NN_FAILED, OH_NNCompilation_Build(compilation));
     DeleteFile(SUPPORTMODELPATH);
+    OH_NNCompilation_Destroy(&compilation);
 }
 
 /**
@@ -229,6 +237,7 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_Construct_Compilation_With
     ASSERT_NE(nullptr, compilation);
     ASSERT_EQ(OH_NN_SUCCESS, SetDevice(compilation));
     ASSERT_EQ(OH_NN_FAILED, OH_NNCompilation_Build(compilation));
+    OH_NNCompilation_Destroy(&compilation);
 }
 
 /**
@@ -263,7 +272,8 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_Export_Compilation_Cache_T
     size_t length = 10;
     size_t *modelSize = &length;
     OH_NN_ReturnCode ret = OH_NNCompilation_ExportCacheToBuffer(compilation, buffer, length, modelSize);
-    ASSERT_EQ(OH_NN_OPERATION_FORBIDDEN, ret);
+    ASSERT_EQ(OH_NN_UNSUPPORTED, ret);
+    OH_NNCompilation_Destroy(&compilation);
 }
 
 /**
@@ -275,10 +285,12 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_Import_Compilation_Cache_F
 {
     OH_NNCompilation *compilation = nullptr;
     ConstructCompilation(&compilation);
+
     const void *buffer = nullptr;
     size_t modelSize = MODEL_SIZE;
     OH_NN_ReturnCode ret = OH_NNCompilation_ImportCacheFromBuffer(compilation, buffer, modelSize);
     ASSERT_EQ(OH_NN_INVALID_PARAMETER, ret);
+    OH_NNCompilation_Destroy(&compilation);
 }
 
 /**
@@ -295,6 +307,7 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_Import_Compilation_Cache_F
     size_t modelSize = ZERO;
     OH_NN_ReturnCode ret = OH_NNCompilation_ImportCacheFromBuffer(compilation, buffer, modelSize);
     ASSERT_EQ(OH_NN_INVALID_PARAMETER, ret);
+    OH_NNCompilation_Destroy(&compilation);
 }
 
 /**
@@ -306,13 +319,22 @@ HWTEST_F(CompilationTest, SUB_AI_NNRt_Core_Func_North_Import_Compilation_Cache_F
 {
     OH_NNCompilation *compilation = nullptr;
     ConstructCompilation(&compilation);
-    ASSERT_EQ(OH_NN_SUCCESS, SetDevice(compilation));
-    ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_Build(compilation));
+
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_SetCache(compilation, CACHE_DIR.c_str(), CACHEVERSION));
+    const size_t *devicesID{nullptr};
+    uint32_t devicesCount{0};
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNDevice_GetAllDevicesID(&devicesID, &devicesCount));
+    ASSERT_LT(ZERO, devicesCount);
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_SetDevice(compilation, devicesID[0]));
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_SetPerformanceMode(compilation, OH_NN_PERFORMANCE_EXTREME));
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_SetPriority(compilation, OH_NN_PRIORITY_HIGH));
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_EnableFloat16(compilation, false));
 
     const char *any = "123456789";
     const void *buffer = (const void*)(any);
     size_t modelSize = MODEL_SIZE;
-    OH_NN_ReturnCode ret = OH_NNCompilation_ImportCacheFromBuffer(compilation, buffer, modelSize);
-    ASSERT_EQ(OH_NN_OPERATION_FORBIDDEN, ret);
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNCompilation_ImportCacheFromBuffer(compilation, buffer, modelSize));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNCompilation_Build(compilation));
+    OH_NNCompilation_Destroy(&compilation);
 }
 }
