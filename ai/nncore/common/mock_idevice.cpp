@@ -190,6 +190,10 @@ int32_t MockIDevice::AllocateBuffer(uint32_t length, SharedBuffer &buffer)
 int32_t MockIDevice::ReleaseBuffer(const SharedBuffer &buffer)
 {
     std::lock_guard<std::mutex> lock(m_mtx);
+    if (m_ashmems.find(buffer.fd) == m_ashmems.end()) {
+        LOGE("[NNRtTest] Find fd failed.");
+        return HDF_FAILURE;
+    }
     auto ash = m_ashmems[buffer.fd];
     ash->UnmapAshmem();
     return HDF_SUCCESS;

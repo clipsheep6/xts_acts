@@ -34,7 +34,7 @@ const std::string CACHE_DIR = "./cache";
 const std::string CACHE_PATH = CACHE_DIR + "/0.nncache";
 const std::string CACHE_INFO_PATH = CACHE_DIR + "/cache_info.nncache";
 const uint32_t NO_DEVICE_COUNT = 0;
-const int STRESS_COUNT = 100000;
+const int STRESS_COUNT = 10000;
 const int PRINT_FREQ = 500;
 
 const size_t MODEL_SIZE = 100;

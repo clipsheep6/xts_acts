@@ -9,7 +9,17 @@
 using namespace testing::ext;
 using namespace OHOS::NeuralNetworkRuntime::Test;
 
-class EndToEndTest: public testing::Test {};
+class EndToEndTest: public testing::Test {
+public:
+    void SetUp()
+    {
+        CreateFolder(CACHE_DIR);
+    }
+    void TearDown()
+    {
+        DeleteFolder(CACHE_DIR);
+    }
+};
 
 void BuildModel(OH_NNModel **model)
 {
@@ -17,6 +27,15 @@ void BuildModel(OH_NNModel **model)
     ASSERT_NE(nullptr, model);
     AddModel addModel;
     OHNNGraphArgs graphArgs = addModel.graphArgs;
+    ASSERT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(*model, graphArgs));
+}
+
+void BuildDynamicModel(OH_NNModel **model)
+{
+    *model = OH_NNModel_Construct();
+    ASSERT_NE(nullptr, model);
+    AvgPoolDynamicModel avgModel;
+    OHNNGraphArgs graphArgs = avgModel.graphArgs;
     ASSERT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(*model, graphArgs));
 }
 
@@ -29,7 +48,7 @@ void BuildModelWithQuantParams(OH_NNModel **model)
     ASSERT_EQ(OH_NN_SUCCESS, BuildSingleOpGraphWithQuantParams(*model, graphArgs));
 }
 
-OH_NNCompilation* ConstructCompilation(OH_NNModel* model, size_t deviceId)
+OH_NNCompilation* ConstructCompilation(OH_NNModel* model, size_t deviceId, bool isUseCache = true)
 {
     OH_NNCompilation* compilation = nullptr;
     if (model == nullptr) {
@@ -53,10 +72,12 @@ OH_NNCompilation* ConstructCompilation(OH_NNModel* model, size_t deviceId)
         return nullptr;
     }
 
-    returnCode = OH_NNCompilation_SetCache(compilation, "./", 1);
-    if (returnCode != OH_NN_SUCCESS) {
-        LOGE("End2EndTest::OH_NNCompilation_SetCache failed.");
-        return nullptr;
+    if (isUseCache) {
+        returnCode = OH_NNCompilation_SetCache(compilation, CACHE_DIR.c_str(), 1);
+        if (returnCode != OH_NN_SUCCESS) {
+            LOGE("End2EndTest::OH_NNCompilation_SetCache failed.");
+            return nullptr;
+        }
     }
 
     returnCode = OH_NNCompilation_SetPerformanceMode(compilation, OH_NN_PERFORMANCE_EXTREME);
@@ -134,7 +155,7 @@ OH_NN_ReturnCode SetInputData(NN_Tensor* inputTensor[], size_t inputSize)
     return OH_NN_SUCCESS;
 }
 
-OH_NNExecutor* RunExecutor(OH_NNCompilation* compilation, size_t deviceId)
+OH_NNExecutor* RunExecutor(OH_NNCompilation* compilation, size_t deviceId, bool isDynamic = false)
 {
     OH_NNExecutor *executor = OH_NNExecutor_Construct(compilation);
     if (executor == nullptr) {
@@ -171,6 +192,30 @@ OH_NNExecutor* RunExecutor(OH_NNCompilation* compilation, size_t deviceId)
             return nullptr;
         }
         outputTensorDescs.emplace_back(tensorDescTmp);
+    }
+
+    if (isDynamic) {
+        // 修改tensorDesc中shape为最小临界值
+        size_t *minInputDims = nullptr;
+        size_t *maxInputDims = nullptr;
+        size_t shapeLength = ZERO;
+        for (size_t i = 0; i < inputTensorDescs.size(); ++i) {
+            if (OH_NN_SUCCESS != OH_NNExecutor_GetInputDimRange(executor, i, &minInputDims, &maxInputDims, &shapeLength)) {
+                LOGE("End2EndTest::OH_NNExecutor_GetInputDimRange failed.");
+                return nullptr;
+            }
+            if (OH_NN_SUCCESS != OH_NNTensorDesc_SetShape(inputTensorDescs[i], (int32_t*)minInputDims, shapeLength)) {
+                LOGE("End2EndTest::OH_NNTensorDesc_SetShape failed.");
+                return nullptr;
+            }
+        }
+        std::vector<int32_t> outputShape{1, 2, 2, 1};
+        for (size_t i = 0; i < outputTensorDescs.size(); ++i) {
+            if (OH_NN_SUCCESS != OH_NNTensorDesc_SetShape(outputTensorDescs[i], outputShape.data(), outputShape.size())) {
+                LOGE("End2EndTest::OH_NNTensorDesc_SetShape failed.");
+                return nullptr;
+            }
+        }
     }
 
     // 创建输入输出Tensor
@@ -284,6 +329,7 @@ HWTEST_F(EndToEndTest, end_to_end_test_002, Function | MediumTest | Level1)
     uint32_t deviceCount = 0;
     OH_NN_ReturnCode returnCode = OH_NNDevice_GetAllDevicesID(&allDevicesID, &deviceCount);
     ASSERT_EQ(returnCode, OH_NN_SUCCESS);
+    ASSERT_NE(deviceCount, 0);
     const char *name = nullptr;
     size_t deviceId = 0;
     returnCode = OH_NNDevice_GetName(allDevicesID[0], &name);
@@ -291,12 +337,12 @@ HWTEST_F(EndToEndTest, end_to_end_test_002, Function | MediumTest | Level1)
     deviceId = allDevicesID[0];
 
     OH_NNModel* model = nullptr;
-    BuildModel(&model);
+    BuildDynamicModel(&model);
 
     OH_NNCompilation* compilation = ConstructCompilation(model, deviceId);
     ASSERT_NE(nullptr, compilation);
     OH_NNModel_Destroy(&model);
-    OH_NNExecutor* executor = RunExecutor(compilation, deviceId);
+    OH_NNExecutor* executor = RunExecutor(compilation, deviceId, true);
     ASSERT_NE(nullptr, executor);
     OH_NNCompilation_Destroy(&compilation);
     OH_NNExecutor_Destroy(&executor);
@@ -313,6 +359,7 @@ HWTEST_F(EndToEndTest, end_to_end_test_003, Function | MediumTest | Level1)
     uint32_t deviceCount = 0;
     OH_NN_ReturnCode returnCode = OH_NNDevice_GetAllDevicesID(&allDevicesID, &deviceCount);
     ASSERT_EQ(returnCode, OH_NN_SUCCESS);
+    ASSERT_NE(deviceCount, 0);
     const char *name = nullptr;
     size_t deviceId = 0;
     returnCode = OH_NNDevice_GetName(allDevicesID[0], &name);
@@ -336,16 +383,14 @@ HWTEST_F(EndToEndTest, end_to_end_test_003, Function | MediumTest | Level1)
 * @tc.desc:定长模型编译长稳测试
 * @tc.type:FUNC
 */
-HWTEST_F(EndToEndTest, Reliability_test_001, Function | MediumTest | Level1)
+HWTEST_F(EndToEndTest, Reliability_test_001, Reliability | MediumTest | Level2)
 {
     const size_t *allDevicesID = nullptr;
     uint32_t deviceCount = 0;
     OH_NN_ReturnCode returnCode = OH_NNDevice_GetAllDevicesID(&allDevicesID, &deviceCount);
     ASSERT_EQ(returnCode, OH_NN_SUCCESS);
-    const char *name = nullptr;
+    ASSERT_NE(deviceCount, 0);
     size_t deviceId = 0;
-    returnCode = OH_NNDevice_GetName(allDevicesID[0], &name);
-    ASSERT_EQ(returnCode, OH_NN_SUCCESS);
     deviceId = allDevicesID[0];
 
     OH_NNModel* model = nullptr;
@@ -369,24 +414,22 @@ HWTEST_F(EndToEndTest, Reliability_test_001, Function | MediumTest | Level1)
 * @tc.desc:变长模型编译端到端测试
 * @tc.type:FUNC
 */
-HWTEST_F(EndToEndTest, Reliability_test_002, Function | MediumTest | Level1)
+HWTEST_F(EndToEndTest, Reliability_test_002, Reliability | MediumTest | Level2)
 {
     const size_t *allDevicesID = nullptr;
     uint32_t deviceCount = 0;
     OH_NN_ReturnCode returnCode = OH_NNDevice_GetAllDevicesID(&allDevicesID, &deviceCount);
     ASSERT_EQ(returnCode, OH_NN_SUCCESS);
-    const char *name = nullptr;
+    ASSERT_NE(deviceCount, 0);
     size_t deviceId = 0;
-    returnCode = OH_NNDevice_GetName(allDevicesID[0], &name);
-    ASSERT_EQ(returnCode, OH_NN_SUCCESS);
     deviceId = allDevicesID[0];
 
     OH_NNModel* model = nullptr;
-    BuildModel(&model);
+    BuildDynamicModel(&model);
     for (int i = 0; i < STRESS_COUNT; i++) {
-        OH_NNCompilation* compilation = ConstructCompilation(model, deviceId);
+        OH_NNCompilation* compilation = ConstructCompilation(model, deviceId, false);
         ASSERT_NE(nullptr, compilation);
-        OH_NNExecutor* executor = RunExecutor(compilation, deviceId);
+        OH_NNExecutor* executor = RunExecutor(compilation, deviceId, true);
         ASSERT_NE(nullptr, executor);
         OH_NNCompilation_Destroy(&compilation);
         OH_NNExecutor_Destroy(&executor);

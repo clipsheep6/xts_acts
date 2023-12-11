@@ -176,6 +176,9 @@ void GetExecutorInputOutputTensorByDesc(OH_NNExecutor* executor,
     std::vector<NN_Tensor*>& outputTensors, const std::vector<NN_TensorDesc*>& outputTensorDescs);
 void GetExecutorInputOutputTensor(OH_NNExecutor* executor, std::vector<NN_Tensor*>& inputTensors, size_t& inputCount, 
                                   std::vector<NN_Tensor*>& outputTensors, size_t& outputCount);
+OH_NN_ReturnCode DestroyTensorDesc(std::vector<NN_TensorDesc*>& inputTensorDescs,
+                                   std::vector<NN_TensorDesc*>& outputTensorDescs);
+OH_NN_ReturnCode DestroyTensor(std::vector<NN_Tensor*>& inputTensors, std::vector<NN_Tensor*>& outputTensors);
 } // namespace Test
 } // namespace NeuralNetworkRuntime
 } // namespace OHOS

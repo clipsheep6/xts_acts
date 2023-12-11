@@ -620,6 +620,54 @@ void GetExecutorInputOutputTensor(OH_NNExecutor* executor, std::vector<NN_Tensor
         ASSERT_NE(nullptr, tensor);
         outputTensors.emplace_back(tensor);
     }
+
+    DestroyTensorDesc(inputTensorDescs, outputTensorDescs);
+}
+
+OH_NN_ReturnCode DestroyTensorDesc(
+    std::vector<NN_TensorDesc*>& inputTensorDescs, std::vector<NN_TensorDesc*>& outputTensorDescs)
+{
+    // 销毁输入输出tensordesc
+    OH_NN_ReturnCode returnCode {OH_NN_FAILED};
+    for (size_t i = 0; i < inputTensorDescs.size(); ++i) {
+        returnCode = OH_NNTensorDesc_Destroy(&inputTensorDescs[i]);
+        if (returnCode != OH_NN_SUCCESS) {
+            LOGE("End2EndTest::OH_NNTensorDesc_Destroy failed.");
+            return returnCode;
+        }
+    }
+    for (size_t i = 0; i < outputTensorDescs.size(); ++i) {
+        returnCode = OH_NNTensorDesc_Destroy(&outputTensorDescs[i]);
+        if (returnCode != OH_NN_SUCCESS) {
+            LOGE("End2EndTest::OH_NNTensorDesc_Destroy failed.");
+            return returnCode;
+        }
+    }
+
+    return OH_NN_SUCCESS;
+}
+
+OH_NN_ReturnCode DestroyTensor(
+    std::vector<NN_Tensor*>& inputTensors, std::vector<NN_Tensor*>& outputTensors)
+{
+    // 清理输入输出Tensor
+    OH_NN_ReturnCode returnCode {OH_NN_FAILED};
+    for (size_t i = 0; i < inputTensors.size(); ++i) {
+        returnCode = OH_NNTensor_Destroy(&inputTensors[i]);
+        if (returnCode != OH_NN_SUCCESS) {
+            LOGE("End2EndTest::OH_NNTensor_Destroy failed.");
+            return returnCode;
+        }
+    }
+    for (size_t i = 0; i < outputTensors.size(); ++i) {
+        returnCode = OH_NNTensor_Destroy(&outputTensors[i]);
+        if (returnCode != OH_NN_SUCCESS) {
+            LOGE("End2EndTest::OH_NNTensor_Destroy failed.");
+            return returnCode;
+        }
+    }
+
+    return OH_NN_SUCCESS;
 }
 } // namespace Test
 } // namespace NeuralNetworkRuntime

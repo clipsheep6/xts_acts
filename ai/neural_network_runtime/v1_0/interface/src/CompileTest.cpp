@@ -869,6 +869,6 @@ HWTEST_F(CompileTest, SUB_AI_NNRt_Func_North_Compilation_Combine_0200, Function 
     ASSERT_NE(nullptr, compilation);
     OHNNCompileParam compileParam;
     ASSERT_EQ(OH_NN_SUCCESS, CompileGraphMock(compilation, compileParam));
-    ASSERT_EQ(OH_NN_OPERATION_FORBIDDEN, OH_NNCompilation_Build(compilation));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNCompilation_Build(compilation));
     Free(model, compilation);
 }
