@@ -39,25 +39,6 @@ import {
     console.log(`The watcher is triggered :{event: ${data.event}, fileName: ${data.fileName}, cookie:${data.cookie}}`);
   }
 
-  function startWatcher(testNum, eventCode, watchPath) {
-    let ret = {
-      flag: false,
-      watcher: null
-    }
-    try {
-    ret.watcher = fileIO.createWatcher(watchPath, eventCode, (data) => {
-      console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
-        if (eventCode === data.event) {
-          ret.flag = true;
-        }
-      });
-    } catch (e) {
-      console.log(testNum + ' startWatcher failed for ' + e.message + ', code: ' + e.code);
-    }
-    ret.watcher.start();
-    return ret;
-  }
-
 export default function fileIOWatcher() {
   describe('fileIO_test_watcher', function () {
   /**
@@ -84,26 +65,55 @@ export default function fileIOWatcher() {
     expect(prepareFile(ffpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let resWatcher = [];
+      let flag00 = false;
+      let flag01 = false;
+      let flag02 = false;
       let file1 = fileIO.openSync(fpath, fileIO.OpenMode.WRITE_ONLY);
       let file2 = fileIO.openSync(ffpath, fileIO.OpenMode.READ_ONLY);
-      resWatcher[0] = startWatcher(testNum, watcherEvent.IN_MODIFY, dpath);
-      resWatcher[1] = startWatcher(testNum, watcherEvent.IN_ACCESS, ddpath);
-      resWatcher[2] = startWatcher(testNum, watcherEvent.IN_CREATE, dddpath);
+      let watcher00 = fileIO.createWatcher(dpath, watcherEvent.IN_MODIFY, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_MODIFY === data.event) {
+          flag00 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected(IN_MODIFY):' + data.event);
+        }
+      });
+      watcher00.start();
+      let watcher01 = fileIO.createWatcher(ddpath, watcherEvent.IN_ACCESS, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_ACCESS === data.event) {
+          flag01 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected(IN_ACCESS):' + data.event);
+        }
+      });
+      watcher01.start();
+      let watcher02 = fileIO.createWatcher(dddpath, watcherEvent.IN_CREATE, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_CREATE === data.event) {
+          flag02 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected(IN_CREATE):' + data.event);
+        }
+      });
+      watcher02.start();
+      await sleep(WAIT_HALF_SECOND);
       let file3 = fileIO.openSync(fffpath, fileIO.OpenMode.CREATE);
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher[2].flag == true).assertTrue();
       fileIO.readSync(file2.fd, new ArrayBuffer(20));
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher[1].flag == true).assertTrue();
       fileIO.writeSync(file1.fd, FILE_CONTENT);
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher[0].flag == true).assertTrue();
-      resWatcher.forEach(element => { element.watcher.stop(); });
-      fileIO.closeSync(file3);
-      fileIO.closeSync(file2);
+      watcher00.stop();
+      watcher01.stop();
+      watcher02.stop();
       fileIO.closeSync(file1);
+      fileIO.closeSync(file2);
+      fileIO.closeSync(file3);
       fileIO.rmdirSync(dpath);
+      expect(flag00 == true).assertTrue();
+      expect(flag01 == true).assertTrue();
+      expect(flag02 == true).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
@@ -129,14 +139,24 @@ export default function fileIOWatcher() {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
+      let flag01 = false;
       let file = fileIO.openSync(fpath, fileIO.OpenMode.READ_WRITE);
-      let resWatcher = startWatcher(testNum, watcherEvent.IN_ACCESS, dpath);
+      let watcher01 = fileIO.createWatcher(dpath, watcherEvent.IN_ACCESS, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_ACCESS === data.event) {
+          flag01 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected:' + data.event);
+        }
+      });
+      watcher01.start();
+      await sleep(WAIT_HALF_SECOND);
       fileIO.readSync(file.fd, new ArrayBuffer(4096));
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher.flag == true).assertTrue();
-      resWatcher.watcher.stop();
+      watcher01.stop();
       fileIO.closeSync(file);
       fileIO.rmdirSync(dpath);
+      expect(flag01 == true).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
@@ -162,14 +182,24 @@ export default function fileIOWatcher() {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
+      let flag02 = false;
       let file = fileIO.openSync(fpath, fileIO.OpenMode.READ_WRITE);
-      let resWatcher = startWatcher(testNum, watcherEvent.IN_MODIFY, dpath);
+      let watcher02 = fileIO.createWatcher(dpath, watcherEvent.IN_MODIFY, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_MODIFY === data.event) {
+          flag02 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected:' + data.event);
+        }
+      });
+      watcher02.start();
+      await sleep(WAIT_HALF_SECOND);
       fileIO.writeSync(file.fd, FILE_CONTENT);
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher.flag == true).assertTrue();
-      resWatcher.watcher.stop();
+      watcher02.stop();
       fileIO.closeSync(file);
       fileIO.rmdirSync(dpath);
+      expect(flag02 == true).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
@@ -195,14 +225,24 @@ export default function fileIOWatcher() {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
+      let flag03 = false;
       let file = fileIO.openSync(fpath, fileIO.OpenMode.READ_WRITE);
-      let resWatcher = startWatcher(testNum, watcherEvent.IN_ATTRIB, dpath);
+      let watcher03 = fileIO.createWatcher(dpath, watcherEvent.IN_ATTRIB, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_ATTRIB === data.event) {
+          flag03 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected:' + data.event);
+        }
+      });
+      watcher03.start();
+      await sleep(WAIT_HALF_SECOND);
       fileio.fchmodSync(file.fd, 0o444);
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher.flag == true).assertTrue();
-      resWatcher.watcher.stop();
+      watcher03.stop();
       fileIO.closeSync(file);
       fileIO.rmdirSync(dpath);
+      expect(flag03 == true).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
@@ -228,13 +268,23 @@ export default function fileIOWatcher() {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
+      let flag04 = false;
       let file = fileIO.openSync(fpath, fileIO.OpenMode.READ_WRITE);
-      let resWatcher = startWatcher(testNum, watcherEvent.IN_CLOSE_WRITE, dpath);
+      let watcher04 = fileIO.createWatcher(dpath, watcherEvent.IN_CLOSE_WRITE, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_CLOSE_WRITE === data.event) {
+          flag04 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected:' + data.event);
+        }
+      });
+      watcher04.start();
+      await sleep(WAIT_HALF_SECOND);
       fileIO.closeSync(file.fd);
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher.flag == true).assertTrue();
-      resWatcher.watcher.stop();
+      watcher04.stop();
       fileIO.rmdirSync(dpath);
+      expect(flag04 == true).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
@@ -260,13 +310,23 @@ export default function fileIOWatcher() {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let resWatcher = startWatcher(testNum, watcherEvent.IN_OPEN, dpath);
+      let flag05 = false;
+      let watcher05 = fileIO.createWatcher(dpath, watcherEvent.IN_OPEN, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_OPEN === data.event) {
+          flag05 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected:' + data.event);
+        }
+      });
+      watcher05.start();
+      await sleep(WAIT_HALF_SECOND);
       let file = fileIO.openSync(fpath, fileIO.OpenMode.READ_ONLY);
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher.flag == true).assertTrue();
-      resWatcher.watcher.stop();
+      watcher05.stop();
       fileIO.closeSync(file);
       fileIO.rmdirSync(dpath);
+      expect(flag05 == true).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
@@ -292,9 +352,9 @@ export default function fileIOWatcher() {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let watcherFrom = 1;
+      let watcherFrom = -1;
       let watcherTo = -1;
-      let watcher = fileIO.createWatcher(dpath, watcherEvent.IN_MOVED_FROM | watcherEvent.IN_MOVED_TO, (data) => {
+      let watcher06 = fileIO.createWatcher(dpath, watcherEvent.IN_MOVED_FROM | watcherEvent.IN_MOVED_TO, (data) => {
         console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
         if (watcherEvent.IN_MOVED_FROM === data.event) {
           watcherFrom = data.cookie;
@@ -303,12 +363,13 @@ export default function fileIOWatcher() {
           watcherTo = data.cookie;
         }
       });
-      watcher.start();
+      watcher06.start();
+      await sleep(WAIT_HALF_SECOND);
       fileIO.renameSync(fpath, fpath + 'newf');
       await sleep(WAIT_HALF_SECOND);
-      expect(watcherFrom == watcherTo).assertTrue();
-      watcher.stop();
+      watcher06.stop();
       fileIO.rmdirSync(dpath);
+      expect(watcherFrom == watcherTo).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
@@ -333,13 +394,23 @@ export default function fileIOWatcher() {
     fileIO.mkdirSync(dpath);
 
     try {
-      let resWatcher = startWatcher(testNum, watcherEvent.IN_CREATE, dpath);
+      let flag07 = false;
+      let watcher07 = fileIO.createWatcher(dpath, watcherEvent.IN_CREATE, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_CREATE === data.event) {
+          flag07 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected:' + data.event);
+        }
+      });
+      watcher07.start();
+      await sleep(WAIT_HALF_SECOND);
       let file = fileIO.openSync(fpath, fileIO.OpenMode.CREATE);
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher.flag == true).assertTrue();
-      resWatcher.watcher.stop();
+      watcher07.stop();
       fileIO.closeSync(file);
       fileIO.rmdirSync(dpath);
+      expect(flag07 == true).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
@@ -364,12 +435,22 @@ export default function fileIOWatcher() {
     fileIO.mkdirSync(dpath);
 
     try {
-      let resWatcher = startWatcher(testNum, watcherEvent.IN_CREATE, dpath);
+      let flag08 = false;
+      let watcher08 = fileIO.createWatcher(dpath, watcherEvent.IN_CREATE, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_CREATE === data.event) {
+          flag08 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected:' + data.event);
+        }
+      });
+      watcher08.start();
+      await sleep(WAIT_HALF_SECOND);
       fileIO.mkdirSync(ddpath);
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher.flag == true).assertTrue();
-      resWatcher.watcher.stop();
+      watcher08.stop();
       fileIO.rmdirSync(dpath);
+      expect(flag08 == true).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
@@ -395,12 +476,22 @@ export default function fileIOWatcher() {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let resWatcher = startWatcher(testNum, watcherEvent.IN_DELETE, dpath);
+      let flag09 = false;
+      let watcher09 = fileIO.createWatcher(dpath, watcherEvent.IN_DELETE, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_DELETE === data.event) {
+          flag09 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected:' + data.event);
+        }
+      });
+      watcher09.start();
+      await sleep(WAIT_HALF_SECOND);
       fileIO.unlinkSync(fpath);
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher.flag == true).assertTrue();
-      resWatcher.watcher.stop();
+      watcher09.stop();
       fileIO.rmdirSync(dpath);
+      expect(flag09 == true).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
@@ -426,12 +517,22 @@ export default function fileIOWatcher() {
     fileIO.mkdirSync(ddpath);
 
     try {
-      let resWatcher = startWatcher(testNum, watcherEvent.IN_DELETE, dpath);
+      let flag10 = false;
+      let watcher10 = fileIO.createWatcher(dpath, watcherEvent.IN_DELETE, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_DELETE === data.event) {
+          flag10 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected:' + data.event);
+        }
+      });
+      watcher10.start();
+      await sleep(WAIT_HALF_SECOND);
       fileIO.rmdirSync(ddpath);
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher.flag == true).assertTrue();
-      resWatcher.watcher.stop();
+      watcher10.stop();
       fileIO.rmdirSync(dpath);
+      expect(flag10 == true).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
@@ -455,11 +556,21 @@ export default function fileIOWatcher() {
     fileIO.mkdirSync(dpath);
 
     try {
-      let resWatcher = startWatcher(testNum, watcherEvent.IN_DELETE_SELF, dpath);
+      let flag11 = false;
+      let watcher11 = fileIO.createWatcher(dpath, watcherEvent.IN_DELETE_SELF, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_DELETE_SELF === data.event) {
+          flag11 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected:' + data.event);
+        }
+      });
+      watcher11.start();
+      await sleep(WAIT_HALF_SECOND);
       fileIO.rmdirSync(dpath);
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher.flag == true).assertTrue();
-      resWatcher.watcher.stop();
+      watcher11.stop();
+      expect(flag11 == true).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
@@ -483,12 +594,22 @@ export default function fileIOWatcher() {
     fileIO.mkdirSync(dpath);
 
     try {
-      let resWatcher = startWatcher(testNum, watcherEvent.IN_MOVE_SELF, dpath);
+      let flag12 = false;
+      let watcher12 = fileIO.createWatcher(dpath, watcherEvent.IN_MOVE_SELF, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_MOVE_SELF === data.event) {
+          flag12 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected:' + data.event);
+        }
+      });
+      watcher12.start();
+      await sleep(WAIT_HALF_SECOND);
       fileIO.renameSync(dpath, dpath + 'newd');
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher.flag == true).assertTrue();
-      resWatcher.watcher.stop();
+      watcher12.stop();
       fileIO.rmdirSync(dpath + 'newd');
+      expect(flag12 == true).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
@@ -512,12 +633,22 @@ export default function fileIOWatcher() {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
-      let resWatcher = startWatcher(testNum, watcherEvent.IN_MOVE_SELF, fpath);
+      let flag13 = false;
+      let watcher13 = fileIO.createWatcher(fpath, watcherEvent.IN_MOVE_SELF, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_MOVE_SELF === data.event) {
+          flag13 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected:' + data.event);
+        }
+      });
+      watcher13.start();
+      await sleep(WAIT_HALF_SECOND);
       fileIO.renameSync(fpath, fpath + 'newd');
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher.flag == true).assertTrue();
-      resWatcher.watcher.stop();
+      watcher13.stop();
       fileIO.unlinkSync(fpath + 'newd');
+      expect(flag13 == true).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
@@ -544,13 +675,23 @@ export default function fileIOWatcher() {
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
     try {
+      let flag14 = false;
       let file = fileIO.openSync(fpath, fileIO.OpenMode.READ_ONLY);
-      let resWatcher = startWatcher(testNum, watcherEvent.IN_CLOSE_NOWRITE, dpath);
+      let watcher14 = fileIO.createWatcher(dpath, watcherEvent.IN_CLOSE_NOWRITE, (data) => {
+        console.log(`${testNum} :{event: ${data.event}, fileName: ${data.fileName}, cookie: ${data.cookie}}`);
+        if (watcherEvent.IN_CLOSE_NOWRITE === data.event) {
+          flag14 = true;
+        } else {
+          console.log(testNum + 'Callback events are not expected:' + data.event);
+        }
+      });
+      watcher14.start();
+      await sleep(WAIT_HALF_SECOND);
       fileIO.closeSync(file.fd);
       await sleep(WAIT_HALF_SECOND);
-      expect(resWatcher.flag == true).assertTrue();
-      resWatcher.watcher.stop();
+      watcher14.stop();
       fileIO.rmdirSync(dpath);
+      expect(flag14 == true).assertTrue();
       done();
     } catch (e) {
       console.log(testNum + ' has failed for ' + e.message + ', code: ' + e.code);
