@@ -18,6 +18,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescCreate_0100, Func
 {
     NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     ASSERT_NE(nullptr, tensorDesc);
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_Destroy(&tensorDesc));
 }
 
 /**
@@ -141,6 +142,7 @@ HWTEST_F(TensorDescTest, SUB_AI_NNRt_Core_Func_North_TensorDescSetShape_0200, Fu
     NN_TensorDesc* tensorDesc = OH_NNTensorDesc_Create();
     ASSERT_NE(nullptr, tensorDesc);
     ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNTensorDesc_SetShape(tensorDesc, nullptr, 0));
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNTensorDesc_Destroy(&tensorDesc));
 }
 
 /**
