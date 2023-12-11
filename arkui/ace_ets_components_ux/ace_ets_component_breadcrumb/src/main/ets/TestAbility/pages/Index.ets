@@ -17,23 +17,24 @@ import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry
 import { Hypium } from '@ohos/hypium';
 import hilog from '@ohos.hilog';
 import testsuite from '../../test/List.test'
-import { LabelInfo, Breadcrumb } from '@ohos.arkui.advanced.Breadcrumb'
+import { BreadcrumbLabels, BreadcrumbLabel, Breadcrumb } from '@ohos.arkui.advanced.Breadcrumb';
 
 @Entry
 @Component
 struct Index {
   @State breadcrumbWidth: number = 480;
-  @State crumbs: Array<LabelInfo> = [
-    { text: 'label0' },
-    { text: 'label1' },
-    { text: 'label2' },
-    { text: 'label3' },
-    { text: 'label4' },
-    { text: 'label5' },
-    { text: 'label6' },
-    { text: 'label7' },
-    { text: 'label8' },
-  ]
+  @State crumbs: BreadcrumbLabels = new BreadcrumbLabels(
+    [
+      new BreadcrumbLabel('label0'),
+      new BreadcrumbLabel('label1'),
+      new BreadcrumbLabel('label2'),
+      new BreadcrumbLabel('label3'),
+      new BreadcrumbLabel('label4'),
+      new BreadcrumbLabel('label5'),
+      new BreadcrumbLabel('label6'),
+      new BreadcrumbLabel('label7'),
+      new BreadcrumbLabel('label8'),
+    ]);
 
   @State labelClickedMessage: string = ''
 
@@ -49,14 +50,16 @@ struct Index {
   build() {
     Column() {
       Breadcrumb({
-        labelInfo: $crumbs,
+        labels: this.crumbs,
         onLabelClick: this.onLabelClick.bind(this),
         onLabelDragStart: this.onLabelDragStart.bind(this),
         onLabelDragEnter: this.onLabelDragEnter.bind(this),
         onLabelDragLeave: this.onLabelDragLeave.bind(this),
         onLabelDrop: this.onLabelDrop.bind(this),
         onLabelDragCancel: this.onLabelDragCancel.bind(this)
-      }).width(this.breadcrumbWidth).height(40)
+      })
+      .width(this.breadcrumbWidth).height(40)
+      .alignSelf(ItemAlign.Start)
 
       Text(this.labelClickedMessage)
 
