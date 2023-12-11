@@ -24,7 +24,7 @@ namespace Test {
 
 const uint32_t ADD_DATA_LENGTH = 4 * sizeof(float);
 const uint32_t AVG_INPUT_LENGTH = 9 * sizeof(float);
-const std::vector<int32_t> TENSOR_SHAPE = {1, 2, 2, 1};
+const std::vector<int32_t> TENSOR_SHAPE = {2, 2, 2, 2};
 const std::vector<int32_t> PARAM_INDEX = {2};
 const std::vector<int32_t> INPUT_INDEX = {0, 1};
 const std::vector<int32_t> OUTPUT_INDEX = {3};

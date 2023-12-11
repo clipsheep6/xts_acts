@@ -88,27 +88,22 @@ struct AddModel {
 };
 
 struct AvgPoolDynamicModel {
-    // AVG POOL MODEL
-    float inputValue[9] = {0, 1, 2, 3, 4, 5, 6, 7, 8};
-    uint64_t kernelValue[2] = {2, 2};
-    uint64_t strideValue[2] = {1, 1};
-    int8_t padValue = 1;
+    // ADD MODEL
+    float inputValue0[4] = {0, 1, 2, 3};
+    float inputValue1[4] = {0, 1, 2, 3};
     int8_t activationValue = OH_NN_FUSED_NONE;
     float outputValue[4] = {0};
-    float expectValue[4] = {2, 3, 5, 6};
+    float expectValue[4] = {0, 2, 4, 6};
 
-    OHNNOperandTest dynamicInput = {OH_NN_FLOAT32, OH_NN_TENSOR, {-1, -1, -1, -1}, inputValue, AVG_INPUT_LENGTH};
-    OHNNOperandTest kernel = {OH_NN_INT64, OH_NN_AVG_POOL_KERNEL_SIZE, {2}, kernelValue, sizeof(kernelValue)};
-    OHNNOperandTest strides = {OH_NN_INT64, OH_NN_AVG_POOL_STRIDE, {2}, strideValue, sizeof(strideValue)};
-    OHNNOperandTest padMode = {OH_NN_INT8, OH_NN_AVG_POOL_PAD_MODE, {}, &padValue, sizeof(padValue)};
-    OHNNOperandTest activation = {OH_NN_INT8, OH_NN_AVG_POOL_ACTIVATION_TYPE, {}, &activationValue, sizeof(int8_t)};
-    OHNNOperandTest output = {OH_NN_FLOAT32, OH_NN_TENSOR, {-1, -1, -1, -1}, outputValue, sizeof(outputValue)};
-
-    OHNNGraphArgs graphArgs = {.operationType = OH_NN_OPS_AVG_POOL,
-                               .operands = {dynamicInput, kernel, strides, padMode, activation, output},
-                               .paramIndices = {1, 2, 3, 4},
-                               .inputIndices = {0},
-                               .outputIndices = {5}};
+    OHNNOperandTest input0 = {OH_NN_FLOAT32, OH_NN_TENSOR, {-1, -1, -1, -1}, inputValue0, ADD_DATA_LENGTH};
+    OHNNOperandTest input1 = {OH_NN_FLOAT32, OH_NN_TENSOR, {-1, -1, -1, -1}, inputValue1, ADD_DATA_LENGTH};
+    OHNNOperandTest activation = {OH_NN_INT8, OH_NN_ADD_ACTIVATIONTYPE, {}, &activationValue, sizeof(int8_t)};
+    OHNNOperandTest output = {OH_NN_FLOAT32, OH_NN_TENSOR, {-1, -1, -1, -1}, outputValue, ADD_DATA_LENGTH};
+    OHNNGraphArgs graphArgs = {.operationType = OH_NN_OPS_ADD,
+                               .operands = {input0, input1, activation, output},
+                               .paramIndices = {2},
+                               .inputIndices = {0, 1},
+                               .outputIndices = {3}};
 };
 
 struct TopKModel {
@@ -152,11 +147,9 @@ public:
 
 NN_TensorDesc* createTensorDesc(const int32_t* shape, size_t shapeNum, OH_NN_DataType dataType, OH_NN_Format format);
 int BuildSingleOpGraph(OH_NNModel *model, const OHNNGraphArgs &graphArgs);
-int ExecutorWithMemory(OH_NNExecutor *executor, const OHNNGraphArgs &graphArgs, OH_NN_Memory *OHNNMemory[],
-    float* expect);
+int BuildSingleOpGraphWithQuantParams(OH_NNModel *model, const OHNNGraphArgs &graphArgs);
 void Free(OH_NNModel *model = nullptr, OH_NNCompilation *compilation = nullptr, OH_NNExecutor *executor = nullptr);
 int CompileGraphMock(OH_NNCompilation *compilation, const OHNNCompileParam &compileParam);
-int ExecuteGraphMock(OH_NNExecutor *executor, const OHNNGraphArgs &graphArgs, float* expect);
 OH_NN_ReturnCode SetDevice(OH_NNCompilation *compilation);
 int BuildMultiOpGraph(OH_NNModel *model, const OHNNGraphArgsMulti &graphArgs);
 OH_NN_UInt32Array GetUInt32Array(std::vector<uint32_t> indices);
@@ -176,6 +169,11 @@ void ConstructAddModel(OH_NNModel **model);
 void ConstructCompilation(OH_NNCompilation **compilation);
 void CreateExecutor(OH_NNExecutor **executor);
 void CreateDynamicExecutor(OH_NNExecutor **executor);
+void GetExecutorInputOutputTensorDesc(OH_NNExecutor* executor, std::vector<NN_TensorDesc*>& inputTensorDescs, size_t& inputCount, 
+                                      std::vector<NN_TensorDesc*>& outputTensorDescs, size_t& outputCount);
+void GetExecutorInputOutputTensorByDesc(OH_NNExecutor* executor,
+    std::vector<NN_Tensor*>& inputTensors, const std::vector<NN_TensorDesc*>& inputTensorDescs,
+    std::vector<NN_Tensor*>& outputTensors, const std::vector<NN_TensorDesc*>& outputTensorDescs);
 void GetExecutorInputOutputTensor(OH_NNExecutor* executor, std::vector<NN_Tensor*>& inputTensors, size_t& inputCount, 
                                   std::vector<NN_Tensor*>& outputTensors, size_t& outputCount);
 } // namespace Test

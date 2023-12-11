@@ -168,6 +168,70 @@ int BuildSingleOpGraph(OH_NNModel *model, const OHNNGraphArgs &graphArgs)
     return ret;
 }
 
+int BuildSingleOpGraphWithQuantParams(OH_NNModel *model, const OHNNGraphArgs &graphArgs)
+{
+    int ret = 0;
+    for (size_t i = 0; i < graphArgs.operands.size(); i++) {
+        const OHNNOperandTest &operandTem = graphArgs.operands[i];
+        NN_TensorDesc* tensorDesc = createTensorDesc(operandTem.shape.data(),
+                                                     (uint32_t) operandTem.shape.size(), operandTem.dataType, operandTem.format);
+        ret = OH_NNModel_AddTensorToModel(model, tensorDesc);
+        if (ret != OH_NN_SUCCESS) {
+            LOGE("[NNRtTest] OH_NNModel_AddTensor failed! ret=%d\n", ret);
+            return ret;
+        }
+
+        NN_QuantParam* quantParam = OH_NNQuantParam_Create();
+        double scales = 0.2;
+        int32_t zeroPoints = 0;
+        uint32_t numBits = 8;
+        ret = OH_NNQuantParam_SetScales(quantParam, &scales, 1);
+        ret = OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 1);
+        ret = OH_NNQuantParam_SetNumBits(quantParam, &numBits, 1);
+        ret = OH_NNModel_SetTensorQuantParams(model, i, quantParam);
+        ret = OH_NNQuantParam_Destroy(&quantParam);
+        ret = OH_NNModel_SetTensorType(model, i, operandTem.type);
+        if (ret != OH_NN_SUCCESS) {
+            LOGE("[NNRtTest] OH_NNBackend_SetModelTensorType failed! ret=%d\n", ret);
+            return ret;
+        }
+        if (std::find(graphArgs.paramIndices.begin(), graphArgs.paramIndices.end(), i) !=
+            graphArgs.paramIndices.end()) {
+            ret = OH_NNModel_SetTensorData(model, i, operandTem.data, operandTem.length);
+            if (ret != OH_NN_SUCCESS) {
+                LOGE("[NNRtTest] OH_NNModel_SetTensorData failed! ret=%d\n", ret);
+                return ret;
+            }
+        }
+    }
+    auto paramIndices = TransformUInt32Array(graphArgs.paramIndices);
+    auto inputIndices = TransformUInt32Array(graphArgs.inputIndices);
+    auto outputIndices = TransformUInt32Array(graphArgs.outputIndices);
+    if (graphArgs.addOperation) {
+        ret = OH_NNModel_AddOperation(model, graphArgs.operationType, &paramIndices, &inputIndices,
+                                      &outputIndices);
+        if (ret != OH_NN_SUCCESS) {
+            LOGE("[NNRtTest] OH_NNModel_AddOperation failed! ret=%d\n", ret);
+            return ret;
+        }
+    }
+    if (graphArgs.specifyIO) {
+        ret = OH_NNModel_SpecifyInputsAndOutputs(model, &inputIndices, &outputIndices);
+        if (ret != OH_NN_SUCCESS) {
+            LOGE("[NNRtTest] OH_NNModel_SpecifyInputsAndOutputs failed! ret=%d\n", ret);
+            return ret;
+        }
+    }
+    if (graphArgs.build) {
+        ret = OH_NNModel_Finish(model);
+        if (ret != OH_NN_SUCCESS) {
+            LOGE("[NNRtTest] OH_NNModel_Finish failed! ret=%d\n", ret);
+            return ret;
+        }
+    }
+    return ret;
+}
+
 OH_NN_ReturnCode SetDevice(OH_NNCompilation *compilation)
 {
     OH_NN_ReturnCode ret = OH_NN_FAILED;
@@ -249,100 +313,6 @@ int CompileGraphMock(OH_NNCompilation *compilation, const OHNNCompileParam &comp
     }
     // build
     ret = OH_NNCompilation_Build(compilation);
-    return ret;
-}
-
-int ExecuteGraphMock(OH_NNExecutor *executor, const OHNNGraphArgs &graphArgs,
-    float* expect)
-{
-    OHOS::sptr<V2_0::MockIDevice> device = V2_0::MockIDevice::GetInstance();
-    int ret = 0;
-    uint32_t inputIndex = 0;
-    uint32_t outputIndex = 0;
-    for (size_t i = 0; i < graphArgs.operands.size(); i++) {
-        const OHNNOperandTest &operandTem = graphArgs.operands[i];
-        auto quantParam = operandTem.quantParam;
-        OH_NN_Tensor operand = {operandTem.dataType, (uint32_t) operandTem.shape.size(),
-            operandTem.shape.data(),
-            quantParam, operandTem.type};
-        if (std::find(graphArgs.inputIndices.begin(), graphArgs.inputIndices.end(), i) !=
-            graphArgs.inputIndices.end()) {
-            ret = OH_NNExecutor_SetInput(executor, inputIndex, &operand, operandTem.data,
-            operandTem.length);
-            if (ret != OH_NN_SUCCESS) {
-                LOGE("[NNRtTest] OH_NNExecutor_SetInput failed! ret=%d\n", ret);
-                return ret;
-            }
-            inputIndex += 1;
-        } else if (std::find(graphArgs.outputIndices.begin(), graphArgs.outputIndices.end(), i) !=
-                   graphArgs.outputIndices.end()) {
-            ret = OH_NNExecutor_SetOutput(executor, outputIndex, operandTem.data, operandTem.length);
-            if (ret != OH_NN_SUCCESS) {
-                LOGE("[NNRtTest] OH_NNExecutor_SetOutput failed! ret=%d\n", ret);
-                return ret;
-            }
-            if(expect!=nullptr){
-                ret = device->MemoryCopy(expect, operandTem.length);
-            }
-            if (ret != OH_NN_SUCCESS) {
-                LOGE("[NNRtTest] device set expect output failed! ret=%d\n", ret);
-                return ret;
-            }
-            outputIndex += 1;
-        }
-    }
-    std::vector<NN_Tensor*>inputTensors, outputTensors;
-    size_t inputCount = 0;
-    size_t outputCount = 0;
-    GetExecutorInputOutputTensor(executor, inputTensors, inputCount, outputTensors, outputCount);
-    ret = OH_NNExecutor_RunSync(executor, inputTensors.data(), inputCount, outputTensors.data(), outputCount);
-    return ret;
-}
-
-int ExecutorWithMemory(OH_NNExecutor *executor, const OHNNGraphArgs &graphArgs, OH_NN_Memory *OHNNMemory[],
-    float* expect)
-{
-    OHOS::sptr<V2_0::MockIDevice> device = V2_0::MockIDevice::GetInstance();
-    int ret = 0;
-    uint32_t inputIndex = 0;
-    uint32_t outputIndex = 0;
-    for (size_t i = 0; i < graphArgs.operands.size(); i++) {
-        const OHNNOperandTest &operandTem = graphArgs.operands[i];
-        auto quantParam = operandTem.quantParam;
-        OH_NN_Tensor operand = {operandTem.dataType, (uint32_t) operandTem.shape.size(),
-            operandTem.shape.data(),
-            quantParam, operandTem.type};
-        if (std::find(graphArgs.inputIndices.begin(), graphArgs.inputIndices.end(), i) !=
-            graphArgs.inputIndices.end()) {
-            OH_NN_Memory *inputMemory = OH_NNExecutor_AllocateInputMemory(executor, inputIndex,
-            operandTem.length);
-            ret = OH_NNExecutor_SetInputWithMemory(executor, inputIndex, &operand, inputMemory);
-            if (ret != OH_NN_SUCCESS) {
-                LOGE("[NNRtTest] OH_NNExecutor_SetInputWithMemory failed! ret=%d\n", ret);
-                return ret;
-            }
-            memcpy_s(inputMemory->data, operandTem.length, static_cast<void*>(operandTem.data), operandTem.length);
-            OHNNMemory[inputIndex] = inputMemory;
-            inputIndex += 1;
-        } else if (std::find(graphArgs.outputIndices.begin(), graphArgs.outputIndices.end(), i) !=
-                   graphArgs.outputIndices.end()) {
-            OH_NN_Memory *outputMemory = OH_NNExecutor_AllocateOutputMemory(executor, outputIndex,
-            operandTem.length);
-            ret = OH_NNExecutor_SetOutputWithMemory(executor, outputIndex, outputMemory);
-            if (ret != OH_NN_SUCCESS) {
-                LOGE("[NNRtTest] OH_NNExecutor_SetOutputWithMemory failed! ret=%d\n", ret);
-                return ret;
-            }
-            ret = device->MemoryCopy(expect, operandTem.length);
-            if (ret != OH_NN_SUCCESS) {
-                LOGE("[NNRtTest] device set expect output failed! ret=%d\n", ret);
-                return ret;
-            }
-            OHNNMemory[inputIndex + outputIndex] = outputMemory;
-            outputIndex += 1;
-        }
-    }
-    ret = OH_NNExecutor_Run(executor);
     return ret;
 }
 
@@ -521,6 +491,7 @@ void ConstructAddModel(OH_NNModel **model)
 //定长模型创建compilation
 void ConstructCompilation(OH_NNCompilation **compilation)
 {
+    // todo model什么时候释放
     OH_NNModel* model = nullptr;
     ConstructAddModel(&model);
     *compilation = OH_NNCompilation_Construct(model);
@@ -539,6 +510,7 @@ void CreateExecutor(OH_NNExecutor **executor)
     ASSERT_EQ(OH_NN_SUCCESS, CompileGraphMock(compilation, compileParam));
     *executor = OH_NNExecutor_Construct(compilation);
     ASSERT_NE(nullptr, *executor);
+    OH_NNCompilation_Destroy(&compilation);
 }
 
 void CreateDynamicExecutor(OH_NNExecutor **executor)
@@ -559,14 +531,15 @@ void CreateDynamicExecutor(OH_NNExecutor **executor)
     ASSERT_EQ(OH_NN_SUCCESS, CompileGraphMock(compilation, compileParam));
     *executor = OH_NNExecutor_Construct(compilation);
     ASSERT_NE(nullptr, *executor);
+    OH_NNModel_Destroy(&model);
+    OH_NNCompilation_Destroy(&compilation);
 }
 
-void GetExecutorInputOutputTensor(OH_NNExecutor* executor, std::vector<NN_Tensor*>& inputTensors, size_t& inputCount, 
-                                  std::vector<NN_Tensor*>& outputTensors, size_t& outputCount)
+void GetExecutorInputOutputTensorDesc(OH_NNExecutor* executor, std::vector<NN_TensorDesc*>& inputTensorDescs, size_t& inputCount, 
+    std::vector<NN_TensorDesc*>& outputTensorDescs, size_t& outputCount)
 {
     OH_NN_ReturnCode ret = OH_NNExecutor_GetInputCount(executor, &inputCount);
     ASSERT_EQ(OH_NN_SUCCESS, ret);
-    std::vector<NN_TensorDesc*> inputTensorDescs, outputTensorDescs;
     NN_TensorDesc* tensorDescTmp = nullptr;
     for (size_t i = 0; i < inputCount; ++i) {
         tensorDescTmp = OH_NNExecutor_CreateInputTensorDesc(executor, i);
@@ -581,19 +554,67 @@ void GetExecutorInputOutputTensor(OH_NNExecutor* executor, std::vector<NN_Tensor
         ASSERT_NE(nullptr, tensorDescTmp);
         outputTensorDescs.emplace_back(tensorDescTmp);
     }
+}
+
+void GetExecutorInputOutputTensorByDesc(OH_NNExecutor* executor,
+    std::vector<NN_Tensor*>& inputTensors, const std::vector<NN_TensorDesc*>& inputTensorDescs,
+    std::vector<NN_Tensor*>& outputTensors, const std::vector<NN_TensorDesc*>& outputTensorDescs)
+{
     const size_t *devicesID{nullptr};
     uint32_t devicesCount{0};
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNDevice_GetAllDevicesID(&devicesID, &devicesCount));
     size_t deviceID = devicesID[0];
     NN_Tensor* tensor = nullptr;
-    for (size_t i = 0; i < inputCount; ++i) {
+    for (size_t i = 0; i < inputTensorDescs.size(); ++i) {
         tensor = nullptr;
         tensor = OH_NNTensor_Create(deviceID, inputTensorDescs[i]);
         ASSERT_NE(nullptr, tensor);
         inputTensors.emplace_back(tensor);
     }
 
+    for (size_t i = 0; i < outputTensorDescs.size(); ++i) {
+        tensor = nullptr;
+        tensor = OH_NNTensor_Create(deviceID, outputTensorDescs[i]);
+        ASSERT_NE(nullptr, tensor);
+        outputTensors.emplace_back(tensor);
+    }
+}
+
+void GetExecutorInputOutputTensor(OH_NNExecutor* executor, std::vector<NN_Tensor*>& inputTensors, size_t& inputCount, 
+                                  std::vector<NN_Tensor*>& outputTensors, size_t& outputCount)
+{
+    std::vector<NN_TensorDesc*> inputTensorDescs;
+    std::vector<NN_TensorDesc*> outputTensorDescs;
+    OH_NN_ReturnCode ret = OH_NNExecutor_GetInputCount(executor, &inputCount);
+    ASSERT_EQ(OH_NN_SUCCESS, ret);
+    NN_TensorDesc* tensorDescTmp = nullptr;
+    for (size_t i = 0; i < inputCount; ++i) {
+        tensorDescTmp = OH_NNExecutor_CreateInputTensorDesc(executor, i);
+        ASSERT_NE(nullptr, tensorDescTmp);
+        inputTensorDescs.emplace_back(tensorDescTmp);
+    }
+
+    ret = OH_NNExecutor_GetOutputCount(executor, &outputCount);
+    ASSERT_EQ(OH_NN_SUCCESS, ret);
     for (size_t i = 0; i < outputCount; ++i) {
+        tensorDescTmp = OH_NNExecutor_CreateOutputTensorDesc(executor, i);
+        ASSERT_NE(nullptr, tensorDescTmp);
+        outputTensorDescs.emplace_back(tensorDescTmp);
+    }
+
+    const size_t *devicesID{nullptr};
+    uint32_t devicesCount{0};
+    ASSERT_EQ(OH_NN_SUCCESS, OH_NNDevice_GetAllDevicesID(&devicesID, &devicesCount));
+    size_t deviceID = devicesID[0];
+    NN_Tensor* tensor = nullptr;
+    for (size_t i = 0; i < inputTensorDescs.size(); ++i) {
+        tensor = nullptr;
+        tensor = OH_NNTensor_Create(deviceID, inputTensorDescs[i]);
+        ASSERT_NE(nullptr, tensor);
+        inputTensors.emplace_back(tensor);
+    }
+
+    for (size_t i = 0; i < outputTensorDescs.size(); ++i) {
         tensor = nullptr;
         tensor = OH_NNTensor_Create(deviceID, outputTensorDescs[i]);
         ASSERT_NE(nullptr, tensor);

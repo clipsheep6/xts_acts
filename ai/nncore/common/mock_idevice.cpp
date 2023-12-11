@@ -280,14 +280,14 @@ int32_t MockIPreparedModel::GetVersion(uint32_t &majorVersion, uint32_t &minorVe
 int32_t MockIPreparedModel::Run(const std::vector<IOTensor>& inputs, const std::vector<IOTensor>& outputs,
     std::vector<std::vector<int32_t>>& outputsDims)
 {
-    outputsDims = {{1, 2, 2, 1}};
+    outputsDims = {{2, 2, 2, 2}};
     return HDF_SUCCESS;
 }
 
 int32_t MockIPreparedModel::GetInputDimRanges(std::vector<std::vector<uint32_t>>& minInputDims, std::vector<std::vector<uint32_t>>& maxInputDims)
 {
-    minInputDims = {{1, 1, 1, 1}, {1, 1, 1, 1}};
-    maxInputDims = {{1, 100, 100, 10}, {1, 100, 100, 10}};
+    minInputDims = {{2, 2, 2, 2}, {2, 2, 2, 2}};
+    maxInputDims = {{2, 100, 100, 10}, {2, 100, 100, 10}};
 
     return HDF_SUCCESS;
 }

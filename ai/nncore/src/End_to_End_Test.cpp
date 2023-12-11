@@ -4,98 +4,29 @@
 
 #include "interfaces/kits/c/neural_network_runtime/neural_network_runtime.h"
 #include "common/log.h"
+#include "nncore_utils.h"
 
 using namespace testing::ext;
+using namespace OHOS::NeuralNetworkRuntime::Test;
 
 class EndToEndTest: public testing::Test {};
 
-constexpr size_t CircleCount = 10000;
-
-NN_TensorDesc* createTensorDesc(const int32_t* shape, size_t shapeNum, OH_NN_DataType dataType, OH_NN_Format format)
-{
-    NN_TensorDesc* tensorDescTmp = OH_NNTensorDesc_Create();
-    if (tensorDescTmp == nullptr) {
-        LOGE("[NNRtTest]OH_NNTensorDesc_Create failed!");
-        return nullptr;
-    }
-
-    OH_NN_ReturnCode ret = OH_NNTensorDesc_SetDataType(tensorDescTmp, dataType);
-    if (ret != OH_NN_SUCCESS) {
-        LOGE("[NNRtTest]OH_NNTensorDesc_SetDataType failed!ret = %d\n", ret);
-        return nullptr;
-    }
-
-    ret = OH_NNTensorDesc_SetShape(tensorDescTmp, shape, shapeNum);
-    if (ret != OH_NN_SUCCESS) {
-        LOGE("[NNRtTest]OH_NNTensorDesc_SetShape failed!ret = %d\n", ret);
-        return nullptr;
-    }
-
-    ret = OH_NNTensorDesc_SetFormat(tensorDescTmp, format);
-    if (ret != OH_NN_SUCCESS) {
-        LOGE("[NNRtTest]OH_NNTensorDesc_SetShape failed!ret = %d\n", ret);
-        return nullptr;
-    }
-
-    return tensorDescTmp;
-}
-
-OH_NN_ReturnCode BuildModel(OH_NNModel **model,
-                                const std::vector<NN_TensorDesc*>& tensorDescs)
+void BuildModel(OH_NNModel **model)
 {
     *model = OH_NNModel_Construct();
-    if (*model == nullptr) {
-        LOGE("End2EndTest::BuildModel failed, error happens when creating NNModel.");
-        return OH_NN_FAILED;
-    }
+    ASSERT_NE(nullptr, model);
+    AddModel addModel;
+    OHNNGraphArgs graphArgs = addModel.graphArgs;
+    ASSERT_EQ(OH_NN_SUCCESS, BuildSingleOpGraph(*model, graphArgs));
+}
 
-    OH_NN_ReturnCode status = OH_NN_SUCCESS;
-    for (size_t i = 0; i < tensorDescs.size(); i++) {
-        status = OH_NNModel_AddTensorToModel(*model, tensorDescs[i]);
-        if (status != OH_NN_SUCCESS) {
-            LOGE("End2EndTest::BuildModel failed, error happens when adding tensordesc[%zu].", i);
-            return status;
-        }
-        status = OH_NNModel_SetTensorType(*model, i, OH_NN_TENSOR);
-        if (status != OH_NN_SUCCESS) {
-            LOGE("End2EndTest::BuildModel failed, error happens when SetModelTensorType[%zu].", i);
-            return status;
-        }
-    }
-
-    int8_t activationValue = OH_NN_FUSED_NONE;
-    status = OH_NNModel_SetTensorData(*model, 2, &activationValue, sizeof(int8_t));
-    if (status != OH_NN_SUCCESS) {
-        LOGE("End2EndTest::BuildModel failed, error happens when setting model tensor data.");
-        return status;
-    }
-
-    uint32_t inputIndicesValues[2] = {0, 1};
-    uint32_t paramIndicesValues = 2;
-    uint32_t outputIndicesValues = 3;
-    OH_NN_UInt32Array paramIndices = {&paramIndicesValues, 1 * 4};
-    OH_NN_UInt32Array inputIndices = {inputIndicesValues, 2 * 4};
-    OH_NN_UInt32Array outputIndices = {&outputIndicesValues, 1 * 4};
-
-    status = OH_NNModel_AddOperation(*model, OH_NN_OPS_ADD, &paramIndices, &inputIndices, &outputIndices);
-    if (status != OH_NN_SUCCESS) {
-        LOGE("End2EndTest::BuildModel failed, error happends when adding operation into the model.");
-        return status;
-    }
-
-    status = OH_NNModel_SpecifyInputsAndOutputs(*model, &inputIndices, &outputIndices);
-    if (status != OH_NN_SUCCESS) {
-        LOGE("End2EndTest::BuildModel failed, error happends when specifying the inputs and outputs.");
-        return status;
-    }
-
-    status = OH_NNModel_Finish(*model);
-    if (status != OH_NN_SUCCESS) {
-        LOGE("End2EndTest::BuildModel failed, error happends during constructing the model.");
-        return status;
-    }
-
-    return status;
+void BuildModelWithQuantParams(OH_NNModel **model)
+{
+    *model = OH_NNModel_Construct();
+    ASSERT_NE(nullptr, model);
+    AddModel addModel;
+    OHNNGraphArgs graphArgs = addModel.graphArgs;
+    ASSERT_EQ(OH_NN_SUCCESS, BuildSingleOpGraphWithQuantParams(*model, graphArgs));
 }
 
 OH_NNCompilation* ConstructCompilation(OH_NNModel* model, size_t deviceId)
@@ -203,7 +134,7 @@ OH_NN_ReturnCode SetInputData(NN_Tensor* inputTensor[], size_t inputSize)
     return OH_NN_SUCCESS;
 }
 
-OH_NNExecutor* runExecutor(OH_NNCompilation* compilation, size_t deviceId)
+OH_NNExecutor* RunExecutor(OH_NNCompilation* compilation, size_t deviceId)
 {
     OH_NNExecutor *executor = OH_NNExecutor_Construct(compilation);
     if (executor == nullptr) {
@@ -264,6 +195,23 @@ OH_NNExecutor* runExecutor(OH_NNCompilation* compilation, size_t deviceId)
         }
         outputTensors[i] = tensor;
     }
+
+    // 销毁输入输出tensordesc
+    for (size_t i = 0; i < inputCount; ++i) {
+        returnCode = OH_NNTensorDesc_Destroy(&inputTensorDescs[i]);
+        if (returnCode != OH_NN_SUCCESS) {
+            LOGE("End2EndTest::OH_NNTensorDesc_Destroy failed.");
+            return nullptr;
+        }
+    }
+    for (size_t i = 0; i < outputCount; ++i) {
+        returnCode = OH_NNTensorDesc_Destroy(&outputTensorDescs[i]);
+        if (returnCode != OH_NN_SUCCESS) {
+            LOGE("End2EndTest::OH_NNTensorDesc_Destroy failed.");
+            return nullptr;
+        }
+    }
+
     // 设置输入元素值
     returnCode = SetInputData(inputTensors, inputCount);
     if (returnCode != OH_NN_SUCCESS) {
@@ -305,33 +253,21 @@ HWTEST_F(EndToEndTest, end_to_end_test_001, Function | MediumTest | Level1)
     uint32_t deviceCount = 0;
     OH_NN_ReturnCode returnCode = OH_NNDevice_GetAllDevicesID(&allDevicesID, &deviceCount);
     ASSERT_EQ(returnCode, OH_NN_SUCCESS);
+    ASSERT_NE(deviceCount, 0);
     const char *name = nullptr;
     size_t deviceId = 0;
     returnCode = OH_NNDevice_GetName(allDevicesID[0], &name);
     ASSERT_EQ(returnCode, OH_NN_SUCCESS);
     deviceId = allDevicesID[0];
 
-    int32_t inputDims[4] = {1, 2, 2, 3};
-    std::vector<NN_TensorDesc*> tensorDescs;
-    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-    tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-
-    int32_t activationDims = 1;
-    tensorDesc = createTensorDesc(&activationDims, 1, OH_NN_INT8, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-    tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-
     OH_NNModel* model = nullptr;
-    ASSERT_EQ(OH_NN_SUCCESS, BuildModel(&model, tensorDescs));
+    BuildModel(&model);
 
     OH_NNCompilation* compilation = ConstructCompilation(model, deviceId);
     ASSERT_NE(nullptr, compilation);
 
     OH_NNModel_Destroy(&model);
-    OH_NNExecutor* executor = runExecutor(compilation, deviceId);
+    OH_NNExecutor* executor = RunExecutor(compilation, deviceId);
     ASSERT_NE(nullptr, executor);
     OH_NNCompilation_Destroy(&compilation);
     OH_NNExecutor_Destroy(&executor);
@@ -354,27 +290,13 @@ HWTEST_F(EndToEndTest, end_to_end_test_002, Function | MediumTest | Level1)
     ASSERT_EQ(returnCode, OH_NN_SUCCESS);
     deviceId = allDevicesID[0];
 
-    int32_t inputDims[4] = {-1, 2, 2, 3};
-    std::vector<NN_TensorDesc*> tensorDescs;
-    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-    inputDims[0] = 1;
-    tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-
-    int32_t activationDims = 1;
-    tensorDesc = createTensorDesc(&activationDims, 1, OH_NN_INT8, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-    tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-
     OH_NNModel* model = nullptr;
-    ASSERT_EQ(OH_NN_SUCCESS, BuildModel(&model, tensorDescs));
+    BuildModel(&model);
 
     OH_NNCompilation* compilation = ConstructCompilation(model, deviceId);
     ASSERT_NE(nullptr, compilation);
     OH_NNModel_Destroy(&model);
-    OH_NNExecutor* executor = runExecutor(compilation, deviceId);
+    OH_NNExecutor* executor = RunExecutor(compilation, deviceId);
     ASSERT_NE(nullptr, executor);
     OH_NNCompilation_Destroy(&compilation);
     OH_NNExecutor_Destroy(&executor);
@@ -397,35 +319,13 @@ HWTEST_F(EndToEndTest, end_to_end_test_003, Function | MediumTest | Level1)
     ASSERT_EQ(returnCode, OH_NN_SUCCESS);
     deviceId = allDevicesID[0];
 
-    int32_t inputDims[4] = {1, 2, 2, 3};
-    std::vector<NN_TensorDesc*> tensorDescs;
-    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
-    tensorDescs.push_back(tensorDesc);
-    tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
-    tensorDescs.push_back(tensorDesc);
-
-    int32_t activationDims = 1;
-    tensorDesc = createTensorDesc(&activationDims, 1, OH_NN_INT8, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-    tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NCHW);
-    tensorDescs.push_back(tensorDesc);
-
     OH_NNModel* model = nullptr;
-    ASSERT_EQ(OH_NN_SUCCESS, BuildModel(&model, tensorDescs));
-    NN_QuantParam* quantParam = OH_NNQuantParam_Create();
-    double scales = 0.2;
-    int32_t zeroPoints = 0;
-    uint32_t numBits = 8;
-    ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 2));
-    ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 2));
-    ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetNumBits(quantParam, &numBits, 2));
-    ASSERT_EQ(OH_NN_FAILED, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
-    ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
+    BuildModelWithQuantParams(&model);
 
     OH_NNCompilation* compilation = ConstructCompilation(model, deviceId);
     ASSERT_NE(nullptr, compilation);
     OH_NNModel_Destroy(&model);
-    OH_NNExecutor* executor = runExecutor(compilation, deviceId);
+    OH_NNExecutor* executor = RunExecutor(compilation, deviceId);
     ASSERT_NE(nullptr, executor);
     OH_NNCompilation_Destroy(&compilation);
     OH_NNExecutor_Destroy(&executor);
@@ -448,30 +348,20 @@ HWTEST_F(EndToEndTest, Reliability_test_001, Function | MediumTest | Level1)
     ASSERT_EQ(returnCode, OH_NN_SUCCESS);
     deviceId = allDevicesID[0];
 
-    int32_t inputDims[4] = {1, 2, 2, 3};
-    std::vector<NN_TensorDesc*> tensorDescs;
-    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-    tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-
-    int32_t activationDims = 1;
-    tensorDesc = createTensorDesc(&activationDims, 1, OH_NN_INT8, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-    tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-
     OH_NNModel* model = nullptr;
-    ASSERT_EQ(OH_NN_SUCCESS, BuildModel(&model, tensorDescs));
-    for (int i = 0; i < CircleCount; i++) {
+    BuildModel(&model);
+    for (int i = 0; i < STRESS_COUNT; i++) {
         OH_NNCompilation* compilation = ConstructCompilation(model, deviceId);
         ASSERT_NE(nullptr, compilation);
-        OH_NNExecutor* executor = runExecutor(compilation, deviceId);
+        OH_NNExecutor* executor = RunExecutor(compilation, deviceId);
         ASSERT_NE(nullptr, executor);
-        OH_NNModel_Destroy(&model);
         OH_NNCompilation_Destroy(&compilation);
         OH_NNExecutor_Destroy(&executor);
+        if (i % PRINT_FREQ == 0) {
+            printf("[NnrtTest] Reliability_test_001 times: %d/%d\n", i, STRESS_COUNT);
+        }
     }
+    OH_NNModel_Destroy(&model);
 }
 
 /*
@@ -491,29 +381,18 @@ HWTEST_F(EndToEndTest, Reliability_test_002, Function | MediumTest | Level1)
     ASSERT_EQ(returnCode, OH_NN_SUCCESS);
     deviceId = allDevicesID[0];
 
-    int32_t inputDims[4] = {-1, 2, 2, 3};
-    std::vector<NN_TensorDesc*> tensorDescs;
-    NN_TensorDesc* tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-    inputDims[0] = 1;
-    tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-
-    int32_t activationDims = 1;
-    tensorDesc = createTensorDesc(&activationDims, 1, OH_NN_INT8, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-    tensorDesc = createTensorDesc(inputDims, 4, OH_NN_FLOAT32, OH_NN_FORMAT_NONE);
-    tensorDescs.push_back(tensorDesc);
-
     OH_NNModel* model = nullptr;
-    ASSERT_EQ(OH_NN_SUCCESS, BuildModel(&model, tensorDescs));
-    for (int i = 0; i < CircleCount; i++) {
+    BuildModel(&model);
+    for (int i = 0; i < STRESS_COUNT; i++) {
         OH_NNCompilation* compilation = ConstructCompilation(model, deviceId);
         ASSERT_NE(nullptr, compilation);
-        OH_NNExecutor* executor = runExecutor(compilation, deviceId);
+        OH_NNExecutor* executor = RunExecutor(compilation, deviceId);
         ASSERT_NE(nullptr, executor);
-        OH_NNModel_Destroy(&model);
         OH_NNCompilation_Destroy(&compilation);
         OH_NNExecutor_Destroy(&executor);
+        if (i % PRINT_FREQ == 0) {
+            printf("[NnrtTest] Reliability_test_002 times: %d/%d\n", i, STRESS_COUNT);
+        }
     }
+    OH_NNModel_Destroy(&model);
 }
