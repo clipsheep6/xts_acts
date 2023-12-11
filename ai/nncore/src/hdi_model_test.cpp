@@ -100,7 +100,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0200, Function | 
 
 /**
  * @tc.number : SUB_AI_NNRt_Func_North_Model_SetQuantParam_0300
- * @tc.desc: 设置量化参数，参数合法,count=1,参数的channel=2,调用失败
+ * @tc.desc: 设置量化参数，count=1,channel=2,Per-Layer模式，设置成功
  * @tc.type: FUNC
  */
 HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0300, Function | MediumTest | Level0)
@@ -141,7 +141,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0400, Function | 
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 2));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 2));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetNumBits(quantParam, &numBits, 2));
-    ASSERT_NE(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
@@ -165,7 +165,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0500, Function | 
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 2));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetNumBits(quantParam, &numBits, 1));
-    ASSERT_NE(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
@@ -187,7 +187,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0600, Function | 
     uint32_t numBits = 8;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetNumBits(quantParam, &numBits, 1));
-    ASSERT_NE(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
@@ -209,7 +209,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0700, Function | 
     int32_t zeroPoints = 0;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 1));
-    ASSERT_NE(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
@@ -231,7 +231,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0800, Function | 
     uint32_t numBits = 8;
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetNumBits(quantParam, &numBits, 1));
-    ASSERT_NE(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SetTensorQuantParams(model, 0, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
@@ -255,7 +255,7 @@ HWTEST_F(ModelTest, SUB_AI_NNRt_Func_North_Model_SetQuantParam_0900, Function | 
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetScales(quantParam, &scales, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetZeroPoints(quantParam, &zeroPoints, 1));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_SetNumBits(quantParam, &numBits, 1));
-    ASSERT_NE(OH_NN_SUCCESS, OH_NNModel_SetTensorQuantParams(model, 1, quantParam));
+    ASSERT_EQ(OH_NN_INVALID_PARAMETER, OH_NNModel_SetTensorQuantParams(model, 1, quantParam));
     ASSERT_EQ(OH_NN_SUCCESS, OH_NNQuantParam_Destroy(&quantParam));
     OH_NNModel_Destroy(&model);
 }
