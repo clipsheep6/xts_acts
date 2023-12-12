@@ -24,16 +24,16 @@ config("nncore_config") {
   cflags_cc = [ "-fexceptions" ]
 }
 
-ohos_moduletest_suite("NncoreTest") {
+ohos_moduletest_suite("ActsNncoreTest") {
   module_out_path = module_output_path
   sources = [
     "common/nncore_utils.cpp",
     "common/mock_idevice.cpp",
-    "src/hdi_compilation_test.cpp",
-    "src/hdi_executor_test.cpp",
-    "src/hdi_model_test.cpp",
-    "src/hdi_tensor_test.cpp",
-    "src/hdi_tensorDesc_test.cpp",
+    "src/HdiCompilationTest.cpp",
+    "src/HdiExecutorTest.cpp",
+    "src/HdiModelTest.cpp",
+    "src/HdiTensorTest.cpp",
+    "src/HdiTensorDescTest.cpp",
   ]
 
   configs = [ ":nncore_config" ]
@@ -56,10 +56,10 @@ ohos_moduletest_suite("NncoreTest") {
   part_name = "neural_network_runtime"
 }
 
-ohos_moduletest_suite("E2ETest") {
+ohos_moduletest_suite("ActsEndtoendTest") {
   module_out_path = module_output_path
   sources = [ 
-    "src/End_to_End_Test.cpp",
+    "src/EndToEndTest.cpp",
     "common/nncore_utils.cpp",
     "common/mock_idevice.cpp",
   ]
@@ -87,7 +87,7 @@ ohos_moduletest_suite("E2ETest") {
 group("ActsHdfNncoreTest") {
   testonly = true
   deps = [ 
-    ":NncoreTest",
-    ":E2ETest",
+    ":ActsNncoreTest",
+    ":ActsEndtoendTest",
   ]
 }

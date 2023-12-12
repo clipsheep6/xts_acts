@@ -288,11 +288,11 @@ OH_NNExecutor* RunExecutor(OH_NNCompilation* compilation, size_t deviceId, bool 
 }
 
 /*
-* @tc.name:end_to_end_test_001
+* @tc.name:sub_AI_NNRt_Core_Func_North_EndToEnd_0100
 * @tc.desc:定长模型编译端到端测试
 * @tc.type:FUNC
 */
-HWTEST_F(EndToEndTest, end_to_end_test_001, Function | MediumTest | Level1)
+HWTEST_F(EndToEndTest, sub_AI_NNRt_Core_Func_North_EndToEnd_0100, Function | MediumTest | Level1)
 {
     const size_t *allDevicesID = nullptr;
     uint32_t deviceCount = 0;
@@ -319,11 +319,11 @@ HWTEST_F(EndToEndTest, end_to_end_test_001, Function | MediumTest | Level1)
 }
 
 /*
-* @tc.name:end_to_end_test_002
+* @tc.name:sub_AI_NNRt_Core_Func_North_EndToEnd_0200
 * @tc.desc:变长模型编译端到端测试
 * @tc.type:FUNC
 */
-HWTEST_F(EndToEndTest, end_to_end_test_002, Function | MediumTest | Level1)
+HWTEST_F(EndToEndTest, sub_AI_NNRt_Core_Func_North_EndToEnd_0200, Function | MediumTest | Level1)
 {
     const size_t *allDevicesID = nullptr;
     uint32_t deviceCount = 0;
@@ -349,11 +349,11 @@ HWTEST_F(EndToEndTest, end_to_end_test_002, Function | MediumTest | Level1)
 }
 
 /*
-* @tc.name:end_to_end_test_003
+* @tc.name:sub_AI_NNRt_Core_Func_North_EndToEnd_0300
 * @tc.desc:定长模型编译带量化参数端到端测试
 * @tc.type:FUNC
 */
-HWTEST_F(EndToEndTest, end_to_end_test_003, Function | MediumTest | Level1)
+HWTEST_F(EndToEndTest, sub_AI_NNRt_Core_Func_North_EndToEnd_0300, Function | MediumTest | Level1)
 {
     const size_t *allDevicesID = nullptr;
     uint32_t deviceCount = 0;
@@ -379,11 +379,11 @@ HWTEST_F(EndToEndTest, end_to_end_test_003, Function | MediumTest | Level1)
 }
 
 /*
-* @tc.name:Reliability_test_001
+* @tc.name:sub_AI_NNRt_Core_Func_North_Reliability_0100
 * @tc.desc:定长模型编译长稳测试
 * @tc.type:FUNC
 */
-HWTEST_F(EndToEndTest, Reliability_test_001, Reliability | MediumTest | Level2)
+HWTEST_F(EndToEndTest, sub_AI_NNRt_Core_Func_North_Reliability_0100, Reliability | MediumTest | Level2)
 {
     const size_t *allDevicesID = nullptr;
     uint32_t deviceCount = 0;
@@ -410,11 +410,11 @@ HWTEST_F(EndToEndTest, Reliability_test_001, Reliability | MediumTest | Level2)
 }
 
 /*
-* @tc.name:Reliability_test_002
+* @tc.name:sub_AI_NNRt_Core_Func_North_Reliability_0200
 * @tc.desc:变长模型编译端到端测试
 * @tc.type:FUNC
 */
-HWTEST_F(EndToEndTest, Reliability_test_002, Reliability | MediumTest | Level2)
+HWTEST_F(EndToEndTest, sub_AI_NNRt_Core_Func_North_Reliability_0200, Reliability | MediumTest | Level2)
 {
     const size_t *allDevicesID = nullptr;
     uint32_t deviceCount = 0;
