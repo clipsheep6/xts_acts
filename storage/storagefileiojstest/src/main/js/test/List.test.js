@@ -120,5 +120,4 @@ export default function testsuite() {
     fileioUnlink()
     fileioWrite()
     fileiogetFullDirectoryUri()
-    fileiogetFullDirectoryUri()
 }
