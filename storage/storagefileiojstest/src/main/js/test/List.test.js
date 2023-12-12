@@ -65,7 +65,6 @@ import fileioSymlink from './module_fileio/members/symlink.test.js'
 import fileioTruncate from './module_fileio/members/truncate.test.js'
 import fileioUnlink from './module_fileio/members/unlink.test.js'
 import fileioWrite from './module_fileio/members/write.test.js'
-import fileioWrite from './module_fileio/members/getFullDirectoryUri.test.js'
 export default function testsuite() {
     fileIOTest()
     fileIOTestDir()
@@ -119,5 +118,4 @@ export default function testsuite() {
     fileioTruncate()
     fileioUnlink()
     fileioWrite()
-    fileiogetFullDirectoryUri()
 }
