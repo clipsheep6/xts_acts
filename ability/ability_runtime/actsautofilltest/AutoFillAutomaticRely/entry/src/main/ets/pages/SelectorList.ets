@@ -68,7 +68,7 @@ struct SelectorList {
   @State message: string = 'AutoFill Page'
 
   build() {
-    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
+    Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
       Column() {
         Row() {
           Text(this.message)
@@ -80,14 +80,14 @@ struct SelectorList {
         .justifyContent(FlexAlign.SpaceBetween)
 
         Row() {
-          Text('Got ViewData:')
+          Text('Got ViewData, string length: '+ JSON.stringify(viewData).length)
             .fontWeight(FontWeight.Bold)
             .margin({ bottom: 10 })
         }
-        .alignSelf(ItemAlign.Start)
+        .alignSelf(ItemAlign.Center)
         .margin({ left: 30 })
 
-        Row() {
+        /*Row() {
           Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start }) {
             Text(parseViewDataString(viewData))
               .fontSize(25)
@@ -98,7 +98,7 @@ struct SelectorList {
           .borderRadius(16)
           .shadow({ radius: 50, color: 'rgba(0,0,30,0.1500)' })
           .padding({ left: 15, right: 10, top: 10, bottom: 10 })
-        }
+        }*/
 
         Row() {
           Flex({ justifyContent: FlexAlign.Center, alignContent: FlexAlign.SpaceBetween }) {

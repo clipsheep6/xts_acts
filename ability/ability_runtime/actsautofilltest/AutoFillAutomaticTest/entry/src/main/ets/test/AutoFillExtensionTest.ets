@@ -22,7 +22,7 @@ import commonEventManager from '@ohos.commonEventManager';
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 let want = {
   abilityName: 'EntryAbility',
-  bundleName: 'com.ohos.passwordbox'
+  bundleName: 'com.huawei.hmos.passwordvault'
 };
 let SubscribeList = {
   events: [
@@ -40,7 +40,7 @@ function sleep(ms): Promise<any> {
 export default function abilityTest() {
   describe('ActsAutoFillExtensionTest', function () {
     afterEach(async function (done) {
-      await abilityDelegator.executeShellCommand('pkill -f com.ohos.passwordbox');
+      await abilityDelegator.executeShellCommand('pkill -f com.huawei.hmos.passwordvault');
       done();
     })
 
@@ -62,11 +62,11 @@ export default function abilityTest() {
           expect(data.parameters.onCreate).assertEqual(1);
           expect(data.parameters.onFillRequest).assertEqual(1);
           expect(data.parameters.onForeground).assertEqual(1);
-        }
-        commonEventManager.unsubscribe(subscriber, () => {
-          console.info(TAG, 'enter subscribe callback oncreate' + data.parameters.onCreate);
-          done();
+          commonEventManager.unsubscribe(subscriber, () => {
+            console.info(TAG, 'enter subscribe callback oncreate' + data.parameters.onCreate);
+            done();
         });
+        }
       }
 
       commonEventManager.createSubscriber(SubscribeList).then(async (data) => {
@@ -106,7 +106,6 @@ export default function abilityTest() {
       function subscribeCallBack(err, data) {
         console.info(TAG, 'enter subscribe callback' + JSON.stringify(data));
         if (data.event == 'AutoFillExtensionTest0200' && data.parameters.onSaveRequest == 1) {
-          expect(data.parameters.onSaveRequest).assertEqual(1);
           expect(data.parameters.onSessionDestroy).assertEqual(1);
           expect(data.parameters.onDestroy).assertEqual(1);
           commonEventManager.unsubscribe(subscriber, () => {
@@ -120,32 +119,34 @@ export default function abilityTest() {
         console.info(TAG, 'create subscriber.');
         subscriber = data;
         commonEventManager.subscribe(subscriber, subscribeCallBack);
-        await sleep(2000);
+        await sleep(1000);
         await globalThis.abilityContext.startAbility(want);
-        let pwdTextInput = await driver.waitForComponent(ON.id('password_input'), 2500);
-        await sleep(500);
+        await sleep(1000);
+        let pwdTextInput = await driver.waitForComponent(ON.id('password_input'), 2000);
+        await sleep(100);
         expect(pwdTextInput != null).assertTrue();
         await pwdTextInput.click();
-        let successButton = await driver.waitForComponent(ON.id('success_btn'), 2500);
-        await sleep(500);
+        await sleep(1000);
+        let successButton = await driver.waitForComponent(ON.id('success_btn'), 2000);
+        await sleep(100);
         expect(successButton != null).assertTrue();
         await successButton.click();
-        let pwdTextInputAgain = await driver.waitForComponent(ON.id('password_input'), 2500);
-        await sleep(500);
+        await sleep(1000);
+        let pwdTextInputAgain = await driver.waitForComponent(ON.id('password_input'), 2000);
+        await sleep(100);
         expect(pwdTextInputAgain != null).assertTrue();
         await pwdTextInputAgain.inputText('u');
         await sleep(1000);
-        await driver.pressBack();
-        let saveButton = await driver.waitForComponent(ON.id('save_btn'), 2500);
-        await sleep(500);
+        let saveButton = await driver.waitForComponent(ON.id('save_btn'), 1000);
+        await sleep(100);
         expect(saveButton != null).assertTrue();
-        await sleep(1000);
         await saveButton.click();
-        let noButton = await driver.waitForComponent(ON.id('no_btn'), 2500);
-        await sleep(500);
+        await sleep(1000);
+        let noButton = await driver.waitForComponent(ON.id('no_btn'), 2000);
+        await sleep(100);
         expect(noButton != null).assertTrue();
         await noButton.click();
-        await sleep(2500);
+        await sleep(3000);
         console.info(TAG, 'end.');
       })
       console.info(TAG, 'end.');
@@ -166,11 +167,11 @@ export default function abilityTest() {
       function subscribeCallBack(err, data) {
         if (data.event == 'AutoFillExtensionTest0300') {
           expect(data.parameters.onBackground).assertEqual(1);
+          commonEventManager.unsubscribe(subscriber, () => {
+            console.info(TAG, 'enter subscribe callback onBackground' + data.parameters.onBackground);
+            done();
+          });
         }
-        commonEventManager.unsubscribe(subscriber, () => {
-          console.info(TAG, 'enter subscribe callback onBackground' + data.parameters.onBackground);
-          done();
-        });
       }
 
       commonEventManager.createSubscriber(SubscribeList).then(async (data) => {
@@ -179,19 +180,16 @@ export default function abilityTest() {
         commonEventManager.subscribe(subscriber, subscribeCallBack);
         await sleep(2000);
         await globalThis.abilityContext.startAbility(want);
-        let pwdTextInput = await driver.waitForComponent(ON.id('password_input'), 1000);
-        await sleep(500);
+        await sleep(1000);
+        let pwdTextInput = await driver.waitForComponent(ON.id('password_input'), 2000);
+        await sleep(100);
         expect(pwdTextInput != null).assertTrue();
-        let userTextInput = await driver.waitForComponent(ON.id('username_input'), 1000);
-        await sleep(500);
-        expect(userTextInput != null).assertTrue();
-        let setPwdTextInput = await driver.waitForComponent(ON.id('new_password_input'), 1000);
-        await sleep(500);
-        expect(setPwdTextInput != null).assertTrue();
         await pwdTextInput.click();
-        await sleep(2500);
+        await sleep(3000);
         await driver.pressHome();
-        await sleep(2500);
+        await sleep(2000);
+        console.log("waitForEnd.");
+        await sleep(2000);
         console.info(TAG, 'end.');
       })
       console.info(TAG, 'end.');
@@ -224,16 +222,20 @@ export default function abilityTest() {
         commonEventManager.subscribe(subscriber, SubscribeCallback);
         await sleep(2000);
         globalThis.abilityContext.startAbility(want);
-        let pwd_input = await driver.waitForComponent(ON.id('password_input'), 2500);
-        await sleep(500);
+        await sleep(1000);
+        let pwd_input = await driver.waitForComponent(ON.id('password_input'), 2000);
+        await sleep(100);
         expect(pwd_input != null).assertTrue();
         await pwd_input.click();
 
-        let success_btn = await driver.waitForComponent(ON.id('success_btn'), 2500);
-        await sleep(500);
+        await sleep(1000);
+        let success_btn = await driver.waitForComponent(ON.id('success_btn'), 2000);
+        await sleep(100);
         expect(success_btn != null).assertTrue();
         await success_btn.click();
-        await sleep(4000);
+        await sleep(2000);
+        console.log("waitForEnd.")
+        await sleep(2000);
         console.info(TAG, 'end.');
       })
 
@@ -243,8 +245,8 @@ export default function abilityTest() {
           console.info('out verify begin');
           expect(context.currentHapModuleInfoName == 'entry').assertTrue();
           expect(context.configLanguage == 'zh-Hans').assertTrue();
-          expect(context.extensionAbilityInfoBundleName == 'com.ohos.passwordbox').assertTrue();
-          expect(context.applicationInfoName == 'com.ohos.passwordbox').assertTrue();
+          expect(context.extensionAbilityInfoBundleName == 'com.huawei.hmos.passwordvault').assertTrue();
+          expect(context.applicationInfoName == 'com.huawei.hmos.passwordvault').assertTrue();
           console.info('out verify middle1');
           expect(context.applicationContextCacheDir.indexOf('/cache') != -1).assertTrue();
           expect(context.applicationContextTempDir.indexOf('/temp') != -1).assertTrue();

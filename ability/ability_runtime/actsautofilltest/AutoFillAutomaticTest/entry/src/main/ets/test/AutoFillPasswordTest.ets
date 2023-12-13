@@ -23,7 +23,7 @@ let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 let want = {
   abilityName: 'EntryAbility',
-  bundleName: 'com.ohos.passwordbox'
+  bundleName: 'com.huawei.hmos.passwordvault'
 };
 
 function sleep(ms): Promise<any> {
@@ -33,7 +33,7 @@ function sleep(ms): Promise<any> {
 export default function abilityTest() {
   describe('ActsAutoFillPasswordTest', function () {
     afterEach(async function (done) {
-      await abilityDelegator.executeShellCommand('pkill -f com.ohos.passwordbox');
+      await abilityDelegator.executeShellCommand('pkill -f com.huawei.hmos.passwordvault');
       done();
     })
 

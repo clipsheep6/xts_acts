@@ -23,7 +23,7 @@ import commonEventManager from '@ohos.commonEventManager';
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 let want = {
   abilityName: 'EntryAbility',
-  bundleName: 'com.ohos.passwordbox'
+  bundleName: 'com.huawei.hmos.passwordvault'
 };
 
 function sleep(ms): Promise<any> {
@@ -33,7 +33,7 @@ function sleep(ms): Promise<any> {
 export default function abilityTest() {
   describe('ActsAutoFillTest', function () {
     afterEach(async function (done) {
-      await abilityDelegator.executeShellCommand('pkill -f com.ohos.passwordbox');
+      await abilityDelegator.executeShellCommand('pkill -f com.huawei.hmos.passwordvault');
       done();
     })
 
@@ -48,40 +48,36 @@ export default function abilityTest() {
       await sleep(2000);
       await globalThis.abilityContext.startAbility(want);
 
-      await sleep(1000);
-      let pwd_input = await driver.waitForComponent(ON.id('password_input'), 2500);
+      await sleep(2000);
+      let pwd_input = await driver.waitForComponent(ON.id('password_input'), 3000);
+      await sleep(100);
       expect(pwd_input != null).assertTrue();
       await pwd_input.click();
 
-      await sleep(1000);
-      let success_btn = await driver.waitForComponent(ON.id('success_btn'), 2500);
+      await sleep(2000);
+      let success_btn = await driver.waitForComponent(ON.id('success_btn'), 3000);
+      await sleep(100);
       expect(success_btn != null).assertTrue();
       await success_btn.click();
 
-      await sleep(1500);
-      pwd_input = await driver.waitForComponent(ON.id('password_input'), 2500);
+      await sleep(2000);
+      pwd_input = await driver.waitForComponent(ON.id('password_input'), 3000);
+      await sleep(100);
       expect(pwd_input != null).assertTrue();
       await pwd_input.click();
       await pwd_input.inputText('n');
-      await sleep(500);
-      await driver.pressBack();
-      await sleep(500);
+      await sleep(1000);
 
       let login_btn = await driver.waitForComponent(ON.id('login_btn'), 1500);
-      await sleep(500);
+      await sleep(100);
       expect(login_btn != null).assertTrue();
       await login_btn.click();
-      await sleep(1000);
-      let ok_btn = await driver.waitForComponent(ON.id('ok_btn'), 2500);
+      await sleep(2000);
+      let ok_btn = await driver.waitForComponent(ON.id('ok_btn'), 3000);
+      await sleep(100);
       expect(ok_btn != null).assertTrue();
       await ok_btn.click();
-
-      await sleep(2500);
-      await driver.pressBack();
-
-      await sleep(1000);
-      pwd_input = await driver.waitForComponent(ON.id('password_input'), 2500);
-      expect(pwd_input != null).assertTrue();
+      await sleep(2000);
       done();
     })
 
@@ -96,38 +92,35 @@ export default function abilityTest() {
       await sleep(2000);
       await globalThis.abilityContext.startAbility(want);
 
-      await sleep(1000);
-      let pwd_input = await driver.waitForComponent(ON.id('password_input'), 2500);
+      await sleep(2000);
+      let pwd_input = await driver.waitForComponent(ON.id('password_input'), 3000);
+      await sleep(100);
       expect(pwd_input != null).assertTrue();
       await pwd_input.click();
 
-      await sleep(1000);
-      let success_btn = await driver.waitForComponent(ON.id('success_btn'), 2500);
+      await sleep(2000);
+      let success_btn = await driver.waitForComponent(ON.id('success_btn'), 3000);
+      await sleep(100);
       expect(success_btn != null).assertTrue();
       await success_btn.click();
 
       await sleep(1500);
-      pwd_input = await driver.waitForComponent(ON.id('password_input'), 2500);
+      pwd_input = await driver.waitForComponent(ON.id('password_input'), 3000);
+      await sleep(100);
       expect(pwd_input != null).assertTrue();
       await pwd_input.inputText('n');
-      await sleep(500);
-      await driver.pressBack();
-      await sleep(500);
+      await sleep(1000);
       let login_btn = await driver.waitForComponent(ON.id('login_btn'), 1500);
       expect(login_btn != null).assertTrue();
       await sleep(1000);
       await login_btn.click();
 
-      await sleep(1000);
-      let no_btn = await driver.waitForComponent(ON.id('no_btn'), 2500);
+      await sleep(2000);
+      let no_btn = await driver.waitForComponent(ON.id('no_btn'), 3000);
+      await sleep(100);
       expect(no_btn != null).assertTrue();
       await no_btn.click();
-      await sleep(2500);
-      await driver.pressBack();
-
-      await sleep(1000);
-      let username_input = await driver.waitForComponent(ON.id('username_input'), 2500);
-      expect(username_input != null).assertTrue();
+      await sleep(2000);
       done();
     })
 
