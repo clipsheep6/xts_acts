@@ -21,8 +21,8 @@ import appManager from '@ohos.app.ability.appManager';
 
 let StateEvent = {
   events: ['stateEvent', 'stateEvent2', 'stateEvent4', 'Acts_ObserverAppState_0100_1' ,'Acts_ObserverAppState_0100_2',
-           'Acts_ObserverAppState_0400_1', 'Acts_ObserverAppState_0400_2', 'Acts_ObserverAppState_0200', 'Acts_ObserverAppState_0300', 'Acts_ObserverAppState_0500',
-          'Acts_ObserverAppState_0600']
+           'Acts_ObserverAppState_0400_1', 'Acts_ObserverAppState_0400_2', 'Acts_ObserverAppState_0200',
+           'Acts_ObserverAppState_0300', 'Acts_ObserverAppState_0500', 'Acts_ObserverAppState_0600']
 }
 
 function sleep(ms) {
@@ -35,7 +35,10 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_0100
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify registration interface(parameter is null, undefined)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0100', 0, async function (done) {
       let subscriber;
@@ -76,7 +79,10 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_0200
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify non system application registration
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0200', 0, async function (done) {
       let subscriber;
@@ -115,7 +121,10 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_0300
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify unauthorized system application registration
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0300', 0, async function (done) {
       let subscriber;
@@ -154,7 +163,10 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_0400
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify unregistered interface (parameter is null, undefined)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0400', 0, async function (done) {
       let subscriber;
@@ -194,7 +206,10 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_0500
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify non system application deregistration
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0500', 0, async function (done) {
       let subscriber;
@@ -233,7 +248,10 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_0600
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify unauthorized system application cancellation of registration
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0600', 0, async function (done) {
       let subscriber;
@@ -272,7 +290,10 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_0700
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify that a single listener is listening to multiple applications
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0700', 0, async function (done) {
       let TAG = 'Acts_ObserverAppState_0700_TAG';
@@ -335,7 +356,10 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_0800
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify that two identical listeners are listening to a single application
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0800', 0, async function (done) {
       let TAG = 'Acts_ObserverAppState_0800_TAG';
@@ -398,7 +422,10 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_0900
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify that two different listeners are listening to a single application
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0900', 0, async function (done) {
       let TAG = 'Acts_ObserverAppState_0900_TAG';
@@ -461,7 +488,10 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_1000
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify the registration of two different listeners. The second listener performs anti registration
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_1000', 0, async function (done) {
       let TAG = 'Acts_ObserverAppState_1000_TAG'
@@ -524,7 +554,10 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_1100
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify that the same listener cancels registration twice
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_1100', 0, async function (done) {
       let TAG = 'Acts_ObserverAppState_1100_TAG'
@@ -569,7 +602,10 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_1200
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify two applications with one listener each, and listen to the third application
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_1200', 0, async function (done) {
       let TAG = 'Acts_ObserverAppState_1200_TAG'
@@ -645,7 +681,11 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_1300
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify two applications with one listener each, cancel registration for the second listener
+    *          and monitor the third application
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_1300', 0, async function (done) {
       let TAG = 'Acts_ObserverAppState_1300_TAG';
@@ -722,7 +762,11 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_1400
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify that a single application registers multiple different listeners, call the unregister interface
+    *           to cancel all listening
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_1400', 0, async function (done) {
       let TAG = 'Acts_ObserverAppState_1400_TAG';
@@ -767,7 +811,10 @@ export default function abilityTest() {
     /*
     * @tc.number: Acts_ObserverAppState_1700
     * @tc.name: Enable and disable application listening
-    * @tc.desc:
+    * @tc.desc: Verify the callback after launching multiple capabilities for the same application
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_1700', 0, async function (done) {
       let TAG = 'Acts_ObserverAppState_1700_TAG';
