@@ -80,6 +80,20 @@ export default function ImageReceiver() {
                 return;
             }
         }
+        async function createReceiverWithSize(done, testNum, size, fmt, cap) {
+            let receiver;
+            try {
+                receiver = image.createImageReceiver(size, fmt, cap);
+                expect(false).assertTrue();
+                done();
+                return;
+            } catch (error) {
+                console.info(`${testNum} err message` + error);
+            }
+            expect(receiver == undefined).assertTrue();
+            done();
+            return;
+        }
 
         async function getComponentProErr(done, testNum, format, param) {
             var receiver = image.createImageReceiver(WIDTH, HEIGHT, format, CAPACITY);
@@ -334,6 +348,116 @@ export default function ImageReceiver() {
         function isString(value) {
             return typeof value === "string";
         }
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_WITH_SIZE_0100
+         * @tc.name      : createImageReceiver
+         * @tc.desc      : 1.set size,format,capacity
+         *                 2.create ImageReceiver
+         *                 3.return ImageReceiver not empty
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_WITH_SIZE_0100", 0, async function (done) {
+            let size = {
+                height: HEIGHT,
+                width: WIDTH
+            }
+            let format = image.ImageFormat.JPEG;
+            var receiver = image.createImageReceiver(size, format, CAPACITY);
+            expect(receiver != undefined).assertTrue();
+            done();
+            return;
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_WITH_SIZE_ERROR_0100
+         * @tc.name      : createImageReceiver- wrong format
+         * @tc.desc      : 1.set size,format,capacity
+         *                 2.create ImageReceiver
+         *                 3.return ImageReceiver empty
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_WITH_SIZE_ERROR_0100", 0, async function (done) {
+            let size = {
+                height: HEIGHT,
+                width: WIDTH
+            }
+            createReceiverWithSize(
+                done,
+                "SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_WITH_SIZE_ERROR_0100",
+                size,
+                "form.",
+                CAPACITY
+            );
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_WITH_SIZE_ERROR_0200
+         * @tc.name      : createImageReceiver- wrong capacity
+         * @tc.desc      : 1.set size,format,capacity
+         *                 2.create ImageReceiver
+         *                 3.return ImageReceiver empty
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_WITH_SIZE_ERROR_0200", 0, async function (done) {
+            let size = {
+                height: HEIGHT,
+                width: WIDTH
+            }
+            createReceiverWithSize(
+                done,
+                "SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_WITH_SIZE_ERROR_0200",
+                size,
+                image.ImageFormat.JPEG,
+                null
+            );
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_WITH_SIZE_ERROR_0300
+         * @tc.name      : createImageReceiver- wrong size
+         * @tc.desc      : 1.set size,format,capacity
+         *                 2.create ImageReceiver
+         *                 3.return ImageReceiver empty
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_WITH_SIZE_ERROR_0300", 0, async function (done) {
+            createReceiverWithSize(
+                done,
+                "SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_WITH_SIZE_ERROR_0300",
+                null,
+                image.ImageFormat.JPEG,
+                CAPACITY
+            );
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_WITH_SIZE_ERROR_0400
+         * @tc.name      : createImageReceiver- wrong size
+         * @tc.desc      : 1.set size,format,capacity
+         *                 2.create ImageReceiver
+         *                 3.return ImageReceiver empty
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_WITH_SIZE_ERROR_0400", 0, async function (done) {
+            createReceiverWithSize(
+                done,
+                "SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_WITH_SIZE_ERROR_0400",
+                { a: 10 },
+                image.ImageFormat.JPEG,
+                CAPACITY
+            );
+        });
 
         /**
          * @tc.number    : SUB_MULTIMEDIA_IMAGE_RECEIVER_CREATEIMAGERECEIVER_0100
