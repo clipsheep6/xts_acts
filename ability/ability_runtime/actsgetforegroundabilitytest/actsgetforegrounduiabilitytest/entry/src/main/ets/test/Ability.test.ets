@@ -78,8 +78,8 @@ export default function abilityTest() {
      * @tc.name: Query foreground applications, UIAbility, Page
      * @tc.desc: Call API getForegroundUIAbilities to query the foreground information of the application
      *          (the application does not have permission)
-     * @tc.size: MEDIUM
-     * @tc.type: FUNC
+     * @tc.size: MediumTest
+     * @tc.type: Function
      * @tc.level: Level 1
      */
     it('Acts_GetForegroundUiAbilityTest_0300', 0, async function (done) {
