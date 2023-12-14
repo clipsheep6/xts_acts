@@ -20,7 +20,7 @@
                 "ActsUnusedFormInfoTest.hap",
                 "ActsUnusedFormInfoRely.hap",
                 "ActsUnusedFormInfoRelyTwo.hap",
-				"GetUnusuedFormProvider.hap"
+                "GetUnusuedFormProvider.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
@@ -30,7 +30,8 @@
             "run-command": [
                 "power-shell wakeup",
                 "power-shell setmode 602",
-                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100"
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
+                "setenforce 0"
             ]
         }
     ]

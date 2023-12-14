@@ -22,6 +22,9 @@ export default function abilityTest() {
      * @tc.number: Acts_GetRunningFormInfosByFilter_0300
      * @tc.name: Test getRunningFormInfosByFilter.
      * @tc.desc: Call failed without ohos.permission.OBSERVE_FORM_RUNNING permission.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_GetRunningFormInfosByFilter_0300', 0, async function (done) {
       try {
@@ -43,6 +46,9 @@ export default function abilityTest() {
      * @tc.number: Acts_GetRunningFormInfosById_0300
      * @tc.name: Test getRunningFormInfoById.
      * @tc.desc: Call failed without ohos.permission.OBSERVE_FORM_RUNNING permission.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_GetRunningFormInfosById_0300', 0, async function (done) {
       try {
@@ -61,6 +67,9 @@ export default function abilityTest() {
      * @tc.number: Acts_GetRunningFormInfos_0300
      * @tc.name: Test getRunningFormInfos.
      * @tc.desc: Call failed without ohos.permission.OBSERVE_FORM_RUNNING permission.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_GetRunningFormInfos_0300', 0, async function (done) {
       try {

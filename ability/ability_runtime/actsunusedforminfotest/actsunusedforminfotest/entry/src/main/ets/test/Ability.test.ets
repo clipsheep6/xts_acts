@@ -50,6 +50,9 @@ export default function abilityTest() {
      * @tc.number: Acts_GetRunningFormInfosByFilter_0100
      * @tc.name: Test getRunningFormInfosByFilter.
      * @tc.desc: getRunningFormInfosByFilter can get information of a single form.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_GetRunningFormInfosByFilter_0100', 0, async function (done) {
       await abilityDelegator.startAbility(FIRST_ABILITY_WANT).catch((err) => {
@@ -104,6 +107,9 @@ export default function abilityTest() {
      * @tc.number: Acts_GetRunningFormInfosByFilter_0200
      * @tc.name: Test getRunningFormInfosByFilter.
      * @tc.desc: getRunningFormInfosByFilter can get information of multiple forms.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_GetRunningFormInfosByFilter_0200', 0, async function (done) {
       await abilityDelegator.startAbility(FIRST_ABILITY_WANT).catch((err) => {
@@ -198,6 +204,9 @@ export default function abilityTest() {
      * @tc.number: Acts_GetRunningFormInfosByFilter_0400
      * @tc.name: Test getRunningFormInfosByFilter.
      * @tc.desc: After applying the upgrade, you can get the form information by using getRunningFormInfosByFilter.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_GetRunningFormInfosByFilter_0400', 0, async function (done) {
       await abilityDelegator.startAbility({
@@ -278,6 +287,9 @@ export default function abilityTest() {
      * @tc.number: Acts_GetFormInstanceById_0100
      * @tc.name: Test getRunningFormInfoById.
      * @tc.desc: getRunningFormInfoById can get information of an unused form.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_GetFormInstanceById_0100', 0, async function (done) {
       await abilityDelegator.startAbility(FIRST_ABILITY_WANT).catch((err) => {
@@ -325,6 +337,9 @@ export default function abilityTest() {
      * @tc.number: Acts_GetFormInstanceById_0200
      * @tc.name: Test getRunningFormInfoById.
      * @tc.desc: getRunningFormInfoById can get information of a form in used.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_GetFormInstanceById_0200', 0, async function (done) {
       await abilityDelegator.startAbility(FIRST_ABILITY_WANT).catch((err) => {
@@ -370,6 +385,9 @@ export default function abilityTest() {
      * @tc.number: Acts_GetFormInstanceById_0400
      * @tc.name: Test getRunningFormInfoById.
      * @tc.desc: After applying the upgrade, you can get the form information by using getRunningFormInfoById.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_GetFormInstanceById_0400', 0, async function (done) {
       await abilityDelegator.startAbility({
@@ -459,6 +477,9 @@ export default function abilityTest() {
      * @tc.number: Acts_GetRunningFormInfos_0100
      * @tc.name: Test getRunningFormInfos.
      * @tc.desc: getRunningFormInfos can get information of a single form.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_GetRunningFormInfos_0100', 0, async function (done) {
       await abilityDelegator.startAbility(FIRST_ABILITY_WANT).catch((err) => {
@@ -524,6 +545,9 @@ export default function abilityTest() {
      * @tc.number: Acts_GetRunningFormInfos_0200
      * @tc.name: Test getRunningFormInfos.
      * @tc.desc: getRunningFormInfos can get information of multiple forms.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_GetRunningFormInfos_0200', 0, async function (done) {
       await abilityDelegator.startAbility(FIRST_ABILITY_WANT).catch((err) => {
@@ -630,6 +654,9 @@ export default function abilityTest() {
      * @tc.number: Acts_GetRunningFormInfos_0400
      * @tc.name: Test getRunningFormInfos.
      * @tc.desc: After applying the upgrade, you can get the form information by using getRunningFormInfos.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_GetRunningFormInfos_0400', 0, async function (done) {
       await abilityDelegator.startAbility({
