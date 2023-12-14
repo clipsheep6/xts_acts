@@ -37,6 +37,9 @@ export default function abilityTest() {
     * @tc.name: Listen for UIAbility start and exit
     * @tc.desc: Verify registering an observer in OtherAbility and switching between the front-end and back-end
     *          (single module)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_MonitorUIAbilityTest_0400', 0, async function (done) {
       let TAG = 'Acts_MonitorUIAbilityTest_0400_TAG';
@@ -81,6 +84,9 @@ export default function abilityTest() {
     * @tc.name: Listen for UIAbility start and exit
     * @tc.desc: Verify that the same observer is registered twice in OtherAbility and switches between
     *          the front-end and back-end (single module)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_MonitorUIAbilityTest_0500', 0, async function (done) {
       let TAG = 'Acts_MonitorUIAbilityTest_0500_TAG';
@@ -130,6 +136,9 @@ export default function abilityTest() {
     * @tc.name: Listen for UIAbility start and exit
     * @tc.desc: Verify that different observers are registered twice in OtherAbility and switch between the
     *          front-end and back-end (single module)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_MonitorUIAbilityTest_0600', 0, async function (done) {
       let TAG = 'Acts_MonitorUIAbilityTest_0600_TAG';
@@ -192,6 +201,9 @@ export default function abilityTest() {
     * @tc.name: Listen for UIAbility start and exit
     * @tc.desc: Verify the registration of observer in OtherAbility, unregister observer, and switch between
     *          front-end and back-end (single module)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_MonitorUIAbilityTest_0700', 0, async function (done) {
       let TAG = 'Acts_MonitorUIAbilityTest_0700_TAG';
@@ -234,6 +246,9 @@ export default function abilityTest() {
     * @tc.name: Listen for UIAbility start and exit
     * @tc.desc: Verify that two observers are registered in OtherAbility and the second observer is deregistered
     *          and switches between the front-end and back-end (single module)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_MonitorUIAbilityTest_0800', 0, async function (done) {
       let TAG = 'Acts_MonitorUIAbilityTest_0800_TAG';
@@ -295,6 +310,9 @@ export default function abilityTest() {
     * @tc.number: Acts_MonitorUIAbilityTest_0900
     * @tc.name: Listen for UIAbility start and exit
     * @tc.desc: Verify that the same observer is deregistered twice in OtherAbility (single module)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_MonitorUIAbilityTest_0900', 0, async function (done) {
       let AbilityForegroundStateObserver = {
@@ -318,6 +336,9 @@ export default function abilityTest() {
     * @tc.name: Listen for UIAbility start and exit
     * @tc.desc: Verify registering an observer in EntryAbility and switching between front-end and back-end
     *          (multiple modules)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_MonitorUIAbilityTest_1000', 0, async function (done) {
       let TAG = 'Acts_MonitorUIAbilityTest_1000_TAG';
@@ -365,6 +386,9 @@ export default function abilityTest() {
     * @tc.name: Listen for UIAbility start and exit
     * @tc.desc: Verify that the observer is registered and unregistered in EntryAbility, and switch between the
     *          front-end and back-end (multiple modules)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_MonitorUIAbilityTest_1100', 0, async function (done) {
       let TAG = 'Acts_MonitorUIAbilityTest_1100_TAG';
@@ -411,6 +435,9 @@ export default function abilityTest() {
     * @tc.name: Listen for UIAbility start and exit
     * @tc.desc: Verify registering an observer in EntryAbility and switching between front-end and back-end
     *          (multiple app)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_MonitorUIAbilityTest_1200', 0, async function (done) {
       let TAG = 'Acts_MonitorUIAbilityTest_1200_TAG';
@@ -456,6 +483,9 @@ export default function abilityTest() {
     * @tc.name: Listen for UIAbility start and exit
     * @tc.desc: Verify that the observer is registered and unregistered in EntryAbility, and switch between the
     *          front-end and back-end (multiple app)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_MonitorUIAbilityTest_1300', 0, async function (done) {
       let TAG = 'Acts_MonitorUIAbilityTest_1300_TAG';
@@ -497,11 +527,14 @@ export default function abilityTest() {
     })
 
     /*
-     * @tc.number: Acts_MonitorUIAbilityTest_1400
-     * @tc.name: Listen for UIAbility start and exit
-     * @tc.desc: Verify that two different observer are registered in the ability, call the unregistration API
-     *         (no observer is passed), and all observer are unregistered.
-     */
+    * @tc.number: Acts_MonitorUIAbilityTest_1400
+    * @tc.name: Listen for UIAbility start and exit
+    * @tc.desc: Verify that two different observer are registered in the ability, call the unregistration API
+    *         (no observer is passed), and all observer are unregistered.
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
+    */
     it('Acts_MonitorUIAbilityTest_1400', 0, async function (done) {
       let TAG = 'Acts_MonitorUIAbilityTest_1400_TAG';
       console.info(TAG, 'Start');
@@ -563,6 +596,9 @@ export default function abilityTest() {
     * @tc.name: Listen for UIAbility start and exit
     * @tc.desc: Verify that the observer parameters for registering on and unregistering off are passed in
     *           as null and undefined (non system applications)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_MonitorUIAbilityTest_0200', 0, async function (done) {
       let subscriber;
@@ -595,11 +631,14 @@ export default function abilityTest() {
     })
 
     /*
-   * @tc.number: Acts_MonitorUIAbilityTest_0300
-   * @tc.name: Listen for UIAbility start and exit
-   * @tc.desc: Verify that the observer parameters for registration on and deregistration off are passed in
-   *           with null and undefined parameters respectively (the application does not have permission)
-   */
+    * @tc.number: Acts_MonitorUIAbilityTest_0300
+    * @tc.name: Listen for UIAbility start and exit
+    * @tc.desc: Verify that the observer parameters for registration on and deregistration off are passed in
+    *           with null and undefined parameters respectively (the application does not have permission)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
+    */
     it('Acts_MonitorUIAbilityTest_0300', 0, async function (done) {
       let subscriber;
 
@@ -633,9 +672,12 @@ export default function abilityTest() {
 
     /*
     * @tc.number: Acts_MonitorUIAbilityTest_0100
-     * @tc.name: Listen for UIAbility start and exit
-     * @tc.desc: Verify that the observer parameters for registering on and unregistering off are passed in
+    * @tc.name: Listen for UIAbility start and exit
+    * @tc.desc: Verify that the observer parameters for registering on and unregistering off are passed in
     *           with null and undefined parameters, respectively
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_MonitorUIAbilityTest_0100', 0, async function (done) {
       try {
