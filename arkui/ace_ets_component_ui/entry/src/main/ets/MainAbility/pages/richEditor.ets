@@ -73,7 +73,7 @@ struct richeditor2 {
             if ("imageStyle" in item) {
               this.content += item.valueResourceStr;
               this.content += "\n"
-            } else {
+            } else if ('value' in item) {
               this.content += item.value;
               this.content += "\n"
             }
@@ -155,7 +155,7 @@ struct richeditor2 {
               console.log("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]")
               if ("imageStyle" in item) {
                 console.log("image:" + item.valueResourceStr)
-              } else {
+              } else if ('value' in item) {
                 console.log("text:" + item.value)
               }
             })
