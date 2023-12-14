@@ -38,6 +38,9 @@ export default function abilityTest() {
     * @tc.name: Query foreground applications, UIAbility, Page
     * @tc.desc: Call API getForegroundUIAbilities to query application foreground information
     *           (non-system applications)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_GetForegroundUiAbilityTest_0200', 0, async function (done) {
       let subscriber;
@@ -75,6 +78,9 @@ export default function abilityTest() {
      * @tc.name: Query foreground applications, UIAbility, Page
      * @tc.desc: Call API getForegroundUIAbilities to query the foreground information of the application
      *          (the application does not have permission)
+     * @tc.size: MEDIUM
+     * @tc.type: FUNC
+     * @tc.level: Level 1
      */
     it('Acts_GetForegroundUiAbilityTest_0300', 0, async function (done) {
       let subscriber;
@@ -112,6 +118,9 @@ export default function abilityTest() {
     * @tc.name: Query foreground applications, UIAbility, Page
     * @tc.desc: Start the TestAbilityOther call API getForegroundUIAbilities to query the application 
     *          foreground information (single module)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_GetForegroundUiAbilityTest_0400', 0, async function (done) {
       let subscriber;
@@ -162,6 +171,9 @@ export default function abilityTest() {
     * @tc.name: Query foreground applications, UIAbility, Page
     * @tc.desc: After starting TestAbilityOther, start the TestAbilityOtherSecond call API getForegroundUIAbilities
     *          to query the application foreground information respectively (single module)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_GetForegroundUiAbilityTest_0500', 0, async function (done) {
       let subscriber;
@@ -222,6 +234,9 @@ export default function abilityTest() {
     * @tc.name: Query foreground applications, UIAbility, Page
     * @tc.desc: Call the API to query the foreground information of the application after the test 
     *          starts EntryAbility (multiple module)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_GetForegroundUiAbilityTest_0600', 0, async function (done) {
       let subscriber;
@@ -278,11 +293,14 @@ export default function abilityTest() {
     })
 
     /*
-      * @tc.number: Acts_GetForegroundUiAbilityTest_0700
-      * @tc.name: Query foreground applications, UIAbility, Page
-      * @tc.desc: After starting TestAbilityOther, start the EntryAbility call API getForegroundUIAbilities to query 
-      *          the foreground information of the application respectively (multiple applications)
-      */
+    * @tc.number: Acts_GetForegroundUiAbilityTest_0700
+    * @tc.name: Query foreground applications, UIAbility, Page
+    * @tc.desc: After starting TestAbilityOther, start the EntryAbility call API getForegroundUIAbilities to query 
+    *          the foreground information of the application respectively (multiple applications)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
+    */
     it('Acts_GetForegroundUiAbilityTest_0700', 0, async function (done) {
       let subscriber;
       let msg = { "ACTS_RegisterEvent_First": false, "ACTS_RegisterEvent_Second": false }
@@ -342,6 +360,9 @@ export default function abilityTest() {
     * @tc.name: Query foreground applications, UIAbility, Page
     * @tc.desc: After starting TestAbilityOther, start the EntryAbility call API getForegroundUIAbilities to query
     *          the application background information (multiple module)
+    * @tc.size: MediumTest
+    * @tc.type: Function
+    * @tc.level: Level 1
     */
     it('Acts_GetForegroundUiAbilityTest_0800', 0, async function (done) {
       let subscriber;
