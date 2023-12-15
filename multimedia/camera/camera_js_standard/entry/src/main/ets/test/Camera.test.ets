@@ -25,6 +25,7 @@ import cameraInputTest from './CameraInputTest.test.ets'
 import CameraErrorCodeUsecaseTest from './CameraErrorCodeUsecaseTest.test.ets'
 import cameraManagerTest from './CameraManagerTest.test.ets'
 import cameraEnumTest from './CameraEnumTest.test.ets'
+import cameraSessionMacroTest from './CameraSessionMacroTest.test'
 
 
 let TAG = 'CameraModuleTest: '
@@ -39,6 +40,7 @@ export default function cameraKit() {
   cameraSessionZoomRatioTest()
   cameraSessionVideoStabilizationTest()
   cameraSessionBaseTest()
+  cameraSessionMacroTest()
   CameraErrorCodeUsecaseTest()
   cameraManagerTest()
   cameraEnumTest()
