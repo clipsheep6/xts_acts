@@ -1,0 +1,115 @@
+/*
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import ColorSpaceManager from '@ohos.graphics.colorSpaceManager';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+
+export default function ColorSpaceManagerCreateCustomTest() {
+  describe('ColorSpaceManagerCreateCustomTest', () => {
+    console.log('====>################################ ColorSpaceManagerCreateCustomTest Test start*************');
+
+    /**
+     * beforeAll: PreColorSpaceManagerCreateTest at the test suite level, which are executed before the test suite is executed.
+     */
+    beforeAll(() => {
+      console.info("====>beforeAll: PreColorSpaceManagerCreateCustomTest are executed.");
+    });
+
+    /**
+     * beforeEach: PreColorSpaceManagerCreateTest at the test case level, which are executed before each test case is executed.
+     */
+    beforeEach(() => {
+      console.info("====>beforeEach: PreColorSpaceManagerCreateCustomTest is executed.");
+    });
+
+    /**
+     * afterEach: Test case-level clearance conditions, which are executed after each test case is executed.
+     */
+    afterEach(() => {
+      console.info("====>afterEach: Test case-level clearance conditions is executed.");
+    });
+
+    /**
+     * afterAll: Test suite-level cleanup condition, which is executed after the test suite is executed.
+     */
+    afterAll(() => {
+      console.info("====>afterAll: Test suite-level cleanup condition is executed");
+    });
+
+    let primaries: ColorSpaceManager.ColorSpacePrimaries = {
+      redX: 0.1,
+      redY: 0.1,
+      greenX: 0.2,
+      greenY: 0.2,
+      blueX: 0.3,
+      blueY: 0.3,
+      whitePointX: 0.4,
+      whitePointY: 0.4
+    };
+    let gamma = 2.2;
+
+    /* *
+    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_001
+    * @tc.name    Test ColorSpaceManager.create
+    * @tc.desc    Create a user-defined color gamut object
+    */
+    it('TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_001', 0, async (done: Function) => {
+      try {
+        let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(primaries, gamma)
+        expect(value.getColorSpaceName()).assertEqual(5)
+        done()
+      } catch (err) {
+        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_001. Cause: ` + JSON.stringify(err));
+        expect(err.code == 18600001).assertTrue();
+        done()
+      }
+    })
+
+    /* *
+    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_002
+    * @tc.name    Test ColorSpaceManager.create
+    * @tc.desc    Create a user-defined color gamut object
+    */
+    it('TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_002', 0, async (done: Function) => {
+      try {
+        let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(primaries, gamma)
+        expect(Array.isArray(value.getWhitePoint())).assertTrue()
+        done()
+      } catch (err) {
+        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_002. Cause: ` + JSON.stringify(err));
+        expect(err.code == 18600001).assertTrue();
+        done()
+      }
+    })
+
+    /* *
+    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_003
+    * @tc.name    Test ColorSpaceManager.create
+    * @tc.desc    Create a user-defined color gamut object
+    */
+    it('TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_003', 0, async (done: Function) => {
+      try {
+        let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(primaries, gamma)
+        expect(typeof value.getGamma() === 'number').assertTrue()
+        done()
+      } catch (err) {
+        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_003. Cause: ` + JSON.stringify(err));
+        expect(err.code == 18600001).assertTrue();
+        done()
+      }
+    })
+
+    console.log('====>################################ ColorSpaceManagerCreateCustomTest Test end*************');
+  })
+}
