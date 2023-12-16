@@ -180,7 +180,7 @@ export default function AbilityIsTerminatingTest() {
 
           if (data.event == onCreate) {
             let abilitydelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-            let cmd = "uinput -K -d 2 -u 2";
+            let cmd = "uinput -K -d 2";
             await abilitydelegator.executeShellCommand(cmd).then((data) => {
               console.log(TAG + "executeShellCommand : data : " + data.stdResult);
               console.log(TAG + "executeShellCommand : data : " + data.exitCode);
