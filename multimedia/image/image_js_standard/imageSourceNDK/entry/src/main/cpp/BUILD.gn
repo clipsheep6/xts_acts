@@ -16,6 +16,8 @@ import("//build/ohos.gni")
 import("//foundation/arkui/napi/napi.gni")
 import("//foundation/multimedia/image_framework/ide/image_decode_config.gni")
 
+source_base = "/"
+resource_management_base = "$source_base/base/global/resource_management"
 config("config") {
   visibility = [ ":*" ]
 
@@ -36,7 +38,10 @@ ohos_shared_library("ImageSourceNDKTest") {
   } else {
     libs = []
   }
-  include_dirs = [ "../cpp" ]
+  include_dirs = [
+    "../cpp",
+    "$resource_management_base/interfaces/native/resource/include",
+  ]
   configs = [ ":config" ]
 
   deps = [ "$image_subsystem/frameworks/kits/js/common/ndk:image_source_ndk" ]
