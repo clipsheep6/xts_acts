@@ -44,12 +44,10 @@ struct DividerExample  {
       {
         console.info(`Divider.Color=>Color.Black`)
         this.mod.color(Color.Black)
-         //old test
         this.color = Color.Black;
       } else if(eventData.data.typeValue === 1){
         console.info(`Divider.Color=>#FF0000FF`)
         this.mod.color("#FF0000FF")
-           //old test
         this.color = "#FF0000FF";
       } else if(eventData.data.typeValue === 2){
         console.info(`Divider.Color=>#ff0000`)
