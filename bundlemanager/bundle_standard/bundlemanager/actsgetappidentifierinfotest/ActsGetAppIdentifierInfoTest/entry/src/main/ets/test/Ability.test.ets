@@ -30,30 +30,30 @@ export default function abilityTest() {
       hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
       bundleManager.getAppProvisionInfo("com.example.actsgetappidentifierrely", 100, (err, data) => {
         hilog.info(0x0000, 'testTag', 'getAppProvisionInfo callback successfully. Data: %{public}s', JSON.stringify(data));
-        expect(data.appIdentifier).assertEqual("E64B13B84E6D2167F73B46530C6E02E323DA43C9C2DA251D7C64D20E091B936F");
+        expect(data.appIdentifier).assertEqual("E64B13B84E6D2167F73B46530C6E");
       });
       await bundleManager.getAppProvisionInfo("com.example.actsgetappidentifierrely").then(data => {
         hilog.info(0x0000, 'testTag', 'getAppProvisionInfo promise successfully. Data: %{public}s', JSON.stringify(data));
-        expect(data.appIdentifier).assertEqual("E64B13B84E6D2167F73B46530C6E02E323DA43C9C2DA251D7C64D20E091B936F");
+        expect(data.appIdentifier).assertEqual("E64B13B84E6D2167F73B46530C6E");
       });
       await bundleManager.getBundleInfo("com.example.actsgetappidentifierrely", bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
         .then(data => {
           expect(data.signatureInfo.appIdentifier)
-            .assertEqual("E64B13B84E6D2167F73B46530C6E02E323DA43C9C2DA251D7C64D20E091B936F");
+            .assertEqual("E64B13B84E6D2167F73B46530C6E");
           hilog.info(0x0000, 'testTag', 'getBundleInfo promise successfully. Data: %{public}s', JSON.stringify(data));
         });
       bundleManager.getBundleInfo("com.example.actsgetappidentifierrely", bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO, (err, data) => {
         expect(data.signatureInfo.appIdentifier)
-          .assertEqual("E64B13B84E6D2167F73B46530C6E02E323DA43C9C2DA251D7C64D20E091B936F");
+          .assertEqual("E64B13B84E6D2167F73B46530C6E");
         hilog.info(0x0000, 'testTag', 'getBundleInfo callback successfully. Data: %{public}s', JSON.stringify(data));
       });
       let data = bundleManager.getAppProvisionInfoSync("com.example.actsgetappidentifierrely", 100)
-      expect(data.appIdentifier).assertEqual("E64B13B84E6D2167F73B46530C6E02E323DA43C9C2DA251D7C64D20E091B936F");
+      expect(data.appIdentifier).assertEqual("E64B13B84E6D2167F73B46530C6E");
       hilog.info(0x0000, 'testTag', 'getAppProvisionInfoSync callback successfully. Data: %{public}s', JSON.stringify(data));
       let data1 = bundleManager.getBundleInfoSync("com.example.actsgetappidentifierrely", bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO)
       hilog.info(0x0000, 'testTag', 'getBundleInfosync successfully. Data: %{public}s', JSON.stringify(data1));
       expect(data1.signatureInfo.appIdentifier)
-        .assertEqual("E64B13B84E6D2167F73B46530C6E02E323DA43C9C2DA251D7C64D20E091B936F");
+        .assertEqual("E64B13B84E6D2167F73B46530C6E");
       done();
     })
 
@@ -103,7 +103,7 @@ export default function abilityTest() {
       abilityDelegator.executeShellCommand("bm dump -n com.example.actsgetappidentifierrely",
         (err: any, data: any) => {
           expect(JSON.stringify(data.stdResult))
-            .assertContain('"appIdentifier": "E64B13B84E6D2167F73B46530C6E02E323DA43C9C2DA251D7C64D20E091B936F"');
+            .assertContain('"appIdentifier": "E64B13B84E6D2167F73B46530C6E"');
           console.info('executeShellCommand : err : ' + JSON.stringify(err));
           console.info('executeShellCommand : data : ' + data.stdResult);
           console.info('executeShellCommand : data : ' + data.exitCode);
