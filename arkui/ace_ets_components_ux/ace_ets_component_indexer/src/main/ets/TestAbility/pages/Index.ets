@@ -57,6 +57,7 @@ struct AlphabetIndexerTest {
   @State nullFlag3: boolean = false
   @State nullFlag4: boolean = false
   @State nullFlag5: boolean = false
+  @State autoCollapse: boolean = false
 
   private stateChangCallBack = (eventData) => {
     console.info("sideBar page state change called:" + JSON.stringify(eventData));
@@ -398,6 +399,7 @@ struct AlphabetIndexerTest {
         })
         .margin({ top: 20, left: 20 })
         .popupItemFont({ size: this.popupItemFontSizeNum })
+        .autoCollapse(this.autoCollapse)
 
       AlphabetIndexer({ arrayValue: this.value, selected: 0 })
         .key('alphabetIndexerTest7')
