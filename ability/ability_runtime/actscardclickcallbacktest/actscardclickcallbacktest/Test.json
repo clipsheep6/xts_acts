@@ -13,7 +13,6 @@
             "test-file-name": [
                 "ActsCardClickCallback.hap",
                 "ActsCardClickCallbackNormal.hap",
-                "ActsCardClickCallbackRely.hap",
                 "ActsCardClickCallbackTest.hap"
             ],
             "type": "AppInstallKit",

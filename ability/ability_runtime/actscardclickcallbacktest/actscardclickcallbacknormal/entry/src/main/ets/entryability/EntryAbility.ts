@@ -101,8 +101,6 @@ function trySecond(): void {
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    tryFirst();
-    trySecond();
   }
 
   onDestroy() {
@@ -130,6 +128,8 @@ export default class EntryAbility extends UIAbility {
   onForeground() {
     // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
+    tryFirst();
+    trySecond();
   }
 
   onBackground() {

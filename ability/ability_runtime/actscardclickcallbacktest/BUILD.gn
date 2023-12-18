@@ -19,7 +19,6 @@ group("actscardclickcallbacktest") {
     deps = [
       "actscardclickcallback:ActsCardClickCallback",
       "actscardclickcallbacknormal:ActsCardClickCallbackNormal",
-      "actscardclickcallbackrely:ActsCardClickCallbackRely",
       "actscardclickcallbacktest:ActsCardClickCallbackTest",
     ]
   }
