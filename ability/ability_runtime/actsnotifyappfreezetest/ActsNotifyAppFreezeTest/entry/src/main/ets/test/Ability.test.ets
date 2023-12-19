@@ -74,6 +74,9 @@ export default function abilityTest() {
      * @tc.number: Acts_NotifyAppFault_UIAbility_0100
      * @tc.name: system application, which can notify AMS of its own faults.
      * @tc.desc: the application of UIAbility can notify AMS of its own faults(JS-ERROR).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_NotifyAppFault_UIAbility_0100', 0, async function (done) {
       hilog.info(DOMAIN, TAG, CASE + 'UIAbility_0100 start');
@@ -107,6 +110,9 @@ export default function abilityTest() {
      * @tc.number: Acts_NotifyAppFault_UIAbility_0200
      * @tc.name: system application, which can notify AMS of its own faults.
      * @tc.desc: the application of UIAbility can notify AMS of its own faults(APP_FREEZE).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_NotifyAppFault_UIAbility_0200', 0, async function (done) {
       hilog.info(DOMAIN, TAG, CASE + 'UIAbility_0200 start');
@@ -140,6 +146,9 @@ export default function abilityTest() {
      * @tc.number: Acts_NotifyAppFault_ServiceExtension_0100
      * @tc.name: system application, which can notify AMS of its own faults.
      * @tc.desc: the application of ServiceExtension can notify AMS of its own faults(JS-ERROR).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_NotifyAppFault_ServiceExtension_0100', 0, async function (done) {
       hilog.info(DOMAIN, TAG, CASE + 'ServiceExtension_0100 start');
@@ -173,6 +182,9 @@ export default function abilityTest() {
      * @tc.number: Acts_NotifyAppFault_ServiceExtension_0200
      * @tc.name: system application, which can notify AMS of its own faults.
      * @tc.desc: the application of ServiceExtension can notify AMS of its own faults(APP_FREEZE).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_NotifyAppFault_ServiceExtension_0200', 0, async function (done) {
       hilog.info(DOMAIN, TAG, CASE + 'ServiceExtension_0200 start');
@@ -206,6 +218,9 @@ export default function abilityTest() {
      * @tc.number: Acts_NotifyAppFault_FormExtension_0100
      * @tc.name: system application, which can notify AMS of its own faults.
      * @tc.desc: the application of FormExtension can notify AMS of its own faults(JS-ERROR).
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level Level 1
      */
     it('Acts_NotifyAppFault_FormExtension_0100', 0, async function (done) {
       hilog.info(DOMAIN, TAG, CASE + 'FormExtension_0100 start');

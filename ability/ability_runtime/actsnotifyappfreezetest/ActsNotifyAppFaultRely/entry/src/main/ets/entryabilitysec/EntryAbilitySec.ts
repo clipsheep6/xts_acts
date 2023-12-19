@@ -23,15 +23,15 @@ const ABILITY = 'EntryAbilitySec';
 const APP_FREEZE_TIME_OUT = 300;
 
 export default class EntryAbilitySec extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want, launchParam): void {
     hilog.info(DOMAIN, TAG, ABILITY + ` Ability onCreate want: ${JSON.stringify(want)}`);
   }
 
-  onDestroy() {
+  onDestroy(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onDestroy');
   }
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
@@ -43,11 +43,11 @@ export default class EntryAbilitySec extends UIAbility {
     });
   }
 
-  onWindowStageDestroy() {
+  onWindowStageDestroy(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onWindowStageDestroy');
   }
 
-  onForeground() {
+  onForeground(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability foreground');
     setTimeout(() => {
       while (true) {
@@ -55,7 +55,7 @@ export default class EntryAbilitySec extends UIAbility {
     }, APP_FREEZE_TIME_OUT);
   }
 
-  onBackground() {
+  onBackground(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onBackground');
   }
 }

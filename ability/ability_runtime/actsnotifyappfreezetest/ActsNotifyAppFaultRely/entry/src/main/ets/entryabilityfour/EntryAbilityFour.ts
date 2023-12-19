@@ -22,15 +22,15 @@ const DOMAIN = 0xF811;
 const ABILITY = 'EntryAbilityFour';
 
 export default class EntryAbilityFour extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want, launchParam): void {
     hilog.info(DOMAIN, TAG, ABILITY + ` Ability onCreate want: ${JSON.stringify(want)}`);
   }
 
-  onDestroy() {
+  onDestroy(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onDestroy');
   }
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/IndexSec', (err, data) => {
@@ -42,15 +42,15 @@ export default class EntryAbilityFour extends UIAbility {
     });
   }
 
-  onWindowStageDestroy() {
+  onWindowStageDestroy(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onWindowStageDestroy');
   }
 
-  onForeground() {
+  onForeground(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability foreground');
   }
 
-  onBackground() {
+  onBackground(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onBackground');
   }
 }

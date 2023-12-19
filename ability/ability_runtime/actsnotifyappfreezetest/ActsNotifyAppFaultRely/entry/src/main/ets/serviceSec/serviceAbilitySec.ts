@@ -15,6 +15,7 @@
 
 import hilog from '@ohos.hilog';
 import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
+import type rpc from '@ohos.rpc';
 
 const TAG = '[ActsNotifyAppFault_Rely]';
 const DOMAIN = 0xF811;
@@ -22,19 +23,19 @@ const ABILITY = 'serviceAbilitySec';
 const APP_FREEZE_TIME_OUT = 300;
 
 export default class ServiceAbilitySec extends ServiceExtensionAbility {
-  onCreate(want) {
+  onCreate(want): void {
     hilog.info(DOMAIN, TAG, ABILITY + ` onCreate, want: ${JSON.stringify(want)}`);
   }
 
-  onDestroy() {
+  onDestroy(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' onDestroy');
   }
 
-  onRequest(want, startId) {
+  onRequest(want, startId): void {
     hilog.info(DOMAIN, TAG, ABILITY + ` onRequest, want: ${JSON.stringify(want)}`);
   }
 
-  onConnect(want) {
+  onConnect(want): rpc.RemoteObject {
     hilog.info(DOMAIN, TAG, ABILITY + ` onConnect, want: ${JSON.stringify(want)}`);
     setTimeout(() => {
       while (true) {
@@ -43,15 +44,15 @@ export default class ServiceAbilitySec extends ServiceExtensionAbility {
     return want;
   }
 
-  onDisconnect(want) {
+  onDisconnect(want): void {
     hilog.info(DOMAIN, TAG, ABILITY + ` onDisconnect, want: ${JSON.stringify(want)}`);
   }
 
-  onReconnect(want) {
+  onReconnect(want): void {
     hilog.info(DOMAIN, TAG, ABILITY + ` onReconnect, want: ${JSON.stringify(want)}`);
   }
 
-  onConfigurationUpdate(newConfig) {
+  onConfigurationUpdate(newConfig): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' onConfigurationUpdate');
   }
 }

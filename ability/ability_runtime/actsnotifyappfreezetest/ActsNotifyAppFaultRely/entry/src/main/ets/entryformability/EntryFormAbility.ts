@@ -24,7 +24,7 @@ const ABILITY = 'EntryFormAbility';
 const APP_FREEZE_TIME_OUT = 300;
 
 export default class EntryFormAbility extends FormExtensionAbility {
-  onAddForm(want) {
+  onAddForm(want): formBindingData.FormBindingData {
     hilog.info(DOMAIN, TAG, ABILITY + ` onAddForm, want: ${JSON.stringify(want)}`);
     let formData = {};
     globalThis.context = this.context;
@@ -34,27 +34,27 @@ export default class EntryFormAbility extends FormExtensionAbility {
     return formBindingData.createFormBindingData(formData);
   }
 
-  onCastToNormalForm(formId) {
+  onCastToNormalForm(formId): void {
     hilog.info(DOMAIN, TAG, ABILITY + ` onCastToNormalForm, formId: ${JSON.stringify(formId)}`);
   }
 
-  onUpdateForm(formId) {
+  onUpdateForm(formId): void {
     hilog.info(DOMAIN, TAG, ABILITY + ` onUpdateForm, formId: ${JSON.stringify(formId)}`);
   }
 
-  onChangeFormVisibility(newStatus) {
+  onChangeFormVisibility(newStatus): void {
     hilog.info(DOMAIN, TAG, ABILITY + ` onChangeFormVisibility, newStatus: ${JSON.stringify(newStatus)}`);
   }
 
-  onFormEvent(formId, message) {
+  onFormEvent(formId, message): void {
     hilog.info(DOMAIN, TAG, ABILITY + ` onFormEvent, formId: ${JSON.stringify(formId)}`);
   }
 
-  onRemoveForm(formId) {
+  onRemoveForm(formId): void {
     hilog.info(DOMAIN, TAG, ABILITY + ` onRemoveForm, formId: ${JSON.stringify(formId)}`);
   }
 
-  onAcquireFormState(want) {
+  onAcquireFormState(want): formInfo.FormState {
     hilog.info(DOMAIN, TAG, ABILITY + ` onAcquireFormState, want: ${JSON.stringify(want)}`);
     return formInfo.FormState.READY;
   }

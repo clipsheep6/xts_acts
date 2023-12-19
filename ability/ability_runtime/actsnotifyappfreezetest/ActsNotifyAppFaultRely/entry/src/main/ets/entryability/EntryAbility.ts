@@ -23,16 +23,16 @@ const ABILITY = 'EntryAbility';
 const APP_FREEZE_TIME_OUT = 300;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want, launchParam): void {
     globalThis.context = this.context;
     hilog.info(DOMAIN, TAG, ABILITY + ` Ability onCreate want: ${JSON.stringify(want)}`);
   }
 
-  onDestroy() {
+  onDestroy(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onDestroy');
   }
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
@@ -44,18 +44,18 @@ export default class EntryAbility extends UIAbility {
     });
   }
 
-  onWindowStageDestroy() {
+  onWindowStageDestroy(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onWindowStageDestroy');
   }
 
-  onForeground() {
+  onForeground(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability foreground');
     setTimeout(() => {
       globalThis.contest.terminateSelf();
     }, APP_FREEZE_TIME_OUT);
   }
 
-  onBackground() {
+  onBackground(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onBackground');
   }
 }

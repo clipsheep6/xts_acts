@@ -21,15 +21,15 @@ const TAG = '[ActsNotifyAppFault_Rely]';
 const DOMAIN = 0xF811;
 const ABILITY = 'EntryAbilityThi';
 export default class EntryAbilityThi extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want, launchParam): void {
     hilog.info(DOMAIN, TAG, ABILITY + ` Ability onCreate want: ${JSON.stringify(want)}`);
   }
 
-  onDestroy() {
+  onDestroy(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onDestroy');
   }
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onWindowStageCreate');
 
     windowStage.loadContent('pages/Index', (err, data) => {
@@ -41,11 +41,11 @@ export default class EntryAbilityThi extends UIAbility {
     });
   }
 
-  onWindowStageDestroy() {
+  onWindowStageDestroy(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onWindowStageDestroy');
   }
 
-  onForeground() {
+  onForeground(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability foreground');
     this.context.connectServiceExtensionAbility({
       bundleName: 'com.acts.appFreezeRely',
@@ -69,7 +69,7 @@ export default class EntryAbilityThi extends UIAbility {
     }
   }
 
-  onBackground() {
+  onBackground(): void {
     hilog.info(DOMAIN, TAG, ABILITY + ' Ability onBackground');
   }
 }
