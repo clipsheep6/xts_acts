@@ -637,7 +637,7 @@ export default function audioCapturerChange() {
                         let cCount = AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0];
                         let cMask = AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks;
                         console.info(`${Tag}:deviceDescriptors ${i} : ${JSON.stringify(AudioCapturerChangeInfoArray[i].deviceDescriptors[j])}`);
-                        if (Id > 0 && dType == 15 && dRole == 1 && sRate != null && cCount != null && cMask != null) {
+                        if (Id > 0 && dType == 0 && dRole == 0 && sRate != null && cCount != null && cMask != null) {
                             audioStreamManager.off('audioCapturerChange');
                             expect(true).assertTrue();
                             done();
@@ -920,7 +920,7 @@ export default function audioCapturerChange() {
                         let cCount = AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelCounts[0];
                         let cMask = AudioCapturerChangeInfoArray[i].deviceDescriptors[j].channelMasks;
                         console.info(`${Tag}:deviceDescriptors ${i} : ${JSON.stringify(AudioCapturerChangeInfoArray[i].deviceDescriptors[j])}`);
-                        if (Id > 0 && dType == 15 && dRole == 1 && sRate != null && cCount != null && cMask != null) {
+                        if (Id > 0 && dType == 0 && dRole == 0 && sRate != null && cCount != null && cMask != null) {
                             audioStreamManager.off('audioCapturerChange');
                             expect(true).assertTrue();
                             done();
