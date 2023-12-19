@@ -4875,6 +4875,48 @@ describe('DecodeEncodeTest', function () {
     })
 
     /**
+     * @tc.name: testdecodeWithStreamThrowError001
+     * @tc.desc: The decoder interface encountered an exception and threw an error.
+     */
+    it('testdecodeWithStreamThrowError001', 0, function () {
+        try {
+          let textDecoder = util.TextDecoder.create('gbk', {fatal: true, ignoreBOM: false});
+          const uint8arr = new Uint8Array([229,173,151,231,172,166,228,184,178]);
+          textDecoder.decodeWithStream(uint8arr, {stream: false});
+        } catch(e){
+          expect(e.toString()).assertEqual("BusinessError: TextDecoder decoding error.")
+        }
+      })
+
+    /**
+     * @tc.name: testdecodeWithStreamThrowError002
+     * @tc.desc: The decoder interface encountered an exception and threw an error.
+     */
+    it('testdecodeWithStreamThrowError002', 0, function () {
+      try {
+        let textDecoder = util.TextDecoder.create('big5', {fatal: true, ignoreBOM: false});
+        const uint8arr = new Uint8Array([229,173,151,231,172,166,228,184,178]);
+        textDecoder.decodeWithStream(uint8arr, {stream: false});
+      } catch(e){
+        expect(e.toString()).assertEqual("BusinessError: TextDecoder decoding error.")
+      }
+    })
+
+    /**
+     * @tc.name: testdecodeWithStreamThrowError003
+     * @tc.desc: The decoder interface encountered an exception and threw an error.
+     */
+    it('testdecodeWithStreamThrowError003', 0, function () {
+      try {
+        let textDecoder = util.TextDecoder.create('utf-16be', {fatal: true, ignoreBOM: false});
+        const uint8arr = new Uint8Array([229,173,151,231,172,166,228,184,178]);
+        textDecoder.decodeWithStream(uint8arr, {stream: false});
+      } catch(e){
+        expect(e.toString()).assertEqual("BusinessError: TextDecoder decoding error.")
+      }
+    })
+
+    /**
      * @tc.name: testEncodeInto001
      * @tc.desc: Returns the result of encoder.
      */
