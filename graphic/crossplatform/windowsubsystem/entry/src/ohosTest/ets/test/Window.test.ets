@@ -288,7 +288,7 @@ export default function WindowTest() {
      */
     it('TEST_WINDOW_009', 0, async (done: Function) => {
       try {
-        // 销毁窗口或未创建窗口
+        // 未创建窗口
         let windowClass: window.Window = window.findWindow("uncreatedWindow");
         let value = windowClass.getWindowColorSpace();
         console.log('getWindowColorSpace:', value)

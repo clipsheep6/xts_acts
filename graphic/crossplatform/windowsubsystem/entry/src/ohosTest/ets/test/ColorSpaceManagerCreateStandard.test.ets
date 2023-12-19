@@ -63,14 +63,12 @@ export default function ColorSpaceManagerCreateStandardTest() {
         expect(err.code == 18600001).assertTrue();
         done()
       }
-
     })
 
     /* *
      * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_002
      * @tc.name    Test ColorSpaceManager.create
      * @tc.desc    Create standard color gamut objects
-
      */
     it('TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_002', 0, async (done: Function) => {
       try {
@@ -102,7 +100,6 @@ export default function ColorSpaceManagerCreateStandardTest() {
         expect(err.code == 18600001).assertTrue();
         done()
       }
-
     })
 
     /* *
@@ -121,7 +118,6 @@ export default function ColorSpaceManagerCreateStandardTest() {
         expect(err.code == 18600001).assertTrue();
         done()
       }
-
     })
 
     /* *
@@ -141,7 +137,6 @@ export default function ColorSpaceManagerCreateStandardTest() {
         done()
       }
     })
-
 
     /* *
     * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_006
