@@ -3,6 +3,14 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "test1",
+      "value": "#4A1FCF"
+    },
+    {
+      "name": "test2",
+      "value": "#2F99F8"
     }
   ]
 }

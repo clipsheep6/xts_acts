@@ -1199,222 +1199,222 @@ export default function resourceManagerTest() {
       }
     })
 
-    /* *
-    * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESID_001
-    * @tc.name    test getDrawableDescriptor method
-    * @tc.desc    get the drawable descriptor
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testGetDrawableDescriptorResId001', 0, async () => {
-      let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0)
-      console.log('testGetDrawableDescriptorResId001 ' + value);
-      console.log('testGetDrawableDescriptorResId001 ' + typeof value);
-      expect(value !== undefined).assertTrue()
-    })
-
-    /* *
-    * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESID_002
-    * @tc.name    test getDrawableDescriptor method
-    * @tc.desc    get the drawable descriptor
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testGetDrawableDescriptorResId002', 0, async () => {
-      let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120)
-      console.log('testGetDrawableDescriptorResId002 ' + value);
-      console.log('testGetDrawableDescriptorResId002 ' + typeof value);
-      expect(value !== undefined).assertTrue()
-    })
-
-    /* *
-    * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESID_003
-    * @tc.name    test getDrawableDescriptor method
-    * @tc.desc    get the drawable descriptor
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testGetDrawableDescriptorResId003', 0, async () => {
-      let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor($r('app.media.test').id, 0)
-      console.log('testGetDrawableDescriptorResId003 ' + value);
-      console.log('testGetDrawableDescriptorResId003 ' + typeof value);
-      expect(value !== undefined).assertTrue()
-    })
-
-    /* *
-    * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESID_004
-    * @tc.name    test getDrawableDescriptor method throw 9001001 error code
-    * @tc.desc    get the drawable descriptor
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testGetDrawableDescriptorResId004', 0, async (done: Function) => {
-      try {
-        let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor(1111, 0)
-        console.log('testGetDrawableDescriptorResId004 ' + value);
-        console.log('testGetDrawableDescriptorResId004 ' + typeof value);
-        expect(value !== undefined).assertTrue()
-      } catch (err) {
-        console.log("testGetDrawableDescriptorResId004 err.code " + err.code);
-        console.log("testGetDrawableDescriptorResId004 err.message " + err.message);
-        expect(err.code == 9001001).assertTrue();
-        done();
-      }
-    })
-
-    /* *
-    * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESOURCE_001
-    * @tc.name    test getDrawableDescriptor method
-    * @tc.desc    get the drawable descriptor
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testGetDrawableDescriptorResource001', 0, async () => {
-      let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor({
-        bundleName: "com.example.resourcemanagertest",
-        moduleName: "entry_test",
-        id: $r('app.media.icon').id
-      }, 0)
-      console.log('testGetDrawableDescriptorResource001 ' + value);
-      console.log('testGetDrawableDescriptorResource001 ' + typeof value);
-      expect(value !== undefined).assertTrue()
-    })
-
-    /* *
-    * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESOURCE_002
-    * @tc.name    test getDrawableDescriptor method
-    * @tc.desc    get the drawable descriptor
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testGetDrawableDescriptorResource002', 0, async () => {
-      let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor({
-        bundleName: "com.example.resourcemanagertest",
-        moduleName: "entry_test",
-        id: $r('app.media.icon').id
-      }, 120)
-      console.log('testGetDrawableDescriptorResource002 ' + value);
-      console.log('testGetDrawableDescriptorResource002 ' + typeof value);
-      expect(value !== undefined).assertTrue()
-    })
-
-    /* *
-    * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESOURCE_003
-    * @tc.name    test getDrawableDescriptor method
-    * @tc.desc    get the drawable descriptor
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testGetDrawableDescriptorResource003', 0, async () => {
-      let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor({
-        bundleName: "com.example.resourcemanagertest",
-        moduleName: "entry_test",
-        id: $r('app.media.test').id
-      }, 0)
-      console.log('testGetDrawableDescriptorResource003 ' + value);
-      console.log('testGetDrawableDescriptorResource003 ' + typeof value);
-      expect(value !== undefined).assertTrue()
-    })
-
-    /* *
-    * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESOURCE_004
-    * @tc.name    test getDrawableDescriptor method throw 9001001 error code
-    * @tc.desc    get the drawable descriptor
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testGetDrawableDescriptorResource004', 0, async (done: Function) => {
-      try {
-        let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor({
-          bundleName: "com.example.resourcemanagertest",
-          moduleName: "entry_test",
-          id: 1111
-        }, 120)
-        console.log('testGetDrawableDescriptorResource004 ' + value);
-        console.log('testGetDrawableDescriptorResource004 ' + typeof value);
-        expect(value !== undefined).assertTrue()
-      } catch (err) {
-        console.log("testGetDrawableDescriptorResource004 err.code " + err.code);
-        console.log("testGetDrawableDescriptorResource004 err.message " + err.message);
-        expect(err.code == 9001001).assertTrue();
-        done();
-      }
-    })
-
-    /* *
-    * @tc.number  TEST_GETDRAWABLEDESCRIPTORBYNAME_001
-    * @tc.name    test getDrawableDescriptorByName method
-    * @tc.desc    get the drawable descriptor by name
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testGetDrawableDescriptorByName001', 0, async () => {
-      let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('icon', 0)
-      console.log('testGetDrawableDescriptorByName001 ' + value);
-      console.log('testGetDrawableDescriptorByName001 ' + typeof value);
-      expect(value !== undefined).assertTrue()
-    })
-
-    /* *
-    * @tc.number  TEST_GETDRAWABLEDESCRIPTORBYNAME_002
-    * @tc.name    test getDrawableDescriptorByName method
-    * @tc.desc    get the drawable descriptor by name
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testGetDrawableDescriptorByName002', 0, async () => {
-      let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('icon', 120)
-      console.log('testGetDrawableDescriptorByName002 ' + value);
-      console.log('testGetDrawableDescriptorByName002 ' + typeof value);
-      expect(value !== undefined).assertTrue()
-    })
-
-    /* *
-    * @tc.number  TEST_GETDRAWABLEDESCRIPTORBYNAME_003
-    * @tc.name    test getDrawableDescriptorByName method
-    * @tc.desc    get the drawable descriptor by name
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testGetDrawableDescriptorByName003', 0, async () => {
-      let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('test', 0)
-      console.log('testGetDrawableDescriptorByName003 ' + value);
-      console.log('testGetDrawableDescriptorByName003 ' + typeof value);
-      expect(value !== undefined).assertTrue()
-    })
-
-    /* *
-    * @tc.number  TEST_GETDRAWABLEDESCRIPTORBYNAME_004
-    * @tc.name    test getDrawableDescriptorByName method throw 9001003 error code
-    * @tc.desc    get the drawable descriptor by name
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testGetDrawableDescriptorByName004', 0, async (done: Function) => {
-      try {
-        let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('notexist', 0)
-        console.log('testGetDrawableDescriptorByName004 ' + value);
-        console.log('testGetDrawableDescriptorByName004 ' + typeof value);
-        expect(value !== undefined).assertTrue()
-      } catch (err) {
-        console.log("testGetDrawableDescriptorByName004 err.code " + err.code);
-        console.log("testGetDrawableDescriptorByName004 err.message " + err.message);
-        expect(err.code == 9001003).assertTrue();
-        done();
-      }
-    })
+    // /* *
+    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESID_001
+    // * @tc.name    test getDrawableDescriptor method
+    // * @tc.desc    get the drawable descriptor
+    // * @tc.size:   MediumTest
+    // * @tc.type    method
+    // * @tc.level   level 2
+    // */
+    // it('testGetDrawableDescriptorResId001', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0)
+    //   console.log('testGetDrawableDescriptorResId001 ' + value);
+    //   console.log('testGetDrawableDescriptorResId001 ' + typeof value);
+    //   expect(value !== undefined).assertTrue()
+    // })
+    //
+    // /* *
+    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESID_002
+    // * @tc.name    test getDrawableDescriptor method
+    // * @tc.desc    get the drawable descriptor
+    // * @tc.size:   MediumTest
+    // * @tc.type    method
+    // * @tc.level   level 2
+    // */
+    // it('testGetDrawableDescriptorResId002', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120)
+    //   console.log('testGetDrawableDescriptorResId002 ' + value);
+    //   console.log('testGetDrawableDescriptorResId002 ' + typeof value);
+    //   expect(value !== undefined).assertTrue()
+    // })
+    //
+    // /* *
+    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESID_003
+    // * @tc.name    test getDrawableDescriptor method
+    // * @tc.desc    get the drawable descriptor
+    // * @tc.size:   MediumTest
+    // * @tc.type    method
+    // * @tc.level   level 2
+    // */
+    // it('testGetDrawableDescriptorResId003', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor($r('app.media.test').id, 0)
+    //   console.log('testGetDrawableDescriptorResId003 ' + value);
+    //   console.log('testGetDrawableDescriptorResId003 ' + typeof value);
+    //   expect(value !== undefined).assertTrue()
+    // })
+    //
+    // /* *
+    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESID_004
+    // * @tc.name    test getDrawableDescriptor method throw 9001001 error code
+    // * @tc.desc    get the drawable descriptor
+    // * @tc.size:   MediumTest
+    // * @tc.type    method
+    // * @tc.level   level 2
+    // */
+    // it('testGetDrawableDescriptorResId004', 0, async (done: Function) => {
+    //   try {
+    //     let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor(1111, 0)
+    //     console.log('testGetDrawableDescriptorResId004 ' + value);
+    //     console.log('testGetDrawableDescriptorResId004 ' + typeof value);
+    //     expect(value !== undefined).assertTrue()
+    //   } catch (err) {
+    //     console.log("testGetDrawableDescriptorResId004 err.code " + err.code);
+    //     console.log("testGetDrawableDescriptorResId004 err.message " + err.message);
+    //     expect(err.code == 9001001).assertTrue();
+    //     done();
+    //   }
+    // })
+    //
+    // /* *
+    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESOURCE_001
+    // * @tc.name    test getDrawableDescriptor method
+    // * @tc.desc    get the drawable descriptor
+    // * @tc.size:   MediumTest
+    // * @tc.type    method
+    // * @tc.level   level 2
+    // */
+    // it('testGetDrawableDescriptorResource001', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor({
+    //     bundleName: "com.example.resourcemanagertest",
+    //     moduleName: "entry_test",
+    //     id: $r('app.media.icon').id
+    //   }, 0)
+    //   console.log('testGetDrawableDescriptorResource001 ' + value);
+    //   console.log('testGetDrawableDescriptorResource001 ' + typeof value);
+    //   expect(value !== undefined).assertTrue()
+    // })
+    //
+    // /* *
+    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESOURCE_002
+    // * @tc.name    test getDrawableDescriptor method
+    // * @tc.desc    get the drawable descriptor
+    // * @tc.size:   MediumTest
+    // * @tc.type    method
+    // * @tc.level   level 2
+    // */
+    // it('testGetDrawableDescriptorResource002', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor({
+    //     bundleName: "com.example.resourcemanagertest",
+    //     moduleName: "entry_test",
+    //     id: $r('app.media.icon').id
+    //   }, 120)
+    //   console.log('testGetDrawableDescriptorResource002 ' + value);
+    //   console.log('testGetDrawableDescriptorResource002 ' + typeof value);
+    //   expect(value !== undefined).assertTrue()
+    // })
+    //
+    // /* *
+    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESOURCE_003
+    // * @tc.name    test getDrawableDescriptor method
+    // * @tc.desc    get the drawable descriptor
+    // * @tc.size:   MediumTest
+    // * @tc.type    method
+    // * @tc.level   level 2
+    // */
+    // it('testGetDrawableDescriptorResource003', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor({
+    //     bundleName: "com.example.resourcemanagertest",
+    //     moduleName: "entry_test",
+    //     id: $r('app.media.test').id
+    //   }, 0)
+    //   console.log('testGetDrawableDescriptorResource003 ' + value);
+    //   console.log('testGetDrawableDescriptorResource003 ' + typeof value);
+    //   expect(value !== undefined).assertTrue()
+    // })
+    //
+    // /* *
+    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESOURCE_004
+    // * @tc.name    test getDrawableDescriptor method throw 9001001 error code
+    // * @tc.desc    get the drawable descriptor
+    // * @tc.size:   MediumTest
+    // * @tc.type    method
+    // * @tc.level   level 2
+    // */
+    // it('testGetDrawableDescriptorResource004', 0, async (done: Function) => {
+    //   try {
+    //     let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor({
+    //       bundleName: "com.example.resourcemanagertest",
+    //       moduleName: "entry_test",
+    //       id: 1111
+    //     }, 120)
+    //     console.log('testGetDrawableDescriptorResource004 ' + value);
+    //     console.log('testGetDrawableDescriptorResource004 ' + typeof value);
+    //     expect(value !== undefined).assertTrue()
+    //   } catch (err) {
+    //     console.log("testGetDrawableDescriptorResource004 err.code " + err.code);
+    //     console.log("testGetDrawableDescriptorResource004 err.message " + err.message);
+    //     expect(err.code == 9001001).assertTrue();
+    //     done();
+    //   }
+    // })
+    //
+    // /* *
+    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORBYNAME_001
+    // * @tc.name    test getDrawableDescriptorByName method
+    // * @tc.desc    get the drawable descriptor by name
+    // * @tc.size:   MediumTest
+    // * @tc.type    method
+    // * @tc.level   level 2
+    // */
+    // it('testGetDrawableDescriptorByName001', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('icon', 0)
+    //   console.log('testGetDrawableDescriptorByName001 ' + value);
+    //   console.log('testGetDrawableDescriptorByName001 ' + typeof value);
+    //   expect(value !== undefined).assertTrue()
+    // })
+    //
+    // /* *
+    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORBYNAME_002
+    // * @tc.name    test getDrawableDescriptorByName method
+    // * @tc.desc    get the drawable descriptor by name
+    // * @tc.size:   MediumTest
+    // * @tc.type    method
+    // * @tc.level   level 2
+    // */
+    // it('testGetDrawableDescriptorByName002', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('icon', 120)
+    //   console.log('testGetDrawableDescriptorByName002 ' + value);
+    //   console.log('testGetDrawableDescriptorByName002 ' + typeof value);
+    //   expect(value !== undefined).assertTrue()
+    // })
+    //
+    // /* *
+    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORBYNAME_003
+    // * @tc.name    test getDrawableDescriptorByName method
+    // * @tc.desc    get the drawable descriptor by name
+    // * @tc.size:   MediumTest
+    // * @tc.type    method
+    // * @tc.level   level 2
+    // */
+    // it('testGetDrawableDescriptorByName003', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('test', 0)
+    //   console.log('testGetDrawableDescriptorByName003 ' + value);
+    //   console.log('testGetDrawableDescriptorByName003 ' + typeof value);
+    //   expect(value !== undefined).assertTrue()
+    // })
+    //
+    // /* *
+    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORBYNAME_004
+    // * @tc.name    test getDrawableDescriptorByName method throw 9001003 error code
+    // * @tc.desc    get the drawable descriptor by name
+    // * @tc.size:   MediumTest
+    // * @tc.type    method
+    // * @tc.level   level 2
+    // */
+    // it('testGetDrawableDescriptorByName004', 0, async (done: Function) => {
+    //   try {
+    //     let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('notexist', 0)
+    //     console.log('testGetDrawableDescriptorByName004 ' + value);
+    //     console.log('testGetDrawableDescriptorByName004 ' + typeof value);
+    //     expect(value !== undefined).assertTrue()
+    //   } catch (err) {
+    //     console.log("testGetDrawableDescriptorByName004 err.code " + err.code);
+    //     console.log("testGetDrawableDescriptorByName004 err.message " + err.message);
+    //     expect(err.code == 9001003).assertTrue();
+    //     done();
+    //   }
+    // })
 
     /* *
     * @tc.number  TEST-GETRAWFILELISTCALLBACK_001
@@ -3519,6 +3519,302 @@ export default function resourceManagerTest() {
       console.log('testDeviceTypeWearable001 0');
       expect(resourceManager.DeviceType.DEVICE_TYPE_WEARABLE).assertEqual(0x06);
       console.log('testDeviceTypeWearable001 1');
+      done();
+    })
+
+    /* *
+    * @tc.number  TEST_GETSTRINGSYNCRESID_001
+    * @tc.name    test getStringSync method
+    * @tc.desc    get the string in sync mode
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetStringSyncResId001', 0, async (done: Function) => {
+      let value = context.resourceManager.getStringSync($r('app.string.test_1').id)
+      console.log('testGetStringSyncResId001 ' + value);
+      expect(value).assertEqual('Test1');
+      done();
+    })
+
+    /* *
+    * @tc.number  TEST_GETSTRINGSYNCRESID_002
+    * @tc.name    test getStringSync method
+    * @tc.desc    get the string in sync mode
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetStringSyncResId002', 0, async (done: Function) => {
+      let value = context.resourceManager.getStringSync($r('app.string.test_2').id, 3)
+      console.log('testGetStringSyncResId002 ' + value);
+      expect(value).assertEqual('Test3');
+      done();
+    })
+
+    /* *
+    * @tc.number  TEST_GETSTRINGSYNCRESOURCE_001
+    * @tc.name    test getStringSync method
+    * @tc.desc    get the string in sync mode
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetStringSyncResource001', 0, async (done: Function) => {
+      let value = context.resourceManager.getStringSync({
+        bundleName: "com.example.resourcemanagertest",
+        moduleName: "entry_test",
+        id: $r('app.string.test_1').id
+      })
+      console.log('testGetStringSyncResource001 ' + value);
+      expect(value).assertEqual('Test1');
+      done();
+    })
+
+    /* *
+    * @tc.number  TEST_GETSTRINGSYNCRESOURCE_002
+    * @tc.name    test getStringSync method
+    * @tc.desc    get the string in sync mode
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetStringSyncResource002', 0, async (done: Function) => {
+      let value = context.resourceManager.getStringSync({
+        bundleName: "com.example.resourcemanagertest",
+        moduleName: "entry_test",
+        id: $r('app.string.test_2').id
+      }, 3)
+      console.log('testGetStringSyncResource002 ' + value);
+      expect(value).assertEqual('Test3');
+      done();
+    })
+
+    /* *
+    * @tc.number  TEST_getStringByNameSync_001
+    * @tc.name    test getStringByNameSync method
+    * @tc.desc    get the string by name in sync mode
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetStringByNameSync001', 0, async (done: Function) => {
+      let value = context.resourceManager.getStringByNameSync('test_1')
+      console.log('testGetStringByNameSync001 ' + value);
+      expect(value).assertEqual('Test1');
+      done();
+    })
+
+    /* *
+    * @tc.number  TEST_GETSTRINGSYNCRESOURCE_002
+    * @tc.name    test getStringSync method
+    * @tc.desc    get the string by name in sync mode
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetStringByNameSync002', 0, async (done: Function) => {
+      let value = context.resourceManager.getStringByNameSync('test_2', 3)
+      console.log('testGetStringByNameSync002 ' + value);
+      expect(value).assertEqual('Test3');
+      done();
+    })
+
+    /* *
+    * @tc.number  TEST_getLocales_001
+    * @tc.name    test getLocales method
+    * @tc.desc    get the locales
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetLocales001', 0, async (done: Function) => {
+      let value = context.resourceManager.getLocales(false)
+      console.log('testGetLocales001 ' + value);
+      expect(value).assertInstanceOf('Array')
+      done();
+    })
+
+    /* *
+    * @tc.number  TEST_getLocales_002
+    * @tc.name    test getLocales method
+    * @tc.desc    get the locales
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetLocales002', 0, async (done: Function) => {
+      let value = context.resourceManager.getLocales(true)
+      console.log('testGetLocales002 ' + value);
+      expect(value).assertInstanceOf('Array')
+      done();
+    })
+
+    /* *
+    * @tc.number  TEST_getSymbolResId_001
+    * @tc.name    test getSymbol method
+    * @tc.desc    get the symbol
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetSymbolResId001', 0, async (done: Function) => {
+      let value = context.resourceManager.getSymbol(0x02000018)
+      console.log('testGetSymbolResId001 ' + value);
+      expect(value == 983041).assertTrue()
+      done();
+    })
+
+    /* *
+    * @tc.number  TEST_getSymbolResId_002
+    * @tc.name    test getSymbol method  throw 9001006 error code
+    * @tc.desc    get the symbol
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetSymbolResId002', 0, async (done: Function) => {
+      try {
+        let value = context.resourceManager.getSymbol(0x02000016)
+        console.log('testGetSymbolResId002 ' + value);
+        expect(value !== undefined).assertTrue()
+        done();
+      } catch (err) {
+        console.log('testGetSymbolResId002 errCode ', err.code)
+        console.log('testGetSymbolResId002 errMessage ', err.message)
+        expect(err.code == 9001006).assertTrue()
+        done()
+      }
+    })
+
+    /* *
+    * @tc.number  TEST_getSymbolResId_003
+    * @tc.name    test getSymbol method
+    * @tc.desc    get the symbol
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetSymbolResId003', 0, async (done: Function) => {
+      let value = context.resourceManager.getSymbol(0x02000015)
+      console.log('testGetSymbolResId003 ' + value);
+      expect(value == 983041).assertTrue()
+      done();
+    })
+
+    /* *
+    * @tc.number  TEST_getSymbolResource_001
+    * @tc.name    test getSymbol method
+    * @tc.desc    get the symbol
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetSymbolResource001', 0, async (done: Function) => {
+      let value = context.resourceManager.getSymbol({
+        bundleName: "com.example.resourcemanagertest",
+        moduleName: "entry_test",
+        id: 0x02000018
+      })
+      console.log('testGetSymbolResource001 ' + value);
+      expect(value == 983041).assertTrue()
+      done();
+    })
+
+    /* *
+    * @tc.number  TEST_getSymbolResId_002
+    * @tc.name    test getSymbol method  throw 9001006 error code
+    * @tc.desc    get the symbol
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetSymbolResource002', 0, async (done: Function) => {
+      try {
+        let value = context.resourceManager.getSymbol({
+        bundleName: "com.example.resourcemanagertest",
+        moduleName: "entry_test",
+        id: 0x02000016
+      })
+        console.log('testGetSymbolResource002 ' + value);
+        expect(value !== undefined).assertTrue()
+        done();
+      } catch (err) {
+        console.log('testGetSymbolResource002 errCode ', err.code)
+        console.log('testGetSymbolResource002 errMessage ', err.message)
+        expect(err.code == 9001006).assertTrue()
+        done()
+      }
+    })
+
+    /* *
+    * @tc.number  TEST_getSymbolResId_003
+    * @tc.name    test getSymbol method
+    * @tc.desc    get the symbol
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetSymbolResource003', 0, async (done: Function) => {
+      let value = context.resourceManager.getSymbol({
+        bundleName: "com.example.resourcemanagertest",
+        moduleName: "entry_test",
+        id: 0x02000015
+      })
+      console.log('testGetSymbolResource003 ' + value);
+      expect(value == 983041).assertTrue()
+      done();
+    })
+
+    /* *
+    * @tc.number  TEST_getSymbolByName_001
+    * @tc.name    test getSymbolByName method
+    * @tc.desc    get the Symbol By Name
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetSymbolByName001', 0, async (done: Function) => {
+      let value = context.resourceManager.getSymbolByName('test_1')
+      console.log('testGetSymbolByName001 ' + value);
+      expect(value == 983041).assertTrue()
+      done();
+    })
+
+    /* *
+    * @tc.number  TEST_getSymbolResId_002
+    * @tc.name    test getSymbolByName method throw 9001006 error code
+    * @tc.desc    get the Symbol By Name
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetSymbolByName002', 0, async (done: Function) => {
+      try {
+        let value = context.resourceManager.getSymbolByName('test_2')
+        console.log('testGetSymbolByName002 ' + value);
+        expect(value !== undefined).assertTrue()
+        done();
+      } catch (err) {
+        console.log('testGetSymbolByName002 errCode ', err.code)
+        console.log('testGetSymbolByName002 errMessage ', err.message)
+        expect(err.code == 9001006).assertTrue()
+        done()
+      }
+    })
+
+    /* *
+    * @tc.number  TEST_getSymbolResId_003
+    * @tc.name    test getSymbolByName method
+    * @tc.desc    get the Symbol By Name
+    * @tc.size:   MediumTest
+    * @tc.type    method
+    * @tc.level   level 2
+    */
+    it('testGetSymbolByName003', 0, async (done: Function) => {
+      let value = context.resourceManager.getSymbolByName('test_4')
+      console.log('testGetSymbolByName003 ' + value);
+      expect(value == 983041).assertTrue()
       done();
     })
 

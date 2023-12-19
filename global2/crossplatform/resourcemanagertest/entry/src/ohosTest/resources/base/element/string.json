@@ -15,6 +15,14 @@
     {
       "name": "Test_name1",
       "value": "test label"
+    },
+    {
+      "name": "test_1",
+      "value": "Test1"
+    },
+    {
+      "name": "test_2",
+      "value": "Test%d"
     }
   ]
 }
