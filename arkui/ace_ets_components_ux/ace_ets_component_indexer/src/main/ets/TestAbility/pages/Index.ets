@@ -438,6 +438,7 @@ struct AlphabetIndexerTest {
         })
         .margin({ top: 20, left: 20 })
         .popupItemFont({ weight: this.popupItemFontWeightNum })
+        .autoCollapse(true)
     }.backgroundColor(0x00FFFF).width('100%').height('100%')
   }
 }

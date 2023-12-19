@@ -560,5 +560,13 @@ export default function AlphabetIndexer() {
       expect(obj.$attrs.autoCollapse).assertEqual("false");
       done();
     });
+
+    it('ArkUI_AlphabetIndexer_3300', 0, async function (done) {
+      console.info("ArkUI_AlphabetIndexer_3300_start");
+      let newJson = getInspectorByKey('alphabetIndexerTest7');
+      let obj = JSON.parse(newJson);
+      expect(obj.$attrs.autoCollapse).assertEqual("true");
+      done();
+    });
   })
 }
