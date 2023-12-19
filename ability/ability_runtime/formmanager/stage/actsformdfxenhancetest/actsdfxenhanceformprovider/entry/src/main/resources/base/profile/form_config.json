@@ -1,0 +1,64 @@
+{
+  "forms": [
+    {
+      "name": "noproxyform",
+      "description": "This is a no proxy form.",
+      "src": "./ets/noproxyform/pages/NoproxyformCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ],
+      "dataProxyEnabled": false
+    },
+    {
+      "name": "publishproxyform",
+      "description": "This is a publish proxy form.",
+      "src": "./ets/publishproxyform/pages/PublishproxyformCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ],
+      "dataProxyEnabled": true
+    },
+    {
+      "name": "publishandrdbproxyform",
+      "description": "This is a publish and rdb proxy form.",
+      "src": "./ets/publishandrdbproxyform/pages/PublishandrdbproxyformCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ],
+      "dataProxyEnabled": true
+    }
+  ]
+}
