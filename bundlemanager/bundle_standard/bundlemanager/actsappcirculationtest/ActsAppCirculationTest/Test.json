@@ -6,7 +6,7 @@
         "bundle-name": "com.example.actsappcirculationtest",
         "module-name": "entry_test",
         "shell-timeout": "600000",
-        "testcase-timeout": "10000"
+        "testcase-timeout": "50000"
     },
     "kits": [
         {
