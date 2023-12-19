@@ -69,6 +69,19 @@ describe('ImageCreator', function () {
         }
     }
 
+    function createCreatorWithSize(done, testNum, size, fmt, cap) {
+        let creator;
+        try {
+            creator = image.createImageCreator(size, fmt, cap);
+            expect(false).assertTrue();
+            done();
+        } catch (error) {
+            console.info(`${testNum} err message` + error);
+        }
+        expect(creator == undefined).assertTrue();
+        done();
+    }
+
     async function onErr(done, testNum, param) {
         var creator = image.createImageCreator(WIDTH, HEIGHT, FORMAT, CAPACITY)
         if (creator == undefined) {
@@ -191,6 +204,116 @@ describe('ImageCreator', function () {
             done();
         }
     }
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_0100
+     * @tc.name      : createImageCreator
+     * @tc.desc      : 1.set size,format,capacity
+     *                 2.create ImageCreator
+     *                 3.return ImageCreator not empty
+     * @tc.size      : MEDIUM 
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it('SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_0100', 0, async function (done) {
+        let size = {
+            height: HEIGHT,
+            width: WIDTH
+        };
+        let format = image.ImageFormat.JPEG
+        var creator = image.createImageCreator(size, format, CAPACITY);
+        expect(creator != undefined).assertTrue();
+        done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_0200
+     * @tc.name      : createImageCreator
+     * @tc.desc      : 1.set size,format,capacity
+     *                 2.create ImageCreator
+     *                 3.return ImageCreator not empty
+     * @tc.size      : MEDIUM 
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it('SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_0200', 0, async function (done) {
+        let size = {
+            height: HEIGHT,
+            width: WIDTH
+        };
+        let format = image.ImageFormat.YCBCR_422_SP;
+        var creator = image.createImageCreator(size, format, CAPACITY);
+        expect(creator != undefined).assertTrue();
+        done();
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_ERROR_0100
+     * @tc.name      : createImageCreator
+     * @tc.desc      : 1.set size,format,capacity
+     *                 2.create ImageCreator
+     *                 3.return ImageCreator empty
+     * @tc.size      : MEDIUM 
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it('SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_ERROR_0100', 0, async function (done) {
+        let size = {
+            height: HEIGHT,
+            width: WIDTH
+        };
+        createCreatorWithSize(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_ERROR_0100', size,
+            'form.', CAPACITY);
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_ERROR_0200
+     * @tc.name      : createImageCreator
+     * @tc.desc      : 1.set size,format,capacity
+     *                 2.create ImageCreator
+     *                 3.return ImageCreator empty
+     * @tc.size      : MEDIUM 
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it('SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_ERROR_0200', 0, async function (done) {
+        let size = {
+            height: HEIGHT,
+            width: WIDTH
+        };
+        createCreatorWithSize(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_ERROR_0200', size,
+            image.ImageFormat.JPEG, null);
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_ERROR_0300
+     * @tc.name      : createImageCreator
+     * @tc.desc      : 1.set size,format,capacity
+     *                 2.create ImageCreator
+     *                 3.return ImageCreator empty
+     * @tc.size      : MEDIUM 
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it('SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_ERROR_0300', 0, async function (done) {
+        createCreatorWithSize(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_ERROR_0300', null,
+            image.ImageFormat.JPEG, CAPACITY);
+    })
+
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_ERROR_0400
+     * @tc.name      : createImageCreator
+     * @tc.desc      : 1.set size,format,capacity
+     *                 2.create ImageCreator
+     *                 3.return ImageCreator empty
+     * @tc.size      : MEDIUM 
+     * @tc.type      : Functional
+     * @tc.level     : Level 0
+     */
+    it('SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_ERROR_0400', 0, async function (done) {
+        createCreatorWithSize(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_WITH_SIZE_ERROR_0400', { a: 10 },
+            image.ImageFormat.JPEG, CAPACITY);
+    })
 
     /**
     * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_0100
@@ -343,7 +466,6 @@ describe('ImageCreator', function () {
     it('SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_1000', 0, async function (done) {
         createCreator(done, 'SUB_MULTIMEDIA_IMAGE_CREATOR_CREATEIMAGECREATOR_1000', WIDTH, HEIGHT, 'form.', CAPACITY);
     })
-
 
     /**
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATOR_RELEASE_PROMISE_0100
