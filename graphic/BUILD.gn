@@ -22,6 +22,7 @@ group("graphic") {
       "graphicnapitest:ActsGraphicNapiTest",
       "webGL:webGL_hap_test",
       "windowStage:ActsWindowStageTest",
+      "windowstandard:ActsNativeImageTest",
       "windowstandard:window_hap_test",
     ]
     if (!(product_name == "ohcore")) {
