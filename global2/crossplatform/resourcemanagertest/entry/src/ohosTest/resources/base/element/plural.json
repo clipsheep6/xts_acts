@@ -1,8 +1,8 @@
 {
     "plural":[
         {
-            "name":"plural_name",
-            "value":[
+            "name": "plural_name",
+            "value": [
                 {
                     "quantity":"one",
                     "value":"%d test one"
@@ -14,8 +14,8 @@
             ]
         },
         {
-            "name":"plural_name2",
-            "value":[
+            "name": "plural_name2",
+            "value": [
                 {
                     "quantity": "one",
                     "value": "%d test2 one"
@@ -23,6 +23,19 @@
                 {
                     "quantity":"other",
                     "value":"%d test2 other"
+                }
+            ]
+        },
+        {
+            "name": "plural_name3",
+            "value": [
+                {
+                    "quantity": "one",
+                    "value": "$string:test_1"
+                },
+                {
+                    "quantity":"other",
+                    "value":"$string:test_1"
                 }
             ]
         }
