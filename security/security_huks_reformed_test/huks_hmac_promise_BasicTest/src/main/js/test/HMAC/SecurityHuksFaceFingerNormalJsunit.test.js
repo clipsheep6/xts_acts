@@ -318,5 +318,68 @@ export default function SecurityHuksFaceFingerNormalJsunit() {
       done();
     });
 
+    /**
+     * @tc.number HUKS_Cipher_AuthToken_3300
+     * @tc.name HUKS_Cipher_AuthToken_3300.
+     * @tc.desc HUKS_TAG_AUTH_TIMEOUT invalid and generate.
+     */
+    it("HUKS_Cipher_AuthToken_3300", 0, async function (done) {
+      let alias = "HUKS_Cipher_AuthToken_3300";
+      let inData = new Uint8Array(new Array());
+      let option = usePinTime(inData);
+      let err = {
+        tag: huks.HuksTag.HUKS_TAG_AUTH_TIMEOUT,
+        value: -1,
+      };
+      option.properties.splice(8, 1, err);
+      if (useSoftware) {
+        try {
+          await huks.generateKeyItem(alias, option)
+            .then((data) => {
+              console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
+            })
+            .catch(error => {
+              console.error(`promise: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+              expect(error.code == 401).assertTrue();
+            });
+        } catch (error) {
+          console.error(`promise: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+          expect(null).assertFail();
+        }
+      }
+      done();
+    });
+
+    /**
+     * @tc.number HUKS_Cipher_AuthToken_5500
+     * @tc.name HUKS_Cipher_AuthToken_5500.
+     * @tc.desc use pin access type is HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL.
+     */
+    it("HUKS_Cipher_AuthToken_5500", 0, async function (done) {
+      let alias = "HUKS_Cipher_AuthToken_5500";
+      let inData = new Uint8Array(new Array());
+      let option = usePinNormal(inData);
+      let err = {
+        tag: huks.HuksTag.HUKS_TAG_KEY_AUTH_ACCESS_TYPE,
+        value: huks.HuksAuthAccessType.HUKS_AUTH_ACCESS_INVALID_NEW_BIO_ENROLL,
+      };
+      option.properties.splice(6, 1, err);
+      if (useSoftware) {
+        try {
+          await huks.generateKeyItem(alias, option)
+            .then((data) => {
+              console.info(`promise: generateKeyItem success, data = ${JSON.stringify(data)}`);
+            })
+            .catch(error => {
+              console.error(`promise: generateKeyItem failed, code: ${error.code}, msg: ${error.message}`);
+              expect(error.code == 401).assertTrue();
+            });
+        } catch (error) {
+          console.error(`promise: generateKeyItem input arg invalid, code: ${error.code}, msg: ${error.message}`);
+          expect(null).assertFail();
+        }
+      }
+      done();
+    });
   });
 }
