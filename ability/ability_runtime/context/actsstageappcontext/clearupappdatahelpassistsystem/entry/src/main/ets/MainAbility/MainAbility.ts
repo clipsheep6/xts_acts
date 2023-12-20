@@ -18,98 +18,92 @@ import fs from '@ohos.file.fs';
 import commonEventManager from '@ohos.commonEventManager';
 
 let TAG = 'clearUpApplicationDataHelpStystem';
+let notClear = false;
 let startType;
-let createFile;
-export default class MainAbility extends Ability {
-  async onCreate(want, launchParam) {
-    console.log(TAG + 'onCreate' + JSON.stringify(want.parameters));
-    startType = want.parameters?.startType;
-    createFile = want.parameters?.createFile;
-    globalThis.abilityContext = this.context;
-    let context = this.context;
-    let filePathName = '/test.txt';
-    let cacheDirPath = context.cacheDir + filePathName;
-    let filesDirPath = context.filesDir + filePathName;
-    let preferencesDirPath = context.preferencesDir + filePathName;
-    let tempDirPath = context.tempDir + filePathName;
-    let databaseDirPath = context.databaseDir + filePathName;
-    if (createFile) {
-      console.log(TAG + ' ---try create file  ');
-      try {
-        let file1 = fs.openSync(cacheDirPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-        let file2 = fs.openSync(filesDirPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-        let file3 = fs.openSync(preferencesDirPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-        let file4 = fs.openSync(tempDirPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-        let file5 = fs.openSync(databaseDirPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-        if (fs.accessSync(cacheDirPath) && fs.accessSync(filesDirPath) && fs.accessSync(preferencesDirPath) && fs.accessSync(tempDirPath) && fs.accessSync(databaseDirPath)) {
-          let options = {
-            parameters: {
-              result: true
-            }
-          }
-          commonEventManager.publish('clearUpApplicationDataEventSystem', options, (err) => {
-            console.log(TAG + ' --- create file success and send msg ');
-          });
-        }
-        fs.closeSync(file1);
-        fs.closeSync(file2);
-        fs.closeSync(file3);
-        fs.closeSync(file4);
-        fs.closeSync(file5);
-      } catch (error) {
-        console.error(TAG + 'error ', JSON.stringify(error));
-      }
-    } else {
-      let options = {
-        parameters: {
-          result: true
-        }
-      }
-      if (fs.accessSync(cacheDirPath) && fs.accessSync(filesDirPath) && fs.accessSync(preferencesDirPath) && fs.accessSync(tempDirPath) && fs.accessSync(databaseDirPath)) {
-        commonEventManager.publish('clearUpApplicationDataEventSystem', options, (err) => {
-          console.log(TAG + ' --- create file and send msg clerupapp');
-        });
-      } else {
-        options.parameters.result = false;
-        commonEventManager.publish('clearUpApplicationDataEventSystem', options, (err) => {
-          console.log(TAG + ' --- create file and send msg clerupapp');
-        });
-      }
-    }
-  }
-
-  onDestroy() {
-    console.log('MainAbility onDestroy')
-  }
-
-  onWindowStageCreate(windowStage) {
-    console.log('MainAbility onWindowStageCreate')
-    windowStage.setUIContent(this.context, 'pages/index', null)
-  }
-
-  onWindowStageDestroy() {
-    console.log('MainAbility onWindowStageDestroy')
-  }
-
-  onForeground() {
-    console.log('MainAbility onForeground')
-  }
-
-  onBackground() {
-    console.log(TAG + 'MainAbility onBackground' + startType)
+let clearUpApplicationData = (context, startType) => {
     if (startType === 'Promise') {
-      this.context.getApplicationContext().clearUpApplicationData()
-        .then((data) => {
-          console.log(TAG + ' --- data', data);
-        })
-        .catch((err) => {
-          console.error(TAG + '  err.code: ' + JSON.stringify(err));
-        })
+        context.getApplicationContext().clearUpApplicationData()
+            .then((data) => {
+                console.log(TAG + ' --- data', data);
+            })
+            .catch((err) => {
+                console.error(TAG + '  err.code: ' + JSON.stringify(err));
+            })
     }
     if (startType === 'Callback') {
-      this.context.getApplicationContext().clearUpApplicationData((err) => {
-        console.error(TAG + '  err.code: ' + JSON.stringify(err));
-      })
+        context.getApplicationContext().clearUpApplicationData((err) => {
+            console.error(TAG + '  err.code: ' + JSON.stringify(err));
+        })
     }
-  }
+}
+
+export default class MainAbility extends Ability {
+    async onCreate(want, launchParam) {
+        startType = want.parameters?.startType;
+        let createFile = want.parameters?.createFile;
+        notClear = want.parameters?.notClear;
+        let context = this.context;
+        let filePathName = '/test.txt';
+        let cacheDirPath = context.cacheDir + filePathName;
+        let filesDirPath = context.filesDir + filePathName;
+        let preferencesDirPath = context.preferencesDir + filePathName;
+        let tempDirPath = context.tempDir + filePathName;
+        let databaseDirPath = context.databaseDir + filePathName;
+        if (createFile) {
+            console.log(TAG + ' ---try create file  ');
+            try {
+                let file1 = fs.openSync(cacheDirPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+                let file2 = fs.openSync(filesDirPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+                let file3 = fs.openSync(preferencesDirPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+                let file4 = fs.openSync(tempDirPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+                let file5 = fs.openSync(databaseDirPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+                fs.closeSync(file1);
+                fs.closeSync(file2);
+                fs.closeSync(file3);
+                fs.closeSync(file4);
+                fs.closeSync(file5);
+            } catch (error) {
+                console.error(TAG + 'error ', JSON.stringify(error));
+            }
+        }
+        let options = {
+            parameters: {
+                result: true
+            }
+        }
+        if (!(fs.accessSync(cacheDirPath) && fs.accessSync(filesDirPath) && fs.accessSync(preferencesDirPath) && fs.accessSync(tempDirPath) && fs.accessSync(databaseDirPath))) {
+            options.parameters.result = false;
+        }
+        commonEventManager.publish('clearUpApplicationDataEventSystem', options, (err) => {
+            console.log(TAG + ' --- create file and send msg ishave file');
+        });
+        console.log(TAG + 'MainAbility onBackground' + startType);
+        !notClear && clearUpApplicationData(context, startType);
+        if (notClear) {
+            this.context.terminateSelf();
+        }
+    }
+
+    onDestroy() {
+        console.log('MainAbility onDestroy')
+    }
+
+    onWindowStageCreate(windowStage) {
+        console.log('MainAbility onWindowStageCreate')
+        windowStage.setUIContent(this.context, 'pages/index', null)
+    }
+
+    onWindowStageDestroy() {
+        console.log('MainAbility onWindowStageDestroy')
+    }
+
+    onForeground() {
+        !notClear && clearUpApplicationData(this.context, startType);
+        if (notClear) {
+            this.context.terminateSelf();
+        }
+    }
+
+    onBackground() {
+    }
 };
