@@ -56,7 +56,6 @@ export default function ImageTest() {
         expect(err).assertFail()
         done()
       })
-      done()
     })
 
         /**
