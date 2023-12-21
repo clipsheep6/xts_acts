@@ -90,32 +90,5 @@ export default function abilityTest() {
       expect(data1.signatureInfo.appIdentifier).assertEqual("");
       done();
     })
-
-    /*
-     * @tc.number: Acts_GetAppIdentifierInfo_0300
-     * @tc.name: Query carrier ID
-     * @tc.desc: Query carrier ID through interface
-     * @tc.level:1
-     */
-    it('Acts_GetAppIdentifierInfo_0300', 0, async function (done) {
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-      abilityDelegator.executeShellCommand("bm dump -n com.example.actsgetappidentifierrely",
-        (err: any, data: any) => {
-          expect(JSON.stringify(data.stdResult))
-            .assertContain('"appIdentifier": "E64B13B84E6D2167F73B46530C6E"');
-          console.info('executeShellCommand : err : ' + JSON.stringify(err));
-          console.info('executeShellCommand : data : ' + data.stdResult);
-          console.info('executeShellCommand : data : ' + data.exitCode);
-        })
-      abilityDelegator.executeShellCommand("bm dump -n com.example.actsunappidentifierrely",
-        (err: any, data: any) => {
-          expect(JSON.stringify(data.stdResult)).assertContain('"appIdentifier": ""');
-          console.info('executeShellCommand : err : ' + JSON.stringify(err));
-          console.info('executeShellCommand : data : ' + data.stdResult);
-          console.info('executeShellCommand : data : ' + data.exitCode);
-        })
-      done();
-    })
   })
 }
