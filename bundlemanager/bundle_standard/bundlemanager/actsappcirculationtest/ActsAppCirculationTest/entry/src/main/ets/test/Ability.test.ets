@@ -12,28 +12,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import installer from '@ohos.bundle.installer';
+import { BusinessError } from '@ohos.base';
+import { describe, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import osAccount from '@ohos.account.osAccount';
+import bundleManager from "@ohos.bundle.bundleManager";
 
 export default function abilityTest() {
   describe('ActsAbilityTest', function () {
-    let timeOut: number = 500;
     let accountId;
-    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     let osAccountManager = osAccount.getAccountManager();
+    let actsAppCirculationUpdateRelyFilePaths = ['/data/storage/el2/base/haps/entry_test/ActsAppCirculationUpdateRely/ActsAppCirculationUpdateRely.hap'];
+    let actsAppCirculationDiffModuleUpdateRelyFilePaths = ['/data/storage/el2/base/haps/entry_test/ActsAppCirculationDiffModuleUpdateRely/ActsAppCirculationDiffModuleUpdateRely.hap'];
+    let actsAppCirculationBaseRelyFilePaths = ['/data/storage/el2/base/haps/entry_test/ActsAppCirculationBaseRely/ActsAppCirculationBaseRely.hap'];
+    let actsAppCirculationDiffModuleIdUpdateRelyFilePaths = ['/data/storage/el2/base/haps/entry_test/ActsAppCirculationDiffModuleIdUpdateRely/ActsAppCirculationDiffModuleIdUpdateRely.hap'];
+    let actsAppCirculationDiffAppIdUpdateRelyFilePaths = ['/data/storage/el2/base/haps/entry_test/ActsAppCirculationDiffAppIdUpdateRely/ActsAppCirculationDiffAppIdUpdateRely.hap'];
+    let actsAppCirculationDiffAppIdModuleUpdateRelyFilePaths = ['/data/storage/el2/base/haps/entry_test/ActsAppCirculationDiffAppIdModuleUpdateRely/ActsAppCirculationDiffAppIdModuleUpdateRely.hap'];
+    let actsAppCirculationBaseWithoutAppIdentifierRelyFilePaths = ['/data/storage/el2/base/haps/entry_test/ActsAppCirculationBaseWithoutAppIdentifierRely/ActsAppCirculationBaseWithoutAppIdentifierRely.hap'];
+    let actsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRelyFilePaths = ['/data/storage/el2/base/haps/entry_test/ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely/ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely.hap'];
+    let actsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRelyFilePaths = ['/data/storage/el2/base/haps/entry_test/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely.hap'];
+    let actsAppCirculationUpdateWithoutAppIdentifierRelyFilePaths = ['/data/storage/el2/base/haps/entry_test/ActsAppCirculationUpdateWithoutAppIdentifierRely/ActsAppCirculationUpdateWithoutAppIdentifierRely.hap'];
+    let actsAppCirculationUpdateWithoutAppIdentifierDiffModuleRelyFilePaths = ['/data/storage/el2/base/haps/entry_test/actsAppCirculationUpdateWithoutAppIdentifierDiffModuleRelyFilePaths/actsAppCirculationUpdateWithoutAppIdentifierDiffModuleRelyFilePaths.hap'];
+    let actsAppCirculationDiffIdUpdateRelyFilePaths = ['/data/storage/el2/base/haps/entry_test/ActsAppCirculationDiffIdUpdateRely/ActsAppCirculationDiffIdUpdateRely.hap'];
 
     function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
 
     afterEach(async function () {
-      await abilityDelegator.executeShellCommand('bm uninstall -n com.example.actsappcirculationrely').then(data => {
-        console.log("Bundle uninstall successfully");
-      }).catch(err => {
-        console.log("Bundle uninstall fail");
+      let bundleName = 'com.example.actsappcirculationrely';
+      installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.uninstall(bundleName, (err: BusinessError) => {
+          if (err) {
+            console.error('After each uninstall failed:' + err.message);
+          } else {
+            console.info('After each uninstall successfully.');
+          }
+        });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
       });
-      await sleep(timeOut);
+      await sleep(1000);
     })
     afterAll(async function () {
       await osAccountManager.removeOsAccount(accountId).then((data) => {
@@ -52,19 +71,33 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_0100', 0, async function (done) {
       console.log("Acts_AppCirculation_0100 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseRely.hap').then(data => {
-        console.log("Acts_AppCirculation_0100 install logFirst is : " + JSON.stringify(data.stdResult));
-        expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-      }).catch(err => {
-        expect().assertFail()
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+          }
+        });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
       });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationUpdateRely.hap').then(data => {
-        console.log("Acts_AppCirculation_0100 bundle logSecond is : " + JSON.stringify(data.stdResult));
-        expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-        done();
-      }).catch(err => {
-        expect().assertFail()
-        done();
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationUpdateRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+            done();
+          }
+        });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
       });
     })
 
@@ -76,23 +109,35 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_0200', 0, async function (done) {
       console.log("Acts_AppCirculation_0200 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseRely.hap').then(data => {
-        console.log("Acts_AppCirculation_0200 install logFirst is : " + JSON.stringify(data.stdResult));
-        expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-      }).catch(err => {
-        expect().assertFail()
-      });
-      await sleep(timeOut);
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationDiffModuleUpdateRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_0200 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-          done();
-        })
-        .catch(err => {
-          expect().assertFail()
-          done();
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+            done();
+          } else {
+            console.info('install successfully.');
+          }
         });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationUpdateRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+            done();
+          }
+        });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
     })
 
     /*
@@ -103,22 +148,36 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_0300', 0, async function (done) {
       console.log("Acts_AppCirculation_0300 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseRely.hap').then(data => {
-        console.log("Acts_AppCirculation_0300 install logFirst is : " + JSON.stringify(data.stdResult));
-        expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-      }).catch(err => {
-        expect().assertFail()
-      });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationDiffIdUpdateRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_0300 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install sign info inconsistent');
-          done();
-        })
-        .catch(err => {
-          expect().assertFail()
-          done();
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+            done();
+          } else {
+            console.info('install successfully.');
+          }
         });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationDiffIdUpdateRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            done();
+          } else {
+            console.info('install successfully.');
+            expect().assertFail();
+            done();
+          }
+        });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
     })
 
     /*
@@ -129,22 +188,35 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_0400', 0, async function (done) {
       console.log("Acts_AppCirculation_0400 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseRely.hap').then(data => {
-        console.log("Acts_AppCirculation_0400 install logFirst is : " + JSON.stringify(data.stdResult));
-        expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-      }).catch(err => {
-        expect().assertFail()
-      });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationDiffModuleIdUpdateRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_0400 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install sign info inconsistent');
-          done();
-        })
-        .catch(err => {
-          expect().assertFail()
-          done();
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+          }
         });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationDiffModuleIdUpdateRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            done();
+          } else {
+            console.info('install successfully.');
+            expect().assertFail();
+            done();
+          }
+        });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
     })
 
     /*
@@ -155,22 +227,35 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_0500', 0, async function (done) {
       console.log("Acts_AppCirculation_0500 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseRely.hap').then(data => {
-        console.log("Acts_AppCirculation_0500 install logFirst is : " + JSON.stringify(data.stdResult));
-        expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-      }).catch(err => {
-        expect().assertFail()
-      });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationDiffAppIdUpdateRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_0500 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-          done();
-        })
-        .catch(err => {
-          expect().assertFail()
-          done();
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+          }
         });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationDiffAppIdUpdateRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+            done();
+          } else {
+            console.info('install successfully.');
+            done();
+          }
+        });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
     })
 
     /*
@@ -181,22 +266,35 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_0600', 0, async function (done) {
       console.log("Acts_AppCirculation_0600 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseRely.hap').then(data => {
-        console.log("Acts_AppCirculation_0600 install logFirst is : " + JSON.stringify(data.stdResult));
-        expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-      }).catch(err => {
-        expect().assertFail()
-      });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationDiffAppIdModuleUpdateRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_0600 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-          done();
-        })
-        .catch(err => {
-          expect().assertFail()
-          done();
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+          }
         });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationDiffAppIdModuleUpdateRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+            done();
+          } else {
+            console.info('install successfully.');
+            done();
+          }
+        });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
     })
 
     /*
@@ -207,24 +305,36 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_0700', 0, async function (done) {
       console.log("Acts_AppCirculation_0700 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseWithoutAppIdentifierRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_0700 install logFirst is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-        })
-        .catch(err => {
-          expect().assertFail()
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseWithoutAppIdentifierRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+            done();
+          } else {
+            console.info('install successfully.');
+          }
         });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_0700 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install sign info inconsistent');
-          done();
-        })
-        .catch(err => {
-          expect().assertFail()
-          done();
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            done();
+          } else {
+            console.info('install successfully.');
+            expect().assertFail();
+            done();
+          }
         });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
     })
 
     /*
@@ -235,24 +345,36 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_0800', 0, async function (done) {
       console.log("Acts_AppCirculation_0800 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseWithoutAppIdentifierRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_0800 install logFirst is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-        })
-        .catch(err => {
-          expect().assertFail()
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseWithoutAppIdentifierRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+            done();
+          } else {
+            console.info('install successfully.');
+          }
         });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_0800 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install sign info inconsistent');
-          done();
-        })
-        .catch(err => {
-          expect().assertFail()
-          done();
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            done();
+          } else {
+            console.info('install successfully.');
+            expect().assertFail();
+            done();
+          }
         });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
     })
 
     /*
@@ -263,24 +385,35 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_0900', 0, async function (done) {
       console.log("Acts_AppCirculation_0900 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseWithoutAppIdentifierRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_0900 install logFirst is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-        })
-        .catch(err => {
-          expect().assertFail()
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseWithoutAppIdentifierRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+            done();
+          } else {
+            console.info('install successfully.');
+          }
         });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationUpdateRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_0900 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-          done();
-        })
-        .catch(err => {
-          expect().assertFail()
-          done();
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationUpdateRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+            done();
+          }
         });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
     })
 
     /*
@@ -291,32 +424,41 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_1000', 0, async function (done) {
       console.log("Acts_AppCirculation_1000 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseWithoutAppIdentifierRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_1000 install logFirst is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-        })
-        .catch(err => {
-          expect().assertFail()
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseWithoutAppIdentifierRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+            done();
+          } else {
+            console.info('install successfully.');
+          }
         });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationDiffModuleUpdateRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_1000 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-        })
-        .catch(err => {
-          expect().assertFail()
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationDiffModuleUpdateRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+            done();
+          } else {
+            console.info('install successfully.');
+          }
         });
-      await abilityDelegator.executeShellCommand('bm dump -n com.example.actsappcirculationrely | grep appId')
-        .then(data => {
-          console.log("Acts_AppCirculation_1000 bundle info is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('appIdentifier');
-          done();
-        })
-        .catch(err => {
-          expect().assertFail()
-          done();
-        });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(1000);
+      bundleManager.getAppProvisionInfo("com.example.actsappcirculationrely", 100, (err, data) => {
+        console.info('The appIdentifier of com.example.actsappcirculationrely is:' + data.appIdentifier);
+        expect(data.appIdentifier).assertEqual("E64B13B84E6D2167F73B46530C6E");
+        done();
+      });
     })
 
     /*
@@ -327,24 +469,34 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_1100', 0, async function (done) {
       console.log("Acts_AppCirculation_1100 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_1100 install logFirst is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-        })
-        .catch(err => {
-          expect().assertFail()
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+          }
         });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationUpdateWithoutAppIdentifierRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_1100 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-          done();
-        })
-        .catch(err => {
-          expect().assertFail()
-          done();
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationUpdateWithoutAppIdentifierRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+            done();
+          }
         });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
     })
 
     /*
@@ -355,24 +507,34 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_1200', 0, async function (done) {
       console.log("Acts_AppCirculation_1200 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_1200 install logFirst is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-        })
-        .catch(err => {
-          expect().assertFail()
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+          }
         });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_1200 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-          done();
-        })
-        .catch(err => {
-          expect().assertFail()
-          done();
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationUpdateWithoutAppIdentifierDiffModuleRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+            done();
+          }
         });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
     })
 
     /*
@@ -383,24 +545,35 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_1300', 0, async function (done) {
       console.log("Acts_AppCirculation_1300 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseWithoutAppIdentifierRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_1300 install logFirst is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-        })
-        .catch(err => {
-          expect().assertFail()
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseWithoutAppIdentifierRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+            done();
+          } else {
+            console.info('install successfully.');
+          }
         });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationUpdateWithoutAppIdentifierRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_1300 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-          done();
-        })
-        .catch(err => {
-          expect().assertFail()
-          done();
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationUpdateWithoutAppIdentifierRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+            done();
+          }
         });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
     })
 
     /*
@@ -411,24 +584,35 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_1400', 0, async function (done) {
       console.log("Acts_AppCirculation_1400 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseWithoutAppIdentifierRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_1400 install logFirst is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-        })
-        .catch(err => {
-          expect().assertFail()
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseWithoutAppIdentifierRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+            done();
+          } else {
+            console.info('install successfully.');
+          }
         });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_1400 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-          done();
-        })
-        .catch(err => {
-          expect().assertFail()
-          done();
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationUpdateWithoutAppIdentifierDiffModuleRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+            done();
+          }
         });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
     })
 
     /*
@@ -439,33 +623,44 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_1900', 0, async function (done) {
       console.log("Acts_AppCirculation_1900 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_1900 install logFirst is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-        })
-        .catch(err => {
-          expect().assertFail()
+      let bundleFlags = bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO;
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+          }
         });
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationDiffAppIdUpdateRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_1900 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-        })
-        .catch(err => {
-          expect().assertFail()
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationDiffAppIdUpdateRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+          }
         });
-      await abilityDelegator.executeShellCommand('bm dump -n com.example.actsappcirculationrely | grep appId')
-        .then(data => {
-          console.log("Acts_AppCirculation_1900 bundle info is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult))
-            .assertContain('BH44SJJ7ZBsNGCSrqqmo+Leud3LZE1h5oZ1dkbiR0XykCuLX5rRU/hNRE4glPeOVbzKVaq1npODzUXwp3eO0bwk');
-          done();
-        })
-        .catch(err => {
-          expect().assertFail();
-          done();
-        });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(1000);
+      await bundleManager.getBundleInfo('com.example.actsappcirculationrely', bundleFlags).then((data) => {
+        console.log('Bundleinfo data is:' + JSON.stringify(data));
+        expect(JSON.stringify(data))
+          .assertContain('BH44SJJ7ZBsNGCSrqqmo+Leud3LZE1h5oZ1dkbiR0XykCuLX5rRU/hNRE4glPeOVbzKVaq1npODzUXwp3eO0bwk');
+        done();
+      }).catch((err: BusinessError) => {
+        console.log('Bundleinfo err is:' + err);
+        expect().assertFail();
+      });
     })
 
     /*
@@ -482,14 +677,20 @@ export default function abilityTest() {
         done();
         return;
       }
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationBaseRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_2000 install logFirst is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-        })
-        .catch(err => {
-          expect().assertFail()
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationBaseRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+          }
         });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(500);
       await osAccountManager.createOsAccount("200", osAccount.OsAccountType.NORMAL).then((data) => {
         console.log("Acts_AppCirculation_2000 createOsAccount successful" + JSON.stringify(data));
         accountId = data.localId;
@@ -504,16 +705,21 @@ export default function abilityTest() {
         expect().assertFail()
       });
       await sleep(1000);
-      await abilityDelegator.executeShellCommand('bm install -p /data/ActsAppCirculationDiffIdUpdateRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_2000 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install sign info inconsistent');
-          done();
-        }).catch(err => {
-          console.log("Acts_AppCirculation_2000 bundle err is : " + JSON.stringify(err));
-          expect().assertFail();
-          done();
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(actsAppCirculationDiffIdUpdateRelyFilePaths, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            done();
+          } else {
+            console.info('install successfully.');
+            expect().assertFail();
+            done();
+          }
         });
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
     })
 
     /*
@@ -524,21 +730,22 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_2300', 0, async function (done) {
       console.log("Acts_AppCirculation_2300 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/haptest')
-        .then(data => {
-          console.log("Acts_AppCirculation_2300 install logFirst is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('incompatible signature info');
-        })
-        .catch(err => {
-          expect().assertFail()
+      let hapTestPath = ['/data/storage/el2/base/haps/entry_test/haptest/'];
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(hapTestPath, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            done();
+          } else {
+            console.info('install successfully.');
+            expect().assertFail();
+          }
         });
-      await abilityDelegator.executeShellCommand('bm uninstall -n com.example.actsappcirculationsameversionrely').then(data => {
-        console.log("Acts_AppCirculation_2300 bundle uninstall successfully");
-        done();
-      }).catch(err => {
-        console.log("Acts_AppCirculation_2300 bundle uninstall fail");
-        done();
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
       });
+      await sleep(500);
     })
 
     /*
@@ -549,28 +756,35 @@ export default function abilityTest() {
      */
     it('Acts_AppCirculation_2400', 0, async function (done) {
       console.log("Acts_AppCirculation_2400 start");
-      await abilityDelegator.executeShellCommand('bm install -p /data/haptest/ActsAppCirculationSameVersionEntryRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_2400 install logFirst is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install bundle successfully');
-        })
-        .catch(err => {
-          expect().assertFail()
+      let hapTestPathA = ['/data/storage/el2/base/haps/entry_test/haptest/ActsAppCirculationSameVersionEntryRely.hap'];
+      let hapTestPathB = ['/data/storage/el2/base/haps/entry_test/haptest/ActsAppCirculationSameVersionFeatureRely.hap'];
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(hapTestPathA, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            expect().assertFail();
+          } else {
+            console.info('install successfully.');
+          }
         });
-      await abilityDelegator.executeShellCommand('bm install -p /data/haptest/ActsAppCirculationSameVersionFeatureRely.hap')
-        .then(data => {
-          console.log("Acts_AppCirculation_2400 bundle logSecond is : " + JSON.stringify(data.stdResult));
-          expect(JSON.stringify(data.stdResult)).assertContain('install sign info inconsistent');
-        })
-        .catch(err => {
-          expect().assertFail()
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
+      });
+      await sleep(1000);
+      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
+        data.install(hapTestPathB, (err: BusinessError) => {
+          if (err) {
+            console.error('install failed:' + err.message);
+            done();
+          } else {
+            console.info('install successfully.');
+            expect().assertFail();
+          }
         });
-      await abilityDelegator.executeShellCommand('bm uninstall -n com.example.actsappcirculationsameversionrely').then(data => {
-        console.log("Acts_AppCirculation_2400 bundle uninstall successfully");
-        done();
-      }).catch(err => {
-        console.log("Acts_AppCirculation_2400 bundle uninstall fail");
-        done();
+      }).catch((error: BusinessError) => {
+        console.error('getBundleInstaller failed. Cause: ' + error.message);
+        expect().assertFail();
       });
     })
   })

@@ -38,6 +38,21 @@
       },
       {
         "name":"ohos.permission.INTERACT_ACROSS_LOCAL_ACCOUNTS_EXTENSION"
+      },
+      {
+        "name":"ohos.permission.INSTALL_BUNDLE"
+      },
+      {
+        "name":"ohos.permission.INSTALL_ENTERPRISE_BUNDLE"
+      },
+      {
+        "name":"ohos.permission.INSTALL_ENTERPRISE_NORMAL_BUNDLE"
+      },
+      {
+        "name":"ohos.permission.INSTALL_ENTERPRISE_MDM_BUNDLE"
+      },
+      {
+        "name":"ohos.permission.GET_BUNDLE_INFO_PRIVILEGED"
       }
     ]
   }

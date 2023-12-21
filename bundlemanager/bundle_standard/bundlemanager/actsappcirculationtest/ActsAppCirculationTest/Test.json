@@ -10,9 +10,28 @@
     },
     "kits": [
         {
+            "test-file-name": [
+                "ActsAppCirculationTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
             "type": "ShellKit",
             "run-command": [
-                "mkdir /data/haptest",
+                "mkdir -p /data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationBaseRely",
+                "mkdir -p /data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationUpdateRely",
+                "mkdir -p /data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationDiffModuleUpdateRely",
+                "mkdir -p /data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationDiffIdUpdateRely",
+                "mkdir -p /data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationDiffModuleIdUpdateRely",
+                "mkdir -p /data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationDiffAppIdUpdateRely",
+                "mkdir -p /data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationDiffAppIdModuleUpdateRely",
+                "mkdir -p /data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely",
+                "mkdir -p /data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely",
+                "mkdir -p /data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationBaseWithoutAppIdentifierRely",
+                "mkdir -p /data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/actsAppCirculationUpdateWithoutAppIdentifierDiffModuleRelyFilePaths",
+                "mkdir -p /data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationUpdateWithoutAppIdentifierRely",
+                "mkdir -p /data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/haptest",
                 "power-shell wakeup",
                 "power-shell setmode 602",
                 "hilog -Q pidoff",
@@ -24,28 +43,21 @@
         {
             "type": "PushKit",
             "push": [
-                "ActsAppCirculationBaseRely.hap->/data/ActsAppCirculationBaseRely.hap",
-                "ActsAppCirculationBaseWithoutAppIdentifierRely.hap->/data/ActsAppCirculationBaseWithoutAppIdentifierRely.hap",
-                "ActsAppCirculationDiffAppIdModuleUpdateRely.hap->/data/ActsAppCirculationDiffAppIdModuleUpdateRely.hap",
-                "ActsAppCirculationDiffAppIdUpdateRely.hap->/data/ActsAppCirculationDiffAppIdUpdateRely.hap",
-                "ActsAppCirculationDiffIdUpdateRely.hap->/data/ActsAppCirculationDiffIdUpdateRely.hap",
-                "ActsAppCirculationDiffModuleIdUpdateRely.hap->/data/ActsAppCirculationDiffModuleIdUpdateRely.hap",
-                "ActsAppCirculationDiffModuleUpdateRely.hap->/data/ActsAppCirculationDiffModuleUpdateRely.hap",
-                "ActsAppCirculationUpdateRely.hap->/data/ActsAppCirculationUpdateRely.hap",
-                "ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely.hap->/data/ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely.hap",
-                "ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely.hap->/data/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely.hap",
-                "ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleRely.hap->/data/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleRely.hap",
-                "ActsAppCirculationUpdateWithoutAppIdentifierRely.hap->/data/ActsAppCirculationUpdateWithoutAppIdentifierRely.hap",
-                "ActsAppCirculationSameVersionEntryRely.hap->/data/haptest/ActsAppCirculationSameVersionEntryRely.hap",
-                "ActsAppCirculationSameVersionFeatureRely.hap->/data/haptest/ActsAppCirculationSameVersionFeatureRely.hap"
+                "ActsAppCirculationBaseRely.hap->/data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationBaseRely/ActsAppCirculationBaseRely.hap",
+                "ActsAppCirculationUpdateRely.hap->/data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationUpdateRely/ActsAppCirculationUpdateRely.hap",
+                "ActsAppCirculationDiffModuleUpdateRely.hap->/data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationDiffModuleUpdateRely/ActsAppCirculationDiffModuleUpdateRely.hap",
+                "ActsAppCirculationDiffIdUpdateRely.hap->/data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationDiffIdUpdateRely/ActsAppCirculationDiffIdUpdateRely.hap",
+                "ActsAppCirculationDiffModuleIdUpdateRely.hap->/data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationDiffModuleIdUpdateRely/ActsAppCirculationDiffModuleIdUpdateRely.hap",
+                "ActsAppCirculationDiffAppIdUpdateRely.hap->/data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationDiffAppIdUpdateRely/ActsAppCirculationDiffAppIdUpdateRely.hap",
+                "ActsAppCirculationDiffAppIdModuleUpdateRely.hap->/data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationDiffAppIdModuleUpdateRely/ActsAppCirculationDiffAppIdModuleUpdateRely.hap",
+                "ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely.hap->/data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely/ActsAppCirculationUpdateWithoutAppIdentifierDiffAppIdRely.hap",
+                "ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely.hap->/data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely/ActsAppCirculationUpdateWithoutAppIdentifierDiffModuleAppIdRely.hap",
+                "ActsAppCirculationUpdateWithoutAppIdentifierRely.hap->/data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationUpdateWithoutAppIdentifierRely/ActsAppCirculationUpdateWithoutAppIdentifierRely.hap",
+                "ActsAppCirculationUpdateWithoutAppIdentifierRely.hap->/data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/actsAppCirculationUpdateWithoutAppIdentifierDiffModuleRelyFilePaths/actsAppCirculationUpdateWithoutAppIdentifierDiffModuleRelyFilePaths.hap",
+                "ActsAppCirculationBaseWithoutAppIdentifierRely.hap->/data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/ActsAppCirculationBaseWithoutAppIdentifierRely/ActsAppCirculationBaseWithoutAppIdentifierRely.hap",
+                "ActsAppCirculationSameVersionEntryRely.hap->/data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/haptest/ActsAppCirculationSameVersionEntryRely.hap",
+                "ActsAppCirculationSameVersionFeatureRely.hap->/data/app/el2/100/base/com.example.actsappcirculationtest/haps/entry_test/haptest/ActsAppCirculationSameVersionFeatureRely.hap"
             ]
-        },
-		{
-            "test-file-name": [
-                "ActsAppCirculationTest.hap"
-            ],
-            "type": "AppInstallKit",
-            "cleanup-apps": true
         }
     ]
 }
