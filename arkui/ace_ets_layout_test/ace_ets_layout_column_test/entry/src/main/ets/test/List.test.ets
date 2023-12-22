@@ -14,48 +14,49 @@
  */
 
 
- import Column_Space from './Column/spaceChanged/Column_Space.test';
- import Column_Space_String from './Column/spaceChanged/Column_Space_String.test';
- import Column_Space_Default from './Column/spaceChanged/Column_Space_Default.test';
+ import Column_Space from './Column/spaceChanged/Column_Space.test.ets';
+ import Column_Space_String from './Column/spaceChanged/Column_Space_String.test.ets';
+ import Column_Space_Default from './Column/spaceChanged/Column_Space_Default.test.ets';
  import layoutWeight_Part from './Column/layoutWeight/layoutWeight_Part.test';
  import layoutWeight_All from './Column/layoutWeight/layoutWeight_All.test';
- import layoutWeight_Default from './Column/layoutWeight/layoutWeight_Default.test';
- import layoutWeight_flexGrow from './Column/layoutWeight/layoutWeight_flexGrow.test';
- import layoutWeight_flexShrink from './Column/layoutWeight/layoutWeight_flexShrink.test';
- import flexGrow_Part from './Column/flexGrow/flexGrow_Part.test';
- import flexGrow_Default from './Column/flexGrow/flexGrow_Default.test';
- import flexShrink_Part from './Column/flexShrink/flexShrink_Part.test';
- import flexBasis_Type from './Column/flexBasis/flexBasis_Type.test';
- import flexBasis_Default from './Column/flexBasis/flexBasis_Default.test';
- import columnNesting_Space from './Column/columnNesting/columnNesting_Space.test';
- import columnNesting_alignItems from './Column/columnNesting/columnNesting_alignItems.test';
- import columnNesting_justifyContent from './Column/columnNesting/columnNesting_justifyContent.test';
-import column_WidthHeight_ChangeParent from './Column/ParentComponentChanged/Column_WidthHeight_ChangeParent.test';
-import column_Padding_ChangeParent from './Column/ParentComponentChanged/Column_Padding_ChangeParent.test';
-import column_Margin_ChangeParent from './Column/ParentComponentChanged/Column_Margin_ChangeParent.test';
-import column_MarPad_ChangeParent from './Column/ParentComponentChanged/Column_MarPad_ChangeParent.test';
-import column_AlignItems_ChangeParent from './Column/ParentComponentChanged/Column_AlignItems_ChangeParent.test';
-import column_JustifyContent_ChangeParent from './Column/ParentComponentChanged/Column_JustifyContent_ChangeParent.test';
-import ColumnWidthHeight_SubChange from './Column/subComponentChanged/ColumnWidthHeight_SubChange.test';
-import ColumnSetPadding_SubChange from './Column/subComponentChanged/ColumnSetPadding_SubChange.test';
-import ColumnSetPadding_SubChangeMar from './Column/subComponentChanged/ColumnSetPadding_SubChangeMar.test';
-import ColumnSetPadding_SubChangePad from './Column/subComponentChanged/ColumnSetPadding_SubChangePad.test';
-import ColumnSetMargin_SubChange from './Column/subComponentChanged/ColumnSetMargin_SubChange.test';
-import ColumnSetMargin_SubChangeMar from './Column/subComponentChanged/ColumnSetMargin_SubChangeMar.test';
-import ColumnSetMargin_SubChangePad from './Column/subComponentChanged/ColumnSetMargin_SubChangePad.test';
-import ColumnSetPaddingMargin_SubChange from './Column/subComponentChanged/ColumnSetPaddingMargin_SubChange.test';
-import ColumnSetPaddingMargin_SubChangeMar from './Column/subComponentChanged/ColumnSetPaddingMargin_SubChangeMar.test';
-import ColumnSetPaddingMargin_SubChangePad from './Column/subComponentChanged/ColumnSetPaddingMargin_SubChangePad.test';
-import ColumnSetPosition_SubChange from './Column/subComponentChanged/ColumnSetPosition_SubChange.test';
-import ColumnSetOffset_SubChange from './Column/subComponentChanged/ColumnSetOffset_SubChange.test';
-import ColumnSetDisplayPriority_SubChange from './Column/subComponentChanged/ColumnSetDisplayPriority_SubChange.test';
-import ColumnSetLayoutWeight_SubChange from './Column/subComponentChanged/ColumnSetLayoutWeight_SubChange.test';
-import ColumnSetLayoutWeightNone_SubChange from './Column/subComponentChanged/ColumnSetLayoutWeightNone_SubChange.test';
-import ColumnSetFlexShink_SubChange from './Column/subComponentChanged/ColumnSetFlexShink_SubChange.test';
-import ColumnSetFlexShinkNone_SubChange from './Column/subComponentChanged/ColumnSetFlexShinkNone_SubChange.test';
-import ColumnSetVisibility_SubChange from './Column/subComponentChanged/ColumnSetVisibility_SubChange.test';
+ import layoutWeight_Default from './Column/layoutWeight/layoutWeight_Default.test.ets';
+ import layoutWeight_flexGrow from './Column/layoutWeight/layoutWeight_flexGrow.test.ets';
+ import layoutWeight_flexShrink from './Column/layoutWeight/layoutWeight_flexShrink.test.ets';
+ import flexGrow_Part from './Column/flexGrow/flexGrow_Part.test.ets';
+ import flexGrow_Default from './Column/flexGrow/flexGrow_Default.test.ets';
+ import flexShrink_Part from './Column/flexShrink/flexShrink_Part.test.ets';
+ import flexBasis_Type from './Column/flexBasis/flexBasis_Type.test.ets';
+ import flexBasis_Default from './Column/flexBasis/flexBasis_Default.test.ets';
+ import columnNesting_Space from './Column/columnNesting/columnNesting_Space.test.ets';
+ import columnNesting_alignItems from './Column/columnNesting/columnNesting_alignItems.test.ets';
+ import columnNesting_justifyContent from './Column/columnNesting/columnNesting_justifyContent.test.ets';
+import column_WidthHeight_ChangeParent from './Column/ParentComponentChanged/Column_WidthHeight_ChangeParent.test.ets';
+import column_Padding_ChangeParent from './Column/ParentComponentChanged/Column_Padding_ChangeParent.test.ets';
+import column_Margin_ChangeParent from './Column/ParentComponentChanged/Column_Margin_ChangeParent.test.ets';
+import column_MarPad_ChangeParent from './Column/ParentComponentChanged/Column_MarPad_ChangeParent.test.ets';
+import column_AlignItems_ChangeParent from './Column/ParentComponentChanged/Column_AlignItems_ChangeParent.test.ets';
+import column_JustifyContent_ChangeParent from './Column/ParentComponentChanged/Column_JustifyContent_ChangeParent.test.ets';
+import ColumnWidthHeight_SubChange from './Column/subComponentChanged/ColumnWidthHeight_SubChange.test.ets';
+import ColumnSetPadding_SubChange from './Column/subComponentChanged/ColumnSetPadding_SubChange.test.ets';
+import ColumnSetPadding_SubChangeMar from './Column/subComponentChanged/ColumnSetPadding_SubChangeMar.test.ets';
+import ColumnSetPadding_SubChangePad from './Column/subComponentChanged/ColumnSetPadding_SubChangePad.test.ets';
+import ColumnSetMargin_SubChange from './Column/subComponentChanged/ColumnSetMargin_SubChange.test.ets';
+import ColumnSetMargin_SubChangeMar from './Column/subComponentChanged/ColumnSetMargin_SubChangeMar.test.ets';
+import ColumnSetMargin_SubChangePad from './Column/subComponentChanged/ColumnSetMargin_SubChangePad.test.ets';
+import ColumnSetPaddingMargin_SubChange from './Column/subComponentChanged/ColumnSetPaddingMargin_SubChange.test.ets';
+import ColumnSetPaddingMargin_SubChangeMar from './Column/subComponentChanged/ColumnSetPaddingMargin_SubChangeMar.test.ets';
+import ColumnSetPaddingMargin_SubChangePad from './Column/subComponentChanged/ColumnSetPaddingMargin_SubChangePad.test.ets';
+import ColumnSetPosition_SubChange from './Column/subComponentChanged/ColumnSetPosition_SubChange.test.ets';
+import ColumnSetOffset_SubChange from './Column/subComponentChanged/ColumnSetOffset_SubChange.test.ets';
+import ColumnSetDisplayPriority_SubChange from './Column/subComponentChanged/ColumnSetDisplayPriority_SubChange.test.ets';
+import ColumnSetLayoutWeight_SubChange from './Column/subComponentChanged/ColumnSetLayoutWeight_SubChange.test.ets';
+import ColumnSetLayoutWeightNone_SubChange from './Column/subComponentChanged/ColumnSetLayoutWeightNone_SubChange.test.ets';
+import ColumnSetFlexShink_SubChange from './Column/subComponentChanged/ColumnSetFlexShink_SubChange.test.ets';
+import ColumnSetFlexShinkNone_SubChange from './Column/subComponentChanged/ColumnSetFlexShinkNone_SubChange.test.ets';
+import ColumnSetVisibility_SubChange from './Column/subComponentChanged/ColumnSetVisibility_SubChange.test.ets';
 
 export default function testsuite() {
+
   Column_Space()
   Column_Space_String()
   Column_Space_Default()
