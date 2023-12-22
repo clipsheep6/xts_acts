@@ -20,7 +20,6 @@ import httpResponseJsunit from './HttpResponseJsunit.test';
 import HttpRequestOptionsJsunit from './HttpRequestOptionsJsunit.test';
 import httpRequestJsunit from './HttpRequestJsunit.test';
 import StatisticsTest from './StatisticsTest.test';
-import NetworkManagerHttpEnhanceTest from './NetworkManagerHttpEnhance.test';
 
 export default function testsuite() {
   httpJsunit();
