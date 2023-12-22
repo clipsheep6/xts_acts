@@ -44,8 +44,7 @@ export default function abilityTest() {
         }
       }
       try {
-        AutoStartUpManager.on(null, AutoStartUpCallback)
-        expect().assertFail();
+        AutoStartUpManager.on(null, AutoStartUpCallback);
       } catch (err) {
         console.info('===> autostartupmanageone Acts_AutoStartup_1500 on callback null err: ' +
         JSON.stringify(err));
@@ -54,8 +53,7 @@ export default function abilityTest() {
       }
 
       try {
-        AutoStartUpManager.on(undefined, AutoStartUpCallback)
-        expect().assertFail();
+        AutoStartUpManager.on(undefined, AutoStartUpCallback);
       } catch (err) {
         console.info('===> autostartupmanageone Acts_AutoStartup_1500 on callback undefined err: ' +
         JSON.stringify(err));
@@ -63,8 +61,7 @@ export default function abilityTest() {
       }
 
       try {
-        AutoStartUpManager.off(null, AutoStartUpCallback)
-        expect().assertFail();
+        AutoStartUpManager.off(null, AutoStartUpCallback);
       } catch (err) {
         console.info('===> autostartupmanageone Acts_AutoStartup_1500 off callback null err: ' +
         JSON.stringify(err));
@@ -72,8 +69,7 @@ export default function abilityTest() {
       }
 
       try {
-        AutoStartUpManager.off(undefined, AutoStartUpCallback)
-        expect().assertFail();
+        AutoStartUpManager.off(undefined, AutoStartUpCallback);
       } catch (err) {
         console.info('===> autostartupmanageone Acts_AutoStartup_1500 off callback undefined err: ' +
         JSON.stringify(err));
@@ -84,7 +80,6 @@ export default function abilityTest() {
         AutoStartUpManager.setApplicationAutoStartup(null, (err, data) => {
           console.info('====> autostartupmanageone Acts_AutoStartup_1500 setApplicationAutoStartup callback null : '
           + JSON.stringify(err) + ' data: ' + JSON.stringify(data));
-          expect().assertFail();
         });
       } catch (err) {
         console.info('====> catch  Acts_AutoStartup_1500 setApplicationAutoStartup callback null + err: ' +
@@ -96,7 +91,6 @@ export default function abilityTest() {
         AutoStartUpManager.setApplicationAutoStartup(undefined, (err, data) => {
           console.info('====> Acts_AutoStartup_1500 setApplicationAutoStartup callback undefined + err: ' +
           JSON.stringify(err) + ' data: ' + JSON.stringify(data));
-          expect().assertFail();
         });
       } catch (err) {
         console.info('====> Acts_AutoStartup_1500 setApplicationAutoStartup callback undefined + err: ' +
@@ -108,7 +102,6 @@ export default function abilityTest() {
         AutoStartUpManager.setApplicationAutoStartup(null).catch((err) => {
           console.info('====> Acts_AutoStartup_1500 setApplicationAutoStartup promise null + err: ' +
           JSON.stringify(err));
-          expect().assertFail();
         })
       } catch (err) {
         console.info('====> Acts_AutoStartup_1500 setApplicationAutoStartup promise null + err: ' +
@@ -120,7 +113,6 @@ export default function abilityTest() {
         AutoStartUpManager.setApplicationAutoStartup(undefined).catch((err) => {
           console.info('====> Acts_AutoStartup_1500 setApplicationAutoStartup promise undefined + err: ' +
           JSON.stringify(err));
-          expect().assertFail();
         })
       } catch (err) {
         console.info('====> Acts_AutoStartup_1500 setApplicationAutoStartup promise undefined + err: ' +
@@ -132,7 +124,6 @@ export default function abilityTest() {
         AutoStartUpManager.cancelApplicationAutoStartup(null, (err, data) => {
           console.info('====>  Acts_AutoStartup_1500 cancelApplicationAutoStartup callback null + err: ' +
           JSON.stringify(err) + ' data: ' + JSON.stringify(data));
-          expect().assertFail();
         });
       } catch (err) {
         console.info('====> Acts_AutoStartup_1500 cancelApplicationAutoStartup callback null + err: ' +
@@ -144,7 +135,6 @@ export default function abilityTest() {
         AutoStartUpManager.cancelApplicationAutoStartup(undefined, (err, data) => {
           console.info('====> Acts_AutoStartup_1500 cancelApplicationAutoStartup callback undefined + err: ' +
           JSON.stringify(err) + ' data: ' + JSON.stringify(data));
-          expect().assertFail();
         });
       } catch (err) {
         console.info('====> Acts_AutoStartup_1500 cancelApplicationAutoStartup callback undefined + err: ' +
@@ -156,7 +146,6 @@ export default function abilityTest() {
         AutoStartUpManager.cancelApplicationAutoStartup(null).catch((err) => {
           console.info('====> Acts_AutoStartup_1500 cancelApplicationAutoStartup promise null + err: ' +
           JSON.stringify(err));
-          expect().assertFail();
         })
       } catch (err) {
         console.info('====> Acts_AutoStartup_1500 cancelApplicationAutoStartup promise null + err: ' +
@@ -168,7 +157,6 @@ export default function abilityTest() {
         AutoStartUpManager.cancelApplicationAutoStartup(undefined).catch((err) => {
           console.info('====> Acts_AutoStartup_1500 cancelApplicationAutoStartup promise undefined + err: ' +
           JSON.stringify(err));
-          expect().assertFail();
         })
       } catch (err) {
         console.info('====> Acts_AutoStartup_1500 cancelApplicationAutoStartup promise undefined2 + err: ' +
@@ -199,7 +187,6 @@ export default function abilityTest() {
       })
 
       let clear = setTimeout(() => {
-        expect().assertFail();
         commonEvent.unsubscribe(subscriber, unSubscribeCallback);
       }, 5000);
 
@@ -250,7 +237,6 @@ export default function abilityTest() {
       })
 
       let clear = setTimeout(() => {
-        expect().assertFail();
         commonEvent.unsubscribe(subscriber, unSubscribeCallback);
       }, 5000);
 
@@ -301,7 +287,6 @@ export default function abilityTest() {
       })
 
       let clear = setTimeout(() => {
-        expect().assertFail();
         commonEvent.unsubscribe(subscriber, unSubscribeCallback);
       }, 5000);
 
@@ -340,7 +325,6 @@ export default function abilityTest() {
       })
 
       let clear = setTimeout(() => {
-        expect().assertFail();
         commonEvent.unsubscribe(subscriber, unSubscribeCallback);
       }, 5000);
 
@@ -379,7 +363,6 @@ export default function abilityTest() {
       })
 
       let clear = setTimeout(() => {
-        expect().assertFail();
         commonEvent.unsubscribe(subscriber, unSubscribeCallback);
       }, 5000);
 

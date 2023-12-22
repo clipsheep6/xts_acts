@@ -10,7 +10,6 @@
     "kits": [
 		{
             "test-file-name": [
-                "AutoStartupManageOne.hap",
                 "AutoStartupManageOneTest.hap",
                 "AutoStartupManageThree.hap"
             ],
@@ -21,10 +20,8 @@
             "type": "ShellKit",
             "run-command": [
                 "power-shell wakeup",
+		"uinput -T -m 300 2700 280 200",
                 "power-shell setmode 602",
-                "hilog -Q pidoff",
-                "hilog -Q domainoff",
-                "hilog -b D",
                 "setenforce 0"
             ]
         }

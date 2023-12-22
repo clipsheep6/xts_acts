@@ -17,7 +17,6 @@ group("actsautosetupmanagetest") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "autostartupmanageone:AutoStartupManageOne",
       "autostartupmanageonetest:AutoStartupManageOneTest",
       "autostartupmanagethree:AutoStartupManageThree",
     ]

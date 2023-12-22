@@ -18,7 +18,7 @@ import window from '@ohos.window';
 import AutoStartUpManager from '@ohos.app.ability.autoStartupManager';
 import commonEvent from '@ohos.commonEventManager';
 
-function autoStartup1600() {
+function autoStartup1600(): void {
   console.info('====>   Three  Acts_AutoStartup_1600');
   try {
     AutoStartUpManager.setApplicationAutoStartup({
@@ -63,7 +63,7 @@ function autoStartup1600() {
   }
 }
 
-function autoStartup1700() {
+function autoStartup1700(): void {
   try {
     AutoStartUpManager.setApplicationAutoStartup({
       bundleName: 'com.acts.autostartupapp',
@@ -111,7 +111,7 @@ function autoStartup1700() {
   }
 }
 
-function autoStartup1800() {
+function autoStartup1800(): void {
 
   try {
     AutoStartUpManager.queryAllAutoStartupApplications((err, data) => {
@@ -130,7 +130,7 @@ function autoStartup1800() {
   }
 }
 
-function autoStartup1900() {
+function autoStartup1900(): void {
 
   try {
     AutoStartUpManager.queryAllAutoStartupApplications().then((data) => {
@@ -152,17 +152,17 @@ function autoStartup1900() {
   }
 }
 
-function autoStartup2000() {
-  let AutoStartUpCallback = {
-    onAutoStartupOn(data) {
+function autoStartup2000(): void {
+  let autoStartUpCallback = {
+    onAutoStartupOn(data): void {
       console.info('===> autostartupmanagethree Acts_AutoStartup_2000 onAutoStartupOn data: ' + JSON.stringify(data));
     },
-    onAutoStartupOff(data) {
+    onAutoStartupOff(data): void {
       console.info('===> autostartupmanagethree Acts_AutoStartup_2000 onAutoStartupOn data: ' + JSON.stringify(data));
     }
-  }
+  };
   try {
-    AutoStartUpManager.on('systemAutoStartup', AutoStartUpCallback);
+    AutoStartUpManager.on('systemAutoStartup', autoStartUpCallback);
   } catch (err) {
     console.info('====> catch autostartupmanagethree Acts_AutoStartup_2000 ACTS_CALL_EVENT_QUERY ON publish: ' +
     JSON.stringify(err));
@@ -178,7 +178,7 @@ function autoStartup2000() {
   }
 
   try {
-    AutoStartUpManager.off('systemAutoStartup', AutoStartUpCallback);
+    AutoStartUpManager.off('systemAutoStartup', autoStartUpCallback);
   } catch (err) {
     console.info('====> catch autostartupmanagethree Acts_AutoStartup_2000 ACTS_CALL_EVENT_QUERY OFF publish: ' +
     JSON.stringify(err));
@@ -211,7 +211,7 @@ export default class EntryAbility extends UIAbility {
     }
   }
 
-  onNewWant(want) {
+  onNewWant(want): void {
     if (want.action === 'Acts_AutoStartup_1600') {
       autoStartup1600();
     } else if (want.action === 'Acts_AutoStartup_1700') {
