@@ -1,0 +1,30 @@
+{
+    "description": "Configuration for resourceschedule js api Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "300000",
+        "shell-timeout": "300000",
+        "bundle-name": "ohos.acts.resourceschedule.deviceusagestatisticsjsunit.js.function",
+        "package-name": "ohos.acts.resourceschedule.deviceusagestatisticsjsunit.js.function"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100",
+                "power-shell setmode 602"
+            ],
+            "teardown-command": [
+                "power-shell setmode 603"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsResourcescheduleDeviceUsageStatisticsJsunitTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
+}
