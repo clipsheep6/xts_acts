@@ -48,17 +48,19 @@ export default function StateHight() {
     * @tc.level : Level 2
     */
     it('StateHight_0100', 0, async function (done) {
+      await CommonFunc.sleep(1000);
       console.info('StateHight_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
-      let button = await driver.findComponent(ON.id('state1'));
+      await CommonFunc.sleep(1000);
+      let button = await driver.findComponent(ON.id('StateHight1'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('state1');
+      let strJson = getInspectorByKey('StateHight1');
       let obj = JSON.parse(strJson);
       console.info("[StateHight_0100] component obj is: " + JSON.stringify(obj));
       console.info("[StateHight_0100] title: " + JSON.stringify(obj.$attrs.height));
-      expect(obj.$attrs.height).assertEqual('40.00vp');
+      expect(obj.$attrs.height).assertEqual('100.00vp');
       console.info('[StateHight_0100] END');
       done();
     });
@@ -72,10 +74,10 @@ export default function StateHight() {
       console.info('StateHight_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
-      let button = await driver.findComponent(ON.id('state2'));
+      let button = await driver.findComponent(ON.id('StateHight2'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('state2');
+      let strJson = getInspectorByKey('StateHight2');
       let obj = JSON.parse(strJson);
       console.info("[StateHight_0100] component obj is: " + JSON.stringify(obj));
       console.info("[StateHight_0100] title: " + JSON.stringify(obj.$attrs.height));
@@ -93,10 +95,10 @@ export default function StateHight() {
       console.info('StateHight_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
-      let button = await driver.findComponent(ON.id('state3'));
+      let button = await driver.findComponent(ON.id('StateHight3'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('state3');
+      let strJson = getInspectorByKey('StateHight3');
       let obj = JSON.parse(strJson);
       console.info("[StateHight_0100] component obj is: " + JSON.stringify(obj));
       console.info("[StateHight_0100] title: " + JSON.stringify(obj.$attrs.height));

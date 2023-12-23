@@ -96,12 +96,12 @@ export default function ProvideColor() {
       let button = await driver.findComponent(ON.id('state3'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('state3');
+      let strJson = getInspectorByKey('ProvideColor');
       let obj = JSON.parse(strJson);
-      console.info("[ProvideColor_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[ProvideColor_0100] title: " + JSON.stringify(obj.$attrs.backgroundColor));
-      expect(obj.$attrs.backgroundColor).assertEqual('#FF007DFF');
-      console.info('[ProvideColor_0100] END');
+      console.info("[ProvideColor_0300] component obj is: " + JSON.stringify(obj));
+      console.info("[ProvideColor_0300] title: " + JSON.stringify(obj.$attrs.content));
+      expect(obj.$attrs.content).assertEqual('count type of [object Undefined] number is undefined');
+      console.info('[ProvideColor_0300] END');
       done();
     });
     /* *
@@ -121,7 +121,7 @@ export default function ProvideColor() {
       let obj = JSON.parse(strJson);
       console.info("[ProvideColor_0100] component obj is: " + JSON.stringify(obj));
       console.info("[ProvideColor_0100] title: " + JSON.stringify(obj.$attrs.backgroundColor));
-      expect(obj.$attrs.backgroundColor).assertEqual('#FF007DFF');
+      expect(obj.$attrs.backgroundColor).assertEqual('#FFA52A2A');
       console.info('[ProvideColor_0100] END');
       done();
     });
@@ -132,18 +132,18 @@ export default function ProvideColor() {
     * @tc.level : Level 2
     */
     it('ProvideColor_0500', 0, async function (done) {
-      console.info('ProvideColor_0100 START');
+      console.info('ProvideColor_0500 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('state5'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('state5');
+      let strJson = getInspectorByKey('ProvideColor');
       let obj = JSON.parse(strJson);
-      console.info("[ProvideColor_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[ProvideColor_0100] title: " + JSON.stringify(obj.$attrs.backgroundColor));
-      expect(obj.$attrs.backgroundColor).assertEqual('#FF007DFF');
-      console.info('[ProvideColor_0100] END');
+      console.info("[ProvideColor_0500] component obj is: " + JSON.stringify(obj));
+      console.info("[ProvideColor_0500] title: " + JSON.stringify(obj.$attrs.content));
+      expect(obj.$attrs.content).assertEqual('count type of [object Null] number is null');
+      console.info('[ProvideColor_0500] END');
       done();
     });
     /* *
@@ -163,7 +163,7 @@ export default function ProvideColor() {
       let obj = JSON.parse(strJson);
       console.info("[ProvideColor_0100] component obj is: " + JSON.stringify(obj));
       console.info("[ProvideColor_0100] title: " + JSON.stringify(obj.$attrs.backgroundColor));
-      expect(obj.$attrs.backgroundColor).assertEqual('#FF007DFF');
+      expect(obj.$attrs.backgroundColor).assertEqual('#FF008000');
       console.info('[ProvideColor_0100] END');
       done();
     });

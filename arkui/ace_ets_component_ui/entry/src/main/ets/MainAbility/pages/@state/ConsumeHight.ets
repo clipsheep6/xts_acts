@@ -25,7 +25,7 @@ struct Child_CH {
         .onClick(() => {
           this.hight = 100
         })
-        .key('state1')
+        .key('ConsumeHight1')
 
       Text("设置变量string类型50-->'200'")
       Button('change')
@@ -33,16 +33,15 @@ struct Child_CH {
         .onClick(() => {
           this.hight = '200'
         })
-        .key('state2')
+        .key('ConsumeHight2')
 
       Text("设置变量Resource类型50-->Resource")
       Button('change')
         .height(this.hight)
         .onClick(() => {
           this.hight = $r('app.string.number')
-          console.info("hk____" + this.hight)
         })
-        .key('state3')
+        .key('ConsumeHight3')
 
     }
   }

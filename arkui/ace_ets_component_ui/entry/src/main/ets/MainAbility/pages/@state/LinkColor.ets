@@ -47,7 +47,7 @@ struct Child_AAs {
       Button('change')
         .backgroundColor(this.color)
         .onClick(() => {
-          this.color = '0xa52a2a';
+          this.color = '#FFA52A2A';
         })
         .key('state4')
 
@@ -78,7 +78,7 @@ struct Index_AAs{
 
   build() {
     Column() {
-      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.color)) + " number is " + JSON.stringify(this.color))
+      Text("count type of " + Object.prototype.toString.call(this.color) + " number is " + JSON.stringify(this.color))
         .fontSize(20).margin(30).key('LinkColor')
       Child_AAs({color: this.color})
 
