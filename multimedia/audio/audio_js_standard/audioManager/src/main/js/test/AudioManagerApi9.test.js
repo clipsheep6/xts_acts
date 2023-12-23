@@ -681,14 +681,14 @@ export default function audioManagerApi9() {
                 expect(false).assertTrue();
                 done();
             }
-            onMicStateChangeFlag = true
+            onMicStateChangeFlag1 = true
             groupManager.on('micStateChange', (MicStateChangeEvent) => {
-                if (onMicStateChangeFlag == true) {
+                if (onMicStateChangeFlag1 == true) {
                     console.log(`${TagFrmwk}: Mic State Change Event is called`);
                     if (MicStateChangeEvent.mute == true) {
                         console.info(`${TagFrmwk}: MEDIA CallBack : PASS : ${MicStateChangeEvent.mute}`);
+						onMicStateChangeFlag1 = false
                         expect(true).assertTrue();
-                        onMicStateChangeFlag = false
                     } else {
                         console.info(`${TagFrmwk}: Audio MicStateChangeEvent is : ${MicStateChangeEvent}`);
                         expect(false).assertTrue();
