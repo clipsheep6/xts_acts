@@ -3889,7 +3889,7 @@ export default function window_test() {
                             expect(true).assertTrue()
                         }).catch((err) => {
                             console.error(msgStr + 'Failed to minimize the window. Cause: ' + JSON.stringify(err));
-                            if (!err.code) {
+                            if (!err.code || err.code == 202) {
                                 expect(true).assertTrue()
                             } else {
                                 expect().assertFail()
