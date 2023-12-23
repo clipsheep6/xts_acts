@@ -1073,12 +1073,12 @@ export default function audioManagerApi9() {
                             onMicStateChangeFlag5 = false
                             count++
                         })
+                        let data = await audioManager.isMicrophoneMute();
+                        console.info('Second Promise isMicrophoneMute PASS:' + data);
+                        await audioManager.setMicrophoneMute(!data);
+                        console.info('Second:Promise setMicrophoneMute PASS:' + (!data));
                     }
                 })
-                let data = await audioManager.isMicrophoneMute();
-                console.info('Second Promise isMicrophoneMute PASS:' + data);
-                await audioManager.setMicrophoneMute(!data);
-                console.info('Second:Promise setMicrophoneMute PASS:' + (!data));
                 let data = await audioManager.isMicrophoneMute();
                 console.info('First Promise isMicrophoneMute PASS:' + data);
                 await audioManager.setMicrophoneMute(!data);
