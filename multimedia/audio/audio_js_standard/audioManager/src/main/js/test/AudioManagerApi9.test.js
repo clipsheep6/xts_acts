@@ -1028,7 +1028,6 @@ export default function audioManagerApi9() {
             VolumeGroupManager.on('micStateChange', async (micStateChange) => {
                 if (onMicStateChangeFlag4 == true) {
                     console.info("Updated micState:" + JSON.stringify(micStateChange));
-                    onMicStateChangeFlag4 = false
                     count++;
                 }
             })
@@ -1047,6 +1046,7 @@ export default function audioManagerApi9() {
             }
             await sleep(2000);
             expect(count).assertEqual(2);
+			onMicStateChangeFlag4 = false
             done();
         })
 
@@ -1228,7 +1228,7 @@ export default function audioManagerApi9() {
             } catch (err) {
                 console.info('err :' + JSON.stringify(err.message));
                 console.info('err code :' + JSON.stringify(err.code));
-                expect(err.code).assertEqual("6800104");
+                expect(err.code).assertEqual(6800104);
                 done();
             }
         })
@@ -1275,7 +1275,7 @@ export default function audioManagerApi9() {
             } catch (err) {
                 console.info('err :' + JSON.stringify(err.message));
                 console.info('err code :' + JSON.stringify(err.code));
-                expect(err.code).assertEqual("6800104");
+                expect(err.code).assertEqual(6800104);
                 done();
             }
         })
@@ -1414,7 +1414,7 @@ export default function audioManagerApi9() {
             } catch (err) {
                 console.info('err :' + JSON.stringify(err.message));
                 console.info('err code :' + JSON.stringify(err.code));
-                expect(err.code).assertEqual("6800104");
+                expect(err.code).assertEqual(6800104);
                 done();
             }
         })
@@ -1461,7 +1461,7 @@ export default function audioManagerApi9() {
             } catch (err) {
                 console.info('err :' + JSON.stringify(err.message));
                 console.info('err code :' + JSON.stringify(err.code));
-                expect(err.code).assertEqual("6800104");
+                expect(err.code).assertEqual(6800104);
                 done();
             }
         })
