@@ -3737,13 +3737,13 @@ export default function window_test() {
     })
 
     /**
-	   * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STANDARD_JS_API_1170
-	   * @tc.name      : testGetWindowLimits_Test
-	   * @tc.desc      : test the function of getWindowLimits
-	   * @tc.size      : MediumTest
-       * @tc.type      : Function
-       * @tc.level     : Level4
-    */
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STANDARD_JS_API_1170
+     * @tc.name      : testGetWindowLimits_Test
+     * @tc.desc      : test the function of getWindowLimits
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * * @tc.level     : Level4
+     */
      it('testGetWindowLimits_Test', 0,  async function (done) {
         console.log('www data testGetWindowLimits_Test begin')
         try {
@@ -3768,13 +3768,13 @@ export default function window_test() {
     })
 
     /**
-	   * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STANDARD_JS_API_1180
-	   * @tc.name      : testSetWindowLimits_Function_Promise
-	   * @tc.desc      : test the function of setWindowLimits
-	   * @tc.size      : MediumTest
-       * @tc.type      : Function
-       * @tc.level     : Level4
-    */
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STANDARD_JS_API_1180
+     * @tc.name      : testSetWindowLimits_Function_Promise
+     * @tc.desc      : test the function of setWindowLimits
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level4
+     */
     it('testSetWindowLimits_Function_Promise', 0, async function (done){
         console.log('www data setWindowLimits_Function_Promise begin')
         try {
