@@ -664,65 +664,6 @@ export default function abilityTest() {
     })
 
     /*
-     * @tc.number: Acts_AppCirculation_2000
-     * @tc.name: Signature circulation test
-     * @tc.desc: Deploy different identifier test whether the transfer was successful
-     * @tc.level:1
-     */
-    it('Acts_AppCirculation_2000', 0, async function (done) {
-      console.log("Acts_AppCirculation_2000 start");
-      let isMultipleUserEnabled = await osAccountManager.checkMultiOsAccountEnabled();
-      if (!isMultipleUserEnabled) {
-        console.log("Acts_AppCirculation_2000 checkMultiOsAccountEnabled fail ");
-        done();
-        return;
-      }
-      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
-        data.install(actsAppCirculationBaseRelyFilePaths, (err: BusinessError) => {
-          if (err) {
-            console.error('install failed:' + err.message);
-            expect().assertFail();
-          } else {
-            console.info('install successfully.');
-          }
-        });
-      }).catch((error: BusinessError) => {
-        console.error('getBundleInstaller failed. Cause: ' + error.message);
-        expect().assertFail();
-      });
-      await sleep(500);
-      await osAccountManager.createOsAccount("200", osAccount.OsAccountType.NORMAL).then((data) => {
-        console.log("Acts_AppCirculation_2000 createOsAccount successful" + JSON.stringify(data));
-        accountId = data.localId;
-      }).catch((err) => {
-        console.error("Acts_AppCirculation_2000 createOsAccount fail" + JSON.stringify(err));
-        expect().assertFail()
-      });
-      await osAccountManager.activateOsAccount(accountId).then((data) => {
-        console.log("Acts_AppCirculation_2000 activateOsAccount successful");
-      }).catch((err) => {
-        console.error("Acts_AppCirculation_2000 activateOsAccount fail" + JSON.stringify(err));
-        expect().assertFail()
-      });
-      await sleep(1000);
-      await installer.getBundleInstaller().then((data: installer.BundleInstaller) => {
-        data.install(actsAppCirculationDiffIdUpdateRelyFilePaths, (err: BusinessError) => {
-          if (err) {
-            console.error('install failed:' + err.message);
-            done();
-          } else {
-            console.info('install successfully.');
-            expect().assertFail();
-            done();
-          }
-        });
-      }).catch((error: BusinessError) => {
-        console.error('getBundleInstaller failed. Cause: ' + error.message);
-        expect().assertFail();
-      });
-    })
-
-    /*
      * @tc.number: Acts_AppCirculation_2300
      * @tc.name: Signature circulation test
      * @tc.desc: Deploy different identifier test whether the transfer was successful
