@@ -35,9 +35,11 @@ export default function audioManagerApi9() {
         let volMappingId = null;
         let volGroupName = null;
         let volConnectType = null;
-		let onMicStateChangeFlag1 = null
-		let onMicStateChangeFlag2 = null
-		let onMicStateChangeFlag3 = null
+        let onMicStateChangeFlag1 = null
+        let onMicStateChangeFlag2 = null
+        let onMicStateChangeFlag3 = null
+        let onMicStateChangeFlag4 = null
+        let onMicStateChangeFlag5 = null
         function displayVolumeGroupProp(value, index, array) {
             console.info('audioManagerApi9Test: volume group networkId:' + value.networkId);
             volNetworkId = value.networkId;
@@ -679,21 +681,20 @@ export default function audioManagerApi9() {
                 expect(false).assertTrue();
                 done();
             }
-			onMicStateChangeFlag = true 
+            onMicStateChangeFlag = true
             groupManager.on('micStateChange', (MicStateChangeEvent) => {
-				if (onMicStateChangeFlag == true)
-				{
-					console.log(`${TagFrmwk}: Mic State Change Event is called`);
-					if (MicStateChangeEvent.mute == true) {
-						console.info(`${TagFrmwk}: MEDIA CallBack : PASS : ${MicStateChangeEvent.mute}`);
-						expect(true).assertTrue();
-						onMicStateChangeFlag = false
-					} else {
-						console.info(`${TagFrmwk}: Audio MicStateChangeEvent is : ${MicStateChangeEvent}`);
-						expect(false).assertTrue();
-					}
-					done();
-				}
+                if (onMicStateChangeFlag == true) {
+                    console.log(`${TagFrmwk}: Mic State Change Event is called`);
+                    if (MicStateChangeEvent.mute == true) {
+                        console.info(`${TagFrmwk}: MEDIA CallBack : PASS : ${MicStateChangeEvent.mute}`);
+                        expect(true).assertTrue();
+                        onMicStateChangeFlag = false
+                    } else {
+                        console.info(`${TagFrmwk}: Audio MicStateChangeEvent is : ${MicStateChangeEvent}`);
+                        expect(false).assertTrue();
+                    }
+                    done();
+                }
             });
             try {
                 await groupManager.setMicrophoneMute(true);
@@ -802,7 +803,7 @@ export default function audioManagerApi9() {
                 if (outputDeviceDescription.length == 1 && outputDeviceDescription[0].deviceType == audio.DeviceType.SPEAKER) {
                     flag = true;
                 }
-                if(outputDeviceDescription.length == 2 && outputDeviceDescription[0].deviceType == audio.DeviceType.EARPIECE && outputDeviceDescription[1].deviceType == audio.DeviceType.SPEAKER){
+                if (outputDeviceDescription.length == 2 && outputDeviceDescription[0].deviceType == audio.DeviceType.EARPIECE && outputDeviceDescription[1].deviceType == audio.DeviceType.SPEAKER) {
                     flag = false;
                 }
                 await AudioRoutingManager.setCommunicationDevice(2, false).then(() => {
@@ -853,7 +854,7 @@ export default function audioManagerApi9() {
                 if (outputDeviceDescription.length == 1 && outputDeviceDescription[0].deviceType == audio.DeviceType.SPEAKER) {
                     flag = true;
                 }
-                if(outputDeviceDescription.length == 2 && outputDeviceDescription[0].deviceType == audio.DeviceType.EARPIECE && outputDeviceDescription[1].deviceType == audio.DeviceType.SPEAKER){
+                if (outputDeviceDescription.length == 2 && outputDeviceDescription[0].deviceType == audio.DeviceType.EARPIECE && outputDeviceDescription[1].deviceType == audio.DeviceType.SPEAKER) {
                     flag = false;
                 }
                 await AudioRoutingManager.setCommunicationDevice(2, false).then(() => {
@@ -904,7 +905,7 @@ export default function audioManagerApi9() {
             if (outputDeviceDescription.length == 1 && outputDeviceDescription[0].deviceType == audio.DeviceType.SPEAKER) {
                 flag = true;
             }
-            if(outputDeviceDescription.length == 2 && outputDeviceDescription[0].deviceType == audio.DeviceType.EARPIECE && outputDeviceDescription[1].deviceType == audio.DeviceType.SPEAKER){
+            if (outputDeviceDescription.length == 2 && outputDeviceDescription[0].deviceType == audio.DeviceType.EARPIECE && outputDeviceDescription[1].deviceType == audio.DeviceType.SPEAKER) {
                 flag = false;
             }
             AudioRoutingManager.setCommunicationDevice(audio.ActiveDeviceType.SPEAKER, false, (err) => {
@@ -948,13 +949,13 @@ export default function audioManagerApi9() {
             let VolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
             let count = 0;
             console.info('getVolumeGroupManager Callback START.');
-			onMicStateChangeFlag2 = true
+            onMicStateChangeFlag2 = true
             VolumeGroupManager.on('micStateChange', async (micStateChange) => {
-				if (onMicStateChangeFlag2 == true){
-					console.info('micStateChange is ' + micStateChange.mute);
-					onMicStateChangeFlag2 = false
-					count++;
-				}
+                if (onMicStateChangeFlag2 == true) {
+                    console.info('micStateChange is ' + micStateChange.mute);
+                    onMicStateChangeFlag2 = false
+                    count++;
+                }
             })
             try {
                 let data = await audioManager.isMicrophoneMute();
@@ -986,13 +987,13 @@ export default function audioManagerApi9() {
             let VolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
             console.info('getVolumeGroupManager Callback START.');
             let count = 0;
-			onMicStateChangeFlag3 = true 
+            onMicStateChangeFlag3 = true
             VolumeGroupManager.on('micStateChange', async (micStateChange) => {
-				if (onMicStateChangeFlag3 == true){
-					console.info("Updated micState:" + JSON.stringify(micStateChange));
-					onMicStateChangeFlag3 = false
-					count++;
-				}
+                if (onMicStateChangeFlag3 == true) {
+                    console.info("Updated micState:" + JSON.stringify(micStateChange));
+                    onMicStateChangeFlag3 = false
+                    count++;
+                }
             })
             try {
                 let data = await audioManager.isMicrophoneMute();
@@ -1023,13 +1024,13 @@ export default function audioManagerApi9() {
             let VolumeGroupManager = await audioVolumeManager.getVolumeGroupManager(audio.DEFAULT_VOLUME_GROUP_ID);
             console.info('getVolumeGroupManager Callback START.');
             let count = 0;
-			onMicStateChangeFlag4 = true
+            onMicStateChangeFlag4 = true
             VolumeGroupManager.on('micStateChange', async (micStateChange) => {
-				if (onMicStateChangeFlag4 == true){
-					console.info("Updated micState:" + JSON.stringify(micStateChange));
-					onMicStateChangeFlag4 = false
-					count++;
-				}
+                if (onMicStateChangeFlag4 == true) {
+                    console.info("Updated micState:" + JSON.stringify(micStateChange));
+                    onMicStateChangeFlag4 = false
+                    count++;
+                }
             })
             try {
                 let data = await audioManager.isMicrophoneMute();
@@ -1063,21 +1064,21 @@ export default function audioManagerApi9() {
             let count = 0;
             try {
                 console.info("enter SUB_MULTIMEDIA_AUDIO_ROUTING_MANAGER_MICSTATECHANGE_0400");
-				onMicStateChangeFlag5 = true
+                onMicStateChangeFlag5 = true
                 VolumeGroupManager.on('micStateChange', async (micStateChange1) => {
-					if (onMicStateChangeFlag5 = true){
-						console.info("Updated micState--001:" + JSON.stringify(micStateChange1));
-						VolumeGroupManager.on('micStateChange', async (micStateChange) => {
-							console.info("Updated micState--002:" + JSON.stringify(micStateChange));
-							onMicStateChangeFlag5 = false
-							count++
-						})
-					}
+                    if (onMicStateChangeFlag5 = true) {
+                        console.info("Updated micState--001:" + JSON.stringify(micStateChange1));
+                        VolumeGroupManager.on('micStateChange', async (micStateChange) => {
+                            console.info("Updated micState--002:" + JSON.stringify(micStateChange));
+                            onMicStateChangeFlag5 = false
+                            count++
+                        })
+                    }
                 })
-				let data = await audioManager.isMicrophoneMute();
-				console.info('Second Promise isMicrophoneMute PASS:' + data);
-				await audioManager.setMicrophoneMute(!data);
-				console.info('Second:Promise setMicrophoneMute PASS:' + (!data));
+                let data = await audioManager.isMicrophoneMute();
+                console.info('Second Promise isMicrophoneMute PASS:' + data);
+                await audioManager.setMicrophoneMute(!data);
+                console.info('Second:Promise setMicrophoneMute PASS:' + (!data));
                 let data = await audioManager.isMicrophoneMute();
                 console.info('First Promise isMicrophoneMute PASS:' + data);
                 await audioManager.setMicrophoneMute(!data);
