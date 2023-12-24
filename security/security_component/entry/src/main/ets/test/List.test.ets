@@ -14,6 +14,7 @@
  */
 
 import pasteComponentTest from './PasteComponentTest.test.ets';
+import pasteComponentTest_1 from './PasteComponentTest_1.test.ets';
 import locationComponentTest from './LocationComponentTest.test.ets';
 import locationComponentTest_1 from './LocationComponentTest_1.test.ets';
 import saveComponentTest from './SaveComponentTest.test.ets';
@@ -21,6 +22,7 @@ import saveComponentTest_1 from './SaveComponentTest_1.test.ets';
 
 export default function testsuite() {
   pasteComponentTest();
+  pasteComponentTest_1();
   locationComponentTest();
   locationComponentTest_1();
   saveComponentTest();
