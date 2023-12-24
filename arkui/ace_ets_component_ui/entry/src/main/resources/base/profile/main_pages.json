@@ -376,6 +376,16 @@
         "MainAbility/pages/ScrollToIndex/ScrollToIndexForWaterFlow02",
         "MainAbility/pages/ScrollToIndex/ScrollToIndexForGrid01",
         "MainAbility/pages/ScrollToIndex/ScrollToIndexForGrid02",
-        "MainAbility/pages/ScrollToIndex/ScrollToIndexForGrid03"
+        "MainAbility/pages/ScrollToIndex/ScrollToIndexForGrid03",
+		"MainAbility/pages/@state/StateMap",
+        "MainAbility/pages/@state/StateSet",
+        "MainAbility/pages/@state/PropMap",
+        "MainAbility/pages/@state/PropSet",
+        "MainAbility/pages/@state/ProvideMap",
+        "MainAbility/pages/@state/ProvideSet",
+        "MainAbility/pages/@state/LinkMap",
+        "MainAbility/pages/@state/LinkSet",
+        "MainAbility/pages/@state/ObjectLinkMap",
+        "MainAbility/pages/@state/ObjectLinkSet"
     ]
 }
