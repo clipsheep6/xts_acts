@@ -783,6 +783,52 @@ static napi_value AudioStreamBuilderSetFrameSizeInCallback(napi_env env, napi_ca
     napi_create_int32(env, result, &res);
     return res;
 }
+// OH_AudioRenderer_GetTimestamp
+static napi_value AudioRenderGetTimestamp(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder *builder = CreateRenderBuilder();
+    OH_AudioRenderer_Callbacks callbacks;
+    callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, NULL);
+
+    OH_AudioRenderer *audioRenderer;
+    OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    OH_AudioRenderer_Start(audioRenderer);
+
+    int64_t framePosition;
+    int64_t timestamp;
+    OH_AudioStream_Result result = OH_AudioRenderer_GetTimestamp(audioRenderer, CLOCK_MONOTONIC, &framePosition,
+        &timestamp);
+    OH_AudioRenderer_Stop(audioRenderer);
+    OH_AudioRenderer_Release(audioRenderer);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+// OH_AudioCapturer_GetTimestamp
+static napi_value AudioCaptureGetTimestamp(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder *builder = CreateCapturerBuilder();
+    OH_AudioCapturer_Callbacks callbacks;
+    callbacks.OH_AudioCapturer_OnReadData = AudioCapturerOnReadData;
+    OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, NULL);
+
+    OH_AudioCapturer *audioCapturer;
+    OH_AudioStreamBuilder_GenerateCapturer(builder, &audioCapturer);
+    OH_AudioCapturer_Start(audioCapturer);
+
+    int64_t framePosition;
+    int64_t timestamp;
+    OH_AudioStream_Result result = OH_AudioCapturer_GetTimestamp(audioCapturer, CLOCK_MONOTONIC, &framePosition,
+        &timestamp);
+    OH_AudioCapturer_Stop(audioCapturer);
+    OH_AudioCapturer_Release(audioCapturer);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
 
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
@@ -840,7 +886,9 @@ static napi_value Init(napi_env env, napi_value exports)
         {"audioRenderGetChannelCount", nullptr, AudioRenderGetChannelCount, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioStreamBuilderSetFrameSizeInCallback", nullptr, AudioStreamBuilderSetFrameSizeInCallback,
             nullptr, nullptr, nullptr, napi_default, nullptr},
-
+        {"audioRenderGetTimestamp", nullptr, AudioRenderGetTimestamp, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioCaptureGetTimestamp", nullptr, AudioCaptureGetTimestamp, nullptr, nullptr, nullptr, napi_default,
+            nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

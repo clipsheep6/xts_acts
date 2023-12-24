@@ -784,5 +784,33 @@ export default function nativeApiImageJsunit() {
             expect(a).assertEqual(0)
             done()
         })
+        /* *
+           * @tc.number    : TC_052
+           * @tc.name      : Test OH_AudioRenderer_GetTimestamp, OH_AccessPixels, OH_UnAccessPixels
+           * @tc.desc      :
+           * @tc.size      :
+           * @tc.type      : Functional
+           * @tc.level     : FWK Layer
+       */
+        it('TC_052', 0, async function (done) {
+            let a = myaudioNdk.audioRenderGetTimestamp();
+            console.info("TC_052-------------audioRenderGetTimestamp:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+           * @tc.number    : TC_053
+           * @tc.name      : Test OH_AudioCapturer_GetTimestamp, OH_AccessPixels, OH_UnAccessPixels
+           * @tc.desc      :
+           * @tc.size      :
+           * @tc.type      : Functional
+           * @tc.level     : FWK Layer
+       */
+        it('TC_053', 0, async function (done) {
+            let a = myaudioNdk.audioCaptureGetTimestamp();
+            console.info("TC_053-------------audioCaptureGetTimestamp:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
     })
 }
