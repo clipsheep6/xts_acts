@@ -18,14 +18,28 @@ import fs from '@ohos.file.fs';
 import commonEventManager from '@ohos.commonEventManager';
 
 let TAG = 'clearUpApplicationDataHelpStystem';
-let startType;
-let createFile;
+let clearUpApplicationData = (context, startType) => {
+  if (startType === 'Promise') {
+    context.getApplicationContext().clearUpApplicationData()
+      .then((data) => {
+        console.log(TAG + ' --- data', data);
+      })
+      .catch((err) => {
+        console.error(TAG + '  err.code: ' + JSON.stringify(err));
+      })
+  }
+  if (startType === 'Callback') {
+    context.getApplicationContext().clearUpApplicationData((err) => {
+      console.error(TAG + '  err.code: ' + JSON.stringify(err));
+    })
+  }
+}
+
 export default class MainAbility extends Ability {
   async onCreate(want, launchParam) {
-    console.log(TAG + 'onCreate' + JSON.stringify(want.parameters));
-    startType = want.parameters?.startType;
-    createFile = want.parameters?.createFile;
-    globalThis.abilityContext = this.context;
+    let startType = want.parameters?.startType;
+    let createFile = want.parameters?.createFile;
+    let notClear = want.parameters?.notClear;
     let context = this.context;
     let filePathName = '/test.txt';
     let cacheDirPath = context.cacheDir + filePathName;
@@ -41,16 +55,6 @@ export default class MainAbility extends Ability {
         let file3 = fs.openSync(preferencesDirPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
         let file4 = fs.openSync(tempDirPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
         let file5 = fs.openSync(databaseDirPath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-        if (fs.accessSync(cacheDirPath) && fs.accessSync(filesDirPath) && fs.accessSync(preferencesDirPath) && fs.accessSync(tempDirPath) && fs.accessSync(databaseDirPath)) {
-          let options = {
-            parameters: {
-              result: true
-            }
-          }
-          commonEventManager.publish('clearUpApplicationDataEventSystem', options, (err) => {
-            console.log(TAG + ' --- create file success and send msg ');
-          });
-        }
         fs.closeSync(file1);
         fs.closeSync(file2);
         fs.closeSync(file3);
@@ -59,27 +63,23 @@ export default class MainAbility extends Ability {
       } catch (error) {
         console.error(TAG + 'error ', JSON.stringify(error));
       }
-    } else {
-      let options = {
-        parameters: {
-          result: true
-        }
-      }
-      if (fs.accessSync(cacheDirPath) && fs.accessSync(filesDirPath) && fs.accessSync(preferencesDirPath) && fs.accessSync(tempDirPath) && fs.accessSync(databaseDirPath)) {
-        commonEventManager.publish('clearUpApplicationDataEventSystem', options, (err) => {
-          console.log(TAG + ' --- create file and send msg clerupapp');
-        });
-      } else {
-        options.parameters.result = false;
-        commonEventManager.publish('clearUpApplicationDataEventSystem', options, (err) => {
-          console.log(TAG + ' --- create file and send msg clerupapp');
-        });
+    }
+    let options = {
+      parameters: {
+        result: true
       }
     }
-  }
-
-  onDestroy() {
-    console.log('MainAbility onDestroy')
+    if (!(fs.accessSync(cacheDirPath) && fs.accessSync(filesDirPath) && fs.accessSync(preferencesDirPath) && fs.accessSync(tempDirPath) && fs.accessSync(databaseDirPath))) {
+      options.parameters.result = false;
+    }
+    commonEventManager.publish('clearUpApplicationDataEventSystem', options, (err) => {
+      console.log(TAG + ' --- create file and send msg ishave file');
+    });
+    console.log(TAG + 'MainAbility onBackground' + startType);
+    !notClear && clearUpApplicationData(context, startType);
+    if (notClear) {
+      this.context.terminateSelf();
+    }
   }
 
   onWindowStageCreate(windowStage) {
@@ -87,29 +87,4 @@ export default class MainAbility extends Ability {
     windowStage.setUIContent(this.context, 'pages/index', null)
   }
 
-  onWindowStageDestroy() {
-    console.log('MainAbility onWindowStageDestroy')
-  }
-
-  onForeground() {
-    console.log('MainAbility onForeground')
-  }
-
-  onBackground() {
-    console.log(TAG + 'MainAbility onBackground' + startType)
-    if (startType === 'Promise') {
-      this.context.getApplicationContext().clearUpApplicationData()
-        .then((data) => {
-          console.log(TAG + ' --- data', data);
-        })
-        .catch((err) => {
-          console.error(TAG + '  err.code: ' + JSON.stringify(err));
-        })
-    }
-    if (startType === 'Callback') {
-      this.context.getApplicationContext().clearUpApplicationData((err) => {
-        console.error(TAG + '  err.code: ' + JSON.stringify(err));
-      })
-    }
-  }
 };
