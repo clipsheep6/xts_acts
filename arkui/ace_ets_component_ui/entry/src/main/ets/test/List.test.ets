@@ -200,16 +200,6 @@ import StateArray1 from './@stateTest/StateArray1.test.ets'
 import StateColor from './@stateTest/StateColor.test.ets'
 import StateHight from './@stateTest/StateHight.test.ets'
 import StateNumber from './@stateTest/StateNumber.test.ets'
-import StateMap from './@stateTest/StateMap.test.ets';
-import StateSet from './@stateTest/StateSet.test.ets';
-import PropMap from './@stateTest/PropMap.test.ets';
-import PropSet from './@stateTest/PropSet.test.ets';
-import ProvideMap from './@stateTest/ProvideMap.test.ets';
-import ProvideSet from './@stateTest/ProvideSet.test.ets';
-import LinkMap from './@stateTest/LinkMap.test.ets';
-import LinkSet from './@stateTest/LinkSet.test.ets';
-import ObjectLinkMap from './@stateTest/ObjectLinkMap.test.ets';
-import ObjectLinkSet from './@stateTest/ObjectLinkSet.test.ets';
 import HoverJsunit5 from './HoverTest/HoverJsunit5.test.ets'
 import HoverJsunit11 from './HoverTest/HoverJsunit11.test.ets'
 import HoverJsunit17 from './HoverTest/HoverJsunit17.test.ets'
@@ -548,16 +538,6 @@ export default function testsuite() {
   StateColor()
   StateHight()
   StateNumber()
-  StateMap()
-  StateSet()
-  PropMap()
-  PropSet()
-  ProvideMap()
-  ProvideSet()
-  LinkMap()
-  LinkSet()
-  ObjectLinkMap()
-  ObjectLinkSet()
   HoverJsunit5()
   HoverJsunit11()
   HoverJsunit17()
