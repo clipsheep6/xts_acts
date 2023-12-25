@@ -33,7 +33,6 @@ struct GesturePinchGesture {
       .border({ width: 3 })
       .margin({ top: 100 })
       .scale({ x: this.scaleValue, y: this.scaleValue, z: 1 })
-      // 三指捏合触发该手势事件
       .gesture(
       PinchGesture({ fingers: 3 })
         .onActionStart((event?: GestureEvent) => {

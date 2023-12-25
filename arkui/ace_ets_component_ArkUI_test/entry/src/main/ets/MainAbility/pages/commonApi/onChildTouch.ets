@@ -13,13 +13,11 @@
  * limitations under the License.
  */
 import promptAction from '@ohos.promptAction';
-
 @Entry
 @Component
 struct onChildTouch1 {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   @State text: string = 'Button'
-
   build() {
     Column() {
       List({ space: 12, initialIndex: 0 }) {

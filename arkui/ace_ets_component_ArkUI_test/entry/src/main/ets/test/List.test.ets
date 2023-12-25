@@ -12,8 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-
 import createDragAction from './DragController/createDragAction.test.ets'
 import setForegroundColor from './DragController/setForegroundColor.test.ets'
 

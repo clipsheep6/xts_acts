@@ -30,7 +30,7 @@ struct GestureRotationGesture {
       .border({ width: 3 })
       .margin(80)
       .rotate({ angle: this.angle })
-      // 双指旋转触发该手势事件
+      
       .gesture(
       RotationGesture()
         .onActionStart((event?: GestureEvent) => {

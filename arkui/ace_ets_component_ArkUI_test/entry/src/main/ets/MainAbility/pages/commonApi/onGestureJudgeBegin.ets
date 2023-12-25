@@ -30,22 +30,20 @@ struct onGestureJudgeBegin1 {
     .borderWidth(2)
     .gesture(
       LongPressGesture()
-        .tag("longPress1")// 设置长按手势标志
+        .tag("longPress1")
         .onAction(() => {
           this.message = 'longPress'
         })
     )
     .gesture(
       SwipeGesture()
-        .tag("swipe1")// 设置滑动手势标志
+        .tag("swipe1")
     )
     .onGestureJudgeBegin((gestureInfo: GestureInfo, event: BaseGestureEvent) => {
-      // 若该手势类型为长按手势，转换为长按手势事件
       if (gestureInfo.type == GestureControl.GestureType.LONG_PRESS_GESTURE) {
         let longPressEvent = event as LongPressGestureEvent;
         console.log("repeat " + longPressEvent.repeat)
       }
-      // 若该手势类型为滑动手势，转换为滑动手势事件
       if (gestureInfo.type == GestureControl.GestureType.SWIPE_GESTURE) {
         let swipeEvent = event as SwipeGestureEvent;
         console.log("angle " + swipeEvent.angle)

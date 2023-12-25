@@ -52,8 +52,6 @@ export default function GestureTap() {
      */
     it('GestureTap_0100', 0, async function (done) {
       console.info('GestureTap_0100 START');
-      let driver = await Driver.create()
-      await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('GestureTap');
       let obj = JSON.parse(strJson);
       console.info("[GestureTap_0100] component obj is: " + JSON.stringify(obj));

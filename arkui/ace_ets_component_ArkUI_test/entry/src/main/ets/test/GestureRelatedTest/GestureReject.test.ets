@@ -52,8 +52,6 @@ export default function GestureReject() {
      */
     it('GestureReject_0100', 0, async function (done) {
       console.info('GestureReject_0100 START');
-      let driver = await Driver.create()
-      await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('GestureReject');
       let obj = JSON.parse(strJson);
       console.info("[GestureReject_0100] component obj is: " + JSON.stringify(obj));

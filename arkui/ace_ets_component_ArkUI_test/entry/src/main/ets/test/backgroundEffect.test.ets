@@ -17,7 +17,6 @@ import router from '@system.router';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
 import bundle from '@ohos.bundle.bundleManager';
-
 export default function backgroundEffectJsunit() {
   describe('backgroundEffectJsunit', function () {
     beforeEach(async function (done) {

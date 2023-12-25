@@ -53,8 +53,6 @@ export default function GestureClick() {
      */
     it('GestureClick_0100', 0, async function (done) {
       console.info('GestureClick_0100 START');
-      let driver = await Driver.create()
-      await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('GestureClick');
       let obj = JSON.parse(strJson);
       console.info("[GestureClick_0100] component obj is: " + JSON.stringify(obj));

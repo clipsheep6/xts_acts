@@ -52,8 +52,6 @@ export default function GestureIsSystemGesture() {
      */
     it('GestureIsSystemGesture_0100', 0, async function (done) {
       console.info('GestureIsSystemGesture_0100 START');
-      let driver = await Driver.create()
-      await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('GestureIsSystemGesture');
       let obj = JSON.parse(strJson);
       console.info("[GestureIsSystemGesture_0100] component obj is: " + JSON.stringify(obj));

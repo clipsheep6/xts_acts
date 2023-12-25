@@ -17,7 +17,6 @@ import router from '@system.router';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
 import bundle from '@ohos.bundle.bundleManager';
-
 export default function blendMode1Jsunit() {
   describe('blendMode1Jsunit', function () {
     beforeEach(async function (done) {
@@ -41,7 +40,7 @@ export default function blendMode1Jsunit() {
       }
       done();
     });
-/**
+    /**
      * @tc.number    blendMode1Jsunit_0100
      * @tc.name  blendMode1Jsunit_0100
      * @tc.desc      set api
@@ -59,8 +58,8 @@ export default function blendMode1Jsunit() {
       console.info('[blendMode1Jsunit_0100] END');
       done();
     });
-    });
-/**
+    
+    /**
      * @tc.number    blendMode1Jsunit_0200
      * @tc.name  blendMode1Jsunit_0200
      * @tc.desc      set api

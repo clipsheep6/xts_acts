@@ -18,12 +18,10 @@ import componentSnapshot from '@ohos.arkui.componentSnapshot';
 import image from '@ohos.multimedia.image';
 import curves from '@ohos.curves';
 import { BusinessError } from '@ohos.base';
-
 @Entry
 @Component
 struct DragControllerPage {
   @State pixmap: image.PixelMap|null = null
-
   @Builder DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
@@ -61,7 +59,7 @@ struct DragControllerPage {
           console.error(`show error code is ${code}, message is ${msg}`);
         }
       })
-        .key('set1')
+        .id('set1')
         .onDrop(() => {
 
         })

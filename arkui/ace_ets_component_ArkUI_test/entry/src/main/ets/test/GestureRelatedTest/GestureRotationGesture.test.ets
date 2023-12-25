@@ -42,16 +42,16 @@ export default function GestureRotationGesture() {
       }
       done();
     });
-    /* *
-    * @tc.number: SUB_ACE_STATUSMANAGER_SUPPORTUUNION_0350
-    * @tc.name  : GestureRotationGesture_0100
-    * @tc.desc  : To test that the Provide decorator supports union types.
-    * @tc.level : Level 2
-    */
+    /**
+     * @tc.number    GestureRotationGesture_0100
+     * @tc.name    GestureRotationGesture_0100
+     * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
+     */
     it('GestureRotationGesture_0100', 0, async function (done) {
       console.info('GestureRotationGesture_0100 START');
-      let driver = await Driver.create()
-      await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('GestureRotationGesture');
       let obj = JSON.parse(strJson);
       console.info("[GestureRotationGesture_0100] component obj is: " + JSON.stringify(obj));

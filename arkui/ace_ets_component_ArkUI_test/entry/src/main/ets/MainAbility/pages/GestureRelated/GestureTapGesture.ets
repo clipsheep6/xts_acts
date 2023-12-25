@@ -19,7 +19,7 @@ struct GestureTapGesture {
 
   build() {
     Column() {
-      // 单指双击文本触发手势事件
+      
       Text('Click twice').fontSize(28)
         .gesture(
         TapGesture({ count: 2 })

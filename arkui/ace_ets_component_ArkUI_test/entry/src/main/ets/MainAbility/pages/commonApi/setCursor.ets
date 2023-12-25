@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 import pointer from '@ohos.multimodalInput.pointer';
-
 @Entry
 @Component
 struct setCursor1 {

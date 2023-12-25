@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 @Entry
 @Component
 struct accessibilityVirtualNode1 {
@@ -35,7 +34,6 @@ struct accessibilityVirtualNode1 {
       .accessibilityGroup(true)
       .accessibilityLevel("yes")
       .accessibilityVirtualNode(this.VirtualNode)
-
     }
     .height('100%')
   }

@@ -16,7 +16,6 @@ import dragController from "@ohos.arkui.dragController"
 import componentSnapshot from '@ohos.arkui.componentSnapshot';
 import image from '@ohos.multimedia.image';
 import UDC from '@ohos.data.unifiedDataChannel';
-
 @Entry
 @Component
 struct DragControllerPage {
@@ -31,7 +30,6 @@ struct DragControllerPage {
     .height(100)
     .backgroundColor(Color.Blue)
   }
-
   build() {
     Column() {
 
@@ -84,7 +82,7 @@ struct DragControllerPage {
             }
           }
         }
-      }).margin({top:20}).key('create')
+      }).margin({top:20}).id('create')
     }
   }
 }
