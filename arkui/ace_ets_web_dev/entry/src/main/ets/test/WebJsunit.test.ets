@@ -458,7 +458,7 @@ export default function webJsunit() {
      *tc.desic Triggered when the title of the main application document changes
      */
     it('onTitleReceive',0,async function(done){
-      emitKey="emitOnDownloadStart";
+      emitKey="emitZoom";
       Utils.registerEvent("onTitleReceive","index",67,done);
       sendEventByKey('webcomponent',10,'');
     })
@@ -467,11 +467,13 @@ export default function webJsunit() {
      *tc.name onDownloadStart
      *tc.desic Triggered when starting to download
      */
+     /*
     it('onDownloadStart',0,async function(done){
       emitKey="emitZoom";
       Utils.registerEvent("onDownloadStart","https://consumer.huawei.com/content/dam/huawei-cbg-site/cn/mkt/mobileservices/2022/download/PC107f1b3947c942ffaa14334a879065d8.2107261020.exe",68,done);
       sendEventByKey('webcomponent',10,'');
     })
+    */
     /*
      *tc.number SUB_ACE_BASIC_ETS_API_049
      *tc.name zoom

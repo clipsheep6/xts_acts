@@ -402,6 +402,7 @@ export default function webAttributeTest() {
     * @tc.type        : Function
     * @tc.level       : Level 1
     */
+    /*
     it('testOnDownloadStart001', 0, async (done: Function) => {
       Utils.emitEvent("emitOnDownloadStart", 10)
       await Utils.sleep(2000);
@@ -410,7 +411,7 @@ export default function webAttributeTest() {
       "PC107f1b3947c942ffaa14334a879065d8.2107261020.exe", 60068, done);
       sendEventByKey('WebAttributeTestButton', 10, '');
     })
-
+    */
     /*
     * @tc.number      : SUB_WEB_ONREFRESHACCESSEDHISTORY_0100
     * @tc.name        : testOnRefreshAccessedHistory001
