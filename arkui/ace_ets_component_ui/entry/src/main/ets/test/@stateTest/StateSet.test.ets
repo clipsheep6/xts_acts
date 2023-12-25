@@ -47,6 +47,8 @@ export default function StateSet() {
     * @tc.name  : StateSet_0100
     * @tc.desc  : Test if the state decorator supports SET types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('StateSet_0100', 0, async function (done) {
       console.info('StateSet_0100 START');
@@ -71,6 +73,8 @@ export default function StateSet() {
     * @tc.name  : StateSet_0200
     * @tc.desc  : Test if the state decorator supports SET types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('StateSet_0200', 0, async function (done) {
       console.info('StateSet_0200 START');
@@ -95,6 +99,8 @@ export default function StateSet() {
     * @tc.name  : StateSet_0300
     * @tc.desc  : Test if the state decorator supports SET types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('StateSet_0300', 0, async function (done) {
       console.info('StateSet_0300 START');
