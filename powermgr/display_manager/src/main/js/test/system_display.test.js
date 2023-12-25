@@ -65,13 +65,15 @@ export default async function SystemDisplayTest() {
          * @tc.desc Get brightness
          */
         it('get_value_fail_not_must_test', 0, async function (done) {
+            let flag = 0;
             brightness.getValue({
                 complete: () => {
                     console.log("The device information is obtained successfully. Procedure");
-                    expect(true).assertTrue();
+                    flag = 1;
                     done();
                 }
             });
+            expect(flag == 1).assertTrue();
         });
 
         /**
@@ -144,10 +146,10 @@ export default async function SystemDisplayTest() {
 
         /**
          * @tc.number system_display_js_0203
-         * @tc.name set_value_success_value
+         * @tc.name set_value_validate_value
          * @tc.desc Check undefined as input of setValue
          */
-        it('set_value_success_value', 0, async function (done) {
+        it('set_value_validate_value', 0, async function (done) {
             brightness.setKeepScreenOn({
                 keepScreenOn: true,
                 success: function () {
