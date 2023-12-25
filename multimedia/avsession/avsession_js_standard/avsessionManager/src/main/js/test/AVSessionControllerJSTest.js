@@ -916,12 +916,12 @@ export default function AVSessionControllerJsTest() {
     })
 
     /*
-   * @tc.name:SUB_MULTIMEDIA_ONQUEUEITEMSCHANGE_0300
+   * @tc.name:SUB_MULTIMEDIA_ONQUEUEITEMSCHANGE_0400
    * @tc.desc:One on functions - three params
    * @tc.type: FUNC
    * @tc.require: I6KTU4
    */
-    it("SUB_MULTIMEDIA_ONQUEUEITEMSCHANGE_0300", 0, async function (done) {
+    it("SUB_MULTIMEDIA_ONQUEUEITEMSCHANGE_0400", 0, async function (done) {
       try {
         controller.on('queueItemsChange', queueItemsCallback1, queueItemsCallback2);
       } catch (err) {
