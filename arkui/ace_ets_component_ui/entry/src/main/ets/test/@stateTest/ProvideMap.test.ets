@@ -47,6 +47,8 @@ export default function ProvideMap() {
     * @tc.name  : ProvideMap_0100
     * @tc.desc  : Test if the state decorator supports MAP types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('ProvideMap_0100', 0, async function (done) {
       console.info('ProvideMap_0100 START');
@@ -71,6 +73,8 @@ export default function ProvideMap() {
     * @tc.name  : ProvideMap_0200
     * @tc.desc  : Test if the state decorator supports MAP types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('ProvideMap_0200', 0, async function (done) {
       console.info('ProvideMap_0200 START');
@@ -95,6 +99,8 @@ export default function ProvideMap() {
     * @tc.name  : ProvideMap_0300
     * @tc.desc  : Test if the state decorator supports MAP types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('ProvideMap_0300', 0, async function (done) {
       console.info('ProvideMap_0300 START');
@@ -119,6 +125,8 @@ export default function ProvideMap() {
     * @tc.name  : ProvideMap_0400
     * @tc.desc  : Test if the state decorator supports MAP types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('ProvideMap_0400', 0, async function (done) {
       console.info('ProvideMap_0400 START');
@@ -143,6 +151,8 @@ export default function ProvideMap() {
     * @tc.name  : ProvideMap_0500
     * @tc.desc  : Test if the state decorator supports MAP types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('ProvideMap_0500', 0, async function (done) {
       console.info('ProvideMap_0500 START');
