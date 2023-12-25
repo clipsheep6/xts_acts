@@ -42,12 +42,14 @@ export default function GestureSwipeGesture() {
       }
       done();
     });
-    /* *
-    * @tc.number: SUB_ACE_STATUSMANAGER_SUPPORTUUNION_0350
-    * @tc.name  : GestureSwipeGesture_0100
-    * @tc.desc  : To test that the Provide decorator supports union types.
-    * @tc.level : Level 2
-    */
+    /**
+     * @tc.number    GestureSwipeGesture_0100
+     * @tc.name   GestureSwipeGesture_0100
+     * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
+     */
     it('GestureSwipeGesture_0100', 0, async function (done) {
       console.info('GestureSwipeGesture_0100 START');
       let driver = await Driver.create()

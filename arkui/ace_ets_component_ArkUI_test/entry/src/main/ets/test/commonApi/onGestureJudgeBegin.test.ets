@@ -46,6 +46,9 @@ export default function onGestureJudgeBegin() {
      * @tc.number    SUB_ACE_COMMONMETHOD_ONGESTUREJUDGEBEGIN_0100
      * @tc.name      onGestureJudgeBegin
      * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
      */
     it('onGestureJudgeBegin_0100', 0, async function (done) {
       console.info('[onGestureJudgeBegin_0100] START');

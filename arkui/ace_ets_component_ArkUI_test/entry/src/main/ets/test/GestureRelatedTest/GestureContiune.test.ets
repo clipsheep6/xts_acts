@@ -42,12 +42,14 @@ export default function GestureContiune() {
       }
       done();
     });
-    /* *
-    * @tc.number: SUB_ACE_STATUSMANAGER_SUPPORTUUNION_0350
-    * @tc.name  : GestureContiune_0100
-    * @tc.desc  : To test that the Provide decorator supports union types.
-    * @tc.level : Level 2
-    */
+      /**
+     * @tc.number    GestureContiune_0100
+     * @tc.name      GestureContiune_0100
+     * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
+     */
     it('GestureContiune_0100', 0, async function (done) {
       console.info('GestureContiune_0100 START');
       let driver = await Driver.create()

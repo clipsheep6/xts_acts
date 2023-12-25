@@ -42,12 +42,14 @@ export default function GestureDrag() {
       }
       done();
     });
-    /* *
-    * @tc.number: SUB_ACE_STATUSMANAGER_SUPPORTUUNION_0350
-    * @tc.name  : GestureDrag_0100
-    * @tc.desc  : To test that the Provide decorator supports union types.
-    * @tc.level : Level 2
-    */
+    /**
+     * @tc.number    GestureDrag_0100
+     * @tc.name      GestureDrag_0100
+     * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
+     */
     it('GestureDrag_0100', 0, async function (done) {
       console.info('GestureDrag_0100 START');
       let driver = await Driver.create()

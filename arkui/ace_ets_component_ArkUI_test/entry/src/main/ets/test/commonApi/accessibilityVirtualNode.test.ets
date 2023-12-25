@@ -46,6 +46,9 @@ export default function accessibilityVirtualNode() {
      * @tc.number    SUB_ACE_COMMONMETHOD_ACCESSIBILITYVIRTUALNODE_0100
      * @tc.name      accessibilityVirtualNode
      * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
      */
     it('accessibilityVirtualNode_0100', 0, async function (done) {
       console.info('[accessibilityVirtualNode_0100] START');

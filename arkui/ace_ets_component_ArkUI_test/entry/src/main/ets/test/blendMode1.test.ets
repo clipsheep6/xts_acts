@@ -41,7 +41,14 @@ export default function blendMode1Jsunit() {
       }
       done();
     });
-
+/**
+     * @tc.number    blendMode1Jsunit_0100
+     * @tc.name  blendMode1Jsunit_0100
+     * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
+     */
     it('blendMode1Jsunit_0100', 0, async function (done) {
       // Get the information of the blendMode component
       console.info('[blendMode1Jsunit_0100] START');
@@ -52,7 +59,15 @@ export default function blendMode1Jsunit() {
       console.info('[blendMode1Jsunit_0100] END');
       done();
     });
-
+    });
+/**
+     * @tc.number    blendMode1Jsunit_0200
+     * @tc.name  blendMode1Jsunit_0200
+     * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
+     */
     it('blendMode1Jsunit_0200', 0, async function (done) {
       // Get the information of the blendMode component
       console.info('[blendMode1Jsunit_0200] START');

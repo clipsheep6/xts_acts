@@ -46,6 +46,9 @@ export default function onChildTouch() {
      * @tc.number    SUB_ACE_COMMONMETHOD_ONCHILDTOUCH_0100
      * @tc.name      onChildTouch
      * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
      */
     it('onChildTouch_0100', 0, async function (done) {
       console.info('[onChildTouch_0100] START');

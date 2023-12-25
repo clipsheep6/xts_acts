@@ -42,12 +42,14 @@ export default function GestureTapGesture() {
       }
       done();
     });
-    /* *
-    * @tc.number: SUB_ACE_STATUSMANAGER_SUPPORTUUNION_0350
-    * @tc.name  : GestureTapGesture_0100
-    * @tc.desc  : To test that the Provide decorator supports union types.
-    * @tc.level : Level 2
-    */
+    /**
+     * @tc.number    GestureTapGesture_0100
+     * @tc.name  GestureTapGesture_0100
+     * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
+     */
     it('GestureTapGesture_0100', 0, async function (done) {
       console.info('GestureTapGesture_0100 START');
       let driver = await Driver.create()

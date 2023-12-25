@@ -46,6 +46,9 @@ export default function setCursor() {
      * @tc.number    SUB_ACE_COMMONMETHOD_SETCURSOR_0100
      * @tc.name      setCursor
      * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
      */
     it('setCursor_0100', 0, async function (done) {
       console.info('[setCursor_0100] START');

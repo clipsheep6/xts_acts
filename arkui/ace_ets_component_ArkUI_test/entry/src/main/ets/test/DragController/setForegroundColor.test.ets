@@ -43,9 +43,12 @@ export default function DragController() {
     });
 
     /**
-     * @tc.number    DragController_0100
-     * @tc.name      DragController
-     * @tc.desc      DragController api
+     * @tc.number    SUB_ACE_DragController_0100
+     * @tc.name      DragController_0100
+     * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
      */
     it('DragController_0100', 0, async function (done) {
 

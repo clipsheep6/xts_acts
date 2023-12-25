@@ -46,6 +46,9 @@ export default function outline() {
      * @tc.number    SUB_ACE_COMMONMETHOD_OUTLINE_0100
      * @tc.name      outline
      * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
      */
     it('outline_0100', 0, async function (done) {
       console.info('[outline_0100] START');

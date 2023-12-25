@@ -43,9 +43,12 @@ export default function createDragAction() {
     });
 
     /**
-     * @tc.number    createDragAction_0100
-     * @tc.name      createDragAction
-     * @tc.desc      createDragAction api
+     * @tc.number    SUB_ACE_createDragAction_0100
+     * @tc.name      createDragAction_0100
+     * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
      */
     it('createDragAction_0100', 0, async function (done) {
 

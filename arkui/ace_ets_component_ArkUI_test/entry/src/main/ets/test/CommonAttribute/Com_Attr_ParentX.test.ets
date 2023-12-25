@@ -43,9 +43,12 @@ export default function ParentXTest() {
       console.info("ParentXTest after each called");
     });
     /**
-     * @tc.number    SUB_ACE_ParentXTest_0100
-     * @tc.name      testParentX
+     * @tc.number    SUB_ACE_PARENTXTEST_0100
+     * @tc.name      ParentXTest
      * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
      */
     it('ParentXTest_0100', 0, async function (done) {
       console.info('[ParentXTest_0100] START');

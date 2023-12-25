@@ -46,6 +46,9 @@ export default function blendMode() {
      * @tc.number    SUB_ACE_COMMONMETHOD_BLENDMODE_0100
      * @tc.name      blendMode
      * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
      */
     it('blendMode_0100', 0, async function (done) {
       console.info('[blendMode_0100] START');

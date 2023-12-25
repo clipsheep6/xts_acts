@@ -46,6 +46,9 @@ export default function monopolize() {
      * @tc.number    SUB_ACE_RICHEDITOR_MONOPOLIZE_0100
      * @tc.name      monopolize
      * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
      */
     it('monopolize_0100', 0, async function (done) {
       console.info('[monopolize_0100] START');

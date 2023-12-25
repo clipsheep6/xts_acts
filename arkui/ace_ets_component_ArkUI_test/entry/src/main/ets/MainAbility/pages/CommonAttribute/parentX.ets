@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2023 iSoftStone Information Technology (Group) Co.,Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,6 @@
  */
 import promptAction from '@ohos.promptAction';
 import window from '@ohos.window';
-
 @Entry
 @Component
 struct ListExample {
@@ -49,7 +48,6 @@ struct ListExample {
       .width('100%')
       .height('65%')
       .id('MyList')
-
       Button(this.text)
         .width(312)
         .height(40)

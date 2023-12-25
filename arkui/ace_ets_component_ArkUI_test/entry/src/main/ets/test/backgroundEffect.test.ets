@@ -41,7 +41,14 @@ export default function backgroundEffectJsunit() {
       }
       done();
     });
-
+/**
+     * @tc.number    backgroundEffectJsunit_0100
+     * @tc.name      backgroundEffectJsunit_0100
+     * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
+     */
     it('backgroundEffectJsunit_0100', 0, async function (done) {
       // Get the information of the backgroundEffect component
       console.info('[backgroundEffectJsunit_0100] START');
@@ -53,7 +60,14 @@ export default function backgroundEffectJsunit() {
       console.info('[backgroundEffectJsunit_0100] END');
       done();
     });
-
+/**
+     * @tc.number    backgroundEffectJsunit_0200
+     * @tc.name      backgroundEffectJsunit_0200
+     * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
+     */
     it('backgroundEffectJsunit_0200', 0, async function (done) {
       // Get the information of the backgroundEffect component
       console.info('[backgroundEffectJsunit_0200] START');
@@ -64,7 +78,14 @@ export default function backgroundEffectJsunit() {
       console.info('[backgroundEffectJsunit_0200] END');
       done();
     });
-
+/**
+     * @tc.number    backgroundEffectJsunit_0300
+     * @tc.name      backgroundEffectJsunit_0300
+     * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
+     */
     it('backgroundEffectJsunit_0300', 0, async function (done) {
       // Get the information of the backgroundEffect component
       console.info('[backgroundEffectJsunit_0300] START');
@@ -75,7 +96,14 @@ export default function backgroundEffectJsunit() {
       console.info('[backgroundEffectJsunit_0300] END');
       done();
     });
-
+/**
+     * @tc.number    backgroundEffectJsunit_0400
+     * @tc.name      backgroundEffectJsunit_0400
+     * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
+     */
     it('backgroundEffectJsunit_0400', 0, async function (done) {
       // Get the information of the backgroundEffect component
       console.info('[backgroundEffectJsunit_0400] START');

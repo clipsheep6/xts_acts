@@ -43,9 +43,12 @@ export default function AboutToAppearTest() {
       console.info("AboutToAppearTest after each called");
     });
     /**
-     * @tc.number    SUB_ACE_AboutToAppearTest_0100
-     * @tc.name      testAboutToAppear
+     * @tc.number    SUB_ACE_ABOUTTOAPPEARTEST_0100
+     * @tc.name      AboutToAppearTest
      * @tc.desc      set api
+     * @tc.level:    Level 2
+     * @tc.type : 
+     * @tc.size :
      */
     it('AboutToAppearTest_0100', 0, async function (done) {
       console.info('[AboutToAppearTest_0100] START');
