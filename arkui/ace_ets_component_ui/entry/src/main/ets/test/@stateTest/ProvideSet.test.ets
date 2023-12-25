@@ -47,6 +47,8 @@ export default function ProvideSet() {
     * @tc.name  : ProvideSet_0100
     * @tc.desc  : Test if the state decorator supports SET types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('ProvideSet_0100', 0, async function (done) {
       console.info('ProvideSet_0100 START');
@@ -71,6 +73,8 @@ export default function ProvideSet() {
     * @tc.name  : ProvideSet_0200
     * @tc.desc  : Test if the state decorator supports SET types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('ProvideSet_0200', 0, async function (done) {
       console.info('ProvideSet_0200 START');
@@ -95,6 +99,8 @@ export default function ProvideSet() {
     * @tc.name  : ProvideSet_0300
     * @tc.desc  : Test if the state decorator supports SET types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('ProvideSet_0300', 0, async function (done) {
       console.info('ProvideSet_0300 START');
@@ -119,6 +125,8 @@ export default function ProvideSet() {
     * @tc.name  : ProvideSet_0400
     * @tc.desc  : Test if the state decorator supports SET types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('ProvideSet_0400', 0, async function (done) {
       console.info('ProvideSet_0400 START');
