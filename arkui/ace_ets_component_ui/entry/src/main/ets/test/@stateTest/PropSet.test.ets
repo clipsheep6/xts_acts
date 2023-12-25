@@ -47,6 +47,8 @@ export default function PropSet() {
     * @tc.name  : PropSet_0100
     * @tc.desc  : Test if the state decorator supports SET types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('PropSet_0100', 0, async function (done) {
       console.info('PropSet_0100 START');
@@ -71,6 +73,8 @@ export default function PropSet() {
     * @tc.name  : PropSet_0200
     * @tc.desc  : Test if the state decorator supports SET types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('PropSet_0200', 0, async function (done) {
       console.info('PropSet_0200 START');
@@ -95,6 +99,8 @@ export default function PropSet() {
     * @tc.name  : PropSet_0300
     * @tc.desc  : Test if the state decorator supports SET types.
     * @tc.level : Level 2
+    * @tc.type : 
+    * @tc.size : 
     */
     it('PropSet_0300', 0, async function (done) {
       console.info('PropSet_0300 START');
