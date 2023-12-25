@@ -32,7 +32,7 @@ export default function ColumnSetPadding__SubChangeMar() {
         console.info("get parentComponentSetPadding state success " + JSON.stringify(pages));
         if (!("parentComponentSetPadding" == pages.name)) {
           console.info("get parentComponentSetPadding state success " + JSON.stringify(pages.name));
-          let result = await router.pushUrl(options)
+          let result = await router.push(options)
           console.info("push parentComponentSetPadding page success " + JSON.stringify(result));
         }
       } catch (err) {

@@ -32,7 +32,7 @@ export default function ColumnSetDisplayPriority_SubChange() {
         console.info("get SetDisplayPriority state success " + JSON.stringify(pages));
         if (!("SetDisplayPriority" == pages.name)) {
           console.info("get SetDisplayPriority state success " + JSON.stringify(pages.name));
-          let result = await router.pushUrl(options)
+          let result = await router.push(options)
           console.info("push SetDisplayPriority page success " + JSON.stringify(result));
         }
       } catch (err) {

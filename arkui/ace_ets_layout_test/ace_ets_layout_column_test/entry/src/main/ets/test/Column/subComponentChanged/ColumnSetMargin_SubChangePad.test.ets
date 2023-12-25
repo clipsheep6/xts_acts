@@ -32,7 +32,7 @@ export default function ColumnSetMargin_SubChangePad() {
         console.info("get SetMargin state success " + JSON.stringify(pages));
         if (!("FlexBase" == pages.name)) {
           console.info("get SetMargin state success " + JSON.stringify(pages.name));
-          let result = await router.pushUrl(options)
+          let result = await router.push(options)
           console.info("push SetMargin page success " + JSON.stringify(result));
         }
       } catch (err) {

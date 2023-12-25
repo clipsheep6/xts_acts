@@ -32,7 +32,7 @@ export default function ColumnSetPosition_SubChange() {
         console.info("get SetPosition state success " + JSON.stringify(pages));
         if (!("SetPosition" == pages.name)) {
           console.info("get SetPosition state success " + JSON.stringify(pages.name));
-          let result = await router.pushUrl(options)
+          let result = await router.push(options)
           console.info("push SetPosition page success " + JSON.stringify(result));
         }
       } catch (err) {

@@ -32,7 +32,7 @@ export default function ColumnSetPaddingMargin_SubChangeMar() {
         console.info("get ColumnSetPaddingMargin_SubChangeMar state success " + JSON.stringify(pages));
         if (!("ColumnSetPaddingMargin_SubChangeMar" == pages.name)) {
           console.info("get ColumnSetPaddingMargin_SubChangeMar state success " + JSON.stringify(pages.name));
-          let result = await router.pushUrl(options)
+          let result = await router.push(options)
           console.info("push ColumnSetPaddingMargin_SubChangeMar page success " + JSON.stringify(result));
         }
       } catch (err) {

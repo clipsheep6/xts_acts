@@ -32,7 +32,7 @@ export default function ColumnSetOffset_SubChange() {
         console.info("get SetOffset state success " + JSON.stringify(pages));
         if (!("SetOffset" == pages.name)) {
           console.info("get SetOffset state success " + JSON.stringify(pages.name));
-          let result = await router.pushUrl(options)
+          let result = await router.push(options)
           console.info("push SetOffset page success " + JSON.stringify(result));
         }
       } catch (err) {

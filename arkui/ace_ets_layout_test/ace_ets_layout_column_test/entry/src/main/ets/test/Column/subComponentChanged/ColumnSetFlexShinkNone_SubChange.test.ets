@@ -32,7 +32,7 @@ export default function ColumnSetFlexShinkNone_SubChange() {
         console.info("get SetFlexShink state success " + JSON.stringify(pages));
         if (!("SetFlexShink" == pages.name)) {
           console.info("get SetFlexShink state success " + JSON.stringify(pages.name));
-          let result = await router.pushUrl(options)
+          let result = await router.push(options)
           console.info("push SetFlexShink page success " + JSON.stringify(result));
         }
       } catch (err) {

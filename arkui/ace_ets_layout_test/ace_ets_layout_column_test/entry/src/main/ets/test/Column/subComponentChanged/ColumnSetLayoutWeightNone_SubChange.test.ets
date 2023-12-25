@@ -31,7 +31,7 @@ export default function ColumnSetLayoutWeightNone_SubChange() {
         console.info("get SetLayoutWeight state success " + JSON.stringify(pages));
         if (!("SetLayoutWeight" == pages.name)) {
           console.info("get SetLayoutWeight state success " + JSON.stringify(pages.name));
-          let result = await router.pushUrl(options)
+          let result = await router.push(options)
           console.info("push SetLayoutWeight page success " + JSON.stringify(result));
         }
       } catch (err) {

@@ -31,7 +31,7 @@ export default function ColumnSetMargin_SubChangeMar() {
         console.info("get ColumnSetMargin_SubChangeMar state success " + JSON.stringify(pages));
         if (!("ColumnSetMargin_SubChangeMar" == pages.name)) {
           console.info("get ColumnSetMargin_SubChangeMar state success " + JSON.stringify(pages.name));
-          let result = await router.pushUrl(options)
+          let result = await router.push(options)
           console.info("push ColumnSetMargin_SubChangeMar page success " + JSON.stringify(result));
         }
       } catch (err) {

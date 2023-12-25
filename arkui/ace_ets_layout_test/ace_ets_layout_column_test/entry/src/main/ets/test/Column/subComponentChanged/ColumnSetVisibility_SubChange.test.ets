@@ -32,7 +32,7 @@ export default function ColumnSetVisibility_SubChange() {
         console.info("get ColumnSetVisibility state success " + JSON.stringify(pages));
         if (!("ColumnSetVisibility_SubChange" == pages.name)) {
           console.info("get ColumnSetVisibility state success " + JSON.stringify(pages.name));
-          let result = await router.pushUrl(options)
+          let result = await router.push(options)
           console.info("push ColumnSetVisibility page success " + JSON.stringify(result));
         }
       } catch (err) {
