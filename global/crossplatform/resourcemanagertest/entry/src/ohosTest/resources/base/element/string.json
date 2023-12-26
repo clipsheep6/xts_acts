@@ -23,6 +23,14 @@
     {
       "name": "test_2",
       "value": "Test%d"
+    },
+    {
+      "name": "test_3",
+      "value": "$string:test_4"
+    },
+    {
+      "name": "test_4",
+      "value": "$string:test_3"
     }
   ]
 }

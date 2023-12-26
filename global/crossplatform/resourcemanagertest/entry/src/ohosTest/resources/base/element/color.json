@@ -11,6 +11,14 @@
     {
       "name": "test2",
       "value": "#2F99F8"
+    },
+    {
+      "name": "test3",
+      "value": "$color:test4"
+    },
+    {
+      "name": "test4",
+      "value": "$color:test3"
     }
   ]
 }
