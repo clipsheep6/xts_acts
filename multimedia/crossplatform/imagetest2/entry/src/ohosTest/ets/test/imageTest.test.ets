@@ -30,7 +30,7 @@ export default function ImageTest() {
      * @tc.desc      : test createPixelMapList with Options and not gif picture in Promise mode
      * @tc.size      : MediumTest
      * @tc.type      : Constant
-     * @tc.level     : Level 0
+     * @tc.level     : Level 1
      */
     it('ImageTest001', 0, async (done: Function) => {
       const path = AppStorage.get('pathDir') + "/001test.jpg";
@@ -64,7 +64,7 @@ export default function ImageTest() {
          * @tc.desc      test createPixelMapList with Options and gif picture in Promise mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 1
          */
         it('ImageTest002', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.gif";
@@ -88,7 +88,6 @@ export default function ImageTest() {
             expect(err).assertFail()
             done();
           })
-          done();
         })
 
         /**
@@ -97,7 +96,7 @@ export default function ImageTest() {
          * @tc.desc      test createPixelMapList with no Options and not gif picture in Promise mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 1
          */
         it('ImageTest003', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.jpg";
@@ -114,7 +113,6 @@ export default function ImageTest() {
             expect(err).assertFail()
             done()
           })
-          done()
         })
 
         /**
@@ -123,7 +121,7 @@ export default function ImageTest() {
          * @tc.desc      test createPixelMapList with no Options and gif picture in Promise mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 1
          */
         it('ImageTest004', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.gif";
@@ -139,7 +137,6 @@ export default function ImageTest() {
             expect(err).assertFail()
             done()
           })
-          done()
         })
 
         /**
@@ -148,7 +145,7 @@ export default function ImageTest() {
          * @tc.desc      test createPixelMapList with invalid Options and not gif picture in Promise mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 2
          */
         it('ImageTest005', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.jpg";
@@ -171,7 +168,6 @@ export default function ImageTest() {
             expect(err.code == 401).assertTrue()
             done();
           })
-          done()
         })
 
         /**
@@ -180,7 +176,7 @@ export default function ImageTest() {
          * @tc.desc      test createPixelMapList with default Options and not gif picture in callback mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 1
          */
         it('ImageTest006', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.jpg";
@@ -199,7 +195,6 @@ export default function ImageTest() {
               done();
             }
           })
-          done()
         })
 
         /**
@@ -208,7 +203,7 @@ export default function ImageTest() {
          * @tc.desc      test createPixelMapList with default Options and gif picture in callback mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 1
          */
         it('ImageTest007', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.gif";
@@ -226,7 +221,6 @@ export default function ImageTest() {
               done();
             }
           })
-          done()
         })
 
         /**
@@ -235,7 +229,7 @@ export default function ImageTest() {
          * @tc.desc      test createPixelMapList with Options and not gif picture in callback mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 1
          */
         it('ImageTest008', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.jpg";
@@ -262,7 +256,6 @@ export default function ImageTest() {
               done();
             }
           })
-          done()
         })
 
         /**
@@ -271,7 +264,7 @@ export default function ImageTest() {
          * @tc.desc      test createPixelMapList with Options and gif picture in callback mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 1
          */
         it('ImageTest009', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.gif";
@@ -297,7 +290,6 @@ export default function ImageTest() {
               done();
             }
           })
-          done()
         })
 
         /**
@@ -306,7 +298,7 @@ export default function ImageTest() {
          * @tc.desc      test createPixelMapList with invalid Options and not gif picture in callback mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 2
          */
         it('ImageTest010', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.jpg";
@@ -332,7 +324,6 @@ export default function ImageTest() {
               done()
             }
           })
-          done()
         })
 
         /**
@@ -341,7 +332,7 @@ export default function ImageTest() {
          * @tc.desc      test getDelayTimeList with not gif picture in callback mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 2
          */
         it('ImageTest011', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.jpg";
@@ -357,7 +348,6 @@ export default function ImageTest() {
               console.log('011Succeeded in delayTimes object.', delayTimes);
             }
           })
-          done()
         })
 
         /**
@@ -366,7 +356,7 @@ export default function ImageTest() {
          * @tc.desc      test getDelayTimeList with gif picture in callback mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 1
          */
         it('ImageTest012', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.gif";
@@ -385,7 +375,6 @@ export default function ImageTest() {
               done();
             }
           })
-          done()
         })
 
         /**
@@ -394,7 +383,7 @@ export default function ImageTest() {
          * @tc.desc      test getDelayTimeList with not gif picture in Promise mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 2
          */
         it('ImageTest013', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.jpg";
@@ -403,12 +392,12 @@ export default function ImageTest() {
           const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
           imageSourceApi.getDelayTimeList().then((delayTimes : Array<number>) => {
             console.log('013Succeeded in delayTimes object.',delayTimes);
+            done();
           }).catch((err: BusinessError) => {
             console.log(`013Failed to get delayTimes object.code is ${err.code},message is ${err.message}`);
             expect(err.code).assertEqual(62980113);
             done();
           })
-          done()
         })
 
         /**
@@ -417,7 +406,7 @@ export default function ImageTest() {
          * @tc.desc      test getDelayTimeList with gif picture in Promise mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 1
          */
         it('ImageTest014', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.gif";
@@ -433,7 +422,6 @@ export default function ImageTest() {
             expect(err).assertFail();
             done()
           })
-          done()
         })
 
         /**
@@ -442,7 +430,7 @@ export default function ImageTest() {
          * @tc.desc      test getFrameCount with not gif picture in callback mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 1
          */
         it('ImageTest015', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.jpg";
@@ -452,13 +440,13 @@ export default function ImageTest() {
           imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
             if (err != undefined) {
               console.log(`015Failed to get frame count.code is ${err.code},message is ${err.message}`);
+              done();
             } else {
               console.log('015Succeeded in getting frame count.',frameCount);
               expect(frameCount).assertEqual(1);
               done();
             }
           })
-          done()
         })
 
         /**
@@ -467,23 +455,23 @@ export default function ImageTest() {
          * @tc.desc      test getFrameCount with gif picture in callback mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 1
          */
         it('ImageTest016', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.gif";
           let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE)
           let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
           const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
-          imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
+          imageSourceApi.getFrameCount((err: BusinessError, frameCount: Number) => {
             if (err != undefined) {
               console.log(`016Failed to get frame count.code is ${err.code},message is ${err.message}`);
+              done();
             } else {
               console.log('016Succeeded in getting frame count.',frameCount);
-              expect(frameCount).assertInstanceOf('number');
+              expect(frameCount).assertInstanceOf('Number');
               done();
             }
           })
-          done()
         })
 
         /**
@@ -492,7 +480,7 @@ export default function ImageTest() {
          * @tc.desc      test getFrameCount with not gif picture in Promise mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 1
          */
         it('ImageTest017', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.jpg";
@@ -508,7 +496,6 @@ export default function ImageTest() {
             expect(err).assertFail();
             done()
           })
-          done()
         })
 
         /**
@@ -517,16 +504,16 @@ export default function ImageTest() {
          * @tc.desc      test getFrameCount with gif picture in Promise mode
          * @tc.size      : MediumTest
          * @tc.type      : Constant
-         * @tc.level     : Level 0
+         * @tc.level     : Level 1
          */
         it('ImageTest018', 0, async (done: Function) => {
           const path = AppStorage.get('pathDir') + "/001test.gif";
           let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE)
           let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
           const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
-          imageSourceApi.getFrameCount().then((frameCount: number) => {
+          imageSourceApi.getFrameCount().then((frameCount: Number) => {
             console.log('018Succeeded in getting frame count.',frameCount);
-            expect(frameCount).assertInstanceOf('number');
+            expect(frameCount).assertInstanceOf('Number');
             done();
           }).catch((err : BusinessError) => {
             console.log('err',err)
@@ -534,7 +521,6 @@ export default function ImageTest() {
             expect(err).assertFail();
             done();
           })
-          done();
         })
 
         console.info('end################################end');
