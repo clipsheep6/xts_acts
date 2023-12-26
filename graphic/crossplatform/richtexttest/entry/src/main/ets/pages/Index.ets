@@ -10,7 +10,7 @@ struct RichTextExample {
     '<p style="text-align: center;">p常规</p><hr/>' +
     '<div style="width: 500px;height: 500px;border: 1px solid;margin: 0auto;">' +
     '<p style="font-size: 35px;text-align: center;font-weight: bold; color: rgb(24,78,228)">字体大小35px,行高45px</p>' +
-    '<p style="background-color: #e5e5e5;line-height: 45px;font-size: 35px;text-indent: 2em;">' +
+    '<p style="background-color: rgb(229, 229, 229);line-height: 45px;font-size: 35px;text-indent: 2em;">' +
     '<p>这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字</p>';
 
   @State dataOnStart:string = '<h1 style="text-align: center;">OnStart</h1>'
@@ -24,7 +24,6 @@ struct RichTextExample {
         .width(500)
         .height(400)
         .backgroundColor(0XBDDB69)
-      // .id('RichText')
       RichText(this.dataOnStart)
         .onStart(() => {
           console.info('RichText onStart');
