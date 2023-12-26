@@ -8,16 +8,18 @@ export default function OnControllerAttachedTest() {
     /**
      * beforeAll: PreOnControllerAttachedTest at the test suite level, which are executed before the test suite is executed.
      */
-    beforeAll(() => {
+    beforeAll(async () => {
       console.log('##########PageControlTest Test start##########');
       console.info("====>beforeAll: PreOnControllerAttachedTest are executed.");
+      await startAbility('com.example.webviewtest2', 'EntryAbility')
+      const driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
     });
 
     /**
      * beforeEach: PreOnControllerAttachedTest at the test case level, which are executed before each test case is executed.
      */
     beforeEach(async () => {
-      await startAbility('com.example.webviewtest2', 'EntryAbility')
       const driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       console.info("====>beforeEach: Test case-level clearance conditions is executed.");

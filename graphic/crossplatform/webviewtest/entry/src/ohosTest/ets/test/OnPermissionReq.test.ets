@@ -8,16 +8,18 @@ export default function OnPermissionTest() {
     /**
      * beforeAll: PreOnPermissionTest at the test suite level, which are executed before the test suite is executed.
      */
-    beforeAll(() => {
+    beforeAll(async () => {
       console.log('##########OnPermissionTest Test start##########');
       console.info("====>beforeAll: PreOnPermissionTest are executed.");
+      await startAbility('com.example.webviewtest', 'EntryAbility')
+      const driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
     });
 
     /**
      * beforeEach: PreCommonEventMgrSubscribeTest at the test case level, which are executed before each test case is executed.
      */
     beforeEach(async () => {
-      await startAbility('com.example.webviewtest', 'EntryAbility')
       const driver = Driver.create()
       await driver.delayMs(waitUiReadyMs * 2)
       console.info("====>beforeEach: Test case-level clearance conditions is executed.");

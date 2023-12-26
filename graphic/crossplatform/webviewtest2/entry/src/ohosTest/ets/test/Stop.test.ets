@@ -8,16 +8,18 @@ export default function StopTest() {
     /**
      * beforeAll: PrePageControlTest at the test suite level, which are executed before the test suite is executed.
      */
-    beforeAll(() => {
+    beforeAll(async () => {
       console.log('##########PreStopTest Test start##########');
       console.info("====>beforeAll: PrePageControlTest are executed.");
+      await startAbility('com.example.webviewtest2', 'EntryAbility')
+      const driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
     });
 
     /**
      * beforeEach: PrePageControlTest at the test case level, which are executed before each test case is executed.
      */
     beforeEach(async () => {
-      await startAbility('com.example.webviewtest2', 'EntryAbility')
       const driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       console.info("====>beforeEach: Test case-level clearance conditions is executed.");
@@ -45,6 +47,12 @@ export default function StopTest() {
     it('STOP_TEST_001', 0, async () => {
       console.log('==========STOP_TEST_001 test start==========')
       let driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
+      const CHANGE_TABS = await driver.findComponent(ON.text('设置页签'))
+      await CHANGE_TABS.click()
+      await driver.delayMs(waitUiReadyMs)
+      const TAB = await driver.findComponent(ON.text('Goto HTMLControl'))
+      await TAB.click()
       await driver.delayMs(waitUiReadyMs)
       const STOP = await driver.findComponent(ON.text('10毫秒后Stop'))
       await STOP.click()
@@ -93,13 +101,13 @@ export default function StopTest() {
       const SHOW_SCROLL = await driver.findComponent(ON.text('scroll'))
       await SHOW_SCROLL.click()
       await driver.delayMs(waitUiReadyMs)
-      const MY_VALUE = await driver.findComponent(ON.id('MY_VALUE'))
       const SCROLLABLE = await driver.findComponent(ON.text('scrollable'))
       await SCROLLABLE.click()
       await driver.delayMs(waitUiReadyMs)
       const SHOW_HORIZONTAL = await driver.findComponent(ON.text('显示横轴滚动条'))
       await SHOW_HORIZONTAL.click()
       await driver.delayMs(waitUiReadyMs)
+      const MY_VALUE = await driver.findComponent(ON.id('MY_VALUE'))
       const value = await MY_VALUE.getText()
       expect(value).assertEqual('horizontal scrollbar is show,vertical scrollbar is hide')
       console.log('HORIZONTAL_SCROLLBAR_ACCESS_TEST_001 success')
@@ -115,13 +123,13 @@ export default function StopTest() {
       console.log('==========HORIZONTAL_SCROLLBAR_ACCESS_TEST_002 test start==========')
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
-      const MY_VALUE = await driver.findComponent(ON.id('MY_VALUE'))
       const SCROLLABLE = await driver.findComponent(ON.text('scrollable'))
       await SCROLLABLE.click()
       await driver.delayMs(waitUiReadyMs)
       const HIDE_HORIZONTAL = await driver.findComponent(ON.text('隐藏横轴滚动条'))
       await HIDE_HORIZONTAL.click()
       await driver.delayMs(waitUiReadyMs)
+      const MY_VALUE = await driver.findComponent(ON.id('MY_VALUE'))
       const value = await MY_VALUE.getText()
       expect(value).assertEqual('horizontal scrollbar is hide,vertical scrollbar is hide')
       console.log('HORIZONTAL_SCROLLBAR_ACCESS_TEST_002 success')
@@ -137,13 +145,13 @@ export default function StopTest() {
       console.log('==========VERTICAL_SCROLLBAR_ACCESS_TEST_001 test start==========')
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
-      const MY_VALUE = await driver.findComponent(ON.id('MY_VALUE'))
       const SCROLLABLE = await driver.findComponent(ON.text('scrollable'))
       await SCROLLABLE.click()
       await driver.delayMs(waitUiReadyMs)
       const SHOW_VERTICAL = await driver.findComponent(ON.text('显示纵轴滚动条'))
       await SHOW_VERTICAL.click()
       await driver.delayMs(waitUiReadyMs)
+      const MY_VALUE = await driver.findComponent(ON.id('MY_VALUE'))
       const value = await MY_VALUE.getText()
       expect(value).assertEqual('horizontal scrollbar is hide,vertical scrollbar is show')
       console.log('VERTICAL_SCROLLBAR_ACCESS_TEST_001 success')
@@ -159,13 +167,13 @@ export default function StopTest() {
       console.log('==========VERTICAL_SCROLLBAR_ACCESS_TEST_002 test start==========')
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
-      const MY_VALUE = await driver.findComponent(ON.id('MY_VALUE'))
       const SCROLLABLE = await driver.findComponent(ON.text('scrollable'))
       await SCROLLABLE.click()
       await driver.delayMs(waitUiReadyMs)
       const HIDE_VERTICAL = await driver.findComponent(ON.text('隐藏纵轴滚动条'))
       await HIDE_VERTICAL.click()
       await driver.delayMs(waitUiReadyMs)
+      const MY_VALUE = await driver.findComponent(ON.id('MY_VALUE'))
       const value = await MY_VALUE.getText()
       expect(value).assertEqual('horizontal scrollbar is hide,vertical scrollbar is hide')
       console.log('VERTICAL_SCROLLBAR_ACCESS_TEST_002 success')

@@ -8,16 +8,18 @@ export default function CookieManagerTest() {
     /**
      * beforeAll: PreCookieManagerTest at the test suite level, which are executed before the test suite is executed.
      */
-    beforeAll(() => {
+    beforeAll(async () => {
       console.log('##########CookieManagerTest Test start##########');
       console.info("====>beforeAll: PreCookieManagerTest are executed.");
+      await startAbility('com.example.webviewtest2', 'EntryAbility')
+      const driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
     });
 
     /**
      * beforeEach: PreCookieManagerTest at the test case level, which are executed before each test case is executed.
      */
     beforeEach(async () => {
-      await startAbility('com.example.webviewtest2', 'EntryAbility')
       const driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       console.info("====>beforeEach: Test case-level clearance conditions is executed.");
@@ -83,7 +85,7 @@ export default function CookieManagerTest() {
       await driver.delayMs(waitUiReadyMs)
       let MY_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'))
       let value = await MY_VALUE.getText()
-      expect(value).assertEqual('')
+      expect(value).assertEqual('clear all')
       const CONFIG_BUTTON = await driver.findComponent(ON.text('CONFIG'))
       await CONFIG_BUTTON.click()
       await driver.delayMs(waitUiReadyMs)
@@ -137,7 +139,7 @@ export default function CookieManagerTest() {
       await driver.delayMs(waitUiReadyMs)
       let MY_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'))
       let value = await MY_VALUE.getText()
-      expect(value).assertEqual('')
+      expect(value).assertEqual('clear all')
       const CONFIG_BUTTON = await driver.findComponent(ON.text('CONFIG'))
       await CONFIG_BUTTON.click()
       await driver.delayMs(waitUiReadyMs)
@@ -174,7 +176,7 @@ export default function CookieManagerTest() {
       await driver.delayMs(waitUiReadyMs)
       let MY_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'))
       let value = await MY_VALUE.getText()
-      expect(value).assertEqual('')
+      expect(value).assertEqual('clear all')
       const CONFIG_BUTTON = await driver.findComponent(ON.text('CONFIG'))
       await CONFIG_BUTTON.click()
       await driver.delayMs(waitUiReadyMs)
@@ -210,10 +212,19 @@ export default function CookieManagerTest() {
       await TAB.click()
       await driver.delayMs(2000)
       const ON_EVENT_URL = await driver.findComponent(ON.id('ON_EVENT_URL'))
-      const ON_EVENT_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'))
       const url = await ON_EVENT_URL.getText()
+      if (url.includes('alert')) {
+        expect(url).assertEqual('index_alert.html')
+      } else {
+        const BOF = await driver.findComponent(ON.text('BOF'))
+        await BOF.click()
+        await driver.delayMs(waitUiReadyMs)
+        const choice = await driver.findComponent(ON.text('-1'))
+        await choice.click()
+        await driver.delayMs(waitUiReadyMs)
+      }
+      const ON_EVENT_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'))
       const value = await ON_EVENT_VALUE.getText()
-      expect(url).assertEqual('index_alert.html')
       expect(value).assertContain('阻止此次加载')
       console.log('ON_LOAD_INTERCEPT_TEST_001 success')
       console.log('==========ON_LOAD_INTERCEPT_TEST_001 test end==========')

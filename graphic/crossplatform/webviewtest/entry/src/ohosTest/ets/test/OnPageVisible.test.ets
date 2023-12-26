@@ -8,16 +8,18 @@ export default function OnPageVisibleTest() {
     /**
      * beforeAll: PreOnPageVisibleTest at the test suite level, which are executed before the test suite is executed.
      */
-    beforeAll(() => {
+    beforeAll(async () => {
       console.log('##########OnPageVisibleTest Test start##########');
       console.info("====>beforeAll: PreOnPageVisibleTest are executed.");
+      await startAbility('com.example.webviewtest', 'EntryAbility')
+      const driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
     });
 
     /**
      * beforeEach: OnPageVisibleTest at the test case level, which are executed before each test case is executed.
      */
     beforeEach(async () => {
-      await startAbility('com.example.webviewtest', 'EntryAbility')
       const driver = Driver.create()
       await driver.delayMs(waitUiReadyMs * 2)
       console.info("====>beforeEach: Test case-level clearance conditions is executed.");
@@ -91,6 +93,7 @@ export default function OnPageVisibleTest() {
       await driver.delayMs(waitUiReadyMs)
       const OK_BUTTON = await driver.findComponent(ON.text('ok'))
       await OK_BUTTON.click()
+      await driver.delayMs(waitUiReadyMs)
       const BUTTON_CLICKED = await driver.findComponent(ON.id('ON_BUTTON_CLICK'))
       const BUTTON_CLICKED_TEXT = await BUTTON_CLICKED.getText()
       expect(BUTTON_CLICKED_TEXT).assertEqual('OK_CLICKED')

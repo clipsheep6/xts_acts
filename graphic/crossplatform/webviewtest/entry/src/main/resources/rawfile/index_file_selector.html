@@ -32,15 +32,26 @@
 				left: 0;
 			}
 			#upload {
-				width: 70px;
+				width: 72px;
+				z-index: 10;
 			}
 		</style>
 	</head>
 
 	<body>
-		<h1>WebView selectFiles Demo</h1>
+		<h1>selectFilesDemo</h1>
 		<div class="theShow">
-			<input type="file" id="upload" name="upload"/>
+			<input type="file" id="upload" name="upload" />
 		</div>
+		<script>
+			function readFile() {
+				try {
+					const inputBtn = document.getElementById('upload');
+					inputBtn.click();
+				} catch (error) {
+					console.error('error:' + JSON.stringify(error));
+				}
+			}
+		</script>
 	</body>
 </html>

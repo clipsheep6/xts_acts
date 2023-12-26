@@ -8,16 +8,18 @@ export default function OnDownloadStartTest() {
     /**
      * beforeAll: PreOnDownloadStartTest at the test suite level, which are executed before the test suite is executed.
      */
-    beforeAll(() => {
+    beforeAll(async () => {
       console.log('##########OnDownloadStartTest Test start##########');
       console.info("====>beforeAll: PreOnDownloadStartTest are executed.");
+      await startAbility('com.example.webviewtest', 'EntryAbility')
+      const driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
     });
 
     /**
      * beforeEach: PreOnDownloadStartTest at the test case level, which are executed before each test case is executed.
      */
     beforeEach(async () => {
-      await startAbility('com.example.webviewtest', 'EntryAbility')
       const driver = Driver.create()
       await driver.delayMs(waitUiReadyMs * 2)
       console.info("====>beforeEach: Test case-level clearance conditions is executed.");

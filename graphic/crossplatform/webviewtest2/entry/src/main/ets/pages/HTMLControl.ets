@@ -95,7 +95,6 @@ struct Controller {
             .id('zoom')
             .onClick(e => {
               this.SHOW_BUTTON_TYPE = 'zoom'
-              this.web_controller.loadUrl($rawfile('index_alert.html'))
             })
           Button('scroll')
             .onClick(e => {
@@ -165,6 +164,9 @@ struct Controller {
                 }
               })
               .size({ height: 20 })
+            Column()
+              .width('100%')
+              .height(5)
             Button('ScrollRandom')
               .onClick(async e => {
                 const x: number = this.getRandomNum(0, 1000)
@@ -192,9 +194,6 @@ struct Controller {
                 }
               })
               .size({ height: 20 })
-            Column()
-              .width('100%')
-              .height(5)
             Button('setUserAgent')
               .onClick(async e => {
                 const value = await promptAction.showActionMenu({
@@ -216,6 +215,9 @@ struct Controller {
                 this.MY_VALUE = `设置自定义用户代理: ${userAgent}`
               })
               .size({ height: 20 })
+            Column()
+              .width('100%')
+              .height(5)
             Button('getUserAgent')
               .onClick(e => {
                 const userAgent: string = this.web_controller.getCustomUserAgent()
@@ -274,11 +276,11 @@ struct Controller {
                   title: '请选择缩放比例',
                   buttons: [
                     {
-                      text: '80%',
+                      text: 'shrink',
                       color: '#333333'
                     },
                     {
-                      text: '150%',
+                      text: 'magnify',
                       color: '#333333'
                     }
                   ]
@@ -291,6 +293,9 @@ struct Controller {
                 }, 350)
               })
               .size({ height: 20 })
+            Column()
+              .width('100%')
+              .height(5)
             Button('ZoomRandom')
               .id('ZoomRandom')
               .onClick(e => {
@@ -301,9 +306,6 @@ struct Controller {
                 }, 350)
               })
               .size({ height: 20 })
-            Column()
-              .width('100%')
-              .height(5)
             Button('10毫秒后Stop')
               .onClick(event => {
                 this.web_controller.loadUrl($rawfile('index_confirm.html'))
@@ -322,6 +324,9 @@ struct Controller {
                 }, 10)
               })
               .size({ height: 20 })
+            Column()
+              .width('100%')
+              .height(5)
             Button('不调用Stop')
               .onClick(event => {
                 this.MY_TO_STRING = 'pageConfirm loaded'
@@ -352,8 +357,9 @@ struct Controller {
               }
             })
             .onScaleChange((event) => {
-              this.MY_VALUE = `当前网页的缩放比例:${(event.newScale)}%`
-              this.MY_TIPS = 'onScaleChange changed from ' + event.oldScale + ' to ' + event.newScale
+              const scale = (event.newScale - event.oldScale) > 0 ? 'magnify' : 'shrink'
+              this.MY_VALUE = `${scale}当前网页的比例`
+              this.MY_TIPS = 'onScaleChange changed from ' + Number(event.oldScale).toFixed(0) + ' to ' + Number(event.newScale).toFixed(0)
             })
             .onProgressChange((event) => {
               if (event) {

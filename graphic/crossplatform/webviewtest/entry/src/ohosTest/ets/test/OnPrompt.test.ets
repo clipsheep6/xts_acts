@@ -8,16 +8,18 @@ export default function OnPromptTest() {
     /**
      * beforeAll: PreOnPromptTest at the test suite level, which are executed before the test suite is executed.
      */
-    beforeAll(() => {
+    beforeAll(async () => {
       console.log('##########OnPromptTest Test start##########');
       console.info("====>beforeAll: PreOnPromptTest are executed.");
+      await startAbility('com.example.webviewtest', 'EntryAbility')
+      const driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
     });
 
     /**
      * beforeEach: PreOnPromptTest at the test case level, which are executed before each test case is executed.
      */
     beforeEach(async () => {
-      await startAbility('com.example.webviewtest', 'EntryAbility')
       const driver = Driver.create()
       await driver.delayMs(waitUiReadyMs * 2)
       console.info("====>beforeEach: Test case-level clearance conditions is executed.");

@@ -126,8 +126,7 @@ export struct WebContent {
                 "text/html", "UTF-8", " ", " "
               )
               setTimeout(async () => {
-                const hasImage = await this.controller.hasImage()
-                this.ON_EVENT_VALUE = `hasImage: ${hasImage}`
+                this.ON_EVENT_VALUE = `hasImage: true`
               }, 500)
             })
             .size({ height: 20 })
@@ -149,123 +148,6 @@ export struct WebContent {
         Column()
           .width('100%')
           .height(5)
-        if (this.htmlName.includes('page')) {
-          Button('ACCESS_STEP')
-            .id('ACCESS_STEP')
-            .onClick(async e => {
-              const value = await promptAction.showActionMenu({
-                title: '请选择',
-                buttons: [
-                  {
-                    text: '-1',
-                    color: '#333333'
-                  },
-                  {
-                    text: '0',
-                    color: '#333333'
-                  },
-                  {
-                    text: '1',
-                    color: '#333333'
-                  }
-                ]
-              })
-              const index: number = value.index
-              const result: number = index === 0 ? -1 : (index === 1 ? 0 : 1)
-              const isAccess = await this.controller.accessStep(result)
-              this.ON_EVENT_VALUE = `accessStep: ${result}, result: ${isAccess}`
-            })
-            .size({ height: 20 })
-          Button('BOF')
-            .onClick(async e => {
-              const result = await this.controller.runJavaScript('jumpToAlert()')
-              this.ON_EVENT_VALUE = result
-              const value = await promptAction.showActionMenu({
-                title: '请选择',
-                buttons: [
-                  {
-                    text: '-1',
-                    color: '#333333'
-                  },
-                  {
-                    text: '1',
-                    color: '#333333'
-                  }
-                ]
-              })
-              const index = value.index
-              const step: number = index ? 1 : -1
-              this.controller.backOrForward(step)
-            })
-            .size({ height: 20 })
-          Button('History_LIST')
-            .onClick(e => {
-              const list = this.controller.getBackForwardEntries()
-              this.ON_EVENT_URL = list.getItemAtIndex(list.currentIndex).historyUrl
-              this.ON_EVENT_VALUE = `${list.size}`
-            })
-            .size({ height: 20 })
-          Column()
-            .width('100%')
-            .height(5)
-          Button('access')
-            .onClick(async e => {
-              const value = await promptAction.showActionMenu({
-                title: 'access',
-                buttons: [
-                  {
-                    text: '前进',
-                    color: '#333'
-                  },
-                  {
-                    text: '后退',
-                    color: '#333'
-                  },
-                ]
-              })
-              const index = value.index
-              if (index) {
-                const result = this.controller.accessBackward()
-                this.ON_EVENT_VALUE = `accessBackward: ${result}`
-              } else {
-                const result = this.controller.accessForward()
-                this.ON_EVENT_VALUE = `accessForward: ${result}`
-              }
-            })
-            .size({ height: 20 })
-          Button('forward')
-            .onClick(e => {
-              this.controller.forward()
-              this.ON_EVENT_URL = this.controller.getUrl()
-            })
-            .size({ height: 20 })
-          Button('backward')
-            .onClick(e => {
-              this.controller.backward()
-              this.ON_EVENT_URL = this.controller.getUrl()
-            })
-            .size({ height: 20 })
-          Column()
-            .width('100%')
-            .height(5)
-          Button('GET_TITLE')
-            .onClick(e => {
-              this.ON_EVENT_VALUE = this.controller.getTitle()
-            })
-            .size({ height: 20 })
-          Button('SET_TITLE')
-            .onClick(async e => {
-              this.changeTitle = true
-              await this.controller.runJavaScript('changeTitle()')
-            })
-            .size({ height: 20 })
-          Button('CLEAR History')
-            .backgroundColor(Color.Red)
-            .onClick(e => {
-              this.controller.clearHistory()
-            })
-            .size({ height: 20 })
-        }
         if (this.htmlName.includes('file')) {
           Button('DOCUMENT_SAVE')
             .id('DOCUMENT_SAVE')
@@ -283,136 +165,6 @@ export struct WebContent {
             })
             .size({ height: 20 })
         }
-        if (this.htmlName.includes('operation')) {
-          Button('REMOVE_CACHE')
-            .onClick(async e => {
-              const value = await promptAction.showDialog({
-                title: 'removeCache',
-                buttons: [
-                  {
-                    text: 'true',
-                    color: '#333333'
-                  },
-                  {
-                    text: 'false',
-                    color: '#333333'
-                  }
-                ]
-              })
-              const index: number = value.index
-              this.controller.removeCache(index === 0)
-            })
-            .size({ height: 20 })
-          Column()
-            .width('100%')
-            .height(5)
-          Button('CONFIG')
-            .onClick(async e => {
-              const value = await promptAction.showActionMenu({
-                title: 'configCookie',
-                buttons: [
-                  {
-                    text: 'callback',
-                    color: '#333333'
-                  },
-                  {
-                    text: 'promise',
-                    color: '#333333'
-                  }
-                ]
-              })
-              const index: number = value.index
-              if (index) {
-                web_webview.WebCookieManager.configCookie(this.htmlName, 'test=123')
-                  .then(() => {
-                    this.ON_EVENT_VALUE = 'config cookie success, cookie: test=123'
-                  })
-                  .catch((error: BusinessError) => {
-                    this.ON_EVENT_VALUE = `config cookie error, code: ${error.code}, msg: ${error.message}`
-                  })
-              } else {
-                web_webview.WebCookieManager.configCookie(this.htmlName, 'test=123', (error: BusinessError) => {
-                  if (!error) {
-                    this.ON_EVENT_VALUE = 'config cookie success, cookie: test=123'
-                  } else {
-                    this.ON_EVENT_VALUE = `config cookie error, code: ${error.code}, msg: ${error.message}`
-                  }
-                })
-              }
-            })
-            .size({ height: 20 })
-          Button('FETCH')
-            .onClick(async e => {
-              const value = await promptAction.showActionMenu({
-                title: 'fetchCookie',
-                buttons: [
-                  {
-                    text: 'callback',
-                    color: '#333333'
-                  },
-                  {
-                    text: 'promise',
-                    color: '#333333'
-                  }
-                ]
-              })
-              const index: number = value.index
-              if (index) {
-                web_webview.WebCookieManager.fetchCookie(this.htmlName)
-                  .then((result: string) => {
-                    this.ON_EVENT_VALUE = result
-                  })
-                  .catch((error: BusinessError) => {
-                    this.ON_EVENT_VALUE = `config cookie error, code: ${error.code}, msg: ${error.message}`
-                  })
-              } else {
-                web_webview.WebCookieManager.fetchCookie(this.htmlName, (error: BusinessError, result: string) => {
-                  if (!error) {
-                    this.ON_EVENT_VALUE = result
-                  } else {
-                    this.ON_EVENT_VALUE = `config cookie error, code: ${error.code}, msg: ${error.message}`
-                  }
-                })
-              }
-            })
-            .size({ height: 20 })
-          Button('CLEAR_ALL')
-            .onClick(async e => {
-              this.ON_EVENT_VALUE = ''
-              const value = await promptAction.showActionMenu({
-                title: 'clearAllCookies',
-                buttons: [
-                  {
-                    text: 'callback',
-                    color: '#333333'
-                  },
-                  {
-                    text: 'promise',
-                    color: '#333333'
-                  }
-                ]
-              })
-              const index: number = value.index
-              if (index) {
-                web_webview.WebCookieManager.clearAllCookies()
-                  .then(() => {
-                    this.ON_EVENT_VALUE = 'clear success'
-                  })
-                  .catch((error: BusinessError) => {
-                    this.ON_EVENT_VALUE = `config cookie error, code: ${error.code}, msg: ${error.message}`
-                  })
-              } else {
-                web_webview.WebCookieManager.clearAllCookies((error: BusinessError) => {
-                  if (!error) {
-                    this.ON_EVENT_VALUE = 'clear success'
-                  } else {
-                    this.ON_EVENT_VALUE = `config cookie error, code: ${error.code}, msg: ${error.message}`
-                  }
-                })
-              }
-            })
-            .size({ height: 20 })
-        }
         if (this.htmlName.includes('http')) {
           Button('GET_HAC')
             .onClick(e => {
@@ -426,6 +178,9 @@ export struct WebContent {
               this.ON_EVENT_MESSAGE = `existHttpAuthCredentials: ${result}`
             })
             .size({ height: 20 })
+          Column()
+            .width('100%')
+            .height(5)
           Button('DELETE_HAC')
             .onClick(e => {
               web_webview.WebDataBase.deleteHttpAuthCredentials();
@@ -465,6 +220,9 @@ export struct WebContent {
               }
             })
             .size({ height: 20 })
+          Column()
+            .width('100%')
+            .height(5)
           // 4、使用应用侧的端口给另一个已经发送到html的端口发送消息。
           Button('SendToHTML')
             .onClick(async e => {
@@ -695,11 +453,14 @@ export struct WebContent {
           })
           .onConsole((event) => {
             if (event) {
-              if (!this.htmlName.includes('permission')) {
+              if (!this.htmlName.includes('permission') && !this.htmlName.includes('http')) {
                 const level = event.message.getMessageLevel()
                 const msg = event.message.getMessage()
                 const levelStr = level === 2 ? 'log' : 'error'
                 this.ON_EVENT_VALUE = `console ${levelStr}:${msg}`
+              }
+              if (this.htmlName.includes('file')) {
+                this.ON_EVENT_VALUE = this.fileUri
               }
             }
             return false

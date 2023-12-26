@@ -8,16 +8,18 @@ export default function WebMessagePortTest() {
     /**
      * beforeAll: PreWebMessagePortTest at the test suite level, which are executed before the test suite is executed.
      */
-    beforeAll(() => {
+    beforeAll(async () => {
       console.log('##########WebMessagePortTest Test start##########');
       console.info("====>beforeAll: PreWebMessagePortTest are executed.");
+      await startAbility('com.example.webviewtest', 'EntryAbility')
+      const driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
     });
 
     /**
      * beforeEach: PreWebMessagePortTest at the test case level, which are executed before each test case is executed.
      */
     beforeEach(async () => {
-      await startAbility('com.example.webviewtest', 'EntryAbility')
       const driver = Driver.create()
       await driver.delayMs(waitUiReadyMs * 2)
       console.info("====>beforeEach: Test case-level clearance conditions is executed.");
@@ -96,11 +98,11 @@ export default function WebMessagePortTest() {
       const postMsg = await driver.findComponent(ON.text('HelloArkTs'))
       await postMsg.click()
       await driver.delayMs(waitUiReadyMs)
-      const ON_EVENT_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'))
       const ON_EVENT_MSG = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'))
       const msg = await ON_EVENT_MSG.getText()
-      const value = await ON_EVENT_VALUE.getText()
       expect(msg).assertEqual('post message: HelloArkTs')
+      const ON_EVENT_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'))
+      const value = await ON_EVENT_VALUE.getText()
       expect(value).assertEqual('console log:Got message from ets:HelloArkTs')
       console.log('POST_MESSAGE_EVENT_TEST_001 success')
       console.log('==========POST_MESSAGE_EVENT_TEST_001 test end==========')
@@ -121,11 +123,11 @@ export default function WebMessagePortTest() {
       const postMsg = await driver.findComponent(ON.text('HelloOH'))
       await postMsg.click()
       await driver.delayMs(waitUiReadyMs)
-      const ON_EVENT_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'))
       const ON_EVENT_MSG = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'))
       const msg = await ON_EVENT_MSG.getText()
-      const value = await ON_EVENT_VALUE.getText()
       expect(msg).assertEqual('post message: HelloOH')
+      const ON_EVENT_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'))
+      const value = await ON_EVENT_VALUE.getText()
       expect(value).assertEqual('console log:Got message from ets:HelloOH')
       console.log('POST_MESSAGE_EVENT_TEST_002 success')
       console.log('==========POST_MESSAGE_EVENT_TEST_002 test end==========')
@@ -162,11 +164,11 @@ export default function WebMessagePortTest() {
       const CLOSE = await driver.findComponent(ON.text('close'))
       await CLOSE.click()
       await driver.delayMs(waitUiReadyMs)
-      const ON_EVENT_MESSAGE = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'))
-      const ON_EVENT_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'))
+      let ON_EVENT_MESSAGE = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'))
       let msg = await ON_EVENT_MESSAGE.getText()
-      let value = await ON_EVENT_VALUE.getText()
       expect(msg).assertEqual('close port')
+      let ON_EVENT_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'))
+      let value = await ON_EVENT_VALUE.getText()
       expect(value).assertEqual('Got msg from HTML:message from HTML')
       const SEND = await driver.findComponent(ON.text('SendToHTML'))
       await SEND.click()
@@ -174,9 +176,11 @@ export default function WebMessagePortTest() {
       const postMsg = await driver.findComponent(ON.text('HelloOH'))
       await postMsg.click()
       await driver.delayMs(waitUiReadyMs)
+      ON_EVENT_MESSAGE = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'))
       msg = await ON_EVENT_MESSAGE.getText()
-      value = await ON_EVENT_VALUE.getText()
       expect(msg).assertEqual('post message: HelloOH')
+      ON_EVENT_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'))
+      value = await ON_EVENT_VALUE.getText()
       expect(value).assertEqual('Got msg from HTML:message from HTML')
       console.log('CLOSE_TEST_001 success')
       console.log('==========CLOSE_TEST_001 test end==========')

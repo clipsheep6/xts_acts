@@ -8,16 +8,18 @@ export default function OnShowFileSelectorTest() {
     /**
      * beforeAll: PreOnShowFileSelectorTest at the test suite level, which are executed before the test suite is executed.
      */
-    beforeAll(() => {
+    beforeAll(async () => {
       console.log('##########OnShowFileSelectorTest Test start##########');
       console.info("====>beforeAll: PreOnShowFileSelectorTest are executed.");
+      await startAbility('com.example.webviewtest', 'EntryAbility')
+      const driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
     });
 
     /**
      * beforeEach: PreOnShowFileSelectorTest at the test case level, which are executed before each test case is executed.
      */
     beforeEach(async () => {
-      await startAbility('com.example.webviewtest', 'EntryAbility')
       const driver = Driver.create()
       await driver.delayMs(waitUiReadyMs * 2)
       console.info("====>beforeEach: Test case-level clearance conditions is executed.");
@@ -58,10 +60,8 @@ export default function OnShowFileSelectorTest() {
       const ON_EVENT_MSG = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'))
       const msg = await ON_EVENT_MSG.getText()
       expect(msg).assertEqual('SAVE test.txt')
-      const currentWeb = await driver.findComponent(ON.id('index_file_selector.html'))
-      const center = await currentWeb.getBoundsCenter()
-      // await driver.mouseClick(center, MouseButton.MOUSE_BUTTON_LEFT) // 会导致安卓白屏
-      await driver.click(center.x, center.y)
+      const TRIGGER = await driver.findComponent(ON.text('TRIGGER'))
+      await TRIGGER.click()
       await driver.delayMs(waitUiReadyMs)
       const ON_EVENT_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'))
       const value = await ON_EVENT_VALUE.getText()

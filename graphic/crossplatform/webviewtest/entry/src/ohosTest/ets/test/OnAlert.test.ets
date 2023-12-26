@@ -8,16 +8,18 @@ export default function OnAlertTest() {
     /**
      * beforeAll: PreOnAlertTest at the test suite level, which are executed before the test suite is executed.
      */
-    beforeAll(() => {
+    beforeAll(async () => {
       console.log('##########OnAlertTest Test start##########');
       console.info("====>beforeAll: PreOnAlertTest are executed.");
+      await startAbility('com.example.webviewtest', 'EntryAbility')
+      const driver = Driver.create()
+      await driver.delayMs(waitUiReadyMs)
     });
 
     /**
      * beforeEach: PreCommonEventMgrSubscribeTest at the test case level, which are executed before each test case is executed.
      */
     beforeEach(async () => {
-      await startAbility('com.example.webviewtest', 'EntryAbility')
       const driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       console.info("====>beforeEach: Test case-level clearance conditions is executed.");
@@ -90,8 +92,9 @@ export default function OnAlertTest() {
       let driver = Driver.create()
       await driver.delayMs(waitUiReadyMs)
       const secondaryButton = await driver.findComponent(ON.text('ok'))
-      const SECONDARY_BUTTON_CLICK = await driver.findComponent(ON.id('ON_BUTTON_CLICK'))
       await secondaryButton.click()
+      await driver.delayMs(waitUiReadyMs)
+      const SECONDARY_BUTTON_CLICK = await driver.findComponent(ON.id('ON_BUTTON_CLICK'))
       const text: string = await SECONDARY_BUTTON_CLICK.getText()
       console.log('SECONDARY_BUTTON_CLICK', text)
       expect(text).assertEqual('OK_CLICKED')
@@ -110,9 +113,11 @@ export default function OnAlertTest() {
       await driver.delayMs(waitUiReadyMs)
       const TRIGGER_BUTTON = await driver.findComponent(ON.text('TRIGGER'))
       await TRIGGER_BUTTON.click()
+      await driver.delayMs(waitUiReadyMs)
       const primaryButton = await driver.findComponent(ON.text('cancel'))
-      const PRIMARY_BUTTON_CLICK = await driver.findComponent(ON.id('ON_BUTTON_CLICK'))
       await primaryButton.click()
+      await driver.delayMs(waitUiReadyMs)
+      const PRIMARY_BUTTON_CLICK = await driver.findComponent(ON.id('ON_BUTTON_CLICK'))
       const text: string = await PRIMARY_BUTTON_CLICK.getText()
       console.log('PRIMARY_BUTTON_CLICK', text)
       expect(text).assertEqual('CANCEL_CLICKED')
