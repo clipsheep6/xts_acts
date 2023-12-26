@@ -19,19 +19,9 @@ import hilog from '@ohos.hilog';
 import type window from '@ohos.window';
 import commonEventManager from '@ohos.commonEventManager';
 
-let TAG = 'Observe Error';
-let applicationState = -1;
-let bundlename = '';
-let commonEventData = {
-  parameters: {
-    applicationState: applicationState,
-    bundlename: bundlename
-  }
-}
 let appForegroundStateObserver = {
   onAppStateChanged(appStateData) {
-    console.info('onAppStateChanged: ' + JSON.stringify(appStateData.bundleName));
-    console.info('onAppStateChanged: ' + JSON.stringify(appStateData.state));
+    console.info('onAppStateChanged: ' + JSON.stringify(appStateData));
   }
 }
 let wantValue;
@@ -69,25 +59,43 @@ export default class EntryAbility extends UIAbility {
     if (wantValue.action == 'Acts_ObserverAppState_0200') {
       try {
         appManager.on('appForegroundState', appForegroundStateObserver);
-      } catch (error) {
-        console.error(TAG, 'on error' + JSON.stringify(error));
-        commonEventData.parameters.applicationState = error.code;
-        commonEventManager.publish('Acts_ObserverAppState_0200', commonEventData, (err) => {
-          console.info('publish error' + JSON.stringify(err));
+      } catch(error) {
+        console.info('Acts_ObserverAppState_0200_TAG', 'unsystem app error: ' + JSON.stringify(error));
+        let errorCode;
+        let abilityResult = {
+          resultCode: 1,
+          want: {
+            parameters: {
+              errorCode: errorCode
+            }
+          }
+        }
+        abilityResult.want.parameters.errorCode = error.code;
+        this.context.terminateSelfWithResult(abilityResult, (error) => {
+          console.info('Acts_ObserverAppState_0200_TAG', 'Terminate self error: ' + JSON.stringify(error));
         })
       }
     }
-    if (wantValue.action == 'Acts_ObserverAppState_0500') {
+    else if (wantValue.action == 'Acts_ObserverAppState_0500') {
       try {
         appManager.on('appForegroundState', appForegroundStateObserver);
-      } catch (error) {
+      } catch(error) {
         try {
           appManager.off('appForegroundState', appForegroundStateObserver);
         } catch (error) {
-          console.error(TAG, 'on error' + JSON.stringify(error));
-          commonEventData.parameters.applicationState = error.code;
-          commonEventManager.publish('Acts_ObserverAppState_0500', commonEventData, (err) => {
-            console.info('publish error' + JSON.stringify(err));
+          console.info('Acts_ObserverAppState_0500_TAG', 'unsystem app error: ' + JSON.stringify(error));
+          let errorCode;
+          let abilityResult = {
+            resultCode: 1,
+            want: {
+              parameters: {
+                errorCode: errorCode
+              }
+            }
+          }
+          abilityResult.want.parameters.errorCode = error.code;
+          this.context.terminateSelfWithResult(abilityResult, (error) => {
+            console.info('Acts_ObserverAppState_0500_TAG', 'Terminate self error: ' + JSON.stringify(error));
           })
         }
       }

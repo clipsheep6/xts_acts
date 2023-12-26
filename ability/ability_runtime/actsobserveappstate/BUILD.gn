@@ -18,23 +18,10 @@ group("actsobserveappstate") {
   if (is_standard_system) {
     deps = [
       "ActsObserverAppStateTest:ActsObserverAppStateTest",
+      "ActsObserverSubRely:ActsObserverSubRely",
       "ActsObserverWindowModeRely:ActsObserverWindowModeRely",
-      "ObserverAppStateEight:ObserverAppStateEight",
-      "ObserverAppStateEleven:ObserverAppStateEleven",
-      "ObserverAppStateFive:ObserverAppStateFive",
-      "ObserverAppStateFour:ObserverAppStateFour",
-      "ObserverAppStateFourteen:ObserverAppStateFourteen",
-      "ObserverAppStateNineOne:ObserverAppStateNineOne",
-      "ObserverAppStateNineTwo:ObserverAppStateNineTwo",
       "ObserverAppStateOne:ObserverAppStateOne",
-      "ObserverAppStateRely:ObserverAppStateRely",
-      "ObserverAppStateSeven:ObserverAppStateSeven",
-      "ObserverAppStateSix:ObserverAppStateSix",
-      "ObserverAppStateTenOne:ObserverAppStateTenOne",
-      "ObserverAppStateTenTwo:ObserverAppStateTenTwo",
-      "ObserverAppStateThirteen:ObserverAppStateThirteen",
       "ObserverAppStateThree:ObserverAppStateThree",
-      "ObserverAppStateTwelve:ObserverAppStateTwelve",
       "ObserverAppStateTwo:ObserverAppStateTwo",
     ]
   }

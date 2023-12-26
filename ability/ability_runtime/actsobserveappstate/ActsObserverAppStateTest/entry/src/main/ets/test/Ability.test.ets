@@ -13,17 +13,13 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import commonEventManager from '@ohos.commonEventManager';
-import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import appManager from '@ohos.app.ability.appManager';
 
 let StateEvent = {
-  events: ['stateEvent', 'stateEvent2', 'stateEvent4', 'Acts_ObserverAppState_0100_1' ,'Acts_ObserverAppState_0100_2',
-           'Acts_ObserverAppState_0400_1', 'Acts_ObserverAppState_0400_2', 'Acts_ObserverAppState_0200',
-           'Acts_ObserverAppState_0300', 'Acts_ObserverAppState_0500', 'Acts_ObserverAppState_0600']
-}
+  events: [ 'MultiApplicationTest' ]
+};
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -41,39 +37,31 @@ export default function abilityTest() {
     * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0100', 0, async function (done) {
-      let subscriber;
       let TAG = 'Acts_ObserverAppState_0100_TAG';
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-      
-      function subscribeCallBack(err, data) {
-        console.info(TAG, 'subscribeCallBack' + JSON.stringify(data));
-        if (data.event == 'Acts_ObserverAppState_0100_1') {
-          expect(data.parameters.applicationState).assertEqual(401);
-        }
-        if (data.event == 'Acts_ObserverAppState_0100_2') {
-          expect(data.parameters.applicationState).assertEqual(401);
-          commonEventManager.unsubscribe(subscriber, async () => {
-            await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstateone');
-            done();
-          });
-        }
+      console.info(TAG, 'Start.');
+      await sleep(200);
+      let windowModeObserver1 = null;
+      let windowModeObserver2 = undefined;
+      try {
+        await appManager.on('appForegroundState', windowModeObserver1);
+        expect().assertFail();
+        done();
+      } catch(error) {
+        console.info(TAG, 'Expect area1 error: ' + JSON.stringify(error));
+        expect(error.code).assertEqual(401);
       }
-
-      commonEventManager.createSubscriber(StateEvent).then(async (data) => {
-        console.debug(TAG, 'Create Subscribe');
-        subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallBack);
-        await sleep(500);
-        globalThis.abilityContext.startAbility(
-          {
-            bundleName: 'com.example.observerappstateone',
-            abilityName: 'EntryAbility',
-            action: 'Acts_ObserverAppState_0100'
-          }, (err) => {
-          console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-          expect(err.code).assertEqual(0);
-        })
-      })
+      await sleep(1000);
+      try {
+        await appManager.on('appForegroundState', windowModeObserver2);
+        console.info(TAG, 'End.');
+        expect().assertFail();
+        done();
+      } catch(error) {
+        console.info(TAG, 'Expect area2 error: ' + JSON.stringify(error));
+        expect(error.code).assertEqual(401);
+        console.info(TAG, 'End.');
+        done();
+      }
     })
 
     /*
@@ -85,37 +73,20 @@ export default function abilityTest() {
     * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0200', 0, async function (done) {
-      let subscriber;
       let TAG = 'Acts_ObserverAppState_0200_TAG';
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-
-      function subscribeCallBack(err, data) {
-        console.info(TAG, 'subscribeCallBack' + JSON.stringify(data));
-        if (data.event == 'Acts_ObserverAppState_0200') {
-          console.info(TAG, 'data.parameters.applicationState' + JSON.stringify(data));
-          expect(data.parameters.applicationState).assertEqual(202);
-          commonEventManager.unsubscribe(subscriber, async () => {
-            await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstatetwo');
-            done();
-          });
-        }
-      }
-
-      commonEventManager.createSubscriber(StateEvent).then(async (data) => {
-        console.debug(TAG, 'Create Subscribe');
-        subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallBack);
-        await sleep(500);
-        globalThis.abilityContext.startAbility(
-          {
-            bundleName: 'com.example.observerappstatetwo',
-            abilityName: 'EntryAbility',
-            action: 'Acts_ObserverAppState_0200'
-          }, (err) => {
-          console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-          expect(err.code).assertEqual(0);
-        });
+      console.info(TAG, 'Start.');
+      let want = {
+        bundleName: 'com.example.observerappstatetwo',
+        abilityName: 'EntryAbility',
+        action: 'Acts_ObserverAppState_0200'
+      };
+      await sleep(500);
+      await globalThis.abilityContext.startAbilityForResult(want).then((data) => {
+        console.info(TAG, 'Start ability for result data: ' + JSON.stringify(data));
+        expect(data.want.parameters.errorCode).assertEqual(202);
+        done();
       })
+      console.info(TAG, 'End.');
     })
 
     /*
@@ -127,37 +98,20 @@ export default function abilityTest() {
     * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0300', 0, async function (done) {
-      let subscriber;
       let TAG = 'Acts_ObserverAppState_0300_TAG';
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-
-      function subscribeCallBack(err, data) {
-        console.info(TAG, 'subscribeCallBack' + JSON.stringify(data));
-        if (data.event == 'Acts_ObserverAppState_0300') {
-          console.info(TAG, 'data.parameters.applicationState' + JSON.stringify(data));
-          expect(data.parameters.applicationState).assertEqual(201);
-          commonEventManager.unsubscribe(subscriber, async () => {
-            await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstatethree');
-            done();
-          });
-        }
-      }
-
-      commonEventManager.createSubscriber(StateEvent).then(async (data) => {
-        console.debug(TAG, 'Create Subscribe');
-        subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallBack);
-        await sleep(500);
-        globalThis.abilityContext.startAbility(
-          {
-            bundleName: 'com.example.observerappstatethree',
-            abilityName: 'EntryAbility',
-            action: 'Acts_ObserverAppState_0300'
-          }, (err) => {
-          console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-          expect(err.code).assertEqual(0);
-        })
+      console.info(TAG, 'Start.');
+      let want = {
+        bundleName: 'com.example.observerappstatethree',
+        abilityName: 'EntryAbility',
+        action: 'Acts_ObserverAppState_0300'
+      };
+      await sleep(500);
+      await globalThis.abilityContext.startAbilityForResult(want).then((data) => {
+        console.info(TAG, 'Start ability for result data: ' + JSON.stringify(data));
+        expect(data.want.parameters.errorCode).assertEqual(201);
+        done();
       })
+      console.info(TAG, 'End.');
     })
 
     /*
@@ -169,38 +123,33 @@ export default function abilityTest() {
     * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0400', 0, async function (done) {
-      let subscriber;
       let TAG = 'Acts_ObserverAppState_0400_TAG';
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-      
-      function subscribeCallBack(err, data) {
-        console.info(TAG, 'subscribeCallBack' + JSON.stringify(data));
-        if (data.event == 'Acts_ObserverAppState_0400_1') {
-          console.info(TAG, 'data.parameters.applicationState' + JSON.stringify(data));
-          expect(data.parameters.applicationState).assertEqual(401);
+      console.info(TAG, 'Start.');
+      await sleep(500);
+      let windowModeObserver1 = null;
+      let windowModeObserver2 = undefined;
+      let windowModeObserver = {
+        onAppStateChanged(appStateData) {
+          console.info(TAG, 'On app state changed.');
         }
-        if (data.event == 'Acts_ObserverAppState_0400_2') {
-          console.info(TAG, 'data.parameters.applicationState' + JSON.stringify(data));
-          expect(data.parameters.applicationState).assertEqual(401);
-          commonEventManager.unsubscribe(subscriber, async () => {
-            await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstateone');
-            done();
-          });
-        }
+      };
+      await appManager.on('appForegroundState', windowModeObserver);
+      try {
+        await appManager.off('appForegroundState', windowModeObserver1);
+      } catch(error) {
+        console.info(TAG, 'Off1 error: ' + JSON.stringify(error));
+        expect(error.code).assertEqual(401);
       }
-
-      commonEventManager.createSubscriber(StateEvent).then(async (data) => {
-        console.debug(TAG, 'Create Subscribe');
-        subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallBack);
-        await sleep(700);
-        await globalThis.abilityContext.startAbility(
-          {
-            bundleName: 'com.example.observerappstateone',
-            abilityName: 'EntryAbility',
-            action: 'Acts_ObserverAppState_0400'
-          });
-      })
+      await sleep(1000);
+      try {
+        await appManager.off('appForegroundState', windowModeObserver2);
+      } catch (error) {
+        console.info(TAG, 'Off2 error: ' + JSON.stringify(error));
+        expect(error.code).assertEqual(401);
+        await appManager.off('appForegroundState', windowModeObserver);
+        console.info(TAG, 'End.');
+        done();
+      }
     })
 
     /*
@@ -212,37 +161,20 @@ export default function abilityTest() {
     * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0500', 0, async function (done) {
-      let subscriber;
       let TAG = 'Acts_ObserverAppState_0500_TAG';
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-
-      function subscribeCallBack(err, data) {
-        console.info(TAG, 'subscribeCallBack' + JSON.stringify(data));
-        if (data.event == 'Acts_ObserverAppState_0500') {
-          console.info(TAG, 'data.parameters.applicationState' + JSON.stringify(data));
-          expect(data.parameters.applicationState).assertEqual(202);
-          commonEventManager.unsubscribe(subscriber, async () => {
-            await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstatetwo');
-            done();
-          });
-        }
-      }
-
-      commonEventManager.createSubscriber(StateEvent).then(async (data) => {
-        console.info(TAG, 'Create Subscribe');
-        subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallBack);
-        await sleep(500);
-        globalThis.abilityContext.startAbility(
-          {
-            bundleName: 'com.example.observerappstatetwo',
-            abilityName: 'EntryAbility',
-            action: 'Acts_ObserverAppState_0500'
-          }, (err) => {
-          console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-          expect(err.code).assertEqual(0);
-        })
+      console.info(TAG, 'Start.');
+      let want = {
+        bundleName: 'com.example.observerappstatetwo',
+        abilityName: 'EntryAbility',
+        action: 'Acts_ObserverAppState_0500'
+      };
+      await sleep(500);
+      await globalThis.abilityContext.startAbilityForResult(want).then((data) => {
+        console.info(TAG, 'Start ability for result data: ' + JSON.stringify(data));
+        expect(data.want.parameters.errorCode).assertEqual(202);
+        done();
       })
+      console.info(TAG, 'End.');
     })
 
     /*
@@ -254,37 +186,20 @@ export default function abilityTest() {
     * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0600', 0, async function (done) {
-      let subscriber;
       let TAG = 'Acts_ObserverAppState_0600_TAG';
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-
-      function subscribeCallBack(err, data) {
-        console.info(TAG, 'subscribeCallBack' + JSON.stringify(data));
-        if (data.event == 'Acts_ObserverAppState_0600') {
-          console.info(TAG, 'data.parameters.applicationState' + JSON.stringify(data));
-          expect(data.parameters.applicationState).assertEqual(201);
-          commonEventManager.unsubscribe(subscriber, async () => {
-            await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstatethree');
-            done();
-          });
-        }
-      }
-
-      commonEventManager.createSubscriber(StateEvent).then(async (data) => {
-        console.debug(TAG, 'Create Subscribe');
-        subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallBack);
-        await sleep(500);
-        globalThis.abilityContext.startAbility(
-          {
-            bundleName: 'com.example.observerappstatethree',
-            abilityName: 'EntryAbility',
-            action: 'Acts_ObserverAppState_0600'
-          }, (err) => {
-          console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-          expect(err.code).assertEqual(0);
-        })
+      console.info(TAG, 'Start.');
+      let want = {
+        bundleName: 'com.example.observerappstatethree',
+        abilityName: 'EntryAbility',
+        action: 'Acts_ObserverAppState_0600'
+      };
+      await sleep(500);
+      await globalThis.abilityContext.startAbilityForResult(want).then((data) => {
+        console.info(TAG, 'Start ability for result data: ' + JSON.stringify(data));
+        expect(data.want.parameters.errorCode).assertEqual(201);
+        done();
       })
+      console.info(TAG, 'End.');
     })
 
     /*
@@ -297,515 +212,701 @@ export default function abilityTest() {
     */
     it('Acts_ObserverAppState_0700', 0, async function (done) {
       let TAG = 'Acts_ObserverAppState_0700_TAG';
-      let subscriber;
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-
-      function subscribeCallback(err, data) {
-        if (data.event == 'stateEvent2') {
-          try {
-            console.info(TAG, 'subscribe callback data : ' + JSON.stringify(data));
-            expect(data.parameters.applicationState).assertEqual(2);
-          } catch (error) {
-            console.info(TAG, 'subscribe callback error : ' + JSON.stringify(error));
-          };
+      console.info(TAG, 'Start.');
+      await sleep(200);
+      let want = {
+        bundleName: 'com.example.actsobserverwindowmoderely',
+        abilityName: 'EntryAbility'
+      };
+      let testWant = {
+        bundleName: 'com.example.observerappstatetest',
+        abilityName: 'TestAbility'
+      };
+      let foregroundState = 0;
+      let backgroundState = 0;
+      let windowModeObserver = {
+        onAppStateChanged(appStateData) {
+          console.info(TAG, 'On app state changed.');
+          if (appStateData.bundleName == 'com.example.actsobserverwindowmoderely') {
+            console.info(TAG, 'Testing application state has changed: ' + JSON.stringify(appStateData));
+            foregroundState = appStateData.state == 2 ? appStateData.state : foregroundState;
+            backgroundState = appStateData.state == 4 ? appStateData.state : backgroundState;
+          }
         }
-        if (data.event == 'stateEvent4') {
-          try {
-            console.info(TAG, 'subscribe callback data : ' + JSON.stringify(data));
-            expect(data.parameters.applicationState).assertEqual(4);
-          } catch (error) {
-            console.info(TAG, 'subscribe callback error : ' + JSON.stringify(error));
-          };
-          commonEventManager.unsubscribe(subscriber, async () => {
-            await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstatefour');
-            done();
-          });
-        }
+      };
+      await appManager.on('appForegroundState', windowModeObserver);
+      await sleep(1000);
+      await globalThis.abilityContext.startAbility(want).then(() => {
+        console.info(TAG, 'Start ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      await globalThis.abilityContext.startAbility(testWant).then(() => {
+        console.info(TAG, 'Start test ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      console.info(TAG, 'foreground state: ',foregroundState, 'background state: ', backgroundState);
+      try {
+        expect(foregroundState).assertEqual(2);
+        expect(backgroundState).assertEqual(4);
+        await appManager.off('appForegroundState', windowModeObserver);
+        console.info(TAG, 'End.');
+        done();
+      } catch(error) {
+        console.info(TAG, 'Expect area error: ' + JSON.stringify(error));
+        await appManager.off('appForegroundState', windowModeObserver);
+        console.info(TAG, 'End.');
+        expect().assertFail();
+        done();
       }
-
-      commonEventManager.createSubscriber(StateEvent).then(async (data) => {
-        console.debug(TAG, 'Create Subscribe');
-        subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallback);
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstatefour',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_0700'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-          console.info(TAG, 'startAbility end');
-        }, 500);
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstaterely',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_0700'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-        }, 3000);
-      })
     })
 
     /*
     * @tc.number: Acts_ObserverAppState_0800
     * @tc.name: Enable and disable application listening
-    * @tc.desc: Verify that two identical listeners are listening to a single application
+    * @tc.desc: Verify that a single listener is listening to multiple applications
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0800', 0, async function (done) {
       let TAG = 'Acts_ObserverAppState_0800_TAG';
-      let subscriber;
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-
-      function subscribeCallback(err, data) {
-        if (data.event == 'stateEvent2') {
-          try {
-            console.info(TAG, 'subscribe callback data : ' + JSON.stringify(data));
-            expect(data.parameters.applicationState).assertEqual(2);
-          } catch (error) {
-            console.info(TAG, 'subscribe callback error : ' + JSON.stringify(error));
-          };
+      console.info(TAG, 'Start.');
+      await sleep(200);
+      let want = {
+        bundleName: 'com.example.actsobserverwindowmoderely',
+        abilityName: 'EntryAbility'
+      };
+      let testWant = {
+        bundleName: 'com.example.observerappstatetest',
+        abilityName: 'TestAbility'
+      };
+      let foregroundTimes = 0;
+      let backgroundTimes = 0;
+      let windowModeObserver = {
+        onAppStateChanged(appStateData) {
+          console.info(TAG, 'On app state changed.');
+          if (appStateData.bundleName == 'com.example.actsobserverwindowmoderely') {
+            console.info(TAG, 'Testing application state has changed: ' + JSON.stringify(appStateData));
+            foregroundTimes = appStateData.state == 2 ? ++foregroundTimes : foregroundTimes;
+            backgroundTimes = appStateData.state == 4 ? ++backgroundTimes : backgroundTimes;
+          }
         }
-        if (data.event == 'stateEvent4') {
-          try {
-            console.info(TAG, 'subscribe callback data : ' + JSON.stringify(data));
-            expect(data.parameters.applicationState).assertEqual(4);
-          } catch (error) {
-            console.info(TAG, 'subscribe callback error : ' + JSON.stringify(error));
-          };
-          commonEventManager.unsubscribe(subscriber, async () => {
-            await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstatefive');
-            done();
-          });
-        }
+      };
+      await appManager.on('appForegroundState', windowModeObserver);
+      await appManager.on('appForegroundState', windowModeObserver);
+      await sleep(1000);
+      await globalThis.abilityContext.startAbility(want).then(() => {
+        console.info(TAG, 'Start ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      await globalThis.abilityContext.startAbility(testWant).then(() => {
+        console.info(TAG, 'Start test ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      console.info(TAG, 'foreground times: ',foregroundTimes, 'background times: ', backgroundTimes);
+      try {
+        expect(foregroundTimes).assertEqual(1);
+        expect(backgroundTimes).assertEqual(1);
+        await appManager.off('appForegroundState', windowModeObserver);
+        console.info(TAG, 'End.');
+        done();
+      } catch(error) {
+        console.info(TAG, 'Expect area error: ' + JSON.stringify(error));
+        await appManager.off('appForegroundState', windowModeObserver);
+        console.info(TAG, 'End.');
+        expect().assertFail();
+        done();
       }
-
-      commonEventManager.createSubscriber(StateEvent).then(async (data) => {
-        console.debug(TAG, 'Create Subscribe');
-        subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallback);
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstatefive',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_0800'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-          console.info(TAG, 'startAbility end');
-        }, 500);
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstaterely',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_0800'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-        }, 3000);
-      })
     })
 
     /*
     * @tc.number: Acts_ObserverAppState_0900
     * @tc.name: Enable and disable application listening
-    * @tc.desc: Verify that two different listeners are listening to a single application
+    * @tc.desc: Verify that a single listener is listening to multiple applications
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_0900', 0, async function (done) {
       let TAG = 'Acts_ObserverAppState_0900_TAG';
-      let subscriber;
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-
-      function subscribeCallback(err, data) {
-        if (data.event == 'stateEvent2') {
-          try {
-            console.info(TAG, 'subscribe callback data : ' + JSON.stringify(data));
-            expect(data.parameters.applicationState).assertEqual(2);
-          } catch (error) {
-            console.info(TAG, 'subscribe callback error : ' + JSON.stringify(error));
-          };
+      console.info(TAG, 'Start.');
+      await sleep(200);
+      let want = {
+        bundleName: 'com.example.actsobserverwindowmoderely',
+        abilityName: 'EntryAbility'
+      };
+      let testWant = {
+        bundleName: 'com.example.observerappstatetest',
+        abilityName: 'TestAbility'
+      };
+      let foregroundState1 = 0;
+      let backgroundState1 = 0;
+      let foregroundTimes1 = 0;
+      let backgroundTimes1 = 0;
+      let foregroundState2 = 0;
+      let backgroundState2 = 0;
+      let foregroundTimes2 = 0;
+      let backgroundTimes2 = 0;
+      let windowModeObserver1 = {
+        onAppStateChanged(appStateData) {
+          console.info(TAG, 'On app1 state changed.');
+          if (appStateData.bundleName == 'com.example.actsobserverwindowmoderely') {
+            console.info(TAG, '1-Testing application state has changed: ' + JSON.stringify(appStateData));
+            if (appStateData.state == 2) {
+              foregroundState1 = 2;
+              foregroundTimes1++;
+            }
+            if (appStateData.state == 4) {
+              backgroundState1 = 4;
+              backgroundTimes1++;
+            }
+          }
         }
-        if (data.event == 'stateEvent4') {
-          try {
-            console.info(TAG, 'subscribe callback data : ' + JSON.stringify(data));
-            expect(data.parameters.applicationState).assertEqual(4);
-          } catch (error) {
-            console.info(TAG, 'subscribe callback error : ' + JSON.stringify(error));
-          };
-          commonEventManager.unsubscribe(subscriber, async () => {
-            await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstatesix');
-            done();
-          });
+      };
+      let windowModeObserver2 = {
+        onAppStateChanged(appStateData) {
+          console.info(TAG, 'On app2 state changed.');
+          if (appStateData.bundleName == 'com.example.actsobserverwindowmoderely') {
+            console.info(TAG, '2-Testing application state has changed: ' + JSON.stringify(appStateData));
+            if (appStateData.state == 2) {
+              foregroundState2 = 2;
+              foregroundTimes2++;
+            }
+            if (appStateData.state == 4) {
+              backgroundState2 = 4;
+              backgroundTimes2++;
+            }
+          }
         }
+      };
+      await appManager.on('appForegroundState', windowModeObserver1);
+      await appManager.on('appForegroundState', windowModeObserver2);
+      await sleep(1000);
+      await globalThis.abilityContext.startAbility(want).then(() => {
+        console.info(TAG, 'Start ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      await globalThis.abilityContext.startAbility(testWant).then(() => {
+        console.info(TAG, 'Start test ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      console.info(TAG, 'foreground state1: ',foregroundState1, 'background state1: ', backgroundState1);
+      console.info(TAG, 'foreground state2: ',foregroundState2, 'background state2: ', backgroundState2);
+      console.info(TAG, 'foreground times1: ',foregroundTimes1, 'background times1: ', backgroundTimes1);
+      console.info(TAG, 'foreground times2: ',foregroundTimes2, 'background times2: ', backgroundTimes2);
+      try {
+        expect(foregroundState1).assertEqual(2);
+        expect(backgroundState1).assertEqual(4);
+        expect(foregroundState2).assertEqual(2);
+        expect(backgroundState2).assertEqual(4);
+        expect(foregroundTimes1).assertEqual(1);
+        expect(backgroundTimes1).assertEqual(1);
+        expect(foregroundTimes2).assertEqual(1);
+        expect(backgroundTimes2).assertEqual(1);
+        await appManager.off('appForegroundState', windowModeObserver1);
+        await appManager.off('appForegroundState', windowModeObserver2);
+        console.info(TAG, 'End.');
+        done();
+      } catch(error) {
+        console.info(TAG, 'Expect area error: ' + JSON.stringify(error));
+        await appManager.off('appForegroundState', windowModeObserver1);
+        await appManager.off('appForegroundState', windowModeObserver2);
+        console.info(TAG, 'End.');
+        expect().assertFail();
+        done();
       }
-
-      commonEventManager.createSubscriber(StateEvent).then(async (data) => {
-        console.debug(TAG, 'Create Subscribe');
-        subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallback);
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstatesix',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_0500'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-          console.info(TAG, 'startAbility end');
-        }, 500)
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstaterely',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_0900'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-        }, 3000);
-      })
     })
 
     /*
     * @tc.number: Acts_ObserverAppState_1000
     * @tc.name: Enable and disable application listening
-    * @tc.desc: Verify the registration of two different listeners. The second listener performs anti registration
+    * @tc.desc: Verify that a single listener is listening to multiple applications
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_1000', 0, async function (done) {
-      let TAG = 'Acts_ObserverAppState_1000_TAG'
-      let subscriber;
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-
-      function subscribeCallback(err, data) {
-        if (data.event == 'stateEvent2') {
-          try {
-            console.info(TAG, 'subscribe callback data : ' + JSON.stringify(data));
-            expect(data.parameters.applicationState).assertEqual(2)
-          } catch (error) {
-            console.info(TAG, 'subscribe callback error : ' + JSON.stringify(error));
-          };
+      let TAG = 'Acts_ObserverAppState_1000_TAG';
+      console.info(TAG, 'Start.');
+      await sleep(200);
+      let want = {
+        bundleName: 'com.example.actsobserverwindowmoderely',
+        abilityName: 'EntryAbility'
+      };
+      let testWant = {
+        bundleName: 'com.example.observerappstatetest',
+        abilityName: 'TestAbility'
+      };
+      let foregroundState1 = 0;
+      let backgroundState1 = 0;
+      let foregroundTimes1 = 0;
+      let backgroundTimes1 = 0;
+      let foregroundState2 = 0;
+      let backgroundState2 = 0;
+      let foregroundTimes2 = 0;
+      let backgroundTimes2 = 0;
+      let windowModeObserver1 = {
+        onAppStateChanged(appStateData) {
+          console.info(TAG, 'On app1 state changed.');
+          if (appStateData.bundleName == 'com.example.actsobserverwindowmoderely') {
+            console.info(TAG, '1-Testing application state has changed: ' + JSON.stringify(appStateData));
+            if (appStateData.state == 2) {
+              foregroundState1 = 2;
+              foregroundTimes1++;
+            }
+            if (appStateData.state == 4) {
+              backgroundState1 = 4;
+              backgroundTimes1++;
+            }
+          }
         }
-        if (data.event == 'stateEvent4') {
-          try {
-            console.info(TAG, 'subscribe callback data : ' + JSON.stringify(data));
-            expect(data.parameters.applicationState).assertEqual(4)
-          } catch (error) {
-            console.info(TAG, 'subscribe callback error : ' + JSON.stringify(error));
-          };
-          commonEventManager.unsubscribe(subscriber, async () => {
-            await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstateseven');
-            done();
-          });
+      };
+      let windowModeObserver2 = {
+        onAppStateChanged(appStateData) {
+          console.info(TAG, 'On app2 state changed.');
+          if (appStateData.bundleName == 'com.example.actsobserverwindowmoderely') {
+            console.info(TAG, '2-Testing application state has changed: ' + JSON.stringify(appStateData));
+            if (appStateData.state == 2) {
+              foregroundState2 = 2;
+              foregroundTimes2++;
+            }
+            if (appStateData.state == 4) {
+              backgroundState2 = 4;
+              backgroundTimes2++;
+            }
+          }
         }
+      };
+      await appManager.on('appForegroundState', windowModeObserver1);
+      await appManager.on('appForegroundState', windowModeObserver2);
+      await appManager.off('appForegroundState', windowModeObserver2);
+      await sleep(1000);
+      await globalThis.abilityContext.startAbility(want).then(() => {
+        console.info(TAG, 'Start ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      await globalThis.abilityContext.startAbility(testWant).then(() => {
+        console.info(TAG, 'Start test ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      console.info(TAG, 'foreground state1: ',foregroundState1, 'background state1: ', backgroundState1);
+      console.info(TAG, 'foreground state2: ',foregroundState2, 'background state2: ', backgroundState2);
+      console.info(TAG, 'foreground times1: ',foregroundTimes1, 'background times1: ', backgroundTimes1);
+      console.info(TAG, 'foreground times2: ',foregroundTimes2, 'background times2: ', backgroundTimes2);
+      try {
+        expect(foregroundState1).assertEqual(2);
+        expect(backgroundState1).assertEqual(4);
+        expect(foregroundState2).assertEqual(0);
+        expect(backgroundState2).assertEqual(0);
+        expect(foregroundTimes1).assertEqual(1);
+        expect(backgroundTimes1).assertEqual(1);
+        expect(foregroundTimes2).assertEqual(0);
+        expect(backgroundTimes2).assertEqual(0);
+        await appManager.off('appForegroundState', windowModeObserver1);
+        console.info(TAG, 'End.');
+        done();
+      } catch(error) {
+        console.info(TAG, 'Expect area error: ' + JSON.stringify(error));
+        await appManager.off('appForegroundState', windowModeObserver1);
+        console.info(TAG, 'End.');
+        expect().assertFail();
+        done();
       }
-
-      commonEventManager.createSubscriber(StateEvent).then(async (data) => {
-        console.debug(TAG, 'Create Subscribe');
-        subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallback);
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstateseven',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_1000'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-          console.info(TAG, 'startAbility end');
-        }, 500)
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstaterely',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_1000'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-        }, 3000);
-      })
     })
 
     /*
     * @tc.number: Acts_ObserverAppState_1100
     * @tc.name: Enable and disable application listening
-    * @tc.desc: Verify that the same listener cancels registration twice
+    * @tc.desc: Verify that a single listener is listening to multiple applications
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_1100', 0, async function (done) {
-      let TAG = 'Acts_ObserverAppState_1100_TAG'
-      let subscriber;
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-
-      function subscribeCallback(err, data) {
-        console.info(TAG, 'subscribeCallBack' + JSON.stringify(data));
-        if (data.event == 'stateEvent') {
-          try {
-            console.info(TAG, 'data.parameters.applicationState' + JSON.stringify(data));
-            expect(data.parameters.applicationState).assertEqual(16000050);
-          } catch (error) {
-            console.info(TAG, 'subscribe callback error : ' + JSON.stringify(error));
-          };
+      let TAG = 'Acts_ObserverAppState_1100_TAG';
+      console.info(TAG, 'Start.');
+      await sleep(200);
+      let want = {
+        bundleName: 'com.example.actsobserverwindowmoderely',
+        abilityName: 'EntryAbility'
+      };
+      let testWant = {
+        bundleName: 'com.example.observerappstatetest',
+        abilityName: 'TestAbility'
+      };
+      let foregroundTimes = 0;
+      let backgroundTimes = 0;
+      let windowModeObserver = {
+        onAppStateChanged(appStateData) {
+          console.info(TAG, 'On app state changed.');
+          if (appStateData.bundleName == 'com.example.actsobserverwindowmoderely') {
+            console.info(TAG, 'Testing application state has changed: ' + JSON.stringify(appStateData));
+            foregroundTimes = appStateData.state == 2 ? ++foregroundTimes : foregroundTimes;
+            backgroundTimes = appStateData.state == 4 ? ++backgroundTimes : backgroundTimes;
+          }
         }
-        commonEventManager.unsubscribe(subscriber, async () => {
-          await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstateeight');
-          done();
-        });
+      };
+      await appManager.on('appForegroundState', windowModeObserver);
+      await sleep(1000);
+      await globalThis.abilityContext.startAbility(want).then(() => {
+        console.info(TAG, 'Start ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      await globalThis.abilityContext.startAbility(testWant).then(() => {
+        console.info(TAG, 'Start test ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      console.info(TAG, 'foreground times: ',foregroundTimes, 'background times: ', backgroundTimes);
+      try {
+        await appManager.off('appForegroundState', windowModeObserver);
+        await appManager.off('appForegroundState', windowModeObserver);
+        expect().assertFail();
+        console.info(TAG, 'End.');
+        done();
+      } catch(error) {
+        console.info(TAG, 'Expect area error: ' + JSON.stringify(error));
+        expect(error.code).assertEqual(16000050);
+        console.info(TAG, 'End.');
+        done();
       }
-
-      commonEventManager.createSubscriber(StateEvent).then(async (data) => {
-        console.debug(TAG, 'Create Subscribe');
-        subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallback);
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstateeight',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_1100'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-          console.info(TAG, 'startAbility end');
-        }, 500);
-      })
     })
 
     /*
     * @tc.number: Acts_ObserverAppState_1200
     * @tc.name: Enable and disable application listening
-    * @tc.desc: Verify two applications with one listener each, and listen to the third application
+    * @tc.desc: Verify that a single listener is listening to multiple applications
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_1200', 0, async function (done) {
-      let TAG = 'Acts_ObserverAppState_1200_TAG'
+      let TAG = 'Acts_ObserverAppState_1200_TAG';
+      console.info(TAG, 'Start.');
+      await sleep(200);
+      let want = {
+        bundleName: 'com.example.actsobserverwindowmoderely',
+        abilityName: 'EntryAbility'
+      };
+      let wantRely = {
+        bundleName: 'com.example.actsobserversubrely',
+        abilityName: 'EntryAbility'
+      };
+      let testWant = {
+        bundleName: 'com.example.observerappstatetest',
+        abilityName: 'TestAbility'
+      };
       let subscriber;
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-
-      function subscribeCallback(err, data) {
-        if (data.event == 'stateEvent2') {
-          try {
-            console.info(TAG, 'subscribe callback data : ' + JSON.stringify(data));
-            expect(data.parameters.applicationState).assertEqual(2);
-          } catch (error) {
-            console.info(TAG, 'subscribe callback error : ' + JSON.stringify(error));
-          };
+      let foregroundTimes1 = 0;
+      let backgroundTimes1 = 0;
+      let foregroundState1 = 0;
+      let backgroundState1 = 0;
+      let windowModeObserver = {
+        onAppStateChanged(appStateData) {
+          console.info(TAG, 'On app state changed.');
+          if (appStateData.bundleName == 'com.example.actsobserverwindowmoderely') {
+            console.info(TAG, '1-Testing application state has changed: ' + JSON.stringify(appStateData));
+            if (appStateData.state == 2) {
+              foregroundState1 = 2;
+              foregroundTimes1++;
+            }
+            if (appStateData.state == 4) {
+              backgroundState1 = 4;
+              backgroundTimes1++;
+            }
+          }
         }
-        if (data.event == 'stateEvent4') {
-          try {
-            console.info(TAG, 'subscribe callback data : ' + JSON.stringify(data));
-            expect(data.parameters.applicationState).assertEqual(4);
-          } catch (error) {
-            console.info(TAG, 'subscribe callback error : ' + JSON.stringify(error));
-          };
-          commonEventManager.unsubscribe(subscriber, async () => {
-            await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstatenineone');
-            await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstateninetwo');
+      };
+      function subscribeCallback(error, data) {
+        console.info(TAG, 'subscribe callback err: ' + JSON.stringify(error));
+        console.info(TAG, 'subscribe callback data: ' + JSON.stringify(data));
+        if (data.event == 'MultiApplicationTest') {
+          expect(data.parameters.foregroundState).assertEqual(2);
+          expect(data.parameters.backgroundState).assertEqual(4);
+          expect(data.parameters.foregroundTimes).assertEqual(1);
+          expect(data.parameters.backgroundTimes).assertEqual(1);
+          commonEventManager.unsubscribe(subscriber, (error) => {
+            console.info(TAG, 'commonEventManager unsubscribe error', JSON.stringify(error));
             done();
-          });
+          })
         }
       }
-
-      commonEventManager.createSubscriber(StateEvent).then(async (data) => {
-        console.debug(TAG, 'Create Subscribe');
+      await sleep(500);
+      await commonEventManager.createSubscriber(StateEvent).then((data) => {
         subscriber = data;
         commonEventManager.subscribe(subscriber, subscribeCallback);
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstatenineone',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_1200'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-          console.info(TAG, 'startAbility end');
-        }, 500);
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstateninetwo',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_1200'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-          console.info(TAG, 'startAbility end');
-        }, 2000);
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstaterely',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_1200'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-        }, 3500);
       })
+      await appManager.on('appForegroundState', windowModeObserver);
+      await sleep(1000);
+      await globalThis.abilityContext.startAbility(wantRely).then(() => {
+        console.info(TAG, 'Start rely-ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      await globalThis.abilityContext.startAbility(want).then(() => {
+        console.info(TAG, 'Start ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      await globalThis.abilityContext.startAbility(testWant).then(() => {
+        console.info(TAG, 'Start test ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      console.info(TAG, 'foreground state1: ', foregroundState1, 'background state1: ', backgroundState1);
+      console.info(TAG, 'foreground times1: ', foregroundTimes1, 'background times1: ', backgroundTimes1);
+      try {
+        expect(foregroundState1).assertEqual(2);
+        expect(backgroundState1).assertEqual(4);
+        expect(foregroundTimes1).assertEqual(1);
+        expect(backgroundTimes1).assertEqual(1);
+        await appManager.off('appForegroundState', windowModeObserver);
+        console.info(TAG, 'End.');
+      } catch(error) {
+        console.info(TAG, 'Expect area error: ' + JSON.stringify(error));
+        console.info(TAG, 'End.');
+        done();
+      }
     })
 
     /*
     * @tc.number: Acts_ObserverAppState_1300
     * @tc.name: Enable and disable application listening
-    * @tc.desc: Verify two applications with one listener each, cancel registration for the second listener
-    *          and monitor the third application
+    * @tc.desc: Verify that a single listener is listening to multiple applications
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_1300', 0, async function (done) {
-      let TAG = 'Acts_ObserverAppState_1300_TAG';
+      let TAG = 'Acts_ObserverAppState_1200_TAG';
+      console.info(TAG, 'Start.');
+      await sleep(200);
+      let want = {
+        bundleName: 'com.example.actsobserverwindowmoderely',
+        abilityName: 'EntryAbility'
+      };
+      let wantRely = {
+        bundleName: 'com.example.actsobserversubrely',
+        abilityName: 'EntryAbility',
+        action: 'Acts_MonitorApp_1300'
+      };
+      let testWant = {
+        bundleName: 'com.example.observerappstatetest',
+        abilityName: 'TestAbility'
+      };
       let subscriber;
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-
-      function subscribeCallback(err, data) {
-        if (data.event == 'stateEvent2') {
-          try {
-            console.info(TAG, 'subscribe callback data : ' + JSON.stringify(data));
-            expect(data.parameters.applicationState).assertEqual(2);
-          } catch (error) {
-            console.info(TAG, 'subscribe callback error : ' + JSON.stringify(error));
-          };
+      let foregroundTimes1 = 0;
+      let backgroundTimes1 = 0;
+      let foregroundState1 = 0;
+      let backgroundState1 = 0;
+      let windowModeObserver = {
+        onAppStateChanged(appStateData) {
+          console.info(TAG, 'On app state changed.');
+          if (appStateData.bundleName == 'com.example.actsobserverwindowmoderely') {
+            console.info(TAG, '1-Testing application state has changed: ' + JSON.stringify(appStateData));
+            if (appStateData.state == 2) {
+              foregroundState1 = 2;
+              foregroundTimes1++;
+            }
+            if (appStateData.state == 4) {
+              backgroundState1 = 4;
+              backgroundTimes1++;
+            }
+          }
         }
-        if (data.event == 'stateEvent4') {
-          try {
-            console.info(TAG, 'subscribe callback data : ' + JSON.stringify(data));
-            expect(data.parameters.applicationState).assertEqual(4);
-          } catch (error) {
-            console.info(TAG, 'subscribe callback error : ' + JSON.stringify(error));
-          };
-          commonEventManager.unsubscribe(subscriber, async () => {
-            await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstatetenone');
-            await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstatetentwo');
+      };
+      function subscribeCallback(error, data) {
+        console.info(TAG, 'subscribe callback err: ' + JSON.stringify(error));
+        console.info(TAG, 'subscribe callback data: ' + JSON.stringify(data));
+        if (data.event == 'MultiApplicationTest') {
+          expect(data.parameters.foregroundState).assertEqual(0);
+          expect(data.parameters.backgroundState).assertEqual(0);
+          expect(data.parameters.foregroundTimes).assertEqual(0);
+          expect(data.parameters.backgroundTimes).assertEqual(0);
+          commonEventManager.unsubscribe(subscriber, (error) => {
+            console.info(TAG, 'commonEventManager unsubscribe error', JSON.stringify(error));
             done();
-          });
+          })
         }
       }
-
-      commonEventManager.createSubscriber(StateEvent).then(async (data) => {
-        console.debug(TAG, 'Create Subscribe');
+      await sleep(500);
+      await commonEventManager.createSubscriber(StateEvent).then((data) => {
         subscriber = data;
         commonEventManager.subscribe(subscriber, subscribeCallback);
-        
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstatetenone',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_1300'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-          console.info(TAG, 'startAbility end');
-        }, 500);
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstatetentwo',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_1300'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-          console.info(TAG, 'startAbility end');
-        }, 2000);
-        setTimeout(() => {
-          globalThis.abilityContext.startAbility(
-            {
-              bundleName: 'com.example.observerappstaterely',
-              abilityName: 'EntryAbility',
-              action: 'Acts_ObserverAppState_1300'
-            }, (err) => {
-            console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
-          })
-        }, 3500);
       })
+      await appManager.on('appForegroundState', windowModeObserver);
+      await sleep(1000);
+      await globalThis.abilityContext.startAbility(wantRely).then(() => {
+        console.info(TAG, 'Start rely-ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      await globalThis.abilityContext.startAbility(want).then(() => {
+        console.info(TAG, 'Start ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      await globalThis.abilityContext.startAbility(testWant).then(() => {
+        console.info(TAG, 'Start test ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      console.info(TAG, 'foreground state1: ', foregroundState1, 'background state1: ', backgroundState1);
+      console.info(TAG, 'foreground times1: ', foregroundTimes1, 'background times1: ', backgroundTimes1);
+      try {
+        expect(foregroundState1).assertEqual(2);
+        expect(backgroundState1).assertEqual(4);
+        expect(foregroundTimes1).assertEqual(1);
+        expect(backgroundTimes1).assertEqual(1);
+        await appManager.off('appForegroundState', windowModeObserver);
+        console.info(TAG, 'End.');
+      } catch(error) {
+        console.info(TAG, 'Expect area error: ' + JSON.stringify(error));
+        console.info(TAG, 'End.');
+        done();
+      }
     })
 
     /*
     * @tc.number: Acts_ObserverAppState_1400
     * @tc.name: Enable and disable application listening
-    * @tc.desc: Verify that a single application registers multiple different listeners, call the unregister interface
-    *           to cancel all listening
+    * @tc.desc: Verify that a single listener is listening to multiple applications
     * @tc.size: MediumTest
     * @tc.type: Function
     * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_1400', 0, async function (done) {
       let TAG = 'Acts_ObserverAppState_1400_TAG';
-      let subscriber;
-      let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-
-      function subscribeCallback(err, data) {
-        if (data.event == 'stateEvent') {
-          try {
-            console.info(TAG, 'subscribe callback data : ' + JSON.stringify(data));
-            expect(data.parameters.flog).assertEqual(0);
-          } catch (error) {
-            console.info(TAG, 'subscribe callback error : ' + JSON.stringify(error));
-          };
+      console.info(TAG, 'Start.');
+      await sleep(200);
+      let want = {
+        bundleName: 'com.example.actsobserverwindowmoderely',
+        abilityName: 'EntryAbility'
+      };
+      let testWant = {
+        bundleName: 'com.example.observerappstatetest',
+        abilityName: 'TestAbility'
+      };
+      let foregroundState1 = 0;
+      let backgroundState1 = 0;
+      let foregroundTimes1 = 0;
+      let backgroundTimes1 = 0;
+      let foregroundState2 = 0;
+      let backgroundState2 = 0;
+      let foregroundTimes2 = 0;
+      let backgroundTimes2 = 0;
+      let windowModeObserver1 = {
+        onAppStateChanged(appStateData) {
+          console.info(TAG, 'On app1 state changed.');
+          if (appStateData.bundleName == 'com.example.actsobserverwindowmoderely') {
+            console.info(TAG, '1-Testing application state has changed: ' + JSON.stringify(appStateData));
+            if (appStateData.state == 2) {
+              foregroundState1 = 2;
+              foregroundTimes1++;
+            }
+            if (appStateData.state == 4) {
+              backgroundState1 = 4;
+              backgroundTimes1++;
+            }
+          }
         }
-        commonEventManager.unsubscribe(subscriber, async () => {
-          await abilityDelegator.executeShellCommand('pkill -f com.example.observerappstatefourteen');
-          done();
-        });
-      }
-
-      commonEventManager.createSubscriber(StateEvent).then(async (data) => {
-        console.debug(TAG, 'Create Subscribe');
-        subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallback);
+      };
+      let windowModeObserver2 = {
+        onAppStateChanged(appStateData) {
+          console.info(TAG, 'On app2 state changed.');
+          if (appStateData.bundleName == 'com.example.actsobserverwindowmoderely') {
+            console.info(TAG, '2-Testing application state has changed: ' + JSON.stringify(appStateData));
+            if (appStateData.state == 2) {
+              foregroundState2 = 2;
+              foregroundTimes2++;
+            }
+            if (appStateData.state == 4) {
+              backgroundState2 = 4;
+              backgroundTimes2++;
+            }
+          }
+        }
+      };
+      await appManager.on('appForegroundState', windowModeObserver1);
+      await appManager.on('appForegroundState', windowModeObserver2);
+      await appManager.off('appForegroundState');
+      await sleep(1000);
+      await globalThis.abilityContext.startAbility(want).then(() => {
+        console.info(TAG, 'Start ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
       });
-
-      setTimeout(() => {
-        globalThis.abilityContext.startAbility(
-          {
-            bundleName: 'com.example.observerappstatefourteen',
-            abilityName: 'EntryAbility',
-            action: 'Acts_ObserverAppState_1400'
-          }, (err) => {
-          console.info(TAG, 'startAbility err: ' + JSON.stringify(err));
-          expect(err.code).assertEqual(0);
-        })
-        console.info(TAG, 'startAbility end');
-      }, 500);
+      await sleep(1500);
+      await globalThis.abilityContext.startAbility(testWant).then(() => {
+        console.info(TAG, 'Start test ability successfully.');
+      }).catch((error) => {
+        expect().assertFail();
+        done();
+      });
+      await sleep(1500);
+      console.info(TAG, 'foreground state1: ',foregroundState1, 'background state1: ', backgroundState1);
+      console.info(TAG, 'foreground state2: ',foregroundState2, 'background state2: ', backgroundState2);
+      console.info(TAG, 'foreground times1: ',foregroundTimes1, 'background times1: ', backgroundTimes1);
+      console.info(TAG, 'foreground times2: ',foregroundTimes2, 'background times2: ', backgroundTimes2);
+      try {
+        expect(foregroundState1).assertEqual(0);
+        expect(backgroundState1).assertEqual(0);
+        expect(foregroundState2).assertEqual(0);
+        expect(backgroundState2).assertEqual(0);
+        expect(foregroundTimes1).assertEqual(0);
+        expect(backgroundTimes1).assertEqual(0);
+        expect(foregroundTimes2).assertEqual(0);
+        expect(backgroundTimes2).assertEqual(0);
+        console.info(TAG, 'End.');
+        done();
+      } catch(error) {
+        console.info(TAG, 'Expect area error: ' + JSON.stringify(error));
+        console.info(TAG, 'End.');
+        expect().assertFail();
+        done();
+      }
     })
 
     /*
@@ -850,12 +951,13 @@ export default function abilityTest() {
         await sleep(500);
         expect(flag).assertEqual(1);
         appManager.off('appForegroundState', windowModeObserver);
+        console.info(TAG, 'End.');
         done();
       }).catch((error) => {
+        console.info(TAG, 'End.');
         expect().assertFail();
         done();
       });
-      await console.info(TAG, 'End.');
     })
   })
 }
