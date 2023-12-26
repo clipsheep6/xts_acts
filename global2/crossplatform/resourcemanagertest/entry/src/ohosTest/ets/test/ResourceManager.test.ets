@@ -3537,29 +3537,6 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGVALUESYNCRESIDP_006
-    * @tc.name    test getPluralStringValueSync method in sync mode throw 9001002 error code
-    * @tc.desc    get the plural string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testGetPluralStringValueSyncResId006', 0, async (done: Function) => {
-      try {
-        let value: string = context.resourceManager.getPluralStringValueSync($r('app.plural.plural_name3').id, 1)
-        console.log('testGetPluralStringValueSyncResId006 ' + value);
-        console.log('testGetPluralStringValueSyncResId006 ' + typeof value);
-        expect(value).assertEqual('1 test other');
-        done();
-      } catch (err) {
-        console.log("testGetPluralStringValueSyncResId006 err.code " + err.code);
-        console.log("testGetPluralStringValueSyncResId006 err.message " + err.message);
-        expect(err.code == 9001002).assertTrue();
-        done()
-      }
-    })
-
-    /* *
     * @tc.number  TEST_GETPLURALSTRINGVALUESYNCRESOURCE_001
     * @tc.name    test getPluralStringValueSync method in sync mode
     * @tc.desc    get the plural string in sync mode

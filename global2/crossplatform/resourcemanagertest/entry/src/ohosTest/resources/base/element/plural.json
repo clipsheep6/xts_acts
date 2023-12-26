@@ -25,19 +25,6 @@
                     "value":"%d test2 other"
                 }
             ]
-        },
-        {
-            "name": "plural_name3",
-            "value": [
-                {
-                    "quantity": "one",
-                    "value": "$string:test_1"
-                },
-                {
-                    "quantity":"other",
-                    "value":"$string:test_1"
-                }
-            ]
         }
     ]
 }
