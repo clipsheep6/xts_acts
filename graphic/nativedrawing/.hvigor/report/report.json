@@ -1,0 +1,243 @@
+{
+  "version": "1.0",
+  "workerIdList": [
+    -1,
+    2,
+    0
+  ],
+  "metrics": [
+    {
+      "type": "build_line",
+      "endTime": 1703490914763,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@PreBuild",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490914707
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490914769,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@GenerateMetadata",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490914767
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490914772,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@MergeProfile",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490914772
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490914792,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@BuildNativeWithCmake",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490914792
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490914794,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@GenerateLoaderJson",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490914793
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490914797,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@MakePackInfo",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490914794
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490914830,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@ProcessProfile",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490914797
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490914830,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@BuildNativeWithNinja",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490914830
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490914833,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@ProcessResource",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490914832
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490914835,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@ProcessLibs",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490914834
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490914852,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@CompileResource",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490914835
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490914858,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@OhosTestCompileJS",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490914857
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490918618,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@OhosTestCompileArkTS",
+      "taskPath": "entry",
+      "workerId": 2,
+      "startTime": 1703490914856
+    },
+    {
+      "type": "default",
+      "endTime": 1703490918618,
+      "status": "closed",
+      "children": [
+        {
+          "type": "build_line",
+          "endTime": 1703490918618,
+          "status": "closed",
+          "children": [],
+          "name": "overallTime",
+          "taskName": "ohosTest@OhosTestCompileArkTS",
+          "taskPath": "entry",
+          "workerId": 2,
+          "startTime": 1703490914856
+        }
+      ],
+      "name": "overallTime",
+      "taskName": "ohosTest@OhosTestCompileArkTS",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490914852
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490918936,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@PackageHap",
+      "taskPath": "entry",
+      "workerId": 0,
+      "startTime": 1703490918622
+    },
+    {
+      "type": "default",
+      "endTime": 1703490918936,
+      "status": "closed",
+      "children": [
+        {
+          "type": "build_line",
+          "endTime": 1703490918936,
+          "status": "closed",
+          "children": [],
+          "name": "overallTime",
+          "taskName": "ohosTest@PackageHap",
+          "taskPath": "entry",
+          "workerId": 0,
+          "startTime": 1703490918622
+        }
+      ],
+      "name": "overallTime",
+      "taskName": "ohosTest@PackageHap",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490918618
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490918937,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "ohosTest@SignHap",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490918936
+    },
+    {
+      "type": "build_line",
+      "endTime": 1703490918937,
+      "status": "closed",
+      "children": [],
+      "name": "overallTime",
+      "taskName": "assembleHap",
+      "taskPath": "entry",
+      "workerId": -1,
+      "startTime": 1703490918937
+    }
+  ],
+  "workLog": [
+    {
+      "type": "work",
+      "time": "[2023-12-25T15:55:18.616]",
+      "workerId": 2,
+      "content": "[2023-12-25T15:55:18.616] > hvigor \u001b[32m\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:27:20\n Use explicit types instead of \"any\", \"unknown\" (arkts-no-any-unknown)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:28:15\n Use explicit types instead of \"any\", \"unknown\" (arkts-no-any-unknown)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:29:15\n Use explicit types instead of \"any\", \"unknown\" (arkts-no-any-unknown)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:33:26\n Use explicit types instead of \"any\", \"unknown\" (arkts-no-any-unknown)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:37:23\n Use explicit types instead of \"any\", \"unknown\" (arkts-no-any-unknown)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:37:41\n Use explicit types instead of \"any\", \"unknown\" (arkts-no-any-unknown)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:37:68\n Use explicit types instead of \"any\", \"unknown\" (arkts-no-any-unknown)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:38:15\n Use explicit types instead of \"any\", \"unknown\" (arkts-no-any-unknown)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:39:15\n Use explicit types instead of \"any\", \"unknown\" (arkts-no-any-unknown)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:40:13\n Objects with property names that are not identifiers are not supported (arkts-identifiers-as-prop-names)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:43:15\n Use explicit types instead of \"any\", \"unknown\" (arkts-no-any-unknown)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:44:13\n Objects with property names that are not identifiers are not supported (arkts-identifiers-as-prop-names)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:45:13\n Objects with property names that are not identifiers are not supported (arkts-identifiers-as-prop-names)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:53:15\n Use explicit types instead of \"any\", \"unknown\" (arkts-no-any-unknown)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:55:30\n Object literal must correspond to some explicitly declared class or interface (arkts-no-untyped-obj-literals)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:63:13\n \"Function.apply\", \"Function.bind\", \"Function.call\" are not supported (arkts-no-func-apply-bind-call)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:63:20\n Prototype assignment is not supported (arkts-no-prototype-assignment)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:63:50\n \"globalThis\" is not supported (arkts-no-globalthis)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:64:13\n \"globalThis\" is not supported (arkts-no-globalthis)\n\u001b[39m\n\u001b[33mWARN: \u001b[33mArkTS:WARN File: /home/oem/20231207/test/xts/acts/graphic/nativedrawing/oh_modules/.ohpm/@ohos+hypium@1.0.6/oh_modules/@ohos/hypium/index.ets:67:23\n Use explicit types instead of \"any\", \"unknown\" (arkts-no-any-unknown)\n\u001b[39m\n\u001b[39m\n",
+      "taskPath": "entry",
+      "taskName": "ohosTest@OhosTestCompileArkTS",
+      "taskCompletePath": "entry:ohosTest@OhosTestCompileArkTS"
+    }
+  ]
+}
