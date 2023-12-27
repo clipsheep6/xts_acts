@@ -2781,7 +2781,7 @@ export default function SecurityHuksRSASignExtendJsunit() {
             await publicFinishSessionFunc(HuksOptionsUse);
             await publicDeleteKeyFunc(srcKeyAlies, HuksOptionsGen);
             done();
-        });
+        })
 
         /**
          * @tc.number Security_HUKS_Cipher_AnonAttestation_0014
