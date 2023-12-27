@@ -946,6 +946,7 @@ export default function getBundleInfoForSelf() {
         expect(data.permissionGrantStates.length).assertEqual(0);
         expect(data.signatureInfo.appId).assertEqual(APPID);
         expect(data.signatureInfo.fingerprint).assertEqual(FINGERPRINT);
+        expect(data.signatureInfo.appIdentifier).assertEqual("");
         done();
       }).catch(err => {
         console.info("getBundleInfoForSelf fail" + JSON.stringify(err));
@@ -970,6 +971,7 @@ export default function getBundleInfoForSelf() {
         expect(data.permissionGrantStates.length).assertEqual(0);
         expect(data.signatureInfo.appId).assertEqual(APPID);
         expect(data.signatureInfo.fingerprint).assertEqual(FINGERPRINT);
+        expect(data.signatureInfo.appIdentifier).assertEqual("");
         expect(err).assertEqual(null);
         done();
       })
