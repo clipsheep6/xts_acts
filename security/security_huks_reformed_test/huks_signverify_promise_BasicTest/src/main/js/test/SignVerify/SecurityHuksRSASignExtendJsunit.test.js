@@ -2857,7 +2857,7 @@ export default function SecurityHuksRSASignExtendJsunit() {
             }
             console.info(srcKeyAlies + ": success");
             done();
-        })
+        });
     }
     )
 }
