@@ -1,0 +1,56 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "appFreezeRely"
+    },
+    {
+      "name": "ServiceAbility_label",
+      "value": "description"
+    },
+    {
+      "name": "ServiceAbility_desc",
+      "value": "label"
+    },
+    {
+      "name": "EntryFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "EntryFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "EntryAbilitySec_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbilitySec_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbilityThi_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbilityThi_label",
+      "value": "label"
+    },
+    {
+      "name": "EntryAbilityFour_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbilityFour_label",
+      "value": "label"
+    }
+  ]
+}
