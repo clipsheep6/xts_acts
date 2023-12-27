@@ -309,8 +309,8 @@ export default function publicApiTestWithSystemApiTest () {
      * @tc.type      : Function
      * @tc.level     : Level 0
      */
-    it('unRegisterChange_000', 0, async function (done) {
-      const testNum = 'unRegisterChange_000';
+    it('unRegisterChange_002', 0, async function (done) {
+      const testNum = 'unRegisterChange_002';
       try {
         const fetchOps = fetchOption(testNum, photoKeys.DISPLAY_NAME, 'off02.jpg');
         const asset = await getFileAsset(testNum, fetchOps);
