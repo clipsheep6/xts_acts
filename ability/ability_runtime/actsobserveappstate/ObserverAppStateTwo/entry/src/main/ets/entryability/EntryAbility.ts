@@ -23,7 +23,7 @@ let appForegroundStateObserver = {
   onAppStateChanged(appStateData) {
     console.info('onAppStateChanged: ' + JSON.stringify(appStateData));
   }
-}
+};
 let wantValue;
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
@@ -56,10 +56,10 @@ export default class EntryAbility extends UIAbility {
   onForeground() {
     // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
-    if (wantValue.action == 'Acts_ObserverAppState_0200') {
+    if (wantValue.action === 'Acts_ObserverAppState_0200') {
       try {
         appManager.on('appForegroundState', appForegroundStateObserver);
-      } catch(error) {
+      } catch (error) {
         console.info('Acts_ObserverAppState_0200_TAG', 'unsystem app error: ' + JSON.stringify(error));
         let errorCode;
         let abilityResult = {
@@ -69,17 +69,17 @@ export default class EntryAbility extends UIAbility {
               errorCode: errorCode
             }
           }
-        }
+        };
         abilityResult.want.parameters.errorCode = error.code;
         this.context.terminateSelfWithResult(abilityResult, (error) => {
           console.info('Acts_ObserverAppState_0200_TAG', 'Terminate self error: ' + JSON.stringify(error));
-        })
+        });
       }
     }
-    else if (wantValue.action == 'Acts_ObserverAppState_0500') {
+    else if (wantValue.action === 'Acts_ObserverAppState_0500') {
       try {
         appManager.on('appForegroundState', appForegroundStateObserver);
-      } catch(error) {
+      } catch (error) {
         try {
           appManager.off('appForegroundState', appForegroundStateObserver);
         } catch (error) {
@@ -92,11 +92,11 @@ export default class EntryAbility extends UIAbility {
                 errorCode: errorCode
               }
             }
-          }
+          };
           abilityResult.want.parameters.errorCode = error.code;
           this.context.terminateSelfWithResult(abilityResult, (error) => {
             console.info('Acts_ObserverAppState_0500_TAG', 'Terminate self error: ' + JSON.stringify(error));
-          })
+          });
         }
       }
     }

@@ -29,20 +29,20 @@ let commonEventData = {
     applicationState: applicationState,
     bundlename: bundlename
   }
-}
-
+};
+const DELAYTIME = 1000;
 let appForegroundStateObserver = {
   onAppStateChanged(appStateData) {
     console.info('onAppStateChanged: ' + JSON.stringify(appStateData.bundleName));
     console.info('onAppStateChanged: ' + JSON.stringify(appStateData.state));
   }
-}
+};
 
 let wantValue;
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate' + TAG);
-    wantValue  = want;
+    wantValue = want;
   }
 
   onDestroy() {
@@ -71,7 +71,7 @@ export default class EntryAbility extends UIAbility {
   onForeground() {
     // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
-    if (wantValue.action == 'Acts_ObserverAppState_0100') {
+    if (wantValue.action === 'Acts_ObserverAppState_0100') {
       try {
         appManager.on('appForegroundState', observerNull);
       } catch (error) {
@@ -79,7 +79,7 @@ export default class EntryAbility extends UIAbility {
         commonEventData.parameters.applicationState = error.code;
         commonEventManager.publish('Acts_ObserverAppState_0100_1', commonEventData, (err) => {
           console.info(TAG + 'publish error' + JSON.stringify(err));
-        })
+        });
       }
       setTimeout(() => {
         try {
@@ -89,12 +89,12 @@ export default class EntryAbility extends UIAbility {
           commonEventData.parameters.applicationState = error.code;
           commonEventManager.publish('Acts_ObserverAppState_0100_2', commonEventData, (err) => {
             console.info('publish error' + JSON.stringify(err));
-          })
+          });
         }
-      }, 1000);
+      }, DELAYTIME);
     }
 
-    if (wantValue.action == 'Acts_ObserverAppState_0400') {
+    if (wantValue.action === 'Acts_ObserverAppState_0400') {
       try {
         appManager.on('appForegroundState', appForegroundStateObserver);
         appManager.off('appForegroundState', observerNull);
@@ -103,7 +103,7 @@ export default class EntryAbility extends UIAbility {
         commonEventData.parameters.applicationState = error.code;
         commonEventManager.publish('Acts_ObserverAppState_0400_1', commonEventData, (err) => {
           console.info('publish error' + JSON.stringify(err));
-        })
+        });
       }
       setTimeout(() => {
         try {
@@ -113,9 +113,9 @@ export default class EntryAbility extends UIAbility {
           commonEventData.parameters.applicationState = error.code;
           commonEventManager.publish('Acts_ObserverAppState_0400_2', commonEventData, (err) => {
             console.info('publish error' + JSON.stringify(err));
-          })
+          });
         }
-      }, 1000)
+      }, DELAYTIME);
     }
     
   }

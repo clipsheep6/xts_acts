@@ -32,18 +32,21 @@ let commonEventData = {
     backgroundTimes: backgroundTimes
   }
 }
+const TWO = 2;
+const FOUR = 4;
+const DELAYTIME = 3500;
 let windowModeObserver = {
   onAppStateChanged(appStateData) {
     console.info('On app2 state changed.');
-    if (appStateData.bundleName == 'com.example.actsobserverwindowmoderely') {
+    if (appStateData.bundleName === 'com.example.actsobserverwindowmoderely') {
       console.info('Testing application2 state has changed: ' + JSON.stringify(appStateData));
-      if (appStateData.state == 2) {
-        commonEventData.parameters.foregroundState = 2;
+      if (appStateData.state === TWO) {
+        commonEventData.parameters.foregroundState = TWO;
         commonEventData.parameters.foregroundTimes++;
       }
-      if (appStateData.state == 4) {
+      if (appStateData.state === FOUR) {
         console.info('foregroundState: ', foregroundState);
-        commonEventData.parameters.backgroundState = 4;
+        commonEventData.parameters.backgroundState = FOUR;
         commonEventData.parameters.backgroundTimes++;
       }
     }
@@ -81,7 +84,7 @@ export default class EntryAbility extends UIAbility {
     // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
     appManager.on('appForegroundState', windowModeObserver);
-    if (wantValue.action == 'Acts_MonitorApp_1300') {
+    if (wantValue.action === 'Acts_MonitorApp_1300') {
       appManager.off('appForegroundState', windowModeObserver);
     }
   }
@@ -96,7 +99,7 @@ export default class EntryAbility extends UIAbility {
         this.context.terminateSelf((error) => {
           console.info('Terminate self error: ' + JSON.stringify(error));
         });
-      })
-    }, 3500)
+      });
+    }, DELAYTIME);
   }
 }

@@ -57,10 +57,10 @@ export default class EntryAbility extends UIAbility {
   onForeground() {
     // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
-    if (wantValue.action == 'Acts_ObserverAppState_0300') {
+    if (wantValue.action === 'Acts_ObserverAppState_0300') {
       try {
         appManager.on('appForegroundState', appForegroundStateObserver);
-      } catch(error) {
+      } catch (error) {
         console.info('Acts_ObserverAppState_0300_TAG', 'unsystem app error: ' + JSON.stringify(error));
         let errorCode;
         let abilityResult = {
@@ -70,17 +70,17 @@ export default class EntryAbility extends UIAbility {
               errorCode: errorCode
             }
           }
-        }
+        };
         abilityResult.want.parameters.errorCode = error.code;
         this.context.terminateSelfWithResult(abilityResult, (error) => {
           console.info('Acts_ObserverAppState_0300_TAG', 'Terminate self error: ' + JSON.stringify(error));
-        })
+        });
       }
     }
-    else if (wantValue.action == 'Acts_ObserverAppState_0600') {
+    else if (wantValue.action === 'Acts_ObserverAppState_0600') {
       try {
         appManager.on('appForegroundState', appForegroundStateObserver);
-      } catch(error) {
+      } catch (error) {
         try {
           appManager.off('appForegroundState', appForegroundStateObserver);
         } catch (error) {
@@ -93,11 +93,11 @@ export default class EntryAbility extends UIAbility {
                 errorCode: errorCode
               }
             }
-          }
+          };
           abilityResult.want.parameters.errorCode = error.code;
           this.context.terminateSelfWithResult(abilityResult, (error) => {
             console.info('Acts_ObserverAppState_0600_TAG', 'Terminate self error: ' + JSON.stringify(error));
-          })
+          });
         }
       }
     }

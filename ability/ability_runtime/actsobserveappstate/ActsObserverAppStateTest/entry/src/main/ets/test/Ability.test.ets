@@ -696,10 +696,8 @@ export default function abilityTest() {
         expect(foregroundTimes1).assertEqual(1);
         expect(backgroundTimes1).assertEqual(1);
         await appManager.off('appForegroundState', windowModeObserver);
-        console.info(TAG, 'End.');
       } catch(error) {
         console.info(TAG, 'Expect area error: ' + JSON.stringify(error));
-        console.info(TAG, 'End.');
         done();
       }
     })
@@ -713,7 +711,7 @@ export default function abilityTest() {
     * @tc.level: Level 1
     */
     it('Acts_ObserverAppState_1300', 0, async function (done) {
-      let TAG = 'Acts_ObserverAppState_1200_TAG';
+      let TAG = 'Acts_ObserverAppState_1300_TAG';
       console.info(TAG, 'Start.');
       await sleep(200);
       let want = {
@@ -800,10 +798,8 @@ export default function abilityTest() {
         expect(foregroundTimes1).assertEqual(1);
         expect(backgroundTimes1).assertEqual(1);
         await appManager.off('appForegroundState', windowModeObserver);
-        console.info(TAG, 'End.');
       } catch(error) {
         console.info(TAG, 'Expect area error: ' + JSON.stringify(error));
-        console.info(TAG, 'End.');
         done();
       }
     })
