@@ -14,7 +14,7 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-import {BY, By, Component, DisplayRotation, Driver, MatchPattern, MouseButton, ON, On, PointerMatrix, ResizeDirection,UIElementInfo, UIEventObserver, UiComponent, UiDirection, UiDriver, UiWindow, WindowMode} from '@kit.TestKit.d.ts';
+import {BY, By, Component, DisplayRotation, Driver, MatchPattern, MouseButton, ON, On, PointerMatrix, ResizeDirection,UIElementInfo, UIEventObserver, UiComponent, UiDirection, UiDriver, UiWindow, WindowMode} from '@kit.TestKit';
 import ability_featureAbility from '@ohos.ability.featureAbility';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
