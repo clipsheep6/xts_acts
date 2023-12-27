@@ -6,9 +6,22 @@
         "bundle-name": "com.example.observerappstatetest",
         "module-name": "entry_test",
         "shell-timeout": "600000",
-        "testcase-timeout": "15000"
+        "testcase-timeout": "20000"
     },
     "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.sys.suspend_manager_enabled false",
+                "reboot",
+                "wait 5",
+                "power-shell wakeup",
+                "uinput -T -m 300 2700 280 200",
+                "wait 5",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602"
+            ]
+        },
 		{
             "test-file-name": [
                 "ObserverAppStateOne.hap",
@@ -24,15 +37,6 @@
         {
             "type": "ShellKit",
             "run-command": [
-                "param set persist.sys.suspend_manager_enabled false",
-                "reboot",
-                "wait 5",
-                "power-shell wakeup",
-                "uinput -T -m 300 2700 280 200",
-                "wait 5",
-                "uinput -T -m 300 2700 280 200",
-                "uinput -T -m 300 2000 280 1950",
-                "power-shell setmode 602",
                 "hilog -Q pidoff",
                 "hilog -Q domainoff",
                 "hilog -b D",

@@ -31,7 +31,7 @@ let commonEventData = {
     foregroundTimes: foregroundTimes,
     backgroundTimes: backgroundTimes
   }
-}
+};
 const TWO = 2;
 const FOUR = 4;
 const DELAYTIME = 3500;

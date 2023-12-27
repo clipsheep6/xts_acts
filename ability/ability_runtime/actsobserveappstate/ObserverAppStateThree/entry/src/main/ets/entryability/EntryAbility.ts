@@ -24,7 +24,7 @@ let appForegroundStateObserver = {
     console.info('onAppStateChanged: ' + JSON.stringify(appStateData.bundleName));
     console.info('onAppStateChanged: ' + JSON.stringify(appStateData.state));
   }
-}
+};
 let wantValue;
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
