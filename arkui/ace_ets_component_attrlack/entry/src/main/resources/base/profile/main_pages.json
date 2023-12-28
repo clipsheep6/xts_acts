@@ -50,6 +50,7 @@
           "MainAbility/pages/gestureSetting",
           "MainAbility/pages/ImageApi",
           "MainAbility/pages/NavigationApi",
-          "MainAbility/pages/TextApi/AllName"
+          "MainAbility/pages/TextApi/TextStyle"
+          
     ]
 }
