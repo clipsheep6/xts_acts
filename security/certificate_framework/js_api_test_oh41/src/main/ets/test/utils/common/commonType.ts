@@ -43,8 +43,14 @@ export interface X509CertParameters {
   privateKeyNotAfterDate?: string;
   serialNumber?: bigint;
   subject?: Uint8Array;
-  subjectKeyIdentifier?: Uint8Array;
+  subjectKeyIdentifier? : Uint8Array;
   publicKey?: cert.DataBlob;
   publicKeyAlgID?: string;
   authorityKeyIdentifier?: Uint8Array;
+}
+
+export interface X509CertChainParameters {
+  subject?: Uint8Array;
+  publicKey?: Uint8Array;
+  certSerialNumber?: bigint;
 }
