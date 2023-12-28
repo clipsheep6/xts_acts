@@ -88,7 +88,7 @@ export default function imageEffectsJsunit() {
       try {
         var eventData = {
           data: {
-            "blurValue": 0x80000000
+            "blurValue": -2147483648
           }
         }
         var innerEvent = {
@@ -337,7 +337,7 @@ export default function imageEffectsJsunit() {
       try {
         var eventData = {
           data: {
-            "brightnessValue": 0x80000000
+            "brightnessValue": -2147483648
           }
         }
         var innerEvent = {
@@ -452,7 +452,7 @@ export default function imageEffectsJsunit() {
       try {
         var eventData = {
           data: {
-            "saturateValue": 0x80000000
+            "saturateValue": -2147483648
           }
         }
         var innerEvent = {
@@ -566,7 +566,7 @@ export default function imageEffectsJsunit() {
       try {
         var eventData = {
           data: {
-            "contrastValue": 0x80000000
+            "contrastValue": -2147483648
           }
         }
         var innerEvent = {
@@ -795,7 +795,7 @@ export default function imageEffectsJsunit() {
       try {
         var eventData = {
           data: {
-            "hueRotateValue": 0x80000000
+            "hueRotateValue": -2147483648
           }
         }
         var innerEvent = {
