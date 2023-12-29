@@ -14,7 +14,9 @@
  */
 
 import TaskPoolTest from './TaskPool.test.js'
+import SendAbleTest from './SendAble.test.ets'
 
 export default function List() {
+    SendAbleTest()
     TaskPoolTest()
 }
