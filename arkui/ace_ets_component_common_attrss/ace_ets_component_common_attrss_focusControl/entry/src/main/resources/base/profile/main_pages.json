@@ -1,6 +1,23 @@
 {
   "src": [
     "MainAbility/pages/index/Index",
-    "MainAbility/pages/focusControl/FocusControlPage"
+    "MainAbility/pages/focusControl/FocusControlPage",
+      "MainAbility/pages/onclickGetFocus/onclickGetFocus01",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus02",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus03",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus05",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus08",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus09",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus11",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus12",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus13",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus14",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus15",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus16",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus17",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus18",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus19",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus20",
+    "MainAbility/pages/onclickGetFocus/onclickGetFocus21"
   ]
 }
