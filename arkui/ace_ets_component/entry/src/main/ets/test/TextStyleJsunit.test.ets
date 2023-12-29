@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 
 export default function textStyleJsunit() {
-  describe('textStyleTest', function () {
-    beforeEach(async function (done) {
-      let options = {
+  describe('textStyleTest', () => {
+    beforeEach(async () => {
+      let options: router.RouterOptions = {
         uri: 'MainAbility/pages/textStyle',
       }
       try {
@@ -37,35 +37,35 @@ export default function textStyleJsunit() {
       } catch (err) {
         console.error("push textStyle page error:" + err);
       }
-      done();
+
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("textStyle after each called");
     });
 
 
-    it('testTextStyle006', 0, async function (done) {
+    it('testTextStyle006', 0, async () => {
       console.info('[testTextStyle006] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('fontSize');
       console.info("[testTextStyle006] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle006] fontSize: " + obj.$attrs.fontSize);
       expect(obj.$attrs.fontSize).assertEqual('16.00fp');
-      done();
+
     });
 
-    it('testTextStyle007', 0, async function (done) {
+    it('testTextStyle007', 0, async () => {
       console.info('[testTextStyle007] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "fontSize": 30
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.IndexEvent = {
           eventId: 38,
           priority: events_emitter.EventPriority.LOW
         }
@@ -77,21 +77,21 @@ export default function textStyleJsunit() {
       await Utils.sleep(4000);
       let strJson = getInspectorByKey('fontSize');
       console.info("[testTextStyle007] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle007] fontSize: " + obj.$attrs.fontSize);
       expect(obj.$attrs.fontSize).assertEqual('16.00fp');
-      done();
+
     });
 
-    it('testTextStyle008', 0, async function (done) {
+    it('testTextStyle008', 0, async () => {
       console.info('[testTextStyle008] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "fontSize": 0x80000000
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.IndexEvent = {
           eventId: 38,
           priority: events_emitter.EventPriority.LOW
         }
@@ -103,21 +103,21 @@ export default function textStyleJsunit() {
       await Utils.sleep(4000);
       let strJson = getInspectorByKey('fontSize');
       console.info("[testTextStyle008] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle008] fontSize: " + obj.$attrs.fontSize);
       expect(obj.$attrs.fontSize).assertEqual('16.00fp');
-      done();
+
     });
 
-    it('testTextStyle009', 0, async function (done) {
+    it('testTextStyle009', 0, async () => {
       console.info('[testTextStyle009] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "fontSize": 'error'
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.IndexEvent = {
           eventId: 38,
           priority: events_emitter.EventPriority.LOW
         }
@@ -129,21 +129,21 @@ export default function textStyleJsunit() {
       await Utils.sleep(4000);
       let strJson = getInspectorByKey('fontSize');
       console.info("[testTextStyle009] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle009] fontSize: " + obj.$attrs.fontSize);
       expect(obj.$attrs.fontSize).assertEqual('16.00fp');
-      done();
+
     });
 
-    it('testTextStyle010', 0, async function (done) {
+    it('testTextStyle010', 0, async () => {
       console.info('[testTextStyle010] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "fontSize": 0x7FFFFFFF
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.IndexEvent = {
           eventId: 38,
           priority: events_emitter.EventPriority.LOW
         }
@@ -155,32 +155,32 @@ export default function textStyleJsunit() {
       await Utils.sleep(4000);
       let strJson = getInspectorByKey('fontSize');
       console.info("[testTextStyle010] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle010] fontSize: " + obj.$attrs.fontSize);
       expect(obj.$attrs.fontSize).assertEqual('16.00fp');
-      done();
+
     });
 
-    it('testTextStyle011', 0, async function (done) {
+    it('testTextStyle011', 0, async () => {
       console.info('[testTextStyle011] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('fontStyle');
       console.info("[testTextStyle011] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle011] fontStyle: " + obj.$attrs.fontStyle);
       expect(obj.$attrs.fontStyle).assertEqual('FontStyle.Italic');
-      done();
+
     });
 
-    it('testTextStyle012', 0, async function (done) {
+    it('testTextStyle012', 0, async () => {
       console.info('[testTextStyle012] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "fontStyle": FontStyle.Normal
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.IndexEvent = {
           eventId: 39,
           priority: events_emitter.EventPriority.LOW
         }
@@ -192,21 +192,21 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson = getInspectorByKey('fontStyle');
       console.info("[testTextStyle012] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle012] fontStyle: " + obj.$attrs.fontStyle);
       expect(obj.$attrs.fontStyle).assertEqual('FontStyle.Normal');
-      done();
+
     });
 
-    it('testTextStyle013', 0, async function (done) {
+    it('testTextStyle013', 0, async () => {
       console.info('[testTextStyle013] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "fontStyle": 0x7FFFFFFF
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.IndexEvent = {
           eventId: 39,
           priority: events_emitter.EventPriority.LOW
         }
@@ -218,21 +218,21 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson = getInspectorByKey('fontStyle');
       console.info("[testTextStyle013] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle013] fontStyle: " + obj.$attrs.fontStyle);
       expect(obj.$attrs.fontStyle).assertEqual('FontStyle.Normal');
-      done();
+
     });
 
-    it('testTextStyle014', 0, async function (done) {
+    it('testTextStyle014', 0, async () => {
       console.info('[testTextStyle014] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "fontStyle": 'error'
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.IndexEvent = {
           eventId: 39,
           priority: events_emitter.EventPriority.LOW
         }
@@ -244,21 +244,21 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson = getInspectorByKey('fontStyle');
       console.info("[testTextStyle014] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle014] fontStyle: " + obj.$attrs.fontStyle);
       expect(obj.$attrs.fontStyle).assertEqual('FontStyle.Normal');
-      done();
+
     });
 
-    it('testTextStyle015', 0, async function (done) {
+    it('testTextStyle015', 0, async () => {
       console.info('[testTextStyle015] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "fontStyle": 0x80000000
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.IndexEvent = {
           eventId: 39,
           priority: events_emitter.EventPriority.LOW
         }
@@ -270,32 +270,32 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson = getInspectorByKey('fontStyle');
       console.info("[testTextStyle015] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle015] fontStyle: " + obj.$attrs.fontStyle);
       expect(obj.$attrs.fontStyle).assertEqual('FontStyle.Normal');
-      done();
+
     });
 
-    it('testTextStyle016', 0, async function (done) {
+    it('testTextStyle016', 0, async () => {
       console.info('[testTextStyle016] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('fontWeight');
       console.info("[testTextStyle016] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle016] fontWeight: " + obj.$attrs.fontWeight);
       expect(obj.$attrs.fontWeight).assertEqual('700');
-      done();
+
     });
 
-    it('testTextStyle017', 0, async function (done) {
+    it('testTextStyle017', 0, async () => {
       console.info('[testTextStyle017] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "fontWeight": 400
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.IndexEvent = {
           eventId: 40,
           priority: events_emitter.EventPriority.LOW
         }
@@ -307,21 +307,21 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson = getInspectorByKey('fontWeight');
       console.info("[testTextStyle017] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle017] fontWeight: " + obj.$attrs.fontWeight);
       expect(obj.$attrs.fontWeight).assertEqual('400');
-      done();
+
     });
 
-    it('testTextStyle018', 0, async function (done) {
+    it('testTextStyle018', 0, async () => {
       console.info('[testTextStyle018] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "fontWeight": 'error'
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.IndexEvent = {
           eventId: 40,
           priority: events_emitter.EventPriority.LOW
         }
@@ -333,21 +333,21 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson = getInspectorByKey('fontWeight');
       console.info("[testTextStyle018] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle018] fontWeight: " + obj.$attrs.fontWeight);
       expect(obj.$attrs.fontWeight).assertEqual('FontWeight.Normal');
-      done();
+
     });
 
-    it('testTextStyle019', 0, async function (done) {
+    it('testTextStyle019', 0, async () => {
       console.info('[testTextStyle019] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "fontWeight": 0x80000000
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.IndexEvent = {
           eventId: 40,
           priority: events_emitter.EventPriority.LOW
         }
@@ -359,21 +359,21 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson = getInspectorByKey('fontWeight');
       console.info("[testTextStyle019] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle019] fontWeight: " + obj.$attrs.fontWeight);
       expect(obj.$attrs.fontWeight).assertEqual('FontWeight.Normal');
-      done();
+
     });
 
-    it('testTextStyle020', 0, async function (done) {
+    it('testTextStyle020', 0, async () => {
       console.info('[testTextStyle020] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "fontWeight": 0x7FFFFFFF
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.IndexEvent = {
           eventId: 40,
           priority: events_emitter.EventPriority.LOW
         }
@@ -385,32 +385,32 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson = getInspectorByKey('fontWeight');
       console.info("[testTextStyle020] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle020] fontWeight: " + obj.$attrs.fontWeight);
       expect(obj.$attrs.fontWeight).assertEqual('FontWeight.Normal');
-      done();
+
     });
 
-    it('testTextStyle021', 0, async function (done) {
+    it('testTextStyle021', 0, async () => {
       console.info('[testTextStyle021] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('fontFamily');
       console.info("[testTextStyle021] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle021] fontFamily: " + obj.$attrs.fontFamily);
       expect(obj.$attrs.fontFamily).assertEqual('sans-serif');
-      done();
+
     });
 
-    it('testTextStyle022', 0, async function (done) {
+    it('testTextStyle022', 0, async () => {
       console.info('[testTextStyle022] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "fontFamily": 'Arial'
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.IndexEvent = {
           eventId: 41,
           priority: events_emitter.EventPriority.LOW
         }
@@ -422,21 +422,21 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson = getInspectorByKey('fontFamily');
       console.info("[testTextStyle022] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle022] fontFamily: " + obj.$attrs.fontFamily);
       expect(obj.$attrs.fontFamily).assertEqual('Arial');
-      done();
+
     });
 
-    it('testTextStyle023', 0, async function (done) {
+    it('testTextStyle023', 0, async () => {
       console.info('[testTextStyle023] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "fontFamily": 'error'
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.IndexEvent = {
           eventId: 41,
           priority: events_emitter.EventPriority.LOW
         }
@@ -448,10 +448,10 @@ export default function textStyleJsunit() {
       await Utils.sleep(3000);
       let strJson = getInspectorByKey('fontFamily');
       console.info("[testTextStyle023] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTextStyle023] fontFamily: " + obj.$attrs.fontFamily);
       expect(obj.$attrs.fontFamily).assertEqual('error');
-      done();
+
     });
   });
 }

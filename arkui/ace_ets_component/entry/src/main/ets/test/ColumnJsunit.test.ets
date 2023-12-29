@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium";
-import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 
 export default function columnJsunit() {
-  describe('columnTest', function () {
-    beforeEach(async function (done) {
+  describe('columnTest', async () => {
+    beforeEach(async () => {
       console.info("column beforeEach start");
-      let options = {
+      let options: router.RouterOptions = {
         uri: 'MainAbility/pages/column',
       }
       try {
@@ -41,31 +41,30 @@ export default function columnJsunit() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("column after each called");
     });
 
-    it('testColumn01', 0, async function (done) {
+    it('testColumn01', 0, async () => {
       console.info('[testColumn01] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('alignItemsColumn');
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testColumn01] obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.alignItems).assertEqual('HorizontalAlign.Start');
       console.info('[testColumn01] END');
-      done();
     });
 
-    it('testColumn02', 0, async function (done) {
+    it('testColumn02', 0, async () => {
       console.info('[testColumn02] START');
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
-            "alignItems":HorizontalAlign.Center
+            "alignItems": HorizontalAlign.Center
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 192,
           priority: events_emitter.EventPriority.LOW
         }
@@ -76,11 +75,10 @@ export default function columnJsunit() {
       }
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('alignItemsColumn');
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testColumn02] obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.alignItems).assertEqual('HorizontalAlign.Center');
       console.info('[testColumn02] END');
-      done();
     });
   })
 }

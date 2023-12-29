@@ -13,51 +13,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter'
 import Utils from './Utils.ets';
 
 export default function touchJsunit() {
-  describe('touchTest', function () {
-    beforeEach(async function (done) {
+  describe('touchTest', () => {
+    beforeEach(async () => {
       console.info("touch beforeEach start");
-      let options = {
+      let options: router.RouterOptions = {
         uri: 'MainAbility/pages/touch',
       }
-      let result;
       try {
         router.clear();
         let pages = router.getState();
         console.info("get touch state pages: " + JSON.stringify(pages));
         if (!("touch" == pages.name)) {
           console.info("get touch state pages.name: " + JSON.stringify(pages.name));
-          result = await router.push(options);
+          await router.pushUrl(options);
           await Utils.sleep(2000);
-          console.info("push touch page result: " + JSON.stringify(result));
         }
       } catch (err) {
         console.error("push touch page error: " + err);
       }
-      done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("touch after each called");
     })
 
-    it('testTouch01', 0, async function (done) {
+    it('testTouch01', 0, async () => {
       console.info('[testTouch01] START');
       await Utils.sleep(1000);
       try {
-        let callBackTouch = (backData) => {
+        let callBackTouch = (backData: events_emitter.EventData) => {
           console.info("testTouch01 get backEvent result is: " + JSON.stringify(backEvent));
           console.info("testTouch01 get flag result is: " + JSON.stringify(backData.data.ACTION));
           expect(backData.data.ACTION).assertEqual(true);
-          done();
+          
         }
-        var backEvent = {
+        let backEvent: events_emitter.InnerEvent = {
           eventId: 43,
           priority: events_emitter.EventPriority.LOW
         }

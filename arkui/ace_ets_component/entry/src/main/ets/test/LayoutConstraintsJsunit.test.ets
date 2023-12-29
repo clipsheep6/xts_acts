@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 
 export default function layoutConstraintsJsunit() {
-  describe('layoutConstraintsTest', function () {
-    beforeEach(async function (done) {
+  describe('layoutConstraintsTest',  () =>{
+    beforeEach(async () => {
       console.info("layoutConstraints beforeEach start");
-      let options = {
+      let options:router.RouterOptions = {
         uri: 'MainAbility/pages/layoutConstraints',
       }
       try {
@@ -31,41 +31,40 @@ export default function layoutConstraintsJsunit() {
         console.info("get layoutConstraints state pages:" + JSON.stringify(pages));
         if (!("layoutConstraints" == pages.name)) {
           console.info("get layoutConstraints state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push layoutConstraints page result:" + JSON.stringify(result));
         }
       } catch (err) {
         console.error("push layoutConstraints page error:" + err);
       }
-      done()
     });
 
-    afterEach(async function () {
+    afterEach(async  () =>{
       await Utils.sleep(1000);
       console.info("layoutConstraints after each called");
     });
 
-    it('testLayoutConstraints001', 0, async function (done) {
+    it('testLayoutConstraints001', 0, async () => {
       console.info('[testLayoutConstraints001] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('aspectRatio');
       console.info("[testLayoutConstraints001] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj:ESObject = JSON.parse(strJson);
       console.info("[testLayoutConstraints001] aspectRatio: " + obj.$attrs.aspectRatio);
       expect(obj.$attrs.aspectRatio).assertEqual(1.5);
-      done();
+      
     });
 
-    it('testLayoutConstraints002', 0, async function (done) {
+    it('testLayoutConstraints002', 0, async () => {
       console.info('[testLayoutConstraints002] START');
       try {
-        let eventData = {
+        let eventData:events_emitter.EventData = {
           data: {
             "aspectRatio": 2
           }
         }
-        let indexEvent = {
+        let indexEvent:events_emitter.InnerEvent = {
           eventId: 20,
           priority: events_emitter.EventPriority.LOW
         }
@@ -77,32 +76,32 @@ export default function layoutConstraintsJsunit() {
       await Utils.sleep(4000);
       let strJson = getInspectorByKey('aspectRatio');
       console.info("[testLayoutConstraints002] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj:ESObject = JSON.parse(strJson);
       console.info("[testLayoutConstraints002] aspectRatio: " + obj.$attrs.aspectRatio);
       expect(obj.$attrs.aspectRatio).assertEqual(2);
-      done();
+      
     });
 
-    it('testLayoutConstraints003', 0, async function (done) {
+    it('testLayoutConstraints003', 0, async () => {
       console.info('[testLayoutConstraints003] START');
       await Utils.sleep(1000);
       let strJson = getInspectorByKey('displayPriority');
       console.info("[testLayoutConstraints003] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj:ESObject = JSON.parse(strJson);
       console.info("[testLayoutConstraints003] displayPriority: " + obj.$attrs.displayPriority);
       expect(obj.$attrs.displayPriority).assertEqual(1);
-      done();
+      
     });
 
-    it('testLayoutConstraints004', 0, async function (done) {
+    it('testLayoutConstraints004', 0, async () => {
       console.info('[testLayoutConstraints004] START');
       try {
-        let eventData = {
+        let eventData:events_emitter.EventData = {
           data: {
             "displayPriority": 5
           }
         }
-        let indexEvent = {
+        let indexEvent:events_emitter.InnerEvent = {
           eventId: 21,
           priority: events_emitter.EventPriority.LOW
         }
@@ -114,21 +113,21 @@ export default function layoutConstraintsJsunit() {
       await Utils.sleep(4000);
       let strJson = getInspectorByKey('displayPriority');
       console.info("[testLayoutConstraints004] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj:ESObject = JSON.parse(strJson);
       console.info("[testLayoutConstraints004] displayPriority: " + obj.$attrs.displayPriority);
       expect(obj.$attrs.displayPriority).assertEqual(1);
-      done();
+      
     });
 
-    it('testLayoutConstraints005', 0, async function (done) {
+    it('testLayoutConstraints005', 0, async () => {
       console.info('[testLayoutConstraints005] START');
       try {
-        let eventData = {
+        let eventData:events_emitter.EventData = {
           data: {
             "aspectRatio": -4
           }
         }
-        let indexEvent = {
+        let indexEvent:events_emitter.InnerEvent = {
           eventId: 1112,
           priority: events_emitter.EventPriority.LOW
         }
@@ -140,21 +139,21 @@ export default function layoutConstraintsJsunit() {
       await Utils.sleep(4000);
       let strJson = getInspectorByKey('aspectRatio');
       console.info("[testLayoutConstraints005] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj:ESObject = JSON.parse(strJson);
       console.info("[testLayoutConstraints005] aspectRatio: " + obj.$attrs.aspectRatio);
       expect(obj.$attrs.aspectRatio).assertEqual("");
-      done();
+      
     });
 
-    it('testLayoutConstraints006', 0, async function (done) {
+    it('testLayoutConstraints006', 0, async () => {
       console.info('[testLayoutConstraints006] START');
       try {
-        let eventData = {
+        let eventData:events_emitter.EventData = {
           data: {
             "aspectRatio": 9997077
           }
         }
-        let indexEvent = {
+        let indexEvent:events_emitter.InnerEvent = {
           eventId: 1112,
           priority: events_emitter.EventPriority.LOW
         }
@@ -166,10 +165,10 @@ export default function layoutConstraintsJsunit() {
       await Utils.sleep(4000);
       let strJson = getInspectorByKey('aspectRatio');
       console.info("[testLayoutConstraints006] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj:ESObject = JSON.parse(strJson);
       console.info("[testLayoutConstraints006] aspectRatio: " + obj.$attrs.aspectRatio);
       expect(obj.$attrs.aspectRatio).assertEqual(9997077);
-      done();
+      
     });
   });
 }

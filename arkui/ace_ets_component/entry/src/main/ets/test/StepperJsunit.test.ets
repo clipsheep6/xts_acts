@@ -13,17 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import router from '@ohos.router';
 import Utils from './Utils.ets';
 import events_emitter from '@ohos.events.emitter';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
+import { GlobalContext } from '../MainAbility/utils/GlobalContext'
 
 export default function stepperJsunit() {
-  describe('stepperTest', function () {
-    beforeEach(async function (done) {
-      let options = {
+  describe('stepperTest', () => {
+    beforeEach(async () => {
+      let options: router.RouterOptions = {
         uri: 'MainAbility/pages/stepper',
       }
       try {
@@ -32,48 +33,46 @@ export default function stepperJsunit() {
         console.info("get stepper state success " + JSON.stringify(pages));
         if (!("stepper" == pages.name)) {
           console.info("get stepper state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          await router.pushUrl(options);
           await Utils.sleep(1000);
-          console.info("push stepper page success " + JSON.stringify(result));
         }
       } catch (err) {
         console.error("push stepper page error: " + err);
       }
-      done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("stepper after each called");
     });
-    
 
-    it('stepperTest_0100', 0, async function (done) {
+
+    it('stepperTest_0100', 0, async () => {
       console.info('stepperTest_0100 START');
       let strJson = getInspectorByKey('stepper');
       console.info("stepperTest_0100 component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("stepperTest_0100 component obj is: " + JSON.stringify(obj));
       expect(obj.$type).assertEqual('Stepper');
       expect(obj.$attrs.index).assertEqual('0');
       console.info('stepperTest_0100 END');
-      done();
+
     });
 
-    it('stepperTest_0200', 0, async function (done) {
+    it('stepperTest_0200', 0, async () => {
       console.info('stepperTest_0200 START');
       let strJson = getInspectorByKey('stepper');
       console.info("stepperTest_0200 component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("stepperTest_0200 component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.index).assertEqual('0');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "currentIndex": 1,
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 202,
           priority: events_emitter.EventPriority.LOW
         }
@@ -84,79 +83,54 @@ export default function stepperJsunit() {
       }
       await Utils.sleep(3000);
       let strJsonNew = getInspectorByKey('stepper');
-      let objNew = JSON.parse(strJsonNew);
+      let obj: ESObjectNew = JSON.parse(strJsonNew);
       console.info("stepperTest_0200 component objNew is: " + JSON.stringify(objNew));
       expect(objNew.$attrs.index).assertEqual('1');
       console.info('stepperTest_0200 END');
-      done();
+
     });
-    
-    it('stepperTest_0400', 0, async function (done) {
+
+    it('stepperTest_0400', 0, async () => {
 
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'index',value:-558038585})
+      GlobalContext.getContext().getObject('value').message.notify({
+        name: 'index', value: -558038585
+      })
       await CommonFunc.sleep(2000);
       let strJsonNew = getInspectorByKey('stepper');
-      let objNew = JSON.parse(strJsonNew);
+      let obj: ESObjectNew = JSON.parse(strJsonNew);
       console.info("stepperTest_0400 component objNew is: " + objNew.$attrs.index);
       expect(objNew.$attrs.index).assertEqual('0');
       console.info('stepperTest_0400 END');
-      done();
-      //console.info('stepperTest_0400 START');
-      //let strJson = getInspectorByKey('stepper');
-      //console.info("stepperTest_0400 component strJson:" + strJson);
-      //let obj = JSON.parse(strJson);
-      //console.info("stepperTest_0400 component obj is: " + JSON.stringify(obj));
-     // try {
-      //  let eventData = {
-        //  data: {
-        //    "currentIndex": -558038585,
-         // }
-       // }
-      //  let indexEvent = {
-        //  eventId: 940,
-       //   priority: events_emitter.EventPriority.LOW
-       // }
-        //console.info("stepperTest_0400 start to publish emit");
-       // events_emitter.emit(indexEvent, eventData);
-     // } catch (err) {
-       // console.log("stepperTest_0400 change component data error: " + err.message);
-      //}
-     // await Utils.sleep(3000);
-      //let strJsonNew = getInspectorByKey('stepper');
-      //let objNew = JSON.parse(strJsonNew);
-     // console.info("stepperTest_0400 component objNew is: " + JSON.stringify(objNew));
-      //expect(objNew.$attrs.index).assertEqual('-558038585');
-      //console.info('stepperTest_0400 END');
-      //done();
     });
 
-    it('stepperTest_0500', 0, async function (done) {
+    it('stepperTest_0500', 0, async () => {
       console.info('[stepperTest_0500] START');
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'index',value:-10})
+      GlobalContext.getContext().getObject('value').message.notify({
+        name: 'index', value: -10
+      })
       await CommonFunc.sleep(2000);
       let strJsonNew = getInspectorByKey('stepper');
-      let objNew = JSON.parse(strJsonNew);
+      let obj: ESObjectNew = JSON.parse(strJsonNew);
       console.info("stepperTest_0500 component objNew is: " + objNew.$attrs.index);
       expect(objNew.$attrs.index).assertEqual('0');
       console.info('stepperTest_0400 END');
-      done();
     });
 
-    it('stepperTest_0300', 0, async function (done) {
+    it('stepperTest_0300', 0, async () => {
       console.info('stepperTest_0300v START');
       let strJson = getInspectorByKey('stepper');
       console.info("stepperTest_0300 component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("stepperTest_0300 component obj is: " + JSON.stringify(obj));
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "currentIndex": 11111111,
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 909,
           priority: events_emitter.EventPriority.LOW
         }
@@ -167,11 +141,11 @@ export default function stepperJsunit() {
       }
       await Utils.sleep(3000);
       let strJsonNew = getInspectorByKey('stepper');
-      let objNew = JSON.parse(strJsonNew);
+      let obj: ESObjectNew = JSON.parse(strJsonNew);
       console.info("stepperTest_0300 component objNew is: " + JSON.stringify(objNew));
       expect(objNew.$attrs.index).assertEqual('0');
       console.info('stepperTest_0300 END');
-      done();
+
     });
 
   })

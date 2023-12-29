@@ -13,28 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter'
 import Utils from './Utils.ets';
 
 export default function appearJsunit() {
-  describe('appearTest', function () {
-    beforeEach(async function (done) {
+  describe('appearTest', () => {
+    beforeEach(async () => {
       console.info("appear beforeEach start");
-      let options = {
+      let options: router.RouterOptions = {
         uri: 'MainAbility/pages/appear',
       }
-      let result;
       try {
         router.clear();
         let pages = router.getState();
         console.info("get appear state pages: " + JSON.stringify(pages));
         if (!("appear" == pages.name)) {
           console.info("get appear state pages.name: " + JSON.stringify(pages.name));
-          result = await router.push(options);
+          await router.pushUrl(options);
           await Utils.sleep(2000);
-          console.info("push appear page result: " + JSON.stringify(result));
         }
       } catch (err) {
         console.error("push appear page error: " + err);
@@ -42,21 +40,20 @@ export default function appearJsunit() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("appear after each called");
     })
 
-    it('testAppear01', 0, async function (done) {
+    it('testAppear01', 0, async () => {
       console.info('[testAppear01] START');
       await Utils.sleep(1000);
       try {
-        let callBackAppear1 = (backData) => {
+        let callBackAppear1: events_emitter.EventData = (backData: ESObject) => {
           console.info("testAppear01 get appearEvent result is: " + JSON.stringify(backData));
           expect(backData.data.ACTION).assertEqual(false);
-          done();
         }
-        var appearEvent1 = {
+        let appearEvent1: events_emitter.InnerEvent = {
           eventId: 58,
           priority: events_emitter.EventPriority.LOW
         }
@@ -70,13 +67,12 @@ export default function appearJsunit() {
 
       console.info('[testAppear02] START');
       try {
-        let callBackDisAppear = (backData1) => {
+        let callBackDisAppear = (backData1: ESObject) => {
           console.info("testAppear02 get disAppearEvent result is: " + JSON.stringify(backData1));
           console.info("testAppear02 get backData1.data.ACTION result is: " + backData1.data.ACTION);
           expect(backData1.data.ACTION).assertEqual(true);
-          done();
         }
-        var disAppearEvent = {
+        let disAppearEvent: events_emitter.InnerEvent = {
           eventId: 60,
           priority: events_emitter.EventPriority.LOW
         }
@@ -87,13 +83,12 @@ export default function appearJsunit() {
 
       await Utils.sleep(1000);
       console.info('[testAppear03] START');
-      let callBackAppear2 = (backData2) => {
+      let callBackAppear2 = (backData2: ESObject) => {
         console.info("testAppear03 get appearEvent result is: " + JSON.stringify(backData2));
         console.info("testAppear03 get backData2.data.APPEAR: " + backData2.data.APPEAR);
         expect(backData2.data.APPEAR).assertEqual("appearStatusOn");
-        done();
       }
-      var appearEvent2 = {
+      let appearEvent2: events_emitter.InnerEvent = {
         eventId: 59,
         priority: events_emitter.EventPriority.LOW
       }
