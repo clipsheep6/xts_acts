@@ -49,559 +49,653 @@ export default function ColorSpaceTest() {
     });
 
     /**
-     * @tc.number TEST_COLOR_SPACE_001
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0100
+     * @tc.name  : testColorSpace001
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_001', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0100', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.UNKNOWN = ColorSpaceManager.ColorSpace.UNKNOWN
-        console.log("TEST_COLOR_SPACE_001 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0100 :${value}`);
         expect(value).assertEqual(0)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_001 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0100 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_002
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0200
+     * @tc.name  : testColorSpace002
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_002', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0200', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.ADOBE_RGB_1998 = ColorSpaceManager.ColorSpace.ADOBE_RGB_1998
-        console.log("TEST_COLOR_SPACE_002 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0200 :${value}`);
         expect(value).assertEqual(1)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_002 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0200 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_003
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0300
+     * @tc.name  : testColorSpace003
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_003', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0300', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.DCI_P3 = ColorSpaceManager.ColorSpace.DCI_P3
-        console.log("TEST_COLOR_SPACE_003 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0300 :${value}`);
         expect(value).assertEqual(2)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_003 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0300 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
 
       }
     })
 
+
     /**
-     * @tc.number TEST_COLOR_SPACE_004
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0400
+     * @tc.name  : testColorSpace004
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_004', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0400', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.DISPLAY_P3 = ColorSpaceManager.ColorSpace.DISPLAY_P3
-        console.log("TEST_COLOR_SPACE_004 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0400 :${value}`);
         expect(value).assertEqual(3)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_004 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0400 catch error msg:${e.message} error code:${e.code}');
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_005
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0500
+     * @tc.name  : testColorSpace005
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_005', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0500', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.SRGB = ColorSpaceManager.ColorSpace.SRGB
-        console.log("TEST_COLOR_SPACE_005 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0500 :${value}`);
         expect(value).assertEqual(4)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_005 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0500 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_006
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0600
+     * @tc.name  : testColorSpace006
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_006', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0600', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.CUSTOM = ColorSpaceManager.ColorSpace.CUSTOM
-        console.log("TEST_COLOR_SPACE_006 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0600 :${value}`);
         expect(value).assertEqual(5)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0600 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_007
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0700
+     * @tc.name  : testColorSpace007
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_007', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0700', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.BT709 = ColorSpaceManager.ColorSpace.BT709
-        console.log("TEST_COLOR_SPACE_007 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0700 :${value}`);
         expect(value).assertEqual(6)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0700 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_008
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0800
+     * @tc.name  : testColorSpace008
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_008', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0800', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.BT601_EBU = ColorSpaceManager.ColorSpace.BT601_EBU
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0800 :${value}`);
         expect(value).assertEqual(7)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0800 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_009
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0900
+     * @tc.name  : testColorSpace009
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_009', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0900', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.BT601_SMPTE_C = ColorSpaceManager.ColorSpace.BT601_SMPTE_C
-        console.log("TEST_COLOR_SPACE_009 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0900 :${value}`);
         expect(value).assertEqual(8)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_00 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0900 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_010
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1000
+     * @tc.name  : testColorSpace010
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_010', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1000', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.BT2020_HLG = ColorSpaceManager.ColorSpace.BT2020_HLG
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1000 :${value}`);
         expect(value).assertEqual(9)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1000 catch error msg:${e.message} error code:${e.code}');
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_011
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1100
+     * @tc.name  : testColorSpace011
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_011', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1100', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.BT2020_PQ = ColorSpaceManager.ColorSpace.BT2020_PQ
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1100 :${value}`);
         expect(value).assertEqual(10)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1100 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_012
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1200
+     * @tc.name  : testColorSpace012
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_012', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1200', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.P3_HLG = ColorSpaceManager.ColorSpace.P3_HLG
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1200 :${value}`);
         expect(value).assertEqual(11)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1200 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_013
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1300
+     * @tc.name  : testColorSpace013
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_013', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1300', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.P3_PQ = ColorSpaceManager.ColorSpace.P3_PQ
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1300 :${value}`);
         expect(value).assertEqual(12)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1300 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_014
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1400
+     * @tc.name  : testColorSpace014
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_014', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1400', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.ADOBE_RGB_1998_LIMIT = ColorSpaceManager.ColorSpace.ADOBE_RGB_1998_LIMIT
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1400 :${value}`);
         expect(value).assertEqual(13)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1400 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_015
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1500
+     * @tc.name  : testColorSpace015
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_015', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1500', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.DISPLAY_P3_LIMIT = ColorSpaceManager.ColorSpace.DISPLAY_P3_LIMIT
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1500 :${value}`);
         expect(value).assertEqual(14)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1500 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_016
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1600
+     * @tc.name  : testColorSpace016
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_016', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1600', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.SRGB_LIMIT = ColorSpaceManager.ColorSpace.SRGB_LIMIT
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1600 :${value}`);
         expect(value).assertEqual(15)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1600 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_017
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1700
+     * @tc.name  : testColorSpace017
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_017', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1700', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.BT709_LIMIT = ColorSpaceManager.ColorSpace.BT709_LIMIT
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1700 :${value}`);
         expect(value).assertEqual(16)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1700 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_018
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1800
+     * @tc.name  : testColorSpace018
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_018', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1800', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.BT601_EBU_LIMIT = ColorSpaceManager.ColorSpace.BT601_EBU_LIMIT
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1800 :${value}`);
         expect(value).assertEqual(17)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1800 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_019
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1900
+     * @tc.name  : testColorSpace009
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_019', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1900', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.BT601_SMPTE_C_LIMIT = ColorSpaceManager.ColorSpace.BT601_SMPTE_C_LIMIT
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1900 :${value}`);
         expect(value).assertEqual(18)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1900 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_019
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2000
+     * @tc.name  : testColorSpace020
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_020', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2000', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.BT2020_HLG_LIMIT = ColorSpaceManager.ColorSpace.BT2020_HLG_LIMIT
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2000 :${value}`);
         expect(value).assertEqual(19)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2000 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_021
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2100
+     * @tc.name  : testColorSpace021
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_021', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2100', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.BT2020_PQ_LIMIT = ColorSpaceManager.ColorSpace.BT2020_PQ_LIMIT
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2100 :${value}`);
         expect(value).assertEqual(20)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2100 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_022
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2200
+     * @tc.name  : testColorSpace022
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_022', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2200', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.P3_HLG_LIMIT = ColorSpaceManager.ColorSpace.P3_HLG_LIMIT
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2200 :${value}`);
         expect(value).assertEqual(21)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2200 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_023
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2300
+     * @tc.name  : testColorSpace023
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_023', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2300', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.P3_PQ_LIMIT = ColorSpaceManager.ColorSpace.P3_PQ_LIMIT
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2300 :${value}`);
         expect(value).assertEqual(22)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2300 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_024
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2400
+     * @tc.name  : testColorSpace024
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_024', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2400', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.LINEAR_P3 = ColorSpaceManager.ColorSpace.LINEAR_P3
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2400 :${value}`);
         expect(value).assertEqual(23)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2400 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_025
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2500
+     * @tc.name  : testColorSpace025
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_025', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2500', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.LINEAR_BT709 = ColorSpaceManager.ColorSpace.LINEAR_BT709
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2500:${value}`);
         expect(value).assertEqual(24)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2500 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_026
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2600
+     * @tc.name  : testColorSpace026
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_026', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2600', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.LINEAR_BT2020 = ColorSpaceManager.ColorSpace.LINEAR_BT2020
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2600 :${value}`);
         expect(value).assertEqual(25)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2600 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_027
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2700
+     * @tc.name  : testColorSpace027
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_027', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2700', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.DISPLAY_SRGB = ColorSpaceManager.ColorSpace.DISPLAY_SRGB
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2700 :${value}`);
         expect(value).assertEqual(4)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2700 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_028
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2800
+     * @tc.name  : testColorSpace028
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_028', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2800', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.DISPLAY_P3_SRGB = ColorSpaceManager.ColorSpace.DISPLAY_P3_SRGB
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2800 :${value}`);
         expect(value).assertEqual(3)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2800 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_029
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2900
+     * @tc.name  : testColorSpace029
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_029', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2900', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.DISPLAY_P3_HLG = ColorSpaceManager.ColorSpace.DISPLAY_P3_HLG
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2900 :${value}`);
         expect(value).assertEqual(11)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2900 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_030
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_3000
+     * @tc.name  : testColorSpace030
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_030', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_3000', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.DISPLAY_P3_PQ = ColorSpaceManager.ColorSpace.DISPLAY_P3_PQ
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_3000 :${value}`);
         expect(value).assertEqual(12)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_3000 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }
     })
 
     /**
-     * @tc.number TEST_COLOR_SPACE_031
-     * @tc.name Test ColorSpace
-     * @tc.desc Enumeration of color gamut types
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_3100
+     * @tc.name  : testColorSpace031
+     * @tc.desc  : To test Enumeration of color gamut types.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_031', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_3100', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpace.CUSTOM = ColorSpaceManager.ColorSpace.CUSTOM
-        console.log("TEST_COLOR_SPACE_008 " + value);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_3100 :${value}`);
         expect(value).assertEqual(5)
         done()
       } catch (e) {
-        console.log('TEST_COLOR_SPACE_006 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_3100 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
         done()
       }

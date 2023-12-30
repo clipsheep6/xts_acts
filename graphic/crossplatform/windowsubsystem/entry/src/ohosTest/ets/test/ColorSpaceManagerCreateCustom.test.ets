@@ -57,54 +57,63 @@ export default function ColorSpaceManagerCreateCustomTest() {
       whitePointX: 0.4,
       whitePointY: 0.4
     };
-    let gamma = 2.2;
+    let gamma: number = 2.2;
 
-    /* *
-    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_001
-    * @tc.name    Test ColorSpaceManager.create
-    * @tc.desc    Create a user-defined color gamut object
-    */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_001', 0, async (done: Function) => {
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_0100
+     * @tc.name  : testCreate001
+     * @tc.desc  : To test Create a user-defined color gamut object
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
+     */
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0100', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(primaries, gamma)
         expect(value.getColorSpaceName()).assertEqual(5)
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_001. Cause: ` + JSON.stringify(err));
+        console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0100. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
         done()
       }
     })
 
-    /* *
-    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_002
-    * @tc.name    Test ColorSpaceManager.create
-    * @tc.desc    Create a user-defined color gamut object
-    */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_002', 0, async (done: Function) => {
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_0200
+     * @tc.name  : testCreate002
+     * @tc.desc  : To test Create a user-defined color gamut object.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
+     */
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0200', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(primaries, gamma)
         expect(Array.isArray(value.getWhitePoint())).assertTrue()
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_002. Cause: ` + JSON.stringify(err));
+        console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0200. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
         done()
       }
     })
 
-    /* *
-    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_003
-    * @tc.name    Test ColorSpaceManager.create
-    * @tc.desc    Create a user-defined color gamut object
-    */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_003', 0, async (done: Function) => {
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_0300
+     * @tc.name  : testCreate003
+     * @tc.desc  : To test Create a user-defined color gamut object.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
+     */
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0300', 0, async (done: Function) => {
       try {
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(primaries, gamma)
         expect(typeof value.getGamma() === 'number').assertTrue()
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_CUSTOM_003. Cause: ` + JSON.stringify(err));
+        console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0300. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
         done()
       }

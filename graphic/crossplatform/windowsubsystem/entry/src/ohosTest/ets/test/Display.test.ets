@@ -56,52 +56,64 @@ export default function DisplayTest() {
     }
 
     /**
-     * @tc.number TEST_DISPLAY_001
-     * @tc.name Test Display
-     * @tc.desc The screen density of the display device
+     * @tc.number: SUB_GraphicImage_display_densityDPI_Func_0100
+     * @tc.name  : testDensityDPI
+     * @tc.desc  : To test The screen density of the display device.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_DISPLAY_001', 0, async (done: Function) => {
+    it('SUB_GraphicImage_display_densityDPI_Func_0100', 0, async (done: Function) => {
       try {
-        let value = displayClass.densityDPI
-        console.log('displayClass.densityDPI:', JSON.stringify(value))
+        let value: number = displayClass.densityDPI
+        console.log(`displayClass.densityDPI:${JSON.stringify(value)}`)
         expect(typeof value === 'number').assertTrue()
         done()
       } catch (e) {
-        console.log('TEST_DISPLAY_001 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_display_densityDPI_Func_0100 catch error msg:${JSON.stringify(e.message)} error code:${JSON.stringify(e.code)}`);
+        expect().assertFail()
         done()
       }
     })
 
     /**
-     * @tc.number TEST_DISPLAY_002
-     * @tc.name Test Display
-     * @tc.desc Displays the logical density of the device
+     * @tc.number: SUB_GraphicImage_display_densityPixels_Func_0200
+     * @tc.name  : testDensityPixels
+     * @tc.desc  : To test Displays the logical density of the device.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_DISPLAY_002', 0, async (done: Function) => {
+    it('SUB_GraphicImage_display_densityPixels_Func_0200', 0, async (done: Function) => {
       try {
-        let value = displayClass.densityPixels
-        console.log('displayClass.densityPixels:', JSON.stringify(value))
+        let value: number = displayClass.densityPixels
+        console.log(`displayClass.densityPixels:${JSON.stringify(value)}`)
         expect(typeof value === 'number').assertTrue()
         done()
       } catch (e) {
-        console.log('TEST_DISPLAY_002 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_display_densityPixels_Func_0200 catch error msg:${JSON.stringify(e.message)} error code:${JSON.stringify(e.code)}`);
+        expect().assertFail()
         done()
       }
     })
 
     /**
-     * @tc.number TEST_DISPLAY_003
-     * @tc.name Test Display
-     * @tc.desc The scaling factor of the display font of the display device
+     * @tc.number: SUB_GraphicImage_display_scaledDensity_Func_0300
+     * @tc.name  : testScaledDensity
+     * @tc.desc  : To test Displays the logical density of the device.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_DISPLAY_003', 0, async (done: Function) => {
+    it('SUB_GraphicImage_display_scaledDensity_Func_0300', 0, async (done: Function) => {
       try {
-        let value = displayClass.scaledDensity
-        console.log('displayClass.scaledDensity:', JSON.stringify(value))
+        let value: number = displayClass.scaledDensity
+        console.log(`displayClass.scaledDensity:${JSON.stringify(value)}`)
         expect(typeof value === 'number').assertTrue()
         done()
       } catch (e) {
-        console.log('TEST_DISPLAY_003 catch error msg: ' + e.message + 'error code: ' + e.code);
+        console.log(`SUB_GraphicImage_display_scaledDensity_Func_0300 catch error msg:${JSON.stringify(e.message)} error code:${JSON.stringify(e.code)}`);
+        expect().assertFail()
         done()
       }
     })

@@ -47,220 +47,253 @@ export default function ColorSpaceManagerCreateStandardTest() {
       console.info("====>afterAll: Test suite-level cleanup condition is executed");
     });
 
-    /* *
-    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_001
-    * @tc.name    Test ColorSpaceManager.create
-    * @tc.desc    Create standard color gamut objects
-    */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_001', 0, async (done: Function) => {
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_0100
+     * @tc.name  : testCreate001
+     * @tc.desc  : To test Create standard color gamut objects.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
+     */
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0100', 0, async (done: Function) => {
       try {
         let ADOBE_RGB_1998: ColorSpaceManager.ColorSpace.ADOBE_RGB_1998 = ColorSpaceManager.ColorSpace.ADOBE_RGB_1998
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(ADOBE_RGB_1998)
         expect(value.getColorSpaceName()).assertEqual(1)
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_001. Cause: ` + JSON.stringify(err));
+        console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0100. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
         done()
       }
     })
 
-    /* *
-     * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_002
-     * @tc.name    Test ColorSpaceManager.create
-     * @tc.desc    Create standard color gamut objects
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_0200
+     * @tc.name  : testCreate002
+     * @tc.desc  : To test Create standard color gamut objects.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_002', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0200', 0, async (done: Function) => {
       try {
         let DCI_P3: ColorSpaceManager.ColorSpace.DCI_P3 = ColorSpaceManager.ColorSpace.DCI_P3
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(DCI_P3)
         expect(value.getColorSpaceName()).assertEqual(2)
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_002. Cause: ` + JSON.stringify(err));
+        console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0200. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
         done()
       }
     })
 
-    /* *
-     * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_003
-     * @tc.name    Test ColorSpaceManager.create
-     * @tc.desc    Create standard color gamut objects
-
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_0300
+     * @tc.name  : testCreate003
+     * @tc.desc  : To test Create standard color gamut objects.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
      */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_003', 0, async (done: Function) => {
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0300', 0, async (done: Function) => {
       try {
         let DISPLAY_P3: ColorSpaceManager.ColorSpace.DISPLAY_P3 = ColorSpaceManager.ColorSpace.DISPLAY_P3
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(DISPLAY_P3)
         expect(value.getColorSpaceName()).assertEqual(3)
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_003. Cause: ` + JSON.stringify(err));
+        console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0300. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
         done()
       }
     })
 
-    /* *
-    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_004
-    * @tc.name    Test ColorSpaceManager.create
-    * @tc.desc    Create standard color gamut objects
-    */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_004', 0, async (done: Function) => {
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_0400
+     * @tc.name  : testCreate004
+     * @tc.desc  : To test Create standard color gamut objects.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
+     */
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0400', 0, async (done: Function) => {
       try {
         let SRGB: ColorSpaceManager.ColorSpace.SRGB = ColorSpaceManager.ColorSpace.SRGB
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(SRGB)
         expect(value.getColorSpaceName()).assertEqual(4)
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_004. Cause: ` + JSON.stringify(err));
+        console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0400. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
         done()
       }
     })
 
-    /* *
-    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_005
-    * @tc.name    Test ColorSpaceManager.create
-    * @tc.desc    Create standard color gamut objects
-    */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_005', 0, async (done: Function) => {
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_0500
+     * @tc.name  : testCreate005
+     * @tc.desc  : To test Create standard color gamut objects.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
+     */
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0500', 0, async (done: Function) => {
       try {
         let ADOBE_RGB_1998: ColorSpaceManager.ColorSpace.ADOBE_RGB_1998 = ColorSpaceManager.ColorSpace.ADOBE_RGB_1998
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(ADOBE_RGB_1998)
         expect(Array.isArray(value.getWhitePoint())).assertTrue()
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_005. Cause: ` + JSON.stringify(err));
+        console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0500. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
         done()
       }
     })
 
-    /* *
-    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_006
-    * @tc.name    Test ColorSpaceManager.create
-    * @tc.desc    Create standard color gamut objects
-    */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_006', 0, async (done: Function) => {
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_0600
+     * @tc.name  : testCreate006
+     * @tc.desc  : To test Create standard color gamut objects.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
+     */
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0600', 0, async (done: Function) => {
       try {
         let DCI_P3: ColorSpaceManager.ColorSpace.DCI_P3 = ColorSpaceManager.ColorSpace.DCI_P3
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(DCI_P3)
         expect(Array.isArray(value.getWhitePoint())).assertTrue()
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_006. Cause: ` + JSON.stringify(err));
+        console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0600. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
         done()
       }
     })
 
-    /* *
-    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_007
-    * @tc.name    Test ColorSpaceManager.create
-    * @tc.desc    Create standard color gamut objects
-    */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_007', 0, async (done: Function) => {
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_0700
+     * @tc.name  : testCreate007
+     * @tc.desc  : To test Create standard color gamut objects.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
+     */
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0700', 0, async (done: Function) => {
       try {
         let DISPLAY_P3: ColorSpaceManager.ColorSpace.DISPLAY_P3 = ColorSpaceManager.ColorSpace.DISPLAY_P3
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(DISPLAY_P3)
         expect(Array.isArray(value.getWhitePoint())).assertTrue()
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_007. Cause: ` + JSON.stringify(err));
+        console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0700. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
         done()
       }
     })
 
-    /* *
-    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_008
-    * @tc.name    Test ColorSpaceManager.create
-    * @tc.desc    Create standard color gamut objects
-    */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_008', 0, async (done: Function) => {
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_0800
+     * @tc.name  : testCreate008
+     * @tc.desc  : To test Create standard color gamut objects.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
+     */
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0800', 0, async (done: Function) => {
       try {
         let SRGB: ColorSpaceManager.ColorSpace.SRGB = ColorSpaceManager.ColorSpace.SRGB
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(SRGB)
-        // console.log()
         expect(Array.isArray(value.getWhitePoint())).assertTrue()
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_008. Cause: ` + JSON.stringify(err));
+        console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0800. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
         done()
       }
     })
 
-    /* *
-    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_009
-    * @tc.name    Test ColorSpaceManager.create
-    * @tc.desc    Create standard color gamut objects
-    */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_009', 0, async (done: Function) => {
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_0900
+     * @tc.name  : testCreate009
+     * @tc.desc  : To test Create standard color gamut objects.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
+     */
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0900', 0, async (done: Function) => {
       try {
         let ADOBE_RGB_1998: ColorSpaceManager.ColorSpace.ADOBE_RGB_1998 = ColorSpaceManager.ColorSpace.ADOBE_RGB_1998
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(ADOBE_RGB_1998)
         expect(typeof value.getGamma() === 'number').assertTrue()
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_009. Cause: ` + JSON.stringify(err));
+        console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0900. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
         done()
       }
     })
 
-    /* *
-    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_010
-    * @tc.name    Test ColorSpaceManager.create
-    * @tc.desc    Create standard color gamut objects
-    */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_010', 0, async (done: Function) => {
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_1000
+     * @tc.name  : testCreate010
+     * @tc.desc  : To test Create standard color gamut objects.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
+     */
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_1000', 0, async (done: Function) => {
       try {
         let DCI_P3: ColorSpaceManager.ColorSpace.DCI_P3 = ColorSpaceManager.ColorSpace.DCI_P3
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(DCI_P3)
         expect(typeof value.getGamma() === 'number').assertTrue()
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_010. Cause: ` + JSON.stringify(err));
+        console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_1000. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
         done()
       }
     })
 
-    /* *
-    * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_011
-    * @tc.name    Test ColorSpaceManager.create
-    * @tc.desc    Create standard color gamut objects
-    */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_011', 0, async (done: Function) => {
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_1100
+     * @tc.name  : testCreate011
+     * @tc.desc  : To test Create standard color gamut objects.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
+     */
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_1100', 0, async (done: Function) => {
       try {
         let DISPLAY_P3: ColorSpaceManager.ColorSpace.DISPLAY_P3 = ColorSpaceManager.ColorSpace.DISPLAY_P3
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(DISPLAY_P3)
         expect(typeof value.getGamma() === 'number').assertTrue()
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_016. Cause: ` + JSON.stringify(err));
+        console.log(`SUB_GraphicImage_ColorSpaceManager_Create_Func_1100. Cause: ` + JSON.stringify(err));
         expect(err.code == 18600001).assertTrue();
         done()
       }
     })
 
-    /* *
-   * @tc.number  TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_012
-   * @tc.name    Test ColorSpaceManager.create
-   * @tc.desc    Create standard color gamut objects
-
-   */
-    it('TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_012', 0, async (done: Function) => {
+    /**
+     * @tc.number: SUB_GraphicImage_ColorSpaceManager_Create_Func_1200
+     * @tc.name  : testCreate012
+     * @tc.desc  : To test Create standard color gamut objects.
+     * @tc.size  : MediumTest
+     * @tc.type  : Method
+     * @tc.level : Level 2
+     */
+    it('SUB_GraphicImage_ColorSpaceManager_Create_Func_1200', 0, async (done: Function) => {
       try {
         let SRGB: ColorSpaceManager.ColorSpace.SRGB = ColorSpaceManager.ColorSpace.SRGB
         let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(SRGB)
         expect(typeof value.getGamma() === 'number').assertTrue()
         done()
       } catch (err) {
-        console.log(`Failed to TEST_COLOR_SPACE_MANAGER_CREATE_STANDARD_012. Cause: ` + JSON.stringify(err));
+        console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_1200. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
         done()
       }
