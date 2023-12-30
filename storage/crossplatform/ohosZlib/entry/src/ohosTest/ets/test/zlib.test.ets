@@ -1,4 +1,4 @@
-import { describe, it, expect, afterEach } from '@ohos/hypium'
+import { describe, it, expect } from '@ohos/hypium'
 import zlib from '@ohos.zlib'
 import { BusinessError } from '@ohos.base'
 import fs from '@ohos.file.fs'
@@ -21,30 +21,30 @@ export default function ZlibTest() {
      * @tc.desc: inFile is folders
      */
     it('testCompressFile_000', 0, async (done: Function) => {
-      let Path1 = dir + "/test000a";
-      let Path2 = dir + "/test000b";
-      let filepath1 = Path1 + "/test000a.txt";
-      let filepath2 = Path2 + "/test000b.txt";
-      let outFile1 = dir + "/test000a.zip";
-      let outFile2 = dir + "/test000b.zip";
-      await fs.mkdir(Path1).then((data)=> {
-        console.log('zipDir000a mkdir success',data)
+      let Path1: string = dir + "/test000a";
+      let Path2: string = dir + "/test000b";
+      let filepath1: string = Path1 + "/test000a.txt";
+      let filepath2: string = Path2 + "/test000b.txt";
+      let outFile1: string = dir + "/test000a.zip";
+      let outFile2: string = dir + "/test000b.zip";
+      await fs.mkdir(Path1).then((data) => {
+        console.log('zipDir000a mkdir success', data)
         expect(data).assertUndefined()
-      }).catch((err:BusinessError) => {
-        console.log('zipDir000a mkdir fail',JSON.stringify(err))
+      }).catch((err: BusinessError) => {
+        console.log('zipDir000a mkdir fail', JSON.stringify(err))
         expect().assertFail()
       })
-      await fs.mkdir(Path2).then((data)=> {
-        console.log('zipDir000b mkdir success',data)
+      await fs.mkdir(Path2).then((data) => {
+        console.log('zipDir000b mkdir success', data)
         expect(data).assertUndefined()
-      }).catch((err:BusinessError) => {
-        console.log('zipDir000b mkdir fail',err)
+      }).catch((err: BusinessError) => {
+        console.log('zipDir000b mkdir fail', err)
         expect().assertFail()
       })
-      let file1 = fs.openSync(filepath1, 0o100 | 0o2);
+      let file1: fs.File = fs.openSync(filepath1, 0o100 | 0o2);
       await fs.write(file1.fd, content).then((data) => {
         console.log("test000a write success:", data);
-      }).catch((err:BusinessError) => {
+      }).catch((err: BusinessError) => {
         console.log("test000a write fail", err);
         expect(err).assertFail();
       });
@@ -52,28 +52,28 @@ export default function ZlibTest() {
         await zlib.compressFile(filepath1, outFile1, {
           level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
         }).then((data) => {
-          console.log("compressFilePromise000a success" , JSON.stringify(data));
-          let zipStat = fs.statSync(outFile1);
-          let isFile = zipStat.isFile();
+          console.log("compressFilePromise000a success", JSON.stringify(data));
+          let zipStat: fs.Stat = fs.statSync(outFile1);
+          let isFile: boolean = zipStat.isFile();
           expect(isFile).assertTrue();
-          let srcSize = fs.statSync(filepath1).size;
-          let zipSize = zipStat.size;
+          let srcSize: number = fs.statSync(filepath1).size;
+          let zipSize: number = zipStat.size;
           expect(srcSize > zipSize).assertTrue();
           expect(data).assertNull();
           fs.rmdirSync(Path1);
-        }).catch((err:BusinessError) => {
-          console.log("compressFilePromise000a fail" , JSON.stringify(err));
+        }).catch((err: BusinessError) => {
+          console.log("compressFilePromise000a fail", JSON.stringify(err));
           expect(err).assertFail();
         })
-      } catch(err) {
-        console.log("compressFilePromise000a catch" , JSON.stringify(err))
+      } catch (err) {
+        console.log("compressFilePromise000a catch", JSON.stringify(err))
         expect().assertFail()
       }
 
-      let file2 = fs.openSync(filepath2, 0o100 | 0o2);
+      let file2: fs.File = fs.openSync(filepath2, 0o100 | 0o2);
       await fs.write(file2.fd, content).then((data) => {
         console.log("test000b write success:", data);
-      }).catch((err:BusinessError) => {
+      }).catch((err: BusinessError) => {
         console.log("test000b write fail", err);
         expect(err).assertFail();
       });
@@ -83,11 +83,11 @@ export default function ZlibTest() {
         }, (res) => {
           if (!res) {
             console.log("compressFileCallback000b success", JSON.stringify(res));
-            let zipStat = fs.statSync(outFile2);
-            let isFile = zipStat.isFile();
+            let zipStat: fs.Stat = fs.statSync(outFile2);
+            let isFile: boolean = zipStat.isFile();
             expect(isFile).assertTrue();
-            let srcSize = fs.statSync(filepath2).size;
-            let zipSize = zipStat.size;
+            let srcSize: number = fs.statSync(filepath2).size;
+            let zipSize: number = zipStat.size;
             expect(srcSize > zipSize).assertTrue();
             expect(res).assertNull();
             fs.rmdirSync(Path2);
@@ -98,7 +98,7 @@ export default function ZlibTest() {
             done()
           }
         })
-      }catch (err) {
+      } catch (err) {
         console.log("compressFileCallback000b catch", JSON.stringify(err));
         expect(err).assertFail();
         done()
@@ -111,13 +111,13 @@ export default function ZlibTest() {
      * @tc.desc: outFile is empty
      */
     it('testCompressFile_001', 0, async (done: Function) => {
-      let filePath = dir + '/test001.txt'
+      let filePath: string = dir + '/test001.txt'
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION,
         memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
         strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
       }
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file: fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then((data) => {
         console.log('test001 write success', data)
       }).catch((err: BusinessError) => {
@@ -137,7 +137,7 @@ export default function ZlibTest() {
           expect(res.code).assertEqual(OUTPUT_FILE_INVALID)
           done()
         })
-      }catch(err) {
+      } catch (err) {
         console.log('compressFileCallback001 callback catch', err)
         expect().assertFail()
         done()
@@ -173,7 +173,7 @@ export default function ZlibTest() {
           expect(res.code).assertEqual(SRC_FILE_INVALID)
           done()
         })
-      }catch (err) {
+      } catch (err) {
         console.log('compressFileCallback002 catch:', err)
         expect().assertFail()
         done()
@@ -195,8 +195,8 @@ export default function ZlibTest() {
         memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
         strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
       }
-      let file1 = fs.openSync(filePath1, 0o100 | 0o2)
-      let file2 = fs.openSync(filePath2, 0o100 | 0o2)
+      let file1: fs.File = fs.openSync(filePath1, 0o100 | 0o2)
+      let file2: fs.File = fs.openSync(filePath2, 0o100 | 0o2)
       await fs.write(file1.fd, content).then((data) => {
         console.log('test003-1 write success', data)
       }).catch((err: BusinessError) => {
@@ -211,12 +211,12 @@ export default function ZlibTest() {
       })
       await zlib.compressFile(filePath1, outFile1, options).then(data => {
         console.log('compressFilePromise003-1 success', data);
-        let zipStat = fs.statSync(outFile1)
-        let isFile = zipStat.isFile()
+        let zipStat: fs.Stat = fs.statSync(outFile1)
+        let isFile: boolean = zipStat.isFile()
         console.log('shibu', isFile)
         expect(isFile).assertTrue()
-        let srcSize = fs.statSync(filePath1).size
-        let zipSize = zipStat.size
+        let srcSize: number = fs.statSync(filePath1).size
+        let zipSize: number = zipStat.size
         console.log('大小', srcSize, zipSize)
         expect(srcSize > zipSize).assertTrue()
         expect(data).assertNull()
@@ -228,11 +228,11 @@ export default function ZlibTest() {
       try {
         zlib.compressFile(filePath2, outFile2, options, (res) => {
           console.log('compressFileCallback003-2 success', res)
-          let zipStat = fs.statSync(outFile2)
-          let isFile = zipStat.isFile()
+          let zipStat: fs.Stat = fs.statSync(outFile2)
+          let isFile: boolean = zipStat.isFile()
           expect(isFile).assertTrue()
-          let srcSize = fs.statSync(filePath2).size
-          let zipSize = zipStat.size
+          let srcSize: number = fs.statSync(filePath2).size
+          let zipSize: number = zipStat.size
           expect(srcSize > zipSize).assertTrue()
           expect(res).assertNull()
           done()
@@ -252,7 +252,7 @@ export default function ZlibTest() {
     it('testCompressFile_004', 0, async (done: Function) => {
       let filePath: string = dir + '/test004.txt'
       let outFile: string = dir + '/test004.zip'
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file: fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then((data) => {
         console.log('test004 write success', data)
       }).catch((err: BusinessError) => {
@@ -267,9 +267,9 @@ export default function ZlibTest() {
         })
       } catch (err) {
         console.log('compressFilePromise004 catch', JSON.stringify(err))
-        if(err.code) {
+        if (err.code) {
           expect(err.code).assertEqual(PARAM_ERR)
-        }else {
+        } else {
           expect().assertFail()
         }
       }
@@ -282,11 +282,11 @@ export default function ZlibTest() {
           }
           done()
         })
-      }catch (err) {
+      } catch (err) {
         console.log('compressFileCallback004 catch', JSON.stringify(err))
-        if(err.code) {
+        if (err.code) {
           expect(err.code).assertEqual(PARAM_ERR)
-        }else {
+        } else {
           expect().assertFail()
         }
         done()
@@ -309,8 +309,8 @@ export default function ZlibTest() {
         memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
         strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
       }
-      let file1 = fs.openSync(filePath1, 0o100 | 0o2)
-      let file2 = fs.openSync(filePath2, 0o100 | 0o2)
+      let file1: fs.File = fs.openSync(filePath1, 0o100 | 0o2)
+      let file2: fs.File = fs.openSync(filePath2, 0o100 | 0o2)
       await fs.write(file1.fd, content).then((data) => {
         console.log('test005-1 write success', data)
       }).catch((err: BusinessError) => {
@@ -326,9 +326,9 @@ export default function ZlibTest() {
       try {
         await zlib.compressFile(filePath1, outFile1, options).then(data => {
           console.log('compressFilePromise005-1 success');
-          let zipStat = fs.statSync(outFile1)
-          let srcSize = fs.statSync(filePath1).size
-          let zipSize = zipStat.size
+          let zipStat: fs.Stat = fs.statSync(outFile1)
+          let srcSize: number = fs.statSync(filePath1).size
+          let zipSize: number = zipStat.size
           expect(srcSize > zipSize).assertTrue()
           expect(data).assertNull()
         }).catch((err: BusinessError) => {
@@ -343,9 +343,9 @@ export default function ZlibTest() {
       try {
         zlib.compressFile(filePath2, outFile2, options, (res) => {
           console.log('compressFileCallback005-2 success', res)
-          let zipStat = fs.statSync(outFile2)
-          let srcSize = fs.statSync(filePath2).size
-          let zipSize = zipStat.size
+          let zipStat: fs.Stat = fs.statSync(outFile2)
+          let srcSize: number = fs.statSync(filePath2).size
+          let zipSize: number = zipStat.size
           expect(srcSize > zipSize).assertTrue()
           expect(res).assertNull()
           done()
@@ -372,8 +372,8 @@ export default function ZlibTest() {
         memLevel: 99,
         strategy: zlib.CompressStrategy.COMPRESS_STRATEGY_DEFAULT_STRATEGY
       }
-      let file1 = fs.openSync(filePath1, 0o100 | 0o2)
-      let file2 = fs.openSync(filePath2, 0o100 | 0o2)
+      let file1: fs.File = fs.openSync(filePath1, 0o100 | 0o2)
+      let file2: fs.File = fs.openSync(filePath2, 0o100 | 0o2)
       await fs.write(file1.fd, content).then((data) => {
         console.log('test006-1 write success', data)
       }).catch((err: BusinessError) => {
@@ -388,11 +388,11 @@ export default function ZlibTest() {
       })
       await zlib.compressFile(filePath1, outFile1, options).then(data => {
         console.log('compressFilePromise006-1 success', data);
-        let zipStat = fs.statSync(outFile1)
-        let isFile = zipStat.isFile()
+        let zipStat: fs.Stat = fs.statSync(outFile1)
+        let isFile: boolean = zipStat.isFile()
         expect(isFile).assertTrue()
-        let srcSize = fs.statSync(filePath1).size
-        let zipSize = zipStat.size
+        let srcSize: number = fs.statSync(filePath1).size
+        let zipSize: number = zipStat.size
         expect(srcSize > zipSize).assertTrue()
         expect(data).assertNull()
       }).catch((err: BusinessError) => {
@@ -402,11 +402,11 @@ export default function ZlibTest() {
       try {
         zlib.compressFile(filePath2, outFile2, options, (res) => {
           console.log('compressFileCallback006-2 success', res)
-          let zipStat = fs.statSync(outFile2)
-          let isFile = zipStat.isFile()
+          let zipStat: fs.Stat = fs.statSync(outFile2)
+          let isFile: boolean = zipStat.isFile()
           expect(isFile).assertTrue()
-          let srcSize = fs.statSync(filePath2).size
-          let zipSize = zipStat.size
+          let srcSize: number = fs.statSync(filePath2).size
+          let zipSize: number = zipStat.size
           expect(srcSize > zipSize).assertTrue()
           expect(res).assertNull()
           done()
@@ -433,8 +433,8 @@ export default function ZlibTest() {
         memLevel: zlib.MemLevel.MEM_LEVEL_DEFAULT,
         strategy: 99
       }
-      let file1 = fs.openSync(filePath1, 0o100 | 0o2)
-      let file2 = fs.openSync(filePath2, 0o100 | 0o2)
+      let file1: fs.File = fs.openSync(filePath1, 0o100 | 0o2)
+      let file2: fs.File = fs.openSync(filePath2, 0o100 | 0o2)
       await fs.write(file1.fd, content).then((data) => {
         console.log('test007-1 write success', data)
       }).catch((err: BusinessError) => {
@@ -449,11 +449,11 @@ export default function ZlibTest() {
       })
       await zlib.compressFile(filePath1, outFile1, options).then(data => {
         console.log('compressFilePromise007-1 success', data);
-        let zipStat = fs.statSync(outFile1)
-        let isFile = zipStat.isFile()
+        let zipStat: fs.Stat = fs.statSync(outFile1)
+        let isFile: boolean = zipStat.isFile()
         expect(isFile).assertTrue()
-        let srcSize = fs.statSync(filePath1).size
-        let zipSize = zipStat.size
+        let srcSize: number = fs.statSync(filePath1).size
+        let zipSize: number = zipStat.size
         expect(srcSize > zipSize).assertTrue()
         expect(data).assertNull()
       }).catch((err: BusinessError) => {
@@ -463,11 +463,11 @@ export default function ZlibTest() {
       try {
         zlib.compressFile(filePath2, outFile2, options, (res) => {
           console.log('compressFileCallback007-2 success', res)
-          let zipStat = fs.statSync(outFile2)
-          let isFile = zipStat.isFile()
+          let zipStat: fs.Stat = fs.statSync(outFile2)
+          let isFile: boolean = zipStat.isFile()
           expect(isFile).assertTrue()
-          let srcSize = fs.statSync(filePath2).size
-          let zipSize = zipStat.size
+          let srcSize: number = fs.statSync(filePath2).size
+          let zipSize: number = zipStat.size
           expect(srcSize > zipSize).assertTrue()
           expect(res).assertNull()
           done()
@@ -492,7 +492,7 @@ export default function ZlibTest() {
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
       };
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file: fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then(data => {
         console.log('test008 write success', data)
       }).catch((err: BusinessError) => {
@@ -506,7 +506,6 @@ export default function ZlibTest() {
         console.log('compressFile008 fail', err)
         expect(err).assertFail()
       })
-      //创建解压包存放目录
       await fs.mkdir(unzipDir).then(data => {
         console.log('unzipDir008 mkdir success', data)
         expect(data).assertUndefined()
@@ -517,8 +516,8 @@ export default function ZlibTest() {
       try {
         zlib.decompressFile(zipPath, unzipDir, options).then(data => {
           console.log("decompressFilePromise008 success " + JSON.stringify(data));
-          let finalStat = fs.statSync(finalPath);
-          let isFile = finalStat.isFile();
+          let finalStat: fs.Stat = fs.statSync(finalPath);
+          let isFile: boolean = finalStat.isFile();
           expect(isFile).assertTrue();
           expect(data).assertNull();
           fs.rmdirSync(unzipDir);
@@ -548,7 +547,7 @@ export default function ZlibTest() {
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
       };
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file: fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then(data => {
         console.log('test009 write success', data)
       }).catch((err: BusinessError) => {
@@ -556,18 +555,17 @@ export default function ZlibTest() {
       })
       await zlib.compressFile(filePath, zipPath, options).then(data => {
         console.log('compressFile009 success', data);
-        let zipStat = fs.statSync(zipPath)
-        let isFile = zipStat.isFile()
+        let zipStat: fs.Stat = fs.statSync(zipPath)
+        let isFile: boolean = zipStat.isFile()
         expect(isFile).assertTrue()
-        let srcSize = fs.statSync(filePath).size
-        let zipSize = zipStat.size
+        let srcSize: number = fs.statSync(filePath).size
+        let zipSize: number = zipStat.size
         expect(srcSize > zipSize).assertTrue()
         expect(data).assertNull()
       }).catch((err: BusinessError) => {
         console.log('compressFile009 fail', err)
         expect(err).assertFail()
       })
-      //创建解压包存放目录
       await fs.mkdir(unzipDir).then(data => {
         console.log('unzipDir009 mkdir success', data)
         expect(data).assertUndefined()
@@ -578,8 +576,8 @@ export default function ZlibTest() {
       try {
         zlib.decompressFile(zipPath, unzipDir, options, (res) => {
           console.log("decompressFileCallback009 success " + JSON.stringify(res));
-          let finalStat = fs.statSync(finalPath);
-          let isFile = finalStat.isFile();
+          let finalStat: fs.Stat = fs.statSync(finalPath);
+          let isFile: boolean = finalStat.isFile();
           expect(isFile).assertTrue();
           expect(res).assertNull();
           fs.rmdirSync(unzipDir);
@@ -598,7 +596,7 @@ export default function ZlibTest() {
      * @tc.desc: inputFile is not exist
      */
     it('testDeCompressFile_010', 0, async (done: Function) => {
-      let zipPath = 'xxx.zip'
+      let zipPath: string = 'xxx.zip'
       let unzipDir: string = dir + '/unzipDir010'
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
@@ -626,7 +624,7 @@ export default function ZlibTest() {
      * @tc.desc: inputFile is not exist
      */
     it('testDeCompressFile_011', 0, async (done: Function) => {
-      let zipPath = 'xxx.zip'
+      let zipPath: string = 'xxx.zip'
       let unzipDir: string = dir + '/unzipDir011'
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
@@ -649,7 +647,7 @@ export default function ZlibTest() {
             done()
           }
         })
-      }catch (err) {
+      } catch (err) {
         console.log("decompressFileCallback011 catch " + JSON.stringify(err))
         expect(err).assertFail()
         done()
@@ -668,7 +666,7 @@ export default function ZlibTest() {
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
       };
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file:fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then(data => {
         console.log('test012 write success', data)
       }).catch((err: BusinessError) => {
@@ -709,7 +707,7 @@ export default function ZlibTest() {
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
       };
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file:fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then(data => {
         console.log('test013 write success', data)
       }).catch((err: BusinessError) => {
@@ -751,13 +749,12 @@ export default function ZlibTest() {
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
       };
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file:fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then(data => {
         console.log('test014 write success', data)
       }).catch((err: BusinessError) => {
         console.log('test014 write fail', err)
       })
-      //创建解压包存放目录
       await fs.mkdir(unzipDir).then(data => {
         console.log('unzipDir014 mkdir success', data)
         expect(data).assertUndefined()
@@ -773,10 +770,10 @@ export default function ZlibTest() {
         }).catch((err: BusinessError) => {
           console.log("decompressFilePromise014 fail " + JSON.stringify(err));
           fs.rmdirSync(unzipDir);
-          if(err.code == 900001) {
+          if (err.code == 900001) {
             expect(err.code).assertEqual(SRC_FILE_INVALID);
             done()
-          }else if(err.code == 900003) {
+          } else if (err.code == 900003) {
             expect(err.code).assertEqual(INPUT_FILE_WRONG);
             done()
           }
@@ -799,13 +796,12 @@ export default function ZlibTest() {
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
       };
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file:fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then(data => {
         console.log('test015 write success', data)
       }).catch((err: BusinessError) => {
         console.log('test015 write fail', err)
       })
-      //创建解压包存放目录
       await fs.mkdir(unzipDir).then(data => {
         console.log('unzipDir015 mkdir success', data)
         expect(data).assertUndefined()
@@ -817,10 +813,10 @@ export default function ZlibTest() {
         zlib.decompressFile(filePath, unzipDir, options, (res) => {
           fs.rmdirSync(unzipDir);
           if (res) {
-            if(res.code == 900001) {
+            if (res.code == 900001) {
               expect(res.code).assertEqual(SRC_FILE_INVALID);
               done()
-            }else if(res.code == 900003) {
+            } else if (res.code == 900003) {
               expect(res.code).assertEqual(INPUT_FILE_WRONG);
               done()
             }
@@ -850,7 +846,7 @@ export default function ZlibTest() {
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
       };
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file:fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then(data => {
         console.log('test016 write success', data)
       }).catch((err: BusinessError) => {
@@ -863,7 +859,6 @@ export default function ZlibTest() {
         console.log('compressFile016 fail', err)
         expect(err).assertFail()
       })
-      //创建解压包存放目录
       await fs.mkdir(unzipDir).then(data => {
         console.log('unzipDir016 mkdir success', data)
         expect(data).assertUndefined()
@@ -874,8 +869,8 @@ export default function ZlibTest() {
       try {
         await zlib.decompressFile(zipPath, unzipDir, {}).then(data => {
           console.log("decompressFilePromise016 success " + JSON.stringify(data))
-          let finalFile = fs.statSync(finalPath)
-          let isFile = finalFile.isFile();
+          let finalFile:fs.Stat = fs.statSync(finalPath)
+          let isFile:boolean = finalFile.isFile();
           expect(isFile).assertTrue();
           expect(data).assertNull();
           fs.rmdirSync(unzipDir);
@@ -904,7 +899,7 @@ export default function ZlibTest() {
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
       };
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file:fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then(data => {
         console.log('test017 write success', data)
       }).catch((err: BusinessError) => {
@@ -917,7 +912,6 @@ export default function ZlibTest() {
         console.log('compressFile017 fail', err)
         expect(err).assertFail()
       })
-      //创建解压包存放目录
       await fs.mkdir(unzipDir).then(data => {
         console.log('unzipDir017 mkdir success', data)
         expect(data).assertUndefined()
@@ -946,11 +940,11 @@ export default function ZlibTest() {
       let filePath: string = dir + '/test018.txt'
       let zipPath: string = dir + '/zipTest018.zip'
       let unzipDir: string = dir + '/unzipDir018'
-      let finalPath = unzipDir + '/test018.txt'
+      let finalPath:string = unzipDir + '/test018.txt'
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
       };
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file:fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then(data => {
         console.log('test018 write success', data)
       }).catch((err: BusinessError) => {
@@ -963,7 +957,6 @@ export default function ZlibTest() {
         console.log('compressFile018 fail', err)
         expect(err).assertFail()
       })
-      //创建解压包存放目录
       await fs.mkdir(unzipDir).then(data => {
         console.log('unzipDir018 mkdir success', data)
         expect(data).assertUndefined()
@@ -975,8 +968,8 @@ export default function ZlibTest() {
         zlib.decompressFile(zipPath, unzipDir, (res) => {
           if (!res) {
             console.log("decompressFileCallback018 success " + JSON.stringify(res));
-            let finalStat = fs.statSync(finalPath);
-            let isFile = finalStat.isFile();
+            let finalStat:fs.Stat = fs.statSync(finalPath);
+            let isFile:boolean = finalStat.isFile();
             expect(isFile).assertTrue();
             expect(res).assertNull();
             fs.rmdirSync(unzipDir);
@@ -1003,7 +996,7 @@ export default function ZlibTest() {
      * @tc.desc: inputFile is not exist.  There are no options
      */
     it('testDeCompressFile_019', 0, async (done: Function) => {
-      let zipPath = 'xxx.zip'
+      let zipPath:string = 'xxx.zip'
       let unzipDir: string = dir + '/unzipDir019'
       await fs.mkdir(unzipDir).then(data => {
         console.log('unzipDir019 mkdir success', data)
@@ -1044,7 +1037,7 @@ export default function ZlibTest() {
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
       };
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file:fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then(data => {
         console.log('test020 write success', data)
       }).catch((err: BusinessError) => {
@@ -1067,7 +1060,7 @@ export default function ZlibTest() {
             done()
           }
         })
-      }catch (err) {
+      } catch (err) {
         console.log("decompressFileCallback020 catch " + JSON.stringify(err));
         expect(err.code).assertEqual(PARAM_ERR);
         done()
@@ -1083,13 +1076,12 @@ export default function ZlibTest() {
     it('testDeCompressFile_021', 0, async (done: Function) => {
       let filePath: string = dir + '/test021.txt'
       let unzipDir: string = dir + '/unzipDir021'
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file:fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then(data => {
         console.log('test021 write success', data)
       }).catch((err: BusinessError) => {
         console.log('test021 write fail', err)
       })
-      //创建解压包存放目录
       await fs.mkdir(unzipDir).then(data => {
         console.log('unzipDir021 mkdir success', data)
         expect(data).assertUndefined()
@@ -1101,11 +1093,11 @@ export default function ZlibTest() {
         zlib.decompressFile(filePath, unzipDir, (res) => {
           if (res) {
             console.log("decompressFileCallback021 fail " + JSON.stringify(res));
-            if(res.code == 900001) {
+            if (res.code == 900001) {
               expect(res.code).assertEqual(SRC_FILE_INVALID);
               fs.rmdirSync(unzipDir);
               done()
-            }else if(res.code == 900003) {
+            } else if (res.code == 900003) {
               expect(res.code).assertEqual(INPUT_FILE_WRONG);
               fs.rmdirSync(unzipDir);
               done()
@@ -1138,7 +1130,6 @@ export default function ZlibTest() {
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
       };
-      //创建压缩包存放目录
       await fs.mkdir(zipDir).then(data => {
         console.log('zipDir022 mkdir success', data)
         expect(data).assertUndefined()
@@ -1146,7 +1137,7 @@ export default function ZlibTest() {
         console.log('zipDir022 mkdir fail', err)
         expect(err).assertFail()
       })
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file:fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then(data => {
         console.log('test022 write success', data)
       }).catch((err: BusinessError) => {
@@ -1154,18 +1145,17 @@ export default function ZlibTest() {
       })
       await zlib.compressFile(filePath, zipPath, options).then(data => {
         console.log('compressFile022 success', data);
-        let zipStat = fs.statSync(zipPath)
-        let isFile = zipStat.isFile()
+        let zipStat:fs.Stat = fs.statSync(zipPath)
+        let isFile:boolean = zipStat.isFile()
         expect(isFile).assertTrue()
-        let srcSize = fs.statSync(filePath).size
-        let zipSize = zipStat.size
+        let srcSize:number = fs.statSync(filePath).size
+        let zipSize:number = zipStat.size
         expect(srcSize > zipSize).assertTrue()
         expect(data).assertNull()
       }).catch((err: BusinessError) => {
         console.log('compressFile022 fail', err)
         expect(err).assertFail()
       })
-      //创建解压包存放目录
       await fs.mkdir(unzipDir).then(data => {
         console.log('unzipDir022 mkdir success', data)
         expect(data).assertUndefined()
@@ -1182,12 +1172,12 @@ export default function ZlibTest() {
           }
           else {
             console.log("decompressFileCallback022 fail " + JSON.stringify(res))
-            if(res.code == 900001) {
+            if (res.code == 900001) {
               expect(res.code).assertEqual(SRC_FILE_INVALID);
               fs.rmdirSync(unzipDir);
               fs.rmdirSync(zipDir);
               done()
-            }else if(res.code == 900003) {
+            } else if (res.code == 900003) {
               expect(res.code).assertEqual(INPUT_FILE_WRONG);
               fs.rmdirSync(unzipDir);
               fs.rmdirSync(zipDir);
@@ -1217,7 +1207,6 @@ export default function ZlibTest() {
       let options: zlib.Options = {
         level: zlib.CompressLevel.COMPRESS_LEVEL_DEFAULT_COMPRESSION
       };
-      //创建压缩包存放目录
       await fs.mkdir(zipDir).then(data => {
         console.log('zipDir023 mkdir success', data)
         expect(data).assertUndefined()
@@ -1225,7 +1214,7 @@ export default function ZlibTest() {
         console.log('zipDir023 mkdir fail', err)
         expect(err).assertFail()
       })
-      let file = fs.openSync(filePath, 0o100 | 0o2)
+      let file:fs.File = fs.openSync(filePath, 0o100 | 0o2)
       await fs.write(file.fd, content).then(data => {
         console.log('test023 write success', data)
       }).catch((err: BusinessError) => {
@@ -1233,18 +1222,17 @@ export default function ZlibTest() {
       })
       await zlib.compressFile(filePath, zipPath, options).then(data => {
         console.log('compressFile023 success', data);
-        let zipStat = fs.statSync(zipPath)
-        let isFile = zipStat.isFile()
+        let zipStat:fs.Stat = fs.statSync(zipPath)
+        let isFile:boolean = zipStat.isFile()
         expect(isFile).assertTrue()
-        let srcSize = fs.statSync(filePath).size
-        let zipSize = zipStat.size
+        let srcSize:number = fs.statSync(filePath).size
+        let zipSize:number = zipStat.size
         expect(srcSize > zipSize).assertTrue()
         expect(data).assertNull()
       }).catch((err: BusinessError) => {
         console.log('compressFile023 fail', err)
         expect(err).assertFail()
       })
-      //创建解压包存放目录
       await fs.mkdir(unzipDir).then(data => {
         console.log('unzipDir023 mkdir success', data)
         expect(data).assertUndefined()
@@ -1252,18 +1240,18 @@ export default function ZlibTest() {
         console.log('unzipDir023 mkdir fail', err)
         expect(err).assertFail()
       })
-      zlib.decompressFile(zipDir, unzipDir,options).then(res => {
+      zlib.decompressFile(zipDir, unzipDir, options).then(res => {
         console.log("decompressFilePromise023 success " + JSON.stringify(res));
         expect(res).assertFail()
         done()
-      }).catch((err:BusinessError) => {
+      }).catch((err: BusinessError) => {
         console.log("decompressFilePromise023 fail " + JSON.stringify(err));
-        if(err.code == 900001) {
+        if (err.code == 900001) {
           expect(err.code).assertEqual(SRC_FILE_INVALID);
           fs.rmdirSync(unzipDir);
           fs.rmdirSync(zipDir);
           done()
-        }else if(err.code == 900003) {
+        } else if (err.code == 900003) {
           expect(err.code).assertEqual(INPUT_FILE_WRONG);
           fs.rmdirSync(unzipDir);
           fs.rmdirSync(zipDir);
