@@ -15,15 +15,14 @@
 
 import TestRunner from '@ohos.application.testRunner';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import Want from '@ohos.app.ability.Want';
+import { BusinessError } from '@ohos.base';
 
-var abilityDelegator = undefined
-var abilityDelegatorArguments = undefined
-
-async function onAbilityCreateCallback() {
+async function onAbilityCreateCallback(): Promise<void> {
     console.log('onAbilityCreateCallback');
 }
 
-async function addAbilityMonitorCallback(err: any) {
+async function addAbilityMonitorCallback(err: BusinessError): Promise<void> {
     console.log('addAbilityMonitorCallback');
 }
 
@@ -31,29 +30,29 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     constructor() {
     }
 
-    onPrepare() {
+    onPrepare(): void {
         console.log('onPrepare');
     }
 
-    async onRun() {
+    async onRun(): Promise<void> {
         console.log('onRun');
-        abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-        abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        const bundleName = abilityDelegatorArguments.bundleName
-        const parameters = abilityDelegatorArguments.parameters
-        const moduleName = parameters["moduleName"]
-        const lMonitor = {
+        const abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+        const abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs = AbilityDelegatorRegistry.getArguments();
+        const bundleName: string = abilityDelegatorArguments.bundleName;
+        const parameters: Record<string, string> = abilityDelegatorArguments.parameters;
+        const moduleName: string = parameters["moduleName"];
+        const lMonitor: AbilityDelegatorRegistry.AbilityMonitor = {
             abilityName: "TestAbility",
             onAbilityCreate: onAbilityCreateCallback,
         };
-        abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback)
-        let want = {
+        abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback);
+        let want: Want = {
             abilityName: "TestAbility",
             bundleName: bundleName,
             moduleName: moduleName
         };
-        abilityDelegator.startAbility(want, (err: any, data: any) => {
-            console.log('startAbility' + err + data);
+        abilityDelegator.startAbility(want, (err: BusinessError) => {
+            console.log('startAbility' + err);
         });
     }
 }

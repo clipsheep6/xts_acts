@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import CommonEventManager from '@ohos.commonEventManager';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { BusinessError } from '@ohos.base';
-import { publishEvent, publishEventWithoutOpt, sleep } from '../utils/index'
+import { publishEvent, publishEventWithoutOpt, sleep } from '../utils/index';
 
 export default function commonEventMgrUnsubscribeTest() {
   describe('commonEventMgrUnsubscribeTest', () => {
@@ -50,141 +51,155 @@ export default function commonEventMgrUnsubscribeTest() {
     });
 
     /**
-     * @tc.number TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_001
-     * @tc.name Test CommonEventManager.unsubscribe in callback mode
-     * @tc.desc Test CommonEventManager API functionality.
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level
+     * @tc.number: SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0100
+     * @tc.name  : SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0100
+     * @tc.desc  : Test CommonEventManager.unsubscribe in callback mode
+     * @tc.size  : MediumTest
+     * @tc.type  : Func
+     * @tc.level : 2
      */
-    /*ios不支持publish方法，无法发布自定义事件，测试套自动化测试流程中无法验证。*/
-    it('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_001', 0, async (done: Function) => {
+    /*IOS does not support the publish method and cannot publish custom events,
+      which cannot be verified in the automated testing process of the test suite.
+      （ios不支持publish方法，无法发布自定义事件，测试套自动化测试流程中无法验证）*/
+    it('SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0100', 0, async (done: Function) => {
       try {
         const subscriberInfo: CommonEventManager.CommonEventSubscribeInfo = {
           events: ['UNSUBSCRIBE_MY_EVENT_001']
-        }
-        const subscriber: CommonEventManager.CommonEventSubscriber = await CommonEventManager.createSubscriber(subscriberInfo)
+        };
+        const subscriber: CommonEventManager.CommonEventSubscriber = await CommonEventManager.createSubscriber(subscriberInfo);
         CommonEventManager.subscribe(subscriber, async (error: BusinessError, result: CommonEventManager.CommonEventData) => {
-          console.log('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_001 SUBSCRIBE CALLBACK');
-          const event: string = result.event
-          expect(event).assertEqual('UNSUBSCRIBE_MY_EVENT_001')
-          console.log('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_001 SUBSCRIBE CALLBACK EVENT: ' + event);
-          console.log('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_001 UNSUBSCRIBE');
+          console.log('SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0100 SUBSCRIBE CALLBACK');
+          const event: string = result.event;
+          expect(event).assertEqual('UNSUBSCRIBE_MY_EVENT_001');
+          console.log(`SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0100 SUBSCRIBE CALLBACK EVENT: ${event}`);
+          console.log('SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0100 UNSUBSCRIBE');
           CommonEventManager.unsubscribe(subscriber, (error: BusinessError) => {
-            console.log('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_001 UNSUBSCRIBE CALLBACK');
-          })
-          await sleep()
-          publishEventWithoutOpt('UNSUBSCRIBE_MY_EVENT_001', done)
-          done()
-        })
-        await sleep()
-        publishEventWithoutOpt('UNSUBSCRIBE_MY_EVENT_001', done)
+            console.log('SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0100 UNSUBSCRIBE CALLBACK');
+          });
+          await sleep();
+          publishEventWithoutOpt('UNSUBSCRIBE_MY_EVENT_001', done);
+          done();
+        });
+        await sleep();
+        publishEventWithoutOpt('UNSUBSCRIBE_MY_EVENT_001', done);
       } catch (e) {
-        console.log("TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_001 catch error msg: " + e.message + ", error code: " + e.code);
+        console.log(`SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0100 catch error msg: ${e.message}, error code: ${e.code}`);
+        expect(false).assertTrue();
         done();
       }
-    })
+    });
 
     /**
-     * @tc.number TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_002
-     * @tc.name Test CommonEventManager.unsubscribe in callback mode throw 401 code
-     * @tc.desc Test CommonEventManager API functionality.
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level
+     * @tc.number: SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0200
+     * @tc.name  : SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0200
+     * @tc.desc  : Test CommonEventManager.unsubscribe in callback mode throw 401 code
+     * @tc.size  : MediumTest
+     * @tc.type  : Func
+     * @tc.level : 2
      */
-    /*ios不支持publish方法，无法发布自定义事件，测试套自动化测试流程中无法验证。*/
-    it('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_002', 0, async (done: Function) => {
+    /*IOS does not support the publish method and cannot publish custom events,
+      which cannot be verified in the automated testing process of the test suite.
+      （ios不支持publish方法，无法发布自定义事件，测试套自动化测试流程中无法验证）*/
+    it('SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0200', 0, async (done: Function) => {
       try {
-        CommonEventManager.unsubscribe(null, error => {
+        CommonEventManager.unsubscribe(null, (error: BusinessError) => {
           if (error) {
-            console.log("TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_002 error msg: " + error.message + ", error code: " + error.code);
-            expect(error.code == 401).assertTrue();
+            console.log(`SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0200 error msg: ${error.message}, error code: ${error.code}`);
+            expect(false).assertTrue();
             done();
           } else {
-            console.log('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_002 SUCCESS');
-            expect(error).assertNull()
-            done()
+            console.log('SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0200 SUCCESS');
+            expect(error).assertNull();
+            done();
           }
-        })
+        });
       } catch (e) {
-        console.log("TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_002 catch error msg: " + e.message + ", error code: " + e.code);
+        console.log(`SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0200 catch error msg: ${e.message}, error code: ${e.code}`);
+        expect(e.code == 401).assertTrue();
         done();
       }
-    })
+    });
 
     /**
-     * @tc.number TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_003
-     * @tc.name Test CommonEventManager.unsubscribe in callback mode
-     * @tc.desc Test CommonEventManager API functionality.
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level
+     * @tc.number: SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0300
+     * @tc.name  : SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0300
+     * @tc.desc  : Test CommonEventManager.unsubscribe in callback mode
+     * @tc.size  : MediumTest
+     * @tc.type  : Func
+     * @tc.level : 2
      */
-    /*ios不支持publish方法，无法发布自定义事件，测试套自动化测试流程中无法验证。*/
-    it('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_003', 0, async (done: Function) => {
+    /*IOS does not support the publish method and cannot publish custom events,
+      which cannot be verified in the automated testing process of the test suite.
+      （ios不支持publish方法，无法发布自定义事件，测试套自动化测试流程中无法验证）*/
+    it('SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0300', 0, async (done: Function) => {
       try {
-        const EVENTS: string[] = ['UNSUBSCRIBE_MY_EVENT_002', 'UNSUBSCRIBE_MY_EVENT_003']
+        const EVENTS: string[] = ['UNSUBSCRIBE_MY_EVENT_002', 'UNSUBSCRIBE_MY_EVENT_003'];
         const subscriberInfo: CommonEventManager.CommonEventSubscribeInfo = {
           events: EVENTS
-        }
-        const subscriber: CommonEventManager.CommonEventSubscriber = await CommonEventManager.createSubscriber(subscriberInfo)
+        };
+        const subscriber: CommonEventManager.CommonEventSubscriber = await CommonEventManager.createSubscriber(subscriberInfo);
         CommonEventManager.subscribe(subscriber, async (error: BusinessError, result: CommonEventManager.CommonEventData) => {
-          console.log('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_003 SUBSCRIBE CALLBACK');
-          const event: string = result.event
-          expect(EVENTS).assertContain(event)
-          console.log('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_003 SUBSCRIBE CALLBACK EVENT: ' + event);
-        })
-        publishEventWithoutOpt(EVENTS[0], done)
-        await sleep()
+          console.log('SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0300 SUBSCRIBE CALLBACK');
+          const event: string = result.event;
+          expect(EVENTS).assertContain(event);
+          console.log(`SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0300 SUBSCRIBE CALLBACK EVENT: ${event}`);
+        });
+        publishEventWithoutOpt(EVENTS[0], done);
+        await sleep();
         CommonEventManager.unsubscribe(subscriber, (error: BusinessError) => {
-          console.log('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_003 UNSUBSCRIBE CALLBACK');
+          console.log('SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0300 UNSUBSCRIBE CALLBACK');
           sleep(4500).then(() => {
-            done()
-          })
-        })
-        publishEventWithoutOpt(EVENTS[1], done)
+            expect(error).assertNull();
+            done();
+          });
+        });
+        publishEventWithoutOpt(EVENTS[1], done);
       } catch (e) {
-        console.log("TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_003 catch error msg: " + e.message + ", error code: " + e.code);
+        console.log(`SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0300 catch error msg: ${e.message}, error code: ${e.code}`);
+        expect(false).assertTrue();
         done();
       }
-    })
+    });
 
     /**
-     * @tc.number TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_004
-     * @tc.name Test CommonEventManager.unsubscribe in callback mode
-     * @tc.desc Test CommonEventManager API functionality.
-     * @tc.size      : MEDIUM
-     * @tc.type      : Function
-     * @tc.level     : Level
+     * @tc.number: SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0400
+     * @tc.name  : SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0400
+     * @tc.desc  : Test CommonEventManager.unsubscribe in callback mode
+     * @tc.size  : MediumTest
+     * @tc.type  : Func
+     * @tc.level : 2
      */
-    /*ios不支持publish方法，无法发布自定义事件，测试套自动化测试流程中无法验证。*/
-    it('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_004', 0, async (done: Function) => {
+    /*IOS does not support the publish method and cannot publish custom events,
+      which cannot be verified in the automated testing process of the test suite.
+      （ios不支持publish方法，无法发布自定义事件，测试套自动化测试流程中无法验证）*/
+    it('SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0400', 0, async (done: Function) => {
       try {
-        const EVENT = 'UNSUBSCRIBE_MY_EVENT_004'
+        const EVENT: string = 'UNSUBSCRIBE_MY_EVENT_004';
         const subscriberInfo: CommonEventManager.CommonEventSubscribeInfo = {
           events: [EVENT]
-        }
-        const subscriber: CommonEventManager.CommonEventSubscriber = await CommonEventManager.createSubscriber(subscriberInfo)
+        };
+        const subscriber: CommonEventManager.CommonEventSubscriber = await CommonEventManager.createSubscriber(subscriberInfo);
         CommonEventManager.subscribe(subscriber, async (error: BusinessError, result: CommonEventManager.CommonEventData) => {
-          console.log('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_004 SUBSCRIBE CALLBACK');
-          const event: string = result.event
-          expect(event).assertEqual(EVENT)
-          console.log('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_004 SUBSCRIBE CALLBACK EVENT: ' + event);
-        })
-        await sleep()
+          console.log('SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0400 SUBSCRIBE CALLBACK');
+          const event: string = result.event;
+          expect(event).assertEqual(EVENT);
+          console.log(`SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0400 SUBSCRIBE CALLBACK EVENT: ${event}`);
+        });
+        await sleep();
         CommonEventManager.unsubscribe(subscriber, (error: BusinessError) => {
-          console.log('TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_004 UNSUBSCRIBE CALLBACK');
-        })
-        await sleep()
-        publishEventWithoutOpt(EVENT, done)
-        sleep(4500).then(() => {
-          done()
-        })
+          console.log('SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0400 UNSUBSCRIBE CALLBACK');
+          sleep(4500).then(() => {
+            expect(error).assertNull();
+            done();
+          });
+        });
+        await sleep();
+        publishEventWithoutOpt(EVENT, done);
       } catch (e) {
-        console.log("TEST_COMMON_EVENT_MGR_UNSUBSCRIBE_CALLBACK_004 catch error msg: " + e.message + ", error code: " + e.code);
+        console.log(`SUB_Notification_Common_Event_Manager_Unsubscribe_Func_0400 catch error msg: ${e.message}, error code: ${e.code}`);
+        expect(false).assertTrue();
         done();
       }
-    })
-  })
+    });
+  });
 }
