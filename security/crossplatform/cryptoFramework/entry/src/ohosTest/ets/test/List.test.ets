@@ -14,7 +14,6 @@
  */
 
 import abilityTest from './Ability.test'
-import certTest from './Cert.test'
 import cryptoFrame from './CryptoFramework.test'
 
 export default function testsuite() {

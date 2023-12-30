@@ -1,7 +1,7 @@
 //字节流转成可理解的字符串
 function uInt8ArrayToString(fileData: number[]) {
-  let dataString = "";
-  for (let i = 0; i < fileData.length; i++) {
+  let dataString: string = "";
+  for (let i: number = 0; i < fileData.length; i++) {
     dataString += String.fromCharCode(fileData[i]);
   }
   return dataString;
@@ -13,10 +13,10 @@ function stringTouInt8Array(str: string) {
     console.error("stringTouInt8Array length is 0");
   }
   let arr: number[] = [];
-  for (let i = 0, j = str.length; i < j; ++i) {
+  for (let i: number = 0, j: number = str.length; i < j; ++i) {
     arr.push(str.charCodeAt(i));
   }
-  let tmpUint8Array = new Uint8Array(arr);
+  let tmpUint8Array: Uint8Array = new Uint8Array(arr);
   return tmpUint8Array;
 }
 

@@ -17,59 +17,12 @@ import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import cryptoFramework from "@ohos.security.cryptoFramework";
 import { BusinessError } from '@ohos.base';
-
-let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
-let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
-let KeyPairGenPromise = asyKeyGenerator.generateKeyPair();
-
-let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
-let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
-let pubKeyBlob: cryptoFramework.DataBlob = {data: pubKeyArray}; // Data of the public key.
-let priKeyBlob: cryptoFramework.DataBlob = {data: priKeyArray}; // Data of the private key.
-let convertKeyGenPromise = asyKeyGenerator.convertKey(pubKeyBlob, priKeyBlob);
-
-let plan1 = "This is Sign test plan1"; // The first segment of the data.
-let plan2 = "This is Sign test plan2"; // The second segment of the data.
-let arr1 = new Uint8Array(plan1.length);
-let arr2 = new Uint8Array(plan2.length);
-for (let i = 0, j = plan1.length; i < j; ++i) {
-  arr1[i] = plan1.charCodeAt(i);
-}
-
-for (let i = 0, j = plan2.length; i < j; ++i) {
-  arr2[i] = plan2.charCodeAt(i);
-}
-let input1: cryptoFramework.DataBlob = { data: arr1 };
-let input2: cryptoFramework.DataBlob = { data: arr2 };
-
-let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-
-let dsaCommonSpec: cryptoFramework.DSACommonParamsSpec = {
-  algName : "DSA",
-  specType : cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC,
-  p : BigInt("0xed1501551b8ab3547f6355ffdc2913856ddeca198833dbd04f020e5f25e47c50e0b3894f7690a0d2ea5ed3a7be25c54292a698e1f086eb3a97deb4dbf04fcad2dafd94a9f35c3ae338ab35477e16981ded6a5b13d5ff20bf55f1b262303ad3a80af71aa6aa2354d20e9c82647664bdb6b333b7bea0a5f49d55ca40bc312a1729"),
-  q : BigInt("0xd23304044019d5d382cfeabf351636c7ab219694ac845051f60b047b"),
-  g : BigInt("0x2cc266d8bd33c3009bd67f285a257ba74f0c3a7e12b722864632a0ac3f2c17c91c2f3f67eb2d57071ef47aaa8f8e17a21ad2c1072ee1ce281362aad01dcbcd3876455cd17e1dd55d4ed36fa011db40f0bbb8cba01d066f392b5eaa9404bfcb775f2196a6bc20eeec3db32d54e94d87ecdb7a0310a5a017c5cdb8ac78597778bd"),
-}
-
-let dsaKeyPairSpec: cryptoFramework.DSAKeyPairSpec = {
-  algName : "DSA",
-  specType : cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC,
-  params : dsaCommonSpec,
-  sk : BigInt("0xa2dd2adb2d11392c2541930f61f1165c370aabd2d78d00342e0a2fd9"),
-  pk : BigInt("0xae6b5d5042e758f3fc9a02d009d896df115811a75b5f7b382d8526270dbb3c029403fafb8573ba4ef0314ea86f09d01e82a14d1ebb67b0c331f41049bd6b1842658b0592e706a5e4d20c14b67977e17df7bdd464cce14b5f13bae6607760fcdf394e0b73ac70aaf141fa4dafd736bd0364b1d6e6c0d7683a5de6b9221e7f2d6b"),
-}
-
-let asyKeyPairSpec = dsaKeyPairSpec;
-let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
-let priKeyGenPromise = asyKeyGeneratorBySpec.generatePriKey();
-let pubKeyGenPromise = asyKeyGeneratorBySpec.generatePubKey();
-
-let cipherAlgName = '3DES192|ECB|PKCS7';
-let cipher = cryptoFramework.createCipher(cipherAlgName);
-
-let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
-let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
+import {
+  symKeyGenerator,asyKeyGenerator,KeyPairGenPromise,
+  pubKeyArray,priKeyArray,pubKeyBlob,priKeyBlob,convertKeyGenPromise,plan1,plan2,arr1,arr2,input1,input2,
+  rsaGenerator,dsaCommonSpec,dsaKeyPairSpec,asyKeyPairSpec,asyKeyGeneratorBySpec,priKeyGenPromise,pubKeyGenPromise,
+  cipherAlgName,cipher,signer,verifyer
+} from '../utils/CommonVariables';
 
 export default function cryptoFrame() {
   describe('CryptoFrame', () => {
@@ -118,40 +71,8 @@ export default function cryptoFrame() {
       expect(cryptoFramework.Result.ERR_OUT_OF_MEMORY === 17620001).assertTrue();
       expect(cryptoFramework.Result.ERR_RUNTIME_ERROR === 17620002).assertTrue();
       expect(cryptoFramework.Result.ERR_CRYPTO_OPERATION === 17630001).assertTrue();
-
-      done();
-
-    })
-
-    /**
-     *@tc.number    : testCryptoMode001
-     *@tc.name      : testCryptoMode001
-     *@tc.desc      : 表示执行结果的枚举。
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 3
-     */
-    it('testCryptoMode001', 0, async (done:Function) => {
-
       expect(cryptoFramework.CryptoMode.ENCRYPT_MODE === 0).assertTrue();
       expect(cryptoFramework.CryptoMode.DECRYPT_MODE === 1).assertTrue();
-
-      done();
-
-    })
-
-    /**
-     *@tc.number    : testAsyKeySpecItem001
-     *@tc.name      : testAsyKeySpecItem001
-     *@tc.desc      : 表示密钥参数的枚举。
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 4
-     */
-    it('testAsyKeySpecItem001', 0, async (done:Function) => {
-
       expect(cryptoFramework.AsyKeySpecItem.DSA_P_BN === 101).assertTrue();
       expect(cryptoFramework.AsyKeySpecItem.DSA_Q_BN === 102).assertTrue();
       expect(cryptoFramework.AsyKeySpecItem.DSA_G_BN === 103).assertTrue();
@@ -173,62 +94,14 @@ export default function cryptoFrame() {
       expect(cryptoFramework.AsyKeySpecItem.RSA_N_BN === 301).assertTrue();
       expect(cryptoFramework.AsyKeySpecItem.RSA_SK_BN === 302).assertTrue();
       expect(cryptoFramework.AsyKeySpecItem.RSA_PK_BN === 303).assertTrue();
-
-      done();
-
-    })
-
-    /**
-     *@tc.number    : testAsyKeySpecType001
-     *@tc.name      : testAsyKeySpecType001
-     *@tc.desc      : 表示密钥参数类型的枚举。
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 5
-     */
-    it('testAsyKeySpecType001', 0, async (done:Function) => {
-
       expect(cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC === 0).assertTrue();
       expect(cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC === 1).assertTrue();
       expect(cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC === 2).assertTrue();
       expect(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC === 3).assertTrue();
-
-      done();
-
-    })
-
-    /**
-     *@tc.number    : testCipherSpecItem001
-     *@tc.name      : testCipherSpecItem001
-     *@tc.desc      : 表示加解密参数的枚举，这些加解密参数支持通过setCipherSpec接口设置/通过getCipherSpec接口获取。当前只支持RSA算法，
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 6
-     */
-    it('testCipherSpecItem001', 0, async (done:Function) => {
-
       expect(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR === 100).assertTrue();
       expect(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR === 101).assertTrue();
       expect(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR === 102).assertTrue();
       expect(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR === 103).assertTrue();
-
-      done();
-
-    })
-
-    /**
-     *@tc.number    : testSignSpecItem001
-     *@tc.name      : testSignSpecItem001
-     *@tc.desc      : 表示签名验签参数的枚举，这些签名验签参数支持通过setSignSpec、setVerifySpec接口设置/通过getSignSpec、getVerifySpec接口获取。当前只支持RSA算法，
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 7
-     */
-    it('testSignSpecItem001', 0, async (done:Function) => {
-
       expect(cryptoFramework.SignSpecItem.PSS_MD_NAME_STR === 100).assertTrue();
       expect(cryptoFramework.SignSpecItem.PSS_MGF_NAME_STR === 101).assertTrue();
       expect(cryptoFramework.SignSpecItem.PSS_MGF1_MD_STR === 102).assertTrue();
@@ -284,7 +157,7 @@ export default function cryptoFrame() {
           console.info("key blob111: " + encodedKey.data);    // Display key content.
           key.clearMem();
           encodedKey = key.getEncoded();
-          console.info("key blob111:" + encodedKey.data);    // Display all 0s.
+          console.info("key blob111:" + encodedKey.data);    // Display all 0s. 00 0 0 0 0 0 0 000
           done();
         }
       })
@@ -1022,6 +895,8 @@ export default function cryptoFrame() {
     it('testSetCipherSpec001', 0, async (done:Function) => {
 
       try {
+        let cipherAlgName = 'RSA512|PRIMES_2';
+        let cipher = cryptoFramework.createCipher(cipherAlgName);
         let pSource = new Uint8Array([1,2,3,4]);
         cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
         let mdName = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
@@ -1046,6 +921,8 @@ export default function cryptoFrame() {
     it('testGetCipherSpec001', 0, async (done:Function) => {
 
       try {
+        let cipherAlgName = 'RSA512|PRIMES_2';
+        let cipher = cryptoFramework.createCipher(cipherAlgName);
         let pSource = new Uint8Array([1,2,3,4]);
         cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
         let mdName = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
@@ -2401,7 +2278,7 @@ export default function cryptoFrame() {
      *@tc.number    : testSetSeed001
      *@tc.name      : testSetSeed001
      *@tc.desc      : 设置指定的种子。
-     * *@tc.size    : MediumTest
+     *@tc.size      : MediumTest
      *@tc.type      : Function
      *@tc.level     : Level 2
      *@tc.index     : 78
