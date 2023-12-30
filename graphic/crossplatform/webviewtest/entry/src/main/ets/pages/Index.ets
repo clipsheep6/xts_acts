@@ -33,19 +33,19 @@ struct WebComponent {
 
       Button('设置页签')
         .onClick(async e => {
-          const buttons = this.tabs.map((item: MyTabContent) => {
+          const buttons: promptAction.Button[] = this.tabs.map((item: MyTabContent) => {
             const button: promptAction.Button = {
               text: `Goto ${item.tabBarName}`,
               color: '#333333'
             }
             return button
           })
-          const type = await promptAction.showDialog({
+          const type: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
             title: '请选择跳转的页签',
             buttons: buttons
           })
           const index: number = type.index
-          const url = 'pages/' + this.tabs[index].tabBarName
+          const url: string = 'pages/' + this.tabs[index].tabBarName
           router.pushUrl({ url: url })
         })
         .size({ height: 20 })

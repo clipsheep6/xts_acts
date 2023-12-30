@@ -30,6 +30,6 @@ export default function testsuite() {
   OnShowFileSelectorTest()
   OnPermissionReqTest()
   OnPageVisibleTest()
-  OnDownloadStart()
   WebMessagePortTest()
+  OnDownloadStart()
 }

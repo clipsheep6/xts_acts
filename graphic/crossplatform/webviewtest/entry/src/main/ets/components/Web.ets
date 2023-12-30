@@ -38,7 +38,7 @@ export struct WebContent {
     try {
       const result: string = await controller.runJavaScript(`${funcName}()`)
       console.log(`runJavaScript ${funcName}: ${result}`)
-      const hasName = this.htmlName.includes('video') || this.htmlName.includes('page_visible')
+      const hasName: boolean = this.htmlName.includes('video') || this.htmlName.includes('page_visible')
       if (hasName && funcName === 'getType') this.USER_AGENT = result
     } catch (resError) {
       let e: business_error.BusinessError = resError as business_error.BusinessError;
@@ -154,8 +154,8 @@ export struct WebContent {
             .onClick(async e => {
               try {
                 const pathDir: string|undefined = AppStorage.get('pathDir')
-                const path = pathDir + '/test.txt'
-                const file = await fs.open(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE)
+                const path: string = pathDir + '/test.txt'
+                const file: fs.File = await fs.open(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE)
                 this.fileUri = path
                 console.log('DOCUMENT_SAVE', path)
                 this.ON_EVENT_MESSAGE = 'SAVE test.txt'
@@ -168,13 +168,13 @@ export struct WebContent {
         if (this.htmlName.includes('http')) {
           Button('GET_HAC')
             .onClick(e => {
-              const up = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm)
+              const up: string[] = web_webview.WebDataBase.getHttpAuthCredentials(this.host, this.realm)
               this.ON_EVENT_MESSAGE = up.join(',')
             })
             .size({ height: 20 })
           Button('EXIST_HAC')
             .onClick(e => {
-              const result = web_webview.WebDataBase.existHttpAuthCredentials()
+              const result: boolean = web_webview.WebDataBase.existHttpAuthCredentials()
               this.ON_EVENT_MESSAGE = `existHttpAuthCredentials: ${result}`
             })
             .size({ height: 20 })
@@ -227,7 +227,7 @@ export struct WebContent {
           Button('SendToHTML')
             .onClick(async e => {
               if (this.ports && this.ports.length == 2) {
-                const value = await promptAction.showActionMenu({
+                const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
                   title: '请选择发送的消息',
                   buttons: [
                     {
@@ -454,9 +454,9 @@ export struct WebContent {
           .onConsole((event) => {
             if (event) {
               if (!this.htmlName.includes('permission') && !this.htmlName.includes('http')) {
-                const level = event.message.getMessageLevel()
-                const msg = event.message.getMessage()
-                const levelStr = level === 2 ? 'log' : 'error'
+                const level: MessageLevel = event.message.getMessageLevel()
+                const msg: string = event.message.getMessage()
+                const levelStr: string = level === 2 ? 'log' : 'error'
                 this.ON_EVENT_VALUE = `console ${levelStr}:${msg}`
               }
               if (this.htmlName.includes('file')) {

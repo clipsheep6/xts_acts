@@ -54,7 +54,7 @@ struct Controller {
   getHeight() {
     Button('GET_HEIGHT')
       .onClick(e => {
-        const height = this.web_controller.getPageHeight()
+        const height: number = this.web_controller.getPageHeight()
         this.MY_COUNT = `pageHeight: ${height}`
         this.MY_VALUE = `pageHeight: ${height}`
       })
@@ -125,7 +125,7 @@ struct Controller {
               .onClick(async e => {
                 let x: number = 0
                 let y: number = 0
-                const type = await promptAction.showActionMenu({
+                const type: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
                   title: '请选择滚动方式',
                   buttons: [
                     {
@@ -139,7 +139,7 @@ struct Controller {
                   ]
                 })
                 const typeValue: number = type.index
-                const value = await promptAction.showActionMenu({
+                const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
                   title: '请选择滚动精度',
                   buttons: [
                     {
@@ -171,7 +171,7 @@ struct Controller {
               .onClick(async e => {
                 const x: number = this.getRandomNum(0, 1000)
                 const y: number = this.getRandomNum(0, 1000)
-                const value = await promptAction.showActionMenu({
+                const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
                   title: '请选择滚动方式',
                   buttons: [
                     {
@@ -196,7 +196,7 @@ struct Controller {
               .size({ height: 20 })
             Button('setUserAgent')
               .onClick(async e => {
-                const value = await promptAction.showActionMenu({
+                const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
                   title: '请选择自定义用户代理信息',
                   buttons: [
                     {
@@ -226,7 +226,7 @@ struct Controller {
               .size({ height: 20 })
             Button('scrollable')
               .onClick(async e => {
-                const value = await promptAction.showActionMenu({
+                const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
                   title: '请选择显示或隐藏',
                   buttons: [
                     {
@@ -272,7 +272,7 @@ struct Controller {
             Button('Zoom Precise')
               .id('ZoomPrecise')
               .onClick(async e => {
-                const type = await promptAction.showActionMenu({
+                const type: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
                   title: '请选择缩放比例',
                   buttons: [
                     {
@@ -286,7 +286,7 @@ struct Controller {
                   ]
                 })
                 const index: number = type.index
-                const factor = index ? 1.5 : 0.8
+                const factor: number = index ? 1.5 : 0.8
                 this.web_controller.zoom(factor)
                 setTimeout(() => {
                   this.web_controller.scrollTo(0, 0)
@@ -299,7 +299,7 @@ struct Controller {
             Button('ZoomRandom')
               .id('ZoomRandom')
               .onClick(e => {
-                const zoomTime = this.getRandomNum(0.25, 2, true)
+                const zoomTime: number = this.getRandomNum(0.25, 2, true)
                 this.web_controller.zoom(zoomTime)
                 setTimeout(() => {
                   this.web_controller.scrollTo(0, 0)
@@ -357,7 +357,7 @@ struct Controller {
               }
             })
             .onScaleChange((event) => {
-              const scale = (event.newScale - event.oldScale) > 0 ? 'magnify' : 'shrink'
+              const scale: string = (event.newScale - event.oldScale) > 0 ? 'magnify' : 'shrink'
               this.MY_VALUE = `${scale}当前网页的比例`
               this.MY_TIPS = 'onScaleChange changed from ' + Number(event.oldScale).toFixed(0) + ' to ' + Number(event.newScale).toFixed(0)
             })
@@ -380,19 +380,19 @@ struct Controller {
       Column() {
         Button('设置页签')
           .onClick(async e => {
-            const buttons = this.my_tabs.map((item: MyTabContent) => {
+            const buttons: promptAction.Button[] = this.my_tabs.map((item: MyTabContent) => {
               const button: promptAction.Button = {
                 text: `Goto ${item.tabBarName}`,
                 color: '#333333'
               }
               return button
             })
-            const type = await promptAction.showDialog({
+            const type: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
               title: '请选择跳转的页签',
               buttons: buttons
             })
             const index: number = type.index
-            const url = 'pages/' + this.my_tabs[index].tabBarName
+            const url: string = 'pages/' + this.my_tabs[index].tabBarName
             router.pushUrl({ url: url })
           })
           .size({ height: 20 })

@@ -1,104 +1,118 @@
-import { describe, it, expect, beforeAll, beforeEach, afterEach, afterAll } from '@ohos/hypium'
-import { Driver, ON, MatchPattern } from '@ohos.UiTest'
-import { startAbility, waitUiReadyMs } from '../utils/index'
+import {
+  describe,
+  it,
+  expect,
+  beforeAll,
+  beforeEach,
+  afterEach,
+  afterAll,
+} from '@ohos/hypium';
+import { Driver, ON, Component } from '@ohos.UiTest';
+import { startAbility, stopAbility, waitUiReadyMs } from '../utils/index';
 
 export default function OnControllerAttachedTest() {
   describe('OnControllerAttachedTest', () => {
-
     /**
      * beforeAll: PreOnControllerAttachedTest at the test suite level, which are executed before the test suite is executed.
      */
     beforeAll(async () => {
-      console.log('##########PageControlTest Test start##########');
-      console.info("====>beforeAll: PreOnControllerAttachedTest are executed.");
-      await startAbility('com.example.webviewtest2', 'EntryAbility')
-      const driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
+      await startAbility('com.example.webviewtest2', 'EntryAbility');
+      const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
     });
 
     /**
      * beforeEach: PreOnControllerAttachedTest at the test case level, which are executed before each test case is executed.
      */
     beforeEach(async () => {
-      const driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
-      console.info("====>beforeEach: Test case-level clearance conditions is executed.");
+      const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
     });
 
     /**
      * afterEach: Test case-level clearance conditions, which are executed after each test case is executed.
      */
     afterEach(() => {
-      console.info("====>afterEach: Test case-level clearance conditions is executed.");
     });
 
     /**
      * afterAll: Test suite-level cleanup condition, which is executed after the test suite is executed.
      */
-    afterAll(() => {
-      console.log('##########PageControlTest Test end##########');
+    afterAll(async () => {
+      await stopAbility();
+      const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+    });
+    
+    /**
+     * @tc.number: SUB_Web_WebView_On_Controller_Attached_Func_0100
+     * @tc.name  : SUB_Web_WebView_On_Controller_Attached_Func_0100
+     * @tc.desc  : test whether the onControllerAttached attribute is valid
+     * @tc.size  : MediumTest
+     * @tc.type  : Func
+     * @tc.level : 2
+     */
+    it('SUB_Web_WebView_On_Controller_Attached_Func_0100', 0, async () => {
+      console.log('SUB_Web_WebView_On_Controller_Attached_Func_0100 test start');
+      const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const CHANGE_TABS: Component = await driver.findComponent(ON.text('设置页签'));
+      await CHANGE_TABS.click();
+      await driver.delayMs(waitUiReadyMs);
+      const TAB: Component = await driver.findComponent(ON.text('Goto HTMLControl'));
+      await TAB.click();
+      await driver.delayMs(waitUiReadyMs);
+      const TO_STRING_RESULT: Component = await driver.findComponent(ON.id('MY_TO_STRING'));
+      const result: string = await TO_STRING_RESULT.getText();
+      expect(result).assertEqual('index_controller.html');
+      console.log('SUB_Web_WebView_On_Controller_Attached_Func_0100 success');
+      console.log('SUB_Web_WebView_On_Controller_Attached_Func_0100 test end');
     });
 
-    /*
-     * @tc.number: ON_CONTROLLER_ATTACHED_TEST_001
-     * @tc.name: onControllerAttached
-     * @tc.desc: 测试onControllerAttached
+    /**
+     * @tc.number: SUB_Web_WebView_On_Controller_Attached_Func_0200
+     * @tc.name  : SUB_Web_WebView_On_Controller_Attached_Func_0200
+     * @tc.desc  : test whether the onControllerAttached attribute is valid
+     * @tc.size  : MediumTest
+     * @tc.type  : Func
+     * @tc.level : 2
      */
-    it('ON_CONTROLLER_ATTACHED_TEST_001', 0, async () => {
-      console.log('==========ON_CONTROLLER_ATTACHED_TEST_001 test start==========')
-      let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
-      const CHANGE_TABS = await driver.findComponent(ON.text('设置页签'))
-      await CHANGE_TABS.click()
-      await driver.delayMs(waitUiReadyMs)
-      const TAB = await driver.findComponent(ON.text('Goto HTMLControl'))
-      await TAB.click()
-      await driver.delayMs(waitUiReadyMs)
-      const TO_STRING_RESULT = await driver.findComponent(ON.id('MY_TO_STRING'))
-      const result: string = await TO_STRING_RESULT.getText()
-      expect(result).assertEqual('index_controller.html')
-      console.log('ON_CONTROLLER_ATTACHED_TEST_001 success')
-      console.log('==========ON_CONTROLLER_ATTACHED_TEST_001 test end==========')
-    })
+    it('SUB_Web_WebView_On_Controller_Attached_Func_0200', 0, async () => {
+      console.log('SUB_Web_WebView_On_Controller_Attached_Func_0200 test start');
+      const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const MY_COUNT_RESULT: Component = await driver.findComponent(ON.id('MY_COUNT'));
+      const result: string = await MY_COUNT_RESULT.getText();
+      const id: string = result.trim().split(':')[1];
+      expect(id).not().assertNull();
+      console.log('SUB_Web_WebView_On_Controller_Attached_Func_0200 success');
+      console.log('SUB_Web_WebView_On_Controller_Attached_Func_0200 test end');
+    });
 
-    /*
-    * @tc.number: ON_CONTROLLER_ATTACHED_TEST_002
-    * @tc.name: onControllerAttached
-    * @tc.desc: 测试onControllerAttached
-    */
-    it('ON_CONTROLLER_ATTACHED_TEST_002', 0, async () => {
-      console.log('==========ON_CONTROLLER_ATTACHED_TEST_002 test start==========')
-      let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
-      const MY_COUNT_RESULT = await driver.findComponent(ON.id('MY_COUNT'))
-      const result: string = await MY_COUNT_RESULT.getText()
-      const id = result.trim().split(':')[1]
-      expect(id).not().assertNull()
-      console.log('ON_CONTROLLER_ATTACHED_TEST_002 success')
-      console.log('==========ON_CONTROLLER_ATTACHED_TEST_002 test end==========')
-    })
-
-    /*
-     * @tc.number: GET_PAGE_HEIGHT_TEST_001
-     * @tc.name: getPageHeight
-     * @tc.desc: 测试getPageHeight
+    /**
+     * @tc.number: SUB_Web_WebView_Get_Page_Height_Func_0100
+     * @tc.name  : SUB_Web_WebView_Get_Page_Height_Func_0100
+     * @tc.desc  : test whether the getPageHeight function is valid
+     * @tc.size  : MediumTest
+     * @tc.type  : Func
+     * @tc.level : 2
      */
-    it('GET_PAGE_HEIGHT_TEST_001', 0, async () => {
-      console.log('==========GET_PAGE_HEIGHT_TEST_001 test start==========')
-      let driver = Driver.create()
-      await driver.delayMs(waitUiReadyMs)
-      const ZOOM_BUTTON = await driver.findComponent(ON.text('zoom'))
-      await ZOOM_BUTTON.click()
-      await driver.delayMs(waitUiReadyMs)
-      const GET_BUTTON = await driver.findComponent(ON.text('GET_HEIGHT'))
-      await GET_BUTTON.click()
-      await driver.delayMs(waitUiReadyMs)
-      const MY_COUNT = await driver.findComponent(ON.id('MY_VALUE'))
-      const heightStr = await MY_COUNT.getText()
-      const height = Number(heightStr.trim().split(':')[1])
-      expect(height).assertEqual(300)
-      console.log('GET_PAGE_HEIGHT_TEST_001 success')
-      console.log('==========GET_PAGE_HEIGHT_TEST_001 test end==========')
-    })
-  })
+    it('SUB_Web_WebView_Get_Page_Height_Func_0100', 0, async () => {
+      console.log('SUB_Web_WebView_Get_Page_Height_Func_0100 test start');
+      const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const ZOOM_BUTTON: Component = await driver.findComponent(ON.text('zoom'));
+      await ZOOM_BUTTON.click();
+      await driver.delayMs(waitUiReadyMs);
+      const GET_BUTTON: Component = await driver.findComponent(ON.text('GET_HEIGHT'));
+      await GET_BUTTON.click();
+      await driver.delayMs(waitUiReadyMs);
+      const MY_COUNT: Component = await driver.findComponent(ON.id('MY_VALUE'));
+      const heightStr: string = await MY_COUNT.getText();
+      const height: number = Number(heightStr.trim().split(':')[1]);
+      expect(height).assertEqual(300);
+      console.log('SUB_Web_WebView_Get_Page_Height_Func_0100 success');
+      console.log('SUB_Web_WebView_Get_Page_Height_Func_0100 test end');
+    });
+  });
 }

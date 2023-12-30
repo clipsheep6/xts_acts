@@ -38,7 +38,7 @@ export struct WebContent {
     try {
       const result: string = await controller.runJavaScript(`${funcName}()`)
       console.log(`runJavaScript ${funcName}: ${result}`)
-      const hasName = this.htmlName.includes('video') || this.htmlName.includes('page_visible')
+      const hasName: boolean = this.htmlName.includes('video') || this.htmlName.includes('page_visible')
       if (hasName && funcName === 'getType') this.USER_AGENT = result
     } catch (resError) {
       let e: business_error.BusinessError = resError as business_error.BusinessError;
@@ -127,7 +127,7 @@ export struct WebContent {
           Button('ACCESS_STEP')
             .id('ACCESS_STEP')
             .onClick(async e => {
-              const value = await promptAction.showActionMenu({
+              const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
                 title: '请选择',
                 buttons: [
                   {
@@ -146,15 +146,15 @@ export struct WebContent {
               })
               const index: number = value.index
               const result: number = index === 0 ? -1 : (index === 1 ? 0 : 1)
-              const isAccess = await this.controller.accessStep(result)
+              const isAccess: boolean = await this.controller.accessStep(result)
               this.ON_EVENT_VALUE = `accessStep: ${result}, result: ${isAccess}`
             })
             .size({ height: 20 })
           Button('BOF')
             .onClick(async e => {
-              const result = await this.controller.runJavaScript('jumpToAlert()')
+              const result: string = await this.controller.runJavaScript('jumpToAlert()')
               this.ON_EVENT_VALUE = result
-              const value = await promptAction.showActionMenu({
+              const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
                 title: '请选择',
                 buttons: [
                   {
@@ -167,7 +167,7 @@ export struct WebContent {
                   }
                 ]
               })
-              const index = value.index
+              const index: number = value.index
               const step: number = index ? 1 : -1
               this.controller.backOrForward(step)
             })
@@ -177,14 +177,14 @@ export struct WebContent {
             .height(5)
           Button('History_LIST')
             .onClick(e => {
-              const list = this.controller.getBackForwardEntries()
+              const list: web_webview.BackForwardList = this.controller.getBackForwardEntries()
               this.ON_EVENT_URL = list.getItemAtIndex(list.currentIndex).historyUrl
               this.ON_EVENT_VALUE = `${list.size}`
             })
             .size({ height: 20 })
           Button('access')
             .onClick(async e => {
-              const value = await promptAction.showActionMenu({
+              const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
                 title: 'access',
                 buttons: [
                   {
@@ -197,12 +197,12 @@ export struct WebContent {
                   },
                 ]
               })
-              const index = value.index
+              const index: number = value.index
               if (index) {
-                const result = this.controller.accessBackward()
+                const result: boolean = this.controller.accessBackward()
                 this.ON_EVENT_VALUE = `accessBackward: ${result}`
               } else {
-                const result = this.controller.accessForward()
+                const result: boolean = this.controller.accessForward()
                 this.ON_EVENT_VALUE = `accessForward: ${result}`
               }
             })
@@ -249,7 +249,7 @@ export struct WebContent {
         if (this.htmlName.includes('operation')) {
           Button('CONFIG')
             .onClick(async e => {
-              const value = await promptAction.showActionMenu({
+              const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
                 title: 'configCookie',
                 buttons: [
                   {
@@ -284,7 +284,7 @@ export struct WebContent {
             .size({ height: 20 })
           Button('FETCH')
             .onClick(async e => {
-              const value = await promptAction.showActionMenu({
+              const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
                 title: 'fetchCookie',
                 buttons: [
                   {
@@ -323,7 +323,7 @@ export struct WebContent {
           Button('CLEAR_ALL')
             .onClick(async e => {
               this.ON_EVENT_VALUE = 'clear all'
-              const value = await promptAction.showActionMenu({
+              const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
                 title: 'clearAllCookies',
                 buttons: [
                   {
@@ -362,9 +362,9 @@ export struct WebContent {
           })
           .onConsole((event) => {
             if (event) {
-              const level = event.message.getMessageLevel()
-              const msg = event.message.getMessage()
-              const levelStr = level === 2 ? 'log' : 'error'
+              const level: MessageLevel = event.message.getMessageLevel()
+              const msg: string = event.message.getMessage()
+              const levelStr: string = level === 2 ? 'log' : 'error'
               this.ON_EVENT_VALUE = `console ${levelStr}:${msg}`
             }
             return false

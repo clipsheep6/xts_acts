@@ -1,4 +1,3 @@
-
 @Entry
 @Component
 struct RichTextExample {
@@ -12,10 +11,8 @@ struct RichTextExample {
     '<p style="font-size: 35px;text-align: center;font-weight: bold; color: rgb(24,78,228)">字体大小35px,行高45px</p>' +
     '<p style="background-color: rgb(229, 229, 229);line-height: 45px;font-size: 35px;text-indent: 2em;">' +
     '<p>这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字这是一段文字</p>';
-
-  @State dataOnStart:string = '<h1 style="text-align: center;">OnStart</h1>'
-
-  @State dataOnComplete:string = '<h1 style="text-align: center;">OnComplete</h1>'
+  @State dataOnStart: string = '<h1 style="text-align: center;">OnStart</h1>'
+  @State dataOnComplete: string = '<h1 style="text-align: center;">OnComplete</h1>'
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center,
