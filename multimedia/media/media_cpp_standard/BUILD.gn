@@ -19,7 +19,9 @@ MEDIA_ROOT_DIR = "//foundation/multimedia/av_codec/"
 ohos_moduletest_suite("ActsAvcodecNdkTest") {
   module_out_path = module_output_path
   sources = [
+    "audioDecEncNdk/src/ADecEncAvBufferSample.cpp",
     "audioDecEncNdk/src/ADecEncNdkSample.cpp",
+    "audioDecEncNdk/src/ActsAudioDecEncAvBufferTest.cpp",
     "audioDecEncNdk/src/ActsAudioDecEncNdkTest.cpp",
     "codecFormatNdk/ActsCodecFormatNdkTest.cpp",
     "videoDecEncNdk/src/ActsVideoDecEncNdkTest.cpp",
@@ -29,6 +31,7 @@ ohos_moduletest_suite("ActsAvcodecNdkTest") {
     "include",
     "audioDecEncNdk/include",
     "videoDecEncNdk/include",
+    "../../../../../../foundation/multimedia/media_foundation/interface/kits/c",
     "../../../../../../foundation/multimedia/audio_framework/interfaces/inner_api/native/audiocommon/include",
     "../../../../../../foundation/graphic/graphic_2d/interfaces/inner_api/surface",
     "../../../../../../foundation/graphic/graphic_2d/interfaces/inner_api/common",
@@ -61,6 +64,7 @@ ohos_moduletest_suite("ActsAvcodecNdkTest") {
   deps = [
     "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_adec",
     "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_aenc",
+    "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_audiocodec",
     "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_codecbase",
     "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_vdec",
     "$MEDIA_ROOT_DIR/interfaces/kits/c:native_media_venc",
