@@ -50,8 +50,7 @@ namespace {
         acodecSignal_->inCondDec_.notify_all();
     }
 
-    void AdecAsyncNewOutputData(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *data,
-                                OH_AVCodecBufferAttr *attr, void *userData)
+    void AdecAsyncNewOutputData(OH_AVCodec *codec, uint32_t index, OH_AVBuffer *data, void *userData)
     {
         ADecEncAvBufferSignal* acodecSignal_ = static_cast<ADecEncAvBufferSignal *>(userData);
         unique_lock<mutex> lock(acodecSignal_->inMutexEnc_);
@@ -60,8 +59,6 @@ namespace {
             return;
         }
         acodecSignal_->outQueueDec_.push(index);
-        acodecSignal_->sizeQueueDec_.push(attr->size);
-        acodecSignal_->flagQueueDec_.push(attr->flags);
         acodecSignal_->outBufferQueueDec_.push(data);
         acodecSignal_->inCondEnc_.notify_all();
     }
@@ -138,8 +135,8 @@ struct OH_AVCodec* ADecEncAvBufferSample::CreateAudioDecoderByMime(std::string m
 
     cbDec_.onError = AdecAsyncError;
     cbDec_.onStreamChanged = AdecAsyncStreamChanged;
-    cbDec_.onNeedInputData = AdecAsyncNeedInputData;
-    cbDec_.onNeedOutputData = AdecAsyncNewOutputData;
+    cbDec_.onNeedInputBuffer = AdecAsyncNeedInputData;
+    cbDec_.onNewOutputBuffer = AdecAsyncNewOutputData;
     int32_t ret = OH_AudioCodec_RegisterCallback(adec_, cbDec_, static_cast<void *>(acodecSignal_));
     NDK_CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, NULL, "Fatal: OH_AudioCodec_RegisterCallback");
     return adec_;
@@ -155,8 +152,8 @@ struct OH_AVCodec* ADecEncAvBufferSample::CreateAudioDecoderByName(std::string n
 
     cbDec_.onError = AdecAsyncError;
     cbDec_.onStreamChanged = AdecAsyncStreamChanged;
-    cbDec_.onNeedInputData = AdecAsyncNeedInputData;
-    cbDec_.onNeedOutputData = AdecAsyncNewOutputData;
+    cbDec_.onNeedInputBuffer = AdecAsyncNeedInputData;
+    cbDec_.onNewOutputBuffer = AdecAsyncNewOutputData;
     int32_t ret = OH_AudioCodec_RegisterCallback(adec_, cbDec_, static_cast<void *>(acodecSignal_));
     NDK_CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, NULL, "Fatal: OH_AudioCodec_RegisterCallback");
     return adec_;
@@ -421,8 +418,8 @@ struct OH_AVCodec* ADecEncAvBufferSample::CreateAudioEncoderByMime(std::string m
     NDK_CHECK_AND_RETURN_RET_LOG(aenc_ != nullptr, nullptr, "Fatal: OH_AudioCodec_CreateByMime");
     cbEnc_.onError = AencAsyncError;
     cbEnc_.onStreamChanged = AencAsyncStreamChanged;
-    cbEnc_.onNeedInputData = AencAsyncNeedInputData;
-    cbEnc_.onNeedOutputData = AencAsyncNewOutputData;
+    cbEnc_.onNeedInputBuffer = AencAsyncNeedInputData;
+    cbEnc_.onNewOutputBuffer = AencAsyncNewOutputData;
     int32_t ret = OH_AudioCodec_RegisterCallback(aenc_, cbEnc_, static_cast<void *>(acodecSignal_));
     NDK_CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, NULL, "Fatal: OH_AudioCodec_RegisterCallback");
     return aenc_;
@@ -434,8 +431,8 @@ struct OH_AVCodec* ADecEncAvBufferSample::CreateAudioEncoderByName(std::string n
     NDK_CHECK_AND_RETURN_RET_LOG(aenc_ != nullptr, nullptr, "Fatal: OH_AudioCodec_CreateByName");
     cbEnc_.onError = AencAsyncError;
     cbEnc_.onStreamChanged = AencAsyncStreamChanged;
-    cbEnc_.onNeedInputData = AencAsyncNeedInputData;
-    cbEnc_.onNeedOutputData = AencAsyncNewOutputData;
+    cbEnc_.onNeedInputBuffer = AencAsyncNeedInputData;
+    cbEnc_.onNewOutputBuffer = AencAsyncNewOutputData;
     int32_t ret = OH_AudioCodec_RegisterCallback(aenc_, cbEnc_, static_cast<void *>(acodecSignal_));
     NDK_CHECK_AND_RETURN_RET_LOG(ret == AV_ERR_OK, NULL, "Fatal: OH_AudioCodec_RegisterCallback");
     return aenc_;
@@ -638,7 +635,7 @@ int32_t ADecEncAvBufferSample::PushInbufferEnc()
             decOutCnt_ += 1;
         }
     }
-    return OH_AudioCodec_PushInputBuffer(aenc_, indexEnc, attr);
+    return OH_AudioCodec_PushInputBuffer(aenc_, indexEnc);
 }
 
 void ADecEncAvBufferSample::InputFuncEnc()
