@@ -74,7 +74,7 @@ parse_cmdline()
                           ;;
         upload_api_info)  UPLOAD_API_INFO=$(echo $PARAM |tr [a-z] [A-Z])
                          ;;
-	cache_type)       CACHE_TYPE="$PARAM"
+	    cache_type)       CACHE_TYPE="$PARAM"
                           ;;
         *)   usage
              break;;
@@ -107,7 +107,7 @@ do_make()
                         MUSL_ARGS="--gn-args use_musl=false --gn-args use_custom_libcxx=true --gn-args use_custom_clang=true"			
 		    fi
         fi
-	CACHE_ARG=""
+	    CACHE_ARG=""
         if [ "$CACHE_TYPE" = "xcache" ]; then
             CACHE_ARG="--ccache false --xcache true"
         fi
