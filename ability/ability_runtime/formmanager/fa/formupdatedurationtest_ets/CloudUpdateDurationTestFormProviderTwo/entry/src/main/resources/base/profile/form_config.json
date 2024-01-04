@@ -1,0 +1,61 @@
+{
+  "forms": [
+    {
+      "name": "widgetFormUpdateDuration2",
+      "description": "This is a service widget, update duration is 2.",
+      "src": "./ets/widgetformupdateduration2/pages/WidgetFormUpdateDuration2Card.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 2,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "widgetFormUpdateDuration4",
+      "description": "This is a service widget, update duration is 4.",
+      "src": "./ets/widgetformupdateduration4/pages/WidgetFormUpdateDuration4Card.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 4,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    },
+    {
+      "name": "widgetFormUpdateDuration6",
+      "description": "This is a service widget, update duration is 6.",
+      "src": "./ets/widgetformupdateduration6/pages/WidgetFormUpdateDuration6Card.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 6,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2"
+      ]
+    }
+  ]
+}
