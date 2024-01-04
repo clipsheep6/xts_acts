@@ -28,6 +28,7 @@ group("ans_standard") {
       "actsNotificationSystemAPITest:ActsNotificationSystemAPITest",
       "actsNotificationWantAgentTest:ActsNotificationWantAgentTest",
       "notificationManager:notificationManager",
+	  "actsNotificationSystemLiveViewTest:ActsNotificationSystemLiveViewTest"
     ]
   }
 }
