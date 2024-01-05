@@ -1,0 +1,40 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\zhang.xiaowang\\.ohos\\config\\openharmony\\auto_ohos_default_ActsFormCloudUpdateDurationManualTest_com.example.actsformcloudupdatedurationmanualtest.cer",
+          "storePassword": "0000001BB9F7D5D2BA7EA4034140C2D5F1E54255C302113B417FE0832E7A2F8B8C460FFF6AAC117EE4A616",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BEBCCC86434723B6D44DA67B90C3C255824A1E100E43A3B42D56B18FA7D3AB8FF1A11F22500A8F5",
+          "profile": "C:\\Users\\zhang.xiaowang\\.ohos\\config\\openharmony\\auto_ohos_default_ActsFormCloudUpdateDurationManualTest_com.example.actsformcloudupdatedurationmanualtest.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\zhang.xiaowang\\.ohos\\config\\openharmony\\auto_ohos_default_ActsFormCloudUpdateDurationManualTest_com.example.actsformcloudupdatedurationmanualtest.p12"
+        }
+      }
+    ],
+    "compileSdkVersion": 11,
+    "compatibleSdkVersion": 11,
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
