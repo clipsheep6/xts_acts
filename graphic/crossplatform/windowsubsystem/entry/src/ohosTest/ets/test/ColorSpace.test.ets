@@ -13,41 +13,11 @@
  * limitations under the License.
  */
 import ColorSpaceManager from '@ohos.graphics.colorSpaceManager';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, it, expect } from '@ohos/hypium';
 
 
 export default function ColorSpaceTest() {
   describe('ColorSpaceTest', () => {
-    console.log('====>################################ColorSpaceTest Test start*************');
-
-    /**
-     * beforeAll: PreColorSpaceTest at the test suite level, which are executed before the test suite is executed.
-     */
-    beforeAll(() => {
-      console.info("====>beforeAll: PreColorSpace are executed.");
-    });
-
-    /**
-     * beforeEach: PreColorSpaceTest at the test case level, which are executed before each test case is executed.
-     */
-    beforeEach(() => {
-      console.info("====>beforeEach: PreColorSpace is executed.");
-    });
-
-    /**
-     * afterEach: Test case-level clearance conditions, which are executed after each test case is executed.
-     */
-    afterEach(() => {
-      console.info("====>afterEach: Test case-level clearance conditions is executed.");
-    });
-
-    /**
-     * afterAll: Test suite-level cleanup condition, which is executed after the test suite is executed.
-     */
-    afterAll(() => {
-      console.info("====>afterAll: Test suite-level cleanup condition is executed");
-    });
-
     /**
      * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0100
      * @tc.name  : testColorSpace001
@@ -58,14 +28,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0100', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.UNKNOWN = ColorSpaceManager.ColorSpace.UNKNOWN
+        let value: ColorSpaceManager.ColorSpace.UNKNOWN = ColorSpaceManager.ColorSpace.UNKNOWN;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0100 :${value}`);
-        expect(value).assertEqual(0)
-        done()
+        expect(value).assertEqual(0);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0100 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -79,14 +49,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0200', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.ADOBE_RGB_1998 = ColorSpaceManager.ColorSpace.ADOBE_RGB_1998
+        let value: ColorSpaceManager.ColorSpace.ADOBE_RGB_1998 = ColorSpaceManager.ColorSpace.ADOBE_RGB_1998;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0200 :${value}`);
-        expect(value).assertEqual(1)
-        done()
+        expect(value).assertEqual(1);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0200 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -100,18 +70,16 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0300', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.DCI_P3 = ColorSpaceManager.ColorSpace.DCI_P3
+        let value: ColorSpaceManager.ColorSpace.DCI_P3 = ColorSpaceManager.ColorSpace.DCI_P3;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0300 :${value}`);
-        expect(value).assertEqual(2)
-        done()
+        expect(value).assertEqual(2);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0300 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
-
+        done();
       }
     })
-
 
     /**
      * @tc.number: SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0400
@@ -123,14 +91,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0400', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.DISPLAY_P3 = ColorSpaceManager.ColorSpace.DISPLAY_P3
+        let value: ColorSpaceManager.ColorSpace.DISPLAY_P3 = ColorSpaceManager.ColorSpace.DISPLAY_P3;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0400 :${value}`);
-        expect(value).assertEqual(3)
-        done()
+        expect(value).assertEqual(3);
+        done();
       } catch (e) {
         console.log('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0400 catch error msg:${e.message} error code:${e.code}');
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -144,14 +112,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0500', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.SRGB = ColorSpaceManager.ColorSpace.SRGB
+        let value: ColorSpaceManager.ColorSpace.SRGB = ColorSpaceManager.ColorSpace.SRGB;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0500 :${value}`);
-        expect(value).assertEqual(4)
-        done()
+        expect(value).assertEqual(4);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0500 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -165,14 +133,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0600', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.CUSTOM = ColorSpaceManager.ColorSpace.CUSTOM
+        let value: ColorSpaceManager.ColorSpace.CUSTOM = ColorSpaceManager.ColorSpace.CUSTOM;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0600 :${value}`);
-        expect(value).assertEqual(5)
-        done()
+        expect(value).assertEqual(5);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0600 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -186,14 +154,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0700', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.BT709 = ColorSpaceManager.ColorSpace.BT709
+        let value: ColorSpaceManager.ColorSpace.BT709 = ColorSpaceManager.ColorSpace.BT709;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0700 :${value}`);
-        expect(value).assertEqual(6)
-        done()
+        expect(value).assertEqual(6);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0700 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -207,14 +175,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0800', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.BT601_EBU = ColorSpaceManager.ColorSpace.BT601_EBU
+        let value: ColorSpaceManager.ColorSpace.BT601_EBU = ColorSpaceManager.ColorSpace.BT601_EBU;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0800 :${value}`);
-        expect(value).assertEqual(7)
-        done()
+        expect(value).assertEqual(7);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0800 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -228,14 +196,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0900', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.BT601_SMPTE_C = ColorSpaceManager.ColorSpace.BT601_SMPTE_C
+        let value: ColorSpaceManager.ColorSpace.BT601_SMPTE_C = ColorSpaceManager.ColorSpace.BT601_SMPTE_C;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0900 :${value}`);
-        expect(value).assertEqual(8)
-        done()
+        expect(value).assertEqual(8);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_0900 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -249,14 +217,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1000', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.BT2020_HLG = ColorSpaceManager.ColorSpace.BT2020_HLG
+        let value: ColorSpaceManager.ColorSpace.BT2020_HLG = ColorSpaceManager.ColorSpace.BT2020_HLG;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1000 :${value}`);
-        expect(value).assertEqual(9)
-        done()
+        expect(value).assertEqual(9);
+        done();
       } catch (e) {
         console.log('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1000 catch error msg:${e.message} error code:${e.code}');
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -270,14 +238,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1100', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.BT2020_PQ = ColorSpaceManager.ColorSpace.BT2020_PQ
+        let value: ColorSpaceManager.ColorSpace.BT2020_PQ = ColorSpaceManager.ColorSpace.BT2020_PQ;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1100 :${value}`);
-        expect(value).assertEqual(10)
-        done()
+        expect(value).assertEqual(10);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1100 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -291,14 +259,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1200', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.P3_HLG = ColorSpaceManager.ColorSpace.P3_HLG
+        let value: ColorSpaceManager.ColorSpace.P3_HLG = ColorSpaceManager.ColorSpace.P3_HLG;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1200 :${value}`);
-        expect(value).assertEqual(11)
-        done()
+        expect(value).assertEqual(11);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1200 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -312,14 +280,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1300', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.P3_PQ = ColorSpaceManager.ColorSpace.P3_PQ
+        let value: ColorSpaceManager.ColorSpace.P3_PQ = ColorSpaceManager.ColorSpace.P3_PQ;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1300 :${value}`);
-        expect(value).assertEqual(12)
-        done()
+        expect(value).assertEqual(12);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1300 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -333,14 +301,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1400', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.ADOBE_RGB_1998_LIMIT = ColorSpaceManager.ColorSpace.ADOBE_RGB_1998_LIMIT
+        let value: ColorSpaceManager.ColorSpace.ADOBE_RGB_1998_LIMIT = ColorSpaceManager.ColorSpace.ADOBE_RGB_1998_LIMIT;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1400 :${value}`);
-        expect(value).assertEqual(13)
-        done()
+        expect(value).assertEqual(13);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1400 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -354,14 +322,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1500', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.DISPLAY_P3_LIMIT = ColorSpaceManager.ColorSpace.DISPLAY_P3_LIMIT
+        let value: ColorSpaceManager.ColorSpace.DISPLAY_P3_LIMIT = ColorSpaceManager.ColorSpace.DISPLAY_P3_LIMIT;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1500 :${value}`);
-        expect(value).assertEqual(14)
-        done()
+        expect(value).assertEqual(14);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1500 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -375,14 +343,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1600', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.SRGB_LIMIT = ColorSpaceManager.ColorSpace.SRGB_LIMIT
+        let value: ColorSpaceManager.ColorSpace.SRGB_LIMIT = ColorSpaceManager.ColorSpace.SRGB_LIMIT;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1600 :${value}`);
-        expect(value).assertEqual(15)
-        done()
+        expect(value).assertEqual(15);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1600 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -396,14 +364,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1700', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.BT709_LIMIT = ColorSpaceManager.ColorSpace.BT709_LIMIT
+        let value: ColorSpaceManager.ColorSpace.BT709_LIMIT = ColorSpaceManager.ColorSpace.BT709_LIMIT;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1700 :${value}`);
-        expect(value).assertEqual(16)
-        done()
+        expect(value).assertEqual(16);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1700 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -417,14 +385,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1800', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.BT601_EBU_LIMIT = ColorSpaceManager.ColorSpace.BT601_EBU_LIMIT
+        let value: ColorSpaceManager.ColorSpace.BT601_EBU_LIMIT = ColorSpaceManager.ColorSpace.BT601_EBU_LIMIT;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1800 :${value}`);
-        expect(value).assertEqual(17)
-        done()
+        expect(value).assertEqual(17);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1800 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -438,14 +406,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1900', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.BT601_SMPTE_C_LIMIT = ColorSpaceManager.ColorSpace.BT601_SMPTE_C_LIMIT
+        let value: ColorSpaceManager.ColorSpace.BT601_SMPTE_C_LIMIT = ColorSpaceManager.ColorSpace.BT601_SMPTE_C_LIMIT;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1900 :${value}`);
-        expect(value).assertEqual(18)
-        done()
+        expect(value).assertEqual(18);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_1900 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -459,14 +427,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2000', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.BT2020_HLG_LIMIT = ColorSpaceManager.ColorSpace.BT2020_HLG_LIMIT
+        let value: ColorSpaceManager.ColorSpace.BT2020_HLG_LIMIT = ColorSpaceManager.ColorSpace.BT2020_HLG_LIMIT;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2000 :${value}`);
-        expect(value).assertEqual(19)
-        done()
+        expect(value).assertEqual(19);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2000 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -480,14 +448,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2100', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.BT2020_PQ_LIMIT = ColorSpaceManager.ColorSpace.BT2020_PQ_LIMIT
+        let value: ColorSpaceManager.ColorSpace.BT2020_PQ_LIMIT = ColorSpaceManager.ColorSpace.BT2020_PQ_LIMIT;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2100 :${value}`);
-        expect(value).assertEqual(20)
-        done()
+        expect(value).assertEqual(20);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2100 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -501,14 +469,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2200', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.P3_HLG_LIMIT = ColorSpaceManager.ColorSpace.P3_HLG_LIMIT
+        let value: ColorSpaceManager.ColorSpace.P3_HLG_LIMIT = ColorSpaceManager.ColorSpace.P3_HLG_LIMIT;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2200 :${value}`);
-        expect(value).assertEqual(21)
-        done()
+        expect(value).assertEqual(21);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2200 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -522,14 +490,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2300', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.P3_PQ_LIMIT = ColorSpaceManager.ColorSpace.P3_PQ_LIMIT
+        let value: ColorSpaceManager.ColorSpace.P3_PQ_LIMIT = ColorSpaceManager.ColorSpace.P3_PQ_LIMIT;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2300 :${value}`);
-        expect(value).assertEqual(22)
-        done()
+        expect(value).assertEqual(22);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2300 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -543,14 +511,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2400', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.LINEAR_P3 = ColorSpaceManager.ColorSpace.LINEAR_P3
+        let value: ColorSpaceManager.ColorSpace.LINEAR_P3 = ColorSpaceManager.ColorSpace.LINEAR_P3;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2400 :${value}`);
-        expect(value).assertEqual(23)
-        done()
+        expect(value).assertEqual(23);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2400 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -564,14 +532,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2500', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.LINEAR_BT709 = ColorSpaceManager.ColorSpace.LINEAR_BT709
+        let value: ColorSpaceManager.ColorSpace.LINEAR_BT709 = ColorSpaceManager.ColorSpace.LINEAR_BT709;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2500:${value}`);
-        expect(value).assertEqual(24)
-        done()
+        expect(value).assertEqual(24);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2500 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -585,14 +553,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2600', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.LINEAR_BT2020 = ColorSpaceManager.ColorSpace.LINEAR_BT2020
+        let value: ColorSpaceManager.ColorSpace.LINEAR_BT2020 = ColorSpaceManager.ColorSpace.LINEAR_BT2020;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2600 :${value}`);
-        expect(value).assertEqual(25)
-        done()
+        expect(value).assertEqual(25);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2600 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -606,14 +574,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2700', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.DISPLAY_SRGB = ColorSpaceManager.ColorSpace.DISPLAY_SRGB
+        let value: ColorSpaceManager.ColorSpace.DISPLAY_SRGB = ColorSpaceManager.ColorSpace.DISPLAY_SRGB;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2700 :${value}`);
-        expect(value).assertEqual(4)
-        done()
+        expect(value).assertEqual(4);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2700 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -627,14 +595,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2800', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.DISPLAY_P3_SRGB = ColorSpaceManager.ColorSpace.DISPLAY_P3_SRGB
+        let value: ColorSpaceManager.ColorSpace.DISPLAY_P3_SRGB = ColorSpaceManager.ColorSpace.DISPLAY_P3_SRGB;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2800 :${value}`);
-        expect(value).assertEqual(3)
-        done()
+        expect(value).assertEqual(3);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2800 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -648,14 +616,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2900', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.DISPLAY_P3_HLG = ColorSpaceManager.ColorSpace.DISPLAY_P3_HLG
+        let value: ColorSpaceManager.ColorSpace.DISPLAY_P3_HLG = ColorSpaceManager.ColorSpace.DISPLAY_P3_HLG;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2900 :${value}`);
-        expect(value).assertEqual(11)
-        done()
+        expect(value).assertEqual(11);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_2900 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -669,14 +637,14 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_3000', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.DISPLAY_P3_PQ = ColorSpaceManager.ColorSpace.DISPLAY_P3_PQ
+        let value: ColorSpaceManager.ColorSpace.DISPLAY_P3_PQ = ColorSpaceManager.ColorSpace.DISPLAY_P3_PQ;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_3000 :${value}`);
-        expect(value).assertEqual(12)
-        done()
+        expect(value).assertEqual(12);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_3000 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -690,17 +658,15 @@ export default function ColorSpaceTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_3100', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpace.CUSTOM = ColorSpaceManager.ColorSpace.CUSTOM
+        let value: ColorSpaceManager.ColorSpace.CUSTOM = ColorSpaceManager.ColorSpace.CUSTOM;
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_3100 :${value}`);
-        expect(value).assertEqual(5)
-        done()
+        expect(value).assertEqual(5);
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_ColorSpaceManager_ColorSpace_Func_3100 catch error msg:${e.message} error code:${e.code}`);
         expect(e.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
-
-    console.log('====>################################ColorSpaceTest Test end*************');
   })
 }

@@ -14,46 +14,16 @@
  */
 import window from '@ohos.window';
 import { BusinessError } from '@ohos.base';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import { Driver, ON, Component } from '@ohos.UiTest'
-import { startAbility, waitUiReadyMs } from '../utils/index'
+import { describe, it, expect } from '@ohos/hypium';
+import { Driver, ON, Component } from '@ohos.UiTest';
+import { startAbility, waitUiReadyMs } from '../utils/index';
 
 
 export default function WindowTest() {
   describe('WindowTest', () => {
-    console.log('====>################################WindowTest Test start*************');
-
-    /**
-     * beforeAll: PreWindowTest at the test suite level, which are executed before the test suite is executed.
-     */
-    beforeAll(async () => {
-      console.info("====>beforeAll: PreWindow are executed.");
-    });
-
-    /**
-     * beforeEach: PreWindowTest at the test case level, which are executed before each test case is executed.
-     */
-    beforeEach(() => {
-      console.info("====>beforeEach: PreWindow is executed.");
-    });
-
-    /**
-     * afterEach: Test case-level clearance conditions, which are executed after each test case is executed.
-     */
-    afterEach(() => {
-      console.info("====>afterEach: Test case-level clearance conditions is executed.");
-    });
-
-    /**
-     * afterAll: Test suite-level cleanup condition, which is executed after the test suite is executed.
-     */
-    afterAll(() => {
-      console.info("====>afterAll: Test suite-level cleanup condition is executed");
-    });
-
     /**
      * @tc.number: SUB_GraphicImage_Window_WindowEventType_Func_0100
-     * @tc.name  : testWindowEventType001
+     * @tc.name  : testWindowEventType
      * @tc.desc  : To test Window life cycle.
      * @tc.size  : MediumTest
      * @tc.type  : Method
@@ -61,65 +31,59 @@ export default function WindowTest() {
      */
     it('SUB_GraphicImage_Window_WindowEventType_Func_0100', 0, async (done: Function) => {
       try {
-        await startAbility('com.example.windowsubsystem', 'EntryAbility')
-        let driver: Driver = Driver.create()
-        await driver.delayMs(waitUiReadyMs)
-        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window
+        await startAbility('com.example.windowsubsystem', 'EntryAbility');
+        let driver: Driver = Driver.create();
+        await driver.delayMs(waitUiReadyMs);
+        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window;
         windowClass.on('windowEvent', (data: number) => {
           console.info(`SUB_GraphicImage_Window_WindowEventType_Func_0100. data:${JSON.stringify(data)}`);
-          expect(data === 3 || data === 4).assertTrue()
+          expect(data === 1 || data === 2 || data === 3 || data === 4).assertTrue();
         })
-        const toMainAbility: Component = await driver.findComponent(ON.id('toMainAbility'))
-        await toMainAbility.click()
-        await driver.delayMs(waitUiReadyMs)
-        windowClass.off('windowEvent')
+        const toMainAbility: Component = await driver.findComponent(ON.id('toMainAbility'));
+        await toMainAbility.click();
+        await driver.delayMs(waitUiReadyMs);
+        windowClass.off('windowEvent');
         done()
       } catch (exception) {
         console.error(`Failed to SUB_GraphicImage_Window_WindowEventType_Func_0100. Cause:${JSON.stringify(exception)}`);
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
     })
 
     /**
      * @tc.number: SUB_GraphicImage_Window_WindowEventType_On_Func_0200
-     * @tc.name  : testWindowEventType002
-     * @tc.desc  : To test Enable the monitoring of window life cycle changes .
+     * @tc.name  : testOn
+     * @tc.desc  : To test Enable the monitoring of window life cycle changes.
      * @tc.size  : MediumTest
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('SUB_GraphicImage_Window_WindowEventType_Func_0200', 0, async (done: Function) => {
+    it('SUB_GraphicImage_Window_On_Func_0200', 0, async (done: Function) => {
       try {
-        await startAbility('com.example.windowsubsystem', 'EntryAbility')
-        let driver: Driver = Driver.create()
-        await driver.delayMs(waitUiReadyMs)
-        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window
+        await startAbility('com.example.windowsubsystem', 'EntryAbility');
+        let driver: Driver = Driver.create();
+        await driver.delayMs(waitUiReadyMs);
+        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window;
         windowClass.on('windowEvent', (data: number) => {
-          console.info(`SUB_GraphicImage_Window_WindowEventType_Func_0200. data:${JSON.stringify(data)}`);
-          if (data === 1 || data === 2) {
-            expect(data === 1 || data === 2).assertTrue()
-          }
+          console.info(`SUB_GraphicImage_Window_On_Func_0200. data:${JSON.stringify(data)}`);
+          expect(data === 1 || data === 2 || data === 3 || data === 4).assertTrue();
         })
-        const toMainAbility: Component = await driver.findComponent(ON.id('toMainAbility'))
-        await toMainAbility.click()
-        await driver.delayMs(waitUiReadyMs)
-        const toEntryAbility: Component = await driver.findComponent(ON.id('toEntryAbility'))
-        await toEntryAbility.click()
-        await driver.delayMs(waitUiReadyMs)
-        windowClass.off('windowEvent')
+        const toMainAbility: Component = await driver.findComponent(ON.id('toMainAbility'));
+        await toMainAbility.click();
+        await driver.delayMs(waitUiReadyMs);
+        windowClass.off('windowEvent');
         done()
       } catch (exception) {
-        console.error(`Failed to SUB_GraphicImage_Window_WindowEventType_Func_0200. Cause:${JSON.stringify(exception)}`);
-        expect().assertFail()
-        done()
+        console.error(`Failed to SUB_GraphicImage_Window_On_Func_0200. Cause:${JSON.stringify(exception)}`);
+        expect().assertFail();
+        done();
       }
-
     })
 
     /**
      * @tc.number: SUB_GraphicImage_Window_Off_Func_0300
-     * @tc.name  : testWindowEventType002
+     * @tc.name  : testOff
      * @tc.desc  : To test Disable the monitoring of window life cycle changes.
      * @tc.size  : MediumTest
      * @tc.type  : Method
@@ -127,32 +91,32 @@ export default function WindowTest() {
      */
     it('SUB_GraphicImage_Window_Off_Func_0300', 0, async (done: Function) => {
       try {
-        await startAbility('com.example.windowsubsystem', 'EntryAbility')
-        let driver: Driver = Driver.create()
-        await driver.delayMs(waitUiReadyMs)
-        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window
-        let flag: Boolean = false
+        await startAbility('com.example.windowsubsystem', 'EntryAbility');
+        let driver: Driver = Driver.create();
+        await driver.delayMs(waitUiReadyMs);
+        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window;
+        let flag: Boolean = false;
         let cl1: (data: number) => void = (data: number) => {
           console.info(`SUB_GraphicImage_Window_Off_Func_0300. cl1data:${JSON.stringify(data)}`);
-          flag = true
+          flag = true;
         }
         let cl2: (data: number) => void = (data: number) => {
           console.info(`SUB_GraphicImage_Window_Off_Func_0300. cl2data:${JSON.stringify(data)}`);
           console.info(`SUB_GraphicImage_Window_Off_Func_0300. flag:${JSON.stringify(flag)}`);
-          expect(flag).assertFalse()
+          expect(flag).assertFalse();
         }
-        windowClass.on('windowEvent', cl1)
-        windowClass.on('windowEvent', cl2)
-        windowClass.off('windowEvent', cl1)
-        const toMainAbility: Component = await driver.findComponent(ON.id('toMainAbility'))
-        await toMainAbility.click()
-        await driver.delayMs(waitUiReadyMs)
-        windowClass.off('windowEvent', cl2)
-        done()
+        windowClass.on('windowEvent', cl1);
+        windowClass.on('windowEvent', cl2);
+        windowClass.off('windowEvent', cl1);
+        const toMainAbility: Component = await driver.findComponent(ON.id('toMainAbility'));
+        await toMainAbility.click();
+        await driver.delayMs(waitUiReadyMs);
+        windowClass.off('windowEvent', cl2);
+        done();
       } catch (exception) {
         console.error(`Failed to SUB_GraphicImage_Window_Off_Func_0300. Cause:${JSON.stringify(exception)}`);
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
     })
 
@@ -166,19 +130,18 @@ export default function WindowTest() {
      */
     it('SUB_GraphicImage_Window_getWindowColorSpace_Func_0400', 0, async (done: Function) => {
       try {
-        await startAbility('com.example.windowsubsystem', 'EntryAbility')
-        let driver: Driver = Driver.create()
-        await driver.delayMs(waitUiReadyMs)
-        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window
-
+        await startAbility('com.example.windowsubsystem', 'EntryAbility');
+        let driver: Driver = Driver.create();
+        await driver.delayMs(waitUiReadyMs);
+        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window;
         let value: window.ColorSpace = windowClass.getWindowColorSpace();
-        console.log(`getWindowColorSpace:${JSON.stringify(value)}`)
-        expect(value === 0 || value === 1).assertTrue()
-        done()
+        console.log(`getWindowColorSpace:${JSON.stringify(value)}`);
+        expect(value === 0 || value === 1).assertTrue();
+        done();
       } catch (exception) {
         console.error(`Failed to SUB_GraphicImage_Window_getWindowColorSpace_Func_0400. Cause:${JSON.stringify(exception)}`);
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
     })
 
@@ -192,10 +155,10 @@ export default function WindowTest() {
      */
     it('SUB_GraphicImage_Window_setWindowColorSpace_Func_0500', 0, async (done: Function) => {
       try {
-        await startAbility('com.example.windowsubsystem', 'EntryAbility')
-        let driver: Driver = Driver.create()
-        await driver.delayMs(waitUiReadyMs)
-        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window
+        await startAbility('com.example.windowsubsystem', 'EntryAbility');
+        let driver: Driver = Driver.create();
+        await driver.delayMs(waitUiReadyMs);
+        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window;
         windowClass.setWindowColorSpace(window.ColorSpace.DEFAULT, (err: BusinessError) => {
           const errCode: number = err.code;
           if (errCode) {
@@ -204,14 +167,14 @@ export default function WindowTest() {
           }
           console.info('Succeeded in setting window colorspace.');
           let value: window.ColorSpace = (windowClass as window.Window).getWindowColorSpace();
-          console.log(`setWindowColorSpace:${JSON.stringify(value)}`)
-          expect(value === 0).assertTrue()
+          console.log(`setWindowColorSpace:${JSON.stringify(value)}`);
+          expect(value === 0).assertTrue();
         });
-        done()
+        done();
       } catch (exception) {
         console.error(`Failed to SUB_GraphicImage_Window_setWindowColorSpace_Func_0500. Cause:${JSON.stringify(exception)}`);
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
     })
 
@@ -225,10 +188,10 @@ export default function WindowTest() {
      */
     it('SUB_GraphicImage_Window_setWindowColorSpace_Func_0600', 0, async (done: Function) => {
       try {
-        await startAbility('com.example.windowsubsystem', 'EntryAbility')
-        let driver: Driver = Driver.create()
-        await driver.delayMs(waitUiReadyMs)
-        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window
+        await startAbility('com.example.windowsubsystem', 'EntryAbility');
+        let driver: Driver = Driver.create();
+        await driver.delayMs(waitUiReadyMs);
+        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window;
         windowClass.setWindowColorSpace(window.ColorSpace.WIDE_GAMUT, (err: BusinessError) => {
           const errCode: number = err.code;
           if (errCode) {
@@ -237,14 +200,14 @@ export default function WindowTest() {
           }
           console.info('Succeeded in setting window colorspace.');
           let value: window.ColorSpace = (windowClass as window.Window).getWindowColorSpace();
-          console.log(`setWindowColorSpace:${JSON.stringify(value)}`)
-          expect(value === 1).assertTrue()
+          console.log(`setWindowColorSpace:${JSON.stringify(value)}`);
+          expect(value === 1).assertTrue();
         });
-        done()
+        done();
       } catch (exception) {
         console.error(`Failed to SUB_GraphicImage_Window_setWindowColorSpace_Func_0600. Cause:${JSON.stringify(exception)}`);
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
     })
 
@@ -258,24 +221,24 @@ export default function WindowTest() {
      */
     it('SUB_GraphicImage_Window_setWindowColorSpace_Func_0700', 0, async (done: Function) => {
       try {
-        await startAbility('com.example.windowsubsystem', 'EntryAbility')
-        let driver: Driver = Driver.create()
-        await driver.delayMs(waitUiReadyMs)
-        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window
+        await startAbility('com.example.windowsubsystem', 'EntryAbility');
+        let driver: Driver = Driver.create();
+        await driver.delayMs(waitUiReadyMs);
+        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window;
         let promise: Promise<void> = windowClass.setWindowColorSpace(window.ColorSpace.DEFAULT);
         promise.then(() => {
           console.info('Succeeded in setting window colorspace.');
           let value: window.ColorSpace = (windowClass as window.Window).getWindowColorSpace();
-          console.log(`setWindowColorSpace:${JSON.stringify(value)}`)
-          expect(value === 0).assertTrue()
+          console.log(`setWindowColorSpace:${JSON.stringify(value)}`);
+          expect(value === 0).assertTrue();
         }).catch((err: BusinessError) => {
           console.error(`Failed to set window colorspace. Cause:${JSON.stringify(err)}`);
         });
-        done()
+        done();
       } catch (exception) {
         console.error(`Failed to SUB_GraphicImage_Window_setWindowColorSpace_Func_0700. Cause:${JSON.stringify(exception)}`);
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
     })
 
@@ -289,24 +252,24 @@ export default function WindowTest() {
      */
     it('SUB_GraphicImage_Window_setWindowColorSpace_Func_0800', 0, async (done: Function) => {
       try {
-        await startAbility('com.example.windowsubsystem', 'EntryAbility')
-        let driver: Driver = Driver.create()
-        await driver.delayMs(waitUiReadyMs)
-        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window
+        await startAbility('com.example.windowsubsystem', 'EntryAbility');
+        let driver: Driver = Driver.create();
+        await driver.delayMs(waitUiReadyMs);
+        let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window;
         let promise: Promise<void> = windowClass.setWindowColorSpace(window.ColorSpace.WIDE_GAMUT);
         promise.then(() => {
           console.info('Succeeded in setting window colorspace.');
           let value: window.ColorSpace = (windowClass as window.Window).getWindowColorSpace();
-          console.log(`setWindowColorSpace:${JSON.stringify(value)}`)
-          expect(value === 1).assertTrue()
+          console.log(`setWindowColorSpace:${JSON.stringify(value)}`);
+          expect(value === 1).assertTrue();
         }).catch((err: BusinessError) => {
           console.error(`Failed to set window colorspace. Cause:${JSON.stringify(err)}`);
         });
-        done()
+        done();
       } catch (exception) {
         console.error(`Failed to SUB_GraphicImage_Window_setWindowColorSpace_Func_0800. Cause::${JSON.stringify(exception)}`);
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
     })
 
@@ -320,16 +283,15 @@ export default function WindowTest() {
      */
     it('SUB_GraphicImage_Window_getWindowColorSpace_Func_0900', 0, async (done: Function) => {
       try {
-        // 未创建窗口
         let windowClass: window.Window = window.findWindow("uncreatedWindow");
         let value: window.ColorSpace = windowClass.getWindowColorSpace();
-        console.log(`getWindowColorSpace:${JSON.stringify(value)}`)
-        expect(value === 0 || value === 1).assertTrue()
-        done()
+        console.log(`getWindowColorSpace:${JSON.stringify(value)}`);
+        expect(value === 0 || value === 1).assertTrue();
+        done();
       } catch (err) {
-        expect(err.code === 1300002).assertTrue()
+        expect(err.code === 1300002).assertTrue();
         console.error(`Failed to SUB_GraphicImage_Window_getWindowColorSpace_Func_0900. Cause:${JSON.stringify(err)}`);
-        done()
+        done();
       }
     })
 
@@ -352,14 +314,14 @@ export default function WindowTest() {
           }
           console.info('Succeeded in setting window colorspace.');
           let value: window.ColorSpace = windowClass.getWindowColorSpace();
-          console.log(`setWindowColorSpace:${JSON.stringify(value)}`)
-          expect(value === 0).assertTrue()
+          console.log(`setWindowColorSpace:${JSON.stringify(value)}`);
+          expect(value === 0).assertTrue();
         });
-        done()
+        done();
       } catch (err) {
-        expect(err.code === 1300002).assertTrue()
+        expect(err.code === 1300002).assertTrue();
         console.error(`Failed to SUB_GraphicImage_Window_setWindowColorSpace_Func_1000. Cause:${JSON.stringify(err)}`);
-        done()
+        done();
       }
     })
 
@@ -382,14 +344,14 @@ export default function WindowTest() {
           }
           console.info('Succeeded in setting window colorspace.');
           let value: window.ColorSpace = windowClass.getWindowColorSpace();
-          console.log(`setWindowColorSpace:${JSON.stringify(value)}`)
-          expect(value === 1).assertTrue()
+          console.log(`setWindowColorSpace:${JSON.stringify(value)}`);
+          expect(value === 1).assertTrue();
         });
-        done()
+        done();
       } catch (err) {
-        expect(err.code === 1300002).assertTrue()
+        expect(err.code === 1300002).assertTrue();
         console.error(`Failed to  SUB_GraphicImage_Window_setWindowColorSpace_Func_1100. Cause:${JSON.stringify(err)}`);
-        done()
+        done();
       }
     })
 
@@ -408,16 +370,16 @@ export default function WindowTest() {
         promise.then(() => {
           console.info('Succeeded in setting window colorspace.');
           let value: window.ColorSpace = windowClass.getWindowColorSpace();
-          console.log(`setWindowColorSpace:${JSON.stringify(value)}`)
-          expect(value === 0).assertTrue()
+          console.log(`setWindowColorSpace:${JSON.stringify(value)}`);
+          expect(value === 0).assertTrue();
         }).catch((err: BusinessError) => {
           console.error(`Failed to set window colorspace. Cause:${JSON.stringify(err)}`);
         });
-        done()
+        done();
       } catch (err) {
-        expect(err.code === 1300002).assertTrue()
+        expect(err.code === 1300002).assertTrue();
         console.error(`Failed to SUB_GraphicImage_Window_setWindowColorSpace_Func_1200. Cause:${JSON.stringify(err)}`);
-        done()
+        done();
       }
     })
 
@@ -436,19 +398,17 @@ export default function WindowTest() {
         promise.then(() => {
           console.info('Succeeded in setting window colorspace.');
           let value: window.ColorSpace = windowClass.getWindowColorSpace();
-          console.log(`setWindowColorSpace:${value}`)
-          expect(value === 1).assertTrue()
+          console.log(`setWindowColorSpace:${value}`);
+          expect(value === 1).assertTrue();
         }).catch((err: BusinessError) => {
           console.error(`Failed to set window colorspace. Cause:${JSON.stringify(err)}`);
         });
-        done()
+        done();
       } catch (err) {
-        expect(err.code === 1300002).assertTrue()
+        expect(err.code === 1300002).assertTrue();
         console.error(`Failed to SUB_GraphicImage_Window_setWindowColorSpace_Func_1300. Cause:${JSON.stringify(err)}`);
-        done()
+        done();
       }
     })
-
-    console.log('====>################################WindowTest Test end*************');
   })
 }

@@ -13,42 +13,12 @@
  * limitations under the License.
  */
 import Display from '@ohos.display';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, it, expect } from '@ohos/hypium';
 
 
 export default function DisplayTest() {
   describe('DisplayTest', () => {
-    console.log('====>################################DisplayTest Test start*************');
-
-    /**
-     * beforeAll: PreDisplayTest at the test suite level, which are executed before the test suite is executed.
-     */
-    beforeAll(() => {
-      console.info("====>beforeAll: PreDisplay are executed.");
-    });
-
-    /**
-     * beforeEach: PreDisplayTest at the test case level, which are executed before each test case is executed.
-     */
-    beforeEach(() => {
-      console.info("====>beforeEach: PreDisplay is executed.");
-    });
-
-    /**
-     * afterEach: Test case-level clearance conditions, which are executed after each test case is executed.
-     */
-    afterEach(() => {
-      console.info("====>afterEach: Test case-level clearance conditions is executed.");
-    });
-
-    /**
-     * afterAll: Test suite-level cleanup condition, which is executed after the test suite is executed.
-     */
-    afterAll(() => {
-      console.info("====>afterAll: Test suite-level cleanup condition is executed");
-    });
-
-    let displayClass: Display.Display
+    let displayClass: Display.Display;
     try {
       displayClass = Display.getDefaultDisplaySync();
     } catch (exception) {
@@ -65,14 +35,14 @@ export default function DisplayTest() {
      */
     it('SUB_GraphicImage_display_densityDPI_Func_0100', 0, async (done: Function) => {
       try {
-        let value: number = displayClass.densityDPI
+        let value: number = displayClass.densityDPI;
         console.log(`displayClass.densityDPI:${JSON.stringify(value)}`)
-        expect(typeof value === 'number').assertTrue()
-        done()
+        expect(typeof value === 'number').assertTrue();
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_display_densityDPI_Func_0100 catch error msg:${JSON.stringify(e.message)} error code:${JSON.stringify(e.code)}`);
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
     })
 
@@ -86,14 +56,14 @@ export default function DisplayTest() {
      */
     it('SUB_GraphicImage_display_densityPixels_Func_0200', 0, async (done: Function) => {
       try {
-        let value: number = displayClass.densityPixels
-        console.log(`displayClass.densityPixels:${JSON.stringify(value)}`)
-        expect(typeof value === 'number').assertTrue()
-        done()
+        let value: number = displayClass.densityPixels;
+        console.log(`displayClass.densityPixels:${JSON.stringify(value)}`);
+        expect(typeof value === 'number').assertTrue();
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_display_densityPixels_Func_0200 catch error msg:${JSON.stringify(e.message)} error code:${JSON.stringify(e.code)}`);
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
     })
 
@@ -107,17 +77,15 @@ export default function DisplayTest() {
      */
     it('SUB_GraphicImage_display_scaledDensity_Func_0300', 0, async (done: Function) => {
       try {
-        let value: number = displayClass.scaledDensity
-        console.log(`displayClass.scaledDensity:${JSON.stringify(value)}`)
-        expect(typeof value === 'number').assertTrue()
-        done()
+        let value: number = displayClass.scaledDensity;
+        console.log(`displayClass.scaledDensity:${JSON.stringify(value)}`);
+        expect(typeof value === 'number').assertTrue();
+        done();
       } catch (e) {
         console.log(`SUB_GraphicImage_display_scaledDensity_Func_0300 catch error msg:${JSON.stringify(e.message)} error code:${JSON.stringify(e.code)}`);
-        expect().assertFail()
-        done()
+        expect().assertFail();
+        done();
       }
     })
-
-    console.log('====>################################DisplayTest Test end*************');
   })
 }

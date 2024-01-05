@@ -13,40 +13,10 @@
  * limitations under the License.
  */
 import ColorSpaceManager from '@ohos.graphics.colorSpaceManager';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
+import { describe, it, expect } from '@ohos/hypium';
 
 export default function ColorSpaceManagerCreateCustomTest() {
   describe('ColorSpaceManagerCreateCustomTest', () => {
-    console.log('====>################################ ColorSpaceManagerCreateCustomTest Test start*************');
-
-    /**
-     * beforeAll: PreColorSpaceManagerCreateTest at the test suite level, which are executed before the test suite is executed.
-     */
-    beforeAll(() => {
-      console.info("====>beforeAll: PreColorSpaceManagerCreateCustomTest are executed.");
-    });
-
-    /**
-     * beforeEach: PreColorSpaceManagerCreateTest at the test case level, which are executed before each test case is executed.
-     */
-    beforeEach(() => {
-      console.info("====>beforeEach: PreColorSpaceManagerCreateCustomTest is executed.");
-    });
-
-    /**
-     * afterEach: Test case-level clearance conditions, which are executed after each test case is executed.
-     */
-    afterEach(() => {
-      console.info("====>afterEach: Test case-level clearance conditions is executed.");
-    });
-
-    /**
-     * afterAll: Test suite-level cleanup condition, which is executed after the test suite is executed.
-     */
-    afterAll(() => {
-      console.info("====>afterAll: Test suite-level cleanup condition is executed");
-    });
-
     let primaries: ColorSpaceManager.ColorSpacePrimaries = {
       redX: 0.1,
       redY: 0.1,
@@ -69,13 +39,13 @@ export default function ColorSpaceManagerCreateCustomTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0100', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(primaries, gamma)
-        expect(value.getColorSpaceName()).assertEqual(5)
-        done()
+        let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(primaries, gamma);
+        expect(value.getColorSpaceName()).assertEqual(5);
+        done();
       } catch (err) {
         console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0100. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -89,13 +59,13 @@ export default function ColorSpaceManagerCreateCustomTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0200', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(primaries, gamma)
-        expect(Array.isArray(value.getWhitePoint())).assertTrue()
-        done()
+        let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(primaries, gamma);
+        expect(Array.isArray(value.getWhitePoint())).assertTrue();
+        done();
       } catch (err) {
         console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0200. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
 
@@ -109,16 +79,14 @@ export default function ColorSpaceManagerCreateCustomTest() {
      */
     it('SUB_GraphicImage_ColorSpaceManager_Create_Func_0300', 0, async (done: Function) => {
       try {
-        let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(primaries, gamma)
-        expect(typeof value.getGamma() === 'number').assertTrue()
-        done()
+        let value: ColorSpaceManager.ColorSpaceManager = ColorSpaceManager.create(primaries, gamma);
+        expect(typeof value.getGamma() === 'number').assertTrue();
+        done();
       } catch (err) {
         console.log(`Failed to SUB_GraphicImage_ColorSpaceManager_Create_Func_0300. Cause:${JSON.stringify(err)}`);
         expect(err.code == 18600001).assertTrue();
-        done()
+        done();
       }
     })
-
-    console.log('====>################################ ColorSpaceManagerCreateCustomTest Test end*************');
   })
 }
