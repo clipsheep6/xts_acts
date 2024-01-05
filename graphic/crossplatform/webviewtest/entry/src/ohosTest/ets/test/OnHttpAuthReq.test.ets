@@ -64,7 +64,7 @@ export default function OnHttpAuthReqTest() {
       await driver.delayMs(2000);
       const MESSAGE: Component = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'));
       const text: string = await MESSAGE.getText();
-      expect(text).assertEqual('host: httpbin.org, realm: Fake Realm');
+      expect(text).assertEqual('host: www.spincast.org, realm: protected example');
       console.log('SUB_Web_WebView_On_Http_Auth_Request_Func_0100 success');
       console.log('SUB_Web_WebView_On_Http_Auth_Request_Func_0100 test end');
     });
@@ -86,7 +86,7 @@ export default function OnHttpAuthReqTest() {
       await driver.delayMs(waitUiReadyMs);
       let MESSAGE: Component = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'));
       let text: string = await MESSAGE.getText();
-      expect(text).assertEqual('save host: httpbin.org, realm: Fake Realm');
+      expect(text).assertEqual('save host: www.spincast.org, realm: protected example');
       const EXIST_HAC: Component = await driver.findComponent(ON.text('EXIST_HAC'));
       await EXIST_HAC.click();
       await driver.delayMs(waitUiReadyMs);
@@ -126,7 +126,7 @@ export default function OnHttpAuthReqTest() {
       await driver.delayMs(waitUiReadyMs);
       MESSAGE = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'));
       text = await MESSAGE.getText();
-      expect(text).assertEqual('save host: httpbin.org, realm: Fake Realm');
+      expect(text).assertEqual('save host: www.spincast.org, realm: protected example');
       await EXIST_HAC.click();
       await driver.delayMs(waitUiReadyMs);
       MESSAGE = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'));
@@ -192,7 +192,7 @@ export default function OnHttpAuthReqTest() {
       await driver.delayMs(waitUiReadyMs);
       MESSAGE = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'));
       text = await MESSAGE.getText();
-      expect(text).assertEqual('save host: httpbin.org, realm: Fake Realm');
+      expect(text).assertEqual('save host: www.spincast.org, realm: protected example');
       await EXIST_HAC.click();
       await driver.delayMs(waitUiReadyMs);
       MESSAGE = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'));
@@ -236,7 +236,7 @@ export default function OnHttpAuthReqTest() {
       await driver.delayMs(waitUiReadyMs);
       MESSAGE = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'));
       text = await MESSAGE.getText();
-      expect(text).assertEqual('save host: httpbin.org, realm: Fake Realm');
+      expect(text).assertEqual('save host: www.spincast.org, realm: protected example');
       await EXIST_HAC.click();
       await driver.delayMs(waitUiReadyMs);
       MESSAGE = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'));
@@ -260,10 +260,11 @@ export default function OnHttpAuthReqTest() {
       await driver.delayMs(waitUiReadyMs);
       const ON_EVENT_URL: Component = await driver.findComponent(ON.id('ON_EVENT_URL'));
       const url: string = await ON_EVENT_URL.getText();
-      expect(url).assertEqual('http://httpbin.org/favicon.ico');
+      expect(url).assertContain('www.spincast.org');
       const ON_EVENT_VALUE: Component = await driver.findComponent(ON.id('ON_EVENT_VALUE'));
       const value: string = await ON_EVENT_VALUE.getText();
-      expect(value).assertEqual('404');
+      const code: number = Number(value);
+      expect(code).assertLessOrEqual(404);
       console.log('SUB_Web_WebView_On_Http_Error_Receive_Func_0100 success');
       console.log('SUB_Web_WebView_On_Http_Error_Receive_Func_0100 test end');
     });

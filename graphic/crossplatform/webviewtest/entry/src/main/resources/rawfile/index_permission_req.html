@@ -50,14 +50,16 @@
 			function getMedia() {
 				const constraints = {
 						audio: true,
-						video: { facingMode: 'user' },
+						video: true,
 					};
 				//获取video摄像头区域
 				let video = document.getElementById('video');
 				navigator.mediaDevices.getUserMedia(constraints).then((MediaStream) => {
-					video.srcObject = MediaStream;
-					video.play();
-				});
+						video.srcObject = MediaStream;
+						video.play();
+					}).catch(error => {
+						console.error('无法访问摄像头：', error);
+					});
 			}
 		</script>
 	</body>

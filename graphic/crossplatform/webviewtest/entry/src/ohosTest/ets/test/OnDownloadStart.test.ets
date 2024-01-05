@@ -64,13 +64,22 @@ export default function OnDownloadStartTest() {
       await driver.delayMs(2000);
       const TRIGGER: Component = await driver.findComponent(ON.text('TRIGGER'));
       await TRIGGER.click();
-      await driver.delayMs(waitUiReadyMs * 2);
+      await driver.delayMs(waitUiReadyMs);
+      const UA: Component = await driver.findComponent(ON.text('UA'));
+      await UA.click();
+      await driver.delayMs(waitUiReadyMs);
+      const USER_AGENT: Component = await driver.findComponent(ON.id('USER_AGENT'));
+      const uaText: string = await USER_AGENT.getText();
       const ON_DOWNLOAD_EVENT_URL: Component = await driver.findComponent(ON.id('ON_EVENT_URL'));
       const url: string = await ON_DOWNLOAD_EVENT_URL.getText();
       expect(url).assertEqual('https://qzonestyle.gtimg.cn/qzone/vas/opensns/res/doc/Qzone_logo_3color.psd');
       const ON_DOWNLOAD_EVENT_VALUE: Component = await driver.findComponent(ON.id('ON_EVENT_VALUE'));
       const value: string = await ON_DOWNLOAD_EVENT_VALUE.getText();
-      expect(value).assertContain('application');
+      if (uaText.includes('OpenHarmony') || uaText.includes('Android')) {
+        expect(value).assertContain('application');
+      } else {
+        expect(value).assertContain('image');
+      }
       console.log('SUB_Web_WebView_On_Download_Start_Func_0100 success');
       console.log('SUB_Web_WebView_On_Download_Start_Func_0100 test end');
     });

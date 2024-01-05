@@ -246,7 +246,7 @@ export struct WebContent {
             })
             .size({ height: 20 })
         }
-        if (this.htmlName.includes('operation')) {
+        if (this.htmlName.includes('example')) {
           Button('CONFIG')
             .onClick(async e => {
               const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({

@@ -38,8 +38,10 @@ export struct WebContent {
     try {
       const result: string = await controller.runJavaScript(`${funcName}()`)
       console.log(`runJavaScript ${funcName}: ${result}`)
-      const hasName: boolean = this.htmlName.includes('video') || this.htmlName.includes('page_visible')
-      if (hasName && funcName === 'getType') this.USER_AGENT = result
+      const hasName: boolean = this.htmlName.includes('video') || this.htmlName.includes('page_visible') || this.htmlName.includes('download');
+      if (hasName && funcName === 'getType') {
+        this.USER_AGENT = result;
+      }
     } catch (resError) {
       let e: business_error.BusinessError = resError as business_error.BusinessError;
       console.error(`runJavaScript ErrorCode: ${e.code},  Message: ${e.message}`);
@@ -111,7 +113,7 @@ export struct WebContent {
             }
           })
           .size({ height: 20 })
-        if (this.htmlName.includes('video') || this.htmlName.includes('page_visible')) {
+        if (this.htmlName.includes('video') || this.htmlName.includes('page_visible') || this.htmlName.includes('download')) {
           Button('UA')
             .onClick(e => {
               this.runJSFunc('getType', this.controller)
@@ -153,12 +155,13 @@ export struct WebContent {
             .id('DOCUMENT_SAVE')
             .onClick(async e => {
               try {
-                const pathDir: string|undefined = AppStorage.get('pathDir')
-                const path: string = pathDir + '/test.txt'
-                const file: fs.File = await fs.open(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE)
-                this.fileUri = path
-                console.log('DOCUMENT_SAVE', path)
-                this.ON_EVENT_MESSAGE = 'SAVE test.txt'
+                const pathDir: string|undefined = AppStorage.get('pathDir');
+                const path: string = pathDir + '/test.txt';
+                const file: fs.File = await fs.open(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+                this.fileUri = path;
+                console.log('DOCUMENT_SAVE', path);
+                this.ON_EVENT_MESSAGE = 'SAVE test.txt';
+                this.ON_EVENT_VALUE = this.fileUri;
               } catch (err) {
                 console.error('save failed with err: ' + JSON.stringify(err));
               }
@@ -377,28 +380,6 @@ export struct WebContent {
               this.ON_EVENT_URL = event.request.getRequestUrl()
               this.ON_EVENT_VALUE = event.response.getResponseCode().toString()
             }
-          })
-          .geolocationAccess(true)
-          .onGeolocationShow((event) => {
-            if (event) {
-              console.log('geolocation' + JSON.stringify(event.geolocation))
-              AlertDialog.show({
-                title: 'onGeolocationShow',
-                message: 'text',
-                confirm: {
-                  value: 'onGeolocationShow',
-                  action: () => {
-                    event.geolocation.invoke(event.origin, true, true)
-                  }
-                },
-                cancel: () => {
-                  event.geolocation.invoke(event.origin, false, false)
-                }
-              })
-            }
-          })
-          .onGeolocationHide(() => {
-            this.ON_EVENT_VALUE = 'onGeolocationHide'
           })
           .onShowFileSelector((event) => {
             if (event) {
