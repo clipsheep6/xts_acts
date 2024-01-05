@@ -15,7 +15,6 @@
 
 import attrsManager from '../../common/AttrsManager';
 import router from '@ohos.router'
-
 /**
  * Test page of common attribute: focusControl
  */
