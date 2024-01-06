@@ -1,0 +1,6 @@
+./flight-planner/airways.ts;airways;esm;xxx;yyy
+./flight-planner/use-unicode.ts;use-unicode;esm;xxx;yyy
+./flight-planner/waypoints.ts;waypoints;esm;xxx;yyy                              
+./flight-planner/flight-planner.ts;flight-planner;esm;xxx;yyy          
+./flight-planner/expectations.ts;expectation;esm;xxx;yyy                                                           
+./flight-planner/benchmark.ts;benchmark;esm;xxx;yyy
