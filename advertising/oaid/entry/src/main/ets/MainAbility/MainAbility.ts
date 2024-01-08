@@ -18,7 +18,7 @@ import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
 
 export default class MainAbility extends Ability {
-  async onCreate(want, launchParam){
+  async onCreate(want, launchParam) {
     // Ability is creating, initialize resources for this ability
     console.log('[Demo] MainAbility onCreate');
     globalThis.abilityWant = want;
