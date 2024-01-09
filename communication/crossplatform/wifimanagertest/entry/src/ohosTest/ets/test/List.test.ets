@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import abilityTest from './Ability.test'
-import WifiManagerTest from './WifiManager.test'
+import abilityTest from './Ability.test';
+import WifiManagerTest from './WifiManager.test';
 
 export default function testsuite() {
-  abilityTest()
-  WifiManagerTest()
+  abilityTest();
+  WifiManagerTest();
 }
