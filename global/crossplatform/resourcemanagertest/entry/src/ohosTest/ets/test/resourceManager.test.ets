@@ -1,35 +1,38 @@
-import resourceManager from '@ohos.resourceManager'
-import { describe, beforeAll, it, expect } from '@ohos/hypium'
+import resourceManager from '@ohos.resourceManager';
+import { describe, beforeAll, afterAll, it, expect } from '@ohos/hypium';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-let abilityDelegatorRegistry = AbilityDelegatorRegistry.getAbilityDelegator()
-let context: common.Context = abilityDelegatorRegistry.getAppContext()
-context = context.createModuleContext("entry_test")
+let abilityDelegatorRegistry: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let context: common.Context = abilityDelegatorRegistry.getAppContext().createModuleContext("entry_test");
 
 export default function resourceManagerTest() {
   describe('resourceManagerTest', () => {
-
-    console.log('*************start resourceManagerTest*************');
+    beforeAll(() => {
+      console.log('************* start resourceManagerTest *************');
+    })
+    afterAll(() => {
+      console.log('************* end resourceManagerTest *************');
+    })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESIDCALLBACK_001
-    * @tc.name    test getMediaContent method in callback mode
-    * @tc.desc    get the media in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0100
+    * @tc.name:    test getMediaContent method in callback mode
+    * @tc.desc:    get the media in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResIdCallback001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0100', 0, async (done: Function) => {
       context.resourceManager.getMediaContent($r('app.media.icon').id, 0, (err: BusinessError, value: Uint8Array) => {
         if (!err) {
-          console.log('testGetMediaContentResIdCallback001 ' + value);
-          console.log('testGetMediaContentResIdCallback001 ' + value.length);
-          expect(value.length == 6790).assertTrue()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0100 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0100 ${value.length}`);
+          expect(value.length == 6790).assertTrue();
         } else {
-          console.log('testGetMediaContentResIdCallback001 err.code ' + err.code);
-          console.log('testGetMediaContentResIdCallback001 err.message ' + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0100 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0100 errMessage ${err.message}`);
           expect().assertFail()
         }
         done()
@@ -37,295 +40,295 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESIDCALLBACK_002
-    * @tc.name    test getMediaContent method in callback mode
-    * @tc.desc    get the media in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0200
+    * @tc.name:    test getMediaContent method in callback mode
+    * @tc.desc:    get the media in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResIdCallback002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0200', 0, async (done: Function) => {
       context.resourceManager.getMediaContent($r('app.media.icon').id, 120, (err: BusinessError, value: Uint8Array) => {
         if (!err) {
-          console.log('testGetMediaContentResIdCallback002 ' + value);
-          console.log('testGetMediaContentResIdCallback002 ' + value.length);
-          expect(value.length == 6790).assertTrue()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0200 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0200 ${value.length}`);
+          expect(value.length == 6790).assertTrue();
           done();
         } else {
-          console.log('testGetMediaContentResIdCallback002 err.code ' + err.code);
-          console.log('testGetMediaContentResIdCallback002 err.message ' + err.message);
-          expect().assertFail()
-          done()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0200 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0200 errMessage ${err.message}`);
+          expect().assertFail();
+          done();
         }
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESIDCALLBACK_003
-    * @tc.name    test getMediaContent method in callback mode
-    * @tc.desc    get the media in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0300
+    * @tc.name:    test getMediaContent method in callback mode
+    * @tc.desc:    get the media in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResIdCallback003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0300', 0, async (done: Function) => {
       context.resourceManager.getMediaContent($r('app.media.test').id, 0, (err: BusinessError, value: Uint8Array) => {
         if (!err) {
-          console.log('testGetMediaContentResIdCallback003 ' + value);
-          console.log('testGetMediaContentResIdCallback003 ' + value.length);
-          expect(value.length == 128635).assertTrue()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0300 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0300 ${value.length}`);
+          expect(value.length == 128635).assertTrue();
           done();
         } else {
-          console.log('testGetMediaContentResIdCallback003 err.code ' + err.code);
-          console.log('testGetMediaContentResIdCallback003 err.message ' + err.message);
-          expect().assertFail()
-          done()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0300 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0300 errMessage ${err.message}`);
+          expect().assertFail();
+          done();
         }
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESIDCALLBACK_004
-    * @tc.name    test getMediaContent method in callback mode throw 9001001 error code
-    * @tc.desc    get the media in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0400
+    * @tc.name:    test getMediaContent method in callback mode throw 9001001 error code
+    * @tc.desc:    get the media in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResIdCallback004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0400', 0, async (done: Function) => {
       context.resourceManager.getMediaContent(111, 0, (err: BusinessError, value: Uint8Array) => {
         if (err != null) {
-          console.log('testGetMediaContentResIdCallback004 err.code ' + err.code);
-          console.log('testGetMediaContentResIdCallback004 err.message ' + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0400 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0400 errMessage ${err.message}`);
           expect(err.code == 9001001).assertTrue();
           done();
         } else {
-          console.log('testGetMediaContentResIdCallback004 ' + value);
-          console.log('testGetMediaContentResIdCallback004 ' + typeof value);
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0400 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0400 ${typeof value}`);
+          expect().assertFail();
           done();
         }
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESIDCALLBACK_005
-    * @tc.name    test getMediaContent method in callback mode throw 9001002 error code
-    * @tc.desc    get the media in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0500
+    * @tc.name:    test getMediaContent method in callback mode throw 9001002 error code
+    * @tc.desc:    get the media in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResIdCallback005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0500', 0, async (done: Function) => {
       context.resourceManager.getMediaContent($r('app.string.test_1')
         .id, 0, (err: BusinessError, value: Uint8Array) => {
         if (err != null) {
-          console.log('testGetMediaContentResIdCallback005 err.code ' + err.code);
-          console.log('testGetMediaContentResIdCallback005 err.message ' + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0500 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0500 errMessage ${err.message}`);
           expect(err.code == 9001002).assertTrue();
           done();
         } else {
-          console.log('testGetMediaContentResIdCallback005 ' + value);
-          console.log('testGetMediaContentResIdCallback005 ' + typeof value);
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0500 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0500 ${typeof value}`);
+          expect().assertFail();
           done();
         }
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESIDPROMISE_001
-    * @tc.name    test getMediaContent method in promise mode
-    * @tc.desc    get the media in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0600
+    * @tc.name:    test getMediaContent method in promise mode
+    * @tc.desc:    get the media in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResIdPromise001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0600', 0, async (done: Function) => {
       context.resourceManager.getMediaContent($r('app.media.icon').id, 0).then((value: Uint8Array) => {
-        console.log('testGetMediaContentResIdPromise001 ' + value);
-        console.log('testGetMediaContentResIdPromise001 ' + typeof value);
-        expect(value.length == 6790).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0600 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0600 ${typeof value}`);
+        expect(value.length == 6790).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentResIdPromise001 err.code " + err.code);
-        console.log("testGetMediaContentResIdPromise001 err.message " + err.message);
-        expect().assertFail()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0600 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0600 errMessage ${err.message}`);
+        expect().assertFail();
+        done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESIDPROMISE_002
-    * @tc.name    test getMediaContent method in promise mode
-    * @tc.desc    get the media in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0700
+    * @tc.name:    test getMediaContent method in promise mode
+    * @tc.desc:    get the media in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResIdPromise002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0700', 0, async (done: Function) => {
       context.resourceManager.getMediaContent($r('app.media.icon').id, 120).then((value: Uint8Array) => {
-        console.log('testGetMediaContentResIdPromise002 ' + value);
-        console.log('testGetMediaContentResIdPromise002 ' + typeof value);
-        expect(value.length == 6790).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0700 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0700 ${typeof value}`);
+        expect(value.length == 6790).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentResIdPromise002 err.code " + err.code);
-        console.log("testGetMediaContentResIdPromise002 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0700 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESIDPROMISE_003
-    * @tc.name    test getMediaContent method in promise mode
-    * @tc.desc    get the media in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0800
+    * @tc.name:    test getMediaContent method in promise mode
+    * @tc.desc:    get the media in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResIdPromise003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0800', 0, async (done: Function) => {
       context.resourceManager.getMediaContent($r('app.media.test').id, 0).then((value: Uint8Array) => {
-        console.log('testGetMediaContentResIdPromise003 ' + value);
-        console.log('testGetMediaContentResIdPromise003 ' + typeof value);
-        expect(value.length == 128635).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0800 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0800 ${typeof value}`);
+        expect(value.length == 128635).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentResIdPromise003 err.code " + err.code);
-        console.log("testGetMediaContentResIdPromise003 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0800 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0800 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESIDPROMISE_004
-    * @tc.name    test getMediaContent method in promise mode throw 9001001 code err
-    * @tc.desc    get the media in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0900
+    * @tc.name:    test getMediaContent method in promise mode throw 9001001 code err
+    * @tc.desc:    get the media in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResIdPromise004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0900', 0, async (done: Function) => {
       context.resourceManager.getMediaContent(111, 0).then((value: Uint8Array) => {
-        console.log('testGetMediaContentResIdPromise004 ' + value);
-        console.log('testGetMediaContentResIdPromise004 ' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0900 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0900 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentResIdPromise004 err.code " + err.code);
-        console.log("testGetMediaContentResIdPromise004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0900 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0900 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESIDPROMISE_005
-    * @tc.name    test getMediaContent method in promise mode throw 9001002 code err
-    * @tc.desc    get the media in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1000
+    * @tc.name:    test getMediaContent method in promise mode throw 9001002 code err
+    * @tc.desc:    get the media in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResIdPromise005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1000', 0, async (done: Function) => {
       context.resourceManager.getMediaContent($r('app.string.test_1').id, 0).then((value: Uint8Array) => {
-        console.log('testGetMediaContentResIdPromise005 ' + value);
-        console.log('testGetMediaContentResIdPromise005 ' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1000 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1000 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentResIdPromise005 err.code " + err.code);
-        console.log("testGetMediaContentResIdPromise005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1000 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1000 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESOURCECALLBACK_001
-    * @tc.name    test getMediaContent method in callback mode
-    * @tc.desc    get the media in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1100
+    * @tc.name:    test getMediaContent method in callback mode
+    * @tc.desc:    get the media in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResourceCallback001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1100', 0, async (done: Function) => {
       context.resourceManager.getMediaContent({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.icon').id
       }, 0, (err: BusinessError, value: Uint8Array) => {
-        console.log('testGetMediaContentResourceCallback001 ' + value);
-        console.log('testGetMediaContentResourceCallback001 ' + typeof value);
-        expect(value.length == 6790).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1100 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1100 ${typeof value}`);
+        expect(value.length == 6790).assertTrue();
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESOURCECALLBACK_002
-    * @tc.name    test getMediaContent method in callback mode
-    * @tc.desc    get the media in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1200
+    * @tc.name:    test getMediaContent method in callback mode
+    * @tc.desc:    get the media in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResourceCallback002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1200', 0, async (done: Function) => {
       context.resourceManager.getMediaContent({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.icon').id
       }, 120, (err: BusinessError, value: Uint8Array) => {
-        console.log('testGetMediaContentResourceCallback002 ' + value);
-        console.log('testGetMediaContentResourceCallback002 ' + typeof value);
-        expect(value.length == 6790).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1200 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1200 ${typeof value}`);
+        expect(value.length == 6790).assertTrue();
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESOURCECALLBACK_003
-    * @tc.name    test getMediaContent method in callback mode
-    * @tc.desc    get the media in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1300
+    * @tc.name:    test getMediaContent method in callback mode
+    * @tc.desc:    get the media in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResourceCallback003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1300', 0, async (done: Function) => {
       context.resourceManager.getMediaContent({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.test').id
       }, 0, (err: BusinessError, value: Uint8Array) => {
-        console.log('testGetMediaContentResourceCallback003 ' + value);
-        console.log('testGetMediaContentResourceCallback003 ' + typeof value);
-        expect(value.length == 128635).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1300 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1300 ${typeof value}`);
+        expect(value.length == 128635).assertTrue();
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESOURCECALLBACK_004
-    * @tc.name    test getMediaContent method in callback mode throw 9001001 error code
-    * @tc.desc    get the media in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1400
+    * @tc.name:    test getMediaContent method in callback mode throw 9001001 error code
+    * @tc.desc:    get the media in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResourceCallback004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1400', 0, async (done: Function) => {
       context.resourceManager.getMediaContent({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: 1111
       }, 0, (err: BusinessError, value: Uint8Array) => {
         if (!err) {
-          console.log('testGetMediaContentResourceCallback004 ' + value);
-          console.log('testGetMediaContentResourceCallback004 ' + typeof value);
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1400 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1400 ${typeof value}`);
+          expect().assertFail();
           done();
         } else {
-          console.log("testGetMediaContentResourceCallback004 err.code " + err.code);
-          console.log("testGetMediaContentResourceCallback004 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1400 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1400 errMessage ${err.message}`);
           expect(err.code == 9001001).assertTrue();
           done();
         }
@@ -333,27 +336,27 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESOURCECALLBACK_005
-    * @tc.name    test getMediaContent method in callback mode throw 9001002 error code
-    * @tc.desc    get the media in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1500
+    * @tc.name:    test getMediaContent method in callback mode throw 9001002 error code
+    * @tc.desc:    get the media in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResourceCallback005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1500', 0, async (done: Function) => {
       context.resourceManager.getMediaContent({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.string.test_1').id
       }, 0, (err: BusinessError, value: Uint8Array) => {
         if (!err) {
-          console.log('testGetMediaContentResourceCallback005 ' + value);
-          console.log('testGetMediaContentResourceCallback005 ' + typeof value);
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1500 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1500 ${typeof value}`);
+          expect().assertFail();
           done();
         } else {
-          console.log("testGetMediaContentResourceCallback005 err.code " + err.code);
-          console.log("testGetMediaContentResourceCallback005 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1500 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1500 errMessage ${err.message}`);
           expect(err.code == 9001002).assertTrue();
           done();
         }
@@ -361,204 +364,204 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESOURCEPROMISE_001
-    * @tc.name    test getMediaContent method in promise mode
-    * @tc.desc    get the media in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1600
+    * @tc.name:    test getMediaContent method in promise mode
+    * @tc.desc:    get the media in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResourcePromise001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1600', 0, async (done: Function) => {
       context.resourceManager.getMediaContent({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.icon').id
       }, 0).then((value: Uint8Array) => {
-        console.log("testGetMediaContentResourcePromise001 " + value);
-        console.log("testGetMediaContentResourcePromise001 " + value.length);
-        expect(value.length == 6790).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1600 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1600 ${value.length}`);
+        expect(value.length == 6790).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentResourcePromise001 err.code " + err.code);
-        console.log("testGetMediaContentResourcePromise001 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1600 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1600 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESOURCEPROMISE_002
-    * @tc.name    test getMediaContent method in promise mode
-    * @tc.desc    get the media in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1700
+    * @tc.name:    test getMediaContent method in promise mode
+    * @tc.desc:    get the media in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResourcePromise002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1700', 0, async (done: Function) => {
       context.resourceManager.getMediaContent({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.icon').id
       }, 120).then((value: Uint8Array) => {
-        console.log('testGetMediaContentResourcePromise002 ' + value);
-        console.log('testGetMediaContentResourcePromise002 ' + typeof value);
-        expect(value.length == 6790).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1700 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1700 ${typeof value}`);
+        expect(value.length == 6790).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentResourcePromise002 err.code " + err.code);
-        console.log("testGetMediaContentResourcePromise002 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1700 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESOURCEPROMISE_003
-    * @tc.name    test getMediaContent method in promise mode
-    * @tc.desc    get the media in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1800
+    * @tc.name:    test getMediaContent method in promise mode
+    * @tc.desc:    get the media in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResourcePromise003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1800', 0, async (done: Function) => {
       context.resourceManager.getMediaContent({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.test').id
       }, 0).then((value: Uint8Array) => {
-        console.log('testGetMediaContentResourcePromise003 ' + value);
-        console.log('testGetMediaContentResourcePromise003 ' + typeof value);
-        expect(value.length == 128635).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1800 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1800 ${typeof value}`);
+        expect(value.length == 128635).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentResourcePromise003 err.code " + err.code);
-        console.log("testGetMediaContentResourcePromise003 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1800 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1800 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESOURCEPROMISE_004
-    * @tc.name    test getMediaContent method in promise mode throw 9001001 error code
-    * @tc.desc    get the media in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1900
+    * @tc.name:    test getMediaContent method in promise mode throw 9001001 error code
+    * @tc.desc:    get the media in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResourcePromise004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1900', 0, async (done: Function) => {
       context.resourceManager.getMediaContent({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: 1111
       }, 0).then((value: Uint8Array) => {
-        console.log('testGetMediaContentResourcePromise004 ' + value);
-        console.log('testGetMediaContentResourcePromise004 ' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1900 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1900 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentResourcePromise004 err.code " + err.code);
-        console.log("testGetMediaContentResourcePromise004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1900 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_1900 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTRESOURCEPROMISE_005
-    * @tc.name    test getMediaContent method in promise mode throw 9001002 error code
-    * @tc.desc    get the media in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContent_Func_2000
+    * @tc.name:    test getMediaContent method in promise mode throw 9001002 error code
+    * @tc.desc:    get the media in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentResourcePromise005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContent_Func_2000', 0, async (done: Function) => {
       context.resourceManager.getMediaContent({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.string.test_1').id
       }, 0).then((value: Uint8Array) => {
-        console.log('testGetMediaContentResourcePromise005 ' + value);
-        console.log('testGetMediaContentResourcePromise005 ' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_2000 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_2000 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentResourcePromise005 err.code " + err.code);
-        console.log("testGetMediaContentResourcePromise005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_2000 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_2000 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESIDCALLBACK_001
-    * @tc.name    test getMediaContentBase64 method in callback mode
-    * @tc.desc    get the media base64 in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2100
+    * @tc.name:    test getMediaContentBase64 method in callback mode
+    * @tc.desc:    get the media base64 in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResIdCallback001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2100', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64($r('app.media.icon').id, 0, (err: BusinessError, value: string) => {
-        console.log('testGetMediaContentBase64ResIdCallback001 ' + value);
-        console.log('testGetMediaContentBase64ResIdCallback001 ' + value.slice(22, 50));
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2100 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2100 ${value}`.slice(22, 50));
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESIDCALLBACK_002
-    * @tc.name    test getMediaContentBase64 method in callback mode
-    * @tc.desc    get the media base64 in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2200
+    * @tc.name:    test getMediaContentBase64 method in callback mode
+    * @tc.desc:    get the media base64 in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResIdCallback002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2200', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64($r('app.media.icon')
         .id, 120, (err: BusinessError, value: string) => {
-        console.log('testGetMediaContentBase64ResIdCallback002 ' + value);
-        console.log('testGetMediaContentBase64ResIdCallback002 ' + typeof value);
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2200 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2200 ${typeof value}`);
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESIDCALLBACK_003
-    * @tc.name    test getMediaContentBase64 method in callback mode
-    * @tc.desc    get the media base64 in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2300
+    * @tc.name:    test getMediaContentBase64 method in callback mode
+    * @tc.desc:    get the media base64 in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResIdCallback003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2300', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64($r('app.media.test')
         .id, 0, (err: BusinessError, value: string) => {
-        console.log('testGetMediaContentBase64ResIdCallback003 ' + value);
-        console.log('testGetMediaContentBase64ResIdCallback003 ' + typeof value);
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2300 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2300 ${typeof value}`);
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A');
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESIDCALLBACK_004
-    * @tc.name    test getMediaContentBase64 method in callback mode throw 9001001 error code
-    * @tc.desc    get the media base64 in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2400
+    * @tc.name:    test getMediaContentBase64 method in callback mode throw 9001001 error code
+    * @tc.desc:    get the media base64 in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResIdCallback004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2400', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64(1111, 0, (err: BusinessError, value: string) => {
         if (!err) {
-          console.log('testGetMediaContentBase64ResIdCallback004 ' + value);
-          console.log('testGetMediaContentBase64ResIdCallback004 ' + typeof value);
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2400 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2400 ${typeof value}`);
+          expect().assertFail();
           done();
         } else {
-          console.log("testGetMediaContentBase64ResIdCallback004 err.code " + err.code);
-          console.log("testGetMediaContentBase64ResIdCallback004 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2400 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2400 errMessage ${err.message}`);
           expect(err.code == 9001001).assertTrue();
           done();
         }
@@ -566,24 +569,24 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESIDCALLBACK_005
-    * @tc.name    test getMediaContentBase64 method in callback mode throw 9001002 error code
-    * @tc.desc    get the media base64 in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2500
+    * @tc.name:    test getMediaContentBase64 method in callback mode throw 9001002 error code
+    * @tc.desc:    get the media base64 in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResIdCallback005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2500', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64($r('app.string.test_1')
         .id, 0, (err: BusinessError, value: string) => {
         if (!err) {
-          console.log('testGetMediaContentBase64ResIdCallback005 ' + value);
-          console.log('testGetMediaContentBase64ResIdCallback005 ' + typeof value);
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2500 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2500 ${typeof value}`);
+          expect().assertFail();
           done();
         } else {
-          console.log("testGetMediaContentBase64ResIdCallback005 err.code " + err.code);
-          console.log("testGetMediaContentBase64ResIdCallback005 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2500 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2500 errMessage ${err.message}`);
           expect(err.code == 9001002).assertTrue();
           done();
         }
@@ -591,198 +594,198 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESIDPROMISE_001
-    * @tc.name    test getMediaContentBase64 method in promise mode
-    * @tc.desc    get the media base64 in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2600
+    * @tc.name:    test getMediaContentBase64 method in promise mode
+    * @tc.desc:    get the media base64 in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResIdPromise001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2600', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64($r('app.media.icon').id, 0).then((value: string) => {
-        console.log('testGetMediaContentBase64ResIdPromise001 ' + value);
-        console.log('testGetMediaContentBase64ResIdPromise001 ' + typeof value);
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2600 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2600 ${typeof value}`);
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentBase64ResIdPromise001 err.code " + err.code);
-        console.log("testGetMediaContentBase64ResIdPromise001 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2600 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2600 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESIDPROMISE_002
-    * @tc.name    test getMediaContentBase64 method in promise mode
-    * @tc.desc    get the media base64 in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2700
+    * @tc.name:    test getMediaContentBase64 method in promise mode
+    * @tc.desc:    get the media base64 in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResIdPromise002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2700', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64($r('app.media.icon').id, 120).then((value: string) => {
-        console.log('testGetMediaContentBase64ResIdPromise002 ' + value);
-        console.log('testGetMediaContentBase64ResIdPromise002 ' + value.slice(22, 50));
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2700 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2700 ${value}`.slice(22, 50));
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentBase64ResIdPromise002 err.code " + err.code);
-        console.log("testGetMediaContentBase64ResIdPromise002 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2700 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESIDPROMISE_003
-    * @tc.name    test getMediaContentBase64 method in promise mode
-    * @tc.desc    get the media base64 in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2800
+    * @tc.name:    test getMediaContentBase64 method in promise mode
+    * @tc.desc:    get the media base64 in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResIdPromise003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2800', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64($r('app.media.test').id, 0).then((value: string) => {
-        console.log('testGetMediaContentBase64ResIdPromise003 ' + value);
-        console.log('testGetMediaContentBase64ResIdPromise003 ' + value.slice(22, 50));
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2800 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2800 ${value}`.slice(22, 50));
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A');
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentBase64ResIdPromise003 err.code " + err.code);
-        console.log("testGetMediaContentBase64ResIdPromise003 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2800 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2800 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESIDPROMISE_004
-    * @tc.name    test getMediaContentBase64 method in promise mode throw 9001001 error code
-    * @tc.desc    get the media base64 in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2900
+    * @tc.name:    test getMediaContentBase64 method in promise mode throw 9001001 error code
+    * @tc.desc:    get the media base64 in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResIdPromise004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2900', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64(1111, 0).then((value: string) => {
-        console.log('testGetMediaContentBase64ResIdPromise004 ' + value);
-        console.log('testGetMediaContentBase64ResIdPromise004 ' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2900 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2900 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentBase64ResIdPromise004 err.code " + err.code);
-        console.log("testGetMediaContentBase64ResIdPromise004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2900 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_2900 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESIDPROMISE_005
-    * @tc.name    test getMediaContentBase64 method in promise mode throw 9001002 error code
-    * @tc.desc    get the media base64 in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3000
+    * @tc.name:    test getMediaContentBase64 method in promise mode throw 9001002 error code
+    * @tc.desc:    get the media base64 in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResIdPromise005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3000', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64($r('app.string.test_1').id, 0).then((value: string) => {
-        console.log('testGetMediaContentBase64ResIdPromise005 ' + value);
-        console.log('testGetMediaContentBase64ResIdPromise005 ' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3000 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3000 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentBase64ResIdPromise005 err.code " + err.code);
-        console.log("testGetMediaContentBase64ResIdPromise005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3000 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3000 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESOURCECALLBACK_001
-    * @tc.name    test getMediaContentBase64 method in callback mode
-    * @tc.desc    get the media base64 in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3100
+    * @tc.name:    test getMediaContentBase64 method in callback mode
+    * @tc.desc:    get the media base64 in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResourceCallback001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3100', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.icon').id
       }, 0, (err: BusinessError, value: string) => {
-        console.log('testGetMediaContentBase64ResourceCallback001 ' + value);
-        console.log('testGetMediaContentBase64ResourceCallback001 ' + typeof value);
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3100 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3100 ${typeof value}`);
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESOURCECALLBACK_002
-    * @tc.name    test getMediaContentBase64 method in callback mode
-    * @tc.desc    get the media base64 in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3200
+    * @tc.name:    test getMediaContentBase64 method in callback mode
+    * @tc.desc:    get the media base64 in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResourceCallback002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3200', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.icon').id
       }, 120, (err: BusinessError, value: string) => {
-        console.log('testGetMediaContentBase64ResourceCallback002 ' + value);
-        console.log('testGetMediaContentBase64ResourceCallback002 ' + typeof value);
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3200 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3200 ${typeof value}`);
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESOURCECALLBACK_003
-    * @tc.name    test getMediaContentBase64 method in callback mode
-    * @tc.desc    get the media base64 in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3300
+    * @tc.name:    test getMediaContentBase64 method in callback mode
+    * @tc.desc:    get the media base64 in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResourceCallback003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3300', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.test').id
       }, 0, (err: BusinessError, value: string) => {
-        console.log('testGetMediaContentBase64ResourceCallback003 ' + value);
-        console.log('testGetMediaContentBase64ResourceCallback003 ' + typeof value);
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3300 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3300 ${typeof value}`);
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A');
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESOURCECALLBACK_004
-    * @tc.name    test getMediaContentBase64 method in callback mode throw 9001001 error code
-    * @tc.desc    get the media base64 in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3400
+    * @tc.name:    test getMediaContentBase64 method in callback mode throw 9001001 error code
+    * @tc.desc:    get the media base64 in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResourceCallback004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3400', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: 1111
       }, 0, (err: BusinessError, value: string) => {
         if (!err) {
-          console.log('testGetMediaContentBase64ResourceCallback004 ' + value);
-          console.log('testGetMediaContentBase64ResourceCallback004 ' + typeof value);
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3400 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3400 ${typeof value}`);
+          expect().assertFail();
           done();
         } else {
-          console.log("testGetMediaContentBase64ResourceCallback004 err.code " + err.code);
-          console.log("testGetMediaContentBase64ResourceCallback004 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3400 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3400 errMessage ${err.message}`);
           expect(err.code == 9001001).assertTrue();
           done();
         }
@@ -790,27 +793,27 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESOURCECALLBACK_005
-    * @tc.name    test getMediaContentBase64 method in callback mode throw 9001002 error code
-    * @tc.desc    get the media base64 in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3500
+    * @tc.name:    test getMediaContentBase64 method in callback mode throw 9001002 error code
+    * @tc.desc:    get the media base64 in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResourceCallback005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3500', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.string.test_1').id
       }, 0, (err: BusinessError, value: string) => {
         if (!err) {
-          console.log('testGetMediaContentBase64ResourceCallback005 ' + value);
-          console.log('testGetMediaContentBase64ResourceCallback005 ' + typeof value);
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3500 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3500 ${typeof value}`);
+          expect().assertFail();
           done();
         } else {
-          console.log("testGetMediaContentBase64ResourceCallback005 err.code " + err.code);
-          console.log("testGetMediaContentBase64ResourceCallback005 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3500 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3500 errMessage ${err.message}`);
           expect(err.code == 9001002).assertTrue();
           done();
         }
@@ -818,202 +821,202 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESOURCEPROMISE_001
-    * @tc.name    test getMediaContentBase64 method in promise mode
-    * @tc.desc    get the media base64 in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3600
+    * @tc.name:    test getMediaContentBase64 method in promise mode
+    * @tc.desc:    get the media base64 in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResourcePromise001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3600', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.icon').id
       }, 0).then((value: string) => {
-        console.log('testGetMediaContentBase64ResourcePromise001 ' + value);
-        console.log('testGetMediaContentBase64ResourcePromise001 ' + typeof value);
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3600 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3600 ${typeof value}`);
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentBase64ResourcePromise001 err.code " + err.code);
-        console.log("testGetMediaContentBase64ResourcePromise001 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3600 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3600 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESOURCEPROMISE_002
-    * @tc.name    test getMediaContentBase64 method in promise mode
-    * @tc.desc    get the media base64 in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3700
+    * @tc.name:    test getMediaContentBase64 method in promise mode
+    * @tc.desc:    get the media base64 in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResourcePromise002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3700', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.icon').id
       }, 120).then((value: string) => {
-        console.log('testGetMediaContentBase64ResourcePromise002 ' + value);
-        console.log('testGetMediaContentBase64ResourcePromise002 ' + typeof value);
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3700 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3700 ${typeof value}`);
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentBase64ResourcePromise002 err.code " + err.code);
-        console.log("testGetMediaContentBase64ResourcePromise002 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3700 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESOURCEPROMISE_003
-    * @tc.name    test getMediaContentBase64 method in promise mode
-    * @tc.desc    get the media base64 in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3800
+    * @tc.name:    test getMediaContentBase64 method in promise mode
+    * @tc.desc:    get the media base64 in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResourcePromise003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3800', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.test').id
       }, 0).then((value: string) => {
-        console.log('testGetMediaContentBase64ResourcePromise003 ' + value);
-        console.log('testGetMediaContentBase64ResourcePromise003 ' + typeof value);
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3800 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3800 ${typeof value}`);
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A');
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentBase64ResourcePromise003 err.code " + err.code);
-        console.log("testGetMediaContentBase64ResourcePromise003 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3800 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3800 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-   * @tc.number  TEST_GETMEDIACONTENTBASE64RESOURCEPROMISE_004
-   * @tc.name    test getMediaContentBase64 method in promise mode throw 9001001 error code
-   * @tc.desc    get the media base64 in promise mode
-   * @tc.size:   MediumTest
-   * @tc.type    method
-   * @tc.level   level 2
+   * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3900
+   * @tc.name:    test getMediaContentBase64 method in promise mode throw 9001001 error code
+   * @tc.desc:    get the media base64 in promise mode
+   * @tc.size:    MediumTest
+   * @tc.type:    method
+   * @tc.level:   level 2
    */
-    it('testGetMediaContentBase64ResourcePromise004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3900', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: 1111
       }, 0).then((value: string) => {
-        console.log('testGetMediaContentBase64ResourcePromise004 ' + value);
-        console.log('testGetMediaContentBase64ResourcePromise004 ' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3900 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3900 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentBase64ResourcePromise004 err.code " + err.code);
-        console.log("testGetMediaContentBase64ResourcePromise004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3900 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_3900 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64RESOURCEPROMISE_005
-    * @tc.name    test getMediaContentBase64 method in promise mode throw 9001002 error code
-    * @tc.desc    get the media base64 in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_4000
+    * @tc.name:    test getMediaContentBase64 method in promise mode throw 9001002 error code
+    * @tc.desc:    get the media base64 in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64ResourcePromise005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_4000', 0, async (done: Function) => {
       context.resourceManager.getMediaContentBase64({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.string.test_1').id
       }, 0).then((value: string) => {
-        console.log('testGetMediaContentBase64ResourcePromise005 ' + value);
-        console.log('testGetMediaContentBase64ResourcePromise005 ' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_4000 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_4000 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaContentBase64ResourcePromise005 err.code " + err.code);
-        console.log("testGetMediaContentBase64ResourcePromise005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_4000 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaContentBase64_Func_4000 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABYNAMECALLBACK_001
-    * @tc.name    test getMediaByName method in callback mode
-    * @tc.desc    get the media in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4100
+    * @tc.name:    test getMediaByName method in callback mode
+    * @tc.desc:    get the media in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaByNameCallback001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4100', 0, async (done: Function) => {
       context.resourceManager.getMediaByName('icon', 0, (err: BusinessError, value: Uint8Array) => {
-        console.log('testGetMediaByNameCallback001 ' + value)
-        console.log('testGetMediaByNameCallback001 ' + typeof value)
-        expect(value.length == 6790).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4100 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4100 ${typeof value}`);
+        expect(value.length == 6790).assertTrue();
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABYNAMECALLBACK_002
-    * @tc.name    test getMediaByName method in callback mode
-    * @tc.desc    get the media in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4200
+    * @tc.name:    test getMediaByName method in callback mode
+    * @tc.desc:    get the media in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaByNameCallback002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4200', 0, async (done: Function) => {
       context.resourceManager.getMediaByName('icon', 120, (err: BusinessError, value: Uint8Array) => {
-        console.log('testGetMediaByNameCallback002 ' + value)
-        console.log('testGetMediaByNameCallback002 ' + typeof value)
-        expect(value.length == 6790).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4200 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4200 ${typeof value}`);
+        expect(value.length == 6790).assertTrue();
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABYNAMECALLBACK_003
-    * @tc.name    test getMediaByName method in callback mode
-    * @tc.desc    get the media in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4300
+    * @tc.name:    test getMediaByName method in callback mode
+    * @tc.desc:    get the media in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaByNameCallback003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4300', 0, async (done: Function) => {
       context.resourceManager.getMediaByName('test', 0, (err: BusinessError, value: Uint8Array) => {
-        console.log('testGetMediaByNameCallback003 ' + value)
-        console.log('testGetMediaByNameCallback003 ' + typeof value)
-        expect(value.length == 128635).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4300 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4300 ${typeof value}`);
+        expect(value.length == 128635).assertTrue();
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABYNAMECALLBACK_004
-    * @tc.name    test getMediaByName method in callback mode throw 9001003 error code
-    * @tc.desc    get the media in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4400
+    * @tc.name:    test getMediaByName method in callback mode throw 9001003 error code
+    * @tc.desc:    get the media in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaByNameCallback004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4400', 0, async (done: Function) => {
       context.resourceManager.getMediaByName('notexist', 0, (err: BusinessError, value: Uint8Array) => {
         if (!err) {
-          console.log('testGetMediaByNameCallback004 ' + value)
-          console.log('testGetMediaByNameCallback004 ' + typeof value)
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4400 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4400 ${typeof value}`);
+          expect().assertFail();
           done();
         } else {
-          console.log("testGetMediaByNameCallback004 err.code " + err.code);
-          console.log("testGetMediaByNameCallback004 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4400 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4400 errMessage ${err.message}`);
           expect(err.code == 9001003).assertTrue();
           done();
         }
@@ -1021,231 +1024,231 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABYNAMEPROMISE_001
-    * @tc.name    test getMediaByName method in promise mode
-    * @tc.desc    get the media in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4500
+    * @tc.name:    test getMediaByName method in promise mode
+    * @tc.desc:    get the media in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaByNamePromise001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4500', 0, async (done: Function) => {
       context.resourceManager.getMediaByName('icon', 0).then((value: Uint8Array) => {
-        console.log('testGetMediaByNamePromise001 ' + value)
-        console.log('testGetMediaByNamePromise001 ' + typeof value)
-        expect(value.length == 6790).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4500 ${value}`)
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4500 ${typeof value}`)
+        expect(value.length == 6790).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaByNamePromise001 err.code " + err.code);
-        console.log("testGetMediaByNamePromise001 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4500 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4500 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABYNAMEPROMISE_002
-    * @tc.name    test getMediaByName method in promise mode
-    * @tc.desc    get the media in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4600
+    * @tc.name:    test getMediaByName method in promise mode
+    * @tc.desc:    get the media in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaByNamePromise002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4600', 0, async (done: Function) => {
       context.resourceManager.getMediaByName('icon', 120).then((value: Uint8Array) => {
-        console.log('testGetMediaByNamePromise002 ' + value)
-        console.log('testGetMediaByNamePromise002 ' + typeof value)
-        expect(value.length == 6790).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4600 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4600 ${typeof value}`);
+        expect(value.length == 6790).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaByNamePromise002 err.code " + err.code);
-        console.log("testGetMediaByNamePromise002 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4600 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4600 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABYNAMEPROMISE_003
-    * @tc.name    test getMediaByName method in promise mode
-    * @tc.desc    get the media in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4700
+    * @tc.name:    test getMediaByName method in promise mode
+    * @tc.desc:    get the media in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaByNamePromise003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4700', 0, async (done: Function) => {
       context.resourceManager.getMediaByName('test', 0).then((value: Uint8Array) => {
-        console.log('testGetMediaByNamePromise003 ' + value)
-        console.log('testGetMediaByNamePromise003 ' + typeof value)
-        expect(value.length == 128635).assertTrue()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4700 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4700 ${typeof value}`);
+        expect(value.length == 128635).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaByNamePromise003 err.code " + err.code);
-        console.log("testGetMediaByNamePromise003 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4700 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABYNAMEPROMISE_004
-    * @tc.name    test getMediaByName method in promise mode throw 9001003 error code
-    * @tc.desc    get the media in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4800
+    * @tc.name:    test getMediaByName method in promise mode throw 9001003 error code
+    * @tc.desc:    get the media in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaByNamePromise004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4800', 0, async (done: Function) => {
       context.resourceManager.getMediaByName('notexist', 0).then((value: Uint8Array) => {
-        console.log('testGetMediaByNamePromise004 ' + value)
-        console.log('testGetMediaByNamePromise004 ' + typeof value)
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4800 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4800 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaByNamePromise004 err.code " + err.code);
-        console.log("testGetMediaByNamePromise004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4800 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByName_Func_4800 errMessage ${err.message}`);
         expect(err.code == 9001003).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABYNAMESYNC_001
-    * @tc.name    test getMediaByNameSync method
-    * @tc.desc    get the media in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_4900
+    * @tc.name:    test getMediaByNameSync method
+    * @tc.desc:    get the media in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaByNameSync001', 0, async (done: Function) => {
-      let value: Uint8Array = context.resourceManager.getMediaByNameSync('icon', 0)
-      console.log('testGetMediaByNameSync001 ' + value)
-      console.log('testGetMediaByNameSync001 ' + typeof value)
-      expect(value.length == 6790).assertTrue()
+    it('SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_4900', 0, async (done: Function) => {
+      let value: Uint8Array = context.resourceManager.getMediaByNameSync('icon', 0);
+      console.log(`SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_4900 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_4900 ${typeof value}`);
+      expect(value.length == 6790).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABYNAMESYNC_002
-    * @tc.name    test getMediaByNameSync method
-    * @tc.desc    get the media in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_5000
+    * @tc.name:    test getMediaByNameSync method
+    * @tc.desc:    get the media in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaByNameSync002', 0, async (done: Function) => {
-      let value: Uint8Array = context.resourceManager.getMediaByNameSync('icon', 120)
-      console.log('testGetMediaByNameSync002 ' + value)
-      console.log('testGetMediaByNameSync002 ' + typeof value)
-      expect(value.length == 6790).assertTrue()
+    it('SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_5000', 0, async (done: Function) => {
+      let value: Uint8Array = context.resourceManager.getMediaByNameSync('icon', 120);
+      console.log(`SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_5000 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_5000 ${typeof value}`);
+      expect(value.length == 6790).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABYNAMESYNC_003
-    * @tc.name    test getMediaByNameSync method
-    * @tc.desc    get the media in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_5100
+    * @tc.name:    test getMediaByNameSync method
+    * @tc.desc:    get the media in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaByNameSync003', 0, async (done: Function) => {
-      let value: Uint8Array = context.resourceManager.getMediaByNameSync('test', 0)
-      console.log('testGetMediaByNameSync003 ' + value)
-      console.log('testGetMediaByNameSync003 ' + typeof value)
-      expect(value.length == 128635).assertTrue()
+    it('SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_5100', 0, async (done: Function) => {
+      let value: Uint8Array = context.resourceManager.getMediaByNameSync('test', 0);
+      console.log(`SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_5100 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_5100 ${typeof value}`);
+      expect(value.length == 128635).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABYNAMESYNC_004
-    * @tc.name    test getMediaByNameSync method throw 9001003 error code
-    * @tc.desc    get the media in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_5200
+    * @tc.name:    test getMediaByNameSync method throw 9001003 error code
+    * @tc.desc:    get the media in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaByNameSync004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_5200', 0, async (done: Function) => {
       try {
-        let value: Uint8Array = context.resourceManager.getMediaByNameSync('notexist', 0)
-        console.log('testGetMediaByNameSync004 ' + value)
-        console.log('testGetMediaByNameSync004 ' + typeof value)
+        let value: Uint8Array = context.resourceManager.getMediaByNameSync('notexist', 0);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_5200 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_5200 ${typeof value}`);
         done();
       } catch (err) {
-        console.log("testGetMediaByNameSync004 err.code " + err.code);
-        console.log("testGetMediaByNameSync004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_5200 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaByNameSync_Func_5200 errMessage ${err.message}`);
         expect(err.code == 9001003).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABASE64BYNAMECALLBACK_001
-    * @tc.name    test getMediaBase64ByName method in callback mode
-    * @tc.desc    get the media base64 in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5300
+    * @tc.name:    test getMediaBase64ByName method in callback mode
+    * @tc.desc:    get the media base64 in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaBase64ByNameCallback001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5300', 0, async (done: Function) => {
       context.resourceManager.getMediaBase64ByName('icon', 0, (err: BusinessError, value: string) => {
-        console.log('testGetMediaBase64ByNameCallback001 ' + value);
-        console.log('testGetMediaBase64ByNameCallback001 ' + typeof value);
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5300 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5300 ${typeof value}`);
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABASE64BYNAMECALLBACK_002
-    * @tc.name    test getMediaBase64ByName method in callback mode
-    * @tc.desc    get the media base64 in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5400
+    * @tc.name:    test getMediaBase64ByName method in callback mode
+    * @tc.desc:    get the media base64 in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaBase64ByNameCallback002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5400', 0, async (done: Function) => {
       context.resourceManager.getMediaBase64ByName('icon', 120, (err: BusinessError, value: string) => {
-        console.log('testGetMediaBase64ByNameCallback002 ' + value);
-        console.log('testGetMediaBase64ByNameCallback002 ' + typeof value);
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5400 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5400 ${typeof value}`);
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABASE64BYNAMECALLBACK_003
-    * @tc.name    test getMediaBase64ByName method in callback mode
-    * @tc.desc    get the media base64 in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5500
+    * @tc.name:    test getMediaBase64ByName method in callback mode
+    * @tc.desc:    get the media base64 in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaBase64ByNameCallback003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5500', 0, async (done: Function) => {
       context.resourceManager.getMediaBase64ByName('test', 0, (err: BusinessError, value: string) => {
-        console.log('testGetMediaBase64ByNameCallback003 ' + value);
-        console.log('testGetMediaBase64ByNameCallback003 ' + typeof value);
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5500 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5500 ${typeof value}`);
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A');
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABASE64BYNAMECALLBACK_004
-    * @tc.name    test getMediaBase64ByName method in callback mode throw 9001003 error code
-    * @tc.desc    get the media base64 in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5600
+    * @tc.name:    test getMediaBase64ByName method in callback mode throw 9001003 error code
+    * @tc.desc:    get the media base64 in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaBase64ByNameCallback004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5600', 0, async (done: Function) => {
       context.resourceManager.getMediaBase64ByName('notexist', 0, (err: BusinessError, value: string) => {
         if (!err) {
-          console.log('testGetMediaBase64ByNameCallback004 ' + value);
-          console.log('testGetMediaBase64ByNameCallback004 ' + typeof value);
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5600 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5600 ${typeof value}`);
+          expect().assertFail();
           done();
         } else {
-          console.log("testGetMediaBase64ByNameCallback004 err.code " + err.code);
-          console.log("testGetMediaBase64ByNameCallback004 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5600 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5600 errMessage ${err.message}`);
           expect(err.code == 9001003).assertTrue();
           done();
         }
@@ -1253,430 +1256,430 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABASE64BYNAMEPROMISE_001
-    * @tc.name    test getMediaBase64ByName method in promise mode
-    * @tc.desc    get the media base64 in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5700
+    * @tc.name:    test getMediaBase64ByName method in promise mode
+    * @tc.desc:    get the media base64 in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaBase64ByNamePromise001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5700', 0, async (done: Function) => {
       context.resourceManager.getMediaBase64ByName('icon', 0).then((value: string) => {
-        console.log('testGetMediaBase64ByNamePromise001 ' + value);
-        console.log('testGetMediaBase64ByNamePromise001 ' + typeof value);
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5700 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5700 ${typeof value}`);
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaBase64ByNamePromise001 err.code " + err.code);
-        console.log("testGetMediaBase64ByNamePromise001 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5700 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABASE64BYNAMEPROMISE_002
-    * @tc.name    test getMediaBase64ByName method in promise mode
-    * @tc.desc    get the media base64 in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5800
+    * @tc.name:    test getMediaBase64ByName method in promise mode
+    * @tc.desc:    get the media base64 in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaBase64ByNamePromise002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5800', 0, async (done: Function) => {
       context.resourceManager.getMediaBase64ByName('icon', 120).then((value: string) => {
-        console.log('testGetMediaBase64ByNamePromise002 ' + value);
-        console.log('testGetMediaBase64ByNamePromise002 ' + typeof value);
-        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5800 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5800 ${typeof value}`);
+        expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaBase64ByNamePromise002 err.code " + err.code);
-        console.log("testGetMediaBase64ByNamePromise002 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5800 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5800 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABASE64BYNAMEPROMISE_003
-    * @tc.name    test getMediaBase64ByName method in promise mode
-    * @tc.desc    get the media base64 in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5900
+    * @tc.name:    test getMediaBase64ByName method in promise mode
+    * @tc.desc:    get the media base64 in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaBase64ByNamePromise003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5900', 0, async (done: Function) => {
       context.resourceManager.getMediaBase64ByName('test', 0).then((value: string) => {
-        console.log('testGetMediaBase64ByNamePromise003 ' + value);
-        console.log('testGetMediaBase64ByNamePromise003 ' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5900 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5900 ${typeof value}`);
         expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A')
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaBase64ByNamePromise003 err.code " + err.code);
-        console.log("testGetMediaBase64ByNamePromise003 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5900 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_5900 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABASE64BYNAMEPROMISE_004
-    * @tc.name    test getMediaBase64ByName method in promise mode throw 9001003 error code
-    * @tc.desc    get the media base64 in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_6000
+    * @tc.name:    test getMediaBase64ByName method in promise mode throw 9001003 error code
+    * @tc.desc:    get the media base64 in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaBase64ByNamePromise004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_6000', 0, async (done: Function) => {
       context.resourceManager.getMediaBase64ByName('notexist', 0).then((value: string) => {
-        console.log('testGetMediaBase64ByNamePromise004 ' + value);
-        console.log('testGetMediaBase64ByNamePromise004 ' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_6000 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_6000 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetMediaBase64ByNamePromise004 err.code " + err.code);
-        console.log("testGetMediaBase64ByNamePromise004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_6000 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByName_Func_6000 errMessage ${err.message}`);
         expect(err.code == 9001003).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABASE64BYNAMESYNC_001
-    * @tc.name    test getMediaBase64ByNameSync method in sync mode
-    * @tc.desc    get the media base64 in Sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6100
+    * @tc.name:    test getMediaBase64ByNameSync method in sync mode
+    * @tc.desc:    get the media base64 in Sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaBase64ByNameSync001', 0, async (done: Function) => {
-      let value: string = context.resourceManager.getMediaBase64ByNameSync('icon', 0)
-      console.log('testGetMediaBase64ByNameSync001 ' + value);
-      console.log('testGetMediaBase64ByNameSync001 ' + typeof value);
-      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+    it('SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6100', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getMediaBase64ByNameSync('icon', 0);
+      console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6100 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6100 ${typeof value}`);
+      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABASE64BYNAMESYNC_002
-    * @tc.name    test getMediaBase64ByNameSync method in sync mode
-    * @tc.desc    get the media base64 in Sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6200
+    * @tc.name:    test getMediaBase64ByNameSync method in sync mode
+    * @tc.desc:    get the media base64 in Sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaBase64ByNameSync002', 0, async (done: Function) => {
-      let value: string = context.resourceManager.getMediaBase64ByNameSync('icon', 120)
-      console.log('testGetMediaBase64ByNameSync002 ' + value);
-      console.log('testGetMediaBase64ByNameSync002 ' + typeof value);
-      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+    it('SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6200', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getMediaBase64ByNameSync('icon', 120);
+      console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6200 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6200 ${typeof value}`);
+      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABASE64BYNAMESYNC_003
-    * @tc.name    test getMediaBase64ByNameSync method in sync mode
-    * @tc.desc    get the media base64 in Sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6300
+    * @tc.name:    test getMediaBase64ByNameSync method in sync mode
+    * @tc.desc:    get the media base64 in Sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaBase64ByNameSync003', 0, async (done: Function) => {
-      let value: string = context.resourceManager.getMediaBase64ByNameSync('test', 0)
-      console.log('testGetMediaBase64ByNameSync003 ' + value);
-      console.log('testGetMediaBase64ByNameSync003 ' + typeof value);
-      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A')
+    it('SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6300', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getMediaBase64ByNameSync('test', 0);
+      console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6300 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6300 ${typeof value}`);
+      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIABASE64BYNAMESYNC_004
-    * @tc.name    test getMediaBase64ByNameSync method in sync mode throw 9001003 error code
-    * @tc.desc    get the media base64 in Sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6400
+    * @tc.name:    test getMediaBase64ByNameSync method in sync mode throw 9001003 error code
+    * @tc.desc:    get the media base64 in Sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaBase64ByNameSync004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6400', 0, async (done: Function) => {
       try {
-        let value: string = context.resourceManager.getMediaBase64ByNameSync('notexist', 0)
-        console.log('testGetMediaBase64ByNameSync004 ' + value);
-        console.log('testGetMediaBase64ByNameSync004 ' + typeof value);
+        let value: string = context.resourceManager.getMediaBase64ByNameSync('notexist', 0);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6400 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6400 ${typeof value}`);
         done();
       } catch (err) {
-        console.log("testGetMediaBase64ByNameSync004 err.code " + err.code);
-        console.log("testGetMediaBase64ByNameSync004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6400 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetMediaBase64ByNameSync_Func_6400 errMessage ${err.message}`);
         expect(err.code == 9001003).assertTrue();
         done();
       }
     })
 
     // /* *
-    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESID_001
-    // * @tc.name    test getDrawableDescriptor method
-    // * @tc.desc    get the drawable descriptor
-    // * @tc.size:   MediumTest
-    // * @tc.type    method
-    // * @tc.level   level 2
+    // * @tc.number:  SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6500
+    // * @tc.name:    test getDrawableDescriptor method
+    // * @tc.desc:    get the drawable descriptor
+    // * @tc.size:    MediumTest
+    // * @tc.type:    method
+    // * @tc.level:   level 2
     // */
-    // it('testGetDrawableDescriptorResId001', 0, async () => {
-    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0)
-    //   console.log('testGetDrawableDescriptorResId001 ' + value);
-    //   console.log('testGetDrawableDescriptorResId001 ' + typeof value);
-    //   expect(value !== undefined).assertTrue()
+    // it('SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6500', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 0);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6500 ${value}`);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6500 ${typeof value}`);
+    //   expect(value !== undefined).assertTrue();
     // })
     //
     // /* *
-    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESID_002
-    // * @tc.name    test getDrawableDescriptor method
-    // * @tc.desc    get the drawable descriptor
-    // * @tc.size:   MediumTest
-    // * @tc.type    method
-    // * @tc.level   level 2
+    // * @tc.number:  SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6600
+    // * @tc.name:    test getDrawableDescriptor method
+    // * @tc.desc:    get the drawable descriptor
+    // * @tc.size:    MediumTest
+    // * @tc.type:    method
+    // * @tc.level:   level 2
     // */
-    // it('testGetDrawableDescriptorResId002', 0, async () => {
-    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120)
-    //   console.log('testGetDrawableDescriptorResId002 ' + value);
-    //   console.log('testGetDrawableDescriptorResId002 ' + typeof value);
-    //   expect(value !== undefined).assertTrue()
+    // it('SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6600', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor($r('app.media.icon').id, 120);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6600 ${value}`);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6600 ${typeof value}`);
+    //   expect(value !== undefined).assertTrue();
     // })
     //
     // /* *
-    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESID_003
-    // * @tc.name    test getDrawableDescriptor method
-    // * @tc.desc    get the drawable descriptor
-    // * @tc.size:   MediumTest
-    // * @tc.type    method
-    // * @tc.level   level 2
+    // * @tc.number:  SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6700
+    // * @tc.name:    test getDrawableDescriptor method
+    // * @tc.desc:    get the drawable descriptor
+    // * @tc.size:    MediumTest
+    // * @tc.type:    method
+    // * @tc.level:   level 2
     // */
-    // it('testGetDrawableDescriptorResId003', 0, async () => {
-    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor($r('app.media.test').id, 0)
-    //   console.log('testGetDrawableDescriptorResId003 ' + value);
-    //   console.log('testGetDrawableDescriptorResId003 ' + typeof value);
-    //   expect(value !== undefined).assertTrue()
+    // it('SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6700', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor($r('app.media.test').id, 0);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6700 ${value}`);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6700 ${typeof value}`);
+    //   expect(value !== undefined).assertTrue();
     // })
     //
     // /* *
-    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESID_004
-    // * @tc.name    test getDrawableDescriptor method throw 9001001 error code
-    // * @tc.desc    get the drawable descriptor
-    // * @tc.size:   MediumTest
-    // * @tc.type    method
-    // * @tc.level   level 2
+    // * @tc.number:  SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6800
+    // * @tc.name:    test getDrawableDescriptor method throw 9001001 error code
+    // * @tc.desc:    get the drawable descriptor
+    // * @tc.size:    MediumTest
+    // * @tc.type:    method
+    // * @tc.level:   level 2
     // */
-    // it('testGetDrawableDescriptorResId004', 0, async (done: Function) => {
+    // it('SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6800', 0, async (done: Function) => {
     //   try {
-    //     let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor(1111, 0)
-    //     console.log('testGetDrawableDescriptorResId004 ' + value);
-    //     console.log('testGetDrawableDescriptorResId004 ' + typeof value);
+    //     let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor(1111, 0);
+    //     console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6800 ${value}`);
+    //     console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6800 ${typeof value}`);
     //   } catch (err) {
-    //     console.log("testGetDrawableDescriptorResId004 err.code " + err.code);
-    //     console.log("testGetDrawableDescriptorResId004 err.message " + err.message);
+    //     console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6800 errCode ${err.code}`);
+    //     console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6800 errMessage ${err.message}`);
     //     expect(err.code == 9001001).assertTrue();
     //     done();
     //   }
     // })
     //
     // /* *
-    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESOURCE_001
-    // * @tc.name    test getDrawableDescriptor method
-    // * @tc.desc    get the drawable descriptor
-    // * @tc.size:   MediumTest
-    // * @tc.type    method
-    // * @tc.level   level 2
+    // * @tc.number:  SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6900
+    // * @tc.name:    test getDrawableDescriptor method
+    // * @tc.desc:    get the drawable descriptor
+    // * @tc.size:    MediumTest
+    // * @tc.type:    method
+    // * @tc.level:   level 2
     // */
-    // it('testGetDrawableDescriptorResource001', 0, async () => {
+    // it('SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6900', 0, async () => {
     //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor({
     //     bundleName: "com.example.resourcemanagertest",
     //     moduleName: "entry_test",
     //     id: $r('app.media.icon').id
-    //   }, 0)
-    //   console.log('testGetDrawableDescriptorResource001 ' + value);
-    //   console.log('testGetDrawableDescriptorResource001 ' + typeof value);
-    //   expect(value !== undefined).assertTrue()
+    //   }, 0);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6900 ${value}`);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_6900 ${typeof value}`);
+    //   expect(value !== undefined).assertTrue();
     // })
     //
     // /* *
-    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESOURCE_002
-    // * @tc.name    test getDrawableDescriptor method
-    // * @tc.desc    get the drawable descriptor
-    // * @tc.size:   MediumTest
-    // * @tc.type    method
-    // * @tc.level   level 2
+    // * @tc.number:  SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_7000
+    // * @tc.name:    test getDrawableDescriptor method
+    // * @tc.desc:    get the drawable descriptor
+    // * @tc.size:    MediumTest
+    // * @tc.type:    method
+    // * @tc.level:   level 2
     // */
-    // it('testGetDrawableDescriptorResource002', 0, async () => {
+    // it('SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_7000', 0, async () => {
     //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor({
     //     bundleName: "com.example.resourcemanagertest",
     //     moduleName: "entry_test",
     //     id: $r('app.media.icon').id
-    //   }, 120)
-    //   console.log('testGetDrawableDescriptorResource002 ' + value);
-    //   console.log('testGetDrawableDescriptorResource002 ' + typeof value);
-    //   expect(value !== undefined).assertTrue()
+    //   }, 120);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_7000 ${value}`);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_7000 ${typeof value}`);
+    //   expect(value !== undefined).assertTrue();
     // })
     //
     // /* *
-    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESOURCE_003
-    // * @tc.name    test getDrawableDescriptor method
-    // * @tc.desc    get the drawable descriptor
-    // * @tc.size:   MediumTest
-    // * @tc.type    method
-    // * @tc.level   level 2
+    // * @tc.number:  SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_7100
+    // * @tc.name:    test getDrawableDescriptor method
+    // * @tc.desc:    get the drawable descriptor
+    // * @tc.size:    MediumTest
+    // * @tc.type:    method
+    // * @tc.level:   level 2
     // */
-    // it('testGetDrawableDescriptorResource003', 0, async () => {
+    // it('SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_7100', 0, async () => {
     //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor({
     //     bundleName: "com.example.resourcemanagertest",
     //     moduleName: "entry_test",
     //     id: $r('app.media.test').id
-    //   }, 0)
-    //   console.log('testGetDrawableDescriptorResource003 ' + value);
-    //   console.log('testGetDrawableDescriptorResource003 ' + typeof value);
-    //   expect(value !== undefined).assertTrue()
+    //   }, 0);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_7100 ${value}`);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_7100 ${typeof value}`);
+    //   expect(value !== undefined).assertTrue();
     // })
     //
     // /* *
-    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORRESOURCE_004
-    // * @tc.name    test getDrawableDescriptor method throw 9001001 error code
-    // * @tc.desc    get the drawable descriptor
-    // * @tc.size:   MediumTest
-    // * @tc.type    method
-    // * @tc.level   level 2
+    // * @tc.number:  SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_7200
+    // * @tc.name:    test getDrawableDescriptor method throw 9001001 error code
+    // * @tc.desc:    get the drawable descriptor
+    // * @tc.size:    MediumTest
+    // * @tc.type:    method
+    // * @tc.level:   level 2
     // */
-    // it('testGetDrawableDescriptorResource004', 0, async (done: Function) => {
+    // it('SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_7200', 0, async (done: Function) => {
     //   try {
     //     let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptor({
     //       bundleName: "com.example.resourcemanagertest",
     //       moduleName: "entry_test",
     //       id: 1111
-    //     }, 120)
-    //     console.log('testGetDrawableDescriptorResource004 ' + value);
-    //     console.log('testGetDrawableDescriptorResource004 ' + typeof value);
+    //     }, 120);
+    //     console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_7200 ${value}`);
+    //     console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_7200 ${typeof value}`);
     //   } catch (err) {
-    //     console.log("testGetDrawableDescriptorResource004 err.code " + err.code);
-    //     console.log("testGetDrawableDescriptorResource004 err.message " + err.message);
+    //     console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_7200 errCode ${err.code}`);
+    //     console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptor_Func_7200 errMessage ${err.message}`);
     //     expect(err.code == 9001001).assertTrue();
     //     done();
     //   }
     // })
     //
     // /* *
-    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORBYNAME_001
-    // * @tc.name    test getDrawableDescriptorByName method
-    // * @tc.desc    get the drawable descriptor by name
-    // * @tc.size:   MediumTest
-    // * @tc.type    method
-    // * @tc.level   level 2
+    // * @tc.number:  SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7300
+    // * @tc.name:    test getDrawableDescriptorByName method
+    // * @tc.desc:    get the drawable descriptor by name
+    // * @tc.size:    MediumTest
+    // * @tc.type:    method
+    // * @tc.level:   level 2
     // */
-    // it('testGetDrawableDescriptorByName001', 0, async () => {
-    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('icon', 0)
-    //   console.log('testGetDrawableDescriptorByName001 ' + value);
-    //   console.log('testGetDrawableDescriptorByName001 ' + typeof value);
-    //   expect(value !== undefined).assertTrue()
+    // it('SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7300', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('icon', 0);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7300 ${value}`);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7300 ${typeof value}`);
+    //   expect(value !== undefined).assertTrue();
     // })
     //
     // /* *
-    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORBYNAME_002
-    // * @tc.name    test getDrawableDescriptorByName method
-    // * @tc.desc    get the drawable descriptor by name
-    // * @tc.size:   MediumTest
-    // * @tc.type    method
-    // * @tc.level   level 2
+    // * @tc.number:  SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7400
+    // * @tc.name:    test getDrawableDescriptorByName method
+    // * @tc.desc:    get the drawable descriptor by name
+    // * @tc.size:    MediumTest
+    // * @tc.type:    method
+    // * @tc.level:   level 2
     // */
-    // it('testGetDrawableDescriptorByName002', 0, async () => {
-    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('icon', 120)
-    //   console.log('testGetDrawableDescriptorByName002 ' + value);
-    //   console.log('testGetDrawableDescriptorByName002 ' + typeof value);
-    //   expect(value !== undefined).assertTrue()
+    // it('SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7400', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('icon', 120);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7400 ${value}`);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7400 ${typeof value}`);
+    //   expect(value !== undefined).assertTrue();
     // })
     //
     // /* *
-    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORBYNAME_003
-    // * @tc.name    test getDrawableDescriptorByName method
-    // * @tc.desc    get the drawable descriptor by name
-    // * @tc.size:   MediumTest
-    // * @tc.type    method
-    // * @tc.level   level 2
+    // * @tc.number:  SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7500
+    // * @tc.name:    test getDrawableDescriptorByName method
+    // * @tc.desc:    get the drawable descriptor by name
+    // * @tc.size:    MediumTest
+    // * @tc.type:    method
+    // * @tc.level:   level 2
     // */
-    // it('testGetDrawableDescriptorByName003', 0, async () => {
-    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('test', 0)
-    //   console.log('testGetDrawableDescriptorByName003 ' + value);
-    //   console.log('testGetDrawableDescriptorByName003 ' + typeof value);
-    //   expect(value !== undefined).assertTrue()
+    // it('SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7500', 0, async () => {
+    //   let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('test', 0);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7500 ${value}`);
+    //   console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7500 ${typeof value}`);
+    //   expect(value !== undefined).assertTrue();
     // })
     //
     // /* *
-    // * @tc.number  TEST_GETDRAWABLEDESCRIPTORBYNAME_004
-    // * @tc.name    test getDrawableDescriptorByName method throw 9001003 error code
-    // * @tc.desc    get the drawable descriptor by name
-    // * @tc.size:   MediumTest
-    // * @tc.type    method
-    // * @tc.level   level 2
+    // * @tc.number:  SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7600
+    // * @tc.name:    test getDrawableDescriptorByName method throw 9001003 error code
+    // * @tc.desc:    get the drawable descriptor by name
+    // * @tc.size:    MediumTest
+    // * @tc.type:    method
+    // * @tc.level:   level 2
     // */
-    // it('testGetDrawableDescriptorByName004', 0, async (done: Function) => {
+    // it('SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7600', 0, async (done: Function) => {
     //   try {
-    //     let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('notexist', 0)
-    //     console.log('testGetDrawableDescriptorByName004 ' + value);
-    //     console.log('testGetDrawableDescriptorByName004 ' + typeof value);
+    //     let value: DrawableDescriptor = context.resourceManager.getDrawableDescriptorByName('notexist', 0);
+    //     console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7600 ${value}`);
+    //     console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7600 ${typeof value}`);
     //   } catch (err) {
-    //     console.log("testGetDrawableDescriptorByName004 err.code " + err.code);
-    //     console.log("testGetDrawableDescriptorByName004 err.message " + err.message);
+    //     console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7600 errCode ${err.code}`);
+    //     console.log(`SUB_Global_Resource_Manager_0100_GetDrawableDescriptorByName_Func_7600 errMessage ${err.message}`);
     //     expect(err.code == 9001003).assertTrue();
     //     done();
     //   }
     // })
-
+    //
     /* *
-    * @tc.number  TEST-GETRAWFILELISTCALLBACK_001
-    * @tc.name    test getRawFileList method in callback mode
-    * @tc.desc    get the rawFileList in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7700
+    * @tc.name:    test getRawFileList method in callback mode
+    * @tc.desc:    get the rawFileList in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListCallback001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7700', 0, async (done: Function) => {
       context.resourceManager.getRawFileList('', (err: BusinessError, value: Array<string>) => {
-        console.log('testGetRawFileListCallback001 ' + value);
-        console.log('testGetRawFileListCallback001 ' + typeof value);
-        console.log('testGetRawFileListCallback001 value.length ' + value.length);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7700 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7700 ${typeof value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7700 value.length ${value.length}`);
         expect(value.length > 0).assertTrue();
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTCALLBACK_002
-    * @tc.name    test getRawFileList method in callback mode
-    * @tc.desc    get the rawFileList in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7800
+    * @tc.name:    test getRawFileList method in callback mode
+    * @tc.desc:    get the rawFileList in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListCallback002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7800', 0, async (done: Function) => {
       context.resourceManager.getRawFileList('test', (err: BusinessError, value: Array<string>) => {
-        console.log('testGetRawFileListCallback002 ' + value);
-        console.log('testGetRawFileListCallback002 ' + typeof value);
-        console.log('testGetRawFileListCallback002 value.length ' + value.length);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7800 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7800 ${typeof value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7800 value.length ${value.length}`);
         expect(value.length > 0).assertTrue();
         done();
       })
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTCALLBACK_003
-    * @tc.name    test getRawFileList method in callback mode
-    * @tc.desc    get the rawFileList in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7900
+    * @tc.name:    test getRawFileList method in callback mode
+    * @tc.desc:    get the rawFileList in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListCallback003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7900', 0, async (done: Function) => {
       context.resourceManager.getRawFileList('test/rawfiletest.xml', (err: BusinessError, value: Array<string>) => {
         if (!err) {
-          console.log('testGetRawFileListCallback003 ' + value);
-          console.log('testGetRawFileListCallback003 ' + typeof value);
-          console.log('testGetRawFileListCallback003 value.length ' + value.length);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7900 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7900 ${typeof value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7900 value.length ${value.length}`);
           done();
         } else {
-          console.log("testGetRawFileListCallback003 err.code " + err.code);
-          console.log("testGetRawFileListCallback003 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7900 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_7900 errMessage ${err.message}`);
           expect(err.code === 9001005).assertTrue();
           done();
         }
@@ -1684,24 +1687,24 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTCALLBACK_004
-    * @tc.name    test getRawFileList method in callback mode
-    * @tc.desc    get the rawFileList in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8000
+    * @tc.name:    test getRawFileList method in callback mode
+    * @tc.desc:    get the rawFileList in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListCallback004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8000', 0, async (done: Function) => {
       context.resourceManager.getRawFileList('test/null.txt', (err: BusinessError, value: Array<string>) => {
         if (!err) {
-          console.log('testGetRawFileListCallback004 ' + value);
-          console.log('testGetRawFileListCallback004 ' + typeof value);
-          console.log('testGetRawFileListCallback004 value.length ' + value.length);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8000 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8000 ${typeof value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8000 value.length ${value.length}`);
           expect(value.length === 0).assertTrue();
           done();
         } else {
-          console.log("testGetRawFileListCallback004 err.code " + err.code);
-          console.log("testGetRawFileListCallback004 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8000 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8000 errMessage ${err.message}`);
           expect(err.code == 9001005).assertTrue();
           done();
         }
@@ -1709,18 +1712,18 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTCALLBACK_005
-    * @tc.name    test getRawFileList method in callback mode throw 9001005 error code
-    * @tc.desc    get the rawFileList in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8100
+    * @tc.name:    test getRawFileList method in callback mode throw 9001005 error code
+    * @tc.desc:    get the rawFileList in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListCallback005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8100', 0, async (done: Function) => {
       context.resourceManager.getRawFileList('nullDir', (err: BusinessError, value: Array<string>) => {
         if (err) {
-          console.log("testGetRawFileListCallback005 err.code " + err.code);
-          console.log("testGetRawFileListCallback005 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8100 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8100 errMessage ${err.message}`);
           expect(err.code == 9001005).assertTrue();
           done();
         }
@@ -1728,23 +1731,23 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTCALLBACK_006
-    * @tc.name    test getRawFileList method in callback mode throw 9000605 error code
-    * @tc.desc    get the rawFileList in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8200
+    * @tc.name:    test getRawFileList method in callback mode throw 9000605 error code
+    * @tc.desc:    get the rawFileList in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListCallback006', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8200', 0, async (done: Function) => {
       context.resourceManager.getRawFileList('notexist', (err: BusinessError, value: Array<string>) => {
         if (!err) {
-          console.log('testGetRawFileListCallback006 ' + value);
-          console.log('testGetRawFileListCallback006 ' + typeof value);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8200 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8200 ${typeof value}`);
           expect(value.length > 0).assertTrue();
           done();
         } else {
-          console.log("testGetRawFileListCallback006 err.code " + err.code);
-          console.log("testGetRawFileListCallback006 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8200 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8200 errMessage ${err.message}`);
           expect(err.code == 9001005).assertTrue();
           done();
         }
@@ -1752,321 +1755,321 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTPROMISE_001
-    * @tc.name    test getRawFileList method in promise mode
-    * @tc.desc    get the rawFileList in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8300
+    * @tc.name:    test getRawFileList method in promise mode
+    * @tc.desc:    get the rawFileList in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListPromise001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8300', 0, async (done: Function) => {
       context.resourceManager.getRawFileList('').then((value: Array<string>) => {
-        console.log('testGetRawFileListPromise001' + value);
-        console.log('testGetRawFileListPromise001' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8300 ${value}}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8300 ${typeof value}`);
         expect(value.length > 0).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetRawFileListPromise001 err.code " + err.code);
-        console.log("testGetRawFileListPromise001 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8300 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8300 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTPROMISE_002
-    * @tc.name    test getRawFileList method in promise mode
-    * @tc.desc    get the rawFileList in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8400
+    * @tc.name:    test getRawFileList method in promise mode
+    * @tc.desc:    get the rawFileList in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListPromise002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8400', 0, async (done: Function) => {
       context.resourceManager.getRawFileList('test').then((value: Array<string>) => {
-        console.log('testGetRawFileListPromise002' + value);
-        console.log('testGetRawFileListPromise002' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8400 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8400 ${typeof value}`);
         expect(value.length > 0).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetRawFileListPromise002 err.code " + err.code);
-        console.log("testGetRawFileListPromise002 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8400 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8400 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTPROMISE_003
-    * @tc.name    test getRawFileList method in promise mode
-    * @tc.desc    get the rawFileList in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8500
+    * @tc.name:    test getRawFileList method in promise mode
+    * @tc.desc:    get the rawFileList in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListPromise003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8500', 0, async (done: Function) => {
       context.resourceManager.getRawFileList('test/rawfiletest.xml').then((value: Array<string>) => {
-        console.log('testGetRawFileListPromise003' + value);
-        console.log('testGetRawFileListPromise003' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8500 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8500 ${typeof value}`);
         expect(value.length === 0).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetRawFileListPromise003 err.code " + err.code);
-        console.log("testGetRawFileListPromise003 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8500 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8500 errMessage ${err.message}`);
         expect(err.code === 9001005).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTPROMISE_004
-    * @tc.name    test getRawFileList method in promise mode
-    * @tc.desc    get the rawFileList in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8600
+    * @tc.name:    test getRawFileList method in promise mode
+    * @tc.desc:    get the rawFileList in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListPromise004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8600', 0, async (done: Function) => {
       context.resourceManager.getRawFileList('test/null.txt').then((value: Array<string>) => {
-        console.log('testGetRawFileListPromise004' + value);
-        console.log('testGetRawFileListPromise004' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8600 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8600 ${typeof value}`);
         expect(value.length === 0).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetRawFileListPromise004 err.code " + err.code);
-        console.log("testGetRawFileListPromise004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8600 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8600 errMessage ${err.message}`);
         expect(err.code == 9001005).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTPROMISE_005
-    * @tc.name    test getRawFileList method in promise mode throw 9001005 error code
-    * @tc.desc    get the rawFileList in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8700
+    * @tc.name:    test getRawFileList method in promise mode throw 9001005 error code
+    * @tc.desc:    get the rawFileList in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListPromise005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8700', 0, async (done: Function) => {
       context.resourceManager.getRawFileList('nullDir').then((value: Array<string>) => {
-        console.log('testGetRawFileListPromise005' + value);
-        console.log('testGetRawFileListPromise005' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8700 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8700 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetRawFileListPromise005 err.code " + err.code);
-        console.log("testGetRawFileListPromise005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8700 errMessage ${err.message}`);
         expect(err.code == 9001005).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTPROMISE_006
-    * @tc.name    test getRawFileList method in promise mode throw 9001005 error code
-    * @tc.desc    get the rawFileList in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8800
+    * @tc.name:    test getRawFileList method in promise mode throw 9001005 error code
+    * @tc.desc:    get the rawFileList in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListPromise006', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8800', 0, async (done: Function) => {
       context.resourceManager.getRawFileList('notexist').then((value: Array<string>) => {
-        console.log('testGetRawFileListPromise006' + value);
-        console.log('testGetRawFileListPromise006' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8800 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8800 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetRawFileListPromise006 err.code " + err.code);
-        console.log("testGetRawFileListPromise006 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8800 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileList_Func_8800 errMessage ${err.message}`);
         expect(err.code == 9001005).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTSYNC_001
-    * @tc.name    test getRawFileListSync method in sync mode
-    * @tc.desc    get the rawFileList in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_8900
+    * @tc.name:    test getRawFileListSync method in sync mode
+    * @tc.desc:    get the rawFileList in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListSync001', 0, async (done: Function) => {
-      let value: Array<string> = context.resourceManager.getRawFileListSync('')
-      console.log('testGetRawFileListSync001' + value);
-      console.log('testGetRawFileListSync001' + typeof value);
+    it('SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_8900', 0, async (done: Function) => {
+      let value: Array<string> = context.resourceManager.getRawFileListSync('');
+      console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_8900 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_8900 ${typeof value}`);
       expect(value.length > 0).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTSYNC_002
-    * @tc.name    test getRawFileListSync method in sync mode
-    * @tc.desc    get the rawFileList in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9000
+    * @tc.name:    test getRawFileListSync method in sync mode
+    * @tc.desc:    get the rawFileList in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListSync002', 0, async (done: Function) => {
-      let value: Array<string> = context.resourceManager.getRawFileListSync('test')
-      console.log('testGetRawFileListSync002' + value);
-      console.log('testGetRawFileListSync002' + typeof value);
+    it('SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9000', 0, async (done: Function) => {
+      let value: Array<string> = context.resourceManager.getRawFileListSync('test');
+      console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9000 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9000 ${typeof value}`);
       expect(value.length > 0).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTSYNC_003
-    * @tc.name    test getRawFileListSync method in sync mode
-    * @tc.desc    get the rawFileList in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9100
+    * @tc.name:    test getRawFileListSync method in sync mode
+    * @tc.desc:    get the rawFileList in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListSync003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9100', 0, async (done: Function) => {
       try {
-        let value: Array<string> = context.resourceManager.getRawFileListSync('test/rawfiletest.xml')
-        console.log('testGetRawFileListSync003' + value);
-        console.log('testGetRawFileListSync003' + typeof value);
+        let value: Array<string> = context.resourceManager.getRawFileListSync('test/rawfiletest.xml');
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9100 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9100 ${typeof value}`);
         expect(value.length === 0).assertTrue();
         done();
       } catch (err) {
-        console.log("testGetRawFileListSync003 err.code " + err.code);
-        console.log("testGetRawFileListSync003 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9100 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9100 errMessage ${err.message}`);
         expect(err.code == 9001005).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTSYNC_004
-    * @tc.name    test getRawFileListSync method in sync mode
-    * @tc.desc    get the rawFileList in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9200
+    * @tc.name:    test getRawFileListSync method in sync mode
+    * @tc.desc:    get the rawFileList in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListSync004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9200', 0, async (done: Function) => {
       try {
-        let value: Array<string> = context.resourceManager.getRawFileListSync('test/null.txt')
-        console.log('testGetRawFileListSync004' + value);
-        console.log('testGetRawFileListSync004' + typeof value);
+        let value: Array<string> = context.resourceManager.getRawFileListSync('test/null.txt');
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9200 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9200 ${typeof value}`);
         expect(value.length > 0).assertTrue();
         done();
       } catch (err) {
-        console.log("testGetRawFileListSync004 err.code " + err.code);
-        console.log("testGetRawFileListSync004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9200 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9200 errMessage ${err.message}`);
         expect(err.code == 9001005).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTSYNC_005
-    * @tc.name    test getRawFileListSync method in sync mode throw 9001005 error code
-    * @tc.desc    get the rawFileList in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9300
+    * @tc.name:    test getRawFileListSync method in sync mode throw 9001005 error code
+    * @tc.desc:    get the rawFileList in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListSync005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9300', 0, async (done: Function) => {
       try {
-        let value: Array<string> = context.resourceManager.getRawFileListSync('nullDir')
-        console.log('testGetRawFileListSync005' + value);
-        console.log('testGetRawFileListSync005' + typeof value);
+        let value: Array<string> = context.resourceManager.getRawFileListSync('nullDir');
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9300 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9300 ${typeof value}`);
         expect(value.length > 0).assertTrue();
         done();
       } catch (err) {
-        console.log("testGetRawFileListSync005 err.code " + err.code);
-        console.log("testGetRawFileListSync005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9300 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9300 errMessage ${err.message}`);
         expect(err.code == 9001005).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFILELISTSYNC_006
-    * @tc.name    test getRawFileListSync method in sync mode throw 9001005 error code
-    * @tc.desc    get the rawFileList in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9400
+    * @tc.name:    test getRawFileListSync method in sync mode throw 9001005 error code
+    * @tc.desc:    get the rawFileList in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileListSync006', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9400', 0, async (done: Function) => {
       try {
-        let value: Array<string> = context.resourceManager.getRawFileListSync('notexist')
-        console.log('testGetRawFileListSync006' + value);
-        console.log('testGetRawFileListSync006' + typeof value);
+        let value: Array<string> = context.resourceManager.getRawFileListSync('notexist');
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9400 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9400 ${typeof value}`);
         expect(value.length > 0).assertTrue();
         done();
       } catch (err) {
-        console.log("testGetRawFileListSync006 err.code " + err.code);
-        console.log("testGetRawFileListSync006 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9400 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0100_GetRawFileListSync_Func_9400 errMessage ${err.message}`);
         expect(err.code == 9001005).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESIDCALLBACK_001
-    * @tc.name    test getColor method in callback mode
-    * @tc.desc    get the color in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetColor_Func_9500
+    * @tc.name:    test getColor method in callback mode
+    * @tc.desc:    get the color in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResIdCallback001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetColor_Func_9500', 0, async (done: Function) => {
       context.resourceManager.getColor($r('app.color.test1').id, (err: BusinessError, value: number) => {
         if (!err) {
-          console.log('testGetColorResIdCallback001 ' + JSON.stringify(value));
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9500 ${JSON.stringify(value)}`);
           expect(value).assertEqual(4283047887);
           done();
         } else {
-          console.log("testGetColorResIdCallback001 err.code " + err.code);
-          console.log("testGetColorResIdCallback001 err.message " + err.message);
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9500 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9500 errMessage ${err.message}`);
+          expect().assertFail();
           done();
         }
       })
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESIDCALLBACK_002
-    * @tc.name    test getColor method in callback mode
-    * @tc.desc    get the color in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetColor_Func_9600
+    * @tc.name:    test getColor method in callback mode
+    * @tc.desc:    get the color in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResIdCallback002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetColor_Func_9600', 0, async (done: Function) => {
       context.resourceManager.getColor($r('app.color.test2').id, (err: BusinessError, value: number) => {
         if (!err) {
-          console.log('testGetColorResIdCallback002 ' + JSON.stringify(value));
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9600 ${JSON.stringify(value)}`);
           expect(value).assertEqual(4281309688);
           done();
         } else {
-          console.log("testGetColorResIdCallback002 err.code " + err.code);
-          console.log("testGetColorResIdCallback002 err.message " + err.message);
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9600 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9600 errMessage ${err.message}`);
+          expect().assertFail();
           done();
         }
       })
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESIDCALLBACK_003
-    * @tc.name    test getColor method in callback mode throw 9001001 error code
-    * @tc.desc    get the color in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetColor_Func_9700
+    * @tc.name:    test getColor method in callback mode throw 9001001 error code
+    * @tc.desc:    get the color in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResIdCallback003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetColor_Func_9700', 0, async (done: Function) => {
       context.resourceManager.getColor(1111, (err: BusinessError, value: number) => {
         if (!err) {
-          console.log('testGetColorResIdCallback003 ' + JSON.stringify(value));
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9700 ${JSON.stringify(value)}`);
           done();
         } else {
-          console.log("testGetColorResIdCallback003 err.code " + err.code);
-          console.log("testGetColorResIdCallback003 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9700 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9700 errMessage ${err.message}`);
           expect(err.code == 9001001).assertTrue();
           done();
         }
@@ -2074,21 +2077,21 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESIDCALLBACK_004
-    * @tc.name    test getColor method in callback mode throw 9001002 error code
-    * @tc.desc    get the color in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetColor_Func_9800
+    * @tc.name:    test getColor method in callback mode throw 9001002 error code
+    * @tc.desc:    get the color in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResIdCallback004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetColor_Func_9800', 0, async (done: Function) => {
       context.resourceManager.getColor($r('app.string.test_1').id, (err: BusinessError, value: number) => {
         if (!err) {
-          console.log('testGetColorResIdCallback004 ' + JSON.stringify(value));
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9800 ${JSON.stringify(value)}`);
           done();
         } else {
-          console.log("testGetColorResIdCallback004 err.code " + err.code);
-          console.log("testGetColorResIdCallback004 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9800 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9800 errMessage ${err.message}`);
           expect(err.code == 9001002).assertTrue();
           done();
         }
@@ -2096,21 +2099,21 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESIDCALLBACK_005
-    * @tc.name    test getColor method in callback mode throw 9001006 error code
-    * @tc.desc    get the color in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0100_GetColor_Func_9900
+    * @tc.name:    test getColor method in callback mode throw 9001006 error code
+    * @tc.desc:    get the color in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResIdCallback005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0100_GetColor_Func_9900', 0, async (done: Function) => {
       context.resourceManager.getColor($r('app.color.test3').id, (err: BusinessError, value: number) => {
         if (!err) {
-          console.log('testGetColorResIdCallback005 ' + JSON.stringify(value));
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9900 ${JSON.stringify(value)}`);
           done();
         } else {
-          console.log("testGetColorResIdCallback005 err.code " + err.code);
-          console.log("testGetColorResIdCallback005 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9900 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0100_GetColor_Func_9900 errMessage ${err.message}`);
           expect(err.code == 9001006).assertTrue();
           done();
         }
@@ -2118,189 +2121,189 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESIDPROMISE_001
-    * @tc.name    test getColor method in promise mode
-    * @tc.desc    get the color in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_0100
+    * @tc.name:    test getColor method in promise mode
+    * @tc.desc:    get the color in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResIdPromise001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_0100', 0, async (done: Function) => {
       context.resourceManager.getColor($r('app.color.test1').id).then((value: number) => {
-        console.log('testGetColorResIdPromise001' + value);
-        console.log('testGetColorResIdPromise001' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0100 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0100 ${typeof value}`);
         expect(value).assertEqual(4283047887);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetColorResIdPromise001 err.code " + err.code);
-        console.log("testGetColorResIdPromise001 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0100 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0100 errMessage ${err.message}`);
+        expect().assertFail();;
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESIDPROMISE_002
-    * @tc.name    test getColor method in promise mode
-    * @tc.desc    get the color in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_0200
+    * @tc.name:    test getColor method in promise mode
+    * @tc.desc:    get the color in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResIdPromise002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_0200', 0, async (done: Function) => {
       context.resourceManager.getColor($r('app.color.test2').id).then((value: number) => {
-        console.log('testGetColorResIdPromise002' + value);
-        console.log('testGetColorResIdPromise002' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0200 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0200 ${typeof value}`);
         expect(value).assertEqual(4281309688);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetColorResIdPromise002 err.code " + err.code);
-        console.log("testGetColorResIdPromise002 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0200 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0200 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESIDPROMISE_003
-    * @tc.name    test getColor method in promise mode throw 9001001 error code
-    * @tc.desc    get the color in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_0300
+    * @tc.name:    test getColor method in promise mode throw 9001001 error code
+    * @tc.desc:    get the color in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResIdPromise003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_0300', 0, async (done: Function) => {
       context.resourceManager.getColor(1111).then((value: number) => {
-        console.log('testGetColorResIdPromise003' + value);
-        console.log('testGetColorResIdPromise003' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0300 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0300 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetColorResIdPromise003 err.code " + err.code);
-        console.log("testGetColorResIdPromise003 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0300 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0300 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESIDPROMISE_004
-    * @tc.name    test getColor method in promise mode throw 9001002 error code
-    * @tc.desc    get the color in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_0400
+    * @tc.name:    test getColor method in promise mode throw 9001002 error code
+    * @tc.desc:    get the color in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResIdPromise004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_0400', 0, async (done: Function) => {
       context.resourceManager.getColor($r('app.string.test_1').id).then((value: number) => {
-        console.log('testGetColorResIdPromise004' + value);
-        console.log('testGetColorResIdPromise004' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0400 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0400 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetColorResIdPromise004 err.code " + err.code);
-        console.log("testGetColorResIdPromise004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0400 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0400 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESIDPROMISE_005
-    * @tc.name    test getColor method in promise mode throw 9001006 error code
-    * @tc.desc    get the color in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_0500
+    * @tc.name:    test getColor method in promise mode throw 9001006 error code
+    * @tc.desc:    get the color in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResIdPromise005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_0500', 0, async (done: Function) => {
       context.resourceManager.getColor($r('app.color.test3').id).then((value: number) => {
-        console.log('testGetColorResIdPromise005' + value);
-        console.log('testGetColorResIdPromise005' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0500 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0500 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetColorResIdPromise005 err.code " + err.code);
-        console.log("testGetColorResIdPromise005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0200 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0200 errMessage ${err.message}`);
         expect(err.code == 9001006).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESOURCECALLBACK_001
-    * @tc.name    test getColor method in callback mode
-    * @tc.desc    get the color in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_0600
+    * @tc.name:    test getColor method in callback mode
+    * @tc.desc:    get the color in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResourceCallback001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_0600', 0, async (done: Function) => {
       context.resourceManager.getColor({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.color.test1').id
       }, (err: BusinessError, value: number) => {
         if (!err) {
-          console.log('testGetColorResourceCallback001' + value);
-          console.log('testGetColorResourceCallback001' + typeof value);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0600 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0600 ${typeof value}`);
           expect(value).assertEqual(4283047887);
           done();
         } else {
-          console.log("testGetColorResourceCallback001 err.code " + err.code);
-          console.log("testGetColorResourceCallback001 err.message " + err.message);
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0600 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0600 errMessage ${err.message}`);
+          expect().assertFail();
           done();
         }
       })
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESOURCECALLBACK_002
-    * @tc.name    test getColor method in callback mode
-    * @tc.desc    get the color in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_0700
+    * @tc.name:    test getColor method in callback mode
+    * @tc.desc:    get the color in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResourceCallback002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_0700', 0, async (done: Function) => {
       context.resourceManager.getColor({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.color.test2').id
       }, (err: BusinessError, value: number) => {
         if (!err) {
-          console.log('testGetColorResourceCallback002' + value);
-          console.log('testGetColorResourceCallback002' + typeof value);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0700 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0700 ${typeof value}`);
           expect(value).assertEqual(4281309688);
           done();
         } else {
-          console.log("testGetColorResourceCallback002 err.code " + err.code);
-          console.log("testGetColorResourceCallback002 err.message " + err.message);
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0700 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0700 errMessage ${err.message}`);
+          expect().assertFail();
           done();
         }
       })
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESOURCECALLBACK_003
-    * @tc.name    test getColor method in callback mode throw 9001001 error code
-    * @tc.desc    get the color in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_0800
+    * @tc.name:    test getColor method in callback mode throw 9001001 error code
+    * @tc.desc:    get the color in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResourceCallback003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_0800', 0, async (done: Function) => {
       context.resourceManager.getColor({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: 1111
       }, (err: BusinessError, value: number) => {
         if (!err) {
-          console.log('testGetColorResourceCallback003' + value);
-          console.log('testGetColorResourceCallback003' + typeof value);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0800 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0800 ${typeof value}`);
           done();
         } else {
-          console.log("testGetColorResourceCallback003 err.code " + err.code);
-          console.log("testGetColorResourceCallback003 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0800 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0800 errMessage ${err.message}`);
           expect(err.code == 9001001).assertTrue();
           done();
         }
@@ -2308,26 +2311,26 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESOURCECALLBACK_004
-    * @tc.name    test getColor method in callback mode throw 9001002 error code
-    * @tc.desc    get the color in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_0900
+    * @tc.name:    test getColor method in callback mode throw 9001002 error code
+    * @tc.desc:    get the color in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResourceCallback004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_0900', 0, async (done: Function) => {
       context.resourceManager.getColor({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.string.test_1').id
       }, (err: BusinessError, value: number) => {
         if (!err) {
-          console.log('testGetColorResourceCallback004' + value);
-          console.log('testGetColorResourceCallback004' + typeof value);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0900 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0900 ${typeof value}`);
           done();
         } else {
-          console.log("testGetColorResourceCallback004 err.code " + err.code);
-          console.log("testGetColorResourceCallback004 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0900 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_0900 errMessage ${err.message}`);
           expect(err.code == 9001002).assertTrue();
           done();
         }
@@ -2335,26 +2338,26 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESOURCECALLBACK_005
-    * @tc.name    test getColor method in callback mode throw 9001006 error code
-    * @tc.desc    get the color in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_1000
+    * @tc.name:    test getColor method in callback mode throw 9001006 error code
+    * @tc.desc:    get the color in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResourceCallback005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_1000', 0, async (done: Function) => {
       context.resourceManager.getColor({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.color.test3').id
       }, (err: BusinessError, value: number) => {
         if (!err) {
-          console.log('testGetColorResourceCallback005' + value);
-          console.log('testGetColorResourceCallback005' + typeof value);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1000 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1000 ${typeof value}`);
           done();
         } else {
-          console.log("testGetColorResourceCallback005 err.code " + err.code);
-          console.log("testGetColorResourceCallback005 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1000 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1000 errMessage ${err.message}`);
           expect(err.code == 9001006).assertTrue();
           done();
         }
@@ -2362,197 +2365,197 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESOURCEPROMISE_001
-    * @tc.name    test getColor method in promise mode
-    * @tc.desc    get the color in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_1100
+    * @tc.name:    test getColor method in promise mode
+    * @tc.desc:    get the color in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResourcePromise001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_1100', 0, async (done: Function) => {
       context.resourceManager.getColor({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.color.test1').id
       }).then((value: number) => {
-        console.log('testGetColorResourcePromise001' + value);
-        console.log('testGetColorResourcePromise001' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1100 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1100 ${typeof value}`);
         expect(value).assertEqual(4283047887);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetColorResourcePromise001 err.code " + err.code);
-        console.log("testGetColorResourcePromise001 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1100 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1100 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESOURCEPROMISE_002
-    * @tc.name    test getColor method in promise mode
-    * @tc.desc    get the color in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_1200
+    * @tc.name:    test getColor method in promise mode
+    * @tc.desc:    get the color in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResourcePromise002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_1200', 0, async (done: Function) => {
       context.resourceManager.getColor({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.color.test2').id
       }).then((value: number) => {
-        console.log('testGetColorResourcePromise002' + value);
-        console.log('testGetColorResourcePromise002' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1200 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1200 ${typeof value}`);
         expect(value).assertEqual(4281309688);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetColorResourcePromise002 err.code " + err.code);
-        console.log("testGetColorResourcePromise002 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1200 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1200 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESOURCEPROMISE_003
-    * @tc.name    test getColor method in promise mode throw 9001001 error code
-    * @tc.desc    get the color in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_1300
+    * @tc.name:    test getColor method in promise mode throw 9001001 error code
+    * @tc.desc:    get the color in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResourcePromise003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_1300', 0, async (done: Function) => {
       context.resourceManager.getColor({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: 1111
       }).then((value: number) => {
-        console.log('testGetColorResourcePromise003' + value);
-        console.log('testGetColorResourcePromise003' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1300 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1300 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetColorResourcePromise003 err.code " + err.code);
-        console.log("testGetColorResourcePromise003 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1300 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1300 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESOURCEPROMISE_004
-    * @tc.name    test getColor method in promise mode throw 9001002 error code
-    * @tc.desc    get the color in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_1400
+    * @tc.name:    test getColor method in promise mode throw 9001002 error code
+    * @tc.desc:    get the color in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResourcePromise004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_1400', 0, async (done: Function) => {
       context.resourceManager.getColor({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.string.test_1').id
       }).then((value: number) => {
-        console.log('testGetColorResourcePromise004' + value);
-        console.log('testGetColorResourcePromise004' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1400 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1400 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetColorResourcePromise004 err.code " + err.code);
-        console.log("testGetColorResourcePromise004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1400 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1400 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORRESOURCEPROMISE_005
-    * @tc.name    test getColor method in promise mode throw 9001006 error code
-    * @tc.desc    get the color in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColor_Func_1500
+    * @tc.name:    test getColor method in promise mode throw 9001006 error code
+    * @tc.desc:    get the color in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorResourcePromise005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColor_Func_1500', 0, async (done: Function) => {
       context.resourceManager.getColor({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.color.test3').id
       }).then((value: number) => {
-        console.log('testGetColorResourcePromise005' + value);
-        console.log('testGetColorResourcePromise005' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1500 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1500 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetColorResourcePromise005 err.code " + err.code);
-        console.log("testGetColorResourcePromise005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1500 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColor_Func_1500 errMessage ${err.message}`);
         expect(err.code == 9001006).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORBYNAMECALLBACK_001
-    * @tc.name    test getColorByName method in callback mode
-    * @tc.desc    get the color in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorByName_Func_1600
+    * @tc.name:    test getColorByName method in callback mode
+    * @tc.desc:    get the color in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorByNameCallback001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorByName_Func_1600', 0, async (done: Function) => {
       context.resourceManager.getColorByName("test1", (err: BusinessError, value: number) => {
         if (!err) {
-          console.log('testGetColorByNameCallback001 ' + value);
-          console.log('testGetColorByNameCallback001 ' + typeof value);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1600 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1600 ${typeof value}`);
           expect(value).assertEqual(4283047887);
           done();
         } else {
-          console.log('testGetColorByNameCallback001 err.code ' + err.code)
-          console.log('testGetColorByNameCallback001 err.message ' + err.message)
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1600 errCode ${err.code}`)
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1600 errMessage ${err.message}`)
+          expect().assertFail();
           done();
         }
       })
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORBYNAMECALLBACK_002
-    * @tc.name    test getColorByName method in callback mode
-    * @tc.desc    get the color in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorByName_Func_1700
+    * @tc.name:    test getColorByName method in callback mode
+    * @tc.desc:    get the color in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorByNameCallback002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorByName_Func_1700', 0, async (done: Function) => {
       context.resourceManager.getColorByName("test2", (err: BusinessError, value: number) => {
         if (!err) {
-          console.log('testGetColorByNameCallback002' + value);
-          console.log('testGetColorByNameCallback002' + typeof value);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1700 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1700 ${typeof value}`);
           expect(value).assertEqual(4281309688);
           done();
         } else {
-          console.log('testGetColorByNameCallback002 err.code ' + err.code)
-          console.log('testGetColorByNameCallback002 err.message ' + err.message)
-          expect().assertFail()
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1700 errCode ${err.code}`)
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1700 errMessage ${err.message}`)
+          expect().assertFail();
           done();
         }
       })
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORBYNAMECALLBACK_003
-    * @tc.name    test getColorByName method in callback mode throw 9001003 error code
-    * @tc.desc    get the color in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorByName_Func_1800
+    * @tc.name:    test getColorByName method in callback mode throw 9001003 error code
+    * @tc.desc:    get the color in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorByNameCallback003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorByName_Func_1800', 0, async (done: Function) => {
       context.resourceManager.getColorByName("notexist", (err: BusinessError, value: number) => {
         if (!err) {
-          console.log('testGetColorByNameCallback003' + value);
-          console.log('testGetColorByNameCallback003' + typeof value);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1800 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1800 ${typeof value}`);
           done();
         } else {
-          console.log("testGetColorByNameCallback003 err.code " + err.code);
-          console.log("testGetColorByNameCallback003 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1800 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1800 errMessage ${err.message}`);
           expect(err.code == 9001003).assertTrue();
           done();
         }
@@ -2560,22 +2563,22 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORBYNAMECALLBACK_004
-    * @tc.name    test getColorByName method in callback mode throw 9001006 error code
-    * @tc.desc    get the color in callback mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorByName_Func_1900
+    * @tc.name:    test getColorByName method in callback mode throw 9001006 error code
+    * @tc.desc:    get the color in callback mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorByNameCallback004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorByName_Func_1900', 0, async (done: Function) => {
       context.resourceManager.getColorByName("test3", (err: BusinessError, value: number) => {
         if (!err) {
-          console.log('testGetColorByNameCallback004' + value);
-          console.log('testGetColorByNameCallback004' + typeof value);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1900 ${value}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1900 ${typeof value}`);
           done();
         } else {
-          console.log("testGetColorByNameCallback004 err.code " + err.code);
-          console.log("testGetColorByNameCallback004 err.message " + err.message);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1900 errCode ${err.code}`);
+          console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_1900 errMessage ${err.message}`);
           expect(err.code == 9001006).assertTrue();
           done();
         }
@@ -2583,1127 +2586,1118 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORBYNAMEPROMISE_001
-    * @tc.name    test getColorByName method in promise mode
-    * @tc.desc    get the color in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorByName_Func_2000
+    * @tc.name:    test getColorByName method in promise mode
+    * @tc.desc:    get the color in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorByNamePromise001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorByName_Func_2000', 0, async (done: Function) => {
       context.resourceManager.getColorByName("test1").then((value: number) => {
-        console.log('testGetColorByNamePromise001' + value);
-        console.log('testGetColorByNamePromise001' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2000 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2000 ${typeof value}`);
         expect(value).assertEqual(4283047887);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetColorByNamePromise001 err.code " + err.code);
-        console.log("testGetColorByNamePromise001 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2000 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2000 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORBYNAMEPROMISE_002
-    * @tc.name    test getColorByName method in promise mode
-    * @tc.desc    get the color in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorByName_Func_2100
+    * @tc.name:    test getColorByName method in promise mode
+    * @tc.desc:    get the color in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorByNamePromise002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorByName_Func_2100', 0, async (done: Function) => {
       context.resourceManager.getColorByName("test2").then((value: number) => {
-        console.log('testGetColorByNamePromise002' + value);
-        console.log('testGetColorByNamePromise002' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2100 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2100 ${typeof value}`);
         expect(value).assertEqual(4281309688);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetColorByNamePromise002 err.code " + err.code);
-        console.log("testGetColorByNamePromise002 err.message " + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2100 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2100 errMessage ${err.message}`);
+        expect().assertFail();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORBYNAMEPROMISE_003
-    * @tc.name    test getColorByName method in promise mode throw 9001003 error code
-    * @tc.desc    get the color in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorByName_Func_2200
+    * @tc.name:    test getColorByName method in promise mode throw 9001003 error code
+    * @tc.desc:    get the color in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorByNamePromise003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorByName_Func_2200', 0, async (done: Function) => {
       context.resourceManager.getColorByName("notexist").then((value: number) => {
-        console.log('testGetColorByNamePromise003' + value);
-        console.log('testGetColorByNamePromise003' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2200 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2200 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetColorByNamePromise003 err.code " + err.code);
-        console.log("testGetColorByNamePromise003 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2200 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2200 errMessage ${err.message}`);
         expect(err.code == 9001003).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORBYNAMEPROMISE_004
-    * @tc.name    test getColorByName method in promise mode throw 9001006 error code
-    * @tc.desc    get the color in promise mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorByName_Func_2300
+    * @tc.name:    test getColorByName method in promise mode throw 9001006 error code
+    * @tc.desc:    get the color in promise mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorByNamePromise004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorByName_Func_2300', 0, async (done: Function) => {
       context.resourceManager.getColorByName("test3").then((value: number) => {
-        console.log('testGetColorByNamePromise004' + value);
-        console.log('testGetColorByNamePromise004' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2300 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2300 ${typeof value}`);
         done();
       }).catch((err: BusinessError) => {
-        console.log("testGetColorByNamePromise004 err.code " + err.code);
-        console.log("testGetColorByNamePromise004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2300 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByName_Func_2300 errMessage ${err.message}`);
         expect(err.code == 9001006).assertTrue();
         done();
       });
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORSYNCRESID_001
-    * @tc.name    test getColorSync method in sync mode
-    * @tc.desc    get the color in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorSync_Func_2400
+    * @tc.name:    test getColorSync method in sync mode
+    * @tc.desc:    get the color in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorSyncResId001', 0, async (done: Function) => {
-      let value: number = context.resourceManager.getColorSync($r('app.color.test1').id)
-      console.log('testGetColorSyncResId001' + value);
-      console.log('testGetColorSyncResId001' + typeof value);
+    it('SUB_Global_Resource_Manager_0200_GetColorSync_Func_2400', 0, async (done: Function) => {
+      let value: number = context.resourceManager.getColorSync($r('app.color.test1').id);
+      console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2400 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2400 ${typeof value}`);
       expect(value).assertEqual(4283047887);
-      done()
+      done();
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORSYNCRESID_002
-    * @tc.name    test getColorSync method in sync mode
-    * @tc.desc    get the color in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorSync_Func_2500
+    * @tc.name:    test getColorSync method in sync mode
+    * @tc.desc:    get the color in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorSyncResId002', 0, async (done: Function) => {
-      let value: number = context.resourceManager.getColorSync($r('app.color.test2').id)
-      console.log('testGetColorSyncResId002' + value);
-      console.log('testGetColorSyncResId002' + typeof value);
+    it('SUB_Global_Resource_Manager_0200_GetColorSync_Func_2500', 0, async (done: Function) => {
+      let value: number = context.resourceManager.getColorSync($r('app.color.test2').id);
+      console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2500 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2500 ${typeof value}`);
       expect(value).assertEqual(4281309688);
-      done()
+      done();
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORSYNCRESID_003
-    * @tc.name    test getColorSync method in sync mode throw 9001001 error code
-    * @tc.desc    get the color in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorSync_Func_2600
+    * @tc.name:    test getColorSync method in sync mode throw 9001001 error code
+    * @tc.desc:    get the color in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorSyncResId003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorSync_Func_2600', 0, async (done: Function) => {
       try {
-        let value: number = context.resourceManager.getColorSync(1111)
-        console.log('testGetColorSyncResId003' + value);
-        console.log('testGetColorSyncResId003' + typeof value);
-        done()
+        let value: number = context.resourceManager.getColorSync(1111);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2600 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2600 ${typeof value}`);
+        done();
       } catch (err) {
-        console.log("testGetColorSyncResId003 err.code " + err.code);
-        console.log("testGetColorSyncResId003 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2600 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2600 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORSYNCRESID_004
-    * @tc.name    test getColorSync method in sync mode throw 9001002 error code
-    * @tc.desc    get the color in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorSync_Func_2700
+    * @tc.name:    test getColorSync method in sync mode throw 9001002 error code
+    * @tc.desc:    get the color in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorSyncResId004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorSync_Func_2700', 0, async (done: Function) => {
       try {
-        let value: number = context.resourceManager.getColorSync($r('app.string.test_1').id)
-        console.log('testGetColorSyncResId004' + value);
-        console.log('testGetColorSyncResId004' + typeof value);
-        done()
+        let value: number = context.resourceManager.getColorSync($r('app.string.test_1').id);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2700 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2700 ${typeof value}`);
+        done();
       } catch (err) {
-        console.log("testGetColorSyncResId004 err.code " + err.code);
-        console.log("testGetColorSyncResId004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2700 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORSYNCRESID_005
-    * @tc.name    test getColorSync method in sync mode throw 9001006 error code
-    * @tc.desc    get the color in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorSync_Func_2800
+    * @tc.name:    test getColorSync method in sync mode throw 9001006 error code
+    * @tc.desc:    get the color in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorSyncResId005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorSync_Func_2800', 0, async (done: Function) => {
       try {
-        let value: number = context.resourceManager.getColorSync($r('app.color.test3').id)
-        console.log('testGetColorSyncResId005' + value);
-        console.log('testGetColorSyncResId005' + typeof value);
-        done()
+        let value: number = context.resourceManager.getColorSync($r('app.color.test3').id);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2800 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2800 ${typeof value}`);
+        done();
       } catch (err) {
-        console.log("testGetColorSyncResId005 err.code " + err.code);
-        console.log("testGetColorSyncResId005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2800 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2800 errMessage ${err.message}`);
         expect(err.code == 9001006).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORSYNCRESOURCE_001
-    * @tc.name    test getColorSync method in sync mode
-    * @tc.desc    get the color in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorSync_Func_2900
+    * @tc.name:    test getColorSync method in sync mode
+    * @tc.desc:    get the color in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorSyncResource001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorSync_Func_2900', 0, async (done: Function) => {
       let value: number = context.resourceManager.getColorSync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.color.test1').id
-      })
-      console.log('testGetColorSyncResource001' + value);
-      console.log('testGetColorSyncResource001' + typeof value);
+      });
+      console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2900 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_2900 ${typeof value}`);
       expect(value).assertEqual(4283047887);
-      done()
+      done();
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORSYNCRESOURCE_002
-    * @tc.name    test getColorSync method in sync mode
-    * @tc.desc    get the color in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorSync_Func_3000
+    * @tc.name:    test getColorSync method in sync mode
+    * @tc.desc:    get the color in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorSyncResource002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorSync_Func_3000', 0, async (done: Function) => {
       let value: number = context.resourceManager.getColorSync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.color.test2').id
-      })
-      console.log('testGetColorSyncResource002' + value);
-      console.log('testGetColorSyncResource002' + typeof value);
+      });
+      console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_3000 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_3000 ${typeof value}`);
       expect(value).assertEqual(4281309688);
-      done()
+      done();
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORSYNCRESOURCE_003
-    * @tc.name    test getColorSync method in sync mode throw 9001001 error code
-    * @tc.desc    get the color in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorSync_Func_3100
+    * @tc.name:    test getColorSync method in sync mode throw 9001001 error code
+    * @tc.desc:    get the color in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorSyncResource003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorSync_Func_3100', 0, async (done: Function) => {
       try {
-
         let value: number = context.resourceManager.getColorSync({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: 1111
-        })
-        console.log('testGetColorSyncResource003' + value);
-        console.log('testGetColorSyncResource003' + typeof value);
-        done()
+        });
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_3100 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_3100 ${typeof value}`);
+        done();
       } catch (err) {
-        console.log("testGetColorSyncResource003 err.code " + err.code);
-        console.log("testGetColorSyncResource003 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_3100 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_3100 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORSYNCRESOURCE_004
-    * @tc.name    test getColorSync method in sync mode throw 9001002 error code
-    * @tc.desc    get the color in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorSync_Func_3200
+    * @tc.name:    test getColorSync method in sync mode throw 9001002 error code
+    * @tc.desc:    get the color in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorSyncResource004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorSync_Func_3200', 0, async (done: Function) => {
       try {
-
         let value: number = context.resourceManager.getColorSync({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: $r('app.string.test_1').id
-        })
-        console.log('testGetColorSyncResource004' + value);
-        console.log('testGetColorSyncResource004' + typeof value);
-        done()
+        });
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_3200 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_3200 ${typeof value}`);
+        done();
       } catch (err) {
-        console.log("testGetColorSyncResource004 err.code " + err.code);
-        console.log("testGetColorSyncResource004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_3200 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_3200 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORSYNCRESOURCE_005
-    * @tc.name    test getColorSync method in sync mode throw 9001006 error code
-    * @tc.desc    get the color in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorSync_Func_3300
+    * @tc.name:    test getColorSync method in sync mode throw 9001006 error code
+    * @tc.desc:    get the color in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorSyncResource005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorSync_Func_3300', 0, async (done: Function) => {
       try {
-
         let value: number = context.resourceManager.getColorSync({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: $r('app.color.test3').id
-        })
-        console.log('testGetColorSyncResource005' + value);
-        console.log('testGetColorSyncResource005' + typeof value);
-        done()
+        });
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_3300 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_3300 ${typeof value}`);
+        done();
       } catch (err) {
-        console.log("testGetColorSyncResource005 err.code " + err.code);
-        console.log("testGetColorSyncResource005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_3300 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorSync_Func_3300 errMessage ${err.message}`);
         expect(err.code == 9001006).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORBYNAMESYNC_001
-    * @tc.name    test getColorByNameSync method in sync mode
-    * @tc.desc    get the color in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3400
+    * @tc.name:    test getColorByNameSync method in sync mode
+    * @tc.desc:    get the color in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorByNameSync001', 0, async (done: Function) => {
-      let value: number = context.resourceManager.getColorByNameSync("test1")
-      console.log('testGetColorByNameSync001' + value);
-      console.log('testGetColorByNameSync001' + typeof value);
+    it('SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3400', 0, async (done: Function) => {
+      let value: number = context.resourceManager.getColorByNameSync("test1");
+      console.log(`SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3400 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3400 ${typeof value}`);
       expect(value).assertEqual(4283047887);
-      done()
+      done();
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORBYNAMESYNC_002
-    * @tc.name    test getColorByNameSync method in sync mode
-    * @tc.desc    get the color in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3500
+    * @tc.name:    test getColorByNameSync method in sync mode
+    * @tc.desc:    get the color in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorByNameSync002', 0, async (done: Function) => {
-      let value: number = context.resourceManager.getColorByNameSync("test2")
-      console.log('testGetColorByNameSync002' + value);
-      console.log('testGetColorByNameSync002' + typeof value);
+    it('SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3500', 0, async (done: Function) => {
+      let value: number = context.resourceManager.getColorByNameSync("test2");
+      console.log(`SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3500 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3500 ${typeof value}`);
       expect(value).assertEqual(4281309688);
-      done()
+      done();
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORBYNAMESYNC_003
-    * @tc.name    test getColorByNameSync method in sync mode throw 9001003 error code
-    * @tc.desc    get the color in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3600
+    * @tc.name:    test getColorByNameSync method in sync mode throw 9001003 error code
+    * @tc.desc:    get the color in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorByNameSync003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3600', 0, async (done: Function) => {
       try {
-        let value: number = context.resourceManager.getColorByNameSync("notexist")
-        console.log('testGetColorByNameSync003' + value);
-        console.log('testGetColorByNameSync003' + typeof value);
-        done()
+        let value: number = context.resourceManager.getColorByNameSync("notexist");
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3600 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3600 ${typeof value}`);
+        done();
       } catch (err) {
-        console.log("testGetColorByNameSync003 err.code " + err.code);
-        console.log("testGetColorByNameSync003 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3600 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3600 errMessage ${err.message}`);
         expect(err.code == 9001003).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST-GETCOLORBYNAMESYNC_004
-    * @tc.name    test getColorByNameSync method in sync mode throw 9001006 error code
-    * @tc.desc    get the color in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3700
+    * @tc.name:    test getColorByNameSync method in sync mode throw 9001006 error code
+    * @tc.desc:    get the color in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetColorByNameSync004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3700', 0, async (done: Function) => {
       try {
-        let value: number = context.resourceManager.getColorByNameSync("test3")
-        console.log('testGetColorByNameSync004' + value);
-        console.log('testGetColorByNameSync004' + typeof value);
-        done()
+        let value: number = context.resourceManager.getColorByNameSync("test3");
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3700 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3700 ${typeof value}`);
+        done();
       } catch (err) {
-        console.log("testGetColorByNameSync004 err.code " + err.code);
-        console.log("testGetColorByNameSync004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetColorByNameSync_Func_3700 errMessage ${err.message}`);
         expect(err.code == 9001006).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFDSYNC_001
-    * @tc.name    test getRawFdSync method
-    * @tc.desc    get the RawFileDescriptor in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetRawFdSync_Func_3800
+    * @tc.name:    test getRawFdSync method
+    * @tc.desc:    get the RawFileDescriptor in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFdSync001', 0, async (done: Function) => {
-      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync('rawfiletest.xml')
+    it('SUB_Global_Resource_Manager_0200_GetRawFdSync_Func_3800', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync('rawfiletest.xml');
       let fdValue: number = rawfile.fd;
       let offsetValue: number = rawfile.offset;
       let lengthValue: number = rawfile.length;
-      console.log('testGetRawFdSync001--'
-        + 'fd:' + fdValue
-        + ' offset:' + offsetValue
-        + ' length:' + lengthValue);
+      console.log(`SUB_Global_Resource_Manager_0200_GetRawFdSync_Func_3800 fd: ${fdValue} offset: ${offsetValue} length: ${lengthValue}`);
       expect(rawfile != null).assertTrue();
       done();
     })
 
 
     /* *
-    * @tc.number  TEST-GETRAWFDSYNC_002
-    * @tc.name    test getRawFdSync method
-    * @tc.desc    get the RawFileDescriptor in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetRawFdSync_Func_3900
+    * @tc.name:    test getRawFdSync method
+    * @tc.desc:    get the RawFileDescriptor in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFdSync002', 0, async (done: Function) => {
-      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync('test/test.png')
+    it('SUB_Global_Resource_Manager_0200_GetRawFdSync_Func_3900', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync('test/test.png');
       let fdValue: number = rawfile.fd;
       let offsetValue: number = rawfile.offset;
       let lengthValue: number = rawfile.length;
-      console.log('testGetRawFdSync002--'
-        + 'fd:' + fdValue
-        + ' offset:' + offsetValue
-        + ' length:' + lengthValue);
+      console.log(`SUB_Global_Resource_Manager_0200_GetRawFdSync_Func_3900 fd: ${fdValue} offset: ${offsetValue} length: ${lengthValue}`);
       expect(lengthValue == 128635).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST-GETRAWFDSYNC_003
-    * @tc.name    test getRawFdSync method throw 9001005 error code
-    * @tc.desc    get the RawFileDescriptor in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetRawFdSync_Func_4000
+    * @tc.name:    test getRawFdSync method throw 9001005 error code
+    * @tc.desc:    get the RawFileDescriptor in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFdSync003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetRawFdSync_Func_4000', 0, async (done: Function) => {
       try {
-        let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync('notexist.txt')
-        done()
+        let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync('notexist.txt');
+        done();
       } catch (err) {
-        console.log("testGetRawFdSync003 err.code " + err.code);
-        console.log("testGetRawFdSync003 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetRawFdSync_Func_4000 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetRawFdSync_Func_4000 errMessage ${err.message}`);
         expect(err.code == 9001005).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETRAWFILECONTENTSYNC_001
-    * @tc.name    test getRawFileContentSync method in sync mode
-    * @tc.desc    get the rawFileContent in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetRawFileContentSync_Func_4100
+    * @tc.name:    test getRawFileContentSync method in sync mode
+    * @tc.desc:    get the rawFileContent in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileContentSync001', 0, async (done: Function) => {
-      let value: Uint8Array = context.resourceManager.getRawFileContentSync('rawfiletest.xml')
-      console.log('testGetRawFileContentSync001 ' + value.slice(0, 10));
-      console.log('testGetRawFileContentSync001 ' + value.length);
-      expect(value.length != null).assertTrue()
+    it('SUB_Global_Resource_Manager_0200_GetRawFileContentSync_Func_4100', 0, async (done: Function) => {
+      let value: Uint8Array = context.resourceManager.getRawFileContentSync('rawfiletest.xml');
+      console.log(`SUB_Global_Resource_Manager_0200_GetRawFileContentSync_Func_4100 ${value}`.slice(0, 10));
+      console.log(`SUB_Global_Resource_Manager_0200_GetRawFileContentSync_Func_4100 ${value.length}`);
+      expect(value.length != null).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETRAWFILECONTENTSYNC_002
-    * @tc.name    test getRawFileContentSync method in sync mode
-    * @tc.desc    get the rawFileContent in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetRawFileContentSync_Func_4200
+    * @tc.name:    test getRawFileContentSync method in sync mode
+    * @tc.desc:    get the rawFileContent in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileContentSync002', 0, async (done: Function) => {
-      let value: Uint8Array = context.resourceManager.getRawFileContentSync('test/test.png')
-      console.log('testGetRawFileContentSync002 ' + value.slice(0, 10));
-      console.log('testGetRawFileContentSync002 ' + value.length);
-      expect(value.length == 128635).assertTrue()
-      expect(value[0] == 137).assertTrue()
+    it('SUB_Global_Resource_Manager_0200_GetRawFileContentSync_Func_4200', 0, async (done: Function) => {
+      let value: Uint8Array = context.resourceManager.getRawFileContentSync('test/test.png');
+      console.log(`SUB_Global_Resource_Manager_0200_GetRawFileContentSync_Func_4200 ${value}`.slice(0, 10));
+      console.log(`SUB_Global_Resource_Manager_0200_GetRawFileContentSync_Func_4200 ${value.length}`);
+      expect(value.length == 128635).assertTrue();
+      expect(value[0] == 137).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETRAWFILECONTENTSYNC_003
-    * @tc.name    test getRawFileContentSync method throw 9001005 error code
-    * @tc.desc    get the rawFileContent in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetRawFileContentSync_Func_4300
+    * @tc.name:    test getRawFileContentSync method throw 9001005 error code
+    * @tc.desc:    get the rawFileContent in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetRawFileContentSync003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetRawFileContentSync_Func_4300', 0, async (done: Function) => {
       try {
-        let value: Uint8Array = context.resourceManager.getRawFileContentSync('notexist.txt')
-        console.log('testGetRawFileContentSync003 ' + value);
-        console.log('testGetRawFileContentSync003 ' + typeof value);
+        let value: Uint8Array = context.resourceManager.getRawFileContentSync('notexist.txt');
+        console.log(`SUB_Global_Resource_Manager_0200_GetRawFileContentSync_Func_4300 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetRawFileContentSync_Func_4300 ${typeof value}`);
         done();
       } catch (err) {
-        console.log("testGetRawFileContentSync003 err.code " + err.code);
-        console.log("testGetRawFileContentSync003 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetRawFileContentSync_Func_4300 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetRawFileContentSync_Func_4300 errMessage ${err.message}`);
         expect(err.code == 9001005).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTSYNCRESID_001
-    * @tc.name    test getMediaContentSync method
-    * @tc.desc    get the media in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4400
+    * @tc.name:    test getMediaContentSync method
+    * @tc.desc:    get the media in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentSyncResId001', 0, async (done: Function) => {
-      let value: Uint8Array = context.resourceManager.getMediaContentSync($r('app.media.icon').id, 0)
-      console.log('testGetMediaContentSyncResId001 ' + value);
-      console.log('testGetMediaContentSyncResId001 ' + typeof value);
-      expect(value.length == 6790).assertTrue()
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4400', 0, async (done: Function) => {
+      let value: Uint8Array = context.resourceManager.getMediaContentSync($r('app.media.icon').id, 0);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4400 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4400 ${typeof value}`);
+      expect(value.length == 6790).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTSYNCRESID_002
-    * @tc.name    test getMediaContentSync method
-    * @tc.desc    get the media in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4500
+    * @tc.name:    test getMediaContentSync method
+    * @tc.desc:    get the media in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentSyncResId002', 0, async (done: Function) => {
-      let value: Uint8Array = context.resourceManager.getMediaContentSync($r('app.media.icon').id, 120)
-      console.log('testGetMediaContentSyncResId002 ' + value);
-      console.log('testGetMediaContentSyncResId002 ' + typeof value);
-      expect(value.length == 6790).assertTrue()
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4500', 0, async (done: Function) => {
+      let value: Uint8Array = context.resourceManager.getMediaContentSync($r('app.media.icon').id, 120);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4500 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4500 ${typeof value}`);
+      expect(value.length == 6790).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTSYNCRESID_003
-    * @tc.name    test getMediaContentSync method
-    * @tc.desc    get the media in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4600
+    * @tc.name:    test getMediaContentSync method
+    * @tc.desc:    get the media in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentSyncResId003', 0, async (done: Function) => {
-      let value: Uint8Array = context.resourceManager.getMediaContentSync($r('app.media.test').id, 0)
-      console.log('testGetMediaContentSyncResId003 ' + value);
-      console.log('testGetMediaContentSyncResId003 ' + typeof value);
-      expect(value.length == 128635).assertTrue()
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4600', 0, async (done: Function) => {
+      let value: Uint8Array = context.resourceManager.getMediaContentSync($r('app.media.test').id, 0);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4600 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4600 ${typeof value}`);
+      expect(value.length == 128635).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTSYNCRESID_004
-    * @tc.name    test getMediaContentSync method throw 9001001 error code
-    * @tc.desc    get the media in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4700
+    * @tc.name:    test getMediaContentSync method throw 9001001 error code
+    * @tc.desc:    get the media in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentSyncResId004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4700', 0, async (done: Function) => {
       try {
-        let value: Uint8Array = context.resourceManager.getMediaContentSync(1111, 0)
-        console.log('testGetMediaContentSyncResId004 ' + value);
-        console.log('testGetMediaContentSyncResId004 ' + typeof value);
+        let value: Uint8Array = context.resourceManager.getMediaContentSync(1111, 0);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4700 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4700 ${typeof value}`);
         done();
       } catch (err) {
-        console.log("testGetMediaContentSyncResId004 err.code " + err.code);
-        console.log("testGetMediaContentSyncResId004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4700 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTSYNCRESID_005
-    * @tc.name    test getMediaContentSync method throw 9001002 error code
-    * @tc.desc    get the media in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4800
+    * @tc.name:    test getMediaContentSync method throw 9001002 error code
+    * @tc.desc:    get the media in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentSyncResId005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4800', 0, async (done: Function) => {
       try {
-        let value: Uint8Array = context.resourceManager.getMediaContentSync($r('app.string.test_1').id, 0)
-        console.log('testGetMediaContentSyncResId005 ' + value);
-        console.log('testGetMediaContentSyncResId005 ' + typeof value);
+        let value: Uint8Array = context.resourceManager.getMediaContentSync($r('app.string.test_1').id, 0);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4800 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4800 ${typeof value}`);
         done();
       } catch (err) {
-        console.log("testGetMediaContentSyncResId005 err.code " + err.code);
-        console.log("testGetMediaContentSyncResId005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4800 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4800 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTSYNCRESOURCE_001
-    * @tc.name    test getMediaContentSync method
-    * @tc.desc    get the media in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4900
+    * @tc.name:    test getMediaContentSync method
+    * @tc.desc:    get the media in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentSyncResource001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4900', 0, async (done: Function) => {
       let value: Uint8Array = context.resourceManager.getMediaContentSync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.icon').id
       }, 0)
-      console.log('testGetMediaContentSyncResource001 ' + value);
-      console.log('testGetMediaContentSyncResource001 ' + typeof value);
-      expect(value.length == 6790).assertTrue()
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4900 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_4900 ${typeof value}`);
+      expect(value.length == 6790).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTSYNCRESOURCE_002
-    * @tc.name    test getMediaContentSync method
-    * @tc.desc    get the media in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5000
+    * @tc.name:    test getMediaContentSync method
+    * @tc.desc:    get the media in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentSyncResource002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5000', 0, async (done: Function) => {
       let value: Uint8Array = context.resourceManager.getMediaContentSync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.icon').id
       }, 120)
-      console.log('testGetMediaContentSyncResource002 ' + value);
-      console.log('testGetMediaContentSyncResource002 ' + typeof value);
-      expect(value.length == 6790).assertTrue()
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5000 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5000 ${typeof value}`);
+      expect(value.length == 6790).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTSYNCRESOURCE_003
-    * @tc.name    test getMediaContentSync method
-    * @tc.desc    get the media in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5100
+    * @tc.name:    test getMediaContentSync method
+    * @tc.desc:    get the media in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentSyncResource003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5100', 0, async (done: Function) => {
       let value: Uint8Array = context.resourceManager.getMediaContentSync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.test').id
       }, 0)
-      console.log('testGetMediaContentSyncResource003 ' + value);
-      console.log('testGetMediaContentSyncResource003 ' + typeof value);
-      expect(value.length == 128635).assertTrue()
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5100 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5100 ${typeof value}`);
+      expect(value.length == 128635).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTSYNCRESOURCE_004
-    * @tc.name    test getMediaContentSync method throw 9001001 error code
-    * @tc.desc    get the media in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5200
+    * @tc.name:    test getMediaContentSync method throw 9001001 error code
+    * @tc.desc:    get the media in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentSyncResource004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5200', 0, async (done: Function) => {
       try {
         let value: Uint8Array = context.resourceManager.getMediaContentSync({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: 1111
         }, 0)
-        console.log('testGetMediaContentSyncResource004 ' + value);
-        console.log('testGetMediaContentSyncResource004 ' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5200 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5200 ${typeof value}`);
         done();
       } catch (err) {
-        console.log("testGetMediaContentSyncResource004 err.code " + err.code);
-        console.log("testGetMediaContentSyncResource004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5200 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5200 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTSYNCRESOURCE_005
-    * @tc.name    test getMediaContentSync method throw 9001002 error code
-    * @tc.desc    get the media in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5300
+    * @tc.name:    test getMediaContentSync method throw 9001002 error code
+    * @tc.desc:    get the media in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentSyncResource005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5300', 0, async (done: Function) => {
       try {
         let value: Uint8Array = context.resourceManager.getMediaContentSync({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: $r('app.string.test_1').id
         }, 0)
-        console.log('testGetMediaContentSyncResource005 ' + value);
-        console.log('testGetMediaContentSyncResource005 ' + typeof value);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5300 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5300 ${typeof value}`);
         done();
       } catch (err) {
-        console.log("testGetMediaContentSyncResource005 err.code " + err.code);
-        console.log("testGetMediaContentSyncResource005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5300 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentSync_Func_5300 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64SYNCRESID_001
-    * @tc.name    test getMediaContentBase64Sync method
-    * @tc.desc    get the mediaBase64 in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5400
+    * @tc.name:    test getMediaContentBase64Sync method
+    * @tc.desc:    get the mediaBase64 in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64SyncResId001', 0, async (done: Function) => {
-      let value: string = context.resourceManager.getMediaContentBase64Sync($r('app.media.icon').id, 0)
-      console.log('testGetMediaContentBase64SyncResId001 ' + value);
-      console.log('testGetMediaContentBase64SyncResId001 ' + typeof value);
-      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5400', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getMediaContentBase64Sync($r('app.media.icon').id, 0);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5400 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5400 ${typeof value}`);
+      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64SYNCRESID_002
-    * @tc.name    test getMediaContentBase64Sync method
-    * @tc.desc    get the mediaBase64 in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5500
+    * @tc.name:    test getMediaContentBase64Sync method
+    * @tc.desc:    get the mediaBase64 in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64SyncResId002', 0, async (done: Function) => {
-      let value: string = context.resourceManager.getMediaContentBase64Sync($r('app.media.icon').id, 120)
-      console.log('testGetMediaContentBase64SyncResId002 ' + value);
-      console.log('testGetMediaContentBase64SyncResId002 ' + typeof value);
-      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5500', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getMediaContentBase64Sync($r('app.media.icon').id, 120);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5500 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5500 ${typeof value}`);
+      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64SYNCRESID_003
-    * @tc.name    test getMediaContentBase64Sync method
-    * @tc.desc    get the mediaBase64 in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5600
+    * @tc.name:    test getMediaContentBase64Sync method
+    * @tc.desc:    get the mediaBase64 in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64SyncResId003', 0, async (done: Function) => {
-      let value: string = context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id, 0)
-      console.log('testGetMediaContentBase64SyncResId003 ' + value);
-      console.log('testGetMediaContentBase64SyncResId003 ' + typeof value);
-      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A')
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5600', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getMediaContentBase64Sync($r('app.media.test').id, 0);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5600 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5600 ${typeof value}`);
+      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64SYNCRESID_004
-    * @tc.name    test getMediaContentBase64Sync method throw 9001001 error code
-    * @tc.desc    get the mediaBase64 in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5700
+    * @tc.name:    test getMediaContentBase64Sync method throw 9001001 error code
+    * @tc.desc:    get the mediaBase64 in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64SyncResId004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5700', 0, async (done: Function) => {
       try {
-        let value: string = context.resourceManager.getMediaContentBase64Sync(1111, 0)
-        console.log('testGetMediaContentBase64SyncResId004 ' + value);
-        console.log('testGetMediaContentBase64SyncResId004 ' + typeof value);
+        let value: string = context.resourceManager.getMediaContentBase64Sync(1111, 0);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5700 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5700 ${typeof value}`);
         done();
       } catch (err) {
-        console.log("testGetMediaContentBase64SyncResId004 err.code " + err.code);
-        console.log("testGetMediaContentBase64SyncResId004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5700 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64SYNCRESID_005
-    * @tc.name    test getMediaContentBase64Sync method throw 9001002 error code
-    * @tc.desc    get the mediaBase64 in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5800
+    * @tc.name:    test getMediaContentBase64Sync method throw 9001002 error code
+    * @tc.desc:    get the mediaBase64 in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64SyncResId005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5800', 0, async (done: Function) => {
       try {
-        let value: string = context.resourceManager.getMediaContentBase64Sync($r('app.string.test_1').id, 0)
-        console.log('testGetMediaContentBase64SyncResId005 ' + value);
-        console.log('testGetMediaContentBase64SyncResId005 ' + typeof value);
+        let value: string = context.resourceManager.getMediaContentBase64Sync($r('app.string.test_1').id, 0);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5800 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5800 ${typeof value}`);
         done();
       } catch (err) {
-        console.log("testGetMediaContentBase64SyncResId005 err.code " + err.code);
-        console.log("testGetMediaContentBase64SyncResId005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5800 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5800 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64SYNCRESOURCE_001
-    * @tc.name    test getMediaContentBase64Sync method
-    * @tc.desc    get the mediaBase64 in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5900
+    * @tc.name:    test getMediaContentBase64Sync method
+    * @tc.desc:    get the mediaBase64 in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64SyncResource001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5900', 0, async (done: Function) => {
       let value: string = context.resourceManager.getMediaContentBase64Sync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.icon').id
       }, 0)
-      console.log('testGetMediaContentBase64SyncResource001 ' + value);
-      console.log('testGetMediaContentBase64SyncResource001 ' + typeof value);
-      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5900 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_5900 ${typeof value}`);
+      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64SYNCRESOURCE_002
-    * @tc.name    test getMediaContentBase64Sync method
-    * @tc.desc    get the mediaBase64 in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6000
+    * @tc.name:    test getMediaContentBase64Sync method
+    * @tc.desc:    get the mediaBase64 in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64SyncResource002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6000', 0, async (done: Function) => {
       let value: string = context.resourceManager.getMediaContentBase64Sync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.icon').id
-      }, 120)
-      console.log('testGetMediaContentBase64SyncResource002 ' + value);
-      console.log('testGetMediaContentBase64SyncResource002 ' + typeof value);
-      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA')
+      }, 120);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6000 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6000 ${typeof value}`);
+      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAHIA');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64SYNCRESOURCE_003
-    * @tc.name    test getMediaContentBase64Sync method
-    * @tc.desc    get the mediaBase64 in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6100
+    * @tc.name:    test getMediaContentBase64Sync method
+    * @tc.desc:    get the mediaBase64 in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64SyncResource003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6100', 0, async (done: Function) => {
       let value: string = context.resourceManager.getMediaContentBase64Sync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.media.test').id
-      }, 0)
-      console.log('testGetMediaContentBase64SyncResource003 ' + value);
-      console.log('testGetMediaContentBase64SyncResource003 ' + typeof value);
-      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A')
+      }, 0);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6100 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6100 ${typeof value}`);
+      expect(value.slice(22, 50)).assertEqual('iVBORw0KGgoAAAANSUhEUgAAAs0A');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64SYNCRESOURCE_004
-    * @tc.name    test getMediaContentBase64Sync method throw 9001001 error code
-    * @tc.desc    get the mediaBase64 in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6200
+    * @tc.name:    test getMediaContentBase64Sync method throw 9001001 error code
+    * @tc.desc:    get the mediaBase64 in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64SyncResource004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6200', 0, async (done: Function) => {
       try {
         let value: string = context.resourceManager.getMediaContentBase64Sync({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: 1111
-        }, 0)
+        }, 0);
         done();
       } catch (err) {
-        console.log("testGetMediaContentBase64SyncResource004 err.code " + err.code);
-        console.log("testGetMediaContentBase64SyncResource004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6200 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6200 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETMEDIACONTENTBASE64SYNCRESOURCE_005
-    * @tc.name    test getMediaContentBase64Sync method throw 9001002 error code
-    * @tc.desc    get the mediaBase64 in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6300
+    * @tc.name:    test getMediaContentBase64Sync method throw 9001002 error code
+    * @tc.desc:    get the mediaBase64 in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetMediaContentBase64SyncResource005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6300', 0, async (done: Function) => {
       try {
         let value: string = context.resourceManager.getMediaContentBase64Sync({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: $r('app.string.test_1').id
-        }, 0)
+        }, 0);
         done();
       } catch (err) {
-        console.log("testGetMediaContentBase64SyncResource005 err.code " + err.code);
-        console.log("testGetMediaContentBase64SyncResource005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6300 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetMediaContentBase64Sync_Func_6300 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGVALUESYNCRESIDP_001
-    * @tc.name    test getPluralStringValueSync method in sync mode
-    * @tc.desc    get the plural string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6400
+    * @tc.name:    test getPluralStringValueSync method in sync mode
+    * @tc.desc:    get the plural string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetPluralStringValueSyncResId001', 0, async (done: Function) => {
-      let value: string = context.resourceManager.getPluralStringValueSync($r('app.plural.plural_name').id, 1)
-      console.log('testGetPluralStringValueSyncResId001 ' + value);
-      console.log('testGetPluralStringValueSyncResId001 ' + typeof value);
+    it('SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6400', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getPluralStringValueSync($r('app.plural.plural_name').id, 1);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6400 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6400 ${typeof value}`);
       expect(value).assertEqual('1 test other');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGVALUESYNCRESIDP_002
-    * @tc.name    test getPluralStringValueSync method in sync mode
-    * @tc.desc    get the plural string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6500
+    * @tc.name:    test getPluralStringValueSync method in sync mode
+    * @tc.desc:    get the plural string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetPluralStringValueSyncResId002', 0, async (done: Function) => {
-      let value: string = context.resourceManager.getPluralStringValueSync($r('app.plural.plural_name').id, 2)
-      console.log('testGetPluralStringValueSyncResId002 ' + value);
-      console.log('testGetPluralStringValueSyncResId002 ' + typeof value);
+    it('SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6500', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getPluralStringValueSync($r('app.plural.plural_name').id, 2);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6500 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6500 ${typeof value}`);
       expect(value).assertEqual('2 test other');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGVALUESYNCRESIDP_003
-    * @tc.name    test getPluralStringValueSync method in sync mode
-    * @tc.desc    get the plural string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6600
+    * @tc.name:    test getPluralStringValueSync method in sync mode
+    * @tc.desc:    get the plural string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetPluralStringValueSyncResId003', 0, async (done: Function) => {
-      let value: string = context.resourceManager.getPluralStringValueSync($r('app.plural.plural_name2').id, 1)
-      console.log('testGetPluralStringValueSyncResId003 ' + value);
-      console.log('testGetPluralStringValueSyncResId003 ' + typeof value);
+    it('SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6600', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getPluralStringValueSync($r('app.plural.plural_name2').id, 1);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6600 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6600 ${typeof value}`);
       expect(value).assertEqual('1 test2 other');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGVALUESYNCRESIDP_004
-    * @tc.name    test getPluralStringValueSync method in sync mode throw 9001001 error code
-    * @tc.desc    get the plural string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6700
+    * @tc.name:    test getPluralStringValueSync method in sync mode throw 9001001 error code
+    * @tc.desc:    get the plural string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetPluralStringValueSyncResId004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6700', 0, async (done: Function) => {
       try {
-        let value: string = context.resourceManager.getPluralStringValueSync(1111, 1)
-        console.log('testGetPluralStringValueSyncResId004 ' + value);
-        console.log('testGetPluralStringValueSyncResId004 ' + typeof value);
+        let value: string = context.resourceManager.getPluralStringValueSync(1111, 1);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6700 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6700 ${typeof value}`);
         expect(value).assertEqual('1 test other');
         done();
       } catch (err) {
-        console.log("testGetPluralStringValueSyncResId004 err.code " + err.code);
-        console.log("testGetPluralStringValueSyncResId004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6700 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGVALUESYNCRESIDP_005
-    * @tc.name    test getPluralStringValueSync method in sync mode throw 9001002 error code
-    * @tc.desc    get the plural string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6800
+    * @tc.name:    test getPluralStringValueSync method in sync mode throw 9001002 error code
+    * @tc.desc:    get the plural string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetPluralStringValueSyncResId005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6800', 0, async (done: Function) => {
       try {
-        let value: string = context.resourceManager.getPluralStringValueSync($r('app.string.test_1').id, 1)
-        console.log('testGetPluralStringValueSyncResId005 ' + value);
-        console.log('testGetPluralStringValueSyncResId005 ' + typeof value);
+        let value: string = context.resourceManager.getPluralStringValueSync($r('app.string.test_1').id, 1);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6800 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6800 ${typeof value}`);
         expect(value).assertEqual('1 test other');
         done();
       } catch (err) {
-        console.log("testGetPluralStringValueSyncResId005 err.code " + err.code);
-        console.log("testGetPluralStringValueSyncResId005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6800 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6800 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGVALUESYNCRESOURCE_001
-    * @tc.name    test getPluralStringValueSync method in sync mode
-    * @tc.desc    get the plural string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6900
+    * @tc.name:    test getPluralStringValueSync method in sync mode
+    * @tc.desc:    get the plural string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetPluralStringValueSyncResource001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6900', 0, async (done: Function) => {
       let value: string = context.resourceManager.getPluralStringValueSync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.plural.plural_name').id
-      }, 1)
-      console.log('testGetPluralStringValueSyncResource001 ' + value);
-      console.log('testGetPluralStringValueSyncResource001 ' + typeof value);
+      }, 1);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6900 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_6900 ${typeof value}`);
       expect(value).assertEqual('1 test other');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGVALUESYNCRESOURCE_002
-    * @tc.name    test getPluralStringValueSync method in sync mode
-    * @tc.desc    get the plural string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7000
+    * @tc.name:    test getPluralStringValueSync method in sync mode
+    * @tc.desc:    get the plural string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetPluralStringValueSyncResource002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7000', 0, async (done: Function) => {
       let value: string = context.resourceManager.getPluralStringValueSync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.plural.plural_name').id
-      }, 2)
-      console.log('testGetPluralStringValueSyncResource002 ' + value);
-      console.log('testGetPluralStringValueSyncResource002 ' + typeof value);
+      }, 2);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7000 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7000 ${typeof value}`);
       expect(value).assertEqual('2 test other');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGVALUESYNCRESOURCE_003
-    * @tc.name    test getPluralStringValueSync method in sync mode
-    * @tc.desc    get the plural string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7100
+    * @tc.name:    test getPluralStringValueSync method in sync mode
+    * @tc.desc:    get the plural string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetPluralStringValueSyncResource003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7100', 0, async (done: Function) => {
       let value: string = context.resourceManager.getPluralStringValueSync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.plural.plural_name2').id
-      }, 1)
-      console.log('testGetPluralStringValueSyncResource003 ' + value);
-      console.log('testGetPluralStringValueSyncResource003 ' + typeof value);
+      }, 1);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7100 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7100 ${typeof value}`);
       expect(value).assertEqual('1 test2 other');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGVALUESYNCRESOURCE_004
-    * @tc.name    test getPluralStringValueSync method in sync mode throw 9001001 error code
-    * @tc.desc    get the plural string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7200
+    * @tc.name:    test getPluralStringValueSync method in sync mode throw 9001001 error code
+    * @tc.desc:    get the plural string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetPluralStringValueSyncResource004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7200', 0, async (done: Function) => {
       try {
         let value: string = context.resourceManager.getPluralStringValueSync({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: 1111
-        }, 1)
-        console.log('testGetPluralStringValueSyncResource004 ' + value);
-        console.log('testGetPluralStringValueSyncResource004 ' + typeof value);
+        }, 1);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7200 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7200 ${typeof value}`);
         done();
       } catch (err) {
-        console.log("testGetPluralStringValueSyncResource004 err.code " + err.code);
-        console.log("testGetPluralStringValueSyncResource004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7200 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7200 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGVALUESYNCRESOURCE_005
-    * @tc.name    test getPluralStringValueSync method in sync mode throw 9001002 error code
-    * @tc.desc    get the plural string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7300
+    * @tc.name:    test getPluralStringValueSync method in sync mode throw 9001002 error code
+    * @tc.desc:    get the plural string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetPluralStringValueSyncResource005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7300', 0, async (done: Function) => {
       try {
         let value: string = context.resourceManager.getPluralStringValueSync({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: $r('app.string.test_1').id
-        }, 1)
-        console.log('testGetPluralStringValueSyncResource005 ' + value);
-        console.log('testGetPluralStringValueSyncResource005 ' + typeof value);
+        }, 1);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7300 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7300 ${typeof value}`);
         done();
       } catch (err) {
-        console.log("testGetPluralStringValueSyncResource005 err.code " + err.code);
-        console.log("testGetPluralStringValueSyncResource005 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7300 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringValueSync_Func_7300 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGARRAYVALUESYNCRESID_001
-    * @tc.name    test getStringArrayValueSync method
-    * @tc.desc    get the string array in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7400
+    * @tc.name:    test getStringArrayValueSync method
+    * @tc.desc:    get the string array in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringArrayValueSyncResId001', 0, async (done: Function) => {
-      let value: Array<string> = context.resourceManager.getStringArrayValueSync($r('app.strarray.sizeList').id)
-      console.log('testGetStringArrayValueSyncResId001 ' + value);
-      console.log('testGetStringArrayValueSyncResId001 ' + typeof value);
-      console.log('testGetStringArrayValueSyncResId001 ' + value.length);
+    it('SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7400', 0, async (done: Function) => {
+      let value: Array<string> = context.resourceManager.getStringArrayValueSync($r('app.strarray.sizeList').id);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7400 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7400 ${typeof value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7400 ${value.length}`);
       expect(value.length).assertEqual(4);
       expect(value[0]).assertEqual('small');
       expect(value[1]).assertEqual('middle');
@@ -3713,18 +3707,18 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGARRAYVALUESYNCRESID_002
-    * @tc.name    test getStringArrayValueSync method
-    * @tc.desc    get the string array in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7500
+    * @tc.name:    test getStringArrayValueSync method
+    * @tc.desc:    get the string array in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringArrayValueSyncResId002', 0, async (done: Function) => {
-      let value: Array<string> = context.resourceManager.getStringArrayValueSync($r('app.strarray.sizeList2').id)
-      console.log('testGetStringArrayValueSyncResId002 ' + value);
-      console.log('testGetStringArrayValueSyncResId002 ' + typeof value);
-      console.log('testGetStringArrayValueSyncResId002 ' + value.length);
+    it('SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7500', 0, async (done: Function) => {
+      let value: Array<string> = context.resourceManager.getStringArrayValueSync($r('app.strarray.sizeList2').id);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7500 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7500 ${typeof value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7500 ${value.length}`);
       expect(value.length).assertEqual(2);
       expect(value[0]).assertEqual('little');
       expect(value[1]).assertEqual('much');
@@ -3732,74 +3726,74 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGARRAYVALUESYNCRESID_003
-    * @tc.name    test getStringArrayValueSync method throw 9001001 error code
-    * @tc.desc    get the string array in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7600
+    * @tc.name:    test getStringArrayValueSync method throw 9001001 error code
+    * @tc.desc:    get the string array in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringArrayValueSyncResId003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7600', 0, async (done: Function) => {
       try {
-        let value: Array<string> = context.resourceManager.getStringArrayValueSync(1111)
-        console.log('testGetStringArrayValueSyncResId003 ' + value);
-        console.log('testGetStringArrayValueSyncResId003 ' + typeof value);
-        console.log('testGetStringArrayValueSyncResId003 ' + value.length);
+        let value: Array<string> = context.resourceManager.getStringArrayValueSync(1111);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7600 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7600 ${typeof value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7600 ${value.length}`);
         expect(value.length).assertEqual(2);
         expect(value[0]).assertEqual('little');
         expect(value[1]).assertEqual('much');
         done();
       } catch (err) {
-        console.log("testGetStringArrayValueSyncResId003 err.code " + err.code);
-        console.log("testGetStringArrayValueSyncResId003 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7600 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7600 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGARRAYVALUESYNCRESID_004
-    * @tc.name    test getStringArrayValueSync method throw 9001002 error code
-    * @tc.desc    get the string array in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7700
+    * @tc.name:    test getStringArrayValueSync method throw 9001002 error code
+    * @tc.desc:    get the string array in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringArrayValueSyncResId004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7700', 0, async (done: Function) => {
       try {
-        let value: Array<string> = context.resourceManager.getStringArrayValueSync($r('app.string.test_1').id)
-        console.log('testGetStringArrayValueSyncResId004 ' + value);
-        console.log('testGetStringArrayValueSyncResId004 ' + typeof value);
-        console.log('testGetStringArrayValueSyncResId004 ' + value.length);
+        let value: Array<string> = context.resourceManager.getStringArrayValueSync($r('app.string.test_1').id);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7700 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7700 ${typeof value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7700 ${value.length}`);
         expect(value.length).assertEqual(2);
         expect(value[0]).assertEqual('little');
         expect(value[1]).assertEqual('much');
         done();
       } catch (err) {
-        console.log("testGetStringArrayValueSyncResId004 err.code " + err.code);
-        console.log("testGetStringArrayValueSyncResId004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7700 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGARRAYVALUESYNCRESOURCE_001
-    * @tc.name    test getStringArrayValueSync method
-    * @tc.desc    get the string array in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7800
+    * @tc.name:    test getStringArrayValueSync method
+    * @tc.desc:    get the string array in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringArrayValueSyncResource001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7800', 0, async (done: Function) => {
       let value: Array<string> = context.resourceManager.getStringArrayValueSync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.strarray.sizeList').id
-      })
-      console.log('testGetStringArrayValueSyncResource001 ' + value);
-      console.log('testGetStringArrayValueSyncResource001 ' + typeof value);
-      console.log('testGetStringArrayValueSyncResource001 ' + value.length);
+      });
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7800 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7800 ${typeof value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7800 ${value.length}`);
       expect(value.length).assertEqual(4);
       expect(value[0]).assertEqual('small');
       expect(value[1]).assertEqual('middle');
@@ -3809,22 +3803,22 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGARRAYVALUESYNCRESOURCE_002
-    * @tc.name    test getStringArrayValueSync method
-    * @tc.desc    get the string array in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7900
+    * @tc.name:    test getStringArrayValueSync method
+    * @tc.desc:    get the string array in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringArrayValueSyncResource002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7900', 0, async (done: Function) => {
       let value: Array<string> = context.resourceManager.getStringArrayValueSync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.strarray.sizeList2').id
-      })
-      console.log('testGetStringArrayValueSyncResource002 ' + value);
-      console.log('testGetStringArrayValueSyncResource002 ' + typeof value);
-      console.log('testGetStringArrayValueSyncResource002 ' + value.length);
+      });
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7900 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7900 ${typeof value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_7900 ${value.length}`);
       expect(value.length).assertEqual(2);
       expect(value[0]).assertEqual('little');
       expect(value[1]).assertEqual('much');
@@ -3832,141 +3826,141 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGARRAYVALUESYNCRESOURCE_003
-    * @tc.name    test getStringArrayValueSync method throw 9001001 error code
-    * @tc.desc    get the string array in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_8000
+    * @tc.name:    test getStringArrayValueSync method throw 9001001 error code
+    * @tc.desc:    get the string array in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringArrayValueSyncResource003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_8000', 0, async (done: Function) => {
       try {
         let value: Array<string> = context.resourceManager.getStringArrayValueSync({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: 1111
-        })
-        console.log('testGetStringArrayValueSyncResource003 ' + value);
-        console.log('testGetStringArrayValueSyncResource003 ' + typeof value);
+        });
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_8000 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_8000 ${typeof value}`);
         done();
       } catch (err) {
-        console.log("testGetStringArrayValueSyncResource003 err.code " + err.code);
-        console.log("testGetStringArrayValueSyncResource003 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_8000 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_8000 errMessage ${err.message}`);
         expect(err.code == 9001001).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGARRAYVALUESYNCRESOURCE_004
-    * @tc.name    test getStringArrayValueSync method throw 9001002 error code
-    * @tc.desc    get the string array in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_8100
+    * @tc.name:    test getStringArrayValueSync method throw 9001002 error code
+    * @tc.desc:    get the string array in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringArrayValueSyncResource004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_8100', 0, async (done: Function) => {
       try {
         let value: Array<string> = context.resourceManager.getStringArrayValueSync({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: $r('app.string.test_1').id
-        })
-        console.log('testGetStringArrayValueSyncResource004 ' + value);
-        console.log('testGetStringArrayValueSyncResource004 ' + typeof value);
+        });
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_8100 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_8100 ${typeof value}`);
         done();
       } catch (err) {
-        console.log("testGetStringArrayValueSyncResource004 err.code " + err.code);
-        console.log("testGetStringArrayValueSyncResource004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_8100 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayValueSync_Func_8100 errMessage ${err.message}`);
         expect(err.code == 9001002).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGBYNAMESYNC_001
-    * @tc.name    test getPluralStringByNameSync
-    * @tc.desc    get the plural string in Sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8200
+    * @tc.name:    test getPluralStringByNameSync
+    * @tc.desc:    get the plural string in Sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetPluralStringByNameSync001', 0, async (done: Function) => {
-      let value: string = context.resourceManager.getPluralStringByNameSync('plural_name', 1)
-      console.log('testGetPluralStringByNameSync001 ' + value);
-      console.log('testGetPluralStringByNameSync001 ' + typeof value);
+    it('SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8200', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getPluralStringByNameSync('plural_name', 1);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8200 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8200 ${typeof value}`);
       expect(value).assertEqual('1 test other');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGBYNAMESYNC_002
-    * @tc.name    test getPluralStringByNameSync
-    * @tc.desc    get the plural string in Sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8300
+    * @tc.name:    test getPluralStringByNameSync
+    * @tc.desc:    get the plural string in Sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetPluralStringByNameSync002', 0, async (done: Function) => {
-      let value: string = context.resourceManager.getPluralStringByNameSync('plural_name', 2)
-      console.log('testGetPluralStringByNameSync002 ' + value);
-      console.log('testGetPluralStringByNameSync002 ' + typeof value);
+    it('SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8300', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getPluralStringByNameSync('plural_name', 2);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8300 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8300 ${typeof value}`);
       expect(value).assertEqual('2 test other');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGBYNAMESYNC_003
-    * @tc.name    test getPluralStringByNameSync
-    * @tc.desc    get the plural string in Sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8400
+    * @tc.name:    test getPluralStringByNameSync
+    * @tc.desc:    get the plural string in Sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetPluralStringByNameSync003', 0, async (done: Function) => {
-      let value: string = context.resourceManager.getPluralStringByNameSync('plural_name2', 1)
-      console.log('testGetPluralStringByNameSync003 ' + value);
-      console.log('testGetPluralStringByNameSync003 ' + typeof value);
+    it('SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8400', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getPluralStringByNameSync('plural_name2', 1);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8400 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8400 ${typeof value}`);
       expect(value).assertEqual('1 test2 other');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETPLURALSTRINGBYNAMESYNC_004
-    * @tc.name    test getPluralStringByNameSync method throw 9001003 error code
-    * @tc.desc    get the plural string in Sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8500
+    * @tc.name:    test getPluralStringByNameSync method throw 9001003 error code
+    * @tc.desc:    get the plural string in Sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetPluralStringByNameSync004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8500', 0, async (done: Function) => {
       try {
-        let value: string = context.resourceManager.getPluralStringByNameSync('notexist', 1)
-        console.log('testGetPluralStringByNameSync004 ' + value);
-        console.log('testGetPluralStringByNameSync004 ' + typeof value);
+        let value: string = context.resourceManager.getPluralStringByNameSync('notexist', 1);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8500 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8500 ${typeof value}`);
         expect(value).assertEqual('1 test other');
         done();
       } catch (err) {
-        console.log("testGetPluralStringByNameSync004 err.code " + err.code);
-        console.log("testGetPluralStringByNameSync004 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8500 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetPluralStringByNameSync_Func_8500 errMessage ${err.message}`);
         expect(err.code == 9001003).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGARRAYBYNAMESYNC_001
-    * @tc.name    test getStringArrayByNameSync method
-    * @tc.desc    get the string array in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8600
+    * @tc.name:    test getStringArrayByNameSync method
+    * @tc.desc:    get the string array in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringArrayByNameSync001', 0, async (done: Function) => {
-      let value: Array<string> = context.resourceManager.getStringArrayByNameSync('sizeList')
-      console.log('testGetStringArrayByNameSync001 ' + value);
-      console.log('testGetStringArrayByNameSync001 ' + typeof value);
-      console.log('testGetStringArrayByNameSync001 ' + value.length);
+    it('SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8600', 0, async (done: Function) => {
+      let value: Array<string> = context.resourceManager.getStringArrayByNameSync('sizeList');
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8600 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8600 ${typeof value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8600 ${value.length}`);
       expect(value.length).assertEqual(4);
       expect(value[0]).assertEqual('small');
       expect(value[1]).assertEqual('middle');
@@ -3976,18 +3970,18 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGARRAYBYNAMESYNC_002
-    * @tc.name    test getStringArrayByNameSync method
-    * @tc.desc    get the string array in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8700
+    * @tc.name:    test getStringArrayByNameSync method
+    * @tc.desc:    get the string array in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringArrayByNameSync002', 0, async (done: Function) => {
-      let value: Array<string> = context.resourceManager.getStringArrayByNameSync('sizeList2')
-      console.log('testGetStringArrayByNameSync002 ' + value);
-      console.log('testGetStringArrayByNameSync002 ' + typeof value);
-      console.log('testGetStringArrayByNameSync002 ' + value.length);
+    it('SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8700', 0, async (done: Function) => {
+      let value: Array<string> = context.resourceManager.getStringArrayByNameSync('sizeList2');
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8700 ${value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8700 ${typeof value}`);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8700 ${value.length}`);
       expect(value.length).assertEqual(2);
       expect(value[0]).assertEqual('little');
       expect(value[1]).assertEqual('much');
@@ -3995,832 +3989,774 @@ export default function resourceManagerTest() {
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGARRAYBYNAMESYNC_003
-    * @tc.name    test getStringArrayByNameSync method throw 9001003 error code
-    * @tc.desc    get the string array in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8800
+    * @tc.name:    test getStringArrayByNameSync method throw 9001003 error code
+    * @tc.desc:    get the string array in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringArrayByNameSync003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8800', 0, async (done: Function) => {
       try {
-        let value: Array<string> = context.resourceManager.getStringArrayByNameSync('notexist')
-        console.log('testGetStringArrayByNameSync003 ' + value);
-        console.log('testGetStringArrayByNameSync003 ' + typeof value);
-        console.log('testGetStringArrayByNameSync003 ' + value.length);
+        let value: Array<string> = context.resourceManager.getStringArrayByNameSync('notexist');
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8800 ${value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8800 ${typeof value}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8800 ${value.length}`);
         expect(value.length).assertEqual(2);
         expect(value[0]).assertEqual('little');
         expect(value[1]).assertEqual('much');
         done();
       } catch (err) {
-        console.log("testGetStringArrayByNameSync003 err.code " + err.code);
-        console.log("testGetStringArrayByNameSync003 err.message " + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8800 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_GetStringArrayByNameSync_Func_8800 errMessage ${err.message}`);
         expect(err.code == 9001003).assertTrue();
-        done()
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETCONFIGURATIONSYNC_001
-    * @tc.name    test getConfigurationSync method
-    * @tc.desc    get the configuration in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetConfigurationSync_Func_8900
+    * @tc.name:    test getConfigurationSync method
+    * @tc.desc:    get the configuration in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetConfigurationSync001', 0, async (done: Function) => {
-      let cfg: resourceManager.Configuration = context.resourceManager.getConfigurationSync()
-      console.log('testGetConfigurationSync001 ' + JSON.stringify(cfg));
-      expect(cfg !== undefined).assertTrue()
-      expect(cfg.direction !== null).assertTrue();
-      expect(cfg.locale !== null).assertTrue();
+    it('SUB_Global_Resource_Manager_0200_GetConfigurationSync_Func_8900', 0, async (done: Function) => {
+      let value: resourceManager.Configuration = context.resourceManager.getConfigurationSync();
+      console.log(`SUB_Global_Resource_Manager_0200_GetConfigurationSync_Func_8900 ${JSON.stringify(value)}`);
+      expect(value !== undefined).assertTrue();
+      expect(value.direction !== null).assertTrue();
+      expect(value.locale !== null).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETDEVICECAPABILITYSYNC_001
-    * @tc.name    test getDeviceCapabilitySync method
-    * @tc.desc    get the device capability in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetDeviceCapabilitySync_Func_9000
+    * @tc.name:    test getDeviceCapabilitySync method
+    * @tc.desc:    get the device capability in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetDeviceCapabilitySync001', 0, async (done: Function) => {
-      let dc: resourceManager.DeviceCapability = context.resourceManager.getDeviceCapabilitySync()
-      console.log('testGetDeviceCapabilitySync001 ' + JSON.stringify(dc));
-      expect(dc !== undefined).assertTrue()
-      expect(dc.screenDensity !== null).assertTrue();
-      expect(dc.deviceType !== null).assertTrue();
+    it('SUB_Global_Resource_Manager_0200_GetDeviceCapabilitySync_Func_9000', 0, async (done: Function) => {
+      let value: resourceManager.DeviceCapability = context.resourceManager.getDeviceCapabilitySync();
+      console.log(`SUB_Global_Resource_Manager_0200_GetDeviceCapabilitySync_Func_9000 ${JSON.stringify(value)}`);
+      expect(value !== undefined).assertTrue();
+      expect(value.screenDensity !== null).assertTrue();
+      expect(value.deviceType !== null).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_ADDRESOURCE_001
-    * @tc.name    test addResource method throw 9001010 error code
-    * @tc.desc    add resource
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_AddResource_Func_9100
+    * @tc.name:    test addResource method throw 9001010 error code
+    * @tc.desc:    add resource
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testAddResource001', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_AddResource_Func_9100', 0, async (done: Function) => {
       try {
         // param not exist throw 9001010 error code
-        context.resourceManager.addResource("notexist.xml")
-        done()
-      } catch (err) {
-        console.log('testAddResource001 e.code' + err.code);
-        console.log('testAddResource001 e.message' + err.message);
-        expect(err.code == 9001010).assertTrue();
-        done()
-      }
-    })
-
-    /* *
-    * @tc.number  TEST_ADDRESOURCE_002
-    * @tc.name    test addResource method throw 401 error code
-    * @tc.desc    add resource
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testAddResource002', 0, async (done: Function) => {
-      try {
-        let path = (1111 as string | number) as string
-        // param type not correct,throw 401 error code
-        context.resourceManager.addResource(path)
-        done()
-      } catch (err) {
-        console.log('testAddResource002 e.code' + err.code);
-        console.log('testAddResource002 e.message' + err.message);
-        expect(err.code == 401).assertTrue();
-        done()
-      }
-    })
-
-    /* *
-    * @tc.number  TEST_REMOVERESOURCE_001
-    * @tc.name    test removeResource method throw 9001010 error code
-    * @tc.desc    remove resource
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testRemoveResource001', 0, async (done: Function) => {
-      try {
-        // param not exist throw 9001010 error code
-        context.resourceManager.removeResource("notexist.xml")
-        done()
-      } catch (err) {
-        console.log('testRemoveResource001 e.code' + err.code);
-        console.log('testRemoveResource001 e.message' + err.message);
-        expect(err.code == 9001010).assertTrue();
-        done()
-      }
-    })
-
-    /* *
-    * @tc.number  TEST_REMOVERESOURCE_002
-    * @tc.name    test removeResource method throw 401 error code
-    * @tc.desc    remove resource
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testRemoveResource002', 0, async (done: Function) => {
-      try {
-        let path = (1111 as string | number) as string
-        // param type not correct,throw 401 error code
-        context.resourceManager.removeResource(path)
-        done()
-      } catch (err) {
-        console.log('testRemoveResource002 e.code' + err.code);
-        console.log('testRemoveResource002 e.message' + err.message);
-        expect(err.code == 401).assertTrue();
-        done()
-      }
-    })
-
-    /* *
-    * @tc.number  TEST_CLOSERAWFDSYNC_001
-    * @tc.name    test closeRawFdSync method throw 9001005 error code
-    * @tc.desc    get the closeRawFd in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
-    */
-    it('testCloseRawFdSync001', 0, async (done: Function) => {
-      try {
-        // param not exist throw 9001005 error code
-        context.resourceManager.closeRawFdSync('notexist.xml')
+        context.resourceManager.addResource("notexist.xml");
         done();
       } catch (err) {
-        console.log('testCloseRawFdSync001 err.code' + err.code);
-        console.log('testCloseRawFdSync001 err.message' + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_AddResource_Func_9100 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_AddResource_Func_9100 errMessage ${err.message}`);
+        expect(err.code == 9001010).assertTrue();
+        done();
+      }
+    })
+
+    /* *
+    * @tc.number:  SUB_Global_Resource_Manager_0200_AddResource_Func_9200
+    * @tc.name:    test addResource method throw 401 error code
+    * @tc.desc:    add resource
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
+    */
+    it('SUB_Global_Resource_Manager_0200_AddResource_Func_9200', 0, async (done: Function) => {
+      try {
+        let path: string = (1111 as string | number) as string;
+        // param type not correct,throw 401 error code
+        context.resourceManager.addResource(path);
+        done();
+      } catch (err) {
+        console.log(`SUB_Global_Resource_Manager_0200_AddResource_Func_9200 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_AddResource_Func_9200 errMessage ${err.message}`);
+        expect(err.code == 401).assertTrue();
+        done();
+      }
+    })
+
+    /* *
+    * @tc.number:  SUB_Global_Resource_Manager_0200_RemoveResource_Func_9300
+    * @tc.name:    test removeResource method throw 9001010 error code
+    * @tc.desc:    remove resource
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
+    */
+    it('SUB_Global_Resource_Manager_0200_RemoveResource_Func_9300', 0, async (done: Function) => {
+      try {
+        // param not exist throw 9001010 error code
+        context.resourceManager.removeResource("notexist.xml");
+        done();
+      } catch (err) {
+        console.log(`SUB_Global_Resource_Manager_0200_RemoveResource_Func_9300 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_RemoveResource_Func_9300 errMessage ${err.message}`);
+        expect(err.code == 9001010).assertTrue();
+        done();
+      }
+    })
+
+    /* *
+    * @tc.number:  SUB_Global_Resource_Manager_0200_RemoveResource_Func_9400
+    * @tc.name:    test removeResource method throw 401 error code
+    * @tc.desc:    remove resource
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
+    */
+    it('SUB_Global_Resource_Manager_0200_RemoveResource_Func_9400', 0, async (done: Function) => {
+      try {
+        let path: string = (1111 as string | number) as string;
+        // param type not correct,throw 401 error code
+        context.resourceManager.removeResource(path);
+        done();
+      } catch (err) {
+        console.log(`SUB_Global_Resource_Manager_0200_RemoveResource_Func_9400 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_RemoveResource_Func_9400 errMessage ${err.message}`);
+        expect(err.code == 401).assertTrue();
+        done();
+      }
+    })
+
+    /* *
+    * @tc.number:  SUB_Global_Resource_Manager_0200_CloseRawFdSync_Func_9500
+    * @tc.name:    test closeRawFdSync method throw 9001005 error code
+    * @tc.desc:    get the closeRawFd in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
+    */
+    it('SUB_Global_Resource_Manager_0200_CloseRawFdSync_Func_9500', 0, async (done: Function) => {
+      try {
+        // param not exist throw 9001005 error code
+        context.resourceManager.closeRawFdSync('notexist.xml');
+        done();
+      } catch (err) {
+        console.log(`SUB_Global_Resource_Manager_0200_CloseRawFdSync_Func_9500 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_CloseRawFdSync_Func_9500 errMessage ${err.message}`);
         expect(err.code == 9001005).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST_CLOSERAWFDSYNC_002
-    * @tc.name    test closeRawFdSync method throw 401 error code throw 401 error code
-    * @tc.desc    get the closeRawFd in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_CloseRawFdSync_Func_9600
+    * @tc.name:    test closeRawFdSync method throw 401 error code throw 401 error code
+    * @tc.desc:    get the closeRawFd in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testCloseRawFdSync002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0200_CloseRawFdSync_Func_9600', 0, async (done: Function) => {
       try {
-        let path = (1111 as string | number) as string
+        let path: string = (1111 as string | number) as string;
         // param path not correct,throw 401 error code
-        context.resourceManager.closeRawFdSync(path)
+        context.resourceManager.closeRawFdSync(path);
         done();
       } catch (err) {
-        console.log('testCloseRawFdSync002 err.code' + err.code);
-        console.log('testCloseRawFdSync002 err.message' + err.message);
+        console.log(`SUB_Global_Resource_Manager_0200_CloseRawFdSync_Func_9600 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_CloseRawFdSync_Func_9600 errMessage ${err.message}`);
         expect(err.code == 401).assertTrue();
         done();
       }
     })
 
     /* *
-    * @tc.number  TEST_CLOSERAWFDSYNC_003
-    * @tc.name    test closeRawFdSync method
-    * @tc.desc    get the closeRawFd in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_CloseRawFdSync_Func_9700
+    * @tc.name:    test closeRawFdSync method
+    * @tc.desc:    get the closeRawFd in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testCloseRawFdSync003', 0, () => {
+    it('SUB_Global_Resource_Manager_0200_CloseRawFdSync_Func_9700', 0, () => {
       try {
-        context.resourceManager.closeRawFdSync('rawfiletest.xml')
+        context.resourceManager.closeRawFdSync('rawfiletest.xml');
       } catch (err) {
-        console.log('testCloseRawFdSync003 err.code' + err.code);
-        console.log('testCloseRawFdSync003 err.message' + err.message);
-        expect().assertFail()
+        console.log(`SUB_Global_Resource_Manager_0200_CloseRawFdSync_Func_9700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0200_CloseRawFdSync_Func_9700 errMessage ${err.message}`);
+        expect().assertFail();
       }
     })
 
     /* *
-    * @tc.number  TEST_DEVICE_TYPE_TABLET_001
-    * @tc.name    test DEVICE_TYPE_TABLET
-    * @tc.desc    get the value of DEVICE_TYPE_TABLET
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 0
+    * @tc.number:  SUB_Global_Resource_Manager_0200_DeviceType_Func_9800
+    * @tc.name:    test DEVICE_TYPE_TABLET
+    * @tc.desc:    get the value of DEVICE_TYPE_TABLET
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 0
     */
-    it('testDeviceTypeTable001', 0, async (done: Function) => {
-      console.log('testDeviceTypeTable001 0');
+    it('SUB_Global_Resource_Manager_0200_DeviceType_Func_9800', 0, async (done: Function) => {
       expect(resourceManager.DeviceType.DEVICE_TYPE_TABLET).assertEqual(0x01);
-      console.log('testDeviceTypeTable001 1');
-      done();
-    })
-
-    /* *
-    * @tc.number  TEST_DEVICE_TYPE_CAR_001
-    * @tc.name    test DEVICE_TYPE_CAR
-    * @tc.desc    get the value of DEVICE_TYPE_CAR
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 0
-    */
-    it('testDeviceTypeCar001', 0, async (done: Function) => {
-      console.log('testDeviceTypeCar001 0');
       expect(resourceManager.DeviceType.DEVICE_TYPE_CAR).assertEqual(0x02);
-      console.log('testDeviceTypeCar001 1');
-      done();
-    })
-
-    /* *
-    * @tc.number  TEST_DEVICE_TYPE_PC_001
-    * @tc.name    test DEVICE_TYPE_PC
-    * @tc.desc    get the value of DEVICE_TYPE_PC
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 0
-    */
-    it('testDeviceTypePC001', 0, async (done: Function) => {
-      console.log('testDeviceTypePC001 0');
       expect(resourceManager.DeviceType.DEVICE_TYPE_PC).assertEqual(0x03);
-      console.log('testDeviceTypePC001 1');
-      done();
-    })
-
-    /* *
-    * @tc.number  TEST_DEVICE_TYPE_TV_001
-    * @tc.name    test DEVICE_TYPE_TV
-    * @tc.desc    get the value of DEVICE_TYPE_TV
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 0
-    */
-    it('testDeviceTypeTV001', 0, async (done: Function) => {
-      console.log('testDeviceTypeTV001 0');
       expect(resourceManager.DeviceType.DEVICE_TYPE_TV).assertEqual(0x04);
-      console.log('testDeviceTypeTV001 1');
-      done();
-    })
-
-    /* *
-    * @tc.number  TEST_DEVICE_TYPE_WEARABLE_001
-    * @tc.name    test DEVICE_TYPE_WEARABLE
-    * @tc.desc    get the value of DEVICE_TYPE_WEARABLE
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 0
-    */
-    it('testDeviceTypeWearable001', 0, async (done: Function) => {
-      console.log('testDeviceTypeWearable001 0');
       expect(resourceManager.DeviceType.DEVICE_TYPE_WEARABLE).assertEqual(0x06);
-      console.log('testDeviceTypeWearable001 1');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGSYNCRESID_001
-    * @tc.name    test getStringSync method
-    * @tc.desc    get the string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0200_GetStringSync_Func_9600
+    * @tc.name:    test getStringSync method
+    * @tc.desc:    get the string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringSyncResId001', 0, async (done: Function) => {
-      let value = context.resourceManager.getStringSync($r('app.string.test_1').id)
-      console.log('testGetStringSyncResId001 ' + value);
+    it('SUB_Global_Resource_Manager_0200_GetStringSync_Func_9900', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getStringSync($r('app.string.test_1').id);
+      console.log(`SUB_Global_Resource_Manager_0200_GetStringSync_Func_9900 ${value}`);
       expect(value).assertEqual('Test1');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGSYNCRESID_002
-    * @tc.name    test getStringSync method
-    * @tc.desc    get the string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetStringSync_Func_0100
+    * @tc.name:    test getStringSync method
+    * @tc.desc:    get the string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringSyncResId002', 0, async (done: Function) => {
-      let value = context.resourceManager.getStringSync($r('app.string.test_2').id, 3)
-      console.log('testGetStringSyncResId002 ' + value);
+    it('SUB_Global_Resource_Manager_0300_GetStringSync_Func_0100', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getStringSync($r('app.string.test_2').id, 3)
+      console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0100 ${value}`);
       expect(value).assertEqual('Test3');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGSYNCRESID_003
-    * @tc.name    test getStringSync method throw 9001001 error code
-    * @tc.desc    get the string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetStringSync_Func_0200
+    * @tc.name:    test getStringSync method throw 9001001 error code
+    * @tc.desc:    get the string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringSyncResId003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0300_GetStringSync_Func_0200', 0, async (done: Function) => {
       try {
-        let value = context.resourceManager.getStringSync(111, 3)
-        console.log('testGetStringSyncResId003 ' + value);
+        let value: string = context.resourceManager.getStringSync(111, 3);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0200 ${value}`);
         expect(value).assertEqual('Test3');
         done();
       } catch (err) {
-        console.log('testGetStringSyncResId003 errCode ' + err.code);
-        console.log('testGetStringSyncResId003 errMessage ' + err.message);
-        expect(err.code == 9001001).assertTrue()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0200 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0200 errMessage ${err.message}`);
+        expect(err.code == 9001001).assertTrue();
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGSYNCRESID_004
-    * @tc.name    test getStringSync method throw 9001002 error code
-    * @tc.desc    get the string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetStringSync_Func_0300
+    * @tc.name:    test getStringSync method throw 9001002 error code
+    * @tc.desc:    get the string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringSyncResId004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0300_GetStringSync_Func_0300', 0, async (done: Function) => {
       try {
-        let value = context.resourceManager.getStringSync($r('app.media.icon').id, 3)
-        console.log('testGetStringSyncResId004 ' + value);
+        let value: string = context.resourceManager.getStringSync($r('app.media.icon').id, 3);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0300 ${value}`);
         expect(value).assertEqual('Test3');
         done();
       } catch (err) {
-        console.log('testGetStringSyncResId004 errCode ' + err.code);
-        console.log('testGetStringSyncResId004 errMessage ' + err.message);
-        expect(err.code == 9001002).assertTrue()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0300 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0300 errMessage ${err.message}`);
+        expect(err.code == 9001002).assertTrue();
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGSYNCRESID_005
-    * @tc.name    test getStringSync method throw 9001006 error code
-    * @tc.desc    get the string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetStringSync_Func_0400
+    * @tc.name:    test getStringSync method throw 9001006 error code
+    * @tc.desc:    get the string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringSyncResId005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0300_GetStringSync_Func_0400', 0, async (done: Function) => {
       try {
-        let value = context.resourceManager.getStringSync($r('app.string.test_3').id, 3)
-        console.log('testGetStringSyncResId005 ' + value);
+        let value: string = context.resourceManager.getStringSync($r('app.string.test_3').id, 3);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0400 ${value}`);
         expect(value).assertEqual('Test3');
         done();
       } catch (err) {
-        console.log('testGetStringSyncResId005 errCode ' + err.code);
-        console.log('testGetStringSyncResId005 errMessage ' + err.message);
-        expect(err.code == 9001006).assertTrue()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0400 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0400 errMessage ${err.message}`);
+        expect(err.code == 9001006).assertTrue();
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGSYNCRESOURCE_001
-    * @tc.name    test getStringSync method
-    * @tc.desc    get the string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetStringSync_Func_0500
+    * @tc.name:    test getStringSync method
+    * @tc.desc:    get the string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringSyncResource001', 0, async (done: Function) => {
-      let value = context.resourceManager.getStringSync({
+    it('SUB_Global_Resource_Manager_0300_GetStringSync_Func_0500', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getStringSync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.string.test_1').id
-      })
-      console.log('testGetStringSyncResource001 ' + value);
+      });
+      console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0500 ${value}`);
       expect(value).assertEqual('Test1');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGSYNCRESOURCE_002
-    * @tc.name    test getStringSync method
-    * @tc.desc    get the string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetStringSync_Func_0600
+    * @tc.name:    test getStringSync method
+    * @tc.desc:    get the string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringSyncResource002', 0, async (done: Function) => {
-      let value = context.resourceManager.getStringSync({
+    it('SUB_Global_Resource_Manager_0300_GetStringSync_Func_0600', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getStringSync({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: $r('app.string.test_2').id
-      }, 3)
-      console.log('testGetStringSyncResource002 ' + value);
+      }, 3);
+      console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0600 ${value}`);
       expect(value).assertEqual('Test3');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGSYNCRESOURCE_003
-    * @tc.name    test getStringSync method throw 9001001 error code
-    * @tc.desc    get the string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetStringSync_Func_0700
+    * @tc.name:    test getStringSync method throw 9001001 error code
+    * @tc.desc:    get the string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringSyncResource003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0300_GetStringSync_Func_0700', 0, async (done: Function) => {
       try {
-        let value = context.resourceManager.getStringSync({
+        let value: string = context.resourceManager.getStringSync({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: 1111
-        }, 3)
-        console.log('testGetStringSyncResource003 ' + value);
+        }, 3);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0700 ${value}`);
         expect(value).assertEqual('Test3');
         done();
       } catch (err) {
-        console.log('testGetStringSyncResource003 errCode ' + err.code);
-        console.log('testGetStringSyncResource003 errMessage ' + err.message);
-        expect(err.code == 9001001).assertTrue()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0700 errMessage ${err.message}`);
+        expect(err.code == 9001001).assertTrue();
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGSYNCRESOURCE_004
-    * @tc.name    test getStringSync method throw 9001002 error code
-    * @tc.desc    get the string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetStringSync_Func_0800
+    * @tc.name:    test getStringSync method throw 9001002 error code
+    * @tc.desc:    get the string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringSyncResource004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0300_GetStringSync_Func_0800', 0, async (done: Function) => {
       try {
-        let value = context.resourceManager.getStringSync({
+        let value: string = context.resourceManager.getStringSync({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: $r('app.media.icon').id
-        }, 3)
-        console.log('testGetStringSyncResource004 ' + value);
+        }, 3);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0800 ${value}`);
         expect(value).assertEqual('Test3');
         done();
       } catch (err) {
-        console.log('testGetStringSyncResource004 errCode ' + err.code);
-        console.log('testGetStringSyncResource004 errMessage ' + err.message);
-        expect(err.code == 9001002).assertTrue()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0800 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0800 errMessage ${err.message}`);
+        expect(err.code == 9001002).assertTrue();
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGSYNCRESOURCE_005
-    * @tc.name    test getStringSync method throw 9001006 error code
-    * @tc.desc    get the string in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetStringSync_Func_0900
+    * @tc.name:    test getStringSync method throw 9001006 error code
+    * @tc.desc:    get the string in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringSyncResource005', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0300_GetStringSync_Func_0900', 0, async (done: Function) => {
       try {
-        let value = context.resourceManager.getStringSync({
+        let value: string = context.resourceManager.getStringSync({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: $r('app.string.test_3').id
-        }, 3)
-        console.log('testGetStringSyncResource005 ' + value);
+        }, 3);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0900 ${value}`);
         expect(value).assertEqual('Test3');
         done();
       } catch (err) {
-        console.log('testGetStringSyncResource005 errCode ' + err.code);
-        console.log('testGetStringSyncResource005 errMessage ' + err.message);
-        expect(err.code == 9001006).assertTrue()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0900 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringSync_Func_0900 errMessage ${err.message}`);
+        expect(err.code == 9001006).assertTrue();
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_getStringByNameSync_001
-    * @tc.name    test getStringByNameSync method
-    * @tc.desc    get the string by name in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1000
+    * @tc.name:    test getStringByNameSync method
+    * @tc.desc:    get the string by name in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringByNameSync001', 0, async (done: Function) => {
-      let value = context.resourceManager.getStringByNameSync('test_1')
-      console.log('testGetStringByNameSync001 ' + value);
+    it('SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1000', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getStringByNameSync('test_1');
+      console.log(`SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1000 ${value}`);
       expect(value).assertEqual('Test1');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGSYNCRESOURCE_002
-    * @tc.name    test getStringSync method
-    * @tc.desc    get the string by name in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1100
+    * @tc.name:    test getStringSync method
+    * @tc.desc:    get the string by name in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringByNameSync002', 0, async (done: Function) => {
-      let value = context.resourceManager.getStringByNameSync('test_2', 3)
-      console.log('testGetStringByNameSync002 ' + value);
+    it('SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1100', 0, async (done: Function) => {
+      let value: string = context.resourceManager.getStringByNameSync('test_2', 3);
+      console.log(`SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1100 ${value}`);
       expect(value).assertEqual('Test3');
       done();
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGSYNCRESOURCE_003
-    * @tc.name    test getStringSync method throw 9001003 error code
-    * @tc.desc    get the string by name in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1200
+    * @tc.name:    test getStringSync method throw 9001003 error code
+    * @tc.desc:    get the string by name in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringByNameSync003', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1200', 0, async (done: Function) => {
       try {
-        let value = context.resourceManager.getStringByNameSync('notexist', 3)
-        console.log('testGetStringByNameSync003 ' + value);
+        let value: string = context.resourceManager.getStringByNameSync('notexist', 3);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1200 ${value}`);
         expect(value).assertEqual('Test3');
         done();
       } catch (err) {
-        console.log('testGetStringByNameSync003 errCode ' + err.code);
-        console.log('testGetStringByNameSync003 errMessage ' + err.message);
-        expect(err.code == 9001003).assertTrue()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1200 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1200 errMessage ${err.message}`);
+        expect(err.code == 9001003).assertTrue();
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_GETSTRINGSYNCRESOURCE_004
-    * @tc.name    test getStringSync method throw 9001006 error code
-    * @tc.desc    get the string by name in sync mode
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1300
+    * @tc.name:    test getStringSync method throw 9001006 error code
+    * @tc.desc:    get the string by name in sync mode
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetStringByNameSync004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1300', 0, async (done: Function) => {
       try {
-        let value = context.resourceManager.getStringByNameSync('test_3', 3)
-        console.log('testGetStringByNameSync004 ' + value);
+        let value: string = context.resourceManager.getStringByNameSync('test_3', 3);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1300 ${value}`);
         expect(value).assertEqual('Test3');
         done();
       } catch (err) {
-        console.log('testGetStringByNameSync004 errCode ' + err.code);
-        console.log('testGetStringByNameSync004 errMessage ' + err.message);
-        expect(err.code == 9001006).assertTrue()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1300 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0300_GetStringByNameSync_Func_1300 errMessage ${err.message}`);
+        expect(err.code == 9001006).assertTrue();
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_getLocales_001
-    * @tc.name    test getLocales method
-    * @tc.desc    get the locales
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetLocales_Func_1400
+    * @tc.name:    test getLocales method
+    * @tc.desc:    get the locales
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetLocales001', 0, async (done: Function) => {
-      let value = context.resourceManager.getLocales(false)
-      console.log('testGetLocales001 ' + value);
-      expect(value).assertInstanceOf('Array')
+    it('SUB_Global_Resource_Manager_0300_GetLocales_Func_1400', 0, async (done: Function) => {
+      let value: Array<string> = context.resourceManager.getLocales(false);
+      console.log(`SUB_Global_Resource_Manager_0300_GetLocales_Func_1400 ${value}`);
+      expect(value).assertInstanceOf('Array');
       done();
     })
 
     /* *
-    * @tc.number  TEST_getLocales_002
-    * @tc.name    test getLocales method
-    * @tc.desc    get the locales
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetLocales_Func_1500
+    * @tc.name:    test getLocales method
+    * @tc.desc:    get the locales
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetLocales002', 0, async (done: Function) => {
-      let value = context.resourceManager.getLocales(true)
-      console.log('testGetLocales002 ' + value);
-      expect(value).assertInstanceOf('Array')
+    it('SUB_Global_Resource_Manager_0300_GetLocales_Func_1500', 0, async (done: Function) => {
+      let value: Array<string> = context.resourceManager.getLocales(true);
+      console.log(`SUB_Global_Resource_Manager_0300_GetLocales_Func_1500 ${value}`);
+      expect(value).assertInstanceOf('Array');
       done();
     })
 
     /* *
-    * @tc.number  TEST_getSymbolResId_001
-    * @tc.name    test getSymbol method
-    * @tc.desc    get the symbol
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetSymbol_Func_1600
+    * @tc.name:    test getSymbol method
+    * @tc.desc:    get the symbol
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetSymbolResId001', 0, async (done: Function) => {
-      let value = context.resourceManager.getSymbol(0x02000018)
-      console.log('testGetSymbolResId001 ' + value);
-      expect(value == 983041).assertTrue()
+    it('SUB_Global_Resource_Manager_0300_GetSymbol_Func_1600', 0, async (done: Function) => {
+      let value: number = context.resourceManager.getSymbol(0x02000018);
+      console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_1600 ${value}`);
+      expect(value == 983041).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_getSymbolResId_002
-    * @tc.name    test getSymbol method  throw 9001006 error code
-    * @tc.desc    get the symbol
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetSymbol_Func_1700
+    * @tc.name:    test getSymbol method  throw 9001006 error code
+    * @tc.desc:    get the symbol
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetSymbolResId002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0300_GetSymbol_Func_1700', 0, async (done: Function) => {
       try {
-        let value = context.resourceManager.getSymbol(0x02000016)
-        console.log('testGetSymbolResId002 ' + value);
+        let value: number = context.resourceManager.getSymbol(0x02000016);
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_1700 ${value}`);
         done();
       } catch (err) {
-        console.log('testGetSymbolResId002 errCode ', err.code)
-        console.log('testGetSymbolResId002 errMessage ', err.message)
-        expect(err.code == 9001006).assertTrue()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_1700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_1700 errMessage ${err.message}`);
+        expect(err.code == 9001006).assertTrue();
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_getSymbolResId_003
-    * @tc.name    test getSymbol method
-    * @tc.desc    get the symbol
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetSymbol_Func_1800
+    * @tc.name:    test getSymbol method
+    * @tc.desc:    get the symbol
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetSymbolResId003', 0, async (done: Function) => {
-      let value = context.resourceManager.getSymbol(0x02000015)
-      console.log('testGetSymbolResId003 ' + value);
-      expect(value == 983041).assertTrue()
+    it('SUB_Global_Resource_Manager_0300_GetSymbol_Func_1800', 0, async (done: Function) => {
+      let value: number = context.resourceManager.getSymbol(0x02000015);
+      console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_1800 ${value}`);
+      expect(value == 983041).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_getSymbolResId_004
-    * @tc.name    test getSymbol method  throw 9001001 error code
-    * @tc.desc    get the symbol
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetSymbol_Func_1900
+    * @tc.name:    test getSymbol method  throw 9001001 error code
+    * @tc.desc:    get the symbol
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetSymbolResId004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0300_GetSymbol_Func_1900', 0, async (done: Function) => {
       try {
-        let value = context.resourceManager.getSymbol(1111)
-        console.log('testGetSymbolResId004 ' + value);
+        let value: number = context.resourceManager.getSymbol(1111);
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_1900 ${value}`);
         done();
       } catch (err) {
-        console.log('testGetSymbolResId004 errCode ', err.code)
-        console.log('testGetSymbolResId004 errMessage ', err.message)
-        expect(err.code == 9001001).assertTrue()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_1900 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_1900 errMessage ${err.message}`);
+        expect(err.code == 9001001).assertTrue();
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_getSymbolResource_001
-    * @tc.name    test getSymbol method
-    * @tc.desc    get the symbol
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetSymbol_Func_2000
+    * @tc.name:    test getSymbol method
+    * @tc.desc:    get the symbol
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetSymbolResource001', 0, async (done: Function) => {
-      let value = context.resourceManager.getSymbol({
+    it('SUB_Global_Resource_Manager_0300_GetSymbol_Func_2000', 0, async (done: Function) => {
+      let value: number = context.resourceManager.getSymbol({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: 0x02000018
-      })
-      console.log('testGetSymbolResource001 ' + value);
-      expect(value == 983041).assertTrue()
+      });
+      console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_2000 ${value}`);
+      expect(value == 983041).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_getSymbolResId_002
-    * @tc.name    test getSymbol method  throw 9001006 error code
-    * @tc.desc    get the symbol
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetSymbol_Func_2100
+    * @tc.name:    test getSymbol method  throw 9001006 error code
+    * @tc.desc:    get the symbol
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetSymbolResource002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0300_GetSymbol_Func_2100', 0, async (done: Function) => {
       try {
-        let value = context.resourceManager.getSymbol({
+        let value: number = context.resourceManager.getSymbol({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: 0x02000016
-        })
-        console.log('testGetSymbolResource002 ' + value);
+        });
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_2100 ${value}`);
         done();
       } catch (err) {
-        console.log('testGetSymbolResource002 errCode ', err.code)
-        console.log('testGetSymbolResource002 errMessage ', err.message)
-        expect(err.code == 9001006).assertTrue()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_2100 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_2100 errMessage ${err.message}`);
+        expect(err.code == 9001006).assertTrue();
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_getSymbolResId_003
-    * @tc.name    test getSymbol method
-    * @tc.desc    get the symbol
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetSymbol_Func_2200
+    * @tc.name:    test getSymbol method
+    * @tc.desc:    get the symbol
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetSymbolResource003', 0, async (done: Function) => {
-      let value = context.resourceManager.getSymbol({
+    it('SUB_Global_Resource_Manager_0300_GetSymbol_Func_2200', 0, async (done: Function) => {
+      let value: number = context.resourceManager.getSymbol({
         bundleName: "com.example.resourcemanagertest",
         moduleName: "entry_test",
         id: 0x02000015
-      })
-      console.log('testGetSymbolResource003 ' + value);
-      expect(value == 983041).assertTrue()
+      });
+      console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_2200 ${value}`);
+      expect(value == 983041).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_getSymbolResId_004
-    * @tc.name    test getSymbol method  throw 9001001 error code
-    * @tc.desc    get the symbol
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetSymbol_Func_2300
+    * @tc.name:    test getSymbol method  throw 9001001 error code
+    * @tc.desc:    get the symbol
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetSymbolResource004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0300_GetSymbol_Func_2300', 0, async (done: Function) => {
       try {
-        let value = context.resourceManager.getSymbol({
+        let value: number = context.resourceManager.getSymbol({
           bundleName: "com.example.resourcemanagertest",
           moduleName: "entry_test",
           id: 1111
-        })
-        console.log('testGetSymbolResource004 ' + value);
+        });
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_2300 ${value}`);
         done();
       } catch (err) {
-        console.log('testGetSymbolResource004 errCode ', err.code)
-        console.log('testGetSymbolResource004 errMessage ', err.message)
-        expect(err.code == 9001001).assertTrue()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_2300 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbol_Func_2300 errMessage ${err.message}`);
+        expect(err.code == 9001001).assertTrue();
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_getSymbolByName_001
-    * @tc.name    test getSymbolByName method
-    * @tc.desc    get the Symbol By Name
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2400
+    * @tc.name:    test getSymbolByName method
+    * @tc.desc:    get the Symbol By Name
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetSymbolByName001', 0, async (done: Function) => {
-      let value = context.resourceManager.getSymbolByName('test_1')
-      console.log('testGetSymbolByName001 ' + value);
-      expect(value == 983041).assertTrue()
+    it('SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2400', 0, async (done: Function) => {
+      let value: number = context.resourceManager.getSymbolByName('test_1');
+      console.log(`SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2400 ${value}`);
+      expect(value == 983041).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_getSymbolResId_002
-    * @tc.name    test getSymbolByName method throw 9001006 error code
-    * @tc.desc    get the Symbol By Name
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2500
+    * @tc.name:    test getSymbolByName method throw 9001006 error code
+    * @tc.desc:    get the Symbol By Name
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetSymbolByName002', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2500', 0, async (done: Function) => {
       try {
-        let value = context.resourceManager.getSymbolByName('test_2')
-        console.log('testGetSymbolByName002 ' + value);
+        let value: number = context.resourceManager.getSymbolByName('test_2');
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2500 ${value}`);
         done();
       } catch (err) {
-        console.log('testGetSymbolByName002 errCode ', err.code)
-        console.log('testGetSymbolByName002 errMessage ', err.message)
-        expect(err.code == 9001006).assertTrue()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2500 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2500 errMessage ${err.message}`);
+        expect(err.code == 9001006).assertTrue();
+        done();
       }
     })
 
     /* *
-    * @tc.number  TEST_getSymbolResId_003
-    * @tc.name    test getSymbolByName method
-    * @tc.desc    get the Symbol By Name
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2600
+    * @tc.name:    test getSymbolByName method
+    * @tc.desc:    get the Symbol By Name
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetSymbolByName003', 0, async (done: Function) => {
-      let value = context.resourceManager.getSymbolByName('test_4')
-      console.log('testGetSymbolByName003 ' + value);
-      expect(value == 983041).assertTrue()
+    it('SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2600', 0, async (done: Function) => {
+      let value: number = context.resourceManager.getSymbolByName('test_4');
+      console.log(`SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2600 ${value}`);
+      expect(value == 983041).assertTrue();
       done();
     })
 
     /* *
-    * @tc.number  TEST_getSymbolResId_004
-    * @tc.name    test getSymbolByName method throw 9001003 error code
-    * @tc.desc    get the Symbol By Name
-    * @tc.size:   MediumTest
-    * @tc.type    method
-    * @tc.level   level 2
+    * @tc.number:  SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2700
+    * @tc.name:    test getSymbolByName method throw 9001003 error code
+    * @tc.desc:    get the Symbol By Name
+    * @tc.size:    MediumTest
+    * @tc.type:    method
+    * @tc.level:   level 2
     */
-    it('testGetSymbolByName004', 0, async (done: Function) => {
+    it('SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2700', 0, async (done: Function) => {
       try {
-        let value = context.resourceManager.getSymbolByName('notexist')
-        console.log('testGetSymbolByName004 ' + value);
+        let value: number = context.resourceManager.getSymbolByName('notexist');
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2700 ${value}`);
         done();
       } catch (err) {
-        console.log('testGetSymbolByName004 errCode ', err.code)
-        console.log('testGetSymbolByName004 errMessage ', err.message)
-        expect(err.code == 9001003).assertTrue()
-        done()
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2700 errCode ${err.code}`);
+        console.log(`SUB_Global_Resource_Manager_0300_GetSymbolByName_Func_2700 errMessage ${err.message}`);
+        expect(err.code == 9001003).assertTrue();
+        done();
       }
     })
 

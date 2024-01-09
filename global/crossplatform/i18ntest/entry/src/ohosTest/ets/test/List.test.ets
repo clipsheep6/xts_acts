@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import abilityTest from './Ability.test'
-import i18nTest from './I18n.test'
+import abilityTest from './Ability.test';
+import i18nTest from './I18n.test';
 
 export default function testsuite() {
-  abilityTest()
-  i18nTest()
+  abilityTest();
+  i18nTest();
 }
