@@ -1,4 +1,4 @@
-package com.example.security_xts;
+package com.example.cryptoframeworktest;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +17,7 @@ public class EntryEntryAbilityActivity extends StageActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.e("HiHelloWorld", "EntryEntryAbilityActivity");
-        setInstanceName("com.example.security_xts:entry:EntryAbility:");
+        setInstanceName("com.example.cryptoframeworktest:entry:EntryAbility:");
         super.onCreate(savedInstanceState);
     }
 }

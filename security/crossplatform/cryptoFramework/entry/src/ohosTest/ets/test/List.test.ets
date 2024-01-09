@@ -13,11 +13,8 @@
  * limitations under the License.
  */
 
-import abilityTest from './Ability.test'
-import cryptoFrame from './CryptoFramework.test'
+import CryptoFrameworkTest from './CryptoFramework.test'
 
 export default function testsuite() {
-  abilityTest()
-  // certTest()
-  cryptoFrame()
+  CryptoFrameworkTest()
 }

@@ -13,16 +13,32 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import cryptoFramework from "@ohos.security.cryptoFramework";
 import { BusinessError } from '@ohos.base';
 import {
-  symKeyGenerator,asyKeyGenerator,KeyPairGenPromise,
-  pubKeyArray,priKeyArray,pubKeyBlob,priKeyBlob,convertKeyGenPromise,plan1,plan2,arr1,arr2,input1,input2,
-  rsaGenerator,dsaCommonSpec,dsaKeyPairSpec,asyKeyPairSpec,asyKeyGeneratorBySpec,priKeyGenPromise,pubKeyGenPromise,
-  cipherAlgName,cipher,signer,verifyer
+  symKeyGenerator,
+  asyKeyGenerator,
+  KeyPairGenPromise,
+  convertKeyGenPromise,
+  input1,
+  input2,
+  rsaGenerator,
+  asyKeyPairSpec,
+  asyKeyGeneratorBySpec,
+  priKeyGenPromise,
+  pubKeyGenPromise,
+  cipher,
+  signer
 } from '../utils/CommonVariables';
+
+function stringToUint8Array(str: string) {
+  let arr: Uint8Array = new Uint8Array(str.length);
+  for (let i: number = 0, j: number = str.length; i < j; ++i) {
+    arr[i] = str.charCodeAt(i);
+  }
+  return arr;
+}
 
 export default function cryptoFrame() {
   describe('CryptoFrame', () => {
@@ -30,49 +46,60 @@ export default function cryptoFrame() {
     beforeAll(() => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
-    })
+    });
     beforeEach(() => {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
-    })
+    });
     afterEach(() => {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
-    })
+    });
     afterAll(() => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
-    })
-    it('assertContain', 0, () => {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
-      let a = 'abc';
-      let b = 'b';
-      // Defines a variety of assertion methods, which are used to declare expected boolean conditions.
-      expect(a).assertContain(b);
-      expect(a).assertEqual(a);
-    })
+    });
 
     /**
-     *@tc.number    : testResult001
-     *@tc.name      : testResult001
-     *@tc.desc      : An enumeration that represents the result of an execution
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 2
+     * @tc.number    : SUB_Security_Crypto_Framework_Result_Enum_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Result_Enum_0100
+     * @tc.desc      : An enumeration that represents the result of an execution
+     * @tc.size      : MediumTest
+     * @tc.type      : Func
+     * @tc.level     : Level 0
      */
-    it('testResult001', 0, async () => {
-
+    it('SUB_Security_Crypto_Framework_Result_Enum_0100', 0, async () => {
       expect(cryptoFramework.Result.INVALID_PARAMS === 401).assertTrue();
       expect(cryptoFramework.Result.NOT_SUPPORT === 801).assertTrue();
       expect(cryptoFramework.Result.ERR_OUT_OF_MEMORY === 17620001).assertTrue();
       expect(cryptoFramework.Result.ERR_RUNTIME_ERROR === 17620002).assertTrue();
       expect(cryptoFramework.Result.ERR_CRYPTO_OPERATION === 17630001).assertTrue();
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Crypto_Mode_Enum_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Crypto_Mode_Enum_0100
+     * @tc.desc      : An enumeration that represents the result of an execution
+     * @tc.size      : MediumTest
+     * @tc.type      : Func
+     * @tc.level     : Level 0
+     */
+    it('SUB_Security_Crypto_Framework_Crypto_Mode_Enum_0100', 0, async () => {
       expect(cryptoFramework.CryptoMode.ENCRYPT_MODE === 0).assertTrue();
       expect(cryptoFramework.CryptoMode.DECRYPT_MODE === 1).assertTrue();
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_AsyKey_SpecItem_Enum_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_AsyKey_SpecItem_Enum_0100
+     * @tc.desc      : An enumeration that represents the result of an execution
+     * @tc.size      : MediumTest
+     * @tc.type      : Func
+     * @tc.level     : Level 0
+     */
+    it('SUB_Security_Crypto_Framework_AsyKey_SpecItem_Enum_0100', 0, async () => {
       expect(cryptoFramework.AsyKeySpecItem.DSA_P_BN === 101).assertTrue();
       expect(cryptoFramework.AsyKeySpecItem.DSA_Q_BN === 102).assertTrue();
       expect(cryptoFramework.AsyKeySpecItem.DSA_G_BN === 103).assertTrue();
@@ -94,10 +121,32 @@ export default function cryptoFrame() {
       expect(cryptoFramework.AsyKeySpecItem.RSA_N_BN === 301).assertTrue();
       expect(cryptoFramework.AsyKeySpecItem.RSA_SK_BN === 302).assertTrue();
       expect(cryptoFramework.AsyKeySpecItem.RSA_PK_BN === 303).assertTrue();
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_AsyKey_SpecType_Enum_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_AsyKey_SpecType_Enum_0100
+     * @tc.desc      : An enumeration that represents the result of an execution
+     * @tc.size      : MediumTest
+     * @tc.type      : Enum
+     * @tc.level     : Level 0
+     */
+    it('SUB_Security_Crypto_Framework_AsyKey_SpecType_Enum_0100', 0, async () => {
       expect(cryptoFramework.AsyKeySpecType.COMMON_PARAMS_SPEC === 0).assertTrue();
       expect(cryptoFramework.AsyKeySpecType.PRIVATE_KEY_SPEC === 1).assertTrue();
       expect(cryptoFramework.AsyKeySpecType.PUBLIC_KEY_SPEC === 2).assertTrue();
       expect(cryptoFramework.AsyKeySpecType.KEY_PAIR_SPEC === 3).assertTrue();
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Cipher_SpecItem_Enum_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Cipher_SpecItem_Enum_0100
+     * @tc.desc      : An enumeration that represents the result of an execution
+     * @tc.size      : MediumTest
+     * @tc.type      : Enum
+     * @tc.level     : Level 0
+     */
+    it('SUB_Security_Crypto_Framework_Cipher_SpecItem_Enum_0100', 0, async () => {
       expect(cryptoFramework.CipherSpecItem.OAEP_MD_NAME_STR === 100).assertTrue();
       expect(cryptoFramework.CipherSpecItem.OAEP_MGF_NAME_STR === 101).assertTrue();
       expect(cryptoFramework.CipherSpecItem.OAEP_MGF1_MD_STR === 102).assertTrue();
@@ -107,2171 +156,1983 @@ export default function cryptoFrame() {
       expect(cryptoFramework.SignSpecItem.PSS_MGF1_MD_STR === 102).assertTrue();
       expect(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM === 103).assertTrue();
       expect(cryptoFramework.SignSpecItem.PSS_TRAILER_FIELD_NUM === 104).assertTrue();
-
-      
-
-    })
+    });
 
     /**
-     *@tc.number    : testGetEncoded001
-     *@tc.name      : testGetEncoded001
-     *@tc.desc      : A byte steam that gets the key data
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 8
+     * @tc.number    : SUB_Security_Crypto_Framework_Sign_SpecItem_Enum_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Sign_SpecItem_Enum_0100
+     * @tc.desc      : An enumeration that represents the result of an execution
+     * @tc.size      : MediumTest
+     * @tc.type      : Enum
+     * @tc.level     : Level 0
      */
-    it('testGetEncoded001', 0, async () => {
+    it('SUB_Security_Crypto_Framework_Sign_SpecItem_Enum_0100', 0, async () => {
+      expect(cryptoFramework.SignSpecItem.PSS_MD_NAME_STR === 100).assertTrue();
+      expect(cryptoFramework.SignSpecItem.PSS_MGF_NAME_STR === 101).assertTrue();
+      expect(cryptoFramework.SignSpecItem.PSS_MGF1_MD_STR === 102).assertTrue();
+      expect(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM === 103).assertTrue();
+      expect(cryptoFramework.SignSpecItem.PSS_TRAILER_FIELD_NUM === 104).assertTrue();
+    });
 
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Get_Encoded_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Get_Encoded_Func_0100
+     * @tc.desc      : A byte steam that gets the key data
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Get_Encoded_Func_0100', 0, async () => {
       symKeyGenerator.generateSymKey((err, key) => {
         if (err) {
-          console.error(`Generate symKey failed, ${err.code}, ${err.message}`);
-          
+          console.error(`SUB_Security_Crypto_Framework_Get_Encoded_Func_0100 failed, ${err.code}, ${err.message}`);
+          expect(false).assertTrue();
         } else {
-          let encodedKey = key.getEncoded();
-          console.info("key blob: "+ encodedKey.data);
+          let encodedKey: cryptoFramework.DataBlob = key.getEncoded();
+          console.info(`SUB_Security_Crypto_Framework_Get_Encoded_Func_0100 key blob: ${JSON.stringify(encodedKey.data)}`);
           expect(encodedKey.data instanceof Uint8Array).assertTrue();
-          
         }
-      })
-
-    })
+      });
+    });
 
     /**
-     *@tc.number    : testSymKeyClearMem001
-     *@tc.name      : testSymKeyClearMem001
-     *@tc.desc      : Zeros out the key content in the underlying memory of the system
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 9
+     * @tc.number    : SUB_Security_Crypto_Framework_SymKey_ClearMem_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_SymKey_ClearMem_Func_0100
+     * @tc.desc      : Zeros out the key content in the underlying memory of the system
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testSymKeyClearMem001', 0, async () => {
-
-      symKeyGenerator.generateSymKey((err, key) => {
+    it('SUB_Security_Crypto_Framework_SymKey_ClearMem_Func_0100', 0, async () => {
+      symKeyGenerator.generateSymKey((err: BusinessError, key: cryptoFramework.SymKey) => {
         if (err) {
-          console.error(`Generate symKey failed, ${err.code}, ${err.message}`);
-          
+          console.error(`SUB_Security_Crypto_Framework_SymKey_ClearMem_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
         } else {
-          let encodedKey = key.getEncoded();
-          console.info("key blob111: " + encodedKey.data);    // Display key content.
+          let encodedKey: cryptoFramework.DataBlob = key.getEncoded();
+          console.info(`SUB_Security_Crypto_Framework_SymKey_ClearMem_Func_0100 encodedKey before clearMem: ${JSON.stringify(encodedKey.data)}`); // Display key content.
           key.clearMem();
           encodedKey = key.getEncoded();
-          console.info("key blob111:" + encodedKey.data);    // Display all 0s. 00 0 0 0 0 0 0 000
-          
+          console.info(`SUB_Security_Crypto_Framework_SymKey_ClearMem_Func_0100 encodedKey after clearMem: ${JSON.stringify(encodedKey.data)}`); // Display all 0s. 00 0 0 0 0 0 0 000
+          expect(encodedKey.data.every((item: number) => item === 0)).assertTrue();
         }
-      })
-
-    })
+      });
+    });
 
     /**
-     *@tc.number    : testPubKeyGetAsyKeySpec001
-     *@tc.name      : testPubKeyGetAsyKeySpec001
-     *@tc.desc      : The public key,which is a subclass of the key
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 10
+     * @tc.number    : SUB_Security_Crypto_Framework_PubKey_Get_AsyKey_Spec_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_PubKey_Get_AsyKey_Spec_Func_0100
+     * @tc.desc      : The public key,which is a subclass of the key
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testPubKeyGetAsyKeySpec001', 0, async () => {
-
-      asyKeyGenerator.generateKeyPair((err, keyPair) => {
+    it('SUB_Security_Crypto_Framework_PubKey_Get_AsyKey_Spec_Func_0100', 0, async () => {
+      asyKeyGenerator.generateKeyPair((err: BusinessError, keyPair: cryptoFramework.KeyPair) => {
         if (err) {
-          console.error("generateKeyPair: error.");
-          
-          return;
-        }
-        console.info("generateKeyPair: success.");
-        let p = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
-        console.info("ecc item --- p: " + p.toString(16));
-        expect(p).not().assertNull();
-        
-      })
-
-    })
-
-    /**
-     *@tc.number    : testPriKeyClearMem001
-     *@tc.name      : testPriKeyClearMem001
-     *@tc.desc      : Synchronization method,which clears the key content in the underlying memory of the system
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 11
-     */
-    it('testPriKeyClearMem001', 0, async () => {
-
-      asyKeyGenerator.generateKeyPair((err, keyPair) => {
-        if (err) {
-          console.error("generateKeyPair: error.");
-          
-          return;
-        }
-        console.info("generateKeyPair: success.");
-        keyPair.priKey.clearMem();
-        
-      })
-
-    })
-
-    /**
-     *@tc.number    : testPriKeyGetAsyKeySpec001
-     *@tc.name      : testPriKeyGetAsyKeySpec001
-     *@tc.desc      : Synchronization method,Obtain the key
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 12
-     */
-    it('testPriKeyGetAsyKeySpec001', 0, async () => {
-
-      asyKeyGenerator.generateKeyPair((err, keyPair) => {
-        if (err) {
-          console.error("generateKeyPair: error.");
-          
-          return;
-        }
-        console.info("generateKeyPair: success.");
-        let p = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
-        console.info("ecc item --- p: " + p.toString(16));
-        expect(p).not().assertNull();
-        
-      })
-
-    })
-
-    /**
-     *@tc.number    : testCreateSymKeyGenerator001
-     *@tc.name      : testCreateSymKeyGenerator001
-     *@tc.desc      : Obtain the corresponding cipher instance
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 13
-     */
-    it('testCreateSymKeyGenerator001', 0, async () => {
-
-      try {
-        let symKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
-        expect(symKeyGenerator).not().assertNull();
-      } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.error(`sync error, ${e.code}, ${e.message}`);
-      }
-      
-
-    })
-
-    /**
-     *@tc.number    : testSymKeyGeneratorGenerateSymKey001
-     *@tc.name      : testSymKeyGeneratorGenerateSymKey001
-     *@tc.desc      : get a randomly generated key from the symmetric key generator through callback
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 14
-     */
-    it('testSymKeyGeneratorGenerateSymKey001', 0, async () => {
-
-      symKeyGenerator.generateSymKey((err, symKey) => {
-        if (err) {
-          console.error(`Generate symKey failed, ${err.code}, ${err.message}`);
-          
+          console.error(`SUB_Security_Crypto_Framework_PubKey_Get_AsyKey_Spec_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
         } else {
-          console.info(`Generate symKey success, algName: ${symKey.algName}`);
-          expect(symKey.algName).not().assertNull();
-          
+          let p: string | number | bigint = keyPair.pubKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
+          expect(p).not().assertNull();
         }
-      })
-
-    })
+      });
+    });
 
     /**
-     *@tc.number    : testSymKeyGeneratorGenerateSymKey002
-     *@tc.name      : testSymKeyGeneratorGenerateSymKey002
-     *@tc.desc      : Asynchronously obtains the key randomly generated by the symmetric key generator through promise
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 15
+     * @tc.number    : SUB_Security_Crypto_Framework_PriKey_ClearMem_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_PriKey_ClearMem_Func_0100
+     * @tc.desc      : Synchronization method,which clears the key content in the underlying memory of the system
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testSymKeyGeneratorGenerateSymKey002', 0, async () => {
+    it('SUB_Security_Crypto_Framework_PriKey_ClearMem_Func_0100', 0, async () => {
+      asyKeyGenerator.generateKeyPair((err: BusinessError, keyPair: cryptoFramework.KeyPair) => {
+        if (err) {
+          console.error(`SUB_Security_Crypto_Framework_PriKey_ClearMem_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        } else {
+          const priKey: cryptoFramework.PriKey = keyPair.priKey;
+          let encodedKey: cryptoFramework.DataBlob = priKey.getEncoded();
+          console.info(`SUB_Security_Crypto_Framework_PriKey_ClearMem_Func_0100 encodedKey before clearMem: ${JSON.stringify(encodedKey.data)}`);
+          /* For the asymmetric private key, clearMem() releases the internal key struct. After clearMem is executed, getEncoded() is not supported. */
+          priKey.clearMem();
+          expect(priKey).not().assertNull();
+        }
+      });
+    });
 
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_PriKey_Get_AsyKey_Spec_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_PriKey_Get_AsyKey_Spec_Func_0100
+     * @tc.desc      : Synchronization method,Obtain the key
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_PriKey_Get_AsyKey_Spec_Func_0100', 0, async () => {
+      asyKeyGenerator.generateKeyPair((err: BusinessError, keyPair: cryptoFramework.KeyPair) => {
+        if (err) {
+          console.error(`SUB_Security_Crypto_Framework_PriKey_Get_AsyKey_Spec_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        } else {
+          let p: string | number | bigint = keyPair.priKey.getAsyKeySpec(cryptoFramework.AsyKeySpecItem.ECC_FP_P_BN);
+          expect(p).not().assertNull();
+        }
+      });
+
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Create_SymKeyGenerator_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Create_SymKeyGenerator_Func_0100
+     * @tc.desc      : Obtain the corresponding cipher instance
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Create_SymKeyGenerator_Func_0100', 0, async () => {
+      try {
+        let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator('3DES192');
+        expect(symKeyGenerator).not().assertNull();
+      } catch (err) {
+        console.error(`SUB_Security_Crypto_Framework_Create_SymKeyGenerator_Func_0100 failed, catch error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_SymKeyGenerator_GenerateSymKey_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_SymKeyGenerator_GenerateSymKey_Func_0100
+     * @tc.desc      : get a randomly generated key from the symmetric key generator through callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_SymKeyGenerator_GenerateSymKey_Func_0100', 0, async () => {
+      symKeyGenerator.generateSymKey((err: BusinessError, symKey: cryptoFramework.SymKey) => {
+        if (err) {
+          console.error(`SUB_Security_Crypto_Framework_SymKeyGenerator_GenerateSymKey_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        } else {
+          expect(symKey.algName).not().assertNull();
+        }
+      });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_SymKeyGenerator_GenerateSymKey_Func_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_SymKeyGenerator_GenerateSymKey_Func_0200
+     * @tc.desc      : Asynchronously obtains the key randomly generated by the symmetric key generator through promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_SymKeyGenerator_GenerateSymKey_Func_0200', 0, async () => {
       symKeyGenerator.generateSymKey()
         .then(symKey => {
-          console.info(`Generate symKey success, algName: ${symKey.algName}`);
           expect(symKey.algName).not().assertNull();
-          
         }, (error: BusinessError) => {
-          console.error(`Generate symKey failed, ${error.code}, ${error.message}`);
-          
-        })
-
-    })
+          console.error(`SUB_Security_Crypto_Framework_SymKeyGenerator_GenerateSymKey_Func_0200 failed, error code: ${error.code}, ,msg: ${error.message}`);
+        });
+    });
 
     /**
-     *@tc.number    : testSymKeyGeneratorConvertKey001
-     *@tc.name      : testSymKeyGeneratorConvertKey001
-     *@tc.desc      : Asynchronously generates a symmetric key based on the specified data by callback function
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 16
+     * @tc.number    : SUB_Security_Crypto_Framework_SymKeyGenerator_ConvertKey_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_SymKeyGenerator_ConvertKey_Func_0100
+     * @tc.desc      : Asynchronously generates a symmetric key based on the specified data by callback function
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testSymKeyGeneratorConvertKey001', 0, async () => {
-
-      let arr = [
+    it('SUB_Security_Crypto_Framework_SymKeyGenerator_ConvertKey_Func_0100', 0, async () => {
+      let arr: number[] = [
         0xba, 0x3d, 0xc2, 0x71, 0x21, 0x1e, 0x30, 0x56,
         0xad, 0x47, 0xfc, 0x5a, 0x46, 0x39, 0xee, 0x7c,
         0xba, 0x3b, 0xc2, 0x71, 0xab, 0xa0, 0x30, 0x72]; // keyLen = 192 (24 bytes)
-      let keyMaterial = new Uint8Array(arr);
-
-      let keyMaterialBlob:cryptoFramework.DataBlob = { data: keyMaterial };
-      symKeyGenerator.convertKey(keyMaterialBlob, (err, symKey) => {
+      let keyMaterial: Uint8Array = new Uint8Array(arr);
+      let keyMaterialBlob: cryptoFramework.DataBlob = {
+        data: keyMaterial
+      };
+      symKeyGenerator.convertKey(keyMaterialBlob, (err: BusinessError, symKey: cryptoFramework.SymKey) => {
         if (err) {
-          console.error(`Convert symKey failed, ${err.code}, ${err.message}`);
-          
+          console.error(`SUB_Security_Crypto_Framework_SymKeyGenerator_ConvertKey_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
         } else {
-          console.info(`Convert symKey success, algName: ${symKey.algName}`);
           expect(symKey.algName).not().assertNull();
-          
         }
-      })
-
-    })
+      });
+    });
 
     /**
-     *@tc.number    : testSymKeyGeneratorConvertKey002
-     *@tc.name      : testSymKeyGeneratorConvertKey002
-     *@tc.desc      : Asynchronously generates a symmetric key base on the specified data through promise
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 17
+     * @tc.number    : SUB_Security_Crypto_Framework_SymKeyGenerator_ConvertKey_Func_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_SymKeyGenerator_ConvertKey_Func_0200
+     * @tc.desc      : Asynchronously generates a symmetric key base on the specified data through promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testSymKeyGeneratorConvertKey002', 0, async () => {
-
+    it('SUB_Security_Crypto_Framework_SymKeyGenerator_ConvertKey_Func_0200', 0, async () => {
       let arr = [
         0xba, 0x3d, 0xc2, 0x71, 0x21, 0x1e, 0x30, 0x56,
         0xad, 0x47, 0xfc, 0x5a, 0x46, 0x39, 0xee, 0x7c,
         0xba, 0x3b, 0xc2, 0x71, 0xab, 0xa0, 0x30, 0x72]; // keyLen = 192 (24 bytes)
-      let keyMaterial = new Uint8Array(arr);
-
-      let keyMaterialBlob:cryptoFramework.DataBlob = { data: keyMaterial };
+      let keyMaterial: Uint8Array = new Uint8Array(arr);
+      let keyMaterialBlob: cryptoFramework.DataBlob = {
+        data: keyMaterial
+      };
       symKeyGenerator.convertKey(keyMaterialBlob)
-        .then(symKey => {
-          console.info(`Convert symKey success, algName: ${symKey.algName}`);
+        .then((symKey: cryptoFramework.SymKey) => {
           expect(symKey.algName).not().assertNull();
-          
         }, (error: BusinessError) => {
-          console.error(`Convert symKey failed, ${error.code}, ${error.message}`);
-          
-        })
-
-    })
+          console.error(`SUB_Security_Crypto_Framework_SymKeyGenerator_ConvertKey_Func_0200 failed, error code: ${error.code}, msg: ${error.message}`);
+          expect(false).assertTrue();
+        });
+    });
 
     /**
-     *@tc.number    : testCreateAsyKeyGenerator001
-     *@tc.name      : testCreateAsyKeyGenerator001
-     *@tc.desc      : Specify the algorithm name to obtain the corresponding cipher instance
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 18
+     * @tc.number    : SUB_Security_Crypto_Framework_Create_AsyKeyGenerator_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Create_AsyKeyGenerator_Func_0100
+     * @tc.desc      : Specify the algorithm name to obtain the corresponding cipher instance
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testCreateAsyKeyGenerator001', 0, async () => {
-
+    it('SUB_Security_Crypto_Framework_Create_AsyKeyGenerator_Func_0100', 0, async () => {
       try {
-        let asyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
+        let asyKeyGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
         expect(asyKeyGenerator).not().assertNull();
       } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.error(`sync error, ${e.code}, ${e.message}`);
+        console.error(`SUB_Security_Crypto_Framework_Create_AsyKeyGenerator_Func_0100 failed ,error code: ${error.code}, msg: ${error.message}`);
+        expect(false).assertTrue();
       }
-      
-
-    })
+    });
 
     /**
-     *@tc.number    : testAsyKeyGeneratorGenerateKeyPair001
-     *@tc.name      : testAsyKeyGeneratorGenerateKeyPair001
-     *@tc.desc      : Asynchronously obtains a randomly generated key from an asymmetric key generator through callback
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 19
+     * @tc.number    : SUB_Security_Crypto_Framework_AsyKeyGenerator_GenerateKeyPair_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_AsyKeyGenerator_GenerateKeyPair_Func_0100
+     * @tc.desc      : Asynchronously obtains a randomly generated key from an asymmetric key generator through callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testAsyKeyGeneratorGenerateKeyPair001', 0, async () => {
-
-      asyKeyGenerator.generateKeyPair((err, keyPair) => {
+    it('SUB_Security_Crypto_Framework_AsyKeyGenerator_GenerateKeyPair_Func_0100', 0, async () => {
+      asyKeyGenerator.generateKeyPair((err: BusinessError, keyPair: cryptoFramework.KeyPair) => {
         if (err) {
-          console.error("generateKeyPair: error.");
-          
-          return;
+          console.error(`SUB_Security_Crypto_Framework_AsyKeyGenerator_GenerateKeyPair_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        } else {
+          expect(keyPair).not().assertNull();
         }
-        expect(keyPair).not().assertNull();
-        console.info("generateKeyPair: success.");
-        
-      })
-
-    })
-
-    /**
-     *@tc.number    : testAsyKeyGeneratorGenerateKeyPair002
-     *@tc.name      : testAsyKeyGeneratorGenerateKeyPair002
-     *@tc.desc      : Asynchronously obtains the key generated by the asymmetric key generator through promise
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 20
-     */
-    it('testAsyKeyGeneratorGenerateKeyPair002', 0, async () => {
-
-      KeyPairGenPromise.then(keyPair => {
-        console.info("generateKeyPair success.");
-        expect(keyPair).not().assertNull();
-        
-      }).catch((error: BusinessError) => {
-        console.error("generateKeyPair error.");
-        
       });
-
-    })
+    });
 
     /**
-     *@tc.number    : testAsyKeyGeneratorConvertKey001
-     *@tc.name      : testAsyKeyGeneratorConvertKey001
-     *@tc.desc      : Asynchronously obtains the key generated by the asymmetric key generator by callback
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 21
+     * @tc.number    : SUB_Security_Crypto_Framework_AsyKeyGenerator_GenerateKeyPair_Func_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_AsyKeyGenerator_GenerateKeyPair_Func_0200
+     * @tc.desc      : Asynchronously obtains the key generated by the asymmetric key generator through promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testAsyKeyGeneratorConvertKey001', 0, async () => {
+    it('SUB_Security_Crypto_Framework_AsyKeyGenerator_GenerateKeyPair_Func_0200', 0, async () => {
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        expect(keyPair).not().assertNull();
+      }).catch((error: BusinessError) => {
+        console.error(`SUB_Security_Crypto_Framework_AsyKeyGenerator_GenerateKeyPair_Func_0200 failed, error code: ${error.code}, msg: ${error.message}`);
+        expect(false).assertTrue();
+      });
+    });
 
-      let pubKeyArray = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
-      let priKeyArray = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
-      let pubKeyBlob: cryptoFramework.DataBlob = {data: pubKeyArray}; // Data of the public key.
-      let priKeyBlob: cryptoFramework.DataBlob = {data: priKeyArray}; // Data of the private key.
-      asyKeyGenerator.convertKey(pubKeyBlob, priKeyBlob, (err, keyPair) => {
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_AsyKeyGenerator_ConvertKey_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_AsyKeyGenerator_ConvertKey_Func_0100
+     * @tc.desc      : Asynchronously obtains the key generated by the asymmetric key generator by callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_AsyKeyGenerator_ConvertKey_Func_0100', 0, async () => {
+      let pubKeyArray: Uint8Array = new Uint8Array([48, 89, 48, 19, 6, 7, 42, 134, 72, 206, 61, 2, 1, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7, 3, 66, 0, 4, 83, 96, 142, 9, 86, 214, 126, 106, 247, 233, 92, 125, 4, 128, 138, 105, 246, 162, 215, 71, 81, 58, 202, 121, 26, 105, 211, 55, 130, 45, 236, 143, 55, 16, 248, 75, 167, 160, 167, 106, 2, 152, 243, 44, 68, 66, 0, 167, 99, 92, 235, 215, 159, 239, 28, 106, 124, 171, 34, 145, 124, 174, 57, 92]);
+      let priKeyArray: Uint8Array = new Uint8Array([48, 49, 2, 1, 1, 4, 32, 115, 56, 137, 35, 207, 0, 60, 191, 90, 61, 136, 105, 210, 16, 27, 4, 171, 57, 10, 61, 123, 40, 189, 28, 34, 207, 236, 22, 45, 223, 10, 189, 160, 10, 6, 8, 42, 134, 72, 206, 61, 3, 1, 7]);
+      let pubKeyBlob: cryptoFramework.DataBlob = {
+        data: pubKeyArray
+      }; // Data of the public key.
+      let priKeyBlob: cryptoFramework.DataBlob = {
+        data: priKeyArray
+      }; // Data of the private key.
+      asyKeyGenerator.convertKey(pubKeyBlob, priKeyBlob, (err: BusinessError, keyPair: cryptoFramework.KeyPair) => {
         if (err) {
-          console.error("convertKey: error.");
-          
-          return;
+          console.error(`SUB_Security_Crypto_Framework_AsyKeyGenerator_ConvertKey_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        } else {
+          expect(keyPair).not().assertNull();
         }
-        console.info("convertKey: success.");
-        expect(keyPair).not().assertNull();
-        
-      })
-
-    })
-
-    /**
-     *@tc.number    : testAsyKeyGeneratorConvertKey002
-     *@tc.name      : testAsyKeyGeneratorConvertKey002
-     *@tc.desc      : Asynchronously obtains the key generated by the asymmetric key generator by promise
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 22
-     */
-    it('testAsyKeyGeneratorConvertKey002', 0, async () => {
-
-      convertKeyGenPromise.then( keyPair => {
-        console.info("convertKey success.");
-        expect(keyPair).not().assertNull();
-        
-      }).catch((error: BusinessError) => {
-        console.error("convertKey error.");
-        
       });
-
-    })
+    });
 
     /**
-     *@tc.number    : testCreateAsyKeyGeneratorBySpec001
-     *@tc.name      : testCreateAsyKeyGeneratorBySpec001
-     *@tc.desc      : obtain the corresponding cipher instance
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 23
+     * @tc.number    : SUB_Security_Crypto_Framework_AsyKeyGenerator_ConvertKey_Func_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_AsyKeyGenerator_ConvertKey_Func_0200
+     * @tc.desc      : Asynchronously obtains the key generated by the asymmetric key generator by promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testCreateAsyKeyGeneratorBySpec001', 0, async () => {
+    it('SUB_Security_Crypto_Framework_AsyKeyGenerator_ConvertKey_Func_0200', 0, async () => {
+      convertKeyGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        expect(keyPair).not().assertNull();
+      }).catch((err: BusinessError) => {
+        console.error(`SUB_Security_Crypto_Framework_AsyKeyGenerator_ConvertKey_Func_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      });
+    });
 
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Create_AsyKeyGenerator_By_Spec_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Create_AsyKeyGenerator_By_Spec_Func_0100
+     * @tc.desc      : obtain the corresponding cipher instance
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Create_AsyKeyGenerator_By_Spec_Func_0100', 0, async () => {
       try {
-        let asyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
+        let asyKeyGeneratorBySpec: cryptoFramework.AsyKeyGeneratorBySpec = cryptoFramework.createAsyKeyGeneratorBySpec(asyKeyPairSpec);
         expect(asyKeyGeneratorBySpec).not().assertNull();
-      } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.error(`sync error, ${e.code}, ${e.message}`);
+      } catch (err) {
+        console.error(`SUB_Security_Crypto_Framework_Create_AsyKeyGenerator_By_Spec_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
       }
-      
-
-    })
+    });
 
 
     /**
-     *@tc.number    : testAsyKeyGeneratorBySpecGenerateKeyPair001
-     *@tc.name      : testAsyKeyGeneratorBySpecGenerateKeyPair001
-     *@tc.desc      : Asynchronously obtains the key through callback
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 24
+     * @tc.number    : SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GenerateKeyPair_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GenerateKeyPair_Func_0100
+     * @tc.desc      : Asynchronously obtains the key through callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testAsyKeyGeneratorBySpecGenerateKeyPair001', 0, async () => {
-
-      asyKeyGeneratorBySpec.generateKeyPair((err, keyPair) => {
+    it('SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GenerateKeyPair_Func_0100', 0, async () => {
+      asyKeyGeneratorBySpec.generateKeyPair((err: BusinessError, keyPair: cryptoFramework.KeyPair) => {
         if (err) {
-          console.error("generateKeyPair: error.");
-          
-          return;
+          console.error(`SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GenerateKeyPair_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        } else {
+          expect(keyPair).not().assertNull();
         }
-        expect(keyPair).not().assertNull();
-        
-        console.info("generateKeyPair: success.");
-      })
-
-    })
-
-    /**
-     *@tc.number    : testAsyKeyGeneratorBySpecGenerateKeyPair002
-     *@tc.name      : testAsyKeyGeneratorBySpecGenerateKeyPair002
-     *@tc.desc      : Asynchronous acquisition of the key generated by the asymmetric key generator by promise
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 25
-     */
-    it('testAsyKeyGeneratorBySpecGenerateKeyPair002', 0, async () => {
-
-      KeyPairGenPromise.then( keyPair => {
-        console.info("generateKeyPair success.");
-        expect(keyPair).not().assertNull();
-        
-      }).catch((error: BusinessError) => {
-        
-        console.error("generateKeyPair error.");
       });
-
-    })
+    });
 
     /**
-     *@tc.number    : testAsyKeyGeneratorBySpecGeneratePriKey001
-     *@tc.name      : testAsyKeyGeneratorBySpecGeneratePriKey001
-     *@tc.desc      : Asynchronous acquisition of keys generated by asymmetric key generators by callback
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 26
+     * @tc.number    : SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GenerateKeyPair_Func_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GenerateKeyPair_Func_0200
+     * @tc.desc      : Asynchronous acquisition of the key generated by the asymmetric key generator by promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testAsyKeyGeneratorBySpecGeneratePriKey001', 0, async () => {
+    it('SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GenerateKeyPair_Func_0200', 0, async () => {
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        expect(keyPair).not().assertNull();
+      }).catch((err: BusinessError) => {
+        console.error(`SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GenerateKeyPair_Func_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      });
+    });
 
-      asyKeyGeneratorBySpec.generatePriKey((err, prikey) => {
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePriKey_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePriKey_Func_0100
+     * @tc.desc      : Asynchronous acquisition of keys generated by asymmetric key generators by callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePriKey_Func_0100', 0, async () => {
+      asyKeyGeneratorBySpec.generatePriKey((err: BusinessError, priKey: cryptoFramework.PriKey) => {
         if (err) {
-          console.error("generatePriKey: error.");
-          
-          return;
+          console.error(`SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePriKey_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        } else {
+          expect(priKey).not().assertNull();
         }
-        expect(prikey).not().assertNull();
-        
-        console.info("generatePriKey: success.");
-      })
-
-    })
+      });
+    });
 
     /**
-     *@tc.number    : testAsyKeyGeneratorBySpecGeneratePriKey002
-     *@tc.name      : testAsyKeyGeneratorBySpecGeneratePriKey002
-     *@tc.desc      : Asynchronously obtains the key generated by the asymmetric key generator by promise
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 27
+     * @tc.number    : SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePriKey_Func_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePriKey_Func_0200
+     * @tc.desc      : Asynchronously obtains the key generated by the asymmetric key generator by promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testAsyKeyGeneratorBySpecGeneratePriKey002', 0, async () => {
-
-      priKeyGenPromise.then( priKey => {
+    it('SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePriKey_Func_0200', 0, async () => {
+      priKeyGenPromise.then((priKey: cryptoFramework.PriKey) => {
         expect(priKey).not().assertNull();
-        
-        console.info("generatePriKey success.");
-      }).catch((error: BusinessError) => {
-        console.error("generatePriKey error.");
-        
+      }).catch((err: BusinessError) => {
+        console.error(`SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePriKey_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
       });
-
-    })
+    });
 
     /**
-     *@tc.number    : testAsyKeyGeneratorBySpecGeneratePubKey001
-     *@tc.name      : testAsyKeyGeneratorBySpecGeneratePubKey001
-     *@tc.desc      : Asynchronously obtains the key generated by the asymmetric key generator by callback
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 28
+     * @tc.number    : SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePubKey_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePubKey_Func_0100
+     * @tc.desc      : Asynchronously obtains the key generated by the asymmetric key generator by callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testAsyKeyGeneratorBySpecGeneratePubKey001', 0, async () => {
-
+    it('SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePubKey_Func_0100', 0, async () => {
       asyKeyGeneratorBySpec.generatePubKey((err, pubKey) => {
         if (err) {
-          console.error("generatePubKey: error.");
-          
-          return;
+          console.error(`SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePubKey_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        } else {
+          expect(pubKey).not().assertNull();
         }
-        expect(pubKey).not().assertNull();
-        
-        console.info("generatePubKey: success.");
-      })
-
-    })
-
-    /**
-     *@tc.number    : testAsyKeyGeneratorBySpecGeneratePubKey002
-     *@tc.name      : testAsyKeyGeneratorBySpecGeneratePubKey002
-     *@tc.desc      : Asynchronously obtains the key generated by the asymmetric key generator through promise
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 29
-     */
-    it('testAsyKeyGeneratorBySpecGeneratePubKey002', 0, async () => {
-
-      pubKeyGenPromise.then( pubKey => {
-        console.info("generatePubKey pubKey success.");
-        expect(pubKey).not().assertNull();
-        
-      }).catch((error: BusinessError) => {
-        console.error("generatePubKey error.");
-        
       });
-
-    })
+    });
 
     /**
-     *@tc.number    : testCreateCipher001
-     *@tc.name      : testCreateCipher001
-     *@tc.desc      : You can specify an algorithm name to obtain the Cipher instance.
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 30
+     * @tc.number    : SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePubKey_Func_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePubKey_Func_0200
+     * @tc.desc      : Asynchronously obtains the key generated by the asymmetric key generator through promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testCreateCipher001', 0, async () => {
+    it('SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePubKey_Func_0200', 0, async () => {
+      pubKeyGenPromise.then((pubKey: cryptoFramework.PubKey) => {
+        expect(pubKey).not().assertNull();
+      }).catch((err: BusinessError) => {
+        console.error(`SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GeneratePubKey_Func_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      });
+    });
 
-      let cipherAlgName = '3DES192|ECB|PKCS7';
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Create_Cipher_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Create_Cipher_Func_0100
+     * @tc.desc      : You can specify an algorithm name to obtain the Cipher instance.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Create_Cipher_Func_0100', 0, async () => {
+      let cipherAlgName: string = '3DES192|ECB|PKCS7';
       try {
-        let cipher = cryptoFramework.createCipher(cipherAlgName);
-        console.info(`cipher algName: ${cipher.algName}`);
+        let cipher: cryptoFramework.Cipher = cryptoFramework.createCipher(cipherAlgName);
         expect(cipher.algName).not().assertNull();
-      } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.error(`sync error, ${e.code}, ${e.message}`);
+      } catch (err) {
+        console.error(`SUB_Security_Crypto_Framework_Create_Cipher_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
       }
-      
-
-    })
+    });
 
     /**
-     *@tc.number    : testCipherInit001
-     *@tc.name      : testCipherInit001
-     *@tc.desc      : The cipher object for encryption and decryption is initialized and the result is obtained by registering the callback function.
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 31
+     * @tc.number    : SUB_Security_Crypto_Framework_Cipher_Init_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Cipher_Init_Func_0100
+     * @tc.desc      : The cipher object for encryption and decryption is initialized and the result is obtained by registering the callback function.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testCipherInit001', 0, async () => {
-
-      symKeyGenerator.generateSymKey((err, symKey) => {
-
+    it('SUB_Security_Crypto_Framework_Cipher_Init_Func_0100', 0, async () => {
+      symKeyGenerator.generateSymKey((err: BusinessError, symKey: cryptoFramework.SymKey) => {
         cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null, (err) => {
           if (err) {
-            console.error(`Failed to init cipher, ${err.code}, ${err.message}`);
-            
+            console.error(`SUB_Security_Crypto_Framework_Cipher_Init_Func_0100 Failed, error code: ${err.code}, msg: ${err.message}`);
+            expect(false).assertTrue();
           } else {
-            console.info(`Init cipher success`);
             expect(err).assertUndefined();
-            
           }
-        })
-      })
-
-    })
+        });
+      });
+    });
 
     /**
-     *@tc.number    : testCipherInit002
-     *@tc.name      : testCipherInit002
-     *@tc.desc      : The cipher object for encryption and decryption is initialized and the result is obtained using a Promise.
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 32
+     * @tc.number    : SUB_Security_Crypto_Framework_Cipher_Init_Func_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Cipher_Init_Func_0200
+     * @tc.desc      : The cipher object for encryption and decryption is initialized and the result is obtained using a Promise.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testCipherInit002', 0, async () => {
-
-      symKeyGenerator.generateSymKey((err, symKey) => {
-
+    it('SUB_Security_Crypto_Framework_Cipher_Init_Func_0200', 0, async () => {
+      symKeyGenerator.generateSymKey((err: BusinessError, symKey: cryptoFramework.SymKey) => {
         cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null)
           .then(() => {
-            console.info(`Init cipher success`);
-            
+            expect(symKey).not().assertNull();
+            console.info(`SUB_Security_Crypto_Framework_Cipher_Init_Func_0200 success`);
           }, (error: BusinessError) => {
-            console.error(`Failed to init cipher, ${error.code}, ${error.message}`);
-            
-          })
-      })
-
-    })
+            console.error(`SUB_Security_Crypto_Framework_Cipher_Init_Func_0200 failed, error code: ${error.code}, msg: ${error.message}`);
+            expect(false).assertTrue();
+          });
+      });
+    });
 
     /**
-     *@tc.number    : testCipherUpdate001
-     *@tc.name      : testCipherUpdate001
-     *@tc.desc      : Segmenting updates encrypting or decrypting data operations by registering callback functions to obtain add/decrypt data.
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 33
+     * @tc.number    : SUB_Security_Crypto_Framework_Cipher_Update_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Cipher_Update_Func_0100
+     * @tc.desc      : Segmenting updates encrypting or decrypting data operations by registering callback functions to obtain add/decrypt data.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testCipherUpdate001', 0, async () => {
-
-      symKeyGenerator.generateSymKey((err, symKey) => {
-
-        let str = 'this is test!';
-        let arr = new Uint8Array(str.length);
-        for (let i = 0, j = str.length; i < j; ++i) {
-          arr[i] = str.charCodeAt(i);
-        }
-
-        let plainText: cryptoFramework.DataBlob = {data: arr};
-        cipher.update(plainText, (err, output) => {       // Example of the encryption process.
+    it('SUB_Security_Crypto_Framework_Cipher_Update_Func_0100', 0, async () => {
+      symKeyGenerator.generateSymKey((err: BusinessError, symKey: cryptoFramework.SymKey) => {
+        let str: string = 'this is test!';
+        let plainText: cryptoFramework.DataBlob = {
+          data: stringToUint8Array(str)
+        };
+        cipher.update(plainText, (err: BusinessError, output: cryptoFramework.DataBlob) => { // Example of the encryption process.
           if (err) {
-            console.error(`Failed to update cipher`);
-            
+            console.error(`SUB_Security_Crypto_Framework_Cipher_Update_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+            expect(false).assertTrue();
           } else {
             console.info(`Update cipher success`);
             expect(output).not().assertNull();
-            
           }
-        })
-
-      })
-
-    })
-
-    /**
-     *@tc.number    : testCipherUpdate002
-     *@tc.name      : testCipherUpdate002
-     *@tc.desc      : Piecewise updates encrypt or decrypt data operations to get add/decrypt data through Promises
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 34
-     */
-    it('testCipherUpdate002', 0, async () => {
-
-      symKeyGenerator.generateSymKey((err, symKey) => {
-
-        let str = 'this is test!';
-        let arr = new Uint8Array(str.length);
-        for (let i = 0, j = str.length; i < j; ++i) {
-          arr[i] = str.charCodeAt(i);
-        }
-
-        let plainText: cryptoFramework.DataBlob = {data: arr};
-        cipher.update(plainText)
-          .then((output) => {
-            console.info(`Update cipher success.`);
-            expect(output).not().assertNull();
-            
-          }, (error: BusinessError) => {
-            console.info(`Update cipher failed.`);
-            
-          })
-      })
-
-    })
-
-    /**
-     *@tc.number    : testCipherDoFinal001
-     *@tc.name      : testCipherDoFinal001
-     *@tc.desc      : Piecewise updates encrypt or decrypt data operations to get add/decrypt data through callback
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 35
-     */
-    it('testCipherDoFinal001', 0, async () => {
-
-      let str = 'this is test!';
-      let arr = new Uint8Array(str.length);
-      for (let i = 0, j = str.length; i < j; ++i) {
-        arr[i] = str.charCodeAt(i);
-      }
-
-      let plainText: cryptoFramework.DataBlob = {data: arr};
-      cipher.doFinal(plainText, (err, output) => {
-        if (err) {
-          console.error(`Failed to finalize cipher, ${err.code}, ${err.message}`);
-          
-        } else {
-          console.info(`Finalize cipher success`);
-          expect(output).not().assertNull();
-          
-        }
-      })
-
-    })
-
-    /**
-     *@tc.number    : testCipherDoFinal002
-     *@tc.name      : testCipherDoFinal002
-     *@tc.desc      : In symmetric encryption and decryption, doFinal adds/decrypts the remaining data (generated by the grouping mode) and the incoming data
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 36
-     */
-    it('testCipherDoFinal002', 0, async () => {
-
-      let str = 'this is test!';
-      let arr = new Uint8Array(str.length);
-      for (let i = 0, j = str.length; i < j; ++i) {
-        arr[i] = str.charCodeAt(i);
-      }
-      let plainText: cryptoFramework.DataBlob = {data: arr};
-
-      cipher.doFinal(plainText)
-        .then(output => {
-          console.info(`Finalize cipher success` + output);
-          expect(output).not().assertNull();
-          
-        }, (error: BusinessError) => {
-          console.error(`Failed to finalize cipher, ${error.code}, ${error.message}`);
-          
-        })
-
-    })
-
-    /**
-     *@tc.number    : testSetCipherSpec001
-     *@tc.name      : testSetCipherSpec001
-     *@tc.desc      : Set encryption and decryption parameters
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 37
-     */
-    it('testSetCipherSpec001', 0, async () => {
-
-      try {
-        let cipherAlgName = 'RSA512|PRIMES_2';
-        let cipher = cryptoFramework.createCipher(cipherAlgName);
-        let pSource = new Uint8Array([1,2,3,4]);
-        cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
-        let mdName = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
-        console.log('test mdName3' + mdName);
-        expect(mdName).not().assertNull();
-      } catch (e) {
-        console.error(`Failed to err` + JSON.stringify(e));
-      }
-      
-
-    })
-
-    /**
-     *@tc.number    : testGetCipherSpec001
-     *@tc.name      : testGetCipherSpec001
-     *@tc.desc      : Get encryption and decryption parameters
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 38
-     */
-    it('testGetCipherSpec001', 0, async () => {
-
-      try {
-        let cipherAlgName = 'RSA512|PRIMES_2';
-        let cipher = cryptoFramework.createCipher(cipherAlgName);
-        let pSource = new Uint8Array([1,2,3,4]);
-        cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
-        let mdName = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
-        console.log('test mdName3' + mdName);
-        expect(mdName).not().assertNull();
-      } catch (e) {
-        console.error(`Failed to err` + JSON.stringify(e));
-      }
-      
-
-    })
-
-    /**
-     *@tc.number    : testCreateSign001
-     *@tc.name      : testCreateSign001
-     *@tc.desc      : Sign instance generation
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 39
-     */
-    it('testCreateSign001', 0, async () => {
-
-      expect(signer).not().assertNull();
-      
-
-    })
-
-    /**
-     *@tc.number    : testSignInit001
-     *@tc.name      : testSignInit001
-     *@tc.desc      : Initialize the Sign object with the private key through callback
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 40
-     */
-    it('testSignInit001', 0, async () => {
-
-      let globalKeyPair: cryptoFramework.KeyPair;
-
-      rsaGenerator.generateKeyPair((err, keyPair) => {
-        globalKeyPair = keyPair;
-        let priKey = globalKeyPair.priKey;
-        signer.init(priKey, err => {
-          console.log('err:' + err)
-          if(err) {
-            console.log('signer init err:' + JSON.stringify(err));
-            
-            return;
-          }
-          expect(err).assertUndefined();
-          console.log('signer init success');
-          
         });
       });
-
-    })
+    });
 
     /**
-     *@tc.number    : testSignInit002
-     *@tc.name      : testSignInit002
-     *@tc.desc      : Initialize the Sign object with the private key through promise
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 41
+     * @tc.number    : SUB_Security_Crypto_Framework_Cipher_Update_Func_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Cipher_Update_Func_0200
+     * @tc.desc      : Piecewise updates encrypt or decrypt data operations to get add/decrypt data through Promises
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testSignInit002', 0, async () => {
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
-        return signer.init(priKey);
-      }).then(() => {
-        
-      }).catch((err:BusinessError) => {
-        
+    it('SUB_Security_Crypto_Framework_Cipher_Update_Func_0200', 0, async () => {
+      symKeyGenerator.generateSymKey((err: BusinessError, symKey: cryptoFramework.SymKey) => {
+        let str: string = 'this is test!';
+        let plainText: cryptoFramework.DataBlob = {
+          data: stringToUint8Array(str)
+        };
+        cipher.update(plainText)
+          .then((output: cryptoFramework.DataBlob) => {
+            expect(output).not().assertNull();
+          }, (error: BusinessError) => {
+            console.info(`SUB_Security_Crypto_Framework_Cipher_Update_Func_0200 failed, error code: ${error.code}, msg: ${error.message}`);
+            expect(false).assertTrue();
+          });
       });
-    })
+    });
 
     /**
-     *@tc.number    : testSignUpdate001
-     *@tc.name      : testSignUpdate001
-     *@tc.desc      : Append data to be signed and update it by registering the callback function
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 42
+     * @tc.number    : SUB_Security_Crypto_Framework_Cipher_DoFinal_Func_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Cipher_DoFinal_Func_0100
+     * @tc.desc      : Piecewise updates encrypt or decrypt data operations to get add/decrypt data through callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testSignUpdate001', 0, async () => {
-
-      let globalKeyPair: cryptoFramework.KeyPair;
-
-      rsaGenerator.generateKeyPair((err, keyPair) => {
-        globalKeyPair = keyPair;
-        let priKey = globalKeyPair.priKey;
-        signer.init(priKey, err => {
-          if(err) {
-            console.log('signer init err:' + JSON.stringify(err));
-            
-            return;
-          }
-          console.log('signer init success');
-          signer.update(input1, err => {
-            if(err) {
-              console.log('signer update err:' + JSON.stringify(err));
-              
-              return;
+    it('SUB_Security_Crypto_Framework_Cipher_DoFinal_Func_0100', 0, async () => {
+      let rsaGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      let cipher: cryptoFramework.Cipher = cryptoFramework.createCipher("RSA1024|PKCS1");
+      rsaGenerator.generateKeyPair((err: BusinessError, keyPair: cryptoFramework.KeyPair) => {
+        let pubKey: cryptoFramework.PubKey = keyPair.pubKey;
+        cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null, (err: BusinessError) => {
+          let plainText: string = "this is cipher text";
+          let input: cryptoFramework.DataBlob = {
+            data: stringToUint8Array(plainText)
+          };
+          cipher.doFinal(input, (err: BusinessError, data: cryptoFramework.DataBlob) => {
+            if (err) {
+              console.error(`SUB_Security_Crypto_Framework_Cipher_DoFinal_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+              expect(false).assertTrue();
+            } else {
+              expect(data.data).not().assertNull();
             }
-            expect(err).assertNull();
-            console.log('signer update success');
-
-            
           });
         });
       });
-
-    })
+    });
 
     /**
-     *@tc.number    : testSignUpdate002
-     *@tc.name      : testSignUpdate002
-     *@tc.desc      : Initialize the Sign object with the private key through promise
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 43
+     * @tc.number    : SUB_Security_Crypto_Framework_Cipher_DoFinal_Func_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Cipher_DoFinal_Func_0200
+     * @tc.desc      : In symmetric encryption and decryption, doFinal adds/decrypts the remaining data (generated by the grouping mode) and the incoming data
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testSignUpdate002', 0, async () => {
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
-        return signer.init(priKey);
-      }).then(() => {
-        console.log('signer init success');
-        return signer.update(input1);
-      }).then(() => {
-        console.log('signer update success');
-        
-      }).catch((err:BusinessError) => {
-        console.log('signer update err');
-        
+    it('SUB_Security_Crypto_Framework_Cipher_DoFinal_Func_0200', 0, async () => {
+      let rsaGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      let cipher: cryptoFramework.Cipher = cryptoFramework.createCipher("RSA1024|PKCS1");
+      rsaGenerator.generateKeyPair((err: BusinessError, keyPair: cryptoFramework.KeyPair) => {
+        let pubKey: cryptoFramework.PubKey = keyPair.pubKey;
+        cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, pubKey, null, (err: BusinessError) => {
+          let plainText: string = "this is cipher text";
+          let input: cryptoFramework.DataBlob = {
+            data: stringToUint8Array(plainText)
+          };
+          cipher.doFinal(input).then((data: cryptoFramework.DataBlob) => {
+            expect(data.data).not().assertNull();
+          }).catch((err: BusinessError) => {
+            console.error(`SUB_Security_Crypto_Framework_Cipher_DoFinal_Func_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+            expect(false).assertTrue();
+          });
+        });
       });
-
-    })
+    });
 
     /**
-     *@tc.number    : testSignSign001
-     *@tc.name      : testSignSign001
-     *@tc.desc      : Sign the data by callback
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 44
+     * @tc.number    : SUB_Security_Crypto_Framework_Set_Cipher_Spec_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Set_Cipher_Spec_0100
+     * @tc.desc      : Set encryption and decryption parameters
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testSignSign001', 0, async () => {
+    it('SUB_Security_Crypto_Framework_Set_Cipher_Spec_0100', 0, async () => {
+      try {
+        let cipherAlgName: string = 'RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA256';
+        let cipher: cryptoFramework.Cipher = cryptoFramework.createCipher(cipherAlgName);
+        let pSource: Uint8Array = new Uint8Array([1, 2, 3, 4]);
+        cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
+        let mdName: string | Uint8Array = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
+        console.log(`test mdName3` + mdName);
+        expect(mdName).not().assertNull();
+      } catch (err) {
+        console.error(`SUB_Security_Crypto_Framework_Set_Cipher_Spec_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      }
+    });
 
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Get_Cipher_Spec_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Get_Cipher_Spec_0100
+     * @tc.desc      : Get encryption and decryption parameters
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Get_Cipher_Spec_0100', 0, async () => {
+      try {
+        let cipherAlgName: string = 'RSA2048|PKCS1_OAEP|SHA256|MGF1_SHA256';
+        let cipher: cryptoFramework.Cipher = cryptoFramework.createCipher(cipherAlgName);
+        let pSource: Uint8Array = new Uint8Array([1, 2, 3, 4]);
+        cipher.setCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR, pSource);
+        let mdName: string | Uint8Array = cipher.getCipherSpec(cryptoFramework.CipherSpecItem.OAEP_MGF1_PSRC_UINT8ARR);
+        console.log('test mdName3' + mdName);
+        expect(mdName).not().assertNull();
+      } catch (err) {
+        console.error(`SUB_Security_Crypto_Framework_Get_Cipher_Spec_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Create_Sign_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Create_Sign_0100
+     * @tc.desc      : Sign instance generation
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Create_Sign_0100', 0, async () => {
+      try {
+        expect(signer).not().assertNull();
+      } catch (err) {
+        console.error(`SUB_Security_Crypto_Framework_Create_Sign_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Sign_Init_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Sign_Init_0100
+     * @tc.desc      : Initialize the Sign object with the private key through callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Sign_Init_0100', 0, async () => {
+      rsaGenerator.generateKeyPair((err: BusinessError, keyPair: cryptoFramework.KeyPair) => {
+        let globalKeyPair: cryptoFramework.KeyPair = keyPair;
+        let priKey: cryptoFramework.PriKey = globalKeyPair.priKey;
+        signer.init(priKey, (err: BusinessError) => {
+          if (err) {
+            console.error(`SUB_Security_Crypto_Framework_Sign_Init_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+            expect(false).assertTrue();
+          } else {
+            expect(err).assertUndefined();
+          }
+        });
+      });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Sign_Init_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Sign_Init_0200
+     * @tc.desc      : Initialize the Sign object with the private key through promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Sign_Init_0200', 0, async () => {
       let globalKeyPair: cryptoFramework.KeyPair;
       let signMessageBlob: cryptoFramework.DataBlob;
+      let plan1: string = "This is Sign test plan1";
+      let plan2: string = "This is Sign test plan2";
+      let input1: cryptoFramework.DataBlob = {
+        data: stringToUint8Array(plan1)
+      };
+      let input2: cryptoFramework.DataBlob = {
+        data: stringToUint8Array(plan2)
+      };
+      let rsaGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      let signer: cryptoFramework.Sign = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
+      rsaGenerator.generateKeyPair((err: BusinessError, keyPair: cryptoFramework.KeyPair) => {
+        if (err) {
+          console.error(`SUB_Security_Crypto_Framework_Sign_Init_0200 failed, error code: ${err.code},msg: ${err.message}`);
+          expect(false).assertTrue();
+        } else {
+          globalKeyPair = keyPair;
+          let priKey: cryptoFramework.PriKey = globalKeyPair.priKey;
+          signer.init(priKey).then(() => {
+            signer.update(input1, (e: BusinessError) => {
+              signer.sign(input2, (err: BusinessError, data: cryptoFramework.DataBlob) => {
+                if (err) {
+                  console.error(`SUB_Security_Crypto_Framework_Sign_Init_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+                  expect(false).assertTrue();
+                } else {
+                  signMessageBlob = data;
+                  expect(signMessageBlob.data).not().assertNull();
+                }
+              });
+            });
+          }).catch((error: BusinessError) => {
+            console.error(`SUB_Security_Crypto_Framework_Sign_Init_0200 failed,catch error code: ${error.code},msg: ${error.message}`);
+            expect(false).assertTrue();
+          });
+        }
+      });
+    });
 
-      let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
-      rsaGenerator.generateKeyPair((err, keyPair) => {
-        globalKeyPair = keyPair;
-        let priKey = globalKeyPair.priKey;
-        signer.init(priKey, err => {
-          if(err) {
-            console.log('signer init err:' + JSON.stringify(err));
-            
-            return;
-          }
-          signer.update(input1, err => {
-            if(err) {
-              console.log('signer init err:' + JSON.stringify(err));
-              
-              return;
-            }
-            signer.sign(input2, (err, data) => {
-              if(err) {
-                console.log('signer init err:' + JSON.stringify(err));
-                
-                return;
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Sign_Update_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Sign_Update_0100
+     * @tc.desc      : Append data to be signed and update it by registering the callback function
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Sign_Update_0100', 0, async () => {
+      rsaGenerator.generateKeyPair((err: BusinessError, keyPair: cryptoFramework.KeyPair) => {
+        let globalKeyPair: cryptoFramework.KeyPair = keyPair;
+        let priKey: cryptoFramework.PriKey = globalKeyPair.priKey;
+        signer.init(priKey, (err: BusinessError) => {
+          if (err) {
+            console.error(`SUB_Security_Crypto_Framework_Sign_Update_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+            expect(false).assertTrue();
+          } else {
+            signer.update(input1, (err: BusinessError) => {
+              if (err) {
+                console.error(`SUB_Security_Crypto_Framework_Sign_Update_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+                expect(false).assertTrue();
+              } else {
+                expect(err).assertNull();
+                console.log('signer update success');
               }
-              signMessageBlob = data;
-              expect(data).not().assertNull();
-              
+            });
+          }
+        });
+      });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Sign_Update_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Sign_Update_0200
+     * @tc.desc      : Initialize the Sign object with the private key through promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Sign_Update_0200', 0, async () => {
+      let globalKeyPair: cryptoFramework.KeyPair;
+      let signMessageBlob: cryptoFramework.DataBlob;
+      let plan1: string = "This is Sign test plan1";
+      let plan2: string = "This is Sign test plan2";
+      let input1: cryptoFramework.DataBlob = {
+        data: stringToUint8Array(plan1)
+      };
+      let input2: cryptoFramework.DataBlob = {
+        data: stringToUint8Array(plan2)
+      };
+      let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      let signer = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
+      rsaGenerator.generateKeyPair((err: BusinessError, keyPair: cryptoFramework.KeyPair) => {
+        globalKeyPair = keyPair;
+        let priKey: cryptoFramework.PriKey = globalKeyPair.priKey;
+        signer.init(priKey).then(() => {
+          signer.update(input1).then(() => {
+            signer.sign(input2, (err: BusinessError, data: cryptoFramework.DataBlob) => {
+              if (err) {
+                console.error(`SUB_Security_Crypto_Framework_Sign_Init_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+                expect(false).assertTrue();
+              } else {
+                signMessageBlob = data;
+                expect(signMessageBlob.data).not().assertNull();
+              }
             });
           });
         });
       });
-
-    })
-
-    /**
-     *@tc.number    : testSignSign002
-     *@tc.name      : testSignSign002
-     *@tc.desc      : Initialize the Sign object with the private key through promise
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 45
-     */
-    it('testSignSign002', 0, async () => {
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
-        return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-        console.info("sign output is " + dataBlob.data);
-        expect(dataBlob.data).not().assertNull();
-        
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
+    });
 
     /**
-     *@tc.number    : testSetSignSpec001
-     *@tc.name      : testSetSignSpec001
-     *@tc.desc      : Set the signature parameters
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 46
+     * @tc.number    : SUB_Security_Crypto_Framework_Sign_Sign_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Sign_Sign_0100
+     * @tc.desc      : Sign the data by callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testSetSignSpec001', 0, async () => {
-
-      let setN = 20;
-
-      try {
-        signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
-        
-      } catch (e) {
-        console.error(`Failed to err`);
-        
-      }
-
-    })
-
-    /**
-     *@tc.number    : testGetSignSpec001
-     *@tc.name      : testGetSignSpec001
-     *@tc.desc      : Set the signature parameters
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 47
-     */
-    it('testGetSignSpec001', 0, async () => {
-
-      let setN = 20;
-
-      try {
-        signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
-        let saltLen = signer.getSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
-        expect(saltLen).assertEqual(setN);
-        
-      } catch (e) {
-        console.error(`Failed to err`);
-        
-      }
-
-    })
-
-    /**
-     *@tc.number    : testCreateVerify001
-     *@tc.name      : testCreateVerify001
-     *@tc.desc      : Verify instance generation
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 48
-     */
-    it('testCreateVerify001', 0, async () => {
-
-      try {
-        let verifyer1 = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-        let verifyer2 = cryptoFramework.createVerify("RSA1024|PSS|SHA256|MGF1_SHA256")
-        expect(verifyer1).not().assertNull();
-        expect(verifyer2).not().assertNull();
-        
-      } catch (e) {
-        console.error(`Failed to err`);
-        
-      }
-
-    })
-
-    /**
-     *@tc.number    : testVerifyInit001
-     *@tc.name      : testVerifyInit001
-     *@tc.desc      : Initialize the Verify object by passing in the public key through callback
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 49
-     */
-    it('testVerifyInit001', 0, async () => {
-
+    it('SUB_Security_Crypto_Framework_Sign_Sign_0100', 0, async () => {
       let globalKeyPair: cryptoFramework.KeyPair;
-      KeyPairGenPromise.then(keyPair => {
+      let signer: cryptoFramework.Sign = cryptoFramework.createSign("RSA1024|PKCS1|SHA256");
+      rsaGenerator.generateKeyPair((err: BusinessError, keyPair: cryptoFramework.KeyPair) => {
         globalKeyPair = keyPair;
-      }).then(() => {
-
-        let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-        verifyer.init(globalKeyPair.pubKey, (err, data) => {
-          if(err) {
-            console.log('verifyer init err');
-            
-          }else {
-            expect(data).not().assertNull();
-            
-          }
-        })
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
-
-    /**
-     *@tc.number    : testVerifyInit002
-     *@tc.name      : testVerifyInit002
-     *@tc.desc      : Initialize the Verify object by passing in the public key through promise
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 50
-     */
-    it('testVerifyInit002', 0, async () => {
-
-      let globalKeyPair: cryptoFramework.KeyPair;
-      KeyPairGenPromise.then(keyPair => {
-        globalKeyPair = keyPair;
-      }).then(() => {
-
-        let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-        let verifyInitPromise = verifyer.init(globalKeyPair.pubKey);
-        
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
-
-    /**
-     *@tc.number    : testVerifyUpdate001
-     *@tc.name      : testVerifyUpdate001
-     *@tc.desc      : Add pending signature data and update it by registering a callback function
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 51
-     */
-    it('testVerifyUpdate001', 0, async () => {
-
-      let globalKeyPair: cryptoFramework.KeyPair;
-      KeyPairGenPromise.then(keyPair => {
-        globalKeyPair = keyPair;
-      }).then(() => {
-
-        let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-        verifyer.init(globalKeyPair.pubKey, (err, data) => {
-          if(err) {
-            console.log('verifyer init err');
-            
-            return;
-          }
-          verifyer.update(input1, (err, data) => {
-            if(err) {
-              console.log('verifyer update err');
-              
-              return;
-            }
-            expect(data).not().assertNull();
-            
-          });
-
-        })
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
-
-    /**
-     *@tc.number    : testVerifyUpdate002
-     *@tc.name      : testVerifyUpdate002
-     *@tc.desc      : Append the data to be verified through promise
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 52
-     */
-    it('testVerifyUpdate002', 0, async () => {
-
-      let globalKeyPair: cryptoFramework.KeyPair;
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
-        globalKeyPair = keyPair;
-        return signer.init(priKey);
-      }).then(() => {
-
-        let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-        let verifyInitPromise = verifyer.init(globalKeyPair.pubKey);
-
-        verifyInitPromise.then((): Promise<void> => {
-          return verifyer.update(input1);
-        }).then(() => {
-          
-        });
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
-
-    /**
-     *@tc.number    : testVerifyVerify001
-     *@tc.name      : testVerifyVerify001
-     *@tc.desc      : Verify the data through callback
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 53
-     */
-    it('testVerifyVerify001', 0, async () => {
-
-      let globalKeyPair: cryptoFramework.KeyPair;
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
-        globalKeyPair = keyPair;
-        return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-
-        let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-        verifyer.init(globalKeyPair.pubKey, (err, data) => {
-          if(err) {
-            console.log('verifyer init err');
-            
-            return;
-          }
-          verifyer.update(input1, (err, data) => {
-            if(err) {
-              console.log('verifyer update err');
-              
-              return;
-            }
-            verifyer.verify(input2, dataBlob, (err, data) => {
-              if(err) {
-                console.log('verifyer verify err');
-                
-                return;
-              }
-              console.info("verify result is " + data);
-              expect(data).not().assertNull();
-              
-            })
-          });
-        })
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
-
-    /**
-     *@tc.number    : testVerifyVerify002
-     *@tc.name      : testVerifyVerify002
-     *@tc.desc      : Verify the data through promise
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 54
-     */
-    it('testVerifyVerify002', 0, async () => {
-
-      let globalKeyPair: cryptoFramework.KeyPair;
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
-        globalKeyPair = keyPair;
-        return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-
-        let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-        let verifyInitPromise = verifyer.init(globalKeyPair.pubKey);
-
-        verifyInitPromise.then((): Promise<void> => {
-          return verifyer.update(input1);
-        }).then(() => {
-          return verifyer.verify(input2, dataBlob);
-        }).then(data => {
-          console.log("Verify result is " + data);
-          expect(data).not().assertNull();
-          
-        });
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
-
-    /**
-     *@tc.number    : testSetVerifySpec001
-     *@tc.name      : testSetVerifySpec001
-     *@tc.desc      : Set the verification parameters
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 55
-     */
-    it('testSetVerifySpec001', 0, async () => {
-
-      let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-      let setN = 20;
-
-      try {
-        verifyer.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
-      } catch (e) {
-        console.error(`Failed to err`);
-      }
-      
-
-    })
-
-    /**
-     *@tc.number    : testGetSignSpec001
-     *@tc.name      : testGetSignSpec001
-     *@tc.desc      : Set the verification parameters
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 56
-     */
-    it('testGetSignSpec001', 0, async () => {
-
-      let verifyer = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
-      let setN = 20;
-
-      try {
-        verifyer.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
-        let saltLen = verifyer.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
-        expect(saltLen).assertEqual(setN);
-      } catch (e) {
-        console.error(`Failed to err`);
-      }
-      
-
-    })
-
-    /**
-     *@tc.number    : testCreateKeyAgreement001
-     *@tc.name      : testCreateKeyAgreement001
-     *@tc.desc      : KeyAgreement instance generation
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 57
-     */
-    it('testCreateKeyAgreement001', 0, async () => {
-
-      try {
-        let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
-        expect(keyAgreement).not().assertNull();
-      } catch (e) {
-        console.error(`Failed to err`);
-      }
-      
-
-    })
-
-    /**
-     *@tc.number    : testGenerateSecret001
-     *@tc.name      : testGenerateSecret001
-     *@tc.desc      : Key negotiation is performed based on the incoming private key and public key by callback
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 58
-     */
-    it('testGenerateSecret001', 0, async () => {
-
-      let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-      rsaGenerator.generateKeyPair((err, keyPair) => {
-        let globalKeyPair: cryptoFramework.KeyPair = keyPair;
-
-        let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
-        keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, (err, secret) => {
+        let priKey: cryptoFramework.PriKey = globalKeyPair.priKey;
+        signer.init(priKey, (err: BusinessError) => {
           if (err) {
-            console.error("keyAgreement error.");
-            
-            return;
+            console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0100 init failed, error code: ${err.code}, msg: ${err.message}`);
+            expect(false).assertTrue();
+          } else {
+            signer.update(input1, (err: BusinessError) => {
+              if (err) {
+                console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0100 update failed, error code: ${err.code}, msg: ${err.message}`);
+                expect(false).assertTrue();
+              } else {
+                signer.sign(input2, (err: BusinessError, dataBlob: cryptoFramework.DataBlob) => {
+                  if (err) {
+                    console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0100 sign failed, error code: ${err.code}, msg: ${err.message}`);
+                    expect(false).assertTrue();
+                  } else {
+                    expect(dataBlob.data).not().assertNull();
+                  }
+                });
+              }
+            });
           }
-          console.info("keyAgreement output is " + secret.data);
-          expect(secret.data).not().assertNull();
-          
         });
-
       });
-
-    })
+    });
 
     /**
-     *@tc.number    : testGenerateSecret002
-     *@tc.name      : testGenerateSecret002
-     *@tc.desc      : Key negotiation is performed based on the incoming private key and public key by promise
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 59
+     * @tc.number    : SUB_Security_Crypto_Framework_Sign_Sign_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Sign_Sign_0200
+     * @tc.desc      : Initialize the Sign object with the private key through promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testGenerateSecret002', 0, async () => {
-
-      let rsaGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
-      rsaGenerator.generateKeyPair((err, keyPair) => {
-        let globalKeyPair: cryptoFramework.KeyPair = keyPair;
-
-        let keyAgreement = cryptoFramework.createKeyAgreement("ECC256");
-        let keyAgreementPromise = keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey);
-        keyAgreementPromise.then((secret) => {
-          console.info("keyAgreement output is " + secret.data);
-          expect(secret.data).not().assertNull();
-          
-        }).catch((error: BusinessError) => {
-          console.error("keyAgreement error.");
-          
+    it('SUB_Security_Crypto_Framework_Sign_Sign_0200', 0, async () => {
+      KeyPairGenPromise.then(keyPair => {
+        let priKey = keyPair.priKey;
+        signer.init(priKey).then(() => {
+          signer.update(input1).then(() => {
+            signer.sign(input2).then((dataBlob: cryptoFramework.DataBlob) => {
+              expect(dataBlob.data).not().assertNull();
+            }).catch((err: BusinessError) => {
+              console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0100 sign failed, error code: ${err.code}, msg: ${err.message}`);
+              expect(false).assertTrue();
+            });
+          }).catch((err: BusinessError) => {
+            console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0100 update failed, error code: ${err.code}, msg: ${err.message}`);
+            expect(false).assertTrue();
+          });
+        }).catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0100 init failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
         });
-
+      }).catch((err: BusinessError) => {
+        console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0100 asyKeyGenerator.generateKeyPair failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
       });
-
-    })
+    });
 
     /**
-     *@tc.number    : testCreateMd001
-     *@tc.name      : testCreateMd001
-     *@tc.desc      : Generate an Md instance for computation and operation of message digests.
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 60
+     * @tc.number    : SUB_Security_Crypto_Framework_Set_Sign_Spec_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Set_Sign_Spec_0100
+     * @tc.desc      : Set the signature parameters
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testCreateMd001', 0, async () => {
-
+    it('SUB_Security_Crypto_Framework_Set_Sign_Spec_0100', 0, async () => {
+      let setN: number = 20;
       try {
-        let md = cryptoFramework.createMd("SHA256");
+        signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
+        let saltLen: string | number = signer.getSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
+        expect(saltLen).assertEqual(setN);
+      } catch (e) {
+        console.error(`SUB_Security_Crypto_Framework_Set_Sign_Spec_0100 failed, error code: ${e.code}, msg: ${e.message}`);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Get_Sign_Spec_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Get_Sign_Spec_0100
+     * @tc.desc      : Set the signature parameters
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Get_Sign_Spec_0100', 0, async () => {
+      let setN: number = 40;
+      try {
+        signer.setSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
+        let saltLen: string | number = signer.getSignSpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
+        expect(saltLen).assertEqual(setN);
+      } catch (e) {
+        console.error(`SUB_Security_Crypto_Framework_Get_Sign_Spec_0100 failed, error code: ${e.code}, msg: ${e.message}`);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Create_Verify_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Create_Verify_0100
+     * @tc.desc      : Verify instance generation
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Create_Verify_0100', 0, async () => {
+      try {
+        let verify_1: cryptoFramework.Verify = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
+        let verify_2: cryptoFramework.Verify = cryptoFramework.createVerify("RSA1024|PSS|SHA256|MGF1_SHA256");
+        expect(verify_1).not().assertNull();
+        expect(verify_2).not().assertNull();
+      } catch (e) {
+        console.error(`SUB_Security_Crypto_Framework_Create_Verify_0100 failed, error code: ${e.code}, msg: ${e.message}`);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Verify_Init_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Verify_Init_0100
+     * @tc.desc      : Initialize the Verify object by passing in the public key through callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Verify_Init_0100', 0, async () => {
+      let globalKeyPair: cryptoFramework.KeyPair;
+      let asyKeyGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      let KeyPairGenPromise: Promise<cryptoFramework.KeyPair> = asyKeyGenerator.generateKeyPair();
+      KeyPairGenPromise.then(keyPair => {
+        globalKeyPair = keyPair;
+      }).then(() => {
+        let verifier: cryptoFramework.Verify = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
+        verifier.init(globalKeyPair.pubKey, (err: BusinessError) => {
+          if (err) {
+            console.error(`SUB_Security_Crypto_Framework_Verify_Init_0100 init failed, error code: ${err.code}, msg: ${err.message}`);
+            expect(false).assertTrue();
+          } else {
+            expect(err).assertNull();
+          }
+        });
+      }).catch((err: BusinessError) => {
+        console.error(`SUB_Security_Crypto_Framework_Verify_Init_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Verify_Init_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Verify_Init_0200
+     * @tc.desc      : Initialize the Verify object by passing in the public key through promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Verify_Init_0200', 0, async () => {
+      let globalKeyPair: cryptoFramework.KeyPair;
+      let asyKeyGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      let KeyPairGenPromise: Promise<cryptoFramework.KeyPair> = asyKeyGenerator.generateKeyPair();
+      KeyPairGenPromise.then(keyPair => {
+        globalKeyPair = keyPair;
+      }).then(() => {
+        let verifier: cryptoFramework.Verify = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
+        verifier.init(globalKeyPair.pubKey).then(() => {
+          expect(verifier.algName).not().assertNull();
+        }).catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Verify_Init_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        });
+      }).catch((err: BusinessError) => {
+        console.error(`SUB_Security_Crypto_Framework_Verify_Init_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Verify_Update_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Verify_Update_0100
+     * @tc.desc      : Add pending signature data and update it by registering a callback function
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Verify_Update_0100', 0, async () => {
+      let globalKeyPair: cryptoFramework.KeyPair;
+      let asyKeyGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      let KeyPairGenPromise: Promise<cryptoFramework.KeyPair> = asyKeyGenerator.generateKeyPair();
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        globalKeyPair = keyPair;
+      }).then(() => {
+        let verify: cryptoFramework.Verify = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
+        verify.init(globalKeyPair.pubKey, (err: BusinessError) => {
+          if (err) {
+            console.error(`SUB_Security_Crypto_Framework_Verify_Update_0100 init failed, error code: ${err.code}, msg: ${err.message}`);
+            expect(false).assertTrue();
+          } else {
+            verify.update(input1, (err: BusinessError) => {
+              if (err) {
+                console.error(`SUB_Security_Crypto_Framework_Verify_Update_0100 update failed, error code: ${err.code}, msg: ${err.message}`);
+                expect(false).assertTrue();
+              } else {
+                expect(err).assertNull();
+              }
+            });
+          }
+        });
+      }).catch((err: BusinessError) => {
+        console.error(`SUB_Security_Crypto_Framework_Verify_Update_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Verify_Update_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Verify_Update_0200
+     * @tc.desc      : Append the data to be verified through promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Verify_Update_0200', 0, async () => {
+      let globalKeyPair: cryptoFramework.KeyPair;
+      let asyKeyGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      let KeyPairGenPromise: Promise<cryptoFramework.KeyPair> = asyKeyGenerator.generateKeyPair();
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        globalKeyPair = keyPair;
+        return signer.init(keyPair.priKey);
+      }).then(() => {
+        let verify: cryptoFramework.Verify = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
+        verify.init(globalKeyPair.pubKey).then(() => {
+          verify.update(input1).then(() => {
+            expect(verify).not().assertNull();
+          }).catch((err: BusinessError) => {
+            console.error(`SUB_Security_Crypto_Framework_Verify_Update_0200 update failed, error code: ${err.code}, msg: ${err.message}`);
+            expect(false).assertTrue();
+          });
+        }).catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Verify_Update_0200 init failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        });
+      }).catch((err: BusinessError) => {
+        console.error(`SUB_Security_Crypto_Framework_Verify_Update_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Verify_Verify_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Verify_Verify_0100
+     * @tc.desc      : Verify the data through callback
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Verify_Verify_0100', 0, async () => {
+      let globalKeyPair: cryptoFramework.KeyPair;
+      let asyKeyGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      let KeyPairGenPromise: Promise<cryptoFramework.KeyPair> = asyKeyGenerator.generateKeyPair();
+      KeyPairGenPromise.then(keyPair => {
+        globalKeyPair = keyPair;
+        return signer.init(keyPair.priKey);
+      })
+        .then(() => {
+          return signer.update(input1);
+        })
+        .then(() => {
+          return signer.sign(input2);
+        })
+        .then(dataBlob => {
+          let verify: cryptoFramework.Verify = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
+          verify.init(globalKeyPair.pubKey, (err: BusinessError) => {
+            if (err) {
+              console.error(`SUB_Security_Crypto_Framework_Verify_Verify_0100 init failed, error code: ${err.code}, msg: ${err.message}`);
+              expect(false).assertTrue();
+            } else {
+              verify.update(input1, (err: BusinessError) => {
+                if (err) {
+                  console.error(`SUB_Security_Crypto_Framework_Verify_Verify_0100 update failed, error code: ${err.code}, msg: ${err.message}`);
+                  expect(false).assertTrue();
+                } else {
+                  verify.verify(input2, dataBlob, (err: BusinessError, data) => {
+                    if (err) {
+                      console.error(`SUB_Security_Crypto_Framework_Verify_Verify_0100 verify failed, error code: ${err.code}, msg: ${err.message}`);
+                      expect(false).assertTrue();
+                    } else {
+                      console.info("SUB_Security_Crypto_Framework_Verify_Verify_0100 result is " + data);
+                      expect(data).not().assertNull();
+                    }
+                  });
+                }
+              });
+            }
+          });
+        })
+        .catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Verify_Verify_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Verify_Verify_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Verify_Verify_0200
+     * @tc.desc      : Verify the data through promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Verify_Verify_0200', 0, async () => {
+      let globalKeyPair: cryptoFramework.KeyPair;
+      let asyKeyGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      let KeyPairGenPromise: Promise<cryptoFramework.KeyPair> = asyKeyGenerator.generateKeyPair();
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        let priKey: cryptoFramework.PriKey = keyPair.priKey;
+        globalKeyPair = keyPair;
+        return signer.init(priKey);
+      })
+        .then(() => {
+          return signer.update(input1);
+        })
+        .then(() => {
+          return signer.sign(input2);
+        })
+        .then((dataBlob: cryptoFramework.DataBlob) => {
+          let verifier: cryptoFramework.Verify = cryptoFramework.createVerify("RSA1024|PKCS1|SHA256");
+          let verifyInitPromise: Promise<void> = verifier.init(globalKeyPair.pubKey);
+          verifyInitPromise.then((): Promise<void> => {
+            return verifier.update(input1);
+          }).then(() => {
+            return verifier.verify(input2, dataBlob);
+          }).then((data: boolean) => {
+            console.log(`SUB_Security_Crypto_Framework_Verify_Verify_0200 Verify result is ${data}`);
+            expect(data).not().assertNull();
+          });
+        })
+        .catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Verify_Verify_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Set_VerifySpec_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Set_VerifySpec_0100
+     * @tc.desc      : Set the verification parameters
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Set_VerifySpec_0100', 0, async () => {
+      let verifier: cryptoFramework.Verify = cryptoFramework.createVerify("RSA2048|PSS|SHA256|MGF1_SHA256");
+      let setN: number = 20;
+      try {
+        verifier.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
+        const getN: string | number = verifier.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
+        expect(getN).assertEqual(setN);
+      } catch (error) {
+        const e: BusinessError = error as BusinessError;
+        console.error(`SUB_Security_Crypto_Framework_Set_VerifySpec_0100 failed, error code: ${e.code}, msg: ${e.message}`);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Get_VerifySpec_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Get_VerifySpec_0100
+     * @tc.desc      : Set the verification parameters
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Get_VerifySpec_0100', 0, async () => {
+      let verifier: cryptoFramework.Verify = cryptoFramework.createVerify("RSA2048|PSS|SHA256|MGF1_SHA256");
+      let setN: number = 40;
+      try {
+        verifier.setVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM, setN);
+        const getN: string | number = verifier.getVerifySpec(cryptoFramework.SignSpecItem.PSS_SALT_LEN_NUM);
+        expect(getN).assertEqual(setN);
+      } catch (error) {
+        const e: BusinessError = error as BusinessError;
+        console.error(`SUB_Security_Crypto_Framework_Get_VerifySpec_0100 failed, error code: ${e.code}, msg: ${e.message}`);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Create_Key_Agreement_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Create_Key_Agreement_0100
+     * @tc.desc      : KeyAgreement instance generation
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Create_Key_Agreement_0100', 0, async () => {
+      try {
+        let keyAgreement: cryptoFramework.KeyAgreement = cryptoFramework.createKeyAgreement("ECC256");
+        expect(keyAgreement).not().assertNull();
+      } catch (error) {
+        const e: BusinessError = error as BusinessError;
+        console.error(`SUB_Security_Crypto_Framework_Create_Key_Agreement_0100 failed, error code: ${e.code}, msg: ${e.message}`);
+        expect(false).assertTrue();
+      }
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Generate_Secret_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Generate_Secret_0100
+     * @tc.desc      : Key negotiation is performed based on the incoming private key and public key by callback
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Generate_Secret_0100', 0, async () => {
+      let rsaGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      rsaGenerator.generateKeyPair((error: BusinessError, keyPair: cryptoFramework.KeyPair) => {
+        if (error) {
+          console.error(`SUB_Security_Crypto_Framework_Generate_Secret_0100 generateKeyPair failed, error code: ${error.code}, msg: ${error.message}`);
+          expect(false).assertTrue();
+        } else {
+          let globalKeyPair: cryptoFramework.KeyPair = keyPair;
+          let keyAgreement: cryptoFramework.KeyAgreement = cryptoFramework.createKeyAgreement("ECC256");
+          keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, (err: BusinessError, secret: cryptoFramework.DataBlob) => {
+            if (err) {
+              console.error(`SUB_Security_Crypto_Framework_Generate_Secret_0100 generateSecret failed, error code: ${err.code}, msg: ${err.message}`);
+              expect(false).assertTrue();
+            } else {
+              console.info(`SUB_Security_Crypto_Framework_Generate_Secret_0100 generateSecret data: ${secret.data}`);
+              expect(secret.data).not().assertNull();
+            }
+          });
+        }
+      });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Generate_Secret_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Generate_Secret_0200
+     * @tc.desc      : Key negotiation is performed based on the incoming private key and public key by promise
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Generate_Secret_0200', 0, async () => {
+      let rsaGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      rsaGenerator.generateKeyPair((error: BusinessError, keyPair: cryptoFramework.KeyPair) => {
+        let globalKeyPair: cryptoFramework.KeyPair = keyPair;
+        let keyAgreement: cryptoFramework.KeyAgreement = cryptoFramework.createKeyAgreement("ECC256");
+        let keyAgreementPromise: Promise<cryptoFramework.DataBlob> = keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey);
+        keyAgreementPromise.then((secret: cryptoFramework.DataBlob) => {
+          console.info(`SUB_Security_Crypto_Framework_Generate_Secret_0200 generateSecret data: ${secret.data}`);
+          expect(secret.data).not().assertNull();
+        }).catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Generate_Secret_0200 generateSecret failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        });
+      });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Create_Md_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Create_Md_0100
+     * @tc.desc      : Generate an Md instance for computation and operation of message digests.
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Create_Md_0100', 0, async () => {
+      try {
+        let md: cryptoFramework.Md = cryptoFramework.createMd("SHA256");
         expect(md).not().assertNull();
       } catch (error) {
         let e: BusinessError = error as BusinessError;
-        console.error(`sync error, ${e.code}, ${e.message}`);
+        console.error(`SUB_Security_Crypto_Framework_Create_Md_0100 failed, error code: ${e.code},msg: ${e.message}`);
+        expect(false).assertTrue();
       }
-      
-
-    })
+    });
 
     /**
-     *@tc.number    : testCreateMdUpdate001
-     *@tc.name      : testCreateMdUpdate001
-     *@tc.desc      : Incoming messages are calculated for Md updates through callback
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 61
+     * @tc.number    : SUB_Security_Crypto_Framework_Md_Update_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Md_Update_0100
+     * @tc.desc      : Incoming messages are calculated for Md updates through callback
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testCreateMdUpdate001', 0, async () => {
-
-      let md = cryptoFramework.createMd("SHA256");
-      console.info("Md algName is: " + md.algName);
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
+    it('SUB_Security_Crypto_Framework_Md_Update_0100', 0, async () => {
+      let md: cryptoFramework.Md = cryptoFramework.createMd("SHA256");
+      console.info(`SUB_Security_Crypto_Framework_Md_Update_0100 Md algName is: ${md.algName}`);
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        let priKey: cryptoFramework.PriKey = keyPair.priKey;
         return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-
-        md.update(dataBlob, (err,) => {
-          if (err) {
-            console.error("[Callback] err: " + err.code);
-            
-            return;
-          }
-          expect(err).assertNull();
-          
-        });
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
-
-    /**
-     *@tc.number    : testCreateMdUpdate002
-     *@tc.name      : testCreateMdUpdate002
-     *@tc.desc      : Incoming messages are calculated for Md updates through promise
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 62
-     */
-    it('testCreateMdUpdate002', 0, async () => {
-
-      let md = cryptoFramework.createMd("SHA256");
-      console.info("Md algName is: " + md.algName);
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
-        return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-
-        let promiseMdUpdate = md.update(dataBlob);
-        promiseMdUpdate.then(() => {
-          
-        }).catch((error: BusinessError) => {
-          console.error("[Promise]: error: " + error.message);
-          
-        });
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
-
-    /**
-     *@tc.number    : testCreateMdDigest001
-     *@tc.name      : testCreateMdDigest001
-     *@tc.desc      : The result of the calculation of Md is returned by registering a callback function
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 63
-     */
-    it('testCreateMdDigest001', 0, async () => {
-
-      let md = cryptoFramework.createMd("SHA256");
-      console.info("Md algName is: " + md.algName);
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
-        return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-
-        md.update(dataBlob, (err,) => {
-          if (err) {
-            console.error("[Callback] err: " + err.code);
-            
-            return;
-          }
-          md.digest((err1, mdOutput) => {
-            if (err1) {
-              console.error("[Callback] err: " + err1.code);
-              
-              return;
+      })
+        .then(() => {
+          return signer.update(input1);
+        })
+        .then(() => {
+          return signer.sign(input2);
+        })
+        .then((dataBlob: cryptoFramework.DataBlob) => {
+          md.update(dataBlob, (err: BusinessError) => {
+            if (err) {
+              console.error(`SUB_Security_Crypto_Framework_Create_Md_0100 failed, error code: ${err.code},msg: ${err.message}`);
+              expect(false).assertTrue();
+            } else {
+              expect(err).assertNull();
             }
-            console.error("[Callback]: MD result: " + mdOutput);
-            expect(mdOutput).not().assertNull();
-            
           });
+        })
+        .catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Create_Md_0100 failed,catch error code: ${err.code},msg: ${err.message}`);
+          expect(false).assertTrue();
         });
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
+    });
 
     /**
-     *@tc.number    : testCreateMdDigest002
-     *@tc.name      : testCreateMdDigest002
-     *@tc.desc      : The result of the calculation of Md is returned by registering a promise function
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 64
+     * @tc.number    : SUB_Security_Crypto_Framework_Md_Update_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Md_Update_0200
+     * @tc.desc      : Incoming messages are calculated for Md updates through promise
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testCreateMdDigest002', 0, async () => {
-
-      let md = cryptoFramework.createMd("SHA256");
-      console.info("Md algName is: " + md.algName);
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
+    it('SUB_Security_Crypto_Framework_Md_Update_0200', 0, async () => {
+      let md: cryptoFramework.Md = cryptoFramework.createMd("SHA256");
+      console.info(`SUB_Security_Crypto_Framework_Md_Update_0200 Md algName is: ${md.algName}`);
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        let priKey: cryptoFramework.PriKey = keyPair.priKey;
         return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-
-        let promiseMdUpdate = md.update(dataBlob);
-        promiseMdUpdate.then(() => {
-          let promiseMdDigest = md.digest();
-          return promiseMdDigest;
-        }).then(mdOutput => {
-          console.error("[Promise]: MD result: " + mdOutput.data);
-          expect(mdOutput).not().assertNull();
-          
-        }).catch((error: BusinessError) => {
-          console.error("[Promise]: error: " + error.message);
-          
+      })
+        .then(() => {
+          return signer.update(input1);
+        })
+        .then(() => {
+          return signer.sign(input2);
+        })
+        .then((dataBlob: cryptoFramework.DataBlob) => {
+          let promiseMdUpdate: Promise<void> = md.update(dataBlob);
+          promiseMdUpdate.then(() => {
+            md.digest((e: BusinessError, dataBlob: cryptoFramework.DataBlob) => {
+              if (e) {
+                console.error(`SUB_Security_Crypto_Framework_Md_Update_0200 failed, error code: ${e.code},msg: ${e.message}`);
+                expect(false).assertTrue();
+              } else {
+                expect(dataBlob.data).not().assertNull();
+              }
+            });
+          }).catch((error: BusinessError) => {
+            console.error(`SUB_Security_Crypto_Framework_Md_Update_0200 failed,catch error code: ${error.code},msg: ${error.message}`);
+            expect(false).assertTrue();
+          });
+        })
+        .catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Md_Update_0200 failed,catch error code: ${err.code},msg: ${err.message}`);
+          expect(false).assertTrue();
         });
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
+    });
 
     /**
-     *@tc.number    : testCreateMdGetMdLength001
-     *@tc.name      : testCreateMdGetMdLength001
-     *@tc.desc      : The result of the calculation of Md is returned by registering a promise function
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 65
+     * @tc.number    : SUB_Security_Crypto_Framework_Md_Digest_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Md_Digest_0100
+     * @tc.desc      : The result of the calculation of Md is returned by registering a callback function
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testCreateMdGetMdLength001', 0, async () => {
-
-      let md = cryptoFramework.createMd("SHA256");
-      console.info("Md algName is: " + md.algName);
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
+    it('SUB_Security_Crypto_Framework_Md_Digest_0100', 0, async () => {
+      let md: cryptoFramework.Md = cryptoFramework.createMd("SHA256");
+      console.info(`SUB_Security_Crypto_Framework_Md_Digest_0100 Md algName is: ${md.algName}`);
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        let priKey: cryptoFramework.PriKey = keyPair.priKey;
         return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-
-        let promiseMdUpdate = md.update(dataBlob);
-        promiseMdUpdate.then(() => {
-          let promiseMdDigest = md.digest();
-          return promiseMdDigest;
-        }).then(mdOutput => {
-          console.error("[Promise]: MD result: " + mdOutput.data);
-          let mdLen = md.getMdLength();
-          console.error("MD len: " + mdLen);
-          expect(mdLen).not().assertNaN();
-          
-        }).catch((error: BusinessError) => {
-          console.error("[Promise]: error: " + error.message);
-          
+      })
+        .then(() => {
+          return signer.update(input1);
+        })
+        .then(() => {
+          return signer.sign(input2);
+        })
+        .then((dataBlob: cryptoFramework.DataBlob) => {
+          md.update(dataBlob, (err: BusinessError) => {
+            if (err) {
+              console.error(`SUB_Security_Crypto_Framework_Md_Digest_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+              expect(false).assertTrue();
+            } else {
+              md.digest((err1: BusinessError, mdOutput: cryptoFramework.DataBlob) => {
+                if (err1) {
+                  console.error(`SUB_Security_Crypto_Framework_Md_Digest_0100 failed, error code: ${err1.code}, msg: ${err1.message}`);
+                  expect(false).assertTrue();
+                } else {
+                  console.info(`SUB_Security_Crypto_Framework_Md_Digest_0100 MD result: ${mdOutput}`);
+                  expect(mdOutput).not().assertNull();
+                }
+              });
+            }
+          });
+        })
+        .catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Md_Digest_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
         });
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
+    });
 
     /**
-     *@tc.number    : testCreateMac001
-     *@tc.name      : testCreateMac001
-     *@tc.desc      : Generate a Mac instance
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 66
+     * @tc.number    : SUB_Security_Crypto_Framework_Md_Digest_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Md_Digest_0200
+     * @tc.desc      : The result of the calculation of Md is returned by registering a promise function
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testCreateMac001', 0, async () => {
+    it('SUB_Security_Crypto_Framework_Md_Digest_0200', 0, async () => {
+      let md: cryptoFramework.Md = cryptoFramework.createMd("SHA256");
+      console.info(`SUB_Security_Crypto_Framework_Md_Digest_0200 Md algName is: ${md.algName}`);
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        let priKey: cryptoFramework.PriKey = keyPair.priKey;
+        return signer.init(priKey);
+      })
+        .then(() => {
+          return signer.update(input1);
+        })
+        .then(() => {
+          return signer.sign(input2);
+        })
+        .then((dataBlob: cryptoFramework.DataBlob) => {
+          let promiseMdUpdate: Promise<void> = md.update(dataBlob);
+          promiseMdUpdate.then(() => {
+            let promiseMdDigest: Promise<cryptoFramework.DataBlob> = md.digest();
+            return promiseMdDigest;
+          }).then((mdOutput: cryptoFramework.DataBlob) => {
+            console.info(`SUB_Security_Crypto_Framework_Md_Digest_0200 MD result: ${mdOutput.data}`);
+            expect(mdOutput).not().assertNull();
+          }).catch((error: BusinessError) => {
+            console.error(`SUB_Security_Crypto_Framework_Md_Digest_0200 failed, error code: ${error.code}, msg: ${error.message}`);
+            expect(false).assertTrue();
+          });
+        })
+        .catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Md_Digest_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        });
+    });
 
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Md_GetMdLength_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Md_GetMdLength_0100
+     * @tc.desc      : The result of the calculation of Md is returned by registering a promise function
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Md_GetMdLength_0100', 0, async () => {
+      let md: cryptoFramework.Md = cryptoFramework.createMd("SHA256");
+      console.info(`SUB_Security_Crypto_Framework_Md_GetMdLength_0100 Md algName is: ${md.algName}`);
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        let priKey: cryptoFramework.PriKey = keyPair.priKey;
+        return signer.init(priKey);
+      })
+        .then(() => {
+          return signer.update(input1);
+        })
+        .then(() => {
+          return signer.sign(input2);
+        })
+        .then((dataBlob: cryptoFramework.DataBlob) => {
+          let promiseMdUpdate: Promise<void> = md.update(dataBlob);
+          promiseMdUpdate.then(() => {
+            let promiseMdDigest: Promise<cryptoFramework.DataBlob> = md.digest();
+            return promiseMdDigest;
+          }).then((mdOutput: cryptoFramework.DataBlob) => {
+            console.info(`SUB_Security_Crypto_Framework_Md_GetMdLength_0100 MD result: ${mdOutput.data}`);
+            let mdLen: number = md.getMdLength();
+            console.info(`SUB_Security_Crypto_Framework_Md_GetMdLength_0100 MD len: ${mdLen}`);
+            expect(mdLen).not().assertNaN();
+          }).catch((error: BusinessError) => {
+            console.error(`SUB_Security_Crypto_Framework_Md_GetMdLength_0100 failed, error code: ${error.code}, msg: ${error.message}`);
+            expect(false).assertTrue();
+          });
+        })
+        .catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Md_GetMdLength_0100 failed,catch error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Create_Mac_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Create_Mac_0100
+     * @tc.desc      : Generate a Mac instance
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Create_Mac_0100', 0, async () => {
       try {
-        let mac = cryptoFramework.createMac("SHA256");
+        let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
         expect(mac).not().assertNull();
       } catch (error) {
         let e: BusinessError = error as BusinessError;
-        console.error(`sync error, ${e.code}, ${e.message}`);
+        console.error(`SUB_Security_Crypto_Framework_Create_Mac_0100 failed, error code: ${e.code}, msg: ${e.message}`);
+        expect(false).assertTrue();
       }
-      
-
-    })
+    });
 
     /**
-     *@tc.number    : testMacInit001
-     *@tc.name      : testMacInit001
-     *@tc.desc      : Initialize Mac computation with a symmetric key through callback
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 67
+     * @tc.number    : SUB_Security_Crypto_Framework_Mac_Init_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Mac_Init_0100
+     * @tc.desc      : Initialize Mac computation with a symmetric key through callback
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testMacInit001', 0, async () => {
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
+    it('SUB_Security_Crypto_Framework_Mac_Init_0100', 0, async () => {
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        let priKey: cryptoFramework.PriKey = keyPair.priKey;
         return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-
-        let mac = cryptoFramework.createMac("SHA256");
-        let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-        symKeyGenerator.convertKey(dataBlob, (err, symKey) => {
-          if (err) {
-            console.error("[Callback] err: " + err.code);
-            
-            return;
-          }
-          mac.init(symKey, (err1, ) => {
-            if (err1) {
-              console.error("[Callback] err: " + err1.code);
-              
-              return;
-            }
-            expect(err1).assertNull();
-            
-          });
-        });
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
-
-    /**
-     *@tc.number    : testMacInit002
-     *@tc.name      : testMacInit002
-     *@tc.desc      : Initialize Mac computation with a symmetric key through promise
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 68
-     */
-    it('testMacInit002', 0, async () => {
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
-        return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-
-        let mac = cryptoFramework.createMac("SHA256");
-        console.info("Mac algName is: " + mac.algName);
-
-        let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-        let promiseConvertKey = symKeyGenerator.convertKey(dataBlob);
-        promiseConvertKey.then(symKey => {
-
-          let promiseMacInit = mac.init(symKey);
-          promiseMacInit.then(() => {
-            
-          })
-
-        }).catch((error: BusinessError) => {
-          console.error("[Promise]: error: " + error.message);
-          
-        });
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
-
-    /**
-     *@tc.number    : testMacUpdate001
-     *@tc.name      : testMacUpdate001
-     *@tc.desc      : Incoming messages are computed for Mac updates through callback
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 69
-     */
-    it('testMacUpdate001', 0, async () => {
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
-        return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-
-        let mac = cryptoFramework.createMac("SHA256");
-        let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-        symKeyGenerator.convertKey(dataBlob, (err, symKey) => {
-          if (err) {
-            console.error("[Callback] err: " + err.code);
-            
-            return;
-          }
-          mac.init(symKey, (err1, ) => {
-            if (err1) {
-              console.error("[Callback] err: " + err1.code);
-              
-              return;
-            }
-            mac.update(dataBlob, (err2, data) => {
-              if (err2) {
-                console.error("[Callback] err: " + err2.code);
-                
-                return;
-              }
-              expect(data).not().assertNull();
-              
-            });
-          });
-        });
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
-
-    /**
-     *@tc.number    : testMacUpdate002
-     *@tc.name      : testMacUpdate002
-     *@tc.desc      : Incoming messages are computed for Mac updates through promise
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 70
-     */
-    it('testMacUpdate002', 0, async () => {
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
-        return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-
-        let mac = cryptoFramework.createMac("SHA256");
-        console.info("Mac algName is: " + mac.algName);
-
-        let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-        let promiseConvertKey = symKeyGenerator.convertKey(dataBlob);
-        promiseConvertKey.then(symKey => {
-          let promiseMacInit = mac.init(symKey);
-          return promiseMacInit;
-        }).then(() => {
-
-          let promiseMacUpdate = mac.update(dataBlob);
-          promiseMacUpdate.then((data) => {
-            expect(data).not().assertNull();
-            
-          })
-
-        }).catch((error: BusinessError) => {
-          console.error("[Promise]: error: " + error.message);
-          
-        });
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
-
-    /**
-     *@tc.number    : testMacDoFinal001
-     *@tc.name      : testMacDoFinal001
-     *@tc.desc      : Return the result of the Mac calculation by registering the callback function
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 71
-     */
-    it('testMacDoFinal001', 0, async () => {
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
-        return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-
-        let mac = cryptoFramework.createMac("SHA256");
-        let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-        symKeyGenerator.convertKey(dataBlob, (err, symKey) => {
-          if (err) {
-            console.error("[Callback] err: " + err.code);
-            
-            return;
-          }
-          mac.init(symKey, (err1, ) => {
-            if (err1) {
-              console.error("[Callback] err: " + err1.code);
-              
-              return;
-            }
-            mac.update(dataBlob, (err2, ) => {
-              if (err2) {
-                console.error("[Callback] err: " + err2.code);
-                
-                return;
-              }
-              mac.doFinal((err3, macOutput) => {
-                if (err3) {
-                  console.error("[Callback] err: " + err3.code);
-                  
-                  return;
+      })
+        .then(() => {
+          return signer.update(input1);
+        })
+        .then(() => {
+          return signer.sign(input2);
+        })
+        .then((dataBlob: cryptoFramework.DataBlob) => {
+          let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
+          let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+          symKeyGenerator.convertKey(dataBlob, (err: BusinessError, symKey: cryptoFramework.SymKey) => {
+            if (err) {
+              console.error(`SUB_Security_Crypto_Framework_Mac_Init_0100 convertKey failed, error code: ${err.code}, msg: ${err.message}`);
+              expect(false).assertTrue();
+            } else {
+              mac.init(symKey, (err1: BusinessError) => {
+                if (err1) {
+                  console.error(`SUB_Security_Crypto_Framework_Mac_Init_0100 init failed, error code: ${err1.code}, msg: ${err1.message}`);
+                  expect(false).assertTrue();
+                } else {
+                  expect(err1).assertNull();
                 }
-                console.error("[Promise]: HMAC result: " + macOutput);
-                expect(macOutput).not().assertNull();
-                
               });
-            });
+            }
           });
+        })
+        .catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Mac_Init_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
         });
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
+    });
 
     /**
-     *@tc.number    : testMacDoFinal002
-     *@tc.name      : testMacDoFinal002
-     *@tc.desc      : get return Mac result through promise
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 72
+     * @tc.number    : SUB_Security_Crypto_Framework_Mac_Init_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Mac_Init_0200
+     * @tc.desc      : Initialize Mac computation with a symmetric key through promise
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testMacDoFinal002', 0, async () => {
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
+    it('SUB_Security_Crypto_Framework_Mac_Init_0200', 0, async () => {
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        let priKey: cryptoFramework.PriKey = keyPair.priKey;
         return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-
-        let mac = cryptoFramework.createMac("SHA256");
-        console.info("Mac algName is: " + mac.algName);
-        let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-        let promiseConvertKey = symKeyGenerator.convertKey(dataBlob);
-        promiseConvertKey.then(symKey => {
-          let promiseMacInit = mac.init(symKey);
-          return promiseMacInit;
-        }).then(() => {
-          let promiseMacUpdate = mac.update(dataBlob);
-          return promiseMacUpdate;
-        }).then(() => {
-          let promiseMacDoFinal = mac.doFinal();
-          return promiseMacDoFinal;
-        }).then(macOutput => {
-          console.error("[Promise]: HMAC result: " + macOutput.data);
-          expect(macOutput.data).not().assertNull();
-          
-        }).catch((error: BusinessError) => {
-          console.error("[Promise]: error: " + error.message);
-          
+      })
+        .then(() => {
+          return signer.update(input1);
+        })
+        .then(() => {
+          return signer.sign(input2);
+        })
+        .then((dataBlob: cryptoFramework.DataBlob) => {
+          let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
+          console.info(`SUB_Security_Crypto_Framework_Mac_Init_0200 Mac algName is: ${mac.algName}`);
+          let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+          let promiseConvertKey: Promise<cryptoFramework.SymKey> = symKeyGenerator.convertKey(dataBlob);
+          promiseConvertKey.then((symKey: cryptoFramework.SymKey) => {
+            let promiseMacInit: Promise<void> = mac.init(symKey);
+            promiseMacInit.then(() => {
+              expect(mac.getMacLength()).not().assertNull();
+            }).catch((e: BusinessError) => {
+              console.error(`SUB_Security_Crypto_Framework_Mac_Init_0200 init failed, error code: ${e.code}, msg: ${e.message}`);
+              expect(false).assertTrue();
+            });
+          }).catch((error: BusinessError) => {
+            console.error(`SUB_Security_Crypto_Framework_Mac_Init_0200 convertKey failed, error code: ${error.code}, msg: ${error.message}`);
+            expect(false).assertTrue();
+          });
+        })
+        .catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Mac_Init_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
         });
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
+    });
 
     /**
-     *@tc.number    : testMacGetMacLength001
-     *@tc.name      : testMacGetMacLength001
-     *@tc.desc      : get the length Mac message authentication code
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 73
+     * @tc.number    : SUB_Security_Crypto_Framework_Mac_Update_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Mac_Update_0100
+     * @tc.desc      : Incoming messages are computed for Mac updates through callback
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testMacGetMacLength001', 0, async () => {
-
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
+    it('SUB_Security_Crypto_Framework_Mac_Update_0100', 0, async () => {
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        let priKey: cryptoFramework.PriKey = keyPair.priKey;
         return signer.init(priKey);
-      }).then(() => {
-        return signer.update(input1);
-      }).then(() => {
-        return signer.sign(input2);
-      }).then(dataBlob => {
-
-        let mac = cryptoFramework.createMac("SHA256");
-        console.info("Mac algName is: " + mac.algName);
-        let symKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-        let promiseConvertKey = symKeyGenerator.convertKey(dataBlob);
-        promiseConvertKey.then(symKey => {
-          let promiseMacInit = mac.init(symKey);
-          return promiseMacInit;
-        }).then(() => {
-          let promiseMacUpdate = mac.update(dataBlob);
-          return promiseMacUpdate;
-        }).then(() => {
-          let promiseMacDoFinal = mac.doFinal();
-          return promiseMacDoFinal;
-        }).then(macOutput => {
-          console.error("[Promise]: HMAC result: " + macOutput.data);
-          let macLen = mac.getMacLength();
-          console.error("MAC len: " + macLen);
-          expect(macLen).not().assertNaN();
-          
-        }).catch((error: BusinessError) => {
-          console.error("[Promise]: error: " + error.message);
-          
+      })
+        .then(() => {
+          return signer.update(input1);
+        })
+        .then(() => {
+          return signer.sign(input2);
+        })
+        .then((dataBlob: cryptoFramework.DataBlob) => {
+          let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
+          let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+          symKeyGenerator.convertKey(dataBlob, (err: BusinessError, symKey: cryptoFramework.SymKey) => {
+            if (err) {
+              console.error(`SUB_Security_Crypto_Framework_Mac_Update_0100 convertKey failed, error code: ${err.code}, msg: ${err.message}`);
+              expect(false).assertTrue();
+            } else {
+              mac.init(symKey, (err1: BusinessError) => {
+                if (err1) {
+                  console.error(`SUB_Security_Crypto_Framework_Mac_Update_0100 init failed, error code: ${err1.code}, msg: ${err1.message}`);
+                  expect(false).assertTrue();
+                } else {
+                  mac.update(dataBlob, (err2: BusinessError, data) => {
+                    if (err2) {
+                      console.error(`SUB_Security_Crypto_Framework_Mac_Update_0100 update failed, error code: ${err2.code}, msg: ${err2.message}`);
+                      expect(false).assertTrue();
+                    } else {
+                      console.info(`SUB_Security_Crypto_Framework_Mac_Update_0100 update result: ${JSON.stringify(data)}`);
+                      expect(data).not().assertNull();
+                    }
+                  });
+                }
+              });
+            }
+          });
+        })
+        .catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Mac_Update_0100 update failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
         });
-
-      }).catch((err:BusinessError) => {
-        
-      });
-
-    })
+    });
 
     /**
-     *@tc.number    : testCreateRandom001
-     *@tc.name      : testCreateRandom001
-     *@tc.desc      : get random instance
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 74
+     * @tc.number    : SUB_Security_Crypto_Framework_Mac_Update_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Mac_Update_0200
+     * @tc.desc      : Incoming messages are computed for Mac updates through promise
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testCreateRandom001', 0, async () => {
+    it('SUB_Security_Crypto_Framework_Mac_Update_0200', 0, async () => {
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        let priKey: cryptoFramework.PriKey = keyPair.priKey;
+        return signer.init(priKey);
+      })
+        .then(() => {
+          return signer.update(input1);
+        })
+        .then(() => {
+          return signer.sign(input2);
+        })
+        .then((dataBlob: cryptoFramework.DataBlob) => {
+          let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
+          console.info(`SUB_Security_Crypto_Framework_Mac_Update_0200 Mac algName is: ${mac.algName}`);
+          let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+          let promiseConvertKey: Promise<cryptoFramework.SymKey> = symKeyGenerator.convertKey(dataBlob);
+          promiseConvertKey.then((symKey: cryptoFramework.SymKey) => {
+            let promiseMacInit: Promise<void> = mac.init(symKey);
+            return promiseMacInit;
+          }).then(() => {
+            let promiseMacUpdate: Promise<void> = mac.update(dataBlob);
+            promiseMacUpdate.then((data) => {
+              expect(data).not().assertNull();
+            }).catch((error: BusinessError) => {
+              console.error(`SUB_Security_Crypto_Framework_Mac_Update_0200 update failed, error code: ${error.code}, msg: ${error.message}`);
+              expect(false).assertTrue();
+            });
+          }).catch((error: BusinessError) => {
+            console.error(`SUB_Security_Crypto_Framework_Mac_Update_0200 failed, error code: ${error.code}, msg: ${error.message}`);
+            expect(false).assertTrue();
+          });
+        })
+        .catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Mac_Update_0200 failed, catch error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        });
+    });
 
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Mac_DoFinal_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Mac_DoFinal_0100
+     * @tc.desc      : Return the result of the Mac calculation by registering the callback function
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Mac_DoFinal_0100', 0, async () => {
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        let priKey: cryptoFramework.PriKey = keyPair.priKey;
+        return signer.init(priKey);
+      })
+        .then(() => {
+          return signer.update(input1);
+        })
+        .then(() => {
+          return signer.sign(input2);
+        })
+        .then((dataBlob: cryptoFramework.DataBlob) => {
+          let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
+          let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+          symKeyGenerator.convertKey((dataBlob), (err: BusinessError, symKey: cryptoFramework.SymKey) => {
+            if (err) {
+              console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 convertKey failed, error code: ${err.code}, msg: ${err.message}`);
+              expect(false).assertTrue();
+            } else {
+              mac.init(symKey, (err1: BusinessError) => {
+                if (err1) {
+                  console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 init failed, error code: ${err1.code}, msg: ${err1.message}`);
+                  expect(false).assertTrue();
+                } else {
+                  mac.update(dataBlob, (err2: BusinessError) => {
+                    if (err2) {
+                      console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 init failed, error code: ${err2.code}, msg: ${err2.message}`);
+                      expect(false).assertTrue();
+                    } else {
+                      mac.doFinal((err3: BusinessError, macOutput: cryptoFramework.DataBlob) => {
+                        if (err3) {
+                          console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 doFinal failed, error code: ${err3.code}, msg: ${err3.message}`);
+                          expect(false).assertTrue();
+                        } else {
+                          console.info(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 result: ${macOutput}`);
+                          expect(macOutput).not().assertNull();
+                        }
+                      });
+                    }
+                  });
+                }
+              });
+            }
+          });
+        })
+        .catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 failed, catch error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Mac_DoFinal_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Mac_DoFinal_0200
+     * @tc.desc      : get return Mac result through promise
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Mac_DoFinal_0200', 0, async () => {
+      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
+        let priKey: cryptoFramework.PriKey = keyPair.priKey;
+        return signer.init(priKey);
+      })
+        .then(() => {
+          return signer.update(input1);
+        })
+        .then(() => {
+          return signer.sign(input2);
+        })
+        .then((dataBlob: cryptoFramework.DataBlob) => {
+          let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
+          console.info(`SUB_Security_Crypto_Framework_Mac_DoFinal_0200 Mac algName is: ${mac.algName}`);
+          let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+          let promiseConvertKey: Promise<cryptoFramework.SymKey> = symKeyGenerator.convertKey(dataBlob);
+          promiseConvertKey.then((symKey: cryptoFramework.SymKey) => {
+            let promiseMacInit: Promise<void> = mac.init(symKey);
+            return promiseMacInit;
+          })
+            .then(() => {
+              let promiseMacUpdate: Promise<void> = mac.update(dataBlob);
+              return promiseMacUpdate;
+            })
+            .then(() => {
+              let promiseMacDoFinal: Promise<cryptoFramework.DataBlob> = mac.doFinal();
+              return promiseMacDoFinal;
+            })
+            .then((macOutput: cryptoFramework.DataBlob) => {
+              console.info(`SUB_Security_Crypto_Framework_Mac_DoFinal_0200 result: ${macOutput.data}`);
+              expect(macOutput.data).not().assertNull();
+            })
+            .catch((error: BusinessError) => {
+              console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0200 failed, error code: ${error.code}, msg: ${error.message}`);
+              expect(false).assertTrue();
+            });
+        })
+        .catch((err: BusinessError) => {
+          console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Mac_Get_Mac_Length_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Mac_Get_Mac_Length_0100
+     * @tc.desc      : get the length Mac message authentication code
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Mac_Get_Mac_Length_0100', 0, async () => {
+      asyKeyGenerator.generateKeyPair().then(async (keyPair: cryptoFramework.KeyPair) => {
+        let priKey: cryptoFramework.PriKey = keyPair.priKey;
+        const signer: cryptoFramework.Sign = cryptoFramework.createSign("ECC256|SHA256");
+        await signer.init(priKey);
+        await signer.update(input1);
+        const dataBlob: cryptoFramework.DataBlob = await signer.sign(input2);
+        let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
+        let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
+        const sym_key: cryptoFramework.SymKey = await symKeyGenerator.convertKey(dataBlob);
+        await mac.init(sym_key);
+        await mac.update(dataBlob);
+        let macLen: number = mac.getMacLength();
+        console.info(`SUB_Security_Crypto_Framework_Mac_Get_Mac_Length_0100 macLen ${macLen}`);
+        expect(macLen).not().assertNaN();
+      }).catch((err: BusinessError) => {
+        console.error(`SUB_Security_Crypto_Framework_Mac_Get_Mac_Length_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      });
+    });
+
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Create_Random_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Create_Random_0100
+     * @tc.desc      : get random instance
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Create_Random_0100', 0, async () => {
       try {
-        let rand = cryptoFramework.createRandom();
+        let rand: cryptoFramework.Random = cryptoFramework.createRandom();
         expect(rand).not().assertNull();
       } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.error(`sync error, ${e.code}, ${e.message}`);
+        let err: BusinessError = error as BusinessError;
+        console.error(`SUB_Security_Crypto_Framework_Create_Random_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
       }
-      
-
-    })
+    });
 
     /**
-     *@tc.number    : testGenerateRandom001
-     *@tc.name      : testGenerateRandom001
-     *@tc.desc      : Asynchronously generates a random number of a specified length through callback
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 75
+     * @tc.number    : SUB_Security_Crypto_Framework_Generate_Random_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Generate_Random_0100
+     * @tc.desc      : Asynchronously generates a random number of a specified length through callback
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testGenerateRandom001', 0, async () => {
-
-      let rand = cryptoFramework.createRandom();
-      rand.generateRandom(12, (err, randData) => {
+    it('SUB_Security_Crypto_Framework_Generate_Random_0100', 0, async () => {
+      let rand: cryptoFramework.Random = cryptoFramework.createRandom();
+      rand.generateRandom(12, (err: BusinessError, randData: cryptoFramework.DataBlob) => {
         if (err) {
-          console.error("[Callback] err: " + err.code);
-          
-          return;
-        }
-        console.error("[Callback]: generate random result: " + randData.data);
-        expect(randData.data).not().assertNull();
-        
-      });
-
-    })
-
-    /**
-     *@tc.number    : testGenerateRandom002
-     *@tc.name      : testGenerateRandom002
-     *@tc.desc      : Asynchronously generates a random number of fixed length through promise
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 76
-     */
-    it('testGenerateRandom002', 0, async () => {
-
-      let rand = cryptoFramework.createRandom();
-      let promiseGenerateRand = rand.generateRandom(12);
-      promiseGenerateRand.then(randData => {
-        console.error("[Promise]: rand result: " + randData.data);
-        expect(randData.data).not().assertNull();
-        
-      }).catch((error: BusinessError) => {
-        console.error("[Promise]: error: " + error.message);
-        
-      });
-
-    })
-
-
-
-    /**
-     *@tc.number    : testGenerateRandomSync001
-     *@tc.name      : testGenerateRandomSync001
-     *@tc.desc      : Synchronously generates a random number of fixed length
-     * *@tc.size    : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 77
-     */
-    it('testGenerateRandomSync001', 0, async () => {
-
-      let rand = cryptoFramework.createRandom();
-      try {
-        let randData = rand.generateRandomSync(12);
-        if (randData != null) {
-          console.info("[Sync]: rand result: " + randData.data);
-          expect(randData.data).not().assertNull();
+          console.error(`SUB_Security_Crypto_Framework_Generate_Random_Sync_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
         } else {
-          console.error("[Sync]: get rand result fail!");
+          expect(randData.data).not().assertNull();
         }
-      } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.error(`sync error, ${e.code}, ${e.message}`);
-      }
-      
-
-    })
+      });
+    });
 
     /**
-     *@tc.number    : testSetSeed001
-     *@tc.name      : testSetSeed001
-     *@tc.desc      : set specified seed
-     *@tc.size      : MediumTest
-     *@tc.type      : Function
-     *@tc.level     : Level 2
-     *@tc.index     : 78
+     * @tc.number    : SUB_Security_Crypto_Framework_Generate_Random_0200
+     * @tc.name      : SUB_Security_Crypto_Framework_Generate_Random_0200
+     * @tc.desc      : Asynchronously generates a random number of fixed length through promise
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
      */
-    it('testSetSeed001', 0, async () => {
-
-      let rand = cryptoFramework.createRandom();
-      rand.generateRandom(12, (err, randData) => {
-        if (err) {
-          console.error("[Callback] err: " + err.code);
-          
-          return;
-        }
-        console.info("[Callback]: generate random result: " + randData.data);
-        try {
-          rand.setSeed(randData);
-        } catch (error) {
-          let e: BusinessError = error as BusinessError;
-          console.error(`sync error, ${e.code}, ${e.message}`);
-        }
-        
+    it('SUB_Security_Crypto_Framework_Generate_Random_0200', 0, async () => {
+      let rand: cryptoFramework.Random = cryptoFramework.createRandom();
+      rand.generateRandom(12).then((randData: cryptoFramework.DataBlob) => {
+        expect(randData.data).not().assertNull();
+      }).catch((err: BusinessError) => {
+        console.error(`SUB_Security_Crypto_Framework_Generate_Random_Sync_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
       });
+    });
 
-    })
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Generate_Random_Sync_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Generate_Random_Sync_0100
+     * @tc.desc      : Synchronously generates a random number of fixed length
+     * * @tc.size    : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Generate_Random_Sync_0100', 0, async () => {
+      let rand: cryptoFramework.Random = cryptoFramework.createRandom();
+      try {
+        let randData: cryptoFramework.DataBlob = rand.generateRandomSync(12);
+        console.info(`SUB_Security_Crypto_Framework_Generate_Random_Sync_0100 rand result: ${randData.data}`);
+        expect(randData.data).not().assertNull();
+      } catch (err) {
+        console.error(`SUB_Security_Crypto_Framework_Generate_Random_Sync_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      }
+    });
 
-  })
+    /**
+     * @tc.number    : SUB_Security_Crypto_Framework_Set_Seed_0100
+     * @tc.name      : SUB_Security_Crypto_Framework_Set_Seed_0100
+     * @tc.desc      : set specified seed
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it('SUB_Security_Crypto_Framework_Set_Seed_0100', 0, async () => {
+      let rand: cryptoFramework.Random = cryptoFramework.createRandom();
+      rand.generateRandom(12, (err: BusinessError, randData: cryptoFramework.DataBlob) => {
+        if (err) {
+          console.error(`SUB_Security_Crypto_Framework_Set_Seed_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+          expect(false).assertTrue();
+        } else {
+          try {
+            rand.setSeed(randData);
+            expect(randData.data).not().assertNull();
+          } catch (err) {
+            console.error(`SUB_Security_Crypto_Framework_Set_Seed_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+            expect(false).assertTrue();
+          }
+        }
+      });
+    });
+  });
 }

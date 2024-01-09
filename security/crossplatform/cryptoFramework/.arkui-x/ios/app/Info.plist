@@ -9,9 +9,9 @@
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleName</key>
-	<string>security_xts</string>
+	<string>cryptoframeworktest</string>
 	<key>CFBundleDisplayName</key>
-	<string>Security_xts</string>
+	<string>Cryptoframeworktest</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleVersion</key>

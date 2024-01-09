@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "security_xts"
+rootProject.name = "cryptoframeworktest"

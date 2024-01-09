@@ -1,4 +1,4 @@
-package com.example.security_xts;
+package com.example.cryptoframeworktest;
 
 import org.junit.Test;
 
