@@ -14,7 +14,7 @@
  */
 
 import OAIDTest from './OAID.test';
-import { GlobalContext } from '../GlobalContext'
+import { GlobalContext } from './GlobalContext'
 
 export default function testsuite() {
   let ctx: Context = GlobalContext.getContext().getValue('abilityContext') as Context;
