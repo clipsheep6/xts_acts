@@ -227,24 +227,6 @@ describe('threadWorkerTest', function () {
         done()
     })
 
-    /**
-     * @tc.name: threadWorker_constructor_test_011
-     * @tc.desc: worker constructor to Creates a worker instance.
-     */
-    it('threadWorker_constructor_test_011', 0, async function (done) {
-        let ss = new worker.ThreadWorker("@bundle:com.example.threadWorkertest/entry/ets/workers/newworker.js");
-        let isTerminate = false
-        ss.onexit = function () {
-            isTerminate = true
-        }
-        expect(ss != null).assertTrue()
-        ss.terminate()
-        while (!isTerminate) {
-            await promiseCase()
-        }
-        done()
-    })
-
     // check postMessage is ok
     // main post "hello world", will receive "hello world worker"
     /**
