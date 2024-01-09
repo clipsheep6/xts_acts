@@ -40,6 +40,10 @@ export class GlobalContext {
     return result;
   }
 
+  setValue(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
+  }
+
   setObject(key: string, objectClass: Object): void {
     this._objects.set(key, objectClass);
   }
