@@ -72,6 +72,8 @@ group("ability_runtime") {
       "want:want",
       "workercontextcover:workercontextcover",
       "actsedm:systemappforcanceltruetest",
+      "actsedmset:systemappforsettruetest",
+      "actsedmsetwu:autostartupappbydmtest",
     ]
   }
 }
