@@ -43,7 +43,7 @@ export default function wallpaperAuthorityJSUnit() {
                         expect(null).assertFail();
                         done();
                     }
-                    console.info('====>testGetColorsCallbackSystem101  succesful RgbaColors: ' + JSON.stringify(RgbaColors));
+                    console.info('====>testGetColorsCallbackSystem101  successful RgbaColors: ' + JSON.stringify(RgbaColors));
                     expect(Number.isInteger(RgbaColors[0].red)).assertTrue();
                     expect(Number.isInteger(RgbaColors[0].green)).assertTrue();
                     expect(Number.isInteger(RgbaColors[0].blue)).assertTrue();
@@ -69,7 +69,7 @@ export default function wallpaperAuthorityJSUnit() {
             console.info('--------------testGetColorsPromiseSystem101 start-----------------');
             await wallpaper.setWallpaper(imageSourceLockscreen, wallpaper.WallpaperType.WALLPAPER_SYSTEM);
             await wallpaper.getColors(WALLPAPER_SYSTEM).then((RgbaColors) => {
-                console.info('====>testGetColorsPromiseSystem101  succesful RgbaColors: ' + JSON.stringify(RgbaColors));
+                console.info('====>testGetColorsPromiseSystem101  successful RgbaColors: ' + JSON.stringify(RgbaColors));
                 expect(Number.isInteger(RgbaColors[0].red)).assertTrue();
                 expect(Number.isInteger(RgbaColors[0].green)).assertTrue();
                 expect(Number.isInteger(RgbaColors[0].blue)).assertTrue();
@@ -101,7 +101,7 @@ export default function wallpaperAuthorityJSUnit() {
                         expect(null).assertFail();
                         done();
                     }
-                    console.info('====>testGetColorsCallbackLock102  succesful RgbaColors: ' + JSON.stringify(RgbaColors));
+                    console.info('====>testGetColorsCallbackLock102  successful RgbaColors: ' + JSON.stringify(RgbaColors));
                     expect(Number.isInteger(RgbaColors[0].red)).assertTrue();
                     expect(Number.isInteger(RgbaColors[0].green)).assertTrue();
                     expect(Number.isInteger(RgbaColors[0].blue)).assertTrue();
@@ -127,7 +127,7 @@ export default function wallpaperAuthorityJSUnit() {
             console.info('--------------testGetColorsPromiseLock102 start-----------------');
             await wallpaper.setWallpaper(imageSourceLockscreen, wallpaper.WallpaperType.WALLPAPER_LOCKSCREEN);
             await wallpaper.getColors(WALLPAPER_LOCKSCREEN).then((RgbaColors) => {
-                console.info('====>testGetColorsPromiseLock102  succesful RgbaColors: ' + JSON.stringify(RgbaColors));
+                console.info('====>testGetColorsPromiseLock102  successful RgbaColors: ' + JSON.stringify(RgbaColors));
                 expect(Number.isInteger(RgbaColors[0].red)).assertTrue();
                 expect(Number.isInteger(RgbaColors[0].green)).assertTrue();
                 expect(Number.isInteger(RgbaColors[0].blue)).assertTrue();
