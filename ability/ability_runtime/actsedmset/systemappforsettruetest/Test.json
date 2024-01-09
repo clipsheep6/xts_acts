@@ -11,7 +11,7 @@
 		{
             "test-file-name": [
                 "systemappforsettrue.hap",
-                "systemappforsettruetest.hap"
+                "systemforsettrue_test.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
