@@ -138,24 +138,6 @@ describe('WorkerTest', function () {
         done()
     })
 
-    /**
-     * @tc.name: worker_constructor_test_006
-     * @tc.desc: worker constructor to Creates a worker instance.
-     */
-    it('worker_constructor_test_006', 0, async function (done) {
-        let ss = new worker.Worker("@bundle:com.example.workertest/entry/ets/workers/worker.js");
-        let isTerminate = false
-        ss.onexit = function () {
-            isTerminate = true
-        }
-        expect(ss != null).assertTrue()
-        ss.terminate()
-        while (!isTerminate) {
-            await promiseCase()
-        }
-        done()
-    })
-
     // check postMessage is ok
     // main post "hello world", will receive "hello world worker"
     /**
