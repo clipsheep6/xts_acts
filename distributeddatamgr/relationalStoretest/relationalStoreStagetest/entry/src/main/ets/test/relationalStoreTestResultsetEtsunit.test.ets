@@ -130,7 +130,7 @@ describe('relationalStoreResultSetTest', function () {
       try {
         {
           expect(true).assertEqual(resultSet.goToFirstRow());
-          let row = (resultSet as relationalStore.ResultSet).getRow();
+          let row = (resultSet as dataRdb.ResultSet).getRow();
           console.log(TAG + JSON.stringify(row))
           expect('hello').assertEqual(row.data1)
           expect(10).assertEqual(row.data2)
