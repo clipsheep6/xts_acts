@@ -19,6 +19,21 @@
         "MainAbility/pages/GestureRelated/GestureRotationGesture",
         "MainAbility/pages/GestureRelated/GestureSwipeGesture",
         "MainAbility/pages/GestureRelated/GestureTap",
-        "MainAbility/pages/GestureRelated/GestureTapGesture"
+        "MainAbility/pages/GestureRelated/GestureTapGesture",
+        "MainAbility/pages/Provide/provideBrother1",
+        "MainAbility/pages/Provide/provideBrother2",
+        "MainAbility/pages/Provide/provideComponent1",
+        "MainAbility/pages/Provide/provideComponent2",
+        "MainAbility/pages/Provide/provideParent2",
+        "MainAbility/pages/Provide/provideParent3",
+        "MainAbility/pages/Provide/provideParent4",
+        "MainAbility/pages/Provide/provideParent5",
+        "MainAbility/pages/Provide/provideParent6",
+        "MainAbility/pages/Resource/ResourceColor",
+        "MainAbility/pages/Resource/ResourceFloat",
+        "MainAbility/pages/Resource/ResourceInteger",
+        "MainAbility/pages/Resource/ResourcePlural",
+        "MainAbility/pages/Resource/ResourceStrarray",
+        "MainAbility/pages/Resource/ResourceString"
     ]
 }

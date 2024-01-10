@@ -30,6 +30,21 @@ import GestureRotationGesture from './GestureRelatedTest/GestureRotationGesture.
 import GestureSwipeGesture from './GestureRelatedTest/GestureSwipeGesture.test.ets'
 import GestureTap from './GestureRelatedTest/GestureTap.test.ets'
 import GestureTapGesture from './GestureRelatedTest/GestureTapGesture.test.ets'
+import provideBrother1 from './ProvideTest/provideBrother1.test.ets'
+import provideBrother2 from './ProvideTest/provideBrother2.test.ets'
+import provideComponent1 from './ProvideTest/provideComponent1.test.ets'
+import provideComponent2 from './ProvideTest/provideComponent2.test.ets'
+import provideParent2 from './ProvideTest/provideParent2.test.ets'
+import provideParent3 from './ProvideTest/provideParent3.test.ets'
+import provideParent4 from './ProvideTest/provideParent4.test.ets'
+import provideParent5 from './ProvideTest/provideParent5.test.ets'
+import provideParent6 from './ProvideTest/provideParent6.test.ets'
+import ResourceColor from './ResourceTest/ResourceColor.test.ets'
+import ResourceFloat from './ResourceTest/ResourceFloat.test.ets'
+import ResourceInteger from './ResourceTest/ResourceInteger.test.ets'
+import ResourcePlural from './ResourceTest/ResourcePlural.test.ets'
+import ResourceStrarray from './ResourceTest/ResourceStrarray.test.ets'
+import ResourceString from './ResourceTest/ResourceString.test.ets'
 export default function testsuite() {
   extendTrackTest()
   localTrackTest()
@@ -49,4 +64,19 @@ export default function testsuite() {
   GestureSwipeGesture();
   GestureTap();
   GestureTapGesture();
+  provideBrother1()
+  provideBrother2()
+  provideComponent1()
+  provideComponent2()
+  provideParent2()
+  provideParent3()
+  provideParent4()
+  provideParent5()
+  provideParent6()
+  ResourceColor();
+  ResourceFloat();
+  ResourceInteger();
+  ResourcePlural();
+  ResourceStrarray();
+  ResourceString();
 }
