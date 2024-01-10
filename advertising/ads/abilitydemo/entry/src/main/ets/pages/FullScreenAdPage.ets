@@ -42,8 +42,7 @@ struct FullScreenAdPage {
     .height('100%')
   }
 
-
-  private getCameraManager(context): camera.CameraManager | undefined {
+  private getCameraManager(context: Context): camera.CameraManager | undefined {
     Logger.i(TAG, '%{public}s', 'getCameraManager');
     let cameraManager: camera.CameraManager | undefined = undefined;
     try {
