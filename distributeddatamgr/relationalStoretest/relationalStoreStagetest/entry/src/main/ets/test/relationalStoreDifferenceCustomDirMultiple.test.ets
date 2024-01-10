@@ -15,14 +15,10 @@
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium';
 import data_Rdb from '@ohos.data.relationalStore';
-
-
-
-
-
+import common from "@ohos.app.ability.common";
 
 const TAG = "[DifferenceCustomDirMultiple_TEST]";
-
+let context: common.UIAbilityContext;
 let rdbStore1 = undefined;
 let rdbStore2 = undefined;
 let store: data_Rdb.RdbStore
@@ -63,6 +59,7 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
   describe('relationalStoreDifferenceCustomDirMultipleTest', function () {
     beforeAll(async function () {
       console.info(TAG + 'beforeAll');
+	  context = AppStorage.Get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
     })
 
     beforeEach(function () {
@@ -89,7 +86,7 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      */
     it('DifferenceCustomDirMultiple0100', 0, async function (done) {
       console.info(TAG + "************* testRdbStore0001 start *************");
-        rdbStore1 = await data_Rdb.getRdbStore(globalThis.abilityContext, STORE_CONFIG1).then(async (rdbStore) => {
+        rdbStore1 = await data_Rdb.getRdbStore(context, STORE_CONFIG1).then(async (rdbStore) => {
           rdbStore1= rdbStore;
           console.info(TAG +`Get RdbStore successfully.`)
           await rdbStore1.executeSql(CREATE_TABLE_TEST, null)
@@ -113,7 +110,7 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
           console.error(TAG +`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
         })
 
-          rdbStore2 = await data_Rdb.getRdbStore(globalThis.abilityContext, STORE_CONFIG5).then(async (rdbStore) => {
+          rdbStore2 = await data_Rdb.getRdbStore(context, STORE_CONFIG5).then(async (rdbStore) => {
             rdbStore2 = rdbStore;
             console.info(TAG +`Get RdbStore successfully.`)
             let predicates = new data_Rdb.RdbPredicates("test")
@@ -146,7 +143,7 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
             console.error(TAG +`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
           })
       console.info(TAG + "************* testRdbStore0001 end   *************");
-      await data_Rdb.deleteRdbStore(globalThis.abilityContext,STORE_CONFIG1);
+      await data_Rdb.deleteRdbStore(context,STORE_CONFIG1);
       done();
       // console.info(TAG + "************* testRdbStore0001 end   *************");
     })
@@ -161,22 +158,22 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      */
     it('DifferenceCustomDirMultiple0200', 0, async function (done) {
       console.info(TAG + "************* testRdbStore0002 start *************");
-      await data_Rdb.getRdbStore(globalThis.abilityContext, STORE_CONFIG1).then(async (rdbStore) => {
+      await data_Rdb.getRdbStore(context, STORE_CONFIG1).then(async (rdbStore) => {
         rdbStore1 = rdbStore;
         console.info(TAG +`Get RdbStore successfully.`)
       }).catch((err) => {
         expect(null).assertFail();
         console.error(TAG +`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
       })
-      await data_Rdb.getRdbStore(globalThis.abilityContext, STORE_CONFIG2).then(async (rdbStore) => {
+      await data_Rdb.getRdbStore(context, STORE_CONFIG2).then(async (rdbStore) => {
         rdbStore2 = rdbStore;
         console.info(TAG +`Get RdbStore successfully.`)
       }).catch((err) => {
         expect(null).assertFail();
         console.error(TAG +`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
       })
-      await data_Rdb.deleteRdbStore(globalThis.abilityContext,STORE_CONFIG1);
-      await data_Rdb.deleteRdbStore(globalThis.abilityContext,STORE_CONFIG2);
+      await data_Rdb.deleteRdbStore(context,STORE_CONFIG1);
+      await data_Rdb.deleteRdbStore(context,STORE_CONFIG2);
       done();
       console.info(TAG + "************* testRdbStore0002 end   *************");
     })
@@ -191,22 +188,22 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      */
     it('DifferenceCustomDirMultiple0300', 0, async function (done) {
       console.info(TAG + "************* testRdbStore0003 start *************");
-      await data_Rdb.getRdbStore(globalThis.abilityContext, STORE_CONFIG1).then(async (rdbStore) => {
+      await data_Rdb.getRdbStore(context, STORE_CONFIG1).then(async (rdbStore) => {
         rdbStore1 = rdbStore;
         console.info(TAG +`Get RdbStore successfully.`)
       }).catch((err) => {
         expect(null).assertFail();
         console.error(TAG +`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
       })
-      await data_Rdb.getRdbStore(globalThis.abilityContext, STORE_CONFIG2).then(async (rdbStore) => {
+      await data_Rdb.getRdbStore(context, STORE_CONFIG2).then(async (rdbStore) => {
         rdbStore2 = rdbStore;
         console.info(TAG +`Get RdbStore successfully.`)
       }).catch((err) => {
         expect(null).assertFail();
         console.error(TAG +`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
       })
-      await data_Rdb.deleteRdbStore(globalThis.abilityContext,STORE_CONFIG1);
-      await data_Rdb.deleteRdbStore(globalThis.abilityContext,STORE_CONFIG3);
+      await data_Rdb.deleteRdbStore(context,STORE_CONFIG1);
+      await data_Rdb.deleteRdbStore(context,STORE_CONFIG3);
       done();
       console.info(TAG + "************* testRdbStore0003 end   *************");
     })
@@ -221,22 +218,22 @@ export default function relationalStoreDifferenceCustomDirMultipleTest() {
      */
     it('DifferenceCustomDirMultiple0400', 0, async function (done) {
       console.info(TAG + "************* testRdbStore0004 start *************");
-      await data_Rdb.getRdbStore(globalThis.abilityContext, STORE_CONFIG1).then(async (rdbStore) => {
+      await data_Rdb.getRdbStore(context, STORE_CONFIG1).then(async (rdbStore) => {
         rdbStore1 = rdbStore;
         console.info(TAG +`Get RdbStore successfully.`)
       }).catch((err) => {
         expect(null).assertFail();
         console.error(TAG +`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
       })
-      await data_Rdb.getRdbStore(globalThis.abilityContext, STORE_CONFIG4).then(async (rdbStore) => {
+      await data_Rdb.getRdbStore(context, STORE_CONFIG4).then(async (rdbStore) => {
         rdbStore2 = rdbStore;
         console.info(TAG +`Get RdbStore successfully.`)
       }).catch((err) => {
         expect(null).assertFail();
         console.error(TAG +`Get RdbStore failed, code is ${err.code},message is ${err.message}`);
       })
-      await data_Rdb.deleteRdbStore(globalThis.abilityContext,STORE_CONFIG1);
-      await data_Rdb.deleteRdbStore(globalThis.abilityContext,STORE_CONFIG4);
+      await data_Rdb.deleteRdbStore(context,STORE_CONFIG1);
+      await data_Rdb.deleteRdbStore(context,STORE_CONFIG4);
       done();
       console.info(TAG + "************* testRdbStore0004 end   *************");
     })
