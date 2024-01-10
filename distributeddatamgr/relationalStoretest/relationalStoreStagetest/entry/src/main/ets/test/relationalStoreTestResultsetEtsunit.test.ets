@@ -14,7 +14,6 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import dataRdb from '@ohos.data.relationalStore'
-import common from "@ohos.app.ability.common";
 
 const TAG = '[RDB_JSKITS_TEST]'
 const CREATE_TABLE_TEST = 'CREATE TABLE IF NOT EXISTS test (' + 'id INTEGER PRIMARY KEY AUTOINCREMENT, ' + 'data1 text,' + 'data2 long, ' + 'data3 double,' + 'data4 blob)';
@@ -24,13 +23,12 @@ const STORE_CONFIG = {
     securityLevel: dataRdb.SecurityLevel.S1
 }
 const COLOUNM_NAMES = ["id","data1","data2","data3","data4"];
-let rdbStore = undefined;
-let context: common.UIAbilityContext;
-export default function relationalStoreResultSetTest() {
+var rdbStore = undefined;
+
+export default function relationalStoreResultSetTest(context) {
 describe('relationalStoreResultSetTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
-		context = AppStorage.Get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
         rdbStore = await dataRdb.getRdbStore(context, STORE_CONFIG);
         await rdbStore.executeSql(CREATE_TABLE_TEST, null);
         await createTest();
@@ -89,7 +87,7 @@ describe('relationalStoreResultSetTest', function () {
      * @tc.name resultSet getBlob normal test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_ResultSetJsApiTest_0100
      * @tc.desc resultSet getBlob normal test
-	 * @tc.size MediumTest
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 2
      */
@@ -121,7 +119,7 @@ describe('relationalStoreResultSetTest', function () {
      * @tc.name resultSet getBlob normal test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_ResultSetJsApiTest_8300
      * @tc.desc resultSet getBlob normal test
-	 * @tc.size MediumTest
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 2
      */

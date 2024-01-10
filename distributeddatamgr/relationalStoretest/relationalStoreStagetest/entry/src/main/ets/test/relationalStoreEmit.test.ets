@@ -15,10 +15,8 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import data_Rdb from '@ohos.data.relationalStore';
-import common from "@ohos.app.ability.common";
 
 const TAG = "[RelationalStore_Emit_TEST]";
-let context: common.UIAbilityContext;
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test ("
 + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
 + "name TEXT NOT NULL, "
@@ -40,18 +38,17 @@ export default function relationalStoreEmitTest() {
   describe('relationalStoreEmitTest', function () {
     beforeAll(async function () {
       console.info(TAG + 'beforeAll');
-	  context = AppStorage.Get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
     })
 
     beforeEach(async function () {
       console.info(TAG + 'beforeEach');
-      rdbStore = await data_Rdb.getRdbStore(context, STORE_CONFIG)
+      rdbStore = await data_Rdb.getRdbStore(globalThis.abilityContext, STORE_CONFIG)
       await rdbStore.executeSql(CREATE_TABLE_TEST);
     })
 
     afterEach(async function () {
       console.info(TAG + 'afterAll');
-      data_Rdb.deleteRdbStore(context, "rdbstoreEmit.db");
+      data_Rdb.deleteRdbStore(globalThis.abilityContext, "rdbstoreEmit.db");
     })
 
     afterAll(async function () {
@@ -64,9 +61,6 @@ export default function relationalStoreEmitTest() {
      * @tc.number SUB_DistributedData_RelationalStore_SDK_GetModifyTimeJsApiTest_0400
      * @tc.name relationalStore emit test
      * @tc.desc relationalStore emit test
-	 * @tc.size MediumTest
-     * @tc.type Function
-     * @tc.level Level 2
      */
     it('testRdbStoreDistributed0012', 0, async function (done) {
       async function subscribeInsert() {

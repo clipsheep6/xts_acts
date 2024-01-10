@@ -16,23 +16,21 @@
 
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import dataRdb from '@ohos.data.relationalStore';
-import common from "@ohos.app.ability.common";
 
 const TAG = "[RDB_JSKITS_TEST_Distributed]"
 const STORE_NAME = "distributed_rdb.db"
-let rdbStore = undefined;
-let context: common.UIAbilityContext;
+var rdbStore = undefined;
+
 const config = {
     "name": STORE_NAME,
     securityLevel: dataRdb.SecurityLevel.S1
 }
 const CREATE_TABLE_TEST = "CREATE TABLE IF NOT EXISTS test (" + "id INTEGER PRIMARY KEY AUTOINCREMENT, "
     + "name TEXT NOT NULL, " + "age INTEGER, " + "salary REAL, " + "blobType BLOB)"
-export default function relationalStoreDistributedTest() {
+export default function relationalStoreDistributedTest(context) {
 describe('relationalStoreDistributedTest', function () {
     beforeAll(async function () {
         console.info(TAG + 'beforeAll')
-		context = AppStorage.Get<common.UIAbilityContext>("TestAbilityContext") as common.UIAbilityContext;
     })
 
     beforeEach(async function () {
@@ -55,9 +53,6 @@ describe('relationalStoreDistributedTest', function () {
      * @tc.name obtainDistributedTableName Callback interface test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_SetDistributeJsApiTest_0100
      * @tc.desc obtainDistributedTableName test
-	 * @tc.size MediumTest
-     * @tc.type Function
-     * @tc.level Level 2
      */
     it('SUB_DDM_AppDataFWK_ETSRDB_Distributed_obtainDistributedTableName_0100', 0, async function (done){
         let errInfo = undefined;
@@ -80,9 +75,6 @@ describe('relationalStoreDistributedTest', function () {
      * @tc.name obtainDistributedTableName Promise interface test
      * @tc.number SUB_DistributedData_RelationalStore_SDK_SetDistributeJsApiTest_0200
      * @tc.desc obtainDistributedTableName test
-	 * @tc.size MediumTest
-     * @tc.type Function
-     * @tc.level Level 2
      */
      it('SUB_DDM_AppDataFWK_ETSRDB_Distributed_obtainDistributedTableName_0200',0,async function (done){
         let errInfo = undefined
