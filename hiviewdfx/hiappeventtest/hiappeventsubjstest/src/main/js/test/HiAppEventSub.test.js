@@ -21,6 +21,262 @@ export default function HiAppEventSubTest() {
 describe('HiAppEventSubTest', function () {
 
     /**
+     * @tc.number SUB_DFX_DFT_HiAppEvent_Sub_6700
+     * @tc.name HiAppEventSub67
+     * @tc.desc 验证应用事件订阅可通过onReceive回调获取各种类型订阅事件信息
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level3
+     */
+    it('HiAppEventSub67', 0, async function (done) {
+        console.info('HiAppEventSub67 start');
+        try {
+            HiAppEventV9.addWatcher({
+                name: "watcher67",
+                appEventFilters: [{domain: HiAppEventV9.domain.OS}, {domain: "test_domain"}],
+                onReceive: (domain, groups) => {
+                    console.log('HiAppEventSub67 onReceive domain=', domain)
+                    expect(domain == HiAppEventV9.domain.OS || domain == "test_domain").assertTrue();
+                    for (const group of groups) {
+                        console.log('HiAppEventSub67 onReceive eventName=', group.name)
+                        for (const info of group.appEventInfos) {
+                            console.log(`HiAppEventSub67 onReceive event=${JSON.stringify(info)}`)
+                            console.log('HiAppEventSub67 onReceive eventType=', info.eventType)
+                            console.log('HiAppEventSub67 onReceive params=', JSON.stringify(info.params))
+                            console.log('HiAppEventSub67 onReceive params.exception', JSON.stringify(info.params))
+                        }
+                    }
+                }
+            });
+            setTimeout(() => {
+                HiAppEventV9.write({
+                    domain: HiAppEventV9.domain.OS,
+                    name: HiAppEventV9.event.APP_CRASH,
+                    eventType: HiAppEventV9.EventType.FAULT,
+                    params: {
+                        "key_int": 100, "key_string": "appcrash",
+                    }
+                }, (err, value) => {
+                    if (err) {
+                        console.error(`HiAppEventSub67 failed to write event because ${err.code}`);
+                        expect().assertFail();
+                        done();
+                    }
+                    console.log(`HiAppEventSub67 success to write event: ${value}`)
+                });
+            }, 500)
+            setTimeout(() => {
+                HiAppEventV9.write({
+                    domain: HiAppEventV9.domain.OS,
+                    name: HiAppEventV9.event.APP_FREEZE,
+                    eventType: HiAppEventV9.EventType.STATISTIC,
+                    params: {
+                        "key_int": 100, "key_string": "appfreeze",
+                    }
+                }, (err, value) => {
+                    if (err) {
+                        console.error(`HiAppEventSub67 failed to write event because ${err.code}`);
+                        expect().assertFail();
+                        done();
+                    }
+                    console.log(`HiAppEventSub67 success to write event: ${value}`)
+                });
+            }, 600)
+            setTimeout(() => {
+                HiAppEventV9.write({
+                    domain: "test_domain",
+                    name: HiAppEventV9.event.USER_LOGIN,
+                    eventType: HiAppEventV9.EventType.SECURITY,
+                    params: {
+                        "key_int": 100, "key_string": "userlogin",
+                    }
+                }, (err, value) => {
+                    if (err) {
+                        console.error(`HiAppEventSub67 failed to write event because ${err.code}`);
+                        expect().assertFail();
+                        done();
+                    }
+                    console.log(`HiAppEventSub67 success to write event: ${value}`)
+                });
+            }, 700)
+            setTimeout(() => {
+                HiAppEventV9.write({
+                    domain: "test_domain",
+                    name: HiAppEventV9.event.USER_LOGOUT,
+                    eventType: HiAppEventV9.EventType.BEHAVIOR,
+                    params: {
+                        "key_int": 100, "key_string": "userlogout",
+                    }
+                }, (err, value) => {
+                    if (err) {
+                        console.error(`HiAppEventSub67 failed to write event because ${err.code}`);
+                        expect().assertFail();
+                        done();
+                    }
+                    console.log(`HiAppEventSub67 success to write event: ${value}`)
+                });
+            }, 800)
+
+            setTimeout(() => {
+                HiAppEventV9.removeWatcher({"name":"watcher67"})
+                console.info('HiAppEventSub67 end')
+                done()
+            }, 10000)
+        } catch (err) {
+            console.error(`HiAppEventSub67 > error code: ${err.code}, error msg: ${err.message}`);
+            expect(false).assertTrue()
+        }
+    });
+
+    /**
+     * @tc.number SUB_DFX_DFT_HiAppEvent_Sub_6800
+     * @tc.name HiAppEventSub68
+     * @tc.desc 验证应用事件订阅优先通过onReceive回调获取订阅事件信息
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level3
+     */
+    it('HiAppEventSub68', 0, async function (done) {
+        console.info('HiAppEventSub68 start');
+        try {
+            HiAppEventV9.addWatcher({
+                name: "watcher68",
+                appEventFilters: [{domain: "test_domain", names: [HiAppEventV9.event.DISTRIBUTED_SERVICE_START]}],
+                triggerCondition: {
+                    row: 1,
+                },
+                onTrigger: (curRow, curSize, holder) => {
+                    expect().assertFail()
+                    let eventPkg = holder.takeNext();
+                    console.info("HiAppEventSub68 eventPkg.packageId=" + eventPkg.packageId);
+                    console.info("HiAppEventSub68 eventPkg.row=" + eventPkg.row);
+                    console.info("HiAppEventSub68 eventPkg.size=" + eventPkg.size);
+                    for (const eventInfo of eventPkg.data) {
+                        console.info("HiAppEventSub68 eventPkg.data=" + eventInfo);
+                    }
+                    done()
+                },
+                onReceive: (domain, groups) => {
+                    console.log('HiAppEventSub68 onReceive domain=', domain)
+                    expect(domain == "test_domain").assertTrue();
+                    for (const group of groups) {
+                        console.log('HiAppEventSub68 onReceive eventName=', group.name)
+                        expect(group.name == HiAppEventV9.event.DISTRIBUTED_SERVICE_START).assertTrue();
+                        for (const info of group.appEventInfos) {
+                            console.log(`HiAppEventSub68 onReceive event=${JSON.stringify(info)}`)
+                            console.log('HiAppEventSub68 onReceive eventType=', info.eventType)
+                            console.log('HiAppEventSub68 onReceive params=', JSON.stringify(info.params))
+                            console.log('HiAppEventSub68 onReceive params.exception', JSON.stringify(info.params))
+                        }
+                    }
+                }
+            });
+            setTimeout(() => {
+                HiAppEventV9.write({
+                    domain: "test_domain",
+                    name: HiAppEventV9.event.DISTRIBUTED_SERVICE_START,
+                    eventType: HiAppEventV9.EventType.FAULT,
+                    params: {
+                        "key_int": 100, "key_string": "distributed_service_start",
+                    }
+                }, (err, value) => {
+                    if (err) {
+                        console.error(`HiAppEventSub68 failed to write event because ${err.code}`);
+                        expect().assertFail();
+                        done();
+                    }
+                    console.log(`HiAppEventSub68 success to write event: ${value}`)
+                });
+            }, 500)
+
+            setTimeout(() => {
+                HiAppEventV9.removeWatcher({"name":"watcher68"})
+                console.info('HiAppEventSub68 end')
+                done()
+            }, 10000)
+        } catch (err) {
+            console.error(`HiAppEventSub68 > error code: ${err.code}, error msg: ${err.message}`);
+            expect(false).assertTrue()
+        }
+    })
+
+    /**
+     * @tc.number SUB_DFX_DFT_HiAppEvent_Sub_6900
+     * @tc.name HiAppEventSub69
+     * @tc.desc 验证新增filter-name订阅事件过滤条件
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level3
+     */
+    it('HiAppEventSub69', 0, async function (done) {
+        console.info('HiAppEventSub69 start');
+        try {
+            HiAppEventV9.addWatcher({
+                name: "watcher69",
+                appEventFilters: [{domain: HiAppEventV9.domain.OS,
+                    names: [HiAppEventV9.event.APP_CRASH, HiAppEventV9.event.APP_FREEZE]}],
+                onReceive: (domain, groups) => {
+                    console.log('HiAppEventSub69 onReceive domain=', domain)
+                    expect(domain == HiAppEventV9.domain.OS).assertTrue();
+                    for (const group of groups) {
+                        console.log('HiAppEventSub69 onReceive eventName=', group.name)
+                        expect(group.name == HiAppEventV9.event.APP_CRASH || group.name == HiAppEventV9.event.APP_FREEZE).assertTrue();
+                        for (const info of group.appEventInfos) {
+                            console.log(`HiAppEventSub69 onReceive event=${JSON.stringify(info)}`)
+                            console.log('HiAppEventSub69 onReceive eventType=', info.eventType)
+                            console.log('HiAppEventSub69 onReceive params=', JSON.stringify(info.params))
+                            console.log('HiAppEventSub69 onReceive params.exception', JSON.stringify(info.params))
+                        }
+                    }
+                }
+            });
+            setTimeout(() => {
+                HiAppEventV9.write({
+                    domain: HiAppEventV9.domain.OS,
+                    name: HiAppEventV9.event.APP_CRASH,
+                    eventType: HiAppEventV9.EventType.FAULT,
+                    params: {
+                        "key_int": 100, "key_string": "appcrash",
+                    }
+                }, (err, value) => {
+                    if (err) {
+                        console.error(`HiAppEventSub69 failed to write event because ${err.code}`);
+                        expect().assertFail();
+                        done();
+                    }
+                    console.log(`HiAppEventSub69 success to write event: ${value}`)
+                });
+            }, 500)
+            setTimeout(() => {
+                HiAppEventV9.write({
+                    domain: HiAppEventV9.domain.OS,
+                    name: HiAppEventV9.event.APP_FREEZE,
+                    eventType: HiAppEventV9.EventType.STATISTIC,
+                    params: {
+                        "key_int": 100, "key_string": "appfreeze",
+                    }
+                }, (err, value) => {
+                    if (err) {
+                        console.error(`HiAppEventSub69 failed to write event because ${err.code}`);
+                        expect().assertFail();
+                        done();
+                    }
+                    console.log(`HiAppEventSub69 success to write event: ${value}`)
+                });
+            }, 600)
+
+            setTimeout(() => {
+                HiAppEventV9.removeWatcher({"name":"watcher69"})
+                console.info('HiAppEventSub69 end')
+                done()
+            }, 10000)
+        } catch (err) {
+            console.error(`HiAppEventSub69 > error code: ${err.code}, error msg: ${err.message}`);
+            expect(false).assertTrue()
+        }
+    })
+
+    /**
      * @tc.number DFX_DFT_HiAppEvent_Sub_0100
      * @tc.name 验证调用hiAppEvent.addWatcher，添加watcher为string类型，事件订阅成功，使用function可自动分发事件
      * @tc.desc HiAppEvent write interface test.
