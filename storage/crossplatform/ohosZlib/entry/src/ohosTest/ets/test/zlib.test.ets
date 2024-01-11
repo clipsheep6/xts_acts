@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { describe, it, expect} from '@ohos/hypium';
 import zlib from '@ohos.zlib';
 import { BusinessError } from '@ohos.base';
@@ -878,14 +893,15 @@ export default function ZlibTest() {
         zlib.decompressFile(filePath, unzipDir, options, (res) => {
           if (res) {
             console.log(`decompressFileCallback015 fail :${JSON.stringify(res)}`);
+            fs.rmdirSync(unzipDir);
             expect(res.code).assertEqual(900003);
             done();
           } else {
             console.log(`decompressFileCallback015 success :${JSON.stringify(res)}`);
+            fs.rmdirSync(unzipDir);
             expect(res).assertFail();
             done();
           };
-          fs.rmdirSync(unzipDir);
         });
       } catch (err) {
         fs.rmdirSync(unzipDir);
