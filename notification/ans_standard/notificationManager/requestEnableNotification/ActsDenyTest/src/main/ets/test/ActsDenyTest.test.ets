@@ -49,12 +49,11 @@ export default function ActsDenyTest() {
           });
           await sleep(1500);
           let driver = Driver.create();
-          await sleep(1500)
           let button = await driver.findComponent(ON.text('禁止'));
           log(`button is ${JSON.stringify(button)}`);
           if (button !== null) {
-            await sleep(1500);
             await button.click();
+            await sleep(1500);
           } else {
             exit('null button');
           }
