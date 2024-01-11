@@ -2857,7 +2857,7 @@ export default function pasteComponentTest_1() {
       let strJsonNew = getInspectorByKey('keyPaste2');
       let obj = JSON.parse(strJsonNew);
       console.info("====>[Test_Security_Button_PasteScenarios_2800] get obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.backgroundColor).assertEqual('#FF007DFF');
+      expect(obj.$attrs.borderColor).assertEqual('#FF00EB9B');
       await Utils.sleep(1000);
       try {
         let clickCallback = (clickData) => {
