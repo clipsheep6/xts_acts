@@ -17,7 +17,9 @@ import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { Component, Driver, UiWindow, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import autoFillManager from '@ohos.app.ability.autoFillManager';
 import commonEventManager from '@ohos.commonEventManager';
+import window from '@ohos.window';
 
 let driver = Driver.create();
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -65,6 +67,22 @@ export default function abilityTest() {
       expect(pwd_input != null).assertTrue();
       await pwd_input.inputText('n');
       await sleep(1000);
+      
+      let windowStage: window.WindowStage = AppStorage.Get<window.WindowStage>("windowStage");
+      let uiContext: UIContext;
+      if(windowStage != null) {
+        uiContext = windowStage.getMainWindowSync().getUIContext();
+      }
+      let callback: autoFillManager.AutoSaveCallback = {
+        onSuccess: () => {
+          console.log("save request on success");
+        },
+        onFailure: () => {
+          console.log("save request on failure");
+        }
+      }
+      autoFillManager.requestAutoSave(uiContext, callback);
+
       let save_btn = await driver.waitForComponent(ON.id('save_btn'), 2000);
       await sleep(100);
       expect(save_btn != null).assertTrue();

@@ -30,6 +30,7 @@ export default class TestAbility extends UIAbility {
     let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+    AppStorage.Link('windowStage');
   }
 
   onDestroy() {
@@ -46,6 +47,7 @@ export default class TestAbility extends UIAbility {
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s',
         JSON.stringify(data) ?? '');
     });
+    PersistentStorage.PersistProp("windowStage", windowStage);
   }
 
   onWindowStageDestroy() {
