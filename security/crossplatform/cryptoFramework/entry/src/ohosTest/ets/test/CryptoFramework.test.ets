@@ -32,12 +32,35 @@ import {
   signer
 } from '../utils/CommonVariables';
 
+/**
+ * Thread sleeps
+ */
+function sleep(ms: number = 1000): Promise<void> {
+  return new Promise((resolve: Function) => {
+    setTimeout(() => {
+      resolve();
+    }, ms);
+  });
+}
+
 function stringToUint8Array(str: string) {
   let arr: Uint8Array = new Uint8Array(str.length);
   for (let i: number = 0, j: number = str.length; i < j; ++i) {
     arr[i] = str.charCodeAt(i);
   }
   return arr;
+}
+
+function getDataBlob(): cryptoFramework.DataBlob {
+  const arr: number[] = [
+    0xba, 0x3d, 0xc2, 0x71, 0x21, 0x1e, 0x30, 0x56,
+    0xad, 0x47, 0xfc, 0x5a, 0x46, 0x39, 0xee, 0x7c,
+    0xba, 0x3b, 0xc2, 0x71, 0xab, 0xa0, 0x30, 0x72]; // keyLen = 192 (24 bytes)
+  const keyMaterial: Uint8Array = new Uint8Array(arr);
+  const keyMaterialBlob: cryptoFramework.DataBlob = {
+    data: keyMaterial
+  };
+  return keyMaterialBlob;
 }
 
 export default function cryptoFrame() {
@@ -52,7 +75,8 @@ export default function cryptoFrame() {
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
     });
-    afterEach(() => {
+    afterEach(async () => {
+      await sleep(200);
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
@@ -347,14 +371,7 @@ export default function cryptoFrame() {
      * @tc.level     : Level 2
      */
     it('SUB_Security_Crypto_Framework_SymKeyGenerator_ConvertKey_Func_0100', 0, async () => {
-      let arr: number[] = [
-        0xba, 0x3d, 0xc2, 0x71, 0x21, 0x1e, 0x30, 0x56,
-        0xad, 0x47, 0xfc, 0x5a, 0x46, 0x39, 0xee, 0x7c,
-        0xba, 0x3b, 0xc2, 0x71, 0xab, 0xa0, 0x30, 0x72]; // keyLen = 192 (24 bytes)
-      let keyMaterial: Uint8Array = new Uint8Array(arr);
-      let keyMaterialBlob: cryptoFramework.DataBlob = {
-        data: keyMaterial
-      };
+      let keyMaterialBlob: cryptoFramework.DataBlob = getDataBlob();
       symKeyGenerator.convertKey(keyMaterialBlob, (err: BusinessError, symKey: cryptoFramework.SymKey) => {
         if (err) {
           console.error(`SUB_Security_Crypto_Framework_SymKeyGenerator_ConvertKey_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
@@ -374,14 +391,7 @@ export default function cryptoFrame() {
      * @tc.level     : Level 2
      */
     it('SUB_Security_Crypto_Framework_SymKeyGenerator_ConvertKey_Func_0200', 0, async () => {
-      let arr = [
-        0xba, 0x3d, 0xc2, 0x71, 0x21, 0x1e, 0x30, 0x56,
-        0xad, 0x47, 0xfc, 0x5a, 0x46, 0x39, 0xee, 0x7c,
-        0xba, 0x3b, 0xc2, 0x71, 0xab, 0xa0, 0x30, 0x72]; // keyLen = 192 (24 bytes)
-      let keyMaterial: Uint8Array = new Uint8Array(arr);
-      let keyMaterialBlob: cryptoFramework.DataBlob = {
-        data: keyMaterial
-      };
+      let keyMaterialBlob: cryptoFramework.DataBlob = getDataBlob();
       symKeyGenerator.convertKey(keyMaterialBlob)
         .then((symKey: cryptoFramework.SymKey) => {
           expect(symKey.algName).not().assertNull();
@@ -506,7 +516,6 @@ export default function cryptoFrame() {
         expect(false).assertTrue();
       }
     });
-
 
     /**
      * @tc.number    : SUB_Security_Crypto_Framework_AsyKeyGeneratorBySpec_GenerateKeyPair_Func_0100
@@ -648,7 +657,7 @@ export default function cryptoFrame() {
         cipher.init(cryptoFramework.CryptoMode.ENCRYPT_MODE, symKey, null, (err) => {
           if (err) {
             console.error(`SUB_Security_Crypto_Framework_Cipher_Init_Func_0100 Failed, error code: ${err.code}, msg: ${err.message}`);
-            expect(false).assertTrue();
+            expect(err.code == 401).assertTrue();
           } else {
             expect(err).assertUndefined();
           }
@@ -672,7 +681,7 @@ export default function cryptoFrame() {
             console.info(`SUB_Security_Crypto_Framework_Cipher_Init_Func_0200 success`);
           }, (error: BusinessError) => {
             console.error(`SUB_Security_Crypto_Framework_Cipher_Init_Func_0200 failed, error code: ${error.code}, msg: ${error.message}`);
-            expect(false).assertTrue();
+            expect(error.code == 401).assertTrue();
           });
       });
     });
@@ -694,7 +703,7 @@ export default function cryptoFrame() {
         cipher.update(plainText, (err: BusinessError, output: cryptoFramework.DataBlob) => { // Example of the encryption process.
           if (err) {
             console.error(`SUB_Security_Crypto_Framework_Cipher_Update_Func_0100 failed, error code: ${err.code}, msg: ${err.message}`);
-            expect(false).assertTrue();
+            expect(err.code == 801).assertTrue();
           } else {
             console.info(`Update cipher success`);
             expect(output).not().assertNull();
@@ -722,7 +731,7 @@ export default function cryptoFrame() {
             expect(output).not().assertNull();
           }, (error: BusinessError) => {
             console.info(`SUB_Security_Crypto_Framework_Cipher_Update_Func_0200 failed, error code: ${error.code}, msg: ${error.message}`);
-            expect(false).assertTrue();
+            expect(err.code == 801).assertTrue();
           });
       });
     });
@@ -934,14 +943,14 @@ export default function cryptoFrame() {
         signer.init(priKey, (err: BusinessError) => {
           if (err) {
             console.error(`SUB_Security_Crypto_Framework_Sign_Update_0100 failed, error code: ${err.code}, msg: ${err.message}`);
-            expect(false).assertTrue();
+            expect(err.code == 401).assertTrue();
           } else {
             signer.update(input1, (err: BusinessError) => {
               if (err) {
                 console.error(`SUB_Security_Crypto_Framework_Sign_Update_0100 failed, error code: ${err.code}, msg: ${err.message}`);
                 expect(false).assertTrue();
               } else {
-                expect(err).assertNull();
+                expect(err).assertUndefined();
                 console.log('signer update success');
               }
             });
@@ -1007,7 +1016,7 @@ export default function cryptoFrame() {
         signer.init(priKey, (err: BusinessError) => {
           if (err) {
             console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0100 init failed, error code: ${err.code}, msg: ${err.message}`);
-            expect(false).assertTrue();
+            expect(err.code == 401).assertTrue();
           } else {
             signer.update(input1, (err: BusinessError) => {
               if (err) {
@@ -1038,28 +1047,26 @@ export default function cryptoFrame() {
      * @tc.level     : Level 2
      */
     it('SUB_Security_Crypto_Framework_Sign_Sign_0200', 0, async () => {
-      KeyPairGenPromise.then(keyPair => {
-        let priKey = keyPair.priKey;
-        signer.init(priKey).then(() => {
-          signer.update(input1).then(() => {
-            signer.sign(input2).then((dataBlob: cryptoFramework.DataBlob) => {
-              expect(dataBlob.data).not().assertNull();
-            }).catch((err: BusinessError) => {
-              console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0100 sign failed, error code: ${err.code}, msg: ${err.message}`);
-              expect(false).assertTrue();
-            });
+      try {
+        const signer: cryptoFramework.Sign = cryptoFramework.createSign("ECC256|SHA256");
+        KeyPairGenPromise.then(async (keyPair: cryptoFramework.KeyPair) => {
+          let priKey: cryptoFramework.PriKey = keyPair.priKey;
+          await signer.init(priKey);
+          await signer.update(input1);
+          signer.sign(input2).then((dataBlob: cryptoFramework.DataBlob) => {
+            expect(dataBlob.data).not().assertNull();
           }).catch((err: BusinessError) => {
-            console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0100 update failed, error code: ${err.code}, msg: ${err.message}`);
+            console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0200 sign failed, error code: ${err.code}, msg: ${err.message}`);
             expect(false).assertTrue();
           });
         }).catch((err: BusinessError) => {
-          console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0100 init failed, error code: ${err.code}, msg: ${err.message}`);
+          console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0200 asyKeyGenerator.generateKeyPair failed, error code: ${err.code}, msg: ${err.message}`);
           expect(false).assertTrue();
         });
-      }).catch((err: BusinessError) => {
-        console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0100 asyKeyGenerator.generateKeyPair failed, error code: ${err.code}, msg: ${err.message}`);
+      } catch (err) {
+        console.error(`SUB_Security_Crypto_Framework_Sign_Sign_0200 failed, catch error code: ${err.code}, msg: ${err.message}`);
         expect(false).assertTrue();
-      });
+      }
     });
 
     /**
@@ -1143,7 +1150,7 @@ export default function cryptoFrame() {
             console.error(`SUB_Security_Crypto_Framework_Verify_Init_0100 init failed, error code: ${err.code}, msg: ${err.message}`);
             expect(false).assertTrue();
           } else {
-            expect(err).assertNull();
+            expect(err).assertUndefined();
           }
         });
       }).catch((err: BusinessError) => {
@@ -1206,7 +1213,7 @@ export default function cryptoFrame() {
                 console.error(`SUB_Security_Crypto_Framework_Verify_Update_0100 update failed, error code: ${err.code}, msg: ${err.message}`);
                 expect(false).assertTrue();
               } else {
-                expect(err).assertNull();
+                expect(err).assertUndefined();
               }
             });
           }
@@ -1228,6 +1235,7 @@ export default function cryptoFrame() {
     it('SUB_Security_Crypto_Framework_Verify_Update_0200', 0, async () => {
       let globalKeyPair: cryptoFramework.KeyPair;
       let asyKeyGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      const signer: cryptoFramework.Sign = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256");
       let KeyPairGenPromise: Promise<cryptoFramework.KeyPair> = asyKeyGenerator.generateKeyPair();
       KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
         globalKeyPair = keyPair;
@@ -1262,6 +1270,7 @@ export default function cryptoFrame() {
     it('SUB_Security_Crypto_Framework_Verify_Verify_0100', 0, async () => {
       let globalKeyPair: cryptoFramework.KeyPair;
       let asyKeyGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      const signer: cryptoFramework.Sign = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256");
       let KeyPairGenPromise: Promise<cryptoFramework.KeyPair> = asyKeyGenerator.generateKeyPair();
       KeyPairGenPromise.then(keyPair => {
         globalKeyPair = keyPair;
@@ -1316,6 +1325,7 @@ export default function cryptoFrame() {
     it('SUB_Security_Crypto_Framework_Verify_Verify_0200', 0, async () => {
       let globalKeyPair: cryptoFramework.KeyPair;
       let asyKeyGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      const signer: cryptoFramework.Sign = cryptoFramework.createSign("RSA1024|PSS|SHA256|MGF1_SHA256");
       let KeyPairGenPromise: Promise<cryptoFramework.KeyPair> = asyKeyGenerator.generateKeyPair();
       KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
         let priKey: cryptoFramework.PriKey = keyPair.priKey;
@@ -1418,7 +1428,7 @@ export default function cryptoFrame() {
      * @tc.level     : Level 2
      */
     it('SUB_Security_Crypto_Framework_Generate_Secret_0100', 0, async () => {
-      let rsaGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      let rsaGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
       rsaGenerator.generateKeyPair((error: BusinessError, keyPair: cryptoFramework.KeyPair) => {
         if (error) {
           console.error(`SUB_Security_Crypto_Framework_Generate_Secret_0100 generateKeyPair failed, error code: ${error.code}, msg: ${error.message}`);
@@ -1429,7 +1439,7 @@ export default function cryptoFrame() {
           keyAgreement.generateSecret(globalKeyPair.priKey, globalKeyPair.pubKey, (err: BusinessError, secret: cryptoFramework.DataBlob) => {
             if (err) {
               console.error(`SUB_Security_Crypto_Framework_Generate_Secret_0100 generateSecret failed, error code: ${err.code}, msg: ${err.message}`);
-              expect(false).assertTrue();
+              expect(err.code == 401).assertTrue();
             } else {
               console.info(`SUB_Security_Crypto_Framework_Generate_Secret_0100 generateSecret data: ${secret.data}`);
               expect(secret.data).not().assertNull();
@@ -1448,7 +1458,7 @@ export default function cryptoFrame() {
      * @tc.level     : Level 2
      */
     it('SUB_Security_Crypto_Framework_Generate_Secret_0200', 0, async () => {
-      let rsaGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("RSA1024|PRIMES_2");
+      let rsaGenerator: cryptoFramework.AsyKeyGenerator = cryptoFramework.createAsyKeyGenerator("ECC256");
       rsaGenerator.generateKeyPair((error: BusinessError, keyPair: cryptoFramework.KeyPair) => {
         let globalKeyPair: cryptoFramework.KeyPair = keyPair;
         let keyAgreement: cryptoFramework.KeyAgreement = cryptoFramework.createKeyAgreement("ECC256");
@@ -1492,6 +1502,7 @@ export default function cryptoFrame() {
      */
     it('SUB_Security_Crypto_Framework_Md_Update_0100', 0, async () => {
       let md: cryptoFramework.Md = cryptoFramework.createMd("SHA256");
+      const signer: cryptoFramework.Sign = cryptoFramework.createSign("ECC256|SHA256");
       console.info(`SUB_Security_Crypto_Framework_Md_Update_0100 Md algName is: ${md.algName}`);
       KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
         let priKey: cryptoFramework.PriKey = keyPair.priKey;
@@ -1509,7 +1520,7 @@ export default function cryptoFrame() {
               console.error(`SUB_Security_Crypto_Framework_Create_Md_0100 failed, error code: ${err.code},msg: ${err.message}`);
               expect(false).assertTrue();
             } else {
-              expect(err).assertNull();
+              expect(err).assertUndefined();
             }
           });
         })
@@ -1529,6 +1540,7 @@ export default function cryptoFrame() {
      */
     it('SUB_Security_Crypto_Framework_Md_Update_0200', 0, async () => {
       let md: cryptoFramework.Md = cryptoFramework.createMd("SHA256");
+      const signer: cryptoFramework.Sign = cryptoFramework.createSign("ECC256|SHA256");
       console.info(`SUB_Security_Crypto_Framework_Md_Update_0200 Md algName is: ${md.algName}`);
       KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
         let priKey: cryptoFramework.PriKey = keyPair.priKey;
@@ -1572,6 +1584,7 @@ export default function cryptoFrame() {
      */
     it('SUB_Security_Crypto_Framework_Md_Digest_0100', 0, async () => {
       let md: cryptoFramework.Md = cryptoFramework.createMd("SHA256");
+      const signer: cryptoFramework.Sign = cryptoFramework.createSign("ECC256|SHA256");
       console.info(`SUB_Security_Crypto_Framework_Md_Digest_0100 Md algName is: ${md.algName}`);
       KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
         let priKey: cryptoFramework.PriKey = keyPair.priKey;
@@ -1617,6 +1630,7 @@ export default function cryptoFrame() {
      */
     it('SUB_Security_Crypto_Framework_Md_Digest_0200', 0, async () => {
       let md: cryptoFramework.Md = cryptoFramework.createMd("SHA256");
+      const signer: cryptoFramework.Sign = cryptoFramework.createSign("ECC256|SHA256");
       console.info(`SUB_Security_Crypto_Framework_Md_Digest_0200 Md algName is: ${md.algName}`);
       KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
         let priKey: cryptoFramework.PriKey = keyPair.priKey;
@@ -1657,6 +1671,7 @@ export default function cryptoFrame() {
      */
     it('SUB_Security_Crypto_Framework_Md_GetMdLength_0100', 0, async () => {
       let md: cryptoFramework.Md = cryptoFramework.createMd("SHA256");
+      const signer: cryptoFramework.Sign = cryptoFramework.createSign("ECC256|SHA256");
       console.info(`SUB_Security_Crypto_Framework_Md_GetMdLength_0100 Md algName is: ${md.algName}`);
       KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
         let priKey: cryptoFramework.PriKey = keyPair.priKey;
@@ -1717,39 +1732,24 @@ export default function cryptoFrame() {
      * @tc.level     : Level 2
      */
     it('SUB_Security_Crypto_Framework_Mac_Init_0100', 0, async () => {
-      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
-        let priKey: cryptoFramework.PriKey = keyPair.priKey;
-        return signer.init(priKey);
-      })
-        .then(() => {
-          return signer.update(input1);
-        })
-        .then(() => {
-          return signer.sign(input2);
-        })
-        .then((dataBlob: cryptoFramework.DataBlob) => {
-          let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
-          let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-          symKeyGenerator.convertKey(dataBlob, (err: BusinessError, symKey: cryptoFramework.SymKey) => {
-            if (err) {
-              console.error(`SUB_Security_Crypto_Framework_Mac_Init_0100 convertKey failed, error code: ${err.code}, msg: ${err.message}`);
-              expect(false).assertTrue();
-            } else {
-              mac.init(symKey, (err1: BusinessError) => {
-                if (err1) {
-                  console.error(`SUB_Security_Crypto_Framework_Mac_Init_0100 init failed, error code: ${err1.code}, msg: ${err1.message}`);
-                  expect(false).assertTrue();
-                } else {
-                  expect(err1).assertNull();
-                }
-              });
-            }
-          });
-        })
-        .catch((err: BusinessError) => {
-          console.error(`SUB_Security_Crypto_Framework_Mac_Init_0100 failed, error code: ${err.code}, msg: ${err.message}`);
-          expect(false).assertTrue();
+      try {
+        let keyMaterialBlob: cryptoFramework.DataBlob = getDataBlob();
+        let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
+        let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator('AES192');
+        const symKey: cryptoFramework.SymKey = await symKeyGenerator.convertKey(keyMaterialBlob);
+        mac.init(symKey, (err: BusinessError) => {
+          if (err) {
+            console.error(`SUB_Security_Crypto_Framework_Mac_Init_0100 init failed, error code: ${err.code}, msg: ${err.message}`);
+            expect(false).assertTrue();
+          } else {
+            expect(err).assertUndefined();
+          }
         });
+      } catch (e) {
+        const err: BusinessError = e as BusinessError;
+        console.error(`SUB_Security_Crypto_Framework_Mac_Init_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      }
     });
 
     /**
@@ -1761,38 +1761,19 @@ export default function cryptoFrame() {
      * @tc.level     : Level 2
      */
     it('SUB_Security_Crypto_Framework_Mac_Init_0200', 0, async () => {
-      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
-        let priKey: cryptoFramework.PriKey = keyPair.priKey;
-        return signer.init(priKey);
-      })
-        .then(() => {
-          return signer.update(input1);
-        })
-        .then(() => {
-          return signer.sign(input2);
-        })
-        .then((dataBlob: cryptoFramework.DataBlob) => {
-          let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
-          console.info(`SUB_Security_Crypto_Framework_Mac_Init_0200 Mac algName is: ${mac.algName}`);
-          let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-          let promiseConvertKey: Promise<cryptoFramework.SymKey> = symKeyGenerator.convertKey(dataBlob);
-          promiseConvertKey.then((symKey: cryptoFramework.SymKey) => {
-            let promiseMacInit: Promise<void> = mac.init(symKey);
-            promiseMacInit.then(() => {
-              expect(mac.getMacLength()).not().assertNull();
-            }).catch((e: BusinessError) => {
-              console.error(`SUB_Security_Crypto_Framework_Mac_Init_0200 init failed, error code: ${e.code}, msg: ${e.message}`);
-              expect(false).assertTrue();
-            });
-          }).catch((error: BusinessError) => {
-            console.error(`SUB_Security_Crypto_Framework_Mac_Init_0200 convertKey failed, error code: ${error.code}, msg: ${error.message}`);
-            expect(false).assertTrue();
-          });
-        })
-        .catch((err: BusinessError) => {
-          console.error(`SUB_Security_Crypto_Framework_Mac_Init_0200 failed, error code: ${err.code}, msg: ${err.message}`);
-          expect(false).assertTrue();
-        });
+      try {
+        let keyMaterialBlob: cryptoFramework.DataBlob = getDataBlob();
+        let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
+        let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator('AES192');
+        const symKey: cryptoFramework.SymKey = await symKeyGenerator.convertKey(keyMaterialBlob);
+        await mac.init(symKey);
+        const len: number = mac.getMacLength();
+        expect(len).not().assertNull();
+      } catch (e) {
+        const err: BusinessError = e as BusinessError;
+        console.error(`SUB_Security_Crypto_Framework_Mac_Init_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      }
     });
 
     /**
@@ -1804,47 +1785,31 @@ export default function cryptoFrame() {
      * @tc.level     : Level 2
      */
     it('SUB_Security_Crypto_Framework_Mac_Update_0100', 0, async () => {
-      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
-        let priKey: cryptoFramework.PriKey = keyPair.priKey;
-        return signer.init(priKey);
-      })
-        .then(() => {
-          return signer.update(input1);
-        })
-        .then(() => {
-          return signer.sign(input2);
-        })
-        .then((dataBlob: cryptoFramework.DataBlob) => {
-          let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
-          let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-          symKeyGenerator.convertKey(dataBlob, (err: BusinessError, symKey: cryptoFramework.SymKey) => {
-            if (err) {
-              console.error(`SUB_Security_Crypto_Framework_Mac_Update_0100 convertKey failed, error code: ${err.code}, msg: ${err.message}`);
-              expect(false).assertTrue();
-            } else {
-              mac.init(symKey, (err1: BusinessError) => {
-                if (err1) {
-                  console.error(`SUB_Security_Crypto_Framework_Mac_Update_0100 init failed, error code: ${err1.code}, msg: ${err1.message}`);
-                  expect(false).assertTrue();
-                } else {
-                  mac.update(dataBlob, (err2: BusinessError, data) => {
-                    if (err2) {
-                      console.error(`SUB_Security_Crypto_Framework_Mac_Update_0100 update failed, error code: ${err2.code}, msg: ${err2.message}`);
-                      expect(false).assertTrue();
-                    } else {
-                      console.info(`SUB_Security_Crypto_Framework_Mac_Update_0100 update result: ${JSON.stringify(data)}`);
-                      expect(data).not().assertNull();
-                    }
-                  });
-                }
-              });
-            }
-          });
-        })
-        .catch((err: BusinessError) => {
-          console.error(`SUB_Security_Crypto_Framework_Mac_Update_0100 update failed, error code: ${err.code}, msg: ${err.message}`);
-          expect(false).assertTrue();
+      try {
+        let keyMaterialBlob: cryptoFramework.DataBlob = getDataBlob();
+        let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
+        let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator('AES192');
+        const symKey: cryptoFramework.SymKey = await symKeyGenerator.convertKey(keyMaterialBlob);
+        mac.init(symKey, (err: BusinessError) => {
+          if (err) {
+            console.error(`SUB_Security_Crypto_Framework_Mac_Update_0100 init failed, error code: ${err.code}, msg: ${err.message}`);
+            expect(false).assertTrue();
+          } else {
+            mac.update(keyMaterialBlob, (e: BusinessError) => {
+              if (e) {
+                console.error(`SUB_Security_Crypto_Framework_Mac_Update_0100 update failed, error code: ${e.code}, msg: ${e.message}`);
+                expect(false).assertTrue();
+              } else {
+                expect(e).assertUndefined();
+              }
+            });
+          }
         });
+      } catch (e) {
+        const err: BusinessError = e as BusinessError;
+        console.error(`SUB_Security_Crypto_Framework_Mac_Update_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      }
     });
 
     /**
@@ -1856,41 +1821,20 @@ export default function cryptoFrame() {
      * @tc.level     : Level 2
      */
     it('SUB_Security_Crypto_Framework_Mac_Update_0200', 0, async () => {
-      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
-        let priKey: cryptoFramework.PriKey = keyPair.priKey;
-        return signer.init(priKey);
-      })
-        .then(() => {
-          return signer.update(input1);
-        })
-        .then(() => {
-          return signer.sign(input2);
-        })
-        .then((dataBlob: cryptoFramework.DataBlob) => {
-          let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
-          console.info(`SUB_Security_Crypto_Framework_Mac_Update_0200 Mac algName is: ${mac.algName}`);
-          let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-          let promiseConvertKey: Promise<cryptoFramework.SymKey> = symKeyGenerator.convertKey(dataBlob);
-          promiseConvertKey.then((symKey: cryptoFramework.SymKey) => {
-            let promiseMacInit: Promise<void> = mac.init(symKey);
-            return promiseMacInit;
-          }).then(() => {
-            let promiseMacUpdate: Promise<void> = mac.update(dataBlob);
-            promiseMacUpdate.then((data) => {
-              expect(data).not().assertNull();
-            }).catch((error: BusinessError) => {
-              console.error(`SUB_Security_Crypto_Framework_Mac_Update_0200 update failed, error code: ${error.code}, msg: ${error.message}`);
-              expect(false).assertTrue();
-            });
-          }).catch((error: BusinessError) => {
-            console.error(`SUB_Security_Crypto_Framework_Mac_Update_0200 failed, error code: ${error.code}, msg: ${error.message}`);
-            expect(false).assertTrue();
-          });
-        })
-        .catch((err: BusinessError) => {
-          console.error(`SUB_Security_Crypto_Framework_Mac_Update_0200 failed, catch error code: ${err.code}, msg: ${err.message}`);
-          expect(false).assertTrue();
-        });
+      try {
+        let keyMaterialBlob: cryptoFramework.DataBlob = getDataBlob();
+        let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
+        let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator('AES192');
+        const symKey: cryptoFramework.SymKey = await symKeyGenerator.convertKey(keyMaterialBlob);
+        await mac.init(symKey);
+        await mac.update(keyMaterialBlob);
+        const len: number = mac.getMacLength();
+        expect(len).not().assertNull();
+      } catch (e) {
+        const err: BusinessError = e as BusinessError;
+        console.error(`SUB_Security_Crypto_Framework_Mac_Update_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      }
     });
 
     /**
@@ -1902,54 +1846,27 @@ export default function cryptoFrame() {
      * @tc.level     : Level 2
      */
     it('SUB_Security_Crypto_Framework_Mac_DoFinal_0100', 0, async () => {
-      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
-        let priKey: cryptoFramework.PriKey = keyPair.priKey;
-        return signer.init(priKey);
-      })
-        .then(() => {
-          return signer.update(input1);
-        })
-        .then(() => {
-          return signer.sign(input2);
-        })
-        .then((dataBlob: cryptoFramework.DataBlob) => {
-          let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
-          let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-          symKeyGenerator.convertKey((dataBlob), (err: BusinessError, symKey: cryptoFramework.SymKey) => {
-            if (err) {
-              console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 convertKey failed, error code: ${err.code}, msg: ${err.message}`);
-              expect(false).assertTrue();
-            } else {
-              mac.init(symKey, (err1: BusinessError) => {
-                if (err1) {
-                  console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 init failed, error code: ${err1.code}, msg: ${err1.message}`);
-                  expect(false).assertTrue();
-                } else {
-                  mac.update(dataBlob, (err2: BusinessError) => {
-                    if (err2) {
-                      console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 init failed, error code: ${err2.code}, msg: ${err2.message}`);
-                      expect(false).assertTrue();
-                    } else {
-                      mac.doFinal((err3: BusinessError, macOutput: cryptoFramework.DataBlob) => {
-                        if (err3) {
-                          console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 doFinal failed, error code: ${err3.code}, msg: ${err3.message}`);
-                          expect(false).assertTrue();
-                        } else {
-                          console.info(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 result: ${macOutput}`);
-                          expect(macOutput).not().assertNull();
-                        }
-                      });
-                    }
-                  });
-                }
-              });
-            }
-          });
-        })
-        .catch((err: BusinessError) => {
-          console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 failed, catch error code: ${err.code}, msg: ${err.message}`);
-          expect(false).assertTrue();
+      try {
+        let keyMaterialBlob: cryptoFramework.DataBlob = getDataBlob();
+        let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
+        let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator('AES192');
+        const symKey: cryptoFramework.SymKey = await symKeyGenerator.convertKey(keyMaterialBlob);
+        await mac.init(symKey);
+        await mac.update(keyMaterialBlob);
+        mac.doFinal((err: BusinessError, macOutput: cryptoFramework.DataBlob) => {
+          if (err) {
+            console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 doFinal failed, error code: ${err.code}, msg: ${err.message}`);
+            expect(false).assertTrue();
+          } else {
+            console.info(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 result: ${macOutput}`);
+            expect(macOutput).not().assertNull();
+          }
         });
+      } catch (e) {
+        const err: BusinessError = e as BusinessError;
+        console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0100 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      }
     });
 
     /**
@@ -1961,46 +1878,20 @@ export default function cryptoFrame() {
      * @tc.level     : Level 2
      */
     it('SUB_Security_Crypto_Framework_Mac_DoFinal_0200', 0, async () => {
-      KeyPairGenPromise.then((keyPair: cryptoFramework.KeyPair) => {
-        let priKey: cryptoFramework.PriKey = keyPair.priKey;
-        return signer.init(priKey);
-      })
-        .then(() => {
-          return signer.update(input1);
-        })
-        .then(() => {
-          return signer.sign(input2);
-        })
-        .then((dataBlob: cryptoFramework.DataBlob) => {
-          let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
-          console.info(`SUB_Security_Crypto_Framework_Mac_DoFinal_0200 Mac algName is: ${mac.algName}`);
-          let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-          let promiseConvertKey: Promise<cryptoFramework.SymKey> = symKeyGenerator.convertKey(dataBlob);
-          promiseConvertKey.then((symKey: cryptoFramework.SymKey) => {
-            let promiseMacInit: Promise<void> = mac.init(symKey);
-            return promiseMacInit;
-          })
-            .then(() => {
-              let promiseMacUpdate: Promise<void> = mac.update(dataBlob);
-              return promiseMacUpdate;
-            })
-            .then(() => {
-              let promiseMacDoFinal: Promise<cryptoFramework.DataBlob> = mac.doFinal();
-              return promiseMacDoFinal;
-            })
-            .then((macOutput: cryptoFramework.DataBlob) => {
-              console.info(`SUB_Security_Crypto_Framework_Mac_DoFinal_0200 result: ${macOutput.data}`);
-              expect(macOutput.data).not().assertNull();
-            })
-            .catch((error: BusinessError) => {
-              console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0200 failed, error code: ${error.code}, msg: ${error.message}`);
-              expect(false).assertTrue();
-            });
-        })
-        .catch((err: BusinessError) => {
-          console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0200 failed, error code: ${err.code}, msg: ${err.message}`);
-          expect(false).assertTrue();
-        });
+      try {
+        let keyMaterialBlob: cryptoFramework.DataBlob = getDataBlob();
+        let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
+        let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator('AES192');
+        const symKey: cryptoFramework.SymKey = await symKeyGenerator.convertKey(keyMaterialBlob);
+        await mac.init(symKey);
+        await mac.update(keyMaterialBlob);
+        const macOutput: cryptoFramework.DataBlob = await mac.doFinal();
+        expect(macOutput).not().assertNull();
+      } catch (e) {
+        const err: BusinessError = e as BusinessError;
+        console.error(`SUB_Security_Crypto_Framework_Mac_DoFinal_0200 failed, error code: ${err.code}, msg: ${err.message}`);
+        expect(false).assertTrue();
+      }
     });
 
     /**
@@ -2012,24 +1903,19 @@ export default function cryptoFrame() {
      * @tc.level     : Level 2
      */
     it('SUB_Security_Crypto_Framework_Mac_Get_Mac_Length_0100', 0, async () => {
-      asyKeyGenerator.generateKeyPair().then(async (keyPair: cryptoFramework.KeyPair) => {
-        let priKey: cryptoFramework.PriKey = keyPair.priKey;
-        const signer: cryptoFramework.Sign = cryptoFramework.createSign("ECC256|SHA256");
-        await signer.init(priKey);
-        await signer.update(input1);
-        const dataBlob: cryptoFramework.DataBlob = await signer.sign(input2);
+      try {
+        let keyMaterialBlob: cryptoFramework.DataBlob = getDataBlob();
         let mac: cryptoFramework.Mac = cryptoFramework.createMac("SHA256");
-        let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator("AES128");
-        const sym_key: cryptoFramework.SymKey = await symKeyGenerator.convertKey(dataBlob);
-        await mac.init(sym_key);
-        await mac.update(dataBlob);
-        let macLen: number = mac.getMacLength();
-        console.info(`SUB_Security_Crypto_Framework_Mac_Get_Mac_Length_0100 macLen ${macLen}`);
-        expect(macLen).not().assertNaN();
-      }).catch((err: BusinessError) => {
+        let symKeyGenerator: cryptoFramework.SymKeyGenerator = cryptoFramework.createSymKeyGenerator('AES192');
+        const symKey: cryptoFramework.SymKey = await symKeyGenerator.convertKey(keyMaterialBlob);
+        await mac.init(symKey);
+        const len: number = mac.getMacLength();
+        expect(len).not().assertNull();
+      } catch (e) {
+        const err: BusinessError = e as BusinessError;
         console.error(`SUB_Security_Crypto_Framework_Mac_Get_Mac_Length_0100 failed, error code: ${err.code}, msg: ${err.message}`);
         expect(false).assertTrue();
-      });
+      }
     });
 
     /**
