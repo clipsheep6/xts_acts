@@ -127,7 +127,7 @@ export struct WebContent {
           Button('ACCESS_STEP')
             .id('ACCESS_STEP')
             .onClick(async e => {
-              const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
+              const value: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
                 title: '请选择',
                 buttons: [
                   {
@@ -154,7 +154,7 @@ export struct WebContent {
             .onClick(async e => {
               const result: string = await this.controller.runJavaScript('jumpToAlert()')
               this.ON_EVENT_VALUE = result
-              const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
+              const value: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
                 title: '请选择',
                 buttons: [
                   {
@@ -184,7 +184,7 @@ export struct WebContent {
             .size({ height: 20 })
           Button('access')
             .onClick(async e => {
-              const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
+              const value: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
                 title: 'access',
                 buttons: [
                   {
@@ -249,7 +249,7 @@ export struct WebContent {
         if (this.htmlName.includes('example')) {
           Button('CONFIG')
             .onClick(async e => {
-              const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
+              const value: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
                 title: 'configCookie',
                 buttons: [
                   {
@@ -284,7 +284,7 @@ export struct WebContent {
             .size({ height: 20 })
           Button('FETCH')
             .onClick(async e => {
-              const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
+              const value: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
                 title: 'fetchCookie',
                 buttons: [
                   {
@@ -323,7 +323,7 @@ export struct WebContent {
           Button('CLEAR_ALL')
             .onClick(async e => {
               this.ON_EVENT_VALUE = 'clear all'
-              const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
+              const value: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
                 title: 'clearAllCookies',
                 buttons: [
                   {

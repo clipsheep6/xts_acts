@@ -22,6 +22,10 @@
 	<string>6.0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>camera</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>microphone</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
 	<key>UILaunchStoryboardName</key>

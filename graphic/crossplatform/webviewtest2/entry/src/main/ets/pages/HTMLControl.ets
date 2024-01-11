@@ -1,5 +1,5 @@
 import web_view from '@ohos.web.webview';
-import business_error from '@ohos.base';
+import business_error, { BusinessError } from '@ohos.base';
 import promptAction from '@ohos.promptAction';
 import MY_TABS from '../datasource/ControllerTabContentData'
 import { MyTabContent } from '../beans/MyTabContent';
@@ -125,7 +125,7 @@ struct Controller {
               .onClick(async e => {
                 let x: number = 0
                 let y: number = 0
-                const type: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
+                const type: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
                   title: '请选择滚动方式',
                   buttons: [
                     {
@@ -139,7 +139,7 @@ struct Controller {
                   ]
                 })
                 const typeValue: number = type.index
-                const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
+                const value: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
                   title: '请选择滚动精度',
                   buttons: [
                     {
@@ -171,7 +171,7 @@ struct Controller {
               .onClick(async e => {
                 const x: number = this.getRandomNum(0, 1000)
                 const y: number = this.getRandomNum(0, 1000)
-                const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
+                const value: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
                   title: '请选择滚动方式',
                   buttons: [
                     {
@@ -196,7 +196,7 @@ struct Controller {
               .size({ height: 20 })
             Button('setUserAgent')
               .onClick(async e => {
-                const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
+                const value: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
                   title: '请选择自定义用户代理信息',
                   buttons: [
                     {
@@ -226,7 +226,7 @@ struct Controller {
               .size({ height: 20 })
             Button('scrollable')
               .onClick(async e => {
-                const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
+                const value: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
                   title: '请选择显示或隐藏',
                   buttons: [
                     {
@@ -272,7 +272,7 @@ struct Controller {
             Button('Zoom Precise')
               .id('ZoomPrecise')
               .onClick(async e => {
-                const type: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
+                const type: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
                   title: '请选择缩放比例',
                   buttons: [
                     {
@@ -367,8 +367,15 @@ struct Controller {
               }
             })
             .onControllerAttached(() => {
-              this.MY_TO_STRING = 'index_controller.html'
-              this.MY_COUNT = `id: ${this.web_controller.getWebId()}`
+              try {
+                this.MY_TO_STRING = 'index_controller.html';
+                const id: number = this.web_controller.getWebId();
+                this.MY_COUNT = `id: ${id}`;
+              } catch (e) {
+                const error: BusinessError = e as BusinessError;
+                this.MY_COUNT = `id: 0`;
+                console.error(`获取WebId失败，error code: ${error.code}, msg: ${error.message}`)
+              }
             })
         }
         .height('300vp')

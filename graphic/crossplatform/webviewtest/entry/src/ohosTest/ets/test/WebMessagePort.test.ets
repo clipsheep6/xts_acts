@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import {
   describe,
   it,
@@ -26,7 +41,13 @@ export default function WebMessagePortTest() {
      */
     beforeEach(async () => {
       const driver: Driver = Driver.create();
-      await driver.delayMs(waitUiReadyMs * 2);
+      await driver.delayMs(waitUiReadyMs);
+      const CHANGE_TABS: Component = await driver.findComponent(ON.text('设置页签'));
+      await CHANGE_TABS.click();
+      await driver.delayMs(waitUiReadyMs);
+      const TAB: Component = await driver.findComponent(ON.text('Goto WebMessagePort'));
+      await TAB.click();
+      await driver.delayMs(2000);
     });
 
     /**
@@ -56,12 +77,6 @@ export default function WebMessagePortTest() {
       console.log('SUB_Web_WebView_Create_Web_Message_Ports_Func_0100 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
-      const CHANGE_TABS: Component = await driver.findComponent(ON.text('设置页签'));
-      await CHANGE_TABS.click();
-      await driver.delayMs(waitUiReadyMs);
-      const TAB: Component = await driver.findComponent(ON.text('Goto WebMessagePort'));
-      await TAB.click();
-      await driver.delayMs(4000);
       const CREATE: Component = await driver.findComponent(ON.text('createPorts'));
       await CREATE.click();
       await driver.delayMs(waitUiReadyMs);
@@ -84,6 +99,9 @@ export default function WebMessagePortTest() {
       console.log('SUB_Web_WebView_Post_Message_Func_0100 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const CREATE: Component = await driver.findComponent(ON.text('createPorts'));
+      await CREATE.click();
+      await driver.delayMs(waitUiReadyMs);
       const POST_MSG: Component = await driver.findComponent(ON.text('postMessage'));
       await POST_MSG.click();
       await driver.delayMs(waitUiReadyMs);
@@ -105,6 +123,12 @@ export default function WebMessagePortTest() {
     it('SUB_Web_WebView_Post_Message_Event_Func_0100', 0, async () => {
       console.log('SUB_Web_WebView_Post_Message_Event_Func_0100 test start');
       const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const CREATE: Component = await driver.findComponent(ON.text('createPorts'));
+      await CREATE.click();
+      await driver.delayMs(waitUiReadyMs);
+      const POST_MSG: Component = await driver.findComponent(ON.text('postMessage'));
+      await POST_MSG.click();
       await driver.delayMs(waitUiReadyMs);
       const SEND: Component = await driver.findComponent(ON.text('SendToHTML'));
       await SEND.click();
@@ -134,6 +158,12 @@ export default function WebMessagePortTest() {
       console.log('SUB_Web_WebView_Post_Message_Event_Func_0200 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const CREATE: Component = await driver.findComponent(ON.text('createPorts'));
+      await CREATE.click();
+      await driver.delayMs(waitUiReadyMs);
+      const POST_MSG: Component = await driver.findComponent(ON.text('postMessage'));
+      await POST_MSG.click();
+      await driver.delayMs(waitUiReadyMs);
       const SEND: Component = await driver.findComponent(ON.text('SendToHTML'));
       await SEND.click();
       await driver.delayMs(waitUiReadyMs);
@@ -162,6 +192,12 @@ export default function WebMessagePortTest() {
       console.log('SUB_Web_WebView_On_Message_Event_Func_0100 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const CREATE: Component = await driver.findComponent(ON.text('createPorts'));
+      await CREATE.click();
+      await driver.delayMs(waitUiReadyMs);
+      const POST_MSG: Component = await driver.findComponent(ON.text('postMessage'));
+      await POST_MSG.click();
+      await driver.delayMs(waitUiReadyMs);
       const TRIGGER: Component = await driver.findComponent(ON.text('TRIGGER'));
       await TRIGGER.click();
       await driver.delayMs(waitUiReadyMs);
@@ -183,6 +219,15 @@ export default function WebMessagePortTest() {
     it('SUB_Web_WebView_Close_Func_0100', 0, async () => {
       console.log('SUB_Web_WebView_Close_Func_0100 test start');
       const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const CREATE: Component = await driver.findComponent(ON.text('createPorts'));
+      await CREATE.click();
+      await driver.delayMs(waitUiReadyMs);
+      const POST_MSG: Component = await driver.findComponent(ON.text('postMessage'));
+      await POST_MSG.click();
+      await driver.delayMs(waitUiReadyMs);
+      const TRIGGER: Component = await driver.findComponent(ON.text('TRIGGER'));
+      await TRIGGER.click();
       await driver.delayMs(waitUiReadyMs);
       const CLOSE: Component = await driver.findComponent(ON.text('close'));
       await CLOSE.click();

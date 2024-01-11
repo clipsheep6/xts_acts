@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import {
   describe,
   it,
@@ -27,6 +42,12 @@ export default function PageJumpTest() {
     beforeEach(async () => {
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const CHANGE_TABS: Component = await driver.findComponent(ON.text('设置页签'));
+      await CHANGE_TABS.click();
+      await driver.delayMs(waitUiReadyMs);
+      const TAB: Component = await driver.findComponent(ON.text('Goto accessStep'));
+      await TAB.click();
+      await driver.delayMs(waitUiReadyMs);
     });
 
     /**
@@ -55,15 +76,6 @@ export default function PageJumpTest() {
     it('SUB_Web_WebView_Access_Step_Func_0100', 0, async () => {
       console.log('SUB_Web_WebView_Access_Step_Func_0100 test start');
       const driver: Driver = Driver.create();
-      await driver.delayMs(waitUiReadyMs);
-      const CHANGE_TABS: Component = await driver.findComponent(ON.text('设置页签'));
-      await CHANGE_TABS.click();
-      await driver.delayMs(waitUiReadyMs);
-      const TAB: Component = await driver.findComponent(ON.text('Goto accessStep'));
-      await TAB.click();
-      await driver.delayMs(waitUiReadyMs * 2);
-      const UA: Component = await driver.findComponent(ON.text('UA'));
-      await UA.click();
       await driver.delayMs(waitUiReadyMs);
       const ON_EVENT_URL: Component = await driver.findComponent(ON.id('ON_EVENT_URL'));
       const url: string = await ON_EVENT_URL.getText();
@@ -139,6 +151,8 @@ export default function PageJumpTest() {
       const TRIGGER: Component = await driver.findComponent(ON.text('TRIGGER'));
       await TRIGGER.click();
       await driver.delayMs(waitUiReadyMs);
+      await TRIGGER.click();
+      await driver.delayMs(waitUiReadyMs);
       const ON_EVENT_URL: Component = await driver.findComponent(ON.id('ON_EVENT_URL'));
       const url: string = await ON_EVENT_URL.getText();
       expect(url).assertContain('page_visible');
@@ -177,6 +191,14 @@ export default function PageJumpTest() {
     it('SUB_Web_WebView_Clear_History_Func_0100', 0, async () => {
       console.log('SUB_Web_WebView_Clear_History_Func_0100 test start');
       const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const UA: Component = await driver.findComponent(ON.text('UA'));
+      await UA.click();
+      await driver.delayMs(waitUiReadyMs);
+      const TRIGGER: Component = await driver.findComponent(ON.text('TRIGGER'));
+      await TRIGGER.click();
+      await driver.delayMs(waitUiReadyMs);
+      await TRIGGER.click();
       await driver.delayMs(waitUiReadyMs);
       const ON_EVENT_URL: Component = await driver.findComponent(ON.id('ON_EVENT_URL'));
       let url: string = await ON_EVENT_URL.getText();
@@ -278,6 +300,9 @@ export default function PageJumpTest() {
       console.log('SUB_Web_WebView_Get_Back_Forward_Entries_Func_0100 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const UA: Component = await driver.findComponent(ON.text('UA'));
+      await UA.click();
+      await driver.delayMs(waitUiReadyMs);
       const USER_AGENT: Component = await driver.findComponent(ON.id('USER_AGENT'));
       const uaText: string = await USER_AGENT.getText();
       if (uaText.includes('OpenHarmony') || uaText.includes('Android')) {
@@ -294,6 +319,9 @@ export default function PageJumpTest() {
         const value: string = await ON_EVENT_VALUE.getText();
         expect(Number(value)).assertEqual(2);
       } else {
+        const TRIGGER: Component = await driver.findComponent(ON.text('TRIGGER'));
+        await TRIGGER.click();
+        await driver.delayMs(waitUiReadyMs);
         const HISTORY_LIST: Component = await driver.findComponent(ON.text('History_LIST'));
         await HISTORY_LIST.click();
         await driver.delayMs(waitUiReadyMs);
@@ -316,6 +344,9 @@ export default function PageJumpTest() {
     it('SUB_Web_WebView_Get_Back_Forward_Entries_Func_0200', 0, async () => {
       console.log('SUB_Web_WebView_Get_Back_Forward_Entries_Func_0200 test start');
       const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const UA: Component = await driver.findComponent(ON.text('UA'));
+      await UA.click();
       await driver.delayMs(waitUiReadyMs);
       const USER_AGENT: Component = await driver.findComponent(ON.id('USER_AGENT'));
       const uaText: string = await USER_AGENT.getText();
@@ -359,9 +390,6 @@ export default function PageJumpTest() {
     it('SUB_Web_WebView_Get_Title_Func_0100', 0, async () => {
       console.log('SUB_Web_WebView_Get_Title_Func_0100 test start');
       const driver: Driver = Driver.create();
-      await driver.delayMs(waitUiReadyMs);
-      const TRIGGER: Component = await driver.findComponent(ON.text('TRIGGER'));
-      await TRIGGER.click();
       await driver.delayMs(waitUiReadyMs);
       const GET_TITLE_BUTTON: Component = await driver.findComponent(ON.text('GET_TITLE'));
       await GET_TITLE_BUTTON.click();
@@ -409,9 +437,6 @@ export default function PageJumpTest() {
     it('SUB_Web_WebView_On_Title_Receive_Func_0100', 0, async () => {
       console.log('SUB_Web_WebView_On_Title_Receive_Func_0100 test start');
       const driver: Driver = Driver.create();
-      await driver.delayMs(waitUiReadyMs);
-      const TRIGGER: Component = await driver.findComponent(ON.text('TRIGGER'));
-      await TRIGGER.click();
       await driver.delayMs(waitUiReadyMs);
       const GET_TITLE_BUTTON: Component = await driver.findComponent(ON.text('GET_TITLE'));
       await GET_TITLE_BUTTON.click();
@@ -475,6 +500,9 @@ export default function PageJumpTest() {
       let ON_EVENT_URL: Component = await driver.findComponent(ON.id('ON_EVENT_URL'));
       let url: string = await ON_EVENT_URL.getText();
       expect(url).assertContain('page');
+      const TRIGGER: Component = await driver.findComponent(ON.text('TRIGGER'));
+      await TRIGGER.click();
+      await driver.delayMs(waitUiReadyMs);
       const FORWARD: Component = await driver.findComponent(ON.text('forward'));
       await FORWARD.click();
       await driver.delayMs(waitUiReadyMs);
@@ -496,6 +524,9 @@ export default function PageJumpTest() {
     it('SUB_Web_WebView_Access_Backward_Func_0100', 0, async () => {
       console.log('SUB_Web_WebView_Access_Backward_Func_0100 test start');
       const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const TRIGGER: Component = await driver.findComponent(ON.text('TRIGGER'));
+      await TRIGGER.click();
       await driver.delayMs(waitUiReadyMs);
       const ACCESS: Component = await driver.findComponent(ON.text('access'));
       await ACCESS.click();
@@ -521,6 +552,9 @@ export default function PageJumpTest() {
     it('SUB_Web_WebView_Backward_Func_0100', 0, async () => {
       console.log('SUB_Web_WebView_Backward_Func_0100 test start');
       const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const TRIGGER: Component = await driver.findComponent(ON.text('TRIGGER'));
+      await TRIGGER.click();
       await driver.delayMs(waitUiReadyMs);
       let ON_EVENT_URL: Component = await driver.findComponent(ON.id('ON_EVENT_URL'));
       let url: string = await ON_EVENT_URL.getText();

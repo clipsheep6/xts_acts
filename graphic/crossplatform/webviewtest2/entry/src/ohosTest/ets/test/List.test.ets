@@ -12,18 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import OnControllerAttachedTest from './OnControllerAttached.test'
-import ZoomTest from './Zoom.test'
-import StopTest from './Stop.test'
-import ScrollTest from './Scroll.test'
-import PageJumpTest from './PageJump.test'
-import CookieManagerTest from './CookieManager.test'
+
+import OnControllerAttachedTest from './OnControllerAttached.test';
+import ZoomTest from './Zoom.test';
+import StopTest from './Stop.test';
+import ScrollTest from './Scroll.test';
+import PageJumpTest from './PageJump.test';
+import CookieManagerTest from './CookieManager.test';
 
 export default function testsuite() {
-  OnControllerAttachedTest()
-  ZoomTest()
-  StopTest()
-  ScrollTest()
-  PageJumpTest()
-  CookieManagerTest()
+  PageJumpTest();
+  OnControllerAttachedTest();
+  ZoomTest();
+  StopTest();
+  ScrollTest();
+  CookieManagerTest();
 }

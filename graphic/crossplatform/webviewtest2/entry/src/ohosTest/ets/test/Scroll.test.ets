@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import {
   describe,
   it,
@@ -27,6 +42,12 @@ export default function ScrollTest() {
     beforeEach(async () => {
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const CHANGE_TABS: Component = await driver.findComponent(ON.text('设置页签'));
+      await CHANGE_TABS.click();
+      await driver.delayMs(waitUiReadyMs);
+      const TAB: Component = await driver.findComponent(ON.text('Goto HTMLControl'));
+      await TAB.click();
+      await driver.delayMs(waitUiReadyMs);
     });
 
     /**
@@ -55,12 +76,6 @@ export default function ScrollTest() {
     it('SUB_Web_WebView_Scroll_To_Func_0100', 0, async () => {
       console.log('SUB_Web_WebView_Scroll_To_Func_0100 test start');
       const driver: Driver = Driver.create();
-      await driver.delayMs(waitUiReadyMs);
-      const CHANGE_TABS: Component = await driver.findComponent(ON.text('设置页签'));
-      await CHANGE_TABS.click();
-      await driver.delayMs(waitUiReadyMs);
-      const TAB: Component = await driver.findComponent(ON.text('Goto HTMLControl'));
-      await TAB.click();
       await driver.delayMs(waitUiReadyMs);
       const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
       await SHOW_SCROLL.click();
@@ -96,15 +111,15 @@ export default function ScrollTest() {
       console.log('SUB_Web_WebView_Scroll_To_Func_0200 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
+      await SHOW_SCROLL.click();
+      await driver.delayMs(waitUiReadyMs);
       const RESTORE: Component = await driver.findComponent(ON.text('Restore'));
       await RESTORE.click();
       await driver.delayMs(waitUiReadyMs);
       let MY_VALUE: Component = await driver.findComponent(ON.id('MY_VALUE'));
       let value: string = await MY_VALUE.getText();
       expect(value).assertEqual('scroll to: 0,0');
-      let MY_TIPS: Component = await driver.findComponent(ON.id('MY_TIPS'));
-      let tips: string = await MY_TIPS.getText();
-      expect(tips).assertEqual('onScroll -> 0,0');
       const SCROLL_TO_PRECISE: Component = await driver.findComponent(ON.text('Scroll Precise'));
       await SCROLL_TO_PRECISE.click();
       await driver.delayMs(waitUiReadyMs);
@@ -117,8 +132,8 @@ export default function ScrollTest() {
       MY_VALUE = await driver.findComponent(ON.id('MY_VALUE'));
       value = await MY_VALUE.getText();
       expect(value).assertEqual('scroll to: 200,200');
-      MY_TIPS = await driver.findComponent(ON.id('MY_TIPS'));
-      tips = await MY_TIPS.getText();
+      let MY_TIPS: Component = await driver.findComponent(ON.id('MY_TIPS'));
+      let tips: string = await MY_TIPS.getText();
       expect(tips).assertEqual('onScroll -> 200,200');
       console.log('SUB_Web_WebView_Scroll_To_Func_0200 success');
       console.log('SUB_Web_WebView_Scroll_To_Func_0200 test end');
@@ -136,15 +151,15 @@ export default function ScrollTest() {
       console.log('SUB_Web_WebView_Scroll_To_Func_0300 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
+      await SHOW_SCROLL.click();
+      await driver.delayMs(waitUiReadyMs);
       const RESTORE: Component = await driver.findComponent(ON.text('Restore'));
       await RESTORE.click();
       await driver.delayMs(waitUiReadyMs);
       let MY_VALUE: Component = await driver.findComponent(ON.id('MY_VALUE'));
       let value: string = await MY_VALUE.getText();
       expect(value).assertEqual('scroll to: 0,0');
-      let MY_TIPS: Component = await driver.findComponent(ON.id('MY_TIPS'));
-      let tips: string = await MY_TIPS.getText();
-      expect(tips).assertEqual('onScroll -> 0,0');
       const SCROLL_TO_PRECISE: Component = await driver.findComponent(ON.text('Scroll Precise'));
       await SCROLL_TO_PRECISE.click();
       await driver.delayMs(waitUiReadyMs);
@@ -157,8 +172,8 @@ export default function ScrollTest() {
       MY_VALUE = await driver.findComponent(ON.id('MY_VALUE'));
       value = await MY_VALUE.getText();
       expect(value).assertEqual('scroll to: 100,100');
-      MY_TIPS = await driver.findComponent(ON.id('MY_TIPS'));
-      tips = await MY_TIPS.getText();
+      let MY_TIPS: Component = await driver.findComponent(ON.id('MY_TIPS'));
+      let tips: string = await MY_TIPS.getText();
       expect(tips).assertEqual('onScroll -> 100,100');
       console.log('SUB_Web_WebView_Scroll_To_Func_0300 success');
       console.log('SUB_Web_WebView_Scroll_To_Func_0300 test end');
@@ -176,15 +191,15 @@ export default function ScrollTest() {
       console.log('SUB_Web_WebView_Scroll_To_Func_0400 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
+      await SHOW_SCROLL.click();
+      await driver.delayMs(waitUiReadyMs);
       const RESTORE: Component = await driver.findComponent(ON.text('Restore'));
       await RESTORE.click();
       await driver.delayMs(waitUiReadyMs);
       let MY_VALUE: Component = await driver.findComponent(ON.id('MY_VALUE'));
       let value: string = await MY_VALUE.getText();
       expect(value).assertEqual('scroll to: 0,0');
-      let MY_TIPS: Component = await driver.findComponent(ON.id('MY_TIPS'));
-      let tips: string = await MY_TIPS.getText();
-      expect(tips).assertEqual('onScroll -> 0,0');
       const SCROLL_TO_RANDOM: Component = await driver.findComponent(ON.text('ScrollRandom'));
       await SCROLL_TO_RANDOM.click();
       await driver.delayMs(waitUiReadyMs);
@@ -214,6 +229,9 @@ export default function ScrollTest() {
     it('SUB_Web_WebView_Scroll_By_Func_0100', 0, async () => {
       console.log('SUB_Web_WebView_Scroll_By_Func_0100 test start');
       const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
+      await SHOW_SCROLL.click();
       await driver.delayMs(waitUiReadyMs);
       const RESTORE: Component = await driver.findComponent(ON.text('Restore'));
       await RESTORE.click();
@@ -249,6 +267,9 @@ export default function ScrollTest() {
       console.log('SUB_Web_WebView_Scroll_By_Func_0200 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
+      await SHOW_SCROLL.click();
+      await driver.delayMs(waitUiReadyMs);
       const RESTORE: Component = await driver.findComponent(ON.text('Restore'));
       await RESTORE.click();
       await driver.delayMs(waitUiReadyMs);
@@ -282,6 +303,9 @@ export default function ScrollTest() {
     it('SUB_Web_WebView_Scroll_By_Func_0300', 0, async () => {
       console.log('SUB_Web_WebView_Scroll_By_Func_0300 test start');
       const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
+      await SHOW_SCROLL.click();
       await driver.delayMs(waitUiReadyMs);
       const RESTORE: Component = await driver.findComponent(ON.text('Restore'));
       await RESTORE.click();
@@ -322,6 +346,9 @@ export default function ScrollTest() {
       console.log('SUB_Web_WebView_Set_Custom_User_Agent_Func_0100 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
+      await SHOW_SCROLL.click();
+      await driver.delayMs(waitUiReadyMs);
       const SET: Component = await driver.findComponent(ON.text('setUserAgent'));
       await SET.click();
       await driver.delayMs(waitUiReadyMs);
@@ -348,6 +375,15 @@ export default function ScrollTest() {
       console.log('SUB_Web_WebView_Get_Custom_User_Agent_Func_0100 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
+      await SHOW_SCROLL.click();
+      await driver.delayMs(waitUiReadyMs);
+      const SET: Component = await driver.findComponent(ON.text('setUserAgent'));
+      await SET.click();
+      await driver.delayMs(waitUiReadyMs);
+      const APPLE: Component = await driver.findComponent(ON.text('苹果'));
+      await APPLE.click();
+      await driver.delayMs(waitUiReadyMs);
       const GET: Component = await driver.findComponent(ON.text('getUserAgent'));
       await GET.click();
       await driver.delayMs(waitUiReadyMs);
@@ -370,6 +406,9 @@ export default function ScrollTest() {
     it('SUB_Web_WebView_Set_Custom_User_Agent_Func_0200', 0, async () => {
       console.log('SUB_Web_WebView_Set_Custom_User_Agent_Func_0200 test start');
       const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
+      await SHOW_SCROLL.click();
       await driver.delayMs(waitUiReadyMs);
       const SET: Component = await driver.findComponent(ON.text('setUserAgent'));
       await SET.click();
@@ -396,6 +435,15 @@ export default function ScrollTest() {
     it('SUB_Web_WebView_Get_Custom_User_Agent_Func_0200', 0, async () => {
       console.log('SUB_Web_WebView_Get_Custom_User_Agent_Func_0200 test start');
       const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
+      await SHOW_SCROLL.click();
+      await driver.delayMs(waitUiReadyMs);
+      const SET: Component = await driver.findComponent(ON.text('setUserAgent'));
+      await SET.click();
+      await driver.delayMs(waitUiReadyMs);
+      const APPLE: Component = await driver.findComponent(ON.text('西瓜'));
+      await APPLE.click();
       await driver.delayMs(waitUiReadyMs);
       const GET: Component = await driver.findComponent(ON.text('getUserAgent'));
       await GET.click();

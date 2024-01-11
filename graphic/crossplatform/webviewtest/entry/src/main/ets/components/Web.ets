@@ -230,7 +230,7 @@ export struct WebContent {
           Button('SendToHTML')
             .onClick(async e => {
               if (this.ports && this.ports.length == 2) {
-                const value: promptAction.ActionMenuSuccessResponse = await promptAction.showActionMenu({
+                const value: promptAction.ShowDialogSuccessResponse = await promptAction.showDialog({
                   title: '请选择发送的消息',
                   buttons: [
                     {

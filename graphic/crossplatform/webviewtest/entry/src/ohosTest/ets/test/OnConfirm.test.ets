@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import {
   describe,
   it,
@@ -27,6 +42,12 @@ export default function OnConfirmTest() {
     beforeEach(async () => {
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const CHANGE_TABS: Component = await driver.findComponent(ON.text('设置页签'));
+      await CHANGE_TABS.click();
+      await driver.delayMs(waitUiReadyMs);
+      const TAB: Component = await driver.findComponent(ON.text('Goto onConfirm'));
+      await TAB.click();
+      await driver.delayMs(2000);
     });
 
     /**
@@ -56,14 +77,11 @@ export default function OnConfirmTest() {
       console.log('SUB_Web_WebView_On_Confirm_Func_0100 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
-      const CHANGE_TABS: Component = await driver.findComponent(ON.text('设置页签'));
-      await CHANGE_TABS.click();
-      await driver.delayMs(waitUiReadyMs);
-      const TAB: Component = await driver.findComponent(ON.text('Goto onConfirm'));
-      await TAB.click();
-      await driver.delayMs(2000);
       const TRIGGER_BUTTON: Component = await driver.findComponent(ON.text('TRIGGER'));
       await TRIGGER_BUTTON.click();
+      await driver.delayMs(waitUiReadyMs);
+      const secondaryButton: Component = await driver.findComponent(ON.text('ok'));
+      await secondaryButton.click();
       await driver.delayMs(waitUiReadyMs);
       const ON_CONFIRM_EVENT_URL: Component = await driver.findComponent(ON.id('ON_EVENT_URL'));
       const text: string = await ON_CONFIRM_EVENT_URL.getText();
@@ -85,6 +103,12 @@ export default function OnConfirmTest() {
       console.log('SUB_Web_WebView_On_Confirm_Func_0200 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const TRIGGER_BUTTON: Component = await driver.findComponent(ON.text('TRIGGER'));
+      await TRIGGER_BUTTON.click();
+      await driver.delayMs(waitUiReadyMs);
+      const secondaryButton: Component = await driver.findComponent(ON.text('ok'));
+      await secondaryButton.click();
+      await driver.delayMs(waitUiReadyMs);
       const ON_CONFIRM_EVENT_MESSAGE: Component = await driver.findComponent(ON.id('ON_EVENT_MESSAGE'));
       const msg: string = await ON_CONFIRM_EVENT_MESSAGE.getText();
       console.log(`SUB_Web_WebView_On_Confirm_Func_0200 ON_CONFIRM_EVENT_MESSAGE: ${msg}`);
@@ -104,6 +128,9 @@ export default function OnConfirmTest() {
     it('SUB_Web_WebView_On_Confirm_Func_0300', 0, async () => {
       console.log('SUB_Web_WebView_On_Confirm_Func_0300 test start');
       const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const TRIGGER_BUTTON: Component = await driver.findComponent(ON.text('TRIGGER'));
+      await TRIGGER_BUTTON.click();
       await driver.delayMs(waitUiReadyMs);
       const secondaryButton: Component = await driver.findComponent(ON.text('ok'));
       await secondaryButton.click();
@@ -153,6 +180,12 @@ export default function OnConfirmTest() {
     it('SUB_Web_WebView_On_Console_Func_0200', 0, async () => {
       console.log('ON_CONSOLE_TEST_001 test start');
       const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const TRIGGER_BUTTON: Component = await driver.findComponent(ON.text('TRIGGER'));
+      await TRIGGER_BUTTON.click();
+      await driver.delayMs(waitUiReadyMs);
+      const secondaryButton: Component = await driver.findComponent(ON.text('ok'));
+      await secondaryButton.click();
       await driver.delayMs(waitUiReadyMs);
       const ON_EVENT_VALUE: Component = await driver.findComponent(ON.id('ON_EVENT_VALUE'));
       const value: string = await ON_EVENT_VALUE.getText();

@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { describe, it, expect, beforeAll, beforeEach, afterEach, afterAll, } from '@ohos/hypium';
 import { Driver, ON, Component } from '@ohos.UiTest';
 import { startAbility, stopAbility, waitUiReadyMs } from '../utils/index';
@@ -19,6 +34,12 @@ export default function CookieManagerTest() {
     beforeEach(async () => {
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const CHANGE_TABS: Component = await driver.findComponent(ON.text('设置页签'));
+      await CHANGE_TABS.click();
+      await driver.delayMs(waitUiReadyMs);
+      const TAB: Component = await driver.findComponent(ON.text('Goto operation'));
+      await TAB.click();
+      await driver.delayMs(2000);
     });
 
     /**
@@ -85,12 +106,6 @@ export default function CookieManagerTest() {
       console.log('SUB_Web_WebView_Config_Cookie_Func_0100 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
-      const CHANGE_TABS: Component = await driver.findComponent(ON.text('设置页签'));
-      await CHANGE_TABS.click();
-      await driver.delayMs(waitUiReadyMs);
-      const TAB: Component = await driver.findComponent(ON.text('Goto operation'));
-      await TAB.click();
-      await driver.delayMs(2000);
       const CONFIG_BUTTON: Component = await driver.findComponent(ON.text('CONFIG'));
       await CONFIG_BUTTON.click();
       await driver.delayMs(waitUiReadyMs);
@@ -117,25 +132,25 @@ export default function CookieManagerTest() {
       console.log('SUB_Web_WebView_Config_Cookie_Func_0200 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
-      const CLEAR_BUTTON: Component = await driver.findComponent(ON.text('CLEAR_ALL'));
-      await CLEAR_BUTTON.click();
+      let CONFIG_BUTTON: Component = await driver.findComponent(ON.text('CONFIG'));
+      await CONFIG_BUTTON.click();
       await driver.delayMs(waitUiReadyMs);
       let FUNC_TYPE: Component = await driver.findComponent(ON.text('promise'));
       await FUNC_TYPE.click();
       await driver.delayMs(waitUiReadyMs);
       let MY_VALUE: Component = await driver.findComponent(ON.id('ON_EVENT_VALUE'));
       let value: string = await MY_VALUE.getText();
-      expect(value).assertEqual('clear all');
-      const CONFIG_BUTTON: Component = await driver.findComponent(ON.text('CONFIG'));
-      await CONFIG_BUTTON.click();
+      expect(value).assertContain('config cookie success');
+      expect(value).assertContain('test=123');
+      const CLEAR_BUTTON: Component = await driver.findComponent(ON.text('CLEAR_ALL'));
+      await CLEAR_BUTTON.click();
       await driver.delayMs(waitUiReadyMs);
       FUNC_TYPE = await driver.findComponent(ON.text('promise'));
       await FUNC_TYPE.click();
       await driver.delayMs(waitUiReadyMs);
       MY_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'));
       value = await MY_VALUE.getText();
-      expect(value).assertContain('config cookie success');
-      expect(value).assertContain('test=123');
+      expect(value).assertEqual('clear all');
       console.log('SUB_Web_WebView_Config_Cookie_Func_0200 success');
       console.log('SUB_Web_WebView_Config_Cookie_Func_0200 test end');
     });
@@ -152,10 +167,16 @@ export default function CookieManagerTest() {
       console.log('SUB_Web_WebView_Fetch_Cookie_Func_0100 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      let CONFIG_BUTTON: Component = await driver.findComponent(ON.text('CONFIG'));
+      await CONFIG_BUTTON.click();
+      await driver.delayMs(waitUiReadyMs);
+      let FUNC_TYPE: Component = await driver.findComponent(ON.text('callback'));
+      await FUNC_TYPE.click();
+      await driver.delayMs(waitUiReadyMs);
       const FETCH_BUTTON: Component = await driver.findComponent(ON.text('FETCH'));
       await FETCH_BUTTON.click();
       await driver.delayMs(waitUiReadyMs);
-      const FUNC_TYPE: Component = await driver.findComponent(ON.text('callback'));
+      FUNC_TYPE = await driver.findComponent(ON.text('callback'));
       await FUNC_TYPE.click();
       await driver.delayMs(waitUiReadyMs);
       const MY_VALUE: Component = await driver.findComponent(ON.id('ON_EVENT_VALUE'));
@@ -168,7 +189,7 @@ export default function CookieManagerTest() {
     /**
      * @tc.number: SUB_Web_WebView_Fetch_Cookie_Func_0200
      * @tc.name  : SUB_Web_WebView_Fetch_Cookie_Func_0200
-     * @tc.desc  : test whether the fetchCookie、clearAllCookies function is valid
+     * @tc.desc  : test whether the fetchCookie function is valid
      * @tc.size  : MediumTest
      * @tc.type  : Func
      * @tc.level : 2
@@ -177,29 +198,20 @@ export default function CookieManagerTest() {
       console.log('SUB_Web_WebView_Fetch_Cookie_Func_0200 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
-      const CLEAR_BUTTON: Component = await driver.findComponent(ON.text('CLEAR_ALL'));
-      await CLEAR_BUTTON.click();
-      await driver.delayMs(waitUiReadyMs);
-      let FUNC_TYPE: Component = await driver.findComponent(ON.text('callback'));
-      await FUNC_TYPE.click();
-      await driver.delayMs(waitUiReadyMs);
-      let MY_VALUE: Component = await driver.findComponent(ON.id('ON_EVENT_VALUE'));
-      let value: string = await MY_VALUE.getText();
-      expect(value).assertEqual('clear all');
-      const CONFIG_BUTTON: Component = await driver.findComponent(ON.text('CONFIG'));
+      let CONFIG_BUTTON: Component = await driver.findComponent(ON.text('CONFIG'));
       await CONFIG_BUTTON.click();
       await driver.delayMs(waitUiReadyMs);
-      FUNC_TYPE = await driver.findComponent(ON.text('callback'));
+      let FUNC_TYPE: Component = await driver.findComponent(ON.text('promise'));
       await FUNC_TYPE.click();
       await driver.delayMs(waitUiReadyMs);
       const FETCH_BUTTON: Component = await driver.findComponent(ON.text('FETCH'));
       await FETCH_BUTTON.click();
       await driver.delayMs(waitUiReadyMs);
-      FUNC_TYPE = await driver.findComponent(ON.text('callback'));
+      FUNC_TYPE = await driver.findComponent(ON.text('promise'));
       await FUNC_TYPE.click();
       await driver.delayMs(waitUiReadyMs);
-      MY_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'));
-      value = await MY_VALUE.getText();
+      let MY_VALUE: Component = await driver.findComponent(ON.id('ON_EVENT_VALUE'));
+      let value: string = await MY_VALUE.getText();
       expect(value).assertEqual('test=123');
       console.log('SUB_Web_WebView_Fetch_Cookie_Func_0200 success');
       console.log('SUB_Web_WebView_Fetch_Cookie_Func_0200 test end');
@@ -208,7 +220,7 @@ export default function CookieManagerTest() {
     /**
      * @tc.number: SUB_Web_WebView_Fetch_Cookie_Func_0300
      * @tc.name  : SUB_Web_WebView_Fetch_Cookie_Func_0300
-     * @tc.desc  : test whether the fetchCookie function is valid
+     * @tc.desc  : test whether the fetchCookie、clearAllCookie function is valid
      * @tc.size  : MediumTest
      * @tc.type  : Func
      * @tc.level : 2
@@ -217,19 +229,10 @@ export default function CookieManagerTest() {
       console.log('SUB_Web_WebView_Fetch_Cookie_Func_0300 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
-      const CLEAR_BUTTON: Component = await driver.findComponent(ON.text('CLEAR_ALL'));
-      await CLEAR_BUTTON.click();
-      await driver.delayMs(waitUiReadyMs);
-      let FUNC_TYPE: Component = await driver.findComponent(ON.text('promise'));
-      await FUNC_TYPE.click();
-      await driver.delayMs(waitUiReadyMs);
-      let MY_VALUE: Component = await driver.findComponent(ON.id('ON_EVENT_VALUE'));
-      let value: string = await MY_VALUE.getText();
-      expect(value).assertEqual('clear all');
-      const CONFIG_BUTTON: Component = await driver.findComponent(ON.text('CONFIG'));
+      let CONFIG_BUTTON: Component = await driver.findComponent(ON.text('CONFIG'));
       await CONFIG_BUTTON.click();
       await driver.delayMs(waitUiReadyMs);
-      FUNC_TYPE = await driver.findComponent(ON.text('promise'));
+      let FUNC_TYPE: Component = await driver.findComponent(ON.text('promise'));
       await FUNC_TYPE.click();
       await driver.delayMs(waitUiReadyMs);
       const FETCH_BUTTON: Component = await driver.findComponent(ON.text('FETCH'));
@@ -238,9 +241,18 @@ export default function CookieManagerTest() {
       FUNC_TYPE = await driver.findComponent(ON.text('promise'));
       await FUNC_TYPE.click();
       await driver.delayMs(waitUiReadyMs);
+      let MY_VALUE: Component = await driver.findComponent(ON.id('ON_EVENT_VALUE'));
+      let value: string = await MY_VALUE.getText();
+      expect(value).assertEqual('test=123');
+      const CLEAR_BUTTON: Component = await driver.findComponent(ON.text('CLEAR_ALL'));
+      await CLEAR_BUTTON.click();
+      await driver.delayMs(waitUiReadyMs);
+      FUNC_TYPE = await driver.findComponent(ON.text('promise'));
+      await FUNC_TYPE.click();
+      await driver.delayMs(waitUiReadyMs);
       MY_VALUE = await driver.findComponent(ON.id('ON_EVENT_VALUE'));
       value = await MY_VALUE.getText();
-      expect(value).assertEqual('test=123');
+      expect(value).assertEqual('clear all');
       console.log('SUB_Web_WebView_Fetch_Cookie_Func_0300 success');
       console.log('SUB_Web_WebView_Fetch_Cookie_Func_0300 test end');
     });

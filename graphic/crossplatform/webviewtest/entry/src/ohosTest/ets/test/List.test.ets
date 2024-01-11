@@ -12,24 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import OnAlertTest from './OnAlert.test'
-import OnConfirmTest from './OnConfirm.test'
-import OnPromptTest from './OnPrompt.test'
-import OnHttpAuthReqTest from './OnHttpAuthReq.test'
-import OnShowFileSelectorTest from './OnShowFileSelector.test'
-import OnPermissionReqTest from './OnPermissionReq.test'
-import OnPageVisibleTest from './OnPageVisible.test'
-import OnDownloadStart from './OnDownloadStart.test'
-import WebMessagePortTest from './WebMessagePort.test'
+
+import OnAlertTest from './OnAlert.test';
+import OnConfirmTest from './OnConfirm.test';
+import OnPromptTest from './OnPrompt.test';
+import OnHttpAuthReqTest from './OnHttpAuthReq.test';
+import OnShowFileSelectorTest from './OnShowFileSelector.test';
+import OnPermissionReqTest from './OnPermissionReq.test';
+import OnPageVisibleTest from './OnPageVisible.test';
+import OnDownloadStart from './OnDownloadStart.test';
+import WebMessagePortTest from './WebMessagePort.test';
 
 export default function testsuite() {
-  OnAlertTest()
-  OnConfirmTest()
-  OnPromptTest()
-  OnHttpAuthReqTest()
-  OnShowFileSelectorTest()
-  OnPermissionReqTest()
-  OnPageVisibleTest()
-  WebMessagePortTest()
-  OnDownloadStart()
+  WebMessagePortTest();
+  OnAlertTest();
+  OnConfirmTest();
+  OnPromptTest();
+  OnHttpAuthReqTest();
+  OnShowFileSelectorTest();
+  OnPermissionReqTest();
+  OnPageVisibleTest();
+  OnDownloadStart();
 }

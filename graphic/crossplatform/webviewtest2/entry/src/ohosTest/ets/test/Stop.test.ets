@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License")
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import {
   describe,
   it,
@@ -27,6 +42,12 @@ export default function StopTest() {
     beforeEach(async () => {
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const CHANGE_TABS: Component = await driver.findComponent(ON.text('设置页签'));
+      await CHANGE_TABS.click();
+      await driver.delayMs(waitUiReadyMs);
+      const TAB: Component = await driver.findComponent(ON.text('Goto HTMLControl'));
+      await TAB.click();
+      await driver.delayMs(waitUiReadyMs);
     });
 
     /**
@@ -55,12 +76,6 @@ export default function StopTest() {
     it('SUB_Web_WebView_Stop_Func_0100', 0, async () => {
       console.log('SUB_Web_WebView_Stop_Func_0100 test start');
       const driver: Driver = Driver.create();
-      await driver.delayMs(waitUiReadyMs);
-      const CHANGE_TABS: Component = await driver.findComponent(ON.text('设置页签'));
-      await CHANGE_TABS.click();
-      await driver.delayMs(waitUiReadyMs);
-      const TAB: Component = await driver.findComponent(ON.text('Goto HTMLControl'));
-      await TAB.click();
       await driver.delayMs(waitUiReadyMs);
       const STOP: Component = await driver.findComponent(ON.text('10毫秒后Stop'));
       await STOP.click();
@@ -140,6 +155,9 @@ export default function StopTest() {
       console.log('SUB_Web_WebView_Horizontal_ScrollBar_Access_Func_0200 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
+      await SHOW_SCROLL.click();
+      await driver.delayMs(waitUiReadyMs);
       const SCROLLABLE: Component = await driver.findComponent(ON.text('scrollable'));
       await SCROLLABLE.click();
       await driver.delayMs(waitUiReadyMs);
@@ -164,6 +182,9 @@ export default function StopTest() {
     it('SUB_Web_WebView_Vertical_ScrollBar_Access_Func_0100', 0, async () => {
       console.log('SUB_Web_WebView_Vertical_ScrollBar_Access_Func_0100 test start');
       const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
+      await SHOW_SCROLL.click();
       await driver.delayMs(waitUiReadyMs);
       const SCROLLABLE: Component = await driver.findComponent(ON.text('scrollable'));
       await SCROLLABLE.click();
@@ -190,6 +211,9 @@ export default function StopTest() {
       console.log('SUB_Web_WebView_Vertical_ScrollBar_Access_Func_0200 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
+      const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
+      await SHOW_SCROLL.click();
+      await driver.delayMs(waitUiReadyMs);
       const SCROLLABLE: Component = await driver.findComponent(ON.text('scrollable'));
       await SCROLLABLE.click();
       await driver.delayMs(waitUiReadyMs);
@@ -214,6 +238,9 @@ export default function StopTest() {
     it('SUB_Web_WebView_Get_Page_Height_Func_0200', 0, async () => {
       console.log('SUB_Web_WebView_Get_Page_Height_Func_0200 test start');
       const driver: Driver = Driver.create();
+      await driver.delayMs(waitUiReadyMs);
+      const SHOW_SCROLL: Component = await driver.findComponent(ON.text('scroll'));
+      await SHOW_SCROLL.click();
       await driver.delayMs(waitUiReadyMs);
       const GET_BUTTON: Component = await driver.findComponent(ON.text('GET_HEIGHT'));
       await GET_BUTTON.click();
