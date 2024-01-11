@@ -1,19 +1,19 @@
-import CommonEventManager from '@ohos.commonEventManager'
-import { expect } from '@ohos/hypium'
-import { BusinessError } from '@ohos.base'
+import CommonEventManager from '@ohos.commonEventManager';
+import { expect } from '@ohos/hypium';
+import { BusinessError } from '@ohos.base';
 
 /**
- * 线程睡眠
+ * Thread sleeps
  */
 export function sleep (ms: number = 1000): Promise<void> {
   return new Promise((resolve: Function) => {
     setTimeout(() => {
-      resolve()
-    }, ms)
-  })
+      resolve();
+    }, ms);
+  });
 }
 /**
- * 无参数发布事件
+ * publish Events Without Parameters
  * @param event
  * @param done
  */
@@ -24,12 +24,12 @@ export function publishEventWithoutOpt(event: string,  done: Function):void {
     })
   } catch (error) {
     console.log(`PUBLISH ${event} FAILED`);
-    expect(false).assertTrue()
-    done()
+    expect(false).assertTrue();
+    done();
   }
 }
 /**
- * 带参数发布事件
+ * publish Events With Parameters
  * @param event
  * @param PUBLISH_OPT_DATA
  * @param done
@@ -41,7 +41,7 @@ export function publishEvent(event: string, PUBLISH_OPT_DATA: CommonEventManager
     })
   } catch (error) {
     console.log(`PUBLISH ${event} FAILED`);
-    expect(false).assertTrue()
-    done()
+    expect(false).assertTrue();
+    done();
   }
 }
