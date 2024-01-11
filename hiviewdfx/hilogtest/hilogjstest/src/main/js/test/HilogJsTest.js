@@ -489,7 +489,7 @@ describe('HilogJsTest', function () {
       console.info('testHilogJsApi31 start');
       try{
         // @ts-ignore
-        hilog.info("中文domainId", "HILOGTEST", "username:%{public}s, password:%{public}s.", "username", "password")
+        hilog.info("����domainId", "HILOGTEST", "username:%{public}s, password:%{public}s.", "username", "password")
       }catch(error){
         console.log(`testHilogJsApi31 got an error: ${JSON.stringify(error)}`)
         expect().assertFail();
@@ -569,7 +569,7 @@ describe('HilogJsTest', function () {
     it('testHilogJsApi36', 2, function () {
       console.info('testHilogJsApi36 start');
       try{
-        hilog.info(0x3200, "HILOGTEST", "中文测试:%{public}s, 混合打印:%{public}s", "中文打印测试", "for中文test,.;:*_-=^(%)?#$/|\\")
+        hilog.info(0x3200, "HILOGTEST", "���Ĳ���:%{public}s, ��ϴ�ӡ:%{public}s", "���Ĵ�ӡ����", "for����test,.;:*_-=^(%)?#$/|\\")
       }catch(error){
         console.log(`testHilogJsApi36 got an error: ${JSON.stringify(error)}`)
         expect().assertFail();
@@ -661,11 +661,11 @@ describe('HilogJsTest', function () {
     it('testHilogJsApi43', 2, function () {
       console.info('testHilogJsApi43 start');
       // @ts-ignore
-      const res = hilog.isLoggable("中文测试", "HILOGTEST", hilog.LogLevel.INFO);
+      const res = hilog.isLoggable("���Ĳ���", "HILOGTEST", hilog.LogLevel.INFO);
       expect(res).assertEqual(undefined);
       console.info('testHilogJsApi43 end');
     })
-
+	
 	/**
      * @tc.number DFX_DFT_Hiview_Libhilog_Hilog_JS_5800
      * @tc.name hilog interface test
