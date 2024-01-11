@@ -489,7 +489,7 @@ describe('HilogJsTest', function () {
       console.info('testHilogJsApi31 start');
       try{
         // @ts-ignore
-        hilog.info("ÖĞÎÄdomainId", "HILOGTEST", "username:%{public}s, password:%{public}s.", "username", "password")
+        hilog.info("ï¿½ï¿½ï¿½ï¿½domainId", "HILOGTEST", "username:%{public}s, password:%{public}s.", "username", "password")
       }catch(error){
         console.log(`testHilogJsApi31 got an error: ${JSON.stringify(error)}`)
         expect().assertFail();
@@ -569,7 +569,7 @@ describe('HilogJsTest', function () {
     it('testHilogJsApi36', 2, function () {
       console.info('testHilogJsApi36 start');
       try{
-        hilog.info(0x3200, "HILOGTEST", "ÖĞÎÄ²âÊÔ:%{public}s, »ìºÏ´òÓ¡:%{public}s", "ÖĞÎÄ´òÓ¡²âÊÔ", "forÖĞÎÄtest,.;:*_-=^(%)?#$/|\\")
+        hilog.info(0x3200, "HILOGTEST", "ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½:%{public}s, ï¿½ï¿½Ï´ï¿½Ó¡:%{public}s", "ï¿½ï¿½ï¿½Ä´ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½", "forï¿½ï¿½ï¿½ï¿½test,.;:*_-=^(%)?#$/|\\")
       }catch(error){
         console.log(`testHilogJsApi36 got an error: ${JSON.stringify(error)}`)
         expect().assertFail();
@@ -661,7 +661,7 @@ describe('HilogJsTest', function () {
     it('testHilogJsApi43', 2, function () {
       console.info('testHilogJsApi43 start');
       // @ts-ignore
-      const res = hilog.isLoggable("ÖĞÎÄ²âÊÔ", "HILOGTEST", hilog.LogLevel.INFO);
+      const res = hilog.isLoggable("ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½", "HILOGTEST", hilog.LogLevel.INFO);
       expect(res).assertEqual(undefined);
       console.info('testHilogJsApi43 end');
     })
@@ -688,6 +688,71 @@ describe('HilogJsTest', function () {
         const res = hilogndk.ohPrintTest();
         expect(res).assertEqual(true);
         console.info('testHilogJsApi45 end');
+    })
+
+    /**
+     * @tc.number SUB_DFX_DFT_Hilog_Redirect_0100
+     * @tc.name hilog interface test
+     * @tc.desc éªŒè¯nativieå±‚æµæ°´æ—¥å¿—æ‰“å°å¯é€šè¿‡å›è°ƒæ¥å£é‡å®šå‘ç›´è‡ªèº«jså±‚.
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level3
+     */
+    it('testHilogJsApi46', 2, function () {
+        console.info('testHilogJsApi46 start');
+        try{
+            let sum = hilogndk.add(2,3)
+            expect(sum).assertEqual(6);
+
+            let msg = hilogndk.getMsg()
+            expect(msg).assertContain("666666");
+            console.log(`testHilogJsApi46 msg: ${msg}`)
+        }catch(error){
+            console.log(`testHilogJsApi46 got an error: ${JSON.stringify(error)}`)
+            expect().assertFail();
+        }
+        console.info('testHilogJsApi46 end');
+    })
+
+    /**
+     * @tc.number SUB_DFX_DFT_Hilog_Redirect_0200
+     * @tc.name hilog interface test
+     * @tc.desc éªŒè¯jså±‚æµæ°´æ—¥å¿—æ‰“å°å¯é€šè¿‡å›è°ƒæ¥å£é‡å®šå‘ç›´è‡ªèº«jså±‚.
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level Level3
+     */
+    it('testHilogJsApi47', 2, function () {
+        console.info('testHilogJsApi47 start');
+        try{
+            let sum = hilogndk.add(2,3)
+
+            hilog.info(0x3200, "HILOGTEST", "%{public}s", 'hilogJs0100')
+            let msg = hilogndk.getMsg()
+            expect(msg).assertContain("hilogJs0100");
+            console.log(`testHilogJsApi47 msg -1: ${msg}`)
+
+            hilog.warn(0x3200, "HILOGTEST", "%{public}s", 'hilogJs0200')
+            msg = hilogndk.getMsg()
+            expect(msg).assertContain("hilogJs0200");
+            console.log(`testHilogJsApi47 msg -2: ${msg}`)
+
+            hilog.error(0x3200, "HILOGTEST", "%{public}s", 'hilogJs0300')
+            msg = hilogndk.getMsg()
+            expect(msg).assertContain("hilogJs0300");
+            console.log(`testHilogJsApi47 msg -3: ${msg}`)
+
+            hilog.fatal(0x3200, "HILOGTEST", "%{public}s", 'hilogJs0400')
+            msg = hilogndk.getMsg()
+            expect(msg).assertContain("hilogJs0400");
+            console.log(`testHilogJsApi47 msg -4: ${msg}`)
+
+        }catch(error){
+            console.log(`testHilogJsApi47 got an error: ${JSON.stringify(error)}`)
+            expect().assertFail();
+        }
+
+        console.info('testHilogJsApi47 end');
     })
   })
 }
