@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import abilityTest from './Ability.test'
-import certTest from './Cert.test'
+import abilityTest from './Ability.test';
+import certTest from './Cert.test';
 
 export default function testsuite() {
-  abilityTest()
-  certTest()
+  abilityTest();
+  certTest();
 }

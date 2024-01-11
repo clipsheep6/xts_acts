@@ -105,9 +105,14 @@ for (let i: number = 0; i < certArray1.length; i++) {
   ] = certArray1[i];
 }
 
+function sleep(time: number = 10): Promise<void> {
+  return new Promise((res) => setTimeout(res, time));
+};
+
 export {
   getEncodingBlob,
   getEncodingBlobCrl,
   getEncodingBlobForCrlTest,
-  dataArray
+  dataArray,
+  sleep
 }

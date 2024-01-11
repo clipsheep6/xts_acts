@@ -13,17 +13,12 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, afterAll, it, expect } from '@ohos/hypium';
+import { describe, beforeAll, afterAll, it, expect, beforeEach } from '@ohos/hypium';
 import certFramework from '@ohos.security.cert';
 import { BusinessError } from '@ohos.base';
 import cryptoFramework from '@ohos.security.cryptoFramework';
-import {
-  certDataDer,
-  pubKeyData,
-  priKeyData,
-  extData
-} from "./utils/publicParam";
-import { getEncodingBlob, getEncodingBlobCrl, getEncodingBlobForCrlTest, dataArray } from "./utils/index";
+import { certDataDer, pubKeyData, priKeyData, extData } from "./utils/publicParam";
+import { getEncodingBlob, getEncodingBlobCrl, getEncodingBlobForCrlTest, dataArray, sleep } from "./utils/index";
 
 let x509CertPem: certFramework.X509Cert;
 let x509CertDer: certFramework.X509Cert;
@@ -36,8 +31,8 @@ let encodingBlobExtDer: certFramework.EncodingBlob = {
 
 let certExt: certFramework.CertExtension;
 
-let x509CrlPem: certFramework.X509Crl;
-let x509CrlPemRevoked: certFramework.X509Crl;
+let x509CrlPem: certFramework.X509CRL;
+let x509CrlPemRevoked: certFramework.X509CRL;
 
 
 let X509CertForCrlTest_normal: certFramework.X509Cert;
@@ -53,22 +48,20 @@ let pubEncodingBlob: cryptoFramework.DataBlob = {
 };
 let keyPair: cryptoFramework.KeyPair;
 
-let serialNumber: number = 1000;
-let crlEntryPem: certFramework.X509CrlEntry;
+let serialNumber: bigint = BigInt(1000);
+let crlEntryPem: certFramework.X509CRLEntry;
 
 export default function certTest() {
   describe('certTest', async () => {
     beforeAll(async () => {
       console.log('************* start certificateTest *************');
-
       x509CertPem = await certFramework.createX509Cert(getEncodingBlob('pem'));
       x509CertDer = await certFramework.createX509Cert({
         data: certDataDer,
         encodingFormat: certFramework.EncodingFormat.FORMAT_DER,
       });
-
-      x509CrlPem = await certFramework.createX509Crl(getEncodingBlobCrl('pem'));
-      x509CrlPemRevoked = await certFramework.createX509Crl(getEncodingBlobCrl('pem', true));
+      x509CrlPem = await certFramework.createX509CRL(getEncodingBlobCrl('pem'));
+      x509CrlPemRevoked = await certFramework.createX509CRL(getEncodingBlobCrl('pem', true));
 
       certExt = await certFramework.createCertExtension(encodingBlobExtDer)
 
@@ -78,6 +71,9 @@ export default function certTest() {
       keyPair = await keyGenerator.convertKey(pubEncodingBlob, priEncodingBlob)
 
       crlEntryPem = x509CrlPem.getRevokedCert(serialNumber);
+    })
+    beforeEach(async () => {
+      await sleep(200)
     })
     afterAll(() => {
       console.log('************* end certificateTest *************');
@@ -253,7 +249,7 @@ export default function certTest() {
      * @tc.name:    test getPublicKey method
      * @tc.desc:    get the public key of X509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getPublicKey_Func_0900', 0, async (done: Function) => {
@@ -274,7 +270,7 @@ export default function certTest() {
      * @tc.name:    test checkValidityWithDate method
      * @tc.desc:    Verify the certificate validity period
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_checkValidityWithDate_Func_1000', 0, async (done: Function) => {
@@ -295,7 +291,7 @@ export default function certTest() {
      * @tc.name:    test checkValidityWithDate method
      * @tc.desc:    Verify the certificate validity period
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_checkValidityWithDate_Func_1100', 0, async (done: Function) => {
@@ -316,7 +312,7 @@ export default function certTest() {
      * @tc.name:    test getVersion method
      * @tc.desc:    get Version of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getVersion_Func_1200', 0, async (done: Function) => {
@@ -338,13 +334,13 @@ export default function certTest() {
      * @tc.name:    test getCertSerialNumber method
      * @tc.desc:    get SerialNumber of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getCertSerialNumber_Func_1300', 0, async (done: Function) => {
       try {
         let serialNumber: bigint = x509CertPem.getCertSerialNumber();
-        console.log(`SUB_Security_Cert_Framework_getCertSerialNumber_Func_1300 ${ serialNumber}`);
+        console.log(`SUB_Security_Cert_Framework_getCertSerialNumber_Func_1300 ${serialNumber}`);
         expect(serialNumber).assertInstanceOf('BigInt');
         done();
       } catch (err) {
@@ -360,7 +356,7 @@ export default function certTest() {
      * @tc.name:    test getIssuerName method
      * @tc.desc:    get the IssuerName of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getIssuerName_Func_1400', 0, async (done: Function) => {
@@ -382,7 +378,7 @@ export default function certTest() {
      * @tc.name:    test getSubjectName method
      * @tc.desc:    get the SubjectName of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getSubjectName_Func_1500', 0, async (done: Function) => {
@@ -404,7 +400,7 @@ export default function certTest() {
      * @tc.name:    test getNotBeforeTime method
      * @tc.desc:    get the NotBeforeTime of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getNotBeforeTime_Func_1600', 0, async (done: Function) => {
@@ -426,7 +422,7 @@ export default function certTest() {
      * @tc.name:    test getNotAfterTime method
      * @tc.desc:    get the NotAfterTime of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getNotAfterTime_Func_1700', 0, async (done: Function) => {
@@ -448,7 +444,7 @@ export default function certTest() {
      * @tc.name:    test getSignature method
      * @tc.desc:    get the Signature of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getSignature_Func_1800', 0, async (done: Function) => {
@@ -470,7 +466,7 @@ export default function certTest() {
      * @tc.name:    test getSignatureAlgName method
      * @tc.desc:    get the SignatureAlgName of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getSignatureAlgName_Func_1900', 0, async (done: Function) => {
@@ -492,7 +488,7 @@ export default function certTest() {
      * @tc.name:    test getSignatureAlgOid method
      * @tc.desc:    get the SignatureAlgOid of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getSignatureAlgOid_Func_2000', 0, async (done: Function) => {
@@ -513,7 +509,7 @@ export default function certTest() {
      * @tc.name:    test getSignatureAlgParams method
      * @tc.desc:    get the SignatureAlgParams of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getSignatureAlgParams_Func_2100', 0, async (done: Function) => {
@@ -534,7 +530,7 @@ export default function certTest() {
      * @tc.name:    test getKeyUsage method
      * @tc.desc:    get the KeyUsage of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getKeyUsage_Func_2200', 0, async (done: Function) => {
@@ -555,7 +551,7 @@ export default function certTest() {
      * @tc.name:    test getExtKeyUsage method
      * @tc.desc:    get the ExtKeyUsage of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getExtKeyUsage_Func_2300', 0, async (done: Function) => {
@@ -576,7 +572,7 @@ export default function certTest() {
      * @tc.name:    test getBasicConstraints method
      * @tc.desc:    get the BasicConstraints of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getBasicConstraints_Func_2400', 0, async (done: Function) => {
@@ -591,7 +587,7 @@ export default function certTest() {
      * @tc.name:    test getSubjectAltNames method
      * @tc.desc:    get the SubjectAltNames of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getSubjectAltNames_Func_2500', 0, async (done: Function) => {
@@ -612,7 +608,7 @@ export default function certTest() {
      * @tc.name:    test getIssuerAltNames method
      * @tc.desc:    get the IssuerAltNames of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getIssuerAltNames_Func_2600', 0, async (done: Function) => {
@@ -633,7 +629,7 @@ export default function certTest() {
      * @tc.name:    test getItem method
      * @tc.desc:    get the Item of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getItem_Func_2700', 0, async (done: Function) => {
@@ -654,7 +650,7 @@ export default function certTest() {
      * @tc.name:    test getItem method
      * @tc.desc:    get the Item of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getItem_Func_2800', 0, async (done: Function) => {
@@ -675,7 +671,7 @@ export default function certTest() {
      * @tc.name:    test getItem method
      * @tc.desc:    get the Item of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getItem_Func_2900', 0, async (done: Function) => {
@@ -696,7 +692,7 @@ export default function certTest() {
      * @tc.name:    test getItem method
      * @tc.desc:    get the Item of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getItem_Func_3000', 0, async (done: Function) => {
@@ -717,7 +713,7 @@ export default function certTest() {
      * @tc.name:    test getItem method
      * @tc.desc:    get the Item of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getItem_Func_3100', 0, async (done: Function) => {
@@ -738,7 +734,7 @@ export default function certTest() {
      * @tc.name:    test getItem method
      * @tc.desc:    get the Item of x509Cert
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getItem_Func_3200', 0, async (done: Function) => {
@@ -759,7 +755,7 @@ export default function certTest() {
      * @tc.name:    test createCertExtension method in callback mode
      * @tc.desc:    create CertExtension
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_createCertExtension_Func_3300', 0, async (done: Function) => {
@@ -775,7 +771,7 @@ export default function certTest() {
      * @tc.name:    test createCertExtension method in promise mode
      * @tc.desc:    create CertExtension
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_createCertExtension_Func_3400', 0, async (done: Function) => {
@@ -795,7 +791,7 @@ export default function certTest() {
      * @tc.name:    test getEncoded method
      * @tc.desc:    get the Encoded of CertExtension
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getEncoded_Func_3500', 0, async (done: Function) => {
@@ -816,7 +812,7 @@ export default function certTest() {
      * @tc.name:    test getOidList method
      * @tc.desc:    get the OidList of CertExtension
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getOidList_Func_3600', 0, async (done: Function) => {
@@ -837,7 +833,7 @@ export default function certTest() {
      * @tc.name:    test getOidList method
      * @tc.desc:    get the OidList of CertExtension
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getOidList_Func_3700', 0, async (done: Function) => {
@@ -858,7 +854,7 @@ export default function certTest() {
      * @tc.name:    test getOidList method
      * @tc.desc:    get the OidList of CertExtension
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getOidList_Func_3800', 0, async (done: Function) => {
@@ -879,7 +875,7 @@ export default function certTest() {
      * @tc.name:    test getEntry method
      * @tc.desc:    get the Entry of CertExtension
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getEntry_Func_3900', 0, async (done: Function) => {
@@ -904,7 +900,7 @@ export default function certTest() {
      * @tc.name:    test getEntry method
      * @tc.desc:    get the Entry of CertExtension
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getEntry_Func_4000', 0, async (done: Function) => {
@@ -929,7 +925,7 @@ export default function certTest() {
      * @tc.name:    test getEntry method
      * @tc.desc:    get the Entry of CertExtension
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getEntry_Func_4100', 0, async (done: Function) => {
@@ -954,7 +950,7 @@ export default function certTest() {
      * @tc.name:    test checkCA method
      * @tc.desc:    check the CA of CertExtension
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_checkCA_Func_4200', 0, async (done: Function) => {
@@ -971,20 +967,20 @@ export default function certTest() {
     })
 
     /**
-     * @tc.number:  SUB_Security_Cert_Framework_createX509Crl_Func_4300
-     * @tc.name:    test createX509Crl method in callback mode
-     * @tc.desc:    create X509Crl
+     * @tc.number:  SUB_Security_Cert_Framework_createX509CRL_Func_4300
+     * @tc.name:    test createX509CRL method in callback mode
+     * @tc.desc:    create X509CRL
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
-    it('SUB_Security_Cert_Framework_createX509Crl_Func_4300', 0, async (done: Function) => {
-      certFramework.createX509Crl(getEncodingBlobCrl('pem'), (err, x509Crl) => {
+    it('SUB_Security_Cert_Framework_createX509CRL_Func_4300', 0, async (done: Function) => {
+      certFramework.createX509CRL(getEncodingBlobCrl('pem'), (err, x509Crl) => {
         if (err != null) {
-          console.log(`SUB_Security_Cert_Framework_createX509Crl_Func_4300 errCode: ${err.code} errMsg: ${err.message}`);
+          console.log(`SUB_Security_Cert_Framework_createX509CRL_Func_4300 errCode: ${err.code} errMsg: ${err.message}`);
           expect().assertFail();
         } else {
-          console.log(`SUB_Security_Cert_Framework_createX509Crl_Func_4300 ${x509Crl}`);
+          console.log(`SUB_Security_Cert_Framework_createX509CRL_Func_4300 ${x509Crl}`);
           expect(x509Crl != null).assertTrue();
         }
         done();
@@ -992,20 +988,20 @@ export default function certTest() {
     })
 
     /**
-     * @tc.number:  SUB_Security_Cert_Framework_createX509Crl_Func_4400
-     * @tc.name:    test createX509Crl method in callback mode
+     * @tc.number:  SUB_Security_Cert_Framework_createX509CRL_Func_4400
+     * @tc.name:    test createX509CRL method in callback mode
      * @tc.desc:    create X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
-    it('SUB_Security_Cert_Framework_createX509Crl_Func_4400', 0, async (done: Function) => {
-      certFramework.createX509Crl(getEncodingBlobCrl('der'), (err, x509Crl) => {
+    it('SUB_Security_Cert_Framework_createX509CRL_Func_4400', 0, async (done: Function) => {
+      certFramework.createX509CRL(getEncodingBlobCrl('der'), (err, x509Crl) => {
         if (err != null) {
-          console.log(`SUB_Security_Cert_Framework_createX509Crl_Func_4400 errCode: ${err.code} errMsg: ${err.message}`);
+          console.log(`SUB_Security_Cert_Framework_createX509CRL_Func_4400 errCode: ${err.code} errMsg: ${err.message}`);
           expect().assertFail();
         } else {
-          console.log(`SUB_Security_Cert_Framework_createX509Crl_Func_4400 ${x509Crl}`);
+          console.log(`SUB_Security_Cert_Framework_createX509CRL_Func_4400 ${x509Crl}`);
           expect(x509Crl != null).assertTrue();
         }
         done();
@@ -1013,40 +1009,40 @@ export default function certTest() {
     })
 
     /**
-     * @tc.number:  SUB_Security_Cert_Framework_createX509Crl_Func_4500
-     * @tc.name:    test createX509Crl method in promise mode
+     * @tc.number:  SUB_Security_Cert_Framework_createX509CRL_Func_4500
+     * @tc.name:    test createX509CRL method in promise mode
      * @tc.desc:    create X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
-    it('SUB_Security_Cert_Framework_createX509Crl_Func_4500', 0, async (done: Function) => {
-      certFramework.createX509Crl(getEncodingBlobCrl('pem')).then(x509Crl => {
-        console.log(`SUB_Security_Cert_Framework_createX509Crl_Func_4500 ${x509Crl}`);
+    it('SUB_Security_Cert_Framework_createX509CRL_Func_4500', 0, async (done: Function) => {
+      certFramework.createX509CRL(getEncodingBlobCrl('pem')).then(x509Crl => {
+        console.log(`SUB_Security_Cert_Framework_createX509CRL_Func_4500 ${x509Crl}`);
         expect(x509Crl != null).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log(`SUB_Security_Cert_Framework_createX509Crl_Func_4500 errCode: ${err.code} errMsg: ${err.message}`);
+        console.log(`SUB_Security_Cert_Framework_createX509CRL_Func_4500 errCode: ${err.code} errMsg: ${err.message}`);
         expect().assertFail();
         done();
       })
     })
 
     /**
-     * @tc.number:  SUB_Security_Cert_Framework_createX509Crl_Func_4600
-     * @tc.name:    test createX509Crl method in promise mode
+     * @tc.number:  SUB_Security_Cert_Framework_createX509CRL_Func_4600
+     * @tc.name:    test createX509CRL method in promise mode
      * @tc.desc:    create X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
-    it('SUB_Security_Cert_Framework_createX509Crl_Func_4600', 0, async (done: Function) => {
-      certFramework.createX509Crl(getEncodingBlobCrl('der')).then(x509Crl => {
-        console.log(`SUB_Security_Cert_Framework_createX509Crl_Func_4600 ${x509Crl}`);
+    it('SUB_Security_Cert_Framework_createX509CRL_Func_4600', 0, async (done: Function) => {
+      certFramework.createX509CRL(getEncodingBlobCrl('der')).then(x509Crl => {
+        console.log(`SUB_Security_Cert_Framework_createX509CRL_Func_4600 ${x509Crl}`);
         expect(x509Crl != null).assertTrue();
         done();
       }).catch((err: BusinessError) => {
-        console.log(`SUB_Security_Cert_Framework_createX509Crl_Func_4600 errCode: ${err.code} errMsg: ${err.message}`);
+        console.log(`SUB_Security_Cert_Framework_createX509CRL_Func_4600 errCode: ${err.code} errMsg: ${err.message}`);
         expect().assertFail();
         done();
       })
@@ -1057,7 +1053,7 @@ export default function certTest() {
      * @tc.name:    test isRevoked method
      * @tc.desc:    get the isRevoked of x509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_isRevoked_Func_4700', 0, async (done: Function) => {
@@ -1079,7 +1075,7 @@ export default function certTest() {
      * @tc.name:    test isRevoked method
      * @tc.desc:    get the isRevoked of x509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_isRevoked_Func_4800', 0, async (done: Function) => {
@@ -1101,7 +1097,7 @@ export default function certTest() {
      * @tc.name:    test getType method
      * @tc.desc:    get the Type of x509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getType_Func_4900', 0, async (done: Function) => {
@@ -1116,7 +1112,7 @@ export default function certTest() {
      * @tc.name:    test getEncoded method in callback mode
      * @tc.desc:    get the Encoded of x509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getEncoded_Func_5000', 0, async (done: Function) => {
@@ -1137,7 +1133,7 @@ export default function certTest() {
      * @tc.name:    test getEncoded method in Promise mode
      * @tc.desc:    get the Encoded of x509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getEncoded_Func_5100', 0, async (done: Function) => {
@@ -1152,14 +1148,12 @@ export default function certTest() {
       });
     })
 
-
-
     /**
      * @tc.number:  SUB_Security_Cert_Framework_verify_Func_5200
      * @tc.name:    test verify method in callback mode
      * @tc.desc:    verify the X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_verify_Func_5200', 0, async (done: Function) => {
@@ -1181,7 +1175,7 @@ export default function certTest() {
      * @tc.name:    test verify method in promise mode
      * @tc.desc:    verify the X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_verify_Func_5300', 0, async (done: Function) => {
@@ -1201,7 +1195,7 @@ export default function certTest() {
      * @tc.name:    test getVersion method
      * @tc.desc:    get the Version of X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getVersion_Func_5400', 0, async (done: Function) => {
@@ -1216,7 +1210,7 @@ export default function certTest() {
      * @tc.name:    test getIssuerName method
      * @tc.desc:    get the IssuerName of X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getIssuerName_Func_5500', 0, async (done: Function) => {
@@ -1236,7 +1230,7 @@ export default function certTest() {
      * @tc.name:    test getLastUpdate method
      * @tc.desc:    get the LastUpdate of X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getLastUpdate_Func_5600', 0, async (done: Function) => {
@@ -1257,7 +1251,7 @@ export default function certTest() {
      * @tc.name:    test getNextUpdate method
      * @tc.desc:    get the NextUpdate of X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getNextUpdate_Func_5700', 0, async (done: Function) => {
@@ -1278,13 +1272,13 @@ export default function certTest() {
      * @tc.name:    test getRevokedCert method
      * @tc.desc:    get the RevokedCert of X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getRevokedCert_Func_5800', 0, async (done: Function) => {
-      let serialNumber: number = 1000;
+      let serialNumber: bigint = BigInt(1000);
       try {
-        let entry: certFramework.X509CrlEntry = x509CrlPem.getRevokedCert(serialNumber);
+        let entry: certFramework.X509CRLEntry = x509CrlPem.getRevokedCert(serialNumber);
         console.log(`SUB_Security_Cert_Framework_getRevokedCert_Func_5800 ${entry}`);
         expect(entry != null).assertTrue();
         let revocation: string = entry.getRevocationDate();
@@ -1306,12 +1300,12 @@ export default function certTest() {
      * @tc.name:    test getRevokedCertWithCert method
      * @tc.desc:    get the RevokedCertWithCert of X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getRevokedCertWithCert_Func_5900', 0, async (done: Function) => {
       try {
-        let entry: certFramework.X509CrlEntry = x509CrlPemRevoked.getRevokedCertWithCert(X509CertForCrlTest_normal);
+        let entry: certFramework.X509CRLEntry = x509CrlPemRevoked.getRevokedCertWithCert(X509CertForCrlTest_normal);
         console.log(`SUB_Security_Cert_Framework_getRevokedCertWithCert_Func_5900 ${entry}`);
         expect(entry != null).assertTrue();
         done();
@@ -1327,7 +1321,7 @@ export default function certTest() {
      * @tc.name:    test getRevokedCerts method in callback mode
      * @tc.desc:    get the RevokedCerts of X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getRevokedCerts_Func_6000', 0, async (done: Function) => {
@@ -1349,7 +1343,7 @@ export default function certTest() {
      * @tc.name:    test getRevokedCerts method in promise mode
      * @tc.desc:    get the RevokedCerts of X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getRevokedCerts_Func_6100', 0, async (done: Function) => {
@@ -1366,21 +1360,21 @@ export default function certTest() {
     })
 
     /**
-     * @tc.number:  SUB_Security_Cert_Framework_getTbsInfo_Func_6200
-     * @tc.name:    test getTbsInfo method
+     * @tc.number:  SUB_Security_Cert_Framework_getTBSInfo_Func_6200
+     * @tc.name:    test getTBSInfo method
      * @tc.desc:    get the TbsInfo of X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
-    it('SUB_Security_Cert_Framework_getTbsInfo_Func_6200', 0, async (done: Function) => {
+    it('SUB_Security_Cert_Framework_getTBSInfo_Func_6200', 0, async (done: Function) => {
       try {
-        let tbsInfo: certFramework.DataBlob = x509CrlPem.getTbsInfo();
-        console.log(`SUB_Security_Cert_Framework_getTbsInfo_Func_6200 ${tbsInfo}`);
+        let tbsInfo: certFramework.DataBlob = x509CrlPem.getTBSInfo();
+        console.log(`SUB_Security_Cert_Framework_getTBSInfo_Func_6200 ${tbsInfo}`);
         expect(tbsInfo != null).assertTrue();
         done();
       } catch (err) {
-        console.log(`SUB_Security_Cert_Framework_getTbsInfo_Func_6200 errCode: ${err.code} errMsg: ${err.message}`);
+        console.log(`SUB_Security_Cert_Framework_getTBSInfo_Func_6200 errCode: ${err.code} errMsg: ${err.message}`);
         expect().assertFail();
         done();
       }
@@ -1391,7 +1385,7 @@ export default function certTest() {
      * @tc.name:    test getSignature method
      * @tc.desc:    get the Signature of X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getSignature_Func_6300', 0, async (done: Function) => {
@@ -1412,7 +1406,7 @@ export default function certTest() {
      * @tc.name:    test getSignatureAlgName method
      * @tc.desc:    get the SignatureAlgName of X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getSignatureAlgName_Func_6400', 0, async (done: Function) => {
@@ -1433,7 +1427,7 @@ export default function certTest() {
      * @tc.name:    test getSignatureAlgOid method
      * @tc.desc:    get the SignatureAlgOid of X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getSignatureAlgOid_Func_6500', 0, async (done: Function) => {
@@ -1453,7 +1447,7 @@ export default function certTest() {
      * @tc.name:    test getSignatureAlgParams method
      * @tc.desc:    get the SignatureAlgParams of X509Crl
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getSignatureAlgParams_Func_6600', 0, async (done: Function) => {
@@ -1473,7 +1467,7 @@ export default function certTest() {
      * @tc.name:    test createCertChainValidator method
      * @tc.desc:    create CertChainValidator
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_createCertChainValidator_Func_6700', 0, async (done: Function) => {
@@ -1493,7 +1487,7 @@ export default function certTest() {
      * @tc.name:    test createCertChainValidator method
      * @tc.desc:    create CertChainValidator
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_createCertChainValidator_Func_6800', 0, async (done: Function) => {
@@ -1513,7 +1507,7 @@ export default function certTest() {
      * @tc.name:    test validate method in callback mode
      * @tc.desc:    validate certChainData
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_validate_Func_6900', 0, async (done: Function) => {
@@ -1542,7 +1536,7 @@ export default function certTest() {
      * @tc.name:    test validate method in promise mode
      * @tc.desc:    validate certChainData
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_validate_Func_7000', 0, async (done: Function) => {
@@ -1575,7 +1569,7 @@ export default function certTest() {
      * @tc.name:    test Algorithm value
      * @tc.desc:    get Algorithm value of CertChainValidator
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_algorithm_Func_7100', 0, async (done: Function) => {
@@ -1597,7 +1591,7 @@ export default function certTest() {
      * @tc.name:    test getEncoded method in callback
      * @tc.desc:    get the Encoded of X509CrlEntry
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getEncoded_Func_7200', 0, async (done: Function) => {
@@ -1618,7 +1612,7 @@ export default function certTest() {
      * @tc.name:    test getEncoded method in promise mode
      * @tc.desc:    get the Encoded of X509CrlEntry
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getEncoded_Func_7300', 0, async (done: Function) => {
@@ -1638,14 +1632,15 @@ export default function certTest() {
      * @tc.name:    test getSerialNumber method
      * @tc.desc:    get the SerialNumber of X509CrlEntry
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getSerialNumber_Func_7400', 0, async (done: Function) => {
       try {
-        let serialNumber: number = crlEntryPem.getSerialNumber();
+        let serialNumber: BigInt = crlEntryPem.getSerialNumber();
+        let expectNumber: BigInt = BigInt(1000)
         console.log(`SUB_Security_Cert_Framework_getSerialNumber_Func_7400 ${serialNumber}`);
-        expect(serialNumber).assertEqual(1000);
+        expect(serialNumber).assertEqual(expectNumber)
       } catch (err) {
         console.log(`SUB_Security_Cert_Framework_getSerialNumber_Func_7400 errCode: ${err.code} errMsg: ${err.message}`);
         expect().assertFail();
@@ -1658,7 +1653,7 @@ export default function certTest() {
      * @tc.name:    test getCertIssuer method
      * @tc.desc:    get the SerialNumber of X509CrlEntry
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getCertIssuer_Func_7500', 0, async (done: Function) => {
@@ -1678,7 +1673,7 @@ export default function certTest() {
      * @tc.name:    test getRevocationDate method
      * @tc.desc:    get the SerialNumber of X509CrlEntry
      * @tc.size:    MediumTest
-     * @tc.type:    Function
+     * @tc.type:    method
      * @tc.level:   Level 2
      */
     it('SUB_Security_Cert_Framework_getRevocationDate_Func_7600', 0, async (done: Function) => {
