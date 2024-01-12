@@ -39,6 +39,15 @@ import provideParent3 from './ProvideTest/provideParent3.test.ets'
 import provideParent4 from './ProvideTest/provideParent4.test.ets'
 import provideParent5 from './ProvideTest/provideParent5.test.ets'
 import provideParent6 from './ProvideTest/provideParent6.test.ets'
+import ResourceColor from './ResourceTest/ResourceColor.test.ets'
+import ResourceFloat from './ResourceTest/ResourceFloat.test.ets'
+import ResourceInteger from './ResourceTest/ResourceInteger.test.ets'
+import ResourcePlural from './ResourceTest/ResourcePlural.test.ets'
+import ResourceStrarray from './ResourceTest/ResourceStrarray.test.ets'
+import ResourceString from './ResourceTest/ResourceString.test.ets'
+import rotationTest from './RenderNodeTest/rotation.test.ets'
+import transformTest from './RenderNodeTest/transform.test.ets'
+import translationTest from './RenderNodeTest/translation.test.ets'
 export default function testsuite() {
   extendTrackTest()
   localTrackTest()
@@ -67,4 +76,13 @@ export default function testsuite() {
   provideParent4()
   provideParent5()
   provideParent6()
+  ResourceColor();
+  ResourceFloat();
+  ResourceInteger();
+  ResourcePlural();
+  ResourceStrarray();
+  ResourceString();
+  rotationTest()
+  transformTest()
+  translationTest()
 }
