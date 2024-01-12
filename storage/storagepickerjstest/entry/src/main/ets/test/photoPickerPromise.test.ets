@@ -17,97 +17,13 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { sleep, startAbility } from "./Common"
 import picker from '@ohos.file.picker'
 
-export default function photoPickerPromise(abilityContext) {
-    describe("photoPickerPromise", function () {
-        afterEach(async function() {
+export default function photoPickerPromise(abilityContext:Context) {
+    describe("photoPickerPromise",  () =>{
+        afterEach(async () => {
             await sleep(500);
             await startAbility('ohos.acts.storage.picker', 'com.example.myapplication.MainAbility');
             await sleep(500);
         })
-
-        async function select(testNum, done, isSelectOriginal, expectSelectNum = 2) {
-            try {
-                let photoPicker = new picker.PhotoViewPicker();
-                photoPicker.select().then((result) => {
-                    console.info(`${testNum}::select result: ${JSON.stringify(result)}`);
-                    expect(result.photoUris.length).assertEqual(expectSelectNum);
-                    done();
-                }).catch((err) => {
-                    console.info(`${testNum}::select err: ${JSON.stringify(err)}`);
-                    expect(false).assertTrue();
-                    done();
-                })
-                expect(true).assertTrue();
-                done();
-            } catch (error) {
-                console.info(`${testNum}::select error: ${JSON.stringify(error)}`);
-                expect(false).assertTrue();
-                done();
-            }
-        }
-
-        async function selectWithOption(testNum, done, option, expectSelectNum) {
-            try {
-                let photoPicker = new picker.PhotoViewPicker();
-                photoPicker.select(option).then((result) => {
-                    console.info(`${testNum}::selectWithOption result: ${JSON.stringify(result)}`);
-                    expect(result.photoUris.length).assertEqual(expectSelectNum);
-                    done();
-                }).catch((err) => {
-                    console.info(`${testNum}::selectWithOption err: ${JSON.stringify(err)}`);
-                    expect(false).assertTrue();
-                    done();
-                })
-                expect(true).assertTrue();
-                done();
-            } catch (error) {
-                console.info(`${testNum}::selectWithOption error: ${JSON.stringify(error)}`);
-                expect(false).assertTrue();
-                done();
-            }
-        }
-
-        async function saveWithoutSelect(testNum, done) {
-            try {
-                let photoPicker = new picker.PhotoViewPicker();
-                photoPicker.save().then((result) => {
-                    console.info(`${testNum}::saveWithoutSelect result: ${JSON.stringify(result)}`);
-                    expect(result.length).assertEqual(0);
-                    done();
-                }).catch((err) => {
-                    console.info(`${testNum}::saveWithoutSelect err: ${JSON.stringify(err)}`);
-                    expect(false).assertTrue();
-                    done();
-                })
-                expect(true).assertTrue();
-                done();
-            } catch (error) {
-                console.info(`${testNum}::saveWithoutSelect error: ${JSON.stringify(error)}`);
-                expect(false).assertTrue();
-                done();
-            }
-        }
-
-        async function saveWithOption(testNum, done, option, dirName) {
-            try {
-                let photoPicker = new picker.PhotoViewPicker();
-                photoPicker.save(option).then((result) => {
-                    console.info(`${testNum}::saveWithOption result: ${JSON.stringify(result)}`);
-                    expect(result.length).assertEqual(1);
-                    done();
-                }).catch((err) => {
-                    console.info(`${testNum}::saveWithOption err: ${JSON.stringify(err)}`);
-                    expect(false).assertTrue();
-                    done();
-                })
-                expect(true).assertTrue();
-                done();
-            } catch (error) {
-                console.info(`${testNum}::saveWithOption error: ${JSON.stringify(error)}`);
-                expect(false).assertTrue();
-                done();
-            }
-        }
 
         /**
          * @tc.number	 : SUB_STORAGE_PHOTOPICKER_SELECT_PROMISE_0000
@@ -117,7 +33,7 @@ export default function photoPickerPromise(abilityContext) {
          * @tc.type 	 : Function
          * @tc.level	 : Level 3
          */
-        it("photopicker_select_promise_000", 0, async function (done) {
+        it("photopicker_select_promise_000", 0, async (done:Function) => {
             let testNum = "photopicker_select_promise_000";
             let option = new picker.PhotoSelectOptions();
             option.MIMEType = picker.PhotoViewMIMETypes.IMAGE_TYPE;
@@ -133,7 +49,7 @@ export default function photoPickerPromise(abilityContext) {
          * @tc.type 	 : Function
          * @tc.level	 : Level 3
          */
-        it("photopicker_select_promise_001", 0, async function (done) {
+        it("photopicker_select_promise_001", 0, async (done:Function) => {
             let testNum = "photopicker_select_promise_001";
             let option = new picker.PhotoSelectOptions();
             option.MIMEType = picker.PhotoViewMIMETypes.VIDEO_TYPE;
@@ -149,7 +65,7 @@ export default function photoPickerPromise(abilityContext) {
          * @tc.type 	 : Function
          * @tc.level	 : Level 3
          */
-        it("photopicker_select_promise_002", 0, async function (done) {
+        it("photopicker_select_promise_002", 0, async (done:Function) => {
             let testNum = "photopicker_select_promise_002";
             let option = new picker.PhotoSelectOptions();
             option.MIMEType = picker.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
@@ -165,7 +81,7 @@ export default function photoPickerPromise(abilityContext) {
          * @tc.type 	 : Function
          * @tc.level	 : Level 0
          */
-        it("photopicker_select_promise_003", 0, async function (done) {
+        it("photopicker_select_promise_003", 0, async (done:Function) => {
             let testNum = "photopicker_select_promise_003";
             let option = new picker.PhotoSelectOptions();
             option.MIMEType = picker.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
@@ -182,7 +98,7 @@ export default function photoPickerPromise(abilityContext) {
          * @tc.type 	 : Function
          * @tc.level	 : Level 1
          */
-        it("photopicker_select_promise_004", 0, async function (done) {
+        it("photopicker_select_promise_004", 0, async (done:Function) => {
             let testNum = "photopicker_select_promise_004";
             let option = new picker.PhotoSelectOptions();
             option.MIMEType = picker.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
@@ -199,7 +115,7 @@ export default function photoPickerPromise(abilityContext) {
          * @tc.type 	 : Function
          * @tc.level	 : Level 3
          */
-        it("photopicker_select_promise_005", 0, async function (done) {
+        it("photopicker_select_promise_005", 0, async (done:Function) => {
             let testNum = "photopicker_select_promise_005";
             let option = new picker.PhotoSelectOptions();
             option.MIMEType = picker.PhotoViewMIMETypes.IMAGE_VIDEO_TYPE;
@@ -216,7 +132,7 @@ export default function photoPickerPromise(abilityContext) {
          * @tc.type 	 : Function
          * @tc.level	 : Level 3
          */
-        it("photopicker_select_promise_006", 0, async function (done) {
+        it("photopicker_select_promise_006", 0, async (done:Function) => {
             let testNum = "photopicker_select_promise_006";
             let expectSelectNum = 2;
             let isSelectOriginal = true;
@@ -231,7 +147,7 @@ export default function photoPickerPromise(abilityContext) {
          * @tc.type 	 : Function
          * @tc.level	 : Level 0
          */
-        it("photopicker_save_promise_000", 0, async function (done) {
+        it("photopicker_save_promise_000", 0, async (done:Function) => {
             let testNum = "photopicker_save_promise_000";
             let option = new picker.PhotoSaveOptions();
             option.newFileNames = ["PhotoViewPicker01.jpg"];
@@ -247,7 +163,7 @@ export default function photoPickerPromise(abilityContext) {
          * @tc.type 	 : Function
          * @tc.level	 : Level 3
          */
-        it("photopicker_save_promise_001", 0, async function (done) {
+        it("photopicker_save_promise_001", 0, async (done:Function) => {
             let testNum = "photopicker_save_promise_001";
             let option = new picker.PhotoSaveOptions();
             option.newFileNames = ["PhotoViewPicker01.mp4"];
@@ -263,9 +179,93 @@ export default function photoPickerPromise(abilityContext) {
          * @tc.type 	 : Function
          * @tc.level	 : Level 3
          */
-        it("photopicker_save_promise_002", 0, async function (done) {
+        it("photopicker_save_promise_002", 0, async (done:Function) => {
             let testNum = "photopicker_save_promise_002";
             await saveWithoutSelect(testNum, done);
         });
     });
+}
+
+async function select(testNum:string, done:Function, isSelectOriginal:boolean, expectSelectNum = 2) {
+    try {
+        let photoPicker = new picker.PhotoViewPicker();
+        photoPicker.select().then((result) => {
+            console.info(`${testNum}::select result: ${JSON.stringify(result)}`);
+            expect(result.photoUris.length).assertEqual(expectSelectNum);
+            done();
+        }).catch((err:Error) => {
+            console.info(`${testNum}::select err: ${JSON.stringify(err)}`);
+            expect(false).assertTrue();
+            done();
+        })
+        expect(true).assertTrue();
+        done();
+    } catch (error) {
+        console.info(`${testNum}::select error: ${JSON.stringify(error)}`);
+        expect(false).assertTrue();
+        done();
+    }
+}
+
+async function selectWithOption(testNum:string, done:Function, option:picker.PhotoSelectOptions, expectSelectNum:number) {
+    try {
+        let photoPicker = new picker.PhotoViewPicker();
+        photoPicker.select(option).then((result) => {
+            console.info(`${testNum}::selectWithOption result: ${JSON.stringify(result)}`);
+            expect(result.photoUris.length).assertEqual(expectSelectNum);
+            done();
+        }).catch((err:Error) => {
+            console.info(`${testNum}::selectWithOption err: ${JSON.stringify(err)}`);
+            expect(false).assertTrue();
+            done();
+        })
+        expect(true).assertTrue();
+        done();
+    } catch (error) {
+        console.info(`${testNum}::selectWithOption error: ${JSON.stringify(error)}`);
+        expect(false).assertTrue();
+        done();
+    }
+}
+
+async function saveWithoutSelect(testNum:string, done:Function) {
+    try {
+        let photoPicker = new picker.PhotoViewPicker();
+        photoPicker.save().then((result) => {
+            console.info(`${testNum}::saveWithoutSelect result: ${JSON.stringify(result)}`);
+            expect(result.length).assertEqual(0);
+            done();
+        }).catch((err:Error) => {
+            console.info(`${testNum}::saveWithoutSelect err: ${JSON.stringify(err)}`);
+            expect(false).assertTrue();
+            done();
+        })
+        expect(true).assertTrue();
+        done();
+    } catch (error) {
+        console.info(`${testNum}::saveWithoutSelect error: ${JSON.stringify(error)}`);
+        expect(false).assertTrue();
+        done();
+    }
+}
+
+async function saveWithOption(testNum:string, done:Function, option:picker.PhotoSaveOptions, dirName:string) {
+    try {
+        let photoPicker = new picker.PhotoViewPicker();
+        photoPicker.save(option).then((result) => {
+            console.info(`${testNum}::saveWithOption result: ${JSON.stringify(result)}`);
+            expect(result.length).assertEqual(1);
+            done();
+        }).catch((err:Error) => {
+            console.info(`${testNum}::saveWithOption err: ${JSON.stringify(err)}`);
+            expect(false).assertTrue();
+            done();
+        })
+        expect(true).assertTrue();
+        done();
+    } catch (error) {
+        console.info(`${testNum}::saveWithOption error: ${JSON.stringify(error)}`);
+        expect(false).assertTrue();
+        done();
+    }
 }
