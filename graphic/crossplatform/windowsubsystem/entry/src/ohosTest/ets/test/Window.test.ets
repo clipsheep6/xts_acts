@@ -31,19 +31,38 @@ export default function WindowTest() {
      */
     it('SUB_GraphicImage_Window_WindowEventType_Func_0100', 0, async (done: Function) => {
       try {
+
         await startAbility('com.example.windowsubsystem', 'EntryAbility');
         let driver: Driver = Driver.create();
-        await driver.delayMs(waitUiReadyMs);
+        await driver.delayMs(waitUiReadyMs * 3);
         let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window;
+        if (windowClass === undefined) {
+          console.info('SUB_GraphicImage_Window_WindowEventType_Func_0100. windowClass undefined');
+        }
+
+        let isToEntryAbility: boolean = false;
+
         windowClass.on('windowEvent', (data: number) => {
           console.info(`SUB_GraphicImage_Window_WindowEventType_Func_0100. data:${JSON.stringify(data)}`);
-          expect(data === 1 || data === 2 || data === 3 || data === 4).assertTrue();
+
+          if (isToEntryAbility) {
+            expect(data === 1 || data === 2).assertTrue();
+          } else {
+            expect(data === 3 || data === 4).assertTrue();
+          }
+
         })
+
         const toMainAbility: Component = await driver.findComponent(ON.id('toMainAbility'));
+        isToEntryAbility = false;
         await toMainAbility.click();
         await driver.delayMs(waitUiReadyMs);
+        const toEntryAbility: Component = await driver.findComponent(ON.id('toEntryAbility'));
+        isToEntryAbility = true;
+        await toEntryAbility.click();
+        await driver.delayMs(waitUiReadyMs);
         windowClass.off('windowEvent');
-        done()
+        done();
       } catch (exception) {
         console.error(`Failed to SUB_GraphicImage_Window_WindowEventType_Func_0100. Cause:${JSON.stringify(exception)}`);
         expect().assertFail();
@@ -61,19 +80,38 @@ export default function WindowTest() {
      */
     it('SUB_GraphicImage_Window_On_Func_0200', 0, async (done: Function) => {
       try {
+
         await startAbility('com.example.windowsubsystem', 'EntryAbility');
         let driver: Driver = Driver.create();
         await driver.delayMs(waitUiReadyMs);
         let windowClass: window.Window | undefined = AppStorage.get('windowEntryAbility') as window.Window;
+        if (windowClass === undefined) {
+          console.info('SUB_GraphicImage_Window_On_Func_0200. windowClass undefined');
+        }
+
+        let isToEntryAbility: boolean = false;
+
         windowClass.on('windowEvent', (data: number) => {
           console.info(`SUB_GraphicImage_Window_On_Func_0200. data:${JSON.stringify(data)}`);
-          expect(data === 1 || data === 2 || data === 3 || data === 4).assertTrue();
+
+          if (isToEntryAbility) {
+            expect(data === 1 || data === 2).assertTrue();
+          } else {
+            expect(data === 3 || data === 4).assertTrue();
+          }
+
         })
+
         const toMainAbility: Component = await driver.findComponent(ON.id('toMainAbility'));
+        isToEntryAbility = false;
         await toMainAbility.click();
         await driver.delayMs(waitUiReadyMs);
+        const toEntryAbility: Component = await driver.findComponent(ON.id('toEntryAbility'));
+        isToEntryAbility = true;
+        await toEntryAbility.click();
+        await driver.delayMs(waitUiReadyMs);
         windowClass.off('windowEvent');
-        done()
+        done();
       } catch (exception) {
         console.error(`Failed to SUB_GraphicImage_Window_On_Func_0200. Cause:${JSON.stringify(exception)}`);
         expect().assertFail();

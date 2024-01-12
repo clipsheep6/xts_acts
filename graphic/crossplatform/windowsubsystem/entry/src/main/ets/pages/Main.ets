@@ -40,6 +40,7 @@ struct EnterPage {
                   deviceId: '',
                   bundleName: "com.example.windowsubsystem",
                   abilityName: "EntryAbility",
+                  moduleName: "entry"
                 }).then(() => {
                   console.info('Succeeded in starting ability.');
                 })

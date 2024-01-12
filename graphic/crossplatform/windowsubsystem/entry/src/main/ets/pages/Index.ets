@@ -40,6 +40,7 @@ struct Index {
                   deviceId: '',
                   bundleName: "com.example.windowsubsystem",
                   abilityName: "MainAbility",
+                  moduleName: "entry"
                 }).then(() => {
                   console.info('Succeeded in starting ability.');
                 })
