@@ -64,8 +64,7 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     let cmd = 'aa start -d 0 -a com.ohos.dlp_xts.MainAbility' + ' -b ' + abilityDelegatorArguments.bundleName;
     cmd += ' ' + translateParamsToString(abilityDelegatorArguments.parameters);
     let debug = abilityDelegatorArguments.parameters['-D'];
-    if (debug === 'true')
-    {
+    if (debug === 'true') {
       cmd += ' -D';
     }
     console.info('cmd : ' + cmd);

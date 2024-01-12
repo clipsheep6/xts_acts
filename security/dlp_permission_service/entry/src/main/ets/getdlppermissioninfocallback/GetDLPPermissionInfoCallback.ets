@@ -19,6 +19,7 @@ import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 import dlpPermission from '@ohos.dlpPermission';
 import {terminateSelfWithResult} from '../common/utils';
+import { BusinessError } from '@ohos.base';
 
 const TAG = "GetDLPPermissionInfoCallback";
 
@@ -30,9 +31,9 @@ export default class GetDLPPermissionInfoCallback extends UIAbility {
   onDestroy() {
   }
 
-  onWindowStageCreate(windowStage: window.WindowStage) {
+  onWindowStageCreate() {
     // Main window is created, set main page for this ability
-    dlpPermission.getDLPPermissionInfo(async (error, dlpPermInfo) => {
+    dlpPermission.getDLPPermissionInfo(async (error:BusinessError, dlpPermInfo) => {
       if (error) {
         console.error(TAG, "getDLPPermissionInfo callback fail", error.code, error.message);
         terminateSelfWithResult(error.code);

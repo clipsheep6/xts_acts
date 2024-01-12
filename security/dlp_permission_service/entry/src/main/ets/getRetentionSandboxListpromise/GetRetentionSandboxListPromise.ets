@@ -23,7 +23,7 @@ import {terminateSelfWithResult} from '../common/utils';
 const TAG = "DLP_XTS_GetRetentionSandboxListPromise";
 
 export default class GetRetentionSandboxListPromise extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  onCreate() {
     globalThis.context = this.context;
   }
 

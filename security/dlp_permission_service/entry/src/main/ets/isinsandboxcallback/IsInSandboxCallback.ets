@@ -18,12 +18,13 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 import dlpPermission from '@ohos.dlpPermission';
-import {terminateSelfWithResult} from '../common/utils';
+import { terminateSelfWithResult } from '../common/utils';
+import { BusinessError } from '@ohos.base';
 
 const TAG = "IsInSandboxPromise";
 
 export default class IsInSandboxCallback extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  onCreate() {
     globalThis.context = this.context;
   }
 
@@ -32,7 +33,7 @@ export default class IsInSandboxCallback extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
-    dlpPermission.isInSandbox(async (error, isInSandbox) => {
+    dlpPermission.isInSandbox(async (error: BusinessError, isInSandbox) => {
       if (error) {
         console.error(TAG, "isInSandbox callback fail", error.code, error.message);
         terminateSelfWithResult(error.code);

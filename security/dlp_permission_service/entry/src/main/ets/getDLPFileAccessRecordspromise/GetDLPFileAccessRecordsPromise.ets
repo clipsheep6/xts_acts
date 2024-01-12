@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import hilog from '@ohos.hilog';
 import UIAbility from '@ohos.app.ability.UIAbility';
 import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
@@ -23,14 +22,14 @@ import {terminateSelfWithResult} from '../common/utils';
 const TAG = "DLP_XTS_GetDLPFileAccessRecordsPromise";
 
 export default class GetDLPFileAccessRecordsPromise extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+  onCreate() {
     globalThis.context = this.context;
   }
 
   onDestroy() {
   }
 
-  async onWindowStageCreate(windowStage: window.WindowStage) {
+  async onWindowStageCreate() {
     // Main window is created, set main page for this ability
     try {
       var date = await dlpPermission.getDLPFileAccessRecords();
