@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 
 export default function gridSettingsJsunit() {
-  describe('gridSettingsTest', function () {
-    beforeEach(async function (done) {
-      let options = {
+  describe('gridSettingsTest', () => {
+    beforeEach(async () => {
+      let options: router.RouterOptions = {
         uri: 'MainAbility/pages/gridSettings',
       }
       try {
@@ -30,52 +30,62 @@ export default function gridSettingsJsunit() {
         console.info("get gridSettings state pages:" + JSON.stringify(pages));
         if (!("textStyle" == pages.name)) {
           console.info("get gridSettings state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push gridSettings page result:" + JSON.stringify(result));
         }
       } catch (err) {
         console.error("push gridSettings page error:" + err);
       }
-      done();
+
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("gridSettings after each called");
     });
 
-    it('testGridSettings000', 0, async function (done) {
+    it('testGridSettings000', 0, async () => {
       console.info('[testGridSettings000] START');
       await Utils.sleep(1000);
-      let strJson = getInspectorByKey('gridContainer');
+      let strJson: string = getInspectorByKey('gridContainer');
       console.info("[testGridSettings000] component strJson:" + strJson);
       expect(true).assertEqual(true);
-      done();
+
     });
 
-    it('testGridSettings001', 0, async function (done) {
+    it('testGridSettings001', 0, async () => {
       console.info('[testGridSettings001] START');
       await Utils.sleep(4000);
-      let strJson = getInspectorByKey('gridRow');
+      let strJson: string = getInspectorByKey('gridRow');
       console.info("[testGridSettings001] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings001] gridRow useSizeType: " + JSON.stringify(obj.$attrs.useSizeType));
-      expect(obj.$attrs.useSizeType.sm.span).assertEqual(2);
-      expect(obj.$attrs.useSizeType.sm.offset).assertEqual(1);
-      done();
+
+      console.info("[testGridSettings001] gridRow useSizeType: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .useSizeType));
+      expect(JSON.parse(strJson)
+        .$attrs
+        .useSizeType
+        .sm
+        .span).assertEqual(2);
+      expect(JSON.parse(strJson)
+        .$attrs
+        .useSizeType
+        .sm
+        .offset).assertEqual(1);
+
     });
 
-    it('testGridSettings002', 0, async function (done) {
+    it('testGridSettings002', 0, async () => {
       console.info('[testGridSettings002] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "span": 1,
             "offset": 2
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 9,
           priority: events_emitter.EventPriority.LOW
         }
@@ -87,23 +97,33 @@ export default function gridSettingsJsunit() {
       await Utils.sleep(4000);
       let strJson = getInspectorByKey('gridRow');
       console.info("[testGridSettings002] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings002] gridRow useSizeType: " + JSON.stringify(obj.$attrs.useSizeType));
-      expect(obj.$attrs.useSizeType.sm.span).assertEqual(1);
-      expect(obj.$attrs.useSizeType.sm.offset).assertEqual(2);
-      done();
+
+      console.info("[testGridSettings002] gridRow useSizeType: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .useSizeType));
+      expect(JSON.parse(strJson)
+        .$attrs
+        .useSizeType
+        .sm
+        .span).assertEqual(1);
+      expect(JSON.parse(strJson)
+        .$attrs
+        .useSizeType
+        .sm
+        .offset).assertEqual(2);
+
     });
 
-    it('testGridSettings003', 0, async function (done) {
+    it('testGridSettings003', 0, async () => {
       console.info('[testGridSettings003] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "span": 0x80000000,
             "offset": 0x80000000
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 9,
           priority: events_emitter.EventPriority.LOW
         }
@@ -113,25 +133,35 @@ export default function gridSettingsJsunit() {
         console.log("[testGridSettings003] change component data error: " + err.message);
       }
       await Utils.sleep(4000);
-      let strJson = getInspectorByKey('gridRow');
+      let strJson: string = getInspectorByKey('gridRow');
       console.info("[testGridSettings003] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings003] gridRow useSizeType: " + JSON.stringify(obj.$attrs.useSizeType));
-      expect(obj.$attrs.useSizeType.sm.span).assertEqual(1);
-      expect(obj.$attrs.useSizeType.sm.offset).assertEqual(-2147483648);
-      done();
+
+      console.info("[testGridSettings003] gridRow useSizeType: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .useSizeType));
+      expect(JSON.parse(strJson)
+        .$attrs
+        .useSizeType
+        .sm
+        .span).assertEqual(1);
+      expect(JSON.parse(strJson)
+        .$attrs
+        .useSizeType
+        .sm
+        .offset).assertEqual(-2147483648);
+
     });
 
-    it('testGridSettings004', 0, async function (done) {
+    it('testGridSettings004', 0, async () => {
       console.info('[testGridSettings004] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "span": 0x7FFFFFFF,
             "offset": 0x7FFFFFFF
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 9,
           priority: events_emitter.EventPriority.LOW
         }
@@ -141,25 +171,35 @@ export default function gridSettingsJsunit() {
         console.log("[testGridSettings004] change component data error: " + err.message);
       }
       await Utils.sleep(4000);
-      let strJson = getInspectorByKey('gridRow');
+      let strJson: string = getInspectorByKey('gridRow');
       console.info("[testGridSettings004] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings004] gridRow useSizeType: " + JSON.stringify(obj.$attrs.useSizeType));
-      expect(obj.$attrs.useSizeType.sm.span).assertEqual(0x7FFFFFFF);
-      expect(obj.$attrs.useSizeType.sm.offset).assertEqual(0x7FFFFFFF);
-      done();
+
+      console.info("[testGridSettings004] gridRow useSizeType: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .useSizeType));
+      expect(JSON.parse(strJson)
+        .$attrs
+        .useSizeType
+        .sm
+        .span).assertEqual(0x7FFFFFFF);
+      expect(JSON.parse(strJson)
+        .$attrs
+        .useSizeType
+        .sm
+        .offset).assertEqual(0x7FFFFFFF);
+
     });
 
-    it('testGridSettings005', 0, async function (done) {
+    it('testGridSettings005', 0, async () => {
       console.info('[testGridSettings005] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "span": 'error',
             "offset": 'error'
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 9,
           priority: events_emitter.EventPriority.LOW
         }
@@ -169,35 +209,45 @@ export default function gridSettingsJsunit() {
         console.log("[testGridSettings005] change component data error: " + err.message);
       }
       await Utils.sleep(4000);
-      let strJson = getInspectorByKey('gridRow');
+      let strJson: string = getInspectorByKey('gridRow');
       console.info("[testGridSettings005] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings005] gridRow useSizeType: " + JSON.stringify(obj.$attrs.useSizeType));
-      expect(obj.$attrs.useSizeType.sm.span).assertEqual(0);
-      expect(obj.$attrs.useSizeType.sm.offset).assertEqual(0);
-      done();
+
+      console.info("[testGridSettings005] gridRow useSizeType: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .useSizeType));
+      expect(JSON.parse(strJson)
+        .$attrs
+        .useSizeType
+        .sm
+        .span).assertEqual(0);
+      expect(JSON.parse(strJson)
+        .$attrs
+        .useSizeType
+        .sm
+        .offset).assertEqual(0);
+
     });
 
-    it('testGridSettings006', 0, async function (done) {
+    it('testGridSettings006', 0, async () => {
       console.info('[testGridSettings006] START');
       await Utils.sleep(1000);
-      let strJson = getInspectorByKey('gridOffset');
+      let strJson: string = getInspectorByKey('gridOffset');
       console.info("[testGridSettings006] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings006] gridOffset: " + JSON.stringify(obj.$attrs.gridOffset));
-      expect(obj.$attrs.gridOffset).assertEqual(0);
-      done();
+
+      console.info("[testGridSettings006] gridOffset: " + JSON.stringify(JSON.parse(strJson).$attrs.gridOffset));
+      expect(JSON.parse(strJson).$attrs.gridOffset).assertEqual(0);
+
     });
 
-    it('testGridSettings007', 0, async function (done) {
+    it('testGridSettings007', 0, async () => {
       console.info('[testGridSettings007] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "gridOffset": 1
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 10,
           priority: events_emitter.EventPriority.LOW
         }
@@ -207,23 +257,23 @@ export default function gridSettingsJsunit() {
         console.log("[testGridSettings007] change component data error: " + err.message);
       }
       await Utils.sleep(4000);
-      let strJson = getInspectorByKey('gridOffset');
+      let strJson: string = getInspectorByKey('gridOffset');
       console.info("[testGridSettings007] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings007] gridOffset: " + JSON.stringify(obj.$attrs.gridOffset));
-      expect(obj.$attrs.gridOffset).assertEqual(1);
-      done();
+
+      console.info("[testGridSettings007] gridOffset: " + JSON.stringify(JSON.parse(strJson).$attrs.gridOffset));
+      expect(JSON.parse(strJson).$attrs.gridOffset).assertEqual(1);
+
     });
 
-    it('testGridSettings008', 0, async function (done) {
+    it('testGridSettings008', 0, async () => {
       console.info('[testGridSettings008] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "gridOffset": 0x80000000
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 10,
           priority: events_emitter.EventPriority.LOW
         }
@@ -233,23 +283,23 @@ export default function gridSettingsJsunit() {
         console.log("[testGridSettings008] change component data error: " + err.message);
       }
       await Utils.sleep(4000);
-      let strJson = getInspectorByKey('gridOffset');
+      let strJson: string = getInspectorByKey('gridOffset');
       console.info("[testGridSettings008] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings008] gridOffset: " + JSON.stringify(obj.$attrs.gridOffset));
-      expect(obj.$attrs.gridOffset).assertEqual(-2147483648);
-      done();
+
+      console.info("[testGridSettings008] gridOffset: " + JSON.stringify(JSON.parse(strJson).$attrs.gridOffset));
+      expect(JSON.parse(strJson).$attrs.gridOffset).assertEqual(-2147483648);
+
     });
 
-    it('testGridSettings009', 0, async function (done) {
+    it('testGridSettings009', 0, async () => {
       console.info('[testGridSettings009] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "gridOffset": 0x7FFFFFFF
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 10,
           priority: events_emitter.EventPriority.LOW
         }
@@ -259,23 +309,23 @@ export default function gridSettingsJsunit() {
         console.log("[testGridSettings009] change component data error: " + err.message);
       }
       await Utils.sleep(4000);
-      let strJson = getInspectorByKey('gridOffset');
+      let strJson: string = getInspectorByKey('gridOffset');
       console.info("[testGridSettings009] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings009] gridOffset: " + JSON.stringify(obj.$attrs.gridOffset));
-      expect(obj.$attrs.gridOffset).assertEqual(0x7FFFFFFF);
-      done();
+
+      console.info("[testGridSettings009] gridOffset: " + JSON.stringify(JSON.parse(strJson).$attrs.gridOffset));
+      expect(JSON.parse(strJson).$attrs.gridOffset).assertEqual(0x7FFFFFFF);
+
     });
 
-    it('testGridSettings010', 0, async function (done) {
+    it('testGridSettings010', 0, async () => {
       console.info('[testGridSettings010] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "gridOffset": 'error'
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 10,
           priority: events_emitter.EventPriority.LOW
         }
@@ -285,34 +335,31 @@ export default function gridSettingsJsunit() {
         console.log("[testGridSettings010] change component data error: " + err.message);
       }
       await Utils.sleep(4000);
-      let strJson = getInspectorByKey('gridOffset');
+      let strJson: string = getInspectorByKey('gridOffset');
       console.info("[testGridSettings010] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings010] gridOffset: " + JSON.stringify(obj.$attrs.gridOffset));
-      expect(obj.$attrs.gridOffset).assertEqual(2147483647);
-      done();
+      console.info("[testGridSettings010] gridOffset: " + JSON.stringify(JSON.parse(strJson).$attrs.gridOffset));
+      expect(JSON.parse(strJson).$attrs.gridOffset).assertEqual(2147483647);
+
     });
 
-    it('testGridSettings011', 0, async function (done) {
+    it('testGridSettings011', 0, async () => {
       console.info('[testGridSettings011] START');
       await Utils.sleep(1000);
-      let strJson = getInspectorByKey('gridSpan');
+      let strJson: string = getInspectorByKey('gridSpan');
       console.info("[testGridSettings011] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings011] gridSpan: " + JSON.stringify(obj.$attrs.gridSpan));
-      expect(obj.$attrs.gridSpan).assertEqual(1);
-      done();
+      console.info("[testGridSettings011] gridSpan: " + JSON.stringify(JSON.parse(strJson).$attrs.gridSpan));
+      expect(JSON.parse(strJson).$attrs.gridSpan).assertEqual(1);
     });
 
-    it('testGridSettings012', 0, async function (done) {
+    it('testGridSettings012', 0, async () => {
       console.info('[testGridSettings012] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "gridSpan": 2
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 11,
           priority: events_emitter.EventPriority.LOW
         }
@@ -322,23 +369,21 @@ export default function gridSettingsJsunit() {
         console.log("[testGridSettings012] change component data error: " + err.message);
       }
       await Utils.sleep(4000);
-      let strJson = getInspectorByKey('gridSpan');
+      let strJson: string = getInspectorByKey('gridSpan');
       console.info("[testGridSettings012] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings012] gridSpan: " + JSON.stringify(obj.$attrs.gridSpan));
-      expect(obj.$attrs.gridSpan).assertEqual(2);
-      done();
+      console.info("[testGridSettings012] gridSpan: " + JSON.stringify(JSON.parse(strJson).$attrs.gridSpan));
+      expect(JSON.parse(strJson).$attrs.gridSpan).assertEqual(2);
     });
 
-    it('testGridSettings013', 0, async function (done) {
+    it('testGridSettings013', 0, async () => {
       console.info('[testGridSettings013] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "gridSpan": 0x80000000
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 11,
           priority: events_emitter.EventPriority.LOW
         }
@@ -348,23 +393,21 @@ export default function gridSettingsJsunit() {
         console.log("[testGridSettings013] change component data error: " + err.message);
       }
       await Utils.sleep(4000);
-      let strJson = getInspectorByKey('gridSpan');
+      let strJson: string = getInspectorByKey('gridSpan');
       console.info("[testGridSettings013] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings013] gridSpan: " + JSON.stringify(obj.$attrs.gridSpan));
-      expect(obj.$attrs.gridSpan).assertEqual(2);
-      done();
+      console.info("[testGridSettings013] gridSpan: " + JSON.stringify(JSON.parse(strJson).$attrs.gridSpan));
+      expect(JSON.parse(strJson).$attrs.gridSpan).assertEqual(2);
     });
 
-    it('testGridSettings014', 0, async function (done) {
+    it('testGridSettings014', 0, async () => {
       console.info('[testGridSettings014] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "gridSpan": 0x7FFFFFFF
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 11,
           priority: events_emitter.EventPriority.LOW
         }
@@ -374,23 +417,21 @@ export default function gridSettingsJsunit() {
         console.log("[testGridSettings014] change component data error: " + err.message);
       }
       await Utils.sleep(4000);
-      let strJson = getInspectorByKey('gridSpan');
+      let strJson: string = getInspectorByKey('gridSpan');
       console.info("[testGridSettings014] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings014] gridSpan: " + JSON.stringify(obj.$attrs.gridSpan));
-      expect(obj.$attrs.gridSpan).assertEqual(0x7FFFFFFF);
-      done();
+      console.info("[testGridSettings014] gridSpan: " + JSON.stringify(JSON.parse(strJson).$attrs.gridSpan));
+      expect(JSON.parse(strJson).$attrs.gridSpan).assertEqual(0x7FFFFFFF);
     });
 
-    it('testGridSettings015', 0, async function (done) {
+    it('testGridSettings015', 0, async () => {
       console.info('[testGridSettings015] START');
       try {
-        let eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "gridSpan": 'error'
           }
         }
-        let indexEvent = {
+        let indexEvent: events_emitter.InnerEvent = {
           eventId: 11,
           priority: events_emitter.EventPriority.LOW
         }
@@ -400,12 +441,10 @@ export default function gridSettingsJsunit() {
         console.log("[testGridSettings015] change component data error: " + err.message);
       }
       await Utils.sleep(4000);
-      let strJson = getInspectorByKey('gridSpan');
+      let strJson: string = getInspectorByKey('gridSpan');
       console.info("[testGridSettings015] component strJson:" + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testGridSettings015] gridSpan: " + JSON.stringify(obj.$attrs.gridSpan));
-      expect(obj.$attrs.gridSpan).assertEqual(2147483647);
-      done();
+      console.info("[testGridSettings015] gridSpan: " + JSON.stringify(JSON.parse(strJson).$attrs.gridSpan));
+      expect(JSON.parse(strJson).$attrs.gridSpan).assertEqual(2147483647);
     });
   });
 }

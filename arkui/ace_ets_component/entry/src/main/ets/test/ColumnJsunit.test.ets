@@ -13,25 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium";
-import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 
 export default function columnJsunit() {
-  describe('columnTest', function () {
-    beforeEach(async function (done) {
+  describe('columnTest', async () => {
+    beforeEach(async () => {
       console.info("column beforeEach start");
-      let options = {
+      let options: router.RouterOptions = {
         uri: 'MainAbility/pages/column',
       }
       try {
         router.clear();
-        let pages = router.getState();
+        let pages:router.RouterState = router.getState();
         console.info("get column state pages:" + JSON.stringify(pages));
         if (!("column" == pages.name)) {
           console.info("get column state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push column page result:" + JSON.stringify(result));
         }
@@ -41,31 +41,29 @@ export default function columnJsunit() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("column after each called");
     });
 
-    it('testColumn01', 0, async function (done) {
+    it('testColumn01', 0, async () => {
       console.info('[testColumn01] START');
       await Utils.sleep(1000);
-      let strJson = getInspectorByKey('alignItemsColumn');
-      let obj = JSON.parse(strJson);
-      console.info("[testColumn01] obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.alignItems).assertEqual('HorizontalAlign.Start');
+      let strJson: string = getInspectorByKey('alignItemsColumn');
+      console.info("[testColumn01] obj is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.alignItems).assertEqual('HorizontalAlign.Start');
       console.info('[testColumn01] END');
-      done();
     });
 
-    it('testColumn02', 0, async function (done) {
+    it('testColumn02', 0, async () => {
       console.info('[testColumn02] START');
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
-            "alignItems":HorizontalAlign.Center
+            "alignItems": HorizontalAlign.Center
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 192,
           priority: events_emitter.EventPriority.LOW
         }
@@ -75,12 +73,10 @@ export default function columnJsunit() {
         console.log("[testColumn02] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJson = getInspectorByKey('alignItemsColumn');
-      let obj = JSON.parse(strJson);
-      console.info("[testColumn02] obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.alignItems).assertEqual('HorizontalAlign.Center');
+      let strJson: string = getInspectorByKey('alignItemsColumn');
+      console.info("[testColumn02] obj is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.alignItems).assertEqual('HorizontalAlign.Center');
       console.info('[testColumn02] END');
-      done();
     });
   })
 }
