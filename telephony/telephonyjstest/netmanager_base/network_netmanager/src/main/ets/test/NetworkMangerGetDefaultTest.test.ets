@@ -17,7 +17,7 @@ import testNapi from 'libconnectionNdkTest.so'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 
 export default function abilityTest() {
-  describe('NetworkMangerGetNetCapabilitiesTest', () => {
+  describe('NetworkMangerGetDefaultNetTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(() => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
@@ -38,46 +38,32 @@ export default function abilityTest() {
       // This API supports only one parameter: clear action function.
     });
     /**
-     * @tc.number  NETWORKMANAGER_CONNECTION_GETNETCAPABILITIES_0100
-     * @tc.name    test_getNetCapabilities401
+     * @tc.number  NETWORKMANAGER_CONNECTION_GETDEFAULTNET_0100
+     * @tc.name    test_getDefaultNet0
      * @tc.desc    check netConnection result
      * @tc.size    MediumTest
      * @tc.type    Function
      * @tc.level   Level 2
      */
-    it('test_getNetCapabilities401', 0, () => {
+    it('test_getDefaultNet401', 0, () => {
       let testNumber = -1;
-      let codeNumber = testNapi.getNetCapabilities(testNumber);
+      let codeNumber = testNapi.getDefaultNet(testNumber);
       expect(codeNumber).assertEqual(401)
-      console.log("Test testNumber 401(param error)" + codeNumber);
+      console.log("Test testNumber -1(NULL)" + codeNumber);
     })
     /**
-     * @tc.number  NETWORKMANAGER_CONNECTION_GETNETCAPABILITIES_0200
-     * @tc.name    test_getNetCapabilities0
+     * @tc.number  NETWORKMANAGER_CONNECTION_GETDEFAULTNET_0200
+     * @tc.name    test_getDefaultNet0
      * @tc.desc    check netConnection result
      * @tc.size    MediumTest
      * @tc.type    Function
      * @tc.level   Level 2
      */
-    it('test_getNetCapabilities0', 0, () => {
-      let testNumber = 1111111;
-      let codeNumber = testNapi.getNetCapabilities(testNumber);
+    it('test_getDefaultNet0', 0, () => {
+      let testNumber = 111111111;
+      let codeNumber = testNapi.getDefaultNet(testNumber);
       expect(codeNumber).assertEqual(0)
       console.log("Test testNumber 0(SUCCESS)" + codeNumber);
-    })
-    /**
-     * @tc.number  NETWORKMANAGER_CONNECTION_GETNETCAPABILITIES_0300
-     * @tc.name    test_getNetCapabilities2101013
-     * @tc.desc    check netConnection result
-     * @tc.size    MediumTest
-     * @tc.type    Function
-     * @tc.level   Level 2
-     */
-    it('test_getNetCapabilities2101013', 0, () => {
-      let testNumber = 1111111;
-      let codeNumber = testNapi.getNetCapabilities(testNumber);
-      expect(codeNumber).assertEqual(2101013)
-      console.log("Network not connected");
     })
   })
 }

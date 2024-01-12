@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
-import testNapi from 'libentry.so'
+import testNapi from 'libconnectionNdkTest.so'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 
 export default function abilityTest() {
@@ -53,7 +52,7 @@ export default function abilityTest() {
       console.log("Test testNumber 401(param error)" + codeNumber);
     })
     /**
-     * @tc.number  NETWORKMANAGER_CONNECTION_HASDEFAULTNET_0200
+     * @tc.number  NETWORKMANAGER_CONNECTION_HASDEFAULTNET_0100
      * @tc.name    test_hasDefaultNet0
      * @tc.desc    check netConnection result
      * @tc.size    MediumTest

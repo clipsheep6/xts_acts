@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
-import testNapi from 'libentry.so'
+import testNapi from 'libconnectionNdkTest.so'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 
 export default function abilityTest() {
@@ -40,7 +39,7 @@ export default function abilityTest() {
     });
     /**
      * @tc.number  NETWORKMANAGER_CONNECTION_GETCONNECTIONPROPTIES_0100
-     * @tc.name    test_isDefaultNetMetered401
+     * @tc.name    test_getConnectionProperties401
      * @tc.desc    check netConnection result
      * @tc.size    MediumTest
      * @tc.type    Function
@@ -54,7 +53,7 @@ export default function abilityTest() {
     })
     /**
      * @tc.number  NETWORKMANAGER_CONNECTION_GETCONNECTIONPROPTIES_0200
-     * @tc.name    test_isDefaultNetMetered0
+     * @tc.name    test_getConnectionProperties0
      * @tc.desc    check netConnection result
      * @tc.size    MediumTest
      * @tc.type    Function
@@ -65,6 +64,20 @@ export default function abilityTest() {
       let codeNumber = testNapi.getConnectionProperties(testNumber);
       expect(codeNumber).assertEqual(0)
       console.log("Test testNumber 0(SUCCESS)" + codeNumber);
+    })
+    /**
+     * @tc.number  NETWORKMANAGER_CONNECTION_GETCONNECTIONPROPTIES_0300
+     * @tc.name    test_getConnectionProperties201013
+     * @tc.desc    check netConnection result
+     * @tc.size    MediumTest
+     * @tc.type    Function
+     * @tc.level   Level 2
+     */
+    it('test_getConnectionProperties201013', 0, () => {
+      let testNumber = 1111111;
+      let codeNumber = testNapi.getConnectionProperties(testNumber);
+      expect(codeNumber).assertEqual(2101013)
+      console.log("Network not connected");
     })
   })
 }

@@ -13,8 +13,7 @@
  * limitations under the License.
  */
 
-import hilog from '@ohos.hilog';
-import testNapi from 'libentry.so'
+import testNapi from 'libconnectionNdkTest.so'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 
 export default function abilityTest() {
@@ -39,7 +38,7 @@ export default function abilityTest() {
       // This API supports only one parameter: clear action function.
     });
     /**
-     * @tc.number  NETWORKMANAGER_CONNECTION_GETALLNETS_0100
+     * tc.number   NETWORKMANAGER_CONNECTION_GETALLNETS_0100
      * @tc.name    test_getAllNets401
      * @tc.desc    check netConnection result
      * @tc.size    MediumTest
