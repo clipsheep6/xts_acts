@@ -18,31 +18,31 @@ import picker from '@ohos.file.picker'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 
 
-async function select(testNum:string, done:Function, dirName:string, fileName:string) {
-    try {
-        let audioPicker = new picker.AudioViewPicker();
-        audioPicker.select((err:picker.AudioSelectOptions, result:AsyncCallback<Array<string>>) => {
-            if (err != undefined) {
-                console.info(`${testNum}::select fail, err: ${JSON.stringify(err)}`);
-                expect(false).assertTrue();
-                done();
-                return;
-            }
-            console.info(`${testNum}::select result: ${JSON.stringify(result)}`);
-            expect(result.length).assertEqual(1);
-            done();
-        });
-        expect(true).assertTrue();
-        done();
-    }
-    catch (error) {
-        console.info(`${testNum}::select error: ${JSON.stringify(error)}`);
+async function select(testNum: string, done: Function, dirName: string, fileName: string) {
+  try {
+    let audioPicker = new picker.AudioViewPicker();
+    audioPicker.select((err: picker.AudioSelectOptions, result: AsyncCallback<Array<string>>) => {
+      if (err != undefined) {
+        console.info(`${testNum}::select fail, err: ${JSON.stringify(err)}`);
         expect(false).assertTrue();
         done();
-    }
+        return;
+      }
+      console.info(`${testNum}::select result: ${JSON.stringify(result)}`);
+      expect(result.length).assertEqual(1);
+      done();
+    });
+    expect(true).assertTrue();
+    done();
+  }
+  catch (error) {
+    console.info(`${testNum}::select error: ${JSON.stringify(error)}`);
+    expect(false).assertTrue();
+    done();
+  }
 }
 
-async function selectWithOption(testNum:string, done:Function, option:picker.AudioSelectOptions, dirName:string, fileName:string) {
+async function selectWithOption(testNum: string, done: Function, option: picker.AudioSelectOptions, dirName: string, fileName: string) {
   try {
     let audioPicker = new picker.AudioViewPicker();
     audioPicker.select(option, (err, result) => {
@@ -67,7 +67,7 @@ async function selectWithOption(testNum:string, done:Function, option:picker.Aud
 }
 
 
-async function saveWithoutSelect(testNum:string, done:Function) {
+async function saveWithoutSelect(testNum: string, done: Function) {
   try {
     let audioPicker = new picker.AudioViewPicker();
     audioPicker.save((err, result) => {
@@ -91,7 +91,7 @@ async function saveWithoutSelect(testNum:string, done:Function) {
   }
 }
 
-async function saveWithOption(testNum:string, done:Function, option:picker.AudioSaveOptions, dirName:string) {
+async function saveWithOption(testNum: string, done: Function, option: picker.AudioSaveOptions, dirName: string) {
   try {
     let audioPicker = new picker.AudioViewPicker();
     audioPicker.save(option, (err, result) => {
@@ -115,7 +115,7 @@ async function saveWithOption(testNum:string, done:Function, option:picker.Audio
   }
 }
 
-export default function audioPickerCallback(abilityContext:Context) {
+export default function audioPickerCallback(abilityContext: Context) {
   describe("audioPickerCallback", () => {
     afterEach(async () => {
       await sleep(500);
@@ -131,7 +131,7 @@ export default function audioPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 0
      */
-    it("audiopicker_select_callback_000", 0, async (done:Function) => {
+    it("audiopicker_select_callback_000", 0, async (done: Function) => {
       let testNum = "audiopicker_select_callback_000";
       let option = new picker.AudioSelectOptions();
       let dirName = "Audios";
@@ -146,7 +146,7 @@ export default function audioPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 3
      */
-    it("audiopicker_select_callback_001", 0, async (done:Function) => {
+    it("audiopicker_select_callback_001", 0, async (done: Function) => {
       let testNum = "audiopicker_select_callback_001";
       let dirName = "Audios";
       let fileName = "01.mp3";
@@ -160,7 +160,7 @@ export default function audioPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 0
      */
-    it("audiopicker_save_callback_000", 0, async (done:Function) => {
+    it("audiopicker_save_callback_000", 0, async (done: Function) => {
       let testNum = "audiopicker_save_callback_000";
       let option = new picker.AudioSaveOptions();
       option.newFileNames = ["AudioViewPicker01.mp3"];
@@ -175,7 +175,7 @@ export default function audioPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 0
      */
-    it("audiopicker_save_callback_001", 0, async (done:Function) => {
+    it("audiopicker_save_callback_001", 0, async (done: Function) => {
       let testNum = "audiopicker_save_callback_001";
       await saveWithoutSelect(testNum, done);
     });

@@ -20,6 +20,7 @@ import documentPickerPromise from './documentPickerPromise.test.ets'
 import audioPickerCallback from './audioPickerCallback.test.ets'
 import audioPickerPromise from './audioPickerPromise.test.ets'
 import globalContext from '../test/GlobalContext';
+
 export default function testsuite() {
   photoPickerCallback(globalContext.getContext().getAbility())
   photoPickerPromise(globalContext.getContext().getAbility())

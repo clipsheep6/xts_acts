@@ -17,7 +17,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { sleep, startAbility } from "./Common"
 import picker from '@ohos.file.picker'
 
-export default function audioPickerPromise(abilityContext:Context) {
+export default function audioPickerPromise(abilityContext: Context) {
   describe("audioPickerPromise", () => {
     afterEach(async () => {
       await sleep(500);
@@ -33,7 +33,7 @@ export default function audioPickerPromise(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 0
      */
-    it("audiopicker_select_promise_000", 0, async (done:Function) => {
+    it("audiopicker_select_promise_000", 0, async (done: Function) => {
       let testNum = "audiopicker_select_promise_000";
       let option = new picker.AudioSelectOptions();
       let dirName = "Audios";
@@ -48,7 +48,7 @@ export default function audioPickerPromise(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 3
      */
-    it("audiopicker_select_promise_001", 0, async (done:Function) => {
+    it("audiopicker_select_promise_001", 0, async (done: Function) => {
       let testNum = "audiopicker_select_promise_001";
       let dirName = "Audios";
       let fileName = "01.mp3";
@@ -62,7 +62,7 @@ export default function audioPickerPromise(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 0
      */
-    it("audiopicker_save_promise_000", 0, async (done:Function) => {
+    it("audiopicker_save_promise_000", 0, async (done: Function) => {
       let testNum = "audiopicker_save_promise_000";
       let option = new picker.AudioSaveOptions();
       option.newFileNames = ["AudioViewPicker01.mp3"];
@@ -77,7 +77,7 @@ export default function audioPickerPromise(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 0
      */
-    it("audiopicker_save_promise_001", 0, async (done:Function) => {
+    it("audiopicker_save_promise_001", 0, async (done: Function) => {
       let testNum = "audiopicker_save_promise_001";
       await saveWithoutSelect(testNum, done);
     });
@@ -85,95 +85,95 @@ export default function audioPickerPromise(abilityContext:Context) {
 }
 
 
-async function select(testNum:string, done:Function, dirName:string, fileName:string) {
-    try {
-        let audioPicker = new picker.AudioViewPicker();
-        audioPicker.select().then((result) => {
-            console.info(`${testNum}::select result: ${JSON.stringify(result)}`);
-            expect(result.length).assertEqual(1);
-            done();
-        }).catch((err:Error) => {
-            console.info(`${testNum}::select err: ${JSON.stringify(err)}`);
-            expect(false).assertTrue();
-            done();
-            return;
-        });
-        expect(true).assertTrue();
-        done();
-    }
-    catch (error) {
-        console.info(`${testNum}::select error: ${JSON.stringify(error)}`);
-        expect(false).assertTrue();
-        done();
-    }
+async function select(testNum: string, done: Function, dirName: string, fileName: string) {
+  try {
+    let audioPicker = new picker.AudioViewPicker();
+    audioPicker.select().then((result) => {
+      console.info(`${testNum}::select result: ${JSON.stringify(result)}`);
+      expect(result.length).assertEqual(1);
+      done();
+    }).catch((err: Error) => {
+      console.info(`${testNum}::select err: ${JSON.stringify(err)}`);
+      expect(false).assertTrue();
+      done();
+      return;
+    });
+    expect(true).assertTrue();
+    done();
+  }
+  catch (error) {
+    console.info(`${testNum}::select error: ${JSON.stringify(error)}`);
+    expect(false).assertTrue();
+    done();
+  }
 }
 
 
-async function selectWithOption(testNum:string, done:Function, option:picker.AudioSelectOptions, dirName:string, fileName:string) {
-    try {
-        let audioPicker = new picker.AudioViewPicker();
-        audioPicker.select(option).then((result) => {
-            console.info(`${testNum}::selectWithOption result: ${JSON.stringify(result)}`);
-            expect(result.length).assertEqual(1);
-            done();
-        }).catch((err:Error) => {
-            console.info(`${testNum}::selectWithOption err: ${JSON.stringify(err)}`);
-            expect(false).assertTrue();
-            done();
-            return;
-        });
-        expect(true).assertTrue();
-        done();
-    }
-    catch (error) {
-        console.info(`${testNum}::selectWithOption error: ${JSON.stringify(error)}`);
-        expect(false).assertTrue();
-        done();
-    }
+async function selectWithOption(testNum: string, done: Function, option: picker.AudioSelectOptions, dirName: string, fileName: string) {
+  try {
+    let audioPicker = new picker.AudioViewPicker();
+    audioPicker.select(option).then((result) => {
+      console.info(`${testNum}::selectWithOption result: ${JSON.stringify(result)}`);
+      expect(result.length).assertEqual(1);
+      done();
+    }).catch((err: Error) => {
+      console.info(`${testNum}::selectWithOption err: ${JSON.stringify(err)}`);
+      expect(false).assertTrue();
+      done();
+      return;
+    });
+    expect(true).assertTrue();
+    done();
+  }
+  catch (error) {
+    console.info(`${testNum}::selectWithOption error: ${JSON.stringify(error)}`);
+    expect(false).assertTrue();
+    done();
+  }
 }
 
-async function saveWithoutSelect(testNum:string, done:Function) {
-    try {
-        let audioPicker = new picker.AudioViewPicker();
-        audioPicker.save().then((result) => {
-            console.info(`${testNum}::saveWithoutSelect result: ${JSON.stringify(result)}`);
-            expect(result.length).assertEqual(0);
-            done();
-        }).catch((err:Error) => {
-            console.info(`${testNum}::saveWithoutSelect err: ${JSON.stringify(err)}`);
-            expect(false).assertTrue();
-            done();
-            return;
-        });
-        expect(true).assertTrue();
-        done();
-    }
-    catch (error) {
-        console.info(`${testNum}::saveWithoutSelect error: ${JSON.stringify(error)}`);
-        expect(false).assertTrue();
-        done();
-    }
+async function saveWithoutSelect(testNum: string, done: Function) {
+  try {
+    let audioPicker = new picker.AudioViewPicker();
+    audioPicker.save().then((result) => {
+      console.info(`${testNum}::saveWithoutSelect result: ${JSON.stringify(result)}`);
+      expect(result.length).assertEqual(0);
+      done();
+    }).catch((err: Error) => {
+      console.info(`${testNum}::saveWithoutSelect err: ${JSON.stringify(err)}`);
+      expect(false).assertTrue();
+      done();
+      return;
+    });
+    expect(true).assertTrue();
+    done();
+  }
+  catch (error) {
+    console.info(`${testNum}::saveWithoutSelect error: ${JSON.stringify(error)}`);
+    expect(false).assertTrue();
+    done();
+  }
 }
 
-async function saveWithOption(testNum:string, done:Function, option:picker.AudioSaveOptions, dirName:string) {
-    try {
-        let audioPicker = new picker.AudioViewPicker();
-        audioPicker.save(option).then((result) => {
-            console.info(`${testNum}::saveWithOption result: ${JSON.stringify(result)}`);
-            expect(result.length).assertEqual(1);
-            done();
-        }).catch((err:Error) => {
-            console.info(`${testNum}::saveWithOption err: ${JSON.stringify(err)}`);
-            expect(false).assertTrue();
-            done();
-            return;
-        });
-        expect(true).assertTrue();
-        done();
-    }
-    catch (error) {
-        console.info(`${testNum}::saveWithOption error: ${JSON.stringify(error)}`);
-        expect(false).assertTrue();
-        done();
-    }
+async function saveWithOption(testNum: string, done: Function, option: picker.AudioSaveOptions, dirName: string) {
+  try {
+    let audioPicker = new picker.AudioViewPicker();
+    audioPicker.save(option).then((result) => {
+      console.info(`${testNum}::saveWithOption result: ${JSON.stringify(result)}`);
+      expect(result.length).assertEqual(1);
+      done();
+    }).catch((err: Error) => {
+      console.info(`${testNum}::saveWithOption err: ${JSON.stringify(err)}`);
+      expect(false).assertTrue();
+      done();
+      return;
+    });
+    expect(true).assertTrue();
+    done();
+  }
+  catch (error) {
+    console.info(`${testNum}::saveWithOption error: ${JSON.stringify(error)}`);
+    expect(false).assertTrue();
+    done();
+  }
 }

@@ -17,7 +17,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { sleep, startAbility } from "./Common"
 import picker from '@ohos.file.picker'
 
-export default function documentPickerCallback(abilityContext:Context) {
+export default function documentPickerCallback(abilityContext: Context) {
   describe("documentPickerCallback", () => {
     afterEach(async () => {
       await sleep(500);
@@ -33,7 +33,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_select_callback_000", 1, async (done:Function) => {
+    it("documentpicker_select_callback_000", 1, async (done: Function) => {
       let testNum = "documentpicker_select_callback_000";
       let option = new picker.DocumentSelectOptions();
       await selectWithOption(testNum, done, option);
@@ -46,7 +46,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_select_callback_001", 1, async (done:Function) => {
+    it("documentpicker_select_callback_001", 1, async (done: Function) => {
       let testNum = "documentpicker_select_callback_001";
       await select(testNum, done);
     });
@@ -58,7 +58,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_select_callback_002", 1, async (done:Function) => {
+    it("documentpicker_select_callback_002", 1, async (done: Function) => {
       let testNum = "documentpicker_select_callback_002";
       let option = new picker.DocumentSelectOptions();
       option.maxSelectNumber = 3;
@@ -72,7 +72,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_select_callback_003", 1, async (done:Function) => {
+    it("documentpicker_select_callback_003", 1, async (done: Function) => {
       let testNum = "documentpicker_select_callback_003";
       let option = new picker.DocumentSelectOptions();
       option.defaultFilePathUri = "file://docs/storage/Users/currentUser/test/test1";
@@ -86,7 +86,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_select_callback_004", 1, async (done:Function) => {
+    it("documentpicker_select_callback_004", 1, async (done: Function) => {
       let testNum = "documentpicker_select_callback_004";
       let option = new picker.DocumentSelectOptions();
       option.fileSuffixFilters = ['.png', '.jpg'];
@@ -100,7 +100,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_select_callback_005", 1, async (done:Function) => {
+    it("documentpicker_select_callback_005", 1, async (done: Function) => {
       let testNum = "documentpicker_select_callback_005";
       let option = new picker.DocumentSelectOptions();
       option.fileSuffixFilters = ['.pptx', '.docx', '.xlsx', '.txt'];
@@ -114,7 +114,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_select_callback_006", 1, async (done:Function) => {
+    it("documentpicker_select_callback_006", 1, async (done: Function) => {
       let testNum = "documentpicker_select_callback_006";
       let option = new picker.DocumentSelectOptions();
       option.fileSuffixFilters = ['.mp4'];
@@ -128,7 +128,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_select_callback_007", 1, async (done:Function) => {
+    it("documentpicker_select_callback_007", 1, async (done: Function) => {
       let testNum = "documentpicker_select_callback_007";
       let option = new picker.DocumentSelectOptions();
       option.fileSuffixFilters = ['.mp3'];
@@ -142,9 +142,9 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_select_callback_008", 1, async (done:Function) => {
+    it("documentpicker_select_callback_008", 1, async (done: Function) => {
       let testNum = "documentpicker_select_callback_008";
-      let option:picker.DocumentSelectOptions = new picker.DocumentSelectOptions();
+      let option: picker.DocumentSelectOptions = new picker.DocumentSelectOptions();
       console.log('documentpicker_select_callback_008::::::');
       //option.selectMode = picker.DocumentSelectMode.FILE;
       //console.log('documentpicker_select_callback_008::::::' + option.selectMode);
@@ -158,7 +158,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_select_callback_009", 1, async (done:Function) => {
+    it("documentpicker_select_callback_009", 1, async (done: Function) => {
       let testNum = "documentpicker_select_callback_009";
       let option = new picker.DocumentSelectOptions();
       //option.selectMode = picker.DocumentSelectMode.FOLDER;
@@ -172,7 +172,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_select_callback_010", 1, async (done:Function) => {
+    it("documentpicker_select_callback_010", 1, async (done: Function) => {
       let testNum = "documentpicker_select_callback_010";
       let option = new picker.DocumentSelectOptions();
       //option.selectMode = picker.DocumentSelectMode.MIXED;
@@ -186,7 +186,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 0
      */
-    it("documentpicker_save_callback_000", 0, async (done:Function) => {
+    it("documentpicker_save_callback_000", 0, async (done: Function) => {
       let testNum = "documentpicker_save_callback_000";
       let option = new picker.DocumentSaveOptions();
       option.newFileNames = ["DocumentViewPicker01.jpg"];
@@ -200,7 +200,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_save_callback_001", 1, async (done:Function) => {
+    it("documentpicker_save_callback_001", 1, async (done: Function) => {
       let testNum = "documentpicker_save_callback_001";
       let option = new picker.DocumentSaveOptions();
       option.newFileNames = ["DocumentViewPicker01.dat"];
@@ -214,7 +214,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 3
      */
-    it("documentpicker_save_callback_002", 3, async (done:Function) => {
+    it("documentpicker_save_callback_002", 3, async (done: Function) => {
       let testNum = "documentpicker_save_callback_002";
       let option = new picker.DocumentSaveOptions();
       option.newFileNames = ["DocumentViewPicker01.mp4"];
@@ -228,7 +228,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 3
      */
-    it("documentpicker_save_callback_003", 3, async (done:Function) => {
+    it("documentpicker_save_callback_003", 3, async (done: Function) => {
       let testNum = "documentpicker_save_callback_003";
       let option = new picker.DocumentSaveOptions();
       option.newFileNames = ["DocumentViewPicker01.mp3"];
@@ -242,7 +242,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 3
      */
-    it("documentpicker_save_callback_004", 3, async (done:Function) => {
+    it("documentpicker_save_callback_004", 3, async (done: Function) => {
       let testNum = "documentpicker_save_callback_004";
       await saveWithoutSelect(testNum, done);
     });
@@ -254,7 +254,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_save_callback_005", 1, async (done:Function) => {
+    it("documentpicker_save_callback_005", 1, async (done: Function) => {
       let testNum = "documentpicker_save_callback_005";
       let option = new picker.DocumentSaveOptions();
       option.defaultFilePathUri = "file://docs/storage/Users/currentUser/test/test1/202308171505.png";
@@ -268,7 +268,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_save_callback_006", 1, async (done:Function) => {
+    it("documentpicker_save_callback_006", 1, async (done: Function) => {
       let testNum = "documentpicker_save_callback_006";
       let option = new picker.DocumentSaveOptions();
       option.fileSuffixChoices = ['.png', '.jpg'];
@@ -282,7 +282,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_save_callback_007", 1, async (done:Function) => {
+    it("documentpicker_save_callback_007", 1, async (done: Function) => {
       let testNum = "documentpicker_save_callback_007";
       let option = new picker.DocumentSaveOptions();
       option.fileSuffixChoices = ['.pptx', '.docx', '.xlsx', '.txt'];
@@ -296,7 +296,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_save_callback_008", 1, async (done:Function) => {
+    it("documentpicker_save_callback_008", 1, async (done: Function) => {
       let testNum = "documentpicker_save_callback_008";
       let option = new picker.DocumentSaveOptions();
       option.fileSuffixChoices = ['.mp4'];
@@ -310,7 +310,7 @@ export default function documentPickerCallback(abilityContext:Context) {
      * @tc.type   : Function
      * @tc.level   : Level 1
      */
-    it("documentpicker_save_callback_009", 1, async (done:Function) => {
+    it("documentpicker_save_callback_009", 1, async (done: Function) => {
       let testNum = "documentpicker_save_callback_009";
       let option = new picker.DocumentSaveOptions();
       option.fileSuffixChoices = ['.mp3'];
@@ -319,98 +319,98 @@ export default function documentPickerCallback(abilityContext:Context) {
   });
 }
 
-async function select(testNum:string, done:Function) {
-    try {
-        let documentPicker = new picker.DocumentViewPicker();
-        documentPicker.select((err, result) => {
-            if (err != undefined) {
-                console.info(`${testNum}::select fail, err: ${JSON.stringify(err)}`);
-                expect(false).assertTrue();
-                done();
-                return;
-            }
-            console.info(`${testNum}::select result: ${JSON.stringify(result)}`);
-            expect(result.length).assertEqual(1);
-            done();
-        });
-        expect(true).assertTrue();
-        done();
-    }
-    catch (error) {
-        console.info(`${testNum}::select error: ${JSON.stringify(error)}`);
+async function select(testNum: string, done: Function) {
+  try {
+    let documentPicker = new picker.DocumentViewPicker();
+    documentPicker.select((err, result) => {
+      if (err != undefined) {
+        console.info(`${testNum}::select fail, err: ${JSON.stringify(err)}`);
         expect(false).assertTrue();
         done();
-    }
+        return;
+      }
+      console.info(`${testNum}::select result: ${JSON.stringify(result)}`);
+      expect(result.length).assertEqual(1);
+      done();
+    });
+    expect(true).assertTrue();
+    done();
+  }
+  catch (error) {
+    console.info(`${testNum}::select error: ${JSON.stringify(error)}`);
+    expect(false).assertTrue();
+    done();
+  }
 }
 
-async function selectWithOption(testNum:string, done:Function, option:picker.DocumentSelectOptions) {
-    try {
-        let documentPicker = new picker.DocumentViewPicker();
-        documentPicker.select(option, (err, result) => {
-            if (err != undefined) {
-                console.info(`${testNum}::selectWithOption fail, err: ${JSON.stringify(err)}`);
-                expect(false).assertTrue();
-                done();
-                return;
-            }
-            console.info(`${testNum}::selectWithOption result: ${JSON.stringify(result)}`);
-            expect(result.length).assertEqual(1);
-            done();
-        });
-        expect(true).assertTrue();
-        done();
-    }
-    catch (error) {
-        console.info(`${testNum}::selectWithOption error: ${JSON.stringify(error)}`);
+async function selectWithOption(testNum: string, done: Function, option: picker.DocumentSelectOptions) {
+  try {
+    let documentPicker = new picker.DocumentViewPicker();
+    documentPicker.select(option, (err, result) => {
+      if (err != undefined) {
+        console.info(`${testNum}::selectWithOption fail, err: ${JSON.stringify(err)}`);
         expect(false).assertTrue();
         done();
-    }
+        return;
+      }
+      console.info(`${testNum}::selectWithOption result: ${JSON.stringify(result)}`);
+      expect(result.length).assertEqual(1);
+      done();
+    });
+    expect(true).assertTrue();
+    done();
+  }
+  catch (error) {
+    console.info(`${testNum}::selectWithOption error: ${JSON.stringify(error)}`);
+    expect(false).assertTrue();
+    done();
+  }
 }
 
-async function saveWithoutSelect(testNum:string, done:Function) {
-    try {
-        let documentPicker = new picker.DocumentViewPicker();
-        documentPicker.save((err, result) => {
-            if (err != undefined) {
-                console.info(`${testNum}::saveWithoutSelect err: ${JSON.stringify(err)}`);
-                expect(false).assertTrue();
-                done();
-                return;
-            }
-            console.info(`${testNum}::saveWithoutSelect result: ${JSON.stringify(result)}`);
-            expect(result.length).assertEqual(0);
-            done();
-        });
-        expect(true).assertTrue();
-        done();
-    }
-    catch (error) {
-        console.info(`${testNum}::saveWithoutSelect error: ${JSON.stringify(error)}`);
+async function saveWithoutSelect(testNum: string, done: Function) {
+  try {
+    let documentPicker = new picker.DocumentViewPicker();
+    documentPicker.save((err, result) => {
+      if (err != undefined) {
+        console.info(`${testNum}::saveWithoutSelect err: ${JSON.stringify(err)}`);
         expect(false).assertTrue();
         done();
-    }
+        return;
+      }
+      console.info(`${testNum}::saveWithoutSelect result: ${JSON.stringify(result)}`);
+      expect(result.length).assertEqual(0);
+      done();
+    });
+    expect(true).assertTrue();
+    done();
+  }
+  catch (error) {
+    console.info(`${testNum}::saveWithoutSelect error: ${JSON.stringify(error)}`);
+    expect(false).assertTrue();
+    done();
+  }
 }
 
-async function saveWithOption(testNum:string, done:Function, option:picker.DocumentSaveOptions) {
-    try {
-        let documentPicker = new picker.DocumentViewPicker();
-        documentPicker.save(option, (err, result) => {
-            if (err != undefined) {
-                console.info(`${testNum}::saveWithOption err: ${JSON.stringify(err)}`);
-                expect(false).assertTrue();
-                done();
-                return;
-            }
-            console.info(`${testNum}::saveWithOption result: ${JSON.stringify(result)}`);
-            expect(result.length).assertEqual(1);
-            done();
-        });
-        expect(true).assertTrue();
-        done();
-    }
-    catch (error) {
-        console.info(`${testNum}::saveWithOption error: ${JSON.stringify(error)}`);
+async function saveWithOption(testNum: string, done: Function, option: picker.DocumentSaveOptions) {
+  try {
+    let documentPicker = new picker.DocumentViewPicker();
+    documentPicker.save(option, (err, result) => {
+      if (err != undefined) {
+        console.info(`${testNum}::saveWithOption err: ${JSON.stringify(err)}`);
         expect(false).assertTrue();
         done();
-    }
+        return;
+      }
+      console.info(`${testNum}::saveWithOption result: ${JSON.stringify(result)}`);
+      expect(result.length).assertEqual(1);
+      done();
+    });
+    expect(true).assertTrue();
+    done();
+  }
+  catch (error) {
+    console.info(`${testNum}::saveWithOption error: ${JSON.stringify(error)}`);
+    expect(false).assertTrue();
+    done();
+  }
 }

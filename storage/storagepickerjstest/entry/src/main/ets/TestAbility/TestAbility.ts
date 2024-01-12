@@ -15,48 +15,48 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
-import abilityAccessCtrl, {PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl'
+import abilityAccessCtrl, { PermissionRequestResult, Permissions } from '@ohos.abilityAccessCtrl'
 import { BusinessError } from '@ohos.base';
-import window  from '@ohos.window';
+import window from '@ohos.window';
 import globalContext from '../test/GlobalContext';
 
 export default class TestAbility extends UIAbility {
-    onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
-        console.log('TestAbility onCreate')
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log('TestAbility onCreate')
+  }
 
-    onDestroy() {
-        console.log('TestAbility onDestroy')
-    }
+  onDestroy() {
+    console.log('TestAbility onDestroy')
+  }
 
-    onWindowStageCreate(windowStage: window.WindowStage) {
-        console.log('TestAbility onWindowStageCreate')
-        windowStage.loadContent("TestAbility/pages/index", (err, data) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
-        });
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('TestAbility onWindowStageCreate')
+    windowStage.loadContent("TestAbility/pages/index", (err, data) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
+    });
 
-        let permissions: Array<Permissions>=['ohos.permission.START_ABILITIES_FROM_BACKGROUND']
+    let permissions: Array<Permissions> = ['ohos.permission.START_ABILITIES_FROM_BACKGROUND']
 
-        let atManager = abilityAccessCtrl.createAtManager()
-        atManager.requestPermissionsFromUser(this.context, permissions,(err: BusinessError, data: PermissionRequestResult)=>{
-        })
+    let atManager = abilityAccessCtrl.createAtManager()
+    atManager.requestPermissionsFromUser(this.context, permissions, (err: BusinessError, data: PermissionRequestResult) => {
+    })
 
-        globalContext.getContext().setAbility(this.context);
-    }
+    globalContext.getContext().setAbility(this.context);
+  }
 
-    onWindowStageDestroy() {
-        console.log('TestAbility onWindowStageDestroy')
-    }
+  onWindowStageDestroy() {
+    console.log('TestAbility onWindowStageDestroy')
+  }
 
-    onForeground() {
-        console.log('TestAbility onForeground')
-    }
+  onForeground() {
+    console.log('TestAbility onForeground')
+  }
 
-    onBackground() {
-        console.log('TestAbility onBackground')
-    }
+  onBackground() {
+    console.log('TestAbility onBackground')
+  }
 };

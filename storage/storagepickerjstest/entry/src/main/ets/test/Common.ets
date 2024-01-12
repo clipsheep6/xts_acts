@@ -18,17 +18,17 @@ import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 
 export async function startAbility(bundleName: string, abilityName: string) {
-    await delegator.executeShellCommand(`aa start -b ${bundleName} -a ${abilityName}`).then(result => {
-        console.info(`[picker] start abilityFinished: ${result}`)
-    }).catch((err:Error) => {
-        console.error(`[picker] start abilityFailed: ${err}`)
-    })
+  await delegator.executeShellCommand(`aa start -b ${bundleName} -a ${abilityName}`).then(result => {
+    console.info(`[picker] start abilityFinished: ${result}`)
+  }).catch((err: Error) => {
+    console.error(`[picker] start abilityFailed: ${err}`)
+  })
 }
 
-export async function sleep(times:number) {
-    if (!times) {
-        times = 10;
-    }
-    await new Promise<number>((res:Function|string) => setTimeout(res, times));
+export async function sleep(times: number) {
+  if (!times) {
+    times = 10;
+  }
+  await new Promise<number>((res: Function | string) => setTimeout(res, times));
 }
 
