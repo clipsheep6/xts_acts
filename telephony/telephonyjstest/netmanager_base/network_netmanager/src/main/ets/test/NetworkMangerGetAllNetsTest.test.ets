@@ -38,7 +38,7 @@ export default function abilityTest() {
       // This API supports only one parameter: clear action function.
     });
     /**
-     * tc.number   NETWORKMANAGER_CONNECTION_GETALLNETS_0100
+     * @tc.number   NETWORKMANAGER_CONNECTION_GETALLNETS_0100
      * @tc.name    test_getAllNets401
      * @tc.desc    check netConnection result
      * @tc.size    MediumTest
