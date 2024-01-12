@@ -15,7 +15,7 @@
 import Ability from '@ohos.app.ability.UIAbility'
 
 export default class TestAbility extends Ability {
-  onCreate(want, launchParam): void {
+  onCreate(): void {
     console.log('TestAbility onCreate');
   }
 

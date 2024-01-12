@@ -30,7 +30,7 @@ export default class IsInSandboxPromise extends UIAbility {
   onDestroy() {
   }
 
-  async onWindowStageCreate(windowStage: window.WindowStage) {
+  async onWindowStageCreate() {
     // Main window is created, set main page for this ability
     try {
       var isInSandbox = await dlpPermission.isInSandbox();
