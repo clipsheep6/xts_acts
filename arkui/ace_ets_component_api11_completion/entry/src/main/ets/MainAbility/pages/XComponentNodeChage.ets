@@ -24,11 +24,7 @@ class XComponentNodeController extends NodeController {
 
   constructor(uiContext: UIContext) {
     super()
-    this.rootNode = new XComponentNode(uiContext, {
-      type: NodeRenderType.RENDER_TYPE_DISPLAY,
-      surfaceId: '12345',
-      selfIdealSize: { width: 300, height: 300 }
-    }, "xcomponentId", XComponentType.SURFACE);
+    this.rootNode = new XComponentNode(uiContext, options, id, type);
   }
 
   makeNode(uiContext: UIContext): FrameNode | null {
@@ -45,7 +41,12 @@ class XComponentNodeController extends NodeController {
 @Component
 struct XComponentNodeIndex {
   @State uiContext: UIContext | undefined = this.getUIContext?.();
-  private xComponentNodeController: XComponentNodeController = new XComponentNodeController(this.uiContext)
+  @State options: RenderOptions = {
+    type: NodeRenderType.RENDER_TYPE_DISPLAY,
+    surfaceId: '12345',
+    selfIdealSize: { width: 300, height: 300 }
+  }
+  private xComponentNodeController: XComponentNodeController = new XComponentNodeController(this.uiContext, this.options, "xcomponentId", XComponentType.SURFACE)
   @State falg: boolean = false
 
   build() {
@@ -56,6 +57,12 @@ struct XComponentNodeIndex {
             this.xComponentNodeController.changeRenderType(NodeRenderType.RENDER_TYPE_TEXTURE)
           })
         Text(message).key('xComponent_RenderType')
+        if (this.falg) {
+          NodeContainer(this.xComponentNodeController)
+            .width(300)
+            .height(300)
+            .border({ width: 1, color: Color.Green })
+        }
       }.height('100%')
     }.height('100%')
   }
