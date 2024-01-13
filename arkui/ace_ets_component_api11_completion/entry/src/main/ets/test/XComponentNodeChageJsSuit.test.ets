@@ -42,9 +42,12 @@ export default function XComponentNodeChageJsSuit() {
     });
 
     /**
-     * @tc.number: SUB_ACE_TS_COMPONENTselectoptionwith_01
+     * @tc.number: SUB_ACE_COMPONENT_XComponentNodeChageJsSuit_0100
      * @tc.name : XComponentNodeChageJsSuit_0100
-     * @tc.desc : Confirm if there is a callback
+     * @tc.desc  : set api
+     * @tc.level : Level 2
+     * @tc.type :
+     * @tc.size :
      */
 
     it('XComponentNodeChageJsSuit_0100', 0, async function (done) {
