@@ -106,6 +106,8 @@
         "MainAbility/pages/shadowOffset",
         "MainAbility/pages/shadowAlpha",
         "MainAbility/pages/popupArrow",
-        "MainAbility/pages/geometryTransition"
+        "MainAbility/pages/geometryTransition",
+        "MainAbility/pages/bindPopup/customPopup",
+        "MainAbility/pages/bindPopup/popup"
     ]
 }

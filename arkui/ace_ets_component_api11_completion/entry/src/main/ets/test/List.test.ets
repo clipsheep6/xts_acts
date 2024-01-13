@@ -115,6 +115,8 @@ import shadowColorJsunit from './shadowColorJsunit.test';
 import shadowOffsetJsunit from './shadowOffsetJsunit.test';
 import popupArrowJsunit from './popupArrowJsunit.test';
 import geometryTransition from './geometryTransition.test';
+import customPopup from './bindPopup/customPopup.test';
+import popup from './bindPopup/popup.test';
 
 export default function testsuite() {
   getClipToFrameJsunit()
@@ -220,4 +222,6 @@ export default function testsuite() {
   shadowOffsetJsunit()
   popupArrowJsunit()
   geometryTransition()
+  customPopup()
+  popup()
 }
