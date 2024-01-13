@@ -17,7 +17,6 @@ import { NodeController, FrameNode, BuilderNode, NodeRenderType, XComponentNode 
 import { Callback } from '@ohos.base'
 import { uiContext1 } from "../entryability/EntryAbility"
 
-
 let message: string = 'init'
 
 class XComponentNodeController extends NodeController {
@@ -46,8 +45,9 @@ class XComponentNodeController extends NodeController {
 @Component
 struct XComponentNodeIndex {
   @State uiContext: UIContext | undefined = this.getUIContext?.();
-  private xComponentNodeController: XComponentNodeController = new XComponentNodeController(this.uiContext, "xcomponentId", XComponentType.SURFACE)
-  @State falg: boolean = false
+  @State type: XComponentType = XComponentType.SURFACE
+  @State idText: string = "xcomponentId"
+  private xComponentNodeController: XComponentNodeController = new XComponentNodeController(this.uiContext, this.idText, this.type)
 
   build() {
     Row() {
