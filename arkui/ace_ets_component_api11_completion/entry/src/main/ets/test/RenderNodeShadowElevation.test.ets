@@ -42,9 +42,12 @@ export default function RenderNodeShadowElevationJsSuit() {
     });
 
     /**
-     * @tc.number: SUB_ACE_TS_COMPONENTselectoptionwith_01
+     * @tc.number: SUB_ACE_COMPONENT_RenderNodeShadowElevationJsSuit_0100
      * @tc.name : RenderNodeShadowElevationJsSuit_0100
-     * @tc.desc : Confirm if there is a callback
+     * @tc.desc : set api
+     * @tc.level : Level 2
+     * @tc.type :
+     * @tc.size :
      */
 
     it('RenderNodeShadowElevationJsSuit_0100', 0, async function (done) {
