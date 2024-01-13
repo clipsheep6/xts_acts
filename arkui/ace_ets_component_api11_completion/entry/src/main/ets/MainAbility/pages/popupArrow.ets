@@ -32,7 +32,6 @@ struct PopupArrowExample {
           arrowHeight: 20,
           radius: 20,
           shadow: ShadowStyle.OUTER_DEFAULT_XS
-          back
         })
     }
     .width('100%')
