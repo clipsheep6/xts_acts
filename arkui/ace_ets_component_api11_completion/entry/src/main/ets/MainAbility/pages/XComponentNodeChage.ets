@@ -17,14 +17,19 @@ import { NodeController, FrameNode, BuilderNode, NodeRenderType, XComponentNode 
 import { Callback } from '@ohos.base'
 import { uiContext1 } from "../entryability/EntryAbility"
 
+
 let message: string = 'init'
 
 class XComponentNodeController extends NodeController {
   private rootNode: XComponentNode
 
-  constructor(uiContext: UIContext) {
+  constructor(uiContext: UIContext, id: string, type: XComponentType) {
     super()
-    this.rootNode = new XComponentNode(uiContext, options, id, type);
+    this.rootNode = new XComponentNode(uiContext, {
+      type: NodeRenderType.RENDER_TYPE_DISPLAY,
+      surfaceId: '12345',
+      selfIdealSize: { width: 300, height: 300 }
+    }, id, type);
   }
 
   makeNode(uiContext: UIContext): FrameNode | null {
@@ -41,12 +46,7 @@ class XComponentNodeController extends NodeController {
 @Component
 struct XComponentNodeIndex {
   @State uiContext: UIContext | undefined = this.getUIContext?.();
-  @State options: RenderOptions = {
-    type: NodeRenderType.RENDER_TYPE_DISPLAY,
-    surfaceId: '12345',
-    selfIdealSize: { width: 300, height: 300 }
-  }
-  private xComponentNodeController: XComponentNodeController = new XComponentNodeController(this.uiContext, this.options, "xcomponentId", XComponentType.SURFACE)
+  private xComponentNodeController: XComponentNodeController = new XComponentNodeController(this.uiContext, "xcomponentId", XComponentType.SURFACE)
   @State falg: boolean = false
 
   build() {
@@ -57,14 +57,7 @@ struct XComponentNodeIndex {
             this.xComponentNodeController.changeRenderType(NodeRenderType.RENDER_TYPE_TEXTURE)
           })
         Text(message).key('xComponent_RenderType')
-        if (this.falg) {
-          NodeContainer(this.xComponentNodeController)
-            .width(300)
-            .height(300)
-            .border({ width: 1, color: Color.Green })
-        }
       }.height('100%')
     }.height('100%')
   }
 }
-
