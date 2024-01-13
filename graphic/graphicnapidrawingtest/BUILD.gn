@@ -28,10 +28,12 @@ ohos_moduletest_suite("ActsGraphicNapiDrawingTest") {
     "NativeDrawingBrushTest.cpp",
     "NativeDrawingCanvasTest.cpp",
     "NativeDrawingColorTest.cpp",
+    "NativeDrawingMatrixTest.cpp",
     "NativeDrawingPathTest.cpp",
     "NativeDrawingPenTest.cpp",
     "OH_Drawing_FontCollectionTest.cpp",
     "OH_Drawing_TypographyTest.cpp",
+    "drawing_register_font_test.cpp",
   ]
 
   cflags = [
@@ -43,6 +45,11 @@ ohos_moduletest_suite("ActsGraphicNapiDrawingTest") {
     "$comPath/rosen/modules/2d_engine",
     "//third_party/googletest/googletest/include",
   ]
+  enable_text_gine = false
+  if (enable_text_gine) {
+    include_dirs += [ "$comPath/rosen/modules/2d_engine/rosen_text/export" ]
+    defines = [ "USE_GRAPHIC_TEXT_GINE" ]
+  }
 
   external_deps = [
     "c_utils:utils",
