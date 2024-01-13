@@ -110,6 +110,16 @@ import getUIObserver from './UIContext/getUIObserver.test';
 import getDragController from './UIContext/getDragController.test';
 import customPopup from './bindPopup/customPopup.test';
 import popup from './bindPopup/popup.test';
+import RenderNodeShadowElevationJsSuit from './RenderNodeShadowElevation.test';
+import RenderNodeShadowRadiusJsSuit from './RenderNodeShadowRadius.test';
+import shadowAlphaJsunit from './shadowAlphaJsunit.test';
+import shadowColorJsunit from './shadowColorJsunit.test';
+import shadowOffsetJsunit from './shadowOffsetJsunit.test';
+import popupArrowJsunit from './popupArrowJsunit.test';
+import geometryTransition from './geometryTransition.test';
+import RenderNodeInvalidateJsSuit from './RenderNodeInvalidateJsSuit.test';
+import RenderNodeDrawJsSuit from './RenderNodeDrawJsSuit.test';
+import XComponentNodeChageJsSuit from './XComponentNodeChageJsSuit.test';
 
 import textInputApiTest from './textInputApi/textinputkeyNewLine.test.ets'
 import arkuiNodeEventTest from './arkuinode/arkuinodeEnvent.test.ets'
@@ -216,6 +226,16 @@ export default function testsuite() {
   getDragController()
   customPopup()
   popup()
+  RenderNodeShadowElevationJsSuit()
+  RenderNodeShadowRadiusJsSuit()
+  shadowAlphaJsunit()
+  shadowColorJsunit()
+  shadowOffsetJsunit()
+  popupArrowJsunit()
+  geometryTransition()
+  RenderNodeInvalidateJsSuit()
+  RenderNodeDrawJsSuit()
+  XComponentNodeChageJsSuit()
   textInputApiTest()
   arkuiNodeEventTest()
   arkuiNodeRenderTest()
