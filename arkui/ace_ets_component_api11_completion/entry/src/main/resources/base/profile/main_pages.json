@@ -101,6 +101,16 @@
         "MainAbility/pages/UIContext/getUIObserver",
         "MainAbility/pages/UIContext/getDragController",
         "MainAbility/pages/bindPopup/customPopup",
-        "MainAbility/pages/bindPopup/popup"
+        "MainAbility/pages/bindPopup/popup",
+		"MainAbility/pages/RenderNodeShadowElevation",
+        "MainAbility/pages/RenderNodeShadowRadius",
+        "MainAbility/pages/shadowColor",
+        "MainAbility/pages/shadowOffset",
+        "MainAbility/pages/shadowAlpha",
+        "MainAbility/pages/popupArrow",
+        "MainAbility/pages/geometryTransition",
+        "MainAbility/pages/RenderNodeInvalidate",
+        "MainAbility/pages/RenderNodeDraw",
+        "MainAbility/pages/XComponentNodeChage"
     ]
 }
