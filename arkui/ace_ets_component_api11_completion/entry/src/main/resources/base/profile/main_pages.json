@@ -111,6 +111,11 @@
         "MainAbility/pages/geometryTransition",
         "MainAbility/pages/RenderNodeInvalidate",
         "MainAbility/pages/RenderNodeDraw",
-        "MainAbility/pages/XComponentNodeChage"
+        "MainAbility/pages/XComponentNodeChage",
+	    "MainAbility/pages/textInputApi/input_keytype",
+        "MainAbility/pages/arkuinode/arkuinodeEvent",
+        "MainAbility/pages/arkuinode/arkuirendernode",
+        "MainAbility/pages/symbolSpanApi/symbolspan",
+        "MainAbility/pages/AttributeModifier/NavDestinationInfoState"
     ]
 }

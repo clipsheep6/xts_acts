@@ -121,6 +121,12 @@ import RenderNodeInvalidateJsSuit from './RenderNodeInvalidateJsSuit.test';
 import RenderNodeDrawJsSuit from './RenderNodeDrawJsSuit.test';
 import XComponentNodeChageJsSuit from './XComponentNodeChageJsSuit.test';
 
+import textInputApiTest from './textInputApi/textinputkeyNewLine.test.ets'
+import arkuiNodeEventTest from './arkuinode/arkuinodeEnvent.test.ets'
+import arkuiNodeRenderTest from './arkuinode/arkuinodeRender.test.ets'
+import symbolSpanApi2Test from './symbolSpanApi/symbolSpanApi2.test'
+import NavDestinationInfoStateJsunit  from './AttributeModifier/NavDestinationInfoStateJsunit.test'
+
 export default function testsuite() {
   getClipToFrameJsunit()
   getOpacityJsunit()
@@ -230,4 +236,9 @@ export default function testsuite() {
   RenderNodeInvalidateJsSuit()
   RenderNodeDrawJsSuit()
   XComponentNodeChageJsSuit()
+  textInputApiTest()
+  arkuiNodeEventTest()
+  arkuiNodeRenderTest()
+  symbolSpanApi2Test()
+  NavDestinationInfoStateJsunit()
 }
