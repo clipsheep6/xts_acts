@@ -17,13 +17,9 @@
 @Component
 struct PopupArrowExample {
   @State customPopup: boolean = false
-  @State widthValue: number = 1
-  @State heightValue: number = 1
 
   build() {
     Column() {
-      Text(this.widthValue.toString()).key("popup_arrowWidth")
-      Text(this.heightValue.toString()).key("popup_arrowHeight")
       Button("customPopup").id('popup_arrow')
         .margin(10)
         .onClick(()=>{
