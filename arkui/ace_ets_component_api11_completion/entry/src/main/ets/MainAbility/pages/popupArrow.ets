@@ -30,8 +30,7 @@ struct PopupArrowExample {
           popupColor: Color.Pink,
           arrowWidth: 20,
           arrowHeight: 20,
-          radius: 20,
-          shadow: ShadowStyle.OUTER_DEFAULT_XS
+          radius: 20
         })
     }
     .width('100%')
