@@ -28,7 +28,7 @@ class XComponentNodeController extends NodeController {
       type: NodeRenderType.RENDER_TYPE_DISPLAY,
       surfaceId: '12345',
       selfIdealSize: { width: 300, height: 300 }
-    }, "id", XComponentType.SURFACE, "nativeRender");
+    }, "xcomponentId", XComponentType.SURFACE);
   }
 
   makeNode(uiContext: UIContext): FrameNode | null {
