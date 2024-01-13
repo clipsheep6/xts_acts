@@ -29,7 +29,7 @@ export default function RenderNodeShadowRadiusJsSuit() {
         router.clear();
         let pages = router.getState();
         console.info("get RenderNodeShadowRadiusJsSuit state pages: " + JSON.stringify(pages));
-        if (!("overlay" == pages.name)) {
+        if (!("RenderNodeShadowRadius" == pages.name)) {
           console.info("get RenderNodeShadowRadiusJsSuit state pages.name:" + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);
