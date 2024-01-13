@@ -29,7 +29,7 @@ export default function shadowAlphaJsunit() {
         router.clear();
         let pages = router.getState();
         console.info("get shadowAlphaJsunit state pages: " + JSON.stringify(pages));
-        if (!("overlay" == pages.name)) {
+        if (!("shadowAlpha" == pages.name)) {
           console.info("get shadowAlphaJsunit state pages.name:" + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);
