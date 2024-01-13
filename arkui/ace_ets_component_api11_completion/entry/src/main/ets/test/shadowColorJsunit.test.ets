@@ -29,7 +29,7 @@ export default function shadowColorJsunit() {
         router.clear();
         let pages = router.getState();
         console.info("get shadowColorJsunit state pages: " + JSON.stringify(pages));
-        if (!("overlay" == pages.name)) {
+        if (!("shadowColor" == pages.name)) {
           console.info("get shadowColorJsunit state pages.name:" + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);
