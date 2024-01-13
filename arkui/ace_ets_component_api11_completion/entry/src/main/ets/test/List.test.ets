@@ -108,6 +108,13 @@ import RichEditorApi2 from './AttrApi/RichEditorApi2.test'
 import SelectAttr from './AttrApi/SelectAttr.test'
 import getUIObserver from './UIContext/getUIObserver.test';
 import getDragController from './UIContext/getDragController.test';
+import RenderNodeShadowElevationJsSuit from './RenderNodeShadowElevation.test';
+import RenderNodeShadowRadiusJsSuit from './RenderNodeShadowRadius.test';
+import shadowAlphaJsunit from './shadowAlphaJsunit.test';
+import shadowColorJsunit from './shadowColorJsunit.test';
+import shadowOffsetJsunit from './shadowOffsetJsunit.test';
+import popupArrowJsunit from './popupArrowJsunit.test';
+import geometryTransition from './geometryTransition.test';
 
 export default function testsuite() {
   getClipToFrameJsunit()
@@ -206,4 +213,11 @@ export default function testsuite() {
   symbolSpanApi1()
   getUIObserver()
   getDragController()
+  RenderNodeShadowElevationJsSuit()
+  RenderNodeShadowRadiusJsSuit()
+  shadowAlphaJsunit()
+  shadowColorJsunit()
+  shadowOffsetJsunit()
+  popupArrowJsunit()
+  geometryTransition()
 }
