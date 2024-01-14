@@ -502,7 +502,8 @@ export default function ApiCoverTest() {
       expect("ohos.extra.param.key.ability_name").assertEqual(formInfoNew.FormParam.ABILITY_NAME_KEY)
       expect('ohos.extra.param.key.form_customize').assertEqual(formInfoNew.FormParam.PARAM_FORM_CUSTOMIZE_KEY)
       expect('ohos.extra.param.key.form_launch_reason').assertEqual(formInfoNew.FormParam.LAUNCH_REASON_KEY)
-	  expect('ohos.extra.param.key.form_rendering_mode').assertEqual(formInfoNew.FormParam.FORM_RENDERING_MODE_KEY)
+      console.info("SUB_AA_Form_provider_TestFormInfo_0200 FORM_RENDERING_MODE_KEY:" + formInfoNew.FormParam.FORM_RENDERING_MODE_KEY)
+      expect('ohos.extra.param.key.form_rendering_mode').assertEqual(formInfoNew.FormParam.FORM_RENDERING_MODE_KEY)
       expect(1).assertEqual(formInfoNew.LaunchReason.FORM_DEFAULT);
       expect(2).assertEqual(formInfoNew.LaunchReason.FORM_SHARE);
       expect(0).assertEqual(formInfoNew.FormState.DEFAULT)
