@@ -16,7 +16,12 @@
 import { describe, it, expect } from '@ohos/hypium';
 import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
-import fs from '@ohos.file.fs';
+import resourceManager from '@ohos.resourceManager';
+import common from '@ohos.app.ability.common';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+
+let abilityDelegatorRegistry: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+let context: common.Context = abilityDelegatorRegistry.getAppContext().createModuleContext("entry_test");
 
 export default function ImageTest() {
   describe('ImageTest', () => {
@@ -29,11 +34,10 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 1
      */
-    it('SUB_Image_CreatePixelMapList_Func_0100', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.jpg";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_CreatePixelMapList_Func_0100', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.jpg");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       let decodeOpts: image.DecodingOptions = {
         sampleSize: 1,
         editable: true,
@@ -44,11 +48,14 @@ export default function ImageTest() {
       };
       imageSourceApi.createPixelMapList(decodeOpts).then((res) => {
         console.log(`SUB_Image_CreatePixelMapList_Func_0100 ${res}`);
+        console.log(`length${res.length}`);
         expect(res).assertInstanceOf('Array');
         expect(res.length == 1).assertTrue();
+        done();
       }).catch((err: BusinessError) => {
         console.log(`SUB_Image_CreatePixelMapList_Func_0100 ${err.code},message is ${err.message}`);
         expect(err).assertFail();
+        done();
       })
     })
 
@@ -60,11 +67,10 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 1
      */
-    it('SUB_Image_CreatePixelMapList_Func_0200', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.gif";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_CreatePixelMapList_Func_0200', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.gif");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       let decodeOpts: image.DecodingOptions = {
         sampleSize: 1,
         editable: true,
@@ -76,9 +82,11 @@ export default function ImageTest() {
       imageSourceApi.createPixelMapList(decodeOpts).then((res) => {
         console.log(`SUB_Image_CreatePixelMapList_Func_0200 ${res}`);
         expect(res).assertInstanceOf('Array');
+        done();
       }).catch((err: BusinessError) => {
         console.log(`SUB_Image_CreatePixelMapList_Func_0200 ${err.code},message is ${err.message}`);
         expect(err).assertFail();
+        done();
       })
     })
 
@@ -90,18 +98,19 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 1
      */
-    it('SUB_Image_CreatePixelMapList_Func_0300', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.jpg";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_CreatePixelMapList_Func_0300', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.jpg");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       imageSourceApi.createPixelMapList().then((res) => {
         console.log(`SUB_Image_CreatePixelMapList_Func_0300 ${res}`);
         expect(res).assertInstanceOf('Array');
         expect(res.length == 1).assertTrue();
+        done();
       }).catch((err: BusinessError) => {
         console.log(`SUB_Image_CreatePixelMapList_Func_0300 ${err.code},message is ${err.message}`);
         expect(err).assertFail();
+        done();
       })
     })
 
@@ -113,17 +122,18 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 1
      */
-    it('SUB_Image_CreatePixelMapList_Func_0400', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.gif";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_CreatePixelMapList_Func_0400', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.gif");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       imageSourceApi.createPixelMapList().then((res) => {
         console.log(`SUB_Image_CreatePixelMapList_Func_0400 ${res}`);
         expect(res).assertInstanceOf('Array');
+        done();
       }).catch((err: BusinessError) => {
         console.log(`SUB_Image_CreatePixelMapList_Func_0400 ${err.code},message is ${err.message}`);
         expect(err).assertFail();
+        done();
       })
     })
 
@@ -135,11 +145,10 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 2
      */
-    it('SUB_Image_CreatePixelMapList_Func_0500', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.jpg";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_CreatePixelMapList_Func_0500', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.jpg");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       let decodeOpts: image.DecodingOptions = {
         sampleSize: 99,
         editable: true,
@@ -150,9 +159,12 @@ export default function ImageTest() {
       };
       imageSourceApi.createPixelMapList(decodeOpts).then((res) => {
         console.log(`SUB_Image_CreatePixelMapList_Func_0500 ${res}`);
+        expect().assertFail();
+        done();
       }).catch((err: BusinessError) => {
         console.log(`SUB_Image_CreatePixelMapList_Func_0500 ${err.code},message is ${err.message}`);
         expect(err.code == 62980118).assertTrue();
+        done();
       })
     })
 
@@ -164,19 +176,20 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 1
      */
-    it('SUB_Image_CreatePixelMapList_Func_0600', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.jpg";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_CreatePixelMapList_Func_0600', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.jpg");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       imageSourceApi.createPixelMapList((err: BusinessError, pixelmaplist: Array<image.PixelMap>) => {
         if (err != undefined) {
           console.log(`SUB_Image_CreatePixelMapList_Func_0600 ${err.code},message is ${err.message}`);
           expect(err).assertFail();
+          done();
         } else {
           console.log(`SUB_Image_CreatePixelMapList_Func_0600 ${pixelmaplist}`);
           expect(pixelmaplist).assertInstanceOf('Array');
           expect(pixelmaplist.length == 1).assertTrue();
+          done();
         }
       })
     })
@@ -189,18 +202,19 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 1
      */
-    it('SUB_Image_CreatePixelMapList_Func_0700', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.gif";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_CreatePixelMapList_Func_0700', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.gif");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       imageSourceApi.createPixelMapList((err: BusinessError, pixelmaplist: Array<image.PixelMap>) => {
         if (err != undefined) {
           console.log(`SUB_Image_CreatePixelMapList_Func_0700 ${err.code},message is ${err.message}`);
           expect(err).assertFail();
+          done();
         } else {
           console.log(`SUB_Image_CreatePixelMapList_Func_0700 ${pixelmaplist}`);
           expect(pixelmaplist).assertInstanceOf('Array');
+          done();
         }
       })
     })
@@ -213,11 +227,10 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 1
      */
-    it('SUB_Image_CreatePixelMapList_Func_0800', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.jpg";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_CreatePixelMapList_Func_0800', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.jpg");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       let decodeOpts: image.DecodingOptions = {
         sampleSize: 1,
         editable: true,
@@ -230,10 +243,12 @@ export default function ImageTest() {
         if (err != undefined) {
           console.log(`SUB_Image_CreatePixelMapList_Func_0800 ${err.code},message is ${err.message}`);
           expect(err).assertFail();
+          done();
         } else {
           console.log(`SUB_Image_CreatePixelMapList_Func_0800 ${pixelmaplist}`);
           expect(pixelmaplist).assertInstanceOf('Array');
           expect(pixelmaplist.length == 1).assertTrue();
+          done();
         }
       })
     })
@@ -246,11 +261,10 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 1
      */
-    it('SUB_Image_CreatePixelMapList_Func_0900', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.gif";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_CreatePixelMapList_Func_0900', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.gif");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       let decodeOpts: image.DecodingOptions = {
         sampleSize: 1,
         editable: true,
@@ -263,9 +277,11 @@ export default function ImageTest() {
         if (err != undefined) {
           console.log(`SUB_Image_CreatePixelMapList_Func_0900 ${err.code},message is ${err.message}`);
           expect(err).assertFail();
+          done();
         } else {
           console.log(`SUB_Image_CreatePixelMapList_Func_0900 ${pixelmaplist}`);
           expect(pixelmaplist).assertInstanceOf('Array');
+          done();
         }
       })
     })
@@ -278,11 +294,10 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 2
      */
-    it('SUB_Image_CreatePixelMapList_Func_1000', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.jpg";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_CreatePixelMapList_Func_1000', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.jpg");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       let decodeOpts: image.DecodingOptions = {
         sampleSize: 99,
         editable: true,
@@ -295,9 +310,11 @@ export default function ImageTest() {
         if (err != undefined) {
           console.log(`SUB_Image_CreatePixelMapList_Func_1000 ${err.code},message is ${err.message}`);
           expect(err.code == 62980118).assertTrue();
+          done();
         } else {
           console.log(`SUB_Image_CreatePixelMapList_Func_1000 ${pixelmaplist}`);
           expect(pixelmaplist).assertInstanceOf('Array');
+          done();
         }
       })
     })
@@ -310,17 +327,19 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 2
      */
-    it('SUB_Image_GetDelayTimeList_Func_1100', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.jpg";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_GetDelayTimeList_Func_1100', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.jpg");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
         if (err != undefined) {
           console.log(`SUB_Image_GetDelayTimeList_Func_1100 ${err.code},message is ${err.message}`);
           expect(err.code == 62980149).assertTrue();
+          done();
         } else {
           console.log(`SUB_Image_GetDelayTimeList_Func_1100 ${delayTimes}`);
+          expect().assertFail();
+          done();
         }
       })
     })
@@ -333,18 +352,19 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 1
      */
-    it('SUB_Image_GetDelayTimeList_Func_1200', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.gif";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_GetDelayTimeList_Func_1200', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.gif");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       imageSourceApi.getDelayTimeList((err: BusinessError, delayTimes: Array<number>) => {
         if (err != undefined) {
           console.log(`SUB_Image_GetDelayTimeList_Func_1200 ${err.code},message is ${err.message}`);
           expect(err).assertFail();
+          done();
         } else {
           console.log(`SUB_Image_GetDelayTimeList_Func_1200 ${delayTimes}`);
           expect(delayTimes).assertInstanceOf('Array');
+          done();
         }
       })
     })
@@ -357,16 +377,18 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 2
      */
-    it('SUB_Image_GetDelayTimeList_Func_1300', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.jpg";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_GetDelayTimeList_Func_1300', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.jpg");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       imageSourceApi.getDelayTimeList().then((delayTimes : Array<number>) => {
         console.log(`SUB_Image_GetDelayTimeList_Func_1300 ${delayTimes}`);
+        expect().assertFail();
+        done();
       }).catch((err: BusinessError) => {
         console.log(`SUB_Image_GetDelayTimeList_Func_1300 ${err.code},message is ${err.message}`);
         expect(err.code == 62980149).assertTrue();
+        done();
       })
     })
 
@@ -378,17 +400,18 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 1
      */
-    it('SUB_Image_GetDelayTimeList_Func_1400', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.gif";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_GetDelayTimeList_Func_1400', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.gif");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       imageSourceApi.getDelayTimeList().then((delayTimes : Array<number>) => {
         console.log(`SUB_Image_GetDelayTimeList_Func_1400 ${delayTimes}`);
         expect(delayTimes).assertInstanceOf('Array');
+        done();
       }).catch((err: BusinessError) => {
         console.log(`SUB_Image_GetDelayTimeList_Func_1400 ${err.code},message is ${err.message}`);
         expect(err).assertFail();
+        done();
       })
     })
 
@@ -400,17 +423,19 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 1
      */
-    it('SUB_Image_GetFrameCount_Func_1500', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.jpg";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_GetFrameCount_Func_1500', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.jpg");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       imageSourceApi.getFrameCount((err: BusinessError, frameCount: number) => {
         if (err != undefined) {
           console.log(`SUB_Image_GetFrameCount_Func_1500 ${err.code},message is ${err.message}`);
+          expect(err).assertFail();
+          done();
         } else {
           console.log(`SUB_Image_GetFrameCount_Func_1500 ${frameCount}`);
           expect(frameCount).assertEqual(1);
+          done();
         }
       })
     })
@@ -423,17 +448,19 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 1
      */
-    it('SUB_Image_GetFrameCount_Func_1600', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.gif";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_GetFrameCount_Func_1600', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.gif");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       imageSourceApi.getFrameCount((err: BusinessError, frameCount: Number) => {
         if (err != undefined) {
           console.log(`SUB_Image_GetFrameCount_Func_1600 ${err.code},message is ${err.message}`);
+          expect(err).assertFail();
+          done();
         } else {
           console.log(`SUB_Image_GetFrameCount_Func_1600 ${frameCount}`);
           expect(frameCount).assertInstanceOf('Number');
+          done();
         }
       })
     })
@@ -446,17 +473,18 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 1
      */
-    it('SUB_Image_GetFrameCount_Func_1700', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.jpg";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_GetFrameCount_Func_1700', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.jpg");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       imageSourceApi.getFrameCount().then((frameCount: number) => {
         console.log(`SUB_Image_GetFrameCount_Func_1700 ${frameCount}`);
         expect(frameCount).assertEqual(1);
+        done();
       }).catch((err : BusinessError) => {
         console.log(`SUB_Image_GetFrameCount_Func_1700 ${err.code},message is ${err.message}`);
         expect(err).assertFail();
+        done();
       })
     })
 
@@ -468,17 +496,18 @@ export default function ImageTest() {
      * @tc.type   : Constant
      * @tc.level  : Level 1
      */
-    it('SUB_Image_GetFrameCount_Func_1800', 0, async () => {
-      const path: string = AppStorage.get('pathDir') + "/001test.gif";
-      let file = fs.openSync(path, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+    it('SUB_Image_GetFrameCount_Func_1800', 0, async (done: Function) => {
+      let rawfile: resourceManager.RawFileDescriptor = context.resourceManager.getRawFdSync("001test.gif");
       let sourceOptions : image.SourceOptions = { sourceDensity: 120 };
-      const imageSourceApi: image.ImageSource = image.createImageSource(file.fd,sourceOptions);
+      const imageSourceApi: image.ImageSource = image.createImageSource(rawfile,sourceOptions);
       imageSourceApi.getFrameCount().then((frameCount: Number) => {
         console.log(`SUB_Image_GetFrameCount_Func_1800 ${frameCount}`);
         expect(frameCount).assertInstanceOf('Number');
+        done();
       }).catch((err : BusinessError) => {
         console.log(`SUB_Image_GetFrameCount_Func_1800 ${err.code},message is ${err.message}`);
         expect(err).assertFail();
+        done();
       })
     })
   })
