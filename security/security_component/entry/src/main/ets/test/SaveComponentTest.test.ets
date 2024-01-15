@@ -17,10 +17,6 @@ import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import { Driver, ON } from '@ohos.UiTest'
 import Utils from './Utils';
-import inspector from '@ohos.arkui.inspector';
-import { Button } from '@system.prompt';
-import { ButtonOptions } from '@ohos.arkui.advanced.Dialog';
-import Ability from '@ohos.app.ability.Ability';
 
 export default function saveComponentTest() {
   describe('saveComponentTest', () => {
