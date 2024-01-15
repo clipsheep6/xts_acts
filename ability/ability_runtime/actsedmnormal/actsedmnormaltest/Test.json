@@ -1,0 +1,29 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "bundle-name": "com.acts.autostartupnormalappbyedm",
+        "module-name": "entry_test",
+        "shell-timeout": "600000"
+    },
+    "kits": [
+		{
+            "test-file-name": [
+                "normal.hap",
+                "normal_test.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell wakeup",
+                "power-shell setmode 602",
+                "uinput -T -m 300 2700 280 200",
+                "setenforce 0"
+            ]
+        }
+    ]
+}

@@ -74,6 +74,9 @@ group("ability_runtime") {
       "actsedm:systemappforcanceltruetest",
       "actsedmset:systemappforsettruetest",
       "actsedmsetwu:autostartupappbydmtest",
+      "actsedmnormal:actsedmnormaltest",
+      "actsedmnormalappforcanceltrue:actsedmnormalappforcanceltruetest",
+      "actsedmnormalappforsettrue:actsnormalappforsettruetest",
     ]
   }
 }
