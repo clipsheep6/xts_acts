@@ -49,7 +49,7 @@ export default function saveComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_2300
      * @tc.name Test_Security_Button_Save_2300
      * @tc.desc Test SecurityComponent The button style is a line and the text is described as a download file and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -103,7 +103,7 @@ export default function saveComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_2400
      * @tc.name Test_Security_Button_Save_2400
      * @tc.desc Test SecurityComponent The text is described as saving and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -156,7 +156,7 @@ export default function saveComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_2500
      * @tc.name Test_Security_Button_Save_2500
      * @tc.desc Test SecurityComponent The text describes saving the image and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -208,7 +208,7 @@ export default function saveComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_2600
      * @tc.name Test_Security_Button_Save_2600
      * @tc.desc Test SecurityComponent The text describes the saved file and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -260,7 +260,7 @@ export default function saveComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_2700
      * @tc.name Test_Security_Button_Save_2700
      * @tc.desc Test SecurityComponent The text description is download and share and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -312,7 +312,7 @@ export default function saveComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_2800
      * @tc.name Test_Security_Button_Save_2800
      * @tc.desc Test SecurityComponent The text is described as receiving and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -364,7 +364,7 @@ export default function saveComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_2900
      * @tc.name Test_Security_Button_Save_2900
      * @tc.desc Test SecurityComponent The text describes continued receiving and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require

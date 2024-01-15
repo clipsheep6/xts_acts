@@ -49,7 +49,7 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2300
      * @tc.name Test_Security_Button_Location_2300
      * @tc.desc Test SecurityComponent The button style is a line and text describes the location selected and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -103,7 +103,7 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2400
      * @tc.name Test_Security_Button_Location_2400
      * @tc.desc Test SecurityComponent The text describes the location selected and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -155,7 +155,7 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2500
      * @tc.name Test_Security_Button_Location_2500
      * @tc.desc Test SecurityComponent The text describes a shared location and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -207,7 +207,7 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2600
      * @tc.name Test_Security_Button_Location_2600
      * @tc.desc Test SecurityComponent The text describes the location of the send and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -259,7 +259,7 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2700
      * @tc.name Test_Security_Button_Location_2700
      * @tc.desc Test SecurityComponent The text describes positioning and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -311,7 +311,7 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2800
      * @tc.name Test_Security_Button_Location_2800
      * @tc.desc Test SecurityComponent The text describes the location and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -363,7 +363,7 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2900
      * @tc.name Test_Security_Button_Location_2900
      * @tc.desc Test SecurityComponent The text describes the real-time location of the send and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -415,7 +415,7 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_3000
      * @tc.name Test_Security_Button_Location_3000
      * @tc.desc Test SecurityComponent The text describes repositioning and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -467,7 +467,7 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_3100
      * @tc.name Test_Security_Button_Location_3100
      * @tc.desc Test SecurityComponent The text description is punch card positioning and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -519,7 +519,7 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_3200
      * @tc.name Test_Security_Button_Location_3200
      * @tc.desc Test SecurityComponent The text describes the location and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require

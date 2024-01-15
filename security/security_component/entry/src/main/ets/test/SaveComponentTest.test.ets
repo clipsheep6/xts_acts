@@ -53,7 +53,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_0100
      * @tc.name Test_Security_Button_Save_0100
      * @tc.desc Test SecurityComponent Default parameters and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -161,7 +161,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_0200
      * @tc.name Test_Security_Button_Save_0200
      * @tc.desc Test SecurityComponent layoutDirection attribute is VERTICAL and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -255,7 +255,7 @@ export default function saveComponentTest() {
      * @tc.name Test_Security_Button_Save_0300
      * @tc.desc Test SecurityComponent position.x is 150.00vp and position.y is 20.00vp
      * markAnchor.x is 20.00vp and markAnchor.y is 20.00vp and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -351,7 +351,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_0400
      * @tc.name Test_Security_Button_Save_0400
      * @tc.desc Test SecurityComponent offset and markAnchor attribute is normal and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -447,7 +447,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_0500
      * @tc.name Test_Security_Button_Save_0500
      * @tc.desc Test SecurityComponent FontStyle attribute is Italic and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -540,7 +540,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_0600
      * @tc.name Test_Security_Button_Save_0600
      * @tc.desc Test SecurityComponent FontWeight attribute is Lighter and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -633,7 +633,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_0700
      * @tc.name Test_Security_Button_Save_0700
      * @tc.desc Test SecurityComponent FontWeight attribute is Normal and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -726,7 +726,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_0800
      * @tc.name Test_Security_Button_Save_0800
      * @tc.desc Test SecurityComponent FontWeight attribute is Regular and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -819,7 +819,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_0900
      * @tc.name Test_Security_Button_Save_0900
      * @tc.desc Test SecurityComponent FontWeight attribute is Bold and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -912,7 +912,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_1000
      * @tc.name Test_Security_Button_Save_1000
      * @tc.desc Test SecurityComponent FontWeight attribute is Bolder and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -1005,7 +1005,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_1100
      * @tc.name Test_Security_Button_Save_1100
      * @tc.desc Test SecurityComponent BorderStyle is Dotted , borderWidth , borderColor , borderRadius attribute is normal and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -1101,7 +1101,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_1200
      * @tc.name Test_Security_Button_Save_1200
      * @tc.desc Test SecurityComponent BorderStyle attribute is Dashed and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -1197,7 +1197,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_1300
      * @tc.name Test_Security_Button_Save_1300
      * @tc.desc Test SecurityComponent BorderStyle attribute is Solid and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -1293,7 +1293,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_1400
      * @tc.name Test_Security_Button_Save_1400
      * @tc.desc Test SecurityComponent offset.x attribute is 200.00vp result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -1386,7 +1386,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_1500
      * @tc.name Test_Security_Button_Save_1500
      * @tc.desc Test SecurityComponent offset.x attribute is -200.00vp result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -1479,7 +1479,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_1600
      * @tc.name Test_Security_Button_Save_1600
      * @tc.desc Test SecurityComponent iconSize attribute is 160.00vp result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -1572,7 +1572,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_1700
      * @tc.name Test_Security_Button_Save_1700
      * @tc.desc Test SecurityComponent iconColor attribute is too light result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -1667,7 +1667,7 @@ export default function saveComponentTest() {
      * @tc.desc Test SecurityComponent buttonType is 0 , iconSize is 20.00vp
      * , iconColor is #FFFA0050  and backgroundColor is #FFFF0000,
      * Due to the similarity of the icon and background color result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -1762,7 +1762,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_1900
      * @tc.name Test_Security_Button_Save_1900
      * @tc.desc Test SecurityComponent iconSize attribute is too small result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -1856,7 +1856,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_2000
      * @tc.name Test_Security_Button_Save_2000
      * @tc.desc Test SecurityComponent iconColor attribute is transparent result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -1949,7 +1949,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_2100
      * @tc.name Test_Security_Button_Save_2100
      * @tc.desc Test SecurityComponent fontColor attribute is transparent result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
@@ -2042,7 +2042,7 @@ export default function saveComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Save_2200
      * @tc.name Test_Security_Button_Save_2200
      * @tc.desc Test SecurityComponent backgroundColor attribute is transparent result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
