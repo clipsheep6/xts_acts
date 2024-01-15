@@ -2366,12 +2366,13 @@ export default function pasteComponentTest() {
       }
       await Utils.sleep(1000);
       let strJsonNew = getInspectorByKey('keyPaste');
+
       console.info("====>[Test_Security_Button_Paste_2500] get constraintSize is: " + JSON.parse(strJsonNew)
         .$attrs
         .constraintSize);
       console.info("====>[Test_Security_Button_Paste_2500] get obj is: " + strJsonNew);
       // constraintSize.minWidth的默认值取值
-      expect(JSON.parse(strJsonNew).$attrs.constraintSize.minWidth).assertEqual('20.00vp');
+      expect(JSON.parse(JSON.parse(strJsonNew).$attrs.constraintSize).minWidth).assertEqual('20.00vp');
       await Utils.sleep(1000);
       try {
         let clickCallback = (clickData: events_emitter.EventData) => {
@@ -2470,12 +2471,12 @@ export default function pasteComponentTest() {
       }
       await Utils.sleep(1000);
       let strJsonNew = getInspectorByKey('keyPaste');
-      console.info("====>[Test_Security_Button_Paste_2600] get constraintSize is: " + JSON.stringify(JSON.parse(strJsonNew)
+      console.info("====>[Test_Security_Button_Paste_2600] get constraintSize is: " + JSON.parse(strJsonNew)
         .$attrs
-        .constraintSize));
+        .constraintSize);
       console.info("====>[Test_Security_Button_Paste_2600] get obj is: " + strJsonNew);
       // constraintSize.maxWidth的默认值取值
-      expect(JSON.parse(strJsonNew).$attrs.constraintSize.maxWidth).assertEqual('25.00vp');
+      expect(JSON.parse(JSON.parse(strJsonNew).$attrs.constraintSize).maxWidth).assertEqual('25.00vp');
       await Utils.sleep(1000);
       try {
         let clickCallback = (clickData: events_emitter.EventData) => {
@@ -2579,7 +2580,7 @@ export default function pasteComponentTest() {
         .constraintSize);
       console.info("====>[Test_Security_Button_Paste_2700] get obj is: " + strJsonNew);
       // constraintSize.minHeight的默认值取值
-      expect(JSON.parse(strJsonNew).$attrs.constraintSize.minHeight).assertEqual('30.00vp');
+      expect(JSON.parse(JSON.parse(strJsonNew).$attrs.constraintSize).minHeight).assertEqual('30.00vp');
       await Utils.sleep(1000);
       try {
         let clickCallback = (clickData: events_emitter.EventData) => {
@@ -2683,7 +2684,7 @@ export default function pasteComponentTest() {
         .constraintSize);
       console.info("====>[Test_Security_Button_Paste_2800] get obj is: " + strJsonNew);
       // constraintSize.maxHeight的默认值取值
-      expect(JSON.parse(strJsonNew).$attrs.constraintSize.maxHeight).assertEqual('35.00vp');
+      expect(JSON.parse(JSON.parse(strJsonNew).$attrs.constraintSize).maxHeight).assertEqual('35.00vp');
       await Utils.sleep(1000);
       try {
         let clickCallback = (clickData: events_emitter.EventData) => {
