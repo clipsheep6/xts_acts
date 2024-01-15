@@ -59,28 +59,27 @@ afterAll(function (){
   console.info("afterAll case");
 });
 
-function errHandle(err,tag:string){
+function errHandle(err,tag){
   console.error('${tag}err.code :${err.code} err.message :${err.message} isConnect : ${isConnect}');
     if (err.code != undefined) {
       switch (err.code){
-      case 13600001://IPC error
-    console.error('${tag} ICP error');
-    expect(true).assertTrue();
-        break
-        case 22400002:// Network unavailable');
-
-    expect(true).assertTrue();
-      break
-      case 401: //The inputparameter is invalid 
-      console.error('${tag} The input parameter is invalid');
+        case 13600001://IPC error
+        console.error('${tag} ICP error');
         expect(true).assertTrue();
-         break
-        }
-      }else{
-       console.error('${tag} catch failed.err = $ {JSON.stringify(err)}');
-    expect(false).assertTrue();
+        break
+        case 22400002:// Network unavailable
+        expect(true).assertTrue();
+        break
+        case 401: //The inputparameter is invalid
+        console.error('${tag} The input parameter is invalid');
+        expect(true).assertTrue();
+        break
       }
-    };
+    }else{
+      console.error('${tag} catch failed.err = $ {JSON.stringify(err)}');
+      expect(false).assertTrue();
+    }
+};
 
    /**
    *@tc.number SUB_STORAGE_DOWNLOAD_START_TEST_0000 
