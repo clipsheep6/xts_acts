@@ -24,6 +24,32 @@ import { BusinessError } from '@ohos.base';
 
 let calendarMgr: calendarManager.CalendarManager = null;
 
+export interface Location {
+  location: string
+  longitude: number
+  latitude: number
+}
+
+export interface Location2 {
+  location: string
+}
+
+export class Attendee {
+  name?: string
+  email?: string
+}
+
+export interface RecurrenceRule {
+  recurrenceFrequency: calendarManager.RecurrenceFrequency
+  expire: number
+}
+
+export interface Service {
+  type: calendarManager.ServiceType,
+  uri: string,
+  description: string
+}
+
 function sleep(numberMillis: number) {
   let now = new Date();
   let exitTime: number = now.getTime() + numberMillis;
@@ -51,7 +77,6 @@ function EXPECTFalse() {
 export default function CalendarManagerTest() {
 
   describe('CalendarManagerTest', () => {
-
 
     beforeAll(async () => {
       console.info("beforeAll case");
@@ -685,6 +710,7 @@ export default function CalendarManagerTest() {
      * @tc.name    Update an agenda.
      * @tc.desc    Function test
      */
+
     it("SUB_Application_CalendarManagerApi_UpdateEvent_Async_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_UpdateEvent_Async_0100';
       let CalendarAccounts: calendarManager.CalendarAccount = {
@@ -692,43 +718,47 @@ export default function CalendarManagerTest() {
         type: calendarManager.CalendarType.LOCAL,
         displayName: '本地帐户'
       }
-      let Schedule = {
+      let location1: Location = {
+        location: 'xx大礼堂',
+        longitude: 116.3,
+        latitude: 39.9,
+      }
+      let attendee1: Attendee[] = [
+        {
+          name: '小王',
+          email: 'xiaowang@huawei.com'
+        },
+        {
+          name: '小李',
+          email: 'xiaoli@huawei.com'
+        },
+        {
+          name: '老李',
+          email: 'laoxiao@huawei.com'
+        }
+      ]
+      let recurrenceRule1: RecurrenceRule = {
+        recurrenceFrequency: calendarManager.RecurrenceFrequency.DAILY,
+        expire: 0,
+      }
+      let service1: Service = {
+        type: calendarManager.ServiceType.MEETING,
+        uri: '',
+        description: ''
+      }
+      let Schedule: calendarManager.Event = {
         type: calendarManager.EventType.NORMAL,
         title: 'xx线上开会日程',
-        location: {
-          location: 'xx大礼堂',
-          longitude: 116.3,
-          latitude: 39.9,
-        },
+        location: location1,
         startTime: new Date().getTime(),
         endTime: new Date().getTime() + 60 * 60 * 2500,
         isAllDay: false,
-        attendee: [
-          {
-            name: '小王',
-            email: 'xiaowang@huawei.com'
-          },
-          {
-            name: '小李',
-            email: 'xiaoli@huawei.com'
-          },
-          {
-            name: '老李',
-            email: 'laoxiao@huawei.com'
-          }
-        ],
+        attendee: attendee1,
         timeZone: '',
         reminderTime: [new Date().getTime() - 60 * 60 * 1000 * 3],
-        recurrenceRule: {
-          recurrenceFrequency: calendarManager.RecurrenceFrequency.DAILY,
-          expire: 0
-        },
+        recurrenceRule: recurrenceRule1,
         description: '此会议非常重要，请按时参加',
-        service: {
-          type: calendarManager.ServiceType.MEETING,
-          uri: '',
-          description: ''
-        }
+        service: service1
       }
       calendarMgr.createCalendar(CalendarAccounts).then((Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
@@ -761,41 +791,45 @@ export default function CalendarManagerTest() {
         type: calendarManager.CalendarType.BIRTHDAY,
         displayName: '生日帐户'
       }
-      let Schedule = {
+      let location2: Location2 = {
+        location: 'xx家庭',
+      }
+      let attendee2: Attendee[] = [
+        {
+          name: '父亲',
+          email: 'fuqin@huawei.com'
+        },
+        {
+          name: '母亲',
+          email: 'muqin@huawei.com'
+        },
+        {
+          name: '孩子',
+          email: 'haizi@huawei.com'
+        },
+      ]
+      let recurrenceRule2: RecurrenceRule = {
+        recurrenceFrequency: calendarManager.RecurrenceFrequency.DAILY,
+        expire: 0
+      }
+      let service2: Service = {
+        type: calendarManager.ServiceType.TRIP,
+        uri: '',
+        description: ''
+      }
+      let Schedule: calendarManager.CalendarAccount = {
         type: calendarManager.EventType.IMPORTANT,
         title: 'xxParty日程',
-        location: {
-          location: 'xx家庭',
-        },
+        location: location2,
         startTime: new Date().getTime() - 60 * 60 * 1000,
         endTime: new Date().getTime() + 60 * 60 * 5000,
         isAllDay: false,
-        attendee: [
-          {
-            name: '父亲',
-            email: 'fuqin@huawei.com'
-          },
-          {
-            name: '母亲',
-            email: 'muqin@huawei.com'
-          },
-          {
-            name: '孩子',
-            email: 'haizi@huawei.com'
-          },
-        ],
+        attendee: attendee2,
         timeZone: '',
         reminderTime: [new Date().getTime() - 60 * 60 * 1000 * 12 * 2],
-        recurrenceRule: {
-          recurrenceFrequency: calendarManager.RecurrenceFrequency.DAILY,
-          expire: 0
-        },
+        recurrenceRule: recurrenceRule2,
         description: '此为家庭party，请按时参加',
-        service: {
-          type: calendarManager.ServiceType.TRIP,
-          uri: '',
-          description: ''
-        }
+        service: service2
       }
       calendarMgr.createCalendar(CalendarAccounts).then((Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
@@ -826,7 +860,7 @@ export default function CalendarManagerTest() {
       }
       calendarMgr.createCalendar(CalendarAccounts).then((Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
-        let calendarAccounts = Calendar.getAccount();
+        let calendarAccounts: CalendarAccount = Calendar.getAccount();
         EXPECTTrue(calendarAccounts.name != '');
         console.info("get account success " + JSON.stringify(calendarAccounts));
         return;
@@ -885,8 +919,8 @@ export default function CalendarManagerTest() {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
         Calendar.setConfig({
           enableReminder: false, color: "#0A59F7"
-        }).then((data) => {
-          let configs = Calendar.getConfig();
+        }).then((data: string) => {
+          let configs: CalendarConfig = Calendar.getConfig();
           console.info(CaseName + "Succeeded in getConfig" + JSON.stringify(configs));
           EXPECTTrue(configs.enableReminder == false && configs.color == "#0A59F7");
           return;
@@ -1052,7 +1086,7 @@ export default function CalendarManagerTest() {
      */
     it("SUB_Application_CalendarManagerApi_GetEvents_Promise_0100", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetEvents_Promise_0100';
-      const filter: EventFilter = calendarManager.EventFilter.filterById([0, 1]);
+      const filter = calendarManager.EventFilter.filterById([0, 1]);
       const columns: (keyof calendarManager.Event)[] = ['title', 'type', 'startTime', 'endTime'];
 
       let CalendarAccounts: calendarManager.CalendarAccount = {
@@ -1084,7 +1118,7 @@ export default function CalendarManagerTest() {
      */
     it("SUB_Application_CalendarManagerApi_GetEvents_Promise_0200", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetEvents_Promise_0200';
-      const filter: EventFilter = calendarManager.EventFilter.filterByTime(1686931200, 1703733961);
+      const filter = calendarManager.EventFilter.filterByTime(1686931200, 1703733961);
       const columns: (keyof calendarManager.Event)[] = ['title', 'type', 'startTime', 'endTime'];
 
       let CalendarAccounts: calendarManager.CalendarAccount = {
@@ -1116,7 +1150,7 @@ export default function CalendarManagerTest() {
      */
     it("SUB_Application_CalendarManagerApi_GetEvents_Promise_0300", 0, () => {
       let CaseName = 'SUB_Application_CalendarManagerApi_GetEvents_Promise_0300';
-      const filter: EventFilter = calendarManager.EventFilter.filterByTitle('开会日程');
+      const filter = calendarManager.EventFilter.filterByTitle('开会日程');
       const columns: (keyof calendarManager.Event)[] = ['title', 'type', 'startTime', 'endTime'];
 
       let CalendarAccounts: calendarManager.CalendarAccount = {
