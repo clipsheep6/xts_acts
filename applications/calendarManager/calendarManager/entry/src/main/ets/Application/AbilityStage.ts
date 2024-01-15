@@ -14,7 +14,7 @@
  */
 
 import AbilityStage from "@ohos.app.ability.AbilityStage"
-import { GlobalContext } from '../../../ohosTest/ets/test/GlobalContext'
+import { GlobalContext } from '../test/GlobalContext'
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {

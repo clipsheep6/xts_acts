@@ -763,7 +763,7 @@ export default function CalendarManagerTest() {
       calendarMgr.createCalendar(CalendarAccounts).then((Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
 
-        Calendar.updateEvent(Schedule, (err: BusinessError, data: string) => {
+        Calendar.updateEvent(Schedule, (err: BusinessError, data: void) => {
           if (err) {
             console.info(CaseName + "Failed to updateEvent" + JSON.stringify(err));
             EXPECTFalse();
@@ -833,7 +833,7 @@ export default function CalendarManagerTest() {
       }
       calendarMgr.createCalendar(CalendarAccounts).then((Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
-        Calendar.updateEvent(Schedule).then((data: string) => {
+        Calendar.updateEvent(Schedule).then((data: void) => {
           console.info(CaseName + "Succeeded in updateEvent" + JSON.stringify(data));
           return;
         }).catch((err: BusinessError) => {
@@ -919,7 +919,7 @@ export default function CalendarManagerTest() {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
         Calendar.setConfig({
           enableReminder: false, color: "#0A59F7"
-        }).then((data: string) => {
+        }).then((data: void) => {
           let configs: CalendarConfig = Calendar.getConfig();
           console.info(CaseName + "Succeeded in getConfig" + JSON.stringify(configs));
           EXPECTTrue(configs.enableReminder == false && configs.color == "#0A59F7");
@@ -1195,7 +1195,7 @@ export default function CalendarManagerTest() {
       }
       calendarMgr.createCalendar(CalendarAccounts).then((Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
-        Calendar.addEvent(Schedule, (err: BusinessError, ScheduleID: calendarManager.Calendar) => {
+        Calendar.addEvent(Schedule, (err: BusinessError, ScheduleID: number) => {
           if (err) {
             console.info(CaseName + "Failed to addEvent" + JSON.stringify(err));
             EXPECTFalse();
@@ -1237,13 +1237,13 @@ export default function CalendarManagerTest() {
       }
       calendarMgr.createCalendar(CalendarAccounts).then((Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
-        Calendar.addEvent(Schedule, (err: BusinessError, ScheduleID: calendarManager.Calendar) => {
+        Calendar.addEvent(Schedule, (err: BusinessError, ScheduleID: number) => {
           if (err) {
             console.info(CaseName + "Failed to addEvent" + JSON.stringify(err));
             EXPECTFalse();
           } else {
             console.info(CaseName + "Succeeded in addEvent" + JSON.stringify(ScheduleID));
-            Calendar.deleteEvent(ScheduleID).then((data: string) => {
+            Calendar.deleteEvent(ScheduleID).then((data: void) => {
               console.info(CaseName + "Succeeded in deleteEvent" + JSON.stringify(data));
               return;
             }).catch((err: BusinessError) => {
@@ -1283,8 +1283,8 @@ export default function CalendarManagerTest() {
       calendarMgr.createCalendar(CalendarAccounts).then(async (Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
         try {
-          let ScheduleID: calendarManager.Calendar = await Calendar.addEvent(Schedule);
-          let ScheduleID1: calendarManager.Calendar = await Calendar.addEvent(Schedule1);
+          let ScheduleID: number = await Calendar.addEvent(Schedule);
+          let ScheduleID1: number = await Calendar.addEvent(Schedule1);
           console.info(CaseName + "Succeeded in addEvent" + ScheduleID + ScheduleID1);
           Calendar.deleteEvents([ScheduleID, ScheduleID1], (err: BusinessError, data: string) => {
             if (err) {
@@ -1330,8 +1330,8 @@ export default function CalendarManagerTest() {
       calendarMgr.createCalendar(CalendarAccounts).then(async (Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
         try {
-          let ScheduleID: calendarManager.Calendar = await Calendar.addEvent(Schedule);
-          let ScheduleID1: calendarManager.Calendar = await Calendar.addEvent(Schedule1);
+          let ScheduleID: number = await Calendar.addEvent(Schedule);
+          let ScheduleID1: number = await Calendar.addEvent(Schedule1);
           console.info(CaseName + "Succeeded in addEvent" + ScheduleID + ScheduleID1);
           Calendar.deleteEvents([ScheduleID, ScheduleID1]).then((data: string) => {
             console.info(CaseName + "Succeeded in deleteEvents" + JSON.stringify(data));
