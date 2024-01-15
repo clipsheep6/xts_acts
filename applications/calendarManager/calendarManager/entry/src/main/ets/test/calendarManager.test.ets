@@ -58,9 +58,9 @@ function sleep(numberMillis: number) {
   }
 }
 
-function EXPECTTrue(data: boolean) {
+function EXPECTTrue(calendar: calendarManager.Calendar | undefined) {
   try {
-    expect(data).assertTrue();
+    expect(calendar).assertTrue();
   } catch (error) {
     console.info('expect fail');
   }
@@ -763,7 +763,7 @@ export default function CalendarManagerTest() {
       calendarMgr.createCalendar(CalendarAccounts).then((Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
 
-        Calendar.updateEvent(Schedule, (err: BusinessError, data: void) => {
+        Calendar.updateEvent(Schedule, (err: BusinessError, data: calendarManager.Calendar) => {
           if (err) {
             console.info(CaseName + "Failed to updateEvent" + JSON.stringify(err));
             EXPECTFalse();
@@ -860,7 +860,7 @@ export default function CalendarManagerTest() {
       }
       calendarMgr.createCalendar(CalendarAccounts).then((Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
-        let calendarAccounts: CalendarAccount = Calendar.getAccount();
+        let calendarAccounts: calendarManager.Calendar = Calendar.getAccount();
         EXPECTTrue(calendarAccounts.name != '');
         console.info("get account success " + JSON.stringify(calendarAccounts));
         return;
@@ -891,13 +891,13 @@ export default function CalendarManagerTest() {
             console.info(CaseName + "Failed to setConfig" + JSON.stringify(err));
             EXPECTFalse();
           } else {
-            let configs: CalendarConfig = Calendar.getConfig();
+            let configs: calendarManager.CalendarConfig = Calendar.getConfig();
             console.info(CaseName + "Succeeded in getConfig" + JSON.stringify(configs));
             EXPECTTrue(configs.enableReminder == true && configs.color == "#0A59F7");
             return;
           }
         });
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.info(CaseName + "Failed to create calendar" + JSON.stringify(err));
         EXPECTFalse();
       });
@@ -920,7 +920,7 @@ export default function CalendarManagerTest() {
         Calendar.setConfig({
           enableReminder: false, color: "#0A59F7"
         }).then((data: void) => {
-          let configs: CalendarConfig = Calendar.getConfig();
+          let configs: calendarManager.CalendarConfig = Calendar.getConfig();
           console.info(CaseName + "Succeeded in getConfig" + JSON.stringify(configs));
           EXPECTTrue(configs.enableReminder == false && configs.color == "#0A59F7");
           return;
@@ -949,7 +949,7 @@ export default function CalendarManagerTest() {
       }
       calendarMgr.createCalendar(CalendarAccounts).then((Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
-        Calendar.getEvents((err: BusinessError, Events: string) => {
+        Calendar.getEvents((err: BusinessError, Events: calendarManager.Event[]) => {
           if (err) {
             console.info(CaseName + "Failed to getEvents" + JSON.stringify(err));
             EXPECTFalse();
@@ -988,13 +988,13 @@ export default function CalendarManagerTest() {
       }
       calendarMgr.createCalendar(CalendarAccounts).then((Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
-        Calendar.addEvent(Schedule, (err: BusinessError, data: string) => {
+        Calendar.addEvent(Schedule, (err: BusinessError, data: void) => {
           if (err) {
             console.info(CaseName + "Failed to addEvent" + JSON.stringify(err));
             EXPECTFalse();
           } else {
             console.info(CaseName + "Succeeded in addEvent" + JSON.stringify(data));
-            Calendar.getEvents(filter, columns, (err: BusinessError, Events: string) => {
+            Calendar.getEvents(filter, columns, (err: BusinessError, Events: calendarManager.Event[]) => {
               if (err) {
                 console.info(CaseName + "Failed to getEvents" + JSON.stringify(err));
                 EXPECTFalse();
@@ -1030,7 +1030,7 @@ export default function CalendarManagerTest() {
 
       calendarMgr.createCalendar(CalendarAccounts).then((Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
-        Calendar.getEvents(filter, columns, (err: BusinessError, Events: string) => {
+        Calendar.getEvents(filter, columns, (err: BusinessError, Events: calendarManager.Event[]) => {
           if (err) {
             console.info(CaseName + "Failed to getEvents" + JSON.stringify(err));
             EXPECTFalse();
@@ -1063,7 +1063,7 @@ export default function CalendarManagerTest() {
 
       calendarMgr.createCalendar(CalendarAccounts).then((Calendar: calendarManager.Calendar) => {
         console.info(CaseName + "Succeeded in creating calendar" + JSON.stringify(Calendar));
-        Calendar.getEvents(filter, columns, (err: BusinessError, Events: string) => {
+        Calendar.getEvents(filter, columns, (err: BusinessError, Events: calendarManager.Event[]) => {
           if (err) {
             console.info(CaseName + "Failed to getEvents" + JSON.stringify(err));
             EXPECTFalse();
