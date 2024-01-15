@@ -19,14 +19,14 @@ import { Driver, ON } from '@ohos.UiTest'
 import Utils from './Utils';
 
 export default function saveComponentTest_1() {
-  describe('saveComponentTest_1', function () {
-    beforeAll(async function (done) {
-      let options = {
+  describe('saveComponentTest_1', () => {
+    beforeAll(async (done: Function) => {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/saveButton_1',
       }
       try {
         router.clear();
-        let pages = router.getState();
+        let pages: router.RouterState = router.getState();
         console.info("====>saveComponentTest_1 get state success " + JSON.stringify(pages));
         if (!("saveButton_1" == pages.name)) {
           console.info("====>saveComponentTest_1 get state success " + JSON.stringify(pages.name));
@@ -40,7 +40,7 @@ export default function saveComponentTest_1() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("====>saveComponentTest_1 after each called");
     });
@@ -54,18 +54,17 @@ export default function saveComponentTest_1() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Save_2300', 0, async function (done) {
+    it('Test_Security_Button_Save_2300', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Save_2300] START====');
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keySave2');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.icon:" + obj.$attrs.icon);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.icon).assertEqual(1);
-      expect(obj.$attrs.text).assertEqual(1);
+      let strJsonNew: string = getInspectorByKey('keySave2');
+      console.info("====>component obj.$attrs.icon:" + JSON.parse(strJsonNew).$attrs.icon);
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.icon).assertEqual(1);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(1);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Save_2300] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Save_2300] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == SaveButtonOnClickResult.SUCCESS) {
@@ -80,7 +79,7 @@ export default function saveComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -89,7 +88,7 @@ export default function saveComponentTest_1() {
         console.info("====>[Test_Security_Button_Save_2300] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('SaveButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Save_2300] button is:" + JSON.stringify(button));
@@ -109,16 +108,15 @@ export default function saveComponentTest_1() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Save_2400', 0, async function (done) {
+    it('Test_Security_Button_Save_2400', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Save_2400] START====');
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keySave3');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(2);
+      let strJsonNew: string = getInspectorByKey('keySave3');
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(2);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Save_2400] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Save_2400] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == SaveButtonOnClickResult.SUCCESS) {
@@ -133,7 +131,7 @@ export default function saveComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -142,7 +140,8 @@ export default function saveComponentTest_1() {
         console.info("====>[Test_Security_Button_Save_2400] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
+
         let button = await driver.findComponents(ON.type('SaveButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Save_2400] button is:" + JSON.stringify(button));
@@ -162,16 +161,15 @@ export default function saveComponentTest_1() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Save_2500', 0, async function (done) {
+    it('Test_Security_Button_Save_2500', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Save_2500] START====');
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keySave4');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(3);
+      let strJsonNew: string = getInspectorByKey('keySave4');
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(3);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Save_2500] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Save_2500] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == SaveButtonOnClickResult.SUCCESS) {
@@ -186,7 +184,7 @@ export default function saveComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -195,7 +193,7 @@ export default function saveComponentTest_1() {
         console.info("====>[Test_Security_Button_Save_2500] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('SaveButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Save_2500] button is:" + JSON.stringify(button));
@@ -215,16 +213,15 @@ export default function saveComponentTest_1() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Save_2600', 0, async function (done) {
+    it('Test_Security_Button_Save_2600', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Save_2600] START====');
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keySave5');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(4);
+      let strJsonNew: string = getInspectorByKey('keySave5');
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(4);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Save_2600] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Save_2600] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == SaveButtonOnClickResult.SUCCESS) {
@@ -239,7 +236,7 @@ export default function saveComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -248,7 +245,7 @@ export default function saveComponentTest_1() {
         console.info("====>[Test_Security_Button_Save_2600] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('SaveButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Save_2600] button is:" + JSON.stringify(button));
@@ -268,16 +265,15 @@ export default function saveComponentTest_1() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Save_2700', 0, async function (done) {
+    it('Test_Security_Button_Save_2700', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Save_2700] START====');
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keySave6');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(5);
+      let strJsonNew: string = getInspectorByKey('keySave6');
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(5);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Save_2700] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Save_2700] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == SaveButtonOnClickResult.SUCCESS) {
@@ -292,7 +288,7 @@ export default function saveComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -301,7 +297,7 @@ export default function saveComponentTest_1() {
         console.info("====>[Test_Security_Button_Save_2700] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('SaveButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Save_2700] button is:" + JSON.stringify(button));
@@ -321,16 +317,15 @@ export default function saveComponentTest_1() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Save_2800', 0, async function (done) {
+    it('Test_Security_Button_Save_2800', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Save_2800] START====');
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keySave7');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(6);
+      let strJsonNew: string = getInspectorByKey('keySave7');
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(6);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Save_2800] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Save_2800] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == SaveButtonOnClickResult.SUCCESS) {
@@ -345,7 +340,7 @@ export default function saveComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -354,7 +349,7 @@ export default function saveComponentTest_1() {
         console.info("====>[Test_Security_Button_Save_2800] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('SaveButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Save_2800] button is:" + JSON.stringify(button));
@@ -374,16 +369,15 @@ export default function saveComponentTest_1() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Save_2900', 0, async function (done) {
+    it('Test_Security_Button_Save_2900', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Save_2900] START====');
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keySave8');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(7);
+      let strJsonNew: string = getInspectorByKey('keySave8');
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(7);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Save_2900] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Save_2900] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == SaveButtonOnClickResult.SUCCESS) {
@@ -398,7 +392,7 @@ export default function saveComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -407,7 +401,7 @@ export default function saveComponentTest_1() {
         console.info("====>[Test_Security_Button_Save_2900] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('SaveButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Save_2900] button is:" + JSON.stringify(button));

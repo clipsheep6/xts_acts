@@ -46,7 +46,7 @@ struct locationButton {
   @State clipSet: boolean = false
   @State columnWidth: string = '100%'
   @State columnHeight: string = '100%'
-  private stateChangeCallBack = (eventData) => {
+  private stateChangeCallBack = (eventData: events_emitter.EventData) => {
     if (eventData != null) {
       console.debug("====>page_locationButton page state change called:" + JSON.stringify(eventData));
       if (eventData.data.bgType != null) {
@@ -138,7 +138,7 @@ struct locationButton {
 
   onPageShow() {
     console.debug('====>page_locationButton page show called');
-    var stateChangeEvent = {
+    let stateChangeEvent: events_emitter.InnerEvent = {
       eventId: 1,
       priority: events_emitter.EventPriority.LOW
     }
@@ -156,12 +156,12 @@ struct locationButton {
         LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.CURRENT_LOCATION, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -202,12 +202,12 @@ struct locationButton {
         LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.CURRENT_LOCATION, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }

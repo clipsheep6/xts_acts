@@ -14,6 +14,7 @@
  */
 
 import events_emitter from '@ohos.events.emitter'
+import RectValue from './Rect'
 
 @Entry
 @Component
@@ -45,7 +46,7 @@ struct saveButton_1 {
   @State bottom: number = 8
   @State middle: number = 4
   @State heightValue: number = 4
-  marginValue = {top:30, bottom:30, left:10, right:10}
+  marginValue: RectValue = {top:30, bottom:30, left:10, right:10}
 
   build() {
     Column() {
@@ -53,12 +54,12 @@ struct saveButton_1 {
         SaveButton({ icon: SaveIconStyle.LINES, text: SaveDescription.DOWNLOAD_FILE, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: SaveButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -91,12 +92,12 @@ struct saveButton_1 {
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.SAVE, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: SaveButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -129,12 +130,12 @@ struct saveButton_1 {
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.SAVE_IMAGE, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: SaveButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -167,12 +168,12 @@ struct saveButton_1 {
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.SAVE_FILE, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: SaveButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -205,12 +206,12 @@ struct saveButton_1 {
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD_AND_SHARE, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: SaveButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -243,12 +244,12 @@ struct saveButton_1 {
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.RECEIVE, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: SaveButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -281,12 +282,12 @@ struct saveButton_1 {
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.CONTINUE_TO_RECEIVE, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: SaveButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }

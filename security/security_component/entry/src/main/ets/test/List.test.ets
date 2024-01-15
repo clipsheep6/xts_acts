@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import pasteComponentTest from './PasteComponentTest.test.ets';
-import locationComponentTest from './LocationComponentTest.test.ets';
-import locationComponentTest_1 from './LocationComponentTest_1.test.ets';
-import saveComponentTest from './SaveComponentTest.test.ets';
-import saveComponentTest_1 from './SaveComponentTest_1.test.ets';
+import pasteComponentTest from './PasteComponentTest.test';
+import locationComponentTest from './LocationComponentTest.test';
+import locationComponentTest_1 from './LocationComponentTest_1.test';
+import saveComponentTest from './SaveComponentTest.test';
+import saveComponentTest_1 from './SaveComponentTest_1.test';
 
 export default function testsuite() {
   pasteComponentTest();
