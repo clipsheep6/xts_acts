@@ -40,9 +40,10 @@ struct Ancestors_AT {
       Button('change')
         .height(this.hight)
         .onClick(() => {
+          console.info("[ProvideHight1] onClick12123 ");
           this.hight = 100
         })
-        .key('state1')
+        .key('ProvideHight1')
 
       Text("设置变量string类型50-->'200'")
       Button('change')
@@ -50,7 +51,7 @@ struct Ancestors_AT {
         .onClick(() => {
           this.hight = '200'
         })
-        .key('state2')
+        .key('ProvideHight2')
 
       Text("设置变量Resource类型50-->Resource")
       Button('change')
@@ -58,7 +59,7 @@ struct Ancestors_AT {
         .onClick(() => {
           this.hight = $r('app.string.number')
         })
-        .key('state3')
+        .key('ProvideHight3')
 
       Child_AT()
     }.width('100%').margin({top:10})

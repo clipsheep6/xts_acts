@@ -18,7 +18,7 @@ struct Child_AA {
 
   build() {
     Column() {
-      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.color)) + " number is " + JSON.stringify(this.color))
+      Text("count type of " + Object.prototype.toString.call(this.color) + " number is " + JSON.stringify(this.color))
         .fontSize(20).margin(30).key('PropColor')
       Text("设置变量color类型pink-->Orange")
       Button('change')
@@ -48,7 +48,7 @@ struct Child_AA {
       Button('change')
         .backgroundColor(this.color)
         .onClick(() => {
-          this.color = '0xa52a2a'
+          this.color = '#FFA52A2A'
         })
         .key('state4')
 
