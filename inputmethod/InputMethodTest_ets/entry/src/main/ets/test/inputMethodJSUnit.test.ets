@@ -137,7 +137,7 @@ export default function inputMethodJSUnit() {
             expect(err.code === 1).assertTrue();
 
           } else {
-            console.info("====>inputmethoh_test_005 stopInput result----" + res);
+            console.info("====>inputmethoh_test_005 stopInput result----" );
             expect().assertFail();
 
           }
