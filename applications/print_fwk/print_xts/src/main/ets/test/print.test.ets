@@ -230,6 +230,7 @@ export default function printTest() {
       printAttributes.pageSize.name = '0';
       printAttributes.pageSize.width = 210;
       printAttributes.pageSize.height = 297;
+      
       printAttributes.directionMode = print.PrintDirectionMode.DIRECTION_MODE_AUTO;
       printAttributes.directionMode = print.PrintDirectionMode.DIRECTION_MODE_PORTRAIT;
       printAttributes.directionMode = print.PrintDirectionMode.DIRECTION_MODE_LANDSCAPE;
