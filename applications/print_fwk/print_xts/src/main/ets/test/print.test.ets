@@ -132,7 +132,6 @@ export default function printTest() {
       }
     })
 
-
     /**
      * @tc.number print_function_0400
      * @tc.name Test print
