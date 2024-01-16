@@ -918,7 +918,7 @@ export default function badgeTest() {
           console.info("ArkUX_Stage_Badge_BorderWidth_0400 component obj.$attrs.style is: " +
           JSON.stringify(obj.$attrs.style));
           let style = JSON.parse(obj.$attrs.style);
-          expect(style.borderWidth).assertEqual("0.00vp");
+          expect(style.borderWidth).assertEqual("1.00vp");
           console.info('ArkUX_Stage_Badge_BorderWidth_0400 END ');
           done();
         } catch (err) {
@@ -1060,7 +1060,7 @@ export default function badgeTest() {
           console.info("ArkUX_Stage_Badge_BorderWidth_0900 component obj.$attrs.style is: " +
           JSON.stringify(obj.$attrs.style));
           let style = JSON.parse(obj.$attrs.style);
-          expect(style.borderWidth).assertEqual("0.00vp");
+          expect(style.borderWidth).assertEqual("1.00vp");
           console.info('ArkUX_Stage_Badge_BorderWidth_0900 END ');
           done();
         } catch (err) {
