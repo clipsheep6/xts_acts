@@ -14,7 +14,7 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import inputMethod from '@ohos.inputMethod';
-import business_error from '@ohos.base'
+import business_error, { BusinessError } from '@ohos.base'
 
 export default function inputMethodJSUnit() {
   describe('appInfoTest_input_2', () => {
@@ -29,7 +29,7 @@ export default function inputMethodJSUnit() {
      * @tc.level Level2
      */
     it('inputmethoh_test_001', 0, async () => {
-      let inputMethodSetting = inputMethod.getSetting();
+      let inputMethodSetting: inputMethod.InputMethodSetting = inputMethod.getSetting();
       console.info("====>inputmethoh_test_001 result:" + JSON.stringify(inputMethodSetting));
       inputMethodSetting.listInputMethod((arr) => {
         console.info("====>appInfoTest_input_2 listInputMethod result---" + JSON.stringify(arr));
@@ -128,9 +128,9 @@ export default function inputMethodJSUnit() {
      * @tc.level Level2
      */
     it('inputmethoh_test_005', 0, async () => {
-      let inputMethodCtrl = inputMethod.getSetting();
+      let inputMethodCtrl = inputMethod.getController();
       console.info("====>inputmethoh_test_005 result:" + JSON.stringify(inputMethodCtrl));
-      inputMethodCtrl.stopInput((err, res) => {
+      inputMethodCtrl.stopInputSession((err:BusinessError) => {
         try {
           if (err) {
             console.error(`====>Failed to stopInput: ${JSON.stringify(err)}`);
@@ -157,14 +157,14 @@ export default function inputMethodJSUnit() {
      * @tc.level Level2
      */
     it('inputmethoh_test_006', 0, async () => {
-      let inputMethodCtrl = inputMethod.getSetting();
+      let inputMethodCtrl = inputMethod.getController();
       console.info("====>inputmethoh_test_006 result:" + JSON.stringify(inputMethodCtrl));
-      inputMethodCtrl.stopInput().then(() => {
+      inputMethodCtrl.stopInputSession().then(() => {
         expect().assertFail();
 
       }).catch((err: business_error.BusinessError) => {
         console.info("====>inputmethoh_test_006 stopInput is err: " + JSON.stringify(err));
-        expect().assertEqual();
+        expect().assertEqual("");
 
       });
     });
@@ -382,7 +382,7 @@ export default function inputMethodJSUnit() {
       console.info("-----------------------SUB_InputMethod_IMF_Enable_0300 start-----------------------");
       let inputMethodSetting = inputMethod.getSetting();
       try {
-        let enable: boolean = undefined;
+        let enable = undefined;
         let Enable_List = inputMethodSetting.getInputMethodsSync(enable);
         console.info("====>SUB_InputMethod_IMF_Enable_0300 getInputMethodsSync success: " + JSON.stringify(Enable_List));
 
