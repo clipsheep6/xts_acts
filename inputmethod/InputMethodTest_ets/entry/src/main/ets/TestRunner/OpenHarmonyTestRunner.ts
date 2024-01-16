@@ -15,6 +15,7 @@
 import TestRunner from '@ohos.application.testRunner'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 
+
 var abilityDelegator = undefined
 var abilityDelegatorArguments = undefined
 
