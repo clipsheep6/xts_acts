@@ -15,6 +15,32 @@
 
 import events_emitter from '@ohos.events.emitter'
 
+declare enum SecurityComponentLayoutDirection {
+  HORIZONTAL = 0,
+  VERTICAL = 1
+}
+
+declare enum SaveIconStyle {
+  FULL_FILLED = 0,
+  LINES = 1
+}
+
+declare enum SaveDescription {
+  DOWNLOAD = 0,
+  DOWNLOAD_FILE = 1,
+  SAVE = 2,
+  SAVE_IMAGE = 3,
+  SAVE_FILE = 4,
+  DOWNLOAD_AND_SHARE = 5,
+  RECEIVE = 6,
+  CONTINUE_TO_RECEIVE = 7
+}
+
+declare enum SaveButtonOnClickResult {
+  SUCCESS = 0,
+  TEMPORARY_AUTHORIZATION_FAILED = 1
+}
+
 @Entry
 @Component
 struct saveButton {
@@ -197,8 +223,9 @@ struct saveButton {
         }.type(ButtonType.Capsule)
         .margin({
           top: 200,
-          bottom:60
+          bottom: 60
         }).backgroundColor('#00000000')
+
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: SaveButtonOnClickResult) => {
             try {

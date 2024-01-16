@@ -18,6 +18,16 @@ import events_emitter from '@ohos.events.emitter';
 import { Driver, ON } from '@ohos.UiTest'
 import Utils from './Utils';
 
+declare enum SaveButtonOnClickResult {
+  SUCCESS = 0,
+  TEMPORARY_AUTHORIZATION_FAILED = 1
+}
+
+declare enum SecurityComponentLayoutDirection {
+  HORIZONTAL = 0,
+  VERTICAL = 1
+}
+
 export default function saveComponentTest() {
   describe('saveComponentTest', () => {
     beforeAll(async (done: Function) => {

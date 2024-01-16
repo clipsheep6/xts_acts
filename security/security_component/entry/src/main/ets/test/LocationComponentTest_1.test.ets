@@ -18,6 +18,11 @@ import events_emitter from '@ohos.events.emitter';
 import { Driver, ON } from '@ohos.UiTest'
 import Utils from './Utils';
 
+declare enum LocationButtonOnClickResult {
+  SUCCESS = 0,
+  TEMPORARY_AUTHORIZATION_FAILED = 1
+}
+
 export default function locationComponentTest_1() {
   describe('locationComponentTest_1', () => {
     beforeAll(async (done: Function) => {

@@ -15,6 +15,21 @@
 
 import events_emitter from '@ohos.events.emitter'
 
+declare enum SecurityComponentLayoutDirection {
+  HORIZONTAL = 0,
+  VERTICAL = 1
+}
+declare enum PasteIconStyle {
+  LINES = 0
+}
+declare enum PasteButtonOnClickResult {
+  SUCCESS = 0,
+  TEMPORARY_AUTHORIZATION_FAILED = 1
+}
+declare enum PasteDescription {
+  PASTE = 0
+}
+
 @Entry
 @Component
 struct pasteButton_1 {
@@ -52,7 +67,7 @@ struct pasteButton_1 {
   @State maxWidth: number = 25
   @State minHeight: number = 30
   @State maxHeight: number = 35
-  private stateChangeCallBack = (eventData) => {
+  private stateChangeCallBack = (eventData: events_emitter.EventData) => {
     if (eventData != null) {
       console.info("====>page_pasteButton_1 page state change called:" + JSON.stringify(eventData));
       if (eventData.data.bgType != null) {
@@ -162,7 +177,7 @@ struct pasteButton_1 {
 
   onPageShow() {
     console.info('====>page_pasteButton_1 page show called');
-    var stateChangeEvent = {
+    let stateChangeEvent: events_emitter.InnerEvent = {
       eventId: 1,
       priority: events_emitter.EventPriority.LOW
     }
@@ -180,12 +195,12 @@ struct pasteButton_1 {
         PasteButton({ icon: PasteIconStyle.LINES, text: PasteDescription.PASTE, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }

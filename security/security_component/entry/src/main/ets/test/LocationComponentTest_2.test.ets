@@ -18,10 +18,20 @@ import events_emitter from '@ohos.events.emitter';
 import { Driver, ON } from '@ohos.UiTest'
 import Utils from './Utils';
 
+declare enum LocationButtonOnClickResult {
+  SUCCESS = 0,
+  TEMPORARY_AUTHORIZATION_FAILED = 1
+}
+
+declare enum SecurityComponentLayoutDirection {
+  HORIZONTAL = 0,
+  VERTICAL = 1
+}
+
 export default function locationComponentTest_2() {
-  describe('locationComponentTest_2', function () {
-    beforeAll(async function (done) {
-      let options = {
+  describe('locationComponentTest_2', () => {
+    beforeAll(async (done: Function) => {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/locationButton_2',
       }
       try {
@@ -40,7 +50,7 @@ export default function locationComponentTest_2() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("====>locationComponentTest_2 after each called");
     });
@@ -54,11 +64,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-      it('Test_Security_Button_LocationScenarios_0100', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_0100', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_0100] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -95,7 +105,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -105,14 +115,13 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0100] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>[Test_Security_Button_LocationScenarios_0100] get obj is: " + JSON.stringify(obj));
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_0100] get obj is: " + strJsonNew);
       // width的默认值取值
-      expect(obj.$attrs.width).assertEqual('10.00vp');
+      expect(JSON.parse(strJsonNew).$attrs.width).assertEqual('10.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_0100] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_0100] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -127,7 +136,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -136,7 +145,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0100] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         console.info("====>[Test_Security_Button_LocationScenarios_0100] driver is:" + JSON.stringify(driver));
         let flag = false;
         console.info("====>[Test_Security_Button_LocationScenarios_0100] flag is:" + flag);
@@ -149,20 +158,21 @@ export default function locationComponentTest_2() {
           console.info("====>[Test_Security_Button_LocationScenarios_0100] textComponent is:" + JSON.stringify(textComponent));
           await Utils.sleep(200)
           if (textComponent != undefined && textComponent != null) {
-            try{
+            try {
               await textComponent.click();
               console.info("====>[Test_Security_Button_LocationScenarios_0100] textComponentClick finishfinishfinish");
             } catch (err) {
               console.info("====>[Test_Security_Button_LocationScenarios_0100] textComponentClick err : " + JSON.stringify(err));
-            };
+            }
+            ;
           }
           let knowBtn = await driver.findComponent(ON.text('知道了'));
           console.info("====>[Test_Security_Button_LocationScenarios_0100] knowBtn is:" + JSON.stringify(knowBtn));
-          if(knowBtn !== null){
+          if (knowBtn !== null) {
             console.info("====>[Test_Security_Button_LocationScenarios_0100] knowBtnClick START====");
             await knowBtn.click();
             console.info("====>[Test_Security_Button_LocationScenarios_0100] reClick====" + i);
-          }else{
+          } else {
             flag = true;
           }
         }
@@ -181,11 +191,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_0200', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_0200', 3, async (done: Function) => {
       console.info('====>[TTest_Security_Button_LocationScenarios_0200] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -222,7 +232,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -232,13 +242,12 @@ export default function locationComponentTest_2() {
         console.info("====>[TTest_Security_Button_LocationScenarios_0200] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>[TTest_Security_Button_LocationScenarios_0200] get obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.height).assertEqual('15.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[TTest_Security_Button_LocationScenarios_0200] get obj is: " + strJsonNew);
+      expect(JSON.parse(strJsonNew).$attrs.height).assertEqual('15.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[TTest_Security_Button_LocationScenarios_0200] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[TTest_Security_Button_LocationScenarios_0200] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -253,7 +262,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -262,7 +271,7 @@ export default function locationComponentTest_2() {
         console.info("====>[TTest_Security_Button_LocationScenarios_0200] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[TTest_Security_Button_LocationScenarios_0200] button is:" + JSON.stringify(button));
@@ -282,11 +291,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_0300', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_0300', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_0300] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -323,7 +332,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -333,16 +342,16 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0300] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      let constraintSize = JSON.parse(obj.$attrs.constraintSize);
-      console.info("====>[Test_Security_Button_LocationScenarios_0300] get constraintSize is: " + JSON.stringify(constraintSize));
-      console.info("====>[Test_Security_Button_LocationScenarios_0300] get obj is: " + JSON.stringify(obj));
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_0300] get constraintSize is: " + JSON.parse(strJsonNew)
+        .$attrs
+        .constraintSize);
+      console.info("====>[Test_Security_Button_LocationScenarios_0300] get obj is: " + strJsonNew);
       // size.width的默认值取值
-      expect(obj.$attrs.size.width).assertEqual('10.00vp');
+      expect(JSON.parse(strJsonNew).$attrs.size.width).assertEqual('10.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_0300] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_0300] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -357,7 +366,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -366,7 +375,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0300] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_0300] button is:" + JSON.stringify(button));
@@ -386,11 +395,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_0400', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_0400', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_0400] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -427,7 +436,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -437,16 +446,16 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0400] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      let constraintSize = JSON.parse(obj.$attrs.constraintSize);
-      console.info("====>[Test_Security_Button_LocationScenarios_0400] get constraintSize is: " + JSON.stringify(constraintSize));
-      console.info("====>[Test_Security_Button_LocationScenarios_0400] get obj is: " + JSON.stringify(obj));
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_0400] get constraintSize is: " + JSON.parse(strJsonNew)
+        .$attrs
+        .constraintSize);
+      console.info("====>[Test_Security_Button_LocationScenarios_0400] get obj is: " + strJsonNew);
       // size.height的默认值取值
-      expect(obj.$attrs.size.height).assertEqual('15.00vp');
+      expect(JSON.parse(strJsonNew).$attrs.size.height).assertEqual('15.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_0400] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_0400] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -461,7 +470,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -470,7 +479,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0400] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_0400] button is:" + JSON.stringify(button));
@@ -490,11 +499,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_0500', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_0500', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_0500] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -531,7 +540,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -541,16 +550,16 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0500] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      let constraintSize = JSON.parse(obj.$attrs.constraintSize);
-      console.info("====>[Test_Security_Button_LocationScenarios_0500] get constraintSize is: " + JSON.stringify(constraintSize));
-      console.info("====>[Test_Security_Button_LocationScenarios_0500] get obj is: " + JSON.stringify(obj));
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_0500] get constraintSize is: " + JSON.parse(strJsonNew)
+        .$attrs
+        .constraintSize);
+      console.info("====>[Test_Security_Button_LocationScenarios_0500] get obj is: " + strJsonNew);
       // constraintSize.minWidth的默认值取值
-      expect(constraintSize.minWidth).assertEqual('20.00vp');
+      expect(JSON.parse(JSON.parse(strJsonNew).$attrs.constraintSize).minWidth).assertEqual('20.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_0500] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_0500] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -565,7 +574,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -574,7 +583,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0500] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_0500] button is:" + JSON.stringify(button));
@@ -594,11 +603,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_0600', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_0600', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_0600] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -635,7 +644,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -645,16 +654,16 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0600] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      let constraintSize = JSON.parse(obj.$attrs.constraintSize);
-      console.info("====>[Test_Security_Button_LocationScenarios_0600] get constraintSize is: " + JSON.stringify(constraintSize));
-      console.info("====>[Test_Security_Button_LocationScenarios_0600] get obj is: " + JSON.stringify(obj));
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_0600] get constraintSize is: " + JSON.parse(strJsonNew)
+        .$attrs
+        .constraintSize);
+      console.info("====>[Test_Security_Button_LocationScenarios_0600] get obj is: " + strJsonNew);
       // constraintSize.maxWidth的默认值取值
-      expect(constraintSize.maxWidth).assertEqual('25.00vp');
+      expect(JSON.parse(JSON.parse(strJsonNew).$attrs.constraintSize).maxWidth).assertEqual('25.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_0600] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_0600] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -669,7 +678,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -678,7 +687,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0600] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_0600] button is:" + JSON.stringify(button));
@@ -698,11 +707,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_0700', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_0700', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_0700] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -739,7 +748,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -749,16 +758,16 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0700] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      let constraintSize = JSON.parse(obj.$attrs.constraintSize);
-      console.info("====>[Test_Security_Button_LocationScenarios_0700] get constraintSize is: " + JSON.stringify(constraintSize));
-      console.info("====>[Test_Security_Button_LocationScenarios_0700] get obj is: " + JSON.stringify(obj));
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_0700] get constraintSize is: " + JSON.parse(strJsonNew)
+        .$attrs
+        .constraintSize);
+      console.info("====>[Test_Security_Button_LocationScenarios_0700] get obj is: " + strJsonNew);
       // constraintSize.minHeight的默认值取值
-      expect(constraintSize.minHeight).assertEqual('30.00vp');
+      expect(JSON.parse(JSON.parse(strJsonNew).$attrs.constraintSize).minHeight).assertEqual('30.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_0700] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_0700] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -773,7 +782,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -782,7 +791,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0700] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_0700] button is:" + JSON.stringify(button));
@@ -802,11 +811,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_0800', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_0800', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_0800] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -843,7 +852,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -853,16 +862,16 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0800] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      let constraintSize = JSON.parse(obj.$attrs.constraintSize);
-      console.info("====>[Test_Security_Button_LocationScenarios_0800] get constraintSize is: " + JSON.stringify(constraintSize));
-      console.info("====>[Test_Security_Button_LocationScenarios_0800] get obj is: " + JSON.stringify(obj));
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_0800] get constraintSize is: " + JSON.parse(strJsonNew)
+        .$attrs
+        .constraintSize);
+      console.info("====>[Test_Security_Button_LocationScenarios_0800] get obj is: " + strJsonNew);
       // constraintSize.maxHeight的默认值取值
-      expect(constraintSize.maxHeight).assertEqual('35.00vp');
+      expect(JSON.parse(JSON.parse(strJsonNew).$attrs.constraintSize).maxHeight).assertEqual('35.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_0800] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_0800] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -877,7 +886,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -886,7 +895,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0800] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_0800] button is:" + JSON.stringify(button));
@@ -906,11 +915,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_0900', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_0900', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_0900] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -947,7 +956,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -957,13 +966,12 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0900] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>[Test_Security_Button_LocationScenarios_0900] get obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.iconSize).assertEqual('16.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_0900] get obj is: " + strJsonNew);
+      expect(JSON.parse(strJsonNew).$attrs.iconSize).assertEqual('16.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_0900] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_0900] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -978,7 +986,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -987,7 +995,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_0900] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_0900] button is:" + JSON.stringify(button));
@@ -1007,11 +1015,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_1000', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_1000', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_1000] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1048,7 +1056,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1058,14 +1066,13 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1000] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>[Test_Security_Button_LocationScenarios_1000] get obj is: " + JSON.stringify(obj));
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_1000] get obj is: " + strJsonNew);
       // layoutDirection的undefined取值
-      expect(obj.$attrs.layoutDirection).assertEqual(SecurityComponentLayoutDirection.HORIZONTAL);
+      expect(JSON.parse(strJsonNew).$attrs.layoutDirection).assertEqual(SecurityComponentLayoutDirection.HORIZONTAL);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_1000] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_1000] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -1080,7 +1087,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1089,7 +1096,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1000] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_1000] button is:" + JSON.stringify(button));
@@ -1109,11 +1116,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_1100', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_1100', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_1100] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1150,7 +1157,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1160,13 +1167,12 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1100] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>[Test_Security_Button_LocationScenarios_1100] get obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.position.x).assertEqual('0.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_1100] get obj is: " + strJsonNew);
+      expect(JSON.parse(strJsonNew).$attrs.position.x).assertEqual('0.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_1100] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_1100] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -1181,7 +1187,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1190,7 +1196,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1100] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_1100] button is:" + JSON.stringify(button));
@@ -1210,11 +1216,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_1200', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_1200', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_1200] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1251,7 +1257,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1261,13 +1267,12 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1200] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>[Test_Security_Button_LocationScenarios_1200] get obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.position.y).assertEqual('0.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_1200] get obj is: " + strJsonNew);
+      expect(JSON.parse(strJsonNew).$attrs.position.y).assertEqual('0.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_1200] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_1200] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -1282,7 +1287,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1291,7 +1296,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1200] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_1200] button is:" + JSON.stringify(button));
@@ -1311,11 +1316,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_1300', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_1300', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_1300] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1352,7 +1357,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1362,13 +1367,12 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1300] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>[Test_Security_Button_LocationScenarios_1300] get obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.markAnchor.x).assertEqual('0.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_1300] get obj is: " + strJsonNew);
+      expect(JSON.parse(strJsonNew).$attrs.markAnchor.x).assertEqual('0.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_1300] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_1300] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -1383,7 +1387,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1392,7 +1396,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1300] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_1300] button is:" + JSON.stringify(button));
@@ -1412,11 +1416,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_1400', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_1400', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_1400] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1453,7 +1457,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1463,13 +1467,12 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1400] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>[Test_Security_Button_LocationScenarios_1400] get obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.markAnchor.y).assertEqual('0.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_1400] get obj is: " + strJsonNew);
+      expect(JSON.parse(strJsonNew).$attrs.markAnchor.y).assertEqual('0.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_1400] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_1400] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -1484,7 +1487,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1493,7 +1496,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1400] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_1400] button is:" + JSON.stringify(button));
@@ -1513,11 +1516,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_1500', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_1500', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_1500] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1554,7 +1557,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1564,13 +1567,12 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1500] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>[Test_Security_Button_LocationScenarios_1500] get obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.offset.x).assertEqual('0.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_1500] get obj is: " + strJsonNew);
+      expect(JSON.parse(strJsonNew).$attrs.offset.x).assertEqual('0.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_1500] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_1500] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -1585,7 +1587,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1594,7 +1596,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1500] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_1500] button is:" + JSON.stringify(button));
@@ -1614,11 +1616,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_1600', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_1600', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_1600] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1655,7 +1657,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1665,13 +1667,12 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1600] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>[Test_Security_Button_LocationScenarios_1600] get obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.offset.y).assertEqual('0.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_1600] get obj is: " + strJsonNew);
+      expect(JSON.parse(strJsonNew).$attrs.offset.y).assertEqual('0.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_1600] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_1600] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -1686,7 +1687,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1695,7 +1696,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1600] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_1600] button is:" + JSON.stringify(button));
@@ -1715,11 +1716,11 @@ export default function locationComponentTest_2() {
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_LocationScenarios_1700', 3, async function (done) {
+    it('Test_Security_Button_LocationScenarios_1700', 3, async (done: Function) => {
       console.info('====>[Test_Security_Button_LocationScenarios_1700] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1756,7 +1757,7 @@ export default function locationComponentTest_2() {
             "maxHeight": 35
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1766,13 +1767,12 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1700] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation12');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>[Test_Security_Button_LocationScenarios_1700] get obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.fontSize).assertEqual('16.00fp');
+      let strJsonNew: string = getInspectorByKey('keyLocation12');
+      console.info("====>[Test_Security_Button_LocationScenarios_1700] get obj is: " + strJsonNew);
+      expect(JSON.parse(strJsonNew).$attrs.fontSize).assertEqual('16.00fp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_LocationScenarios_1700] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_LocationScenarios_1700] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -1787,7 +1787,7 @@ export default function locationComponentTest_2() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1796,7 +1796,7 @@ export default function locationComponentTest_2() {
         console.info("====>[Test_Security_Button_LocationScenarios_1700] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_LocationScenarios_1700] button is:" + JSON.stringify(button));

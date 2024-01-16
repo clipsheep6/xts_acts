@@ -15,6 +15,35 @@
 
 import events_emitter from '@ohos.events.emitter'
 
+declare enum SecurityComponentLayoutDirection {
+  HORIZONTAL = 0,
+  VERTICAL = 1
+}
+
+declare enum LocationIconStyle {
+  FULL_FILLED = 0,
+  LINES = 1
+}
+
+declare enum LocationDescription {
+  CURRENT_LOCATION = 0,
+  ADD_LOCATION = 1,
+  SELECT_LOCATION = 2,
+  SHARE_LOCATION = 3,
+  SEND_LOCATION = 4,
+  LOCATING = 5,
+  LOCATION = 6,
+  SEND_CURRENT_LOCATION = 7,
+  RELOCATION = 8,
+  PUNCH_IN = 9,
+  CURRENT_POSITION = 10
+}
+
+declare enum LocationButtonOnClickResult {
+  SUCCESS = 0,
+  TEMPORARY_AUTHORIZATION_FAILED = 1
+}
+
 @Entry
 @Component
 struct locationButton_2 {
@@ -52,7 +81,7 @@ struct locationButton_2 {
   @State maxWidth: number = 25
   @State minHeight: number = 30
   @State maxHeight: number = 35
-  private stateChangeCallBack = (eventData) => {
+  private stateChangeCallBack = (eventData: events_emitter.EventData) => {
     if (eventData != null) {
       console.debug("====>page_locationButton_2 page state change called:" + JSON.stringify(eventData));
       if (eventData.data.bgType != null) {
@@ -162,7 +191,7 @@ struct locationButton_2 {
 
   onPageShow() {
     console.debug('====>page_locationButton_2 page show called');
-    var stateChangeEvent = {
+    let stateChangeEvent: events_emitter.InnerEvent = {
       eventId: 1,
       priority: events_emitter.EventPriority.LOW
     }
@@ -184,12 +213,12 @@ struct locationButton_2 {
         })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }

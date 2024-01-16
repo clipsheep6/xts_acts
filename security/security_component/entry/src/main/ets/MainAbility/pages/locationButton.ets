@@ -15,6 +15,35 @@
 
 import events_emitter from '@ohos.events.emitter'
 
+declare enum SecurityComponentLayoutDirection {
+  HORIZONTAL = 0,
+  VERTICAL = 1
+}
+
+declare enum LocationIconStyle {
+  FULL_FILLED = 0,
+  LINES = 1
+}
+
+declare enum LocationDescription {
+  CURRENT_LOCATION = 0,
+  ADD_LOCATION = 1,
+  SELECT_LOCATION = 2,
+  SHARE_LOCATION = 3,
+  SEND_LOCATION = 4,
+  LOCATING = 5,
+  LOCATION = 6,
+  SEND_CURRENT_LOCATION = 7,
+  RELOCATION = 8,
+  PUNCH_IN = 9,
+  CURRENT_POSITION = 10
+}
+
+declare enum LocationButtonOnClickResult {
+  SUCCESS = 0,
+  TEMPORARY_AUTHORIZATION_FAILED = 1
+}
+
 @Entry
 @Component
 struct locationButton {
@@ -153,7 +182,11 @@ struct locationButton {
   build() {
     Row() {
       Column() {
-        LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.CURRENT_LOCATION, buttonType: this.bgType })
+        LocationButton({
+          icon: LocationIconStyle.FULL_FILLED,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: this.bgType
+        })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
               let clickData: events_emitter.EventData = {
@@ -197,9 +230,14 @@ struct locationButton {
         }.type(ButtonType.Capsule)
         .margin({
           top: 200,
-          bottom:60
+          bottom: 60
         }).backgroundColor('#00000000')
-        LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.CURRENT_LOCATION, buttonType: this.bgType })
+
+        LocationButton({
+          icon: LocationIconStyle.FULL_FILLED,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: this.bgType
+        })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
               let clickData: events_emitter.EventData = {

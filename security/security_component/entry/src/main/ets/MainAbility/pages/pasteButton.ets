@@ -15,6 +15,24 @@
 
 import events_emitter from '@ohos.events.emitter'
 
+declare enum SecurityComponentLayoutDirection {
+  HORIZONTAL = 0,
+  VERTICAL = 1
+}
+
+declare enum PasteIconStyle {
+  LINES = 0
+}
+
+declare enum PasteButtonOnClickResult {
+  SUCCESS = 0,
+  TEMPORARY_AUTHORIZATION_FAILED = 1
+}
+
+declare enum PasteDescription {
+  PASTE = 0
+}
+
 @Entry
 @Component
 struct pasteButton {
@@ -197,8 +215,9 @@ struct pasteButton {
         }.type(ButtonType.Capsule)
         .margin({
           top: 200,
-          bottom:60
+          bottom: 60
         }).backgroundColor('#00000000')
+
         PasteButton({ icon: PasteIconStyle.LINES, text: PasteDescription.PASTE, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
             try {
