@@ -17,4 +17,5 @@ import printTest from './print.test'
 
 export default function testsuite() {
   printTest();
+  
 }
