@@ -27,15 +27,14 @@ function expectFalse() {
 
 export default function NetworkManagerDnsGetAddrInfo1Test() {
   describe("NetworkManagerDnsGetAddrInfo1Test", () => {
-    let hostaddr_valid = 'www.baidu.com'
-    let hostaddr_invalid = ''
-    let serv = ''
-    let netid_default = 0
-    let netid_valid = 100
-    let netid_invalid = 10
-    let netid_unreachable = 110
-    let function_valid = 0
-    let function_null = 1
+    let hostAddressValid: string = 'www.baidu.com';
+    let hostAddressInvalid: string = '';
+    let serv: string = '';
+    let netIdDefault: number = 0;
+    let netIdInvalid: number = 10;
+    let netIdUnreachable: number = 110;
+    let functionValid: number = 0;
+    let functionNull: number = 1;
 
     /* *
     * @tc.number  NETWORKMANAGER_DNS_GETADDRINFO_0100
@@ -46,8 +45,8 @@ export default function NetworkManagerDnsGetAddrInfo1Test() {
     * @tc.level   Level 2
     */
     it("NetworkManager_Dns_GetAddrInfo_0100", 0, async (done: Function) => {
-      let caseName = "NetworkManager_Dns_GetAddrInfo_0100"
-      let status = testNapi.getaddrinfo(hostaddr_valid, serv, netid_default);
+      let caseName: string = "NetworkManager_Dns_GetAddrInfo_0100";
+      let status = testNapi.getaddrinfo(hostAddressValid, serv, netIdDefault);
       if (status != 0) {
         console.log(`${caseName} failed, err: ${JSON.stringify(status)}`);
         expectFalse();
@@ -68,8 +67,8 @@ export default function NetworkManagerDnsGetAddrInfo1Test() {
     * @tc.level   Level 2
     */
     it("NetworkManager_Dns_GetAddrInfo_0200", 0, async (done: Function) => {
-      let caseName = "NetworkManager_Dns_GetAddrInfo_0200"
-      let status = testNapi.getaddrinfo(hostaddr_invalid, serv, netid_default);
+      let caseName: string = "NetworkManager_Dns_GetAddrInfo_0200";
+      let status = testNapi.getaddrinfo(hostAddressInvalid, serv, netIdDefault);
       if (status != 401) {
         console.log(`${caseName} failed, err: ${JSON.stringify(status)}`);
         expectFalse();
@@ -90,8 +89,8 @@ export default function NetworkManagerDnsGetAddrInfo1Test() {
     * @tc.level   Level 2
     */
     it("NetworkManager_Dns_GetAddrInfo_0300", 0, async (done: Function) => {
-      let caseName = "NetworkManager_Dns_GetAddrInfo_0300"
-      let status = testNapi.getaddrinfo(hostaddr_valid, serv, netid_invalid);
+      let caseName: string = "NetworkManager_Dns_GetAddrInfo_0300";
+      let status = testNapi.getaddrinfo(hostAddressValid, serv, netIdInvalid);
       if (status != 401) {
         console.log(`${caseName} failed, err: ${JSON.stringify(status)}`);
         expectFalse();
@@ -112,8 +111,8 @@ export default function NetworkManagerDnsGetAddrInfo1Test() {
     * @tc.level   Level 2
     */
     it("NetworkManager_Dns_GetAddrInfo_0400", 0, async (done: Function) => {
-      let caseName = "NetworkManager_Dns_GetAddrInfo_0400"
-      let status = testNapi.getaddrinfo(hostaddr_valid, serv, netid_unreachable);
+      let caseName: string = "NetworkManager_Dns_GetAddrInfo_0400";
+      let status = testNapi.getaddrinfo(hostAddressValid, serv, netIdUnreachable);
       if (status != 2100003) {
         console.log(`${caseName} failed, err: ${JSON.stringify(status)}`);
         expectFalse();
@@ -134,8 +133,8 @@ export default function NetworkManagerDnsGetAddrInfo1Test() {
     * @tc.level   Level 2
     */
     it("NetworkManager_Dns_RegisterDnsResolver_0100", 0, async (done: Function) => {
-      let caseName = "NetworkManager_Dns_RegisterDnsResolver_0100"
-      let status = testNapi.registerdnsresolver(function_valid);
+      let caseName: string = "NetworkManager_Dns_RegisterDnsResolver_0100";
+      let status = testNapi.registerdnsresolver(functionValid);
       if (status != 0) {
         console.log(`${caseName} failed, err: ${JSON.stringify(status)}`);
         expectFalse();
@@ -156,8 +155,8 @@ export default function NetworkManagerDnsGetAddrInfo1Test() {
     * @tc.level   Level 2
     */
     it("NetworkManager_Dns_RegisterDnsResolver_0200", 0, async (done: Function) => {
-      let caseName = "NetworkManager_Dns_RegisterDnsResolver_0200"
-      let status = testNapi.registerdnsresolver(function_null);
+      let caseName: string = "NetworkManager_Dns_RegisterDnsResolver_0200";
+      let status = testNapi.registerdnsresolver(functionNull);
       if (status != 401) {
         console.log(`${caseName} failed, err: ${JSON.stringify(status)}`);
         expectFalse();

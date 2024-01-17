@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import NetworkManagerDnsGetAddrInfo1Test from './NetworkManagerDnsGetAddrInfo1.test'
+import NetworkManagerDnsGetAddressInfo1Test from './NetworkManagerDnsGetAddrInfo1.test'
 
 export default function testsuite() {
-  NetworkManagerDnsGetAddrInfo1Test()
+  NetworkManagerDnsGetAddressInfo1Test()
 
 }

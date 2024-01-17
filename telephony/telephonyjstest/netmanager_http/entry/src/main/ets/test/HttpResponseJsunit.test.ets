@@ -12,11 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe,it, expect} from '@ohos/hypium';
+import { describe, it, expect } from '@ohos/hypium';
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
 export default function httpResponseJsunit() {
-  describe("HttpResponseJsunitTest", function () {
+  describe("HttpResponseJsunitTest", () => {
 
     /**
      * @tc.number Telephony_Http_HttpResponse_result_0100
@@ -24,27 +25,28 @@ export default function httpResponseJsunit() {
      * @tc.desc Test Test HttpResponse property.
      */
 
-    it("Telephony_Http_HttpResponse_result_0100", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpResponse_0100';
+    it("Telephony_Http_HttpResponse_result_0100", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpResponse_0100';
       console.log("-----------------------HttpResponse result Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
-          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err: BusinessError, data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.result != null).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpResponse result Test end-----------------------");
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpResponse_result_0100 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpResponse_result_0100 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -57,20 +59,21 @@ export default function httpResponseJsunit() {
      * @tc.desc Test Test HttpResponse property.
      */
 
-    it("Telephony_Http_HttpResponse_result_0200", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpResponse_0100';
+    it("Telephony_Http_HttpResponse_result_0200", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpResponse_0100';
       console.log("-----------------------HttpResponse result_01 Test is starting-----------------------");
       try {
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", (err, data) => {
-          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", (err: BusinessError, data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.result != null).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpResponse result_01 Test end-----------------------");
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpResponse_result_0200 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpResponse_result_0200 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -83,31 +86,32 @@ export default function httpResponseJsunit() {
      * @tc.desc Test Test HttpResponse property.
      */
 
-    it("Telephony_Http_HttpResponse_result_0300", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpResponse_0100';
+    it("Telephony_Http_HttpResponse_result_0300", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpResponse_0100';
       console.log("-----------------------HttpResponse result_02 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
+        let httpRequest: http.HttpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
-          console.log(casename + JSON.stringify(data));
+          console.log(caseName + JSON.stringify(data));
           expect(data.result != null).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpResponse result_02 Test end-----------------------");
           done();
-        }).catch(error => {
-          console.info(casename+"errocode" + JSON.stringify(error));
+        }).catch((error: BusinessError) => {
+          console.info(caseName + "errocode" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpResponse_result_0300 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpResponse_result_0300 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -120,27 +124,28 @@ export default function httpResponseJsunit() {
      * @tc.desc Test Test HttpResponse property.
      */
 
-    it("Telephony_Http_HttpResponse_responseCode_0100", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpResponse_0200';
+    it("Telephony_Http_HttpResponse_responseCode_0100", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpResponse_0200';
       console.log("-----------------------HttpResponse responseCode Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
-          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err: BusinessError, data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.responseCode != 0).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpResponse responseCode Test end-----------------------");
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpResponse_responseCode_0100 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpResponse_responseCode_0100 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -153,25 +158,25 @@ export default function httpResponseJsunit() {
      * @tc.desc Test Test HttpResponse property.
      */
 
-    it("Telephony_Http_HttpResponse_responseCode_0200", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpResponse_0200';
+    it("Telephony_Http_HttpResponse_responseCode_0200", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpResponse_0200';
       console.log("-----------------------HttpResponse responseCode_01 Test is starting-----------------------");
       try {
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", (err, data) => {
-          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", (err: BusinessError, data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.responseCode != 0).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpResponse responseCode_01 Test end-----------------------");
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpResponse_responseCode_0200 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpResponse_responseCode_0200 : error = " + e);
         expect(false).assertTrue();
         done();
       }
     });
-
 
 
     /**
@@ -180,31 +185,32 @@ export default function httpResponseJsunit() {
      * @tc.desc Test Test HttpResponse property.
      */
 
-    it("Telephony_Http_HttpResponse_responseCode_0300", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpResponse_0200';
+    it("Telephony_Http_HttpResponse_responseCode_0300", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpResponse_0200';
       console.log("-----------------------HttpResponse responseCode_02 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
+        let httpRequest: http.HttpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
-          console.log(casename + JSON.stringify(data));
+          console.log(caseName + JSON.stringify(data));
           expect(data.responseCode != 0).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpResponse responseCode_02 Test end-----------------------");
           done();
-        }).catch(error => {
-          console.info(casename+"errocode" + JSON.stringify(error));
+        }).catch((error: BusinessError) => {
+          console.info(caseName + "errocode" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpResponse_responseCode_0300 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpResponse_responseCode_0300 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -216,27 +222,28 @@ export default function httpResponseJsunit() {
      * @tc.desc Test Test HttpResponse property.
      */
 
-    it("Telephony_Http_HttpResponse_header_0100", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpResponse_0300';
+    it("Telephony_Http_HttpResponse_header_0100", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpResponse_0300';
       console.log("-----------------------HttpResponse header Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
-          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err: BusinessError, data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.header != null).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------header result Test end-----------------------");
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpResponse_header_0100 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpResponse_header_0100 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -249,25 +256,25 @@ export default function httpResponseJsunit() {
      * @tc.desc Test Test HttpResponse property.
      */
 
-    it("Telephony_Http_HttpResponse_header_0200", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpResponse_0300';
+    it("Telephony_Http_HttpResponse_header_0200", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpResponse_0300';
       console.log("-----------------------HttpResponse header_01 Test is starting-----------------------");
       try {
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", (err, data) => {
-          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", (err: BusinessError, data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.header != null).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------header header_01 Test end-----------------------");
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpResponse_header_0200 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpResponse_header_0200 : error = " + e);
         expect(false).assertTrue();
         done();
       }
     });
-
 
 
     /**
@@ -276,30 +283,31 @@ export default function httpResponseJsunit() {
      * @tc.desc Test Test HttpResponse property.
      */
 
-    it("Telephony_Http_HttpResponse_header_0300", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpResponse_0300';
+    it("Telephony_Http_HttpResponse_header_0300", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpResponse_0300';
       console.log("-----------------------HttpResponse header_02 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
+        let httpRequest: http.HttpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
-          console.log(casename + JSON.stringify(data));
+          console.log(caseName + JSON.stringify(data));
           expect(data.header != null).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpResponse header_02 Test end-----------------------");
           done();
-        }).catch(error => {
-          console.info(casename+"errocode" + JSON.stringify(error));
+        }).catch((error: BusinessError) => {
+          console.info(caseName + "errocode" + JSON.stringify(error));
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpResponse_header_0300 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpResponse_header_0300 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -311,32 +319,32 @@ export default function httpResponseJsunit() {
      * @tc.desc Test Test HttpResponse property.
      */
 
-    it("Telephony_Http_HttpResponse_cookies_0100", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpResponse_0400';
+    it("Telephony_Http_HttpResponse_cookies_0100", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpResponse_0400';
       console.log("-----------------------HttpResponse cookies Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
-          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err: BusinessError, data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.cookies != null).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpResponse cookies Test end-----------------------");
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpResponse_cookies_0100 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpResponse_cookies_0100 : error = " + e);
         expect(false).assertTrue();
         done();
       }
     });
-
 
 
     /**
@@ -345,20 +353,21 @@ export default function httpResponseJsunit() {
      * @tc.desc Test Test HttpResponse property.
      */
 
-    it("Telephony_Http_HttpResponse_cookies_0200", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpResponse_0400';
+    it("Telephony_Http_HttpResponse_cookies_0200", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpResponse_0400';
       console.log("-----------------------HttpResponse cookies_01 Test is starting-----------------------");
       try {
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", (err, data) => {
-          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", (err: BusinessError, data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.cookies != null).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpResponse cookies_01 Test end-----------------------");
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpResponse_cookies_0200 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpResponse_cookies_0200 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -371,30 +380,31 @@ export default function httpResponseJsunit() {
      * @tc.desc Test Test HttpResponse property.
      */
 
-    it("Telephony_Http_HttpResponse_cookies_0300", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpResponse_0400';
+    it("Telephony_Http_HttpResponse_cookies_0300", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpResponse_0400';
       console.log("-----------------------HttpResponse cookies_02 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
+        let httpRequest: http.HttpRequest = http.createHttp();
         httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
-          console.log(casename + JSON.stringify(data));
+          console.log(caseName + JSON.stringify(data));
           expect(data.cookies != null).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpResponse cookies_02 Test end-----------------------");
           done();
-        }).catch(error => {
-          console.info(casename+"errocode" + JSON.stringify(error));
+        }).catch((error: BusinessError) => {
+          console.info(caseName + "errocode" + JSON.stringify(error));
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpResponse_cookies_0300 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpResponse_cookies_0300 : error = " + e);
         expect(false).assertTrue();
         done();
       }

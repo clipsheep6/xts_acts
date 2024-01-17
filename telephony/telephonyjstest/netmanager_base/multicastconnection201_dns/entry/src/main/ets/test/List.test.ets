@@ -12,9 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Multicastconnection201Test from './Multicastconnection_201.test';
+import MultiCastConnection201Test from './Multicastconnection_201.test';
 
 export default function testsuite() {
-  Multicastconnection201Test();
+  MultiCastConnection201Test();
 
 }

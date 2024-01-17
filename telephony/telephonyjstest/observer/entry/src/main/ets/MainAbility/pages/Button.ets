@@ -13,13 +13,13 @@
  * limitations under the License.
  */
  
-import router from '@system.router'
+import router from '@system.router';
 
 @Entry
 @Component
 struct button_testcase {
-  @State stateEffect: boolean = true
-  @State ButtonType: ButtonType = ButtonType.Circle
+  @State stateEffect: boolean = true;
+  @State ButtonType: ButtonType = ButtonType.Circle;
   private content: string = "Button Page";
 
   onPageShow() {
@@ -58,13 +58,14 @@ struct button_testcase {
 
       Button() {
         Text("3.Normal")
-      }.type(ButtonType.Normal)
+      }
+      .type(ButtonType.Normal)
       .backgroundColor('#0D9FFB')
       .key('button2')
 
-    }.key('flex')
-    .width('100%')
-    .height('100%')
+    }
+    .key('flex')
+    .width('100%').height('100%')
   }
 }
 

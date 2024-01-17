@@ -14,15 +14,18 @@
  */
 
 import Ability from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
+import GlobalContext from '../test/GlobalContext';
 
 export default class TestAbility extends Ability {
   onDestroy() {
     console.log('TestAbility onDestroy');
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('TestAbility onWindowStageCreate');
-    windowStage.loadContent('TestAbility/pages/index', (err, data) => {
+    windowStage.loadContent('TestAbility/pages/index', (err: BusinessError, data: void) => {
       if (err.code) {
         console.error('Failed to load the content. Cause:' + JSON.stringify(err));
         return;
@@ -30,7 +33,7 @@ export default class TestAbility extends Ability {
       console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
     });
 
-    globalThis.abilityContext = this.context;
+    GlobalContext.getContext().setObject('abilityContext', this.context);
   }
 
   onWindowStageDestroy() {

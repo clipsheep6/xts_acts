@@ -14,10 +14,11 @@
  */
 import {describe, it, expect} from '@ohos/hypium';
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
 
 export default function HttpRequestOptionsJsunit() {
-  describe("HttpRequestOptionsJsunitTest", function () {
+  describe("HttpRequestOptionsJsunitTest", () => {
 
 
     /**
@@ -25,27 +26,28 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.name HttpRequestOptions::method
      * @tc.desc Test Test HttpRequestOptions property.
      */
-    it("Telephony_http_HttpRequestOptions_method_0100", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0100';
+    it("Telephony_http_HttpRequestOptions_method_0100", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpRequestOptions_0100';
       console.log("-----------------------HttpRequestOptions_method Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
-          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err: BusinessError, data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.responseCode == 200).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpRequestOptions_method Test end-----------------------");
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpRequestOptions_method_0100 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpRequestOptions_method_0100 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -56,31 +58,32 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.name HttpRequestOptions::method
      * @tc.desc Test Test HttpRequestOptions property.
      */
-    it("Telephony_http_HttpRequestOptions_method_0200", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0100';
+    it("Telephony_http_HttpRequestOptions_method_0200", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpRequestOptions_0100';
       console.log("-----------------------HttpRequestOptions_method_01 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
-          console.log(casename + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions).then((data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(data));
           expect(data.responseCode == 200).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpRequestOptions_method_01 Test end-----------------------");
           done();
-        }).catch(error => {
-          console.info(casename+"errocode" + JSON.stringify(error));
+        }).catch((error: BusinessError) => {
+          console.info(caseName+"errocode" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
         });
       } catch (error) {
-        console.log("Telephony_http_HttpRequestOptions_method_0200 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_http_HttpRequestOptions_method_0200 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -91,11 +94,11 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.name HttpRequestOptions::extraData
      * @tc.desc Test Test HttpRequestOptions property.
      */
-    it("Telephony_Http_HttpRequestOptions_extraData_0100", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0200';
+    it("Telephony_Http_HttpRequestOptions_extraData_0100", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpRequestOptions_0200';
       console.log("-----------------------HttpRequestOptions_extraData Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: {
             //tn=albumsdetail&word=渐变风格插画&fr=albumslist&album_tab=设计素材&album_id=409&rn=30
@@ -110,16 +113,17 @@ export default function HttpRequestOptionsJsunit() {
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://image.baidu.com/search/albumsdetail/", httpRequestOptions, (err, data) => {
-          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://image.baidu.com/search/albumsdetail/", httpRequestOptions, (err: BusinessError, data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.responseCode == 200).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpRequestOptions_extraData Test end-----------------------");
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpRequestOptions_extraData_0100 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpRequestOptions_extraData_0100 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -130,11 +134,11 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.name HttpRequestOptions::extraData
      * @tc.desc Test Test HttpRequestOptions property.
      */
-    it("Telephony_Http_HttpRequestOptions_extraData_0200", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0200';
+    it("Telephony_Http_HttpRequestOptions_extraData_0200", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpRequestOptions_0200';
       console.log("-----------------------HttpRequestOptions_extraData_01 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: {
             //tn=albumsdetail&word=渐变风格插画&fr=albumslist&album_tab=设计素材&album_id=409&rn=30
@@ -149,20 +153,21 @@ export default function HttpRequestOptionsJsunit() {
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://image.baidu.com/search/albumsdetail/", httpRequestOptions).then(data => {
-          console.log(casename + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://image.baidu.com/search/albumsdetail/", httpRequestOptions).then((data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(data));
           expect(data.responseCode == 200).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpRequestOptions_extraData_01 Test end-----------------------");
           done();
-        }).catch(error => {
-          console.info(casename+"errocode" + JSON.stringify(error));
+        }).catch((error: BusinessError) => {
+          console.info(caseName+"errocode" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpRequestOptions_extraData_0200 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpRequestOptions_extraData_0200 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -173,20 +178,20 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.name HttpRequestOptions::header
      * @tc.desc Test Test HttpRequestOptions property.
      */
-    it("Telephony_Http_HttpRequestOptions_header_0100", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0300';
+    it("Telephony_Http_HttpRequestOptions_header_0100", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpRequestOptions_0300';
       console.log("-----------------------HttpRequestOptions_header Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
-          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err: BusinessError, data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(err) + " data: " + JSON.stringify(data));
           try {
             expect(true).assertTrue();
             httpRequest.destroy();
@@ -199,7 +204,8 @@ export default function HttpRequestOptionsJsunit() {
           }
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpRequestOptions_header_0100 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpRequestOptions_header_0100 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -210,37 +216,39 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.name HttpRequestOptions::header
      * @tc.desc Test Test HttpRequestOptions property.
      */
-    it("Telephony_Http_HttpRequestOptions_header_0200", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0300';
+    it("Telephony_Http_HttpRequestOptions_header_0200", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpRequestOptions_0300';
       console.log("-----------------------HttpRequestOptions_header_01 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
-          console.log(casename + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions).then((data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(data));
           try {
             expect(true).assertTrue();
             httpRequest.destroy();
             console.log("-----------------------HttpRequestOptions_header_01 Test end-----------------------");
             done();
           } catch (error) {
-            console.log("Telephony_Http_HttpRequestOptions_header_0200 : JSON parse error = " + error);
+            let e: BusinessError = error as BusinessError;
+            console.log("Telephony_Http_HttpRequestOptions_header_0200 : JSON parse error = " + e);
             expect().assertFail();
             done();
           }
-        }).catch(error => {
-          console.info(casename+"errocode" + JSON.stringify(error));
+        }).catch((error: BusinessError) => {
+          console.info(caseName+"errocode" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpRequestOptions_header_0200 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpRequestOptions_header_0200 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -254,33 +262,35 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.name HttpRequestOptions::header
      * @tc.desc Test Test HttpRequestOptions property.
      */
-    it("Telephony_Http_HttpRequestOptions_header_0300", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0300';
+    it("Telephony_Http_HttpRequestOptions_header_0300", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpRequestOptions_0300';
       console.log("-----------------------HttpRequestOptions_header_02 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/xml",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
-          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err: BusinessError, data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(err) + " data: " + JSON.stringify(data));
           try {
             expect(data.responseCode == 200).assertTrue();
             httpRequest.destroy();
             console.log("-----------------------HttpRequestOptions_header_02 Test end-----------------------");
             done();
           } catch (error) {
-            console.log("Telephony_Http_HttpRequestOptions_header_0300 : JSON parse error = " + error);
+            let e: BusinessError = error as BusinessError;
+            console.log("Telephony_Http_HttpRequestOptions_header_0300 : JSON parse error = " + e);
             expect().assertFail();
             done();
           }
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpRequestOptions_header_0300 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpRequestOptions_header_0300 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -291,37 +301,39 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.name HttpRequestOptions::header
      * @tc.desc Test Test HttpRequestOptions property.
      */
-    it("Telephony_Http_HttpRequestOptions_header_0400", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0300';
+    it("Telephony_Http_HttpRequestOptions_header_0400", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpRequestOptions_0300';
       console.log("-----------------------HttpRequestOptions_header_03 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/xml",
           readTimeout: 60000,
           connectTimeout: 60000
         }
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
-          console.log(casename + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions).then((data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(data));
           try {
             expect(data.result.valueOf() != "").assertTrue();
             httpRequest.destroy();
             console.log("-----------------------HttpRequestOptions_header_03 Test end-----------------------");
             done();
           } catch (error) {
-            console.log("Telephony_Http_HttpRequestOptions_header_0400 : JSON parse error = " + error);
+            let e: BusinessError = error as BusinessError;
+            console.log("Telephony_Http_HttpRequestOptions_header_0400 : JSON parse error = " + e);
             expect().assertFail();
             done();
           }
-        }).catch(error => {
-          console.info(casename+"errocode" + JSON.stringify(error));
+        }).catch((error: BusinessError) => {
+          console.info(caseName+"errocode" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpRequestOptions_header_0400 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpRequestOptions_header_0400 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -332,31 +344,32 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.name HttpRequestOptions::readTimeout
      * @tc.desc Test Test HttpRequestOptions property.
      */
-    it("Telephony_Http_HttpRequestOptions_readTimeout_0100", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0400';
+    it("Telephony_Http_HttpRequestOptions_readTimeout_0100", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpRequestOptions_0400';
       console.log("-----------------------HttpRequestOptions_readTimeout Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
           readTimeout: 0.1,
           connectTimeout: 60
         }
-        var httpRequest = http.createHttp();
+        let httpRequest: http.HttpRequest = http.createHttp();
         if (httpRequestOptions.connectTimeout < 60000) {
           done();
           return;
         }
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
-          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err: BusinessError, data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.responseCode == 408).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpRequestOptions_readTimeout Test end-----------------------");
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpRequestOptions_readTimeout_0100 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpRequestOptions_readTimeout_0100 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -367,35 +380,36 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.name HttpRequestOptions::readTimeout
      * @tc.desc Test Test HttpRequestOptions property.
      */
-    it("Telephony_Http_HttpRequestOptions_readTimeout_0200", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0400';
+    it("Telephony_Http_HttpRequestOptions_readTimeout_0200", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpRequestOptions_0400';
       console.log("-----------------------HttpRequestOptions_readTimeout_01 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
           readTimeout: 0.1,
           connectTimeout: 60
         }
-        var httpRequest = http.createHttp();
+        let httpRequest: http.HttpRequest = http.createHttp();
         if (httpRequestOptions.connectTimeout < 60000) {
           done();
           return;
         }
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
-          console.log(casename + JSON.stringify(data));
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions).then((data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(data));
           expect(data.responseCode == 408).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpRequestOptions_readTimeout_01 Test end-----------------------");
           done();
-        }).catch(error => {
-          console.info(casename+"errocode" + JSON.stringify(error));
+        }).catch((error: BusinessError) => {
+          console.info(caseName+"errocode" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpRequestOptions_readTimeout_0200 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpRequestOptions_readTimeout_0200 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -406,11 +420,11 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.name HttpRequestOptions::connectTimeout
      * @tc.desc Test Test HttpRequestOptions property.
      */
-    it("Telephony_Http_HttpRequestOptions_connectTimeout_0100", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0500';
+    it("Telephony_Http_HttpRequestOptions_connectTimeout_0100", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpRequestOptions_0500';
       console.log("-----------------------HttpRequestOptions_connectTimeout Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = {
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
@@ -421,16 +435,17 @@ export default function HttpRequestOptionsJsunit() {
           done();
           return;
         }
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
-          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err: BusinessError, data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(err) + " data: " + JSON.stringify(data));
           expect(data.responseCode == 504).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpRequestOptions_connectTimeout Test end-----------------------");
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpRequestOptions_connectTimeout_0100 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpRequestOptions_connectTimeout_0100 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -442,11 +457,11 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.name HttpRequestOptions::connectTimeout
      * @tc.desc Test Test HttpRequestOptions property.
      */
-    it("Telephony_Http_HttpRequestOptions_connectTimeout_0200", 0, async function (done) {
-      var casename = 'Telephony_Http_HttpRequestOptions_0500';
+    it("Telephony_Http_HttpRequestOptions_connectTimeout_0200", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Http_HttpRequestOptions_0500';
       console.log("-----------------------HttpRequestOptions_connectTimeout_01 Test is starting-----------------------");
       try {
-        let httpRequestOptions = {
+        let httpRequestOptions: http.HttpRequestOptions = { 
           method: http.RequestMethod.GET,
           extraData: null,
           header: "content-type': 'application/json",
@@ -457,20 +472,21 @@ export default function HttpRequestOptionsJsunit() {
           done();
           return;
         }
-        var httpRequest = http.createHttp();
-        httpRequest.request("https://www.baidu.com/", httpRequestOptions).then(data => {
-          console.log(casename + JSON.stringify(data));
+        let httpRequest: http.HttpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions).then((data: http.HttpResponse) => {
+          console.log(caseName + JSON.stringify(data));
           expect(data.responseCode == 504).assertTrue();
           httpRequest.destroy();
           console.log("-----------------------HttpRequestOptions_connectTimeout_01 Test end-----------------------");
           done();
-        }).catch(error => {
-          console.info(casename+"errocode" + JSON.stringify(error));
+        }).catch((error: BusinessError) => {
+          console.info(caseName+"errocode" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
         });
       } catch (error) {
-        console.log("Telephony_Http_HttpRequestOptions_connectTimeout_0200 : error = " + error);
+        let e: BusinessError = error as BusinessError;
+        console.log("Telephony_Http_HttpRequestOptions_connectTimeout_0200 : error = " + e);
         expect(false).assertTrue();
         done();
       }
@@ -481,15 +497,15 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.name Telephony_Http_HttpRequestOptions_UsingProxy_0100
      * @tc.desc Telephony_Http_HttpRequestOptions_UsingProxy_0100
      */
-    it("Telephony_Http_HttpRequestOptions_UsingProxy_0100", 0, async function (done) {
-      let httpRequest = http.createHttp();
+    it("Telephony_Http_HttpRequestOptions_UsingProxy_0100", 0, async (done: Function) => {
+      let httpRequest: http.HttpRequest = http.createHttp();
       httpRequest.request(
         "https://www.baidu.com/",
         {
           connectTimeout: 60000,
           readTimeout: 60000,
           usingProxy: true,
-        }, (err, data) => {
+        }, (err: BusinessError, data: http.HttpResponse) => {
         if (!err) {
           console.info('Telephony_Http_HttpRequestOptions_UsingProxy_0100 code:' + data.responseCode);
           expect(data.responseCode == http.ResponseCode.OK).assertTrue();
@@ -509,11 +525,11 @@ export default function HttpRequestOptionsJsunit() {
      * @tc.name Telephony_Http_HttpRequestOptions_UsingProxy_0200
      * @tc.desc Telephony_Http_HttpRequestOptions_UsingProxy_0200
      */
-    it("Telephony_Http_HttpRequestOptions_UsingProxy_0200", 0, async function (done) {
-      let httpRequest = http.createHttp();
-      let ExclusionList = ""
-      let array = ExclusionList.split(',');
-      let httpProxy = {
+    it("Telephony_Http_HttpRequestOptions_UsingProxy_0200", 0, async (done: Function) => {
+      let httpRequest: http.HttpRequest = http.createHttp();
+      let ExclusionList: string = ""
+      let array: Array<string> = ExclusionList.split(',');
+      let httpProxy: http.HttpProxy = {
         host: "host",
         port: 1,
         exclusionList: array
@@ -524,7 +540,7 @@ export default function HttpRequestOptionsJsunit() {
           connectTimeout: 60000,
           readTimeout: 60000,
           usingProxy: httpProxy,
-        }, (err, data) => {
+        }, (err: BusinessError, data: http.HttpResponse) => {
         if (!err) {
           console.info('Telephony_Http_HttpRequestOptions_UsingProxy_0200 code:' + data.responseCode);
           expect(true).assertFalse();

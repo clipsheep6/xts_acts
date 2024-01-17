@@ -18,21 +18,24 @@ import hilog from '@ohos.hilog';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
 import window from '@ohos.window';
+import GlobalContext from '../test/GlobalContext';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import { BusinessError } from '@ohos.base';
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onCreate');
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
-	
-    var abilityDelegator: any
+
+    let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-    var abilityDelegatorArguments: any
+    let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs;
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
-    globalThis.context = this.context;
-    globalThis.abilityContext = this.context;
+    GlobalContext.getContext().setAbility(this.context);
   }
 
   onDestroy() {
@@ -41,7 +44,7 @@ export default class TestAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageCreate');
-    windowStage.loadContent('TestAbility/pages/Index', (err, data) => {
+    windowStage.loadContent('TestAbility/pages/Index', (err: BusinessError, data: void) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;

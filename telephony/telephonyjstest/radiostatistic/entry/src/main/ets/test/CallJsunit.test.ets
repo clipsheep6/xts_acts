@@ -14,8 +14,9 @@
  */
 import { describe, expect, it } from '@ohos/hypium';
 import call from '@ohos.telephony.call';
+import { BusinessError } from '@ohos.base';
 
-export function toString(data) {
+export function toString(data: object | string): string {
   if (typeof data === 'object') {
     return JSON.stringify(data);
   } else {
@@ -24,7 +25,7 @@ export function toString(data) {
 };
 
 export default function callJsunit() {
-  describe('callTest', function () {
+  describe('callTest', () => {
     console.log("==========> call Test start ==========>");
 
     /**
@@ -32,11 +33,11 @@ export default function callJsunit() {
      * @tc.name Checks whether a device supports voice calls.
      * @tc.desc Return type test
      */
-    it("Telephony_Call_HasVoiceCapability_HasVoiceCapability", 0, async function (done) {
-      let caseName = 'Telephony_Call_HasVoiceCapability_HasVoiceCapability';
+    it("Telephony_Call_HasVoiceCapability_HasVoiceCapability", 0, async (done: Function) => {
+      let caseName: string = 'Telephony_Call_HasVoiceCapability_HasVoiceCapability';
       console.log(`==========> ${caseName} Test start ==========>`);
-      let ret = false;
-      let voiceCapablity = call.hasVoiceCapability();
+      let ret: boolean = false;
+      let voiceCapablity: boolean = call.hasVoiceCapability();
       if (voiceCapablity === true || voiceCapablity === false) {
         ret = true;
       }
@@ -50,12 +51,12 @@ export default function callJsunit() {
      * @tc.name Make a call.
      * @tc.desc Function test
      */
-    it("Telephony_Call_Call_MakeCall_0100", 0, async function (done) {
+    it("Telephony_Call_Call_MakeCall_0100", 0, async (done: Function) => {
       let caseName: string = "Telephony_Call_Call_MakeCall_0100";
       console.log(`==========> ${caseName} Test start ==========>`);
       try {
-        let telNumber = "";
-        call.makeCall(telNumber, (error) => {
+        let telNumber: string = "";
+        call.makeCall(telNumber, (error: BusinessError) => {
           if (error) {
             console.log("makeCall callback: err->" + JSON.stringify(error));
             expect(false).assertTrue();
@@ -65,7 +66,8 @@ export default function callJsunit() {
           done();
         });
       } catch (err) {
-        console.log("makeCall callback: err->" + JSON.stringify(err));
+        let e: BusinessError = err as BusinessError;
+        console.log("makeCall callback: err->" + JSON.stringify(e));
         expect(false).assertTrue();
         done();
       }
@@ -77,20 +79,21 @@ export default function callJsunit() {
      * @tc.name Makes a call.
      * @tc.desc Function test
      */
-    it("Telephony_Call_Call_MakeCall_0200", 0, async function (done) {
+    it("Telephony_Call_Call_MakeCall_0200", 0, async (done: Function) => {
       let caseName: string = "Telephony_Call_Call_MakeCall_0200";
       console.log(`==========> ${caseName} Test start ==========>`);
-      let telNumber = "";
+      let telNumber: string = "";
       try {
         call.makeCall(telNumber).then(() => {
           done();
-        }).catch(error => {
+        }).catch((error: BusinessError) => {
           console.log("makeCall callback: err->" + JSON.stringify(error));
           expect(false).assertTrue();
           done();
         });
       } catch (err) {
-        console.log("makeCall callback: err->" + JSON.stringify(err));
+        let e: BusinessError = err as BusinessError;
+        console.log("makeCall callback: err->" + JSON.stringify(e));
         expect(false).assertTrue();
         done();
       }

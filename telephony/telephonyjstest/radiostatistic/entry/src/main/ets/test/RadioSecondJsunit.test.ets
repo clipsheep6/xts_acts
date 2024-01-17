@@ -14,20 +14,54 @@
  */
 import { describe, expect, it } from '@ohos/hypium';
 import radio from '@ohos.telephony.radio';
+import { BusinessError } from '@ohos.base';
+
+interface RadioTech {
+  psRadioTech: radio.RadioTechnology;
+  csRadioTech: radio.RadioTechnology;
+}
+
+const NETWORK_SIGNAL: Array<number> = [0, 1, 2, 3, 4, 5];
+const NETWORK_TYPES: Array<number> = [
+  radio.NetworkType.NETWORK_TYPE_UNKNOWN,
+  radio.NetworkType.NETWORK_TYPE_GSM,
+  radio.NetworkType.NETWORK_TYPE_CDMA,
+  radio.NetworkType.NETWORK_TYPE_WCDMA,
+  radio.NetworkType.NETWORK_TYPE_TDSCDMA,
+  radio.NetworkType.NETWORK_TYPE_LTE,
+  radio.NetworkType.NETWORK_TYPE_NR,
+];
+
+function assertCellInformation(data: Array<radio.CellInformation>) {
+  expect(String(data) !== '' && data != undefined && data != null).assertTrue();
+  expect(data.length).assertLarger(0);
+  for (let i = 0; i < data.length; i++) {
+    expect(NETWORK_TYPES).assertContain(data[i].networkType);
+    expect(data[i].isCamped == true || data[i].isCamped == false).assertTrue();
+    expect(data[i].timeStamp).assertLarger(0);
+    expect(NETWORK_TYPES).assertContain(data[i].signalInformation.signalType);
+    expect(NETWORK_SIGNAL).assertContain(data[i].signalInformation.signalLevel);
+    expect(NETWORK_SIGNAL).assertContain(data[i].signalInformation.dBm);
+
+    expect(data[i].data != undefined && String(data[i].data) != '' && data[i].data != null).assertTrue();
+    if (data[i].networkType === radio.NetworkType.NETWORK_TYPE_LTE) {
+      console.log("radio.NetworkType.NETWORK_TYPE_LTE:" + radio.NetworkType.NETWORK_TYPE_LTE);
+    } else if (data[i].networkType === radio.NetworkType.NETWORK_TYPE_WCDMA) {
+      console.log("radio.NetworkType.NETWORK_TYPE_WCDMA:" + radio.NetworkType.NETWORK_TYPE_WCDMA);
+    } else if (data[i].networkType === radio.NetworkType.NETWORK_TYPE_GSM) {
+      console.log("radio.NetworkType.NETWORK_TYPE_GSM:" + radio.NetworkType.NETWORK_TYPE_GSM);
+    } else if (data[i].networkType === radio.NetworkType.NETWORK_TYPE_TDSCDMA) {
+      console.log("radio.NetworkType.NETWORK_TYPE_TDSCDMA:" + radio.NetworkType.NETWORK_TYPE_TDSCDMA);
+    } else if (data[i].networkType === radio.NetworkType.NETWORK_TYPE_NR) {
+      console.log("radio.NetworkType.NETWORK_TYPE_NR:" + radio.NetworkType.NETWORK_TYPE_NR);
+    } else {
+      console.log("radio.NetworkType.NETWORK_TYPE_UNKNOWN:" + radio.NetworkType.NETWORK_TYPE_UNKNOWN);
+    }
+  }
+}
 
 export default function radioSecondJsunit() {
-  describe('radioSecondTest', function () {
-
-    const NETWORK_TYPES = [
-      radio.NetworkType.NETWORK_TYPE_UNKNOWN,
-      radio.NetworkType.NETWORK_TYPE_GSM,
-      radio.NetworkType.NETWORK_TYPE_CDMA,
-      radio.NetworkType.NETWORK_TYPE_WCDMA,
-      radio.NetworkType.NETWORK_TYPE_TDSCDMA,
-      radio.NetworkType.NETWORK_TYPE_LTE,
-      radio.NetworkType.NETWORK_TYPE_NR,
-    ];
-    const NETWORK_SIGNAL = [0, 1, 2, 3, 4, 5];
+  describe('radioSecondTest', () => {
     console.log("************* radio Test start*************");
 
     /**
@@ -35,8 +69,8 @@ export default function radioSecondJsunit() {
      * @tc.name Test getNrOptionMode() to check the callback result
      * @tc.desc Function test
      */
-    it('Telephony_NetworkSearch_NetworkState_Async_0100', 0, async function (done) {
-      radio.getNetworkState((err, data) => {
+    it('Telephony_NetworkSearch_NetworkState_Async_0100', 0, async (done: Function) => {
+      radio.getNetworkState((err: BusinessError, data: radio.NetworkState) => {
         if (err) {
           console.error("Network unavailable");
           expect(false).assertTrue();
@@ -63,9 +97,9 @@ export default function radioSecondJsunit() {
      * @tc.name testGetNetworkState_0300
      * @tc.desc Test getNetworkState api by promise.
      */
-    it('Telephony_NetworkSearch_NetworkState_Promise_0100', 0, async function (done) {
+    it('Telephony_NetworkSearch_NetworkState_Promise_0100', 0, async (done: Function) => {
       try {
-        const result = await radio.getNetworkState();
+        const result: radio.NetworkState = await radio.getNetworkState();
         console.log("Telephony_NetworkSearch_NetworkState_Promise_0100 result:" + JSON.stringify(result));
         expect(result.longOperatorName === "longOperatorName").assertFalse();
         expect(result.shortOperatorName === "shortOperatorName").assertFalse();
@@ -78,7 +112,8 @@ export default function radioSecondJsunit() {
         expect(result.regState.toString() == "-1").assertFalse();
         done();
       } catch (error) {
-        console.error("Network unavailable");
+        let e: BusinessError = error as BusinessError;
+        console.error("Network unavailable err: " + JSON.stringify(e));
         expect(false).assertTrue();
         done();
       }
@@ -89,8 +124,8 @@ export default function radioSecondJsunit() {
      * @tc.name testGetNetworkState_0200
      * @tc.desc Test getNetworkState() api by callback, slotId is 0, to check the callback result
      */
-    it('Telephony_NetworkSearch_NetworkState_Async_0200', 0, async function (done) {
-      radio.getNetworkState(0, (err, data) => {
+    it('Telephony_NetworkSearch_NetworkState_Async_0200', 0, async (done: Function) => {
+      radio.getNetworkState(0, (err: BusinessError, data: radio.NetworkState) => {
         if (err) {
           console.error("Network unavailable");
           expect(false).assertTrue();
@@ -116,9 +151,9 @@ export default function radioSecondJsunit() {
      * @tc.name testGetNetworkState_0400
      * @tc.desc Test getNetworkState() api by promise, slotId is 0, to check the callback result
      */
-    it('Telephony_NetworkSearch_NetworkState_Promise_0200', 0, async function (done) {
+    it('Telephony_NetworkSearch_NetworkState_Promise_0200', 0, async (done: Function) => {
       try {
-        const result = await radio.getNetworkState(0);
+        const result: radio.NetworkState = await radio.getNetworkState(0);
         console.log("Telephony_NetworkSearch_NetworkState_Promise_0200 result:" + JSON.stringify(result));
         expect(result.longOperatorName === "longOperatorName").assertFalse();
         expect(result.shortOperatorName === "shortOperatorName").assertFalse();
@@ -131,7 +166,8 @@ export default function radioSecondJsunit() {
         expect(result.regState.toString() == "-1").assertFalse();
         done();
       } catch (error) {
-        console.error("Network unavailable");
+        let e: BusinessError = error as BusinessError;
+        console.error("Network unavailable error: " + JSON.stringify(e));
         expect(false).assertTrue();
         done();
       }
@@ -142,9 +178,9 @@ export default function radioSecondJsunit() {
      * @tc.name TestGetRadioTech_0500
      * @tc.desc Test getRadioTech() api by callback .SlotId parameter input is 0
      */
-    it("Telephony_NetworkSearch_getRadioTech_Async_0500", 0, async function (done) {
-      let slotId = 0;
-      radio.getRadioTech(slotId, (err, data) => {
+    it("Telephony_NetworkSearch_getRadioTech_Async_0500", 0, async (done: Function) => {
+      let slotId: number = 0;
+      radio.getRadioTech(slotId, (err: BusinessError, data: RadioTech) => {
         if (err) {
           console.error("Telephony_NetworkSearch_getRadioTech_Async_0500 err:" + JSON.stringify(err));
           expect(true).assertEqual(false);
@@ -163,15 +199,15 @@ export default function radioSecondJsunit() {
      * @tc.name TestGetRadioTech_0500
      * @tc.desc SlotId parameter input is 0 ,Test getRadioTech() api by promise
      */
-    it("Telephony_NetworkSearch_getRadioTech_Promise_0500", 0, async function (done) {
-      let slotId = 0;
-      let promise = radio.getRadioTech(slotId);
-      promise.then(data => {
+    it("Telephony_NetworkSearch_getRadioTech_Promise_0500", 0, async (done: Function) => {
+      let slotId: number = 0;
+      let promise: Promise<RadioTech> = radio.getRadioTech(slotId);
+      promise.then((data: RadioTech) => {
         console.error("Telephony_NetworkSearch_getRadioTech_Async_0500 data:" + JSON.stringify(data));
         expect(data.psRadioTech.toString() == "-1").assertFalse();
         expect(data.csRadioTech.toString() == "-1").assertFalse();
         done();
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error("Telephony_NetworkSearch_getRadioTech_Async_0500 err:" + JSON.stringify(err));
         expect(true).assertEqual(false);
         done();
@@ -183,9 +219,9 @@ export default function radioSecondJsunit() {
      * @tc.name testGetNetworkSelectionMode_0600
      * @tc.desc SlotId parameter input is 0, test getNetworkSelectionMode() api by callback.
      */
-    it('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0600', 0, async function (done) {
-      let slotId = 0;
-      radio.getNetworkSelectionMode(slotId, (err, data) => {
+    it('Telephony_NetworkSearch_getNetworkSelectionMode_Async_0600', 0, async (done: Function) => {
+      let slotId: number = 0;
+      radio.getNetworkSelectionMode(slotId, (err: BusinessError, data: radio.NetworkSelectionMode) => {
         if (err) {
           console.error("Telephony_NetworkSearch_getRadioTech_Async_0500 err:" + JSON.stringify(err));
           done();
@@ -205,16 +241,16 @@ export default function radioSecondJsunit() {
      * @tc.name testGetNetworkSelectionMode_0700
      * @tc.desc SlotId parameter input is 0, test getNetworkSelectionMode() api by promise.
      */
-    it('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0600', 0, async function (done) {
-      let slotId = 0;
-      let promise = radio.getNetworkSelectionMode(slotId);
-      promise.then(data => {
+    it('Telephony_NetworkSearch_getNetworkSelectionMode_Promise_0600', 0, async (done: Function) => {
+      let slotId: number = 0;
+      let promise: Promise<radio.NetworkSelectionMode> = radio.getNetworkSelectionMode(slotId);
+      promise.then((data: radio.NetworkSelectionMode) => {
         console.log("getNetworkSelectionMode success, promise: data:" + JSON.stringify(data));
         expect(data == radio.NetworkSelectionMode.NETWORK_SELECTION_AUTOMATIC ||
         data == radio.NetworkSelectionMode.NETWORK_SELECTION_MANUAL ||
         data == radio.NetworkSelectionMode.NETWORK_SELECTION_UNKNOWN).assertTrue();
         done();
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.log("getNetworkSelectionMode failed, promise: err:" + JSON.stringify(err));
         done();
       });
@@ -226,8 +262,8 @@ export default function radioSecondJsunit() {
      * @tc.name testGetISOCountryCodeForNetwork_0500
      * @tc.desc SlotId parameter input is 0, test getISOCountryCodeForNetwork() api by callback.
      */
-    it('Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0500', 0, async function (done) {
-      radio.getISOCountryCodeForNetwork(0, (err, data) => {
+    it('Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0500', 0, async (done: Function) => {
+      radio.getISOCountryCodeForNetwork(0, (err: BusinessError, data: string) => {
         if (err) {
           console.log("Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0500 fail err:" + JSON.stringify(err));
           expect(false).assertTrue();
@@ -246,15 +282,16 @@ export default function radioSecondJsunit() {
      * @tc.name testGetISOCountryCodeForNetwork_0600
      * @tc.desc SlotId parameter input is 0, test getISOCountryCodeForNetwork() api by promise.
      */
-    it('Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0500', 0, async function (done) {
+    it('Telephony_NetworkSearch_getISOCountryCodeForNetwork_Promise_0500', 0, async (done: Function) => {
       try {
-        let data = await radio.getISOCountryCodeForNetwork(0);
+        let data: string = await radio.getISOCountryCodeForNetwork(0);
         console.log(
           "Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0500 finish data:" + JSON.stringify(data));
         expect(data == undefined).assertFalse();
         done();
       } catch (err) {
-        console.log("Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0500 fail err:" + JSON.stringify(err));
+        let e: BusinessError = err as BusinessError;
+        console.log("Telephony_NetworkSearch_getISOCountryCodeForNetwork_Async_0500 fail err:" + JSON.stringify(e));
         expect(false).assertTrue();
         done();
       }
@@ -265,8 +302,8 @@ export default function radioSecondJsunit() {
      * @tc.name testGetSignalInformation_0500
      * @tc.desc SlotId parameter input is 0, test getSignalInformation() api by callback.
      */
-    it('Telephony_NetworkSearch_getSignalInformation_Async_0500', 0, async function (done) {
-      radio.getSignalInformation(0, (err, data) => {
+    it('Telephony_NetworkSearch_getSignalInformation_Async_0500', 0, async (done: Function) => {
+      radio.getSignalInformation(0, (err: BusinessError, data: Array<radio.SignalInformation>) => {
         if (err) {
           console.log("Telephony_NetworkSearch_getSignalInformation_Async_0500 fail err:" + JSON.stringify(err));
           expect(false).assertTrue();
@@ -285,53 +322,26 @@ export default function radioSecondJsunit() {
      * @tc.name testGetSignalInformation_0600
      * @tc.desc SlotId parameter input is 0, test getSignalInformation() api by promise.
      */
-    it('Telephony_NetworkSearch_getSignalInformation_Promise_0500', 0, async function (done) {
+    it('Telephony_NetworkSearch_getSignalInformation_Promise_0500', 0, async (done: Function) => {
       try {
-        let data = await radio.getSignalInformation(0);
+        let data: Array<radio.SignalInformation> = await radio.getSignalInformation(0);
         console.log(
           "Telephony_NetworkSearch_getSignalInformation_Promise_0500 finish data:" + JSON.stringify(data));
         expect(data == undefined).assertFalse();
-        radio.getCellInformation(0, (err, data) => {
+        radio.getCellInformation(0, (err: BusinessError, data: Array<radio.CellInformation>) => {
           if (!err && data.length > 0) {
             assertCellInformation(data);
           }
         });
         done();
       } catch (err) {
-        console.log("Telephony_NetworkSearch_getSignalInformation_Promise_0500 fail err:" + JSON.stringify(err));
+        let e: BusinessError = err as BusinessError;
+        console.log("Telephony_NetworkSearch_getSignalInformation_Promise_0500 fail err:" + JSON.stringify(e));
         expect(false).assertTrue();
         done();
       }
     });
 
     console.log("************* radio Test end*************");
-
-    function assertCellInformation(data) {
-      expect(data !== '' && data != undefined && data != null).assertTrue();
-      expect(data.length).assertLarger(0);
-      for (let i = 0; i < data.length; i++) {
-        expect(NETWORK_TYPES).assertContain(data[i].networkType);
-        expect(data[i].isCamped == true || data[i].isCamped == false).assertTrue();
-        expect(data[i].timeStamp).assertLarger(0);
-        expect(NETWORK_TYPES).assertContain(data[i].signalInformation.signalType);
-        expect(NETWORK_SIGNAL).assertContain(data[i].signalInformation.signalLevel);
-        expect(NETWORK_SIGNAL).assertContain(data[i].signalInformation.dBm);
-        
-        expect(data[i].data != undefined && data[i].data != '' && data[i].data != null).assertTrue();
-        if (data[i].networkType === radio.NetworkType.NETWORK_TYPE_LTE) {
-          console.log("radio.NetworkType.NETWORK_TYPE_LTE:" + radio.NetworkType.NETWORK_TYPE_LTE);
-        } else if (data[i].networkType === radio.NetworkType.NETWORK_TYPE_WCDMA) {
-          console.log("radio.NetworkType.NETWORK_TYPE_WCDMA:" + radio.NetworkType.NETWORK_TYPE_WCDMA);
-        } else if (data[i].networkType === radio.NetworkType.NETWORK_TYPE_GSM) {
-          console.log("radio.NetworkType.NETWORK_TYPE_GSM:" + radio.NetworkType.NETWORK_TYPE_GSM);
-        } else if (data[i].networkType === radio.NetworkType.NETWORK_TYPE_TDSCDMA) {
-          console.log("radio.NetworkType.NETWORK_TYPE_TDSCDMA:" + radio.NetworkType.NETWORK_TYPE_TDSCDMA);
-        } else if (data[i].networkType === radio.NetworkType.NETWORK_TYPE_NR) {
-          console.log("radio.NetworkType.NETWORK_TYPE_NR:" + radio.NetworkType.NETWORK_TYPE_NR);
-        } else {
-          console.log("radio.NetworkType.NETWORK_TYPE_UNKNOWN:" + radio.NetworkType.NETWORK_TYPE_UNKNOWN);
-        }
-      }
-    }
   })
 }

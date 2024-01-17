@@ -16,22 +16,24 @@ import { describe, expect, it } from '@ohos/hypium'
 import call from '@ohos.telephony.call'
 import radio from '@ohos.telephony.radio'
 import sim from '@ohos.telephony.sim'
+import { BusinessError } from '@ohos.base'
 
 export default function telSyncTest() {
-  describe('telSyncTest', function () {
+  describe('telSyncTest', () => {
     console.log("==========> Sync Test start ==========>");
     /*
      * @tc.number  SUB_Telephony_call_hasCallSync_0100
      * @tc.name    Call interface hasCallSync
      * @tc.desc    Function test
      */
-    it('SUB_Telephony_call_hasCallSync_0100', 0, async function (done) {
+    it('SUB_Telephony_call_hasCallSync_0100', 0, async (done: Function) => {
       try {
         console.info("SUB_Telephony_call_hasCallSync_0100 hasCallSync " + call.hasCallSync());
         expect(call.hasCallSync()).assertFalse();
         done();
       } catch (err) {
-        console.info("SUB_Telephony_call_hasCallSync_0100 " + JSON.stringify(err));
+        let e: BusinessError = err as BusinessError;
+        console.info("SUB_Telephony_call_hasCallSync_0100 " + JSON.stringify(e));
         expect(true).assertFalse();
         done();
       }
@@ -42,13 +44,14 @@ export default function telSyncTest() {
      * @tc.name    Call interface getCallStateSync
      * @tc.desc    Function test
      */
-    it('SUB_Telephony_call_getCallStateSync_0100', 0, async function (done) {
+    it('SUB_Telephony_call_getCallStateSync_0100', 0, async (done: Function) => {
       try {
         console.info("SUB_Telephony_call_getCallStateSync_0100 getCallStateSync " + call.getCallStateSync());
         expect(call.getCallStateSync()).assertEqual(call.CallState.CALL_STATE_IDLE);
         done();
       } catch (err) {
-        console.info("SUB_Telephony_call_getCallStateSync_0100 " + JSON.stringify(err));
+        let e: BusinessError = err as BusinessError;
+        console.info("SUB_Telephony_call_getCallStateSync_0100 " + JSON.stringify(e));
         expect(true).assertFalse();
         done();
       }
@@ -59,16 +62,17 @@ export default function telSyncTest() {
      * @tc.name    Call interface getISOCountryCodeForNetworkSync
      * @tc.desc    Function test
      */
-    it('SUB_Telephony_radio_getISOCountryCodeForNetworkSync_0100', 0, async function (done) {
-      let slotId = 0;
-      sim.hasSimCard(slotId, (err, data) => {
+    it('SUB_Telephony_radio_getISOCountryCodeForNetworkSync_0100', 0, async (done: Function) => {
+      let slotId: number = 0;
+      sim.hasSimCard(slotId, (err: BusinessError, data: boolean) => {
         if (data) {
           try {
             console.info("SUB_Telephony_radio_getISOCountryCodeForNetworkSync_0100 " + radio.getISOCountryCodeForNetworkSync(slotId));
             expect(radio.getISOCountryCodeForNetworkSync(slotId) != "").assertTrue();
             done();
           } catch (err) {
-            console.info("SUB_Telephony_radio_getISOCountryCodeForNetworkSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_radio_getISOCountryCodeForNetworkSync_0100 err " + JSON.stringify(e));
             expect(true).assertFalse();
             done();
           }
@@ -77,7 +81,8 @@ export default function telSyncTest() {
             console.info("SUB_Telephony_radio_getISOCountryCodeForNetworkSync_0100 " + radio.getISOCountryCodeForNetworkSync(slotId));
             done();
           } catch (err) {
-            console.info("SUB_Telephony_radio_getISOCountryCodeForNetworkSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_radio_getISOCountryCodeForNetworkSync_0100 err " + JSON.stringify(e));
             expect(true).assertFalse();
             done();
           }
@@ -90,16 +95,17 @@ export default function telSyncTest() {
      * @tc.name    Call interface getSignalInformationSync
      * @tc.desc    Function test
      */
-    it('SUB_Telephony_radio_getSignalInformationSync_0100', 0, async function (done) {
-      let slotId = 0;
-      radio.isRadioOn((err, data) => {
+    it('SUB_Telephony_radio_getSignalInformationSync_0100', 0, async (done: Function) => {
+      let slotId: number = 0;
+      radio.isRadioOn((err: BusinessError) => {
         if (err) {
           try {
             console.info("SUB_Telephony_radio_getSignalInformationSync_0100 111  " + radio.getSignalInformationSync(slotId));
             expect(radio.getSignalInformationSync(slotId).length).assertEqual(0);
             done();
           } catch (err) {
-            console.info("SUB_Telephony_radio_getSignalInformationSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_radio_getSignalInformationSync_0100 err " + JSON.stringify(e));
             expect(true).assertFalse();
             done();
           }
@@ -109,7 +115,8 @@ export default function telSyncTest() {
             expect(radio.getSignalInformationSync(slotId).length >= 0).assertTrue();
             done();
           } catch (err) {
-            console.info("SUB_Telephony_radio_getSignalInformationSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_radio_getSignalInformationSync_0100 err " + JSON.stringify(e));
             expect(true).assertFalse();
             done();
           }
@@ -122,16 +129,17 @@ export default function telSyncTest() {
      * @tc.name    Call interface getOperatorNameSync
      * @tc.desc    Function test
      */
-    it('SUB_Telephony_radio_getOperatorNameSync_0100', 0, async function (done) {
-      let slotId = 0;
-      sim.hasSimCard(slotId, (err, data) => {
+    it('SUB_Telephony_radio_getOperatorNameSync_0100', 0, async (done: Function) => {
+      let slotId: number = 0;
+      sim.hasSimCard(slotId, (err: BusinessError, data: boolean) => {
         if (data) {
           try {
             console.info("SUB_Telephony_radio_getOperatorNameSync_0100 " + radio.getOperatorNameSync(slotId));
             expect(radio.getOperatorNameSync(slotId) != "").assertTrue();
             done();
           } catch (err) {
-            console.info("SUB_Telephony_radio_getOperatorNameSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_radio_getOperatorNameSync_0100 err " + JSON.stringify(e));
             expect(true).assertFalse();
             done();
           }
@@ -141,7 +149,8 @@ export default function telSyncTest() {
             expect(true).assertTrue();
             done();
           } catch (err) {
-            console.info("SUB_Telephony_radio_getOperatorNameSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_radio_getOperatorNameSync_0100 err " + JSON.stringify(e));
             expect(true).assertFalse();
             done();
           }
@@ -154,28 +163,30 @@ export default function telSyncTest() {
      * @tc.name    Call interface isSimActiveSync
      * @tc.desc    Function test
      */
-    it('SUB_Telephony_sim_isSimActiveSync_0100', 0, async function (done) {
-      let slotId = 0;
-      sim.hasSimCard(slotId, (err, data) => {
+    it('SUB_Telephony_sim_isSimActiveSync_0100', 0, async (done: Function) => {
+      let slotId: number = 0;
+      sim.hasSimCard(slotId, (err: BusinessError, data: boolean) => {
         if (data) {
           try {
-            let slotId = 0;
+            let slotId: number = 0;
             console.info("SUB_Telephony_sim_isSimActiveSync_0100 " + sim.isSimActiveSync(slotId));
             expect(sim.isSimActiveSync(slotId)).assertEqual(true);
             done();
           } catch (err) {
-            console.info("SUB_Telephony_sim_isSimActiveSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_sim_isSimActiveSync_0100 err " + JSON.stringify(e));
             expect(true).assertFalse();
             done();
           }
         } else {
           try {
-            let slotId = 0;
+            let slotId: number = 0;
             console.info("SUB_Telephony_sim_isSimActiveSync_0100 " + sim.isSimActiveSync(slotId));
             expect(sim.isSimActiveSync(slotId)).assertEqual(false);
             done();
           } catch (err) {
-            console.info("SUB_Telephony_sim_isSimActiveSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_sim_isSimActiveSync_0100 err " + JSON.stringify(e));
             expect(true).assertFalse();
             done();
           }
@@ -188,28 +199,30 @@ export default function telSyncTest() {
      * @tc.name    Call interface getISOCountryCodeForSimSync
      * @tc.desc    Function test
      */
-    it('SUB_Telephony_sim_getISOCountryCodeForSimSync_0100', 0, async function (done) {
-      let slotId = 0;
-      sim.hasSimCard(slotId, (err, data) => {
+    it('SUB_Telephony_sim_getISOCountryCodeForSimSync_0100', 0, async (done: Function) => {
+      let slotId: number = 0;
+      sim.hasSimCard(slotId, (err: BusinessError, data: boolean) => {
         if (data) {
           try {
-            let slotId = 0;
+            let slotId: number = 0;
             console.info("SUB_Telephony_sim_getISOCountryCodeForSimSync_0100 " + sim.getISOCountryCodeForSimSync(slotId));
             expect(sim.getISOCountryCodeForSimSync(slotId) != "").assertTrue();
             done();
           } catch (err) {
-            console.info("SUB_Telephony_sim_getISOCountryCodeForSimSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_sim_getISOCountryCodeForSimSync_0100 err " + JSON.stringify(e));
             expect(err.code == 8300004).assertTrue();
             done();
           }
         } else {
           try {
-            let slotId = 0;
+            let slotId: number = 0;
             console.info("SUB_Telephony_sim_getISOCountryCodeForSimSync_0100 " + sim.getISOCountryCodeForSimSync(slotId));
             expect(sim.getISOCountryCodeForSimSync(slotId) == "").assertTrue();
             done();
           } catch (err) {
-            console.info("SUB_Telephony_sim_getISOCountryCodeForSimSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_sim_getISOCountryCodeForSimSync_0100 err " + JSON.stringify(e));
             expect(err.code == 8300004).assertTrue();
             done();
           }
@@ -222,28 +235,30 @@ export default function telSyncTest() {
      * @tc.name    Call interface getSimOperatorNumericSync
      * @tc.desc    Function test
      */
-    it('SUB_Telephony_sim_getSimOperatorNumericSync_0100', 0, async function (done) {
-      let slotId = 0;
-      sim.hasSimCard(slotId, (err, data) => {
+    it('SUB_Telephony_sim_getSimOperatorNumericSync_0100', 0, async (done: Function) => {
+      let slotId: number = 0;
+      sim.hasSimCard(slotId, (err: BusinessError, data: boolean) => {
         if (data) {
           try {
-            let slotId = 0;
+            let slotId: number = 0;
             console.info("SUB_Telephony_sim_getSimOperatorNumericSync_0100 " + sim.getSimOperatorNumericSync(slotId));
             expect(sim.getSimOperatorNumericSync(slotId) != "").assertTrue();
             done();
           } catch (err) {
-            console.info("SUB_Telephony_sim_getSimOperatorNumericSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_sim_getSimOperatorNumericSync_0100 err " + JSON.stringify(e));
             expect(err.code == 8300004).assertTrue();
             done();
           }
         } else {
           try {
-            let slotId = 0;
+            let slotId: number = 0;
             console.info("SUB_Telephony_sim_getSimOperatorNumericSync_0100 " + sim.getSimOperatorNumericSync(slotId));
             expect(sim.getSimOperatorNumericSync(slotId) == "").assertTrue();
             done();
           } catch (err) {
-            console.info("SUB_Telephony_sim_getSimOperatorNumericSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_sim_getSimOperatorNumericSync_0100 err " + JSON.stringify(e));
             expect(err.code == 8300004).assertTrue();
             done();
           }
@@ -256,28 +271,30 @@ export default function telSyncTest() {
      * @tc.name    Call interface getSimSpnSync
      * @tc.desc    Function test
      */
-    it('SUB_Telephony_sim_getSimSpnSync_0100', 0, async function (done) {
-      let slotId = 0;
-      sim.hasSimCard(slotId, (err, data) => {
+    it('SUB_Telephony_sim_getSimSpnSync_0100', 0, async (done: Function) => {
+      let slotId: number = 0;
+      sim.hasSimCard(slotId, (err: BusinessError, data: boolean) => {
         if (data) {
           try {
-            let slotId = 0;
+            let slotId: number = 0;
             console.info("SUB_Telephony_sim_getSimSpnSync_0100 " + sim.getSimSpnSync(slotId));
             expect(sim.getSimSpnSync(slotId) != "").assertTrue();
             done();
           } catch (err) {
-            console.info("SUB_Telephony_sim_getSimSpnSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_sim_getSimSpnSync_0100 err " + JSON.stringify(e));
             expect(err.code == 8300004).assertTrue();
             done();
           }
         } else {
           try {
-            let slotId = 0;
+            let slotId: number = 0;
             console.info("SUB_Telephony_sim_getSimSpnSync_0100 " + sim.getSimSpnSync(slotId));
             expect(sim.getSimSpnSync(slotId) == "").assertTrue();
             done();
           } catch (err) {
-            console.info("SUB_Telephony_sim_getSimSpnSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_sim_getSimSpnSync_0100 err " + JSON.stringify(e));
             expect(err.code == 8300004).assertTrue();
             done();
           }
@@ -290,9 +307,9 @@ export default function telSyncTest() {
      * @tc.name    Call interface getSimStateSync
      * @tc.desc    Function test
      */
-    it('SUB_Telephony_sim_getSimStateSync_0100', 0, async function (done) {
-      let slotId = 0;
-      sim.hasSimCard(slotId, (err, data) => {
+    it('SUB_Telephony_sim_getSimStateSync_0100', 0, async (done: Function) => {
+      let slotId: number = 0;
+      sim.hasSimCard(slotId, (err: BusinessError, data: boolean) => {
         console.info((`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`));
         if (data) {
           try {
@@ -301,7 +318,8 @@ export default function telSyncTest() {
             expect(sim.getSimStateSync(slotId) <= sim.SimState.SIM_STATE_LOADED).assertTrue();
             done();
           } catch (err) {
-            console.info("SUB_Telephony_sim_getSimStateSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_sim_getSimStateSync_0100 err " + JSON.stringify(e));
             expect(false).assertTrue();
             done();
           }
@@ -311,7 +329,8 @@ export default function telSyncTest() {
             expect(sim.getSimStateSync(slotId) == sim.SimState.SIM_STATE_NOT_PRESENT).assertTrue();
             done();
           } catch (err) {
-            console.info("SUB_Telephony_sim_getSimStateSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_sim_getSimStateSync_0100 err " + JSON.stringify(e));
             expect(false).assertTrue();
             done();
           }
@@ -324,14 +343,15 @@ export default function telSyncTest() {
      * @tc.name    Call interface getCardTypeSync
      * @tc.desc    Function test
      */
-    it('SUB_Telephony_sim_getCardTypeSync_0100', 0, async function (done) {
+    it('SUB_Telephony_sim_getCardTypeSync_0100', 0, async (done: Function) => {
       try {
-        let slotId = 0;
+        let slotId: number = 0;
         console.info("SUB_Telephony_sim_getCardTypeSync_0100 " + sim.getCardTypeSync(slotId));
         expect(sim.getCardTypeSync(slotId) >= -1).assertTrue();
         done();
       } catch (err) {
-        console.info("SUB_Telephony_sim_getCardTypeSync_0100 err " + JSON.stringify(err));
+        let e: BusinessError = err as BusinessError;
+        console.info("SUB_Telephony_sim_getCardTypeSync_0100 err " + JSON.stringify(e));
         expect(err.code == 8300004).assertTrue();
         done();
       }
@@ -342,9 +362,9 @@ export default function telSyncTest() {
      * @tc.name    Call interface hasSimCardSync
      * @tc.desc    Function test
      */
-    it('SUB_Telephony_sim_hasSimCardSync_0100', 0, async function (done) {
-      let slotId = 0;
-      sim.hasSimCard(slotId, (err, data) => {
+    it('SUB_Telephony_sim_hasSimCardSync_0100', 0, async (done: Function) => {
+      let slotId: number = 0;
+      sim.hasSimCard(slotId, (err: BusinessError, data: boolean) => {
         console.info((`callback: err->${JSON.stringify(err)}, data->${JSON.stringify(data)}`));
         if (data) {
           try {
@@ -352,7 +372,8 @@ export default function telSyncTest() {
             expect(sim.hasSimCardSync(slotId)).assertTrue();
             done();
           } catch (err) {
-            console.info("SUB_Telephony_sim_hasSimCardSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_sim_hasSimCardSync_0100 err " + JSON.stringify(e));
             expect(false).assertTrue();
             done();
           }
@@ -362,7 +383,8 @@ export default function telSyncTest() {
             expect(sim.hasSimCardSync(slotId)).assertFalse();
             done();
           } catch (err) {
-            console.info("SUB_Telephony_sim_hasSimCardSync_0100 err " + JSON.stringify(err));
+            let e: BusinessError = err as BusinessError;
+            console.info("SUB_Telephony_sim_hasSimCardSync_0100 err " + JSON.stringify(e));
             expect(false).assertTrue();
             done();
           }
@@ -375,14 +397,15 @@ export default function telSyncTest() {
      * @tc.name    Call interface getOpKeySync
      * @tc.desc    Function test
      */
-    it('SUB_Telephony_sim_getOpKeySync_0100', 0, async function (done) {
+    it('SUB_Telephony_sim_getOpKeySync_0100', 0, async (done: Function) => {
       try {
-        let slotId = 0;
+        let slotId: number = 0;
         console.info("SUB_Telephony_sim_getOpKeySync_0100 " + sim.getOpKeySync(slotId));
         expect(sim.getOpKeySync(slotId)).assertEqual("");
         done();
       } catch (err) {
-        console.info("SUB_Telephony_sim_getOpKeySync_0100 err " + JSON.stringify(err));
+        let e: BusinessError = err as BusinessError;
+        console.info("SUB_Telephony_sim_getOpKeySync_0100 err " + JSON.stringify(e));
         expect(false).assertTrue();
         done();
       }
@@ -393,14 +416,15 @@ export default function telSyncTest() {
      * @tc.name    Call interface getOpNameSync
      * @tc.desc    Function test
      */
-    it('SUB_Telephony_sim_getOpNameSync_0100', 0, async function (done) {
+    it('SUB_Telephony_sim_getOpNameSync_0100', 0, async (done: Function) => {
       try {
-        let slotId = 0;
+        let slotId: number = 0;
         console.info("SUB_Telephony_getOpNameSync_0100 " + sim.getOpKeySync(slotId));
         expect(sim.getOpNameSync(slotId)).assertEqual("");
         done();
       } catch (err) {
-        console.info("SUB_Telephony_getOpNameSync_0100 err " + JSON.stringify(err));
+        let e: BusinessError = err as BusinessError;
+        console.info("SUB_Telephony_getOpNameSync_0100 err " + JSON.stringify(e));
         expect(false).assertTrue();
         done();
       }
