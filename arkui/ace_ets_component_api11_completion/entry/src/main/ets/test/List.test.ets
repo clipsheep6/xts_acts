@@ -26,6 +26,7 @@ import NavigationApi from './AttrApi/NavigationApi.test.ets';
 import NavigationApi2 from './AttrApi/NavigationApi2.test.ets';
 import NavigationApi3 from './AttrApi/NavigationApi3.test.ets';
 import RichEditorApi from './AttrApi/RichEditorApi.test.ets';
+
 import TabsApi from './AttrApi/TabsApi.test.ets';
 import Image_QRCode_Api from './AttrApi/Image_QRCode_Api.test';
 import QueryNavDestinationInfoNavDestinationJsunit from './AttributeModifier/QueryNavDestinationInfoNavDestinationJsunit.test';
@@ -71,6 +72,9 @@ import  relativeCTest from "./relative/relative.test.ets"
 import  gridIndexTest from "./grid/grid.test.ets"
 import enumFolderTest from "./folder/enumflodstack.test.ets"
 import richEditorApi1 from './richEditorApi/richEditorApi1.test.ets'
+import richEditorApi2 from './richEditorApi/richEditorApi2.test.ets'
+import richEditorApi3 from './richEditorApi/richEditorApi3.test.ets'
+import navigationApi1 from './navigationApi/navigationApi1.test.ets'
 import textInputApi1 from './textInputApi/textInputApi1.test.ets'
 import ScrollTest from './Scroll/Scroll.test.ets'
 import RichEditorTest from './RichEditor/RichEditor.test';
@@ -118,6 +122,7 @@ import arkuiNodeEventTest from './arkuinode/arkuinodeEnvent.test.ets'
 import arkuiNodeRenderTest from './arkuinode/arkuinodeRender.test.ets'
 import symbolSpanApi2Test from './symbolSpanApi/symbolSpanApi2.test'
 import NavDestinationInfoStateJsunit  from './AttributeModifier/NavDestinationInfoStateJsunit.test'
+import XComponentNodeChageJsSuit from './XComponentNodeChageJsSuit.test';
 import RenderNodeShadowElevationJsSuit from './RenderNodeShadowElevation.test';
 import RenderNodeShadowRadiusJsSuit from './RenderNodeShadowRadius.test';
 import shadowAlphaJsunit from './shadowAlphaJsunit.test';
@@ -127,6 +132,7 @@ import popupArrowJsunit from './popupArrowJsunit.test';
 import geometryTransition from './geometryTransition.test';
 import RenderNodeInvalidateJsSuit from './RenderNodeInvalidateJsSuit.test';
 import RenderNodeDrawJsSuit from './RenderNodeDrawJsSuit.test';
+import accessVNTest from './commonApi/accessVNTest.test.ets';
 
 export default function testsuite() {
   getClipToFrameJsunit()
@@ -143,6 +149,9 @@ export default function testsuite() {
   scale()
   SetSizeJsunit()
   richEditorApi1()
+  richEditorApi2()
+  richEditorApi3()
+  navigationApi1()
   textInputApi1()
   ScrollTest()
   RichEditorTest()
@@ -232,6 +241,7 @@ export default function testsuite() {
   arkuiNodeRenderTest()
   symbolSpanApi2Test()
   NavDestinationInfoStateJsunit()
+  XComponentNodeChageJsSuit()
   RenderNodeShadowElevationJsSuit()
   RenderNodeShadowRadiusJsSuit()
   shadowAlphaJsunit()
@@ -241,5 +251,7 @@ export default function testsuite() {
   geometryTransition()
   RenderNodeInvalidateJsSuit()
   RenderNodeDrawJsSuit()
+  accessVNTest()
+
   blendModeTest()
 }
