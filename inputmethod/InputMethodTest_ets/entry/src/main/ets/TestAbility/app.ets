@@ -15,9 +15,9 @@
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
-import AbilityStage from "@ohos.app.ability.AbilityStage"
+import Ability from '@ohos.app.ability.UIAbility'
 
-export default class MyAbilityStage extends AbilityStage {
+export default class MainAbility extends Ability {
   onCreate() {
     console.info('Application onCreate')
     let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator
