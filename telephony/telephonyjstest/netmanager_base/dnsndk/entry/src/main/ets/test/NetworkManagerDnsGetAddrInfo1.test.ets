@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import { describe, expect, it, afterEach, afterAll } from '@ohos/hypium';
-import testNapi from 'libdnsndknapitest.so'
+import { describe, expect, it } from '@ohos/hypium';
+import testNapi from 'libdnsndknapitest.so';
 
 
 function expectFalse() {

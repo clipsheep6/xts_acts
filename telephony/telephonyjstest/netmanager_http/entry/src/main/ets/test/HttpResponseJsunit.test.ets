@@ -23,6 +23,9 @@ export default function httpResponseJsunit() {
      * @tc.number Telephony_Http_HttpResponse_result_0100
      * @tc.name HttpResponse::result
      * @tc.desc Test Test HttpResponse property.
+     * @tc.level 0
+     * @tc.type: Function
+     * @tc.size: SmallTest
      */
 
     it("Telephony_Http_HttpResponse_result_0100", 0, async (done: Function) => {
@@ -57,6 +60,9 @@ export default function httpResponseJsunit() {
      * @tc.number Telephony_Http_HttpResponse_result_0200
      * @tc.name HttpResponse::result
      * @tc.desc Test Test HttpResponse property.
+     * @tc.level 0
+     * @tc.type: Function
+     * @tc.size: SmallTest
      */
 
     it("Telephony_Http_HttpResponse_result_0200", 0, async (done: Function) => {
@@ -84,6 +90,9 @@ export default function httpResponseJsunit() {
      * @tc.number Telephony_Http_HttpResponse_result_0300
      * @tc.name HttpResponse::result
      * @tc.desc Test Test HttpResponse property.
+     * @tc.level 0
+     * @tc.type: Function
+     * @tc.size: SmallTest
      */
 
     it("Telephony_Http_HttpResponse_result_0300", 0, async (done: Function) => {
@@ -122,6 +131,9 @@ export default function httpResponseJsunit() {
      * @tc.number Telephony_Http_HttpResponse_responseCode_0100
      * @tc.name HttpResponse::responseCode
      * @tc.desc Test Test HttpResponse property.
+     * @tc.level 0
+     * @tc.type: Function
+     * @tc.size: SmallTest
      */
 
     it("Telephony_Http_HttpResponse_responseCode_0100", 0, async (done: Function) => {
@@ -156,6 +168,9 @@ export default function httpResponseJsunit() {
      * @tc.number Telephony_Http_HttpResponse_responseCode_0200
      * @tc.name HttpResponse::responseCode
      * @tc.desc Test Test HttpResponse property.
+     * @tc.level 0
+     * @tc.type: Function
+     * @tc.size: SmallTest
      */
 
     it("Telephony_Http_HttpResponse_responseCode_0200", 0, async (done: Function) => {
@@ -183,6 +198,9 @@ export default function httpResponseJsunit() {
      * @tc.number Telephony_Http_HttpResponse_responseCode_0300
      * @tc.name HttpResponse::responseCode
      * @tc.desc Test Test HttpResponse property.
+     * @tc.level 0
+     * @tc.type: Function
+     * @tc.size: SmallTest
      */
 
     it("Telephony_Http_HttpResponse_responseCode_0300", 0, async (done: Function) => {
@@ -220,6 +238,9 @@ export default function httpResponseJsunit() {
      * @tc.number Telephony_Http_HttpResponse_header_0100
      * @tc.name HttpResponse::header
      * @tc.desc Test Test HttpResponse property.
+     * @tc.level 0
+     * @tc.type: Function
+     * @tc.size: SmallTest
      */
 
     it("Telephony_Http_HttpResponse_header_0100", 0, async (done: Function) => {
@@ -254,6 +275,9 @@ export default function httpResponseJsunit() {
      * @tc.number Telephony_Http_HttpResponse_header_0200
      * @tc.name HttpResponse::header
      * @tc.desc Test Test HttpResponse property.
+     * @tc.level 0
+     * @tc.type: Function
+     * @tc.size: SmallTest
      */
 
     it("Telephony_Http_HttpResponse_header_0200", 0, async (done: Function) => {
@@ -281,6 +305,9 @@ export default function httpResponseJsunit() {
      * @tc.number Telephony_Http_HttpResponse_header_0300
      * @tc.name HttpResponse::header
      * @tc.desc Test Test HttpResponse property.
+     * @tc.level 0
+     * @tc.type: Function
+     * @tc.size: SmallTest
      */
 
     it("Telephony_Http_HttpResponse_header_0300", 0, async (done: Function) => {
@@ -317,6 +344,9 @@ export default function httpResponseJsunit() {
      * @tc.number Telephony_Http_HttpResponse_cookies_0100
      * @tc.name HttpResponse::cookies
      * @tc.desc Test Test HttpResponse property.
+     * @tc.level 0
+     * @tc.type: Function
+     * @tc.size: SmallTest
      */
 
     it("Telephony_Http_HttpResponse_cookies_0100", 0, async (done: Function) => {
@@ -351,6 +381,9 @@ export default function httpResponseJsunit() {
      * @tc.number Telephony_Http_HttpResponse_cookies_0200
      * @tc.name HttpResponse::cookies
      * @tc.desc Test Test HttpResponse property.
+     * @tc.level 0
+     * @tc.type: Function
+     * @tc.size: SmallTest
      */
 
     it("Telephony_Http_HttpResponse_cookies_0200", 0, async (done: Function) => {
@@ -378,6 +411,9 @@ export default function httpResponseJsunit() {
      * @tc.number Telephony_Http_HttpResponse_cookies_0300
      * @tc.name HttpResponse::cookies
      * @tc.desc Test Test HttpResponse property.
+     * @tc.level 0
+     * @tc.type: Function
+     * @tc.size: SmallTest
      */
 
     it("Telephony_Http_HttpResponse_cookies_0300", 0, async (done: Function) => {
