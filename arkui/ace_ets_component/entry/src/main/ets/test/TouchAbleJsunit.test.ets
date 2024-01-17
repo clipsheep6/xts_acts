@@ -13,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import router from '@ohos.router';
 import Utils from './Utils.ets';
 import events_emitter from '@ohos.events.emitter';
 
 export default function touchAbleJsunit() {
-  describe('touchAbleTest', function () {
-    beforeEach(async function (done) {
+  describe('touchAbleTest', () => {
+    beforeEach(async () => {
       console.info("touchAble beforeEach start");
-      let options = {
+      let options: router.RouterOptions = {
         uri: 'MainAbility/pages/touchAble',
       }
       try {
@@ -38,32 +38,29 @@ export default function touchAbleJsunit() {
       } catch (err) {
         console.error("push touchAble page error:" + err);
       }
-      done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("touchAble after each called");
     });
 
-    it('testTouchAble001', 0, async function (done) {
+    it('testTouchAble001', 0, async () => {
       await Utils.sleep(1000)
       let strJson = getInspectorByKey('ellipse');
-      let obj = JSON.parse(strJson);
+      let obj: ESObject = JSON.parse(strJson);
       console.info("[testTouchAble001] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.focusable).assertEqual(false);
-      done();
     });
 
-    it('testTouchAble002', 0, async function (done) {
+    it('testTouchAble002', 0, async () => {
       await Utils.sleep(1000);
-      var callbackTwo = (eventData) => {
+      let callbackTwo = (eventData: events_emitter.EventData) => {
         console.info("[testTouchAble002] get event state result is: " + JSON.stringify(eventData));
         expect(eventData.data.ACTION).assertEqual('Ellipse Clicked')
         console.info('[testTouchAble002] END');
-        done();
       }
-      var innerEventTwo = {
+      let innerEventTwo: events_emitter.InnerEvent = {
         eventId: 237,
         priority: events_emitter.EventPriority.LOW
       }
