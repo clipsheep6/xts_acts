@@ -28,7 +28,7 @@ export default function inputMethodJSUnit() {
      * @tc.type Function
      * @tc.level Level2
      */
-    it('inputmethoh_test_001', 0, async () => {
+    it('inputmethoh_test_001', 0, async (done: Function) => {
       let inputMethodSetting: inputMethod.InputMethodSetting = inputMethod.getSetting();
       console.info("====>inputmethoh_test_001 result:" + JSON.stringify(inputMethodSetting));
       inputMethodSetting.listInputMethod((arr) => {
@@ -45,7 +45,7 @@ export default function inputMethodJSUnit() {
      * @tc.type Function
      * @tc.level Level2
      */
-    it('inputmethoh_test_002', 0, async () => {
+    it('inputmethoh_test_002', 0, async (done: Function) => {
       let inputMethodSetting = inputMethod.getSetting();
       console.info("====>inputmethoh_test_002 result:" + JSON.stringify(inputMethodSetting));
       inputMethodSetting.listInputMethod().then(inputMethodProperty => {
@@ -73,7 +73,7 @@ export default function inputMethodJSUnit() {
      * @tc.type Function
      * @tc.level Level2
      */
-    it('inputmethoh_test_003', 0, async () => {
+    it('inputmethoh_test_003', 0, async (done: Function) => {
       let inputMethodSetting = inputMethod.getSetting();
       console.info("====>inputmethoh_test_003 result:" + JSON.stringify(inputMethodSetting));
       setTimeout(() => {
@@ -103,7 +103,7 @@ export default function inputMethodJSUnit() {
      * @tc.type Function
      * @tc.level Level2
      */
-    it('inputmethoh_test_004', 0, async () => {
+    it('inputmethoh_test_004', 0, async (done: Function) => {
       let inputMethodSetting = inputMethod.getSetting();
       console.info("====>inputmethoh_test_004 result:" + JSON.stringify(inputMethodSetting));
       setTimeout(() => {
@@ -127,17 +127,17 @@ export default function inputMethodJSUnit() {
      * @tc.type Function
      * @tc.level Level2
      */
-    it('inputmethoh_test_005', 0, async () => {
+    it('inputmethoh_test_005', 0, async (done: Function) => {
       let inputMethodCtrl = inputMethod.getController();
       console.info("====>inputmethoh_test_005 result:" + JSON.stringify(inputMethodCtrl));
-      inputMethodCtrl.stopInputSession((err:BusinessError) => {
+      inputMethodCtrl.stopInputSession((err: BusinessError) => {
         try {
           if (err) {
             console.error(`====>Failed to stopInput: ${JSON.stringify(err)}`);
             expect(err.code === 1).assertTrue();
 
           } else {
-            console.info("====>inputmethoh_test_005 stopInput result----" );
+            console.info("====>inputmethoh_test_005 stopInput result----");
             expect().assertFail();
 
           }
@@ -156,7 +156,7 @@ export default function inputMethodJSUnit() {
      * @tc.type Function
      * @tc.level Level2
      */
-    it('inputmethoh_test_006', 0, async () => {
+    it('inputmethoh_test_006', 0, async (done: Function) => {
       let inputMethodCtrl = inputMethod.getController();
       console.info("====>inputmethoh_test_006 result:" + JSON.stringify(inputMethodCtrl));
       inputMethodCtrl.stopInputSession().then(() => {
@@ -178,7 +178,7 @@ export default function inputMethodJSUnit() {
      * @tc.type    Function
      * @tc.level   Level2
      */
-    it('inputmethod_test_MAX_TYPE_NUM_001', 0, async () => {
+    it('inputmethod_test_MAX_TYPE_NUM_001', 0, async (done: Function) => {
       console.info("====>************* inputmethod_test_MAX_TYPE_NUM_001 Test start*************");
       let inputMethodSetting = inputMethod.MAX_TYPE_NUM;
       console.info("====>inputmethod_test_001 result:" + inputMethodSetting);
@@ -195,7 +195,7 @@ export default function inputMethodJSUnit() {
      * @tc.type    Function
      * @tc.level   2
      */
-    it('inputmethod_test_getCurrentInputMethod_001', 0, async () => {
+    it('inputmethod_test_getCurrentInputMethod_001', 0, async (done: Function) => {
       let currentIme = inputMethod.getCurrentInputMethod();
       console.info("====>inputmethod_test_getCurrentInputMethod_001 currentIme---" + JSON.stringify(currentIme));
       console.info(currentIme.packageName);
@@ -214,7 +214,7 @@ export default function inputMethodJSUnit() {
      * @tc.type Function
      * @tc.level Level2
      */
-    it('inputmethod_test_getInputMethods_001', 0, async () => {
+    it('inputmethod_test_getInputMethods_001', 0, async (done: Function) => {
       let inputMethodSetting = inputMethod.getSetting();
       console.info("====>inputmethod_test_getInputMethods_001 result:" + JSON.stringify(inputMethodSetting));
       inputMethodSetting.getInputMethods(true, (err, arr) => {
@@ -244,7 +244,7 @@ export default function inputMethodJSUnit() {
      * @tc.type Function
      * @tc.level Level2
      */
-    it('inputmethod_test_getInputMethods_002', 0, async () => {
+    it('inputmethod_test_getInputMethods_002', 0, async (done: Function) => {
       let inputMethodSetting = inputMethod.getSetting();
       console.info("====>inputmethod_test_getInputMethods_002 result:" + JSON.stringify(inputMethodSetting));
       inputMethodSetting.getInputMethods(false, (err, arr) => {
@@ -272,7 +272,7 @@ export default function inputMethodJSUnit() {
      * @tc.type Function
      * @tc.level Level2
      */
-    it('inputmethod_test_getInputMethods_003', 0, async () => {
+    it('inputmethod_test_getInputMethods_003', 0, async (done: Function) => {
       let inputMethodSetting = inputMethod.getSetting();
       console.info("====>inputmethod_test_getInputMethods_003 result:" + JSON.stringify(inputMethodSetting));
       try {
@@ -297,7 +297,7 @@ export default function inputMethodJSUnit() {
      * @tc.type Function
      * @tc.level Level2
      */
-    it('inputmethod_test_getInputMethods_004', 0, async () => {
+    it('inputmethod_test_getInputMethods_004', 0, async (done: Function) => {
       let inputMethodSetting = inputMethod.getSetting();
       console.info("====>inputmethod_test_getInputMethods_004 result:" + JSON.stringify(inputMethodSetting));
       try {
@@ -402,7 +402,7 @@ export default function inputMethodJSUnit() {
      * @tc.type Function
      * @tc.level Level 2
      */
-    it('SUB_InputMethod_IMF_Enable_0400', 0, async () => {
+    it('SUB_InputMethod_IMF_Enable_0400', 0, async (done: Function) => {
       console.info("-----------------------SUB_InputMethod_IMF_Enable_0400 start-----------------------");
       let bool: boolean = false;
       let inputMethodSetting = inputMethod.getSetting();
@@ -444,7 +444,7 @@ export default function inputMethodJSUnit() {
      * @tc.type Function
      * @tc.level Level 2
      */
-    it('SUB_InputMethod_IMF_Enable_0500', 0, async () => {
+    it('SUB_InputMethod_IMF_Enable_0500', 0, async (done: Function) => {
       console.info("-----------------------SUB_InputMethod_IMF_Enable_0500 is start-----------------------");
       let bool: boolean = false;
       let inputMethodSetting = inputMethod.getSetting();
