@@ -14,11 +14,12 @@
  */
 
 import AbilityStage from '@ohos.app.ability.AbilityStage';
+import GlobalContext from '../test/GlobalContext';
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
     console.log('[Demo] MyAbilityStage onCreate');
-    globalThis.stageOnCreateRun = 1;
-    globalThis.stageContext = this.context;
+    GlobalContext.getContext().setObject('stageOnCreateRun', 1);
+    GlobalContext.getContext().setObject('stageContext', this.context);
   }
 }

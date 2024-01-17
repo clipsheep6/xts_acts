@@ -16,6 +16,7 @@ import {describe,it, expect} from '@ohos/hypium';
 import statistics from '@ohos.net.statistics';
 import sim from '@ohos.telephony.sim';
 import radio from '@ohos.telephony.radio';
+import { BusinessError } from '@ohos.base';
 
 export default function StatisticsTest() {
   describe("StatisticsTest", function () {
@@ -114,7 +115,7 @@ export default function StatisticsTest() {
       let caseName = 'SUB_Telephony_NetworkManager_getIfaceRxBytes_Async_0400';
       let ifaceName = null;
       try {
-        statistics.getIfaceRxBytes(ifaceName, (err, data) => {
+        statistics.getIfaceRxBytes(iFaceName, (err: BusinessError, data: number) => {
           if (err) {
             console.log(`${caseName} getIfaceRxBytes fail ${JSON.stringify(err)}`);
             expect(err != undefined).assertTrue();
@@ -126,8 +127,9 @@ export default function StatisticsTest() {
           }
         });
       } catch (err) {
-        console.log(`${caseName} getIfaceRxBytes into catch ${JSON.stringify(err)}`);
-        expect(err.code == 401).assertTrue();
+        let e: BusinessError = err as BusinessError;
+        console.log(`${caseName} getIfaceRxBytes into catch ${JSON.stringify(e)}`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -147,7 +149,7 @@ export default function StatisticsTest() {
         console.log(`${caseName} getIfaceRxBytes success ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getIfaceRxBytes fail ${JSON.stringify(err)} `);
         expect(err.code == 2103005 || err.code == 2103012).assertTrue();
         done();
@@ -169,7 +171,7 @@ export default function StatisticsTest() {
         console.log(`${caseName} getIfaceRxBytes success ${JSON.stringify(data)}`);
         expect(data >= DATA_0).assertTrue();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getIfaceRxBytes fail ${JSON.stringify(err)} `);
         expectFalse();
         done();
@@ -191,7 +193,7 @@ export default function StatisticsTest() {
         console.log(`${caseName} getIfaceRxBytes success ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getIfaceRxBytes fail ${JSON.stringify(err)} `);
         expect(err.code == 2103005 || err.code == 2103012).assertTrue();
         done();
@@ -210,18 +212,19 @@ export default function StatisticsTest() {
       let caseName = 'SUB_Telephony_NetworkManager_getIfaceRxBytes_Promise_0400';
       let ifaceName = null;
       try {
-        statistics.getIfaceRxBytes(ifaceName).then((data) => {
+        statistics.getIfaceRxBytes(iFaceName).then((data: number) => {
           console.log(`${caseName} getIfaceRxBytes success ${JSON.stringify(data)}`);
           expectFalse();
           done();
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.log(`${caseName} getIfaceRxBytes fail ${JSON.stringify(err)}`);
           expect(err != undefined).assertTrue();
           done();
         });
       } catch (err) {
-        console.log(`${caseName} getIfaceRxBytes into catch ${JSON.stringify(err)}`);
-        expect(err.code == 401).assertTrue();
+        let e: BusinessError = err as BusinessError;
+        console.log(`${caseName} getIfaceRxBytes into catch ${JSON.stringify(e)}`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -310,7 +313,7 @@ export default function StatisticsTest() {
       let caseName = 'SUB_Telephony_NetworkManager_getIfaceTxBytes_Async_0400';
       let ifaceName = null;
       try {
-        statistics.getIfaceTxBytes(ifaceName, (err, data) => {
+        statistics.getIfaceTxBytes(iFaceName, (err: BusinessError, data: number) => {
           if (err) {
             console.log(`${caseName} getIfaceTxBytes fail ${JSON.stringify(err)}`);
             expect(err != undefined).assertTrue();
@@ -322,8 +325,9 @@ export default function StatisticsTest() {
           }
         });
       } catch (err) {
-        console.log(`${caseName} getIfaceTxBytes into catch ${JSON.stringify(err)}`);
-        expect(err.code == 401).assertTrue();
+        let e: BusinessError = err as BusinessError;
+        console.log(`${caseName} getIfaceTxBytes into catch ${JSON.stringify(e)}`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -343,7 +347,7 @@ export default function StatisticsTest() {
         console.log(`${caseName} getIfaceTxBytes success ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getIfaceTxBytes fail ${JSON.stringify(err)} `);
         expect(err.code == 2103005 || err.code == 2103012).assertTrue();
         done();
@@ -365,7 +369,7 @@ export default function StatisticsTest() {
         console.log(`${caseName} getIfaceTxBytes success ${JSON.stringify(data)}`);
         expect(data >= DATA_0).assertTrue();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getIfaceTxBytes fail ${JSON.stringify(err)} `);
         expectFalse();
         done();
@@ -387,7 +391,7 @@ export default function StatisticsTest() {
         console.log(`${caseName} getIfaceTxBytes success ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getIfaceTxBytes fail ${JSON.stringify(err)} `);
         expect(err.code == 2103005 || err.code == 2103012).assertTrue();
         done();
@@ -406,18 +410,19 @@ export default function StatisticsTest() {
       let caseName = 'SUB_Telephony_NetworkManager_getIfaceTxBytes_Promise_0400';
       let ifaceName = null;
       try {
-        statistics.getIfaceTxBytes(ifaceName).then((data) => {
+        statistics.getIfaceTxBytes(iFaceName).then((data: number) => {
           console.log(`${caseName} getIfaceTxBytes success ${JSON.stringify(data)}`);
           expectFalse();
           done();
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.log(`${caseName} getIfaceTxBytes fail ${JSON.stringify(err)}`);
           expect(err != undefined).assertTrue();
           done();
         });
       } catch (err) {
-        console.log(`${caseName} getIfaceTxBytes into catch ${JSON.stringify(err)}`);
-        expect(err.code == 401).assertTrue();
+        let e: BusinessError = err as BusinessError;
+        console.log(`${caseName} getIfaceTxBytes into catch ${JSON.stringify(e)}`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -459,7 +464,7 @@ export default function StatisticsTest() {
         console.log(`${caseName} getAllTxBytes success ${JSON.stringify(data)}`);
         expect(data >= DATA_0).assertTrue();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getAllTxBytes fail ${JSON.stringify(err)} `);
         expectFalse();
         done();
@@ -503,7 +508,7 @@ export default function StatisticsTest() {
         console.log(`${caseName} getAllRxBytes success ${JSON.stringify(data)}`);
         expect(data >= DATA_0).assertTrue();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getAllRxBytes fail ${JSON.stringify(err)} `);
         expectFalse();
         done();
@@ -521,7 +526,7 @@ export default function StatisticsTest() {
     it('SUB_Telephony_NetworkManager_getUidRxBytes_Async_0100', 0, async function (done) {
       let caseName = 'SUB_Telephony_NetworkManager_getUidRxBytes_Async_0100';
       let uid = 20010084;
-      statistics.getUidRxBytes(uid, (err, data) => {
+      statistics.getUidRxBytes(uid, (err: BusinessError, data: number) => {
         if (err) {
           console.log(`${caseName} getUidRxBytes fail ${JSON.stringify(err)} `);
           expect(err.code == 2103005).assertTrue();
@@ -545,7 +550,7 @@ export default function StatisticsTest() {
     it('SUB_Telephony_NetworkManager_getUidRxBytes_Async_0200', 0, async function (done) {
       let caseName = 'SUB_Telephony_NetworkManager_getUidRxBytes_Async_0200';
       let uid = 20010084;
-      statistics.getUidRxBytes(uid, (err, data) => {
+      statistics.getUidRxBytes(uid, (err: BusinessError, data: number) => {
         if (err) {
           console.log(`${caseName} getUidRxBytes fail ${JSON.stringify(err)} `);
           expect(err.code == 2103005).assertTrue();
@@ -569,11 +574,11 @@ export default function StatisticsTest() {
     it('SUB_Telephony_NetworkManager_getUidRxBytes_Promise_0100', 0, async function (done) {
       let caseName = 'SUB_Telephony_NetworkManager_getUidRxBytes_Promise_0100';
       let uid = 20010084;
-      statistics.getUidRxBytes(uid).then((data) => {
+      statistics.getUidRxBytes(uid).then((data: number) => {
         console.log(`${caseName} getUidRxBytes success ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getUidRxBytes fail ${JSON.stringify(err)} `);
         expect(err.code == 2103005).assertTrue();
         done();
@@ -591,11 +596,11 @@ export default function StatisticsTest() {
     it('SUB_Telephony_NetworkManager_getUidRxBytes_Promise_0200', 0, async function (done) {
       let caseName = 'SUB_Telephony_NetworkManager_getUidRxBytes_Promise_0200';
       let uid = 20010084;
-      statistics.getUidRxBytes(uid).then((data) => {
+      statistics.getUidRxBytes(uid).then((data: number) => {
         console.log(`${caseName} getUidRxBytes success ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getUidRxBytes fail ${JSON.stringify(err)} `);
         expect(err.code == 2103005).assertTrue();
         done();
@@ -613,7 +618,7 @@ export default function StatisticsTest() {
     it('SUB_Telephony_NetworkManager_getUidTxBytes_Async_0100', 0, async function (done) {
       let caseName = 'SUB_Telephony_NetworkManager_getUidTxBytes_Async_0100';
       let uid = 20010084;
-      statistics.getUidTxBytes(uid, (err, data) => {
+      statistics.getUidTxBytes(uid, (err: BusinessError, data: number) => {
         if (err) {
           console.log(`${caseName} getUidTxBytes fail ${JSON.stringify(err)} `);
           expect(err.code == 2103005).assertTrue();
@@ -637,7 +642,7 @@ export default function StatisticsTest() {
     it('SUB_Telephony_NetworkManager_getUidTxBytes_Async_0200', 0, async function (done) {
       let caseName = 'SUB_Telephony_NetworkManager_getUidTxBytes_Async_0200';
       let uid = 20010084;
-      statistics.getUidTxBytes(uid, (err, data) => {
+      statistics.getUidTxBytes(uid, (err: BusinessError, data: number) => {
         if (err) {
           console.log(`${caseName} getUidTxBytes fail ${JSON.stringify(err)} `);
           expect(err.code == 2103005).assertTrue();
@@ -661,11 +666,11 @@ export default function StatisticsTest() {
     it('SUB_Telephony_NetworkManager_getUidTxBytes_Promise_0100', 0, async function (done) {
       let caseName = 'SUB_Telephony_NetworkManager_getUidTxBytes_Promise_0100';
       let uid = 20010084;
-      statistics.getUidTxBytes(uid).then((data) => {
+      statistics.getUidTxBytes(uid).then((data: number) => {
         console.log(`${caseName} getUidTxBytes success ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getUidTxBytes fail ${JSON.stringify(err)} `);
         expect(err.code == 2103005).assertTrue();
         done();
@@ -683,11 +688,11 @@ export default function StatisticsTest() {
     it('SUB_Telephony_NetworkManager_getUidTxBytes_Promise_0200', 0, async function (done) {
       let caseName = 'SUB_Telephony_NetworkManager_getUidTxBytes_Promise_0200';
       let uid = 20010084;
-      statistics.getUidTxBytes(uid).then((data) => {
+      statistics.getUidTxBytes(uid).then((data: number) => {
         console.log(`${caseName} getUidTxBytes success ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getUidTxBytes fail ${JSON.stringify(err)} `);
         expect(err.code == 2103005).assertTrue();
         done();
@@ -710,10 +715,10 @@ export default function StatisticsTest() {
           done();
           return;
         } else {
-          radio.isRadioOn(0).then((data) => {
+          radio.isRadioOn(0).then((data: boolean) => {
             console.info(`${caseName} isRadioOn  ${JSON.stringify(data)} `);
             expect(data == true).assertTrue();
-            statistics.getCellularRxBytes((err, data) => {
+            statistics.getCellularRxBytes((err: BusinessError, data: number) => {
               if (err) {
                 console.log(`${caseName} getCellularRxBytes fail ${JSON.stringify(err)} `);
                 expect(err.code).assertEqual(2103012);
@@ -724,7 +729,7 @@ export default function StatisticsTest() {
                 done();
               }
             });
-          }).catch((err) => {
+          }).catch((err: BusinessError) => {
             console.error('When the device has no modem, the interface reports an error' + JSON.stringify(err));
             expect(err.code).assertEqual(8300003);
             done();
@@ -750,19 +755,19 @@ export default function StatisticsTest() {
           done();
           return;
         } else {
-          radio.isRadioOn(0).then((data) => {
+          radio.isRadioOn(0).then((data: boolean) => {
             console.info(`${caseName} isRadioOn  ${JSON.stringify(data)} `);
             expect(data == true).assertTrue();
-            statistics.getCellularRxBytes().then((data) => {
+            statistics.getCellularRxBytes().then((data: number) => {
               console.log(`${caseName} getCellularRxBytes success ${JSON.stringify(data)}`);
               expectFalse();
               done();
-            }).catch((err) => {
+            }).catch((err: BusinessError) => {
               console.log(`${caseName} getCellularRxBytes fail ${JSON.stringify(err)} `);
               expect(err.code == 2103012).assertTrue();
               done();
             });
-          }).catch((err) => {
+          }).catch((err: BusinessError) => {
             console.error('When the device has no modem, the interface reports an error' + JSON.stringify(err));
             expect(err.code).assertEqual(8300003);
             done();
@@ -788,10 +793,10 @@ export default function StatisticsTest() {
           done();
           return;
         } else {
-          radio.isRadioOn(0).then((data) => {
+          radio.isRadioOn(0).then((data: boolean) => {
             console.info(`${caseName} isRadioOn  ${JSON.stringify(data)} `);
             expect(data == true).assertTrue();
-            statistics.getCellularTxBytes((err, data) => {
+            statistics.getCellularTxBytes((err: BusinessError, data: number) => {
               if (err) {
                 console.log(`${caseName} getCellularTxBytes fail ${JSON.stringify(err)} `);
                 expect(err.code == 2103012).assertTrue();
@@ -802,7 +807,7 @@ export default function StatisticsTest() {
                 done();
               }
             });
-          }).catch((err) => {
+          }).catch((err: BusinessError) => {
             console.error('When the device has no modem, the interface reports an error' + JSON.stringify(err));
             expect(err.code).assertEqual(8300003);
             done();
@@ -828,19 +833,19 @@ export default function StatisticsTest() {
           done();
           return;
         } else {
-          radio.isRadioOn(0).then((data) => {
+          radio.isRadioOn(0).then((data: boolean) => {
             console.info(`${caseName} isRadioOn  ${JSON.stringify(data)} `);
             expect(data == true).assertTrue();
-            statistics.getCellularTxBytes().then((data) => {
+            statistics.getCellularTxBytes().then((data: number) => {
               console.log(`${caseName} getCellularTxBytes success ${JSON.stringify(data)}`);
               expectFalse();
               done();
-            }).catch((err) => {
+            }).catch((err: BusinessError) => {
               console.log(`${caseName} getCellularTxBytes fail ${JSON.stringify(err)} `);
               expect(err.code).assertEqual(2103012);
               done();
             });
-          }).catch((err) => {
+          }).catch((err: BusinessError) => {
             console.error('When the device has no modem, the interface reports an error' + JSON.stringify(err));
             expect(err.code).assertEqual(8300003);
             done();

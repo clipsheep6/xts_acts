@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, expect, it, afterEach, afterAll, beforeAll } from '@ohos/hypium';
+import { describe, expect, it } from '@ohos/hypium';
 import socket from '@ohos.net.socket';
 import { BusinessError } from '@ohos.base';
 
@@ -22,7 +22,7 @@ let localExtraOptions: socket.ExtraOptionsBase = {
   receiveBufferSize: 5000,
   reuseAddress: false,
   socketTimeout: 500
-}
+};
 
 function expectFalse() {
   try {
@@ -44,7 +44,7 @@ export default function NetworkManagerWebsocketTest() {
      * @tc.size: SmallTest
      */
     it("SUB_Telephony_Netstack_UNIX_Socket_Xts_0100", 0, async (done:Function)=> {
-      let caseName = "SUB_Telephony_Netstack_UNIX_Socket_Xts_0100";
+      let caseName: string = "SUB_Telephony_Netstack_UNIX_Socket_Xts_0100";
       let client = socket.constructLocalSocketInstance();
       client.getExtraOptions().then((data) => {
         console.info(`${caseName} getExtraOptions success, data: ${JSON.stringify(data)}`);
@@ -65,7 +65,7 @@ export default function NetworkManagerWebsocketTest() {
      * @tc.size: SmallTest
      */
     it("SUB_Telephony_Netstack_UNIX_Socket_Xts_0200", 0, async (done:Function)=> {
-      let caseName = "SUB_Telephony_Netstack_UNIX_Socket_Xts_0200";
+      let caseName: string = "SUB_Telephony_Netstack_UNIX_Socket_Xts_0200";
       let server = socket.constructLocalSocketServerInstance();
       server.getExtraOptions().then((data) => {
         console.info(`${caseName} getExtraOptions success, data: ${JSON.stringify(data)}`);

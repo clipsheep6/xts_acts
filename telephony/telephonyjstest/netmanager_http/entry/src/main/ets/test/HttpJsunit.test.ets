@@ -12,33 +12,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, it, expect} from '@ohos/hypium';
+import { describe, it, expect } from '@ohos/hypium';
 import http from '@ohos.net.http';
 import connection from "@ohos.net.connection";
 import socket from '@ohos.net.socket';
 import ethernet from '@ohos.net.ethernet';
+import { BusinessError } from '@ohos.base';
+
+function expectFalse() {
+  try {
+    expect().assertFail();
+  } catch (err) {
+    console.info('assertion failure');
+  }
+};
+
+
+async function sleep(time: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, time))
+}
+
+async function Test(httpRequest: http.HttpRequest, tcpSocket: socket.TCPSocket, udpSocket: socket.UDPSocket) {
+  expect(httpRequest != null).assertTrue();
+  expect(tcpSocket != null).assertTrue();
+  expect(udpSocket != null).assertTrue();
+  httpRequest.destroy();
+  tcpSocket.close();
+  udpSocket.close();
+}
 
 export default function httpJsunit() {
-  describe("httpJsunitTest", function () {
+  describe("httpJsunitTest", () => {
+    let multicastSocket = socket.constructMulticastSocketInstance();
+    let ttl = 100;
+    let ttl_invalid = 256;
+    let ttl_undefined = undefined;
 
-	let udpSocket = socket.constructUDPSocketInstance();
-	let multicastSocket = socket.constructMulticastSocketInstance();
-	let multicastAddress = {
-	  address: '239.255.0.1',
-	  family: 1,
-	  port: 32123
-	}
 
-	let multicastAddress_invalid = {
-	  address: '1.1.1.1',
-	  family: 1,
-	  port: 32123
-	}
-	let multicastAddress_null = {
-	  address: '',
-	  family: 1,
-	  port: 32123
-	}
 
 	let ttl = 100;
 	let ttl_invalid = 256;
@@ -66,7 +76,7 @@ export default function httpJsunit() {
      */
     it("SUB_SUB_Telephony_Http_Http_createHttp_0100", 0, async function (done) {
       console.log("-----------------------http createHttp Test is starting-----------------------");
-      var httpRequest = http.createHttp();
+      let httpRequest: http.HttpRequest = http.createHttp();
       expect(httpRequest != null).assertTrue();
       console.log("-----------------------http createHttp Test end-----------------------");
       httpRequest.destroy();
@@ -134,7 +144,7 @@ export default function httpJsunit() {
         console.log(`${caseName} isDefaultNetMetered success`);
         expect(data).assertEqual(true);
         done();
-      }).catch((error) => {
+      }).catch((error: BusinessError) => {
         console.log(JSON.stringify(error));
         expectFalse();
         done();
@@ -180,7 +190,7 @@ export default function httpJsunit() {
         expect(data.host == '').assertTrue();
         expect(data.port == 0).assertTrue();
         done();
-      }).catch((error) => {
+      }).catch((error: BusinessError) => {
         console.log(JSON.stringify(error));
         expectFalse();
         done();
@@ -201,7 +211,7 @@ export default function httpJsunit() {
         console.log("netHandle is " +JSON.stringify(netHandle));
         connection.setAppNet(netHandle).then(() => {
           console.log("setAppNet success");
-          connection.getDefaultHttpProxy((error, data) => {
+          connection.getDefaultHttpProxy((error: BusinessError) => {
             if (error) {
               console.log(`${caseName} getDefaultHttpProxy  error`);
               expectFalse();
@@ -213,7 +223,7 @@ export default function httpJsunit() {
               done();
             }
           });
-        }).catch(error => {
+        }).catch((error: BusinessError) => {
           console.log("setAppNet err " + JSON.stringify(error));
           expectFalse();
           done();
@@ -239,17 +249,17 @@ export default function httpJsunit() {
         console.log("netHandle is " +JSON.stringify(netHandle));
         connection.setAppNet(netHandle).then(() => {
           console.log("setAppNet success");
-          connection.getDefaultHttpProxy().then((data) => {
+          connection.getDefaultHttpProxy().then(() => {
             console.log(`${caseName} getDefaultHttpProxy success`);
             expect(data.host == '').assertTrue();
             expect(data.port == 0).assertTrue();
             done();
-          }).catch((error) => {
+          }).catch((error: BusinessError) => {
             console.log(JSON.stringify(error));
             expectFalse();
             done();
           });
-        }).catch(error => {
+        }).catch((error: BusinessError) => {
           console.log("setAppNet err " + JSON.stringify(error));
           expectFalse();
           done();
@@ -303,13 +313,17 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_addMembership_Promise_0100", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_addMembership_Promise_0100"
-      multicastSocket.addMembership(multicastAddress).then((data) => {
+    it("NetworkManager_UDPSocket_addMembership_Promise_0100", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_addMembership_Promise_0100";
+      multicastSocket.addMembership({
+        address: '239.255.0.1',
+        family: 1,
+        port: 32123
+      }).then((data: number) => {
         console.log(`${caseName} addMembership success, data: ${JSON.stringify(data)}`);
         expect(data).assertEqual(undefined);
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} addMembership failed, err: ${JSON.stringify(err)}`);
         expectFalse();
         done();
@@ -324,13 +338,17 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_addMembership_Promise_0200", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_addMembership_Promise_0200"
-      multicastSocket.addMembership(multicastAddress_invalid).then((data) => {
+    it("NetworkManager_UDPSocket_addMembership_Promise_0200", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_addMembership_Promise_0200";
+      multicastSocket.addMembership({
+        address: '1.1.1.1',
+        family: 1,
+        port: 32123
+      }).then((data: number) => {
         console.log(`${caseName} addMembership success, data: ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} addMembership failed, err: ${JSON.stringify(err)}`);
         expect(err.code !== undefined).assertTrue();
         done();
@@ -345,13 +363,17 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_addMembership_Promise_0300", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_addMembership_Promise_0300"
-      multicastSocket.addMembership(multicastAddress_null).then((data) => {
+    it("NetworkManager_UDPSocket_addMembership_Promise_0300", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_addMembership_Promise_0300";
+      multicastSocket.addMembership({
+        address: '',
+        family: 1,
+        port: 32123
+      }).then((data: number) => {
         console.log(`${caseName} addMembership success, data: ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} addMembership failed, err: ${JSON.stringify(err)}`);
         expect(err.code !== undefined).assertTrue();
         done();
@@ -366,21 +388,22 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_addMembership_Promise_0400", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_addMembership_Promise_0400"
+    it("NetworkManager_UDPSocket_addMembership_Promise_0400", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_addMembership_Promise_0400";
       try {
-        multicastSocket.addMembership(undefined).then((data) => {
+        multicastSocket.addMembership(undefined).then((data: number) => {
           console.log(`${caseName} addMembership success, data: ${JSON.stringify(data)}`);
           expectFalse();
           done();
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.log(`${caseName} addMembership failed, err: ${JSON.stringify(err)}`);
           expectFalse();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -395,13 +418,13 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_setMulticastTTL_Promise_0100", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_setMulticastTTL_Promise_0100"
+    it("NetworkManager_UDPSocket_setMulticastTTL_Promise_0100", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_setMulticastTTL_Promise_0100";
       multicastSocket.setMulticastTTL(ttl).then((data) => {
         console.log(`${caseName} setMulticastTTL success, data: ${JSON.stringify(data)}`);
         expect(data).assertEqual(undefined);
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} setMulticastTTL failed, err: ${JSON.stringify(err)}`);
         expectFalse();
         done();
@@ -417,13 +440,13 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_setMulticastTTL_Promise_0200", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_setMulticastTTL_Promise_0200"
+    it("NetworkManager_UDPSocket_setMulticastTTL_Promise_0200", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_setMulticastTTL_Promise_0200";
       multicastSocket.setMulticastTTL(ttl_invalid).then((data) => {
         console.log(`${caseName} setMulticastTTL success, data: ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} setMulticastTTL failed, err: ${JSON.stringify(err)}`);
         expect(err.code !== undefined).assertTrue();
         done();
@@ -438,21 +461,22 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_setMulticastTTL_Promise_0300", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_setMulticastTTL_Promise_0300"
+    it("NetworkManager_UDPSocket_setMulticastTTL_Promise_0300", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_setMulticastTTL_Promise_0300";
       try {
         multicastSocket.setMulticastTTL(ttl_undefined).then((data) => {
           console.log(`${caseName} setMulticastTTL success, data: ${JSON.stringify(data)}`);
           expectFalse();
           done();
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.log(`${caseName} setMulticastTTL failed, err: ${JSON.stringify(err)}`);
           expectFalse();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
-        expect(error.code == 401).assertTrue()
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
+        expect(e.code == 401).assertTrue()
         done();
       }
     });
@@ -466,13 +490,13 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_getMulticastTTL_Promise_0100", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_getMulticastTTL_Promise_0100"
+    it("NetworkManager_UDPSocket_getMulticastTTL_Promise_0100", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_getMulticastTTL_Promise_0100";
       multicastSocket.getMulticastTTL().then((data) => {
         console.log(`${caseName} getMulticastTTL success, data: ${JSON.stringify(data)}`);
         expect(data).assertEqual(100);
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getMulticastTTL failed, err: ${JSON.stringify(err)}`);
         expectFalse();
         done();
@@ -489,13 +513,13 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_setLoopbackMode_Promise_0100", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_setLoopbackMode_Promise_0100"
+    it("NetworkManager_UDPSocket_setLoopbackMode_Promise_0100", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_setLoopbackMode_Promise_0100";
       multicastSocket.setLoopbackMode(true).then((data) => {
         console.log(`${caseName} setLoopbackMode success, data: ${JSON.stringify(data)}`);
         expect(data).assertEqual(undefined);
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} setLoopbackMode failed, err: ${JSON.stringify(err)}`);
         expectFalse();
         done();
@@ -510,13 +534,13 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_setLoopbackMode_Promise_0200", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_setLoopbackMode_Promise_0200"
+    it("NetworkManager_UDPSocket_setLoopbackMode_Promise_0200", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_setLoopbackMode_Promise_0200";
       multicastSocket.setLoopbackMode(false).then((data) => {
         console.log(`${caseName} setLoopbackMode success, data: ${JSON.stringify(data)}`);
         expect(data).assertEqual(undefined);
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} setLoopbackMode failed, err: ${JSON.stringify(err)}`);
         expectFalse();
         done();
@@ -531,21 +555,22 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_setLoopbackMode_Promise_0300", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_setLoopbackMode_Promise_0300"
+    it("NetworkManager_UDPSocket_setLoopbackMode_Promise_0300", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_setLoopbackMode_Promise_0300";
       try {
         multicastSocket.setLoopbackMode(undefined).then((data) => {
           console.log(`${caseName} setLoopbackMode success, data: ${JSON.stringify(data)}`);
           expectFalse();
           done();
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.log(`${caseName} setLoopbackMode failed, err: ${JSON.stringify(err)}`);
           expectFalse();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -559,8 +584,8 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_getLoopbackMode_Promise_0100", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_getLoopbackMode_Promise_0100"
+    it("NetworkManager_UDPSocket_getLoopbackMode_Promise_0100", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_getLoopbackMode_Promise_0100";
       multicastSocket.setLoopbackMode(true).then((data) => {
         console.log(`${caseName} setLoopbackMode success, data: ${JSON.stringify(data)}`);
         expect(data).assertEqual(undefined);
@@ -568,12 +593,12 @@ export default function httpJsunit() {
           console.log(`${caseName} getLoopbackMode success, data: ${JSON.stringify(data)}`);
           expect(data).assertEqual(true);
           done();
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.log(`${caseName} getLoopbackMode failed, err: ${JSON.stringify(err)}`);
           expectFalse();
           done();
         });
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} setLoopbackMode failed, err: ${JSON.stringify(err)}`);
         expectFalse();
         done();
@@ -588,8 +613,8 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_getLoopbackMode_Promise_0200", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_getLoopbackMode_Promise_0200"
+    it("NetworkManager_UDPSocket_getLoopbackMode_Promise_0200", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_getLoopbackMode_Promise_0200";
       multicastSocket.setLoopbackMode(false).then((data) => {
         console.log(`${caseName} setLoopbackMode success, data: ${JSON.stringify(data)}`);
         expect(data).assertEqual(undefined);
@@ -597,12 +622,12 @@ export default function httpJsunit() {
           console.log(`${caseName} getLoopbackMode success, data: ${JSON.stringify(data)}`);
           expect(data).assertEqual(false);
           done();
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.log(`${caseName} getLoopbackMode failed, err: ${JSON.stringify(err)}`);
           expectFalse();
           done();
         });
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} setLoopbackMode failed, err: ${JSON.stringify(err)}`);
         expectFalse();
         done();
@@ -618,13 +643,17 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_dropMembership_Promise_0100", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_dropMembership_Promise_0100"
-      multicastSocket.dropMembership(multicastAddress).then((data) => {
+    it("NetworkManager_UDPSocket_dropMembership_Promise_0100", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_dropMembership_Promise_0100";
+      multicastSocket.dropMembership({
+        address: '239.255.0.1',
+        family: 1,
+        port: 32123
+      }).then((data) => {
         console.log(`${caseName} dropMembership success, data: ${JSON.stringify(data)}`);
         expect(data).assertEqual(undefined);
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} dropMembership failed, err: ${JSON.stringify(err)}`);
         expectFalse();
         done();
@@ -640,13 +669,17 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_dropMembership_Promise_0200", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_dropMembership_Promise_0200"
-      multicastSocket.dropMembership(multicastAddress_invalid).then((data) => {
+    it("NetworkManager_UDPSocket_dropMembership_Promise_0200", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_dropMembership_Promise_0200";
+      multicastSocket.dropMembership({
+        address: '1.1.1.1',
+        family: 1,
+        port: 32123
+      }).then((data) => {
         console.log(`${caseName} dropMembership success, data: ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} dropMembership failed, err: ${JSON.stringify(err)}`);
         expect(err.code !== undefined).assertTrue();
         done();
@@ -661,13 +694,17 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_dropMembership_Promise_0300", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_dropMembership_Promise_0300"
-      multicastSocket.dropMembership(multicastAddress_null).then((data) => {
+    it("NetworkManager_UDPSocket_dropMembership_Promise_0300", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_dropMembership_Promise_0300";
+      multicastSocket.dropMembership({
+        address: '',
+        family: 1,
+        port: 32123
+      }).then((data) => {
         console.log(`${caseName} dropMembership success, data: ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} dropMembership failed, err: ${JSON.stringify(err)}`);
         expect(err.code !== undefined).assertTrue();
         done();
@@ -682,24 +719,25 @@ export default function httpJsunit() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("NetworkManager_UDPSocket_dropMembership_Promise_0400", 0, async function (done) {
-      let caseName = "NetworkManager_UDPSocket_dropMembership_Promise_0400"
+    it("NetworkManager_UDPSocket_dropMembership_Promise_0400", 0, async (done: Function) =>  {
+      let caseName: string = "NetworkManager_UDPSocket_dropMembership_Promise_0400";
       try {
-        multicastSocket.dropMembership(undefined).then((data) => {
+        multicastSocket.dropMembership(undefined).then((data: Object) => {
           console.log(`${caseName} dropMembership success, data: ${JSON.stringify(data)}`);
           expectFalse();
           done();
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.log(`${caseName} dropMembership failed, err: ${JSON.stringify(err)}`);
           expectFalse();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
-	
+
   });
 }

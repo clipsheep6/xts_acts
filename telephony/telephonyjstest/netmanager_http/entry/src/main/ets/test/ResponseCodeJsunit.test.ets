@@ -14,9 +14,10 @@
  */
 import {describe,it, expect} from '@ohos/hypium';
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
 export default function responseCodeJsunit() {
-  describe("responseCodeJsunitTest", function () {
+  describe("responseCodeJsunitTest", () => {
 
     /**
      * @tc.number SUB_Telephony_Http_ResponseCode_OK_0100

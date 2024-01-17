@@ -16,46 +16,47 @@
 import { describe, expect, it, afterEach, afterAll } from '@ohos/hypium';
 import http from '@ohos.net.http';
 import display from '@ohos.display';
+import { BusinessError } from '@ohos.base';
 
-let httpRequest = http.createHttp();
-let url = "http://www.baidu.com";
+let httpRequest: http.HttpRequest = http.createHttp();
+let url: string = "http://www.baidu.com";
 
-let httpRequestOptions_http3:http.HttpRequestOptions = {
-    method: http.RequestMethod.POST,
-    usingProtocol: http.HttpProtocol.HTTP3,
-    header:{
-        'Content-Type': 'application/json'
-    },
-    extraData: "MineMine",
-    dnsServers: [""]
+let httpRequestOptions_http3: http.HttpRequestOptions = {
+  method: http.RequestMethod.POST,
+  usingProtocol: http.HttpProtocol.HTTP3,
+  header: {
+    'Content-Type': 'application/json'
+  },
+  extraData: "MineMine",
+  dnsServers: [""]
 }
 
-let httpRequestOptions_http3_HTTP1_1:http.HttpRequestOptions = {
-    method: http.RequestMethod.POST,
-    usingProtocol: http.HttpProtocol.HTTP1_1,
-    header:{
-        'Content-Type': 'application/json'
-    },
-    extraData: "MineMine",
-    dnsServers: [""]
+let httpRequestOptions_http3_HTTP1_1: http.HttpRequestOptions = {
+  method: http.RequestMethod.POST,
+  usingProtocol: http.HttpProtocol.HTTP1_1,
+  header: {
+    'Content-Type': 'application/json'
+  },
+  extraData: "MineMine",
+  dnsServers: [""]
 }
 
-let httpRequestOptions_http3_HTTP2:http.HttpRequestOptions = {
-    method: http.RequestMethod.POST,
-    usingProtocol: http.HttpProtocol.HTTP2,
-    header:{
-        'Content-Type': 'application/json'
-    },
-    extraData: "MineMine",
-    dnsServers: [""]
+let httpRequestOptions_http3_HTTP2: http.HttpRequestOptions = {
+  method: http.RequestMethod.POST,
+  usingProtocol: http.HttpProtocol.HTTP2,
+  header: {
+    'Content-Type': 'application/json'
+  },
+  extraData: "MineMine",
+  dnsServers: [""]
 }
 
 function expectFalse() {
-    try {
-        expect().assertFail();
-    } catch(err) {
-        console.info('assertion failure');
-    }
+  try {
+    expect().assertFail();
+  } catch (err) {
+    console.info('assertion failure');
+  }
 }
 
 export default function NetworkManagerMulticast1HTTP2Test() {
@@ -134,5 +135,54 @@ export default function NetworkManagerMulticast1HTTP2Test() {
                 }
             })
         })
+      } catch (error) {
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} request failed, err: ${JSON.stringify(e)}`);
+      }
     })
+    /**
+     * @tc.number: SUB_Telephone_netstack_Http3_QUIC_Xts_Async_0200
+     * @tc.name: HTTP::request
+     * @tc.desc: Test request property.
+     * @tc.level 1
+     * @tc.type: FUNC
+     * @tc.size: SMALL
+     */
+    it("SUB_Telephone_netstack_Http3_QUIC_Xts_Async_0200", 0, async (done: Function) => {
+      let caseName: string = "SUB_Telephone_netstack_Http3_QUIC_Xts_Async_0200";
+      httpRequest.request(url, httpRequestOptions_http3_HTTP1_1, (err: BusinessError, data: http.HttpResponse) => {
+        if (err) {
+          console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
+          expect().assertFail();
+          done();
+        } else {
+          console.log(`${caseName} request succeed, err: ${JSON.stringify(data)}`);
+          expect(data.responseCode === 200).assertTrue();
+          done();
+        }
+      })
+    })
+    /**
+     * @tc.number: SUB_Telephone_netstack_Http3_QUIC_Xts_Async_0300
+     * @tc.name: HTTP::request
+     * @tc.desc: Test request property.
+     * @tc.level 1
+     * @tc.type: FUNC
+     * @tc.size: SMALL
+     */
+    it("SUB_Telephone_netstack_Http3_QUIC_Xts_Async_0300", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_Request_Async_0300";
+      httpRequest.request(url, httpRequestOptions_http3_HTTP2, (err: BusinessError, data: http.HttpResponse) => {
+        if (err) {
+          console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
+          expect().assertFail();
+          done();
+        } else {
+          console.log(`${caseName} request succeed, err: ${JSON.stringify(data)}`);
+          expect(data.responseCode === 200).assertTrue();
+          done();
+        }
+      })
+    })
+  })
 }

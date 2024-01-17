@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 @Entry
 @Component
 struct counter {
-  @State value: number = 0
-  @State active: boolean = false
-  private content: string = "Counter Page"
+  @State value: number = 0;
+  @State active: boolean = false;
+  private content: string = "Counter Page";
 
   onPageShow() {
     console.info('Counter page show called');
@@ -35,7 +35,8 @@ struct counter {
         .fontWeight(FontWeight.Bold)
       Counter() {
         Text(this.value.toString())
-      }.margin(100)
+      }
+      .margin(100)
       .key('counter')
       .onInc(() => {
         this.value++
@@ -43,9 +44,8 @@ struct counter {
       .onDec(() => {
         this.value--
       })
-    }.width("100%")
+    }
     .key('flex')
-    .width('100%')
-    .height('100%')
+    .width('100%').height('100%')
   }
 }

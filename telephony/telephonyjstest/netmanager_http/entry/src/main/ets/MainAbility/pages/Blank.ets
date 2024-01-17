@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 @Entry
 @Component
 struct blank_testcase {
@@ -36,12 +36,13 @@ struct blank_testcase {
       Blank(100)
         .color(this.Color)
         .key('blank')
-      Text('on/off').fontSize(18).height(60)
+      Text('on/off')
+        .fontSize(18)
+        .height(60)
     }
     .key('flex')
     .width('100%')
     .height('100%')
-
 
   }
 }

@@ -17,8 +17,8 @@ import { describe, expect, it, afterEach, afterAll } from '@ohos/hypium';
 import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
 
-let httpRequest = http.createHttp();
-let url = "http://www.baidu.com";
+let httpRequest: http.HttpRequest = http.createHttp();
+let url: string = "http://www.baidu.com";
 
 let httpRequestOptions_http3:http.HttpRequestOptions = {
     method: http.RequestMethod.POST,
@@ -73,8 +73,8 @@ export default function NetworkManagerMulticast2HTTP2Test() {
          * @tc.size: SmallTest
          */
         it("SUB_Telephone_netstack_Http3_QUIC_Xts_Promise_0100", 0, async (done: Function)=>{
-            let caseName = "SUB_Telephone_netstack_Http3_QUIC_Xts_Promise_0100";
-            httpRequest.request(url,httpRequestOptions_http3).then((data) => {
+            let caseName: string = "SUB_Telephone_netstack_Http3_QUIC_Xts_Promise_0100";
+            httpRequest.request(url,httpRequestOptions_http3).then((data: http.HttpResponse) => {
                 console.log(`${caseName} request succeed, data: ${JSON.stringify(data)}`);
                 expect(data.responseCode === 200).assertTrue();
                 done();
@@ -93,8 +93,8 @@ export default function NetworkManagerMulticast2HTTP2Test() {
          * @tc.size: SmallTest
          */
         it("SUB_Telephone_netstack_Http3_QUIC_Xts_Promise_0200", 0, async (done: Function)=>{
-            let caseName = "SUB_Telephone_netstack_Http3_QUIC_Xts_Promise_0200";
-            httpRequest.request(url,httpRequestOptions_http3_HTTP1_1).then((data) => {
+            let caseName: string = "SUB_Telephone_netstack_Http3_QUIC_Xts_Promise_0200";
+            httpRequest.request(url,httpRequestOptions_http3_HTTP1_1).then((data: http.HttpResponse) => {
                 console.log(`${caseName} request succeed, data: ${JSON.stringify(data)}`);
                 expect(data.responseCode === 200).assertTrue();
                 done();
@@ -113,8 +113,8 @@ export default function NetworkManagerMulticast2HTTP2Test() {
          * @tc.size: SmallTest
          */
         it("SUB_Telephone_netstack_Http3_QUIC_Xts_Promise_0300", 0, async (done: Function)=>{
-            let caseName = "SUB_Telephone_netstack_Http3_QUIC_Xts_Promise_0300";
-            httpRequest.request(url,httpRequestOptions_http3_HTTP2).then((data) => {
+            let caseName: string = "SUB_Telephone_netstack_Http3_QUIC_Xts_Promise_0300";
+            httpRequest.request(url,httpRequestOptions_http3_HTTP2).then((data: http.HttpResponse) => {
                 console.log(`${caseName} request succeed, data: ${JSON.stringify(data)}`);
                 expect(data.responseCode === 200).assertTrue();
                 done();

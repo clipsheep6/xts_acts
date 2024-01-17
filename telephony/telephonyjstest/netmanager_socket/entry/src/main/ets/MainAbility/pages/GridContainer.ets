@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 @Entry
 @Component
 struct gridContainer {
-  @State sizeType: SizeType = SizeType.XS
-  @State active: boolean = false
-  private content: string = "GridContainer Page"
+  @State sizeType: SizeType = SizeType.XS;
+  @State active: boolean = false;
+  private content: string = "GridContainer Page";
 
   onPageShow() {
     console.info('GridContainer page show called');
@@ -44,36 +44,50 @@ struct gridContainer {
                   md: { span: 2, offset: 0 },
                   lg: { span: 2, offset: 0 }
                 })
-                .height(50).backgroundColor(0x4682B4).textAlign(TextAlign.Center)
-              Text('2').gridSpan(2)
-
-                .height(50).backgroundColor(0x00BFFF).textAlign(TextAlign.Center)
-              Text('3').gridOffset(3)
-
-                .height(50).backgroundColor(0x4682B4).textAlign(TextAlign.Center)
+                .height(50)
+                .backgroundColor(0x4682B4)
+                .textAlign(TextAlign.Center)
+              Text('2')
+                .gridSpan(2)
+                .height(50)
+                .backgroundColor(0x00BFFF)
+                .textAlign(TextAlign.Center)
+              Text('3')
+                .gridOffset(3)
+                .height(50)
+                .backgroundColor(0x4682B4)
+                .textAlign(TextAlign.Center)
             }
-          }.key('gridContainer')
+          }
+          .key('gridContainer')
           .width('90%')
           .alignItems(HorizontalAlign.Start)
 
-          Text('Click Simulate to change the device width').fontSize(9).width('90%').fontColor(0xCCCCCC)
+          Text('Click Simulate to change the device width')
+            .fontSize(9)
+            .width('90%')
+            .fontColor(0xCCCCCC)
           Row() {
             Button('XS')
               .onClick(() => {
                 this.sizeType = SizeType.XS
-              }).backgroundColor(0x317aff)
+              })
+              .backgroundColor(0x317aff)
             Button('SM')
               .onClick(() => {
                 this.sizeType = SizeType.SM
-              }).backgroundColor(0x317aff)
+              })
+              .backgroundColor(0x317aff)
             Button('MD')
               .onClick(() => {
                 this.sizeType = SizeType.MD
-              }).backgroundColor(0x317aff)
+              })
+              .backgroundColor(0x317aff)
             Button('LG')
               .onClick(() => {
                 this.sizeType = SizeType.LG
-              }).backgroundColor(0x317aff)
+              })
+              .backgroundColor(0x317aff)
           }
 
           GridContainer({ columns: "auto", sizeType: SizeType.MD, gutter: '10', margin: '20' }) {
@@ -85,15 +99,22 @@ struct gridContainer {
                   md: { span: 2, offset: 0 },
                   lg: { span: 2, offset: 0 }
                 })
-                .height(50).backgroundColor(0x4682B4).textAlign(TextAlign.Center)
-              Text('2').gridSpan(2)
-
-                .height(50).backgroundColor(0x00BFFF).textAlign(TextAlign.Center)
-              Text('3').gridOffset(3)
-
-                .height(50).backgroundColor(0x4682B4).textAlign(TextAlign.Center)
+                .height(50)
+                .backgroundColor(0x4682B4)
+                .textAlign(TextAlign.Center)
+              Text('2')
+                .gridSpan(2)
+                .height(50)
+                .backgroundColor(0x00BFFF)
+                .textAlign(TextAlign.Center)
+              Text('3')
+                .gridOffset(3)
+                .height(50)
+                .backgroundColor(0x4682B4)
+                .textAlign(TextAlign.Center)
             }
-          }.key('gridContainer1')
+          }
+          .key('gridContainer1')
           .width('90%')
           .alignItems(HorizontalAlign.Center)
 
@@ -106,15 +127,22 @@ struct gridContainer {
                   md: { span: 2, offset: 0 },
                   lg: { span: 2, offset: 0 }
                 })
-                .height(50).backgroundColor(0x4682B4).textAlign(TextAlign.Center)
-              Text('2').gridSpan(2)
-
-                .height(50).backgroundColor(0x00BFFF).textAlign(TextAlign.Center)
-              Text('3').gridOffset(3)
-
-                .height(50).backgroundColor(0x4682B4).textAlign(TextAlign.Center)
+                .height(50)
+                .backgroundColor(0x4682B4)
+                .textAlign(TextAlign.Center)
+              Text('2')
+                .gridSpan(2)
+                .height(50)
+                .backgroundColor(0x00BFFF)
+                .textAlign(TextAlign.Center)
+              Text('3')
+                .gridOffset(3)
+                .height(50)
+                .backgroundColor(0x4682B4)
+                .textAlign(TextAlign.Center)
             }
-          }.key('gridContainer2')
+          }
+          .key('gridContainer2')
           .width('90%')
           .alignItems(HorizontalAlign.End)
 
@@ -127,15 +155,22 @@ struct gridContainer {
                   md: { span: 2, offset: 0 },
                   lg: { span: 2, offset: 0 }
                 })
-                .height(50).backgroundColor(0x4682B4).textAlign(TextAlign.Center)
-              Text('2').gridSpan(2)
-
-                .height(50).backgroundColor(0x00BFFF).textAlign(TextAlign.Center)
-              Text('3').gridOffset(3)
-
-                .height(50).backgroundColor(0x4682B4).textAlign(TextAlign.Center)
+                .height(50)
+                .backgroundColor(0x4682B4)
+                .textAlign(TextAlign.Center)
+              Text('2')
+                .gridSpan(2)
+                .height(50)
+                .backgroundColor(0x00BFFF)
+                .textAlign(TextAlign.Center)
+              Text('3')
+                .gridOffset(3)
+                .height(50)
+                .backgroundColor(0x4682B4)
+                .textAlign(TextAlign.Center)
             }
-          }.key('gridContainer3')
+          }
+          .key('gridContainer3')
           .width('90%')
           .alignItems(HorizontalAlign.End)
 
@@ -148,19 +183,28 @@ struct gridContainer {
                   md: { span: 2, offset: 0 },
                   lg: { span: 2, offset: 0 }
                 })
-                .height(50).backgroundColor(0x4682B4).textAlign(TextAlign.Center)
-              Text('2').gridSpan(2)
-
-                .height(50).backgroundColor(0x00BFFF).textAlign(TextAlign.Center)
-              Text('3').gridOffset(3)
-
-                .height(50).backgroundColor(0x4682B4).textAlign(TextAlign.Center)
+                .height(50)
+                .backgroundColor(0x4682B4)
+                .textAlign(TextAlign.Center)
+              Text('2')
+                .gridSpan(2)
+                .height(50)
+                .backgroundColor(0x00BFFF)
+                .textAlign(TextAlign.Center)
+              Text('3')
+                .gridOffset(3)
+                .height(50)
+                .backgroundColor(0x4682B4)
+                .textAlign(TextAlign.Center)
             }
-          }.key('gridContainer4')
+          }
+          .key('gridContainer4')
           .width('90%')
           .alignItems(HorizontalAlign.End)
 
-        }.width('100%').margin({ top: 5 })
+        }
+        .width('100%')
+        .margin({ top: 5 })
       }
     }
     .key('flex')
