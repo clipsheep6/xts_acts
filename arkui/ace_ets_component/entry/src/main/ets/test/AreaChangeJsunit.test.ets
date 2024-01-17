@@ -13,47 +13,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter'
 import Utils from './Utils.ets';
 
 export default function areaChangeJsunit() {
-  describe('areaChangeTest', function () {
-    beforeEach(async function (done) {
-      let options = {
+  describe('areaChangeTest', async () => {
+    beforeEach(async () => {
+      let options: router.RouterOptions = {
         uri: 'MainAbility/pages/areaChange',
       }
       try {
         router.clear();
-        let pages = router.getState();
+        let pages: router.RouterState = router.getState();
         console.info("get areaChange state success " + JSON.stringify(pages));
         if (!("areaChange" == pages.name)) {
           console.info("get areaChange state success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(1000);
           console.info("push areaChange page success " + JSON.stringify(result));
         }
       } catch (err) {
         console.error("push areaChange page error: " + err);
       }
-      done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("areaChange after each called");
     });
 
-    it('areaChangeTest_0300', 0, async function (done) {
+    it('areaChangeTest_0300', 0, async () => {
       console.info('areaChangeTest_0300 START');
       await Utils.sleep(1000);
-      let callback = (backData) => {
+      let callback = (backData: events_emitter.EventData) => {
         console.info("areaChangeTest_0300 get state result is: " + JSON.stringify(backData));
         expect(backData.data.value).assertEqual('TextText');
-        done();
       }
-      let indexEvent = {
+      let indexEvent: events_emitter.InnerEvent = {
         eventId: 61,
         priority: events_emitter.EventPriority.LOW
       }
@@ -65,12 +63,11 @@ export default function areaChangeJsunit() {
 
       console.info('areaChangeTest_0400 START');
       await Utils.sleep(1000);
-      let callback1 = (eventData) => {
+      let callback1 = (eventData: events_emitter.EventData) => {
         console.info("areaChangeTest_0400 get state result is: " + JSON.stringify(eventData));
         expect(eventData.data.ACTION).assertEqual(true);
-        done();
       }
-      let indexEvent1 = {
+      let indexEvent1: events_emitter.InnerEvent = {
         eventId: 62,
         priority: events_emitter.EventPriority.LOW
       }
