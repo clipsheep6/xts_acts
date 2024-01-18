@@ -164,7 +164,11 @@ export default function inputMethodNormalJSUnit() {
      * @tc.type    Function
      * @tc.level   Level2
      */
+<<<<<<< HEAD
     it('inputmethodNomal_test_hideSoftKeyboard_001', 0, async (done:Function) => {
+=======
+    it('inputmethodNomal_test_hideSoftKeyboard_001', 0, async () => {
+>>>>>>> 64dbc2f13870a7a6764cbd81252b9ea4e1f8ff8b
       console.info("====>*********inputmethodNomal_test_hideSoftKeyboard_001 start************");
       let inputMethodCtrl = inputMethod.getInputMethodController()
       inputMethodCtrl.hideSoftKeyboard((err, data) => {

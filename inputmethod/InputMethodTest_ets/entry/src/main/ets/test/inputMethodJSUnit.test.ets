@@ -14,11 +14,7 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import inputMethod from '@ohos.inputMethod';
-<<<<<<< Updated upstream
 import business_error, { BusinessError } from '@ohos.base'
-=======
-import business_error from '@ohos.base'
->>>>>>> Stashed changes
 
 export default function inputMethodJSUnit() {
   describe('appInfoTest_input_2', () => {
@@ -134,18 +130,14 @@ export default function inputMethodJSUnit() {
     it('inputmethoh_test_005', 0, async (done: Function) => {
       let inputMethodCtrl = inputMethod.getController();
       console.info("====>inputmethoh_test_005 result:" + JSON.stringify(inputMethodCtrl));
-      inputMethodCtrl.stopInput((err, res) => {
-        try{
+      inputMethodCtrl.stopInputSession((err: BusinessError) => {
+        try {
           if (err) {
             console.error(`====>Failed to stopInput: ${JSON.stringify(err)}`);
             expect(err.code === 1).assertTrue();
 
           } else {
-<<<<<<< Updated upstream
             console.info("====>inputmethoh_test_005 stopInput result----");
-=======
-            console.info("====>inputmethoh_test_005 stopInput result----" + res);
->>>>>>> Stashed changes
             expect().assertFail();
 
           }
@@ -172,11 +164,7 @@ export default function inputMethodJSUnit() {
 
       }).catch((err: business_error.BusinessError) => {
         console.info("====>inputmethoh_test_006 stopInput is err: " + JSON.stringify(err));
-<<<<<<< Updated upstream
         expect().assertEqual("");
-=======
-        expect().assertEqual();
->>>>>>> Stashed changes
 
       });
     });
@@ -394,11 +382,7 @@ export default function inputMethodJSUnit() {
       console.info("-----------------------SUB_InputMethod_IMF_Enable_0300 start-----------------------");
       let inputMethodSetting = inputMethod.getSetting();
       try {
-<<<<<<< Updated upstream
         let enable = undefined;
-=======
-        let enable: boolean = undefined;
->>>>>>> Stashed changes
         let Enable_List = inputMethodSetting.getInputMethodsSync(enable);
         console.info("====>SUB_InputMethod_IMF_Enable_0300 getInputMethodsSync success: " + JSON.stringify(Enable_List));
 

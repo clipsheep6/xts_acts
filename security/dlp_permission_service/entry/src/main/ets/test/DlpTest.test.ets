@@ -323,7 +323,7 @@ export default function dlpTest() {
       console.info(curTag, "start");
 
       try {
-        var uriArray = ['uri'];
+        let uriArray = ['uri'];
         await dlpPermission.setRetentionState(uriArray);
         expect(false).assertTrue();
       } catch (err) {
@@ -346,11 +346,10 @@ export default function dlpTest() {
       var curTag = TAG + "Test_setRetentionState_002";
       console.info(curTag, "start");
 
-      var uriArray = ['uri'];
+      let uriArray = ['uri'];
       dlpPermission.setRetentionState(uriArray, async (err) => {
         expect(err.code).assertEqual(DLPErrCode.ERR_JS_API_FOR_SANDBOX_ERROR);
         console.info(curTag, "end");
-        done();
       });
     });
 
@@ -426,7 +425,7 @@ export default function dlpTest() {
         console.info(curTag, "end");
         return;
       }
-      var uriArray = ['uri'];
+      let uriArray = ['uri'];
       await dlpPermission.cancelRetentionState(uriArray);
       try {
         await dlpPermission.uninstallDLPSandbox(bundleName, userId, sandboxInfo.appIndex);
@@ -555,11 +554,10 @@ export default function dlpTest() {
       var curTag = TAG + "Test_cancelRetentionState_002";
       console.info(curTag, "start");
 
-      var uriArray = ['uri'];
+      let uriArray = ['uri'];
       dlpPermission.cancelRetentionState(uriArray, async (err) => {
         expect(err).assertEqual(null);
         console.info(curTag, "end");
-        done();
       });
     })
 
@@ -718,7 +716,6 @@ export default function dlpTest() {
           console.info(curTag, "uninstallDLPSandbox failed", err.code, err.message);
         }
         console.info(curTag, "end");
-        done();
       });
     })
 
@@ -815,7 +812,6 @@ export default function dlpTest() {
         expect(err).assertEqual(null);
 
         console.info(curTag, "end");
-        done();
       });
       try {
         await dlpPermission.cancelRetentionState([uri]);
@@ -871,7 +867,6 @@ export default function dlpTest() {
         console.info(curTag, "uninstallDLPSandbox failed", err.code, err.message);
       }
       console.info(curTag, "end");
-      done();
     })
 
     /**
@@ -910,7 +905,6 @@ export default function dlpTest() {
       }
       expect(result.resultCode).assertEqual(DLPErrCode.ERR_JS_API_NOT_FOR_SANDBOX_ERROR);
       console.info(curTag, "end");
-      done();
     })
 
     /**
@@ -951,12 +945,12 @@ export default function dlpTest() {
         dlpPermission.getRetentionSandboxList(-1, async (err, data) => {
           expect(false).assertTrue();
           console.info(curTag, "end");
-          done();
+
         });
       } catch (err) {
         expect(err.code).assertEqual(DLPErrCode.ERR_JS_PARAMETER_ERROR);
         console.info(curTag, "end");
-        done();
+
         return;
       }
       expect(false).assertTrue();
@@ -1030,7 +1024,6 @@ export default function dlpTest() {
           console.info(curTag, "uninstallDLPSandbox failed", err.code, err.message);
         }
         console.info(curTag, "end");
-        done();
       });
     })
 
@@ -1070,7 +1063,6 @@ export default function dlpTest() {
       }
       expect(result.resultCode).assertEqual(DLPErrCode.ERR_JS_API_NOT_FOR_SANDBOX_ERROR);
       console.info(curTag, "end");
-      done();
     })
 
     /**
@@ -1109,7 +1101,6 @@ export default function dlpTest() {
       }
       expect(result.resultCode).assertEqual(DLPErrCode.ERR_JS_API_NOT_FOR_SANDBOX_ERROR);
       console.info(curTag, "end");
-      done();
     })
 
     /**
@@ -1202,7 +1193,6 @@ export default function dlpTest() {
       } catch (err) {
         expect(err.code).assertEqual(DLPErrCode.ERR_JS_INVALID_PARAMETER);
         console.info(curTag, "end");
-        done();
       }
     })
 
@@ -1601,8 +1591,13 @@ export default function dlpTest() {
      * @tc.type Function
      * @tc.level Level 2
      */
+<<<<<<< HEAD
     it('Test_on_openDLPFile_001', 0, async function () {
       var curTag = TAG + "Test_on_openDLPFile_001";
+=======
+    it('Test_on_openDLPFile_001', 0, async () => {
+      let curTag = TAG + "Test_on_openDLPFile_001";
+>>>>>>> 64dbc2f13870a7a6764cbd81252b9ea4e1f8ff8b
       console.info(curTag, "start");
 
       var called = false;
