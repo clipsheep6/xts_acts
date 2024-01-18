@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,6 +17,7 @@
 @Component
 struct SideBarContainerTest {
   @State text: String = ''
+
   onPageShow() {
     console.info('sideBar page show called');
   }
@@ -25,6 +25,7 @@ struct SideBarContainerTest {
   onBuildDone() {
     console.info('sideBar page build done called');
   }
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       SideBarContainer({ showSideBarContainer: true, style: SideBarContainerStyle.Embed }) {

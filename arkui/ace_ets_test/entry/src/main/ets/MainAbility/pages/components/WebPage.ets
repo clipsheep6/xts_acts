@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import web_webview from '@ohos.web.webview'
 
 @Entry
 @Component

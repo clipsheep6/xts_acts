@@ -12,29 +12,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import router from '@system.router'
 
 AppStorage.SetOrCreate("PropC", 1)
-var link3 = AppStorage.Link("PropC");
+let link3: SubscribedAbstractProperty<number> = AppStorage.Link("PropC");
 
 AppStorage.SetOrCreate("PropA", 47);
-var link1 = AppStorage.Link("PropA");
-var link2 = AppStorage.Link("PropA");
-var prop1 = AppStorage.Prop("PropA");
+let link1: SubscribedAbstractProperty<number> = AppStorage.Link("PropA");
+let link2: SubscribedAbstractProperty<number> = AppStorage.Link("PropA");
+let prop1: SubscribedAbstractProperty<number> = AppStorage.Prop("PropA");
 
 AppStorage.SetAndLink("PropB", 50)
-var PropBValue = String(AppStorage.Get("PropB"))
+let PropBValue = String(AppStorage.Get("PropB"))
 
 AppStorage.SetAndProp("PropA", 47)
-var PropAValue = String(AppStorage.Get("PropA"))
+let PropAValue = String(AppStorage.Get("PropA"))
 for (let key of AppStorage.Keys()) {
-  var keys = key
+  let keys = key
 }
-var setPropAValue = String(AppStorage.Set("PropA", 20))
-var deleteValue = String(AppStorage.Delete("PropC"))
-var hasValue = String(AppStorage.Has("PropB"))
-var isMutableValue = String(AppStorage.IsMutable("PropB"))
+let setPropAValue = String(AppStorage.Set("PropA", 20))
+let deleteValue = String(AppStorage.Delete("PropC"))
+let hasValue = String(AppStorage.Has("PropB"))
+let isMutableValue = String(AppStorage.IsMutable("PropB"))
 
 
 @Entry
@@ -47,12 +47,12 @@ struct appStorage_test {
   @State str6: string = link3.get().toString();
   @State PropB: string = PropBValue
   @State PropA: string = PropAValue
-  @State keys: string = keys
+  @State keys: string = this.keys
   @State str4: string = link1.get().toString()
   @State str5: string = setPropAValue
   @State str7: string = deleteValue
-  @State str8: string= hasValue
-  @State str9: string= isMutableValue
+  @State str8: string = hasValue
+  @State str9: string = isMutableValue
 
   onPageShow() {
     console.info('appStorage page show called');
