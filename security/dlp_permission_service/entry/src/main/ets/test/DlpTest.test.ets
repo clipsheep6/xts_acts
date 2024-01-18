@@ -1591,13 +1591,8 @@ export default function dlpTest() {
      * @tc.type Function
      * @tc.level Level 2
      */
-<<<<<<< HEAD
     it('Test_on_openDLPFile_001', 0, async function () {
       var curTag = TAG + "Test_on_openDLPFile_001";
-=======
-    it('Test_on_openDLPFile_001', 0, async () => {
-      let curTag = TAG + "Test_on_openDLPFile_001";
->>>>>>> 64dbc2f13870a7a6764cbd81252b9ea4e1f8ff8b
       console.info(curTag, "start");
 
       var called = false;
