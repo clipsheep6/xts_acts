@@ -13,17 +13,18 @@
  * limitations under the License.
  */
 
-import { describe, expect, it, afterEach, afterAll}from '@ohos/hypium';
+import { describe, expect, it, afterEach, afterAll } from '@ohos/hypium';
 import http from '@ohos.net.http';
 import { BusinessError } from '@ohos.base';
-let httpRequest = http.createHttp();
-let url = "http://www.baidu.com";
-let pwd = 13456;
 
-let httpRequestOptions_fileData:http.HttpRequestOptions = {
-  method:http.RequestMethod.POST,
-  header: { "Content-type":"multipart/form-data"},
-  multiFormDataList:[
+let httpRequest: http.HttpRequest = http.createHttp();
+let url: string = "http://www.baidu.com";
+let pwd: number = 13456;
+
+let httpRequestOptions_fileData: http.HttpRequestOptions = {
+  method: http.RequestMethod.POST,
+  header: { "Content-type": "multipart/form-data" },
+  multiFormDataList: [
     {
       name: "Part",
       contentType: 'file',
@@ -50,21 +51,21 @@ let httpRequestOptions_fileData:http.HttpRequestOptions = {
         "-----END CERTIFICATE-----'",
       remoteFileName: 'ca.pem'
     }
-  ]}
-let httpRequestOptions_form:http.HttpRequestOptions = {
+  ] }
+let httpRequestOptions_form: http.HttpRequestOptions = {
   method: http.RequestMethod.POST,
-  header: { "Content-type": "multipart/form-data"},
+  header: { "Content-type": "multipart/form-data" },
   multiFormDataList: [
     {
       name: "Part",
-      contentType:'form',
+      contentType: 'form',
       data: {
-        name:'xyy',
-        password:pwd
+        name: 'xyy',
+        password: pwd
       }
     }
-  ]}
-let httpRequestOptions:http.HttpRequestOptions = {
+  ] }
+let httpRequestOptions: http.HttpRequestOptions = {
   method: http.RequestMethod.POST,
   header: { "Content-type": "multipart/form-data" },
   multiFormDataList: [
@@ -75,7 +76,7 @@ let httpRequestOptions:http.HttpRequestOptions = {
       filePath:'./test.txt'
 
     }
-  ]}
+  ] }
 
 function expectFalse() {
   try {
@@ -86,7 +87,7 @@ function expectFalse() {
 }
 
 export default function NetworkManagerMulticastHTTP2Test() {
-  afterAll(async () =>{
+  afterAll(async () => {
     console.log('NetworkManagerMulticastHTTPTest afterAll start');
     console.log('NetworkManagerMulticastHTTPTest afterAll end');
   })
@@ -101,8 +102,8 @@ export default function NetworkManagerMulticastHTTP2Test() {
      * @tc.size: SmallTest
      */
     it("SUB_Telephony_netstack_Http_Multipart_Xts_Promise_0100", 0, async (done: Function) => {
-      let caseName = "SUB_Telephony_netstack_Http_Multipart_Xts_Promise_0100";
-      httpRequest.request(url, httpRequestOptions_fileData).then((data) => {
+      let caseName: string = "SUB_Telephony_netstack_Http_Multipart_Xts_Promise_0100";
+      httpRequest.request(url, httpRequestOptions_fileData).then((data: http.HttpResponse) => {
         console.log(`${caseName} request failed, err: ${JSON.stringify(data)}`);
         expect(data.responseCode == 200).assertTrue();
         done();
@@ -141,12 +142,12 @@ export default function NetworkManagerMulticastHTTP2Test() {
      * @tc.size: SmallTest
      */
     it("SUB_Telephony_netstack_Http_Multipart_Xts_Promise_0300", 0, async (done: Function) => {
-      let caseName = "SUB_Telephony_netstack_Http_Multipart_Xts_Promise_0300";
-      httpRequest.request(url,httpRequestOptions).then((data) => {
+      let caseName: string = "SUB_Telephony_netstack_Http_Multipart_Xts_Promise_0300";
+      httpRequest.request(url, httpRequestOptions).then((data: http.HttpResponse) => {
         console.log(`${caseName} request success, data: ${JSON.stringify(data)}`);
         expect(data.responseCode == 200).assertTrue();
         done();
-      }).catch((err:BusinessError) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
         expectFalse();
         done();
