@@ -16,17 +16,20 @@
 import { Hypium } from 'hypium/index'
 import testsuite from '../test/List.test'*/
 
-export default {
+class App {
   onCreate() {
-    console.info('TestApplication onCreate')
+    console.info('TestApplication onCreate');
     /*var abilityDelegator: any
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
     var abilityDelegatorArguments: any
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
     console.info('start run testcase!!!')
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)*/
-  },
+  }
+
   onDestroy() {
-    console.info('TestApplication onDestroy')
-  },
+    console.info('TestApplication onDestroy');
+  }
 }
+
+export default new App();
