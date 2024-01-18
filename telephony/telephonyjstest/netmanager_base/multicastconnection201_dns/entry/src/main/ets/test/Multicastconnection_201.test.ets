@@ -16,29 +16,24 @@ import { afterAll, afterEach, describe, expect, it } from '@ohos/hypium';
 import connection from '@ohos.net.connection';
 import { BusinessError } from '@ohos.base';
 
-let host='syysystem';
-let host1='sytuingm';
-let host2='awsyssy';
-let ip:Array<string>=['1.2.1.2','2.3.2.3'];
-let ip1:Array<string>=['1.2.3.4','2.4.2.5'];
-let ip2:Array<string>=['1.2.3.3','2.3.2.6'];
-let host_null='';
+let host: string = 'syysystem';
+let ip: Array<string> = ['1.2.1.2', '2.3.2.3'];
 
 function expectFalse() {
-  try{
+  try {
     expect().assertFail();
-  } catch(err){
+  } catch (err) {
     console.info('assertion failure');
   }
 };
 
-export default function Multicastconnection201Test() {
-  afterAll(async ()=>{
-    console.log('Multicastconnection201Test afterAll start');
-    console.log('Multicastconnection201Test afterAll end');
+export default function MultiCastConnection201Test() {
+  afterAll(async () => {
+    console.log('MultiCastConnection201Test afterAll start');
+    console.log('MultiCastConnection201Test afterAll end');
   });
 
-  describe("Multicastconnection201Test",  ()=>{
+  describe("MultiCastConnection201Test", () => {
     /**
      * @tc.number SUB_NetworkManager_DNS_addCustomDNSRule_Async_0300
      * @tc.name Query key information
@@ -47,9 +42,9 @@ export default function Multicastconnection201Test() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_DNS_addCustomDNSRule_Async_0300",0,async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_DNS_addCustomDNSRule_Async_0300";
-      connection.addCustomDnsRule(host,ip,(err,data)=>{
+    it("SUB_NetworkManager_DNS_addCustomDNSRule_Async_0300", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_DNS_addCustomDNSRule_Async_0300";
+      connection.addCustomDnsRule(host, ip, (err, data) => {
         if (err) {
           console.log(`${caseName} addCustomDNSRule failed, err: ${JSON.stringify(err)}`);
           expect(err.code === 201).assertTrue();
@@ -70,31 +65,31 @@ export default function Multicastconnection201Test() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_DNS_addCustomDNSRule_Promise_0200",0,async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_DNS_addCustomDNSRule_Promise_0200";
-      connection.addCustomDnsRule(host,ip).then((data)=>{
-          console.log(`${caseName} addCustomDNSRule success, data: ${JSON.stringify(data)}`);
-          expectFalse();
-          done();
-        }).catch((err:BusinessError) =>  {
-          console.log(`${caseName} addCustomDNSRule failed, err: ${JSON.stringify(err)}`);
-          expect(err.code === 201).assertTrue();
-          done();
+    it("SUB_NetworkManager_DNS_addCustomDNSRule_Promise_0200", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_DNS_addCustomDNSRule_Promise_0200";
+      connection.addCustomDnsRule(host, ip).then((data) => {
+        console.log(`${caseName} addCustomDNSRule success, data: ${JSON.stringify(data)}`);
+        expectFalse();
+        done();
+      }).catch((err: BusinessError) => {
+        console.log(`${caseName} addCustomDNSRule failed, err: ${JSON.stringify(err)}`);
+        expect(err.code === 201).assertTrue();
+        done();
 
       });
     });
 
     /**
-    * @tc.number SUB_NetworkManagee_DNS_removeCustomDNSRulr_Async_0300
-    * @tc.name connection::removeCustomDnsRule
-    * @tc.desc Test removeCustomDnsRule property
+     * @tc.number SUB_NetworkManagee_DNS_removeCustomDNSRulr_Async_0300
+     * @tc.name connection::removeCustomDnsRule
+     * @tc.desc Test removeCustomDnsRule property
      * @tc.level Level1
      * @tc.type: Function
      * @tc.size: SmallTest
-    */
-    it("SUB_NetworkManager_DNS_removeCustomDNSRule_Async_0300",0,async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_DNS_removeCustomDNSRule_Async_0300";
-      connection.removeCustomDnsRule(host,(err,data)=>{
+     */
+    it("SUB_NetworkManager_DNS_removeCustomDNSRule_Async_0300", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_DNS_removeCustomDNSRule_Async_0300";
+      connection.removeCustomDnsRule(host, (err, data) => {
         if (err) {
           console.log(`${caseName} removeCustomDNSRule failed, err: ${JSON.stringify(err)}`);
           expect(err.code === 201).assertTrue();
@@ -108,25 +103,25 @@ export default function Multicastconnection201Test() {
     });
 
     /**
-    * @tc.number SUB_NetworkManager_DNS_removeCustomDNSRule_Promise_0200
-    * @tc.name Query key information
-    * @tc.desc Function test
+     * @tc.number SUB_NetworkManager_DNS_removeCustomDNSRule_Promise_0200
+     * @tc.name Query key information
+     * @tc.desc Function test
      * @tc.level Level1
      * @tc.type: Function
      * @tc.size: SmallTest
-    */
-    it("SUB_NetworkManager_DNS_removeCustomDNSRule_Promise_0200",0,async (done:Function)=> {
-         let caseName = "SUB_NetworkManager_DNS_removeCustomDNSRule_Promise_0200";
-         connection.removeCustomDnsRule(host).then((data) => {
-             console.log(`${caseName} removeCustomDNSRule success, data: ${JSON.stringify(data)}`);
-             expectFalse();
-             done();
-           }).catch((err:BusinessError) =>  {
-             console.log(`${caseName} removeCustomDNSRule failed, err: ${JSON.stringify(err)}`);
-             expect(err.code === 201).assertTrue();
-             done();
-           });
-         });
+     */
+    it("SUB_NetworkManager_DNS_removeCustomDNSRule_Promise_0200", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_DNS_removeCustomDNSRule_Promise_0200";
+      connection.removeCustomDnsRule(host).then((data) => {
+        console.log(`${caseName} removeCustomDNSRule success, data: ${JSON.stringify(data)}`);
+        expectFalse();
+        done();
+      }).catch((err: BusinessError) => {
+        console.log(`${caseName} removeCustomDNSRule failed, err: ${JSON.stringify(err)}`);
+        expect(err.code === 201).assertTrue();
+        done();
+      });
+    });
 
     /**
      * @tc.number SUB_NetworkManager_DNS_cleraCustomDNSRule_Async_0300
@@ -136,9 +131,9 @@ export default function Multicastconnection201Test() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_DNS_clearCustomDNSRule_Async_0300",0,async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_DNS_clearCustomDNSRule_Async_0300";
-      connection.clearCustomDnsRules((err,data)=>{
+    it("SUB_NetworkManager_DNS_clearCustomDNSRule_Async_0300", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_DNS_clearCustomDNSRule_Async_0300";
+      connection.clearCustomDnsRules((err, data) => {
         if (err) {
           console.log(`${caseName} clearCustomDnsRules failed, err: ${JSON.stringify(err)}`);
           expect(err.code === 201).assertTrue();
@@ -159,16 +154,16 @@ export default function Multicastconnection201Test() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_DNS_clearCustomDNSRule_Promise_0300",0,async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_DNS_clearCustomDNSRule_Promise_0300";
-      connection.clearCustomDnsRules().then((data)=>{
-         console.log(`${caseName} clearCustomDnsRules success, data: ${JSON.stringify(data)}`);
-         expectFalse();
-         done();
-         }).catch((err:BusinessError) =>  {
-      console.log(`${caseName} clearCustomDnsRules failed, err: ${JSON.stringify(err)}`);
-      expect(err.code === 201).assertTrue();
-      done();
+    it("SUB_NetworkManager_DNS_clearCustomDNSRule_Promise_0300", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_DNS_clearCustomDNSRule_Promise_0300";
+      connection.clearCustomDnsRules().then((data) => {
+        console.log(`${caseName} clearCustomDnsRules success, data: ${JSON.stringify(data)}`);
+        expectFalse();
+        done();
+      }).catch((err: BusinessError) => {
+        console.log(`${caseName} clearCustomDnsRules failed, err: ${JSON.stringify(err)}`);
+        expect(err.code === 201).assertTrue();
+        done();
       });
     });
   })
