@@ -13,14 +13,15 @@
  * limitations under the License.
  */
 
-import { describe, expect, it, afterEach, afterAll, beforeAll } from '@ohos/hypium';
+import { describe, expect, it, beforeAll } from '@ohos/hypium';
 import http from '@ohos.net.http';
 import mdns from "@ohos.net.mdns";
 import connection from "@ohos.net.connection";
+import { BusinessError } from '@ohos.base';
 
-let httpRequest = http.createHttp();
-let address_baidu = "https://www.baidu.com";
-let address_post = "https://httpbin.org/post";
+let httpRequest: http.HttpRequest = http.createHttp();
+let address_baidu: string = "https://www.baidu.com";
+let address_post: string = "https://httpbin.org/post";
 
 let httpRequestOptions_post: http.HttpRequestOptions = {
   method: http.RequestMethod.POST,
@@ -37,20 +38,22 @@ let httpRequestOptions_get: http.HttpRequestOptions = {
   connectTimeout: 60000
 };
 
-function dataSendProgress_on_callback(data: http. DataSendProgressInfo) {
+function dataSendProgress_on_callback(data: http.DataSendProgressInfo) {
   console.log("dataSendProgress_on_callback receive len: " + JSON.stringify(data));
   let sendSize = data.sendSize;
   let totalSize = data.totalSize;
   console.log("dataSendProgress_on_callback sendSize: " + JSON.stringify(sendSize) +
     " , dataSendProgress_on_callback totalSize: " + JSON.stringify(totalSize));
 }
-function dataReceiveProgress_on_callback (data: http . DataReceiveProgressInfo) {
+
+function dataReceiveProgress_on_callback(data: http.DataReceiveProgressInfo) {
   console.log("dataReceiveProgress_on_callback receive len: " + JSON.stringify(data));
   let receiveSize = data.receiveSize;
   let totalSize = data.totalSize;
   console.log("dataReceiveProgress_on_callback sendSize: " + JSON.stringify(receiveSize) +
     " ,dataReceiveProgress_on_callback totalSize: " + JSON.stringify(totalSize));
 }
+
 function netConnectionPropertiesChange_on_callback(data: connection.NetConnectionPropertyInfo) {
   console.log("netConnectionPropertiesChange_on_callback " + JSON.stringify(data));
   let netHandle = data.netHandle;
@@ -58,6 +61,7 @@ function netConnectionPropertiesChange_on_callback(data: connection.NetConnectio
   console.log("netConnectionPropertiesChange_on_callback netHandle: " + JSON.stringify(netHandle) +
     " ,netConnectionPropertiesChange_on_callback connectionProperties: " + JSON.stringify(connectionProperties));
 }
+
 function netBlockStatusChange_on_callback(data: connection.NetBlockStatusInfo) {
   console.log("netBlockStatusChange_on_callback " + JSON.stringify(data));
   let netHandle = data.netHandle;
@@ -65,6 +69,7 @@ function netBlockStatusChange_on_callback(data: connection.NetBlockStatusInfo) {
   console.log("netBlockStatusChange_on_callback netHandle: " + JSON.stringify(netHandle) +
     " ,netBlockStatusChange_on_callback blocked: " + JSON.stringify(blocked));
 }
+
 function stopSearching(data: mdns.DiscoveryEventInfo) {
   console.log("stopSearching_on_callback: " + JSON.stringify(data));
   let serviceInfo = data.serviceInfo;
@@ -72,6 +77,7 @@ function stopSearching(data: mdns.DiscoveryEventInfo) {
   console.log("stopSearching_on_callback serviceInfo: " + JSON.stringify(serviceInfo) +
     " , stopSearching_on_callback errorCode: " + JSON.stringify(errorCode));
 }
+
 function expectFalse() {
   try {
     expect().assertFail();
@@ -95,9 +101,9 @@ export default function NetworkManagerAddAPI11() {
      * @tc.size: SmallTest
      */
     it("SUB_Telephony_netstack_Http_Connection_Xts_0300", 0, async (done: Function) => {
-      let caseName = "SUB_Telephony_netstack_Http_Connection_Xts_0300";
-      let netConnect = connection.createNetConnection();
-      netConnect.register((error) => {
+      let caseName: string = "SUB_Telephony_netstack_Http_Connection_Xts_0300";
+      let netConnect: connection.NetConnection = connection.createNetConnection();
+      netConnect.register((error: BusinessError) => {
         if (error) {
           console.log(`${caseName} register fail ${error}`);
           expectFalse();
@@ -113,7 +119,7 @@ export default function NetworkManagerAddAPI11() {
             done();
           }
           setTimeout(() => {
-            netConnect.unregister((error) => {
+            netConnect.unregister((error: BusinessError) => {
               if (error) {
                 console.log(`${caseName} unregister fail ${error}`);
                 expectFalse();
@@ -137,9 +143,9 @@ export default function NetworkManagerAddAPI11() {
      * @tc.size: SmallTest
      */
     it("SUB_Telephony_netstack_Http_Connection_Xts_0400", 0, async (done: Function) => {
-      let caseName = "SUB_Telephony_netstack_Http_Connection_Xts_0400";
-      let netConnect = connection.createNetConnection();
-      netConnect.register((error) => {
+      let caseName: string = "SUB_Telephony_netstack_Http_Connection_Xts_0400";
+      let netConnect: connection.NetConnection = connection.createNetConnection();
+      netConnect.register((error: BusinessError) => {
         if (error) {
           console.log(`${caseName} register fail ${error}`);
           expectFalse();
@@ -155,7 +161,7 @@ export default function NetworkManagerAddAPI11() {
             done();
           }
           setTimeout(() => {
-            netConnect.unregister((error) => {
+            netConnect.unregister((error: BusinessError) => {
               if (error) {
                 console.log(`${caseName} unregister fail ${error}`);
                 expectFalse();
