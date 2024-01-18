@@ -716,9 +716,9 @@ export default function dlpTest() {
           await dlpPermission.uninstallDLPSandbox(bundleName, userId, sandboxInfo.appIndex);
         } catch (err) {
           console.info(curTag, "uninstallDLPSandbox failed", err.code, err.message);
-          done();
         }
         console.info(curTag, "end");
+        done();
       });
     })
 
@@ -946,7 +946,6 @@ export default function dlpTest() {
     it('Test_getRetentionSandboxList_008', 0, async function (done) {
       var curTag = TAG + "Test_getRetentionSandboxList_008";
       console.info(curTag, "start");
-      done();
       try {
         // @ts-ignore
         dlpPermission.getRetentionSandboxList(-1, async (err, data) => {
