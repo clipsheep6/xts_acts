@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import MulticastconnectionAsyncTest from './MulticastconnectionAsync.test';
-import MulticastconnectionPromiseTest from './MulticastconnectionPromise.test';
+import MultiCastConnectionAsyncTest from './MulticastconnectionAsync.test';
+import MultiCastConnectionPromiseTest from './MulticastconnectionPromise.test';
 
 export default function testsuite() {
-  MulticastconnectionAsyncTest();
-  MulticastconnectionPromiseTest();
+  MultiCastConnectionAsyncTest();
+  MultiCastConnectionPromiseTest();
 }
