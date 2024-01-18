@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 @Entry
 @Component
 struct qrcode_textcase {
-  @State Color: Color = Color.Pink
+  @State Color: Color = Color.Pink;
 
   onPageShow() {
     console.info('Qrcode page show called');
@@ -34,8 +34,7 @@ struct qrcode_textcase {
       QRCode('hello world')
         .color("#FFFFC0CB")
         .backgroundColor(this.Color)
-        .width("200")
-        .height("100")
+        .width("200").height("100")
         .key('qrcode')
     }
   }

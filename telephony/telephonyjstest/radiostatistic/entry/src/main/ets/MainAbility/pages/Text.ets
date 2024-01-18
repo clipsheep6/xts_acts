@@ -12,79 +12,79 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-// @ts-nocheck
-import router from '@system.router'
+import router from '@system.router';
 
-var paramInfo = router.getParams()
-console.info("cd paramInfo" + JSON.stringify(paramInfo))
+let paramInfo: Record<string, Object> = router.getParams();
+console.info("cd paramInfo" + JSON.stringify(paramInfo));
+
+interface CustomDecoration {
+  type: TextDecorationType
+  color: ResourceColor;
+}
+
+interface CustomTextOverflow {
+  overflow: TextOverflow;
+}
+
+interface CustomSize {
+  width: number;
+  height: number;
+}
 
 @Entry
 @Component
 struct text_textcase {
-  @State textAlign: TextAlign= TextAlign.End
-  @State lineHeight: string= '15fp'
-  @State overflow: TextOverflow = TextOverflow.Ellipsis
-  @State textOverflow: textOverflow<{ "overflow": TextOverflow }> = { "overflow": this.overflow }
-  @State maxLines: number = 2
-  @State baselineOffset: number = 0
-  @State textCase: TextCase= TextCase.Normal
-  @State decoration: decoration<{
-    type: TextDecorationType,
-    color: Color
-  }> = { type: TextDecorationType.Underline, color: Color.Red }
-  @State color: Color = Color.Red
-  @State width: string= "200"
-  @State height: string= "100"
-  @State size: size = { width: 200, height: 100 }
-  @State marginBottom: string = "10px"
-  @State marginTop: string = "10px"
-  @State marginLeft: string = "10px"
-  @State marginRingt: string= "10px"
-  @State paddingBottom: string= "5"
-  @State paddingTop: string= "5"
-  @State paddingLeft: string= "5"
-  @State paddingRingt: string= "5"
-  @State constraintSize: constraintSize = { minWidth: 20, maxWidth: 200, minHeight: 0, maxHeight: 50 }
-  @State layoutPriority: string= "9px"
-  @State layoutWeight: string = "10px"
-  @State align: Alignment = Alignment.Center
-  @State direction: Direction = Direction.Auto
-  @State position: position<{
-    x: string,
-    y: string
-  }> = { x: "50", y: "50" }
-  @State markAnchor: markAnchor<{
-    x: string,
-    y: string
-  }> = { x: "50", y: "50" }
-  @State offset: offset<{
-    x: string,
-    y: string
-  }> = { x: "50", y: "50" }
-  @State flexGrow: number = 5
-  @State flexShrink: number = 2
-  @State flexBasis: number = 0
-  @State alignSelf: ItemAlign = ItemAlign.Auto
-  @State borderStyle: BorderStyle = BorderStyle.Dashed
-  @State borderRadius: number = 10
-  @State borderWidth: string= "4px"
-  @State borderColor: Color= Color.Blue
-  @State backgroundColor: Color = Color.Pink
-  @State backgroundImageSize: ImageSize = ImageSize.Cover
-  @State backgroundImagePosition: Alignment= Alignment.Center
-  @State opacity: number= 1
-  @State visibility: Visibility= Visibility.Visible
-  @State enabled: boolean = false
-  @State zIndex: number = 1
-  @State fontStyle: FontStyle = FontStyle.Italic
-  @State fontSize: number = 15
-  @State minFontSize: number = 15
-  @State maxFontSize: number = 15
-  @State letterSpacing: number= 10
-  @State fontWeight: FontWeight= FontWeight.Bold
-  @State fontColor: Color= Color.Black
-  @State active: boolean = false
+  @State textAlign: TextAlign = TextAlign.End;
+  @State lineHeight: string = '15fp';
+  @State overflow: TextOverflow = TextOverflow.Ellipsis;
+  @State textOverflow: CustomTextOverflow = { overflow: this.overflow };
+  @State maxLines: number = 2;
+  @State baselineOffset: number = 0;
+  @State textCase: TextCase = TextCase.Normal;
+  @State decoration: CustomDecoration = { type: TextDecorationType.Underline, color: Color.Red };
+  @State color: Color = Color.Red;
+  @State width: string = "200";
+  @State height: string = "100";
+  @State size: CustomSize = { width: 200, height: 100 };
+  @State marginBottom: string = "10px";
+  @State marginTop: string = "10px";
+  @State marginLeft: string = "10px";
+  @State marginRingt: string = "10px";
+  @State paddingBottom: string = "5";
+  @State paddingTop: string = "5";
+  @State paddingLeft: string = "5";
+  @State paddingRingt: string = "5";
+  @State constraintSize: ConstraintSizeOptions = { minWidth: 20, maxWidth: 200, minHeight: 0, maxHeight: 50 };
+  @State layoutPriority: string = "9px";
+  @State layoutWeight: string = "10px";
+  @State align: Alignment = Alignment.Center;
+  @State direction: Direction = Direction.Auto;
+  @State position: Position = { x: "50", y: "50" };
+  @State markAnchor: Position = { x: "50", y: "50" };
+  @State offset: Position = { x: "50", y: "50" };
+  @State flexGrow: number = 5;
+  @State flexShrink: number = 2;
+  @State flexBasis: number = 0;
+  @State alignSelf: ItemAlign = ItemAlign.Auto;
+  @State borderStyle: BorderStyle = BorderStyle.Dashed;
+  @State borderRadius: number = 10;
+  @State borderWidth: string = "4px";
+  @State borderColor: Color = Color.Blue;
+  @State backgroundColor: Color = Color.Pink;
+  @State backgroundImageSize: ImageSize = ImageSize.Cover;
+  @State backgroundImagePosition: Alignment = Alignment.Center;
+  @State opacity: number = 1;
+  @State visibility: Visibility = Visibility.Visible;
+  @State enabled: boolean = false;
+  @State zIndex: number = 1;
+  @State fontStyle: FontStyle = FontStyle.Italic;
+  @State fontSize: number = 15;
+  @State minFontSize: number = 15;
+  @State maxFontSize: number = 15;
+  @State letterSpacing: number = 10;
+  @State fontWeight: FontWeight = FontWeight.Bold;
+  @State fontColor: Color = Color.Black;
+  @State active: boolean = false;
   private content: string = "Text Page";
 
   onPageShow() {

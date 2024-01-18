@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 @Entry
 @Component
 struct blank_testcase {
-  @State Color: Color = Color.Pink
-  @State active: boolean = false
-  private content: string = "Blank Page"
+  @State Color: Color = Color.Pink;
+  @State active: boolean = false;
+  private content: string = "Blank Page";
 
   onPageShow() {
     console.info('Blank page show called');
@@ -39,9 +39,7 @@ struct blank_testcase {
       Text('on/off').fontSize(18).height(60)
     }
     .key('flex')
-    .width('100%')
-    .height('100%')
-
+    .width('100%').height('100%')
 
   }
 }
