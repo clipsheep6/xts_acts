@@ -323,7 +323,7 @@ export default function dlpTest() {
       console.info(curTag, "start");
 
       try {
-        let uriArray = ['uri'];
+        var uriArray = ['uri'];
         await dlpPermission.setRetentionState(uriArray);
         expect(false).assertTrue();
       } catch (err) {
@@ -346,10 +346,11 @@ export default function dlpTest() {
       var curTag = TAG + "Test_setRetentionState_002";
       console.info(curTag, "start");
 
-      let uriArray = ['uri'];
+      var uriArray = ['uri'];
       dlpPermission.setRetentionState(uriArray, async (err) => {
         expect(err.code).assertEqual(DLPErrCode.ERR_JS_API_FOR_SANDBOX_ERROR);
         console.info(curTag, "end");
+        done();
       });
     });
 
@@ -425,7 +426,7 @@ export default function dlpTest() {
         console.info(curTag, "end");
         return;
       }
-      let uriArray = ['uri'];
+      var uriArray = ['uri'];
       await dlpPermission.cancelRetentionState(uriArray);
       try {
         await dlpPermission.uninstallDLPSandbox(bundleName, userId, sandboxInfo.appIndex);
@@ -554,10 +555,11 @@ export default function dlpTest() {
       var curTag = TAG + "Test_cancelRetentionState_002";
       console.info(curTag, "start");
 
-      let uriArray = ['uri'];
+      var uriArray = ['uri'];
       dlpPermission.cancelRetentionState(uriArray, async (err) => {
         expect(err).assertEqual(null);
         console.info(curTag, "end");
+        done();
       });
     })
 
@@ -714,6 +716,7 @@ export default function dlpTest() {
           await dlpPermission.uninstallDLPSandbox(bundleName, userId, sandboxInfo.appIndex);
         } catch (err) {
           console.info(curTag, "uninstallDLPSandbox failed", err.code, err.message);
+          done();
         }
         console.info(curTag, "end");
       });
@@ -812,6 +815,7 @@ export default function dlpTest() {
         expect(err).assertEqual(null);
 
         console.info(curTag, "end");
+        done();
       });
       try {
         await dlpPermission.cancelRetentionState([uri]);
@@ -867,6 +871,7 @@ export default function dlpTest() {
         console.info(curTag, "uninstallDLPSandbox failed", err.code, err.message);
       }
       console.info(curTag, "end");
+      done();
     })
 
     /**
@@ -905,6 +910,7 @@ export default function dlpTest() {
       }
       expect(result.resultCode).assertEqual(DLPErrCode.ERR_JS_API_NOT_FOR_SANDBOX_ERROR);
       console.info(curTag, "end");
+      done();
     })
 
     /**
@@ -940,17 +946,18 @@ export default function dlpTest() {
     it('Test_getRetentionSandboxList_008', 0, async function (done) {
       var curTag = TAG + "Test_getRetentionSandboxList_008";
       console.info(curTag, "start");
+      done();
       try {
         // @ts-ignore
         dlpPermission.getRetentionSandboxList(-1, async (err, data) => {
           expect(false).assertTrue();
           console.info(curTag, "end");
-
+          done();
         });
       } catch (err) {
         expect(err.code).assertEqual(DLPErrCode.ERR_JS_PARAMETER_ERROR);
         console.info(curTag, "end");
-
+        done();
         return;
       }
       expect(false).assertTrue();
@@ -1024,6 +1031,7 @@ export default function dlpTest() {
           console.info(curTag, "uninstallDLPSandbox failed", err.code, err.message);
         }
         console.info(curTag, "end");
+        done();
       });
     })
 
@@ -1063,6 +1071,7 @@ export default function dlpTest() {
       }
       expect(result.resultCode).assertEqual(DLPErrCode.ERR_JS_API_NOT_FOR_SANDBOX_ERROR);
       console.info(curTag, "end");
+      done();
     })
 
     /**
@@ -1101,6 +1110,7 @@ export default function dlpTest() {
       }
       expect(result.resultCode).assertEqual(DLPErrCode.ERR_JS_API_NOT_FOR_SANDBOX_ERROR);
       console.info(curTag, "end");
+      done();
     })
 
     /**
@@ -1193,6 +1203,7 @@ export default function dlpTest() {
       } catch (err) {
         expect(err.code).assertEqual(DLPErrCode.ERR_JS_INVALID_PARAMETER);
         console.info(curTag, "end");
+        done();
       }
     })
 
