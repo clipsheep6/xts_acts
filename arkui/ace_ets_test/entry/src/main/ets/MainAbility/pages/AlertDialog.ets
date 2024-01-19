@@ -36,7 +36,7 @@ struct alertdialog {
               value: '11111111111',
               fontColor: '#FFFF0000',
               backgroundColor: '#FFFFC0CB',
-              alignment: 'DialogAlignment.Top',
+              alignment: DialogAlignment.Top,
               action: () => {
                 this.currentTest = 'primaryButton'
               }

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,16 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// let ItemDragInfo: {
-//   x: 5,
-//   y: 5
-// }
+interface  ItemDragInfo {
+  x: 5,
+  y: 5
+}
 
 @Entry
 @Component
 struct ListExample {
   private arr1: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  private arr2: string[] = ['a', 'b', 'c', 'd', 'e', 'f']
+  private arr2: number[] = ['a', 'b', 'c', 'd', 'e', 'f']
   @State editFlag: boolean = false
   @State bool1: boolean = false
   @State bool2: boolean = false
@@ -30,7 +31,7 @@ struct ListExample {
     Stack({ alignContent: Alignment.TopStart }) {
       Column() {
         List({ space: 20, initialIndex: 0 }) {
-          ForEach(this.arr1, (item: string) => {
+          ForEach(this.arr1, (item:string) => {
             ListItem() {
               Text('' + item)
                 .width('100%')
@@ -40,7 +41,7 @@ struct ListExample {
                 .borderRadius(10)
                 .backgroundColor(0xFFFFFF)
             }.editable(true)
-          }, (item: string) => item)
+          }, (item:string) => item)
         }
         .key('list')
         .listDirection(Axis.Vertical)

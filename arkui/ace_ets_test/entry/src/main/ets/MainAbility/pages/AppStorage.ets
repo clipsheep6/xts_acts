@@ -47,7 +47,7 @@ struct appStorage_test {
   @State str6: string = link3.get().toString();
   @State PropB: string = PropBValue
   @State PropA: string = PropAValue
-  @State keys: string = this.keys
+  @State keys: string = keys
   @State str4: string = link1.get().toString()
   @State str5: string = setPropAValue
   @State str7: string = deleteValue
