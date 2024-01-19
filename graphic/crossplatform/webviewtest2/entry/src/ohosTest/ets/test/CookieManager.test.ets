@@ -65,8 +65,8 @@ export default function CookieManagerTest() {
      * @tc.type  : Func
      * @tc.level : 2
      */
-    it('ON_LOAD_INTERCEPT_TEST_001', 0, async () => {
-      console.log('ON_LOAD_INTERCEPT_TEST_001 test start');
+    it('SUB_Web_WebView_On_Load_Intercept_Func_0100', 0, async () => {
+      console.log('SUB_Web_WebView_On_Load_Intercept_Func_0100 test start');
       const driver: Driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
       const CHANGE_TABS: Component = await driver.findComponent(ON.text('设置页签'));
@@ -90,8 +90,8 @@ export default function CookieManagerTest() {
       const ON_EVENT_VALUE: Component = await driver.findComponent(ON.id('ON_EVENT_VALUE'));
       const value: string = await ON_EVENT_VALUE.getText();
       expect(value).assertContain('阻止此次加载');
-      console.log('ON_LOAD_INTERCEPT_TEST_001 success');
-      console.log('ON_LOAD_INTERCEPT_TEST_001 test end');
+      console.log('SUB_Web_WebView_On_Load_Intercept_Func_0100 success');
+      console.log('SUB_Web_WebView_On_Load_Intercept_Func_0100 test end');
     });
 
     /**
