@@ -58,12 +58,16 @@ export default function connectionJsunit() {
         done();
         return;
       }
-      type HttpRequest = http.HttpRequest;
-      type TCPSocket = socket.TCPSocket;
-      type UDPSocket = socket.UDPSocket;
-      expect(typeof HttpRequest == typeof connection.HttpRequest).assertTrue();
-      expect(typeof TCPSocket == typeof connection.TCPSocket).assertTrue();
-      expect(typeof UDPSocket == typeof connection.UDPSocket).assertTrue();
+
+      let HttpRequest: http.HttpRequest = http.createHttp();
+      let TCPSocket: socket.TCPSocket = socket.constructTCPSocketInstance();
+      let UDPSocket: socket.UDPSocket = socket.constructUDPSocketInstance();
+      let connectionHttpRequest: connection.HttpRequest = http.createHttp();
+      let connectionTcpSocket: connection.TCPSocket = socket.constructTCPSocketInstance();
+      let connectionUdpSocket: connection.UDPSocket = socket.constructUDPSocketInstance();
+      expect(typeof HttpRequest == typeof connectionHttpRequest).assertTrue();
+      expect(typeof TCPSocket == typeof connectionTcpSocket).assertTrue();
+      expect(typeof UDPSocket == typeof connectionUdpSocket).assertTrue();
       done();
     });
 

@@ -115,7 +115,7 @@ export default function StatisticsTest() {
      */
     it('SUB_Telephony_NetworkManager_getIfaceRxBytes_Async_0400', 0, async (done: Function) => {
       let caseName: string = 'SUB_Telephony_NetworkManager_getIfaceRxBytes_Async_0400';
-      let ifaceName: string = null;
+      let iFaceName: string = null;
       try {
         statistics.getIfaceRxBytes(iFaceName, (err: BusinessError, data: number) => {
           if (err) {
@@ -212,7 +212,7 @@ export default function StatisticsTest() {
      */
     it('SUB_Telephony_NetworkManager_getIfaceRxBytes_Promise_0400', 0, async (done: Function) => {
       let caseName: string = 'SUB_Telephony_NetworkManager_getIfaceRxBytes_Promise_0400';
-      let ifaceName: string = null;
+      let iFaceName: string = null;
       try {
         statistics.getIfaceRxBytes(iFaceName).then((data: number) => {
           console.log(`${caseName} getIfaceRxBytes success ${JSON.stringify(data)}`);
@@ -313,7 +313,7 @@ export default function StatisticsTest() {
      */
     it('SUB_Telephony_NetworkManager_getIfaceTxBytes_Async_0400', 0, async (done: Function) => {
       let caseName: string = 'SUB_Telephony_NetworkManager_getIfaceTxBytes_Async_0400';
-      let ifaceName: string = null;
+      let iFaceName: string = null;
       try {
         statistics.getIfaceTxBytes(iFaceName, (err: BusinessError, data: number) => {
           if (err) {
@@ -410,7 +410,7 @@ export default function StatisticsTest() {
      */
     it('SUB_Telephony_NetworkManager_getIfaceTxBytes_Promise_0400', 0, async (done: Function) => {
       let caseName: string = 'SUB_Telephony_NetworkManager_getIfaceTxBytes_Promise_0400';
-      let ifaceName: string = null;
+      let iFaceName: string = null;
       try {
         statistics.getIfaceTxBytes(iFaceName).then((data: number) => {
           console.log(`${caseName} getIfaceTxBytes success ${JSON.stringify(data)}`);
