@@ -1010,8 +1010,8 @@ export default function requestDownTest() {
           "Range": "bytes=0-1000"
         },
         index: 0,
-        begins: 0,
-        ends: -1
+        begins: 10,
+        ends: 500
       };
       let callbackCompleted = (progress: request.agent.Progress): void => {
         flag = true;
@@ -1039,7 +1039,7 @@ export default function requestDownTest() {
       let flag: boolean = false;
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
-        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/te',
         saveas: './',
         overwrite: true,
         mode:request.agent.Mode.FOREGROUND,
@@ -1109,7 +1109,7 @@ export default function requestDownTest() {
       let flag: boolean = false;
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
-        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/te',
         mode: request.agent.Mode.FOREGROUND,
         network: request.agent.Network.WIFI,
         saveas: './',
