@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 // @git-nocheck
-import router from '@system.router';
+import router from '@ohos.router';
 
 let paramInfo: Object = router.getParams();
 console.info("cd paramInfo" + JSON.stringify(paramInfo));
@@ -22,12 +22,8 @@ class Decoration {
  type: TextDecorationType;
  color: Color;
 }
-class Size {
-  width: number;
-  height: number;
-}
 
-class CustomTextOverFlow {
+interface CustomTextOverFlow {
   overflow: TextOverflow
 }
 
@@ -43,9 +39,9 @@ struct text_textcase {
   @State textCase: TextCase = TextCase.Normal;
   @State decoration: Decoration = { type: TextDecorationType.Underline, color: Color.Red };
   @State color: Color = Color.Red;
-  @State width: string = "200";
-  @State height: string = "100";
-  @State size: Size = { width: 200, height: 100 };
+  @State customWidth: string = "200";
+  @State customHeight: string = "100";
+  @State customSize: SizeOptions = { width: 200, height: 100 };
   @State marginBottom: string = "10px";
   @State marginTop: string = "10px";
   @State marginLeft: string = "10px";
@@ -54,29 +50,29 @@ struct text_textcase {
   @State paddingTop: string = "5";
   @State paddingLeft: string = "5";
   @State paddingRight: string = "5";
-  @State constraintSize: ConstraintSizeOptions = { minWidth: 20, maxWidth: 200, minHeight: 0, maxHeight: 50 };
+  @State customConstraintSize: ConstraintSizeOptions = { minWidth: 20, maxWidth: 200, minHeight: 0, maxHeight: 50 };
   @State layoutPriority: string = "9px";
-  @State layoutWeight: string = "10px";
-  @State align: Alignment = Alignment.Center;
-  @State direction: Direction = Direction.Auto;
-  @State position: Position = { x: "50", y: "50" };
-  @State markAnchor: Position = { x: "50", y: "50" };
-  @State offset: Position = { x: "50", y: "50" };
-  @State flexGrow: number = 5;
-  @State flexShrink: number = 2;
-  @State flexBasis: number = 0;
-  @State alignSelf: ItemAlign = ItemAlign.Auto;
-  @State borderStyle: BorderStyle = BorderStyle.Dashed;
-  @State borderRadius: number = 10;
-  @State borderWidth: string = "4px";
-  @State borderColor: Color = Color.Blue;
-  @State backgroundColor: Color = Color.Pink;
-  @State backgroundImageSize: ImageSize = ImageSize.Cover;
-  @State backgroundImagePosition: Alignment = Alignment.Center;
-  @State opacity: number = 1;
-  @State visibility: Visibility = Visibility.Visible;
-  @State enabled: boolean = false;
-  @State zIndex: number = 1;
+  @State customLayoutWeight: string = "10px";
+  @State customAlign: Alignment = Alignment.Center;
+  @State customDirection: Direction = Direction.Auto;
+  @State customPosition: Position = { x: "50", y: "50" };
+  @State customMarkAnchor: Position = { x: "50", y: "50" };
+  @State customOffset: Position = { x: "50", y: "50" };
+  @State customFlexGrow: number = 5;
+  @State customFlexShrink: number = 2;
+  @State customFlexBasis: number = 0;
+  @State customAlignSelf: ItemAlign = ItemAlign.Auto;
+  @State customBorderStyle: BorderStyle = BorderStyle.Dashed;
+  @State customBorderRadius: number = 10;
+  @State customBorderWidth: string = "4px";
+  @State customBorderColor: Color = Color.Blue;
+  @State customBackgroundColor: Color = Color.Pink;
+  @State customBackgroundImageSize: ImageSize = ImageSize.Cover;
+  @State customBackgroundImagePosition: Alignment = Alignment.Center;
+  @State customOpacity: number = 1;
+  @State customVisibility: Visibility = Visibility.Visible;
+  @State customEnabled: boolean = false;
+  @State customZIndex: number = 1;
   @State fontStyle: FontStyle = FontStyle.Italic;
   @State fontSize: number = 15;
   @State minFontSize: number = 15;
@@ -101,30 +97,30 @@ struct text_textcase {
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
       Text('Text Anto test,Text Anto test,Text Anto test,Text Anto test,test,Text Anto test,Text Anto test,Text Anto test,Text Anto test,Text Anto test,Text Anto test')
-        .width(this.width)
-        .height(this.height)
+        .width(this.customWidth)
+        .height(this.customHeight)
         .padding({ bottom: this.paddingBottom, top: this.paddingTop, right: this.paddingRight, left: this.paddingLeft })
         .margin({ bottom: this.marginBottom, top: this.marginTop, right: this.marginRight, left: this.marginLeft })
-        .constraintSize(this.constraintSize)
-        .layoutWeight(this.layoutWeight)
-        .align(this.align)
-        .direction(this.direction)
-        .position(this.position)
-        .markAnchor(this.markAnchor)
-        .offset(this.offset)
-        .flexBasis(this.flexBasis)
-        .flexGrow(this.flexGrow)
-        .flexShrink(this.flexShrink)
-        .alignSelf(this.alignSelf)
-        .borderStyle(this.borderStyle)
-        .borderRadius(this.borderRadius)
-        .borderWidth(this.borderWidth)
-        .borderColor(this.borderColor)
-        .backgroundColor(this.backgroundColor)
-        .opacity(this.opacity)
-        .visibility(this.visibility)
-        .enabled(this.enabled)
-        .zIndex(this.zIndex)
+        .constraintSize(this.customConstraintSize)
+        .layoutWeight(this.customLayoutWeight)
+        .align(this.customAlign)
+        .direction(this.customDirection)
+        .position(this.customPosition)
+        .markAnchor(this.customMarkAnchor)
+        .offset(this.customOffset)
+        .flexBasis(this.customFlexBasis)
+        .flexGrow(this.customFlexGrow)
+        .flexShrink(this.customFlexShrink)
+        .alignSelf(this.customAlignSelf)
+        .borderStyle(this.customBorderStyle)
+        .borderRadius(this.customBorderRadius)
+        .borderWidth(this.customBorderWidth)
+        .borderColor(this.customBorderColor)
+        .backgroundColor(this.customBackgroundColor)
+        .opacity(this.customOpacity)
+        .visibility(this.customVisibility)
+        .enabled(this.customEnabled)
+        .zIndex(this.customZIndex)
         .fontColor(this.fontColor)
         .fontSize(this.fontSize)
         .minFontSize(this.minFontSize)
@@ -158,7 +154,7 @@ struct text_textcase {
         .enabled(true)
         .fontWeight(FontWeight.Normal)
         .textAlign(TextAlign.Start)
-        .textOverflow(TextOverflow.Clip)
+        .textOverflow({ overflow: TextOverflow.Clip })
         .maxLines(2)
         .textCase(TextCase.LowerCase)
         .decoration({ "type": TextDecorationType.LineThrough, "color": Color.Red })
@@ -176,7 +172,7 @@ struct text_textcase {
         .visibility(Visibility.None)
         .fontWeight(FontWeight.Bolder)
         .textAlign(TextAlign.Center)
-        .textOverflow(TextOverflow.None)
+        .textOverflow({overflow: TextOverflow.None})
         .textCase(TextCase.UpperCase)
         .decoration({ "type": TextDecorationType.None, "color": Color.Red })
         .fontColor(Color.Blue)
@@ -229,8 +225,7 @@ struct text_textcase {
 
     }
     .key('flex')
-    .width('100%')
-    .height('100%')
+    .width('100%').height('100%')
   }
 }
 

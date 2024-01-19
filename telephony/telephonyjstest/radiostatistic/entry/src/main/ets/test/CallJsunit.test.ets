@@ -37,8 +37,8 @@ export default function callJsunit() {
       let caseName: string = 'Telephony_Call_HasVoiceCapability_HasVoiceCapability';
       console.log(`==========> ${caseName} Test start ==========>`);
       let ret: boolean = false;
-      let voiceCapablity: boolean = call.hasVoiceCapability();
-      if (voiceCapablity === true || voiceCapablity === false) {
+      let voiceCapAbility: boolean = call.hasVoiceCapability();
+      if (voiceCapAbility === true || voiceCapAbility === false) {
         ret = true;
       }
       expect(ret).assertTrue();

@@ -49,8 +49,7 @@ struct badge {
               .width(100).height(50)
               .backgroundColor(0x317aff)
           }
-          .width(100)
-          .height(50)
+          .width(100).height(50)
           .key('badge')
 
           Text("BadgePosition.RightTop").fontSize(16)
@@ -67,8 +66,7 @@ struct badge {
               .width(100).height(50)
               .backgroundColor(0x317aff)
           }
-          .width(100)
-          .height(50)
+          .width(100).height(50)
           .key('badge1')
 
           Text("BadgePosition.Left").fontSize(16)

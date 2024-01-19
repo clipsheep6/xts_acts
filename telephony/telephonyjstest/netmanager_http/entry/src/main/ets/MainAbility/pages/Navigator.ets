@@ -16,7 +16,7 @@
 @Entry
 @Component
 struct navigator_testcase {
-  @State active: boolean = false
+  @State active: boolean = false;
   @State params: object = new Object({ text: 'news' });
 
   onPageShow() {

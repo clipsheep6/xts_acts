@@ -16,9 +16,9 @@
 @Entry
 @Component
 struct blank_testcase {
-  @State Color: Color = Color.Pink
-  @State active: boolean = false
-  private content: string = "Blank Page"
+  @State Color: Color = Color.Pink;
+  @State active: boolean = false;
+  private content: string = "Blank Page";
 
   onPageShow() {
     console.info('Blank page show called');
@@ -41,8 +41,6 @@ struct blank_testcase {
         .height(60)
     }
     .key('flex')
-    .width('100%')
-    .height('100%')
-
+    .width('100%').height('100%')
   }
 }

@@ -17,8 +17,8 @@
 @Component
 struct gridContainer {
   @State sizeType: SizeType = SizeType.XS;
-  @State active: boolean = false
-  private content: string = "GridContainer Page"
+  @State active: boolean = false;
+  private content: string = "GridContainer Page";
 
   onPageShow() {
     console.info('GridContainer page show called');
@@ -208,7 +208,6 @@ struct gridContainer {
       }
     }
     .key('flex')
-    .width('100%')
-    .height('100%')
+    .width('100%').height('100%')
   }
 }
