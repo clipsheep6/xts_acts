@@ -31,12 +31,13 @@ struct alertdialog {
           AlertDialog.show({
             title: 'Title',
             message: 'This is message',
+            alignment: DialogAlignment.Top,
             autoCancel: true,
             primaryButton: {
               value: '11111111111',
               fontColor: '#FFFF0000',
               backgroundColor: '#FFFFC0CB',
-              alignment: DialogAlignment.Top,
+
               action: () => {
                 this.currentTest = 'primaryButton'
               }

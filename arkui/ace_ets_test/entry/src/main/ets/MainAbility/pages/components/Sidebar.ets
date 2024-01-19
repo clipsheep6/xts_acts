@@ -25,10 +25,21 @@ struct SideBarContainerTest {
   onBuildDone() {
     console.info('sideBar page build done called');
   }
-
+  // { showSideBarContainer: true, style: SideBarContainerStyle.Embed }
+//   {
+//   showSideBarContainer: true,
+//   style: SideBarContainerStyle.Overlay,
+//   buttonAttr: ({
+//     left: 12,
+//     top: 12,
+//     width: 12,
+//     height: 12,
+//     icon: "/common/1.png"
+//   })
+// }
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-      SideBarContainer({ showSideBarContainer: true, style: SideBarContainerStyle.Embed }) {
+      SideBarContainer() {
         Column() {
           Button('One')
             .onClick(() => {
@@ -50,7 +61,7 @@ struct SideBarContainerTest {
               console.info('click four')
               this.text = 'four click'
             })
-          Text(this.text)
+          // Text(this.text)
         }
 
         RowSplit() {
@@ -72,17 +83,7 @@ struct SideBarContainerTest {
         console.info('status' + value)
       })
 
-      SideBarContainer({
-        showSideBarContainer: true,
-        style: SideBarContainerStyle.Overlay,
-        buttonAttr: ({
-          left: 12,
-          top: 12,
-          width: 12,
-          height: 12,
-          icon: "/common/1.png"
-        })
-      }) {
+      SideBarContainer() {
         Column() {
           Button('One')
             .onClick(() => {
@@ -104,7 +105,7 @@ struct SideBarContainerTest {
               console.info('click four')
               this.text = 'four click'
             })
-          Text(this.text)
+          // Text(this.text)
         }
 
         RowSplit() {
