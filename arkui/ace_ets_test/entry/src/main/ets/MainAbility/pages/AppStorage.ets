@@ -29,7 +29,7 @@ let PropBValue = String(AppStorage.Get("PropB"))
 AppStorage.SetAndProp("PropA", 47)
 let PropAValue = String(AppStorage.Get("PropA"))
 for (let key of AppStorage.Keys()) {
-  var keys = key
+  let keys = key
 }
 let setPropAValue = String(AppStorage.Set("PropA", 20))
 let deleteValue = String(AppStorage.Delete("PropC"))
@@ -47,7 +47,7 @@ struct appStorage_test {
   @State str6: string = link3.get().toString();
   @State PropB: string = PropBValue
   @State PropA: string = PropAValue
-  @State keys: string = this.keys
+  // @State keys: string = this.keys
   @State str4: string = link1.get().toString()
   @State str5: string = setPropAValue
   @State str7: string = deleteValue

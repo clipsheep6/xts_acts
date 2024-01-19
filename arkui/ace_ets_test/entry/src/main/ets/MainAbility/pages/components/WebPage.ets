@@ -15,21 +15,21 @@
 // xxx.ets
 import web_webview from '@ohos.web.webview'
 
-class testObj {
-  constructor() {
-  }
-
-  test(data1: string, data2: string, data3: string): string {
-    console.log("data1:" + data1)
-    console.log("data2:" + data2)
-    console.log("data3:" + data3)
-    return "AceString"
-  }
-
-  toString(): void {
-    console.log('toString' + "interface instead.")
-  }
-}
+// class testObj {
+//   constructor() {
+//   }
+//
+//   test(data1: string, data2: string, data3: string): string {
+//     console.log("data1:" + data1)
+//     console.log("data2:" + data2)
+//     console.log("data3:" + data3)
+//     return "AceString"
+//   }
+//
+//   toString(): void {
+//     console.log('toString' + "interface instead.")
+//   }
+// }
 
 @Entry
 @Component
@@ -56,17 +56,17 @@ struct WebComponent {
   controller: WebController = new WebController();
   cookie: WebCookie = new WebCookie()
 
-  // testObj = {
-  //   test: (data1, data2, data3) => {
-  //     console.log('ets test web  : ' + data1)
-  //     console.log('ets test web  : ' + data2)
-  //     console.log('ets test web  : ' + data3)
-  //     return 'AceString'
-  //   },
-  //   toString: () => {
-  //     console.log('ets test web  : ++++++toString')
-  //   }
-  // }
+  testObj = {
+    test: (data1, data2, data3) => {
+      console.log('ets test web  : ' + data1)
+      console.log('ets test web  : ' + data2)
+      console.log('ets test web  : ' + data3)
+      return 'AceString'
+    },
+    toString: () => {
+      console.log('ets test web  : ++++++toString')
+    }
+  }
 
   build() {
     Column() {
@@ -292,9 +292,8 @@ struct WebComponent {
           .width(150)
           .onClick(() => {
             this.controller.loadUrl(
-              'https://www.baidu.com',
-              [{ key: "div", value: "div" }]
-            )
+              'https://www.baidu.com'
+              // [{ key: "div", value: "div" }])
           })
       }
 
@@ -326,9 +325,9 @@ struct WebComponent {
           .width(150)
           .onClick(() => {
             this.controller.registerJavaScriptProxy(
-              this.testObj,
-              'objName',
-              ['test', 'toString']
+              this.testObj
+              // 'objName',
+              // ['test', 'toString']
             );
           })
         Button('执行JavaScript脚本')
