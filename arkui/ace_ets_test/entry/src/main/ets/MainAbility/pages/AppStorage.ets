@@ -29,7 +29,7 @@ let PropBValue = String(AppStorage.Get("PropB"))
 AppStorage.SetAndProp("PropA", 47)
 let PropAValue = String(AppStorage.Get("PropA"))
 for (let key of AppStorage.Keys()) {
-  let keys = key
+  var keys = key
 }
 let setPropAValue = String(AppStorage.Set("PropA", 20))
 let deleteValue = String(AppStorage.Delete("PropC"))

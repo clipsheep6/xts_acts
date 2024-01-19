@@ -15,21 +15,21 @@
 // xxx.ets
 import web_webview from '@ohos.web.webview'
 
-// class TestObj {
-//   constructor() {
-//   }
-//
-//   test(data1: string, data2: string, data3: string): string {
-//     console.log("data1:" + data1)
-//     console.log("data2:" + data2)
-//     console.log("data3:" + data3)
-//     return "AceString"
-//   }
-//
-//   toString(): void {
-//     console.log('toString' + "interface instead.")
-//   }
-// }
+class testObj {
+  constructor() {
+  }
+
+  test(data1: string, data2: string, data3: string): string {
+    console.log("data1:" + data1)
+    console.log("data2:" + data2)
+    console.log("data3:" + data3)
+    return "AceString"
+  }
+
+  toString(): void {
+    console.log('toString' + "interface instead.")
+  }
+}
 
 @Entry
 @Component
@@ -55,17 +55,18 @@ struct WebComponent {
   @State getHitTest: HitTestType = HitTestType.Unknown
   controller: WebController = new WebController();
   cookie: WebCookie = new WebCookie()
-  testObj = {
-    test: (data1, data2, data3) => {
-      console.log('ets test web  : ' + data1)
-      console.log('ets test web  : ' + data2)
-      console.log('ets test web  : ' + data3)
-      return 'AceString'
-    },
-    toString: () => {
-      console.log('ets test web  : ++++++toString')
-    }
-  }
+
+  // testObj = {
+  //   test: (data1, data2, data3) => {
+  //     console.log('ets test web  : ' + data1)
+  //     console.log('ets test web  : ' + data2)
+  //     console.log('ets test web  : ' + data3)
+  //     return 'AceString'
+  //   },
+  //   toString: () => {
+  //     console.log('ets test web  : ++++++toString')
+  //   }
+  // }
 
   build() {
     Column() {
@@ -369,9 +370,9 @@ struct WebComponent {
         .onPageBegin((e) => {
           console.log("webTest : onPageBegin: " + e.url);
         })
-        .onPageEnd(e => {
+        .onPageEnd((e) => {
           console.log("webTest : onPageEnd: " + e.url);
-          this.controller.runJavaScript('test()')
+          // this.controller.runJavaScript('test()')
 
         })
         .onProgressChange((e) => {
@@ -404,12 +405,14 @@ struct WebComponent {
           console.log("webTest : onAlert .result : " + event.result);
           console.log("webTest : onAlert .result : " + event.result.handleCancel());
           console.log("webTest : onAlert .result : " + event.result.handleConfirm());
+          return true;
         })
         .onBeforeUnload((event) => {
           console.log("webTest : onBeforeUnload: " + event.message);
           console.log("webTest : onBeforeUnload .result : " + event.result);
           console.log("webTest : onBeforeUnload .result : " + event.result.handleCancel());
           console.log("webTest : onBeforeUnload .result : " + event.result.handleConfirm());
+          return true;
         })
         .onConfirm((event) => {
           console.log("webTest : onConfirm: " + event.url);
@@ -417,6 +420,7 @@ struct WebComponent {
           console.log("webTest : onConfirm .result : " + event.result);
           console.log("webTest : onConfirm .result : " + event.result.handleCancel());
           console.log("webTest : onConfirm .result : " + event.result.handleConfirm());
+          return true;
         })
         .onConsole((event) => {
           console.log("webTest : onConsole .message : " + event.message);
@@ -436,6 +440,7 @@ struct WebComponent {
             level = MessageLevel.Warn
             console.log("webTest : onConsole: level Warn");
           }
+          return true;
         })
         .onErrorReceive((e) => {
           console.log("webTest : onErrorReceive .request : " + e.request);
@@ -467,16 +472,22 @@ struct WebComponent {
         .onRefreshAccessedHistory((e) => {
           console.log("webTest : onRefreshAccessedHistory .url : " + e.url);
           console.log("webTest : onRefreshAccessedHistory .refreshed : " + 'e.refreshed');
+        })// .onUrlLoadIntercept((e) => {
+          //   console.log("webTest : onUrlLoadIntercept .data : " + e.data);
+          // })
+        .onLoadIntercept((event) => {
+          console.log('url:' + event.data.getRequestUrl())
+          console.log('isMainFrame:' + event.data.isMainFrame())
+          console.log('isRedirect:' + event.data.isRedirect())
+          console.log('isRequestGesture:' + event.data.isRequestGesture())
+          return true
         })
-        .onUrlLoadIntercept((e) => {
-          console.log("webTest : onUrlLoadIntercept .data : " + e.data);
-        })
-        .onSslErrorReceive((e) => {
-          console.log("webTest : onSslErrorReceive .handle : " + e.handle);
+        .onSslErrorEventReceive((e) => {
+          console.log("webTest : onSslErrorReceive .handle : " + e.handler.handleConfirm());
           console.log("webTest : onSslErrorReceive .error : " + e.error);
         })
         .onRenderExited((e) => {
-          console.log("webTest : onRenderExited .detail : " + JSON.stringify(e.detail));
+          console.log("webTest : onRenderExited .renderExitReason : " + JSON.stringify(e.renderExitReason));
         })
         .onFileSelectorShow((e) => {
           console.log("webTest : onFileSelectorShow .callback : " + e.callback);
