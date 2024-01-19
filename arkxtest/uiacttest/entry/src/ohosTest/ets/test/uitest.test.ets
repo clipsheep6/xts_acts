@@ -21,7 +21,7 @@ import Want from '@ohos.app.ability.Want';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const waitUiReadyMs = 1000;
+const waitUiReadyMs = 1500;
 
 
 async function startAbility(bundleName: string, abilityName: string) {
@@ -62,12 +62,15 @@ export default function UiTest() {
       let driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
       let Button = await driver.findComponent(ON.text('next page'));
+      await driver.delayMs(waitUiReadyMs);
       expect(Button != null).assertTrue();
       let center = await Button.getBoundsCenter();
+      await driver.delayMs(waitUiReadyMs);
       expect(center != null).assertTrue();
       await driver.click(center.x, center.y);
       await driver.delayMs(waitUiReadyMs);
       let newButton = await driver.findComponent(ON.text('back to index'));
+      await driver.delayMs(waitUiReadyMs);
       expect(newButton != null).assertTrue();
       let text = await newButton.getText();
       await driver.delayMs(waitUiReadyMs);

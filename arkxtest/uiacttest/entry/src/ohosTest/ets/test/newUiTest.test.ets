@@ -21,7 +21,7 @@ import Want from '@ohos.app.ability.Want';
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 const bundleName = abilityDelegatorRegistry.getArguments().bundleName;
-const waitUiReadyMs = 1000;
+const waitUiReadyMs = 1500;
 
 
 async function startAbility(bundleName: string, abilityName: string) {
