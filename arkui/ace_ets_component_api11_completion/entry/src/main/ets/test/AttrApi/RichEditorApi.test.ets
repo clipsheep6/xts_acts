@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -20,7 +20,7 @@ import { Driver, ON ,MouseButton} from '@ohos.UiTest';
 export default function RichEditorApi() {
   describe('RichEditorApi', function () {
     beforeEach(async function (done) {
-      console.info("flex beforeEach start");
+      console.info("RichEditorApi beforeEach start");
       let options = {
         uri: 'MainAbility/pages/AttrApi/RichEditorApi',
       }
@@ -154,6 +154,37 @@ export default function RichEditorApi() {
       done();
 
     });
+
+
+    /*
+    * @tc.number      RichEditorApi_005
+    * @tc.name        RichEditorApi_005
+    * @tc.desc        RichEditorApi RichEditorResponseType test
+    * @tc.level       Level 2
+    */
+    it('RichEditorApi_005', 0, async function (done) {
+      console.info('[RichEditorApi_005] START');
+      await Utils.sleep(1000);
+
+      let driver= Driver.create();
+      await Utils.sleep(1000);
+      let RichEditor4 = Utils.getComponentRect('RichEditorApi_RichEditor4')
+      await driver.longClick(parseInt((RichEditor4.right-RichEditor4.left)*0.5+RichEditor4.left),
+        parseInt((RichEditor4.bottom-RichEditor4.top)*0.5+RichEditor4.top))
+      await Utils.sleep(2000);
+
+      let strJson = getInspectorByKey('RichEditorApi_text2');
+      let obj = JSON.parse(strJson);
+      await Utils.sleep(1000);
+      console.info("[RichEditorApi_005] obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.content).assertEqual('SecondMenuAppear');
+
+      console.info('[RichEditorApi_005] END');
+      done();
+
+    });
+
+
 
   })
 }
