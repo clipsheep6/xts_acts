@@ -34,19 +34,8 @@ export default function ContactInterfaceStageTest() {
     beforeAll( async function () {
       console.info("beforeAll case");
       try {
-        let permissions = ["ohos.permission.WRITE_CONTACTS", "ohos.permission.READ_CONTACTS"];
-        let atManager = abilityAccessCtrl.createAtManager();
-        atManager.requestPermissionsFromUser(globalThis.context, permissions, (err, result) => {
-          if (err) {
-            console.info('getPermission failed: ' + JSON.stringify(err));
-          } else {
-            console.info('getPermission suc: ' + JSON.stringify(result));
-          }
-        });
-
         let driver = await uitest.Driver.create();
         sleep(500);
-
         for (let i = 0; i < 5; i++) {
           await sleep(500);
           console.info("driver is " + JSON.stringify(driver));
