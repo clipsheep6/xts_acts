@@ -330,7 +330,7 @@ export default function getThumbnailTest () {
       const testNum = 'getThumbnail_callback_009';
       const fetchOps = fetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const size = { width: 0, height: 0 };
-      await getThumbnailCallbackNormal(done, testNum, fetchOps, size);
+      await getThumbnailCallbackAbnormal(done, testNum, fetchOps, size);
     });
 
     /**
@@ -706,7 +706,7 @@ export default function getThumbnailTest () {
       const testNum = 'getThumbnail_promise_009';
       const fetchOps = fetchOption(testNum, photoKeys.DISPLAY_NAME, '01.jpg');
       const size = { width: 0, height: 0 };
-      await getThumbnailPromiseNormal(done, testNum, fetchOps, size);
+      await getThumbnailPromiseAbnormal(done, testNum, fetchOps, size);
     });
 
     /**
@@ -894,7 +894,7 @@ export default function getThumbnailTest () {
       const testNum = 'getThumbnail_promise_021';
       const fetchOps = fetchOption(testNum, photoKeys.DISPLAY_NAME, '01.mp4');
       const size = { width: 0, height: 0 };
-      await getThumbnailPromiseNormal(done, testNum, fetchOps, size);
+      await getThumbnailPromiseAbnormal(done, testNum, fetchOps, size);
     });
 
     /**
