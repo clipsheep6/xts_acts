@@ -539,7 +539,7 @@ export default function PhotoAccessHelperTest() {
                     console.log("i: " + i)
                     if (err == undefined) {
                         console.info('getThumbnail successful ' + pixelMap);
-                        if(i<4){
+                        if(i>1 && i<4){
                             console.info('getThumbnail error');
                             expect(false).assertTrue();
                         }
@@ -548,7 +548,7 @@ export default function PhotoAccessHelperTest() {
                         }
                     } else {
                         console.info('getThumbnail fail', err);
-                        if(i>3){
+                        if(i>3 || i<2){
                             console.error('getThumbnail error');
                             expect(false).assertTrue();
                         }
