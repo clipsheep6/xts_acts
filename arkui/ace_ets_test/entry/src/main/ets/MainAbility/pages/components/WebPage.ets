@@ -290,10 +290,10 @@ struct WebComponent {
           .fontSize(15)
           .width(150)
           .onClick(() => {
-            this.controller.loadUrl({
-              url: "https://www.baidu.com",
-              additionalHttpHeaders: [{ key: 'div', value: 'div' }]
-            })
+            this.controller.loadUrl('https://www.baidu.com', [{ headerKey: "headerKey", headerValue: "headerValue" }]);
+            // this.controller.loadUrl(
+            //   'https://www.baidu.com',
+            //   [{ key: "div", value: "div" }])
           })
       }
 
@@ -324,11 +324,12 @@ struct WebComponent {
           .fontSize(15)
           .width(150)
           .onClick(() => {
-            this.controller.registerJavaScriptProxy({
-              obj: this.testObj,
-              name: 'objName',
-              methodList: ['test', 'toString']
-            })
+            this.controller.registerJavaScriptProxy(
+              this.controller.registerJavaScriptProxy(this.testObj, "objName", ["test", "toString"]);
+            //   this.testObj,
+            //   'objName',
+            //   ['test', 'toString']
+            // );
           })
         Button('执行JavaScript脚本')
           .margin({ right: 10 })
