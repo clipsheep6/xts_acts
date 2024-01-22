@@ -74,6 +74,12 @@ group("ability_runtime") {
       "stopserviceextension:stopserviceextension",
       "want:want",
       "workercontextcover:workercontextcover",
+      "actsedm:systemappforcanceltruetest",
+      "actsedmset:systemappforsettruetest",
+      "actsedmsetwu:autostartupappbydmtest",
+      "actsedmnormal:actsedmnormaltest",
+      "actsedmnormalappforcanceltrue:actsedmnormalappforcanceltruetest",
+      "actsedmnormalappforsettrue:actsnormalappforsettruetest",
     ]
   }
 }
