@@ -34,4 +34,5 @@ export default function testsuite() {
   displayAndWindowRefactorInterfaceTest(abilityContext,windowStage,abilityStorage)
   windowRichScene(abilityContext,windowStage,abilityStorage)
   pipWindowTest(abilityContext)
+  interfaceSupportSessionManagerTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
 }
