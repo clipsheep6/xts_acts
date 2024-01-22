@@ -35,7 +35,7 @@
 
 char *RDB_TEST_PATH =  NULL;
 int database = 12800;
-int database1 = 100.1;
+double database1 = 100.1;
 int database2 = 14800001;
 int database3 = 14800011;
 int database4 = 2;
