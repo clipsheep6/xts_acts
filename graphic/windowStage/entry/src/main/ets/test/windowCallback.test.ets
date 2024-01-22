@@ -13,92 +13,82 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import { describe, beforeAll, it, expect } from "@ohos/hypium"
 import ohosWindow from '@ohos.window';
 import display from '@ohos.display';
-import screenManager from '@ohos.screen';
 import { BusinessError } from '@ohos.base';
+import { Context } from '@ohos.abilityAccessCtrl';
 
-export default function windowCallbackTest(context, windowStage, abilityStorage) {
+
+function expectedError(TRUE_FLAG: boolean, error: BusinessError, caseName: string, apiName: string, done: Function, code: number) {
+  let msgStr: string = 'jsUnittest ' + caseName + ' ' + apiName + ' failed, err: ';
+  console.log(msgStr + JSON.stringify(error));
+  try {
+    expect(TRUE_FLAG).assertTrue();
+    expect(error.code === code).assertTrue();
+  } catch (error) {
+    console.info(`ohosWindow.on ${JSON.stringify(error)}`)
+  }
+  done();
+}
+
+function unexpectedError(TRUE_FLAG: boolean, error: BusinessError, caseName: string, apiName: string, done: Function,) {
+  let msgStr: string = 'jsUnittest ' + caseName + ' ' + apiName + ' failed, err: ';
+  console.log(msgStr + JSON.stringify(error));
+  try {
+    expect(TRUE_FLAG).assertFail();
+  } catch (error) {
+    console.info(`ohosWindow.on ${JSON.stringify(error)}`)
+  }
+  done();
+}
+
+async function sleep(time: number) {
+  let timeoutId: number = null;
+  let promise = new Promise<string>(resolve => {
+    timeoutId = setTimeout(() => {
+      resolve('sleep finished');
+    }, time);
+  })
+  await promise;
+  clearTimeout(timeoutId)
+}
+
+export default function windowCallbackTest(context: Context, windowStage: ohosWindow.WindowStage, abilityStorage: LocalStorage) {
   console.log('testets context: ' + JSON.stringify(context))
   console.log('testets context windowStage: ' + JSON.stringify(windowStage));
   console.log('testets context abilityStorage: ' + JSON.stringify(abilityStorage));
 
-  describe('windowCallback_test', function () {
+  describe('windowCallback_test', () => {
     console.log('describe testets start!!')
     const TRUE_FLAG = true;
     console.log('describe window_api_test start!!!');
-    var commonRGBColorArr = ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(255,255,255)', 'rgb(0,0,0)', 'rgb(249,0,230)', 'rgb(102,102,102)', 'rgb(255,247,0)'];
-    var commonNUMBERColorArr = ['#00FF0000', '#0000FF00', '#000000FF', '#00FFFFFF', '#00000000', '#00F900E6', '#00666666', '#00FFF700'];
-    var commonKEYColorArr = ['red', 'green', 'blue', 'white', 'black', 'pink', 'grey', 'yellow'];
-    var appWindowTypeArr = [];
-    var windowTypeArr = [];
-    var appWindowTypeDic = {
+    let commonRGBColorArr: Array<string> = ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(255,255,255)', 'rgb(0,0,0)', 'rgb(249,0,230)', 'rgb(102,102,102)', 'rgb(255,247,0)'];
+    let commonNUMBERColorArr: Array<string> = ['#00FF0000', '#0000FF00', '#000000FF', '#00FFFFFF', '#00000000', '#00F900E6', '#00666666', '#00FFF700'];
+    let commonKEYColorArr: Array<string> = ['red', 'green', 'blue', 'white', 'black', 'pink', 'grey', 'yellow'];
+    let appWindowTypeArr: Array<string> = [];
+    let windowTypeArr: Array<string> = [];
+    let appWindowTypeDic: Record<string, number> = {
       'TYPE_BASE': 0,
       'TYPE_APP': 0,
       'TYPE_APP_SUB_WINDOW': 1,
     };
-    var systemWindowTypeArr = [];
-    var systemWindowTypeDic = {
+    let systemWindowTypeArr: Array<string> = [];
+    let systemWindowTypeDic: Record<string, number> = {
       'TYPE_FLOAT': 8,
     }
-    var windowLayoutModeArr = [];
-    var windowLayoutModeDic = {
-      'WINDOW_LAYOUT_MODE_TILE': 1,
-      'WINDOW_LAYOUT_MODE_CASCADE': 0
-    };
-    var windowCount = 2022;
-    var listenerStatus = {
-      ready: 'ready',
-      pending: 'pending',
-      finished: 'finished'
-    };
-    var listenerData = {
-      on: false,
-      typeStr: '',
-    };
-    beforeAll(function () {
+
+    beforeAll(() => {
       appWindowTypeArr = Object.keys(appWindowTypeDic);
       systemWindowTypeArr = Object.keys(systemWindowTypeDic);
-      for (var i in ohosWindow.WindowType) {
+      for (let i in ohosWindow.WindowType) {
         windowTypeArr.push(ohosWindow.WindowType[i]);
       }
-      console.log('jsunittest beforeall');
+      console.log(': Record<string,number> beforeall');
       console.log('beforeall ohosWindow.windowType' + JSON.stringify(ohosWindow.WindowType))
     })
-    function expectedError(error, caseName, apiName, done, code) {
-      let msgStr = 'jsunittest ' + caseName + ' ' + apiName + ' failed, err: ';
-      console.log(msgStr + JSON.stringify(error));
-      try {
-        expect(TRUE_FLAG).assertTrue();
-        expect(error.code === code).assertTrue();
-      } catch (error) {
-        console.info(`ohosWindow.on ${JSON.stringify(error)}`)
-      }
-      done();
-    }
 
-    function unexpectedError(error, caseName, apiName, done) {
-      let msgStr = 'jsunittest ' + caseName + ' ' + apiName + ' failed, err: ';
-      console.log(msgStr + JSON.stringify(error));
-      try {
-        expect(TRUE_FLAG).assertFail();
-      } catch (error) {
-        console.info(`ohosWindow.on ${JSON.stringify(error)}`)
-      }
-      done();
-    }
 
-    async function sleep(time) {
-      let timeoutId = null;
-      let promise = new Promise(resolve => {
-        timeoutId = setTimeout(() => {
-          resolve('sleep finished');
-        }, time);
-      })
-      let result = await promise;
-      clearTimeout(timeoutId)
-    }
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1300
      * @tc.name      : testSetSystemBarEnable_ShowStatusBar_HideNavBar_Callback
@@ -107,13 +97,13 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSetSystemBarEnable_ShowStatusBar_HideNavBar_Callback', 0, async function (done) {
-      let caseName = 'testSetSystemBarEnable_ShowStatusBar_HideNavBar_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testSetSystemBarEnable_ShowStatusBar_HideNavBar_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_ShowStatusBar_HideNavBar_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      function getMainWindow() {
-        return new Promise(function (resolve, reject) {
-          windowStage.getMainWindow((err, data) => {
+      let getMainWindow: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
+          windowStage.getMainWindow((err: BusinessError, data: ohosWindow.Window) => {
             console.log(msgStr + 'getMainWindow data' + JSON.stringify(data));
             if (err && err.code) {
               console.log(msgStr + 'windowStage  getMainWindow failed');
@@ -126,9 +116,9 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function show(win) {
-        return new Promise(function (resolve, reject) {
-          win.show((err) => {
+      let show: Function = (win: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
+          win.show((err: BusinessError) => {
             if (err && err.code) {
               console.log(msgStr + 'mainWnd.show failed');
               reject(null)
@@ -140,8 +130,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setFullScreen(win) {
-        return new Promise(function (resolve, reject) {
+      let setFullScreen: Function = (win: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           win.setFullScreen(true, (err, data) => {
             console.log(msgStr + 'mainWnd.setFullScreen data:' + JSON.stringify(data));
             if (err && err.code) {
@@ -155,8 +145,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setSystemBarEnableNavigation(win) {
-        return new Promise(function (resolve, reject) {
+      let setSystemBarEnableNavigation: Function = (win: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           win.setSystemBarEnable(['navigation'], (err, data) => {
             console.log(msgStr + 'mainWnd.setSystemBarEnable navigation JSON.stringify(data)==' + JSON.stringify(data));
             if (err && err.code) {
@@ -170,8 +160,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setSystemBarEnableStatus(win) {
-        return new Promise(function (resolve, reject) {
+      let setSystemBarEnableStatus: Function = (win: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           win.setSystemBarEnable(['status'], (err, data) => {
             console.log(msgStr + 'mainWnd.setSystemBarEnable status JSON.stringify(data)===' + JSON.stringify(data));
             if (err && err.code) {
@@ -185,29 +175,29 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      let mainWnd = null;
-      mainWnd = await getMainWindow().catch((err) => {
+      let mainWnd: ohosWindow.Window | void = null;
+      mainWnd = await getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
       expect(!!mainWnd).assertTrue();
-      await show(mainWnd).catch((err) => {
+      await show(mainWnd).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
-      await setFullScreen(mainWnd).catch((err) => {
+      await setFullScreen(mainWnd).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
-      await setSystemBarEnableNavigation(mainWnd).catch((err) => {
+      await setSystemBarEnableNavigation(mainWnd).catch((err: BusinessError) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
         done();
       });
-      await setSystemBarEnableStatus(mainWnd).catch((err) => {
+      await setSystemBarEnableStatus(mainWnd).catch((err: BusinessError) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
         done();
@@ -223,13 +213,14 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSetSystemBarEnable_HideStatusBar_ShowNavBar_Callback', 0, async function (done) {
-      let caseName = 'testSetSystemBarEnable_HideStatusBar_ShowNavBar_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testSetSystemBarEnable_HideStatusBar_ShowNavBar_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_HideStatusBar_ShowNavBar_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      function getMainWindow() {
-        return new Promise(function (resolve, reject) {
-          windowStage.getMainWindow((err, data) => {
+
+      let getMainWindow: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
+          windowStage.getMainWindow((err: BusinessError, data: ohosWindow.Window) => {
             console.log(msgStr + 'getMainWindow data:' + JSON.stringify(data));
             if (err && err.code) {
               console.log(msgStr + 'mainWnd getMainWindow success');
@@ -242,8 +233,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function show(mainWnd) {
-        return new Promise(function (resolve, reject) {
+      let show: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           mainWnd.show((err) => {
             if (err && err.code) {
               reject(null)
@@ -255,8 +246,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setFullScreen(mainWnd) {
-        return new Promise(function (resolve, reject) {
+      let setFullScreen: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           mainWnd.setFullScreen(true, (err, data) => {
             console.log(msgStr + 'mainWnd.setFullScreen' + JSON.stringify(data));
             if (err && err.code) {
@@ -269,8 +260,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setSystemBarEnableStatus(mainWnd) {
-        return new Promise(function (resolve, reject) {
+      let setSystemBarEnableStatus: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           mainWnd.setSystemBarEnable(['status'], (err, data) => {
             console.log(msgStr + 'mainWnd.setSystemBarEnable status JSON.stringify(data)==' + JSON.stringify(data));
             if (err && err.code) {
@@ -282,8 +273,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setSystemBarEnableNavigation(mainWnd) {
-        return new Promise(function (resolve, reject) {
+      let setSystemBarEnableNavigation: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           mainWnd.setSystemBarEnable(['navigation'], (err, data) => {
             console.log(msgStr + 'mainWnd.setSystemBarEnable status JSON.stringify(data)==' + JSON.stringify(data));
             if (err && err.code) {
@@ -295,29 +286,29 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      let mainWnd = null;
-      mainWnd = await getMainWindow().catch((err) => {
+      let mainWnd: ohosWindow.Window = null;
+      mainWnd = await getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
       expect(!!mainWnd).assertTrue();
-      await show(mainWnd).catch((err) => {
+      await show(mainWnd).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
-      await setFullScreen(mainWnd).catch((err) => {
+      await setFullScreen(mainWnd).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
-      await setSystemBarEnableStatus(mainWnd).catch((err) => {
+      await setSystemBarEnableStatus(mainWnd).catch((err: BusinessError) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
         done();
       });
-      await setSystemBarEnableNavigation(mainWnd).catch((err) => {
+      await setSystemBarEnableNavigation(mainWnd).catch((err: BusinessError) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
         done();
@@ -332,13 +323,13 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSetSystemBarEnable_Show_StatusBarAndNavBar_Callback', 0, async function (done) {
-      let caseName = 'testSetSystemBarEnable_Show_StatusBarAndNavBar_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testSetSystemBarEnable_Show_StatusBarAndNavBar_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_Show_StatusBarAndNavBar_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
 
-      function getMainWindow() {
-        return new Promise(function (resolve, reject) {
+      let getMainWindow: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
           windowStage.getMainWindow((err, data) => {
             if (err && err.code) {
               reject(null)
@@ -350,8 +341,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function show(mainWnd) {
-        return new Promise(function (resolve, reject) {
+      let show: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           mainWnd.show((err) => {
             if (err && err.code) {
               reject(null)
@@ -363,8 +354,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setFullScreen(mainWnd) {
-        return new Promise(function (resolve, reject) {
+      let setFullScreen: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           mainWnd.setFullScreen(true, (err, data) => {
             console.log(msgStr + 'mainWnd.setFullScreen' + JSON.stringify(data));
             if (err && err.code) {
@@ -377,8 +368,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setSystemBarEnableT(mainWnd) {
-        return new Promise(function (resolve, reject) {
+      let setSystemBarEnableT: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           mainWnd.setSystemBarEnable(['status', 'navigation'], (err, data) => {
             if (err && err.code) {
               reject(null)
@@ -390,25 +381,25 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      let mainWnd = null;
-      mainWnd = await getMainWindow().catch((err) => {
+      let mainWnd: ohosWindow.Window = null;
+      mainWnd = await getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
       expect(!!mainWnd).assertTrue();
-      await show(mainWnd).catch((err) => {
+      await show(mainWnd).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
-      await setFullScreen(mainWnd).catch((err) => {
+      await setFullScreen(mainWnd).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
       await sleep(2000)
-      await setSystemBarEnableT(mainWnd).catch((err) => {
+      await setSystemBarEnableT(mainWnd).catch((err: BusinessError) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
         done();
@@ -423,12 +414,13 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSetSystemBarEnable_Hide_StatusBarAndNavBar_Callback', 0, async function (done) {
-      let caseName = 'testSetSystemBarEnable_Hide_StatusBarAndNavBar_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testSetSystemBarEnable_Hide_StatusBarAndNavBar_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_Hide_StatusBarAndNavBar_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      function getMainWindow() {
-        return new Promise(function (resolve, reject) {
+
+      let getMainWindow: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
           windowStage.getMainWindow((err, data) => {
             if (err && err.code) {
               reject(null)
@@ -440,8 +432,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function show(mainWnd) {
-        return new Promise(function (resolve, reject) {
+      let show: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           mainWnd.show((err) => {
             if (err && err.code) {
               reject(null)
@@ -453,8 +445,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setFullScreen(mainWnd) {
-        return new Promise(function (resolve, reject) {
+      let setFullScreen: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           mainWnd.setFullScreen(true, (err, data) => {
             console.log(msgStr + 'mainWnd.setFullScreen' + JSON.stringify(data));
             if (err && err.code) {
@@ -467,8 +459,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setSystemBarEnable(mainWnd) {
-        return new Promise(function (resolve, reject) {
+      let setSystemBarEnable: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           mainWnd.setSystemBarEnable([], (err) => {
             console.log(msgStr + 'mainWnd.setSystemBarEnable [] JSON.stringify(data)==' + JSON.stringify(err));
             if (err && err.code) {
@@ -480,8 +472,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setSystemBarEnableT(mainWnd) {
-        return new Promise(function (resolve, reject) {
+      let setSystemBarEnableT: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           mainWnd.setSystemBarEnable(['status', 'navigation'], (err, data) => {
             if (err && err.code) {
               reject(null)
@@ -492,30 +484,30 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      let mainWnd = null;
-      mainWnd = await getMainWindow().catch((err) => {
+      let mainWnd: ohosWindow.Window = null;
+      mainWnd = await getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
       expect(!!mainWnd).assertTrue();
-      await show(mainWnd).catch((err) => {
+      await show(mainWnd).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
-      await setFullScreen(mainWnd).catch((err) => {
+      await setFullScreen(mainWnd).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
 
-      await setSystemBarEnableT(mainWnd).catch((err) => {
+      await setSystemBarEnableT(mainWnd).catch((err: BusinessError) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
         done();
       });
-      await setSystemBarEnable(mainWnd).catch((err) => {
+      await setSystemBarEnable(mainWnd).catch((err: BusinessError) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
         done();
@@ -530,13 +522,13 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSetSystemBarEnable_Invalid_Parameter_Callback', 0, async function (done) {
-      let caseName = 'testSetSystemBarEnable_Invalid_Parameter_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testSetSystemBarEnable_Invalid_Parameter_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_Invalid_Parameter_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
 
-      function getMainWindow() {
-        return new Promise(function (resolve, reject) {
+      let getMainWindow: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
           windowStage.getMainWindow((err, data) => {
             console.log(msgStr + 'getMainWindow data:' + JSON.stringify(data));
             if (err && err.code) {
@@ -549,8 +541,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function show(mainWnd) {
-        return new Promise(function (resolve, reject) {
+      let show: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           mainWnd.show((err) => {
             if (err && err.code) {
               reject(null)
@@ -562,8 +554,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setFullScreen(mainWnd) {
-        return new Promise(function (resolve, reject) {
+      let setFullScreen: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           mainWnd.setFullScreen(true, (err, data) => {
             console.log(msgStr + 'mainWnd.setFullScreen' + JSON.stringify(data));
             if (err && err.code) {
@@ -577,8 +569,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
       }
 
 
-      function setSystemBarEnable(mainWnd) {
-        return new Promise(function (resolve, reject) {
+      let setSystemBarEnable: Function = (mainWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           mainWnd.setSystemBarEnable([], (err) => {
             console.log(msgStr + 'mainWnd.setSystemBarEnable [] JSON.stringify(data)==' + JSON.stringify(err));
             if (err && err.code) {
@@ -590,28 +582,29 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      let mainWnd = null;
-      mainWnd = await getMainWindow().catch((err) => {
+      let mainWnd: ohosWindow.Window = null;
+      mainWnd = await getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
       expect(!!mainWnd).assertTrue();
-      await show(mainWnd).catch((err) => {
+      await show(mainWnd).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
-      await setFullScreen(mainWnd).catch((err) => {
+      await setFullScreen(mainWnd).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
-      await setSystemBarEnable(mainWnd).catch((err) => {
+      await setSystemBarEnable(mainWnd).catch((err: BusinessError) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
         done();
       });
+      // @ts-ignore
       mainWnd.setSystemBarEnable([null, '123'], (err, data) => {
         console.log(msgStr + 'mainWnd.setSystemBarEnable [null,123] JSON.stringify(data)==' + JSON.stringify(data));
         console.log(msgStr + 'mainWnd.setSystemBarEnable [null,123] JSON.stringify(err)==' + JSON.stringify(err));
@@ -624,7 +617,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
           }
           done();
         } else {
-          unexpectedError(data, caseName, 'mainWnd.setSystemBarEnable [null,123]', done);
+          unexpectedError(TRUE_FLAG, err, caseName, 'mainWnd.setSystemBarEnable [null,123]', done);
         }
       })
     });
@@ -636,15 +629,13 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSetSystemBarEnable_RGB_Callback', 0, async done => {
-      let caseName = 'testSetSystemBarEnable_RGB_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
-      let cloneColorArr = JSON.parse(JSON.stringify(commonRGBColorArr));
-      let compareCount = 0;
+    it('testSetSystemBarEnable_RGB_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_RGB_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
 
-      function setSystemBarPropertiesFun(tempWnd, systemBarProperties) {
-        return new Promise((resolve, reject) => {
+      let setSystemBarPropertiesFun: Function = (tempWnd: ohosWindow.Window, systemBarProperties: ohosWindow.SystemBarProperties) => {
+        return new Promise<boolean>((resolve, reject) => {
           tempWnd.setSystemBarProperties(systemBarProperties, (err, data) => {
             if (err && err.code) {
               reject(null)
@@ -657,8 +648,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      let tempWnd;
-      tempWnd = await windowStage.getMainWindow().catch((err) => {
+      let tempWnd: ohosWindow.Window | void;
+      tempWnd = await windowStage.getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
@@ -666,8 +657,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
       expect(!!tempWnd).assertTrue();
       let loopCount = commonRGBColorArr.length
       for (let i = 0; i < loopCount; i++) {
-        let tempColor = commonRGBColorArr[i];
-        let systemBarProperties = {
+        let tempColor: string = commonRGBColorArr[i];
+        let systemBarProperties: ohosWindow.SystemBarProperties = {
           statusBarColor: tempColor,
           isStatusBarLightIcon: true,
           statusBarContentColor: tempColor,
@@ -675,7 +666,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
           isNavigationBarLightIcon: false,
           navigationBarContentColor: tempColor,
         };
-        await setSystemBarPropertiesFun(tempWnd, systemBarProperties).catch((err) => {
+        await setSystemBarPropertiesFun(tempWnd, systemBarProperties).catch((err: BusinessError) => {
           console.info(msgStr + 'setSystemBarProperties error : ' + JSON.stringify(err));
           expect().assertFail();
           done();
@@ -691,47 +682,38 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSetSystemBarEnable_Hexadecimal_Callback', 0, async done => {
-      let caseName = 'testSetSystemBarEnable_Hexadecimal_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
-      let cloneColorArr = {
-        SBC: JSON.parse(JSON.stringify(commonNUMBERColorArr)),
-        SCC: JSON.parse(JSON.stringify(commonNUMBERColorArr)),
-        NBC: JSON.parse(JSON.stringify(commonNUMBERColorArr)),
-        NCC: JSON.parse(JSON.stringify(commonNUMBERColorArr))
-      };
-      let compareCount = 0;
-      let endNum = 0;
-      let listenerFlag = false;
+    it('testSetSystemBarEnable_Hexadecimal_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_Hexadecimal_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let tempWnd;
-      tempWnd = await windowStage.getMainWindow().catch((err) => {
+      let tempWnd: ohosWindow.Window | void;
+      tempWnd = await windowStage.getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
       expect(!!tempWnd).assertTrue();
-      await tempWnd.show().catch((err) => {
+      await (tempWnd as ohosWindow.Window).show().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
-      await tempWnd.setFullScreen(true).catch((err) => {
+      await (tempWnd as ohosWindow.Window).setFullScreen(true).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
-      await tempWnd.setSystemBarEnable(['status', 'navigation']).catch((err) => {
+      await (tempWnd as ohosWindow.Window).setSystemBarEnable(['status', 'navigation']).catch((err: BusinessError) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
         done();
       });
       await sleep(1000);
-      let loopCount = commonNUMBERColorArr.length
+      let loopCount: number = commonNUMBERColorArr.length
       for (let i = 0; i < loopCount; i++) {
         console.log(msgStr + 'tempWnd.setSystemBarEnable i:' + i);
         let tempColor = commonNUMBERColorArr[i];
-        let systemBarProperties = {
+        let systemBarProperties: ohosWindow.SystemBarProperties = {
           statusBarColor: tempColor,
           isStatusBarLightIcon: true,
           statusBarContentColor: tempColor,
@@ -739,7 +721,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
           isNavigationBarLightIcon: true,
           navigationBarContentColor: tempColor,
         };
-        tempWnd.setSystemBarProperties(systemBarProperties, (err, data) => {
+        (tempWnd as ohosWindow.Window).setSystemBarProperties(systemBarProperties, (err, data) => {
           console.log(msgStr + 'tempWnd.setSystemBarProperties err' + JSON.stringify(err));
           if (err && err.code) {
             try {
@@ -765,39 +747,37 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSetSystemBarEnable_KeywordForm_Callback', 0, async done => {
-      let caseName = 'testSetSystemBarEnable_KeywordForm_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
-      let cloneColorArr = JSON.parse(JSON.stringify(commonKEYColorArr));
-      let compareCount = 0;
+    it('testSetSystemBarEnable_KeywordForm_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testSetSystemBarEnable_KeywordForm_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let tempWnd;
-      tempWnd = await windowStage.getMainWindow().catch((err) => {
+      let tempWnd: ohosWindow.Window | void;
+      tempWnd = await windowStage.getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
       expect(!!tempWnd).assertTrue();
-      await tempWnd.show().catch((err) => {
+      await (tempWnd as ohosWindow.Window).show().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
-      await tempWnd.setFullScreen(true).catch((err) => {
+      await (tempWnd as ohosWindow.Window).setFullScreen(true).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to enable the full-screen mode. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
       });
-      await tempWnd.setSystemBarEnable(['status', 'navigation']).catch((err) => {
+      await (tempWnd as ohosWindow.Window).setSystemBarEnable(['status', 'navigation']).catch((err: BusinessError) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
         done();
       });
       await sleep(1000);
-      let loopCount = commonRGBColorArr.length
+      let loopCount: number = commonRGBColorArr.length
       for (let i = 0; i < loopCount; i++) {
-        let tempColor = commonKEYColorArr[i];
-        let systemBarProperties = {
+        let tempColor: string = commonKEYColorArr[i];
+        let systemBarProperties: ohosWindow.SystemBarProperties = {
           statusBarColor: tempColor,
           isStatusBarLightIcon: true,
           statusBarContentColor: tempColor,
@@ -805,7 +785,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
           isNavigationBarLightIcon: false,
           navigationBarContentColor: tempColor,
         };
-        tempWnd.setSystemBarProperties(systemBarProperties, (err, data) => {
+        (tempWnd as ohosWindow.Window).setSystemBarProperties(systemBarProperties, (err, data) => {
           console.log(msgStr + 'tempWnd.setSystemBarProperties data' + JSON.stringify(data));
           if (err && err.code) {
             try {
@@ -830,15 +810,15 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testCreate_App_Type_Win_Callback', 0, async done => {
-      let caseName = 'testCreate_App_Type_Win_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testCreate_App_Type_Win_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testCreate_App_Type_Win_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin context==' + JSON.stringify(context));
       let loopCount = appWindowTypeArr.length;
       console.log(msgStr + 'loopCount: ' + loopCount);
 
-      function createWin(id, type) {
-        return new Promise((resolve, reject) => {
+      let createWin: Function = (id: string, type: ohosWindow.WindowType) => {
+        return new Promise<BusinessError>((resolve, reject) => {
           ohosWindow.create(context, id, type, (err, data) => {
             console.log(msgStr + 'ohosWindow.create err' + JSON.stringify(err));
             console.log(msgStr + 'ohosWindow.create data' + JSON.stringify(data));
@@ -853,9 +833,9 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
 
       for (let i = 0; i < loopCount; i++) {
         let tempType = ohosWindow.WindowType.TYPE_APP;
-        let windId = 'createTest5' + i;
+        let windId: string = 'createTest5' + i;
         console.log(msgStr + 'ohosWindow.create ' + tempType + ' step: ' + i);
-        let errCode;
+        let errCode: Record<string, number>;
         errCode = await createWin(windId, tempType)
         expect(errCode.code === 1003).assertTrue();
         if (i === loopCount - 1) {
@@ -872,18 +852,18 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testCreate_Sys_Type_Win_Callback', 0, async done => {
-      let caseName = 'testCreate_Sys_Type_Win_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testCreate_Sys_Type_Win_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testCreate_Sys_Type_Win_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
       let loopCount = systemWindowTypeArr.length;
       console.log(msgStr + 'loopCount: ' + loopCount);
-      let tempWnd = null
+      let tempWnd: ohosWindow.Window = null
       let tempType = ohosWindow.WindowType.TYPE_FLOAT;
 
-      function createWin(windId) {
-        return new Promise(function (resolve, reject) {
-          ohosWindow.create(context, windId, tempType, (err, data) => {
+      let createWin: Function = (windId: string) => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
+          ohosWindow.create(context, windId, tempType, (err: BusinessError, data: ohosWindow.Window) => {
             if (err && err.code) {
               reject(null)
             } else {
@@ -894,9 +874,9 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function getProperties(win) {
-        return new Promise(function (resolve, reject) {
-          win.getProperties((err, data) => {
+      let getProperties: Function = (win: ohosWindow.Window) => {
+        return new Promise<ohosWindow.WindowProperties>((resolve, reject) => {
+          win.getProperties((err: BusinessError, data: ohosWindow.WindowProperties) => {
             console.log(msgStr + 'tempWnd.getProperties err' + JSON.stringify(err));
             console.log(msgStr + 'tempWnd.getProperties data' + JSON.stringify(data));
             if (err && err.code) {
@@ -912,15 +892,15 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
 
       for (let i = 0; i < loopCount; i++) {
         let windId = 'createTest6' + i;
-        let tempWnd;
-        tempWnd = await createWin(windId).catch(err => {
+        let tempWnd: ohosWindow.Window;
+        tempWnd = await createWin(windId).catch((err: BusinessError) => {
           console.info(msgStr + `ohosWindow.create catch error: ${JSON.stringify(err)}`)
           expect().assertFail();
           done();
         })
         expect(!!tempWnd).assertTrue();
-        let winProperties;
-        winProperties = await getProperties(tempWnd).catch(err => {
+        let winProperties: ohosWindow.WindowProperties;
+        winProperties = await getProperties(tempWnd).catch((err: BusinessError) => {
           console.info(msgStr + `tempWnd.getProperties catch error: ${JSON.stringify(err)}`)
         })
         expect(!!winProperties).assertTrue();
@@ -940,9 +920,9 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testCreate_Not_Exist_Win_Type_Callback', 0, async done => {
-      let caseName = 'testCreate_Not_Exist_Win_Type_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testCreate_Not_Exist_Win_Type_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testCreate_Not_Exist_Win_Type_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
       let tempType = 5000;
       let windId = 'createTest7';
@@ -958,7 +938,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
           done();
           return;
         }
-        unexpectedError(err, caseName, 'ohosWindow.create', done);
+        unexpectedError(TRUE_FLAG, err, caseName, 'ohosWindow.create', done);
       })
     })
 
@@ -970,15 +950,14 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testCreate_Repeate_Id_Win_Callback', 0, async done => {
-      let caseName = 'testCreate_Repeate_Id_Win_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testCreate_Repeate_Id_Win_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testCreate_Repeate_Id_Win_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
       let windowId = 'sameid'
-      let tempWnd = null;
 
-      function createFirstWin() {
-        return new Promise(function (resolve, reject) {
+      let createFirstWin: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
           ohosWindow.create(context, windowId, ohosWindow.WindowType.TYPE_FLOAT, (err, data) => {
             console.log(msgStr + 'ohosWindow.create 1 once err: ' + JSON.stringify(err));
             if (err && err.code) {
@@ -990,8 +969,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      let dataOne;
-      dataOne = await createFirstWin().catch((err) => {
+      let dataOne: ohosWindow.Window;
+      dataOne = await createFirstWin().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to create window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
         done();
@@ -1009,7 +988,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
           await dataOne.destroyWindow();
           done();
         } else {
-          unexpectedError(err, caseName, 'ohosWindow.create', done);
+          unexpectedError(TRUE_FLAG, err, caseName, 'ohosWindow.create', done);
           console.log(msgStr + 'ohosWindow.create 1 twice data: ' + JSON.stringify(data));
         }
       })
@@ -1022,14 +1001,15 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testListener_Sys_AvoidAreaChange_Callback', 0, async function (done) {
+    it('testListener_Sys_AvoidAreaChange_Callback', 0, async (done: Function) => {
       await sleep(1000)
-      let caseName = 'testListener_Sys_AvoidAreaChange_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+      let caseName: string = 'testListener_Sys_AvoidAreaChange_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       let listenerOnFlag = false;
       console.log(msgStr + 'begin');
-      function setSystemBarEnable(tempWnd) {
-        return new Promise(function (resolve, reject) {
+
+      let setSystemBarEnable: Function = (tempWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           tempWnd.setSystemBarEnable([], (err, data) => {
             if (err && err.code) {
               reject(false)
@@ -1041,8 +1021,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setSystemBarEnableT(tempWnd) {
-        return new Promise(function (resolve, reject) {
+      let setSystemBarEnableT: Function = (tempWnd: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           tempWnd.setSystemBarEnable(['status', 'navigation'], (err, data) => {
             if (err && err.code) {
               reject(false)
@@ -1054,18 +1034,18 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      let tempWnd;
-      tempWnd = await windowStage.getMainWindow().catch((err) => {
+      let tempWnd: ohosWindow.Window | void;
+      tempWnd = await windowStage.getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
       });
       expect(!!tempWnd).assertTrue();
-      await tempWnd.setWindowLayoutFullScreen(true).catch((err) => {
+      await (tempWnd as ohosWindow.Window).setWindowLayoutFullScreen(true).catch((err: BusinessError) => {
         console.error('Failed to set the window layout to full-screen mode. Cause:' + JSON.stringify(err));
         expect().assertFail();
         done();
       });
-      tempWnd.on('systemAvoidAreaChange', avoidAreaData => {
+      (tempWnd as ohosWindow.Window).on('systemAvoidAreaChange', avoidAreaData => {
         if (listenerOnFlag === true) {
           console.log(msgStr + 'tempWnd.on systemAvoidAreaChange, listenerOnFlag : ' + listenerOnFlag);
           try {
@@ -1073,17 +1053,17 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
           } catch (error) {
             console.info(msgStr + `tempWnd.on catch error: ${JSON.stringify(error)}`)
           }
-          tempWnd.off('systemAvoidAreaChange')
+          (tempWnd as ohosWindow.Window).off('systemAvoidAreaChange')
           done();
         }
       })
-      listenerOnFlag=true;
-      await setSystemBarEnable(tempWnd).catch((err) => {
+      listenerOnFlag = true;
+      await setSystemBarEnable(tempWnd).catch((err: BusinessError) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
       });
       await sleep(1000)
-      await setSystemBarEnableT(tempWnd).catch((err) => {
+      await setSystemBarEnableT(tempWnd).catch((err: BusinessError) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
       });
@@ -1096,16 +1076,16 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testDestroy_Callbcak', 0, async function (done) {
-      let caseName = 'testDestroy_Callbcak';
-      let msgStr = 'jsunittest ' + caseName + ' ';
-      let baseWndType = ohosWindow.WindowType.TYPE_FLOAT;
-      let windowId = 'destroy_Callbcak';
+    it('testDestroy_Callbcak', 0, async (done: Function) => {
+      let caseName: string = 'testDestroy_Callbcak';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      let baseWndType: ohosWindow.WindowType = ohosWindow.WindowType.TYPE_FLOAT;
+      let windowId: string = 'destroy_Callbcak';
       console.log(msgStr + 'begin');
-      let tempWnd = null
+      let tempWnd: ohosWindow.Window = null
 
-      function createWin() {
-        return new Promise(function (resolve, reject) {
+      let createWin: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
           ohosWindow.create(context, windowId, baseWndType, (err, data) => {
             if (!!data) {
               resolve(data)
@@ -1116,24 +1096,24 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      tempWnd = await createWin().catch(err => {
+      tempWnd = await createWin().catch((err: BusinessError) => {
         console.info(`ohosWindow.create failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
       expect(!!tempWnd).assertTrue();
-      tempWnd.destroy(async (err, data) => {
+      tempWnd.destroy(async (err: BusinessError, data: void) => {
         if (err && err.code) {
-          unexpectedError(err, caseName, 'ohosWindow.destroy', done);
+          unexpectedError(TRUE_FLAG, err, caseName, 'ohosWindow.destroy', done);
         } else {
           try {
-            expect(!data).assertTrue();
+            expect(!Boolean(data)).assertTrue();
           } catch (error) {
             console.info(`tempWnd.show catch error: ${JSON.stringify(error)}`)
           }
           await ohosWindow.find(windowId).then((data) => {
             console.info('Succeeded in finding the window. Data: ' + JSON.stringify(data));
-          }).catch((err) => {
+          }).catch((err: BusinessError) => {
             console.error('Failed to find the Window. Cause: ' + JSON.stringify(err));
             expect(err.code == 1001).assertTrue();
             done();
@@ -1149,16 +1129,16 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testLoadContent_Exist_Create_SysWin_Callback', 0, async function (done) {
-      let caseName = 'testLoadContent_Exist_Create_SysWin_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
-      let baseWndType = ohosWindow.WindowType.TYPE_FLOAT;
-      let windowId = 'loadContent_Exist_Create_SysWin_Callback';
+    it('testLoadContent_Exist_Create_SysWin_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testLoadContent_Exist_Create_SysWin_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      let baseWndType: ohosWindow.WindowType = ohosWindow.WindowType.TYPE_FLOAT;
+      let windowId: string = 'loadContent_Exist_Create_SysWin_Callback';
       console.log(msgStr + 'begin');
-      let tempWnd = null
+      let tempWnd: ohosWindow.Window = null
 
-      function createWin() {
-        return new Promise(function (resolve, reject) {
+      let createWin: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
           ohosWindow.create(context, windowId, baseWndType, (err, data) => {
             if (!!data) {
               resolve(data)
@@ -1169,19 +1149,19 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      tempWnd = await createWin().catch(err => {
+      tempWnd = await createWin().catch((err: BusinessError) => {
         console.info(`ohosWindow.create failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
       expect(!!tempWnd).assertTrue();
 
-      tempWnd.loadContent('pages/index', async (err, data) => {
+      tempWnd.loadContent('pages/index', async (err: BusinessError, data: void) => {
         if (err && err.code) {
-          unexpectedError(err, caseName, 'tempWnd.loadContent', done);
+          unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.loadContent', done);
         } else {
           try {
-            expect(!data).assertTrue();
+            expect(!Boolean(data)).assertTrue();
           } catch (error) {
             console.info(`tempWnd.loadContent catch error: ${JSON.stringify(error)}`)
           }
@@ -1198,17 +1178,17 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testLoadContent_Para_Is_Null_Create_SysWin_Callback', 0, async function (done) {
-      let caseName = 'testLoadContent_Para_Is_Null_Create_SysWin_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
-      let baseWndType = ohosWindow.WindowType.TYPE_FLOAT;
-      let windowId = 'loadContent_Para_Is_Null_Create_SysWin_Callback';
+    it('testLoadContent_Para_Is_Null_Create_SysWin_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testLoadContent_Para_Is_Null_Create_SysWin_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+      let baseWndType: number = ohosWindow.WindowType.TYPE_FLOAT;
+      let windowId: string = 'loadContent_Para_Is_Null_Create_SysWin_Callback';
       console.log(msgStr + 'begin');
-      let tempWnd = null
+      let tempWnd: ohosWindow.Window = null
 
-      function createWin() {
-        return new Promise(function (resolve, reject) {
-          ohosWindow.create(context, windowId, baseWndType, (err, data) => {
+      let createWin: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
+          ohosWindow.create(context, windowId, baseWndType, (err: BusinessError, data: ohosWindow.Window) => {
             if (!!data) {
               resolve(data)
             } else {
@@ -1218,13 +1198,13 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      tempWnd = await createWin().catch(err => {
+      tempWnd = await createWin().catch((err: BusinessError) => {
         console.info(`ohosWindow.create failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
       expect(!!tempWnd).assertTrue();
-      tempWnd.loadContent(null, async (err, data) => {
+      tempWnd.loadContent(null, async (err: BusinessError, data: void) => {
         if (err && err.code) {
           try {
             expect(err.code === 1003).assertTrue();
@@ -1235,7 +1215,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
           done()
         } else {
           await tempWnd.destroy();
-          unexpectedError(err, caseName, 'tempWnd.loadContent', done);
+          unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.loadContent', done);
         }
       })
     })
@@ -1247,17 +1227,17 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testLoadContent_Exist_Input_Para_Path_Callback', 0, async function (done) {
-      let caseName = 'testLoadContent_Exist_Input_Para_Path_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testLoadContent_Exist_Input_Para_Path_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testLoadContent_Exist_Input_Para_Path_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      windowStage.loadContent('MainAbility/pages/second/second', (err, data) => {
+      windowStage.loadContent('MainAbility/pages/second/second', (err: BusinessError, data: void) => {
         if (err && err.code) {
-          unexpectedError(err, caseName, 'windowStage.loadContent', done);
+          unexpectedError(TRUE_FLAG, err, caseName, 'windowStage.loadContent', done);
           console.log(msgStr + 'windowStage loadContent MainAbility/pages/second/second' + JSON.stringify(err));
         } else {
           try {
-            expect(!data).assertTrue();
+            expect(!Boolean(data)).assertTrue();
           } catch (error) {
             console.info(`windowStage.loadContent catch error: ${JSON.stringify(error)}`)
           }
@@ -1274,9 +1254,9 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testLoadContent_Input_Para_Is_Null_Callback', 0, async function (done) {
-      let caseName = 'testLoadContent_Input_Para_Is_Null_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testLoadContent_Input_Para_Is_Null_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testLoadContent_Input_Para_Is_Null_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
 
       try {
@@ -1308,18 +1288,18 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testLoadContent_Exist_Input_Para_PathAndStorage_Callback', 0, async function (done) {
-      let caseName = 'testLoadContent_Exist_Input_Para_PathAndStorage_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testLoadContent_Exist_Input_Para_PathAndStorage_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testLoadContent_Exist_Input_Para_PathAndStorage_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
 
-      windowStage.loadContent('MainAbility/pages/second/second', abilityStorage, (err, data) => {
+      windowStage.loadContent('MainAbility/pages/second/second', abilityStorage, (err: BusinessError, data: void) => {
         if (err && err.code) {
-          unexpectedError(err, caseName, 'windowStage.loadContent', done);
+          unexpectedError(TRUE_FLAG, err, caseName, 'windowStage.loadContent', done);
           console.log(msgStr + 'windowStage loadContent MainAbility/pages/second/second' + JSON.stringify(err));
         } else {
           try {
-            expect(!data).assertTrue();
+            expect(!Boolean(data)).assertTrue();
           } catch (error) {
             console.info(`windowStage.loadContent catch error: ${JSON.stringify(error)}`)
           }
@@ -1336,9 +1316,9 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testLoadContent_Para_PathAndStorage_Is_Null_Callback', 0, async function (done) {
-      let caseName = 'testLoadContent_Para_PathAndStorage_Is_Null_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testLoadContent_Para_PathAndStorage_Is_Null_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testLoadContent_Para_PathAndStorage_Is_Null_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
 
       try {
@@ -1369,14 +1349,14 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testCreateSubWindow_WinName_IsNot_Empty_Callback', 0, async function (done) {
-      let caseName = 'testCreateSubWindow_WinName_IsNot_Empty_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testCreateSubWindow_WinName_IsNot_Empty_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testCreateSubWindow_WinName_IsNot_Empty_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let subWnd = null
+      let subWnd: ohosWindow.Window = null
 
-      function createSubWindow() {
-        return new Promise(function (resolve, reject) {
+      let createSubWindow: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
           windowStage.createSubWindow('createSubWindowTest3', (err, data) => {
             if (err && err.code) {
               reject(null)
@@ -1389,8 +1369,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function findWin() {
-        return new Promise(function (resolve, reject) {
+      let findWin: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
           ohosWindow.find('createSubWindowTest3', (err, data) => {
             if (err && err.code) {
               reject(false)
@@ -1401,8 +1381,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function destroyWin(win) {
-        return new Promise(function (resolve, reject) {
+      let destroyWin: Function = (win: ohosWindow.Window) => {
+        return new Promise<boolean>((resolve, reject) => {
           win.destroy((err, data) => {
             if (err && err.code) {
               reject(null)
@@ -1413,27 +1393,27 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      subWnd = await createSubWindow().catch(err => {
+      subWnd = await createSubWindow().catch((err: BusinessError) => {
         console.info(`ohosWindow.create failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
       expect(!!subWnd).assertTrue();
 
-      let subWindow;
-      subWindow = await findWin().catch(err => {
+      let subWindow: ohosWindow.Window;
+      subWindow = await findWin().catch((err: BusinessError) => {
         console.info(`ohosWindow.find failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
 
-      await destroyWin(subWindow).catch(err => {
+      await destroyWin(subWindow).catch((err: BusinessError) => {
         console.info(`ohosWindow.destroy failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
-      let subWindowLast;
-      subWindowLast = await findWin().catch(err => {
+      let subWindowLast: ohosWindow.Window;
+      subWindowLast = await findWin().catch((err: BusinessError) => {
         console.info(`ohosWindow.find failed  error: ${JSON.stringify(err)}`)
         expect(!err).assertTrue();
         done()
@@ -1447,9 +1427,9 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testCreateSubWindow_WinName_Is_Null_Callback', 0, async function (done) {
-      let caseName = 'testCreateSubWindow_WinName_Is_Null_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testCreateSubWindow_WinName_Is_Null_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testCreateSubWindow_WinName_Is_Null_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
       try {
         windowStage.createSubWindow(null, (err, data) => {
@@ -1479,14 +1459,14 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testGetSubWindow_Callback', 0, async function (done) {
-      let caseName = 'testGetSubWindow_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testGetSubWindow_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testGetSubWindow_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
 
       windowStage.getSubWindow((err, data) => {
         if (err && err.code) {
-          unexpectedError(err, caseName, 'windowStage.getSubWindow', done);
+          unexpectedError(TRUE_FLAG, err, caseName, 'windowStage.getSubWindow', done);
           console.log(msgStr + 'windowStage.getSubWindow(null) err=' + JSON.stringify(err));
         } else {
           try {
@@ -1507,14 +1487,14 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSetPrivacyMode_AppSubWin_Callback', 0, async function (done) {
-      let caseName = 'testSetPrivacyMode_AppSubWin_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testSetPrivacyMode_AppSubWin_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testSetPrivacyMode_AppSubWin_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin ohosWindow =' + JSON.stringify(ohosWindow));
-      let tempWnd = null;
+      let tempWnd: ohosWindow.Window = null;
 
-      function createWin() {
-        return new Promise(function (resolve, reject) {
+      let createWin: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
           ohosWindow.create(context, 'setPrivacyModeTest2', ohosWindow.WindowType.TYPE_FLOAT, (err, data) => {
             if (err && err.code) {
               console.log(msgStr + 'ohosWindow.create fail err:' + JSON.stringify(err));
@@ -1526,9 +1506,9 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function getWinProperties(win) {
-        return new Promise(function (resolve, reject) {
-          win.getProperties((err, data) => {
+      let getWinProperties: Function = (win: ohosWindow.Window) => {
+        return new Promise<ohosWindow.WindowProperties>((resolve, reject) => {
+          win.getProperties((err:BusinessError, data:ohosWindow.WindowProperties) => {
             if (err.code != 0) {
               reject(null)
             } else {
@@ -1538,8 +1518,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setPrivacyModeWin(win, boolean) {
-        return new Promise(function (resolve, reject) {
+      let setPrivacyModeWin: Function = (win: ohosWindow.Window, boolean: boolean) => {
+        return new Promise<boolean>((resolve, reject) => {
           win.setPrivacyMode(boolean, (err) => {
             if (err && err.code) {
               console.log(msgStr + 'mainWnd.setPrivacyMode(true) err=' + JSON.stringify(err));
@@ -1551,39 +1531,39 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      tempWnd = await createWin().catch(err => {
+      tempWnd = await createWin().catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.create failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
       expect(!!tempWnd).assertTrue();
-      await setPrivacyModeWin(tempWnd, true).catch(err => {
+      await setPrivacyModeWin(tempWnd, true).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.setPrivacyMode failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
-      let windowProperties_true;
-      windowProperties_true = await getWinProperties(tempWnd).catch(err => {
+      let windowProperties_true: ohosWindow.Window;
+      windowProperties_true = await getWinProperties(tempWnd).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.getProperties failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_true : ${JSON.stringify(windowProperties_true)}`)
-      expect(windowProperties_true.isPrivacyMode).assertTrue();
+      expect(windowProperties_true.setPrivacyMode).assertTrue();
 
-      await setPrivacyModeWin(tempWnd, false).catch(err => {
+      await setPrivacyModeWin(tempWnd, false).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.setPrivacyMode failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
-      let windowProperties_false;
-      windowProperties_false = await getWinProperties(tempWnd).catch(err => {
+      let windowProperties_false: ohosWindow.Window;
+      windowProperties_false = await getWinProperties(tempWnd).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.getProperties failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_false : ${JSON.stringify(windowProperties_false)}`)
-      expect(!windowProperties_false.isPrivacyMode).assertTrue();
+      expect(!windowProperties_false.setPrivacyMode).assertTrue();
       await tempWnd.destroy();
       done();
     })
@@ -1595,14 +1575,14 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSetPrivacyMode_createSubWindow_Callback', 0, async function (done) {
-      let caseName = 'testSetPrivacyMode_createSubWindow_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testSetPrivacyMode_createSubWindow_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testSetPrivacyMode_createSubWindow_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin ohosWindow =' + JSON.stringify(ohosWindow));
-      let tempWnd = null;
+      let tempWnd: ohosWindow.Window = null;
 
-      function createSubWindowFun() {
-        return new Promise(function (resolve, reject) {
+      let createSubWindowFun: Function = () => {
+        return new Promise<ohosWindow.Window>((resolve, reject) => {
           windowStage.createSubWindow('setPrivacyModeTest3', (err, data) => {
             if (err && err.code) {
               console.log(msgStr + 'windowStage.createSubWindow fail err:' + JSON.stringify(err));
@@ -1614,8 +1594,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function getPropertiesFun(win) {
-        return new Promise(function (resolve, reject) {
+      let getPropertiesFun: Function = (win: ohosWindow.Window) => {
+        return new Promise<ohosWindow.WindowProperties>((resolve, reject) => {
           win.getProperties((err, data) => {
             if (err.code != 0) {
               reject(null)
@@ -1626,8 +1606,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function setPrivacyModeFun(win, boolean) {
-        return new Promise(function (resolve, reject) {
+      let setPrivacyModeFun: Function = (win: ohosWindow.Window, boolean: boolean) => {
+        return new Promise<boolean>((resolve, reject) => {
           win.setPrivacyMode(boolean, (err, data) => {
             if (err && err.code) {
               reject(null)
@@ -1638,39 +1618,39 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      tempWnd = await createSubWindowFun().catch(err => {
+      tempWnd = await createSubWindowFun().catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.create failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
       expect(!!tempWnd).assertTrue();
-      await setPrivacyModeFun(tempWnd, true).catch(err => {
+      await setPrivacyModeFun(tempWnd, true).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.setPrivacyMode failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
-      let windowProperties_true;
-      windowProperties_true = await getPropertiesFun(tempWnd).catch(err => {
+      let windowProperties_true: ohosWindow.Window;
+      windowProperties_true = await getPropertiesFun(tempWnd).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.getProperties failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_true : ${JSON.stringify(windowProperties_true)}`)
-      expect(windowProperties_true.isPrivacyMode).assertTrue();
+      expect(windowProperties_true.setPrivacyMode).assertTrue();
 
-      await setPrivacyModeFun(tempWnd, false).catch(err => {
+      await setPrivacyModeFun(tempWnd, false).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.setPrivacyMode failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
-      let windowProperties_false;
-      windowProperties_false = await getPropertiesFun(tempWnd).catch(err => {
+      let windowProperties_false: ohosWindow.Window;
+      windowProperties_false = await getPropertiesFun(tempWnd).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.getProperties failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_false : ${JSON.stringify(windowProperties_false)}`)
-      expect(!windowProperties_false.isPrivacyMode).assertTrue();
+      expect(!windowProperties_false.setPrivacyMode).assertTrue();
       await tempWnd.destroy();
       done();
     })
@@ -1682,18 +1662,17 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSetPreferredOrientation_Callback', 0, async function (done) {
-      let caseName = 'testSetPreferredOrientation_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testSetPreferredOrientation_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testSetPreferredOrientation_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let mainWin = null;
-      let num = 0
+      let mainWin: ohosWindow.Window | void = null;
       let orientationItem = ['UNSPECIFIED', 'PORTRAIT', 'LANDSCAPE', 'PORTRAIT_INVERTED',
-      'LANDSCAPE_INVERTED', 'AUTO_ROTATION', 'AUTO_ROTATION_PORTRAIT', 'AUTO_ROTATION_LANDSCAPE',
-      'AUTO_ROTATION_RESTRICTED', 'AUTO_ROTATION_PORTRAIT_RESTRICTED', 'AUTO_ROTATION_LANDSCAPE_RESTRICTED', 'LOCKED', 'UNSPECIFIED'];
+        'LANDSCAPE_INVERTED', 'AUTO_ROTATION', 'AUTO_ROTATION_PORTRAIT', 'AUTO_ROTATION_LANDSCAPE',
+        'AUTO_ROTATION_RESTRICTED', 'AUTO_ROTATION_PORTRAIT_RESTRICTED', 'AUTO_ROTATION_LANDSCAPE_RESTRICTED', 'LOCKED', 'UNSPECIFIED'];
 
-      function setPreferredOrientationFun(win, orientation) {
-        return new Promise((resolve, reject) => {
+      let setPreferredOrientationFun: Function = (win: ohosWindow.Window, orientation: ohosWindow.Orientation) => {
+        return new Promise<boolean>((resolve, reject) => {
           try {
             win.setPreferredOrientation(orientation, (err) => {
               if (err.code) {
@@ -1711,15 +1690,15 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      mainWin = await  windowStage.getMainWindow().catch((err) => {
+      mainWin = await windowStage.getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail();
         done();
       });
       expect(!!mainWin).assertTrue();
-      for (let i = 0;i < orientationItem.length; i++) {
-        let orientation = ohosWindow.Orientation[orientationItem[i]]
-        await setPreferredOrientationFun(mainWin, orientation).catch((err) => {
+      for (let i = 0; i < orientationItem.length; i++) {
+        let orientation: ohosWindow.Orientation = ohosWindow.Orientation[orientationItem[i]]
+        await setPreferredOrientationFun(mainWin, orientation).catch((err: BusinessError) => {
           console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
           expect().assertFail();
           done();
@@ -1737,14 +1716,14 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSetForbidSplitMove_Callback', 0, async function (done) {
-      let caseName = 'testSetForbidSplitMove_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testSetForbidSplitMove_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testSetForbidSplitMove_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
 
-      function setForbidSplitMoveFun(win, boolean) {
-        return new Promise((resolve, reject) => {
-          win.setForbidSplitMove(boolean, (err, data) => {
+      let setForbidSplitMoveFun: Function = (win, boolean) => {
+        return new Promise<boolean>((resolve, reject) => {
+          win.setForbidSplitMove(boolean, (err: BusinessError, data: ohosWindow.Window) => {
             if (err.code) {
               reject(null)
             } else {
@@ -1755,21 +1734,21 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      let mainWin;
-      mainWin = await windowStage.getMainWindow().catch(err => {
-        unexpectedError(err, caseName, 'windowStage.getMainWindow', done);
+      let mainWin: ohosWindow.Window | void;
+      mainWin = await windowStage.getMainWindow().catch((err: BusinessError) => {
+        unexpectedError(TRUE_FLAG, err, caseName, 'windowStage.getMainWindow', done);
         expect().assertFail();
         done();
       });
       console.log(msgStr + 'windowStage.getMainWindow' + JSON.stringify(mainWin));
       expect(!!mainWin).assertTrue();
 
-      await setForbidSplitMoveFun(mainWin, true).catch(err => {
+      await setForbidSplitMoveFun(mainWin, true).catch((err: BusinessError) => {
         console.log(msgStr + 'failed set window.setForbidSplitMove drag is prohibited, error: ' + JSON.stringify(err));
         expect().assertFail();
         done();
       })
-      await setForbidSplitMoveFun(mainWin, false).catch(err => {
+      await setForbidSplitMoveFun(mainWin, false).catch((err: BusinessError) => {
         console.log(msgStr + 'failed set window.setForbidSplitMove drag is prohibited, error: ' + JSON.stringify(err));
         expect().assertFail();
         done();
@@ -1785,22 +1764,22 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSnapshotTest_Callback_Form', 0, async function (done) {
-      let caseName = 'testSnapshotTest_Callback_Form';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testSnapshotTest_Callback_Form', 0, async (done: Function) => {
+      let caseName: string = 'testSnapshotTest_Callback_Form';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let mainWin = null
-      mainWin = await windowStage.getMainWindow().catch(err => {
-        unexpectedError(err, caseName, 'windowStage.getMainWindow', done);
+      let mainWin: ohosWindow.Window | void = null
+      mainWin = await windowStage.getMainWindow().catch((err: BusinessError) => {
+        unexpectedError(TRUE_FLAG, err, caseName, 'windowStage.getMainWindow', done);
       });
       console.log(msgStr + 'windowStage.getMainWindow' + JSON.stringify(mainWin));
 
       expect(!!mainWin).assertTrue();
-      await sleep(2000)
-      mainWin.snapshot((err, data) => {
+      await sleep(2000);
+      (mainWin as ohosWindow.Window).snapshot((err, data) => {
         if (err && err.code) {
           console.log(msgStr + 'snapshot err.code:' + JSON.stringify(err.code));
-          try{
+          try {
             expect().assertFail();
           } catch (error) {
             console.info(`expected catch error: ${JSON.stringify(error)}`)
@@ -1821,16 +1800,16 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testDialogTargetTouch_Callback', 0, async done => {
-      let caseName = 'testDialogTargetTouch_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testDialogTargetTouch_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testDialogTargetTouch_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin context==' + JSON.stringify(context));
       let tempType = ohosWindow.WindowType.TYPE_DIALOG
-      let dialogTargetTouchTest2Win = null
+      let dialogTargetTouchTest2Win: ohosWindow.Window = null
 
       ohosWindow.create(context, 'dialogTargetTouchTest2', tempType, async (err, data) => {
         if (err && err.code) {
-          unexpectedError(err, caseName, 'ohosWindow.create', done);
+          unexpectedError(TRUE_FLAG, err, caseName, 'ohosWindow.create', done);
         } else {
           dialogTargetTouchTest2Win = data
           try {
@@ -1851,17 +1830,17 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testAnimationForShown_Callback', 0, async function (done) {
-      let caseName = 'testAnimationForShown_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testAnimationForShown_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testAnimationForShown_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin context==' + JSON.stringify(context));
       console.log(msgStr + 'begin ohosWindow==' + JSON.stringify(ohosWindow));
-      let wndId = 'animationForShownTest2';
-      let baseType = ohosWindow.WindowType.TYPE_FLOAT;
-      let tempWnd = null;
+      let wndId: string = 'animationForShownTest2';
+      let baseType: number = ohosWindow.WindowType.TYPE_FLOAT;
+      let tempWnd:ohosWindow.Window = null;
       ohosWindow.create(context, wndId, baseType, async (err, data) => {
         if (err && err.code) {
-          unexpectedError(err, caseName, 'ohosWindow.create ' + baseType, done);
+          unexpectedError(TRUE_FLAG, err, caseName, 'ohosWindow.create ' + baseType, done);
         } else {
           tempWnd = data
           try {
@@ -1881,7 +1860,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
               iterations: 1,
               playMode: PlayMode.Normal,
             }, () => {
-              var obj: ohosWindow.TranslateOptions;
+              let obj: ohosWindow.TranslateOptions;
               obj.x = 100.0;
               obj.y = 0.0;
               obj.z = 0.0;
@@ -1906,15 +1885,15 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testGetCutoutInfo_Callbcak', 0, async function (done) {
-      let caseName = 'testGetCutoutInfo_Callbcak';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testGetCutoutInfo_Callbcak', 0, async (done: Function) => {
+      let caseName: string = 'testGetCutoutInfo_Callbcak';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin context==' + JSON.stringify(context));
-      let dpClass = display.getDefaultDisplaySync();
+      let dpClass: display.Display = display.getDefaultDisplaySync();
       expect(!!dpClass).assertTrue();
       dpClass.getCutoutInfo((err, data) => {
         if (err && err.code) {
-          unexpectedError(err, caseName, 'displayClass.getCutoutInfo', done);
+          unexpectedError(TRUE_FLAG, err, caseName, 'displayClass.getCutoutInfo', done);
         } else {
           console.info(msgStr + 'Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
           done();
@@ -1929,27 +1908,27 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSetAspectRatio_Cancel_Upon_Success_Callback', 0, async function (done) {
-      let caseName = 'testSetAspectRatio_Cancel_Upon_Success_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testSetAspectRatio_Cancel_Upon_Success_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testSetAspectRatio_Cancel_Upon_Success_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let mainWnd = null;
+      let mainWnd: ohosWindow.Window = null;
       await windowStage.getMainWindow().then((data) => {
         mainWnd = data;
         console.info(msgStr + 'Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
       });
 
-      function setAspectRatio() {
-        return new Promise(function (resolve, reject) {
+      let setAspectRatio: Function = () => {
+        return new Promise<boolean>((resolve, reject) => {
           try {
             let ratio = 1.0;
             mainWnd.setAspectRatio(ratio, (err) => {
               if (err.code) {
                 console.error(msgStr + 'Failed to set the aspect ratio of window. err.code:' + JSON.stringify(err.code));
               }
-              try{
+              try {
                 expect(err.code == 0).assertTrue();
               } catch (error) {
                 console.info(`expected catch error: ${JSON.stringify(error)}`)
@@ -1962,14 +1941,14 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         })
       }
 
-      function resetAspectRatio() {
-        return new Promise(function (resolve, reject) {
+      let resetAspectRatio: Function = () => {
+        return new Promise<void>((resolve, reject) => {
           console.info(msgStr + 'Succeeded start');
           try {
             mainWnd.resetAspectRatio((err) => {
               if (err.code) {
                 console.error(msgStr + 'Failed to reset the aspect ratio of window. err:' + JSON.stringify(err));
-                try{
+                try {
                   expect().assertFail();
                 } catch (error) {
                   console.info(`expected catch error: ${JSON.stringify(error)}`)
@@ -1997,26 +1976,26 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testSetAspectRatio_Invalid_Params_Callback', 0, async function (done) {
-      let caseName = 'testSetAspectRatio_Invalid_Params_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
+    it('testSetAspectRatio_Invalid_Params_Callback', 0, async (done: Function) => {
+      let caseName: string = 'testSetAspectRatio_Invalid_Params_Callback';
+      let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let mainWnd = null;
+      let mainWnd: ohosWindow.Window = null;
       await windowStage.getMainWindow().then((data) => {
         mainWnd = data;
         console.info(msgStr + 'Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
       });
 
-      function setAspectRatio() {
-        return new Promise(function (resolve, reject) {
+      let setAspectRatio: Function = () => {
+        return new Promise<void>((resolve, reject) => {
           try {
             let ratio = 0;
             mainWnd.setAspectRatio(ratio, (err) => {
               if (err.code) {
                 console.error(msgStr + 'Failed to set the aspect ratio of window. err.code:' + JSON.stringify(err.code));
-                try{
+                try {
                   expect().assertFail();
                 } catch (error) {
                   console.info(`expected catch error: ${JSON.stringify(error)}`)
@@ -2027,7 +2006,7 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
             });
           } catch (exception) {
             console.error(msgStr + 'Failed to set the aspect ratio of window. Cause : ' + JSON.stringify(exception));
-            expectedError(exception, caseName, 'mainWnd.setAspectRatio', done, 401);
+            expectedError(TRUE_FLAG, exception, caseName, 'mainWnd.setAspectRatio', done, 401);
           }
         })
       }
@@ -2043,32 +2022,32 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-        it('test_loadContentByName_callback_withstorage', 0, async function (done) {
+    it('test_loadContentByName_callback_withstorage', 0, async (done: Function) => {
 
-          let msg = "test_loadContentByName_callback_withstorage"
+      let msg = "test_loadContentByName_callback_withstorage"
 
-          try {
-            windowStage.loadContentByName("Index1", abilityStorage, (err) => {
-              const errCode = err.code;
-              if (errCode) {
-                console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(err));
-                expect().assertFail()
-                done()
-              } else {
-                console.info(msg + 'Succeeded in loading the content.');
-                expect(true).assertTrue()
-                done()
-              }
-              
-            });
-          } catch (exception) {
-            console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(exception));
+      try {
+        windowStage.loadContent("Index1", abilityStorage, (err: BusinessError) => {
+          const errCode = err.code;
+          if (errCode) {
+            console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(err));
             expect().assertFail()
             done()
+          } else {
+            console.info(msg + 'Succeeded in loading the content.');
+            expect(true).assertTrue()
+            done()
           }
-          
-          
+
         });
+      } catch (exception) {
+        console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(exception));
+        expect().assertFail()
+        done()
+      }
+
+
+    });
 
     /**
      * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_LOADCONTENTBYNAME_JS_API_2350
@@ -2078,21 +2057,21 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-     it('test_loadContentByName_callback_withoutstorage', 0, async function (done) {
+    it('test_loadContentByName_callback_withoutstorage', 0, async (done: Function) => {
 
       let msg = "test_loadContentByName_callback_withoutstorage"
 
       try {
-        windowStage.loadContentByName("Index1", (err) => {
+        windowStage.loadContent("Index1", (err: BusinessError) => {
           const errCode = err.code;
           if (errCode) {
             console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(err));
             expect().assertFail()
             done()
-          }else{
-              console.info(msg + 'Succeeded in loading the content.');
-              expect(true).assertTrue()
-              done()
+          } else {
+            console.info(msg + 'Succeeded in loading the content.');
+            expect(true).assertTrue()
+            done()
           }
         });
       } catch (exception) {
@@ -2100,8 +2079,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         expect().assertFail()
         done()
       }
-      
-      
+
+
     });
 
 
@@ -2113,17 +2092,17 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-     it('test_loadContentByName_Promise', 0, async function (done) {
+    it('test_loadContentByName_Promise', 0, async (done: Function) => {
 
       let msg = "test_loadContentByName_Promise"
 
       try {
-        let promise = windowStage.loadContentByName("Index1", abilityStorage);
+        let promise = windowStage.loadContent("Index1", abilityStorage);
         promise.then(() => {
           console.info(msg + 'Succeeded in loading the content.');
           expect(true).assertTrue()
           done()
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(err));
           expect().assertFail()
           done()
@@ -2133,8 +2112,8 @@ export default function windowCallbackTest(context, windowStage, abilityStorage)
         expect().assertFail()
         done()
       }
-      
-      
+
+
     });
   })
 }

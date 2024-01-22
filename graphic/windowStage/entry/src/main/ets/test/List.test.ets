@@ -19,13 +19,19 @@ import displayAndWindowRefactorInterfaceTest from './displayAndWindowRefactorInt
 import parameterVerificationIsOptional from './parameterVerificationIsOptional.test'
 import windowRichScene from './windowRichScene.test'
 import pipWindowTest from './pipwindow.test'
+import GlobalContext from '../test/GlobalContext';
+import ohosWindow from '@ohos.window';
+import Ability from '@ohos.app.ability.Ability'
 
 export default function testsuite() {
-  parameterVerificationIsOptional(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
-  windowCallbackTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
-  windowPromiseTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
-  windowRefactorInterfaceTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
-  displayAndWindowRefactorInterfaceTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
-  windowRichScene(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
-  pipWindowTest(globalThis.abilityContext)
+  let abilityContext: Context = GlobalContext.getContext().getObject("abilityContext") as Context
+  let windowStage:ohosWindow.WindowStage =  GlobalContext.getContext().getObject("windowStage") as ohosWindow.WindowStage
+  let abilityStorage:LocalStorage = GlobalContext.getContext().getObject("abilityStorage") as LocalStorage
+  parameterVerificationIsOptional(abilityContext,windowStage,abilityStorage);
+  windowCallbackTest(abilityContext,windowStage,abilityStorage);
+  windowPromiseTest(abilityContext,windowStage,abilityStorage);
+  windowRefactorInterfaceTest(abilityContext,windowStage,abilityStorage)
+  displayAndWindowRefactorInterfaceTest(abilityContext,windowStage,abilityStorage)
+  windowRichScene(abilityContext,windowStage,abilityStorage)
+  pipWindowTest(abilityContext)
 }
