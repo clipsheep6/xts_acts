@@ -1,9 +1,11 @@
 import wifiManager from '@ohos.wifiManager';
 import { describe, beforeAll, afterAll, it, expect } from '@ohos/hypium';
-import { Driver } from '@ohos.UiTest';
 
-const DRIVER = Driver.create();
 const COMMON_DELAY = 3000;
+
+function sleep(time: number = COMMON_DELAY): Promise<void> {
+  return new Promise((res) => setTimeout(res, time));
+};
 
 export default function abilityTest() {
   describe('WifiManegerTest', () => {
@@ -231,40 +233,40 @@ export default function abilityTest() {
     * @tc.level:   level 2
     */
     it('SUB_Communication_Wifi_Manager_getDisconnectedReason_Func_1400', 0, async () => {
-      // 如果没有打开wifi，就打开wifi,再断开，然后打开
+      // If wifi is not turned on, turn it on, then disconnect it, and then turn it on again
       if (!wifiManager.isWifiActive()) {
         try {
           wifiManager.enableWifi();
         } catch (err) {
           console.log(`SUB_Communication_Wifi_Manager_getDisconnectedReason_Func_1400 failed ${JSON.stringify(err)}`);
         }
-        await DRIVER.delayMs(COMMON_DELAY);
+        await sleep()
         try {
           wifiManager.disableWifi();
         } catch (err) {
           console.log(`SUB_Communication_Wifi_Manager_getDisconnectedReason_Func_1400 failed ${JSON.stringify(err)}`);
         }
-        await DRIVER.delayMs(COMMON_DELAY);
+        await sleep()
         try {
           wifiManager.enableWifi();
         } catch (err) {
           console.log(`SUB_Communication_Wifi_Manager_getDisconnectedReason_Func_1400 failed ${JSON.stringify(err)}`);
         }
       } else {
-        // 如果已经打开wifi了，就直接断开，再打开
+        // f wifi is already turned on, simply disconnect and turn it on again
         try {
           wifiManager.disableWifi();
         } catch (err) {
           console.log(`SUB_Communication_Wifi_Manager_getDisconnectedReason_Func_1400 failed ${JSON.stringify(err)}`);
         }
-        await DRIVER.delayMs(COMMON_DELAY);
+        await sleep()
         try {
           wifiManager.enableWifi();
         } catch (err) {
           console.log(`SUB_Communication_Wifi_Manager_getDisconnectedReason_Func_1400 failed ${JSON.stringify(err)}`);
         }
       }
-      await DRIVER.delayMs(COMMON_DELAY);
+      await sleep()
       console.log(`SUB_Communication_Wifi_Manager_getDisconnectedReason_Func_1400 ${JSON.stringify(wifiManager.isWifiActive())}`);
       try {
         let value: wifiManager.DisconnectedReason = wifiManager.getDisconnectedReason();
