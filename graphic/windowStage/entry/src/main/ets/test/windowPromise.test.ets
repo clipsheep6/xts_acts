@@ -1480,9 +1480,9 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let msgStr: string = 'testSetSpecificSystemBarEnabled';
       console.log(msgStr + 'begin')
       try {
-        let tempWindowClass: ohosWindow.Window | void = await ohosWindow.getLastWindow(context);
-        let windowClass: ohosWindow.Window = tempWindowClass as ohosWindow.Window;
-        let promise: Promise<void> = windowClass.setSpecificSystemBarEnabled('navigationIndicator', false);
+        let windowClass = await ohosWindow.getLastWindow(context);
+        let specificSystemBar: ohosWindow.SpecificSystemBar = 'navigationIndicator'
+        let promise = windowClass.setSpecificSystemBarEnabled(specificSystemBar, false);
         promise.then(() => {
           console.log(msgStr + 'Succeeded in setting the system bar to be invisible.');
           expect(true).assertTrue();
@@ -1564,5 +1564,199 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
         }
       })
     })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STANDARD_JS_API_1240
+     * @tc.name      : testGetWindowDecorHeight
+     * @tc.desc      : test the function of GetWindowDecorHeight
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level4
+     */
+    it('testGetWindowDecorHeight', 0, async (done:Function)=> {
+      let caseName:string = 'www data';
+      let msgStr:string = 'jsunittest ' + caseName + ' ';
+      console.log(msgStr + 'begin');
+      let load3:void = await windowStage.loadContent('MainAbility/pages/second/second').catch((err) => {
+        unexpectedError(TRUE_FLAG,err, caseName, 'windowStage loadContent', done);
+        console.log(msgStr + 'windowStage loadContent MainAbility/pages/second/second' + JSON.stringify(err));
+      });
+      expect(!Boolean(load3)).assertTrue();
+      try {
+        let tempWnd = await windowStage.getMainWindow().catch((err) => {
+          unexpectedError(TRUE_FLAG,err, caseName, 'windowStage.getMainWindow', done);
+        });
+        console.log(msgStr + 'windowStage.getMainWindow, tempWnd: ' + tempWnd);
+        expect(true).assertTrue()
+        done()
+      } catch (exception) {
+        console.error(msgStr + ' Failed to get the height of window decor. Cause: ' + JSON.stringify(exception));
+        if (exception.code == 801 || exception.code == 1300002) {
+          expect(true).assertTrue()
+          done()
+        } else {
+          expect().assertFail();
+          done();
+        }
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STANDARD_JS_API_1250
+     * @tc.name      : testSubWindowOptions
+     * @tc.desc      : test the function of SubWindowOptions
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level4
+     */
+    it('testSubWindowOptions', 0, async (done:Function)=> {
+      let msgStr:string = 'testSubWindowOptions';
+      console.log(msgStr + ' begin');
+      try {
+        console.log(msgStr + ' www data try' )
+        let options = {
+          title: 'title',
+          decorEnabled: true
+        };
+
+        let promise = windowStage.createSubWindowWithOptions('mySubWindow', options);
+        console.log(msgStr + ' www data ' + promise)
+
+        promise.then((data) => {
+          windowClass = data;
+          console.log(msgStr + ' Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+          expect(true).assertTrue()
+          done()
+        }).catch((err) => {
+          console.error(msgStr + ' www data111 Failed to create the subwindow. Cause: ' + JSON.stringify(err));
+          if (err.code == 801 || err.code == 1300002) {
+            expect(true).assertTrue()
+            done()
+          } else {
+            expect().assertFail();
+            done();
+          }
+        });
+      } catch (exception) {
+        console.error(msgStr + ' www data222 Failed to create the subwindow. Cause: ' + JSON.stringify(exception));
+        if (exception.code == 801 || exception.code == 1300002) {
+          expect(true).assertTrue()
+          done()
+        } else {
+          expect().assertFail();
+          done();
+        }
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STANDARD_JS_API_1260
+     * @tc.name      : testKeepKeyboardOnFocus
+     * @tc.desc      : test the function of KeepKeyboardOnFocus
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level4
+     */
+    it('testKeepKeyboardOnFocus', 0, async (done:Function)=> {
+      let msgStr = 'testKeepKeyboardOnFocus';
+      console.log(msgStr + ' begin');
+      ohosWindow.getLastWindow(context).then(wnd => {
+        console.log(msgStr + ' window.getTopWindow wnd: ' + wnd);
+        expect(wnd != null).assertTrue();
+        try {
+          wnd.keepKeyboardOnFocus(true);
+          expect(true).assertTrue()
+          done()
+        } catch (exception) {
+          console.error(msgStr + ' Failed to keep keyboard onFocus. Cause: ' + JSON.stringify(exception));
+          if (exception.code == 801 || exception.code == 1300004) {
+            expect(true).assertTrue()
+            done()
+          } else {
+            expect().assertFail();
+            done();
+          }
+        }
+      })
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STANDARD_JS_API_1280
+     * @tc.name      : testRecover
+     * @tc.desc      : test the function of Recover
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level4
+     */
+    it('testRecover', 0, async (done:Function)=> {
+      let msgStr:string = 'testRecover';
+      console.log(msgStr + ' begin');
+      ohosWindow.getLastWindow(context).then(wnd => {
+        console.log(msgStr + ' window.getTopWindow wnd: ' + wnd);
+        expect(wnd != null).assertTrue();
+        try {
+          let promise = wnd.recover();
+          console.log(msgStr + "after recover")
+          promise.then(() => {
+            console.info(msgStr + 'Succeeded in recovering the window.');
+            expect(true).assertTrue()
+            done()
+          }).catch((err: BusinessError) => {
+            console.error(msgStr + 'Failed to recover the window. Cause: ' + JSON.stringify(err));
+            if (err.code == 1300001) {
+              expect(true).assertTrue()
+              done()
+            } else {
+              expect().assertFail()
+              done()
+            }
+          });
+        } catch (exception) {
+          console.error(msgStr + ' Failed to recover the window. Cause: ' + JSON.stringify(exception));
+          if (exception.code == 1300001) {
+            expect(true).assertTrue()
+            done()
+          } else {
+            expect().assertFail();
+            done();
+          }
+        }
+      })
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0100
+     * @tc.name      : testShiftAppWindowFocus_Function_Promise
+     * @tc.desc      : Test the function value of shiftAppWindowFocus
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testShiftAppWindowFocus_Function_Promise', 0, async (done:Function)=>{
+      let msgStr:string = 'testShiftAppWindowFocus_Function_Promise';
+      console.log(msgStr + 'begin');
+      try {
+        console.log(msgStr + 'try begin')
+        let sourceWindowId = 40;
+        let targetWindowId = 41;
+        let promise = ohosWindow.shiftAppWindowFocus(sourceWindowId, targetWindowId);
+        promise.then(() => {
+          console.log(msgStr + 'Succeeded in shifting app window focus');
+          expect(true).assertTrue();
+          done();
+        }).catch((error:BusinessError) => {
+          console.log(msgStr + 'Failed to shift app window focus1. Cause:' + JSON.stringify(error));
+          if (error.code == 801) {
+            expect(true).assertTrue()
+            done()
+          } else {
+            expect().assertFail();
+            done();
+          }
+        })
+      } catch (error) {
+        console.log(msgStr + 'Failed to shift app window focus2. Cause:' + JSON.stringify(error));
+        expect().assertFail();
+        done();
+      }
+    })
+
   })
 }

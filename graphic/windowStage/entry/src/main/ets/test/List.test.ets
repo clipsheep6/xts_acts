@@ -19,6 +19,7 @@ import displayAndWindowRefactorInterfaceTest from './displayAndWindowRefactorInt
 import parameterVerificationIsOptional from './parameterVerificationIsOptional.test'
 import windowRichScene from './windowRichScene.test'
 import pipWindowTest from './pipwindow.test'
+import interfaceSupportSessionManagerTest from './interfaceSupportSessionManager.test'
 import GlobalContext from '../test/GlobalContext';
 import ohosWindow from '@ohos.window';
 import Ability from '@ohos.app.ability.Ability'
@@ -34,4 +35,5 @@ export default function testsuite() {
   displayAndWindowRefactorInterfaceTest(abilityContext,windowStage,abilityStorage)
   windowRichScene(abilityContext,windowStage,abilityStorage)
   pipWindowTest(abilityContext)
+  interfaceSupportSessionManagerTest(abilityContext,windowStage,abilityStorage)
 }

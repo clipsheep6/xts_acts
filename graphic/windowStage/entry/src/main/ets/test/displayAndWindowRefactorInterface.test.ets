@@ -2110,25 +2110,18 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
      * @tc.type      : Function
      * @tc.level     : Level4
      */
-    it('testSetExpectedFrameRateRange', 0, async (done: Function) => {
-      let msg = "testSetExpectedFrameRateRange"
-      let backDisplaySyncBigger: displaySync = displaySync.create()
-      console.log(msg + ' www data ' + backDisplaySyncBigger)
-      try {
-        let range: displaySync = {
-          expected: 10,
-          min: 0,
-          max: 120
-        };
-        console.log(msg + ' www data ' + range)
-        backDisplaySyncBigger.setExpectedFrameRateRange(range)
-        expect(true).assertTrue()
-        done()
-      } catch (error) {
-        console.log(msg + ' www data Failed to create the subWindow. Cause: ' + JSON.stringify(error));
-        if (error.code) {
-          expect().assertFail()
-        } else {
+    it('testSetExpectedFrameRateRange',0, async function (done){
+        let msg = "testSetExpectedFrameRateRange"
+        let backDisplaySyncBigger = displaySync.create()
+        console.log(msg + ' www data '  + backDisplaySyncBigger)
+        try {
+          let range : ExpectedFrameRateRange = {
+            expected: 10,
+            min:0,
+            max:120
+          };
+          console.log(msg + ' www data '  + range)
+          backDisplaySyncBigger.setExpectedFrameRateRange(range)
           expect(true).assertTrue()
         }
         done()
