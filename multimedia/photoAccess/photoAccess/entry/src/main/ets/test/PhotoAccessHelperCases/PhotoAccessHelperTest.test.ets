@@ -564,7 +564,7 @@ export default function PhotoAccessHelperTest() {
             for(let i = 0;i < sizes.length; i++){
                 photoAsset.getThumbnail(sizes[i]).then((pixelMap) => {
                     console.info('getThumbnail successful ' + pixelMap);
-                    if(>0 && i<4){
+                    if(i>0 && i<4){
                         console.info('getThumbnail error');
                         expect(false).assertTrue();
                     }
