@@ -116,10 +116,12 @@ export default function AVPlayerDataSrcNoSeekReliabilityTest() {
                 return -1;
             }
             num = readErr(buf, length);
+            console.info('kaaryachen readErr num:' + num);
             if (num != -1) {
                 console.info('case  readAt num:' + num);
                 return num;
             } else if (pos == undefined) {
+                console.info('kaaryachen else if readSync');
                 num = fileio.readSync(fd, buf, {offset: 0, length: length});
                 if (num == 0) {
                     fileio.closeSync(fd);
@@ -128,7 +130,7 @@ export default function AVPlayerDataSrcNoSeekReliabilityTest() {
                     return -1;
                 }
             } else {
-                num = stream.readSync(buf, {offset: 0, length: length, position: pos});
+                num = fileio.readSync(buf, {offset: 0, length: length, position: pos});
             }
             console.info('case  readAt num:' + num);
             if (num >= 0) {
@@ -150,12 +152,15 @@ export default function AVPlayerDataSrcNoSeekReliabilityTest() {
             console.info('SUB_MULTIMEDIA_MEDIA_AVPLAYER_DATASRC_NOSEEK_RELI_MP3_0100 filePath is '+JSON.stringify(filePath));
             let size = fileio.statSync(filePath).size;
             console.info('case file size:' + size);
+            console.info(`case filePath is ${filePath}`);
             fd = fileio.openSync(filePath, 0o0);
             readErr = (buf, length) => {
+                console.info('kaaryachen 100 case 1');
                 if (readAtCnt >= 2 && readAtCnt <= 10) {
-                    let num = fileio.readSync(fd, buf, {offset: 0, length: (readAtCnt ) * 1000});
+                    let num = fileio.readSync(fd, buf, {offset: 0, length: Math.min(1000 * readAtCnt, length)});
                     return num;
                 } else {
+                    console.info('kaaryachen 100 case 4');
                     return -1;
                 }
             }
@@ -175,12 +180,13 @@ export default function AVPlayerDataSrcNoSeekReliabilityTest() {
             * @tc.level     : Level3
         */
         it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_DATASRC_NOSEEK_RELI_MP3_0200', 0, async function (done) {
+            console.info('kaaryachen start SUB_MULTIMEDIA_MEDIA_AVPLAYER_DATASRC_NOSEEK_RELI_MP3_0200');
             filePath =  pathDir + "/01_15s.mp3";
             fd = fileio.openSync(filePath, 0o0);
             readErr = (buf, length) => {
                 if (readAtCnt >= 2 && readAtCnt <= 10) {
                     console.info('case buf length:' + length + 'readAtCnt:' + readAtCnt);
-                    let num = fileio.readSync(fd, buf, {offset: 1000, length: readAtCnt * 1000});
+                    let num = fileio.readSync(fd, buf, {offset: 0, length: Math.min(1000 * readAtCnt, length)});
                     return num;
                 } else {
                     return -1;
@@ -232,7 +238,7 @@ export default function AVPlayerDataSrcNoSeekReliabilityTest() {
             fd = fileio.openSync(filePath, 0o0);
             readErr = (buf, length) => {
                 if (readAtCnt >= 2 && readAtCnt <= 10) {
-                    let num = fileio.readSync(fd, buf, {offset: 0, length: (readAtCnt ) * 1000});
+                    let num = fileio.readSync(fd, buf, {offset: 0, length: Math.min(1000 * readAtCnt, length)});
                     return num + readAtCnt;
                 } else {
                     return -1;
@@ -258,7 +264,7 @@ export default function AVPlayerDataSrcNoSeekReliabilityTest() {
             fd = fileio.openSync(filePath, 0o0);
             readErr = (buf, length) => {
                 if (readAtCnt >= 2 && readAtCnt <= 10) {
-                    let num = fileio.readSync(fd, buf, {offset: 0, length: (readAtCnt ) * 1000});
+                    let num = fileio.readSync(fd, buf, {offset: 0, length: length});
                     return num - readAtCnt;
                 } else {
                     return -1;

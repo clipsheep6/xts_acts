@@ -21,16 +21,22 @@ import AVPlayerStabilityTest from './AVPlayerStabilityTest.test.js'
 import AvPlayerEnumTest from './AvPlayerEnumTest.test.js'
 import AVPlayerMultiTrackTest from './AVPlayerMultiTrackTest.test.js'
 import AVMetadata from './AVPlayerAVMetadata.test.ets'
+import AVPlayerDataSrcNoSeekCompatibilityTest from './AVPlayerDataSrcNoSeekCompatibilityTest.test.js'
+import AVPlayerDataSrcNoSeekReliabilityTest from './AVPlayerDataSrcNoSeekReliabilityTest.test.js'
+import AVPlayerDataSrcSeekCompatibilityTest from './AVPlayerDataSrcSeekCompatibilityTest.test.js'
 
 
 export default function testsuite() {
   // AVPlayerHlsFuncTest()
   // AVPlayerHttpCompatibilityTest();
   // AVPlayerHttpSeekTest();
-  AvPlayerEnumTest();
-  AVPlayerLocalTest();
-  AVPlayerAudioEffectModeTest();
-  AVPlayerMultiTrackTest();
+  // AvPlayerEnumTest();
+  // AVPlayerLocalTest();
+  // AVPlayerAudioEffectModeTest();
+  // AVPlayerMultiTrackTest();
   // AVPlayerStabilityTest();
-  AVMetadata();
+  // AVMetadata();
+  AVPlayerDataSrcNoSeekCompatibilityTest();
+  AVPlayerDataSrcSeekCompatibilityTest();
+  AVPlayerDataSrcNoSeekReliabilityTest();
 }
