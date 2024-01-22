@@ -290,7 +290,7 @@ struct WebComponent {
           .fontSize(15)
           .width(150)
           .onClick(() => {
-            this.controller.loadUrl('https://www.baidu.com', [{ headerKey: "headerKey", headerValue: "headerValue" }]);
+            this.controller.loadUrl({url:'https://www.baidu.com'});
             // this.controller.loadUrl(
             //   'https://www.baidu.com',
             //   [{ key: "div", value: "div" }])
@@ -324,8 +324,8 @@ struct WebComponent {
           .fontSize(15)
           .width(150)
           .onClick(() => {
-            this.controller.registerJavaScriptProxy(
-              this.controller.registerJavaScriptProxy(this.testObj, "objName", ["test", "toString"]);
+            this.controller.registerJavaScriptProxy({ object: this.testObj, name: 'objName', methodList: ['test', 'toString']});
+            // this.controller.registerJavaScriptProxy(
             //   this.testObj,
             //   'objName',
             //   ['test', 'toString']
