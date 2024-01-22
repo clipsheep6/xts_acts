@@ -15,6 +15,7 @@
 
 import media from '@ohos.multimedia.media'
 import * as mediaTestBase from './MediaTestBase.js';
+import fileio from '@ohos.fileio'
 
 export const AV_PLAYER_STATE = {
     IDLE : 'idle',
@@ -43,9 +44,18 @@ export function setSource(avPlayer, src) {
     if (typeof(src) == 'string') {
         console.info('case src test');
         avPlayer.url = src;
-    } else {
-        console.info('case fdsrc test');
-        avPlayer.fdSrc = src;
+        return
+    }
+    if (typeof(src) == 'object') {
+        let arr = Object.keys(src);
+        let len = arr.length;
+        if (len == 3) {
+            console.info('case fdsrc test');
+            avPlayer.fdSrc = src;
+        } else if (len == 2) {
+            console.info('case dataSrc test');
+            avPlayer.dataSrc = src;
+        }
     }
 }
 
@@ -230,11 +240,11 @@ export function setAVPlayerFunCb(src, avPlayer, playTest, playTime, done) {
     console.info(`case setAVPlayerFunCb in, surfaceID is ${surfaceID}`);
     avPlayer.on('stateChange', async (state, reason) => {
         console.info(`case stateChange called, state is ${state}, reason is ${reason}`);
-        if (reason == media.StateChangeReason.BACKGROUND) {
+        /*if (reason == media.StateChangeReason.BACKGROUND) {
             console.info(`case media.StateChangeReason.BACKGROUND`);
             await avPlayer.release().then(() => {
             }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-        }
+        }*/
         console.info(`case state is ${state}`);
         switch (state) {
             case AV_PLAYER_STATE.INITIALIZED:
@@ -2269,10 +2279,10 @@ export function setAVPlayerSeekCb(src, avPlayer, playTest, playTime, done) {
     console.info(`case setCallback in, surfaceID is ${surfaceID}`);
     avPlayer.on('stateChange', async (state, reason) => {
         console.info(`case stateChange called, state is ${state}, reason is ${reason}`);
-        if (reason == media.StateChangeReason.BACKGROUND) {
+        /*if (reason == media.StateChangeReason.BACKGROUND) {
             avPlayer.release().then(() => {
             }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-        }
+        }*/
         switch (state) {
             case AV_PLAYER_STATE.INITIALIZED:
                 expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.INITIALIZED);
@@ -2428,4 +2438,171 @@ export async function testAVPlayerSeek(src, avPlayer, playTest, playTime, done) 
             done();
         }
     });
+}
+
+export function setAVPlayerDataSrcNoSeekCb(fd, filePath, src, avPlayer, playTest, playTime, done) {
+    let volumeCnt = [0];
+    let endOfStreamCnt = [0];
+    let speedDoneCnt = [0];
+    let videoSizeCnt = [0];
+    let startRenderFrameCnt = [0];
+    let durationUpdateCnt = [0];
+    let seekDoneCnt = [0];
+    let prepareCnt = 0;
+    let playCnt = 0;
+    let completedCnt = 0;
+    let errorCnt = 0;
+    let surfaceID = globalThis.value;
+    console.info(`case setAVPlayerDataSrcNoSeekCb in, surfaceID is ${surfaceID}`);
+    avPlayer.on('stateChange', async (state, reason) => {
+        console.info(`case stateChange called, state is ${state}, reason is ${reason}`);
+        /*if (reason == media.StateChangeReason.BACKGROUND) {
+            console.info(`case media.StateChangeReason.BACKGROUND`);
+            await avPlayer.release().then(() => {
+            }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+        }*/
+        console.info(`case state is ${state}`);
+        switch (state) {
+            case AV_PLAYER_STATE.INITIALIZED:
+                expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.INITIALIZED);
+                if (playTest.width != 0) {
+                    avPlayer.surfaceId = surfaceID;
+                }
+                // step 1, 10: initialized -> prepared
+                toPreparePromise(avPlayer, playTest);
+                break;
+            case AV_PLAYER_STATE.PREPARED:
+                prepareCnt++;
+                expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.PREPARED);
+                checkPlayTest(avPlayer, playTest);
+                console.info(`case avPlayer.currentTime:` + avPlayer.currentTime);
+                expect(avPlayer.currentTime).assertEqual(0);
+                if (prepareCnt == 1) {
+                    // step 2: prepared -> playing
+                    avPlayer.play().then(() => {
+                    }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+                } else {
+                    // step 11: prepared -> seek
+                    avPlayer.seek(avPlayer.duration);
+                }
+                break;
+            case AV_PLAYER_STATE.PLAYING:
+                playCnt++;
+                if (playCnt == 1) {
+                    expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.PLAYING);
+                    // step 3: playing -> seek duration/3
+                    avPlayer.seek(avPlayer.duration / 3);
+                } else if (playCnt == 3) {
+                    // step 13: playing -> loop
+                    await mediaTestBase.msleepAsync(playTime);
+                    avPlayer.loop = true;
+                }
+                break;
+            case AV_PLAYER_STATE.PAUSED:
+                expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.PAUSED);
+                // step 5: pause -> seek 0
+                avPlayer.seek(0, media.SeekMode.SEEK_NEXT_SYNC);
+                break;
+            case AV_PLAYER_STATE.COMPLETED:
+                break;
+            case AV_PLAYER_STATE.STOPPED:
+                expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.STOPPED);
+                // step 8: stop -> reset
+                avPlayer.reset().then(() => {
+                    expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.IDLE);
+                    fileio.closeSync(fd[0]);
+                    fd[0] = fileio.openSync(filePath, 0o0);
+                    // step 9: reset -> initialized
+                    setSource(avPlayer, src);
+                }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+                break;
+            case AV_PLAYER_STATE.RELEASED:
+                expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.RELEASED);
+                // step 18: release -> done
+                avPlayer = null;
+                done();
+                break;
+            case AV_PLAYER_STATE.ERROR:
+                expect().assertFail();
+                avPlayer.release().then(() => {
+                }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+                break;
+            default:
+                break;
+        }
+    });
+    avPlayer.on('seekDone', async (seekDoneTime) => {
+        seekDoneCnt[0]++;
+    });
+    avPlayer.on('endOfStream', () => {
+        console.info(`case endOfStream called`);
+        endOfStreamCnt[0]++;
+        // step 7: playing -> stop
+        avPlayer.stop().then(() => {
+        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+    });
+    setCallback(avPlayer, 'volumeChange', volumeCnt);
+    setCallback(avPlayer, 'speedDone', speedDoneCnt);
+    setCallback(avPlayer, 'bitrateDone', null);
+    setCallback(avPlayer, 'timeUpdate', null);
+    setCallback(avPlayer, 'bufferingUpdate', null);
+    setCallback(avPlayer, 'durationUpdate', durationUpdateCnt);
+    setCallback(avPlayer, 'startRenderFrame', startRenderFrameCnt);
+    setCallback(avPlayer, 'videoSizeChange', videoSizeCnt);
+    setCallback(avPlayer, 'audioInterrupt', null);
+    setCallback(avPlayer, 'availableBitrates', null);
+    avPlayer.on('error', async (err) => {
+        console.error(`case error called, err is ${JSON.stringify(err)}`);
+        console.error(`case error called, errMessage is ${err.message}`);
+        errorCnt++;
+        switch (errorCnt) {
+            case 2:
+                // step 6: paused -> play
+                expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.PAUSED);
+                avPlayer.play();
+                avPlayer.setSpeed(media.PlaybackSpeed.SPEED_FORWARD_2_00_X);
+                avPlayer.setVolume(0.5);
+                break;
+            case 1:
+                expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.PLAYING);
+                // step 4: playing -> pause
+                avPlayer.pause().then(() => {
+                }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+                break;
+            case 4:
+                // step 12: prepared -> play
+                avPlayer.play();
+                break;
+            case 5:
+                // step 14: playing -> reset
+                avPlayer.reset().then(() => {
+                    expect(avPlayer.state).assertEqual(AV_PLAYER_STATE.IDLE);
+                    // step 15: reset -> release
+                    avPlayer.release().then(() => {
+                    }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+                }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
+                break;
+            default:
+                break;
+        }
+    });
+}
+
+export function testAVPlayerDataSrcNoSeek(filePath, src, avPlayer, playTest, playTime, done) {
+    console.info(`case media source: ${src}`)
+    let fd = [fileio.openSync(filePath, 0o0)];
+    media.createAVPlayer((err, video) => {
+        if (typeof(video) != 'undefined') {
+            console.info('case createAVPlayer success');
+            avPlayer = video;
+            setAVPlayerDataSrcNoSeekCb(fd, filePath, src, avPlayer, playTest, playTime, done);
+            setSource(avPlayer, src);
+        }
+        if (err != null) {
+            console.error(`case createAVPlayer error, errMessage is ${err.message}`);
+            expect().assertFail();
+            done();
+        }
+    });
+    return fd;
 }
