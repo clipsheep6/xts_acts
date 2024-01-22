@@ -2110,7 +2110,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
      * @tc.type      : Function
      * @tc.level     : Level4
      */
-    it('testSetExpectedFrameRateRange',0, async function (done){
+    it('testSetExpectedFrameRateRange',0,  async (done: Function) =>{
         let msg = "testSetExpectedFrameRateRange"
         let backDisplaySyncBigger = displaySync.create()
         console.log(msg + ' www data '  + backDisplaySyncBigger)
