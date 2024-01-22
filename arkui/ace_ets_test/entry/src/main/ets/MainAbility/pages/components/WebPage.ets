@@ -55,7 +55,6 @@ struct WebComponent {
   @State getHitTest: HitTestType = HitTestType.Unknown
   controller: WebController = new WebController();
   cookie: WebCookie = new WebCookie()
-
   testObj = {
     test: (data1, data2, data3) => {
       console.log('ets test web  : ' + data1)
@@ -292,8 +291,8 @@ struct WebComponent {
           .width(150)
           .onClick(() => {
             this.controller.loadUrl(
-              'https://www.baidu.com'
-              // [{ key: "div", value: "div" }])
+              'https://www.baidu.com',
+              [{ key: "div", value: "div" }])
           })
       }
 
@@ -325,9 +324,9 @@ struct WebComponent {
           .width(150)
           .onClick(() => {
             this.controller.registerJavaScriptProxy(
-              this.testObj
-              // 'objName',
-              // ['test', 'toString']
+              this.testObj,
+              'objName',
+              ['test', 'toString']
             );
           })
         Button('执行JavaScript脚本')

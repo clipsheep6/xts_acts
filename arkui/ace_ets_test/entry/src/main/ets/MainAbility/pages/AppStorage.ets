@@ -15,25 +15,26 @@
 
 import router from '@system.router'
 
-AppStorage.SetOrCreate("PropC", 1)
-let link3: SubscribedAbstractProperty<number> = AppStorage.Link("PropC");
+AppStorage.setOrCreate("PropC", 1)
+let link3: SubscribedAbstractProperty<number> = AppStorage.link("PropC");
 
-AppStorage.SetOrCreate("PropA", 47);
-let link1: SubscribedAbstractProperty<number> = AppStorage.Link("PropA");
-let link2: SubscribedAbstractProperty<number> = AppStorage.Link("PropA");
-let prop1: SubscribedAbstractProperty<number> = AppStorage.Prop("PropA");
+AppStorage.setOrCreate("PropA", 47);
+let link1: SubscribedAbstractProperty<number> = AppStorage.link("PropA");
+let link2: SubscribedAbstractProperty<number> = AppStorage.link("PropA");
+let prop1: SubscribedAbstractProperty<number> = AppStorage.prop("PropA");
 
-AppStorage.SetAndLink("PropB", 50)
-let PropBValue = String(AppStorage.Get("PropB"))
+AppStorage.setAndLink("PropB", 50)
+let PropBValue = String(AppStorage.get("PropB"))
 
-AppStorage.SetAndProp("PropA", 47)
-let PropAValue = String(AppStorage.Get("PropA"))
-for (let key of AppStorage.Keys()) {
-  let keys = key
+AppStorage.setAndProp("PropA", 47)
+let PropAValue = String(AppStorage.get("PropA"))
+let kays: string = '';
+for (let key of AppStorage.keys()) {
+  kays = key
 }
-let setPropAValue = String(AppStorage.Set("PropA", 20))
-let deleteValue = String(AppStorage.Delete("PropC"))
-let hasValue = String(AppStorage.Has("PropB"))
+let setPropAValue = String(AppStorage.set("PropA", 20))
+let deleteValue = String(AppStorage.delete("PropC"))
+let hasValue = String(AppStorage.has("PropB"))
 let isMutableValue = String(AppStorage.IsMutable("PropB"))
 
 
@@ -47,7 +48,7 @@ struct appStorage_test {
   @State str6: string = link3.get().toString();
   @State PropB: string = PropBValue
   @State PropA: string = PropAValue
-  // @State keys: string = this.keys
+  @State keys: string = kays
   @State str4: string = link1.get().toString()
   @State str5: string = setPropAValue
   @State str7: string = deleteValue
