@@ -22,6 +22,7 @@ import GlobalContext from '../test/GlobalContext';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import { BusinessError } from '@ohos.base';
+import abilityAccessCtrl, { Context, Permissions } from '@ohos.abilityAccessCtrl';
 
 export default class TestAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -44,7 +45,16 @@ export default class TestAbility extends UIAbility {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageCreate');
-    windowStage.loadContent('TestAbility/pages/Index', (err: BusinessError, data: void) => {
+    windowStage.loadContent('TestAbility/pages/Index', (err, data) => {
+	      let permissions: Permissions[] = ["ohos.permission.WRITE_CONTACTS", "ohos.permission.READ_CONTACTS"];
+        let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
+        atManager.requestPermissionsFromUser(globalThis.context, permissions, (err, result) => {
+          if (err) {
+            console.info('getPermission failed: ' + JSON.stringify(err));
+          } else {
+            console.info('getPermission suc: ' + JSON.stringify(result));
+          }
+        });
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;

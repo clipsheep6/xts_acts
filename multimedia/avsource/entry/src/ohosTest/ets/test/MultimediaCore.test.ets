@@ -89,16 +89,15 @@ export default function audioDecoderTest() {
       done();
     });
 
-
     /**
      * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_0600
-     * @tc.name       : testMultimediaCoreAVFormatCopy001
+     * @tc.name       : testCoreMultimediaCoreAVFormatCopy001
      * @tc.desc       : test OH_AVFormat_Copy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultimediaCoreAVFormatCopy001', 0, async (done: Function) => {
+    it('testCoreMultimediaCoreAVFormatCopy001', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatCopyOne();
       expect(result).assertEqual(0);
       done();
@@ -106,13 +105,13 @@ export default function audioDecoderTest() {
 
     /**
      * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_0700
-     * @tc.name       : testMultimediaCoreAVFormatCopy002
+     * @tc.name       : testCoreMultimediaCoreAVFormatCopy002
      * @tc.desc       : test OH_AVFormat_Copy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultimediaCoreAVFormatCopy002', 0, async (done: Function) => {
+    it('testCoreMultimediaCoreAVFormatCopy002', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatCopyTwo();
       expect(result).assertEqual(0);
       done();
@@ -120,13 +119,13 @@ export default function audioDecoderTest() {
 
     /**
      * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_0800
-     * @tc.name       : testMultimediaCoreAVFormatCopy003
+     * @tc.name       : testCoreMultimediaCoreAVFormatCopy003
      * @tc.desc       : test OH_AVFormat_Copy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultimediaCoreAVFormatCopy003', 0, async (done: Function) => {
+    it('testCoreMultimediaCoreAVFormatCopy003', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatCopyThree();
       expect(result).assertEqual(0);
       done();
@@ -134,13 +133,13 @@ export default function audioDecoderTest() {
 
     /**
      * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_0900
-     * @tc.name       : testMultimediaCoreAVFormatDestroy001
+     * @tc.name       : testCoreMultimediaCoreAVFormatDestroy001
      * @tc.desc       : test OH_AVFormat_Destroy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultimediaCoreAVFormatDestroy001', 0, async (done: Function) => {
+    it('testCoreMultimediaCoreAVFormatDestroy001', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDestroy();
       expect(result).assertEqual(0);
       done();
@@ -148,13 +147,13 @@ export default function audioDecoderTest() {
 
     /**
      * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1000
-     * @tc.name       : testMultimediaCoreAVFormatDumpInfo001
+     * @tc.name       : testCoreMultimediaCoreAVFormatDumpInfo001
      * @tc.desc       : test OH_AVFormat_DumpInfo
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultimediaCoreAVFormatDumpInfo001', 0, async (done: Function) => {
+    it('testCoreMultimediaCoreAVFormatDumpInfo001', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDumpInfoOne();
       expect(result).assertEqual(0);
       done();
@@ -162,13 +161,13 @@ export default function audioDecoderTest() {
 
     /**
      * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1100
-     * @tc.name       : testMultimediaCoreAVFormatDumpInfo002
+     * @tc.name       : testCoreMultimediaCoreAVFormatDumpInfo002
      * @tc.desc       : test OH_AVFormat_DumpInfo
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultimediaCoreAVFormatDumpInfo002', 0, async (done: Function) => {
+    it('testCoreMultimediaCoreAVFormatDumpInfo002', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDumpInfoTwo();
       expect(result).assertEqual(0);
       done();
@@ -594,13 +593,13 @@ export default function audioDecoderTest() {
 
     /**
      * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_4200
-     * @tc.name       : testMultimediaCoreAVFormatSetBuffer001
+     * @tc.name       : testCoreMultimediaCoreAVFormatSetBuffer001
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultimediaCoreAVFormatSetBuffer001', 0, async (done: Function) => {
+    it('testCoreMultimediaCoreAVFormatSetBuffer001', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferOne();
       expect(result).assertEqual(0);
       done();
@@ -608,13 +607,13 @@ export default function audioDecoderTest() {
 
     /**
      * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_4300
-     * @tc.name       : testMultimediaCoreAVFormatSetBuffer002
+     * @tc.name       : testCoreMultimediaCoreAVFormatSetBuffer002
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultimediaCoreAVFormatSetBuffer002', 0, async (done: Function) => {
+    it('testCoreMultimediaCoreAVFormatSetBuffer002', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferTwo();
       expect(result).assertEqual(0);
       done();
@@ -622,13 +621,13 @@ export default function audioDecoderTest() {
 
     /**
      * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_4400
-     * @tc.name       : testMultimediaCoreAVFormatSetBuffer003
+     * @tc.name       : testCoreMultimediaCoreAVFormatSetBuffer003
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultimediaCoreAVFormatSetBuffer003', 0, async (done: Function) => {
+    it('testCoreMultimediaCoreAVFormatSetBuffer003', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferThree();
       expect(result).assertEqual(0);
       done();
@@ -984,953 +983,954 @@ export default function audioDecoderTest() {
       expect(result).assertEqual(0);
       done();
     });
+
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_0100
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatCreateAudioFormat001
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_0100
+     * @tc.name       : testCoreMultimediaCoreAVFormatCreateAudioFormat001
      * @tc.desc       : test OH_AVFormat_CreateAudioFormat
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatCreateAudioFormat001', 0, async (done: Function) => {
+    it('testCoreMultimediaCoreAVFormatCreateAudioFormat001', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatCreateAudioFormatAVC();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_0200
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatCreateAudioFormat002
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_0200
+     * @tc.name       : testCoreMultimediaCoreAVFormatCreateAudioFormat002
      * @tc.desc       : test OH_AVFormat_CreateAudioFormat
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatCreateAudioFormat002', 0, async (done: Function) => {
+    it('testCoreMultimediaCoreAVFormatCreateAudioFormat002', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatCreateAudioFormatVORBIS();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_0300
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatCreateAudioFormat003
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_0300
+     * @tc.name       : testMultimediaCoreAVFormatCreateAudioFormat003
      * @tc.desc       : test OH_AVFormat_CreateAudioFormat
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatCreateAudioFormat003', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatCreateAudioFormat003', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatCreateAudioFormatVORBISMPEG();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_0400
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatCreateVideoFormat001
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_0400
+     * @tc.name       : testCoreMultimediaCoreAVFormatCreateVideoFormat001
      * @tc.desc       : test OH_AVFormat_CreateVideoFormat
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatCreateVideoFormat001', 0, async (done: Function) => {
+    it('testCoreMultimediaCoreAVFormatCreateVideoFormat001', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatCreateVideoFormatHEVC();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_0500
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatCreateVideoFormat002
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_0500
+     * @tc.name       : testCoreMultimediaCoreAVFormatCreateVideoFormat002
      * @tc.desc       : test OH_AVFormat_CreateVideoFormat
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatCreateVideoFormat002', 0, async (done: Function) => {
+    it('testCoreMultimediaCoreAVFormatCreateVideoFormat002', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatCreateVideoFormatMPEG4();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_0600
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDestroy001
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_0600
+     * @tc.name       : testMultimediaCoreAVFormatDestroy001
      * @tc.desc       : test OH_AVFormat_Destroy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDestroy001', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDestroy001', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDestroyVideoHEVC();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_0700
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDestroy002
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_0700
+     * @tc.name       : testMultimediaCoreAVFormatDestroy002
      * @tc.desc       : test OH_AVFormat_Destroy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDestroy002', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDestroy002', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDestroyVideoMPEG4();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_0800
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDestroy003
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_0800
+     * @tc.name       : testMultimediaCoreAVFormatDestroy003
      * @tc.desc       : test OH_AVFormat_Destroy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDestroy003', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDestroy003', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDestroyAudioFLAC();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_0900
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDestroy004
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_0900
+     * @tc.name       : testMultimediaCoreAVFormatDestroy004
      * @tc.desc       : test OH_AVFormat_Destroy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDestroy004', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDestroy004', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDestroyAudioAAC();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_1000
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDestroy005
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_1000
+     * @tc.name       : testMultimediaCoreAVFormatDestroy005
      * @tc.desc       : test OH_AVFormat_Destroy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDestroy005', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDestroy005', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDestroyAudioVORBIS();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_1100
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDestroy006
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_1100
+     * @tc.name       : testMultimediaCoreAVFormatDestroy006
      * @tc.desc       : test OH_AVFormat_Destroy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDestroy006', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDestroy006', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDestroyAudioMPEG();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_1200
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatCopy001
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_1200
+     * @tc.name       : testMultimediaCoreAVFormatCopy001
      * @tc.desc       : test OH_AVFormat_Copy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatCopy001', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatCopy001', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatCopyVideoHEVC();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_1300
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatCopy002
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_1300
+     * @tc.name       : testMultimediaCoreAVFormatCopy002
      * @tc.desc       : test OH_AVFormat_Copy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatCopy002', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatCopy002', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatCopyVideoMPEG4();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_1400
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatCopy003
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_1400
+     * @tc.name       : testMultimediaCoreAVFormatCopy003
      * @tc.desc       : test OH_AVFormat_Copy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatCopy003', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatCopy003', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatCopyAudioAAC();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_1500
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatCopy004
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_1500
+     * @tc.name       : testMultimediaCoreAVFormatCopy004
      * @tc.desc       : test OH_AVFormat_Copy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatCopy004', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatCopy004', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatCopyAudioFLAC();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_1600
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatCopy005
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_1600
+     * @tc.name       : testMultimediaCoreAVFormatCopy005
      * @tc.desc       : test OH_AVFormat_Copy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatCopy005', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatCopy005', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatCopyAudioVORBIS();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_1700
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatCopy006
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_1700
+     * @tc.name       : testMultimediaCoreAVFormatCopy006
      * @tc.desc       : test OH_AVFormat_Copy
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatCopy006', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatCopy006', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatCopyAudioMPEG();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_1800
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDumpInfo001
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_1800
+     * @tc.name       : testMultimediaCoreAVFormatDumpInfo001
      * @tc.desc       : test OH_AVFormat_DumpInfo
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDumpInfo001', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDumpInfo001', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDumpInfoARTIST();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_1900
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDumpInfo002
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_1900
+     * @tc.name       : testMultimediaCoreAVFormatDumpInfo002
      * @tc.desc       : test OH_AVFormat_DumpInfo
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDumpInfo002', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDumpInfo002', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDumpInfoALBUM();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_2000
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDumpInfo003
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_2000
+     * @tc.name       : testMultimediaCoreAVFormatDumpInfo003
      * @tc.desc       : test OH_AVFormat_DumpInfo
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDumpInfo003', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDumpInfo003', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDumpInfoALBUMARTIST();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_2100
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDumpInfo004
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_2100
+     * @tc.name       : testMultimediaCoreAVFormatDumpInfo004
      * @tc.desc       : test OH_AVFormat_DumpInfo
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDumpInfo004', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDumpInfo004', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDumpInfoDATE();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_2200
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDumpInfo005
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_2200
+     * @tc.name       : testMultimediaCoreAVFormatDumpInfo005
      * @tc.desc       : test OH_AVFormat_DumpInfo
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDumpInfo005', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDumpInfo005', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDumpInfoCOMMENT();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_2300
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDumpInfo006
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_2300
+     * @tc.name       : testMultimediaCoreAVFormatDumpInfo006
      * @tc.desc       : test OH_AVFormat_DumpInfo
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDumpInfo006', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDumpInfo006', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDumpInfoGENRE();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_2400
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDumpInfo007
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_2400
+     * @tc.name       : testMultimediaCoreAVFormatDumpInfo007
      * @tc.desc       : test OH_AVFormat_DumpInfo
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDumpInfo007', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDumpInfo007', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDumpInfoCOPYRIGHT();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_2500
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDumpInfo008
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_2500
+     * @tc.name       : testMultimediaCoreAVFormatDumpInfo008
      * @tc.desc       : test OH_AVFormat_DumpInfo
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDumpInfo008', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDumpInfo008', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDumpInfoLANGUAGE();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_2600
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDumpInfo009
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_2600
+     * @tc.name       : testMultimediaCoreAVFormatDumpInfo009
      * @tc.desc       : test OH_AVFormat_DumpInfo
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDumpInfo009', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDumpInfo009', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDumpInfoDESCRIPTION();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_2700
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatDumpInfo010
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_2700
+     * @tc.name       : testMultimediaCoreAVFormatDumpInfo010
      * @tc.desc       : test OH_AVFormat_DumpInfo
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatDumpInfo010', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatDumpInfo010', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatDumpInfoLYRICS();
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_2800
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer001
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_2800
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer001
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer001', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer001', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(1);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_2900
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer002
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_2900
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer002
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer002', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer002', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(2);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_2900
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer003
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_2900
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer003
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer003', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer003', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(3);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_3000
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer004
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_3000
+     * @tc.name       : testCoreMultimediaCoreAVFormatSetBuffer004
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer004', 0, async (done: Function) => {
+    it('testCoreMultimediaCoreAVFormatSetBuffer004', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(4);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_3100
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer005
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_3100
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer005
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer005', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer005', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(5);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_3200
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer006
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_3200
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer006
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer006', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer006', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(6);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_3300
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer007
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_3300
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer007
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer007', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer007', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(7);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_3400
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer008
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_3400
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer008
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer008', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer008', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(8);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_3500
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer009
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_3500
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer009
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer009', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer009', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(9);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_3600
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer010
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_3600
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer010
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer010', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer010', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(10);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_3700
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer011
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_3700
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer011
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer011', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer011', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(11);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_3800
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer012
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_3800
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer012
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer012', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer012', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(12);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_3900
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer013
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_3900
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer013
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer013', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer013', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(13);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_4000
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer014
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_4000
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer014
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer014', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer014', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(14);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_4100
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer015
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_4100
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer015
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer015', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer015', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(15);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_4200
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer016
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_4200
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer016
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer016', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer016', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(16);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_4300
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer017
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_4300
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer017
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer017', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer017', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(17);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_4400
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer018
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_4400
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer018
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer018', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer018', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(18);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_4500
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer019
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_4500
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer019
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer019', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer019', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(19);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_4600
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer020
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_4600
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer020
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer020', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer020', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(20);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_4700
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer021
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_4700
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer021
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer021', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer021', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(21);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_4800
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer022
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_4800
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer022
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer022', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer022', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(22);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_4900
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer023
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_4900
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer023
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer023', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer023', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(23);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_5000
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer024
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_5000
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer024
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer024', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer024', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(24);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_5100
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer025
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_5100
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer025
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer025', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer025', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(25);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_5200
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer026
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_5200
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer026
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer026', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer026', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(26);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_5300
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer027
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_5300
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer027
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer027', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer027', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(27);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_5400
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer028
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_5400
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer028
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer028', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer028', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(28);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_5500
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer029
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_5500
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer029
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer029', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer029', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(29);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_5600
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer030
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_5600
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer030
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer030', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer030', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(30);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_5700
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer031
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_5700
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer031
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer031', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer031', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(31);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_5800
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer032
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_5800
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer032
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer032', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer032', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(32);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_5900
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer033
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_5900
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer033
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer033', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer033', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(33);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_6000
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer034
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_6000
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer034
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer034', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer034', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(34);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_6100
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer035
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_6100
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer035
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer035', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer035', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(35);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_6200
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer036
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_6200
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer036
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer036', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer036', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(36);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_6300
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer037
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_6300
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer037
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer037', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer037', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(37);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_6400
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer038
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_6400
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer038
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer038', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer038', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(38);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_6500
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer039
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_6500
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer039
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer039', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer039', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(39);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_6600
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer040
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_6600
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer040
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer040', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer040', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(40);
       expect(result).assertEqual(0);
       done();
     });
 
     /**
-     * @tc.number     : SUB_MULTIMultimediaCore_AV_CODEC_CORE_1_6700
-     * @tc.name       : testMultiMultimediaCoreCoreAVFormatSetBuffer041
+     * @tc.number     : SUB_MULTIMEDIA_AV_CODEC_CORE_1_6700
+     * @tc.name       : testMultimediaCoreAVFormatSetBuffer041
      * @tc.desc       : test OH_AVFormat_SetBuffer
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testMultiMultimediaCoreCoreAVFormatSetBuffer041', 0, async (done: Function) => {
+    it('testMultimediaCoreAVFormatSetBuffer041', 0, async (done: Function) => {
       let result: number = MultimediaCore.multimediaCoreAVFormatSetBufferAll(41);
       expect(result).assertEqual(0);
       done();
