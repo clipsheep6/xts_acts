@@ -12,16 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 @Entry
 @Component
 struct scroll_testcase {
   @State scrollBarWidth: number = 20;
   @State scrollable: ScrollDirection = ScrollDirection.None;
   @State scrollBarColor: Color = Color.Pink;
-  @State scrollBar: BarState= BarState.On;
+  @State scrollBar: BarState = BarState.On;
   private value1: Array<number> = [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
-  @State edge: Edge= Edge.Top;
+  @State edge: Edge = Edge.Top;
   private content: string = "Scroll Page";
   scroller: Scroller = new Scroller();
 
@@ -71,6 +71,7 @@ struct scroll_testcase {
       .onScrollEdge((side: Edge) => {
         console.info(`To the edge`)
       })
+
       Scroll() {
         Row() {
           Text('scroll uppppp')

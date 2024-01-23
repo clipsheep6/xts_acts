@@ -39,7 +39,8 @@ struct button_testcase {
         .fontSize(12)
         .fontWeight(FontWeight.Bold)
         .fontColor(0xCCCCCC)
-        .height(40).width(40)
+        .height(40)
+        .width(40)
         .key('button')
         .backgroundColor('#0D9FFB')
         .onClick(() => {

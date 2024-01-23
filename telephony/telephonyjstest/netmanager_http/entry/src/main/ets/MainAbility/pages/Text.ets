@@ -19,8 +19,8 @@ let paramInfo: Object = router.getParams();
 console.info("cd paramInfo" + JSON.stringify(paramInfo));
 
 class Decoration {
- type: TextDecorationType;
- color: Color;
+  type: TextDecorationType;
+  color: Color;
 }
 
 interface CustomTextOverFlow {
@@ -172,7 +172,7 @@ struct text_textcase {
         .visibility(Visibility.None)
         .fontWeight(FontWeight.Bolder)
         .textAlign(TextAlign.Center)
-        .textOverflow({overflow: TextOverflow.None})
+        .textOverflow({ overflow: TextOverflow.None })
         .textCase(TextCase.UpperCase)
         .decoration({ "type": TextDecorationType.None, "color": Color.Red })
         .fontColor(Color.Blue)

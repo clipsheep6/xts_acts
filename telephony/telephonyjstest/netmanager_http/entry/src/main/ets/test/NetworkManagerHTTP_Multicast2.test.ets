@@ -72,8 +72,8 @@ let httpRequestOptions: http.HttpRequestOptions = {
     {
       name: "Part1",
       contentType: 'string',
-      data:'textyyyy',
-      filePath:'./test.txt'
+      data: 'textyyyy',
+      filePath: './test.txt'
 
     }
   ] }
@@ -123,14 +123,14 @@ export default function NetworkManagerMulticastHTTP2Test() {
      */
     it("SUB_Telephony_netstack_Http_Multipart_Xts_Promise_0200", 0, async (done: Function) => {
       let caseName = "SUB_Telephony_netstack_Http_Multipart_Xts_Promise_0200";
-      httpRequest.request(url,httpRequestOptions_form).then((data) => {
-          console.log(`${caseName} request success, data: ${JSON.stringify(data)}`);
-          expect(data.responseCode == 200).assertTrue();
-          done();
-        }).catch((err:BusinessError) => {
-          console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
-          expectFalse();
-          done();
+      httpRequest.request(url, httpRequestOptions_form).then((data) => {
+        console.log(`${caseName} request success, data: ${JSON.stringify(data)}`);
+        expect(data.responseCode == 200).assertTrue();
+        done();
+      }).catch((err: BusinessError) => {
+        console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
+        expectFalse();
+        done();
       })
     })
     /**

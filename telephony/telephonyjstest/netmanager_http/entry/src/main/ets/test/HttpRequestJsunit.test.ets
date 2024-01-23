@@ -213,14 +213,14 @@ export default function httpRequestJsunit() {
       try {
         let httpRequest: http.HttpRequest = http.createHttp();
         let callbackData1 = (data: Object) => {
-        console.log(caseName + " data: " + JSON.stringify(data));
-        expect(false).assertTrue();
-        httpRequest.destroy();
-        console.log("-----------------------HttpRequest_off_headerReceive Test end-----------------------");
-        done();
+          console.log(caseName + " data: " + JSON.stringify(data));
+          expect(false).assertTrue();
+          httpRequest.destroy();
+          console.log("-----------------------HttpRequest_off_headerReceive Test end-----------------------");
+          done();
         };
-        httpRequest.on('headerReceive',callbackData1);
-        httpRequest.off('headerReceive',callbackData1);
+        httpRequest.on('headerReceive', callbackData1);
+        httpRequest.off('headerReceive', callbackData1);
 
         httpRequest.request("https://www.baidu.com/", (err: BusinessError, data: http.HttpResponse) => {
           console.log(caseName + " data: " + JSON.stringify(data.responseCode) + " err: " + JSON.stringify(err));
