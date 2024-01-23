@@ -16,7 +16,7 @@
 @Entry
 @Component
 struct rating_testcase {
-  @State rating: number = 2;
+  @State rating: number = 2
 
   onPageShow() {
     console.info('Rating page show called');
@@ -53,8 +53,8 @@ struct rating_testcase {
             secondaryUri: '/resources/rawfile/star-1-2.png'
           })
           .key('rating2')
-      }
-      .width(300).height(300)
+      }.width(300)
+      .height(300)
       .borderColor(Color.Pink)
       .borderWidth(2)
     }
