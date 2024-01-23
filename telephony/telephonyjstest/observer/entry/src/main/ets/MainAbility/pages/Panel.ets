@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 @Entry
 @Component
 struct PanelExample {
-  @State show: boolean = true;
+  @State show: boolean = true
 
   onPageShow() {
     console.info('Panel page show called');
@@ -51,8 +51,8 @@ struct PanelExample {
       .fullHeight(500)
       .halfHeight(250)
       .miniHeight(100)
-      .onChange((width: number, height: number, mode: PanelMode) => {
-        console.info(`width:${width},height:${height},mode:${mode}`)
+      .onChange((value: any) => {
+        console.info(`width:${value.width},height:${value.height},mode:${value.mode}`)
       })
 
       Panel(this.show) {
@@ -69,8 +69,8 @@ struct PanelExample {
       .fullHeight(500)
       .halfHeight(250)
       .miniHeight(100)
-      .onChange((width: number, height: number, mode: PanelMode) => {
-        console.info(`width:${width},height:${height},mode:${mode}`)
+      .onChange((value: any) => {
+        console.info(`width:${value.width},height:${value.height},mode:${value.mode}`)
       })
 
       Panel(false) {
@@ -87,13 +87,10 @@ struct PanelExample {
       .fullHeight(500)
       .halfHeight(250)
       .miniHeight(100)
-      .onChange((width: number, height: number, mode: PanelMode) => {
-        console.info(`width:${width},height:${height},mode:${mode}`)
+      .onChange((value: any) => {
+        console.info(`width:${value.width},height:${value.height},mode:${value.mode}`)
       })
 
-    }
-    .width('100%').height('50%')
-    .backgroundColor(0xDCDCDC)
-    .padding({ top: 5 })
+    }.width('100%').height('50%').backgroundColor(0xDCDCDC).padding({ top: 5 })
   }
 }

@@ -12,12 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 @Entry
 @Component
 struct navigator_testcase {
-  @State active: boolean = false;
-  @State params: object = new Object({ text: 'news' });
+  @State active: boolean = false
+  @State params: Object = { text: 'news' }
 
   onPageShow() {
     console.info('Navigator page show called');
@@ -31,8 +31,7 @@ struct navigator_testcase {
     Column() {
       Navigator({ target: "pages/index", type: NavigationType.Back }) {
         Text('Navigator test  in Navigator，back')
-      }
-      .active(this.active)
+      }.active(this.active)
       .key('navigator')
       .params({
         data: 24
@@ -40,8 +39,7 @@ struct navigator_testcase {
 
       Navigator({ target: "pages/index", type: NavigationType.Push }) {
         Text('Navigator test  in Navigator，push')
-      }
-      .active(this.active)
+      }.active(this.active)
       .key('navigator2')
       .params({
         data: 24
@@ -49,14 +47,13 @@ struct navigator_testcase {
 
       Navigator({ target: "pages/index", type: NavigationType.Replace }) {
         Text('Navigator test  in Navigator，replace')
-      }
-      .active(this.active)
+      }.active(this.active)
       .key('navigator3')
       .params({
         data: 24
       })
-    }
-    .width(300).height(300)
+    }.width(300)
+    .height(300)
     .borderColor(Color.Pink)
     .borderWidth(2)
   }

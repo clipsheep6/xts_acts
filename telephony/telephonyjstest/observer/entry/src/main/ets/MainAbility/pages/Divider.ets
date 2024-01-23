@@ -13,16 +13,16 @@
  * limitations under the License.
  */
  
-import router from '@ohos.router';
+import router from '@system.router'
 
 @Entry
 @Component
 struct divider_textcase {
-  @State vertical: boolean = true;
-  @State color: Color = Color.Red;
-  @State strokeWidth: number = 7;
-  @State lineCap: LineCapStyle = LineCapStyle.Butt;
-  @State active: boolean = false;
+  @State vertical: boolean = true
+  @State color: Color = Color.Red
+  @State strokeWidth: number = 7
+  @State lineCap: LineCapStyle = LineCapStyle.Butt
+  @State active: boolean = false
   private content: string = "Divider Page";
 
   onPageShow() {
@@ -63,7 +63,8 @@ struct divider_textcase {
         .key('divider2')
     }
     .key('flex')
-    .width('100%').height('100%')
+    .width('100%')
+    .height('100%')
   }
 }
 

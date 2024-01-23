@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import router from '@ohos.router';
+ 
+import router from '@system.router'
 
 @Entry
 @Component
 struct rowSplit_testcase {
-  @State resizeable: boolean = false;
+  @State resizeable: boolean = false
   private content: string = "rowSplit Page";
 
   onPageShow() {

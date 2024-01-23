@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -29,7 +30,8 @@ struct MyComponent {
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
     }
-    .width('100%').height('100%')
+    .width('100%')
+    .height('100%')
   }
 }
 
