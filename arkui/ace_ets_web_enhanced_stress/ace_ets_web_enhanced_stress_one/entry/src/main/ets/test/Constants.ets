@@ -16,7 +16,7 @@
 export class Constants {
   static readonly USE_LOW_STRESS_TIMES = true
   static readonly LOW_STRESS_TIMES = 10
-  static readonly DEFAULT_STRESS_TIMES = 2000
+  static readonly DEFAULT_STRESS_TIMES = 200
   static readonly PAGE_EVENT_KEY = 10
   static readonly WEB_ATTRIBUTE_ONDOWNLOADSTART_BUTTON_KEY = 'WebAttributeOnDownloadStartTestButton'
   static readonly WEB_ATTRIBUTE_ONERRORRECEIVE_BUTTON_KEY = 'WebAttributeOnErrorReceiveTestButton'

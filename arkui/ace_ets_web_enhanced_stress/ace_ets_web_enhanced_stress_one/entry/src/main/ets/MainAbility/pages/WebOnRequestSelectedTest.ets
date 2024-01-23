@@ -47,16 +47,12 @@ struct WebOnRequestSelectedTest {
       Column() {
         Button(this.buttonKey)
           .key(this.buttonKey)
-          .focusable(true)
-          .onFocus(() => {
-            this.controller.requestFocus()
-          })
           .onClick(async () => {
             console.info("key==>" + this.str)
             switch (this.str) {
               case 'testWebOnRequestSelected001': {
                 try {
-                  focusControl.requestFocus(this.buttonKey)
+                  Utils.clickComponentByEvent('WebOnRequestSelectedTestTextInput')
                 } catch (error) {
                   console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
                   Utils.emitEvent(false, this.callBackId)
@@ -64,6 +60,13 @@ struct WebOnRequestSelectedTest {
                 break;
               }
             }
+          })
+
+        TextInput({ placeholder: "inputs your words" })
+          .key('WebOnRequestSelectedTestTextInput')
+          .type(InputType.Normal)
+          .onClick(() => {
+            this.controller.requestFocus()
           })
 
         Web({ src: '', controller: this.controller })
@@ -75,9 +78,7 @@ struct WebOnRequestSelectedTest {
             Utils.stressingLog('Web.onRequestSelected()', this.successTimes, this.stressTimes)
             if (this.successTimes < this.stressTimes) {
               try {
-                setTimeout(() => {
-                  focusControl.requestFocus(this.buttonKey)
-                }, 50)
+                Utils.clickComponentByEvent('WebOnRequestSelectedTestTextInput')
               } catch (error) {
                 console.error(`ErrorCode: ${error.code},  Message: ${error.message}`);
                 Utils.emitEvent(false, this.callBackId)

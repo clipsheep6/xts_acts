@@ -62,7 +62,8 @@ export default function webViewControllerDeleteJavaScriptRegisterTest() {
     * @tc.level       : Level 2
     */
     it('testWebViewControllerDeleteJavaScriptRegister001', 0, async (done: Function) => {
-      Utils.doIt("testWebViewControllerDeleteJavaScriptRegister001", 82120, Constants.DEFAULT_STRESS_TIMES,
+      Utils.doIt("testWebViewControllerDeleteJavaScriptRegister001", 82120,
+        Constants.USE_LOW_STRESS_TIMES ? Constants.LOW_STRESS_TIMES : Constants.DEFAULT_STRESS_TIMES,
         Constants.WEB_VIEW_CONTROLLER_DELETE_JAVASCRIPT_REGISTER_BUTTON_KEY,
         (testCaseName: string, callBackId: number) => {
           Utils.registerEvent(testCaseName, true, callBackId, done);

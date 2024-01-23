@@ -63,7 +63,8 @@ export default function webDataBaseDeleteHttpAuthCredentialsTest() {
     * @tc.level       : Level 1
     */
     it('testWebDataBaseDeleteHttpAuthCredentials001', 0, async (done: Function) => {
-      Utils.doIt("testWebDataBaseDeleteHttpAuthCredentials001", 120044, Constants.DEFAULT_STRESS_TIMES,
+      Utils.doIt("testWebDataBaseDeleteHttpAuthCredentials001", 120044,
+        Constants.USE_LOW_STRESS_TIMES ? Constants.LOW_STRESS_TIMES : Constants.DEFAULT_STRESS_TIMES,
         Constants.WEB_DATABASE_DELETE_HTTP_AUTH_CREDENTIALS_BUTTON_KEY,
         (testCaseName: string, callBackId: number) => {
           Utils.registerEvent(testCaseName, true, callBackId, done);

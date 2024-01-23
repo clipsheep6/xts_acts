@@ -67,6 +67,10 @@ export default class Utils {
     await component.click();
   }
 
+  static clickComponentByEvent(id: string) {
+    sendEventByKey(id, 10, '')
+  }
+
   static async triggerKey(id: number) {
     let driver = Driver.create();
     await driver.triggerKey(id);
@@ -187,11 +191,11 @@ export default class Utils {
   }
 
   static getRectHorizontalCenterX(rect: RectInfo): number {
-    return (rect.right - rect.left) / 2 + rect.left;
+    return Number.parseInt(Number((rect.right - rect.left) / 2 + rect.left).toFixed(0));
   }
 
   static getRectVerticalCenterY(rect: RectInfo): number {
-    return (rect.bottom - rect.top) / 2 + rect.top;
+    return Number.parseInt(Number((rect.bottom - rect.top) / 2 + rect.top).toFixed(0));
   }
 
   static async doIt(testCaseName: string, callBackId: number, stressTimes: number,
