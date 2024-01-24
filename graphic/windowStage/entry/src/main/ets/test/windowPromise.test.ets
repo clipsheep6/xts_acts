@@ -140,7 +140,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let resizeValue = 200;
       console.log(msgStr + 'begin');
       let flag = false;
-      let tempWindow: ohosWindow.Window | undefined = undefined;
+      let tempWindow: ohosWindow.Window = undefined;
       try {
         await ohosWindow.create(context, wndId, baseType).then((data: ohosWindow.Window) => {
           tempWindow = data
