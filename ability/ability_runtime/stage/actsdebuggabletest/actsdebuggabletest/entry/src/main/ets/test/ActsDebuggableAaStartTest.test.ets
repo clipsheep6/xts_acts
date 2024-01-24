@@ -458,13 +458,13 @@ export default function actsDebuggableAaStartTest() {
 
     /*
      * @tc.number  SUB_AA_AMS_Debuggable_2100
-     * @tc.name    aa start -b com.example.timeout -a EntryAbility --pi 100 200
+     * @tc.name    aa start -b com.example.timeout -a EntryAbility --pi kinteger 100 200
      * @tc.desc    Function test
      * @tc.level   3
      */
     it('SUB_AA_AMS_Debuggable_2100',1, async function (done) {
       let res = undefined;
-      await abilityDelegator.executeShellCommand('aa start --pi 100 200 -b com.example.timeout -a EntryAbility')
+      await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --pi kinteger 100 200')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
             'SUB_AA_AMS_Debuggable_2100 data is: ' + JSON.stringify(data));
@@ -480,13 +480,13 @@ export default function actsDebuggableAaStartTest() {
 
     /*
      * @tc.number  SUB_AA_AMS_Debuggable_2200
-     * @tc.name    aa start -b com.example.timeout -a EntryAbility --pb true false
+     * @tc.name    aa start -b com.example.timeout -a EntryAbility --pb kbool true false
      * @tc.desc    Function test
      * @tc.level   3
      */
     it('SUB_AA_AMS_Debuggable_2200',1, async function (done) {
       let res = undefined;
-      await abilityDelegator.executeShellCommand('aa start --pb true false -b com.example.timeout -a EntryAbility')
+      await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --pb kbool true false')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
             'SUB_AA_AMS_Debuggable_2200 data is: ' + JSON.stringify(data));
