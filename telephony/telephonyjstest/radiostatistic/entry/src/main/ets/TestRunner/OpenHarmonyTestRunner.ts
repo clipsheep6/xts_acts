@@ -15,13 +15,13 @@
 import TestRunner from '@ohos.application.testRunner';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
-function translateParamsToString(parameters: Record<string, string>): string {
-  const keySet: Set<string> = new Set([
+function translateParamsToString(parameters) {
+  const keySet = new Set([
     '-s class', '-s notClass', '-s suite', '-s itName',
     '-s level', '-s testType', '-s size', '-s timeout',
     '-s package'
-  ])
-  let targetParams: string = '';
+  ]);
+  let targetParams;
   for (const key in parameters) {
     if (keySet.has(key)) {
       targetParams += ' ' + key + ' ' + parameters[key]
