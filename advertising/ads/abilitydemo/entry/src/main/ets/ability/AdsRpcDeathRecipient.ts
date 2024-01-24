@@ -34,7 +34,3 @@ export default class AdsRpcDeathRecipient implements rpc.DeathRecipient {
     Logger.i(TAG, `remote rpc obj from ${this.callingUid} is died`);
   }
 }
-
-
-
-
