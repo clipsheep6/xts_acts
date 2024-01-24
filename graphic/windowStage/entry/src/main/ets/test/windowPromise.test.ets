@@ -140,7 +140,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let resizeValue = 200;
       console.log(msgStr + 'begin');
       let flag = false;
-      let tempWnd: ohosWindow.Window = undefined;
+      let tempWnd: ohosWindow.Window;
       try {
         await ohosWindow.create(context, wndId, baseType).then((data: ohosWindow.Window) => {
           tempWnd = data
@@ -251,7 +251,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
         name: wndId, windowType: baseType, ctx: context
       }
       console.log(msgStr + 'ohosWindow.create createWindowObj:' + JSON.stringify(createWindowObj));
-      let tempWnd: ohosWindow.Window = null;
+      let tempWnd: ohosWindow.Window;
       await ohosWindow.create(context, wndId, baseType).then((data: ohosWindow.Window) => {
         console.log(msgStr + 'ohosWindow.create data:' + JSON.stringify(data));
         tempWnd = data
@@ -658,7 +658,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
         let tempType: number = systemWindowTypeDic[systemWindowTypeDicArr[i]];
         let windId: string = 'createTest1' + i;
         console.log(msgStr + 'ohosWindow.create ' + tempType + ' start');
-        let tempWnd: ohosWindow.Window = null;
+        let tempWnd: ohosWindow.Window;
         await ohosWindow.create(context, windId, tempType).then(
           (data) => {
             tempWnd = data;
@@ -693,7 +693,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
         let tempType: number = ohosWindow.WindowType.TYPE_FLOAT;
         let windId = 'createTest2' + i;
         console.log(msgStr + 'ohosWindow.create ' + tempType + ' start');
-        let createData: ohosWindow.Window = null;
+        let createData: ohosWindow.Window;
         try {
           await ohosWindow.create(context, windId, tempType).then((data: ohosWindow.Window) => {
             createData = data
@@ -765,7 +765,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
       let windowId: string = 'sameids'
-      let ohosData: ohosWindow.Window = null;
+      let ohosData: ohosWindow.Window;
       await ohosWindow.create(context, windowId, ohosWindow.WindowType.TYPE_FLOAT).then(
         (data) => {
           ohosData = data;
@@ -799,7 +799,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let createWindowObj: ohosWindow.Configuration = {
         name: windowId, windowType: baseWndType, ctx: context
       }
-      let tempWnd: ohosWindow.Window = null;
+      let tempWnd: ohosWindow.Window ;
       try {
         await ohosWindow.createWindow(createWindowObj).then((data: ohosWindow.Window) => {
           tempWnd = data
@@ -839,7 +839,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let createWindowObj: ohosWindow.Configuration = {
         name: windowId, windowType: baseWndType, ctx: context
       }
-      let tempWnd: ohosWindow.Window = null;
+      let tempWnd: ohosWindow.Window ;
       try {
         await ohosWindow.createWindow(createWindowObj).then((data: ohosWindow.Window) => {
           tempWnd = data
@@ -855,7 +855,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       console.log(msgStr + 'tempWnd.loadContent start');
       await tempWnd.destroy();
       let errFlag = false;
-      let loadContentData: void = null;
+      let loadContentData: void ;
       try {
         await tempWnd.loadContent(null).then((data: void) => {
           loadContentData = data;
@@ -1046,8 +1046,8 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let caseName: string = 'testSetPrivacyMode_SppSubWin_Promise';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin ');
-      let mainWnd: ohosWindow.Window = null;
-      let windowData: ohosWindow.Window = null
+      let mainWnd: ohosWindow.Window ;
+      let windowData: ohosWindow.Window
       await ohosWindow.create(context, 'setPrivacyModeTest1', ohosWindow.WindowType.TYPE_FLOAT)
         .then((data: ohosWindow.Window) => {
           windowData = data;
@@ -1110,7 +1110,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let createWindowObj: ohosWindow.Configuration = {
         name: windowId, windowType: baseWndType, ctx: context
       }
-      let tempWnd: ohosWindow.Window = null;
+      let tempWnd: ohosWindow.Window;
       try {
         await ohosWindow.createWindow(createWindowObj).then((data: ohosWindow.Window) => {
           tempWnd = data
@@ -1241,7 +1241,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin context==' + JSON.stringify(context));
       let tempType: number = ohosWindow.WindowType.TYPE_DIALOG
-      let dialogTargetTouchTest1Win: ohosWindow.Window = null;
+      let dialogTargetTouchTest1Win: ohosWindow.Window;
       let createWindowObj: ohosWindow.Configuration = {
         name: 'dialogTargetTouchTest1', windowType: tempType, ctx: context
       }
@@ -1275,7 +1275,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       console.log(msgStr + 'begin ohosWindow==' + JSON.stringify(ohosWindow));
       let wndId = 'animationForShownTest1';
       let baseType: number = ohosWindow.WindowType.TYPE_FLOAT;
-      let tempWnd: ohosWindow.Window = null;
+      let tempWnd: ohosWindow.Window;
       let createWindowObj: ohosWindow.Configuration = {
         name: wndId, windowType: baseType, ctx: context
       }
@@ -1348,7 +1348,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let caseName: string = 'testSetAspectRatio_Cancel_Upon_Success_Promise';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let mainWnd: ohosWindow.Window = null;
+      let mainWnd: ohosWindow.Window;
       await windowStage.getMainWindow().then((data: ohosWindow.Window) => {
         mainWnd = data;
         expect(!!mainWnd).assertTrue();
@@ -1389,7 +1389,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let caseName: string = 'testSetAspectRatio_Invalid_Params_Promise';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let mainWnd: ohosWindow.Window = null;
+      let mainWnd: ohosWindow.Window;
       await windowStage.getMainWindow().then((data: ohosWindow.Window) => {
         mainWnd = data;
         expect(!!mainWnd).assertTrue();
@@ -1576,13 +1576,13 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let caseName:string = 'www data';
       let msgStr:string = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let load3:void = await windowStage.loadContent('MainAbility/pages/second/second').catch((err) => {
+      let load3:void = await windowStage.loadContent('MainAbility/pages/second/second').catch((err:BusinessError) => {
         unexpectedError(TRUE_FLAG,err, caseName, 'windowStage loadContent', done);
         console.log(msgStr + 'windowStage loadContent MainAbility/pages/second/second' + JSON.stringify(err));
       });
       expect(!Boolean(load3)).assertTrue();
       try {
-        let tempWnd = await windowStage.getMainWindow().catch((err) => {
+        let tempWnd = await windowStage.getMainWindow().catch((err:BusinessError) => {
           unexpectedError(TRUE_FLAG,err, caseName, 'windowStage.getMainWindow', done);
         });
         console.log(msgStr + 'windowStage.getMainWindow, tempWnd: ' + tempWnd);
@@ -1610,6 +1610,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
     it('testSubWindowOptions', 0, async (done:Function)=> {
       let msgStr:string = 'testSubWindowOptions';
       console.log(msgStr + ' begin');
+      let windowClass:ohosWindow.Window;
       try {
         console.log(msgStr + ' www data try' )
         let options = {
@@ -1625,7 +1626,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
           console.log(msgStr + ' Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
           expect(true).assertTrue()
           done()
-        }).catch((err) => {
+        }).catch((err:BusinessError) => {
           console.error(msgStr + ' www data111 Failed to create the subwindow. Cause: ' + JSON.stringify(err));
           if (err.code == 801 || err.code == 1300002) {
             expect(true).assertTrue()

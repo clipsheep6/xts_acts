@@ -20,7 +20,7 @@ import Ability from '@ohos.app.ability.Ability';
 import { BusinessError } from '@ohos.base';
 
 async function sleep(time: number) {
-  let timeoutId: number = null;
+  let timeoutId: number = 0;
   let promise: Promise<string> = new Promise(resolve => {
     timeoutId = setTimeout(() => {
       resolve("sleep finished");
@@ -686,7 +686,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
       let windowConfig: ohosWindow.Configuration = {
         name: windowId, windowType: baseWndType, ctx: context
       };
-      let tempWnd: ohosWindow.Window | void = null;
+      let tempWnd: ohosWindow.Window | void;
       try {
         tempWnd = await ohosWindow.createWindow(windowConfig).catch((err: BusinessError) => {
           expect().assertFail();
@@ -1139,7 +1139,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
       let windowConfig: ohosWindow.Configuration = {
         name: windowId, windowType: baseWndType, ctx: context
       };
-      let tempWnd: ohosWindow.Window | void = null;
+      let tempWnd: ohosWindow.Window | void;
       try {
         tempWnd = await ohosWindow.createWindow(windowConfig).catch((err: BusinessError) => {
           console.error(msgStr + 'Failed to createWindow the window. Cause: ' + JSON.stringify(err));
@@ -1189,7 +1189,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
       let windowConfig: ohosWindow.Configuration = {
         name: windowId, windowType: baseWndType, ctx: context
       };
-      let tempWnd: ohosWindow.Window | void = null;
+      let tempWnd: ohosWindow.Window | void;
       try {
         tempWnd = await ohosWindow.createWindow(windowConfig).catch((err: BusinessError) => {
           console.error(msgStr + 'Failed to createWindow the window. Cause: ' + JSON.stringify(err));
@@ -1239,7 +1239,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
       let windowConfig: ohosWindow.Configuration = {
         name: windowId, windowType: baseWndType, ctx: context
       };
-      let tempWnd: ohosWindow.Window | void = null;
+      let tempWnd: ohosWindow.Window | void;
       try {
         tempWnd = await ohosWindow.createWindow(windowConfig).catch((err: BusinessError) => {
           expect().assertFail();
@@ -1290,7 +1290,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
       let windowConfig: ohosWindow.Configuration = {
         name: windowId, windowType: baseWndType, ctx: context
       };
-      let tempWnd: ohosWindow.Window | void = null;
+      let tempWnd: ohosWindow.Window | void;
       try {
         tempWnd = await ohosWindow.createWindow(windowConfig).catch((err: BusinessError) => {
           expect().assertFail();
@@ -1341,7 +1341,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
       let windowConfig: ohosWindow.Configuration = {
         name: windowId, windowType: baseWndType, ctx: context
       };
-      let tempWnd: ohosWindow.Window | void = null;
+      let tempWnd: ohosWindow.Window | void;
       try {
         tempWnd = await ohosWindow.createWindow(windowConfig).catch((err: BusinessError) => {
           expect().assertFail();
@@ -1468,7 +1468,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
       let windowConfig: ohosWindow.Configuration = {
         name: windowId, windowType: baseWndType, ctx: context
       };
-      let tempWnd: ohosWindow.Window | void = null;
+      let tempWnd: ohosWindow.Window | void;
       try {
         tempWnd = await ohosWindow.createWindow(windowConfig).catch((err: BusinessError) => {
           expect().assertFail();
@@ -1556,7 +1556,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
     it('testSetWindowSystemBarEnable_Empty_Promise', 0, async (done: Function) => {
       let caseName: string = 'testSetWindowSystemBarEnable_Empty_Promise';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      let wnd: ohosWindow.Window | void = null;
+      let wnd: ohosWindow.Window | void;
       try {
         wnd = await ohosWindow.getLastWindow(context).catch((err: BusinessError) => {
           console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -1599,7 +1599,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
     it('testSetWindowSystemBarEnable_StatusAndNavigation_Promise', 0, async (done: Function) => {
       let caseName: string = 'testSetWindowSystemBarEnable_StatusAndNavigation_Promise';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      let wnd: ohosWindow.Window | void = null;
+      let wnd: ohosWindow.Window | void;
       try {
         wnd = await ohosWindow.getLastWindow(context).catch((err: BusinessError) => {
           console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -1642,7 +1642,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
     it('testSetWindowSystemBarEnable_Status_Promise', 0, async (done: Function) => {
       let caseName: string = 'testSetWindowSystemBarEnable_Status_Promise';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      let wnd: ohosWindow.Window | void = null;
+      let wnd: ohosWindow.Window | void;
       try {
         wnd = await ohosWindow.getLastWindow(context).catch((err: BusinessError) => {
           console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -1685,7 +1685,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
     it('testSetWindowSystemBarEnable_Navigation_Promise', 0, async (done: Function) => {
       let caseName: string = 'testSetWindowSystemBarEnable_Navigation_Promise';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      let wnd: ohosWindow.Window | void = null;
+      let wnd: ohosWindow.Window | void;
       try {
         wnd = await ohosWindow.getLastWindow(context).catch((err: BusinessError) => {
           console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -1729,7 +1729,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
       let caseName: string = 'testSetWindowSystemBarEnable_StatusAndNavigation_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let wnd: ohosWindow.Window | void = null;
+      let wnd: ohosWindow.Window | void;
       try {
         wnd = await ohosWindow.getLastWindow(context).catch((err: BusinessError) => {
           console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -1779,7 +1779,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
       let caseName: string = 'testSetWindowSystemBarEnable_Empty_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let wnd: ohosWindow.Window | void = null;
+      let wnd: ohosWindow.Window | void;
       try {
         wnd = await ohosWindow.getLastWindow(context).catch((err: BusinessError) => {
           console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
@@ -1835,7 +1835,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
       let windowConfig: ohosWindow.Configuration = {
         name: windId, windowType: tempType, ctx: context
       };
-      let nonExistWnd: ohosWindow.Window | void = null;
+      let nonExistWnd: ohosWindow.Window | void;
       try {
         nonExistWnd = await ohosWindow.createWindow(windowConfig).then((data) => {
           console.log(msgStr + 'ohosWindow.createWindow success: ' + JSON.stringify(nonExistWnd));
@@ -1900,7 +1900,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
     it('testSetWindowLayoutFullScreen_True_Promise', 0, async (done: Function) => {
       let caseName: string = 'testSetWindowLayoutFullScreen_True_Promise';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      let wnd: ohosWindow.Window | void = null;
+      let wnd: ohosWindow.Window | void;
       try {
         wnd = windowStage.getMainWindowSync();
         console.log(msgStr + 'ohosWindow.getLastWindow ' + JSON.stringify(wnd));
@@ -1944,7 +1944,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
     it('testSetWindowLayoutFullScreen_False_Promise', 0, async (done: Function) => {
       let caseName: string = 'testSetWindowLayoutFullScreen_False_Promise';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      let wnd: ohosWindow.Window | void = null;
+      let wnd: ohosWindow.Window | void;
       try {
         wnd = windowStage.getMainWindowSync();
         expect(wnd != null).assertTrue();
@@ -1987,7 +1987,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
     it('testSetWindowLayoutFullScreen_True_Callback', 0, async (done: Function) => {
       let caseName: string = 'testSetWindowLayoutFullScreen_True_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      let wnd: ohosWindow.Window | void = null;
+      let wnd: ohosWindow.Window | void;
       try {
         wnd = windowStage.getMainWindowSync();
         expect(wnd != null).assertTrue();
@@ -2039,7 +2039,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
     it('testSetWindowLayoutFullScreen_False_Callback', 0, async (done: Function) => {
       let caseName: string = 'testSetWindowLayoutFullScreen_False_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      let wnd: ohosWindow.Window | void = null;
+      let wnd: ohosWindow.Window | void;
       try {
         wnd = windowStage.getMainWindowSync();
         expect(wnd != null).assertTrue();
@@ -2111,8 +2111,8 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
      * @tc.level     : Level4
      */
     it('testSetExpectedFrameRateRange',0,  async (done: Function) =>{
-        let msg = "testSetExpectedFrameRateRange"
-        let backDisplaySyncBigger = displaySync.create()
+        let msg:string = "testSetExpectedFrameRateRange"
+        let backDisplaySyncBigger:displaySync = displaySync.create()
         console.log(msg + ' www data '  + backDisplaySyncBigger)
         try {
           let range : ExpectedFrameRateRange = {
@@ -2123,9 +2123,16 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
           console.log(msg + ' www data '  + range)
           backDisplaySyncBigger.setExpectedFrameRateRange(range)
           expect(true).assertTrue()
+        done();
+      }catch (error) {
+          console.log(msg + ' www data Failed to create the subwindow. Cause: ' + JSON.stringify(error));
+          if (error.code) {
+            expect().assertFail()
+          } else {
+            expect(true).assertTrue()
+          }
+          done()
         }
-        done()
-      }
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STANDARD_JS_API_1820
@@ -2137,7 +2144,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
      */
     it('testTargetTimestamp', 0, async (done: Function) => {
       let msg = "testTargetTimestamp"
-      let backDisplaySyncBigger: string = displaySync.create()
+      let backDisplaySyncBigger: displaySync = displaySync.create()
       console.log(msg + ' www data ' + backDisplaySyncBigger)
       try {
         expect(true).assertTrue()

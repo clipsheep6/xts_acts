@@ -44,7 +44,7 @@ function unexpectedError(TRUE_FLAG: boolean, error: BusinessError, caseName: str
 }
 
 async function sleep(time: number) {
-  let timeoutId: number = null;
+  let timeoutId: number = 0;
   let promise = new Promise<string>(resolve => {
     timeoutId = setTimeout(() => {
       resolve('sleep finished');
@@ -175,7 +175,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
         })
       }
 
-      let mainWnd: ohosWindow.Window | void = null;
+      let mainWnd: ohosWindow.Window | void;
       mainWnd = await getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
@@ -286,7 +286,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
         })
       }
 
-      let mainWnd: ohosWindow.Window = null;
+      let mainWnd: ohosWindow.Window;
       mainWnd = await getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
@@ -381,7 +381,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
         })
       }
 
-      let mainWnd: ohosWindow.Window = null;
+      let mainWnd: ohosWindow.Window;
       mainWnd = await getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
@@ -484,7 +484,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
         })
       }
 
-      let mainWnd: ohosWindow.Window = null;
+      let mainWnd: ohosWindow.Window;
       mainWnd = await getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
@@ -582,7 +582,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
         })
       }
 
-      let mainWnd: ohosWindow.Window = null;
+      let mainWnd: ohosWindow.Window;
       mainWnd = await getMainWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
         expect().assertFail()
@@ -858,7 +858,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       console.log(msgStr + 'begin');
       let loopCount = systemWindowTypeArr.length;
       console.log(msgStr + 'loopCount: ' + loopCount);
-      let tempWnd: ohosWindow.Window = null
+      let tempWnd: ohosWindow.Window
       let tempType = ohosWindow.WindowType.TYPE_FLOAT;
 
       let createWin: Function = (windId: string) => {
@@ -1082,7 +1082,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       let baseWndType: ohosWindow.WindowType = ohosWindow.WindowType.TYPE_FLOAT;
       let windowId: string = 'destroy_Callbcak';
       console.log(msgStr + 'begin');
-      let tempWnd: ohosWindow.Window = null
+      let tempWnd: ohosWindow.Window
 
       let createWin: Function = () => {
         return new Promise<ohosWindow.Window>((resolve, reject) => {
@@ -1135,7 +1135,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       let baseWndType: ohosWindow.WindowType = ohosWindow.WindowType.TYPE_FLOAT;
       let windowId: string = 'loadContent_Exist_Create_SysWin_Callback';
       console.log(msgStr + 'begin');
-      let tempWnd: ohosWindow.Window = null
+      let tempWnd: ohosWindow.Window
 
       let createWin: Function = () => {
         return new Promise<ohosWindow.Window>((resolve, reject) => {
@@ -1184,7 +1184,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       let baseWndType: number = ohosWindow.WindowType.TYPE_FLOAT;
       let windowId: string = 'loadContent_Para_Is_Null_Create_SysWin_Callback';
       console.log(msgStr + 'begin');
-      let tempWnd: ohosWindow.Window = null
+      let tempWnd: ohosWindow.Window
 
       let createWin: Function = () => {
         return new Promise<ohosWindow.Window>((resolve, reject) => {
@@ -1353,7 +1353,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       let caseName: string = 'testCreateSubWindow_WinName_IsNot_Empty_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let subWnd: ohosWindow.Window = null
+      let subWnd: ohosWindow.Window
 
       let createSubWindow: Function = () => {
         return new Promise<ohosWindow.Window>((resolve, reject) => {
@@ -1491,7 +1491,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       let caseName: string = 'testSetPrivacyMode_AppSubWin_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin ohosWindow =' + JSON.stringify(ohosWindow));
-      let tempWnd: ohosWindow.Window = null;
+      let tempWnd: ohosWindow.Window;
 
       let createWin: Function = () => {
         return new Promise<ohosWindow.Window>((resolve, reject) => {
@@ -1579,7 +1579,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       let caseName: string = 'testSetPrivacyMode_createSubWindow_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin ohosWindow =' + JSON.stringify(ohosWindow));
-      let tempWnd: ohosWindow.Window = null;
+      let tempWnd: ohosWindow.Window;
 
       let createSubWindowFun: Function = () => {
         return new Promise<ohosWindow.Window>((resolve, reject) => {
@@ -1666,7 +1666,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       let caseName: string = 'testSetPreferredOrientation_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let mainWin: ohosWindow.Window | void = null;
+      let mainWin: ohosWindow.Window | void;
       let orientationItem = ['UNSPECIFIED', 'PORTRAIT', 'LANDSCAPE', 'PORTRAIT_INVERTED',
         'LANDSCAPE_INVERTED', 'AUTO_ROTATION', 'AUTO_ROTATION_PORTRAIT', 'AUTO_ROTATION_LANDSCAPE',
         'AUTO_ROTATION_RESTRICTED', 'AUTO_ROTATION_PORTRAIT_RESTRICTED', 'AUTO_ROTATION_LANDSCAPE_RESTRICTED', 'LOCKED', 'UNSPECIFIED'];
@@ -1721,7 +1721,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
 
-      let setForbidSplitMoveFun: Function = (win, boolean) => {
+      let setForbidSplitMoveFun: Function = (win:ohosWindow.Window, boolean:boolean) => {
         return new Promise<boolean>((resolve, reject) => {
           win.setForbidSplitMove(boolean, (err: BusinessError, data: ohosWindow.Window) => {
             if (err.code) {
@@ -1768,7 +1768,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       let caseName: string = 'testSnapshotTest_Callback_Form';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let mainWin: ohosWindow.Window | void = null
+      let mainWin: ohosWindow.Window | void
       mainWin = await windowStage.getMainWindow().catch((err: BusinessError) => {
         unexpectedError(TRUE_FLAG, err, caseName, 'windowStage.getMainWindow', done);
       });
@@ -1805,7 +1805,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin context==' + JSON.stringify(context));
       let tempType = ohosWindow.WindowType.TYPE_DIALOG
-      let dialogTargetTouchTest2Win: ohosWindow.Window = null
+      let dialogTargetTouchTest2Win: ohosWindow.Window
 
       ohosWindow.create(context, 'dialogTargetTouchTest2', tempType, async (err, data) => {
         if (err && err.code) {
@@ -1837,7 +1837,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       console.log(msgStr + 'begin ohosWindow==' + JSON.stringify(ohosWindow));
       let wndId: string = 'animationForShownTest2';
       let baseType: number = ohosWindow.WindowType.TYPE_FLOAT;
-      let tempWnd:ohosWindow.Window = null;
+      let tempWnd:ohosWindow.Window;
       ohosWindow.create(context, wndId, baseType, async (err, data) => {
         if (err && err.code) {
           unexpectedError(TRUE_FLAG, err, caseName, 'ohosWindow.create ' + baseType, done);
@@ -1912,7 +1912,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       let caseName: string = 'testSetAspectRatio_Cancel_Upon_Success_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let mainWnd: ohosWindow.Window = null;
+      let mainWnd: ohosWindow.Window;
       await windowStage.getMainWindow().then((data) => {
         mainWnd = data;
         console.info(msgStr + 'Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
@@ -1980,7 +1980,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       let caseName: string = 'testSetAspectRatio_Invalid_Params_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let mainWnd: ohosWindow.Window = null;
+      let mainWnd: ohosWindow.Window;
       await windowStage.getMainWindow().then((data) => {
         mainWnd = data;
         console.info(msgStr + 'Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
@@ -2125,10 +2125,10 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-     it('testGetTitleButtonRect', 0, async function(done){
-      let msgStr = 'testGetTitleButtonRect';
+     it('testGetTitleButtonRect', 0, async (done:Function)=>{
+      let msgStr:string = 'testGetTitleButtonRect';
       console.log(msgStr + 'begin');
-      let windowClass = await ohosWindow.getLastWindow(context);
+      let windowClass:ohosWindow.Window = await ohosWindow.getLastWindow(context);
       try {
         let TitleButtonRect = windowClass.getTitleButtonRect();
         console.log(msgStr + 'Succeeded in obtaining the area of title buttons. Data: ' + JSON.stringify(TitleButtonRect));
@@ -2158,11 +2158,11 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testWindowTitleButtonRectChange_Function_Callback', 0, async function(done){
-      let  msgStr = 'testWindowTitleButtonRectChange_on';
+    it('testWindowTitleButtonRectChange_Function_Callback', 0, async (done:Function)=>{
+      let  msgStr:string = 'testWindowTitleButtonRectChange_on';
       console.log(msgStr + "begin on")
       try {
-        let windowClass = await ohosWindow.getLastWindow(context);
+        let windowClass:ohosWindow.Window = await ohosWindow.getLastWindow(context);
         windowClass.on('windowTitleButtonRectChange', (titleButtonRect) => {
           console.log(msgStr + 'Succeeded in enabling the listener for window title buttons area changes. Data: ' + JSON.stringify(titleButtonRect));
           expect(true).assertTrue();
@@ -2189,11 +2189,11 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testWindowTitleButtonRectChange_Function_Callback', 0, async function(done){
-      let msgStr = 'testWindowTitleButtonRectChange_off';
+    it('testWindowTitleButtonRectChange_Function_Callback', 0, async (done:Function)=>{
+      let msgStr:string = 'testWindowTitleButtonRectChange_off';
       console.log(msgStr + 'begin off');
       try {
-        let windowClass = await ohosWindow.getLastWindow(context);
+        let windowClass:ohosWindow.Window = await ohosWindow.getLastWindow(context);
         windowClass.off('windowTitleButtonRectChange');
         console.log(msgStr + 'Succeeded in enabling the listener for window title buttons area changes');
         expect(true).assertTrue();
@@ -2219,7 +2219,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testEnumWindow_windowType', 0, async function(){
+    it('testEnumWindow_windowType', 0, async ()=>{
       console.info('testEnumWindow_windowType test the enum value of windowType begin');
       console.info('testEnumWindow_windowType' + JSON.stringify(ohosWindow.WindowType));
       try {

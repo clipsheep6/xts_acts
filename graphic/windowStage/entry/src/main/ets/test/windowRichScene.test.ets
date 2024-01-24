@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe it, expect } from "@ohos/hypium"
+import { describe, it, expect } from "@ohos/hypium"
 import ohosWindow from '@ohos.window';
 import { BusinessError } from '@ohos.base';
 
@@ -324,7 +324,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let caseName: string = 'testShowWindow_Invoked_Twice';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let windowClass: ohosWindow.Window | void = null;
+      let windowClass: ohosWindow.Window | void;
       windowClass = await ohosWindow.getLastWindow(context).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the top window. Cause: ' + JSON.stringify(err));
         expect().assertFail();
@@ -1781,8 +1781,8 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let caseName: string = 'testGetMainWindow_Invoke_Interface_Two_Times';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let windowClass: ohosWindow.Window = null;
-      let windowClass2: ohosWindow.Window = null;
+      let windowClass: ohosWindow.Window;
+      let windowClass2: ohosWindow.Window;
       await windowStage.getMainWindow().then((data) => {
         console.info(msgStr + 'Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
         windowClass = data;
@@ -1821,8 +1821,8 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let caseName: string = 'testGetMainWindowSync_Invoke_Interface_Two_Times';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let windowClass: ohosWindow.Window = null;
-      let windowClass2: ohosWindow.Window = null;
+      let windowClass: ohosWindow.Window;
+      let windowClass2: ohosWindow.Window;
       try {
         windowClass = windowStage.getMainWindowSync();
         expect(!!windowClass).assertTrue();
@@ -1855,8 +1855,8 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let caseName: string = 'testCreateSubWindow_Two_Consecutive_Calls';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let windowClass: ohosWindow.Window = null;
-      let windowClass2: ohosWindow.Window = null;
+      let windowClass: ohosWindow.Window;
+      let windowClass2: ohosWindow.Window;
       try {
         await windowStage.createSubWindow('createSubWindow_Test_001_mySubWindow1').then((data) => {
           console.info(msgStr + 'Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
@@ -1911,8 +1911,8 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let caseName: string = 'testGetSubWindow_Invoke_Interface_Two_Times';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let windowClass: Array<ohosWindow.Window> | void = null;
-      let windowClass2: Array<ohosWindow.Window> = null;
+      let windowClass: Array<ohosWindow.Window> | void;
+      let windowClass2: Array<ohosWindow.Window>;
       windowClass = await windowStage.getSubWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the subwindow. Cause: ' + JSON.stringify(err));
         expect().assertFail();
@@ -2148,7 +2148,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let windowConfig: ohosWindow.Configuration = {
         name: windowId, windowType: ohosWindow.WindowType.TYPE_FLOAT, ctx: context
       };
-      let windowClass: ohosWindow.Window | void = null;
+      let windowClass: ohosWindow.Window | void;
       windowClass = await ohosWindow.createWindow(windowConfig).catch((err: BusinessError) => {
         console.log(msgStr + 'Window createWindow err: ' + JSON.stringify(err));
         expect().assertFail();

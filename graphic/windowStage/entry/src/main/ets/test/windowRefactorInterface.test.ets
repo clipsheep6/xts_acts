@@ -19,7 +19,7 @@ import { BusinessError } from '@ohos.base';
 
 
 async function sleep(time: number) {
-  let timeoutId: number = null;
+  let timeoutId: number = 0;
   let promise = new Promise<string>(resolve => {
     timeoutId = setTimeout(() => {
       resolve('sleep finished');
