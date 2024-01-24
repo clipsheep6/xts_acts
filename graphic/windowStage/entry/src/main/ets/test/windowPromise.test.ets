@@ -140,7 +140,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let resizeValue = 200;
       console.log(msgStr + 'begin');
       let flag = false;
-      let tempWnd: ohosWindow.Window|undefined = undefined ;
+      let tempWnd: ohosWindow.Window = undefined;
       try {
         await ohosWindow.create(context, wndId, baseType).then((data: ohosWindow.Window) => {
           tempWnd = data
@@ -192,7 +192,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let caseName: string = 'testListener_SystemAvoidAreaChange_Off';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin 1');
-      let tempWindow: ohosWindow.Window | void = null;
+      let tempWindow: ohosWindow.Window | void;
       tempWindow = await windowStage.getMainWindow().catch((err: BusinessError) => {
         unexpectedError(TRUE_FLAG, err, caseName, 'windowStage.getMainWindow', done);
       });
@@ -1743,9 +1743,9 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
           done();
         }).catch((error:BusinessError) => {
           console.log(msgStr + 'Failed to shift app window focus1. Cause:' + JSON.stringify(error));
-          if (error.code == 801 || error.code == 1300002) {
-              expect(true).assertTrue()
-              done()
+          if (error.code == 801) {
+            expect(true).assertTrue()
+            done()
           } else {
             expect().assertFail();
             done();
