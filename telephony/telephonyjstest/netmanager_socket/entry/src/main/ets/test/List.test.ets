@@ -14,10 +14,10 @@
  */
 
 //other import
-import connectionJsunit from './ConnectionJsunit.test.ets';
-import socketJsunit from './SocketJsunit.test.ets';
-import webSocketJsunit from './WebSocketJsunit.test.ets';
-import connectionSecondJsUnit from './ConnectionSecondJsUnit.test.ets';
+import connectionJsunit from './ConnectionJsunit.test';
+import socketJsunit from './SocketJsunit.test';
+import webSocketJsunit from './WebSocketJsunit.test';
+import connectionSecondJsUnit from './ConnectionSecondJsUnit.test';
 import networkManagerSocketTest from './NetworkManagerSocket.test'
 
 export default function testsuite() {

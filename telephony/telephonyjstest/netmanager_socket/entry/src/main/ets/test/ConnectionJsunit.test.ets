@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,48 +12,62 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, expect, it, afterEach, afterAll, beforeAll} from 'hypium/index';
+import { describe, expect, it } from '@ohos/hypium';
 import connection from '@ohos.net.connection'
 import http from "@ohos.net.http";
 import socket from "@ohos.net.socket";
-import utils from './Utils.ets'
+import utils from './Utils';
 import statistics from '@ohos.net.statistics';
+import { BusinessError } from '@ohos.base';
+
+interface NetConnectionInterface {
+  netHandle: connection.NetHandle;
+  blocked: boolean
+}
+
+interface NetConnectionInterface2 {
+  netHandle: connection.NetHandle,
+  connectionProperties: connection.ConnectionProperties
+}
+
+function expectFalse() {
+  try {
+    expect().assertFail();
+  } catch (err) {
+    console.info('assertion failure');
+  }
+};
 
 export default function connectionJsunit() {
-  describe('connectionTest', function () {
-    const TIMEOUT = 100;
-    const DELAY = 1000;
-    const NETID_IVVALID = 99;
-    const NETID_IVVALID2 = 0;
-    let envReady = false;
-	
-	let sockfd1 = 10;
-	let sockfd2 = -1;
-	
-	function expectFalse() {
-		try {
-		expect().assertFail();
-		} catch (err) {
-		console.info('assertion failure');
-		}
-	};
+  describe('connectionTest', () => {
+    const TIMEOUT: number = 100;
+    const NETID_IVVALID: number = 99;
+    const NETID_IVVALID2: number = 0;
+    let envReady: boolean = false;
+    const addressBaidu: string = 'www.baidu.com';
+
+    let sockfd1: number = 10;
+    let sockfd2: number = -1;
+
+
     console.log("************* connection Test start*************");
 
-    it('Telephony_Connection_Request_Socket_0100', 0, function (done) {
+    it('Telephony_Connection_Request_Socket_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
-      type HttpRequest = http.HttpRequest
-      ;
-      type TCPSocket = socket.TCPSocket
-      ;
-      type UDPSocket = socket.UDPSocket
-      ;
-      expect(typeof HttpRequest == typeof connection.HttpRequest).assertTrue();
-      expect(typeof TCPSocket == typeof connection.TCPSocket).assertTrue();
-      expect(typeof UDPSocket == typeof connection.UDPSocket).assertTrue();
+
+      let HttpRequest: http.HttpRequest = http.createHttp();
+      let TCPSocket: socket.TCPSocket = socket.constructTCPSocketInstance();
+      let UDPSocket: socket.UDPSocket = socket.constructUDPSocketInstance();
+      let connectionHttpRequest: connection.HttpRequest = http.createHttp();
+      let connectionTcpSocket: connection.TCPSocket = socket.constructTCPSocketInstance();
+      let connectionUdpSocket: connection.UDPSocket = socket.constructUDPSocketInstance();
+      expect(typeof HttpRequest == typeof connectionHttpRequest).assertTrue();
+      expect(typeof TCPSocket == typeof connectionTcpSocket).assertTrue();
+      expect(typeof UDPSocket == typeof connectionUdpSocket).assertTrue();
       done();
     });
 
@@ -63,7 +76,7 @@ export default function connectionJsunit() {
      * @tc.name      : createNetConnection
      * @tc.desc      : Create a network connection with optional netSpefifier and timeout.
      */
-    it('Telephony_Connection_Connection_createNetConnection_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_createNetConnection_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -71,7 +84,7 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_createNetConnection_0100 Test start*************");
       try {
-        connection.createNetConnection(5000);
+        connection.createNetConnection(undefined, 5000);
         expect(true).assertTrue();
       } catch (error) {
         expect().assertFail();
@@ -85,7 +98,7 @@ export default function connectionJsunit() {
      * @tc.name      : createNetConnection
      * @tc.desc      : Create a network connection with optional netSpefifier and timeout.
      */
-    it('Telephony_Connection_Connection_createNetConnection_0200', 0, function (done) {
+    it('Telephony_Connection_Connection_createNetConnection_0200', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -93,7 +106,7 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_createNetConnection_0200 Test start*************");
       try {
-        connection.createNetConnection(3000);
+        connection.createNetConnection(undefined, 3000);
         expect(true).assertTrue();
       } catch (error) {
         expect().assertFail();
@@ -107,7 +120,7 @@ export default function connectionJsunit() {
      * @tc.name      : createNetConnection
      * @tc.desc      : Create a network connection with optional netSpefifier and timeout.
      */
-    it('Telephony_Connection_Connection_createNetConnection_0300', 0, function (done) {
+    it('Telephony_Connection_Connection_createNetConnection_0300', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -115,7 +128,7 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_createNetConnection_0300 Test start*************");
       try {
-        connection.createNetConnection(8000);
+        connection.createNetConnection(undefined, 8000);
         expect(true).assertTrue();
       } catch (error) {
         expect().assertFail();
@@ -129,7 +142,7 @@ export default function connectionJsunit() {
      * @tc.name      : createNetConnection
      * @tc.desc      : Create a network connection with optional netSpefifier and timeout.
      */
-    it('Telephony_Connection_Connection_createNetConnection_0400', 0, function (done) {
+    it('Telephony_Connection_Connection_createNetConnection_0400', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -137,7 +150,7 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_createNetConnection_0400 Test start*************");
       try {
-        let netSpecifier = {
+        let netSpecifier: connection.NetSpecifier = {
           netCapabilities: {
             linkUpBandwidthKbps: 1000,
             linkDownBandwidthKbps: 2000,
@@ -159,7 +172,7 @@ export default function connectionJsunit() {
      * @tc.name      : createNetConnection
      * @tc.desc      : Create a network connection with optional netSpefifier and timeout.
      */
-    it('Telephony_Connection_Connection_createNetConnection_0500', 0, function (done) {
+    it('Telephony_Connection_Connection_createNetConnection_0500', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -167,7 +180,7 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_createNetConnection_0500 Test start*************");
       try {
-        let netSpecifier = {
+        let netSpecifier: connection.NetSpecifier = {
           netCapabilities: {
             linkUpBandwidthKbps: 0,
             linkDownBandwidthKbps: 0,
@@ -189,14 +202,14 @@ export default function connectionJsunit() {
      * @tc.name      : getDefaultNet
      * @tc.desc      : Obtains the data network that is activated by default.
      */
-    it('Telephony_Connection_Connection_getDefaultNet_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_getDefaultNet_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_getDefaultNet_0100 Test start*************");
-      connection.getDefaultNet((error, data) => {
+      connection.getDefaultNet(() => {
         expect().assertFail();
         done();
       });
@@ -210,17 +223,17 @@ export default function connectionJsunit() {
      * @tc.name      : getDefaultNet
      * @tc.desc      : Obtains the data network that is activated by default.
      */
-    it('Telephony_Connection_Connection_getDefaultNet_0200', 0, function (done) {
+    it('Telephony_Connection_Connection_getDefaultNet_0200', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_getDefaultNet_0200 Test start*************");
-      connection.getDefaultNet().then(data => {
+      connection.getDefaultNet().then(() => {
         console.log("Telephony_Connection_Connection_getDefaultNet_0200 getDefaultNet success, case fail");
         expect().assertFail();
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.log("Telephony_Connection_Connection_getDefaultNet_0200 getDefaultNet error, case success");
         expect(true).assertTrue();
       });
@@ -233,14 +246,14 @@ export default function connectionJsunit() {
      * @tc.name      : getAllNets
      * @tc.desc      : Obtains the list of data networks that are activated.
      */
-    it('Telephony_Connection_Connection_getAllNets_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_getAllNets_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_getAllNets_0100 Test start*************");
-      connection.getAllNets((error, data) => {
+      connection.getAllNets((error: BusinessError) => {
         if (error) {
           expect(true).assertTrue();
           return;
@@ -256,16 +269,16 @@ export default function connectionJsunit() {
      * @tc.name      : getAllNets
      * @tc.desc      : Obtains the list of data networks that are activated.
      */
-    it('Telephony_Connection_Connection_getAllNets_0200', 0, function (done) {
+    it('Telephony_Connection_Connection_getAllNets_0200', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_getAllNets_0200 Test start*************");
-      connection.getAllNets().then(data => {
+      connection.getAllNets().then(() => {
         expect(true).assertTrue();
-      }).catch(err => {
+      }).catch(() => {
         console.log("Telephony_Connection_Connection_getAllNets_0200 getAllNets error ");
         expect().assertFail();
       });
@@ -278,14 +291,14 @@ export default function connectionJsunit() {
      * @tc.name      : getConnectionProperties
      * @tc.desc      : Queries the connection properties of a network.
      */
-    it('Telephony_Connection_Connection_getConnectionProperties_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_getConnectionProperties_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_getConnectionProperties_0100 Test start*************");
-      connection.getConnectionProperties((error, data) => {
+      connection.getConnectionProperties(undefined, () => {
         expect().assertFail();
         done();
       });
@@ -299,7 +312,7 @@ export default function connectionJsunit() {
      * @tc.name      : getConnectionProperties
      * @tc.desc      : Queries the connection properties of a network.
      */
-    it('Telephony_Connection_Connection_getConnectionProperties_0200', 0, function (done) {
+    it('Telephony_Connection_Connection_getConnectionProperties_0200', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -311,9 +324,9 @@ export default function connectionJsunit() {
         done();
         return;
       }
-      connection.getConnectionProperties().then(data => {
+      connection.getConnectionProperties(null).then(() => {
         expect().assertFail();
-      }).catch(err => {
+      }).catch(() => {
         expect(true).assertTrue();
       });
       expect(true).assertTrue();
@@ -326,21 +339,32 @@ export default function connectionJsunit() {
      * @tc.name      : getConnectionProperties
      * @tc.desc      : Queries the connection properties of a network.
      */
-    it('Telephony_Connection_Connection_getConnectionProperties_0300', 0, function (done) {
+    it('Telephony_Connection_Connection_getConnectionProperties_0300', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_getConnectionProperties_0300 Test start*************");
-      let handle ={netId: NETID_IVVALID};
-      connection.getConnectionProperties(handle, (error, data) => {
+      let handle: connection.NetHandle = {
+        netId: NETID_IVVALID,
+        bindSocket: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressesByName: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressByName: () => {
+          throw new Error('Function not implemented.');
+        },
+      };
+      connection.getConnectionProperties(handle, (error: BusinessError) => {
         if (error) {
           expect(true).assertTrue();
-		  done();
-        } else{
-		  done();
-		}
+          done();
+        } else {
+          done();
+        }
       });
       console.log("************* Telephony_Connection_Connection_getConnectionProperties_0300 Test end*************");
       done();
@@ -351,20 +375,20 @@ export default function connectionJsunit() {
      * @tc.name      : getConnectionProperties
      * @tc.desc      : Queries the connection properties of a network.
      */
-    it('Telephony_Connection_Connection_getConnectionProperties_0400', 0, function (done) {
+    it('Telephony_Connection_Connection_getConnectionProperties_0400', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_getConnectionProperties_0400 Test start*************");
-      connection.getAllNets((error, value) => {
+      connection.getAllNets((error: BusinessError, value: Array<connection.NetHandle>) => {
         if (error) {
           expect().assertFail();
           done();
           return;
         } else {
-          connection.getConnectionProperties(value[0], (error, value_2) => {
+          connection.getConnectionProperties(value[0], (error: BusinessError, value_2: connection.ConnectionProperties) => {
             if (!error) {
               console.log(`Telephony_Connection_Connection_getConnectionProperties_0400  get value success: ${JSON.stringify(value_2)}`);
             }
@@ -381,14 +405,14 @@ export default function connectionJsunit() {
      * @tc.name      : getNetCapabilities
      * @tc.desc      : Obtains {@link NetCapabilities} of a {@link NetHandle} object.
      */
-    it('Telephony_Connection_Connection_getNetCapabilities_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_getNetCapabilities_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_getNetCapabilities_0100 Test start*************");
-      connection.getNetCapabilities((error, data) => {
+      connection.getNetCapabilities(undefined, () => {
         expect().assertFail();
         done();
       });
@@ -402,15 +426,26 @@ export default function connectionJsunit() {
      * @tc.name      : getNetCapabilities
      * @tc.desc      : Obtains {@link NetCapabilities} of a {@link NetHandle} object.
      */
-    it('Telephony_Connection_Connection_getNetCapabilities_0200', 0, function (done) {
+    it('Telephony_Connection_Connection_getNetCapabilities_0200', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_getNetCapabilities_0200 Test start*************");
-      let handle = {netId:NETID_IVVALID};
-      connection.getNetCapabilities(handle, (error, data) => {
+      let handle: connection.NetHandle = {
+        netId: NETID_IVVALID,
+        bindSocket: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressesByName: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressByName: () => {
+          throw new Error('Function not implemented.');
+        },
+      };
+      connection.getNetCapabilities(handle, (error: BusinessError) => {
         if (!error) {
           expect().assertFail();
           done();
@@ -426,7 +461,7 @@ export default function connectionJsunit() {
      * @tc.name      : getNetCapabilities
      * @tc.desc      : Obtains {@link NetCapabilities} of a {@link NetHandle} object.
      */
-    it('Telephony_Connection_Connection_getNetCapabilities_0300', 0, function (done) {
+    it('Telephony_Connection_Connection_getNetCapabilities_0300', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -438,9 +473,9 @@ export default function connectionJsunit() {
         done();
         return;
       }
-      connection.getNetCapabilities().then(data => {
+      connection.getNetCapabilities(null).then(() => {
         expect().assertFail();
-      }).catch(err => {
+      }).catch(() => {
         expect(true).assertTrue();
       });
       console.log("************* Telephony_Connection_Connection_getNetCapabilities_0300 Test end*************");
@@ -452,15 +487,15 @@ export default function connectionJsunit() {
      * @tc.name      : getNetCapabilities
      * @tc.desc      : Obtains {@link NetCapabilities} of a {@link NetHandle} object.
      */
-    it('Telephony_Connection_Connection_getNetCapabilities_0400', 0, function (done) {
+    it('Telephony_Connection_Connection_getNetCapabilities_0400', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_getNetCapabilities_0400 Test start*************");
-      let caseName = 'Telephony_Connection_Connection_getNetCapabilities_0400';
-      connection.getAllNets((error, value) => {
+      let caseName: string = 'Telephony_Connection_Connection_getNetCapabilities_0400';
+      connection.getAllNets((error: BusinessError, value: Array<connection.NetHandle>) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertFail();
@@ -468,16 +503,16 @@ export default function connectionJsunit() {
           return;
         } else {
           console.log(`getAllNets netID value : ${JSON.stringify(value[0].netId)}`);
-          connection.getNetCapabilities(value[0], (error, data) => {
+          connection.getNetCapabilities(value[0], (error: BusinessError, data: connection.NetCapabilities) => {
             if (error) {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(data)}`);
-              console.log(`${caseName}  get value success123456: ${JSON.stringify(data.netCaps_)}`);
-              console.log(`${caseName}  get value success122222: ${JSON.stringify(data.netCaps_[0].netCap)}`);
-              expect(data.netCaps_[0].netCap != "").assertTrue();
+              console.log(`${caseName}  get value success123456: ${JSON.stringify(data.networkCap)}`);
+              console.log(`${caseName}  get value success122222: ${JSON.stringify(data.networkCap[0])}`);
+              expect(String(data.networkCap[0]) != "").assertTrue();
               done();
             }
           });
@@ -492,14 +527,14 @@ export default function connectionJsunit() {
          * @tc.name      : hasDefaultNet
          * @tc.desc      : Checks whether the default data network is activated.
          */
-    it('Telephony_Connection_Connection_hasDefaultNet_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_hasDefaultNet_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_hasDefaultNet_0100 Test start*************");
-      connection.hasDefaultNet((error, data) => {
+      connection.hasDefaultNet((error: BusinessError) => {
         if (error) {
           expect(true).assertTrue();
           done();
@@ -517,18 +552,17 @@ export default function connectionJsunit() {
          * @tc.name      : hasDefaultNet
          * @tc.desc      : Checks whether the default data network is activated.
          */
-    it('Telephony_Connection_Connection_hasDefaultNet_0200', 0, function (done) {
+    it('Telephony_Connection_Connection_hasDefaultNet_0200', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_hasDefaultNet_0200 Test start*************");
-      connection.hasDefaultNet().then(activated => {
+      connection.hasDefaultNet().then(() => {
         expect().assertFail();
-      }).catch(error => {
-        console.log(`Telephony_Connection_Connection_hasDefaultNet_0200 hasDefaultNet error,case success,error:${
-        toString(error)}`);
+      }).catch((error: BusinessError) => {
+        console.log(`Telephony_Connection_Connection_hasDefaultNet_0200 hasDefaultNet error,case success,error:${JSON.stringify(error)}`);
         expect(true).assertTrue();
       })
       console.log("************* Telephony_Connection_Connection_hasDefaultNet_0200 Test end*************");
@@ -540,14 +574,14 @@ export default function connectionJsunit() {
          * @tc.name      : reportNetConnected
          * @tc.desc      : Reports the network state is connected.
          */
-    it('Telephony_Connection_Connection_reportNetConnected_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_reportNetConnected_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_reportNetConnected_0100 Test start*************");
-      connection.reportNetConnected((error, data) => {
+      connection.reportNetConnected(null, (error: BusinessError) => {
         if (error) {
           expect(true).assertTrue();
           done();
@@ -566,15 +600,26 @@ export default function connectionJsunit() {
          * @tc.name      : reportNetConnected
          * @tc.desc      : Reports the network state is connected.
          */
-    it('Telephony_Connection_Connection_reportNetConnected_0200', 0, function (done) {
+    it('Telephony_Connection_Connection_reportNetConnected_0200', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_reportNetConnected_0200 Test start*************");
-      let handle = {netId: NETID_IVVALID};
-      connection.reportNetConnected(handle, (error, data) => {
+      let handle: connection.NetHandle = {
+        netId: NETID_IVVALID,
+        bindSocket: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressesByName: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressByName: () => {
+          throw new Error('Function not implemented.');
+        },
+      };
+      connection.reportNetConnected(handle, (error: BusinessError) => {
         if (error) {
           expect(true).assertTrue();
           done();
@@ -593,17 +638,28 @@ export default function connectionJsunit() {
          * @tc.name      : reportNetConnected
          * @tc.desc      : Reports the network state is connected.
          */
-    it('Telephony_Connection_Connection_reportNetConnected_0300', 0, function (done) {
+    it('Telephony_Connection_Connection_reportNetConnected_0300', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_reportNetConnected_0300 Test start*************");
-      let handle = {netId: NETID_IVVALID2};
+      let handle: connection.NetHandle = {
+        netId: NETID_IVVALID2,
+        bindSocket: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressesByName: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressByName: () => {
+          throw new Error('Function not implemented.');
+        },
+      };
       connection.reportNetConnected(handle).then(() => {
         expect().assertFail();
-      }).catch(err => {
+      }).catch(() => {
         expect(true).assertTrue();
       });
       expect(true).assertTrue();
@@ -616,17 +672,28 @@ export default function connectionJsunit() {
          * @tc.name      : reportNetConnected
          * @tc.desc      : Reports the network state is connected.
          */
-    it('Telephony_Connection_Connection_reportNetConnected_0400', 0, function (done) {
+    it('Telephony_Connection_Connection_reportNetConnected_0400', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_reportNetConnected_0400 Test start*************");
-      let handle = {netId: NETID_IVVALID};
+      let handle: connection.NetHandle = {
+        netId: NETID_IVVALID,
+        bindSocket: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressesByName: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressByName: () => {
+          throw new Error('Function not implemented.');
+        },
+      };
       connection.reportNetConnected(handle).then(() => {
         expect().assertFail();
-      }).catch(err => {
+      }).catch(() => {
         expect(true).assertTrue();
       });
       expect(true).assertTrue();
@@ -639,14 +706,14 @@ export default function connectionJsunit() {
          * @tc.name      : reportNetDisconnected
          * @tc.desc      : Reports the network state is disconnected.
          */
-    it('Telephony_Connection_Connection_reportNetDisconnected_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_reportNetDisconnected_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0100 Test start*************");
-      connection.reportNetDisconnected((error, data) => {
+      connection.reportNetDisconnected(null, (error: BusinessError) => {
         if (error) {
           expect(true).assertTrue();
           done();
@@ -665,15 +732,26 @@ export default function connectionJsunit() {
          * @tc.name      : reportNetDisconnected
          * @tc.desc      : Reports the network state is disconnected.
          */
-    it('Telephony_Connection_Connection_reportNetDisconnected_0200', 0, function (done) {
+    it('Telephony_Connection_Connection_reportNetDisconnected_0200', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0200 Test start*************");
-      let handle ={netId: NETID_IVVALID};
-      connection.reportNetDisconnected(handle, (error, data) => {
+      let handle: connection.NetHandle = {
+        netId: NETID_IVVALID,
+        bindSocket: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressesByName: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressByName: () => {
+          throw new Error('Function not implemented.');
+        },
+      };
+      connection.reportNetDisconnected(handle, (error: BusinessError) => {
         if (error) {
           expect(true).assertTrue();
           done();
@@ -692,17 +770,28 @@ export default function connectionJsunit() {
          * @tc.name      : reportNetDisconnected
          * @tc.desc      : Reports the network state is disconnected.
          */
-    it('Telephony_Connection_Connection_reportNetDisconnected_0300', 0, function (done) {
+    it('Telephony_Connection_Connection_reportNetDisconnected_0300', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0300 Test start*************");
-      let handle = {netId:NETID_IVVALID2};
+      let handle: connection.NetHandle = {
+        netId: NETID_IVVALID2,
+        bindSocket: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressesByName: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressByName: () => {
+          throw new Error('Function not implemented.');
+        },
+      };
       connection.reportNetDisconnected(handle).then(() => {
         expect().assertFail();
-      }).catch(err => {
+      }).catch(() => {
         expect(true).assertTrue();
       });
       expect(true).assertTrue();
@@ -715,17 +804,28 @@ export default function connectionJsunit() {
          * @tc.name      : reportNetDisconnected
          * @tc.desc      : Reports the network state is disconnected.
          */
-    it('Telephony_Connection_Connection_reportNetDisconnected_0400', 0, function (done) {
+    it('Telephony_Connection_Connection_reportNetDisconnected_0400', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_reportNetDisconnected_0400 Test start*************");
-      let handle = {netId: NETID_IVVALID};
+      let handle: connection.NetHandle = {
+        netId: NETID_IVVALID,
+        bindSocket: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressesByName: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressByName: () => {
+          throw new Error('Function not implemented.');
+        },
+      };
       connection.reportNetDisconnected(handle).then(() => {
         expect().assertFail();
-      }).catch(err => {
+      }).catch(() => {
         expect(true).assertTrue();
       });
       expect(true).assertTrue();
@@ -738,14 +838,14 @@ export default function connectionJsunit() {
          * @tc.name      : getAddressesByName
          * @tc.desc      : Resolves the host name to obtain all IP addresses based on the default data network.
          */
-    it('Telephony_Connection_Connection_getAddressesByName_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_getAddressesByName_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_getAddressesByName_0100 Test start*************");
-      connection.getAddressesByName('www.test.com', (error, data) => {
+      connection.getAddressesByName('www.test.com', (error: BusinessError) => {
         if (error) {
           expect(true).assertTrue();
           done();
@@ -764,20 +864,19 @@ export default function connectionJsunit() {
          * @tc.name      : getAddressesByName
          * @tc.desc      : Resolves the host name to obtain all IP addresses based on the default data network.
          */
-    it('Telephony_Connection_Connection_getAddressesByName_0200', 0, function (done) {
+    it('Telephony_Connection_Connection_getAddressesByName_0200', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_getAddressesByName_0200 Test start*************");
-      connection.getAddressesByName('www.test.com').then(data => {
+      connection.getAddressesByName('www.test.com').then(() => {
         expect().assertFail();
         done();
         return;
-      }).catch(error => {
-        console.log(`Telephony_Connection_Connection_getAddressesByName_0200 getAddressesByName error,case success,error:${
-        toString(error)}`);
+      }).catch((error: BusinessError) => {
+        console.log(`Telephony_Connection_Connection_getAddressesByName_0200 getAddressesByName error,case success,error:${JSON.stringify(error)}`);
         expect(true).assertTrue();
       })
       console.log("************* Telephony_Connection_Connection_getAddressesByName_0200 Test end*************");
@@ -785,11 +884,11 @@ export default function connectionJsunit() {
     });
 
     /**
-     * @tc.number  Telephony_Connection_Connection_netAvailable_0100
-     * @tc.name    netAvailable
-     * @tc.desc    Function test
+     * @tc.number Telephony_Connection_Connection_netAvailable_0100
+     * @tc.name netAvailable
+     * @tc.desc Function test
      */
-    it('Telephony_Connection_Connection_netAvailable_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_netAvailable_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -797,10 +896,10 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_netAvailable_0100 Test start*************");
       try {
-        let netConn = connection.createNetConnection();
-        netConn.on('netAvailable', (error, value) => {
-          if (error) {
-            console.log(`netAvailable error: ${error}`);
+        let netConn: connection.NetConnection = connection.createNetConnection();
+        netConn.on('netAvailable', (data: connection.NetHandle) => {
+          if (data) {
+            console.log(`netAvailable data: ${data}`);
           }
         });
       } catch (error) {
@@ -812,11 +911,11 @@ export default function connectionJsunit() {
     })
 
     /**
-     * @tc.number  Telephony_Connection_Connection_netBlockStatusChange_0100
-     * @tc.name    netBlockStatusChange
-     * @tc.desc    Function test
+     * @tc.number Telephony_Connection_Connection_netBlockStatusChange_0100
+     * @tc.name netBlockStatusChange
+     * @tc.desc Function test
      */
-    it('Telephony_Connection_Connection_netBlockStatusChange_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_netBlockStatusChange_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -824,10 +923,10 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_netBlockStatusChange_0100 Test start*************");
       try {
-        let netConn = connection.createNetConnection();
-        netConn.on('netBlockStatusChange', (error, value) => {
-          if (error) {
-            console.log(`netBlockStatusChange error: ${error}`);
+        let netConn: connection.NetConnection = connection.createNetConnection();
+        netConn.on('netBlockStatusChange', (data: NetConnectionInterface) => {
+          if (data) {
+            console.log(`netBlockStatusChange data: ${data}`);
           }
         });
       } catch (error) {
@@ -839,11 +938,11 @@ export default function connectionJsunit() {
     })
 
     /**
-     * @tc.number  Telephony_Connection_Connection_netCapabilitiesChange_0100
-     * @tc.name    netCapabilitiesChange
-     * @tc.desc    Function test
+     * @tc.number Telephony_Connection_Connection_netCapabilitiesChange_0100
+     * @tc.name netCapabilitiesChange
+     * @tc.desc Function test
      */
-    it('Telephony_Connection_Connection_netCapabilitiesChange_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_netCapabilitiesChange_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -851,10 +950,10 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_netCapabilitiesChange_0100 Test start*************");
       try {
-        let netConn = connection.createNetConnection();
-        netConn.on('netCapabilitiesChange', (error, value) => {
-          if (error) {
-            console.log(`netCapabilitiesChange error: ${error}`);
+        let netConn: connection.NetConnection = connection.createNetConnection();
+        netConn.on('netCapabilitiesChange', (data: connection.NetCapabilityInfo) => {
+          if (data) {
+            console.log(`netCapabilitiesChange data: ${data}`);
           }
         });
       } catch (error) {
@@ -866,11 +965,11 @@ export default function connectionJsunit() {
     })
 
     /**
-     * @tc.number  Telephony_Connection_Connection_netConnectionPropertiesChange_0100
-     * @tc.name    netConnectionPropertiesChange
-     * @tc.desc    Function test
+     * @tc.number Telephony_Connection_Connection_netConnectionPropertiesChange_0100
+     * @tc.name netConnectionPropertiesChange
+     * @tc.desc Function test
      */
-    it('Telephony_Connection_Connection_netConnectionPropertiesChange_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_netConnectionPropertiesChange_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -878,10 +977,10 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_netConnectionPropertiesChange_0100 Test start*************");
       try {
-        let netConn = connection.createNetConnection();
-        netConn.on('netConnectionPropertiesChange', (error, value) => {
-          if (error) {
-            console.log(`netConnectionPropertiesChange error: ${error}`);
+        let netConn: connection.NetConnection = connection.createNetConnection();
+        netConn.on('netConnectionPropertiesChange', (data: NetConnectionInterface2) => {
+          if (data) {
+            console.log(`netConnectionPropertiesChange data: ${data}`);
           }
         });
       } catch (error) {
@@ -893,11 +992,11 @@ export default function connectionJsunit() {
     })
 
     /**
-     * @tc.number  Telephony_Connection_Connection_netLost_0100
-     * @tc.name    netLost
-     * @tc.desc    Function test
+     * @tc.number Telephony_Connection_Connection_netLost_0100
+     * @tc.name netLost
+     * @tc.desc Function test
      */
-    it('Telephony_Connection_Connection_netLost_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_netLost_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -905,10 +1004,10 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_netLost_0100 Test start*************");
       try {
-        let netConn = connection.createNetConnection();
-        netConn.on('netLost', (error, value) => {
-          if (error) {
-            console.log(`netLost error: ${error}`);
+        let netConn: connection.NetConnection = connection.createNetConnection();
+        netConn.on('netLost', (data: connection.NetHandle) => {
+          if (data) {
+            console.log(`netLost data: ${data}`);
           }
         });
       } catch (error) {
@@ -920,11 +1019,11 @@ export default function connectionJsunit() {
     })
 
     /**
-     * @tc.number  Telephony_Connection_Connection_netUnavailable_0100
-     * @tc.name    netUnavailable
-     * @tc.desc    Function test
+     * @tc.number Telephony_Connection_Connection_netUnavailable_0100
+     * @tc.name netUnavailable
+     * @tc.desc Function test
      */
-    it('Telephony_Connection_Connection_netUnavailable_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_netUnavailable_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -932,11 +1031,9 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_netUnavailable_0100 Test start*************");
       try {
-        let netConn = connection.createNetConnection();
-        netConn.on('netUnavailable', (error, value) => {
-          if (error) {
-            console.log(`netUnavailable error: ${error}`);
-          }
+        let netConn: connection.NetConnection = connection.createNetConnection();
+        netConn.on('netUnavailable', (data: void) => {
+          console.log(`netUnavailable data: ${data}`);
         });
       } catch (error) {
         expect().assertFail();
@@ -947,11 +1044,11 @@ export default function connectionJsunit() {
     })
 
     /**
-     * @tc.number  Telephony_Connection_Connection_NetSpecifier_0100
-     * @tc.name    NetSpecifier
-     * @tc.desc    netCapabilities bearerPrivateIdentifier test
+     * @tc.number Telephony_Connection_Connection_NetSpecifier_0100
+     * @tc.name NetSpecifier
+     * @tc.desc netCapabilities bearerPrivateIdentifier test
      */
-    it('Telephony_Connection_Connection_NetSpecifier_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_NetSpecifier_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -959,7 +1056,7 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_NetSpecifier_0100 Test start*************");
       try {
-        let netSpecifier = {
+        let netSpecifier: connection.NetSpecifier = {
           netCapabilities: {
             linkUpBandwidthKbps: 1,
             linkDownBandwidthKbps: 2,
@@ -977,25 +1074,25 @@ export default function connectionJsunit() {
     })
 
     /**
-     * @tc.number  Telephony_Connection_Connection_bindSocket_0100
-     * @tc.name    bindSocket
-     * @tc.desc    Function test
+     * @tc.number Telephony_Connection_Connection_bindSocket_0100
+     * @tc.name bindSocket
+     * @tc.desc Function test
      */
-    it('Telephony_Connection_Connection_bindSocket_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_bindSocket_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_bindSocket_0100 Test start*************");
-      connection.getDefaultNet().then((handle) => {
-        handle.bindSocket(1, (error, value) => {
+      connection.getDefaultNet().then((handle: connection.NetHandle) => {
+        handle.bindSocket(socket.constructTCPSocketInstance(), (error: BusinessError) => {
           if (error) {
             expect().assertFail();
             done();
           }
         });
-      }).catch((error) => {
+      }).catch(() => {
         expect(true).assertTrue();
       });
       done();
@@ -1003,25 +1100,25 @@ export default function connectionJsunit() {
     })
 
     /**
-     * @tc.number  Telephony_Connection_Connection_NetHandle_getAddressesByName_0100
-     * @tc.name    getAddressesByName
-     * @tc.desc    Function test
+     * @tc.number Telephony_Connection_Connection_NetHandle_getAddressesByName_0100
+     * @tc.name getAddressesByName
+     * @tc.desc Function test
      */
-    it('Telephony_Connection_Connection_NetHandle_getAddressesByName_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_NetHandle_getAddressesByName_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_NetHandle_getAddressesByName_0100 Test start*************");
-      connection.getDefaultNet().then((handle) => {
-        handle.getAddressesByName(addressBaidu, (error, value) => {
+      connection.getDefaultNet().then((handle: connection.NetHandle) => {
+        handle.getAddressesByName(addressBaidu, (error: BusinessError) => {
           if (error) {
             expect().assertFail();
             done();
           }
         });
-      }).catch((error) => {
+      }).catch(() => {
         expect(true).assertTrue();
       });
       done();
@@ -1029,25 +1126,25 @@ export default function connectionJsunit() {
     })
 
     /**
-     * @tc.number  Telephony_Connection_Connection_getAddressByName_0100
-     * @tc.name    getAddressByName
-     * @tc.desc    Function test
+     * @tc.number Telephony_Connection_Connection_getAddressByName_0100
+     * @tc.name getAddressByName
+     * @tc.desc Function test
      */
-    it('Telephony_Connection_Connection_getAddressByName_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_getAddressByName_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_getAddressByName_0100 Test start*************");
-      connection.getDefaultNet().then((handle) => {
-        handle.getAddressByName(addressBaidu, (error, value) => {
+      connection.getDefaultNet().then((handle: connection.NetHandle) => {
+        handle.getAddressByName(addressBaidu, (error: BusinessError) => {
           if (error) {
             expect().assertFail();
           }
           done();
         });
-      }).catch((error) => {
+      }).catch(() => {
         expect(true).assertTrue();
       });
       done();
@@ -1055,11 +1152,11 @@ export default function connectionJsunit() {
     })
 
     /**
-     * @tc.number  Telephony_Connection_Connection_linkUpBandwidthKbps_0100
-     * @tc.name    linkUpBandwidthKbps
-     * @tc.desc    linkUpBandwidthKbps test
+     * @tc.number Telephony_Connection_Connection_linkUpBandwidthKbps_0100
+     * @tc.name linkUpBandwidthKbps
+     * @tc.desc linkUpBandwidthKbps test
      */
-    it('Telephony_Connection_Connection_linkUpBandwidthKbps_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_linkUpBandwidthKbps_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -1067,7 +1164,7 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_linkUpBandwidthKbps_0100 Test start*************");
       try {
-        let netSpecifier = {
+        let netSpecifier: connection.NetSpecifier = {
           netCapabilities: {
             linkUpBandwidthKbps: 10,
             linkDownBandwidthKbps: 22,
@@ -1085,11 +1182,11 @@ export default function connectionJsunit() {
     })
 
     /**
-     * @tc.number  Telephony_Connection_Connection_linkDownBandwidthKbps_0100
-     * @tc.name    linkDownBandwidthKbps
-     * @tc.desc    nlinkDownBandwidthKbps test
+     * @tc.number Telephony_Connection_Connection_linkDownBandwidthKbps_0100
+     * @tc.name linkDownBandwidthKbps
+     * @tc.desc nlinkDownBandwidthKbps test
      */
-    it('Telephony_Connection_Connection_linkDownBandwidthKbps_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_linkDownBandwidthKbps_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -1097,7 +1194,7 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_linkDownBandwidthKbps_0100 Test start*************");
       try {
-        let netSpecifier = {
+        let netSpecifier: connection.NetSpecifier = {
           netCapabilities: {
             linkUpBandwidthKbps: 44,
             linkDownBandwidthKbps: 55,
@@ -1115,11 +1212,11 @@ export default function connectionJsunit() {
     })
 
     /**
-     * @tc.number  Telephony_Connection_Connection_networkCap_0100
-     * @tc.name    networkCap
-     * @tc.desc    networkCap test
+     * @tc.number Telephony_Connection_Connection_networkCap_0100
+     * @tc.name networkCap
+     * @tc.desc networkCap test
      */
-    it('Telephony_Connection_Connection_networkCap_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_networkCap_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -1127,7 +1224,7 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_networkCap_0100 Test start*************");
       try {
-        let netSpecifier = {
+        let netSpecifier: connection.NetSpecifier = {
           netCapabilities: {
             linkUpBandwidthKbps: 18,
             linkDownBandwidthKbps: 29,
@@ -1145,11 +1242,11 @@ export default function connectionJsunit() {
     })
 
     /**
-     * @tc.number  Telephony_Connection_Connection_bearerTypes_0100
-     * @tc.name    bearerTypes
-     * @tc.desc    bearerTypes test
+     * @tc.number Telephony_Connection_Connection_bearerTypes_0100
+     * @tc.name bearerTypes
+     * @tc.desc bearerTypes test
      */
-    it('Telephony_Connection_Connection_bearerTypes_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_bearerTypes_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -1157,7 +1254,7 @@ export default function connectionJsunit() {
       }
       console.log("************* Telephony_Connection_Connection_bearerTypes_0100 Test start*************");
       try {
-        let netSpecifier = {
+        let netSpecifier: connection.NetSpecifier = {
           netCapabilities: {
             linkUpBandwidthKbps: 41,
             linkDownBandwidthKbps: 62,
@@ -1175,11 +1272,11 @@ export default function connectionJsunit() {
     })
 
     /**
-     * @tc.number  Telephony_Connection_Connection_register_0100
-     * @tc.name    register
-     * @tc.desc    Receives status change notifications of a specified network.
+     * @tc.number Telephony_Connection_Connection_register_0100
+     * @tc.name register
+     * @tc.desc Receives status change notifications of a specified network.
      */
-    it('Telephony_Connection_Connection_register_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_register_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -1191,8 +1288,8 @@ export default function connectionJsunit() {
         done();
         return;
       }
-      let caseName = 'Telephony_Connection_Connection_register_0100';
-      let netSpecifier = {
+      let caseName: string = 'Telephony_Connection_Connection_register_0100';
+      let netSpecifier: connection.NetSpecifier = {
         netCapabilities: {
           linkUpBandwidthKbps: 0,
           linkDownBandwidthKbps: 0,
@@ -1201,28 +1298,28 @@ export default function connectionJsunit() {
         }, bearerPrivateIdentifier: '123'
       }
       let netConn = connection.createNetConnection(netSpecifier, TIMEOUT);
-      netConn.register((error) => {
+      netConn.register((error: BusinessError) => {
         if (error) {
           console.log(`${caseName} register fail: ${error}`);
         }
       });
-      netConn.unregister((error) => {
+      netConn.unregister((error: BusinessError) => {
         if (error) {
           console.log(`${caseName} unregister fail: ${error}`);
         }
       });
       expect(true).assertTrue();
-	  console.log("************* Telephony_Connection_Connection_register_0100 Test end*************");
+      console.log("************* Telephony_Connection_Connection_register_0100 Test end*************");
       done();
-      
+
     });
 
     /**
-     * @tc.number  Telephony_Connection_Connection_unregister_0100
-     * @tc.name    unregister
-     * @tc.desc    Cancels listening for network status changes. test
+     * @tc.number Telephony_Connection_Connection_unregister_0100
+     * @tc.name unregister
+     * @tc.desc Cancels listening for network status changes. test
      */
-    it('Telephony_Connection_Connection_unregister_0100', 0, function (done) {
+    it('Telephony_Connection_Connection_unregister_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -1234,8 +1331,8 @@ export default function connectionJsunit() {
         done();
         return;
       }
-      let caseName = 'Telephony_Connection_Connection_unregister_0100';
-      let netSpecifier = {
+      let caseName: string = 'Telephony_Connection_Connection_unregister_0100';
+      let netSpecifier: connection.NetSpecifier = {
         netCapabilities: {
           linkUpBandwidthKbps: 10,
           linkDownBandwidthKbps: 11,
@@ -1244,34 +1341,34 @@ export default function connectionJsunit() {
         }, bearerPrivateIdentifier: '123'
       }
       let netConn = connection.createNetConnection(netSpecifier, TIMEOUT);
-      netConn.register((error) => {
+      netConn.register((error: BusinessError) => {
         if (error) {
           console.log(`${caseName} register fail: ${error}`);
         }
       });
-      netConn.unregister((error) => {
+      netConn.unregister((error: BusinessError) => {
         if (error) {
           console.log(`${caseName} unregister fail: ${error}`);
         }
       });
       expect(true).assertTrue();
       console.log("************* Telephony_Connection_Connection_unregister_0100 Test end*************");
-	  done();
+      done();
     });
 
     /*
-         * @tc.number    : Telephony_Connection_Connection_netId_0100
-         * @tc.name      : netId
-         * @tc.desc      : netId test.
-         */
-    it('Telephony_Connection_Connection_netId_0100', 0, function (done) {
+     * @tc.number    : Telephony_Connection_Connection_netId_0100
+     * @tc.name      : netId
+     * @tc.desc      : netId test.
+     */
+    it('Telephony_Connection_Connection_netId_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_netId_0100 Test start*************");
-      connection.getDefaultNet((error, data) => {
+      connection.getDefaultNet((error: BusinessError, data: connection.NetHandle) => {
         if (error) {
           expect(true).assertTrue();
         } else {
@@ -1283,19 +1380,30 @@ export default function connectionJsunit() {
     });
 
     /*
-         * @tc.number    : Telephony_Connection_Connection_domains_0100
-         * @tc.name      : domains
-         * @tc.desc      : domains test.
-         */
-    it('Telephony_Connection_Connection_domains_0100', 0, function (done) {
+     * @tc.number    : Telephony_Connection_Connection_domains_0100
+     * @tc.name      : domains
+     * @tc.desc      : domains test.
+     */
+    it('Telephony_Connection_Connection_domains_0100', 0, (done: Function) => {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Connection_Connection_domains_0100 Test start*************");
-      let handle = {netId: NETID_IVVALID};
-      connection.getConnectionProperties(handle, (error, data) => {
+      let handle: connection.NetHandle = {
+        netId: NETID_IVVALID,
+        bindSocket: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressesByName: () => {
+          throw new Error('Function not implemented.');
+        },
+        getAddressByName: () => {
+          throw new Error('Function not implemented.');
+        }
+      };
+      connection.getConnectionProperties(handle, (error: BusinessError, data: connection.ConnectionProperties) => {
         if (error) {
           expect(true).assertTrue();
         } else {
@@ -1308,12 +1416,12 @@ export default function connectionJsunit() {
 
 
     /*
-         * @tc.number    : Telephony_Connection_setAppNet_callback_0100
-         * @tc.name      : Telephony_Connection_setAppNet_callback_0100
-         * @tc.desc      : Telephony_Connection_setAppNet_callback_0100
-         */
-    it('Telephony_Connection_setAppNet_callback_0100', 0, function (done) {
-      connection.getDefaultNet(function (error, netHandle) {
+     * @tc.number    : Telephony_Connection_setAppNet_callback_0100
+     * @tc.name      : Telephony_Connection_setAppNet_callback_0100
+     * @tc.desc      : Telephony_Connection_setAppNet_callback_0100
+     */
+    it('Telephony_Connection_setAppNet_callback_0100', 0, (done: Function) => {
+      connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
         if (error) {
           console.log("getDefaultNet error " + JSON.stringify(error));
           expect(true).assertFalse();
@@ -1321,7 +1429,7 @@ export default function connectionJsunit() {
           return;
         }
         console.log("getDefaultNet success " + JSON.stringify(netHandle));
-        connection.setAppNet(netHandle, (error, data) => {
+        connection.setAppNet(netHandle, (error: BusinessError, data: void) => {
           if (error) {
             console.log("setAppNet error " + JSON.stringify(error));
             expect(true).assertFalse();
@@ -1329,7 +1437,7 @@ export default function connectionJsunit() {
             return;
           }
           console.log("setAppNet success " + JSON.stringify(data));
-          connection.getAppNet(function (error, data) {
+          connection.getAppNet((error: BusinessError, data: connection.NetHandle) => {
             if (error) {
               console.log("getAppNet error " + JSON.stringify(error));
               expect(true).assertFalse();
@@ -1345,12 +1453,12 @@ export default function connectionJsunit() {
     });
 
     /*
-         * @tc.number    : Telephony_Connection_setAppNet_promise_0100
-         * @tc.name      : Telephony_Connection_setAppNet_promise_0100
-         * @tc.desc      : Telephony_Connection_setAppNet_promise_0100
-         */
-    it('Telephony_Connection_setAppNet_promise_0100', 0, function (done) {
-      connection.getDefaultNet(function (error, netHandle) {
+     * @tc.number    : Telephony_Connection_setAppNet_promise_0100
+     * @tc.name      : Telephony_Connection_setAppNet_promise_0100
+     * @tc.desc      : Telephony_Connection_setAppNet_promise_0100
+     */
+    it('Telephony_Connection_setAppNet_promise_0100', 0, (done: Function) => {
+      connection.getDefaultNet((error: BusinessError, netHandle: connection.NetHandle) => {
         if (error) {
           console.log("getDefaultNet error " + JSON.stringify(error));
           expect(true).assertFalse();
@@ -1358,34 +1466,34 @@ export default function connectionJsunit() {
           return;
         }
         console.log("getDefaultNet success " + JSON.stringify(netHandle));
-        connection.setAppNet(netHandle).then((data) => {
+        connection.setAppNet(netHandle).then((data: void) => {
           console.log("setAppNet success " + JSON.stringify(data));
-          connection.getAppNet().then((data) => {
+          connection.getAppNet().then((data: connection.NetHandle) => {
             console.log("getAppNet success " + JSON.stringify(data));
             expect(netHandle.netId == data.netId).assertTrue();
             done();
-          }).catch(error => {
+          }).catch((error: BusinessError) => {
             console.log("getAppNet error " + JSON.stringify(error));
             expect(true).assertFalse();
             done();
           })
-        }).catch(error => {
+        }).catch((error: BusinessError) => {
           console.log("setAppNet error " + JSON.stringify(error));
           expect(true).assertFalse();
           done();
         })
       })
     });
-	
-	
-	/**
+
+
+    /**
      * @tc.number NetworkManager_StatisticsSocket_getSockTxBytes_Async_0100
      * @tc.name Statistics::getSockTxBytes
      * @tc.desc Test getSockTxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockTxBytes_Async_0100", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockTxBytes_Async_0100"
-      statistics.getSockfdTxBytes(sockfd1, (err, data) => {
+    it("NetworkManager_StatisticsSocket_getSockTxBytes_Async_0100", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockTxBytes_Async_0100";
+      statistics.getSockfdTxBytes(sockfd1, (err: BusinessError, data) => {
         if (err) {
           console.log(`${caseName} getSockTxBytes failed, err: ${JSON.stringify(err)}`);
           expect(err.code !== undefined).assertTrue();
@@ -1403,9 +1511,9 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockTxBytes
      * @tc.desc Test getSockTxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockTxBytes_Async_0200", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockTxBytes_Async_0200"
-      statistics.getSockfdTxBytes(sockfd2, (err, data) => {
+    it("NetworkManager_StatisticsSocket_getSockTxBytes_Async_0200", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockTxBytes_Async_0200";
+      statistics.getSockfdTxBytes(sockfd2, (err: BusinessError, data) => {
         if (err) {
           console.log(`${caseName} getSockTxBytes failed, err: ${JSON.stringify(err)}`);
           expect(err.code !== undefined).assertTrue();
@@ -1423,10 +1531,10 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockTxBytes
      * @tc.desc Test getSockTxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockTxBytes_Async_0300", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockTxBytes_Async_0300"
+    it("NetworkManager_StatisticsSocket_getSockTxBytes_Async_0300", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockTxBytes_Async_0300";
       try {
-        statistics.getSockfdTxBytes(undefined, (err, data) => {
+        statistics.getSockfdTxBytes(undefined, (err: BusinessError, data) => {
           if (err) {
             console.log(`${caseName} getSockTxBytes failed, err: ${JSON.stringify(err)}`);
             expectFalse();
@@ -1438,8 +1546,9 @@ export default function connectionJsunit() {
           }
         });
       } catch (error) {
-        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -1449,10 +1558,10 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockTxBytes
      * @tc.desc Test getSockTxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockTxBytes_Async_0400", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockTxBytes_Async_0400"
+    it("NetworkManager_StatisticsSocket_getSockTxBytes_Async_0400", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockTxBytes_Async_0400";
       try {
-        statistics.getSockfdTxBytes(null, (err, data) => {
+        statistics.getSockfdTxBytes(null, (err: BusinessError, data) => {
           if (err) {
             console.log(`${caseName} getSockTxBytes failed, err: ${JSON.stringify(err)}`);
             expectFalse();
@@ -1464,8 +1573,9 @@ export default function connectionJsunit() {
           }
         });
       } catch (error) {
-        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -1475,13 +1585,13 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockTxBytes
      * @tc.desc Test getSockTxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0100", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0100"
+    it("NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0100", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0100";
       statistics.getSockfdTxBytes(sockfd1).then((data) => {
         console.log(`${caseName} getSockTxBytes success, data: ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getSockTxBytes failed, err: ${JSON.stringify(err)}`);
         expect(err.code !== undefined).assertTrue();
         done();
@@ -1493,13 +1603,13 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockTxBytes
      * @tc.desc Test getSockTxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0200", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0200"
+    it("NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0200", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0200";
       statistics.getSockfdTxBytes(sockfd2).then((data) => {
         console.log(`${caseName} getSockTxBytes success, data: ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getSockTxBytes failed, err: ${JSON.stringify(err)}`);
         expect(err.code !== undefined).assertTrue();
         done();
@@ -1511,21 +1621,22 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockTxBytes
      * @tc.desc Test getSockTxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0300", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0300"
+    it("NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0300", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0300";
       try {
         statistics.getSockfdTxBytes(undefined).then((data) => {
           console.log(`${caseName} getSockTxBytes success, data: ${JSON.stringify(data)}`);
           expectFalse();
           done();
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.log(`${caseName} getSockTxBytes failed, err: ${JSON.stringify(err)}`);
           expectFalse();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -1535,21 +1646,22 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockTxBytes
      * @tc.desc Test getSockTxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0400", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0400"
+    it("NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0400", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockTxBytes_Promise_0400";
       try {
         statistics.getSockfdTxBytes(null).then((data) => {
           console.log(`${caseName} getSockTxBytes success, data: ${JSON.stringify(data)}`);
           expectFalse();
           done();
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.log(`${caseName} getSockTxBytes failed, err: ${JSON.stringify(err)}`);
           expectFalse();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -1559,9 +1671,9 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockRxBytes
      * @tc.desc Test getSockRxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockRxBytes_Async_0100", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockRxBytes_Async_0100"
-      statistics.getSockfdRxBytes(sockfd1, (err, data) => {
+    it("NetworkManager_StatisticsSocket_getSockRxBytes_Async_0100", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockRxBytes_Async_0100";
+      statistics.getSockfdRxBytes(sockfd1, (err: BusinessError, data) => {
         if (err) {
           console.log(`${caseName} getSockRxBytes failed, err: ${JSON.stringify(err)}`);
           expect(err.code !== undefined).assertTrue();
@@ -1579,9 +1691,9 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockRxBytes
      * @tc.desc Test getSockRxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockRxBytes_Async_0200", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockRxBytes_Async_0200"
-      statistics.getSockfdRxBytes(sockfd2, (err, data) => {
+    it("NetworkManager_StatisticsSocket_getSockRxBytes_Async_0200", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockRxBytes_Async_0200";
+      statistics.getSockfdRxBytes(sockfd2, (err: BusinessError, data) => {
         if (err) {
           console.log(`${caseName} getSockRxBytes failed, err: ${JSON.stringify(err)}`);
           expect(err.code !== undefined).assertTrue();
@@ -1599,10 +1711,10 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockRxBytes
      * @tc.desc Test getSockRxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockRxBytes_Async_0300", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockRxBytes_Async_0300"
+    it("NetworkManager_StatisticsSocket_getSockRxBytes_Async_0300", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockRxBytes_Async_0300";
       try {
-        statistics.getSockfdRxBytes(undefined, (err, data) => {
+        statistics.getSockfdRxBytes(undefined, (err: BusinessError, data) => {
           if (err) {
             console.log(`${caseName} getSockRxBytes failed, err: ${JSON.stringify(err)}`);
             expectFalse();
@@ -1614,8 +1726,9 @@ export default function connectionJsunit() {
           }
         });
       } catch (error) {
-        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -1625,10 +1738,10 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockRxBytes
      * @tc.desc Test getSockRxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockRxBytes_Async_0400", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockRxBytes_Async_0400"
+    it("NetworkManager_StatisticsSocket_getSockRxBytes_Async_0400", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockRxBytes_Async_0400";
       try {
-        statistics.getSockfdRxBytes(null, (err, data) => {
+        statistics.getSockfdRxBytes(null, (err: BusinessError, data) => {
           if (err) {
             console.log(`${caseName} getSockRxBytes failed, err: ${JSON.stringify(err)}`);
             expectFalse();
@@ -1640,8 +1753,9 @@ export default function connectionJsunit() {
           }
         });
       } catch (error) {
-        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -1651,13 +1765,13 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockRxBytes
      * @tc.desc Test getSockRxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0100", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0100"
+    it("NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0100", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0100";
       statistics.getSockfdRxBytes(sockfd1).then((data) => {
         console.log(`${caseName} getSockRxBytes success, data: ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getSockRxBytes failed, err: ${JSON.stringify(err)}`);
         expect(err.code !== undefined).assertTrue();
         done();
@@ -1669,13 +1783,13 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockRxBytes
      * @tc.desc Test getSockRxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0200", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0200"
+    it("NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0200", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0200";
       statistics.getSockfdRxBytes(sockfd2).then((data) => {
         console.log(`${caseName} getSockRxBytes success, data: ${JSON.stringify(data)}`);
         expectFalse();
         done();
-      }).catch((err) => {
+      }).catch((err: BusinessError) => {
         console.log(`${caseName} getSockRxBytes failed, err: ${JSON.stringify(err)}`);
         expect(err.code !== undefined).assertTrue();
         done();
@@ -1687,21 +1801,22 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockRxBytes
      * @tc.desc Test getSockRxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0300", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0300"
+    it("NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0300", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0300";
       try {
         statistics.getSockfdRxBytes(undefined).then((data) => {
           console.log(`${caseName} getSockRxBytes success, data: ${JSON.stringify(data)}`);
           expectFalse();
           done();
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.log(`${caseName} getSockRxBytes failed, err: ${JSON.stringify(err)}`);
           expectFalse();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -1711,21 +1826,22 @@ export default function connectionJsunit() {
      * @tc.name Statistics::getSockRxBytes
      * @tc.desc Test getSockRxBytes property
      */
-    it("NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0400", 0, async function (done) {
-      let caseName = "NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0400"
+    it("NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0400", 0, async (done: Function) => {
+      let caseName: string = "NetworkManager_StatisticsSocket_getSockRxBytes_Promise_0400";
       try {
         statistics.getSockfdRxBytes(null).then((data) => {
           console.log(`${caseName} getSockRxBytes success, data: ${JSON.stringify(data)}`);
           expectFalse();
           done();
-        }).catch((err) => {
+        }).catch((err: BusinessError) => {
           console.log(`${caseName} getSockRxBytes failed, err: ${JSON.stringify(err)}`);
           expectFalse();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });

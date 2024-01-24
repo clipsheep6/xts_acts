@@ -14,11 +14,6 @@
  */
 import TestRunner from '@ohos.application.testRunner';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
-import { BusinessError } from '@ohos.base';
-import { Context } from '@ohos.abilityAccessCtrl';
-
-let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator | undefined = undefined;
-let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs | undefined = undefined;
 
 function translateParamsToString(parameters: Record<string, string>): string {
   const keySet: Set<string> = new Set([
@@ -39,7 +34,7 @@ async function onAbilityCreateCallback() {
   console.log('onAbilityCreateCallback');
 }
 
-async function addAbilityMonitorCallback(err: BusinessError) {
+async function addAbilityMonitorCallback(err) {
   console.info('addAbilityMonitorCallback : ' + JSON.stringify(err))
 }
 
@@ -53,26 +48,25 @@ export default class OpenHarmonyTestRunner implements TestRunner {
 
   onRun() {
     console.log('OpenHarmonyTestRunner onRun run');
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-    let testAbilityName: string = abilityDelegatorArguments.parameters['-p'] + '.TestAbility';
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let testAbilityName = abilityDelegatorArguments.parameters['-p'] + '.TestAbility';
 
-    let lMonitor: AbilityDelegatorRegistry.AbilityMonitor = {
+    let lMonitor = {
       abilityName: testAbilityName,
       onAbilityCreate: onAbilityCreateCallback,
     };
     abilityDelegator.addAbilityMonitor(lMonitor, addAbilityMonitorCallback);
-    let cmd: string = 'aa start -d 0 -a ' + testAbilityName + ' -b ' + abilityDelegatorArguments.bundleName;
+    let cmd = 'aa start -d 0 -a ' + testAbilityName + ' -b ' + abilityDelegatorArguments.bundleName;
     cmd += ' ' + translateParamsToString(abilityDelegatorArguments.parameters);
     console.info('cmd : ' + cmd);
-    abilityDelegator.executeShellCommand(cmd,
-      (err: BusinessError, d: AbilityDelegatorRegistry.ShellCmdResult) => {
-        console.info('executeShellCommand : err : ' + JSON.stringify(err));
-        console.info('executeShellCommand : data : ' + d.stdResult);
-        console.info('executeShellCommand : data : ' + d.exitCode);
-      });
+    abilityDelegator.executeShellCommand(cmd, (err, d) => {
+      console.info('executeShellCommand : err : ' + JSON.stringify(err));
+      console.info('executeShellCommand : data : ' + d.stdResult);
+      console.info('executeShellCommand : data : ' + d.exitCode);
+    });
     console.info('OpenHarmonyTestRunner onRun call abilityDelegator.getAppContext');
-    let context: Context = abilityDelegator.getAppContext();
+    let context = abilityDelegator.getAppContext();
     console.info('getAppContext : ' + JSON.stringify(context));
     console.info('OpenHarmonyTestRunner onRun end');
   }

@@ -17,13 +17,13 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import { BusinessError } from '@ohos.base';
 import { Context } from '@ohos.abilityAccessCtrl';
 
-function translateParamsToString(parameters: Record<string, string>): string {
-  const keySet: Set<string> = new Set([
+function translateParamsToString(parameters) {
+  const keySet = new Set([
     '-s class', '-s notClass', '-s suite', '-s itName',
     '-s level', '-s testType', '-s size', '-s timeout',
     '-s package'
   ]);
-  let targetParams: string = '';
+  let targetParams = '';
   for (const key in parameters) {
     if (keySet.has(key)) {
       targetParams += ' ' + key + ' ' + parameters[key]
@@ -53,7 +53,7 @@ export default class OpenHarmonyTestRunner implements TestRunner {
     let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs = AbilityDelegatorRegistry.getArguments();
     let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-    let testAbilityName = abilityDelegatorArguments.parameters['-p'] + '.TestAbility';
+    let testAbilityName: string = abilityDelegatorArguments.parameters['-p'] + '.TestAbility';
     let lMonitor: AbilityDelegatorRegistry.AbilityMonitor = {
       abilityName: testAbilityName,
       onAbilityCreate: onAbilityCreateCallback,

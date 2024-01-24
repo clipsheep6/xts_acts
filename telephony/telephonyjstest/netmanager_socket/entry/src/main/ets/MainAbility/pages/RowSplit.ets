@@ -13,12 +13,12 @@
  * limitations under the License.
  */
  
-import router from '@system.router'
+import router from '@ohos.router';
 
 @Entry
 @Component
 struct rowSplit_testcase {
-  @State resizeable: boolean = false
+  @State resizeable: boolean = false;
   private content: string = "rowSplit Page";
 
   onPageShow() {
@@ -66,13 +66,13 @@ struct rowSplit_testcase {
             .fontSize(15)
             .fontWeight(FontWeight.Bold)
         }
-      }.height(100)
+      }
+      .height(100)
       .key('rowSplit1')
       .resizeable(true)
     }
     .key('flex')
-    .width('100%')
-    .height('100%')
+    .width('100%').height('100%')
   }
 }
 
