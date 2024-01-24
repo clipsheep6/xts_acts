@@ -155,7 +155,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
         console.log(msgStr + 'ohosWindow.create catch err:' + JSON.stringify(e));
       }
       await sleep(1000);
-      tempWnd.on('windowSizeChange', async (sizeData) => {
+      (tempWnd as ohosWindow.Window).on('windowSizeChange', async (sizeData) => {
         console.log(msgStr + 'tempWnd.on windowSizeChange, systemBatData : ' + JSON.stringify(sizeData));
         if (flag) {
           expect(!!sizeData).assertTrue();
