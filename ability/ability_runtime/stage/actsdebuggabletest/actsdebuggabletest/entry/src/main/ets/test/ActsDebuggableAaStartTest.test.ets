@@ -183,7 +183,7 @@ export default function actsDebuggableAaStartTest() {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
             'SUB_AA_AMS_Debuggable_0800 err is: ' + JSON.stringify(err));
         });
-      expect(res).assertContain('error: option requires a value.');
+      expect(res).assertContain('error: option requires a value.');:
       expect(res).assertContain('usage: aa start <options>');
       done();
     })
@@ -213,13 +213,13 @@ export default function actsDebuggableAaStartTest() {
 
     /*
      * @tc.number  SUB_AA_AMS_Debuggable_1000
-     * @tc.name    aa start -b com.example.timeout --pi kinteger 13 --pb kbool1 true --pb kbool2 f --ps kstring1 value1 --ps string2 value2 --psn knullstring1 --psn knullstring2
+     * @tc.name    aa start -b com.example.timeout -a EntryAbility --pi kinteger 13 --pb kbool1 true --pb kbool2 f --ps kstring1 value1 --ps string2 value2 --psn knullstring1 --psn knullstring2
      * @tc.desc    Function test
      * @tc.level   3
      */
     it('SUB_AA_AMS_Debuggable_1000',1, async function (done) {
       let res = undefined;
-      await abilityDelegator.executeShellCommand('aa start -b com.example.timeout --pi kinteger 13 --pb kbool1 true --pb kbool2 f --ps kstring1 value1 --ps string2 value2 --psn knullstring1 --psn knullstring2').then(data => {
+      await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --pi kinteger 13 --pb kbool1 true --pb kbool2 f --ps kstring1 value1 --ps string2 value2 --psn knullstring1 --psn knullstring2').then(data => {
         res = data.stdResult;
       }).catch(err => {
         hilog.info(0x0000, 'debuggabletest', '%{public}s',
@@ -464,7 +464,7 @@ export default function actsDebuggableAaStartTest() {
      */
     it('SUB_AA_AMS_Debuggable_2100',1, async function (done) {
       let res = undefined;
-      await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --pi 100 200')
+      await abilityDelegator.executeShellCommand('aa start --pi 100 200 -b com.example.timeout -a EntryAbility')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
             'SUB_AA_AMS_Debuggable_2100 data is: ' + JSON.stringify(data));
@@ -486,7 +486,7 @@ export default function actsDebuggableAaStartTest() {
      */
     it('SUB_AA_AMS_Debuggable_2200',1, async function (done) {
       let res = undefined;
-      await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --pb true false')
+      await abilityDelegator.executeShellCommand('aa start --pb true false -b com.example.timeout -a EntryAbility')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
             'SUB_AA_AMS_Debuggable_2200 data is: ' + JSON.stringify(data));
