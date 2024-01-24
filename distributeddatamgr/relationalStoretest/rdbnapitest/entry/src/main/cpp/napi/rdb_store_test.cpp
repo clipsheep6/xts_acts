@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 #include <iostream>
-#include <stdio.h>
 #include <unistd.h>
 #include <string>
 #include <string.h>
@@ -59,6 +58,8 @@ static void InitRdbConfig()
 static napi_value RdbFilePath(napi_env env, napi_callback_info info) {
     int errCode = 0;
     size_t argc = 1;
+    int database = 12800;
+    double database1 = 100.1; 
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args , nullptr, nullptr);
 
@@ -126,11 +127,13 @@ static void CloudSyncCallback(Rdb_ProgressDetails *progressDetails) {
 static napi_value SUB_DDM_RDB_0100(napi_env env, napi_callback_info info) {
 
     int errCode = 0;
+    int database2 = 13800;
+    double database3 = 200.1;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -140,8 +143,8 @@ static napi_value SUB_DDM_RDB_0100(napi_env env, napi_callback_info info) {
    
     valueBucket->clear(valueBucket);
     valueBucket->putText(valueBucket, "data1", "liSi");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", database2);
+    valueBucket->putReal(valueBucket, "data3", database3);
     valueBucket->putNull(valueBucket, "data5");
     
     OH_Predicates *predicates = OH_Rdb_CreatePredicates("test");
@@ -171,12 +174,12 @@ static napi_value SUB_DDM_RDB_0100(napi_env env, napi_callback_info info) {
     
     int64_t data2Value;
     cursor->getInt64(cursor, 2, &data2Value);
-    NAPI_ASSERT(env, data2Value == 13800, "getInt64 is fail.");
+    NAPI_ASSERT(env, data2Value == database2, "getInt64 is fail.");
 
 
     double data3Value;
     cursor->getReal(cursor, 3, &data3Value);
-    NAPI_ASSERT(env, data3Value == 200.1, "getReal is fail.");
+    NAPI_ASSERT(env, data3Value == database3, "getReal is fail.");
 
     cursor->getSize(cursor, 4, &size);
     unsigned char data4Value[size];
@@ -207,51 +210,48 @@ static napi_value SUB_DDM_RDB_0100(napi_env env, napi_callback_info info) {
  */
 static napi_value SUB_DDM_RDB_0200(napi_env env, napi_callback_info info) {
     int errCode = 0;
+    int database2 = 13800;
+    int database3 = 14800;
+    double database4 = 200.1;
+    double database5 = 300.1;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
     valueBucket->putText(valueBucket, "data5", "ABCDEFG");
     errCode = OH_Rdb_Insert(storeTestRdbStore_, "test", valueBucket);
     NAPI_ASSERT(env, errCode == 1, "OH_Rdb_Insert is fail.");
-   
     valueBucket->clear(valueBucket);
     valueBucket->putInt64(valueBucket, "id", 2);
     valueBucket->putText(valueBucket, "data1", "liSi");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", database2);
+    valueBucket->putReal(valueBucket, "data3", database4);
     valueBucket->putText(valueBucket, "data5", "ABCDEFGH");
     errCode = OH_Rdb_Insert(storeTestRdbStore_, "wrong", valueBucket);
     NAPI_ASSERT(env, errCode == -1, "OH_Rdb_Insert id=2 is fail.");
-
     valueBucket->clear(valueBucket);
     valueBucket->putInt64(valueBucket, "id", 3);
     valueBucket->putText(valueBucket, "data1", "wangWu");
-    valueBucket->putInt64(valueBucket, "data2", 14800);
-    valueBucket->putReal(valueBucket, "data3", 300.1);
+    valueBucket->putInt64(valueBucket, "data2", database3);
+    valueBucket->putReal(valueBucket, "data3", database5);
     valueBucket->putText(valueBucket, "data5", "ABCDEFGHI");
     char *table = NULL;
     errCode = OH_Rdb_Insert(storeTestRdbStore_, table, valueBucket);
     NAPI_ASSERT(env, errCode == OH_Rdb_ErrCode::RDB_E_INVALID_ARGS, "OH_Rdb_Insert id=3 is fail.");
-
     char querySql[] = "SELECT * FROM test";
-    OH_Cursor *cursor = OH_Rdb_ExecuteQuery(storeTestRdbStore_, querySql);
-    
+    OH_Cursor *cursor = OH_Rdb_ExecuteQuery(storeTestRdbStore_, querySql);  
     int rowCount = 0;
     cursor->getRowCount(cursor, &rowCount);
     NAPI_ASSERT(env, rowCount == 1, "getRowCount is fail.");
-
     valueBucket->destroy(valueBucket);
-    errCode = cursor->destroy(cursor);
-    
+    errCode = cursor->destroy(cursor); 
     napi_value returnCode;
     napi_create_double(env, errCode, &returnCode);
     return returnCode;
-
 }
 
 /**
@@ -261,11 +261,13 @@ static napi_value SUB_DDM_RDB_0200(napi_env env, napi_callback_info info) {
  */
 static napi_value SUB_DDM_RDB_0300(napi_env env, napi_callback_info info) {
     int errCode = 0;
+    int database2 = 13800;
+    double database3 = 200.1;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -275,8 +277,8 @@ static napi_value SUB_DDM_RDB_0300(napi_env env, napi_callback_info info) {
    
     valueBucket->clear(valueBucket);
     valueBucket->putText(valueBucket, "data1", "liSi");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", database2);
+    valueBucket->putReal(valueBucket, "data3", database3);
     valueBucket->putNull(valueBucket, "data5");
 
     OH_Predicates *predicates = OH_Rdb_CreatePredicates("wrong");
@@ -312,11 +314,11 @@ static napi_value SUB_DDM_RDB_0300(napi_env env, napi_callback_info info) {
     
     int64_t data2Value;
     cursor->getInt64(cursor, 2, &data2Value);
-    NAPI_ASSERT(env, data2Value == 12800, "getInt64 is fail.");
+    NAPI_ASSERT(env, data2Value == database, "getInt64 is fail.");
     
     double data3Value;
     cursor->getReal(cursor, 3, &data3Value);
-    NAPI_ASSERT(env, data3Value == 100.1, "getReal is fail.");
+    NAPI_ASSERT(env, data3Value == database1, "getReal is fail.");
     
     cursor->getSize(cursor, 4, &size);
     unsigned char data4Value[size];
@@ -351,8 +353,8 @@ static napi_value SUB_DDM_RDB_0400(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -403,11 +405,13 @@ static napi_value SUB_DDM_RDB_0400(napi_env env, napi_callback_info info) {
  */
 static napi_value SUB_DDM_RDB_0500(napi_env env, napi_callback_info info) {
     int errCode = 0;
+    int database2 = 13800;
+    double database3 = 200.1;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -417,8 +421,8 @@ static napi_value SUB_DDM_RDB_0500(napi_env env, napi_callback_info info) {
 
     valueBucket->clear(valueBucket);
     valueBucket->putText(valueBucket, "data1", "liSi");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", database2);
+    valueBucket->putReal(valueBucket, "data3", database3);
     valueBucket->putNull(valueBucket, "data5");
 
     OH_Predicates *predicates = OH_Rdb_CreatePredicates("test");
@@ -466,8 +470,8 @@ static napi_value SUB_DDM_RDB_0600(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -510,8 +514,8 @@ static napi_value SUB_DDM_RDB_0700(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -553,8 +557,8 @@ static napi_value SUB_DDM_RDB_0800(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -592,11 +596,13 @@ static napi_value SUB_DDM_RDB_0800(napi_env env, napi_callback_info info) {
  */
 static napi_value SUB_DDM_RDB_0900(napi_env env, napi_callback_info info) {
     int errCode = 0;
+    int database2 = 13800;
+    double database3 = 200.1;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -607,8 +613,8 @@ static napi_value SUB_DDM_RDB_0900(napi_env env, napi_callback_info info) {
     valueBucket->clear(valueBucket);
     valueBucket->putInt64(valueBucket, "id", 2);
     valueBucket->putText(valueBucket, "data1", "liSi");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", database2);
+    valueBucket->putReal(valueBucket, "data3", database3);
     valueBucket->putText(valueBucket, "data5", "ABCDEFGH");
     errCode = OH_Rdb_Insert(storeTestRdbStore_, "test", valueBucket);
     NAPI_ASSERT(env, errCode == 2, "OH_Rdb_Insert 2 is fail.");
@@ -639,11 +645,11 @@ static napi_value SUB_DDM_RDB_0900(napi_env env, napi_callback_info info) {
     
     int64_t data2Value;
     cursor->getInt64(cursor, 2, &data2Value);
-    NAPI_ASSERT(env, data2Value == 13800, "getInt64 is fail.");
+    NAPI_ASSERT(env, data2Value == database2, "getInt64 is fail.");
 
     double data3Value;
     cursor->getReal(cursor, 3, &data3Value);
-    NAPI_ASSERT(env, data3Value == 200.1, "getReal is fail.");
+    NAPI_ASSERT(env, data3Value == database3, "getReal is fail.");
 
     bool isNull = false;
     cursor->isNull(cursor, 4, &isNull);
@@ -674,8 +680,8 @@ static napi_value SUB_DDM_RDB_1000(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -701,11 +707,14 @@ static napi_value SUB_DDM_RDB_1000(napi_env env, napi_callback_info info) {
  */
 static napi_value SUB_DDM_RDB_1100(napi_env env, napi_callback_info info) {
     int errCode = 0;
+    int database2 = 13800;
+    double database3 = 200.1;
+    int database4 = 14800001;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -717,8 +726,8 @@ static napi_value SUB_DDM_RDB_1100(napi_env env, napi_callback_info info) {
     valueBucket->clear(valueBucket);
     valueBucket->putInt64(valueBucket, "id", 2);
     valueBucket->putText(valueBucket, "data1", "liSi");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", database2);
+    valueBucket->putReal(valueBucket, "data3", database3);
     valueBucket->putText(valueBucket, "data5", "ABCDEFGH");
     errCode = OH_Rdb_Insert(storeTestRdbStore_, "test", valueBucket);
     NAPI_ASSERT(env, errCode == 2, "OH_Rdb_Insert is fail.");
@@ -743,7 +752,7 @@ static napi_value SUB_DDM_RDB_1100(napi_env env, napi_callback_info info) {
     NAPI_ASSERT(env, predicates2 == NULL, "OH_Rdb_CreatePredicates is fail.");
 
     errCode = OH_Rdb_Delete(storeTestRdbStore_, predicates2);
-    NAPI_ASSERT(env, errCode == 14800001, "OH_Rdb_Delete is fail.");
+    NAPI_ASSERT(env, errCode == database4, "OH_Rdb_Delete is fail.");
 
     OH_Cursor *cursor1 = OH_Rdb_Query(storeTestRdbStore_, predicates1, NULL, 0);
     int rowCount1 = 0;
@@ -769,11 +778,13 @@ static napi_value SUB_DDM_RDB_1100(napi_env env, napi_callback_info info) {
  */
 static napi_value SUB_DDM_RDB_1200(napi_env env, napi_callback_info info) {
     int errCode = 0;
+    int database2 = 13800;
+    double database3 = 200.1;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -784,8 +795,8 @@ static napi_value SUB_DDM_RDB_1200(napi_env env, napi_callback_info info) {
     valueBucket->clear(valueBucket);
     valueBucket->putInt64(valueBucket, "id", 2);
     valueBucket->putText(valueBucket, "data1", "liSi");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", database2);
+    valueBucket->putReal(valueBucket, "data3", database3);
     valueBucket->putText(valueBucket, "data5", "ABCDEFGH");
     errCode = OH_Rdb_Insert(storeTestRdbStore_, "test", valueBucket);
     NAPI_ASSERT(env, errCode == 2, "OH_Rdb_Insert is fail.");
@@ -823,11 +834,13 @@ static napi_value SUB_DDM_RDB_1200(napi_env env, napi_callback_info info) {
  */
 static napi_value SUB_DDM_RDB_1300(napi_env env, napi_callback_info info) {
     int errCode = 0;
+    int database2 = 13800;
+    double database3 = 200.1;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -838,8 +851,8 @@ static napi_value SUB_DDM_RDB_1300(napi_env env, napi_callback_info info) {
     valueBucket->clear(valueBucket);
     valueBucket->putInt64(valueBucket, "id", 2);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", database2);
+    valueBucket->putReal(valueBucket, "data3", database3);
     valueBucket->putText(valueBucket, "data5", "ABCDEFGH");
     errCode = OH_Rdb_Insert(storeTestRdbStore_, "test", valueBucket);
     NAPI_ASSERT(env, errCode == 2, "OH_Rdb_Insert is fail.");
@@ -876,11 +889,13 @@ static napi_value SUB_DDM_RDB_1300(napi_env env, napi_callback_info info) {
  */
 static napi_value SUB_DDM_RDB_1400(napi_env env, napi_callback_info info) {
     int errCode = 0;
+    int database2 = 13800;
+    double database3 = 200.1;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -891,8 +906,8 @@ static napi_value SUB_DDM_RDB_1400(napi_env env, napi_callback_info info) {
     valueBucket->clear(valueBucket);
     valueBucket->putInt64(valueBucket, "id", 2);
     valueBucket->putText(valueBucket, "data1", "liSi");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", database2);
+    valueBucket->putReal(valueBucket, "data3", database3);
     valueBucket->putText(valueBucket, "data5", "ABCDEFGH");
     errCode = OH_Rdb_Insert(storeTestRdbStore_, "test", valueBucket);
     NAPI_ASSERT(env, errCode == 2, "OH_Rdb_Insert is fail.");
@@ -921,13 +936,15 @@ static napi_value SUB_DDM_RDB_1400(napi_env env, napi_callback_info info) {
  */
 static napi_value SUB_DDM_RDB_1500(napi_env env, napi_callback_info info) {
     int errCode = 0;
+    int database2 = 13800;
+    double database3 = 200.1;
     OH_Rdb_BeginTransaction(storeTestRdbStore_);
 
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -939,8 +956,8 @@ static napi_value SUB_DDM_RDB_1500(napi_env env, napi_callback_info info) {
     valueBucket->clear(valueBucket);
     valueBucket->putInt64(valueBucket, "id", 2);
     valueBucket->putText(valueBucket, "data1", "liSi");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", database2);
+    valueBucket->putReal(valueBucket, "data3", database3);
     valueBucket->putText(valueBucket, "data5", "ABCDEFGH");
     errCode = OH_Rdb_Insert(storeTestRdbStore_, "test", valueBucket);
     NAPI_ASSERT(env, errCode == 2, "OH_Rdb_Insert is fail.");
@@ -970,13 +987,15 @@ static napi_value SUB_DDM_RDB_1500(napi_env env, napi_callback_info info) {
  */
 static napi_value SUB_DDM_RDB_1600(napi_env env, napi_callback_info info) {
     int errCode = 0;
+    int database2 = 13800;
+    double database3 = 200.1;
     OH_Rdb_BeginTransaction(storeTestRdbStore_);
 
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -989,8 +1008,8 @@ static napi_value SUB_DDM_RDB_1600(napi_env env, napi_callback_info info) {
     valueBucket->clear(valueBucket);
     valueBucket->putInt64(valueBucket, "id", 2);
     valueBucket->putText(valueBucket, "data1", "liSi");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", database2);
+    valueBucket->putReal(valueBucket, "data3", database3);
     valueBucket->putText(valueBucket, "data5", "ABCDEFGH");
     errCode = OH_Rdb_Insert(storeTestRdbStore_, "test", valueBucket);
     NAPI_ASSERT(env, errCode == 2, "OH_Rdb_Insert is fail.");
@@ -1021,13 +1040,15 @@ static napi_value SUB_DDM_RDB_1600(napi_env env, napi_callback_info info) {
  */
 static napi_value SUB_DDM_RDB_1700(napi_env env, napi_callback_info info) {
     int errCode = 0;
+    int database2 = 13800;
+    double database3 = 200.1;
     OH_Rdb_BeginTransaction(storeTestRdbStore_);
 
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -1040,8 +1061,8 @@ static napi_value SUB_DDM_RDB_1700(napi_env env, napi_callback_info info) {
     valueBucket->clear(valueBucket);
     valueBucket->putInt64(valueBucket, "id", 2);
     valueBucket->putText(valueBucket, "data1", "liSi");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", database2);
+    valueBucket->putReal(valueBucket, "data3", database3);
     valueBucket->putText(valueBucket, "data5", "ABCDEFGH");
     errCode = OH_Rdb_Insert(storeTestRdbStore_, "test", valueBucket);
     NAPI_ASSERT(env, errCode == 2, "OH_Rdb_Insert is fail.");
@@ -1099,8 +1120,8 @@ static napi_value SUB_DDM_RDB_1900(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -1141,11 +1162,13 @@ static napi_value SUB_DDM_RDB_1900(napi_env env, napi_callback_info info) {
  */
 static napi_value SUB_DDM_RDB_2000(napi_env env, napi_callback_info info) {
     int errCode = 0;
+    int database2 = 13800;
+    double database3 = 200.1;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -1155,8 +1178,8 @@ static napi_value SUB_DDM_RDB_2000(napi_env env, napi_callback_info info) {
 
     valueBucket->clear(valueBucket);
     valueBucket->putText(valueBucket, "data1", "liSi");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", database2);
+    valueBucket->putReal(valueBucket, "data3", database3);
     valueBucket->putNull(valueBucket, "data5");
 
     OH_Predicates *predicates = OH_Rdb_CreatePredicates("test");
@@ -1202,11 +1225,13 @@ static napi_value SUB_DDM_RDB_2000(napi_env env, napi_callback_info info) {
  */
 static napi_value SUB_DDM_RDB_2100(napi_env env, napi_callback_info info) {
     int errCode = 0;
+    int database2 = 13800;
+    double database3 = 200.1;
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -1217,8 +1242,8 @@ static napi_value SUB_DDM_RDB_2100(napi_env env, napi_callback_info info) {
     valueBucket->clear(valueBucket);
     valueBucket->putInt64(valueBucket, "id", 2);
     valueBucket->putText(valueBucket, "data1", "liSi");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", database2);
+    valueBucket->putReal(valueBucket, "data3", database3);
     valueBucket->putText(valueBucket, "data5", "ABCDEFGH");
     errCode = OH_Rdb_Insert(storeTestRdbStore_, "test", valueBucket);
     NAPI_ASSERT(env, errCode == 2, "OH_Rdb_Insert is fail.");
@@ -1258,8 +1283,8 @@ static napi_value SUB_DDM_RDB_2200(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -1301,8 +1326,8 @@ static napi_value SUB_DDM_RDB_2300(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -1344,8 +1369,8 @@ static napi_value SUB_DDM_RDB_2400(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -1387,8 +1412,8 @@ static napi_value SUB_DDM_RDB_2500(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -1432,8 +1457,8 @@ static napi_value SUB_DDM_RDB_2600(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -1476,8 +1501,8 @@ static napi_value SUB_DDM_RDB_2700(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -1518,8 +1543,8 @@ static napi_value SUB_DDM_RDB_2800(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -1559,8 +1584,8 @@ static napi_value SUB_DDM_RDB_2900(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -1600,8 +1625,8 @@ static napi_value SUB_DDM_RDB_3000(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -1638,8 +1663,8 @@ static napi_value SUB_DDM_RDB_3100(napi_env env, napi_callback_info info) {
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", database);
+    valueBucket->putReal(valueBucket, "data3", database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -1917,6 +1942,8 @@ static napi_value SUB_DDM_RDB_4000(napi_env env, napi_callback_info info) {
  */
 static napi_value SUB_DDM_RDB_4100(napi_env env, napi_callback_info info) 
 {
+    int database2 = 1000000000;
+    int database3 = 100000;
     char createLogTableSql[] = "CREATE TABLE if not exists naturalbase_rdb_aux_rdbstoreimpltest_integer_log "
                                "(id INTEGER PRIMARY KEY AUTOINCREMENT, timestamp INTEGER, data_key INTEGER, "
                                "data3 FLOAT, data4 BLOB, data5 BOOLEAN);";
@@ -1925,7 +1952,7 @@ static napi_value SUB_DDM_RDB_4100(napi_env env, napi_callback_info info)
 
     OH_VBucket *bucket = OH_Rdb_CreateValuesBucket();
     bucket->putInt64(bucket, "data_key", 1);
-    bucket->putInt64(bucket, "timestamp", 1000000000);
+    bucket->putInt64(bucket, "timestamp", database2);
     errCode = OH_Rdb_Insert(storeTestRdbStore_, "naturalbase_rdb_aux_rdbstoreimpltest_integer_log", bucket);
     NAPI_ASSERT(env, errCode == 1 , "OH_Rdb_Insert 1 is fail.");    
 
@@ -1945,7 +1972,7 @@ static napi_value SUB_DDM_RDB_4100(napi_env env, napi_callback_info info)
     NAPI_ASSERT(env, key == 1 , "getInt64 1 is fail.");  
     int64_t time = 0;
     cursor->getInt64(cursor, 1, &time);
-    NAPI_ASSERT(env, time == 100000 , "getInt64 1 is fail.");
+    NAPI_ASSERT(env, time == database3, "getInt64 1 is fail.");
 
     cursor->destroy(cursor);
     char dropLogTableSql[] = "DROP TABLE IF EXISTS naturalbase_rdb_aux_rdbstoreimpltest_integer_log";
@@ -1967,6 +1994,7 @@ static napi_value SUB_DDM_RDB_4100(napi_env env, napi_callback_info info)
  */
 static napi_value SUB_DDM_RDB_4200(napi_env env, napi_callback_info info) 
 {
+    int database2 = 1000000000;
     char createLogTableSql[] = "CREATE TABLE if not exists naturalbase_rdb_aux_rdbstoreimpltest_integer_log "
                                "(id INTEGER PRIMARY KEY AUTOINCREMENT, timestamp INTEGER, data_key INTEGER, "
                                "data3 FLOAT, data4 BLOB, data5 BOOLEAN);";
@@ -1975,7 +2003,7 @@ static napi_value SUB_DDM_RDB_4200(napi_env env, napi_callback_info info)
 
     OH_VBucket *bucket = OH_Rdb_CreateValuesBucket();
     bucket->putInt64(bucket, "data_key", 1);
-    bucket->putInt64(bucket, "timestamp", 1000000000);
+    bucket->putInt64(bucket, "timestamp", database2);
     errCode = OH_Rdb_Insert(storeTestRdbStore_, "naturalbase_rdb_aux_rdbstoreimpltest_integer_log", bucket);
     NAPI_ASSERT(env, errCode == 1 , "OH_Rdb_Insert 1 is fail.");    
 

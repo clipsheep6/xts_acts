@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 #include <iostream>
-#include <stdio.h>
 #include <unistd.h>
 #include <string>
-#include <string.h>
+#include <cstring>
 #include <cstdio>
 #include <cstdlib>
 #include <fcntl.h>
@@ -34,7 +33,11 @@
 #include "oh_values_bucket.h"
 
 char *RDB_TEST_PATH =  NULL;
-
+int g_database = 12800;
+double g_database1 = 100.1;
+int g_database2 = 14800001;
+int g_database3 = 14800011;
+int g_database4 = 2;
 char RDB_STORE_NAME[] =  "rdb_store_test.db";
 char BUNDLE_NAME[] =  "com.acts.rdb.napitest";
 char MODULE_NAME[] =  "com.acts.rdb.napitest";
@@ -73,9 +76,9 @@ static napi_value RdbFilePath(napi_env env, napi_callback_info info) {
 }
 
 static napi_value RdbstoreSetUpTestCase(napi_env env, napi_callback_info info) {
-
+    int a = 0770;
     InitRdbConfig();
-    mkdir(config_.dataBaseDir, 0770);
+    mkdir(config_.dataBaseDir, a);
 
     int errCode = 0;
     storeBackupTestRdbStore_ = OH_Rdb_GetOrOpen(&config_, &errCode);
@@ -108,8 +111,8 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0100(napi_env env, napi_callback
 
     OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -130,7 +133,7 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0100(napi_env env, napi_callback
     char backupPath[100];
     sprintf(backupPath, "%s%s", RDB_TEST_PATH, dbpath);
     errCode = OH_Rdb_Backup(storeBackupTestRdbStore_, backupPath);
-    NAPI_ASSERT(env, errCode == 14800011, "OH_Rdb_Backup is success.");
+    NAPI_ASSERT(env, errCode == g_database3, "OH_Rdb_Backup is success.");
 
     errCode = valueBucket->destroy(valueBucket);
 
@@ -143,8 +146,8 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0300(napi_env env, napi_callback
     OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -191,18 +194,18 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0300(napi_env env, napi_callback
     NAPI_ASSERT(env, strncmp(data1Value, "zhangSan", 8) == 0, "getText is fail.");
 
     int64_t data2Value;
-    cursor->getInt64(cursor, 2, &data2Value);
-    NAPI_ASSERT(env, data2Value == 12800, "getInt64 is fail.");
+    cursor->getInt64(cursor, g_database4, &data2Value);
+    NAPI_ASSERT(env, data2Value == g_database, "getInt64 is fail.");
 
     double data3Value;
     cursor->getReal(cursor, 3, &data3Value);
-    NAPI_ASSERT(env, data3Value == 100.1, "getReal is fail.");
+    NAPI_ASSERT(env, data3Value == g_database1, "getReal is fail.");
 
     cursor->getSize(cursor, 4, &size);
     unsigned char data4Value[size];
     cursor->getBlob(cursor, 4, data4Value, size);
     NAPI_ASSERT(env, data4Value[0] == 1, "getBlob1 is fail.");
-    NAPI_ASSERT(env, data4Value[1] == 2, "getBlob2 is fail.");
+    NAPI_ASSERT(env, data4Value[1] == g_database4, "getBlob2 is fail.");
 
     cursor->getSize(cursor, 5, &size);
     char data5Value[size + 1];
@@ -221,8 +224,8 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0400(napi_env env, napi_callback
     OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -281,8 +284,8 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0500(napi_env env, napi_callback
     OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -327,18 +330,18 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0500(napi_env env, napi_callback
     NAPI_ASSERT(env, strncmp(data1Value, "zhangSan", 8) == 0, "getText is fail.");
 
     int64_t data2Value;
-    cursor->getInt64(cursor, 2, &data2Value);
-    NAPI_ASSERT(env, data2Value == 12800, "getInt64 is fail.");
+    cursor->getInt64(cursor, g_database4, &data2Value);
+    NAPI_ASSERT(env, data2Value == g_database, "getInt64 is fail.");
 
     double data3Value;
     cursor->getReal(cursor, 3, &data3Value);
-    NAPI_ASSERT(env, data3Value == 100.1, "getReal is fail.");
+    NAPI_ASSERT(env, data3Value == g_database1, "getReal is fail.");
 
     cursor->getSize(cursor, 4, &size);
     unsigned char data4Value[size];
     cursor->getBlob(cursor, 4, data4Value, size);
     NAPI_ASSERT(env, data4Value[0] == 1, "getBlob1 is fail.");
-    NAPI_ASSERT(env, data4Value[1] == 2, "getBlob2 is fail.");
+    NAPI_ASSERT(env, data4Value[1] == g_database4, "getBlob2 is fail.");
 
     cursor->getSize(cursor, 5, &size);
     char data5Value[size + 1];
@@ -358,8 +361,8 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0600(napi_env env, napi_callback
     OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -403,18 +406,18 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0600(napi_env env, napi_callback
     NAPI_ASSERT(env, strncmp(data1Value, "zhangSan", 8) == 0, "getText is fail.");
 
     int64_t data2Value;
-    cursor->getInt64(cursor, 2, &data2Value);
-    NAPI_ASSERT(env, data2Value == 12800, "getInt64 is fail.");
+    cursor->getInt64(cursor, g_database4, &data2Value);
+    NAPI_ASSERT(env, data2Value == g_database, "getInt64 is fail.");
 
     double data3Value;
     cursor->getReal(cursor, 3, &data3Value);
-    NAPI_ASSERT(env, data3Value == 100.1, "getReal is fail.");
+    NAPI_ASSERT(env, data3Value == g_database1, "getReal is fail.");
 
     cursor->getSize(cursor, 4, &size);
     unsigned char data4Value[size];
     cursor->getBlob(cursor, 4, data4Value, size);
     NAPI_ASSERT(env, data4Value[0] == 1, "getBlob1 is fail.");
-    NAPI_ASSERT(env, data4Value[1] == 2, "getBlob2 is fail.");
+    NAPI_ASSERT(env, data4Value[1] == g_database4, "getBlob2 is fail.");
 
     cursor->getSize(cursor, 5, &size);
     char data5Value[size + 1];
@@ -433,8 +436,8 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0700(napi_env env, napi_callback
     OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -451,7 +454,7 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0700(napi_env env, napi_callback
     cursor->destroy(cursor);
 
     errCode = OH_Rdb_Backup(storeBackupTestRdbStore_, NULL);
-    NAPI_ASSERT(env, errCode == 14800001, "OH_Rdb_Backup is success.");
+    NAPI_ASSERT(env, errCode == g_database2, "OH_Rdb_Backup is success.");
     
     errCode = valueBucket->destroy(valueBucket);
 
@@ -464,8 +467,8 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0800(napi_env env, napi_callback
     OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -493,7 +496,7 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0800(napi_env env, napi_callback
     NAPI_ASSERT(env, errCode == 1, "DeleteData is fail.");
 
     errCode = OH_Rdb_Restore(storeBackupTestRdbStore_, NULL);
-    NAPI_ASSERT(env, errCode == 14800001, "OH_Rdb_Restore is success.");
+    NAPI_ASSERT(env, errCode == g_database2, "OH_Rdb_Restore is success.");
     
     cursor = OH_Rdb_ExecuteQuery(storeBackupTestRdbStore_, querySql);
     cursor->getRowCount(cursor, &rowCount);
@@ -516,18 +519,18 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0800(napi_env env, napi_callback
     NAPI_ASSERT(env, strncmp(data1Value, "zhangSan", 8) == 0, "getText is fail.");
 
     int64_t data2Value;
-    cursor->getInt64(cursor, 2, &data2Value);
-    NAPI_ASSERT(env, data2Value == 12800, "getInt64 is fail.");
+    cursor->getInt64(cursor, g_database4, &data2Value);
+    NAPI_ASSERT(env, data2Value == g_database, "getInt64 is fail.");
 
     double data3Value;
     cursor->getReal(cursor, 3, &data3Value);
-    NAPI_ASSERT(env, data3Value == 100.1, "getReal is fail.");
+    NAPI_ASSERT(env, data3Value == g_database1, "getReal is fail.");
 
     cursor->getSize(cursor, 4, &size);
     unsigned char data4Value[size];
     cursor->getBlob(cursor, 4, data4Value, size);
     NAPI_ASSERT(env, data4Value[0] == 1, "getBlob1 is fail.");
-    NAPI_ASSERT(env, data4Value[1] == 2, "getBlob2 is fail.");
+    NAPI_ASSERT(env, data4Value[1] == g_database4, "getBlob2 is fail.");
 
     cursor->getSize(cursor, 5, &size);
     char data5Value[size + 1];
@@ -547,8 +550,8 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0800(napi_env env, napi_callback
 static napi_value SUB_DDM_RDB_BackupRestoreTest_0900(napi_env env, napi_callback_info info) {
     OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -581,7 +584,7 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0900(napi_env env, napi_callback
     sprintf(reStorePath, "%s%s", RDB_TEST_PATH, dbpath1);
 
     errCode = OH_Rdb_Restore(storeBackupTestRdbStore_, reStorePath);
-    NAPI_ASSERT(env, errCode == 14800011, "OH_Rdb_Restore is success.");
+    NAPI_ASSERT(env, errCode == g_database3, "OH_Rdb_Restore is success.");
 
     cursor = OH_Rdb_ExecuteQuery(storeBackupTestRdbStore_, querySql);
     cursor->getRowCount(cursor, &rowCount);
@@ -605,8 +608,8 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0900(napi_env env, napi_callback
 static napi_value SUB_DDM_RDB_BackupRestoreTest_0110(napi_env env, napi_callback_info info) {
     OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -639,7 +642,7 @@ static napi_value SUB_DDM_RDB_BackupRestoreTest_0110(napi_env env, napi_callback
     char reStorePath[100];
     sprintf(reStorePath, "%s%s", RDB_TEST_PATH, dbpath2);
     errCode = OH_Rdb_Restore(storeBackupTestRdbStore_, reStorePath);
-    NAPI_ASSERT(env, errCode == 14800011, "OH_Rdb_Restore is success.");
+    NAPI_ASSERT(env, errCode == g_database3, "OH_Rdb_Restore is success.");
 
     cursor = OH_Rdb_ExecuteQuery(storeBackupTestRdbStore_, querySql);
     cursor->getRowCount(cursor, &rowCount);
