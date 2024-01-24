@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 #include <iostream>
-#include <stdio.h>
 #include <unistd.h>
 #include <string>
-#include <string.h>
+#include <cstring>
 #include <cstdio>
 #include <cstdlib>
 #include <fcntl.h>
@@ -39,6 +38,10 @@ char *RDB_TEST_PATH =  NULL;
 char RDB_STORE_NAME[] =  "rdb_store_cursor_test.db";
 char BUNDLE_NAME[] =  "com.acts.rdb.napitest";
 char MODULE_NAME[] =  "com.acts.rdb.napitest";
+int g_database = 12800;
+int g_databasee1 = 13800;
+double g_database3 = 100.1;
+double g_database4 = 200.1;
 
 static OH_Rdb_Config config_;
 static void InitRdbConfig()
@@ -124,10 +127,13 @@ static void CreateAssetTable()
 }
 
 static napi_value CursorSetUpTestCase(napi_env env, napi_callback_info info) {
+    int g_database9 = 0770;
     InitRdbConfig();
-    mkdir(config_.dataBaseDir, 0770);
+    mkdir(config_.dataBaseDir, g_database9);
 
     int errCode = 0;
+    int g_database5 = 14800;
+    double g_database6 = 300.1;
     char table[] = "test";
     cursorTestRdbStore_ = OH_Rdb_GetOrOpen(&config_, &errCode);    
     NAPI_ASSERT(env, errCode == 0, "OH_Rdb_GetOrOpen is fail.");
@@ -140,8 +146,8 @@ static napi_value CursorSetUpTestCase(napi_env env, napi_callback_info info) {
     OH_VBucket *valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database2);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -152,8 +158,8 @@ static napi_value CursorSetUpTestCase(napi_env env, napi_callback_info info) {
     valueBucket->clear(valueBucket);
     valueBucket->putInt64(valueBucket, "id", 2);
     valueBucket->putText(valueBucket, "data1", "liSi");
-    valueBucket->putInt64(valueBucket, "data2", 13800);
-    valueBucket->putReal(valueBucket, "data3", 200.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database1);
+    valueBucket->putReal(valueBucket, "data3", g_database4);
     valueBucket->putText(valueBucket, "data5", "ABCDEFGH");
     errCode = OH_Rdb_Insert(cursorTestRdbStore_, table, valueBucket);
     NAPI_ASSERT(env, errCode == 2, "OH_Rdb_Insert 2 is fail.");
@@ -161,8 +167,8 @@ static napi_value CursorSetUpTestCase(napi_env env, napi_callback_info info) {
     valueBucket->clear(valueBucket);
     valueBucket->putInt64(valueBucket, "id", 3);
     valueBucket->putText(valueBucket, "data1", "wangWu");
-    valueBucket->putInt64(valueBucket, "data2", 14800);
-    valueBucket->putReal(valueBucket, "data3", 300.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database5);
+    valueBucket->putReal(valueBucket, "data3", g_database6);
     valueBucket->putText(valueBucket, "data5", "ABCDEFGHI");
     errCode = OH_Rdb_Insert(cursorTestRdbStore_, table, valueBucket);
     NAPI_ASSERT(env, errCode == 3, "OH_Rdb_Insert 3 is fail.");
@@ -331,11 +337,11 @@ static napi_value SUB_DDM_RDB_CURSOR_0400(napi_env env, napi_callback_info info)
 
     int64_t data2Value;
     cursor->getInt64(cursor, 1, &data2Value);
-    NAPI_ASSERT(env, data2Value == 12800, "getInt64  is fail.");
+    NAPI_ASSERT(env, data2Value == g_database, "getInt64  is fail.");
 
     double data3Value;
     cursor->getReal(cursor, 2, &data3Value);
-    NAPI_ASSERT(env, data3Value == 100.1, "getReal  is fail.");
+    NAPI_ASSERT(env, data3Value == g_database3, "getReal  is fail.");
 
     cursor->getSize(cursor, 3, &size);
     unsigned char data4Value[size];
@@ -351,10 +357,10 @@ static napi_value SUB_DDM_RDB_CURSOR_0400(napi_env env, napi_callback_info info)
     NAPI_ASSERT(env, strncmp(data1Value_1, "liSi", size) == 0, "getText  is fail.");
 
     cursor->getInt64(cursor, 1, &data2Value);
-    NAPI_ASSERT(env, data2Value == 13800, "getInt64  is fail.");
+    NAPI_ASSERT(env, data2Value == g_database2, "getInt64  is fail.");
 
     cursor->getReal(cursor, 2, &data3Value);
-    NAPI_ASSERT(env, data3Value == 200.1, "getReal  is fail.");
+    NAPI_ASSERT(env, data3Value == g_database4, "getReal  is fail.");
 
     bool isNull = false;
     cursor->isNull(cursor, 3, &isNull);
@@ -401,9 +407,10 @@ static napi_value SUB_DDM_RDB_CURSOR_0600(napi_env env, napi_callback_info info)
     NAPI_ASSERT(env, cursor != NULL, "OH_Rdb_Query is fail.");
 
     int columnIndex;
+    int g_database7 = 14800001;
     char *name = NULL;
     int errCode = cursor->getColumnIndex(cursor, name, &columnIndex);
-    NAPI_ASSERT(env, errCode == 14800001, "getColumnIndex is fail.");
+    NAPI_ASSERT(env, errCode == g_database7, "getColumnIndex is fail.");
 
     errCode = predicates->destroy(predicates);
      
@@ -777,11 +784,12 @@ static napi_value SUB_DDM_RDB_CURSOR_1800(napi_env env, napi_callback_info info)
     NAPI_ASSERT(env, cursor != NULL, "OH_Rdb_Query is fail.");
 
     int rowCount = -1;
+    int g_database8 = 14800026;
     cursor->getRowCount(cursor, &rowCount);
     NAPI_ASSERT(env, rowCount == 0, "getRowCount is fail.");
 
     int errCode = cursor->goToNextRow(cursor);
-    NAPI_ASSERT(env, errCode == 14800026, "goToNextRow is fail.");
+    NAPI_ASSERT(env, errCode == g_database8, "goToNextRow is fail.");
 
     predicates->destroy(predicates);
     errCode = cursor->destroy(cursor);

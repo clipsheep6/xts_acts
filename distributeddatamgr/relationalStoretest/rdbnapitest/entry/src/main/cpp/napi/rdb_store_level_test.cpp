@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 #include <iostream>
-#include <stdio.h>
 #include <unistd.h>
 #include <string>
-#include <string.h>
+#include <cstring>
 #include <cstdio>
 #include <cstdlib>
 #include <fcntl.h>
@@ -38,6 +37,9 @@ char *RDB_TEST_PATH =  NULL;
 char RDB_STORE_NAME[] =  "rdb_store_test.db";
 char BUNDLE_NAME[] =  "com.acts.rdb.napitest";
 char MODULE_NAME[] =  "com.acts.rdb.napitest";
+int g_database = 12800;
+double g_database1 = 100.1;
+int g_database2 = 070;
 OH_Rdb_Store *storeLevelTestRdbStore_ = NULL;
 static OH_Rdb_Config config1_;
 static OH_Rdb_Config config2_;
@@ -161,7 +163,7 @@ static napi_value RdbFilePath(napi_env env, napi_callback_info info) {
 
 static napi_value SUB_DDM_RDB_LEVEL_0100(napi_env env, napi_callback_info info) {
     InitRdbConfig1();
-    mkdir(config1_.dataBaseDir, 0770);
+    mkdir(config1_.dataBaseDir, g_database2);
     int errCode = 0;
     storeLevelTestRdbStore_ = OH_Rdb_GetOrOpen(&config1_, &errCode);
     NAPI_ASSERT(env, errCode == 0, "getRdbStore is fail.");
@@ -175,8 +177,8 @@ static napi_value SUB_DDM_RDB_LEVEL_0100(napi_env env, napi_callback_info info) 
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -210,7 +212,7 @@ static napi_value SUB_DDM_RDB_LEVEL_0100(napi_env env, napi_callback_info info) 
 
 static napi_value SUB_DDM_RDB_LEVEL_0200(napi_env env, napi_callback_info info) {
     InitRdbConfig2();
-    mkdir(config2_.dataBaseDir, 0770);
+    mkdir(config2_.dataBaseDir, g_database2);
     int errCode = 0;
     storeLevelTestRdbStore_ = OH_Rdb_GetOrOpen(&config2_, &errCode);
     NAPI_ASSERT(env, errCode == 0, "getRdbStore is fail.");
@@ -224,8 +226,8 @@ static napi_value SUB_DDM_RDB_LEVEL_0200(napi_env env, napi_callback_info info) 
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -259,7 +261,7 @@ static napi_value SUB_DDM_RDB_LEVEL_0200(napi_env env, napi_callback_info info) 
 
 static napi_value SUB_DDM_RDB_LEVEL_0300(napi_env env, napi_callback_info info) {
     InitRdbConfig3();
-    mkdir(config3_.dataBaseDir, 0770);
+    mkdir(config3_.dataBaseDir, g_database2);
     int errCode = 0;
     storeLevelTestRdbStore_ = OH_Rdb_GetOrOpen(&config3_, &errCode);
     NAPI_ASSERT(env, errCode == 0, "getRdbStore is fail.");
@@ -273,8 +275,8 @@ static napi_value SUB_DDM_RDB_LEVEL_0300(napi_env env, napi_callback_info info) 
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -308,7 +310,7 @@ static napi_value SUB_DDM_RDB_LEVEL_0300(napi_env env, napi_callback_info info) 
 
 static napi_value SUB_DDM_RDB_LEVEL_0400(napi_env env, napi_callback_info info) {
     InitRdbConfig4();
-    mkdir(config4_.dataBaseDir, 0770);
+    mkdir(config4_.dataBaseDir, g_database2);
     int errCode = 0;
     storeLevelTestRdbStore_ = OH_Rdb_GetOrOpen(&config4_, &errCode);
     NAPI_ASSERT(env, errCode == 0, "getRdbStore is fail.");
@@ -322,8 +324,8 @@ static napi_value SUB_DDM_RDB_LEVEL_0400(napi_env env, napi_callback_info info) 
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -357,7 +359,7 @@ static napi_value SUB_DDM_RDB_LEVEL_0400(napi_env env, napi_callback_info info) 
 
 static napi_value SUB_DDM_RDB_LEVEL_EL_0100(napi_env env, napi_callback_info info) {
     InitRdbConfig_EL1();
-    mkdir(config_EL1.dataBaseDir, 0770);
+    mkdir(config_EL1.dataBaseDir, g_database2);
     int errCode = 0;
     storeLevelTestRdbStore_ = OH_Rdb_GetOrOpen(&config_EL1, &errCode);
     NAPI_ASSERT(env, errCode == 0, "getRdbStore is fail.");
@@ -371,8 +373,8 @@ static napi_value SUB_DDM_RDB_LEVEL_EL_0100(napi_env env, napi_callback_info inf
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -405,7 +407,7 @@ static napi_value SUB_DDM_RDB_LEVEL_EL_0100(napi_env env, napi_callback_info inf
 }
 static napi_value SUB_DDM_RDB_LEVEL_EL_0200(napi_env env, napi_callback_info info) {
     InitRdbConfig_EL2();
-    mkdir(config_EL2.dataBaseDir, 0770);
+    mkdir(config_EL2.dataBaseDir, g_database2);
     int errCode = 0;
     storeLevelTestRdbStore_ = OH_Rdb_GetOrOpen(&config_EL2, &errCode);
     NAPI_ASSERT(env, errCode == 0, "getRdbStore is fail.");
@@ -419,8 +421,8 @@ static napi_value SUB_DDM_RDB_LEVEL_EL_0200(napi_env env, napi_callback_info inf
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -454,7 +456,7 @@ static napi_value SUB_DDM_RDB_LEVEL_EL_0200(napi_env env, napi_callback_info inf
 
 static napi_value SUB_DDM_RDB_LEVEL_EL_0300(napi_env env, napi_callback_info info) {
     InitRdbConfig_EL3();
-    mkdir(config_EL3.dataBaseDir, 0770);
+    mkdir(config_EL3.dataBaseDir, g_database2);
     int errCode = 0;
     storeLevelTestRdbStore_ = OH_Rdb_GetOrOpen(&config_EL3, &errCode);
     NAPI_ASSERT(env, errCode == 0, "getRdbStore is fail.");
@@ -468,8 +470,8 @@ static napi_value SUB_DDM_RDB_LEVEL_EL_0300(napi_env env, napi_callback_info inf
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
@@ -503,7 +505,7 @@ static napi_value SUB_DDM_RDB_LEVEL_EL_0300(napi_env env, napi_callback_info inf
 
 static napi_value SUB_DDM_RDB_LEVEL_EL_0400(napi_env env, napi_callback_info info) {
     InitRdbConfig_EL4();
-    mkdir(config_EL4.dataBaseDir, 0770);
+    mkdir(config_EL4.dataBaseDir, g_database2);
     int errCode = 0;
     storeLevelTestRdbStore_ = OH_Rdb_GetOrOpen(&config_EL4, &errCode);
     NAPI_ASSERT(env, errCode == 0, "getRdbStore is fail.");
@@ -517,8 +519,8 @@ static napi_value SUB_DDM_RDB_LEVEL_EL_0400(napi_env env, napi_callback_info inf
     OH_VBucket* valueBucket = OH_Rdb_CreateValuesBucket();
     valueBucket->putInt64(valueBucket, "id", 1);
     valueBucket->putText(valueBucket, "data1", "zhangSan");
-    valueBucket->putInt64(valueBucket, "data2", 12800);
-    valueBucket->putReal(valueBucket, "data3", 100.1);
+    valueBucket->putInt64(valueBucket, "data2", g_database);
+    valueBucket->putReal(valueBucket, "data3", g_database1);
     uint8_t arr[] = {1, 2, 3, 4, 5};
     int len = sizeof(arr) / sizeof(arr[0]);
     valueBucket->putBlob(valueBucket, "data4", arr, len);
