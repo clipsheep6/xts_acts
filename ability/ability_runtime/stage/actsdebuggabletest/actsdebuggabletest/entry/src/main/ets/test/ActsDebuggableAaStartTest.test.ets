@@ -183,7 +183,7 @@ export default function actsDebuggableAaStartTest() {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
             'SUB_AA_AMS_Debuggable_0800 err is: ' + JSON.stringify(err));
         });
-      expect(res).assertContain('error: option requires a value.');:
+      expect(res).assertContain('error: option requires a value.');
       expect(res).assertContain('usage: aa start <options>');
       done();
     })
