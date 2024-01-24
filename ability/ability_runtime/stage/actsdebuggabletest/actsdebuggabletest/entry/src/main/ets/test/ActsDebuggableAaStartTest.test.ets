@@ -495,7 +495,7 @@ export default function actsDebuggableAaStartTest() {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
             'SUB_AA_AMS_Debuggable_2200 err is: ' + JSON.stringify(err));
         });
-      expect(res).assertContain('invalid number of parameters for option --pi');
+      expect(res).assertContain('invalid number of parameters for option --pb');
       expect(res).assertContain('usage: aa start <options>');
       done();
     })
