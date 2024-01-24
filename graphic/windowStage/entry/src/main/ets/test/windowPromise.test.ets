@@ -140,22 +140,23 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let resizeValue = 200;
       console.log(msgStr + 'begin');
       let flag = false;
-      let tempWnd: ohosWindow.Window;
+      let tempWindow: ohosWindow.Window | undefined = undefined;
       try {
         await ohosWindow.create(context, wndId, baseType).then((data: ohosWindow.Window) => {
-          tempWnd = data
+          tempWindow = data
           console.log(msgStr + 'ohosWindow.create data:' + JSON.stringify(data));
         }).catch((err: BusinessError) => {
           unexpectedError(TRUE_FLAG, err, caseName, 'ohosWindow.create ' + baseType, done);
         });
-        console.log(msgStr + 'ohosWindow.create ' + baseType + ', tempWnd: ' + tempWnd);
-        expect(!!tempWnd).assertTrue();
+        console.log(msgStr + 'ohosWindow.create ' + baseType + ', tempWnd: ' + tempWindow);
+        expect(!!tempWindow).assertTrue();
       } catch (err) {
         let e: BusinessError = err as BusinessError;
         console.log(msgStr + 'ohosWindow.create catch err:' + JSON.stringify(e));
       }
       await sleep(1000);
-      (tempWnd as ohosWindow.Window).on('windowSizeChange', async (sizeData) => {
+      let tempWnd: ohosWindow.Window = tempWindow as ohosWindow.Window;
+      tempWnd.on('windowSizeChange', async (sizeData) => {
         console.log(msgStr + 'tempWnd.on windowSizeChange, systemBatData : ' + JSON.stringify(sizeData));
         if (flag) {
           expect(!!sizeData).assertTrue();
