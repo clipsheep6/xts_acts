@@ -35,7 +35,7 @@ function unexpectedError(TRUE_FLAG: boolean, error: BusinessError, caseName: str
 }
 
 async function sleep(time: number) {
-  let timeoutId: number = null;
+  let timeoutId: number = 0;
   let promise = new Promise<string>(resolve => {
     timeoutId = setTimeout(() => {
       resolve('sleep finished');
@@ -140,7 +140,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let resizeValue = 200;
       console.log(msgStr + 'begin');
       let flag = false;
-      let tempWnd: ohosWindow.Window = null;
+      let tempWnd: ohosWindow.Window|undefined = undefined ;
       try {
         await ohosWindow.create(context, wndId, baseType).then((data: ohosWindow.Window) => {
           tempWnd = data
