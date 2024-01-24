@@ -14,7 +14,6 @@
  */
 import { afterAll, beforeAll, describe, expect, it } from '@ohos/hypium';
 import uitest, { Component, Driver } from '@ohos.UiTest';
-import abilityAccessCtrl, { Context, Permissions } from '@ohos.abilityAccessCtrl';
 import GlobalContext from './GlobalContext';
 import { BusinessError } from '@ohos.base';
 import contact from '@ohos.contact';
@@ -31,10 +30,10 @@ async function sleep(numberMillis: number) {
 
 export default function ContactInterfaceStageTest() {
   describe('ContactInterfaceStageTest', () => {
-    beforeAll( async () => {
+    beforeAll(async () => {
       console.info("beforeAll case");
       try {
-        let driver: Driver = await Driver.create();
+        let driver: Driver = Driver.create();
         sleep(500);
         for (let i = 0; i < 5; i++) {
           await sleep(500);
@@ -54,7 +53,8 @@ export default function ContactInterfaceStageTest() {
     });
 
     afterAll(async () => {
-      contact.queryContacts(GlobalContext.getContext().getAbility(), (err: BusinessError, data: Array<contact.Contact>) => {
+      contact.queryContacts(GlobalContext.getContext()
+        .getAbility(), (err: BusinessError, data: Array<contact.Contact>) => {
         if (err) {
           console.info("afterAll queryContacts err = " + JSON.stringify(err));
           expect(false).assertTrue();
@@ -64,7 +64,7 @@ export default function ContactInterfaceStageTest() {
         if (data.length == 0) {
           return;
         }
-        for (let i = 0;i < data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
           let promise: Promise<void> = contact.deleteContact(GlobalContext.getContext().getAbility(), data[i].key);
           promise.then(() => {
             console.info("afterAll deleteContact success");
@@ -81,12 +81,12 @@ export default function ContactInterfaceStageTest() {
       key: "0",
       contactAttributes: {
         attributes: [contact.Attribute.ATTR_CONTACT_EVENT, contact.Attribute.ATTR_EMAIL,
-        contact.Attribute.ATTR_GROUP_MEMBERSHIP,
-        contact.Attribute.ATTR_IM, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_NICKNAME,
-        contact.Attribute.ATTR_NOTE, contact.Attribute.ATTR_ORGANIZATION, contact.Attribute.ATTR_PHONE,
-        contact.Attribute.ATTR_PORTRAIT, contact.Attribute.ATTR_POSTAL_ADDRESS,
-        contact.Attribute.ATTR_RELATION,
-        contact.Attribute.ATTR_SIP_ADDRESS, contact.Attribute.ATTR_WEBSITE]
+          contact.Attribute.ATTR_GROUP_MEMBERSHIP,
+          contact.Attribute.ATTR_IM, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_NICKNAME,
+          contact.Attribute.ATTR_NOTE, contact.Attribute.ATTR_ORGANIZATION, contact.Attribute.ATTR_PHONE,
+          contact.Attribute.ATTR_PORTRAIT, contact.Attribute.ATTR_POSTAL_ADDRESS,
+          contact.Attribute.ATTR_RELATION,
+          contact.Attribute.ATTR_SIP_ADDRESS, contact.Attribute.ATTR_WEBSITE]
       },
       emails: [{
         email: "13800000000@email.com", labelName: "自定义邮箱", labelId: 1, displayName: "emailDisplayName"
@@ -156,12 +156,12 @@ export default function ContactInterfaceStageTest() {
     };
     let attr: contact.ContactAttributes = {
       attributes: [contact.Attribute.ATTR_CONTACT_EVENT, contact.Attribute.ATTR_EMAIL,
-      contact.Attribute.ATTR_GROUP_MEMBERSHIP,
-      contact.Attribute.ATTR_IM, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_NICKNAME,
-      contact.Attribute.ATTR_NOTE, contact.Attribute.ATTR_ORGANIZATION, contact.Attribute.ATTR_PHONE,
-      contact.Attribute.ATTR_PORTRAIT, contact.Attribute.ATTR_POSTAL_ADDRESS,
-      contact.Attribute.ATTR_RELATION,
-      contact.Attribute.ATTR_SIP_ADDRESS, contact.Attribute.ATTR_WEBSITE]
+        contact.Attribute.ATTR_GROUP_MEMBERSHIP,
+        contact.Attribute.ATTR_IM, contact.Attribute.ATTR_NAME, contact.Attribute.ATTR_NICKNAME,
+        contact.Attribute.ATTR_NOTE, contact.Attribute.ATTR_ORGANIZATION, contact.Attribute.ATTR_PHONE,
+        contact.Attribute.ATTR_PORTRAIT, contact.Attribute.ATTR_POSTAL_ADDRESS,
+        contact.Attribute.ATTR_RELATION,
+        contact.Attribute.ATTR_SIP_ADDRESS, contact.Attribute.ATTR_WEBSITE]
     };
 
     /**
@@ -279,7 +279,8 @@ export default function ContactInterfaceStageTest() {
     it("SUB_Telephony_ContactsApi_query_email_test_0400", 0, async (done: Function) => {
       let email: string = "email2222";
       try {
-        let resultSet: Array<contact.Contact> = await contact.queryContactsByEmail(GlobalContext.getContext().getAbility(), email);
+        let resultSet: Array<contact.Contact> = await contact.queryContactsByEmail(GlobalContext.getContext()
+          .getAbility(), email);
         console.info("SUB_Telephony_ContactsApi_query_email_test_0400 : query resultSet = " + JSON.stringify(resultSet));
         expect(resultSet.length == 0).assertTrue();
         done();
@@ -302,7 +303,8 @@ export default function ContactInterfaceStageTest() {
     it("SUB_Telephony_ContactsApi_query_phoneNumber_test_0500", 0, async (done: Function) => {
       let phoneNumber: string = "19999999";
       try {
-        let resultSet: Array<contact.Contact> = await contact.queryContactsByPhoneNumber(GlobalContext.getContext().getAbility(), phoneNumber);
+        let resultSet: Array<contact.Contact> = await contact.queryContactsByPhoneNumber(GlobalContext.getContext()
+          .getAbility(), phoneNumber);
         console.info(
           "SUB_Telephony_ContactsApi_query_phoneNumber_test_0500 : query resultSet = " + JSON.stringify(resultSet));
         expect(resultSet.length == 0).assertTrue();
@@ -452,7 +454,8 @@ export default function ContactInterfaceStageTest() {
             return;
           }
           console.info("SUB_Telephony_ContactsApi_queryContact_test_0100  keyData = " + JSON.stringify(keyData));
-          contact.queryContact(GlobalContext.getContext().getAbility(), keyData, (err: BusinessError, data: contact.Contact) => {
+          contact.queryContact(GlobalContext.getContext()
+            .getAbility(), keyData, (err: BusinessError, data: contact.Contact) => {
             if (err) {
               console.info("SUB_Telephony_ContactsApi_queryContact_test_0100  err = " + JSON.stringify(err));
               expect(false).assertTrue();
@@ -494,7 +497,8 @@ export default function ContactInterfaceStageTest() {
             return;
           }
           console.info("SUB_Telephony_ContactsApi_queryContact_test_0200  keyData = " + JSON.stringify(keyData));
-          contact.queryContact(GlobalContext.getContext().getAbility(), keyData, holder, (err: BusinessError, data: contact.Contact) => {
+          contact.queryContact(GlobalContext.getContext()
+            .getAbility(), keyData, holder, (err: BusinessError, data: contact.Contact) => {
             if (err) {
               console.info("SUB_Telephony_ContactsApi_queryContact_test_0200  err = " + JSON.stringify(err));
               expect(false).assertTrue();
@@ -535,7 +539,8 @@ export default function ContactInterfaceStageTest() {
             return;
           }
           console.info("SUB_Telephony_ContactsApi_queryContact_test_0300  keyData = " + JSON.stringify(keyData));
-          contact.queryContact(GlobalContext.getContext().getAbility(), keyData, attr, (err: BusinessError, data: contact.Contact) => {
+          contact.queryContact(GlobalContext.getContext()
+            .getAbility(), keyData, attr, (err: BusinessError, data: contact.Contact) => {
             if (err) {
               console.info("SUB_Telephony_ContactsApi_queryContact_test_0300  err = " + JSON.stringify(err));
               expect(false).assertTrue();
@@ -577,7 +582,8 @@ export default function ContactInterfaceStageTest() {
             return;
           }
           console.info("SUB_Telephony_ContactsApi_queryContact_test_0400  keyData = " + JSON.stringify(keyData));
-          contact.queryContact(GlobalContext.getContext().getAbility(), keyData, holder, attr, (err: BusinessError, data: contact.Contact) => {
+          contact.queryContact(GlobalContext.getContext()
+            .getAbility(), keyData, holder, attr, (err: BusinessError, data: contact.Contact) => {
             if (err) {
               console.info("SUB_Telephony_ContactsApi_queryContact_test_0400  err = " + JSON.stringify(err));
               expect(false).assertTrue();
@@ -651,7 +657,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContacts_test_0100  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryContacts(GlobalContext.getContext().getAbility(), (err: BusinessError, data: Array<contact.Contact>) => {
+        contact.queryContacts(GlobalContext.getContext()
+          .getAbility(), (err: BusinessError, data: Array<contact.Contact>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryContacts_test_0100  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -684,7 +691,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContacts_test_0200  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryContacts(GlobalContext.getContext().getAbility(), holder, (err: BusinessError, data: Array<contact.Contact>) => {
+        contact.queryContacts(GlobalContext.getContext()
+          .getAbility(), holder, (err: BusinessError, data: Array<contact.Contact>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryContacts_test_0200  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -717,7 +725,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContacts_test_0300  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryContacts(GlobalContext.getContext().getAbility(), attr, (err: BusinessError, data: Array<contact.Contact>) => {
+        contact.queryContacts(GlobalContext.getContext()
+          .getAbility(), attr, (err: BusinessError, data: Array<contact.Contact>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryContacts_test_0300  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -750,7 +759,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContacts_test_0400  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryContacts(GlobalContext.getContext().getAbility(), holder, attr, (err: BusinessError, data: Array<contact.Contact>) => {
+        contact.queryContacts(GlobalContext.getContext()
+          .getAbility(), holder, attr, (err: BusinessError, data: Array<contact.Contact>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryContacts_test_0400  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -783,7 +793,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContacts_test_0500  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        let promise: Promise<Array<contact.Contact>> = contact.queryContacts(GlobalContext.getContext().getAbility(), holder, attr);
+        let promise: Promise<Array<contact.Contact>> = contact.queryContacts(GlobalContext.getContext()
+          .getAbility(), holder, attr);
         promise.then((data: Array<contact.Contact>) => {
           console.info("SUB_Telephony_ContactsApi_queryContacts_test_0500  data = " + JSON.stringify(data));
           expect(data.length >= 0).assertTrue();
@@ -816,7 +827,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContactsByPhoneNumber_test_0100  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryContactsByPhoneNumber(GlobalContext.getContext().getAbility(), '13800000000', (err: BusinessError, data: Array<contact.Contact>) => {
+        contact.queryContactsByPhoneNumber(GlobalContext.getContext()
+          .getAbility(), '13800000000', (err: BusinessError, data: Array<contact.Contact>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryContactsByPhoneNumber_test_0100  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -849,7 +861,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContactsByPhoneNumber_test_0200  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryContactsByPhoneNumber(GlobalContext.getContext().getAbility(), '13800000000', holder, (err: BusinessError, data: Array<contact.Contact>) => {
+        contact.queryContactsByPhoneNumber(GlobalContext.getContext()
+          .getAbility(), '13800000000', holder, (err: BusinessError, data: Array<contact.Contact>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryContactsByPhoneNumber_test_0200  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -882,7 +895,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContactsByPhoneNumber_test_0300  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryContactsByPhoneNumber(GlobalContext.getContext().getAbility(), '13800000000', attr, (err: BusinessError, data: Array<contact.Contact>) => {
+        contact.queryContactsByPhoneNumber(GlobalContext.getContext()
+          .getAbility(), '13800000000', attr, (err: BusinessError, data: Array<contact.Contact>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryContactsByPhoneNumber_test_0300  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -915,7 +929,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContactsByPhoneNumber_test_0400  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryContactsByPhoneNumber(GlobalContext.getContext().getAbility(), '13800000000', holder, attr, (err: BusinessError, data: Array<contact.Contact>) => {
+        contact.queryContactsByPhoneNumber(GlobalContext.getContext()
+          .getAbility(), '13800000000', holder, attr, (err: BusinessError, data: Array<contact.Contact>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryContactsByPhoneNumber_test_0400  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -948,7 +963,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContactsByPhoneNumber_test_0500  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        let promise: Promise<Array<contact.Contact>> = contact.queryContactsByPhoneNumber(GlobalContext.getContext().getAbility(), '13800000000', holder, attr);
+        let promise: Promise<Array<contact.Contact>> = contact.queryContactsByPhoneNumber(GlobalContext.getContext()
+          .getAbility(), '13800000000', holder, attr);
         promise.then((data: Array<contact.Contact>) => {
           console.info("SUB_Telephony_ContactsApi_queryContactsByPhoneNumber_test_0500  data = " + JSON.stringify(data));
           expect(data.length > 0).assertTrue();
@@ -981,7 +997,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContactsByEmail_test_0100  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryContactsByEmail(GlobalContext.getContext().getAbility(), '13800000000@email.com', (err: BusinessError, data: Array<contact.Contact>) => {
+        contact.queryContactsByEmail(GlobalContext.getContext()
+          .getAbility(), '13800000000@email.com', (err: BusinessError, data: Array<contact.Contact>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryContactsByEmail_test_0100  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -1014,7 +1031,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContactsByEmail_test_0200  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryContactsByEmail(GlobalContext.getContext().getAbility(), '13800000000@email.com', holder, (err: BusinessError, data: Array<contact.Contact>) => {
+        contact.queryContactsByEmail(GlobalContext.getContext()
+          .getAbility(), '13800000000@email.com', holder, (err: BusinessError, data: Array<contact.Contact>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryContactsByEmail_test_0200  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -1047,7 +1065,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContactsByEmail_test_0300  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryContactsByEmail(GlobalContext.getContext().getAbility(), '13800000000@email.com', attr, (err: BusinessError, data: Array<contact.Contact>) => {
+        contact.queryContactsByEmail(GlobalContext.getContext()
+          .getAbility(), '13800000000@email.com', attr, (err: BusinessError, data: Array<contact.Contact>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryContactsByEmail_test_0300  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -1080,7 +1099,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContactsByEmail_test_0400  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryContactsByEmail(GlobalContext.getContext().getAbility(), '13800000000@email.com', holder, attr, (err: BusinessError, data: Array<contact.Contact>) => {
+        contact.queryContactsByEmail(GlobalContext.getContext()
+          .getAbility(), '13800000000@email.com', holder, attr, (err: BusinessError, data: Array<contact.Contact>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryContactsByEmail_test_0400  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -1113,7 +1133,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryContactsByEmail_test_0500  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        let promise: Promise<Array<contact.Contact>> = contact.queryContactsByEmail(GlobalContext.getContext().getAbility(), '13800000000@email.com', holder, attr);
+        let promise: Promise<Array<contact.Contact>> = contact.queryContactsByEmail(GlobalContext.getContext()
+          .getAbility(), '13800000000@email.com', holder, attr);
         promise.then((data: Array<contact.Contact>) => {
           console.info("SUB_Telephony_ContactsApi_queryContactsByEmail_test_0500  data = " + JSON.stringify(data));
           expect(data.length > 0).assertTrue();
@@ -1146,7 +1167,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryGroups_test_0100  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryGroups(GlobalContext.getContext().getAbility(), (err: BusinessError, data: Array<contact.Group>) => {
+        contact.queryGroups(GlobalContext.getContext()
+          .getAbility(), (err: BusinessError, data: Array<contact.Group>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryGroups_test_0100  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -1179,7 +1201,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryGroups_test_0200  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryGroups(GlobalContext.getContext().getAbility(), holder, (err: BusinessError, data: Array<contact.Group>) => {
+        contact.queryGroups(GlobalContext.getContext()
+          .getAbility(), holder, (err: BusinessError, data: Array<contact.Group>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryGroups_test_0200  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -1212,7 +1235,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryGroups_test_0300  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        let promise: Promise<Array<contact.Group>> = contact.queryGroups(GlobalContext.getContext().getAbility(), holder);
+        let promise: Promise<Array<contact.Group>> = contact.queryGroups(GlobalContext.getContext()
+          .getAbility(), holder);
         promise.then((data: Array<contact.Group>) => {
           console.info("SUB_Telephony_ContactsApi_queryGroups_test_0300  data = " + JSON.stringify(data));
           expect(data.length >= 0).assertTrue();
@@ -1236,7 +1260,8 @@ export default function ContactInterfaceStageTest() {
      * @tc.size: SmallTest
      */
     it("SUB_Telephony_ContactsApi_queryHolders_test_0100", 0, async (done: Function) => {
-      contact.queryHolders(GlobalContext.getContext().getAbility(), (err: BusinessError, data: Array<contact.Holder>) => {
+      contact.queryHolders(GlobalContext.getContext()
+        .getAbility(), (err: BusinessError, data: Array<contact.Holder>) => {
         if (err) {
           console.info("SUB_Telephony_ContactsApi_queryHolders_test_0100  err = " + JSON.stringify(err));
           expect(false).assertTrue();
@@ -1324,7 +1349,8 @@ export default function ContactInterfaceStageTest() {
         }
         console.info("SUB_Telephony_ContactsApi_queryKey_test_0200  data = " + JSON.stringify(data));
         expect(data > 0).assertTrue();
-        contact.queryKey(GlobalContext.getContext().getAbility(), data, holder, (err: BusinessError, keyData: string) => {
+        contact.queryKey(GlobalContext.getContext()
+          .getAbility(), data, holder, (err: BusinessError, keyData: string) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_queryKey_test_0200  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -1403,7 +1429,8 @@ export default function ContactInterfaceStageTest() {
      * @tc.size: SmallTest
      */
     it("SUB_Telephony_ContactsApi_queryMyCard_test_0200", 0, async (done: Function) => {
-      contact.queryMyCard(GlobalContext.getContext().getAbility(), attr, (err: BusinessError, data: contact.Contact) => {
+      contact.queryMyCard(GlobalContext.getContext()
+        .getAbility(), attr, (err: BusinessError, data: contact.Contact) => {
         if (err) {
           console.info("SUB_Telephony_ContactsApi_queryMyCard_test_0200  err = " + JSON.stringify(err));
           expect(false).assertTrue();
@@ -1489,7 +1516,8 @@ export default function ContactInterfaceStageTest() {
                 return;
               }
               console.info("SUB_Telephony_ContactsApi_updateContact_test_0100  newKey = " + JSON.stringify(newKey));
-              contact.queryContact(GlobalContext.getContext().getAbility(), newKey, (err: BusinessError, data: contact.Contact) => {
+              contact.queryContact(GlobalContext.getContext()
+                .getAbility(), newKey, (err: BusinessError, data: contact.Contact) => {
                 if (err) {
                   console.info("SUB_Telephony_ContactsApi_updateContact_test_0100  err = " + JSON.stringify(err));
                   expect(false).assertTrue();
@@ -1558,7 +1586,8 @@ export default function ContactInterfaceStageTest() {
                 return;
               }
               console.info("SUB_Telephony_ContactsApi_updateContact_test_0200  newKey = " + JSON.stringify(newKey));
-              contact.queryContact(GlobalContext.getContext().getAbility(), newKey, (err: BusinessError, data: contact.Contact) => {
+              contact.queryContact(GlobalContext.getContext()
+                .getAbility(), newKey, (err: BusinessError, data: contact.Contact) => {
                 if (err) {
                   console.info("SUB_Telephony_ContactsApi_updateContact_test_0200  err = " + JSON.stringify(err));
                   expect(false).assertTrue();
@@ -1622,7 +1651,8 @@ export default function ContactInterfaceStageTest() {
                 return;
               }
               console.info("SUB_Telephony_ContactsApi_updateContact_test_0300  newKey = " + JSON.stringify(newKey));
-              contact.queryContact(GlobalContext.getContext().getAbility(), newKey, (err: BusinessError, data: contact.Contact) => {
+              contact.queryContact(GlobalContext.getContext()
+                .getAbility(), newKey, (err: BusinessError, data: contact.Contact) => {
                 if (err) {
                   console.info("SUB_Telephony_ContactsApi_updateContact_test_0300  err = " + JSON.stringify(err));
                   expect(false).assertTrue();
@@ -1848,7 +1878,9 @@ export default function ContactInterfaceStageTest() {
           done();
           return;
         }
-        contact.selectContacts({isMultiSelect : false}, (err: BusinessError, data: Array<contact.Contact>) => {
+        contact.selectContacts({
+          isMultiSelect: false
+        }, (err: BusinessError, data: Array<contact.Contact>) => {
           if (err) {
             console.info("SUB_Telephony_ContactsApi_selectContacts_test_0300  err = " + JSON.stringify(err));
             expect(false).assertTrue();
@@ -1878,7 +1910,9 @@ export default function ContactInterfaceStageTest() {
           done();
           return;
         }
-        contact.selectContacts({isMultiSelect : false}).then((data: Array<contact.Contact>) => {
+        contact.selectContacts({
+          isMultiSelect: false
+        }).then((data: Array<contact.Contact>) => {
           console.info("SUB_Telephony_ContactsApi_selectContacts_test_0400  data = " + JSON.stringify(data));
           done();
         }).catch((err: BusinessError) => {

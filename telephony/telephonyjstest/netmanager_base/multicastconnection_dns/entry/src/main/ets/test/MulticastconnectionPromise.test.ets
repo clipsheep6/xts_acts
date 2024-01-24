@@ -33,12 +33,12 @@ function expectFalse() {
   }
 };
 
-export default function MultiCastConnectionPromiseTest() {
+export default function MulticastconnectionPromiseTest() {
 
-  describe("MultiCastConnectionPromiseTest", () => {
+  describe("MulticastconnectionPromiseTest", () => {
     afterAll(async () => {
-      console.log('MultiCastConnectionPromiseTest afterAll start');
-      console.log('MultiCastConnectionPromiseTest afterAll end');
+      console.log('MulticastconnectionPromiseTest afterAll start');
+      console.log('MulticastconnectionPromiseTest afterAll end');
     });
 
     /**

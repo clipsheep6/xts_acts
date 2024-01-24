@@ -27,13 +27,13 @@ function expectFalse() {
   }
 };
 
-export default function MultiCastConnection201Test() {
+export default function Multicastconnection201Test() {
   afterAll(async () => {
-    console.log('MultiCastConnection201Test afterAll start');
-    console.log('MultiCastConnection201Test afterAll end');
+    console.log('Multicastconnection201Test afterAll start');
+    console.log('Multicastconnection201Test afterAll end');
   });
 
-  describe("MultiCastConnection201Test", () => {
+  describe("Multicastconnection201Test", () => {
     /**
      * @tc.number SUB_NetworkManager_DNS_addCustomDNSRule_Async_0300
      * @tc.name Query key information

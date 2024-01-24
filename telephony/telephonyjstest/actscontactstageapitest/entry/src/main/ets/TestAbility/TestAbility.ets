@@ -21,7 +21,6 @@ import window from '@ohos.window';
 import GlobalContext from '../test/GlobalContext';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import { BusinessError } from '@ohos.base';
 import abilityAccessCtrl, { Context, Permissions } from '@ohos.abilityAccessCtrl';
 
 export default class TestAbility extends UIAbility {

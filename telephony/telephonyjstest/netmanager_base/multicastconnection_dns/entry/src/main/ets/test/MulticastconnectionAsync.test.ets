@@ -25,11 +25,11 @@ let ip1: Array<string> = ['1.2.3.4', '2.4.2.5'];
 let ip2: Array<string> = ['1.2.3.3', '2.3.2.6'];
 let host_null: string = '';
 
-export default function MultiCastConnectionAsyncTest() {
-  describe("MultiCastConnectionAsyncTest", () => {
+export default function MulticastconnectionAsyncTest() {
+  describe("MulticastconnectionAsyncTest", () => {
     afterEach(async () => {
-      console.log('MultiCastConnectionAsyncTest afterAll start');
-      console.log('MultiCastConnectionAsyncTest afterAll end');
+      console.log('MulticastconnectionAsyncTest afterAll start');
+      console.log('MulticastconnectionAsyncTest afterAll end');
     });
     let expectFalse: Function = () => {
       try {
