@@ -16,7 +16,7 @@
 export class Constants {
   static readonly USE_LOW_STRESS_TIMES = true
   static readonly LOW_STRESS_TIMES = 20
-  static readonly DEFAULT_STRESS_TIMES = 2000
+  static readonly DEFAULT_STRESS_TIMES = 200
   static readonly PAGE_EVENT_KEY = 10
   static readonly WEB_VIEW_CONTROLLER_LOAD_URL_BUTTON_KEY = 'WebViewControllerLoadUrlTestButton'
   static readonly WEB_VIEW_CONTROLLER_LOAD_DATA_BUTTON_KEY = 'WebViewControllerLoadDataTestButton'

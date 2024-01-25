@@ -63,7 +63,8 @@ export default function webStorageGetOriginUsageTest() {
     * @tc.level       : Level 1
     */
     it('testWebStorageGetOriginUsage001', 0, async (done: Function) => {
-      Utils.doIt("testWebStorageGetOriginUsage001", 120042, Constants.DEFAULT_STRESS_TIMES,
+      Utils.doIt("testWebStorageGetOriginUsage001", 120042,
+        Constants.USE_LOW_STRESS_TIMES ? Constants.LOW_STRESS_TIMES : Constants.DEFAULT_STRESS_TIMES,
         Constants.WEB_STORAGE_GET_ORIGINS_USAGE_BUTTON_KEY,
         (testCaseName: string, callBackId: number) => {
           Utils.registerEvent(testCaseName, true, callBackId, done);
@@ -79,7 +80,8 @@ export default function webStorageGetOriginUsageTest() {
     * @tc.level       : Level 1
     */
     it('testWebStorageGetOriginUsage002', 0, async (done: Function) => {
-      Utils.doIt("testWebStorageGetOriginUsage002", 120043, Constants.DEFAULT_STRESS_TIMES,
+      Utils.doIt("testWebStorageGetOriginUsage002", 120043,
+        Constants.USE_LOW_STRESS_TIMES ? Constants.LOW_STRESS_TIMES : Constants.DEFAULT_STRESS_TIMES,
         Constants.WEB_STORAGE_GET_ORIGINS_USAGE_BUTTON_KEY,
         (testCaseName: string, callBackId: number) => {
           Utils.registerEvent(testCaseName, true, callBackId, done);

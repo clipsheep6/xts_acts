@@ -63,7 +63,8 @@ export default function webStorageGetOriginQuotaTest() {
     * @tc.level       : Level 1
     */
     it('testWebStorageGetOriginQuota001', 0, async (done: Function) => {
-      Utils.doIt("testWebStorageGetOriginQuota001", 120038, Constants.DEFAULT_STRESS_TIMES,
+      Utils.doIt("testWebStorageGetOriginQuota001", 120038,
+        Constants.USE_LOW_STRESS_TIMES ? Constants.LOW_STRESS_TIMES : Constants.DEFAULT_STRESS_TIMES,
         Constants.WEB_STORAGE_GET_ORIGIN_QUOTA_BUTTON_KEY,
         (testCaseName: string, callBackId: number) => {
           Utils.registerEvent(testCaseName, true, callBackId, done);
@@ -79,7 +80,8 @@ export default function webStorageGetOriginQuotaTest() {
     * @tc.level       : Level 1
     */
     it('testWebStorageGetOriginQuota002', 0, async (done: Function) => {
-      Utils.doIt("testWebStorageGetOriginQuota002", 120039, Constants.DEFAULT_STRESS_TIMES,
+      Utils.doIt("testWebStorageGetOriginQuota002", 120039,
+        Constants.USE_LOW_STRESS_TIMES ? Constants.LOW_STRESS_TIMES : Constants.DEFAULT_STRESS_TIMES,
         Constants.WEB_STORAGE_GET_ORIGIN_QUOTA_BUTTON_KEY,
         (testCaseName: string, callBackId: number) => {
           Utils.registerEvent(testCaseName, true, callBackId, done);

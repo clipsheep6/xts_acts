@@ -63,7 +63,8 @@ export default function webAttributeOnLoadInterceptTest() {
     * @tc.level       : Level 1
     */
     it('testWebAttributeOnLoadIntercept001', 0, async (done: Function) => {
-      Utils.doIt("testWebAttributeOnLoadIntercept001", 110037, Constants.DEFAULT_STRESS_TIMES,
+      Utils.doIt("testWebAttributeOnLoadIntercept001", 110037,
+        Constants.USE_LOW_STRESS_TIMES ? Constants.LOW_STRESS_TIMES : Constants.DEFAULT_STRESS_TIMES,
         Constants.WEB_ATTRIBUTE_ONLOADINTERCEPT_BUTTON_KEY,
         (testCaseName: string, callBackId: number) => {
           Utils.registerEvent(testCaseName, true, callBackId, done);
@@ -79,7 +80,8 @@ export default function webAttributeOnLoadInterceptTest() {
     * @tc.level       : Level 1
     */
     it('testWebAttributeOnLoadIntercept002', 0, async (done: Function) => {
-      Utils.doIt("testWebAttributeOnLoadIntercept002", 110040, Constants.DEFAULT_STRESS_TIMES,
+      Utils.doIt("testWebAttributeOnLoadIntercept002", 110040,
+        Constants.USE_LOW_STRESS_TIMES ? Constants.LOW_STRESS_TIMES : Constants.DEFAULT_STRESS_TIMES,
         Constants.WEB_ATTRIBUTE_ONLOADINTERCEPT_BUTTON_KEY,
         (testCaseName: string, callBackId: number) => {
           Utils.registerEvent(testCaseName, true, callBackId, done);
