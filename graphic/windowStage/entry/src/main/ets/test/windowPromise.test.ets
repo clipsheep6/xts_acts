@@ -140,7 +140,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let resizeValue = 200;
       console.log(msgStr + 'begin');
       let flag = false;
-      let tempWindow: ohosWindow.Window = undefined;
+      let tempWindow:ohosWindow.Window|undefined = undefined;
       try {
         await ohosWindow.create(context, wndId, baseType).then((data: ohosWindow.Window) => {
           tempWindow = data
@@ -155,30 +155,33 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
         console.log(msgStr + 'ohosWindow.create catch err:' + JSON.stringify(e));
       }
       await sleep(1000);
-      let tempWnd: ohosWindow.Window = tempWindow as ohosWindow.Window;
-      tempWnd.on('windowSizeChange', async (sizeData) => {
-        console.log(msgStr + 'tempWnd.on windowSizeChange, systemBatData : ' + JSON.stringify(sizeData));
-        if (flag) {
-          expect(!!sizeData).assertTrue();
-          tempWnd.off('windowSizeChange');
-          await tempWnd.destroy();
-          done();
+      if(tempWindow != undefined) {
+        let tempWnd: ohosWindow.Window = tempWindow as ohosWindow.Window;
+        tempWnd.on('windowSizeChange', async (sizeData) => {
+          console.log(msgStr + 'tempWnd.on windowSizeChange, systemBatData : ' + JSON.stringify(sizeData));
+          if (flag) {
+            expect(!!sizeData).assertTrue();
+            tempWnd.off('windowSizeChange');
+            await tempWnd.destroy();
+            done();
+          }
+        })
+        await tempWnd.show().catch((err: BusinessError) => {
+          unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.show', done);
+        });
+        console.log(msgStr + 'tempWnd.show success');
+        await tempWnd.setWindowMode(changedModel).catch((err: BusinessError) => {
+          unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.setWindowMode ' + changedModel, done);
+        });
+        console.log(msgStr + 'tempWnd.setWindowMode ' + changedModel + ' success');
+        flag = true
+        await tempWnd.resetSize(resizeValue, resizeValue).catch((err: BusinessError) => {
+          unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.resetSize(' + resizeValue + ', ' + resizeValue + ')', done);
+        });
+        await sleep(1500);
+        console.log(msgStr + 'tempWnd.resetSize(' + resizeValue + ', ' + resizeValue + ') success');
         }
-      })
-      await tempWnd.show().catch((err: BusinessError) => {
-        unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.show', done);
-      });
-      console.log(msgStr + 'tempWnd.show success');
-      await tempWnd.setWindowMode(changedModel).catch((err: BusinessError) => {
-        unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.setWindowMode ' + changedModel, done);
-      });
-      console.log(msgStr + 'tempWnd.setWindowMode ' + changedModel + ' success');
-      flag = true
-      await tempWnd.resetSize(resizeValue, resizeValue).catch((err: BusinessError) => {
-        unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.resetSize(' + resizeValue + ', ' + resizeValue + ')', done);
-      });
-      await sleep(1500);
-      console.log(msgStr + 'tempWnd.resetSize(' + resizeValue + ', ' + resizeValue + ') success');
+
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0740
