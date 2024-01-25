@@ -1210,8 +1210,8 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let num: number = 0
       let firstListenFlag: boolean = false
       let secondListenFlag: boolean = false
-      let screenClass: screen.createVirtualScreen = null;
-      let screenClass_two: screen.createVirtualScreen = null;
+      let screenClass = null;
+      let screenClass_two = null;
 
       let firstCall = () => {
         console.log(msgStr + "first listener trigger")
@@ -1286,8 +1286,8 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       console.log(msgStr + 'begin');
       let firstListenFlag: boolean = false
       let secondListenFlag: boolean = false
-      let screenClass: screen.createVirtualScreen = null;
-      let screenClass_two: screen.createVirtualScreen = null;
+      let screenClass = null;
+      let screenClass_two = null;
       let firstCall: Callback<number> = () => {
         console.log(msgStr + "first listener trigger")
         firstListenFlag = true
@@ -1364,8 +1364,8 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let num: number = 0
       let firstListenFlag: boolean = false
       let secondListenFlag: boolean = false
-      let screenClass: screen.createVirtualScreen = null;
-      let screenClass_two: screen.createVirtualScreen = null;
+      let screenClass = null;
+      let screenClass_two = null;
 
       let firstCall: Callback<number> = () => {
         console.log(msgStr + "first listener trigger")
@@ -1440,8 +1440,8 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       console.log(msgStr + 'begin');
       let firstListenFlag: boolean = false
       let secondListenFlag: boolean = false
-      let screenClass: screen.createVirtualScreen = null;
-      let screenClass_two: screen.createVirtualScreen = null;
+      let screenClass = null;
+      let screenClass_two = null;
 
       let firstCall: Callback<number> = () => {
         console.log(msgStr + "first listener trigger")

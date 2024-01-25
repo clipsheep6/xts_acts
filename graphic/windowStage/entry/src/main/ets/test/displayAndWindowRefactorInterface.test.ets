@@ -110,9 +110,11 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
       console.log('jsUnittest beforeAll systemWindowTypeDicArr=' + JSON.stringify(systemWindowTypeDicArr) + '   ,length=' + systemWindowTypeDicArr.length);
       systemWindowValueArr = Object.keys(systemWindowTypeDic);
       systemWindowTypeArr = Object.keys(systemWindowTypeDic);
-      for (var i in ohosWindow.WindowType) {
-        console.log('jsUnittest beforeall i=' + i);
-        windowTypeArr.push(ohosWindow.WindowType[i])
+      let wndTypeArray:Array<number> = [ohosWindow.WindowType.TYPE_FLOAT,ohosWindow.WindowType.TYPE_APP,ohosWindow.WindowType.TYPE_SYSTEM_ALERT,ohosWindow.WindowType.TYPE_DIALOG]
+
+      for (let i of Object.entries(wndTypeArray)){
+        console.log('jsUnittest beforeAll i=' + i[1]);
+        windowTypeArr.push(wndTypeArray[i[1]])
       }
     })
 

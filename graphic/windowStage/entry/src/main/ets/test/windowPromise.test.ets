@@ -61,7 +61,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
     }
 
     beforeAll(() => {
-      console.log('jsUnittest beforeAll ohosWindow.WindowType=' + JSON.stringify(ohosWindow.WindowType));
+      console.log('jsunittest beforeall ohosWindow.WindowType=' + JSON.stringify(ohosWindow.WindowType.TYPE_FLOAT));
       systemWindowTypeDicArr = Object.keys(systemWindowTypeDic);
       console.log('jsUnittest beforeAll systemWindowTypeDicArr=' + JSON.stringify(systemWindowTypeDicArr) + '   ,length=' + systemWindowTypeDicArr.length);
       systemWindowTypeArr = Object.keys(systemWindowTypeDic);
@@ -1186,7 +1186,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       for (let i = 0; i < orientationItem.length; i++) {
         let orientation: ohosWindow.Orientation = ohosWindow.Orientation[orientationItem[i]]
         console.log(msgStr + 'i : ' + i + ' ,orientation : ' + orientation);
-        console.log(msgStr + 'i : ' + i + ' ,ohosWindow.Orientation : ' + JSON.stringify(ohosWindow.Orientation));
+        console.log(msgStr + 'i : ' + i + ' ,ohosWindow.Orientation : ' + JSON.stringify(orientationItem[i]));
         await mainWin.setPreferredOrientation(orientation).then(() => {
           console.log(msgStr + 'success set window.setPreferredOrientation : ' + orientation);
           num++
@@ -1301,7 +1301,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let caseName: string = 'testAnimationForShown_Promise';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin context==' + JSON.stringify(context));
-      console.log(msgStr + 'begin ohosWindow==' + JSON.stringify(ohosWindow));
+      console.log(msgStr + 'begin ohosWindow==' + JSON.stringify("ohosWindow"));
       let wndId = 'animationForShownTest1';
       let baseType: number = ohosWindow.WindowType.TYPE_FLOAT;
       let tempWnd: ohosWindow.Window | undefined = undefined;

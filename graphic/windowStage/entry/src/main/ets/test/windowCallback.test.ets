@@ -1723,7 +1723,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
 
       let setForbidSplitMoveFun: Function = (win:ohosWindow.Window, boolean:boolean) => {
         return new Promise<boolean>((resolve, reject) => {
-          win.setForbidSplitMove(boolean, (err: BusinessError, data: ohosWindow.Window) => {
+          win.setForbidSplitMove(boolean, (err, data) => {
             if (err.code) {
               reject(null)
             } else {
