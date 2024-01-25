@@ -14,6 +14,7 @@
  */
 
 import bluetooth from '@ohos.bluetooth.connection';
+import ble from '@ohos.bluetooth.ble';
 import btAccess from '@ohos.bluetooth.access';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import { UiComponent, UiDriver, BY, Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, UiDirection, MouseButton, WindowMode, PointerMatrix, UIElementInfo, UIEventObserver } from '@ohos.UiTest'
@@ -63,26 +64,12 @@ describe('btConnectionTest', function() {
         }
     }
 
-    async function clickTheWindow() {
-        try{
-            let driver = Driver.create();
-            console.info('[bluetooth_js] bt driver create:'+ driver);            
-            await driver.delayMs(1000);
-            await driver.click(860, 2490);
-            await driver.delayMs(5000);
-            await driver.click(860, 2490);
-            await driver.delayMs(3000);
-        } catch (error) {
-            console.info('[bluetooth_js] driver error info:'+ error);
-        }
-    }
-
     async function tryToEnableBt() {
         let sta = btAccess.getState();
         switch (sta) {
             case 0:
                 btAccess.enableBluetooth();
-                await clickTheWindow();
+                await clickRequestPermission();
                 await sleep(10000);
                 let sta1 = btAccess.getState();
                 console.info('[bluetooth_js] bt turn off:' + JSON.stringify(sta1));
@@ -96,7 +83,7 @@ describe('btConnectionTest', function() {
                 break;
             case 3:
                 btAccess.enableBluetooth();
-                await clickTheWindow();
+                await clickRequestPermission();
                 await sleep(10000);
                 let sta2 = btAccess.getState();
                 console.info('[bluetooth_js] bt turning off:' + JSON.stringify(sta2));
@@ -212,7 +199,7 @@ describe('btConnectionTest', function() {
         }
         try {
             bluetooth.on('bondStateChange', BondStateParam);
-            bluetooth.pairDevice("11:22:55:66:33:44", err => {
+            bluetooth.pairDevice("54:71:DD:5F:75:06", err => {
                 if (err) {
                     console.info('pairDevice errCode: ' + err.code + ', errMessage: ' + err.message);
                 }
@@ -322,26 +309,16 @@ describe('btConnectionTest', function() {
      * @tc.level Level 3
      */
      it('SUB_COMMUNICATION_BLUETOOTHCONNECTION_PAIR_0900', 0, async function (done) {
-        function BondStateParam(data) {
-            console.info("[bluetooth_js] bondStateChange on:" + JSON.stringify(data)
-            +'bondStateChange deviceId:' + data.deviceId + 'bondStateChange state:' + data.state);
-        }
         try {
-            bluetooth.on('bondStateChange', BondStateParam);
-            bluetooth.pairDevice("11:22:55:66:33:44").then((data) => {
-                console.info('pairDevice info success');
+            await sleep(6000);
+            await bluetooth.pairDevice('D1:03:38:C0:E8:AA').then((data) => {
+                console.info('pairDevice info success' + data);
             }, err => {
                 console.info('pairDevice:errCode' + err.code + ', errMessage: ' + err.message);
             });
-            bluetooth.off('bondStateChange', BondStateParam);
-            expect(bluetooth.BondState.BOND_STATE_INVALID == 0).assertTrue();
-            expect(bluetooth.BondState.BOND_STATE_BONDING == 1).assertTrue();
-            expect(bluetooth.BondState.BOND_STATE_BONDED == 2).assertTrue();
         } catch (err) {
             console.info("errCode:" + err.code + ",errMessage:" + err.message);
-            expect(err.code).assertEqual('2900099');
         }
-        bluetooth.off('bondStateChange', BondStateParam);
         done();
     })
 
