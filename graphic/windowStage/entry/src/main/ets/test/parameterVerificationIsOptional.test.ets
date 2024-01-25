@@ -1534,7 +1534,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
 
       display.on('change', firstCall);
       display.on('change', secondCall);
-      let mainWindow: ohosWindow.Window | void = null
+      let mainWindow: ohosWindow.Window | void;
       mainWindow = await windowStage.getMainWindow().catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'windowStage.getMainWindow', TRUE_FLAG, done);
       });

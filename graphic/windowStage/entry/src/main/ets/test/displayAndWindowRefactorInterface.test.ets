@@ -110,9 +110,9 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
       console.log('jsUnittest beforeAll systemWindowTypeDicArr=' + JSON.stringify(systemWindowTypeDicArr) + '   ,length=' + systemWindowTypeDicArr.length);
       systemWindowValueArr = Object.keys(systemWindowTypeDic);
       systemWindowTypeArr = Object.keys(systemWindowTypeDic);
-      for (let i of Object.entries(ohosWindow.WindowType)) {
-        console.log('jsUnittest beforeAll i=' + i);
-        windowTypeArr.push(ohosWindow.WindowType.TYPE_FLOAT[i])
+      for (var i in ohosWindow.WindowType) {
+        console.log('jsUnittest beforeall i=' + i);
+        windowTypeArr.push(ohosWindow.WindowType[i])
       }
     })
 
@@ -2112,7 +2112,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
      */
     it('testSetExpectedFrameRateRange',0,  async (done: Function) =>{
         let msg:string = "testSetExpectedFrameRateRange"
-        let backDisplaySyncBigger:displaySync = displaySync.create()
+        let backDisplaySyncBigger = displaySync.create()
         console.log(msg + ' www data '  + backDisplaySyncBigger)
         try {
           let range : ExpectedFrameRateRange = {
@@ -2144,7 +2144,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: Context, 
      */
     it('testTargetTimestamp', 0, async (done: Function) => {
       let msg = "testTargetTimestamp"
-      let backDisplaySyncBigger: displaySync = displaySync.create()
+      let backDisplaySyncBigger = displaySync.create()
       console.log(msg + ' www data ' + backDisplaySyncBigger)
       try {
         expect(true).assertTrue()
