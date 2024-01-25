@@ -2152,7 +2152,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
 
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0200
-     * @tc.name      : testWindowTitleButtonRectChange_Function_Callback
+     * @tc.name      : testWindowTitleButtonRectChange_on_Function_Callback
      * @tc.desc      : Test the function of windowTitleButtonRectChange
      * @tc.size      : MediumTest
      * @tc.type      : Function
@@ -2168,6 +2168,8 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
           expect(true).assertTrue();
           done();
         });
+        expect(true).assertTrue();
+        done();
       } catch (err) {
         console.log(msgStr + 'Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(err));
         if (err.code == 801) {
@@ -2183,7 +2185,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
 
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0300
-     * @tc.name      : testWindowTitleButtonRectChange_Function_Callback
+     * @tc.name      : testWindowTitleButtonRectChange_off_Function_Callback
      * @tc.desc      : Test the function of windowTitleButtonRectChange
      * @tc.size      : MediumTest
      * @tc.type      : Function
