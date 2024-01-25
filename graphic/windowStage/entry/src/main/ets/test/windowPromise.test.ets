@@ -1332,10 +1332,11 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
             iterations: 1,
             playMode: PlayMode.Normal,
           }, () => {
-            let obj: ohosWindow.TranslateOptions;
-            obj.x = 100.0;
-            obj.y = 0.0;
-            obj.z = 0.0;
+            let obj: ohosWindow.TranslateOptions = {
+              x : 100.0,
+              y : 0.0,
+              z : 0.0
+            };
             toWindow.translate(obj);
             console.info(msgStr + 'toWindow translate end');
           }

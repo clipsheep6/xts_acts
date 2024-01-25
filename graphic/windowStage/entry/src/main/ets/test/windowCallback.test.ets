@@ -1860,10 +1860,11 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
               iterations: 1,
               playMode: PlayMode.Normal,
             }, () => {
-              let obj: ohosWindow.TranslateOptions;
-              obj.x = 100.0;
-              obj.y = 0.0;
-              obj.z = 0.0;
+              let obj: ohosWindow.TranslateOptions = {
+              x : 100.0,
+              y : 0.0,
+              z : 0.0,
+              }
               toWindow.translate(obj);
               console.info(msgStr + 'toWindow translate end');
             }
@@ -2152,7 +2153,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
 
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0200
-     * @tc.name      : testWindowTitleButtonRectChange_on_Function_Callback
+     * @tc.name      : testWindowTitleButtonRectChange_Function_Callback
      * @tc.desc      : Test the function of windowTitleButtonRectChange
      * @tc.size      : MediumTest
      * @tc.type      : Function
@@ -2168,8 +2169,6 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
           expect(true).assertTrue();
           done();
         });
-        expect(true).assertTrue();
-        done();
       } catch (err) {
         console.log(msgStr + 'Failed to enable the listener for window title buttons area changes. Cause: ' + JSON.stringify(err));
         if (err.code == 801) {
@@ -2185,7 +2184,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
 
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0300
-     * @tc.name      : testWindowTitleButtonRectChange_off_Function_Callback
+     * @tc.name      : testWindowTitleButtonRectChange_Function_Callback
      * @tc.desc      : Test the function of windowTitleButtonRectChange
      * @tc.size      : MediumTest
      * @tc.type      : Function
