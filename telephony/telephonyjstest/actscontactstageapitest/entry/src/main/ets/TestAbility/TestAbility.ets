@@ -21,7 +21,7 @@ import window from '@ohos.window';
 import GlobalContext from '../test/GlobalContext';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import abilityAccessCtrl, { Context, Permissions } from '@ohos.abilityAccessCtrl';
+import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
 
 export default class TestAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -47,7 +47,7 @@ export default class TestAbility extends UIAbility {
     windowStage.loadContent('TestAbility/pages/Index', (err, data) => {
 	      let permissions: Permissions[] = ["ohos.permission.WRITE_CONTACTS", "ohos.permission.READ_CONTACTS"];
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-        atManager.requestPermissionsFromUser(globalThis.context, permissions, (err, result) => {
+        atManager.requestPermissionsFromUser(GlobalContext.getContext().getAbility(), permissions, (err, result) => {
           if (err) {
             console.info('getPermission failed: ' + JSON.stringify(err));
           } else {

@@ -27,7 +27,7 @@ async function sleep(numberMillis: number) {
   }
 }
 
-
+let customContext = getContext(this) as Context;
 export default function ContactInterfaceStageTest() {
   describe('ContactInterfaceStageTest', () => {
     beforeAll(async () => {
@@ -200,11 +200,11 @@ export default function ContactInterfaceStageTest() {
      * @tc.size: SmallTest
      */
     it("SUB_Telephony_ContactsApi_query_key_test_0200", 0, async (done: Function) => {
-      let rawContactId: number = await contact.addContact(GlobalContext.getContext().getAbility(), contactData);
+      let rawContactId: number = await contact.addContact(customContext, contactData);
       expect(rawContactId > 0).assertTrue();
       console.info("SUB_Telephony_ContactsApi_query_key_test_0200 : query gRawContactId = " + rawContactId);
       try {
-        let resultSet: string = await contact.queryKey(GlobalContext.getContext().getAbility(), rawContactId);
+        let resultSet: string = await contact.queryKey(customContext, rawContactId);
         console.info("SUB_Telephony_ContactsApi_query_key_test_0200 : query resultSet = " + JSON.stringify(resultSet));
         expect(JSON.stringify(resultSet) === null).assertFalse();
         done();
