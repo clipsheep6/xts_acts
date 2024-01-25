@@ -176,7 +176,7 @@ export default function requestDownTest() {
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         saveas: './',
         overwrite: true,
-        mode:request.agent.Mode.BACKGROUND,
+        mode:request.agent.Mode.FOREGROUND,
       };
       try {
         // create Task
