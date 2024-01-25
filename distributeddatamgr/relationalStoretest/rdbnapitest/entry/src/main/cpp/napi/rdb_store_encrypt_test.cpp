@@ -13,10 +13,9 @@
  * limitations under the License.
  */
 #include <iostream>
-#include <stdio.h>
 #include <unistd.h>
 #include <string>
-#include <string.h>
+#include <cstring>
 #include <cstdio>
 #include <cstdlib>
 #include <fcntl.h>
@@ -38,6 +37,7 @@ char RDB_STORE_NAME[] =  "rdb_store_encrypt_test.db";
 char RDB_STORE_NAME2[] =  "Encrypt.db";
 char BUNDLE_NAME[] =  "com.acts.rdb.napitest";
 char MODULE_NAME[] =  "com.acts.rdb.napitest";
+int g_dataBase1 = 0770;
 
 
 OH_Rdb_Store *storeEncryptTestRdbStore_ = NULL;
@@ -112,10 +112,10 @@ static napi_value RdbFilePath(napi_env env, napi_callback_info info) {
 
 static napi_value SUB_DDM_RDB_ENCRYPT_0100(napi_env env, napi_callback_info info) {
     InitRdbConfig2();
-    mkdir(config2_.dataBaseDir, 0770);
+    mkdir(config2_.dataBaseDir, g_dataBase1);
     
     InitRdbConfig3();
-    mkdir(config3_.dataBaseDir, 0770);        
+    mkdir(config3_.dataBaseDir, g_dataBase1);        
     
     int errCode = 0;
     storeEncryptTestRdbStore_ = OH_Rdb_GetOrOpen(&config2_, &errCode);
@@ -145,10 +145,10 @@ static napi_value SUB_DDM_RDB_ENCRYPT_0100(napi_env env, napi_callback_info info
 static napi_value SUB_DDM_RDB_ENCRYPT_0200(napi_env env, napi_callback_info info) {
 
     InitRdbConfig();
-    mkdir(config_.dataBaseDir, 0770);
+    mkdir(config_.dataBaseDir, g_dataBase1);
         
     InitRdbConfig1();
-    mkdir(config1_.dataBaseDir, 0770);  
+    mkdir(config1_.dataBaseDir, g_dataBase1);  
     
     int errCode = 0;
     storeEncryptTestRdbStore_ = OH_Rdb_GetOrOpen(&config_, &errCode);
