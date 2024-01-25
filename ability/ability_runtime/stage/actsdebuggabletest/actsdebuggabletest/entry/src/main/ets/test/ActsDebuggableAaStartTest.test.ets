@@ -63,39 +63,39 @@ export default function actsDebuggableAaStartTest() {
     })
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_0300
+     * @tc.number  SUB_AA_START_Debuggable_0300
      * @tc.name    aa start -b com.example.timeout -a EntryAbility
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_0300',1, async function (done) {
+    it('SUB_AA_START_Debuggable_0300',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility').then(data => {
         res = data.stdResult;
       }).catch(err => {
         hilog.info(0x0000, 'debuggabletest', '%{public}s',
-          'SUB_AA_AMS_Debuggable_0300 err is: ' + JSON.stringify(err));
+          'SUB_AA_START_Debuggable_0300 err is: ' + JSON.stringify(err));
       })
       expect(res).assertContain('start ability successfully.');
       done();
     })
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_0400
+     * @tc.number  SUB_AA_START_Debuggable_0400
      * @tc.name    aa start -b com.example.timeout -a EntryAbility -S -p
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_0400',1, async function (done) {
+    it('SUB_AA_START_Debuggable_0400',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility -S -p')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_0400 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_0400 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_0400 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_0400 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('error: option requires a value.');
       expect(res).assertContain('usage: aa start <options>');
@@ -104,39 +104,39 @@ export default function actsDebuggableAaStartTest() {
 
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_0500
+     * @tc.number  SUB_AA_START_Debuggable_0500
      * @tc.name    aa start -b com.example.timeout -a EntryAbility -U some-uri -A some-action -t some-type -e entity1 -e entity2
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_0500',1, async function (done) {
+    it('SUB_AA_START_Debuggable_0500',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility -U some-uri -A some-action -t some-type -e entity1 -e entity2').then(data => {
         res = data.stdResult;
       }).catch(err => {
         hilog.info(0x0000, 'debuggabletest', '%{public}s',
-          'SUB_AA_AMS_Debuggable_0500 err is: ' + JSON.stringify(err));
+          'SUB_AA_START_Debuggable_0500 err is: ' + JSON.stringify(err));
       })
       expect(res).assertContain('start ability successfully.');
       done();
     })
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_0600
+     * @tc.number  SUB_AA_START_Debuggable_0600
      * @tc.name    aa start -b com.example.timeout -a EntryAbility -U
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_0600',1, async function (done) {
+    it('SUB_AA_START_Debuggable_0600',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility -U')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_0600 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_0600 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_0600 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_0600 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('error: option requires a value.');
       expect(res).assertContain('usage: aa start <options>');
@@ -144,21 +144,21 @@ export default function actsDebuggableAaStartTest() {
     })
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_0700
+     * @tc.number  SUB_AA_START_Debuggable_0700
      * @tc.name    aa start -b com.example.timeout -a EntryAbility -A
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_0700',1, async function (done) {
+    it('SUB_AA_START_Debuggable_0700',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility -A')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_0700 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_0700 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_0700 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_0700 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('error: option requires a value.');
       expect(res).assertContain('usage: aa start <options>');
@@ -167,21 +167,21 @@ export default function actsDebuggableAaStartTest() {
 
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_0800
+     * @tc.number  SUB_AA_START_Debuggable_0800
      * @tc.name    aa start -b com.example.timeout -a EntryAbility -e
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_0800',1, async function (done) {
+    it('SUB_AA_START_Debuggable_0800',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility -e')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_0800 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_0800 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_0800 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_0800 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('error: option requires a value.');
       expect(res).assertContain('usage: aa start <options>');
@@ -190,21 +190,21 @@ export default function actsDebuggableAaStartTest() {
 
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_0900
+     * @tc.number  SUB_AA_START_Debuggable_0900
      * @tc.name    aa start -b com.example.timeout -a EntryAbility -t
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_0900',1, async function (done) {
+    it('SUB_AA_START_Debuggable_0900',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility -t')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_0900 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_0900 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_0900 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_0900 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('error: option requires a value.');
       expect(res).assertContain('usage: aa start <options>');
@@ -212,39 +212,39 @@ export default function actsDebuggableAaStartTest() {
     })
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_1000
+     * @tc.number  SUB_AA_START_Debuggable_1000
      * @tc.name    aa start -b com.example.timeout -a EntryAbility --pi kinteger 13 --pb kbool1 true --pb kbool2 f --ps kstring1 value1 --ps string2 value2 --psn knullstring1 --psn knullstring2
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_1000',1, async function (done) {
+    it('SUB_AA_START_Debuggable_1000',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --pi kinteger 13 --pb kbool1 true --pb kbool2 f --ps kstring1 value1 --ps string2 value2 --psn knullstring1 --psn knullstring2').then(data => {
         res = data.stdResult;
       }).catch(err => {
         hilog.info(0x0000, 'debuggabletest', '%{public}s',
-          'SUB_AA_AMS_Debuggable_1000 err is: ' + JSON.stringify(err));
+          'SUB_AA_START_Debuggable_1000 err is: ' + JSON.stringify(err));
       })
       expect(res).assertContain('start ability successfully.');
       done();
     })
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_1100
+     * @tc.number  SUB_AA_START_Debuggable_1100
      * @tc.name    aa start -b com.example.timeout -a EntryAbility --pi
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_1100',1, async function (done) {
+    it('SUB_AA_START_Debuggable_1100',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --pi')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1100 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_1100 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1100 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_1100 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('error: option requires a value.');
       expect(res).assertContain('usage: aa start <options>');
@@ -252,21 +252,21 @@ export default function actsDebuggableAaStartTest() {
     })
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_1200
+     * @tc.number  SUB_AA_START_Debuggable_1200
      * @tc.name    aa start -b com.example.timeout -a EntryAbility --pi kinteger
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_1200',1, async function (done) {
+    it('SUB_AA_START_Debuggable_1200',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --pi kinteger')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1200 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_1200 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1200 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_1200 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('invalid number of parameters for option --pi');
       expect(res).assertContain('usage: aa start <options>');
@@ -275,21 +275,21 @@ export default function actsDebuggableAaStartTest() {
 
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_1300
+     * @tc.number  SUB_AA_START_Debuggable_1300
      * @tc.name    aa start -b com.example.timeout -a EntryAbility --pi kinteger invalidnum
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_1300',1, async function (done) {
+    it('SUB_AA_START_Debuggable_1300',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --pi kinteger invalidnum')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1300 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_1300 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1300 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_1300 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('invalid parameter');
       expect(res).assertContain('usage: aa start <options>');
@@ -297,21 +297,21 @@ export default function actsDebuggableAaStartTest() {
     })
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_1400
+     * @tc.number  SUB_AA_START_Debuggable_1400
      * @tc.name    aa start -b com.example.timeout -a EntryAbility --pb
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_1400',1, async function (done) {
+    it('SUB_AA_START_Debuggable_1400',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --pb')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1400 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_1400 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1400 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_1400 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('error: option requires a value.');
       expect(res).assertContain('usage: aa start <options>');
@@ -319,21 +319,21 @@ export default function actsDebuggableAaStartTest() {
     })
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_1500
+     * @tc.number  SUB_AA_START_Debuggable_1500
      * @tc.name    aa start -b com.example.timeout -a EntryAbility --pb kbool
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_1500',1, async function (done) {
+    it('SUB_AA_START_Debuggable_1500',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --pb kbbol')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1500 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_1500 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1500 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_1500 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('invalid number of parameters for option --pb');
       expect(res).assertContain('usage: aa start <options>');
@@ -342,21 +342,21 @@ export default function actsDebuggableAaStartTest() {
 
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_1600
+     * @tc.number  SUB_AA_START_Debuggable_1600
      * @tc.name    aa start -b com.example.timeout -a EntryAbility --pi kbool invalidbool
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_1600',1, async function (done) {
+    it('SUB_AA_START_Debuggable_1600',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --pi kbool invalidbool')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1600 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_1600 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1600 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_1600 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('invalid parameter');
       expect(res).assertContain('usage: aa start <options>');
@@ -365,21 +365,21 @@ export default function actsDebuggableAaStartTest() {
 
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_1700
+     * @tc.number  SUB_AA_START_Debuggable_1700
      * @tc.name    aa start -b com.example.timeout -a EntryAbility --ps
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_1700',1, async function (done) {
+    it('SUB_AA_START_Debuggable_1700',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --ps')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1700 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_1700 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1700 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_1700 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('error: option requires a value.');
       expect(res).assertContain('usage: aa start <options>');
@@ -388,21 +388,21 @@ export default function actsDebuggableAaStartTest() {
 
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_1800
+     * @tc.number  SUB_AA_START_Debuggable_1800
      * @tc.name    aa start -b com.example.timeout -a EntryAbility --ps kstring
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_1800',1, async function (done) {
+    it('SUB_AA_START_Debuggable_1800',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --ps kstring')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1800 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_1800 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1800 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_1800 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('invalid number of parameters for option --ps');
       expect(res).assertContain('usage: aa start <options>');
@@ -411,21 +411,21 @@ export default function actsDebuggableAaStartTest() {
 
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_1900
+     * @tc.number  SUB_AA_START_Debuggable_1900
      * @tc.name    aa start -b com.example.timeout -a EntryAbility --ps kstring value1 value2
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_1900',1, async function (done) {
+    it('SUB_AA_START_Debuggable_1900',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --ps kstring value1 value2')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1900 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_1900 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_1900 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_1900 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('invalid number of parameters for option --ps');
       expect(res).assertContain('usage: aa start <options>');
@@ -434,21 +434,21 @@ export default function actsDebuggableAaStartTest() {
 
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_2000
+     * @tc.number  SUB_AA_START_Debuggable_2000
      * @tc.name    aa start -b com.example.timeout -a EntryAbility --psn knullstring value
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_2000',1, async function (done) {
+    it('SUB_AA_START_Debuggable_2000',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --psn knullstring value')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_2000 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_2000 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_2000 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_2000 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('invalid number of parameters for option --psn');
       expect(res).assertContain('usage: aa start <options>');
@@ -457,21 +457,21 @@ export default function actsDebuggableAaStartTest() {
 
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_2100
+     * @tc.number  SUB_AA_START_Debuggable_2100
      * @tc.name    aa start -b com.example.timeout -a EntryAbility --pi kinteger 100 200
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_2100',1, async function (done) {
+    it('SUB_AA_START_Debuggable_2100',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --pi kinteger 100 200')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_2100 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_2100 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_2100 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_2100 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('invalid number of parameters for option --pi');
       expect(res).assertContain('usage: aa start <options>');
@@ -479,21 +479,21 @@ export default function actsDebuggableAaStartTest() {
     })
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_2200
+     * @tc.number  SUB_AA_START_Debuggable_2200
      * @tc.name    aa start -b com.example.timeout -a EntryAbility --pb kbool true false
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_2200',1, async function (done) {
+    it('SUB_AA_START_Debuggable_2200',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -b com.example.timeout -a EntryAbility --pb kbool true false')
         .then(data => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_2200 data is: ' + JSON.stringify(data));
+            'SUB_AA_START_Debuggable_2200 data is: ' + JSON.stringify(data));
           res = data.stdResult;
         }).catch(err => {
           hilog.info(0x0000, 'debuggabletest', '%{public}s',
-            'SUB_AA_AMS_Debuggable_2200 err is: ' + JSON.stringify(err));
+            'SUB_AA_START_Debuggable_2200 err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('invalid number of parameters for option --pb');
       expect(res).assertContain('usage: aa start <options>');
@@ -502,20 +502,20 @@ export default function actsDebuggableAaStartTest() {
 
 
     /*
-     * @tc.number  SUB_AA_AMS_Debuggable_2600
+     * @tc.number  SUB_AA_START_Debuggable_2600
      * @tc.name    aa start -h
      * @tc.desc    Function test
      * @tc.level   3
      */
-    it('SUB_AA_AMS_Debuggable_2600',1, async function (done) {
+    it('SUB_AA_START_Debuggable_2600',1, async function (done) {
       let res = undefined;
       await abilityDelegator.executeShellCommand('aa start -h').then(data => {
         hilog.info(0x0000, 'debuggabletest', '%{public}s',
-          'SUB_AA_AMS_Debuggable_2600 aa process data is: ' + data.stdResult);
+          'SUB_AA_START_Debuggable_2600 aa process data is: ' + data.stdResult);
         res = data.stdResult;
       }).catch(err => {
         hilog.info(0x0000, 'debuggabletest', '%{public}s',
-          'SUB_AA_AMS_Debuggable_2600 aa process err is: ' + JSON.stringify(err));
+          'SUB_AA_START_Debuggable_2600 aa process err is: ' + JSON.stringify(err));
       });
       expect(res).assertContain('usage: aa start <options>');
       expect(res).assertContain('[-p <perf-cmd>]');
