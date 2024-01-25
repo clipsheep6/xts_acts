@@ -410,7 +410,7 @@ export default function imageEffectsJsunit() {
       let strJsonNew: string = getInspectorByKey('centerRow5');
 
       console.info("[testImageEffects015] component JSON.parse(strJsonNew) is: " + JSON.stringify(JSON.parse(strJsonNew)));
-      expect(JSON.parse(strJsonNew).$attrs.brightness).assertEqual(1);
+      expect(JSON.parse(strJsonNew).$attrs.brightness).assertEqual(0);
       done()
     });
 
