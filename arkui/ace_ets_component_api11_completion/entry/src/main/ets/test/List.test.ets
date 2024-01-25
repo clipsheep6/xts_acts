@@ -39,7 +39,7 @@ import TextSelectionMenu from './TextApi/TextSelectionMenu.test.ets';
 import ImageAttr from './MethodStyle/ImageAttr.test'
 import menu from './MethodStyle/menu.test'
 import NavigationAttr from './MethodStyle/NavigationAttr.test'
-import textDataDataDetectorConfig from './MethodStyle/textDataDataDetectorConfig.test'
+
 import dragPreviewOptionsJsSuit from './dragPreviewOptionsJsSuit.test';
 import backgroundEffectJsSuit from './backgroundEffectJsSuit.test';
 import DragActionJsunit from './DragActionJsSuit.test';
@@ -193,7 +193,6 @@ export default function testsuite() {
   NavigationAttr()
   tabsDemo()
   TextSelectionMenu()
-  textDataDataDetectorConfig()
   dragPreviewOptionsJsSuit()
   backgroundEffectJsSuit()
   DragActionJsunit()
