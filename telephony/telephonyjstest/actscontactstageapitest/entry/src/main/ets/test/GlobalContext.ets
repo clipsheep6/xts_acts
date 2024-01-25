@@ -13,14 +13,11 @@
  * limitations under the License.
  */
 
-import common from '@ohos.app.ability.common';
-
-export default class GlobalContext {
-  private constructor() {
-  }
-
+// 构造单例对象
+export class GlobalContext {
+  private constructor() {}
   private static instance: GlobalContext;
-  private _abilityContext: common.Context = getContext();
+  private _objects = new Map<string, Object>();
 
   public static getContext(): GlobalContext {
     if (!GlobalContext.instance) {
@@ -29,11 +26,11 @@ export default class GlobalContext {
     return GlobalContext.instance;
   }
 
-  getAbility(): common.Context {
-    return this._abilityContext;
+  getObject(value: string): Object | undefined {
+    return this._objects.get(value);
   }
 
-  setAbility(context: common.Context): void {
-    this._abilityContext = context;
+  setObject(key: string, objectClass: Object): void {
+    this._objects.set(key, objectClass);
   }
 }

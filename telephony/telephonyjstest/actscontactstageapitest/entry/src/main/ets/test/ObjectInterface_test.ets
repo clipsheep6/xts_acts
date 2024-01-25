@@ -18,7 +18,7 @@ import sms from '@ohos.telephony.sms';
 import { afterAll, beforeAll, describe, expect, it } from '@ohos/hypium';
 import uitest, { Component, Driver } from '@ohos.UiTest';
 import abilityAccessCtrl, { Permissions, PermissionRequestResult } from '@ohos.abilityAccessCtrl';
-import GlobalContext from './GlobalContext';
+import { GlobalContext } from './GlobalContext';
 import { BusinessError } from '@ohos.base';
 
 async function sleep(numberMillis: number) {
@@ -30,6 +30,7 @@ async function sleep(numberMillis: number) {
   }
 }
 
+let CustomContext: Context = GlobalContext.getContext().getObject('context') as Context;
 export default function ObjectInterfaceTest() {
   describe('ObjectInterfaceTest', () => {
 
@@ -38,7 +39,7 @@ export default function ObjectInterfaceTest() {
       try {
         let permissions: Array<Permissions> = ["ohos.permission.WRITE_CONTACTS", "ohos.permission.READ_CONTACTS"];
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-        atManager.requestPermissionsFromUser(GlobalContext.getContext().getAbility(), permissions, (err: BusinessError, result: PermissionRequestResult) => {
+        atManager.requestPermissionsFromUser(CustomContext, permissions, (err: BusinessError, result: PermissionRequestResult) => {
           if (err) {
             console.info('getPermission failed: ' + JSON.stringify(err));
           } else {

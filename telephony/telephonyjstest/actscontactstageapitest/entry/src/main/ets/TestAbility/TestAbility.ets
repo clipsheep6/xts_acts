@@ -18,10 +18,11 @@ import hilog from '@ohos.hilog';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
 import window from '@ohos.window';
-import GlobalContext from '../test/GlobalContext';
+import { GlobalContext } from '../test/GlobalContext';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import abilityAccessCtrl, { Permissions } from '@ohos.abilityAccessCtrl';
+import { BusinessError } from '@ohos.base';
 
 export default class TestAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -34,8 +35,9 @@ export default class TestAbility extends UIAbility {
     let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs;
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
-    GlobalContext.getContext().setAbility(this.context);
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+    GlobalContext.getContext().setObject('context', this.context);
+    GlobalContext.getContext().setObject('abilityContext', this.context);
   }
 
   onDestroy() {
@@ -45,9 +47,9 @@ export default class TestAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageCreate');
     windowStage.loadContent('TestAbility/pages/Index', (err, data) => {
-	      let permissions: Permissions[] = ["ohos.permission.WRITE_CONTACTS", "ohos.permission.READ_CONTACTS"];
-        let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-        atManager.requestPermissionsFromUser(GlobalContext.getContext().getAbility(), permissions, (err, result) => {
+      let permissions: Array<Permissions> = ["ohos.permission.WRITE_CONTACTS", "ohos.permission.READ_CONTACTS"];
+      abilityAccessCtrl.createAtManager()
+        .requestPermissionsFromUser(GlobalContext.getContext().getObject('context') as Context, permissions, (err: BusinessError, result) => {
           if (err) {
             console.info('getPermission failed: ' + JSON.stringify(err));
           } else {
