@@ -21,6 +21,7 @@ import { UiDriver, BY, ON, PointerMatrix, UiComponent } from '@ohos.UiTest'
 import Ability from '@ohos.app.ability.Ability';
 import { BusinessError, Callback } from '@ohos.base';
 import { UIContext } from '@ohos.arkui.UIContext';
+import common from '@ohos.app.ability.common';
 
 function unexpectedError(error: BusinessError, caseName: string, apiName: string, TRUE_FLAG: boolean, done: Function) {
   let msgStr: string = 'jsUnittest ' + caseName + ' ' + apiName + ' failed, err: ';
@@ -87,7 +88,7 @@ function inputClick(buttonText: string, msgStr: string) {
   })
 }
 
-export default function windowPromiseTest(context: Context, windowStage: ohosWindow.WindowStage, abilityStorage: LocalStorage) {
+export default function windowPromiseTest(context: common.UIAbilityContext, windowStage: ohosWindow.WindowStage, abilityStorage: LocalStorage) {
   console.log('windowTest context: ' + JSON.stringify(context))
   console.log('windowTest abilityStorage: ' + JSON.stringify(abilityStorage))
   describe('windowInterface_optionalParameter_test', () => {

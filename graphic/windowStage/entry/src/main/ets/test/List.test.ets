@@ -23,9 +23,10 @@ import interfaceSupportSessionManagerTest from './interfaceSupportSessionManager
 import GlobalContext from '../test/GlobalContext';
 import ohosWindow from '@ohos.window';
 import Ability from '@ohos.app.ability.Ability'
+import common from '@ohos.app.ability.common'
 
 export default function testsuite() {
-  let abilityContext: Context = GlobalContext.getContext().getObject("abilityContext") as Context
+  let abilityContext: common.UIAbilityContext = GlobalContext.getContext().getObject("abilityContext") as common.UIAbilityContext
   let windowStage:ohosWindow.WindowStage =  GlobalContext.getContext().getObject("windowStage") as ohosWindow.WindowStage
   let abilityStorage:LocalStorage = GlobalContext.getContext().getObject("abilityStorage") as LocalStorage
   parameterVerificationIsOptional(abilityContext,windowStage,abilityStorage);

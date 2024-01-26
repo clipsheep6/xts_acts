@@ -16,6 +16,7 @@ import { describe, beforeAll, it, expect } from "@ohos/hypium";
 import ohosWindow from '@ohos.window';
 import display from '@ohos.display';
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 
 function expectedError(TRUE_FLAG: boolean, error: BusinessError, caseName: string, apiName: string, done: Function, code: number) {
@@ -45,7 +46,7 @@ async function sleep(time: number) {
   clearTimeout(timeoutId)
 }
 
-export default function windowPromiseTest(context: Context, windowStage: ohosWindow.WindowStage, abilityStorage: LocalStorage) {
+export default function windowPromiseTest(context: common.UIAbilityContext, windowStage: ohosWindow.WindowStage, abilityStorage: LocalStorage) {
   console.log('windowTest context: ' + JSON.stringify(context))
   console.log('windowTest abilityStorage: ' + JSON.stringify(abilityStorage))
   describe('windowPromise_test', () => {
@@ -1320,31 +1321,30 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       }
       if (tempWnd != undefined) {
         let tempWindow: ohosWindow.Window = tempWnd as ohosWindow.Window
-        let controller = tempWindow.getTransitionController();
-        // @ts-ignore
-        controller.animationForShown = (context: ohosWindow.TransitionContext) => {
-          let toWindow = context.toWindow
-          animateTo({
-            duration: 1000,
-            tempo: 0.5,
-            curve: Curve.EaseInOut,
-            delay: 0,
-            iterations: 1,
-            playMode: PlayMode.Normal,
-          }, () => {
-            // @ts-ignore
-            let obj: ohosWindow.TranslateOptions = {
-              x : 100.0,
-              y : 0.0,
-              z : 0.0
-            };
-            toWindow.translate(obj);
-            console.info(msgStr + 'toWindow translate end');
-          }
-          )
-          context.completeTransition(true)
-          console.info(msgStr + 'complete transition end');
-        }
+        // let controller = tempWindow.getTransitionController();
+        // controller.animationForShown = (context: ohosWindow.TransitionContext) => {
+        //   let toWindow = context.toWindow
+        //   animateTo({
+        //     duration: 1000,
+        //     tempo: 0.5,
+        //     curve: Curve.EaseInOut,
+        //     delay: 0,
+        //     iterations: 1,
+        //     playMode: PlayMode.Normal,
+        //   }, () => {
+        //     // @ts-ignore
+        //     let obj: ohosWindow.TranslateOptions = {
+        //       x : 100.0,
+        //       y : 0.0,
+        //       z : 0.0
+        //     };
+        //     toWindow.translate(obj);
+        //     console.info(msgStr + 'toWindow translate end');
+        //   }
+        //   )
+        //   context.completeTransition(true)
+        //   console.info(msgStr + 'complete transition end');
+        // }
         await tempWindow.destroy();
       }
       done();

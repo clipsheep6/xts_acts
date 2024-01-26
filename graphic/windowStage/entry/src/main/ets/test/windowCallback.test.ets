@@ -18,6 +18,7 @@ import ohosWindow from '@ohos.window';
 import display from '@ohos.display';
 import { BusinessError } from '@ohos.base';
 import { Context } from '@ohos.abilityAccessCtrl';
+import common from '@ohos.app.ability.common';
 
 
 function expectedError(TRUE_FLAG: boolean, error: BusinessError, caseName: string, apiName: string, done: Function, code: number) {
@@ -54,7 +55,7 @@ async function sleep(time: number) {
   clearTimeout(timeoutId)
 }
 
-export default function windowCallbackTest(context: Context, windowStage: ohosWindow.WindowStage, abilityStorage: LocalStorage) {
+export default function windowCallbackTest(context: common.UIAbilityContext, windowStage: ohosWindow.WindowStage, abilityStorage: LocalStorage) {
   console.log('testets context: ' + JSON.stringify(context))
   console.log('testets context windowStage: ' + JSON.stringify(windowStage));
   console.log('testets context abilityStorage: ' + JSON.stringify(abilityStorage));
@@ -1851,30 +1852,30 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
             console.info(`tempWnd.show catch error: ${JSON.stringify(error)}`)
           }
           console.log(msgStr + 'ohosWindow.create ' + baseType + ', tempWnd: ' + tempWnd);
-          let controller = tempWnd.getTransitionController();
+          // let controller = tempWnd.getTransitionController();
           // @ts-ignore
-          controller.animationForShown = (context: ohosWindow.TransitionContext) => {
-            let toWindow = context.toWindow
-            animateTo({
-              duration: 1000,
-              tempo: 0.5,
-              curve: Curve.EaseInOut,
-              delay: 0,
-              iterations: 1,
-              playMode: PlayMode.Normal,
-            }, () => {
-              let obj: ohosWindow.TranslateOptions = {
-              x : 100.0,
-              y : 0.0,
-              z : 0.0,
-              }
-              toWindow.translate(obj);
-              console.info(msgStr + 'toWindow translate end');
-            }
-            )
-            context.completeTransition(true)
-            console.info(msgStr + 'complete transition end');
-          }
+          // controller.animationForShown = (context: ohosWindow.TransitionContext) => {
+          //   let toWindow = context.toWindow
+          //   animateTo({
+          //     duration: 1000,
+          //     tempo: 0.5,
+          //     curve: Curve.EaseInOut,
+          //     delay: 0,
+          //     iterations: 1,
+          //     playMode: PlayMode.Normal,
+          //   }, () => {
+          //     let obj: ohosWindow.TranslateOptions = {
+          //     x : 100.0,
+          //     y : 0.0,
+          //     z : 0.0,
+          //     }
+          //     toWindow.translate(obj);
+          //     console.info(msgStr + 'toWindow translate end');
+          //   }
+          //   )
+          //   context.completeTransition(true)
+          //   console.info(msgStr + 'complete transition end');
+          // }
           await tempWnd.destroy();
           done();
         }

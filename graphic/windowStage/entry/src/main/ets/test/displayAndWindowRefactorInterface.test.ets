@@ -18,6 +18,7 @@ import display from '@ohos.display';
 import displaySync from '@ohos.graphics.displaySync';
 import Ability from '@ohos.app.ability.Ability';
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 async function sleep(time: number) {
   let timeoutId: number = 0;
@@ -80,7 +81,7 @@ function resizeFun(winData: ohosWindow.Window, msgStr: string, width: number, he
   })
 }
 
-export default function displayAndWindowRefactorInterfaceTest(context: Context, windowStage: ohosWindow.WindowStage, abilityStorage: LocalStorage) {
+export default function displayAndWindowRefactorInterfaceTest(context: common.UIAbilityContext, windowStage: ohosWindow.WindowStage, abilityStorage: LocalStorage) {
   console.log('windowTest context: ' + JSON.stringify(context))
   console.log('windowTest abilityStorage: ' + JSON.stringify(abilityStorage))
   describe('displayAndWindowRefactorInterface_test', () => {

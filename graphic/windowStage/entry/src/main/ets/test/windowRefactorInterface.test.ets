@@ -16,6 +16,7 @@
 import { describe, beforeAll, beforeEach, afterAll, it, expect } from "@ohos/hypium"
 import ohosWindow from '@ohos.window';
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 
 async function sleep(time: number) {
@@ -29,7 +30,7 @@ async function sleep(time: number) {
   clearTimeout(timeoutId)
 }
 
-export default function windowRefactorInterfaceTest(context: Context, windowStage: ohosWindow.WindowStage, abilityStorage: LocalStorage) {
+export default function windowRefactorInterfaceTest(context: common.UIAbilityContext, windowStage: ohosWindow.WindowStage, abilityStorage: LocalStorage) {
   console.info('windowTest context: ' + JSON.stringify(context))
   console.info('windowTest abilityStorage: ' + JSON.stringify(abilityStorage))
   describe('windowRefactorInterface_test', () => {
