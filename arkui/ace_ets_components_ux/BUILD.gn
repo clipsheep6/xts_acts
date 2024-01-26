@@ -26,6 +26,7 @@ group("componentUxTest") {
       "ace_ets_component_exceptionprompt_sdk11:ActsAceExceptionPromptTest",
       "ace_ets_component_gauge:ActsAceGaugeTest",
       "ace_ets_component_grid:ActsAceGridTest",
+      "ace_ets_component_gridobjectsortcomponent_sdk11:ActsAceGridObjectSortComponentTest",
       "ace_ets_component_indexer:ActsAlphabetIndexerTest",
       "ace_ets_component_list:ActsAceListTest",
       "ace_ets_component_menu:ActsAceMenuTest",
