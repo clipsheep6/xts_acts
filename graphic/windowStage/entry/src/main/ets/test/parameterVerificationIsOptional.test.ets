@@ -1238,7 +1238,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       await screen.makeExpand([{
         screenId: 0, startX: 0, startY: 0
       }, {
-        screenId: (screenClass as screen.Screen) .id, startX: 1080, startY: 0
+        screenId: (screenClass as screen.Screen).id, startX: 1080, startY: 0
       }]).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
       });
@@ -1246,7 +1246,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       display.off('add')
       firstListenFlag = false
       secondListenFlag = false
-      await screen.destroyVirtualScreen(screenClass.id)
+      await screen.destroyVirtualScreen( (screenClass as screen.Screen).id)
       let screenClass_two: screen.Screen|void = await screen.createVirtualScreen({
         name: 'add001',
         width: 900,
@@ -1266,7 +1266,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       });
       await sleep(1000);
       if (num >= 2 && firstListenFlag === false && secondListenFlag === false) {
-        await screen.destroyVirtualScreen(screenClass_two.id)
+        await screen.destroyVirtualScreen((screenClass_two as screen.Screen).id)
         done();
       }
     })
@@ -1317,7 +1317,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       display.off("add", firstCall)
       firstListenFlag = false
       secondListenFlag = false
-      await screen.destroyVirtualScreen(screenClass.id)
+      await screen.destroyVirtualScreen((screenClass as screen.Screen).id)
       let screenClass_two: screen.Screen|void = await screen.createVirtualScreen({
         name: 'add002',
         width: 900,
@@ -1336,7 +1336,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
         unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
       });
       await sleep(1000);
-      await screen.destroyVirtualScreen(screenClass_two.id)
+      await screen.destroyVirtualScreen((screenClass_two as screen.Screen).id)
       display.off("add")
       if (!firstListenFlag && secondListenFlag) {
         done();
@@ -1392,7 +1392,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       }]).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
       });
-      await screen.destroyVirtualScreen(screenClass.id)
+      await screen.destroyVirtualScreen((screenClass as screen.Screen).id)
       await sleep(1000);
       display.off('remove')
       firstListenFlag = false
@@ -1414,7 +1414,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       }]).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
       });
-      await screen.destroyVirtualScreen(screenClass_two.id)
+      await screen.destroyVirtualScreen((screenClass_two as screen.Screen).id)
       await sleep(1000);
       if (num >= 2 && firstListenFlag === false && secondListenFlag === false) {
         done();
@@ -1464,7 +1464,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       }]).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
       });
-      await screen.destroyVirtualScreen(screenClass.id)
+      await screen.destroyVirtualScreen((screenClass as screen.Screen).id)
       await sleep(1000);
       display.off('remove', firstCall)
       firstListenFlag = false
@@ -1486,7 +1486,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       }]).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
       });
-      await screen.destroyVirtualScreen(screenClass_two.id)
+      await screen.destroyVirtualScreen((screenClass_two as screen.Screen).id)
       await sleep(1000);
       display.off('remove')
       if (!firstListenFlag && secondListenFlag) {
