@@ -1225,7 +1225,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
 
       display.on("add", firstCall);
       display.on("add", secondCall);
-      let screenClass: screen.Screen = await screen.createVirtualScreen({
+      let screenClass: screen.Screen|void = await screen.createVirtualScreen({
         name: 'add01',
         width: 1080,
         height: 2340,
@@ -1238,7 +1238,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       await screen.makeExpand([{
         screenId: 0, startX: 0, startY: 0
       }, {
-        screenId: screenClass.id, startX: 1080, startY: 0
+        screenId: (screenClass as screen.Screen) .id, startX: 1080, startY: 0
       }]).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
       });
@@ -1247,7 +1247,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       firstListenFlag = false
       secondListenFlag = false
       await screen.destroyVirtualScreen(screenClass.id)
-      let screenClass_two: screen.Screen = await screen.createVirtualScreen({
+      let screenClass_two: screen.Screen|void = await screen.createVirtualScreen({
         name: 'add001',
         width: 900,
         height: 2000,
@@ -1260,7 +1260,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       await screen.makeExpand([{
         screenId: 0, startX: 0, startY: 0
       }, {
-        screenId: screenClass_two.id, startX: 1080, startY: 0
+        screenId: (screenClass_two as screen.Screen).id, startX: 1080, startY: 0
       }]).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
       });
@@ -1296,7 +1296,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
 
       display.on("add", firstCall);
       display.on("add", secondCall);
-      let screenClass: screen.Screen = await screen.createVirtualScreen({
+      let screenClass: screen.Screen|void = await screen.createVirtualScreen({
         name: 'add02',
         width: 1080,
         height: 2340,
@@ -1309,7 +1309,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       await screen.makeExpand([{
         screenId: 0, startX: 0, startY: 0
       }, {
-        screenId: screenClass.id, startX: 1080, startY: 0
+        screenId: (screenClass as screen.Screen).id, startX: 1080, startY: 0
       }]).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
       });
@@ -1318,7 +1318,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       firstListenFlag = false
       secondListenFlag = false
       await screen.destroyVirtualScreen(screenClass.id)
-      let screenClass_two: screen.Screen = await screen.createVirtualScreen({
+      let screenClass_two: screen.Screen|void = await screen.createVirtualScreen({
         name: 'add002',
         width: 900,
         height: 2000,
@@ -1331,7 +1331,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       await screen.makeExpand([{
         screenId: 0, startX: 0, startY: 0
       }, {
-        screenId: screenClass_two.id, startX: 1080, startY: 0
+        screenId: (screenClass_two as screen.Screen).id, startX: 1080, startY: 0
       }]).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
       });
@@ -1375,7 +1375,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
 
       display.on('remove', firstCall);
       display.on('remove', secondCall);
-      let screenClass: screen.Screen = await screen.createVirtualScreen({
+      let screenClass: screen.Screen|void = await screen.createVirtualScreen({
         name: 'remove01',
         width: 1080,
         height: 2340,
@@ -1388,7 +1388,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       await screen.makeExpand([{
         screenId: 0, startX: 0, startY: 0
       }, {
-        screenId: screenClass.id, startX: 1080, startY: 0
+        screenId: (screenClass as screen.Screen).id, startX: 1080, startY: 0
       }]).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
       });
@@ -1397,7 +1397,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       display.off('remove')
       firstListenFlag = false
       secondListenFlag = false
-      let screenClass_two: screen.Screen = await screen.createVirtualScreen({
+      let screenClass_two: screen.Screen|void = await screen.createVirtualScreen({
         name: 'remove001',
         width: 900,
         height: 2000,
@@ -1410,7 +1410,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       await screen.makeExpand([{
         screenId: 0, startX: 0, startY: 0
       }, {
-        screenId: screenClass_two.id, startX: 1080, startY: 0
+        screenId: (screenClass_two as screen.Screen).id, startX: 1080, startY: 0
       }]).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
       });
@@ -1447,7 +1447,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
 
       display.on('remove', firstCall);
       display.on('remove', secondCall);
-      let screenClass: screen.Screen = await screen.createVirtualScreen({
+      let screenClass: screen.Screen|void = await screen.createVirtualScreen({
         name: 'remove02',
         width: 1080,
         height: 2340,
@@ -1460,7 +1460,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       await screen.makeExpand([{
         screenId: 0, startX: 0, startY: 0
       }, {
-        screenId: screenClass.id, startX: 1080, startY: 0
+        screenId: (screenClass as screen.Screen).id, startX: 1080, startY: 0
       }]).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
       });
@@ -1469,7 +1469,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       display.off('remove', firstCall)
       firstListenFlag = false
       secondListenFlag = false
-      let screenClass_two: screen.Screen = await screen.createVirtualScreen({
+      let screenClass_two: screen.Screen|void = await screen.createVirtualScreen({
         name: 'remove002',
         width: 900,
         height: 2000,
@@ -1482,7 +1482,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       await screen.makeExpand([{
         screenId: 0, startX: 0, startY: 0
       }, {
-        screenId: screenClass_two.id, startX: 1080, startY: 0
+        screenId: (screenClass_two as screen.Screen).id, startX: 1080, startY: 0
       }]).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
       });
