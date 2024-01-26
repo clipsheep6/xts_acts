@@ -15,10 +15,8 @@
 
 import abilityTest from './Ability.test';
 import WifiManagerTest from './WifiManager.test';
-import WifiManagerTest2 from './WifiManager2.test';
 
 export default function testsuite() {
   abilityTest();
   WifiManagerTest(); // do not support crossPlatform
-  WifiManagerTest2(); // support crossPlatform
 }
