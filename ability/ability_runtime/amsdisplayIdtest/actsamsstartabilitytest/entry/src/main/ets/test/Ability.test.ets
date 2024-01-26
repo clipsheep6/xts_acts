@@ -54,7 +54,7 @@ export default function abilityTest(abilityContext) {
   describe('ActsGetDisplayIdStartAbilityTest', function () {
 
     afterEach(async (done) => {
-      setTimeout(() => { done(); }, 2000)
+      setTimeout(() => { done(); }, 3000)
     })
 
 
