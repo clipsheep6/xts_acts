@@ -21,6 +21,10 @@ export default class MainAbility extends Ability {
         console.log("[Demo] MainAbility onWindowStageCreate windowStage="+ windowStage)
         GlobalContext.getContext().setObject("windowStage",windowStage)
         GlobalContext.getContext().setObject("abilityContext",this.context)
+
+        let wStage:window.WindowStage =  GlobalContext.getContext().getObject("windowStage") as window.WindowStage
+        console.log('WindowStage setObject: ' + JSON.stringify(wStage));
+
         windowStage.loadContent("MainAbility/pages/index/index", ()=>{})
     }
 
