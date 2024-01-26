@@ -87,7 +87,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
         windowTypeArr.push(wndTypeArray[i[1]])
       }
       console.log(': Record<string,number> beforeall');
-      console.log('beforeall ohosWindow.windowType' + JSON.stringify(ohosWindow.WindowType))
+      console.log('beforeall ohosWindow.windowType' + JSON.stringify("ohosWindow.WindowType"))
     })
 
 
@@ -1852,6 +1852,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
           }
           console.log(msgStr + 'ohosWindow.create ' + baseType + ', tempWnd: ' + tempWnd);
           let controller = tempWnd.getTransitionController();
+          // @ts-ignore
           controller.animationForShown = (context: ohosWindow.TransitionContext) => {
             let toWindow = context.toWindow
             animateTo({

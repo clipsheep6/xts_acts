@@ -1321,6 +1321,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       if (tempWnd != undefined) {
         let tempWindow: ohosWindow.Window = tempWnd as ohosWindow.Window
         let controller = tempWindow.getTransitionController();
+        // @ts-ignore
         controller.animationForShown = (context: ohosWindow.TransitionContext) => {
           let toWindow = context.toWindow
           animateTo({
@@ -1621,7 +1622,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       });
       expect(!Boolean(load3)).assertTrue();
       try {
-        let tempWnd:ohosWindow.Window = await windowStage.getMainWindow().catch((err: BusinessError) => {
+        let tempWnd:ohosWindow.Window|void = await windowStage.getMainWindow().catch((err: BusinessError) => {
           unexpectedError(TRUE_FLAG, err, caseName, 'windowStage.getMainWindow', done);
         });
         console.log(msgStr + 'windowStage.getMainWindow, tempWnd: ' + tempWnd);
@@ -1651,12 +1652,11 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       console.log(msgStr + ' begin');
       try {
         console.log(msgStr + ' www data try')
-        let options = {
-          title: 'title',
-          decorEnabled: true
-        };
-
-        let promise = windowStage.createSubWindowWithOptions('mySubWindow', options);
+        // let options = {
+        //   title: 'title',
+        //   decorEnabled: true
+        // };
+        let promise = windowStage .createSubWindow('mySubWindow');
         console.log(msgStr + ' www data ' + promise)
 
         promise.then((data:ohosWindow.Window) => {

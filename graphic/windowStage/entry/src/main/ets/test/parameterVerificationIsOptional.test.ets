@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll,it, expect } from "@ohos/hypium"
+import { describe, beforeAll, it, expect } from "@ohos/hypium"
 import ohosWindow from '@ohos.window';
 import screen from '@ohos.screen';
 import display from '@ohos.display';
@@ -1225,7 +1225,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
 
       display.on("add", firstCall);
       display.on("add", secondCall);
-      let screenClass: screen = await screen.createVirtualScreen({
+      let screenClass: screen.Screen = await screen.createVirtualScreen({
         name: 'add01',
         width: 1080,
         height: 2340,
@@ -1247,7 +1247,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       firstListenFlag = false
       secondListenFlag = false
       await screen.destroyVirtualScreen(screenClass.id)
-      let screenClass_two:screen = await screen.createVirtualScreen({
+      let screenClass_two: screen.Screen = await screen.createVirtualScreen({
         name: 'add001',
         width: 900,
         height: 2000,
@@ -1296,7 +1296,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
 
       display.on("add", firstCall);
       display.on("add", secondCall);
-      let screenClass:screen = await screen.createVirtualScreen({
+      let screenClass: screen.Screen = await screen.createVirtualScreen({
         name: 'add02',
         width: 1080,
         height: 2340,
@@ -1318,7 +1318,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       firstListenFlag = false
       secondListenFlag = false
       await screen.destroyVirtualScreen(screenClass.id)
-      let screenClass_two:screen = await screen.createVirtualScreen({
+      let screenClass_two: screen.Screen = await screen.createVirtualScreen({
         name: 'add002',
         width: 900,
         height: 2000,
@@ -1375,7 +1375,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
 
       display.on('remove', firstCall);
       display.on('remove', secondCall);
-      let screenClass:screen = await screen.createVirtualScreen({
+      let screenClass: screen.Screen = await screen.createVirtualScreen({
         name: 'remove01',
         width: 1080,
         height: 2340,
@@ -1397,7 +1397,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       display.off('remove')
       firstListenFlag = false
       secondListenFlag = false
-      let screenClass_two:screen = await screen.createVirtualScreen({
+      let screenClass_two: screen.Screen = await screen.createVirtualScreen({
         name: 'remove001',
         width: 900,
         height: 2000,
@@ -1447,7 +1447,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
 
       display.on('remove', firstCall);
       display.on('remove', secondCall);
-      let screenClass:screen = await screen.createVirtualScreen({
+      let screenClass: screen.Screen = await screen.createVirtualScreen({
         name: 'remove02',
         width: 1080,
         height: 2340,
@@ -1469,7 +1469,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       display.off('remove', firstCall)
       firstListenFlag = false
       secondListenFlag = false
-      let screenClass_two:screen = await screen.createVirtualScreen({
+      let screenClass_two: screen.Screen = await screen.createVirtualScreen({
         name: 'remove002',
         width: 900,
         height: 2000,
@@ -1630,7 +1630,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       });
       expect(!!mainWindow).assertTrue();
       // 获取UIContext实例。
-      let uiContext:UIContext = (mainWindow as ohosWindow.Window).getUIContext();
+      let uiContext: UIContext = (mainWindow as ohosWindow.Window).getUIContext();
       expect(!!uiContext).assertTrue();
       console.log(msgStr + 'after uiContext: ' + JSON.stringify(uiContext));
       done();
@@ -1643,31 +1643,33 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('testGetLastWindow_CreateSubWindow', 0, async  ()=> {
+    it('testGetLastWindow_CreateSubWindow', 0, async () => {
       let caseName = 'testGetLastWindow_CreateSubWindow';
       let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let subWindow:ohosWindow.Window|void = await windowStage.createSubWindow('testGetLastWindow_CreateSubWindow').catch((err:BusinessError) => {
-        expect().assertFail();
-      });
+      let subWindow: ohosWindow.Window | void = await windowStage.createSubWindow('testGetLastWindow_CreateSubWindow')
+        .catch((err: BusinessError) => {
+          expect().assertFail();
+        });
       expect(!!subWindow).assertTrue();
-      await (subWindow as ohosWindow.Window).resize(400, 400).catch((err:BusinessError) => {
+      await (subWindow as ohosWindow.Window).resize(400, 400).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
         expect().assertFail();
       });
-      await (subWindow as ohosWindow.Window).loadContent('MainAbility/pages/second/second').catch((err:BusinessError) => {
-        console.error(msgStr + 'Failed to loadContent the window. Cause: ' + JSON.stringify(err));
-        expect().assertFail();
-      });
-      await (subWindow as ohosWindow.Window).moveWindowTo(100, 100).catch((err:BusinessError) => {
+      await (subWindow as ohosWindow.Window).loadContent('MainAbility/pages/second/second')
+        .catch((err: BusinessError) => {
+          console.error(msgStr + 'Failed to loadContent the window. Cause: ' + JSON.stringify(err));
+          expect().assertFail();
+        });
+      await (subWindow as ohosWindow.Window).moveWindowTo(100, 100).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to move the window. Cause: ' + JSON.stringify(err));
         expect().assertFail();
       });
-      await (subWindow as ohosWindow.Window).showWindow().catch((err:BusinessError) => {
+      await (subWindow as ohosWindow.Window).showWindow().catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
         expect().assertFail();
       });
-      let lastWindow:ohosWindow.Window|void = await ohosWindow.getLastWindow(context).catch((err:BusinessError) => {
+      let lastWindow: ohosWindow.Window | void = await ohosWindow.getLastWindow(context).catch((err: BusinessError) => {
         console.error(msgStr + 'Failed to obtain the top window. Cause: ' + JSON.stringify(err));
         expect().assertFail();
       })

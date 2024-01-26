@@ -50,7 +50,7 @@ export default function windowRefactorInterfaceTest(context: Context, windowStag
       'TYPE_FLOAT_CAMERA': 9
     }
     beforeAll(() => {
-      console.info('jsUnittest beforeAll ohosWindow.WindowType=' + JSON.stringify(ohosWindow.WindowType));
+      console.info('jsUnittest beforeAll ohosWindow.WindowType=' + JSON.stringify(ohosWindow.WindowType.TYPE_FLOAT));
       systemWindowTypeDicArr = Object.keys(systemWindowTypeDic);
       console.info('jsUnittest beforeAll systemWindowTypeDicArr=' + JSON.stringify(systemWindowTypeDicArr) + '   ,length=' + systemWindowTypeDicArr.length);
     })
