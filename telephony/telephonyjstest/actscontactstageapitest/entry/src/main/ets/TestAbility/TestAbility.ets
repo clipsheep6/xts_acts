@@ -19,17 +19,17 @@ import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
 import window from '@ohos.window';
 import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class TestAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onCreate');
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
-	
-    var abilityDelegator: any
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-    var abilityDelegatorArguments: any
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
+
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
     globalThis.context = this.context;
@@ -43,15 +43,15 @@ export default class TestAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility onWindowStageCreate');
     windowStage.loadContent('TestAbility/pages/Index', (err, data) => {
-	let permissions = ["ohos.permission.WRITE_CONTACTS", "ohos.permission.READ_CONTACTS"];
-        let atManager = abilityAccessCtrl.createAtManager();
-        atManager.requestPermissionsFromUser(globalThis.context, permissions, (err, result) => {
-          if (err) {
-            console.info('getPermission failed: ' + JSON.stringify(err));
-          } else {
-            console.info('getPermission suc: ' + JSON.stringify(result));
-          }
-        });
+      let permissions = ["ohos.permission.WRITE_CONTACTS", "ohos.permission.READ_CONTACTS"];
+      let atManager = abilityAccessCtrl.createAtManager();
+      atManager.requestPermissionsFromUser(globalThis.context, permissions, (err, result) => {
+        if (err) {
+          console.info('getPermission failed: ' + JSON.stringify(err));
+        } else {
+          console.info('getPermission suc: ' + JSON.stringify(result));
+        }
+      });
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
