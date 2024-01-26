@@ -39,7 +39,7 @@ export default function ObjectInterfaceTest() {
       try {
         let permissions: Array<Permissions> = ["ohos.permission.WRITE_CONTACTS", "ohos.permission.READ_CONTACTS"];
         let atManager: abilityAccessCtrl.AtManager = abilityAccessCtrl.createAtManager();
-        atManager.requestPermissionsFromUser(CustomContext, permissions, (err: BusinessError, result: PermissionRequestResult) => {
+        atManager.requestPermissionsFromUser(globalThis.context, permissions, (err: BusinessError, result: PermissionRequestResult) => {
           if (err) {
             console.info('getPermission failed: ' + JSON.stringify(err));
           } else {

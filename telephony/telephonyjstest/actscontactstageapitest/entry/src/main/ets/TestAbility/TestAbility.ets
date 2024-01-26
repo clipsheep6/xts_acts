@@ -36,8 +36,8 @@ export default class TestAbility extends UIAbility {
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
-    GlobalContext.getContext().setObject('context', this.context);
-    GlobalContext.getContext().setObject('abilityContext', this.context);
+    globalThis.context = this.context;
+    globalThis.abilityContext = this.context;
   }
 
   onDestroy() {
@@ -49,7 +49,7 @@ export default class TestAbility extends UIAbility {
     windowStage.loadContent('TestAbility/pages/Index', (err, data) => {
       let permissions: Array<Permissions> = ["ohos.permission.WRITE_CONTACTS", "ohos.permission.READ_CONTACTS"];
       abilityAccessCtrl.createAtManager()
-        .requestPermissionsFromUser(GlobalContext.getContext().getObject('context') as Context, permissions, (err: BusinessError, result) => {
+        .requestPermissionsFromUser(globalThis.context, permissions, (err: BusinessError, result) => {
           if (err) {
             console.info('getPermission failed: ' + JSON.stringify(err));
           } else {
