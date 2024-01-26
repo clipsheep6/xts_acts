@@ -136,7 +136,6 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let wndId = 'listenerTest2';
       let baseType = ohosWindow.WindowType.TYPE_FLOAT;
       let changedModel = 102;
-      let baseValue = 100;
       let resizeValue = 200;
       console.log(msgStr + 'begin');
       let flag = false;
@@ -1332,6 +1331,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
             iterations: 1,
             playMode: PlayMode.Normal,
           }, () => {
+            // @ts-ignore
             let obj: ohosWindow.TranslateOptions = {
               x : 100.0,
               y : 0.0,

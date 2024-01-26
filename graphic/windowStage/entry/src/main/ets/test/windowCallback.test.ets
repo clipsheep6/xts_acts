@@ -67,7 +67,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
     let commonNUMBERColorArr: Array<string> = ['#00FF0000', '#0000FF00', '#000000FF', '#00FFFFFF', '#00000000', '#00F900E6', '#00666666', '#00FFF700'];
     let commonKEYColorArr: Array<string> = ['red', 'green', 'blue', 'white', 'black', 'pink', 'grey', 'yellow'];
     let appWindowTypeArr: Array<string> = [];
-    let windowTypeArr: Array<string> = [];
+    let windowTypeArr: Array<number> = [];
     let appWindowTypeDic: Record<string, number> = {
       'TYPE_BASE': 0,
       'TYPE_APP': 0,
@@ -81,8 +81,10 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
     beforeAll(() => {
       appWindowTypeArr = Object.keys(appWindowTypeDic);
       systemWindowTypeArr = Object.keys(systemWindowTypeDic);
-      for (let i in ohosWindow.WindowType) {
-        windowTypeArr.push(ohosWindow.WindowType[i]);
+      let wndTypeArray:Array<number> = [ohosWindow.WindowType.TYPE_FLOAT,ohosWindow.WindowType.TYPE_APP,ohosWindow.WindowType.TYPE_SYSTEM_ALERT,ohosWindow.WindowType.TYPE_DIALOG]
+
+      for (let i of Object.entries(wndTypeArray)){
+        windowTypeArr.push(wndTypeArray[i[1]])
       }
       console.log(': Record<string,number> beforeall');
       console.log('beforeall ohosWindow.windowType' + JSON.stringify(ohosWindow.WindowType))
@@ -1490,7 +1492,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
     it('testSetPrivacyMode_AppSubWin_Callback', 0, async (done: Function) => {
       let caseName: string = 'testSetPrivacyMode_AppSubWin_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      console.log(msgStr + 'begin ohosWindow =' + JSON.stringify(ohosWindow));
+      console.log(msgStr + 'begin ohosWindow =' + JSON.stringify("ohosWindow"));
       let tempWnd: ohosWindow.Window;
 
       let createWin: Function = () => {
@@ -1578,7 +1580,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
     it('testSetPrivacyMode_createSubWindow_Callback', 0, async (done: Function) => {
       let caseName: string = 'testSetPrivacyMode_createSubWindow_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      console.log(msgStr + 'begin ohosWindow =' + JSON.stringify(ohosWindow));
+      console.log(msgStr + 'begin ohosWindow =' + JSON.stringify("ohosWindow"));
       let tempWnd: ohosWindow.Window;
 
       let createSubWindowFun: Function = () => {
@@ -1834,7 +1836,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
       let caseName: string = 'testAnimationForShown_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin context==' + JSON.stringify(context));
-      console.log(msgStr + 'begin ohosWindow==' + JSON.stringify(ohosWindow));
+      console.log(msgStr + 'begin ohosWindow==' + JSON.stringify("ohosWindow"));
       let wndId: string = 'animationForShownTest2';
       let baseType: number = ohosWindow.WindowType.TYPE_FLOAT;
       let tempWnd:ohosWindow.Window;
@@ -2222,7 +2224,7 @@ export default function windowCallbackTest(context: Context, windowStage: ohosWi
      */
     it('testEnumWindow_windowType', 0, async ()=>{
       console.info('testEnumWindow_windowType test the enum value of windowType begin');
-      console.info('testEnumWindow_windowType' + JSON.stringify(ohosWindow.WindowType));
+      console.info('testEnumWindow_windowType' + JSON.stringify(ohosWindow.WindowType.TYPE_FLOAT));
       try {
         expect(0).assertEqual(ohosWindow.WindowType.TYPE_APP);
         expect(1).assertEqual(ohosWindow.WindowType.TYPE_SYSTEM_ALERT);

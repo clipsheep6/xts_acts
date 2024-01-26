@@ -1210,8 +1210,6 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let num: number = 0
       let firstListenFlag: boolean = false
       let secondListenFlag: boolean = false
-      let screenClass = null;
-      let screenClass_two = null;
 
       let firstCall = () => {
         console.log(msgStr + "first listener trigger")
@@ -1227,7 +1225,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
 
       display.on("add", firstCall);
       display.on("add", secondCall);
-      screenClass = await screen.createVirtualScreen({
+      let screenClass: screen = await screen.createVirtualScreen({
         name: 'add01',
         width: 1080,
         height: 2340,
@@ -1249,7 +1247,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       firstListenFlag = false
       secondListenFlag = false
       await screen.destroyVirtualScreen(screenClass.id)
-      screenClass_two = await screen.createVirtualScreen({
+      let screenClass_two:screen = await screen.createVirtualScreen({
         name: 'add001',
         width: 900,
         height: 2000,
@@ -1286,8 +1284,6 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       console.log(msgStr + 'begin');
       let firstListenFlag: boolean = false
       let secondListenFlag: boolean = false
-      let screenClass = null;
-      let screenClass_two = null;
       let firstCall: Callback<number> = () => {
         console.log(msgStr + "first listener trigger")
         firstListenFlag = true
@@ -1300,7 +1296,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
 
       display.on("add", firstCall);
       display.on("add", secondCall);
-      screenClass = await screen.createVirtualScreen({
+      let screenClass:screen = await screen.createVirtualScreen({
         name: 'add02',
         width: 1080,
         height: 2340,
@@ -1322,7 +1318,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       firstListenFlag = false
       secondListenFlag = false
       await screen.destroyVirtualScreen(screenClass.id)
-      screenClass_two = await screen.createVirtualScreen({
+      let screenClass_two:screen = await screen.createVirtualScreen({
         name: 'add002',
         width: 900,
         height: 2000,
@@ -1364,8 +1360,6 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       let num: number = 0
       let firstListenFlag: boolean = false
       let secondListenFlag: boolean = false
-      let screenClass = null;
-      let screenClass_two = null;
 
       let firstCall: Callback<number> = () => {
         console.log(msgStr + "first listener trigger")
@@ -1381,7 +1375,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
 
       display.on('remove', firstCall);
       display.on('remove', secondCall);
-      screenClass = await screen.createVirtualScreen({
+      let screenClass:screen = await screen.createVirtualScreen({
         name: 'remove01',
         width: 1080,
         height: 2340,
@@ -1403,7 +1397,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       display.off('remove')
       firstListenFlag = false
       secondListenFlag = false
-      screenClass_two = await screen.createVirtualScreen({
+      let screenClass_two:screen = await screen.createVirtualScreen({
         name: 'remove001',
         width: 900,
         height: 2000,
@@ -1440,8 +1434,6 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       console.log(msgStr + 'begin');
       let firstListenFlag: boolean = false
       let secondListenFlag: boolean = false
-      let screenClass = null;
-      let screenClass_two = null;
 
       let firstCall: Callback<number> = () => {
         console.log(msgStr + "first listener trigger")
@@ -1455,7 +1447,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
 
       display.on('remove', firstCall);
       display.on('remove', secondCall);
-      screenClass = await screen.createVirtualScreen({
+      let screenClass:screen = await screen.createVirtualScreen({
         name: 'remove02',
         width: 1080,
         height: 2340,
@@ -1477,7 +1469,7 @@ export default function windowPromiseTest(context: Context, windowStage: ohosWin
       display.off('remove', firstCall)
       firstListenFlag = false
       secondListenFlag = false
-      screenClass_two = await screen.createVirtualScreen({
+      let screenClass_two:screen = await screen.createVirtualScreen({
         name: 'remove002',
         width: 900,
         height: 2000,
