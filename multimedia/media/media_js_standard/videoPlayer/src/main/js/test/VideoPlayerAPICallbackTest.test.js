@@ -408,7 +408,7 @@ describe('VideoPlayerAPICallbackTest', function () {
             PREPARE_EVENT, ERROR_EVENT, RELEASE_EVENT, END_EVENT);
         eventEmitter.emit(mySteps[0], videoPlayer, mySteps, done);
     })
-   
+
     /* *
         * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_fdSrc_CALLBACK_0200
         * @tc.name      : offset is -1
@@ -459,7 +459,7 @@ describe('VideoPlayerAPICallbackTest', function () {
             PREPARE_EVENT, ERROR_EVENT, RELEASE_EVENT, END_EVENT);
         eventEmitter.emit(mySteps[0], videoPlayer, mySteps, done);
     })
-
+   
     /* *
         * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_PREPARE_CALLBACK_0100
         * @tc.name      : 01.create->prepare
