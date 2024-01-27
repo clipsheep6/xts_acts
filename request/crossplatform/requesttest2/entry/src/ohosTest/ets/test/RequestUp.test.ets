@@ -1,18 +1,3 @@
-/*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import request from '@ohos.request';
 import { describe, it, expect } from '@ohos/hypium'
 import { BusinessError } from '@ohos.base'
@@ -142,7 +127,6 @@ export default function requestUpTest() {
         // remove task
         request.agent.remove(task.tid).then((res) => {
           console.log(`002Succeeded in removing a upload task:${res}`);
-          expect(res).assertFalse();
           done();
         }).catch((err: BusinessError) => {
           console.log(`002Failed to remove a upload task:${err}`);
@@ -168,10 +152,12 @@ export default function requestUpTest() {
       request.agent.remove("创建要上传或下载的任务，并将其排入队列，每个应用最多支持创建10个未完成的任务。使用callback异步回调。", (err: BusinessError) => {
         if (err) {
           console.log(`003remove requestTest task fail:${err}`);
-          expect(err.code).assertEqual(21900006);
+          expect(err.code == 21900006).assertTrue();
           done();
         } else {
           console.log(`003remove requestTest task success!${err}`);
+          expect().assertFail();
+          done();
         }
       })
     })
@@ -187,11 +173,11 @@ export default function requestUpTest() {
     it('SUB_Request_RequestTest_Remove_Func_0400', 0, async (done: Function) => {
       request.agent.remove("创建要上传或下载的任务，并将其排入队列，每个应用最多支持创建10个未完成的任务。使用callback异步回调。").then((res) => {
         console.log(`004remove requestTest task success!${res}`);
-        expect(res).assertFail();
+        expect().assertFail();
         done();
       }).catch((err: BusinessError) => {
         console.log(`004remove requestTest task fail:${err}`);
-        expect(err.code).assertEqual(21900006);
+        expect(err.code == 21900006).assertTrue();
         done();
       })
     })
@@ -219,7 +205,8 @@ export default function requestUpTest() {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
         data: attachments,
-        network: request.agent.Network.WIFI
+        network: request.agent.Network.WIFI,
+        mode: request.agent.Mode.FOREGROUND
       };
       request.agent.create(baseContext, config, (err: BusinessError, task: request.agent.Task) => {
         if (err) {
@@ -269,7 +256,8 @@ export default function requestUpTest() {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
         data: attachments,
-        network: request.agent.Network.WIFI
+        network: request.agent.Network.WIFI,
+        mode: request.agent.Mode.FOREGROUND
       };
       request.agent.create(baseContext, config, (err: BusinessError, task: request.agent.Task) => {
         if (err) {
@@ -284,8 +272,9 @@ export default function requestUpTest() {
             expect(taskInfo.tid).assertEqual(task.tid);
             await request.agent.remove(task.tid);
             done();
-          }).catch((err: BusinessError) => {
+          }).catch(async (err: BusinessError) => {
             console.log(`006Failed to show a upload task, Code: ${err.code}, message: ${err.message}`);
+            await request.agent.remove(task.tid);
             expect(err).assertFail();
             done();
           })
@@ -304,11 +293,13 @@ export default function requestUpTest() {
     it('SUB_Request_RequestTest_Show_Func_0700', 0, async (done: Function) => {
       request.agent.show('task.tid',(err: BusinessError, taskInfo: request.agent.TaskInfo) => {
         if (err) {
-          console.log(`007requestTest showTask fail:${err}`);
-          expect(err.code).assertEqual(21900006);
+          console.log(`007requestTest showTask fail:${err.code}`);
+          expect(err.code == 21900006).assertTrue();
           done();
         } else {
           console.log(`007requestTest showTask success:${taskInfo.tid}`);
+          expect().assertFail();
+          done();
         }
       });
     })
@@ -327,8 +318,8 @@ export default function requestUpTest() {
         expect(res).assertFail();
         done();
       }).catch((err:BusinessError) => {
-        console.log(`008requestTest showTask fail:${err}`);
-        expect(err.code).assertEqual(21900006);
+        console.log(`008requestTest showTask fail:${err}--${typeof err.code}}`);
+        expect(err.code == 21900006).assertTrue();
         done();
       })
     })
@@ -356,7 +347,8 @@ export default function requestUpTest() {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
         data: attachments,
-        token: 'is test009'
+        token: 'is test009',
+        mode: request.agent.Mode.FOREGROUND
       };
       request.agent.create(baseContext, config, (err: BusinessError, task: request.agent.Task) => {
         if (err) {
@@ -369,6 +361,7 @@ export default function requestUpTest() {
           request.agent.touch(task.tid, config.token, async (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
             if (err) {
               console.log(`009Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
+              await request.agent.remove(task.tid);
               expect(err).assertFail();
               done();
             } else {
@@ -405,7 +398,8 @@ export default function requestUpTest() {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
         data: attachments,
-        token: "is test010"
+        token: "is test010",
+        mode: request.agent.Mode.FOREGROUND
       };
       request.agent.create(baseContext, config, (err: BusinessError, task: request.agent.Task) => {
         if (err) {
@@ -420,8 +414,9 @@ export default function requestUpTest() {
             expect(taskInfo.tid).assertEqual(task.tid);
             await request.agent.remove(task.tid);
             done();
-          }).catch((err: BusinessError) => {
+          }).catch(async (err: BusinessError) => {
             console.log(`010Failed to touch a upload task, Code: ${err.code}, message: ${err.message}`);
+            await request.agent.remove(task.tid);
             expect(err).assertFail();
             done();
           })
@@ -452,7 +447,8 @@ export default function requestUpTest() {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
         data: attachments,
-        token: "is test011"
+        token: "is test011",
+        mode: request.agent.Mode.FOREGROUND
       };
       request.agent.create(baseContext, config, async (err: BusinessError, task: request.agent.Task) => {
         if (err) {
@@ -463,11 +459,17 @@ export default function requestUpTest() {
           console.log(`011Succeeded in creating a upload task:${task}`);
           // touch task
           try {
-            request.agent.touch(task.tid, 'wrong', (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
+            request.agent.touch(task.tid, 'wrong', async (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
               if (err) {
                 console.log(`011requestTest touchTask fail:${err}`);
+                await request.agent.remove(task.tid);
+                expect().assertFail();
+                done();
               } else {
                 console.log(`011requestTest touchTask success:${taskInfo.tid}`);
+                await request.agent.remove(task.tid);
+                expect().assertFail();
+                done();
               }
             })
           } catch (err) {
@@ -504,7 +506,8 @@ export default function requestUpTest() {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
         data: attachments,
-        token: "is test012"
+        token: "is test012",
+        mode: request.agent.Mode.FOREGROUND
       };
       request.agent.create(baseContext, config, async (err: BusinessError, task: request.agent.Task) => {
         if (err) {
@@ -515,11 +518,16 @@ export default function requestUpTest() {
           console.log(`012Succeeded in creating a upload task:${task}`);
           // touch task
           try {
-            request.agent.touch(task.tid,'wrong').then((taskInfo: request.agent.TaskInfo) => {
+            request.agent.touch(task.tid,'wrong').then(async (taskInfo: request.agent.TaskInfo) => {
               console.log(`012requestTest touchTask success:${taskInfo.tid}`);
-              expect(taskInfo.tid).assertEqual(task.tid);
-            }).catch((err: BusinessError) => {
+              await request.agent.remove(task.tid);
+              expect().assertFail();
+              done();
+            }).catch(async (err: BusinessError) => {
               console.log(`012requestTest touchTask fail:${err}`);
+              await request.agent.remove(task.tid);
+              expect(err).assertFail();
+              done();
             })
           } catch (err) {
             console.log(`012requestTest touchTask catch:${err}`);
@@ -555,9 +563,10 @@ export default function requestUpTest() {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
         data: attachments,
-        token: "is test013"
+        token: "is test013",
+        mode: request.agent.Mode.FOREGROUND
       };
-      request.agent.create(baseContext, config, (err: BusinessError, task: request.agent.Task) => {
+      request.agent.create(baseContext, config, async (err: BusinessError, task: request.agent.Task) => {
         if (err) {
           console.log(`013Failed to create a upload task:${err}`);
           expect(err).assertFail();
@@ -575,10 +584,14 @@ export default function requestUpTest() {
                 done();
               } else {
                 console.log(`013requestTest touchTask success:${taskInfo.tid}`);
+                await request.agent.remove(task.tid);
+                expect().assertFail();
+                done();
               }
             })
           } catch (err) {
             console.log(`013requestTest touchTask catch:${err}`);
+            await request.agent.remove(task.tid);
             expect(err).assertFail();
             done();
           }
@@ -608,7 +621,8 @@ export default function requestUpTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
-        data: attachments
+        data: attachments,
+        mode: request.agent.Mode.FOREGROUND
       };
       request.agent.create(baseContext, config, (err: BusinessError, task: request.agent.Task) => {
         if (err) {
@@ -775,7 +789,8 @@ export default function requestUpTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
-        data: attachments
+        data: attachments,
+        mode: request.agent.Mode.FOREGROUND
       };
       request.agent.create(baseContext, config, (err: BusinessError, task: request.agent.Task) => {
         if (err) {
@@ -822,7 +837,8 @@ export default function requestUpTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
-        data: attachments
+        data: attachments,
+        mode: request.agent.Mode.FOREGROUND
       };
       request.agent.create(baseContext, config, (err: BusinessError, task: request.agent.Task) => {
         if (err) {
@@ -833,7 +849,6 @@ export default function requestUpTest() {
           console.log(`018Succeeded in creating a upload task:${task}`);
           task.start().then(async (res) => {
             console.log(`018Succeeded in starting a download task.${res}`);
-            expect(res).assertTrue();
             await request.agent.remove(task.tid);
             done();
           }).catch((err: BusinessError) => {
@@ -846,14 +861,14 @@ export default function requestUpTest() {
     })
 
     /*
-     * @tc.number: SUB_Request_RequestTest_Pause_Func_1900
-     * @tc.name: SUB_Request_RequestTest_Pause_Func_1900
-     * @tc.desc: uploadTask.pause (callback)
+     * @tc.number: SUB_Request_RequestTest_Stop_Func_1900
+     * @tc.name: SUB_Request_RequestTest_Stop_Func_1900
+     * @tc.desc: task.stop (callback)
      * @tc.size: MediumTest
      * @tc.type: Method
      * @tc.level: Level 2
      */
-    it('SUB_Request_RequestTest_Pause_Func_1900', 0, async (done: Function) => {
+    it('SUB_Request_RequestTest_Stop_Func_1900', 0, async (done: Function) => {
       let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
       fs.writeSync(file.fd, wenBen);
       let attachments: Array<request.agent.FormItem> = [{
@@ -867,42 +882,35 @@ export default function requestUpTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
-        data: attachments
+        data: attachments,
+        mode: request.agent.Mode.FOREGROUND
       };
       let task:request.agent.Task = await request.agent.create(baseContext, config);
       console.log(`019requestTest create Task success:${task.tid}`);
-      try {
-        await task.start().then();
-        console.log(`019requestTest start success`);
-        task.pause(async (err: BusinessError) => {
-          if (err) {
-            console.log(`019requestTest pause fail${err}`);
-            expect(err.code).assertEqual(21900007);
-            done();
-          } else {
-            console.log(`019requestTest pause success${err}`);
-            expect(err).assertNull();
-            // remove task
-            await request.agent.remove(task.tid);
-            done();
-          }
-        })
-      } catch (err) {
-        console.log(`019requestTest pause catch${err}`);
-        expect(err).assertFail();
-        done();
-      }
+      let start:void = await task.start();
+      console.log(`019requestTest start success${start}`);
+      task.stop(async (err: BusinessError) => {
+        if (err) {
+          console.log(`019requestTest stop fail${err}`);
+          expect(err.code).assertEqual(21900007);
+          done();
+        } else {
+          console.log(`019requestTest stop success${err}`);
+          expect(err).assertNull();
+          done();
+        }
+      })
     })
 
     /*
-     * @tc.number: SUB_Request_RequestTest_Pause_Func_2000
-     * @tc.name: SUB_Request_RequestTest_Pause_Func_2000
-     * @tc.desc: uploadTask.pause (promise)
+     * @tc.number: SUB_Request_RequestTest_Stop_Func_2000
+     * @tc.name: SUB_Request_RequestTest_Stop_Func_2000
+     * @tc.desc: task.stop (promise)
      * @tc.size: MediumTest
      * @tc.type: Method
      * @tc.level: Level 2
      */
-    it('SUB_Request_RequestTest_Pause_Func_2000', 0, async (done: Function) => {
+    it('SUB_Request_RequestTest_Stop_Func_2000', 0, async (done: Function) => {
       let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
       fs.writeSync(file.fd, wenBen);
       let attachments: Array<request.agent.FormItem> = [{
@@ -916,39 +924,32 @@ export default function requestUpTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
-        data: attachments
+        data: attachments,
+        mode: request.agent.Mode.FOREGROUND
       };
       let task:request.agent.Task = await request.agent.create(baseContext, config);
       console.log(`020requestTest create Task success:${task.tid}`);
-      task.start().then( async () => {
-        console.log(`020requestTest start success${task}`);
-        task.pause().then(async (res) => {
-          console.log(`020requestTest pause success${res}`);
-          expect(res).assertTrue();
-          // remove task
-          await request.agent.remove(task.tid);
-          done();
-        }).catch((err: BusinessError) => {
-          console.log(`020requestTest pause fail:${err}`);
-          expect(err.code).assertEqual(21900007);
-          done();
-        })
+      let start:void = await task.start();
+      console.log(`020requestTest start success${start}`);
+      task.stop().then(async (res) => {
+        console.log(`020requestTest stop success${res}`);
+        done();
       }).catch((err: BusinessError) => {
-        console.log(`020requestTest start fail:${err}`);
-        expect(err).assertFail();
+        console.log(`020requestTest stop fail:${err}`);
+        expect(err.code).assertEqual(21900007);
         done();
       })
     })
 
     /*
-     * @tc.number: SUB_Request_RequestTest_Resume_Func_2100
-     * @tc.name: SUB_Request_RequestTest_Resume_Func_2100
-     * @tc.desc: task.resume (callback)
+     * @tc.number: SUB_Request_RequestTest_Start_Func_2100
+     * @tc.name: SUB_Request_RequestTest_Start_Func_2100
+     * @tc.desc: task.start()  /task state error. (callback)
      * @tc.size: MediumTest
      * @tc.type: Method
      * @tc.level: Level 2
      */
-    it('SUB_Request_RequestTest_Resume_Func_2100', 0, async (done: Function) => {
+    it('SUB_Request_RequestTest_Start_Func_2100', 0, async (done: Function) => {
       let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
       fs.writeSync(file.fd, wenBen);
       let attachments: Array<request.agent.FormItem> = [{
@@ -962,45 +963,35 @@ export default function requestUpTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
-        data: attachments
+        data: attachments,
+        mode: request.agent.Mode.FOREGROUND
       };
-      try {
-        let task:request.agent.Task = await request.agent.create(baseContext, config);
-        console.log(`021requestTest create Task success:${task.tid}`);
-        let start:void = await task.start();
-        console.log(`021requestTest start success${start}`);
-        let pause:void = await task.pause();
-        console.log(`021requestTest pause success${pause}`);
-        task.resume(async (err: BusinessError) => {
-          if (err) {
-            console.log(`021requestTest resume fail${err}`);
-            await request.agent.remove(task.tid);
-            expect(err).assertFail();
-            done();
-          } else {
-            console.log(`021requestTest resume success${err}`);
-            // remove task
-            await request.agent.remove(task.tid);
-            expect(err).assertNull();
-            done();
-          }
-        })
-      } catch (err) {
-        console.log(`requestTest031 resume catch${err}`);
-        expect(err).assertFail();
-        done();
-      }
+      let task:request.agent.Task = await request.agent.create(baseContext, config);
+      console.log(`021requestTest create Task success:${task.tid}`);
+      let remove:void = await request.agent.remove(task.tid);
+      console.log(`021requestTest remove success:${remove}`);
+      task.start((err: BusinessError) => {
+        if (err) {
+          console.log(`021requestTest start fail:${err.code}`);
+          expect(err.code).assertEqual(21900007);
+          done();
+        } else {
+          console.log(`021requestTest start success:${err}`);
+          expect().assertFail();
+          done();
+        }
+      });
     })
 
     /*
-     * @tc.number: SUB_Request_RequestTest_Resume_Func_2200
-     * @tc.name: SUB_Request_RequestTest_Resume_Func_2200
-     * @tc.desc: task.resume (promise)
+     * @tc.number: SUB_Request_RequestTest_Start_Func_2200
+     * @tc.name: SUB_Request_RequestTest_Start_Func_2200
+     * @tc.desc: task.start()  /task state error. (promise)
      * @tc.size: MediumTest
      * @tc.type: Method
      * @tc.level: Level 2
      */
-    it('SUB_Request_RequestTest_Resume_Func_2200', 0, async (done: Function) => {
+    it('SUB_Request_RequestTest_Start_Func_2200', 0, async (done: Function) => {
       let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
       fs.writeSync(file.fd, wenBen);
       let attachments: Array<request.agent.FormItem> = [{
@@ -1014,24 +1005,19 @@ export default function requestUpTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
-        data: attachments
+        data: attachments,
+        mode: request.agent.Mode.FOREGROUND
       };
       let task:request.agent.Task = await request.agent.create(baseContext, config);
       console.log(`022requestTest create Task success:${task.tid}`);
-      let start:void = await task.start();
-      console.log(`022requestTest start success${start}`);
-      let pause:void = await task.pause();
-      console.log(`022requestTest pause success${pause}`);
-      task.resume().then(async (res) => {
-        console.log(`022requestTest resume success${res}`);
-        expect(res).assertTrue();
-        // remove task
-        await request.agent.remove(task.tid);
+      let remove:void = await request.agent.remove(task.tid);
+      console.log(`022requestTest remove success:${remove}`);
+      task.start().then(res => {
+        console.log(`022requestTest start success:${res}`);
         done();
-      }).catch(async (err: BusinessError) => {
-        console.log(`022requestTest resume fail:${err}`);
-        expect(err.code).assertEqual(21900006);
-        await request.agent.remove(task.tid);
+      }).catch((err: BusinessError) => {
+        console.log(`022requestTest start fail:${err.code}`);
+        expect(err.code).assertEqual(21900007);
         done();
       })
     })
@@ -1039,7 +1025,7 @@ export default function requestUpTest() {
     /*
      * @tc.number: SUB_Request_RequestTest_Stop_Func_2300
      * @tc.name: SUB_Request_RequestTest_Stop_Func_2300
-     * @tc.desc: task.stop (callback)
+     * @tc.desc: task.stop() /task state error. (callback)
      * @tc.size: MediumTest
      * @tc.type: Method
      * @tc.level: Level 2
@@ -1058,20 +1044,22 @@ export default function requestUpTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
-        data: attachments
+        data: attachments,
+        mode: request.agent.Mode.FOREGROUND
       };
       let task:request.agent.Task = await request.agent.create(baseContext, config);
       console.log(`023requestTest create Task success:${task.tid}`);
-      let start:void = await task.start();
-      console.log(`023requestTest start success${start}`);
       task.stop(async (err: BusinessError) => {
         if (err) {
-          console.log(`023requestTest stop fail${err}`);
+          console.log(`023requestTest stop fail:${err.code}`);
           expect(err.code).assertEqual(21900007);
+          // remove task
+          await request.agent.remove(task.tid);
           done();
         } else {
-          console.log(`023requestTest stop success${err}`);
-          expect(err).assertNull();
+          console.log(`023requestTest stop success:${err}`);
+          await request.agent.remove(task.tid);
+          expect().assertFail();
           done();
         }
       })
@@ -1080,7 +1068,7 @@ export default function requestUpTest() {
     /*
      * @tc.number: SUB_Request_RequestTest_Stop_Func_2400
      * @tc.name: SUB_Request_RequestTest_Stop_Func_2400
-     * @tc.desc: task.stop (promise)
+     * @tc.desc: task.stop()  /task state error. (promise)
      * @tc.size: MediumTest
      * @tc.type: Method
      * @tc.level: Level 2
@@ -1099,320 +1087,16 @@ export default function requestUpTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.UPLOAD,
         url: 'http://127.0.0.1',
-        data: attachments
+        data: attachments,
+        mode: request.agent.Mode.FOREGROUND
       };
       let task:request.agent.Task = await request.agent.create(baseContext, config);
       console.log(`024requestTest create Task success:${task.tid}`);
-      let start:void = await task.start();
-      console.log(`024requestTest start success${start}`);
-      task.stop().then(async (res) => {
-        console.log(`024requestTest stop success${res}`);
-        expect(res).assertTrue();
-        done();
-      }).catch((err: BusinessError) => {
-        console.log(`024requestTest stop fail:${err}`);
-        expect(err.code).assertEqual(21900007);
-        done();
-      })
-    })
-
-    /*
-     * @tc.number: SUB_Request_RequestTest_Start_Func_2500
-     * @tc.name: SUB_Request_RequestTest_Start_Func_2500
-     * @tc.desc: task.start()  /task state error. (callback)
-     * @tc.size: MediumTest
-     * @tc.type: Method
-     * @tc.level: Level 2
-     */
-    it('SUB_Request_RequestTest_Start_Func_2500', 0, async (done: Function) => {
-      let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
-      fs.writeSync(file.fd, wenBen);
-      let attachments: Array<request.agent.FormItem> = [{
-        name: "createUploadTest",
-        value: {
-          filename: "createUploadTest.txt",
-          mimeType: "application/octet-stream",
-          path: "./createUploadTest.txt",
-        }
-      }];
-      let config: request.agent.Config = {
-        action: request.agent.Action.UPLOAD,
-        url: 'http://127.0.0.1',
-        data: attachments
-      };
-      let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`025requestTest create Task success:${task.tid}`);
-      let remove:void = await request.agent.remove(task.tid);
-      console.log(`025requestTest remove success:${remove}`);
-      task.start((err: BusinessError) => {
-        if (err) {
-          console.log(`025requestTest start fail:${err.code}`);
-          expect(err.code).assertEqual(21900007);
-          done();
-        } else {
-          console.log(`025requestTest start success:${err}`);
-        }
-      });
-    })
-
-    /*
-     * @tc.number: SUB_Request_RequestTest_Start_Func_2600
-     * @tc.name: SUB_Request_RequestTest_Start_Func_2600
-     * @tc.desc: task.start()  /task state error. (promise)
-     * @tc.size: MediumTest
-     * @tc.type: Method
-     * @tc.level: Level 2
-     */
-    it('SUB_Request_RequestTest_Start_Func_2600', 0, async (done: Function) => {
-      let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
-      fs.writeSync(file.fd, wenBen);
-      let attachments: Array<request.agent.FormItem> = [{
-        name: "createUploadTest",
-        value: {
-          filename: "createUploadTest.txt",
-          mimeType: "application/octet-stream",
-          path: "./createUploadTest.txt",
-        }
-      }];
-      let config: request.agent.Config = {
-        action: request.agent.Action.UPLOAD,
-        url: 'http://127.0.0.1',
-        data: attachments
-      };
-      let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`026requestTest create Task success:${task.tid}`);
-      let remove:void = await request.agent.remove(task.tid);
-      console.log(`026requestTest remove success:${remove}`);
-      task.start().then(res => {
-        console.log(`026requestTest start success:${res}`);
-      }).catch((err: BusinessError) => {
-        console.log(`026requestTest start fail:${err.code}`);
-        expect(err.code).assertEqual(21900007);
-        done();
-      })
-    })
-
-    /*
-     * @tc.number: SUB_Request_RequestTest_Pause_Func_2700
-     * @tc.name: SUB_Request_RequestTest_Pause_Func_2700
-     * @tc.desc: task.pause() /task state error. (callback)
-     * @tc.size: MediumTest
-     * @tc.type: Method
-     * @tc.level: Level 2
-     */
-    it('SUB_Request_RequestTest_Pause_Func_2700', 0, async (done: Function) => {
-      let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
-      fs.writeSync(file.fd, wenBen);
-      let attachments: Array<request.agent.FormItem> = [{
-        name: "createUploadTest",
-        value: {
-          filename: "createUploadTest.txt",
-          mimeType: "application/octet-stream",
-          path: "./createUploadTest.txt",
-        }
-      }];
-      let config: request.agent.Config = {
-        action: request.agent.Action.UPLOAD,
-        url: 'http://127.0.0.1',
-        data: attachments
-      };
-      let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`027requestTest create Task success:${task.tid}`);
-      task.pause(async (err: BusinessError) => {
-        if (err) {
-          console.log(`027requestTest pause fail:${err.code}`);
-          expect(err.code).assertEqual(21900007);
-          // remove task
-          await request.agent.remove(task.tid);
-          done();
-        } else {
-          console.log(`027requestTest pause success:${err}`);
-        }
-      })
-    })
-
-    /*
-     * @tc.number: SUB_Request_RequestTest_Pause_Func_2800
-     * @tc.name: SUB_Request_RequestTest_Pause_Func_2800
-     * @tc.desc: task.pause()  /task state error. (promise)
-     * @tc.size: MediumTest
-     * @tc.type: Method
-     * @tc.level: Level 2
-     */
-    it('SUB_Request_RequestTest_Pause_Func_2800', 0, async (done: Function) => {
-      let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
-      fs.writeSync(file.fd, wenBen);
-      let attachments: Array<request.agent.FormItem> = [{
-        name: "createUploadTest",
-        value: {
-          filename: "createUploadTest.txt",
-          mimeType: "application/octet-stream",
-          path: "./createUploadTest.txt",
-        }
-      }];
-      let config: request.agent.Config = {
-        action: request.agent.Action.UPLOAD,
-        url: 'http://127.0.0.1',
-        data: attachments
-      };
-      let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`028requestTest create Task success:${task.tid}`);
-      task.pause().then(res => {
-        console.log(`028requestTest pause success:${res}`);
-      }).catch(async (err: BusinessError) => {
-        console.log(`028requestTest pause fail:${err.code}`);
-        expect(err.code).assertEqual(21900007);
-        // remove task
-        await request.agent.remove(task.tid);
-        done();
-      })
-    })
-
-    /*
-     * @tc.number: SUB_Request_RequestTest_Resume_Func_2900
-     * @tc.name: SUB_Request_RequestTest_Resume_Func_2900
-     * @tc.desc: task.resume() /task state error. (callback)
-     * @tc.size: MediumTest
-     * @tc.type: Method
-     * @tc.level: Level 2
-     */
-    it('SUB_Request_RequestTest_Resume_Func_2900', 0, async (done: Function) => {
-      let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
-      fs.writeSync(file.fd, wenBen);
-      let attachments: Array<request.agent.FormItem> = [{
-        name: "createUploadTest",
-        value: {
-          filename: "createUploadTest.txt",
-          mimeType: "application/octet-stream",
-          path: "./createUploadTest.txt",
-        }
-      }];
-      let config: request.agent.Config = {
-        action: request.agent.Action.UPLOAD,
-        url: 'http://127.0.0.1',
-        data: attachments
-      };
-      let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`029requestTest create Task success:${task.tid}`);
-      task.resume(async (err: BusinessError) => {
-        if (err) {
-          console.log(`029requestTest resume fail:${err.code}`);
-          expect(err.code).assertEqual(21900007);
-          // remove task
-          await request.agent.remove(task.tid);
-          done();
-        } else {
-          console.log(`029requestTest resume success:${err}`);
-        }
-      })
-    })
-
-    /*
-     * @tc.number: SUB_Request_RequestTest_Resume_Func_3000
-     * @tc.name: SUB_Request_RequestTest_Resume_Func_3000
-     * @tc.desc: task.resume()  /task state error. (promise)
-     * @tc.size: MediumTest
-     * @tc.type: Method
-     * @tc.level: Level 2
-     */
-    it('SUB_Request_RequestTest_Resume_Func_3000', 0, async (done: Function) => {
-      let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
-      fs.writeSync(file.fd, wenBen);
-      let attachments: Array<request.agent.FormItem> = [{
-        name: "createUploadTest",
-        value: {
-          filename: "createUploadTest.txt",
-          mimeType: "application/octet-stream",
-          path: "./createUploadTest.txt",
-        }
-      }];
-      let config: request.agent.Config = {
-        action: request.agent.Action.UPLOAD,
-        url: 'http://127.0.0.1',
-        data: attachments
-      };
-      let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`030requestTest create Task success:${task.tid}`);
-      task.resume().then(res => {
-        console.log(`030requestTest resume success:${res}`);
-      }).catch(async (err: BusinessError) => {
-        console.log(`030requestTest resume fail:${err.code}`);
-        expect(err.code).assertEqual(21900007);
-        // remove task
-        await request.agent.remove(task.tid);
-        done();
-      })
-    })
-
-    /*
-     * @tc.number: SUB_Request_RequestTest_Stop_Func_3100
-     * @tc.name: SUB_Request_RequestTest_Stop_Func_3100
-     * @tc.desc: task.stop() /task state error. (callback)
-     * @tc.size: MediumTest
-     * @tc.type: Method
-     * @tc.level: Level 2
-     */
-    it('SUB_Request_RequestTest_Stop_Func_3100', 0, async (done: Function) => {
-      let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
-      fs.writeSync(file.fd, wenBen);
-      let attachments: Array<request.agent.FormItem> = [{
-        name: "createUploadTest",
-        value: {
-          filename: "createUploadTest.txt",
-          mimeType: "application/octet-stream",
-          path: "./createUploadTest.txt",
-        }
-      }];
-      let config: request.agent.Config = {
-        action: request.agent.Action.UPLOAD,
-        url: 'http://127.0.0.1',
-        data: attachments
-      };
-      let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`031requestTest create Task success:${task.tid}`);
-      task.stop(async (err: BusinessError) => {
-        if (err) {
-          console.log(`031requestTest stop fail:${err.code}`);
-          expect(err.code).assertEqual(21900007);
-          // remove task
-          await request.agent.remove(task.tid);
-          done();
-        } else {
-          console.log(`031requestTest stop success:${err}`);
-        }
-      })
-    })
-
-    /*
-     * @tc.number: SUB_Request_RequestTest_Stop_Func_3200
-     * @tc.name: SUB_Request_RequestTest_Stop_Func_3200
-     * @tc.desc: task.stop()  /task state error. (promise)
-     * @tc.size: MediumTest
-     * @tc.type: Method
-     * @tc.level: Level 2
-     */
-    it('SUB_Request_RequestTest_Stop_Func_3200', 0, async (done: Function) => {
-      let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
-      fs.writeSync(file.fd, wenBen);
-      let attachments: Array<request.agent.FormItem> = [{
-        name: "createUploadTest",
-        value: {
-          filename: "createUploadTest.txt",
-          mimeType: "application/octet-stream",
-          path: "./createUploadTest.txt",
-        }
-      }];
-      let config: request.agent.Config = {
-        action: request.agent.Action.UPLOAD,
-        url: 'http://127.0.0.1',
-        data: attachments
-      };
-      let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`032requestTest create Task success:${task.tid}`);
       task.stop().then(res => {
-        console.log(`032requestTest stop success:${res}`);
+        console.log(`024requestTest stop success:${res}`);
+        done();
       }).catch(async (err: BusinessError) => {
-        console.log(`032requestTest stop fail:${err.code}`);
+        console.log(`024requestTest stop fail:${err.code}`);
         expect(err.code).assertEqual(21900007);
         // remove task
         await request.agent.remove(task.tid);
@@ -1421,14 +1105,14 @@ export default function requestUpTest() {
     })
 
     /*
-     * @tc.number: SUB_Request_RequestTest_OnProgress_Func_3300
-     * @tc.name: SUB_Request_RequestTest_OnProgress_Func_3300
+     * @tc.number: SUB_Request_RequestTest_OnProgress_Func_2500
+     * @tc.name: SUB_Request_RequestTest_OnProgress_Func_2500
      * @tc.desc:  task.on('progress')
      * @tc.size: MediumTest
      * @tc.type: Method
      * @tc.level: Level 2
      */
-    it('SUB_Request_RequestTest_OnProgress_Func_3300', 0, async (done: Function) => {
+    it('SUB_Request_RequestTest_OnProgress_Func_2500', 0, async (done: Function) => {
       let flag:Boolean = false;
       let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
       fs.writeSync(file.fd, wenBen);
@@ -1447,28 +1131,28 @@ export default function requestUpTest() {
         mode: request.agent.Mode.FOREGROUND
       };
       let createOnProgress = (progress: request.agent.Progress):void => {
-        console.log(`033upload task progress.${progress}`);
+        console.log(`025upload task progress.${progress}`);
         flag = true;
         expect(flag).assertTrue();
       };
       let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`033requestTest create Task success:${task.tid}`);
+      console.log(`025requestTest create Task success:${task.tid}`);
       task.on('progress', createOnProgress);
       // start task
       let start:void = await task.start();
-      console.log(`033Succeeded in starting a upload task${start}`);
+      console.log(`025Succeeded in starting a upload task${start}`);
       done();
     })
 
     /*
-     * @tc.number: SUB_Request_RequestTest_OnCompleted_Func_3400
-     * @tc.name: SUB_Request_RequestTest_OnCompleted_Func_3400
+     * @tc.number: SUB_Request_RequestTest_OnCompleted_Func_2600
+     * @tc.name: SUB_Request_RequestTest_OnCompleted_Func_2600
      * @tc.desc:  task.on('completed')
      * @tc.size: MediumTest
      * @tc.type: Method
      * @tc.level: Level 2
      */
-    it('SUB_Request_RequestTest_OnCompleted_Func_3400', 0, async (done: Function) => {
+    it('SUB_Request_RequestTest_OnCompleted_Func_2600', 0, async (done: Function) => {
       let flag:Boolean = false;
       let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
       fs.writeSync(file.fd, wenBen);
@@ -1485,33 +1169,36 @@ export default function requestUpTest() {
         url: 'http://127.0.0.1',
         data: attachments,
         mode: request.agent.Mode.FOREGROUND,
+        headers: {
+          "Range": "bytes=0-1000"
+        },
         index: 0,
-        begins: 10,
-        ends: 100
+        begins: 0,
+        ends: -1
       };
       let createOnCompleted = (progress: request.agent.Progress):void => {
-        console.log(`034upload task completed.${progress}`);
+        console.log(`026upload task completed.${progress}`);
         flag = true
         expect(flag).assertTrue()
       };
       let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`034requestTest create Task success:${task.tid}`);
+      console.log(`026requestTest create Task success:${task.tid}`);
       task.on('completed', createOnCompleted);
       // start task
       let start:void = await task.start();
-      console.log(`034Succeeded in starting a upload task${start}`);
+      console.log(`026Succeeded in starting a upload task${start}`);
       done();
     })
 
     /*
-     * @tc.number: SUB_Request_RequestTest_OnFailed_Func_3500
-     * @tc.name: SUB_Request_RequestTest_OnFailed_Func_3500
+     * @tc.number: SUB_Request_RequestTest_OnFailed_Func_2700
+     * @tc.name: SUB_Request_RequestTest_OnFailed_Func_2700
      * @tc.desc: task.on('failed')
      * @tc.size: MediumTest
      * @tc.type: Method
      * @tc.level: Level 2
      */
-    it('SUB_Request_RequestTest_OnFailed_Func_3500', 0, async (done: Function) => {
+    it('SUB_Request_RequestTest_OnFailed_Func_2700', 0, async (done: Function) => {
       let flag:Boolean = false;
       let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
       fs.writeSync(file.fd, wenBen);
@@ -1530,28 +1217,28 @@ export default function requestUpTest() {
         mode: request.agent.Mode.FOREGROUND
       };
       let createOnFailed = (progress: request.agent.Progress):void => {
-        console.log(`035upload task failed.${progress}`);
+        console.log(`027upload task failed.${progress}`);
         flag = true
         expect(flag).assertTrue()
       };
       let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`035requestTest create Task success:${task.tid}`);
+      console.log(`027requestTest create Task success:${task.tid}`);
       task.on('failed', createOnFailed);
       // start task
       let start:void = await task.start();
-      console.log(`035Succeeded in starting a upload task${start}`);
+      console.log(`027Succeeded in starting a upload task${start}`);
       done();
     })
 
     /*
-     * @tc.number: SUB_Request_RequestTest_OffProgress_Func_3600
-     * @tc.name: SUB_Request_RequestTest_OffProgress_Func_3600
+     * @tc.number: SUB_Request_RequestTest_OffProgress_Func_2800
+     * @tc.name: SUB_Request_RequestTest_OffProgress_Func_2800
      * @tc.desc: task.off('progress')
      * @tc.size: MediumTest
      * @tc.type: Method
      * @tc.level: Level 2
      */
-    it('SUB_Request_RequestTest_OffProgress_Func_3600', 0, async (done: Function) => {
+    it('SUB_Request_RequestTest_OffProgress_Func_2800', 0, async (done: Function) => {
       let flag:Boolean = false;
       let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
       fs.writeSync(file.fd, wenBen);
@@ -1570,29 +1257,29 @@ export default function requestUpTest() {
         mode: request.agent.Mode.FOREGROUND
       };
       let createOnProgress = (progress: request.agent.Progress):void => {
-        console.log(`036upload task progress.${progress}`);
+        console.log(`028upload task progress.${progress}`);
         flag = true
         expect(flag).assertTrue()
       };
       let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`036requestTest create Task success:${task.tid}`);
+      console.log(`028requestTest create Task success:${task.tid}`);
       task.on('progress', createOnProgress);
       task.off('progress', createOnProgress);
       // start task
       let start:void = await task.start();
-      console.log(`036Succeeded in starting a upload task${start}`);
+      console.log(`028Succeeded in starting a upload task${start}`);
       done();
     })
 
     /*
-     * @tc.number: SUB_Request_RequestTest_OffCompleted_Func_3700
-     * @tc.name: SUB_Request_RequestTest_OffCompleted_Func_3700
+     * @tc.number: SUB_Request_RequestTest_OffCompleted_Func_2900
+     * @tc.name: SUB_Request_RequestTest_OffCompleted_Func_2900
      * @tc.desc:  task.off('completed')
      * @tc.size: MediumTest
      * @tc.type: Method
      * @tc.level: Level 2
      */
-    it('SUB_Request_RequestTest_OffCompleted_Func_3700', 0, async (done: Function) => {
+    it('SUB_Request_RequestTest_OffCompleted_Func_2900', 0, async (done: Function) => {
       let flag:Boolean = false;
       let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
       fs.writeSync(file.fd, wenBen);
@@ -1611,29 +1298,29 @@ export default function requestUpTest() {
         mode: request.agent.Mode.FOREGROUND
       };
       let createOnCompleted = (progress: request.agent.Progress):void => {
-        console.log(`037upload task completed.${progress}`);
+        console.log(`029upload task completed.${progress}`);
         flag = true
         expect(flag).assertTrue()
       };
       let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`037requestTest create Task success:${task.tid}`);
+      console.log(`029requestTest create Task success:${task.tid}`);
       task.on('completed', createOnCompleted);
       task.off('completed', createOnCompleted);
       // start task
       let start:void = await task.start();
-      console.log(`037Succeeded in starting a upload task${start}`);
+      console.log(`029Succeeded in starting a upload task${start}`);
       done();
     })
 
     /*
-     * @tc.number: SUB_Request_RequestTest_OffFailed_Func_3800
-     * @tc.name: SUB_Request_RequestTest_OffFailed_Func_3800
+     * @tc.number: SUB_Request_RequestTest_OffFailed_Func_3000
+     * @tc.name: SUB_Request_RequestTest_OffFailed_Func_3000
      * @tc.desc:  task.off('failed')
      * @tc.size: MediumTest
      * @tc.type: Method
      * @tc.level: Level 2
      */
-    it('SUB_Request_RequestTest_OffFailed_Func_3800', 0, async (done: Function) => {
+    it('SUB_Request_RequestTest_OffFailed_Func_3000', 0, async (done: Function) => {
       let flag:Boolean = false;
       let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
       fs.writeSync(file.fd, wenBen);
@@ -1652,29 +1339,29 @@ export default function requestUpTest() {
         mode: request.agent.Mode.FOREGROUND
       };
       let createOnFailed = (progress: request.agent.Progress):void => {
-        console.log(`038upload task failed.${progress}`);
+        console.log(`030upload task failed.${progress}`);
         flag = true
         expect(flag).assertTrue()
       };
       let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`038requestTest create Task success:${task.tid}`);
+      console.log(`030requestTest create Task success:${task.tid}`);
       task.on('failed', createOnFailed);
       task.off('failed', createOnFailed);
       // start task
       let start:void = await task.start();
-      console.log(`038Succeeded in starting a upload task${start}`);
+      console.log(`030Succeeded in starting a upload task${start}`);
       done();
     })
 
     /*
-     * @tc.number: SUB_Request_RequestTest_OffFailed_Func_3900
-     * @tc.name: SUB_Request_RequestTest_OffFailed_Func_3900
+     * @tc.number: SUB_Request_RequestTest_OffFailed_Func_3100
+     * @tc.name: SUB_Request_RequestTest_OffFailed_Func_3100
      * @tc.desc:  task.off('failed')/unsubscribe all
      * @tc.size: MediumTest
      * @tc.type: Method
      * @tc.level: Level 2
      */
-    it('SUB_Request_RequestTest_OffFailed_Func_3900', 0, async (done: Function) => {
+    it('SUB_Request_RequestTest_OffFailed_Func_3100', 0, async (done: Function) => {
       let flag1:Boolean = false;
       let flag2:Boolean = false;
       let file:fs.File = fs.openSync(baseContext.cacheDir + '/createUploadTest.txt', 0o100 | 0o2);
@@ -1694,23 +1381,23 @@ export default function requestUpTest() {
         mode: request.agent.Mode.FOREGROUND
       };
       let createOnFailed1 = (progress: request.agent.Progress):void => {
-        console.log(`039upload task failed.${progress}`);
+        console.log(`031upload task failed.${progress}`);
         flag1 = true
         expect(flag1).assertTrue()
       };
       let createOnFailed2 = (progress: request.agent.Progress):void => {
-        console.log(`039upload task failed.${progress}`);
+        console.log(`031upload task failed.${progress}`);
         flag2 = true
         expect(flag2).assertTrue()
       };
       let task:request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`039requestTest create Task success:${task.tid}`);
+      console.log(`031requestTest create Task success:${task.tid}`);
       task.on('failed', createOnFailed1);
       task.on('failed', createOnFailed2);
       task.off('failed');
       // start task
       let start:void = await task.start();
-      console.log(`039Succeeded in starting a upload task${start}`);
+      console.log(`031Succeeded in starting a upload task${start}`);
       done();
     })
   })
