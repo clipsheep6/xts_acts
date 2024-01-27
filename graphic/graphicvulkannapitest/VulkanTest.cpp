@@ -231,7 +231,6 @@ HWTEST_F(VulkanLoaderSystemTest, getNativeBufferPropertiesOHOS_Test, TestSize.Le
         fpGetNativeBufferPropertiesOHOS = reinterpret_cast<PFN_vkGetNativeBufferPropertiesOHOS>(
             vkGetDeviceProcAddr(device_, "vkGetNativeBufferPropertiesOHOS"));
         fpGetNativeBufferPropertiesOHOS(device, aHardBuffer, &androidHardwareBufferPropertiesOHOS);
-
     }
 }
 
