@@ -62,6 +62,7 @@ group("ability_runtime") {
       "getrunningprocessinformation:getrunningprocessinformation",
       "newwant:newwant",
       "registerjserror:registerjserror",
+      "setwakeup:setwakeup",
       "shareextensionability:actsshareextensionability",
       "stage:stage",
       "stopserviceextension:stopserviceextension",
