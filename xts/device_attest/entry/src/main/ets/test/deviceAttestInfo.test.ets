@@ -40,12 +40,12 @@ export default function deviceAttestInfoTest(context, windowStage, abilityStorag
     }
 
     /**
-     * @tc.number: SUB_GRAPHIC_ENUMCOLORSPACE_JSAPI_0100
+     * @tc.number: SUB_XTS_DEVICEATTEST_0100
      * @tc.name  : testAttestStatus001
      * @tc.desc  : 202 - Not System App. Interface caller is not a system app.
      * @tc.level : Level 2
-     * @tc.type  : 
-     * @tc.size  : 
+     * @tc.type  : Function
+     * @tc.size  : MediumTest
      */
     it('testAttestStatus001', 0, async function (done) {
       console.info('test the enum value of attestResultInfo begin');
@@ -70,12 +70,12 @@ export default function deviceAttestInfoTest(context, windowStage, abilityStorag
     })
 
     /**
-     * @tc.number: SUB_GRAPHIC_ENUMCOLORSPACE_JSAPI_0200
+     * @tc.number: SUB_XTS_DEVICEATTEST_0200
      * @tc.name  : testAttestStatus002
      * @tc.desc  : 202 - Not System App. Interface caller is not a system app.
      * @tc.level : Level 2
-     * @tc.type  : 
-     * @tc.size  : 
+     * @tc.type  : Function
+     * @tc.size  : MediumTest
      */
     it('testAttestStatus002', 0, async function (done) {
       console.info('test the enum value of attestResultInfo begin');
@@ -101,12 +101,12 @@ export default function deviceAttestInfoTest(context, windowStage, abilityStorag
     })
 
     /**
-     * @tc.number: SUB_GRAPHIC_ENUMCOLORSPACE_JSAPI_0300
+     * @tc.number: SUB_XTS_DEVICEATTEST_0300
      * @tc.name  : testAttestStatus003
      * @tc.desc  : 202 - Not System App. Interface caller is not a system app.
      * @tc.level : Level 2
-     * @tc.type  : 
-     * @tc.size  : 
+     * @tc.type  : Function
+     * @tc.size  : MediumTest
      */
     it('testAttestStatus003', 0, async function (done) {
       console.info('test the enum value of attestResultInfo begin');
