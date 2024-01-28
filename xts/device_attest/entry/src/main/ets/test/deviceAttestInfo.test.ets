@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -40,11 +40,14 @@ export default function deviceAttestInfoTest(context, windowStage, abilityStorag
     }
 
     /**
-     * @tc.number     SUB_GRAPHIC_ENUMCOLORSPACE_JSAPI_001
-     * @tc.name       Test function getAttestStatus() : Promise<AttestResultInfo>
-     * @tc.desc       202 - Not System App. Interface caller is not a system app.
+     * @tc.number: SUB_XTS_DEVICEATTEST_0100
+     * @tc.name  : testAttestStatus001
+     * @tc.desc  : 202 - Not System App. Interface caller is not a system app.
+     * @tc.level : Level 2
+     * @tc.type  : Function
+     * @tc.size  : MediumTest
      */
-    it('SUB_GRAPHIC_ENUMCOLORSPACE_JSAPI_001', 0, async function (done) {
+    it('testAttestStatus001', 0, async function (done) {
       console.info('test the enum value of attestResultInfo begin');
       try {
         deviceAttest.getAttestStatus().then(attestResultInfo => {
@@ -67,11 +70,14 @@ export default function deviceAttestInfoTest(context, windowStage, abilityStorag
     })
 
     /**
-     * @tc.number     SUB_GRAPHIC_ENUMCOLORSPACE_JSAPI_002
-     * @tc.name       Test function getAttestStatus(callback: AsyncCallback<AttestResultInfo>) : void
-     * @tc.desc       202 - Not System App. Interface caller is not a system app.
+     * @tc.number: SUB_XTS_DEVICEATTEST_0200
+     * @tc.name  : testAttestStatus002
+     * @tc.desc  : 202 - Not System App. Interface caller is not a system app.
+     * @tc.level : Level 2
+     * @tc.type  : Function
+     * @tc.size  : MediumTest
      */
-    it('SUB_GRAPHIC_ENUMCOLORSPACE_JSAPI_002', 0, async function (done) {
+    it('testAttestStatus002', 0, async function (done) {
       console.info('test the enum value of attestResultInfo begin');
       try{
         deviceAttest.getAttestStatus(async (err, attestResultInfo) => {
@@ -95,11 +101,14 @@ export default function deviceAttestInfoTest(context, windowStage, abilityStorag
     })
 
     /**
-     * @tc.number     SUB_GRAPHIC_ENUMCOLORSPACE_JSAPI_003
-     * @tc.name       Test function getAttestStatusSync() : AttestResultInfo;
-     * @tc.desc       202 - Not System App. Interface caller is not a system app.
+     * @tc.number: SUB_XTS_DEVICEATTEST_0300
+     * @tc.name  : testAttestStatus003
+     * @tc.desc  : 202 - Not System App. Interface caller is not a system app.
+     * @tc.level : Level 2
+     * @tc.type  : Function
+     * @tc.size  : MediumTest
      */
-    it('SUB_GRAPHIC_ENUMCOLORSPACE_JSAPI_003', 0, async function (done) {
+    it('testAttestStatus003', 0, async function (done) {
       console.info('test the enum value of attestResultInfo begin');
       try{
         let attestResultInfo = deviceAttest.getAttestStatusSync();
