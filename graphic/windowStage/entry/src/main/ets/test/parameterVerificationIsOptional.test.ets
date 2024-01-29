@@ -478,7 +478,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       });
       expect(!!tempWnd).assertTrue();
 
-      let firstCall: Callback<ohosWindow.WindowEventType> = () => {
+      let firstCall = () => {
         console.log(msgStr + "first listener trigger")
         firstListenFlag = true
       }
