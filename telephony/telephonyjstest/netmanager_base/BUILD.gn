@@ -22,6 +22,7 @@ group("netmanager_base") {
       "dnsndk:ActsDnsNdkTest",
       "jshttp:ActsJSHTTPTest",
       "network_nopermission:ActsNetworkNopermissionTest",
+      "network_netmanager:ActsNetConnTest",
       "network_nowifi:ActsNetworkNowifiTest",
       "network_wifi:ActsNetworkWifiTest",
       "register:ActsRegisterTest",
