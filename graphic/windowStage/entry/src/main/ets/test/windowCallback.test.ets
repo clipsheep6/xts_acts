@@ -1582,9 +1582,8 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
       let caseName: string = 'testSetPrivacyMode_createSubWindow_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin ohosWindow =' + JSON.stringify("ohosWindow"));
-      let tempWnd: ohosWindow.Window;
 
-      let createSubWindowFun: Function = () => {
+      let createSubWindowFun: Function = ()=> {
         return new Promise<ohosWindow.Window>((resolve, reject) => {
           windowStage.createSubWindow('setPrivacyModeTest3', (err, data) => {
             if (err && err.code) {
@@ -1621,11 +1620,14 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         })
       }
 
-      tempWnd = await createSubWindowFun().catch((err: BusinessError) => {
+      let tempWnd:ohosWindow.Window = await createSubWindowFun().catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.create failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
+      console.info(`ohosWindow.create failed undefined undefined:`,tempWnd,!!tempWnd)
+
+
       expect(!!tempWnd).assertTrue();
       await setPrivacyModeFun(tempWnd, true).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.setPrivacyMode failed  error: ${JSON.stringify(err)}`)
