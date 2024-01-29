@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import Ability from '@ohos.app.ability.UIAbility'
+import GlobalContext from '../test/GlobalContext'
 
 export default class TestAbility extends Ability {
     onCreate(want, launchParam) {
@@ -33,7 +34,7 @@ export default class TestAbility extends Ability {
             console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
         });
 
-        globalThis.abilityContext = this.context;
+        GlobalContext.getContext().setObject("abilityContext",this.context)
     }
 
     onWindowStageDestroy() {
