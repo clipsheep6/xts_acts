@@ -68,21 +68,26 @@ struct WebViewMenuShowResult {
               break;
             }
             case "emitCopy001": {
-              this.menuShowState = 'emitCopy'
+              this.menuShowState = 'SelectAll'
               this.controller.loadUrl("resource://rawfile/MenuTestPaste.html")
               await Utils.sleep(2000);
               let webRect = Utils.getComponentRect('WebViewMenuShowResultTestWebView');
               let driver = Driver.create();
               let X = Utils.getRectHorizontalCenterX(webRect)
               let Y = Utils.getRectVerticalCenterY(webRect)
+              await driver.mouseClick({ x: X, y: Y }, MouseButton.MOUSE_BUTTON_RIGHT);
+              await Utils.sleep(2000);
+              this.menuShowState = 'Copy'
               await driver.mouseClick({ x: X, y: Y }, MouseButton.MOUSE_BUTTON_RIGHT);
               await Utils.sleep(2000);
               this.menuShowState = 'copyPaste'
-              await driver.mouseClick({ x: webRect.left + 10, y: webRect.top + 10 }, MouseButton.MOUSE_BUTTON_RIGHT)
+              await Utils.sleep(2000);
+              await driver.mouseClick({ x: webRect.left + 120, y: webRect.top + 40 }, MouseButton.MOUSE_BUTTON_RIGHT)
+              await Utils.sleep(2000);
               break;
             }
             case "emitCut001": {
-              this.menuShowState = 'Cut'
+              this.menuShowState = 'SelectAll'
               this.controller.loadUrl("resource://rawfile/MenuTestPaste.html")
               await Utils.sleep(2000);
               let webRect = Utils.getComponentRect('WebViewMenuShowResultTestWebView');
@@ -91,8 +96,13 @@ struct WebViewMenuShowResult {
               let Y = Utils.getRectVerticalCenterY(webRect)
               await driver.mouseClick({ x: X, y: Y }, MouseButton.MOUSE_BUTTON_RIGHT);
               await Utils.sleep(2000);
+              this.menuShowState = 'Cut'
+              await driver.mouseClick({ x: X, y: Y }, MouseButton.MOUSE_BUTTON_RIGHT);
+              await Utils.sleep(2000);
               this.menuShowState = 'cutPaste'
-              await driver.mouseClick({ x: webRect.left + 10, y: webRect.top + 10 }, MouseButton.MOUSE_BUTTON_RIGHT)
+              await Utils.sleep(2000);
+              await driver.mouseClick({ x: webRect.left + 120, y: webRect.top + 40 }, MouseButton.MOUSE_BUTTON_RIGHT)
+              await Utils.sleep(2000);
               break;
             }
 
@@ -110,12 +120,14 @@ struct WebViewMenuShowResult {
                   Utils.emitEvent(true, 3501)
                   this.count = 0
                 }
-                event.result.closeContextMenu()
                 this.count++
                 break
               }
-              case 'emitCopy': {
+              case 'SelectAll': {
                 event.result.selectAll()
+                break
+              }
+              case 'Copy': {
                 event.result.copy()
                 break
               }
@@ -132,8 +144,6 @@ struct WebViewMenuShowResult {
                 break
               }
               case 'Cut': {
-                console.log("onContextMenuShow.Cut")
-                event.result.selectAll()
                 event.result.cut()
                 break
               }
