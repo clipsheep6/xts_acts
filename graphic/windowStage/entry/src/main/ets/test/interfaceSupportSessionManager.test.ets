@@ -255,14 +255,8 @@ export default function interfaceSupportSessionManagerTest(context: common.UIAbi
         expect().assertFail();
       } catch (exception) {
         await (win as ohosWindow.Window).destroyWindow();
-        if (!currentDeviceIsRk) {
-          console.error(msgStr + 'Failed to disable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
-          expect(exception.code).assertEqual(1300002);
-        } else {
-          console.log(msgStr + '当前设备类型不支持系统能力SystemCapability.Window.SessionManager')
-          console.log(msgStr + JSON.stringify(exception))
-          expect(exception.code).assertEqual(801);
-        }
+        console.error(msgStr + 'Failed to disable the listener for system avoid area changes. Cause: ' + JSON.stringify(exception));
+        expect(exception.code).assertEqual(1300002);
       }
     })
     /**
@@ -312,7 +306,7 @@ export default function interfaceSupportSessionManagerTest(context: common.UIAbi
         } else {
           console.log(msgStr + '当前设备类型不支持系统能力SystemCapability.Window.SessionManager')
           console.log(msgStr + JSON.stringify(exception))
-          expect(exception.code).assertEqual(801);
+          expect(exception.code).assertEqual(1300002);
         }
       }
       try {
@@ -321,14 +315,8 @@ export default function interfaceSupportSessionManagerTest(context: common.UIAbi
         expect().assertFail();
       } catch (exception) {
         await (win as ohosWindow.Window).destroyWindow();
-        if (!currentDeviceIsRk) {
-          console.error(msgStr + 'Failed to unregister callback Cause: ' + JSON.stringify(exception));
-          expect(exception.code).assertEqual(1300002);
-        } else {
-          console.log(msgStr + '当前设备类型不支持系统能力SystemCapability.Window.SessionManager')
-          console.log(msgStr + JSON.stringify(exception))
-          expect(exception.code).assertEqual(801);
-        }
+        console.error(msgStr + 'Failed to unregister callback Cause: ' + JSON.stringify(exception));
+        expect(exception.code).assertEqual(1300002);
       }
     })
     /**
