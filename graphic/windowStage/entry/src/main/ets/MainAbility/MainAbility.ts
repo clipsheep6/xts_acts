@@ -1,14 +1,10 @@
 import Ability from '@ohos.app.ability.UIAbility'
-import Want from '@ohos.app.ability.Want';
-import GlobalContext from '../test/GlobalContext'
-import AbilityConstant from '@ohos.app.ability.AbilityConstant';
-import window from '@ohos.window';
 
 export default class MainAbility extends Ability {
-    onCreate(want:Want,launchParam: AbilityConstant.LaunchParam){
+    onCreate(want,launchParam){
         // Ability is creating, initialize resources for this ability
         console.log("[Demo] MainAbility onCreate")
-        GlobalContext.getContext().setObject("abilityWant",want)
+        globalThis.abilityWant = want;
     }
 
     onDestroy() {
@@ -16,16 +12,12 @@ export default class MainAbility extends Ability {
         console.log("[Demo] MainAbility onDestroy")
     }
 
-    onWindowStageCreate(windowStage:window.WindowStage) {
+    onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
         console.log("[Demo] MainAbility onWindowStageCreate windowStage="+ windowStage)
-        GlobalContext.getContext().setObject("windowStage",windowStage)
-        GlobalContext.getContext().setObject("abilityContext",this.context)
-
-        let wStage:window.WindowStage =  GlobalContext.getContext().getObject("windowStage") as window.WindowStage
-        console.log('WindowStage setObject: ' + JSON.stringify(wStage));
-
-        windowStage.loadContent("MainAbility/pages/index/index", ()=>{})
+        globalThis.windowStage = windowStage
+        globalThis.abilityContext = this.context
+        windowStage.setUIContent(this.context, "MainAbility/pages/index/index", null)
     }
 
     onWindowStageDestroy() {
