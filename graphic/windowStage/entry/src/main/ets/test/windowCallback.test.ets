@@ -1552,7 +1552,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_true : ${JSON.stringify(windowProperties_true)}`)
-      expect(windowProperties_true.setPrivacyMode).assertTrue();
+      expect(windowProperties_true.isPrivacyMode).assertTrue();
 
       await setPrivacyModeWin(tempWnd, false).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.setPrivacyMode failed  error: ${JSON.stringify(err)}`)
@@ -1566,7 +1566,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_false : ${JSON.stringify(windowProperties_false)}`)
-      expect(!windowProperties_false.setPrivacyMode).assertTrue();
+      expect(!windowProperties_false.isPrivacyMode).assertTrue();
       await tempWnd.destroy();
       done();
     })
@@ -1625,9 +1625,6 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         expect().assertFail();
         done();
       })
-      console.info(`ohosWindow.create failed undefined undefined:`,tempWnd,!!tempWnd)
-
-
       expect(!!tempWnd).assertTrue();
       await setPrivacyModeFun(tempWnd, true).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.setPrivacyMode failed  error: ${JSON.stringify(err)}`)
@@ -1641,7 +1638,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_true : ${JSON.stringify(windowProperties_true)}`)
-      expect(windowProperties_true.setPrivacyMode).assertTrue();
+      expect(windowProperties_true.isPrivacyMode).assertTrue();
 
       await setPrivacyModeFun(tempWnd, false).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.setPrivacyMode failed  error: ${JSON.stringify(err)}`)
@@ -1655,7 +1652,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_false : ${JSON.stringify(windowProperties_false)}`)
-      expect(!windowProperties_false.setPrivacyMode).assertTrue();
+      expect(!windowProperties_false.isPrivacyMode).assertTrue();
       await tempWnd.destroy();
       done();
     })
