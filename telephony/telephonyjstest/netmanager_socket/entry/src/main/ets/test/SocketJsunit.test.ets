@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Copyright (c) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,77 +14,75 @@
  * limitations under the License.
  */
 
-import { describe, it, expect } from '@ohos/hypium';
+import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from 'hypium/index';
 import socket from '@ohos.net.socket'
 import http from '@ohos.net.http';
-import { BusinessError } from '@ohos.base';
-
-interface MessageEvent {
-  message: ArrayBuffer;
-  remoteInfo: socket.SocketRemoteInfo;
-}
-
-function expectFalse() {
-  try {
-    expect().assertFail();
-  } catch (err) {
-    console.info('assertion failure');
-  }
-};
-
-async function sleep(time: number) {
-  return new Promise<void>((resolve) => setTimeout(resolve, time));
-}
+import utils from './Utils.ets'
 
 export default function socketJsunit() {
-  describe('socketTest', () => {
-    let multicastSocket = socket.constructMulticastSocketInstance();
-    let multicastAddress: socket.NetAddress = {
-      address: '239.255.0.1',
-      family: 1,
-      port: 32123
-    };
+  describe('socketTest', function () {
+  
+	let udpSocket = socket.constructUDPSocketInstance();
+	let multicastSocket = socket.constructMulticastSocketInstance();
+	let multicastAddress = {
+	  address: '239.255.0.1',
+	  family: 1,
+	  port: 32123
+	}
 
-    let multicastAddress_invalid: socket.NetAddress = {
-      address: '1.1.1.1',
-      family: 1,
-      port: 32123
-    };
+	let multicastAddress_invalid = {
+	  address: '1.1.1.1',
+	  family: 1,
+	  port: 32123
+	}
+	let multicastAddress_null = {
+	  address: '',
+	  family: 1,
+	  port: 32123
+	}
 
-    let multicastAddress_null: socket.NetAddress = {
-      address: '',
-      family: 1,
-      port: 32123
-    };
+	let ttl = 100;
+	let ttl_invalid = 256;
+	let ttl_undefined = undefined;
 
-    let ttl: number = 100;
-    let ttl_invalid: number = 256;
-    let ttl_undefined: undefined = undefined;
-
-    let options = {
-      data: 'Hello',
-      address: multicastAddress,
-    };
+	let options = {
+	  data: 'Hello',
+	  address: multicastAddress,
+	}
 
 
+	function expectFalse() {
+	  try {
+		expect().assertFail();
+	  } catch (err) {
+		console.info('assertion failure');
+	  }
+	};
+	
+	function sleep(time) {
+		return new Promise((resolve) => setTimeout(resolve, time))
+	}
+  
+  
+  
     console.log("************* socket Test start*************");
-    let tcp: socket.TCPSocket = socket.constructTCPSocketInstance();
-    let udp: socket.UDPSocket = socket.constructUDPSocketInstance();
-    let envReady: boolean = false;
-
+	let tcp = socket.constructTCPSocketInstance();
+	let udp = socket.constructUDPSocketInstance();
+    let envReady = false;
+	
     /*
      * @tc.number    : Telephony_Socket_Socket_constructUDPSocketInstance_0100
      * @tc.name      : constructUDPSocketInstance
      * @tc.desc      : Creates a UDPSocket object.
      */
-    it('Telephony_Socket_Socket_constructUDPSocketInstance_0100', 0, (done: Function) => {
+    it('Telephony_Socket_Socket_constructUDPSocketInstance_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_Socket_constructUDPSocketInstance_0100 Test start*************");
-      let udpSocket: socket.UDPSocket = udp;
+      var udpSocket = udp;
       expect(udpSocket != null).assertTrue();
       console.log("************* Telephony_Socket_Socket_constructUDPSocketInstance_0100 Test end*************");
       done();
@@ -94,14 +93,14 @@ export default function socketJsunit() {
      * @tc.name      : constructTCPSocketInstance
      * @tc.desc      : Creates a TCPSocket object.
      */
-    it('Telephony_Socket_Socket_constructTCPSocketInstance_0100', 0, (done: Function) => {
+    it('Telephony_Socket_Socket_constructTCPSocketInstance_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_Socket_constructTCPSocketInstance_0100 Test start*************");
-      let tcpSocket: socket.TCPSocket = tcp;
+      var tcpSocket = tcp;
       expect(tcpSocket != null).assertTrue();
       console.log("************* Telephony_Socket_Socket_constructTCPSocketInstance_0100 Test end*************");
       done();
@@ -112,18 +111,18 @@ export default function socketJsunit() {
      * @tc.name      : NetAddress
      * @tc.desc      : interface NetAddress
      */
-    it('Telephony_Socket_Socket_NetAddress_0100', 0, (done: Function) => {
+    it('Telephony_Socket_Socket_NetAddress_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_Socket_NetAddress_0100 Test start*************");
-      let netAddress: socket.NetAddress = {
+      let netAddress = {
         address: "test address",
         family: 1,
         port: 8080
-      };
+      }
       expect(netAddress.address === "test address").assertTrue()
       expect(netAddress.family === 1).assertTrue()
       expect(netAddress.port === 8080).assertTrue()
@@ -136,14 +135,14 @@ export default function socketJsunit() {
      * @tc.name      : UDPSendOptions.data
      * @tc.desc      : UDPSendOptions.data
      */
-    it('Telephony_Socket_UDPSendOptions_data_0100', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSendOptions_data_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSendOptions_data_0100 Test start*************");
-      let udpSendOptions: socket.UDPSendOptions = {
+      let udpSendOptions = {
         data: "test data",
         address: {
           address: "test address",
@@ -161,19 +160,19 @@ export default function socketJsunit() {
      * @tc.name      : ExtraOptionsBase.receiveBufferSize
      * @tc.desc      : ExtraOptionsBase.receiveBufferSize
      */
-    it('Telephony_Socket_ExtraOptionsBase_receiveBufferSize_0100', 0, (done: Function) => {
+    it('Telephony_Socket_ExtraOptionsBase_receiveBufferSize_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_ExtraOptionsBase_receiveBufferSize_0100 Test start*************");
-      let extraOptionsBase: socket.ExtraOptionsBase = {
+      let extraOptionsBase = {
         receiveBufferSize: 1,
         sendBufferSize: 1,
         reuseAddress: true,
         socketTimeout: 5000,
-      };
+      }
       expect(extraOptionsBase.receiveBufferSize === 1).assertTrue()
       console.log("************* Telephony_Socket_ExtraOptionsBase_receiveBufferSize_0100 Test end*************");
       done();
@@ -184,14 +183,14 @@ export default function socketJsunit() {
      * @tc.name      : ExtraOptionsBase.sendBufferSize
      * @tc.desc      : ExtraOptionsBase.sendBufferSize
      */
-    it('Telephony_Socket_ExtraOptionsBase_sendBufferSize_0100', 0, (done: Function) => {
+    it('Telephony_Socket_ExtraOptionsBase_sendBufferSize_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_ExtraOptionsBase_sendBufferSize_0100 Test start*************");
-      let extraOptionsBase: socket.ExtraOptionsBase = {
+      let extraOptionsBase = {
         receiveBufferSize: 1,
         sendBufferSize: 1,
         reuseAddress: true,
@@ -207,14 +206,14 @@ export default function socketJsunit() {
      * @tc.name      : ExtraOptionsBase.reuseAddress
      * @tc.desc      : ExtraOptionsBase.reuseAddress
      */
-    it('Telephony_Socket_ExtraOptionsBase_reuseAddress_0100', 0, (done: Function) => {
+    it('Telephony_Socket_ExtraOptionsBase_reuseAddress_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_ExtraOptionsBase_reuseAddress_0100 Test start*************");
-      let extraOptionsBase: socket.ExtraOptionsBase = {
+      let extraOptionsBase = {
         receiveBufferSize: 1,
         sendBufferSize: 1,
         reuseAddress: true,
@@ -230,14 +229,14 @@ export default function socketJsunit() {
      * @tc.name      : ExtraOptionsBase.socketTimeout
      * @tc.desc      : ExtraOptionsBase.socketTimeout
      */
-    it('Telephony_Socket_ExtraOptionsBase_socketTimeout_0100', 0, (done: Function) => {
+    it('Telephony_Socket_ExtraOptionsBase_socketTimeout_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_ExtraOptionsBase_socketTimeout_0100 Test start*************");
-      let extraOptionsBase: socket.ExtraOptionsBase = {
+      let extraOptionsBase = {
         receiveBufferSize: 1,
         sendBufferSize: 1,
         reuseAddress: true,
@@ -253,14 +252,14 @@ export default function socketJsunit() {
      * @tc.name      : SocketStateBase.isClose
      * @tc.desc      : SocketStateBase.isClose
      */
-    it('Telephony_Socket_SocketStateBase_isClose_0100', 0, (done: Function) => {
+    it('Telephony_Socket_SocketStateBase_isClose_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_SocketStateBase_isClose_0100 Test start*************");
-      let socketStateBase: socket.SocketStateBase = {
+      let socketStateBase = {
         isBound: true,
         isClose: true,
         isConnected: true
@@ -275,19 +274,19 @@ export default function socketJsunit() {
      * @tc.name      : SocketRemoteInfo.port
      * @tc.desc      : SocketRemoteInfo.port
      */
-    it('Telephony_Socket_SocketRemoteInfo_port_0100', 0, (done: Function) => {
+    it('Telephony_Socket_SocketRemoteInfo_port_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_SocketRemoteInfo_port_0100 Test start*************");
-      let socketRemoteInfo: socket.SocketRemoteInfo = {
+      let socketRemoteInfo = {
         address: "test address",
         family: 'IPv4',
         port: 8080,
         size: 1
-      };
+      }
       expect(socketRemoteInfo.port === 8080).assertTrue()
       console.log("************* Telephony_Socket_SocketRemoteInfo_port_0100 Test end*************");
       done();
@@ -298,14 +297,14 @@ export default function socketJsunit() {
      * @tc.name      : SocketRemoteInfo.size
      * @tc.desc      : SocketRemoteInfo.size
      */
-    it('Telephony_Socket_SocketRemoteInfo_size_0100', 0, (done: Function) => {
+    it('Telephony_Socket_SocketRemoteInfo_size_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_SocketRemoteInfo_size_0100 Test start*************");
-      let socketRemoteInfo: socket.SocketRemoteInfo = {
+      let socketRemoteInfo = {
         address: "test address",
         family: 'IPv4',
         port: 8080,
@@ -321,21 +320,21 @@ export default function socketJsunit() {
      * @tc.name      : TCPConnectOptions.timeout
      * @tc.desc      : TCPConnectOptions.timeout
      */
-    it('Telephony_Socket_TCPConnectOptions_timeout_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPConnectOptions_timeout_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPConnectOptions_timeout_0100 Test start*************");
-      let tcpConnectOptions: socket.TCPConnectOptions = {
+      let tcpConnectOptions = {
         address: {
           address: "test address",
           family: 1,
           port: 8080
         },
         timeout: 1000
-      };
+      }
       expect(tcpConnectOptions.timeout === 1000).assertTrue()
       console.log("************* Telephony_Socket_TCPConnectOptions_timeout_0100 Test end*************");
       done();
@@ -346,17 +345,17 @@ export default function socketJsunit() {
      * @tc.name      : TCPSendOptions.data
      * @tc.desc      : TCPSendOptions.data
      */
-    it('Telephony_Socket_TCPSendOptions_data_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSendOptions_data_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSendOptions_data_0100 Test start*************");
-      let tcpSendOptions: socket.TCPSendOptions = {
+      let tcpSendOptions = {
         data: "test data",
         encoding: "test encoding"
-      };
+      }
       expect(tcpSendOptions.data === "test data").assertTrue()
       console.log("************* Telephony_Socket_TCPSendOptions_data_0100 Test end*************");
       done();
@@ -367,17 +366,17 @@ export default function socketJsunit() {
      * @tc.name      : TCPSendOptions.encoding
      * @tc.desc      : TCPSendOptions.encoding
      */
-    it('Telephony_Socket_TCPSendOptions_encoding_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSendOptions_encoding_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSendOptions_encoding_0100 Test start*************");
-      let tcpSendOptions: socket.TCPSendOptions = {
+      let tcpSendOptions = {
         data: "test data",
         encoding: "test encoding"
-      };
+      }
       expect(tcpSendOptions.encoding === "test encoding").assertTrue()
       console.log("************* Telephony_Socket_TCPSendOptions_encoding_0100 Test end*************");
       done();
@@ -388,23 +387,22 @@ export default function socketJsunit() {
      * @tc.name      : TCPExtraOptions.keepAlive
      * @tc.desc      : TCPExtraOptions.keepAlive
      */
-    it('Telephony_Socket_TCPExtraOptions_keepAlive_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPExtraOptions_keepAlive_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPExtraOptions_keepAlive_0100 Test start*************");
-      let tcpExtraOptions: socket.TCPExtraOptions = {
+      let tcpExtraOptions = {
         keepAlive: true,
         OOBInline: false,
         TCPNoDelay: true,
         socketLinger: {
           on: true,
-          linger: 0
+          linger: false
         }
-      };
-
+      }
       expect(tcpExtraOptions.keepAlive).assertTrue()
       console.log("************* Telephony_Socket_TCPExtraOptions_keepAlive_0100 Test end*************");
       done();
@@ -415,22 +413,22 @@ export default function socketJsunit() {
      * @tc.name      : TCPExtraOptions.OOBInline
      * @tc.desc      : TCPExtraOptions.OOBInline
      */
-    it('Telephony_Socket_TCPExtraOptions_OOBInline_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPExtraOptions_OOBInline_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPExtraOptions_OOBInline_0100 Test start*************");
-      let tcpExtraOptions: socket.TCPExtraOptions = {
+      let tcpExtraOptions = {
         keepAlive: true,
         OOBInline: false,
         TCPNoDelay: true,
         socketLinger: {
           on: true,
-          linger: 0
+          linger: false
         }
-      };
+      }
       expect(!tcpExtraOptions.OOBInline).assertTrue()
       console.log("************* Telephony_Socket_TCPExtraOptions_OOBInline_0100 Test end*************");
       done();
@@ -441,22 +439,22 @@ export default function socketJsunit() {
      * @tc.name      : TCPExtraOptions.TCPNoDelay
      * @tc.desc      : TCPExtraOptions.TCPNoDelay
      */
-    it('Telephony_Socket_TCPExtraOptions_TCPNoDelay_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPExtraOptions_TCPNoDelay_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPExtraOptions_TCPNoDelay_0100 Test start*************");
-      let tcpExtraOptions: socket.TCPExtraOptions = {
+      let tcpExtraOptions = {
         keepAlive: true,
         OOBInline: false,
         TCPNoDelay: true,
         socketLinger: {
           on: true,
-          linger: 0
+          linger: false
         }
-      };
+      }
       expect(tcpExtraOptions.TCPNoDelay).assertTrue()
       console.log("************* Telephony_Socket_TCPExtraOptions_TCPNoDelay_0100 Test end*************");
       done();
@@ -467,22 +465,22 @@ export default function socketJsunit() {
      * @tc.name      : TCPExtraOptions.socketLinger
      * @tc.desc      : TCPExtraOptions.socketLinger
      */
-    it('Telephony_Socket_TCPExtraOptions_socketLinger_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPExtraOptions_socketLinger_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPExtraOptions_socketLinger_0100 Test start*************");
-      let tcpExtraOptions: socket.TCPExtraOptions = {
+      let tcpExtraOptions = {
         keepAlive: true,
         OOBInline: false,
         TCPNoDelay: true,
         socketLinger: {
           on: true,
-          linger: 0
+          linger: false
         }
-      };
+      }
       expect(tcpExtraOptions.socketLinger.on).assertTrue()
       expect(!tcpExtraOptions.socketLinger.linger).assertTrue()
       console.log("************* Telephony_Socket_TCPExtraOptions_socketLinger_0100 Test end*************");
@@ -495,27 +493,27 @@ export default function socketJsunit() {
      * @tc.name      : bind
      * @tc.desc      : Binds the IP address and port number.
      */
-    it('Telephony_Socket_UDPSocket_bind_0100', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_bind_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
-      let caseName: string = "Telephony_Socket_UDPSocket_bind_0100";
+      let caseName = "Telephony_Socket_UDPSocket_bind_0100"
       console.log("************* Telephony_Socket_UDPSocket_bind_0100 Test start*************");
-      let netAddress: socket.NetAddress = {
+      let netAddress = {
         address: "test address",
         family: 1,
         port: 8080
-      };
-      udp.bind(netAddress, (error: BusinessError, data: void) => {
+      }
+      udp.bind(netAddress, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
         expect().assertFail();
-        console.log(`${caseName} error, case failed,data:${JSON.stringify(data)}`);
+        console.log(`${caseName} error, case failed,data:${toString(data)}`);
         done();
       })
       console.log("************* Telephony_Socket_UDPSocket_bind_0100 Test end*************");
@@ -527,33 +525,32 @@ export default function socketJsunit() {
      * @tc.name      : bind
      * @tc.desc      : Binds the IP address and port number.
      */
-    it('Telephony_Socket_UDPSocket_bind_0200', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_bind_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
-      let caseName: string = "Telephony_Socket_UDPSocket_bind_0200";
+      let caseName = "Telephony_Socket_UDPSocket_bind_0200"
       console.log("************* Telephony_Socket_UDPSocket_bind_0200 Test start*************");
-
+      
       let netAddress: socket.NetAddress = {
         address: "test address",
         family: 1,
         port: 8080
-      };
+      }
       try {
-        udp.bind(netAddress).then((data: void) => {
-          console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-          done();
-        }).catch((error: BusinessError) => {
-          console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
-          done();
+        udp.bind(netAddress).then(data => {
+          console.log(`${caseName} success,data:${toString(data)}`);
+		  done();
+        }).catch((error) => {
+          console.log(`${caseName} failed,error:${toString(error)}`);
+		  done();
         });
-        done();
+		done();
       } catch (err) {
-        let e: BusinessError = err as BusinessError;
-        console.log(`${caseName} failed,catch error:${JSON.stringify(e)}`);
-        done();
+        console.log(`${caseName} failed,catch error:${toString(error)}`);
+		done();
       }
       console.log("************* Telephony_Socket_UDPSocket_bind_0200 Test end*************");
       done();
@@ -564,25 +561,25 @@ export default function socketJsunit() {
      * @tc.name      : bind
      * @tc.desc      : Binds the IP address and port number.
      */
-    it('Telephony_Socket_UDPSocket_bind_0300', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_bind_0300', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_bind_0300 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_bind_0300";
-      let netAddress: socket.NetAddress = {
+      let caseName = "Telephony_Socket_UDPSocket_bind_0300"
+      let netAddress = {
         address: "second test address"
-      };
-      udp.bind(netAddress, (error: BusinessError, data: void) => {
+      }
+      udp.bind(netAddress, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
         expect().assertFail();
-        console.log(`${caseName} error, case failed,data:${JSON.stringify(data)}`);
+        console.log(`${caseName} error, case failed,data:${toString(data)}`);
         done();
       })
       console.log("************* Telephony_Socket_UDPSocket_bind_0300 Test end*************");
@@ -594,25 +591,25 @@ export default function socketJsunit() {
      * @tc.name      : bind
      * @tc.desc      : Binds the IP address and port number.
      */
-    it('Telephony_Socket_UDPSocket_bind_0400', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_bind_0400', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_bind_0400 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_bind_0400";
-      let netAddress: socket.NetAddress = {
+      let caseName = "Telephony_Socket_UDPSocket_bind_0400"      
+      let netAddress = {
         address: "third test address",
         family: 3,
         port: 8080
-      };
-      udp.bind(netAddress).then((data: void) => {
-        console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-        done();
-      }).catch((error: BusinessError) => {
-        console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
-        done();
+      }
+      udp.bind(netAddress).then(data => {
+        console.log(`${caseName} success,data:${toString(data)}`);
+		done();
+      }).catch((error) => {
+        console.log(`${caseName} failed,error:${toString(error)}`);
+		done();
       });
       console.log("************* Telephony_Socket_UDPSocket_bind_0400 Test end*************");
       done();
@@ -623,30 +620,30 @@ export default function socketJsunit() {
      * @tc.name      : send
      * @tc.desc      : Sends data over a UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_send_0100', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_send_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_send_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_send_0100";
-      let udpSendOptions: socket.UDPSendOptions = {
+      let caseName = "Telephony_Socket_UDPSocket_send_0100"      
+      let udpSendOptions = {
         data: "test data",
         address: {
           address: "test address",
           family: 1,
           port: 8080
         }
-      };
-      udp.send(udpSendOptions, (error: BusinessError, data: void) => {
+      }
+      udp.send(udpSendOptions, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
         expect().assertFail();
-        console.log(`${caseName} error, case failed,data:${JSON.stringify(data)}`);
+        console.log(`${caseName} error, case failed,data:${toString(data)}`);
         done();
       })
       console.log("************* Telephony_Socket_UDPSocket_send_0100 Test end*************");
@@ -658,26 +655,26 @@ export default function socketJsunit() {
      * @tc.name      : send
      * @tc.desc      : Sends data over a UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_send_0200', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_send_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_send_0200 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_send_0200";
-      let udpSendOptions: socket.UDPSendOptions = {
+      let caseName = "Telephony_Socket_UDPSocket_send_0200"      
+      let udpSendOptions = {
         data: "test data",
         address: {
           address: "test address",
           family: 1,
           port: 8080
         }
-      };
-      udp.send(udpSendOptions).then((data: void) => {
-        console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-      }).catch((error: BusinessError) => {
-        console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
+      }
+      udp.send(udpSendOptions).then(data => {
+        console.log(`${caseName} success,data:${toString(data)}`);
+      }).catch((error) => {
+        console.log(`${caseName} failed,error:${toString(error)}`);
       });
       console.log("************* Telephony_Socket_UDPSocket_send_0200 Test end*************");
       done();
@@ -688,28 +685,28 @@ export default function socketJsunit() {
      * @tc.name      : send
      * @tc.desc      : Sends data over a UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_send_0300', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_send_0300', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_send_0300 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_send_0300";
-      let udpSendOptions: socket.UDPSendOptions = {
+      let caseName = "Telephony_Socket_UDPSocket_send_0300"      
+      let udpSendOptions = {
         data: "test data",
         address: {
           address: "second test address",
         }
-      };
-      udp.send(udpSendOptions, (error: BusinessError, data: void) => {
+      }
+      udp.send(udpSendOptions, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
         expect().assertFail();
-        console.log(`${caseName} error, case failed,data:${JSON.stringify(data)}`);
+        console.log(`${caseName} error, case failed,data:${toString(data)}`);
         done();
       })
       console.log("************* Telephony_Socket_UDPSocket_send_0300 Test end*************");
@@ -721,24 +718,24 @@ export default function socketJsunit() {
      * @tc.name      : send
      * @tc.desc      : Sends data over a UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_send_0400', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_send_0400', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_send_0400 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_send_0400";
-      let udpSendOptions: socket.UDPSendOptions = {
+      let caseName = "Telephony_Socket_UDPSocket_send_0400"      
+      let udpSendOptions = {
         data: "test data",
         address: {
           address: "third test address"
         }
-      };
-      udp.send(udpSendOptions).then((data: void) => {
-        console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-      }).catch((error: BusinessError) => {
-        console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
+      }
+      udp.send(udpSendOptions).then(data => {
+        console.log(`${caseName} success,data:${toString(data)}`);
+      }).catch((error) => {
+        console.log(`${caseName} failed,error:${toString(error)}`);
       });
       console.log("************* Telephony_Socket_UDPSocket_send_0400 Test end*************");
       done();
@@ -749,17 +746,17 @@ export default function socketJsunit() {
      * @tc.name      : close
      * @tc.desc      : Closes a UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_close_0100', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_close_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_close_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_close_0100";
-      udp.close((error: BusinessError) => {
+      let caseName = "Telephony_Socket_UDPSocket_close_0100"      
+      udp.close((error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
@@ -775,18 +772,18 @@ export default function socketJsunit() {
      * @tc.name      : close
      * @tc.desc      : Closes a UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_close_0200', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_close_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_close_0200 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_close_0200";
-      udp.close().then((data: void) => {
-        console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-      }).catch((error: BusinessError) => {
-        console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
+      let caseName = "Telephony_Socket_UDPSocket_close_0200"      
+      udp.close().then(data => {
+        console.log(`${caseName} success,data:${toString(data)}`);
+      }).catch((error) => {
+        console.log(`${caseName} failed,error:${toString(error)}`);
       });
       console.log("************* Telephony_Socket_UDPSocket_close_0200 Test end*************");
       done();
@@ -797,22 +794,22 @@ export default function socketJsunit() {
      * @tc.name      : getState
      * @tc.desc      : Obtains the status of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_getState_0100', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_getState_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_getState_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_getState_0100";
-      udp.getState((error: BusinessError, data: socket.SocketStateBase) => {
+      let caseName = "Telephony_Socket_UDPSocket_getState_0100"      
+      udp.getState((error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
         let socketStateBase = data
-        console.log(`${caseName} data:${JSON.stringify(socketStateBase.isClose)}`);
+        console.log(`${caseName} data:${toString(socketStateBase.isClose)}`);
         done();
       })
       console.log("************* Telephony_Socket_UDPSocket_getState_0100 Test end*************");
@@ -824,18 +821,18 @@ export default function socketJsunit() {
      * @tc.name      : getState
      * @tc.desc      : Obtains the status of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_getState_0200', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_getState_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_getState_0200 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_getState_0200";
-      udp.getState().then((data: socket.SocketStateBase) => {
-        console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-      }).catch((error: BusinessError) => {
-        console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
+      let caseName = "Telephony_Socket_UDPSocket_getState_0200"      
+      udp.getState().then(data => {
+        console.log(`${caseName} success,data:${toString(data)}`);
+      }).catch((error) => {
+        console.log(`${caseName} failed,error:${toString(error)}`);
       });
 
       console.log("************* Telephony_Socket_UDPSocket_getState_0200 Test end*************");
@@ -847,36 +844,35 @@ export default function socketJsunit() {
      * @tc.name      : setExtraOptions
      * @tc.desc      : Sets other attributes of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_setExtraOptions_0100', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_setExtraOptions_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_setExtraOptions_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_setExtraOptions_0100";
-      let udpExtraOptions: socket.UDPExtraOptions = {
+      let caseName = "Telephony_Socket_UDPSocket_setExtraOptions_0100"      
+      let udpExtraOptions = {
         broadcast: true
-      };
-      try {
-        udp.setExtraOptions(udpExtraOptions, (error: BusinessError) => {
-          if (error) {
-            expect().assertFail();
-            console.log(`${caseName} error, case failed,error: ` + JSON.stringify(error));
-            done();
-          } else {
-            expect().assertTrue();
-            console.log(`${caseName} error, case success failed`);
-            done();
-          }
-          done();
-        })
-        done();
-      } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.log(`${caseName} failed,error:${e}`);
-        expect(true).assertTrue();
-        done();
+      }
+	  try{
+		udp.setExtraOptions(udpExtraOptions, function(error,data) {
+		  if (error) {
+			expect().assertFail();
+			console.log(`${caseName} error, case failed,error: ` + JSON.stringify(error));
+			done();
+		  } else{
+			expect().assertTrue();
+			console.log(`${caseName} error, case success failed`);
+		    done();
+		  }
+		  done();
+		})
+		done();
+	  } catch(error){
+		  console.log(`${caseName} failed,error:${error}`);
+	      expect(true).assertTrue();
+		  done();
       }
       console.log("************* Telephony_Socket_UDPSocket_setExtraOptions_0100 Test end*************");
       done();
@@ -887,24 +883,23 @@ export default function socketJsunit() {
      * @tc.name      : setExtraOptions
      * @tc.desc      : Sets other attributes of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_setExtraOptions_0200', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_setExtraOptions_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_setExtraOptions_0200 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_setExtraOptions_0200";
-      let udpExtraOptions: socket.UDPExtraOptions = {
+      let caseName = "Telephony_Socket_UDPSocket_setExtraOptions_0200"
+      let udpExtraOptions = {
         broadcast: true
-      };
+      }
       try {
         udp.setExtraOptions(udpExtraOptions);
         console.log(`${caseName} success`);
         done();
       } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.log(`${caseName} failed,error:${e}`);
+        console.log(`${caseName} failed,error:${error}`);
         done();
       }
       console.log("************* Telephony_Socket_UDPSocket_setExtraOptions_0200 Test end*************");
@@ -916,18 +911,18 @@ export default function socketJsunit() {
      * @tc.name      : setExtraOptions
      * @tc.desc      : Sets other attributes of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_setExtraOptions_0300', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_setExtraOptions_0300', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_setExtraOptions_0300 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_setExtraOptions_0300";
-      let udpExtraOptions: socket.UDPExtraOptions = {};
-      udp.setExtraOptions(udpExtraOptions, (error: BusinessError) => {
+      let caseName = "Telephony_Socket_UDPSocket_setExtraOptions_0300"      
+      let udpExtraOptions = {}
+      udp.setExtraOptions(udpExtraOptions, (error) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
@@ -944,24 +939,23 @@ export default function socketJsunit() {
      * @tc.name      : setExtraOptions
      * @tc.desc      : Sets other attributes of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_setExtraOptions_0400', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_setExtraOptions_0400', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_setExtraOptions_0400 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_setExtraOptions_0400";
-      let udpExtraOptions: socket.UDPExtraOptions = {};
+      let caseName = "Telephony_Socket_UDPSocket_setExtraOptions_0400"
+      let udpExtraOptions = {}
       try {
-        udp.setExtraOptions(udpExtraOptions).then(()=> {
-          console.log(`${caseName}`);
-        });
+        udp.setExtraOptions(udpExtraOptions).then(function(data){
+			console.log(`${caseName}`);
+		});
         console.log(`${caseName} success`);
         done();
       } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.log(`${caseName} failed,error:${e}`);
+        console.log(`${caseName} failed,error:${error}`);
         expect(true).assertTrue();
         done();
       }
@@ -974,16 +968,16 @@ export default function socketJsunit() {
      * @tc.name      : on
      * @tc.desc      : Listens for message receiving events of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_on_message_0100', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_on_message_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_on_message_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_on_message_0100";
-      udp.on('message', (data: MessageEvent) => {
-        let socketRemoteInfo: socket.SocketRemoteInfo = data.remoteInfo;
+      let caseName = "Telephony_Socket_UDPSocket_on_message_0100"      
+      udp.on('message', (data) => {
+        let socketRemoteInfo = data.remoteInfo;
         console.log(`${caseName} port:${socketRemoteInfo.port}`);
         console.log(`${caseName} size:${socketRemoteInfo.size}`);
       });
@@ -996,15 +990,15 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for message receiving events of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_off_message_0100', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_off_message_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_off_message_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_off_message_0100";
-      udp.off("message", (data: MessageEvent) => {
+      let caseName = "Telephony_Socket_UDPSocket_off_message_0100"      
+      udp.off("message", data => {
         let socketRemoteInfo = data.remoteInfo;
         console.log(`${caseName} port:${socketRemoteInfo.port}`);
         console.log(`${caseName} size:${socketRemoteInfo.size}`);
@@ -1018,7 +1012,7 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for message receiving events of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_off_message_0200', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_off_message_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -1036,14 +1030,14 @@ export default function socketJsunit() {
      * @tc.name      : on
      * @tc.desc      : Listens for data packet message events or close events of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_on_listening_0100', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_on_listening_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_on_listening_0100 Test start*************");
-      udp.on("listening", () => {
+      udp.on("listening", data => {
         expect(true).assertTrue();
       });
       console.log("************* Telephony_Socket_UDPSocket_on_listening_0100 Test end*************");
@@ -1055,14 +1049,14 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for data packet message events or close events of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_off_listening_0100', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_off_listening_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_off_listening_0100 Test start*************");
-      udp.off("listening", () => {
+      udp.off("listening", data => {
         expect(true).assertTrue();
       });
       console.log("************* Telephony_Socket_UDPSocket_off_listening_0100 Test end*************");
@@ -1074,7 +1068,7 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for data packet message events or close events of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_off_listening_0200', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_off_listening_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -1092,14 +1086,14 @@ export default function socketJsunit() {
      * @tc.name      : on
      * @tc.desc      : Listens for data packet message events or close events of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_on_close_0100', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_on_close_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_on_close_0100 Test start*************");
-      udp.on("close", () => {
+      udp.on("close", data => {
         expect(true).assertTrue();
       });
       console.log("************* Telephony_Socket_UDPSocket_on_close_0100 Test end*************");
@@ -1111,14 +1105,14 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for data packet message events or close events of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_off_close_0100', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_off_close_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_off_close_0100 Test start*************");
-      udp.off("close", () => {
+      udp.off("close", data => {
         expect(true).assertTrue();
       });
       console.log("************* Telephony_Socket_UDPSocket_off_close_0100 Test end*************");
@@ -1130,7 +1124,7 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for data packet message events or close events of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_off_close_0200', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_off_close_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -1148,16 +1142,16 @@ export default function socketJsunit() {
      * @tc.name      : on
      * @tc.desc      : Listens for error events of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_on_error_0100', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_on_error_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_on_error_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_on_error_0100";
-      udp.on("error", (error: BusinessError) => {
-        console.log(`${caseName} fail, error:${JSON.stringify(error)}`);
+      let caseName = "Telephony_Socket_UDPSocket_on_error_0100"      
+      udp.on("error", error => {
+        console.log(`${caseName} fail, error:${toString(error)}`);
         expect().assertFail();
       });
       expect(true).assertTrue();
@@ -1170,16 +1164,16 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for error events of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_off_error_0100', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_off_error_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_UDPSocket_off_error_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_UDPSocket_off_error_0100";
-      udp.off("error", (error: BusinessError) => {
-        console.log(`${caseName} fail, error:${JSON.stringify(error)}`);
+      let caseName = "Telephony_Socket_UDPSocket_off_error_0100"      
+      udp.off("error", error => {
+        console.log(`${caseName} fail, error:${toString(error)}`);
         expect().assertFail();
       });
       expect(true).assertTrue();
@@ -1192,7 +1186,7 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for error events of the UDPSocket connection.
      */
-    it('Telephony_Socket_UDPSocket_off_error_0200', 0, (done: Function) => {
+    it('Telephony_Socket_UDPSocket_off_error_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -1210,27 +1204,27 @@ export default function socketJsunit() {
      * @tc.name      : bind
      * @tc.desc      : Binds the IP address and port number
      */
-    it('Telephony_Socket_TCPSocket_bind_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_bind_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_bind_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_bind_0100";
-      let netAddress: socket.NetAddress = {
+      let caseName = "Telephony_Socket_TCPSocket_bind_0100"
+      let netAddress = {
         address: "test address",
         family: 1,
         port: 8080
-      };
-      tcp.bind(netAddress, (error: BusinessError, data: void) => {
+      }
+      tcp.bind(netAddress, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
         expect().assertFail();
-        console.log(`${caseName} error, case failed,data:${JSON.stringify(data)}`);
+        console.log(`${caseName} error, case failed,data:${toString(data)}`);
         done();
       })
       console.log("************* Telephony_Socket_TCPSocket_bind_0100 Test end*************");
@@ -1242,25 +1236,25 @@ export default function socketJsunit() {
      * @tc.name      : bind
      * @tc.desc      : Binds the IP address and port number
      */
-    it('Telephony_Socket_TCPSocket_bind_0200', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_bind_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_bind_0200 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_bind_0200";
-      let netAddress: socket.NetAddress = {
+      let caseName = "Telephony_Socket_TCPSocket_bind_0200"      
+      let netAddress = {
         address: "test address",
         family: 1,
         port: 8080
-      };
-      tcp.bind(netAddress).then((data: void) => {
-        console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-        done();
-      }).catch((error: BusinessError) => {
-        console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
-        done();
+      }
+      tcp.bind(netAddress).then(data => {
+        console.log(`${caseName} success,data:${toString(data)}`);
+		done();
+      }).catch((error) => {
+        console.log(`${caseName} failed,error:${toString(error)}`);
+		done();
       });
       console.log("************* Telephony_Socket_TCPSocket_bind_0200 Test end*************");
       done();
@@ -1271,25 +1265,25 @@ export default function socketJsunit() {
      * @tc.name      : bind
      * @tc.desc      : Binds the IP address and port number
      */
-    it('Telephony_Socket_TCPSocket_bind_0300', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_bind_0300', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_bind_0300 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_bind_0300";
-      let netAddress: socket.NetAddress = {
+      let caseName = "Telephony_Socket_TCPSocket_bind_0300"
+      let netAddress = {
         address: "second test address",
-      };
-      tcp.bind(netAddress, (error: BusinessError, data: void) => {
+      }
+      tcp.bind(netAddress, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
         expect().assertFail();
-        console.log(`${caseName} error, case failed,data:${JSON.stringify(data)}`);
+        console.log(`${caseName} error, case failed,data:${toString(data)}`);
         done();
       })
       console.log("************* Telephony_Socket_TCPSocket_bind_0300 Test end*************");
@@ -1301,24 +1295,24 @@ export default function socketJsunit() {
      * @tc.name      : bind
      * @tc.desc      : Binds the IP address and port number
      */
-    it('Telephony_Socket_TCPSocket_bind_0400', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_bind_0400', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_bind_0400 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_bind_0400";
-
-      let netAddress: socket.NetAddress = {
+      let caseName = "Telephony_Socket_TCPSocket_bind_0400"
+      
+      let netAddress = {
         address: "third test address"
-      };
-      tcp.bind(netAddress).then((data: void) => {
-        console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-        done();
-      }).catch((error: BusinessError) => {
-        console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
-        done();
+      }
+      tcp.bind(netAddress).then(data => {
+        console.log(`${caseName} success,data:${toString(data)}`);
+		done();
+      }).catch((error) => {
+        console.log(`${caseName} failed,error:${toString(error)}`);
+		done();
       });
       console.log("************* Telephony_Socket_TCPSocket_bind_0400 Test end*************");
       done();
@@ -1329,26 +1323,26 @@ export default function socketJsunit() {
      * @tc.name      : send
      * @tc.desc      : Sends data over a TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_send_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_send_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_send_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_send_0100";
-      let tcpSendOptions: socket.TCPSendOptions = {
+      let caseName = "Telephony_Socket_TCPSocket_send_0100"      
+      let tcpSendOptions = {
         data: "test data",
         encoding: "test encoding"
-      };
-      tcp.send(tcpSendOptions, (error: BusinessError, data: void) => {
+      }
+      tcp.send(tcpSendOptions, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
         expect().assertFail();
-        console.log(`${caseName} error, case failed,data:${JSON.stringify(data)}`);
+        console.log(`${caseName} error, case failed,data:${toString(data)}`);
         done();
       })
       console.log("************* Telephony_Socket_TCPSocket_send_0100 Test end*************");
@@ -1360,22 +1354,22 @@ export default function socketJsunit() {
      * @tc.name      : send
      * @tc.desc      : Sends data over a TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_send_0200', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_send_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_send_0200 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_send_0200";
-      let tcpSendOptions: socket.TCPSendOptions = {
+      let caseName = "Telephony_Socket_TCPSocket_send_0200"      
+      let tcpSendOptions = {
         data: "test data",
         encoding: "test encoding"
-      };
-      tcp.send(tcpSendOptions).then((data: void) => {
-        console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-      }).catch((error: BusinessError) => {
-        console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
+      }
+      tcp.send(tcpSendOptions).then(data => {
+        console.log(`${caseName} success,data:${toString(data)}`);
+      }).catch((error) => {
+        console.log(`${caseName} failed,error:${toString(error)}`);
       });
       console.log("************* Telephony_Socket_TCPSocket_send_0200 Test end*************");
       done();
@@ -1386,25 +1380,25 @@ export default function socketJsunit() {
      * @tc.name      : send
      * @tc.desc      : Sends data over a TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_send_0300', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_send_0300', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_send_0300 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_send_0300";
-      let tcpSendOptions: socket.TCPSendOptions = {
+      let caseName = "Telephony_Socket_TCPSocket_send_0300"      
+      let tcpSendOptions = {
         data: "second test data",
-      };
-      tcp.send(tcpSendOptions, (error: BusinessError, data: void) => {
+      }
+      tcp.send(tcpSendOptions, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
         expect().assertFail();
-        console.log(`${caseName} error, case failed,data:${JSON.stringify(data)}`);
+        console.log(`${caseName} error, case failed,data:${toString(data)}`);
         done();
       })
       console.log("************* Telephony_Socket_TCPSocket_send_0300 Test end*************");
@@ -1416,21 +1410,21 @@ export default function socketJsunit() {
      * @tc.name      : send
      * @tc.desc      : Sends data over a TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_send_0400', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_send_0400', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_send_0400 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_send_0400";
-      let tcpSendOptions: socket.TCPSendOptions = {
+      let caseName = "Telephony_Socket_TCPSocket_send_0400"      
+      let tcpSendOptions = {
         data: "second test data",
-      };
-      tcp.send(tcpSendOptions).then((data: void) => {
-        console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-      }).catch((error: BusinessError) => {
-        console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
+      }
+      tcp.send(tcpSendOptions).then(data => {
+        console.log(`${caseName} success,data:${toString(data)}`);
+      }).catch((error) => {
+        console.log(`${caseName} failed,error:${toString(error)}`);
       });
       console.log("************* Telephony_Socket_TCPSocket_send_0400 Test end*************");
       done();
@@ -1441,30 +1435,30 @@ export default function socketJsunit() {
      * @tc.name      : connect
      * @tc.desc      : Sets up a connection to the specified IP address and port number.
      */
-    it('Telephony_Socket_TCPSocket_connect_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_connect_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_connect_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_connect_0100";
-      let tcpConnectOptions: socket.TCPConnectOptions = {
+      let caseName = "Telephony_Socket_TCPSocket_connect_0100"      
+      let tcpConnectOptions = {
         address: {
           address: "test address",
           family: 1,
           port: 8080
         },
         timeout: 1000
-      };
-      tcp.connect(tcpConnectOptions, (error: BusinessError, data: void) => {
+      }
+      tcp.connect(tcpConnectOptions, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
         expect().assertFail();
-        console.log(`${caseName} error, case failed,data:${JSON.stringify(data)}`);
+        console.log(`${caseName} error, case failed,data:${toString(data)}`);
         done();
       })
       console.log("************* Telephony_Socket_TCPSocket_connect_0100 Test end*************");
@@ -1476,26 +1470,26 @@ export default function socketJsunit() {
      * @tc.name      : connect
      * @tc.desc      : Sets up a connection to the specified IP address and port number.
      */
-    it('Telephony_Socket_TCPSocket_connect_0200', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_connect_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_connect_0200 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_connect_0200";
-      let tcpConnectOptions: socket.TCPConnectOptions = {
+      let caseName = "Telephony_Socket_TCPSocket_connect_0200"      
+      let tcpConnectOptions = {
         address: {
           address: "test address",
           family: 1,
           port: 8080
         },
         timeout: 1000
-      };
-      tcp.connect(tcpConnectOptions).then((data: void) => {
-        console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-      }).catch((error: BusinessError) => {
-        console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
+      }
+      tcp.connect(tcpConnectOptions).then(function (data) {
+        console.log(`${caseName} success,data:${toString(data)}`);
+      }).catch((error) => {
+        console.log(`${caseName} failed,error:${toString(error)}`);
       });
       console.log("************* Telephony_Socket_TCPSocket_connect_0200 Test end*************");
       done();
@@ -1506,29 +1500,29 @@ export default function socketJsunit() {
      * @tc.name      : connect
      * @tc.desc      : Sets up a connection to the specified IP address and port number.
      */
-    it('Telephony_Socket_TCPSocket_connect_0300', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_connect_0300', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_connect_0300 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_connect_0300";
-      let tcpConnectOptions: socket.TCPConnectOptions = {
+      let caseName = "Telephony_Socket_TCPSocket_connect_0300"      
+      let tcpConnectOptions = {
         address: {
           address: "second test address",
           family: 1,
           port: 8080
         }
-      };
-      tcp.connect(tcpConnectOptions, (error: BusinessError, data: void) => {
+      }
+      tcp.connect(tcpConnectOptions, (error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
         expect().assertFail();
-        console.log(`${caseName} error, case failed,data:${JSON.stringify(data)}`);
+        console.log(`${caseName} error, case failed,data:${toString(data)}`);
         done();
       })
       console.log("************* Telephony_Socket_TCPSocket_connect_0300 Test end*************");
@@ -1540,25 +1534,25 @@ export default function socketJsunit() {
      * @tc.name      : connect
      * @tc.desc      : Sets up a connection to the specified IP address and port number.
      */
-    it('Telephony_Socket_TCPSocket_connect_0400', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_connect_0400', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_connect_0400 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_connect_0400";
-      let tcpConnectOptions: socket.TCPConnectOptions = {
+      let caseName = "Telephony_Socket_TCPSocket_connect_0400"      
+      let tcpConnectOptions = {
         address: {
           address: "second test address",
           family: 1,
           port: 8080
         }
-      };
-      tcp.connect(tcpConnectOptions).then((data: void) => {
-        console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-      }).catch((error: BusinessError) => {
-        console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
+      }
+      tcp.connect(tcpConnectOptions).then(function (data) {
+        console.log(`${caseName} success,data:${toString(data)}`);
+      }).catch((error) => {
+        console.log(`${caseName} failed,error:${toString(error)}`);
       });
       console.log("************* Telephony_Socket_TCPSocket_connect_0400 Test end*************");
       done();
@@ -1569,17 +1563,17 @@ export default function socketJsunit() {
      * @tc.name      : close
      * @tc.desc      : Closes a UDPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_close_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_close_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_close_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_close_0100";
-      tcp.close((error: BusinessError) => {
+      let caseName = "Telephony_Socket_TCPSocket_close_0100"      
+      tcp.close((error, data) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
@@ -1595,18 +1589,18 @@ export default function socketJsunit() {
      * @tc.name      : close
      * @tc.desc      : Closes a UDPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_close_0200', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_close_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_close_0200 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_close_0200";
-      tcp.close().then((data: void) => {
-        console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-      }).catch((error: BusinessError) => {
-        console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
+      let caseName = "Telephony_Socket_TCPSocket_close_0200"      
+      tcp.close().then(data => {
+        console.log(`${caseName} success,data:${toString(data)}`);
+      }).catch((error) => {
+        console.log(`${caseName} failed,error:${toString(error)}`);
       });
       console.log("************* Telephony_Socket_TCPSocket_close_0200 Test end*************");
       done();
@@ -1617,22 +1611,22 @@ export default function socketJsunit() {
      * @tc.name      : getState
      * @tc.desc      : Obtains the status of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_getState_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_getState_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_getState_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_getState_0100";
-      tcp.getState((error: BusinessError, data: socket.SocketStateBase) => {
+      let caseName = "Telephony_Socket_TCPSocket_getState_0100"      
+      tcp.getState((error, data) => {
         if (error) {
-          console.log(`${caseName} case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} case success,error:${toString(error)}`);
           done();
           return;
         }
         expect().assertFail();
-        console.log(`${caseName} case failed,data:${JSON.stringify(data)}`);
+        console.log(`${caseName} case failed,data:${toString(data)}`);
         done();
       })
       console.log("************* Telephony_Socket_TCPSocket_getState_0100 Test end*************");
@@ -1644,18 +1638,18 @@ export default function socketJsunit() {
      * @tc.name      : getState
      * @tc.desc      : Obtains the status of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_getState_0200', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_getState_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_getState_0200 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_getState_0200";
-      tcp.getState().then((data: socket.SocketStateBase) => {
-        console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-      }).catch((error: BusinessError) => {
-        console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
+      let caseName = "Telephony_Socket_TCPSocket_getState_0200"      
+      tcp.getState().then(data => {
+        console.log(`${caseName} success,data:${toString(data)}`);
+      }).catch((error) => {
+        console.log(`${caseName} failed,error:${toString(error)}`);
       });
       console.log("************* Telephony_Socket_TCPSocket_getState_0200 Test end*************");
       done();
@@ -1666,26 +1660,26 @@ export default function socketJsunit() {
      * @tc.name      : setExtraOptions
      * @tc.desc      : Sets other attributes of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_setExtraOptions_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_setExtraOptions_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_setExtraOptions_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_setExtraOptions_0100";
-      let tcpExtraOptions: socket.TCPExtraOptions = {
+      let caseName = "Telephony_Socket_TCPSocket_setExtraOptions_0100"      
+      let tcpExtraOptions = {
         keepAlive: true,
         OOBInline: true,
         TCPNoDelay: true,
         socketLinger: {
           on: true,
-          linger: 1
+          linger: true
         }
-      };
-      tcp.setExtraOptions(tcpExtraOptions, (error: BusinessError) => {
+      }
+      tcp.setExtraOptions(tcpExtraOptions, (error) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
@@ -1702,33 +1696,32 @@ export default function socketJsunit() {
      * @tc.name      : setExtraOptions
      * @tc.desc      : Sets other attributes of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_setExtraOptions_0200', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_setExtraOptions_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_setExtraOptions_0200 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_setExtraOptions_0200";
-      let tcpExtraOptions: socket.TCPExtraOptions = {
+      let caseName = "Telephony_Socket_TCPSocket_setExtraOptions_0200"      
+      let tcpExtraOptions = {
         keepAlive: true,
         OOBInline: true,
         TCPNoDelay: true,
         socketLinger: {
           on: true,
-          linger: 1
+          linger: true
         }
-      };
+      }
       try {
-        tcp.setExtraOptions(tcpExtraOptions).then(() => {
-          console.log(`${caseName}`);
-        });
+        tcp.setExtraOptions(tcpExtraOptions).then(function(data) {
+		  console.log(`${caseName}`);
+		});
         console.log(`${caseName} success`);
         expect(true).assertTrue();
         done();
       } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.log(`${caseName} failed,error:${e}`);
+        console.log(`${caseName} failed,error:${error}`);
         done();
       }
       console.log("************* Telephony_Socket_TCPSocket_setExtraOptions_0200 Test end*************");
@@ -1740,23 +1733,23 @@ export default function socketJsunit() {
      * @tc.name      : setExtraOptions
      * @tc.desc      : Sets other attributes of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_setExtraOptions_0300', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_setExtraOptions_0300', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_setExtraOptions_0300 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_setExtraOptions_0300";
-      let tcpExtraOptions: socket.TCPExtraOptions = {
+      let caseName = "Telephony_Socket_TCPSocket_setExtraOptions_0300"      
+      let tcpExtraOptions = {
         socketLinger: {
           on: true,
-          linger: 1
+          linger: true
         }
-      };
-      tcp.setExtraOptions(tcpExtraOptions, (error: BusinessError) => {
+      }
+      tcp.setExtraOptions(tcpExtraOptions, (error) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
@@ -1773,30 +1766,29 @@ export default function socketJsunit() {
      * @tc.name      : setExtraOptions
      * @tc.desc      : Sets other attributes of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_setExtraOptions_0400', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_setExtraOptions_0400', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_setExtraOptions_0400 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_setExtraOptions_0400";
-      let tcpExtraOptions: socket.TCPExtraOptions = {
+      let caseName = "Telephony_Socket_TCPSocket_setExtraOptions_0400"      
+      let tcpExtraOptions = {
         socketLinger: {
           on: true,
-          linger: 1
+          linger: true
         }
-      };
+      }
       try {
-        tcp.setExtraOptions(tcpExtraOptions).then(() => {
-          console.log(`${caseName}`);
-        });
+        tcp.setExtraOptions(tcpExtraOptions).then(function(data){
+		  console.log(`${caseName}`);
+		});
         console.log(`${caseName} success`);
         expect(true).assertTrue();
         done();
       } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.log(`${caseName} failed,error:${e}`);
+        console.log(`${caseName} failed,error:${error}`);
         done();
       }
       console.log("************* Telephony_Socket_TCPSocket_setExtraOptions_0400 Test end*************");
@@ -1808,17 +1800,17 @@ export default function socketJsunit() {
      * @tc.name      : getRemoteAddress
      * @tc.desc      : Obtains the peer address of a TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_getRemoteAddress_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_getRemoteAddress_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_getRemoteAddress_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_getRemoteAddress_0100";
-      tcp.getRemoteAddress((error: BusinessError) => {
+      let caseName = "Telephony_Socket_TCPSocket_getRemoteAddress_0100"      
+      tcp.getRemoteAddress((error) => {
         if (error) {
-          console.log(`${caseName} error, case success,error:${JSON.stringify(error)}`);
+          console.log(`${caseName} error, case success,error:${toString(error)}`);
           done();
           return;
         }
@@ -1834,18 +1826,18 @@ export default function socketJsunit() {
      * @tc.name      : getRemoteAddress
      * @tc.desc      : Obtains the peer address of a TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_getRemoteAddress_0200', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_getRemoteAddress_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_getRemoteAddress_0200 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_getRemoteAddress_0200";
-      tcp.getRemoteAddress().then((data: socket.NetAddress) => {
-        console.log(`${caseName} success,data:${JSON.stringify(data)}`);
-      }).catch((error: BusinessError) => {
-        console.log(`${caseName} failed,error:${JSON.stringify(error)}`);
+      let caseName = "Telephony_Socket_TCPSocket_getRemoteAddress_0200"      
+      tcp.getRemoteAddress().then(data => {
+        console.log(`${caseName} success,data:${toString(data)}`);
+      }).catch((error) => {
+        console.log(`${caseName} failed,error:${toString(error)}`);
       });
       console.log("************* Telephony_Socket_TCPSocket_getRemoteAddress_0200 Test end*************");
       done();
@@ -1856,15 +1848,15 @@ export default function socketJsunit() {
      * @tc.name      : on
      * @tc.desc      : Listens for message receiving events of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_on_message_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_on_message_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_on_message_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_on_message_0100";
-      tcp.on("message", (data: MessageEvent) => {
+      let caseName = "Telephony_Socket_TCPSocket_on_message_0100"      
+      tcp.on("message", data => {
         let socketRemoteInfo: socket.SocketRemoteInfo = data.remoteInfo;
         console.log(`${caseName} port:${socketRemoteInfo.port}`);
         console.log(`${caseName} size:${socketRemoteInfo.size}`);
@@ -1878,15 +1870,15 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for message receiving events of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_off_message_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_off_message_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_off_message_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_off_message_0100";
-      tcp.off("message", (data: MessageEvent) => {
+      let caseName = "Telephony_Socket_TCPSocket_off_message_0100"      
+      tcp.off("message", data => {
         let socketRemoteInfo: socket.SocketRemoteInfo = data.remoteInfo;
         console.log(`${caseName} port:${socketRemoteInfo.port}`);
         console.log(`${caseName} size:${socketRemoteInfo.size}`);
@@ -1900,7 +1892,7 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for message receiving events of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_off_message_0200', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_off_message_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -1918,14 +1910,14 @@ export default function socketJsunit() {
      * @tc.name      : on
      * @tc.desc      : Listens for connection or close events of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_on_connect_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_on_connect_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_on_connect_0100 Test start*************");
-      tcp.on("connect", () => {
+      tcp.on("connect", data => {
         expect(true).assertTrue();
       });
       console.log("************* Telephony_Socket_TCPSocket_on_connect_0100 Test end*************");
@@ -1937,14 +1929,14 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for connection or close events of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_off_connect_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_off_connect_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_off_connect_0100 Test start*************");
-      tcp.off("connect", () => {
+      tcp.off("connect", data => {
         expect(true).assertTrue();
       });
       console.log("************* Telephony_Socket_TCPSocket_off_connect_0100 Test end*************");
@@ -1956,7 +1948,7 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for connection or close events of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_off_connect_0200', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_off_connect_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -1974,14 +1966,14 @@ export default function socketJsunit() {
      * @tc.name      : on
      * @tc.desc      : Listens for connection or close events of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_on_close_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_on_close_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_on_close_0100 Test start*************");
-      tcp.on("close", () => {
+      tcp.on("close", data => {
         expect(true).assertTrue();
       });
       console.log("************* Telephony_Socket_TCPSocket_on_close_0100 Test end*************");
@@ -1993,14 +1985,14 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for connection or close events of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_off_close_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_off_close_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_off_close_0100 Test start*************");
-      tcp.off("close", () => {
+      tcp.off("close", data => {
         expect(true).assertTrue();
       });
       console.log("************* Telephony_Socket_TCPSocket_off_close_0100 Test end*************");
@@ -2012,7 +2004,7 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for connection or close events of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_off_close_0200', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_off_close_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -2030,16 +2022,16 @@ export default function socketJsunit() {
      * @tc.name      : on
      * @tc.desc      : Listens for error events of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_on_error_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_on_error_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_on_error_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_on_error_0100";
-      tcp.on("error", (error: BusinessError) => {
-        console.log(`${caseName} fail, error:${JSON.stringify(error)}`);
+      let caseName = "Telephony_Socket_TCPSocket_on_error_0100"      
+      tcp.on("error", error => {
+        console.log(`${caseName} fail, error:${toString(error)}`);
         expect().assertFail();
       });
       expect(true).assertTrue();
@@ -2052,16 +2044,16 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for error events of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_off_error_0100', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_off_error_0100', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("************* Telephony_Socket_TCPSocket_off_error_0100 Test start*************");
-      let caseName: string = "Telephony_Socket_TCPSocket_off_error_0100";
-      tcp.off("error", (error: BusinessError) => {
-        console.log(`${caseName} fail, error:${JSON.stringify(error)}`);
+      let caseName = "Telephony_Socket_TCPSocket_off_error_0100"      
+      tcp.off("error", error => {
+        console.log(`${caseName} fail, error:${toString(error)}`);
         expect().assertFail();
       });
       expect(true).assertTrue();
@@ -2074,7 +2066,7 @@ export default function socketJsunit() {
      * @tc.name      : off
      * @tc.desc      : Cancels listening for error events of the TCPSocket connection.
      */
-    it('Telephony_Socket_TCPSocket_off_error_0200', 0, (done: Function) => {
+    it('Telephony_Socket_TCPSocket_off_error_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -2087,15 +2079,15 @@ export default function socketJsunit() {
       done();
     });
 
-    // addMembership:
+// addMembership:
     /**
      * @tc.number NetworkManager_UDPSocket_addMembership_Async_0100
      * @tc.name UDPSocket::addMembership
      * @tc.desc Test addMembership property.
      */
-    it("NetworkManager_UDPSocket_addMembership_Async_0100", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_addMembership_Async_0100";
-      multicastSocket.addMembership(multicastAddress, (err: BusinessError, data) => {
+    it("NetworkManager_UDPSocket_addMembership_Async_0100", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_addMembership_Async_0100"
+      multicastSocket.addMembership(multicastAddress, (err, data) => {
         if (err) {
           console.log(`${caseName} addMembership failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -2113,9 +2105,9 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::addMembership
      * @tc.desc Test addMembership property.
      */
-    it("NetworkManager_UDPSocket_addMembership_Async_0200", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_addMembership_Async_0200";
-      multicastSocket.addMembership(multicastAddress_invalid, (err: BusinessError, data) => {
+    it("NetworkManager_UDPSocket_addMembership_Async_0200", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_addMembership_Async_0200"
+      multicastSocket.addMembership(multicastAddress_invalid, (err, data) => {
         if (err) {
           console.log(`${caseName} addMembership failed, err: ${JSON.stringify(err)}`);
           expect(err.code !== undefined).assertTrue();
@@ -2133,9 +2125,9 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::addMembership
      * @tc.desc Test addMembership property.
      */
-    it("NetworkManager_UDPSocket_addMembership_Async_0300", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_addMembership_Async_0300";
-      multicastSocket.addMembership(multicastAddress_null, (err: BusinessError, data) => {
+    it("NetworkManager_UDPSocket_addMembership_Async_0300", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_addMembership_Async_0300"
+      multicastSocket.addMembership(multicastAddress_null, (err, data) => {
         if (err) {
           console.log(`${caseName} addMembership failed, err: ${JSON.stringify(err)}`);
           expect(err.code !== undefined).assertTrue();
@@ -2153,10 +2145,10 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::addMembership
      * @tc.desc Test addMembership property.
      */
-    it("NetworkManager_UDPSocket_addMembership_Async_0400", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_addMembership_Async_0400";
+    it("NetworkManager_UDPSocket_addMembership_Async_0400", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_addMembership_Async_0400"
       try {
-        multicastSocket.addMembership(undefined, (err: BusinessError, data) => {
+        multicastSocket.addMembership(undefined, (err, data) => {
           if (err) {
             console.log(`${caseName} addMembership failed, err: ${JSON.stringify(err)}`);
             expectFalse();
@@ -2168,9 +2160,8 @@ export default function socketJsunit() {
           }
         });
       } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
-        expect(e.code == 401).assertTrue();
+        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
+        expect(error.code == 401).assertTrue();
         done();
       }
     });
@@ -2181,16 +2172,16 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::send
      * @tc.desc Test send property.
      */
-    it("NetworkManager_UDPSocket_send_Async_0100", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_send_Async_0100";
-      let result: string;
+    it("NetworkManager_UDPSocket_send_Async_0100", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_send_Async_0100"
+      let result;
       multicastSocket.on('message', (data) => {
         console.info(caseName + ' on message,data.remoteInfo.size: ' + JSON.stringify(data.remoteInfo.size));
         result = JSON.stringify(data.remoteInfo.size);
         done();
       })
       await sleep(2000);
-      multicastSocket.send(options, (err: BusinessError, data) => {
+      multicastSocket.send(options, (err, data) => {
         if (err) {
           console.log(`${caseName} send failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -2212,9 +2203,9 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::setMulticastTTL
      * @tc.desc Test setMulticastTTL property.
      */
-    it("NetworkManager_UDPSocket_setMulticastTTL_Async_0100", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_setMulticastTTL_Async_0100";
-      multicastSocket.setMulticastTTL(ttl, (err: BusinessError, data) => {
+    it("NetworkManager_UDPSocket_setMulticastTTL_Async_0100", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_setMulticastTTL_Async_0100"
+      multicastSocket.setMulticastTTL(ttl, (err, data) => {
         if (err) {
           console.log(`${caseName} setMulticastTTL failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -2232,9 +2223,9 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::setMulticastTTL
      * @tc.desc Test setMulticastTTL property.
      */
-    it("NetworkManager_UDPSocket_setMulticastTTL_Async_0200", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_setMulticastTTL_Async_0200";
-      multicastSocket.setMulticastTTL(ttl_invalid, (err: BusinessError, data) => {
+    it("NetworkManager_UDPSocket_setMulticastTTL_Async_0200", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_setMulticastTTL_Async_0200"
+      multicastSocket.setMulticastTTL(ttl_invalid, (err, data) => {
         if (err) {
           console.log(`${caseName} setMulticastTTL failed, err: ${JSON.stringify(err)}`);
           expect(err.code !== undefined).assertTrue();
@@ -2252,10 +2243,10 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::setMulticastTTL
      * @tc.desc Test setMulticastTTL property.
      */
-    it("NetworkManager_UDPSocket_setMulticastTTL_Async_0300", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_setMulticastTTL_Async_0300";
+    it("NetworkManager_UDPSocket_setMulticastTTL_Async_0300", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_setMulticastTTL_Async_0300"
       try {
-        multicastSocket.setMulticastTTL(ttl_undefined, (err: BusinessError, data) => {
+        multicastSocket.setMulticastTTL(ttl_undefined, (err, data) => {
           if (err) {
             console.log(`${caseName} setMulticastTTL failed, err: ${JSON.stringify(err)}`);
             expectFalse();
@@ -2267,9 +2258,8 @@ export default function socketJsunit() {
           }
         });
       } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
-        expect(e.code == 401).assertTrue();
+        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
+        expect(error.code == 401).assertTrue();
         done();
       }
     });
@@ -2280,9 +2270,9 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::getMulticastTTL
      * @tc.desc Test getMulticastTTL property.
      */
-    it("NetworkManager_UDPSocket_getMulticastTTL_Async_0100", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_getMulticastTTL_Async_0100";
-      multicastSocket.getMulticastTTL((err: BusinessError, data) => {
+    it("NetworkManager_UDPSocket_getMulticastTTL_Async_0100", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_getMulticastTTL_Async_0100"
+      multicastSocket.getMulticastTTL((err, data) => {
         if (err) {
           console.log(`${caseName} getMulticastTTL failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -2301,9 +2291,9 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::setLoopbackMode
      * @tc.desc Test setLoopbackMode property.
      */
-    it("NetworkManager_UDPSocket_setLoopbackMode_Async_0100", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_setLoopbackMode_Async_0100";
-      multicastSocket.setLoopbackMode(true, (err: BusinessError, data) => {
+    it("NetworkManager_UDPSocket_setLoopbackMode_Async_0100", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_setLoopbackMode_Async_0100"
+      multicastSocket.setLoopbackMode(true, (err, data) => {
         if (err) {
           console.log(`${caseName} setLoopbackMode failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -2321,9 +2311,9 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::setLoopbackMode
      * @tc.desc Test setLoopbackMode property.
      */
-    it("NetworkManager_UDPSocket_setLoopbackMode_Async_0200", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_setLoopbackMode_Async_0200";
-      multicastSocket.setLoopbackMode(false, (err: BusinessError, data) => {
+    it("NetworkManager_UDPSocket_setLoopbackMode_Async_0200", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_setLoopbackMode_Async_0200"
+      multicastSocket.setLoopbackMode(false, (err, data) => {
         if (err) {
           console.log(`${caseName} setLoopbackMode failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -2341,10 +2331,10 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::setLoopbackMode
      * @tc.desc Test setLoopbackMode property.
      */
-    it("NetworkManager_UDPSocket_setLoopbackMode_Async_0300", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_setLoopbackMode_Async_0300";
+    it("NetworkManager_UDPSocket_setLoopbackMode_Async_0300", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_setLoopbackMode_Async_0300"
       try {
-        multicastSocket.setLoopbackMode(undefined, (err: BusinessError, data) => {
+        multicastSocket.setLoopbackMode(undefined, (err, data) => {
           if (err) {
             console.log(`${caseName} setLoopbackMode failed, err: ${JSON.stringify(err)}`);
             expectFalse();
@@ -2356,9 +2346,8 @@ export default function socketJsunit() {
           }
         });
       } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
-        expect(e.code == 401).assertTrue();
+        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
+        expect(error.code == 401).assertTrue();
         done();
       }
     });
@@ -2369,9 +2358,9 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::getLoopbackMode
      * @tc.desc Test getLoopbackMode property.
      */
-    it("NetworkManager_UDPSocket_getLoopbackMode_Async_0100", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_getLoopbackMode_Async_0100";
-      multicastSocket.setLoopbackMode(true, (err: BusinessError, data) => {
+    it("NetworkManager_UDPSocket_getLoopbackMode_Async_0100", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_getLoopbackMode_Async_0100"
+      multicastSocket.setLoopbackMode(true, (err, data) => {
         if (err) {
           console.log(`${caseName} setLoopbackMode failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -2379,7 +2368,7 @@ export default function socketJsunit() {
         } else {
           console.log(`${caseName} setLoopbackMode success, data: ${JSON.stringify(data)}`);
           expect(data).assertEqual(undefined);
-          multicastSocket.getLoopbackMode((err: BusinessError, data) => {
+          multicastSocket.getLoopbackMode((err, data) => {
             if (err) {
               console.log(`${caseName} getLoopbackMode failed, err: ${JSON.stringify(err)}`);
               expectFalse();
@@ -2399,9 +2388,9 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::getLoopbackMode
      * @tc.desc Test getLoopbackMode property.
      */
-    it("NetworkManager_UDPSocket_getLoopbackMode_Async_0200", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_getLoopbackMode_Async_0200";
-      multicastSocket.setLoopbackMode(false, (err: BusinessError, data) => {
+    it("NetworkManager_UDPSocket_getLoopbackMode_Async_0200", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_getLoopbackMode_Async_0200"
+      multicastSocket.setLoopbackMode(false, (err, data) => {
         if (err) {
           console.log(`${caseName} setLoopbackMode failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -2409,7 +2398,7 @@ export default function socketJsunit() {
         } else {
           console.log(`${caseName} setLoopbackMode success, data: ${JSON.stringify(data)}`);
           expect(data).assertEqual(undefined);
-          multicastSocket.getLoopbackMode((err: BusinessError, data) => {
+          multicastSocket.getLoopbackMode((err, data) => {
             if (err) {
               console.log(`${caseName} getLoopbackMode failed, err: ${JSON.stringify(err)}`);
               expectFalse();
@@ -2431,9 +2420,9 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::dropMembership
      * @tc.desc Test dropMembership property.
      */
-    it("NetworkManager_UDPSocket_dropMembership_Async_0100", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_dropMembership_Async_0100";
-      multicastSocket.dropMembership(multicastAddress, (err: BusinessError, data) => {
+    it("NetworkManager_UDPSocket_dropMembership_Async_0100", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_dropMembership_Async_0100"
+      multicastSocket.dropMembership(multicastAddress, (err, data) => {
         if (err) {
           console.log(`${caseName} dropMembership failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -2451,9 +2440,9 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::dropMembership
      * @tc.desc Test dropMembership property.
      */
-    it("NetworkManager_UDPSocket_dropMembership_Async_0200", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_dropMembership_Async_0200";
-      multicastSocket.dropMembership(multicastAddress_invalid, (err: BusinessError, data) => {
+    it("NetworkManager_UDPSocket_dropMembership_Async_0200", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_dropMembership_Async_0200"
+      multicastSocket.dropMembership(multicastAddress_invalid, (err, data) => {
         if (err) {
           console.log(`${caseName} dropMembership failed, err: ${JSON.stringify(err)}`);
           expect(err.code !== undefined).assertTrue();
@@ -2471,9 +2460,9 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::dropMembership
      * @tc.desc Test dropMembership property.
      */
-    it("NetworkManager_UDPSocket_dropMembership_Async_0300", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_dropMembership_Async_0300";
-      multicastSocket.dropMembership(multicastAddress_null, (err: BusinessError, data) => {
+    it("NetworkManager_UDPSocket_dropMembership_Async_0300", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_dropMembership_Async_0300"
+      multicastSocket.dropMembership(multicastAddress_null, (err, data) => {
         if (err) {
           console.log(`${caseName} dropMembership failed, err: ${JSON.stringify(err)}`);
           expect(err.code !== undefined).assertTrue();
@@ -2491,10 +2480,10 @@ export default function socketJsunit() {
      * @tc.name UDPSocket::dropMembership
      * @tc.desc Test dropMembership property.
      */
-    it("NetworkManager_UDPSocket_dropMembership_Async_0400", 0, async (done: Function) => {
-      let caseName: string = "NetworkManager_UDPSocket_dropMembership_Async_0400";
+    it("NetworkManager_UDPSocket_dropMembership_Async_0400", 0, async function (done) {
+      let caseName = "NetworkManager_UDPSocket_dropMembership_Async_0400"
       try {
-        multicastSocket.dropMembership(undefined, (err: BusinessError, data) => {
+        multicastSocket.dropMembership(undefined, (err, data) => {
           if (err) {
             console.log(`${caseName} dropMembership failed, err: ${JSON.stringify(err)}`);
             expectFalse();
@@ -2506,9 +2495,8 @@ export default function socketJsunit() {
           }
         });
       } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.log(`${caseName} catch error, expect error: [${e.code}, ${e.message}]`);
-        expect(e.code == 401).assertTrue();
+        console.log(`${caseName} catch error, expect error: [${error.code}, ${error.message}]`);
+        expect(error.code == 401).assertTrue();
         done();
       }
     });

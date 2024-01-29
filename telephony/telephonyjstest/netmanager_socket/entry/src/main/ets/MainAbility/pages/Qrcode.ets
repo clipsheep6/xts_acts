@@ -16,7 +16,7 @@
 @Entry
 @Component
 struct qrcode_textcase {
-  @State Color: Color = Color.Pink;
+  @State Color: Color = Color.Pink
 
   onPageShow() {
     console.info('Qrcode page show called');

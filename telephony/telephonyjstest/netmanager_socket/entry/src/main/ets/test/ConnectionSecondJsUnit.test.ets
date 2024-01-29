@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
  * Copyright (C) 2021 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License')
@@ -13,88 +14,51 @@
  * limitations under the License.
  */
 import connection from '@ohos.net.connection';
-import { describe, it, expect } from '@ohos/hypium';
-import { BusinessError } from '@ohos.base';
-
-
-class ResultLinkAddresses {
-  linkAddresses: Array<connection.LinkAddress>;
-}
-
-class ResultDnses {
-  dnses: Array<connection.NetAddress>;
-}
-
-class Gateway {
-  gateway: connection.NetAddress;
-}
-
-class ResultRoutes {
-  routes: Array<Gateway>;
-}
-
-class ResultInterface {
-  interface: string;
-}
-
-class ResultDestination {
-  destination: connection.NetAddress;
-}
-
-class ResultDefaultRoute {
-  isDefaultRoute: boolean;
-}
-
-class ResultHasGateway {
-  hasGateway: boolean;
-}
-
-class ResultPort {
-  port: number;
-}
+import {describe, it, expect} from 'hypium/index';
+import utils from './Utils.ets'
 
 export default function connectionSecondJsUnit() {
-  describe("connectionSecondJsunit", () => {
-    let envReady: boolean = false;
+  describe("connectionSecondJsunit", function () {
+    let envReady = false;
 
     /**
      * @tc.name: Telephony_connection_ConnectionProperties_0100
      * @tc.desc: ConnectionProperties Properties  detection
      * @tc.author: kangyuntao
      */
-    it("Telephony_connection_ConnectionProperties_0100", 0, (done: Function) => {
+    it("Telephony_connection_ConnectionProperties_0100", 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("-----------------------Telephony ConnectionProperties Test is starting-----------------------");
-      let caseName: string = 'Telephony_connection_ConnectionProperties_0100';
+      let caseName = 'Telephony_connection_ConnectionProperties_0100';
       try {
-        let resultLinkAddresses: ResultLinkAddresses = {
-          linkAddresses: [
-            {
-              address: {
-                address: "192.168.1.2"
-              }, prefixLength: 0
-            }
-          ]
+        let resultLinkAddresses = {
+          linkAddresses: [{
+                            address: {
+                              address: "192.168.1.2"
+                            }
+                          }]
         };
-        let resultDnses: ResultDnses = {
-          dnses: [
-            {
-              address: "192.168.1.3"
-            }
-          ]
+        let resultDnses = {
+          dnses: [{
+                    address: "192.168.1.3"
+                  }]
         };
-        let resultRoutes: ResultRoutes = {
-          routes: [
-            {
-              gateway: {
-                address: "192.168.1.1"
-              }
-            }
-          ]
+        let resultRoutes = {
+          routes: [{
+                     gateway: {
+                       address: "192.168.1.1"
+                     }
+                   }]
+        };
+        let resultName = {
+          interfaceName: '123'
+        };
+        let resultMtu = {
+          mtu: 123
         };
         console.log(caseName + ` resultLinkAddresses.linkAddresses.length: ` + resultLinkAddresses.linkAddresses.length);
         console.log(caseName + ` resultDnses.dnses.length: ` + resultDnses.dnses.length);
@@ -102,8 +66,8 @@ export default function connectionSecondJsUnit() {
         expect(resultLinkAddresses.linkAddresses.length > 0).assertTrue();
         expect(resultDnses.dnses.length > 0).assertTrue();
         expect(resultRoutes.routes.length > 0).assertTrue();
-        expect("123").assertEqual('123');
-        expect(123).assertEqual(123);
+        expect("123").assertEqual(resultName.interfaceName);
+        expect(123).assertEqual(resultMtu.mtu);
         console.log("-----------------------Telephony ConnectionProperties Test end-----------------------");
         done();
       } catch (err) {
@@ -116,49 +80,49 @@ export default function connectionSecondJsUnit() {
      * @tc.desc: getConnectionProperties  detection
      * @tc.author: kangyuntao
      */
-    it('Telephony_connection_getConnectionProperties_Async_0200', 0, (done: Function) => {
+    it('Telephony_connection_getConnectionProperties_Async_0200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("-----------------------Telephony getConnectionProperties Test is starting-----------------------");
-      if (false) {
+      if(false){
         expect(true).assertTrue();
         done();
         return;
       }
-      let caseName: string = 'Telephony_connection_getConnectionProperties_Async_0200';
-      connection.getAllNets((error: BusinessError, value: Array<connection.NetHandle>) => {
+      let caseName = 'Telephony_connection_getConnectionProperties_Async_0200';
+      connection.getAllNets((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
         } else {
           console.log(`${caseName} get netID value : ${JSON.stringify(value[0])}`);
-          connection.getConnectionProperties(value[0], (error: BusinessError, value: connection.ConnectionProperties) => {
+          connection.getConnectionProperties(value[0], (error, value) => {
             if (error) {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
-              console.log(caseName + " interfaceName: " + value.interfaceName);
+              console.log(caseName + " ifaceName: " + value.ifaceName);
               console.log(caseName + " mtu: " + value.mtu);
-              console.log(caseName + " linkAddresses.length: " + value.linkAddresses.length);
-              expect(value.interfaceName == "").assertTrue();
-              expect(value.domains == "").assertTrue();
+              console.log(caseName + " netAddrList.length: " + value.netAddrList.length);
+              expect(value.ifaceName == "").assertTrue();
+              expect(value.domain == "").assertTrue();
               expect(value.mtu == 0).assertTrue();
-              expect(value.linkAddresses.length == 0).assertTrue();
-              expect(value.dnses.length == 0).assertTrue();
-              expect(value.routes.length == 0).assertTrue();
+              expect(value.netAddrList.length == 0).assertTrue();
+              expect(value.dnsList.length == 0).assertTrue();
+              expect(value.routeList.length == 0).assertTrue();
               done();
             }
           });
         }
       });
       console.log("-----------------------Telephony getConnectionProperties Test end-----------------------");
-      done();
+	  done();
     });
 
     /**
@@ -166,7 +130,7 @@ export default function connectionSecondJsUnit() {
      * @tc.desc: RouteInfo Properties  detection
      * @tc.author: kangyuntao
      */
-    it("Telephony_connection_RouteInfo_0300", 0, (done: Function) => {
+    it("Telephony_connection_RouteInfo_0300", 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -174,23 +138,23 @@ export default function connectionSecondJsUnit() {
       }
       console.log("----------------------RouteInfo Properties Test is starting-----------------------");
       try {
-        let resultInterface: ResultInterface = {
+        let resultInterface = {
           interface: '123'
         };
-        let resultDestination: ResultDestination = {
+        let resultDestination = {
           destination: {
             address: "192.168.1.2"
           }
         };
-        let resultGateway: Gateway = {
+        let resultGateway = {
           gateway: {
             address: "192.168.1.3"
           }
         };
-        let resultDefaultRoute: ResultDefaultRoute = {
+        let resultDefaultRoute = {
           isDefaultRoute: true
         };
-        let resultHasGateway: ResultHasGateway = {
+        let resultHasGateway = {
           hasGateway: true
         };
         expect(true).assertEqual(resultDefaultRoute.isDefaultRoute);
@@ -201,42 +165,41 @@ export default function connectionSecondJsUnit() {
         console.log("-----------------------RouteInfo Properties Test end-----------------------");
         done();
       } catch (err) {
-        let e: BusinessError = err as BusinessError;
-        console.log(`Telephony_connection_RouteInfo_0300 err ` + e);
+        console.log(`Telephony_connection_RouteInfo_0300 err ` + err);
       }
     })
 
     /**
      * @tc.name: 'Telephony_connection_getRouteInfo_Async_0400
-     * @tc.desc: getRouteInfo Properties detection
+     * @tc.desc:  getRouteInfo Properties detection
      * @tc.author: kangyuntao
      */
-    it('Telephony_connection_getRouteInfo_Async_0400', 0, (done: Function) => {
+    it('Telephony_connection_getRouteInfo_Async_0400', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("-----------------------Telephony getRouteInfo Test is starting-----------------------");
-      let caseName: string = 'Telephony_connection_getRouteInfo_Async_0400';
-      connection.getAllNets((error: BusinessError, value: Array<connection.NetHandle>) => {
+      let caseName = 'Telephony_connection_getRouteInfo_Async_0400';
+      connection.getAllNets((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
         } else {
           console.log(`${caseName} get netID value : ${JSON.stringify(value[0])}`);
-          connection.getConnectionProperties(value[0], (error: BusinessError, value: connection.ConnectionProperties) => {
+          connection.getConnectionProperties(value[0], (error, value) => {
             if (error) {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
-              console.log(caseName + " value.routes.length: " + value.routes.length);
-              if (value.routes.length > 0) {
-                expect(value.routes[0].hasGateway).assertTrue();
-                expect(value.routes[0].isDefaultRoute).assertTrue();
+              console.log(caseName + " value.routeList.length: " + value.routeList.length);
+              if (value.routeList.length > 0) {
+                expect(value.routeList[0].hasGateway).assertTrue();
+                expect(value.routeList[0].isDefaultRoute).assertTrue();
               }
               done();
             }
@@ -244,7 +207,7 @@ export default function connectionSecondJsUnit() {
         }
       });
       console.log("----------------------Telephony getRouteInfo Test end-----------------------");
-      done();
+	  done();
     });
 
 
@@ -253,7 +216,7 @@ export default function connectionSecondJsUnit() {
      * @tc.desc: LinkAddress Properties  detection
      * @tc.author: kangyuntao
      */
-    it("Telephony_connection_LinkAddress_0500", 0, (done: Function) => {
+    it("Telephony_connection_LinkAddress_0500", 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -261,16 +224,14 @@ export default function connectionSecondJsUnit() {
       }
       console.log("----------------------LinkAddress Properties Test is starting-----------------------");
       try {
-        let resultPrefixLength: connection.LinkAddress = {
-          prefixLength: 10,
-          address: undefined
+        let resultPrefixLength = {
+          prefixLength: 10
         };
         expect(10).assertEqual(resultPrefixLength.prefixLength);
         console.log("-----------------------LinkAddress Properties Test end-----------------------");
         done();
       } catch (err) {
-        let e: BusinessError = err as BusinessError;
-        console.log(`Telephony_connection_LinkAddress_0500 err ` + e);
+        console.log(`Telephony_connection_LinkAddress_0500 err ` + err);
       }
     })
 
@@ -279,31 +240,31 @@ export default function connectionSecondJsUnit() {
      * @tc.desc: getLinkAddress Properties detection
      * @tc.author: kangyuntao
      */
-    it('Telephony_connection_getLinkAddress_Async_0600', 0, (done: Function) => {
+    it('Telephony_connection_getLinkAddress_Async_0600', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("-----------------------Telephony getLinkAddress Test is starting-----------------------");
-      let caseName: string = 'Telephony_connection_getLinkAddress_Async_0600';
-      connection.getAllNets((error: BusinessError, value: Array<connection.NetHandle>) => {
+      let caseName = 'Telephony_connection_getLinkAddress_Async_0600';
+      connection.getAllNets((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
         } else {
           console.log(`${caseName} get netID value : ${JSON.stringify(value[0])}`);
-          connection.getConnectionProperties(value[0], (error: BusinessError, value: connection.ConnectionProperties) => {
+          connection.getConnectionProperties(value[0], (error, value) => {
             if (error) {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
-              console.log(caseName + " value.dnses.length: " + value.dnses.length);
-              if (value.linkAddresses.length > 0) {
-                expect(value.linkAddresses[0].prefixLength != 0).assertTrue();
+              console.log(caseName + " value.dnsList.length: " + value.dnsList.length);
+              if (value.dnsList.length > 0) {
+                expect(value.dnsList[0].prefixLength != 0).assertTrue();
               }
               done();
             }
@@ -311,7 +272,7 @@ export default function connectionSecondJsUnit() {
         }
       });
       console.log("-----------------------Telephony getLinkAddress Test end-----------------------");
-      done();
+	  done();
     });
 
     /**
@@ -319,7 +280,7 @@ export default function connectionSecondJsUnit() {
      * @tc.desc: NetAddress Properties  detection
      * @tc.author: kangyuntao
      */
-    it("Telephony_connection_NetAddress_0700", 0, (done: Function) => {
+    it("Telephony_connection_NetAddress_0700", 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -327,15 +288,14 @@ export default function connectionSecondJsUnit() {
       }
       console.log("----------------------NetAddress Properties  Test is starting-----------------------");
       try {
-        let resultPort: ResultPort = {
+        let resultPort = {
           port: 23
         };
         expect(23).assertEqual(resultPort.port);
         console.log("-----------------------NetAddress Properties  Test end-----------------------");
         done();
       } catch (err) {
-        let e: BusinessError = err as BusinessError;
-        console.log(`"Telephony_connection_NetAddress_0700 err ` + e);
+        console.log(`"Telephony_connection_NetAddress_0700 err ` + err);
       }
     })
 
@@ -344,31 +304,31 @@ export default function connectionSecondJsUnit() {
      * @tc.desc: getNetAddress Properties detection
      * @tc.author: kangyuntao
      */
-    it('Telephony_connection_getNetAddress_Async_0800', 0, (done: Function) => {
+    it('Telephony_connection_getNetAddress_Async_0800', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("-----------------------Telephony getNetAddress Test is starting-----------------------");
-      let caseName: string = 'Telephony_connection_getNetAddress_Async_0800';
-      connection.getAllNets((error: BusinessError, value: Array<connection.NetHandle>) => {
+      let caseName = 'Telephony_connection_getNetAddress_Async_0800';
+      connection.getAllNets((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
         } else {
           console.log(`${caseName} get netID value : ${JSON.stringify(value[0])}`);
-          connection.getConnectionProperties(value[0], (error: BusinessError, value: connection.ConnectionProperties) => {
+          connection.getConnectionProperties(value[0], (error, value) => {
             if (error) {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(value)}`);
-              console.log(caseName + 'value.linkAddresses.length:' + value.linkAddresses.length);
-              if (value.linkAddresses.length > 0) {
-                expect(value.linkAddresses[0].address?.port != 0).assertTrue();
+              console.log(caseName + 'value.netAddrList.length:' + value.netAddrList.length);
+              if (value.netAddrList.length > 0) {
+                expect(value.netAddrList[0].port != 0).assertTrue();
               }
               done();
             }
@@ -376,7 +336,7 @@ export default function connectionSecondJsUnit() {
         }
       });
       console.log("-----------------------Telephony getNetAddress Test end-----------------------");
-      done();
+	  done();
     });
 
     /**
@@ -384,7 +344,7 @@ export default function connectionSecondJsUnit() {
      * @tc.desc: NetCap Properties detection
      * @tc.author: kangyuntao
      */
-    it("Telephony_connection_NetCap_0900", 0, (done: Function) => {
+    it("Telephony_connection_NetCap_0900", 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -397,7 +357,7 @@ export default function connectionSecondJsUnit() {
         return;
       }
       try {
-        console.log("Telephony_connection_NetCap_0900 NetCap: " + connection.NetCap.NET_CAPABILITY_MMS);
+        console.log("Telephony_connection_NetCap_0900 NetCap: " + connection.NetCap);
         expect(0).assertEqual(connection.NetCap.NET_CAPABILITY_MMS);
         expect(11).assertEqual(connection.NetCap.NET_CAPABILITY_NOT_METERED);
         expect(12).assertEqual(connection.NetCap.NET_CAPABILITY_INTERNET);
@@ -406,8 +366,7 @@ export default function connectionSecondJsUnit() {
         console.log("-----------------------Telephony NetCap Properties Test end-----------------------");
         done();
       } catch (err) {
-        let e: BusinessError = err as BusinessError;
-        console.log(`Telephony_connection_NetCap_0900 err ` + e);
+        console.log(`Telephony_connection_NetCap_0900 err ` + err);
       }
     })
 
@@ -416,37 +375,37 @@ export default function connectionSecondJsUnit() {
      * @tc.desc: getNetCap Properties detection
      * @tc.author: kangyuntao
      */
-    it('Telephony_connection_getNetCap_Async_1000', 0, (done: Function) => {
+    it('Telephony_connection_getNetCap_Async_1000', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("-----------------------Telephony getNetCap Test is starting-----------------------");
-      let caseName: string = 'Telephony_connection_getNetCap_Async_1000';
-      connection.getAllNets((error: BusinessError, value: Array<connection.NetHandle>) => {
+      let caseName = 'Telephony_connection_getNetCap_Async_1000';
+      connection.getAllNets((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
         } else {
           console.log(`Telephony_connection getAllNets netID value : ${JSON.stringify(value[0].netId)}`);
-          connection.getNetCapabilities(value[0], (error: BusinessError, data: connection.NetCapabilities) => {
+          connection.getNetCapabilities(value[0], (error, data) => {
             if (error) {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(data)}`);
-              console.log(`${caseName}  get value successNetCap: ${JSON.stringify(data.networkCap[0])}`);
-              expect(String(data.networkCap[0]) != "").assertTrue();
+              console.log(`${caseName}  get value successNetCap: ${JSON.stringify(data.netCaps_[0].netCap)}`);
+              expect(data.netCaps_[0].netCap != "").assertTrue();
               done();
             }
           });
         }
       });
       console.log("-----------------------Telephony getNetCap Test is end-----------------------");
-      done();
+	  done();
     });
 
     /**
@@ -454,7 +413,7 @@ export default function connectionSecondJsUnit() {
      * @tc.desc: NetBearType Properties detection
      * @tc.author: kangyuntao
      */
-    it("Telephony_connection_NetBearType_1100", 0, (done: Function) => {
+    it("Telephony_connection_NetBearType_1100", 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
@@ -466,15 +425,14 @@ export default function connectionSecondJsUnit() {
         done();
       }
       try {
-        console.log("Telephony_connection_NetBearType_1100 NetBearType: " + connection.NetBearType.BEARER_CELLULAR);
+        console.log("Telephony_connection_NetBearType_1100 NetBearType: " + connection.NetBearType);
         expect(0).assertEqual(connection.NetBearType.BEARER_CELLULAR);
         expect(1).assertEqual(connection.NetBearType.BEARER_WIFI);
         expect(3).assertEqual(connection.NetBearType.BEARER_ETHERNET);
         console.log("-----------------------Telephony NetBearType Properties Test end-----------------------");
         done();
       } catch (err) {
-        let e: BusinessError = err as BusinessError;
-        console.log(`Telephony_connection_NetBearType_1100 err ` + e);
+        console.log(`Telephony_connection_NetBearType_1100 err ` + err);
       }
     })
 
@@ -483,37 +441,37 @@ export default function connectionSecondJsUnit() {
      * @tc.desc:getNetBearType Properties detection
      * @tc.author: kangyuntao
      */
-    it('Telephony_connection_getNetBearType_Async_1200', 0, (done: Function) => {
+    it('Telephony_connection_getNetBearType_Async_1200', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("-----------------------Telephony getNetBearType Test is starting-----------------------");
-      let caseName: string = 'Telephony_connection_getNetBearType_Async_1200';
-      connection.getAllNets((error: BusinessError, value: Array<connection.NetHandle>) => {
+      let caseName = 'Telephony_connection_getNetBearType_Async_1200';
+      connection.getAllNets((error, value) => {
         if (error) {
           console.log(`${caseName}  get data fail: ${error}`);
           expect().assertTrue();
           done();
         } else {
           console.log(`Telephony_connection getAllNets netID value : ${JSON.stringify(value[0].netId)}`);
-          connection.getNetCapabilities(value[0], (error: BusinessError, data: connection.NetCapabilities) => {
+          connection.getNetCapabilities(value[0], (error, data) => {
             if (error) {
               console.log(`${caseName}  get ID fail: ${error}`);
               expect().assertFail();
               done();
             } else {
               console.log(`${caseName}  get value success: ${JSON.stringify(data)}`);
-              console.log(`${caseName}  get value success122222: ${JSON.stringify(data.bearerTypes[0])}`);
-              expect(String(data.bearerTypes[0]) != "").assertTrue();
+              console.log(`${caseName}  get value success122222: ${JSON.stringify(data.bearerTypes_[0].bearerType)}`);
+              expect(data.bearerTypes_[0].bearerType != "").assertTrue();
               done();
             }
           });
         }
       });
       console.log("-----------------------Telephony getNetBearType Test is end-----------------------");
-      done();
+	  done();
     });
 
     /**
@@ -521,34 +479,34 @@ export default function connectionSecondJsUnit() {
      * @tc.desc: getNetCapabilities NetCap and NetBearType Properties detection
      * @tc.author: kangyuntao
      */
-    it('Telephony_connection_getNetCapabilities_Promise_1300', 0, (done: Function) => {
+    it('Telephony_connection_getNetCapabilities_Promise_1300', 0, function (done) {
       if (!envReady) {
         console.info("The environment was not ready");
         done();
         return;
       }
       console.log("-----------------------Telephony getNetCapabilities Promise Test is starting-----------------------");
-      let caseName: string = 'Telephony_connection_getNetCapabilities_Promise_1300';
-      connection.getAllNets().then((handle: Array<connection.NetHandle>) => {
-        connection.getNetCapabilities(handle[0]).then((data: connection.NetCapabilities) => {
+      let caseName = 'Telephony_connection_getNetCapabilities_Promise_1300';
+      connection.getAllNets().then((handle) => {
+        connection.getNetCapabilities(handle[0]).then((data) => {
           console.log(`${caseName} getNetCapabilities promiss data suceess: ${JSON.stringify(data)}`);
-          console.log(`${caseName}  get value successNetCap: ${JSON.stringify(data.networkCap[0])}`);
-          console.log(`${caseName}  get value successNearerTypes: ${JSON.stringify(data.bearerTypes[0])}`);
-          expect(String(data.networkCap[0]) != "").assertTrue();
-          expect(String(data.bearerTypes[0]) != "").assertTrue();
+          console.log(`${caseName}  get value successNetCap: ${JSON.stringify(data.netCaps_[0].netCap)}`);
+          console.log(`${caseName}  get value successNearerTypes: ${JSON.stringify(data.bearerTypes_[0].bearerType)}`);
+          expect(data.netCaps_[0].netCap != "").assertTrue();
+          expect(data.bearerTypes_[0].bearerType != "").assertTrue();
           console.log("-----------------------Telephony getNetCapabilities Promise Test is end-----------------------");
           done();
-        }).catch((error: BusinessError) => {
+        }).catch((error) => {
           console.log(`${caseName} getNetCapabilities promiss fail: ${error}`);
           expect().assertTrue();
           done();
         });
-      }).catch((error: BusinessError) => {
+      }).catch((error) => {
         console.log(`${caseName} getAllNets promiss error: ${error}`);
         expect().assertFail();
         done();
       });
-      done();
+	  done();
     });
   })
 

@@ -16,12 +16,12 @@
 @Entry
 @Component
 struct scroll_testcase {
-  @State scrollBarWidth: number = 20;
-  @State scrollable: ScrollDirection = ScrollDirection.None;
-  @State scrollBarColor: Color = Color.Pink;
-  @State scrollBar: BarState= BarState.On;
-  private value1: Array<number> = [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
-  @State edge: Edge= Edge.Top;
+  @State scrollBarWidth: number = 20
+  @State scrollable: ScrollDirection = ScrollDirection.None
+  @State scrollBarColor: Color = Color.Pink
+  @State scrollBar: BarState= BarState.On
+  private value1: Array<number> = [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+  @State edge: Edge= Edge.Top
   private content: string = "Scroll Page";
   scroller: Scroller = new Scroller();
 
@@ -43,7 +43,7 @@ struct scroll_testcase {
         Column() {
           ForEach(
             this.value1,
-            (item: number) => {
+            item => {
               Text(`${item}`)
                 .fontSize(15)
                 .width(400)
@@ -51,7 +51,7 @@ struct scroll_testcase {
                 .height(70)
                 .backgroundColor(0xfff5deb3)
             },
-            (item: number) => String(item)
+            item => item
           )
         }
       }
@@ -60,7 +60,8 @@ struct scroll_testcase {
       .scrollBarColor(this.scrollBarColor)
       .scrollBarWidth(this.scrollBarWidth)
       .key('scroll')
-      .width(400).height(200)
+      .width(400)
+      .height(200)
       .onScroll((xOffset: number, yOffset: number) => {
         console.info(` current offset is ${xOffset} ${yOffset}`)
       })
@@ -83,7 +84,8 @@ struct scroll_testcase {
             .key('text')
 
           Text('scroll to')
-            .width(60).height(100)
+            .width(60)
+            .height(100)
             .backgroundColor(Color.Green)
             .margin({
               right: 5,
@@ -96,7 +98,8 @@ struct scroll_testcase {
               })
             })
           Text('scroll page')
-            .width(60).height(100)
+            .width(60)
+            .height(100)
             .backgroundColor(Color.Blue)
             .margin({
               right: 5,
@@ -108,7 +111,8 @@ struct scroll_testcase {
               })
             })
           Text('scroll Edge')
-            .width(60).height(100)
+            .width(60)
+            .height(100)
             .backgroundColor(Color.Blue)
             .margin({
               right: 5,
@@ -118,7 +122,8 @@ struct scroll_testcase {
               this.scroller.scrollEdge(Edge.Top)
             })
           Text('scroll Edge')
-            .width(60).height(100)
+            .width(60)
+            .height(100)
             .backgroundColor(Color.Blue)
             .margin({
               right: 5,
@@ -128,7 +133,8 @@ struct scroll_testcase {
               this.scroller.currentOffset()
             })
           Text('scroll to index')
-            .width(60).height(100)
+            .width(60)
+            .height(100)
             .backgroundColor(Color.Blue)
             .margin({
               right: 5,
@@ -162,7 +168,8 @@ struct scroll_testcase {
       .scrollBar(BarState.Off)
       .scrollBarColor(Color.Red)
       .scrollBarWidth(5)
-      .width(300).height(200)
+      .width(300)
+      .height(200)
       .key('scroll2')
 
       Scroll() {
@@ -183,7 +190,8 @@ struct scroll_testcase {
       .scrollBar(BarState.Off)
       .scrollBarColor(Color.Red)
       .scrollBarWidth(5)
-      .width(300).height(200)
+      .width(300)
+      .height(200)
       .key('scroll3')
     }
     .key('flex')

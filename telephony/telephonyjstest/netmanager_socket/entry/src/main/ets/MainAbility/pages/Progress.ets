@@ -66,7 +66,8 @@ struct progress_testcase {
           .key('progress5')
 
       }
-      .width(400).height(400)
+      .width(400)
+      .height(400)
       .borderColor(Color.Pink)
       .borderWidth(2)
     }

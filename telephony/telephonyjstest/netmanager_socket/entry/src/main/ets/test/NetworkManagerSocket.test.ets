@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
  * Copyright (C) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License')
@@ -14,12 +15,11 @@
  */
 import { describe, it, expect, beforeAll, afterAll } from '@ohos/hypium';
 import socket from '@ohos.net.socket';
-import { BusinessError, Callback } from '@ohos.base';
 
-let sendData: string = "hello!";
-let instance: socket.TLSSocket | undefined = undefined;
+let sendData = "hello!";
+let instance = undefined;
 
-let options: socket.TLSConnectOptions = {
+let options = {
   ALPNProtocols: ["spdy/1", "http/1.1"],
   address: {
     address: "192.168.31.96",
@@ -36,35 +36,30 @@ let options: socket.TLSConnectOptions = {
     signatureAlgorithms: "rsa_pss_rsae_sha256:ECDSA+SHA256",
     cipherSuite: "AES256-SHA256"
   },
-};
-
-interface MessageEvent {
-  message: ArrayBuffer;
-  remoteInfo: socket.SocketRemoteInfo;
-};
+}
 
 export default function networkManagerSocketTest() {
 
-  describe("Telephony_NetworkManager_SocketTest", () => {
+  describe("Telephony_NetworkManager_SocketTest", function () {
 
-    beforeAll(async () => {
-      console.log('Telephony_NetworkManager_ActsNetworkManagerSocketTest beforeAll start');
-      console.log('Telephony_NetworkManager_ActsNetworkManagerSocketTest beforeAll end');
+    beforeAll(async function () {
+      console.log('Telephony_NetworkManager_ActsNetworkManagerSocketTest beforeAll start')
+      console.log('Telephony_NetworkManager_ActsNetworkManagerSocketTest beforeAll end')
     })
 
-    afterAll(async () => {
-      console.log('Telephony_NetworkManager_ActsNetworkManagerSocketTest afterAll start');
-      console.log('Telephony_NetworkManager_ActsNetworkManagerSocketTest afterAll end');
+    afterAll(async function () {
+      console.log('Telephony_NetworkManager_ActsNetworkManagerSocketTest afterAll start')
+      console.log('Telephony_NetworkManager_ActsNetworkManagerSocketTest afterAll end')
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_constructTLSSocketInstance_0100
-     * @tc.name Test create TLSSocket object
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_constructTLSSocketInstance_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
-      if (String(instance) != "") {
+    * @tc.number  Telephony_NetworkManager_constructTLSSocketInstance_0100
+    * @tc.name    Test create TLSSocket object
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_constructTLSSocketInstance_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
+      if (instance != "") {
         expect(instance).assertInstanceOf('Object');
         done();
       } else {
@@ -74,13 +69,13 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_connect_Async_0100
-     * @tc.name Test connect() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_connect_Async_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
-      instance.connect(options, (err: BusinessError) => {
+    * @tc.number  Telephony_NetworkManager_connect_Async_0100
+    * @tc.name    Test connect() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_connect_Async_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
+      instance.connect(options, (err) => {
         expect(options.ALPNProtocols != undefined).assertEqual(true);
         expect(options.address != undefined).assertEqual(true);
         expect(options.secureOptions != undefined).assertEqual(true);
@@ -105,29 +100,29 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_connect_Promise_0100
-     * @tc.name Test connect() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_connect_Promise_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
+    * @tc.number  Telephony_NetworkManager_connect_Promise_0100
+    * @tc.name    Test connect() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_connect_Promise_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
       instance.connect(options).then(() => {
         expect().assertFail();
         done();
-      }).catch((err: BusinessError) => {
+      }).catch((err) => {
         expect(err != undefined).assertEqual(true);
         done();
       })
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_close_Async_0100
-     * @tc.name Test close() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_close_Async_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
-      instance.close((err: BusinessError) => {
+    * @tc.number  Telephony_NetworkManager_close_Async_0100
+    * @tc.name    Test close() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_close_Async_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
+      instance.close((err) => {
         if (err == undefined) {
           expect().assertFail();
           done();
@@ -139,29 +134,29 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_close_Promise_0100
-     * @tc.name Test close() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_close_Promise_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
+    * @tc.number  Telephony_NetworkManager_close_Promise_0100
+    * @tc.name    Test close() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_close_Promise_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
       instance.close().then(() => {
         expect().assertFail();
         done();
-      }).catch((err: BusinessError) => {
+      }).catch((err) => {
         expect(err != undefined).assertEqual(true);
         done();
       })
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_getCertificate_Async_0100
-     * @tc.name Test getCertificate() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_getCertificate_Async_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
-      instance.getCertificate((err: BusinessError, X509CertRawData: socket.X509CertRawData) => {
+    * @tc.number  Telephony_NetworkManager_getCertificate_Async_0100
+    * @tc.name    Test getCertificate() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_getCertificate_Async_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
+      instance.getCertificate((err, X509CertRawData) => {
         if (err == undefined) {
           expect().assertFail();
           done();
@@ -174,30 +169,30 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_getCertificate_Promise_0100
-     * @tc.name Test getCertificate() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_getCertificate_Promise_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
-      instance.getCertificate().then((data: socket.X509CertRawData) => {
+    * @tc.number  Telephony_NetworkManager_getCertificate_Promise_0100
+    * @tc.name    Test getCertificate() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_getCertificate_Promise_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
+      instance.getCertificate().then((data) => {
         expect(data).assertEqual(undefined);
         expect().assertFail();
         done();
-      }).catch((err: BusinessError) => {
+      }).catch((err) => {
         expect(err != undefined).assertEqual(true);
         done();
       })
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_getRemoteCertificate_Async_0100
-     * @tc.name Test getRemoteCertificate() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_getRemoteCertificate_Async_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
-      instance.getRemoteCertificate((err: BusinessError, data: socket.X509CertRawData) => {
+    * @tc.number  Telephony_NetworkManager_getRemoteCertificate_Async_0100
+    * @tc.name    Test getRemoteCertificate() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_getRemoteCertificate_Async_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
+      instance.getRemoteCertificate((err, data) => {
         if (err == undefined) {
           expect().assertFail();
           done();
@@ -210,30 +205,30 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_getRemoteCertificate_Promise_0100
-     * @tc.name Test getRemoteCertificate() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_getRemoteCertificate_Promise_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
-      instance.getRemoteCertificate().then((data: socket.X509CertRawData) => {
+    * @tc.number  Telephony_NetworkManager_getRemoteCertificate_Promise_0100
+    * @tc.name    Test getRemoteCertificate() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_getRemoteCertificate_Promise_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
+      instance.getRemoteCertificate().then((data) => {
         expect(data).assertEqual(undefined);
         expect().assertFail();
         done();
-      }).catch((err: BusinessError) => {
+      }).catch((err) => {
         expect(err != undefined).assertEqual(true);
         done();
       })
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_getProtocol_Async_0100
-     * @tc.name Test getProtocol() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_getProtocol_Async_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
-      instance.getProtocol((err: BusinessError, data: string) => {
+    * @tc.number  Telephony_NetworkManager_getProtocol_Async_0100
+    * @tc.name    Test getProtocol() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_getProtocol_Async_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
+      instance.getProtocol((err, data) => {
         if (err == undefined) {
           expect().assertFail();
           done();
@@ -246,30 +241,30 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_getProtocol_Promise_0100
-     * @tc.name Test getProtocol() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_getProtocol_Promise_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
-      instance.getProtocol().then((data: string) => {
+    * @tc.number  Telephony_NetworkManager_getProtocol_Promise_0100
+    * @tc.name    Test getProtocol() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_getProtocol_Promise_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
+      instance.getProtocol().then((data) => {
         expect(data).assertEqual(undefined);
         expect().assertFail();
         done();
-      }).catch((err: BusinessError) => {
+      }).catch((err) => {
         expect(err != undefined).assertEqual(true);
         done();
       })
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_getCipherSuites_Async_0100
-     * @tc.name Test getCipherSuite() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_getCipherSuites_Async_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
-      instance.getCipherSuite((err: BusinessError, data: Array<string>) => {
+    * @tc.number  Telephony_NetworkManager_getCipherSuites_Async_0100
+    * @tc.name    Test getCipherSuite() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_getCipherSuites_Async_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
+      instance.getCipherSuite((err, data) => {
         if (err == undefined) {
           expect().assertFail();
           done();
@@ -282,30 +277,30 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_getCipherSuites_Promise_0100
-     * @tc.name Test getCipherSuite() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_getCipherSuites_Promise_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
-      instance.getCipherSuite().then((data: Array<string>) => {
+    * @tc.number  Telephony_NetworkManager_getCipherSuites_Promise_0100
+    * @tc.name    Test getCipherSuite() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_getCipherSuites_Promise_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
+      instance.getCipherSuite().then((data) => {
         expect(data).assertEqual(undefined);
         expect().assertFail();
         done();
-      }).catch((err: BusinessError) => {
+      }).catch((err) => {
         expect(err != undefined).assertEqual(true);
         done();
       })
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_getSignatureAlgorithms_Async_0100
-     * @tc.name Test getSignatureAlgorithms() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_getSignatureAlgorithms_Async_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
-      instance.getSignatureAlgorithms((err: BusinessError, data: Array<string>) => {
+    * @tc.number  Telephony_NetworkManager_getSignatureAlgorithms_Async_0100
+    * @tc.name    Test getSignatureAlgorithms() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_getSignatureAlgorithms_Async_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
+      instance.getSignatureAlgorithms((err, data) => {
         if (err == undefined) {
           expect().assertFail();
           done();
@@ -318,30 +313,30 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_getSignatureAlgorithms_Promise_0100
-     * @tc.name Test getSignatureAlgorithms() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_getSignatureAlgorithms_Promise_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
-      instance.getSignatureAlgorithms().then((data: Array<string>) => {
+    * @tc.number  Telephony_NetworkManager_getSignatureAlgorithms_Promise_0100
+    * @tc.name    Test getSignatureAlgorithms() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_getSignatureAlgorithms_Promise_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
+      instance.getSignatureAlgorithms().then((data) => {
         expect(data).assertEqual(undefined);
         expect().assertFail();
         done();
-      }).catch((err: BusinessError) => {
+      }).catch((err) => {
         expect(err != undefined).assertEqual(true);
         done();
       })
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_send_Async_0100
-     * @tc.name Test send() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_send_Async_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
-      instance.send(sendData, (err: BusinessError) => {
+    * @tc.number  Telephony_NetworkManager_send_Async_0100
+    * @tc.name    Test send() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_send_Async_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
+      instance.send(sendData, (err) => {
         if (err == undefined) {
           expect().assertFail();
           done();
@@ -353,16 +348,16 @@ export default function networkManagerSocketTest() {
     })
 
     /**
-     * @tc.number Telephony_NetworkManager_send_Promise_0100
-     * @tc.name Test send() interface
-     * @tc.desc Function test
-     */
-    it('Telephony_NetworkManager_send_Promise_0100', 0, async (done: Function) => {
-      instance = socket.constructTLSSocketInstance();
+    * @tc.number  Telephony_NetworkManager_send_Promise_0100
+    * @tc.name    Test send() interface
+    * @tc.desc    Function test
+    */
+    it('Telephony_NetworkManager_send_Promise_0100', 0, async function (done) {
+      instance = socket.constructTLSSocketInstance()
       instance.send(sendData).then(() => {
         expect().assertFail();
         done();
-      }).catch((err: BusinessError) => {
+      }).catch((err) => {
         expect(err != undefined).assertEqual(true);
         done();
       })
@@ -374,10 +369,10 @@ export default function networkManagerSocketTest() {
      * @tc.name Test on_message interface
      * @tc.desc Function test
      */
-    it('Telephony_TLSSocket_on_message_0100', 0, async (done: Function) => {
+    it('Telephony_TLSSocket_on_message_0100', 0, async function (done) {
       try {
-        let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-        tls.on('message', (value: MessageEvent) => {
+        let tls = socket.constructTLSSocketInstance();
+        tls.on('message', value => {
           console.log('message: ' + JSON.stringify(value.message));
           console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
         });
@@ -393,10 +388,10 @@ export default function networkManagerSocketTest() {
      * @tc.name Test off_message interface
      * @tc.desc Function test
      */
-    it('Telephony_TLSSocket_off_message_0100', 0, async (done: Function) => {
+    it('Telephony_TLSSocket_off_message_0100', 0, async function (done) {
       try {
-        let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-        let callback: Callback<MessageEvent> = (value: MessageEvent) => {
+        let tls = socket.constructTLSSocketInstance();
+        let callback = value => {
           console.log('message: ' + JSON.stringify(value.message));
           console.log('remoteInfo: ' + JSON.stringify(value.remoteInfo));
         }
@@ -414,9 +409,9 @@ export default function networkManagerSocketTest() {
      * @tc.name Test on_connect on_close interface
      * @tc.desc Function test
      */
-    it('Telephony_TLSSocket_on_connect_on_close_0100', 0, async (done: Function) => {
+    it('Telephony_TLSSocket_on_connect_on_close_0100', 0, async function (done) {
       try {
-        let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
+        let tls = socket.constructTLSSocketInstance();
         tls.on('connect', () => {
           console.log("on connect success");
         });
@@ -435,10 +430,10 @@ export default function networkManagerSocketTest() {
      * @tc.name Test off_connect off_close interface
      * @tc.desc Function test
      */
-    it('Telephony_TLSSocket_off_connect_off_close_0100', 0, async (done: Function) => {
+    it('Telephony_TLSSocket_off_connect_off_close_0100', 0, async function (done) {
       try {
-        let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-        let callback1: Callback<void> = () => {
+        let tls = socket.constructTLSSocketInstance();
+        let callback1 = () => {
           console.log("on connect success");
         }
         tls.on('connect', callback1);
@@ -461,10 +456,10 @@ export default function networkManagerSocketTest() {
      * @tc.name Test on_error interface
      * @tc.desc Function test
      */
-    it('Telephony_TLSSocket_on_error_0100', 0, async (done: Function) => {
+    it('Telephony_TLSSocket_on_error_0100', 0, async function (done) {
       try {
-        let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-        tls.on('error', (err: BusinessError) => {
+        let tls = socket.constructTLSSocketInstance();
+        tls.on('error', err => {
           console.log("on error, err:" + JSON.stringify(err));
         });
         done();
@@ -479,10 +474,10 @@ export default function networkManagerSocketTest() {
      * @tc.name Test off_error interface
      * @tc.desc Function test
      */
-    it('Telephony_TLSSocket_off_error_0100', 0, async (done: Function) => {
+    it('Telephony_TLSSocket_off_error_0100', 0, async function (done) {
       try {
-        let tls: socket.TLSSocket = socket.constructTLSSocketInstance();
-        let callback = (err: BusinessError) => {
+        let tls = socket.constructTLSSocketInstance();
+        let callback = err => {
           console.log("on error, err:" + JSON.stringify(err));
         }
         tls.on('error', callback);

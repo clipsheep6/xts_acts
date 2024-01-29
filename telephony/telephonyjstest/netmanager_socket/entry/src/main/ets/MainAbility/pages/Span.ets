@@ -52,7 +52,8 @@ struct span_textcase {
             .key('span3')
         }
       }
-      .width(300).height(300)
+      .width(300)
+      .height(300)
       .borderColor(Color.Pink)
       .borderWidth(4)
     }
