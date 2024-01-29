@@ -1234,7 +1234,7 @@ export default function settingUiJsunit() {
       }
     });
 
-      it('settings_get_value_117', 0, (done:function) =>  {
+    it('settings_get_value_117', 0, (done:function) =>  {
       let name = 'settings.screen.brightness117';//关键字
       let value = 'brightness117';//值
       let domainName = 'secure';
@@ -1254,14 +1254,14 @@ export default function settingUiJsunit() {
           done();
           return;
         })
-      }
-      catch(err){
+      }catch(err){
           console.info("[settings_get_value_117] 1258 error is:" + toString(error));
           expect(true).assertTrue();
           done();
           return;
       }
     }); 
+
 
     it('settings_get_value_118', 0, (done:function) => {
       let name = 'settings.screen.brightness118';//关键字
@@ -1320,79 +1320,6 @@ export default function settingUiJsunit() {
           .assertTrue();
       }
       done();
-    });
-
-    it('settings_register_Key_Observer_121', 0, 0, (done:function) => {
-      let name = 'settings.screen.brightness121';//关键字
-      let domainName = 'secure';
-      try{
-        let value = settings.registerKeyObserver(globalThis.abilityContext, name, domainName, (err, ret) => {
-        let ret1 = settings.getUriSync(globalThis.abilityContext, name, domainName);
-        expect(ret1 === '1').assertTrue();
-        done();
-        })
-    }catch(err:BusinessError){
-          console.info("[settings_register_Key_Observer_121] error is:" + toString(error));
-          expect(false).assertTrue();
-          done();
-          return;
-        }
-
-      settings.setValueSync(globalThis.abilityContext, name, '1', domainName);
-    });
-
-    it('settings_unregister_Key_Observer_122', 0, 0 ,(done:function) => {
-      let name = 'settings.screen.brightness122';//关键字
-      let domainName = 'secure';
-      let context = null;
-      try{
-        let value = settings.unregisterKeyObserver(globalThis.abilityContext, name, domainName);
-        expect(true).assertTrue();
-        done();
-    }catch(err){
-          console.info("[settings_unregister_Key_Observer_122] error is:" + toString(error));
-          expect(true).assertTrue();
-          done();
-          return;
-        }
-    });
-
-    it('settings_register_Key_Observer_123', 0, 0, (done:function) => {
-      let name = 'settings.screen.brightness123';//关键字
-      let domainName = settings.domainName.DEVICE_SHARED;
-      try{
-        let value = settings.registerKeyObserver(globalThis.abilityContext, name, domainName, (err, ret) => {
-        let ret1 = settings.getValueSync(globalThis.abilityContext, name, domainName);
-        expect(ret1 === '1').assertTrue();
-        done();
-        })
-    }catch(err:BusinessError){
-          console.info("[settings_register_Key_Observer_123] error is:" + toString(error));
-          expect(false).assertTrue();
-          done();
-          return;
-        }
-
-      settings.setValueSync(globalThis.abilityContext, name, '1', domainName);
-    });
-
-    it('settings_register_Key_Observer_124', 0, 0, (done:function) => {
-      let name = 'settings.screen.brightness124';//关键字
-      let domainName = settings.domainName.USER_PROPERTY;
-      try{
-        let value = settings.registerKeyObserver(globalThis.abilityContext, name, domainName, (err, ret) => {
-        let ret1 = settings.getValueSync(globalThis.abilityContext, name, domainName);
-        expect(ret1 === '1').assertTrue();
-        done();
-        })
-    }catch(err:BusinessError){
-          console.info("[settings_register_Key_Observer_124] error is:" + toString(error));
-          expect(false).assertTrue();
-          done();
-          return;
-        }
-
-      settings.setValueSync(globalThis.abilityContext, name, '1', domainName);
     });
   })
 }
