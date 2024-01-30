@@ -50,6 +50,7 @@ import getReadOnlyFdTest from './PhotoAsset/getReadOnlyFd'
 import getThumbnailTest from './PhotoAsset/getThumbnail'
 import photoPickerTest from './PhotoAccessHelper/photoPicker'
 import PhotoAccessHelperTest from  './PhotoAccessHelperCases/PhotoAccessHelperTest.test.ets'
+import PhotoAccessHelperStabilityTest from  './PhotoAccessHelperCases/PhotoAccessHelperStabilityTest.test.ets'
 import setAlbumNameChangeRequestTest from './MediaAlbumChangeRequest/setAlbumName'
 import getAlbumChangeRequestTest from './MediaAlbumChangeRequest/getAlbum'
 import addRemoveAssetsChangeRequestTest from './MediaAlbumChangeRequest/addRemoveAssets'
@@ -66,6 +67,7 @@ import requestImageDataTest from './MediaAssetManager/requestImageData'
 
 export default function testsuite () {
   getPhotoAccessHelperTest()
+  PhotoAccessHelperStabilityTest()
   checkAlbumAttrTest()
   albumGetAssetsTest()
   addAssetsTest()

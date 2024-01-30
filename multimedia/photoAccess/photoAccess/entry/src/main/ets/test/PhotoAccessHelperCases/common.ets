@@ -138,6 +138,7 @@ export {
   columns,
   photoExtensions,
   videoExtensions,
+  DEFAULT_PHOTO_URI,
   sizes,
   fetchOptions_allocate_file
 };
