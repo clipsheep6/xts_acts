@@ -1545,14 +1545,13 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         expect().assertFail();
         done();
       })
-      let windowProperties_true: ohosWindow.Window;
+      let windowProperties_true: ohosWindow.WindowProperties;
       windowProperties_true = await getWinProperties(tempWnd).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.getProperties failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_true : ${JSON.stringify(windowProperties_true)}`)
-      // @ts-ignore
       expect(windowProperties_true.isPrivacyMode).assertTrue();
 
       await setPrivacyModeWin(tempWnd, false).catch((err: BusinessError) => {
@@ -1560,14 +1559,13 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         expect().assertFail();
         done();
       })
-      let windowProperties_false: ohosWindow.Window;
+      let windowProperties_false: ohosWindow.WindowProperties;
       windowProperties_false = await getWinProperties(tempWnd).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.getProperties failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_false : ${JSON.stringify(windowProperties_false)}`)
-      // @ts-ignore
       expect(!windowProperties_false.isPrivacyMode).assertTrue();
       await tempWnd.destroy();
       done();
@@ -1633,14 +1631,13 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         expect().assertFail();
         done();
       })
-      let windowProperties_true: ohosWindow.Window;
+      let windowProperties_true: ohosWindow.WindowProperties;
       windowProperties_true = await getPropertiesFun(tempWnd).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.getProperties failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_true : ${JSON.stringify(windowProperties_true)}`)
-      // @ts-ignore
       expect(windowProperties_true.isPrivacyMode).assertTrue();
 
       await setPrivacyModeFun(tempWnd, false).catch((err: BusinessError) => {
@@ -1648,14 +1645,13 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         expect().assertFail();
         done();
       })
-      let windowProperties_false: ohosWindow.Window;
+      let windowProperties_false: ohosWindow.WindowProperties;
       windowProperties_false = await getPropertiesFun(tempWnd).catch((err: BusinessError) => {
         console.info(msgStr + `ohosWindow.getProperties failed  error: ${JSON.stringify(err)}`)
         expect().assertFail();
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_false : ${JSON.stringify(windowProperties_false)}`)
-      // @ts-ignore
       expect(!windowProperties_false.isPrivacyMode).assertTrue();
       await tempWnd.destroy();
       done();
