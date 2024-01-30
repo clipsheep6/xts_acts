@@ -497,14 +497,16 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       await (tempWnd as ohosWindow.Window).setWindowMode(102).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'tempWnd.setWindowMode 102', TRUE_FLAG, done);
       });
+      console.log(msgStr + 'tempWnd.setWindowMode success');
+
       await (tempWnd as ohosWindow.Window).resize(200, 600).catch(async (err: BusinessError) => {
         console.error(msgStr + 'Failed to change the window size. Cause: ' + JSON.stringify(err));
         expect().assertFail();
         await (tempWnd as ohosWindow.Window).destroyWindow();
         done();
       })
+      console.log(msgStr + 'tempWnd.resize success');
       await sleep(1000);
-      // @ts-ignore
       (tempWnd as ohosWindow.Window).off('windowSizeChange', firstCall);
       firstListenFlag = false
       secondListenFlag = false
@@ -514,7 +516,9 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         await (tempWnd as ohosWindow.Window).destroyWindow();
         done();
       })
+      console.log(msgStr + 'tempWnd.resize_off success');
       await sleep(500);
+      console.log(msgStr + 'tempWnd.resize success');
       if (!firstListenFlag && secondListenFlag) {
         (tempWnd as ohosWindow.Window).off('windowSizeChange');
         await (tempWnd as ohosWindow.Window).destroyWindow();
@@ -523,6 +527,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         (tempWnd as ohosWindow.Window).off('windowSizeChange');
         await (tempWnd as ohosWindow.Window).destroyWindow();
         expect(TRUE_FLAG).assertFail();
+        console.log(msgStr + 'tempWnd.end success');
         done();
       }
     })
