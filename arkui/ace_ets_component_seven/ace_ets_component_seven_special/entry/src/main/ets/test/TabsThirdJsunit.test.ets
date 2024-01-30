@@ -42,25 +42,25 @@ export default function tabsThirdJsunit() {
     });
 
     /**
-     * @tc.number ArkUI_Tabs_BarGridAlign_0200
+     * @tc.number ArkUI_Tabs_BarGridAlign_0100
      * @tc.name   Test the properties of components
      * @tc.desc   Set attribute values
      * @tc.size   MediumTest
      * @tc.type   Function
      * @tc.level  0
      */
-    it('ArkUI_Tabs_BarGridAlign_0200', 0, async function (done) {
-      console.info("[ArkUI_Tabs_BarGridAlign_0200] start");
+    it('ArkUI_Tabs_BarGridAlign_0100', 0, async function (done) {
+      console.info("[ArkUI_Tabs_BarGridAlign_0100] start");
       let strJson = getInspectorByKey('tabsNumberTest');
       let obj = JSON.parse(strJson);
-      console.info("[ArkUI_Tabs_BarGridAlign_0200]: " + JSON.stringify(obj.$attrs));
+      console.info("[ArkUI_Tabs_BarGridAlign_0100]: " + JSON.stringify(obj.$attrs));
 
       expect(obj.$attrs.barGridAlign.margin).assertEqual('0.00vp');
       expect(obj.$attrs.barGridAlign.gutter).assertEqual('0.00vp');
       expect(obj.$attrs.barGridAlign.sm).assertEqual('0');
       expect(obj.$attrs.barGridAlign.md).assertEqual('0');
       expect(obj.$attrs.barGridAlign.lg).assertEqual('0');
-      console.info("[ArkUI_Tabs_BarGridAlign_0200] end");
+      console.info("[ArkUI_Tabs_BarGridAlign_0100] end");
       done();
     });
 
@@ -77,9 +77,28 @@ export default function tabsThirdJsunit() {
       let strJson = getInspectorByKey('tabsBarModeTest');
       console.info("[ArkUI_Tabs_BarMode_0200]: " + JSON.stringify(strJson));
       let obj = JSON.parse(strJson);
-      console.info("[ArkUI_Tabs_BarMode_0200]: " + JSON.stringify(obj.$attrs.barMode));
+      console.info("[ArkUI_Tabs_BarMode_0200]: " + JSON.stringify(obj.$attrs));
       expect(obj.$attrs.barMode).assertEqual('BarMode.Fixed');
       console.info("[ArkUI_Tabs_BarMode_0200] end");
+      done();
+    });
+
+    /**
+     * @tc.number ArkUI_Tabs_BarMode_0300
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_Tabs_BarMode_0300', 0, async function (done) {
+      console.info("[ArkUI_Tabs_BarMode_0300] start");
+      let strJson = getInspectorByKey('tabsBarModeTest');
+      console.info("[ArkUI_Tabs_BarMode_0300]: " + JSON.stringify(strJson));
+      let obj = JSON.parse(strJson);
+      console.info("[ArkUI_Tabs_BarMode_0300]: " + JSON.stringify(obj.$attrs));
+      expect(JSON.parse(obj.$attrs.clip).shape).assertEqual("Circle");
+      console.info("[ArkUI_Tabs_BarMode_0300] end");
       done();
     });
   })

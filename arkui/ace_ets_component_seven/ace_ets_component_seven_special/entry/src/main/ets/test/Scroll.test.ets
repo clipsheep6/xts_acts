@@ -14,7 +14,7 @@
  */
 
 import router from '@system.router';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import Utils from './Utils.ets'
 import events_emitter from '@ohos.events.emitter';
 
@@ -96,26 +96,6 @@ export default function scrollOnScrollBeginJsunit() {
       expect(obj.$attrs.enableScrollInteraction).assertEqual(true);
 
       console.info('testScroll0003 END');
-      done();
-    });
-
-    /**
-     * @tc.number testScroll0004
-     * @tc.name   Test the properties of components
-     * @tc.desc   Set attribute values
-     * @tc.size   MediumTest
-     * @tc.type   Function
-     * @tc.level  0
-     */
-    it('testStestScroll0004croll0001', 0, async function (done) {
-      console.info('testScroll0004 START');
-      let strJson = getInspectorByKey('ScrollKey1');
-      let obj = JSON.parse(strJson);
-      console.info("[testScroll0004] obj is: " + JSON.stringify(obj.$attrs));
-
-      // expect(obj.$attrs.nestedScroll).assertEqual("{scrollForward:SELF_ONLY,scrollBackward:SELF_FIRST}");
-      expect(true).assertEqual(true);
-      console.info('testScroll0001 END');
       done();
     });
 
@@ -214,6 +194,23 @@ export default function scrollOnScrollBeginJsunit() {
       done();
     });
 
-    
+    /**
+     * @tc.number testScroll0010
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testScroll0010', 0, async function (done) {
+      console.info('testScroll0010 START');
+      let strJson = getInspectorByKey('ScrollKey1');
+      let obj = JSON.parse(strJson);
+      console.info("[testScroll0010] obj is: " + JSON.stringify(obj.$attrs));
+      expect(JSON.parse(obj.$attrs.clip).shape).assertEqual("Circle");
+      console.info('testScroll0010 END');
+      done();
+    });
+
   })
 }

@@ -106,6 +106,22 @@ export default function timepickerJsunit() {
       done();
     });
 
+    /**
+     * @tc.number ArkUI_Stage_timepicker_3000
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_Stage_timepicker_3000', 0, async function (done) {
+      let strJson = getInspectorByKey('timePickerDefault');
+      let obj = JSON.parse(strJson);
+      console.info("[ArkUI_Stage_timepicker_3000] obj is: " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.useMilitaryTime).assertEqual("true");
+      done();
+    });
+
     
   })
 }

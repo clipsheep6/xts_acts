@@ -109,5 +109,41 @@ export default function rectJsunit() {
       done();
     });
 
+    /**
+     * @tc.number testrect01
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testrect01', 0, async function (done) {
+      console.info('[testrect01] START');
+      let strJson = getInspectorByKey('Rect1');
+      let obj = JSON.parse(strJson);
+      console.info("[testrect01] obj is : " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.width).assertEqual("300.00px");
+      console.info('[testrect01] END');
+      done();
+    });
+
+    /**
+     * @tc.number testrect02
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testrect02', 0, async function (done) {
+      console.info('[testrect02] START');
+      let strJson = getInspectorByKey('Rect1');
+      let obj = JSON.parse(strJson);
+      console.info("[testrect02] obj is : " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.height).assertEqual("100.00px");
+      console.info('[testrect02] END');
+      done();
+    });
+
   })
 }

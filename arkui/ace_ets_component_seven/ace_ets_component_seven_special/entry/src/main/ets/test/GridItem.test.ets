@@ -18,6 +18,7 @@ import router from '@system.router';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import Utils from './Utils.ets'
 import events_emitter from '@ohos.events.emitter';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function gridItemOnSelectJsunit() {
   describe('gridItemOnSelectTest', function () {
@@ -52,12 +53,10 @@ export default function gridItemOnSelectJsunit() {
      */
     it('testGridItem_0100',0,async function (done) {
       console.info('[testGridItem_0100] START');
-      let strJson = getInspectorByKey('GridItemKey1');
-      let obj = JSON.parse(strJson);
-      console.info("[testGridItem_0100] obj selected is: " + JSON.stringify(obj.$attrs));
-      
-      // expect(obj.$attrs.selected).assertEqual("true");
-      expect(true).assertEqual(true);
+      let driver = Driver.create();
+      let gridItem = await driver.findComponent(ON.id('GridItemKey1'));
+      let re = await gridItem.isSelected();
+      expect(re).assertEqual(true);
       console.info('[testGridItem_0100] END');
       done();
     });

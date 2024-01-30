@@ -15,6 +15,7 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
 import Utils from './Utils';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function menuItemJsunit() {
   describe('menuItemJsunit', function () {
@@ -127,14 +128,29 @@ export default function menuItemJsunit() {
      */
     it('menuItemJsunit05', 0, async function (done) {
       console.info('[menuItemJsunit05] START');
+      let driver = Driver.create();
+      let menuItem = await driver.findComponent(ON.id('menuItem_options1'));
+      let re = await menuItem.isSelected();
+      expect(re).assertEqual(true);
+      console.info('[menuItemJsunit05] END');
+      done();
+    });
+
+    /**
+     * @tc.number menuItemJsunit06
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('menuItemJsunit06', 0, async function (done) {
+      console.info('[menuItemJsunit06] START');
       let strJson = getInspectorByKey('menuItem_options1');
       let obj = JSON.parse(strJson);
-      console.info("[menuItemJsunit05] obj is: " + JSON.stringify(obj.$attrs));
-
-      //expect(obj.$attrs.selected).assertEqual(false);
-      expect(true).assertEqual(true);
-      
-      console.info('[menuItemJsunit05] END');
+      console.info("[menuItemJsunit06] obj is: " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.selectIcon).assertEqual("true");   
+      console.info('[menuItemJsunit06] END');
       done();
     });
 

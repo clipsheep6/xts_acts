@@ -29,14 +29,25 @@ class ButtonModifier1 implements AttributeModifier<ButtonAttribute> {
 class ButtonModifier2 implements AttributeModifier<ButtonAttribute> {
   applyNormalAttribute(instance: ButtonAttribute): void {
     instance.labelStyle({overflow: TextOverflow.Clip})
+    instance.borderRadius({"topLeft": "11px","topRight": "12px","bottomLeft": "13px","bottomRight": "14px"})
+  }
+}
+
+class ButtonModifier73 implements AttributeModifier<ButtonAttribute> {
+  applyNormalAttribute(instance: ButtonAttribute): void {
+    instance.backgroundColor("#FF0000FF")
+    instance.border({ width:"3px", color: "#FFFFFFFF" })
+    instance.size({ width: "190px", height: "90px" })
+    instance.padding({ top: "20px", right: "30px", left: "40px", bottom: "50px" })
   }
 }
 
 @Entry
 @Component
-struct ButtonExample {
+struct Button7Example {
   @State buttonModifier: ButtonModifier1 = new ButtonModifier1();
   @State buttonModifier2: ButtonModifier2 = new ButtonModifier2();
+  @State buttonModifier3: ButtonModifier73 = new ButtonModifier73();
   @State buttonTypeValue: ButtonType = ButtonType.Normal;
   @State fontSizeValue: string = '20px';
   @State fontColorValue: Color = Color.Black;
@@ -62,6 +73,10 @@ struct ButtonExample {
         .width(90)
         .key('button2')
         .attributeModifier(this.buttonModifier2)
+
+      Button('Ok3', { type: this.buttonTypeValue, stateEffect: true })
+        .key('button3')
+        .attributeModifier(this.buttonModifier3)
     }
 
   }

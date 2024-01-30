@@ -75,5 +75,41 @@ export default function lineNeJsunit() {
       console.info('lineNe testLineNe00072 END');
       done();
     });
+
+    /**
+     * @tc.number testLine0003
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testLine0003', 0, async function (done) {
+      console.info('lineNe testLine0003 START');
+      let strJson = getInspectorByKey('LineKey1');
+      let obj = JSON.parse(strJson);
+      console.info("[testLine0003] obj value :" + obj.$attrs);
+      expect(obj.$attrs.width).assertEqual("300.00px");
+      console.info('lineNe testLine0003 END');
+      done();
+    });
+
+    /**
+     * @tc.number testLine0004
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testLine0004', 0, async function (done) {
+      console.info('lineNe testLine0004 START');
+      let strJson = getInspectorByKey('LineKey1');
+      let obj = JSON.parse(strJson);
+      console.info("[testLine0004] obj value :" + obj.$attrs);
+      expect(obj.$attrs.height).assertEqual("100.00px");
+      console.info('lineNe testLine0004 END');
+      done();
+    });
   })
 }

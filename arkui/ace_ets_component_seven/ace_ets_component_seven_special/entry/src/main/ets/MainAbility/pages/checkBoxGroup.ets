@@ -25,6 +25,14 @@ class TestCheckboxGroupModifier implements AttributeModifier<CheckboxGroupAttrib
       .unselectedColor(this.mUnselectedColor)
       .selectAll(this.mSelectAll)
       .selectedColor(this.mSelectedColor)
+    instance.width("300px");
+    instance.height("100px");
+  }
+}
+
+class TestCheckboxGroupModifier1 implements AttributeModifier<CheckboxGroupAttribute> {
+  applyNormalAttribute(instance: CheckboxGroupAttribute): void {
+    instance.size({ width: "190px", height: "90px" })
   }
 }
 
@@ -32,12 +40,17 @@ class TestCheckboxGroupModifier implements AttributeModifier<CheckboxGroupAttrib
 @Component
 struct TestCheckboxGroupPage {
   @State modifier: TestCheckboxGroupModifier = new TestCheckboxGroupModifier()
+  @State modifier1: TestCheckboxGroupModifier1 = new TestCheckboxGroupModifier1()
 
   build() {
     Column() {
       CheckboxGroup({ group: 'checkboxGroup' })
         .key('checkboxNO')
         .attributeModifier(this.modifier)
+
+      CheckboxGroup({ group: 'checkboxGroup1' })
+        .key('checkboxGroup1')
+        .attributeModifier(this.modifier1)
     }
     .width('100%')
       .height('100%')

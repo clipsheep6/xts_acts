@@ -113,5 +113,23 @@ export default function MenuJsunit() {
       done();
     });
 
+    /**
+     * @tc.number ArkUX_Stage_Menu_attrs_0102
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Menu_attrs_0103', 0, async function (done) {
+      console.info('ArkUX_Stage_Menu_attrs_0103 START');
+      let strJson = getInspectorByKey('MenuKey1');
+      let obj = JSON.parse(strJson);
+      console.info("ArkUX_Stage_Menu_attrs_0103 component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.width).assertEqual("500.00px");
+      console.info('ArkUX_Stage_Menu_attrs_0103 END ');
+      done();
+    });
+
   })
 }

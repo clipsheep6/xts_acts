@@ -78,10 +78,10 @@ export default function sharedTransitionJsunit() {
           expect(indexEventOne.data.duration).assertEqual(2000);
           expect(indexEventOne.data.delay).assertEqual(5);
           expect(indexEventOne.data.type).assertEqual(SharedTransitionEffectType.Exchange);
+          done();
         } catch (err) {
           console.info("sharedTransitionTest_0100 error: " + err.message);
         }
-
       }
       let indexEventOne = {
         eventId: 193,
@@ -95,7 +95,7 @@ export default function sharedTransitionJsunit() {
       console.info("sharedTransitionTest_0100 click result is: " + JSON.stringify(sendEventByKey('Navigator', 10, "")));
       await Utils.sleep(2000);
       console.info('sharedTransitionTest_0100 END');
-      done();
+
     });
   })
 }

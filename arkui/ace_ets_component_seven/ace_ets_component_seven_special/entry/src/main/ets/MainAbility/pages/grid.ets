@@ -35,6 +35,7 @@ class GridModifier1 implements AttributeModifier<GridAttribute> {
       .cellLength(12)
       .layoutDirection(GridDirection.Row)
       .supportAnimation(true)
+      .clip(new Circle({ width: "500px" }))
   }
 }
 

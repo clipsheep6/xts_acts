@@ -17,16 +17,23 @@ class CheckboxModifier1 implements AttributeModifier<CheckboxAttribute>{
   applyNormalAttribute(instance: CheckboxAttribute): void {
 
     instance.select(false)
-
       .selectedColor(0xed6f21)
-
       .unselectedColor(0x00ff00)
-
       .mark({
         strokeColor: Color.Black,
         size: 50,
         strokeWidth: 5
       })
+      instance.width("300px");
+      instance.height("100px");
+  }
+}
+
+class CheckboxModifier2 implements AttributeModifier<CheckboxAttribute>{
+  applyNormalAttribute(instance: CheckboxAttribute): void {
+    instance.responseRegion({ x: 40, y: 60, width: '80%', height: '70%' });
+    instance.size({ width: "190px", height: "90px" })
+    instance.padding({ top: "20px", right: "30px", left: "40px", bottom: "50px" })
   }
 }
 
@@ -34,6 +41,7 @@ class CheckboxModifier1 implements AttributeModifier<CheckboxAttribute>{
 @Component
 struct checkBoxTest {
   @State checkboxModifier1: CheckboxModifier1 = new CheckboxModifier1()
+  @State checkboxModifier2: CheckboxModifier2 = new CheckboxModifier2()
 
   build() {
     Row() {
@@ -44,6 +52,10 @@ struct checkBoxTest {
           .onChange((value: boolean) => {
             console.info('Checkbox1 change is' + value)
           })
+
+        Checkbox({name: 'checkbox2',  group: 'checkboxGroup'})
+        .attributeModifier(this.checkboxModifier2)
+        .key("Checkbox2")
       }
       .width('100%')
     }

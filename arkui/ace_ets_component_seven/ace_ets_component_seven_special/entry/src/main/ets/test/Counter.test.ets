@@ -16,6 +16,7 @@
 import router from '@system.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import Utils from './Utils.ets'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function counterJsunit() {
   describe('ActsAceCounterTest', function () {
@@ -76,6 +77,79 @@ export default function counterJsunit() {
       // expect(obj.$attrs.enableDec).assertEqual('false');
       expect(true).assertEqual(true);
       console.info('[testCounter02] END');
+      done();
+    });
+
+    /**
+     * @tc.number testCounter03
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testCounter03', 0, async function (done) {
+      console.info('[testCounter03] START');
+      let strJson = getInspectorByKey('Counter');
+      let obj = JSON.parse(strJson);
+      console.info("[testCounter03] obj is : " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.width).assertEqual("300.00px");
+      console.info('[testCounter03] END');
+      done();
+    });
+
+    /**
+     * @tc.number testCounter04
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testCounter04', 0, async function (done) {
+      console.info('[testCounter04] START');
+      let strJson = getInspectorByKey('Counter');
+      let obj = JSON.parse(strJson);
+      console.info("[testCounter04] obj is : " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.height).assertEqual("100.00px");
+      console.info('[testCounter04] END');
+      done();
+    });
+
+    /**
+     * @tc.number testCounter05
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testCounter05', 0, async function (done) {
+      console.info('[testCounter05] START');
+      let strJson = getInspectorByKey('Counter2');
+      let obj = JSON.parse(strJson);
+      console.info("[testCounter05] obj is : " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.size.width).assertEqual('190.00px');
+      expect(obj.$attrs.size.height).assertEqual('90.00px');
+      console.info('[testCounter05] END');
+      done();
+    });
+
+    /**
+     * @tc.number testCounter06
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testCounter06', 0, async function (done) {
+      console.info('[testCounter06] START');
+      let strJson = getInspectorByKey('Counter2');
+      let obj = JSON.parse(strJson);
+      console.info("[testCounter06] obj is : " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.backgroundColor).assertEqual('#FF342354');
+      console.info('[testCounter06] END');
       done();
     });
   })

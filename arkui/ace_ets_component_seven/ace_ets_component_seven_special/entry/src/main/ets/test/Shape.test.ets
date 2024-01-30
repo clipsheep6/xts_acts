@@ -303,6 +303,61 @@ export default function shape(){
       done();
     });
 
+    /**
+     * @tc.number ShapeJsunit_0014
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ShapeJsunit_0014',0,async function (done) {
+      console.info('[ShapeJsunit_0014] START');
+      let strJson = getInspectorByKey('ShapeKey2');
+      let obj = JSON.parse(strJson);
+      console.info("[ShapeJsunit_0014] obj  is: " + JSON.stringify(obj.$attrs));
+      
+      expect(obj.$attrs.height).assertEqual("100.00px");
+      console.info('[ShapeJsunit_0014] END');
+      done();
+    });
 
+    /**
+     * @tc.number ShapeJsunit_0015
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ShapeJsunit_0015',0,async function (done) {
+      console.info('[ShapeJsunit_0015] START');
+      let strJson = getInspectorByKey('ShapeKey2');
+      let obj = JSON.parse(strJson);
+      console.info("[ShapeJsunit_0015] obj  is: " + JSON.stringify(obj.$attrs));
+      
+      expect(obj.$attrs.width).assertEqual("300.00px");
+      console.info('[ShapeJsunit_0015] END');
+      done();
+    });
+
+    /**
+     * @tc.number ShapeJsunit_0016
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ShapeJsunit_0016',0,async function (done) {
+      console.info('[ShapeJsunit_0016] START');
+      let strJson = getInspectorByKey('ShapeKey2');
+      let obj = JSON.parse(strJson);
+      console.info("[ShapeJsunit_0016] obj  is: " + JSON.stringify(obj.$attrs));
+      
+      expect(obj.$attrs.foregroundColor).assertEqual("#FF123222");
+      console.info('[ShapeJsunit_0015] END');
+      done();
+    });
   })
 }

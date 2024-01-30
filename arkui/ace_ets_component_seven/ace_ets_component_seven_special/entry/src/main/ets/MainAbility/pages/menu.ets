@@ -24,6 +24,7 @@ class TestMenuModifier implements AttributeModifier<MenuAttribute> {
       .radius(this.mRadius)
       .fontColor(this.mFontColor)
       .font(this.mFont)
+      .width("500px")
   }
 }
 

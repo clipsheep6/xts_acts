@@ -125,5 +125,23 @@ export default function datePickerJsunit() {
       console.info('[testDatePicker0024] END');
       done();
     });
+
+    /**
+     * @tc.number testDatePicker0025
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testDatePicker0025', 0, async function (done) {
+      console.info('[testDatePicker0025] START');
+      let strJson = getInspectorByKey('DatePicker');
+      let obj = JSON.parse(strJson);
+      console.info("[testDatePicker0025] obj is : " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.backgroundColor).assertEqual('#FF1234FF');
+      console.info('[testDatePicker0025] END');
+      done();
+    });
   })
 }

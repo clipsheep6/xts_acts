@@ -57,6 +57,21 @@
         "MainAbility/pages/geometryTransition",
         "MainAbility/pages/motionPath",
         "MainAbility/pages/shortcutKey",
-        "MainAbility/pages/idKey"
+        "MainAbility/pages/idKey",
+        "MainAbility/pages/navRouter",
+        "MainAbility/pages/blank",
+        "MainAbility/pages/search",
+        "MainAbility/pages/ellipse",
+        "MainAbility/pages/polygon",
+        "MainAbility/pages/columnSplit",
+        "MainAbility/pages/rowSplit",
+        "MainAbility/pages/circle",
+        "MainAbility/pages/pluginComponent",
+        "MainAbility/pages/xComponent",
+        "MainAbility/pages/stack",
+        "MainAbility/pages/text",
+        "MainAbility/pages/image",
+        "MainAbility/pages/video",
+        "MainAbility/pages/mask"
     ]
 }

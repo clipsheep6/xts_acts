@@ -33,6 +33,7 @@ class SwiperModifier1 implements AttributeModifier<SwiperAttribute> {
       .index(1)
       .indicator(true)
       .duration(300)
+      .enabled(false)
   }
 }
 

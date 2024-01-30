@@ -63,6 +63,7 @@ export default function transitionJsunit() {
       let callback = (indexEvent) => {
         console.info("transitionTest_0200 get state result is: " + JSON.stringify(indexEvent));
         expect(indexEvent.data.btn1).assertEqual(false);
+        done();
       }
       try {
         events_emitter.on(indexEvent, callback);
@@ -72,7 +73,6 @@ export default function transitionJsunit() {
       console.info("transitionTest_0200 click result is: " + JSON.stringify(sendEventByKey('button', 10, "")));
       await Utils.sleep(1000);
       console.info('transitionTest_0200 END');
-      done();
     });
   })
 }

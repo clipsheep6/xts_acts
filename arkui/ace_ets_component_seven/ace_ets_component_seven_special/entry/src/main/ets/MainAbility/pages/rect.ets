@@ -16,6 +16,8 @@
 class RectModifier1 implements AttributeModifier<RectAttribute>{
   applyNormalAttribute(instance: RectAttribute): void {
     instance.radiusHeight(8);
+    instance.width("300px");
+    instance.height("100px");
   }
 }
 

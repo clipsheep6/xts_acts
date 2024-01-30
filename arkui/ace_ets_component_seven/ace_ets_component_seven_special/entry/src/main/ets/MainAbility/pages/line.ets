@@ -18,6 +18,8 @@ class LineModifier1 implements AttributeModifier<LineAttribute> {
     instance
       .startPoint([0, 1])
       .endPoint([200, 220])
+    instance.width("300px");
+    instance.height("100px");
   }
 }
 

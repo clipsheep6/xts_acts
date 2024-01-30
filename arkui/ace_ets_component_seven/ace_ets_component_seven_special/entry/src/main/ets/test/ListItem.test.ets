@@ -17,6 +17,7 @@ import events_emitter from '@ohos.events.emitter';
 import router from '@system.router';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import Utils from './Utils.ets'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function listItemJsunit() {
   describe('listItemTest', function () {
@@ -51,12 +52,10 @@ export default function listItemJsunit() {
      */
     it('testList_itemOnSelect00051', 0, async function (done) {
       console.info('selectOnSelect testList_itemOnSelect00051 START');
-      let strJson = getInspectorByKey('ListItemKey1');
-      let obj = JSON.parse(strJson);
-      console.info("[testList_itemOnSelect00051] obj " + JSON.stringify(obj.$attrs));
-
-      // expect(obj.$attrs.selected).assertEqual("true");
-      expect(true).assertEqual(true);
+      let driver = Driver.create();
+      let listItem = await driver.findComponent(ON.id('ListItemKey1'));
+      let re = await listItem.isSelected();
+      expect(re).assertEqual(true);
       console.info('selectOnSelect testList_itemOnSelect00051 END');
       done();
     });

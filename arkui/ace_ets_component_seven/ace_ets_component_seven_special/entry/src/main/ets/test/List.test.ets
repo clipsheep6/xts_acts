@@ -117,26 +117,6 @@ export default function list() {
     });
 
     /**
-     * @tc.number ListJsunit_0104
-     * @tc.name   Test the properties of components
-     * @tc.desc   Set attribute values
-     * @tc.size   MediumTest
-     * @tc.type   Function
-     * @tc.level  0
-     */
-    it('ListJsunit_0104', 0, async function (done) {
-      console.info('[ListJsunit_0104] START');
-      let strJson = getInspectorByKey('ListKey1');
-      let obj = JSON.parse(strJson);
-      console.info("[ListJsunit_0104] obj is: " + JSON.stringify(obj.$attrs));
-
-      //expect(obj.$attrs.nestedScroll).assertEqual("{scrollForward:SELF_ONLY,scrollBackward:PARALLEL}");
-      expect(true).assertEqual(true);
-      console.info('[ListJsunit_0104] END');
-      done();
-    });
-
-    /**
      * @tc.number ListJsunit_0105
      * @tc.name   Test the properties of components
      * @tc.desc   Set attribute values
@@ -346,6 +326,60 @@ export default function list() {
 
       expect(obj.$attrs.sticky).assertEqual("StickyStyle.Header");
       console.info('[ListJsunit_0115] END');
+      done();
+    });
+
+     /**
+     * @tc.number ListJsunit_0116
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+     it('ListJsunit_0116', 0, async function (done) {
+      console.info('[ListJsunit_0116] START');
+      let strJson = getInspectorByKey('ListKey1');
+      let obj = JSON.parse(strJson);
+      console.info("[ListJsunit_0116] obj is: " + JSON.stringify(obj.$attrs));
+      expect(JSON.parse(obj.$attrs.clip).shape).assertEqual("Circle");
+      console.info('[ListJsunit_0116] END');
+      done();
+    });
+
+    /**
+     * @tc.number ListJsunit_0116
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ListJsunit_0116', 0, async function (done) {
+      console.info('[ListJsunit_0116] START');
+      let strJson = getInspectorByKey('ListKey1');
+      let obj = JSON.parse(strJson);
+      console.info("[ListJsunit_0116] obj is: " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.contentStartOffset).assertEqual("5.000000");
+      console.info('[ListJsunit_0116] END');
+      done();
+    });
+
+    /**
+     * @tc.number ListJsunit_0117
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ListJsunit_0117', 0, async function (done) {
+      console.info('[ListJsunit_0117] START');
+      let strJson = getInspectorByKey('ListKey1');
+      let obj = JSON.parse(strJson);
+      console.info("[ListJsunit_0117] obj is: " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.contentEndOffset).assertEqual("15.000000");
+      console.info('[ListJsunit_0117] END');
       done();
     });
 

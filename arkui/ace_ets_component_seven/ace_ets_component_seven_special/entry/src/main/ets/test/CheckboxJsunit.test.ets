@@ -29,7 +29,7 @@ export default function checkboxJsunit() {
         router.clear();
         let pages = router.getState();
         console.info("get checkBox state pages: " + JSON.stringify(pages));
-        if (!("checkBox" == pages.name)) {
+        if (!("checkbox" == pages.name)) {
           console.info("get checkBox state pages.name: " + JSON.stringify(pages.name));
           result = await router.push(options);
           await Utils.sleep(2000);
@@ -143,6 +143,104 @@ export default function checkboxJsunit() {
         }
         done();
       }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Checkbox_attrs_0300
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Checkbox_attrs_0300', 0, async function (done) {
+      console.info('ArkUX_Stage_Checkbox_attrs_0300 START');
+      let strJson = getInspectorByKey('Checkbox2');
+      let obj = JSON.parse(strJson);
+      console.info("ArkUX_Stage_Checkbox_attrs_0300 component obj is: " + JSON.stringify(obj));
+      let responseRegion = JSON.parse(obj.$attrs.responseRegion[0]);
+      expect(responseRegion.x).assertEqual("40.00vp");
+      expect(responseRegion.y).assertEqual("60.00vp");
+      expect(responseRegion.width).assertEqual("80.00%");
+      expect(responseRegion.height).assertEqual("70.00%");
+      console.info('ArkUX_Stage_Checkbox_attrs_0300 END ');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Checkbox_attrs_0400
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Checkbox_attrs_0400', 0, async function (done) {
+      console.info('ArkUX_Stage_Checkbox_attrs_0400 START');
+      let strJson = getInspectorByKey('Checkbox_0100');
+      let obj = JSON.parse(strJson);
+      console.info("ArkUX_Stage_Checkbox_attrs_0400 component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.width).assertEqual("300.00px");
+      console.info('ArkUX_Stage_Checkbox_attrs_0400 END ');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Checkbox_attrs_0500
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Checkbox_attrs_0500', 0, async function (done) {
+      console.info('ArkUX_Stage_Checkbox_attrs_0500 START');
+      let strJson = getInspectorByKey('Checkbox_0100');
+      let obj = JSON.parse(strJson);
+      console.info("ArkUX_Stage_Checkbox_attrs_0500 component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.height).assertEqual("100.00px");
+      console.info('ArkUX_Stage_Checkbox_attrs_0500 END ');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Checkbox_attrs_0600
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Checkbox_attrs_0600', 0, async function (done) {
+      console.info('ArkUX_Stage_Checkbox_attrs_0200 START');
+      let strJson = getInspectorByKey('Checkbox2');
+      let obj = JSON.parse(strJson);
+      console.info("ArkUX_Stage_Checkbox_attrs_0600 component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.size.width).assertEqual('190.00px');
+      expect(obj.$attrs.size.height).assertEqual('90.00px');
+      console.info('ArkUX_Stage_Checkbox_attrs_0600 END ');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Checkbox_attrs_0700
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Checkbox_attrs_0700', 0, async function (done) {
+      console.info('ArkUX_Stage_Checkbox_attrs_0700 START');
+      let strJson = getInspectorByKey('Checkbox2');
+      let obj = JSON.parse(strJson);
+      console.info("ArkUX_Stage_Checkbox_attrs_0700 component obj is: " + JSON.stringify(obj));
+      expect(JSON.parse(obj.$attrs.padding).top).assertEqual('20.00px');
+      expect(JSON.parse(obj.$attrs.padding).right).assertEqual('30.00px');
+      expect(JSON.parse(obj.$attrs.padding).left).assertEqual('40.00px');
+      expect(JSON.parse(obj.$attrs.padding).bottom).assertEqual('50.00px');
+      console.info('ArkUX_Stage_Checkbox_attrs_0700 END ');
+      done();
     });
 
   })

@@ -16,6 +16,8 @@
 import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
 import router from '@system.router';
 import Utils from './Utils';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
+import events_emitter from '@ohos.events.emitter';
 
 export default function hyperLinkJsunit() {
   describe('hyperLinkJsunit', function () {
@@ -29,7 +31,7 @@ export default function hyperLinkJsunit() {
         router.clear();
         let pages = router.getState();
         console.info("get hyperLink state pages: " + JSON.stringify(pages));
-        if (!("checkBox" == pages.name)) {
+        if (!("hyperlink" == pages.name)) {
           console.info("get hyperLink state pages.name: " + JSON.stringify(pages.name));
           result = await router.push(options);
           await Utils.sleep(2000);
@@ -64,6 +66,53 @@ export default function hyperLinkJsunit() {
         }
         done();
       }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_hyperLink_attrs_0200
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_hyperLink_attrs_0200', 0, async function (done) {
+      console.info('ArkUX_Stage_hyperLink_attrs_0200 START');
+      try {
+        let callBack = (backData: events_emitter.EventData) => {
+          try {
+            console.info(`ArkUX_Stage_hyperLink_attrs_0200 get result is:` + JSON.stringify(backData));
+            expect(backData?.data?.ACTION).assertEqual(true)
+            console.info(`ArkUX_Stage_hyperLink_attrs_0200 END`);
+          } catch (err) {
+            console.info(`ArkUX_Stage_hyperLink_attrs_0200 err:` + JSON.stringify(err));
+          }
+          done()
+        }
+        let innerEvent: events_emitter.InnerEvent = {
+          eventId: 79001,
+          priority: events_emitter.EventPriority.LOW
+        }
+        events_emitter.on(innerEvent, callBack)
+      } catch (err) {
+        console.info(`ArkUX_Stage_hyperLink_attrs_0200 err:` + JSON.stringify(err));
+      }
+
+      // 获取 hyperlink 坐标
+      let hyperlinkKey = Utils.getComponentRect('HyperlinkKey1');
+      console.info(`ArkUX_Stage_hyperLink_attrs_0200 HyperlinkKey1 is:` + JSON.stringify(hyperlinkKey));
+      let xhyperlink = Math.floor(Utils.getRectHorizontalCenterX(hyperlinkKey));
+      let yhyperlink = Math.floor(Utils.getRectVerticalCenterY(hyperlinkKey));
+      // 获取 list 坐标
+      let testlist = Utils.getComponentRect('Testlist');
+      console.info(`ArkUX_Stage_hyperLink_attrs_0200 testlist is:` + JSON.stringify(testlist));
+      let xtest = Math.floor(Utils.getRectHorizontalCenterX(testlist));
+      let ytest = Math.floor(Utils.getRectVerticalCenterY(testlist));
+      //拖拽
+      console.info(`ArkUX_Stage_hyperLink_attrs_0200 testlist is:` + xhyperlink + "##" + yhyperlink + "##" + xtest + "##" + ytest);
+      let driver = Driver.create();
+      await driver.drag(xhyperlink, yhyperlink, xtest, ytest);
+      console.info(`ArkUX_Stage_hyperLink_attrs_0200 driver.drag END`)
     });
 
   })

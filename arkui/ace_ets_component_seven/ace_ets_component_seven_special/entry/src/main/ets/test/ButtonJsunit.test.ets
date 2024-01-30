@@ -43,11 +43,6 @@ export default function buttonJsunit() {
       done();
     });
 
-    beforeEach(async function () {
-      await Utils.sleep(1000);
-      console.info("button before each called");
-    })
-
     /**
      * @tc.number testButton1601
      * @tc.name   Test the properties of components
@@ -192,5 +187,98 @@ export default function buttonJsunit() {
       done();
     });
 
+    /**
+     * @tc.number testButton1609
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testButton1609', 0, async function (done) {
+      console.info('[testButton1609] START');
+      let strJsonNew = getInspectorByKey('button2');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testButton1609] component testButton1609 is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.borderRadius.topLeft).assertEqual("11.00px");
+      expect(objNew.$attrs.borderRadius.topRight).assertEqual("12.00px");
+      expect(objNew.$attrs.borderRadius.bottomLeft).assertEqual("13.00px");
+      expect(objNew.$attrs.borderRadius.bottomRight).assertEqual("14.00px");
+      done();
+    });
+
+    /**
+     * @tc.number testButton1610
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testButton1610', 0, async function (done) {
+      console.info('[testButton1610] START');
+      let strJsonNew = getInspectorByKey('button3');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testButton1610] component testButton1610 is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.backgroundColor).assertEqual("#FF0000FF");
+      done();
+    });
+
+    /**
+     * @tc.number testButton1611
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testButton1611', 0, async function (done) {
+      console.info('[testButton1611] START');
+      let strJsonNew = getInspectorByKey('button3');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testButton1611] component testButton1611 is: " + JSON.stringify(objNew.$attrs));
+      let border = JSON.parse(objNew.$attrs.border);
+      expect(border.color.left).assertEqual("#FFFFFFFF");
+      expect(border.width.left).assertEqual("3.00px");
+      done();
+    });
+
+    /**
+     * @tc.number testButton1612
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testButton1612', 0, async function (done) {
+      console.info('[testButton1612] START');
+      let strJsonNew = getInspectorByKey('button3');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testButton1612] component testButton1612 is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.size.width).assertEqual('190.00px');
+      expect(objNew.$attrs.size.height).assertEqual('90.00px');
+      done();
+    });
+
+    /**
+     * @tc.number testButton1613
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testButton1613', 0, async function (done) {
+      console.info('[testButton1613] START');
+      let strJsonNew = getInspectorByKey('button3');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("[testButton1613] component testButton1613 is: " + JSON.stringify(objNew.$attrs));
+      expect(JSON.parse(objNew.$attrs.padding).top).assertEqual('20.00px');
+      expect(JSON.parse(objNew.$attrs.padding).right).assertEqual('30.00px');
+      expect(JSON.parse(objNew.$attrs.padding).left).assertEqual('40.00px');
+      expect(JSON.parse(objNew.$attrs.padding).bottom).assertEqual('50.00px');
+      done();
+    });
   })
 }

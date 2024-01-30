@@ -31,7 +31,7 @@ export default function textpickerJsunit() {
         if (!("textPicker" == pages.name)) {
           console.info("get textpicker state pages.name: " + JSON.stringify(pages.name));
           result = await router.push(options);
-          await Utils.sleep(5000);
+          await Utils.sleep(2000);
           console.info("push textpicker page result: " + JSON.stringify(result));
         }
       } catch (err) {
@@ -164,6 +164,23 @@ export default function textpickerJsunit() {
       let obj = JSON.parse(strJson);
       console.info("[ArkUI_textpicker_006] obj:" + JSON.stringify(obj.$attrs));
       expect(obj.$attrs.defaultPickerItemHeight).assertEqual('60.00px');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUI_textpicker_006
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_textpicker_006', 0, async function (done) {
+      console.info('[ArkUI_textpicker_006] START');
+      let strJson = getInspectorByKey('textPickerDefault');
+      let obj = JSON.parse(strJson);
+      console.info("[ArkUI_textpicker_006] obj:" + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.backgroundColor).assertEqual('#FF654321');
       done();
     });
   })
