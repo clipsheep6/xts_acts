@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, beforeAll, afterAll } from '@ohos/hypium';
+import { describe, it, expect, beforeAll, afterAll, afterEach } from '@ohos/hypium';
 import { BusinessError } from '@ohos.base';
 import Want from '@ohos.app.ability.Want';
 import vpnExtension from '@ohos.net.vpnExtension';
@@ -23,8 +23,8 @@ import common from '@ohos.app.ability.common';
 import socket from "@ohos.net.socket";
 import { GlobalContext } from "../GlobalContext";
 
-let socketFd: number = 38;
-let tag: string = 'Geegee';
+let socketFd = 38;
+let tag = 'Geegee';
 let context:common.VpnExtensionContext = GlobalContext.getContext().getObject("AppContext");
 let config: vpnExtension.VpnConfig = {
   addresses: [{
@@ -91,15 +91,15 @@ export default function NetworkManagerVpnTest() {
      * @tc.size: SmallTest
      */
     it('NetworkManager_startVpnExtensionAbility_0100', 0, (done: Function) => {
-      let caseName: string = 'NetworkManager_startVpnExtensionAbility_0100';
+      let caseName = 'NetworkManager_startVpnExtensionAbility_0100';
       let want: Want = {};
       try {
         vpnExtension.startVpnExtensionAbility(want);
         console.log(`${caseName} startVpnExtensionAbility success`);
         done();
-      } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.log(`${caseName} startVpnExtensionAbility fail ${JSON.stringify(e)}`);
+      }
+      catch (error) {
+        console.log(`${caseName} startVpnExtensionAbility fail ${JSON.stringify(error)}`);
         expect().assertFail();
         done();
       }
@@ -114,16 +114,16 @@ export default function NetworkManagerVpnTest() {
      * @tc.size: SmallTest
      */
     it('NetworkManager_startVpnExtensionAbility_0200', 0, (done: Function) => {
-      let caseName: string = 'NetworkManager_startVpnExtensionAbility_0200';
+      let caseName = 'NetworkManager_startVpnExtensionAbility_0200';
       try {
         vpnExtension.startVpnExtensionAbility(null);
         console.log(`${caseName} startVpnExtensionAbility success`);
         expect().assertFail();
         done();
-      } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.log(`${caseName} startVpnExtensionAbility fail ${JSON.stringify(e)}`);
-        expect(e.code == 401).assertTrue();
+      }
+      catch (error) {
+        console.log(`${caseName} startVpnExtensionAbility fail ${JSON.stringify(error)}`);
+        expect(error.code == 401).assertTrue();
         done();
       }
     })
@@ -221,15 +221,15 @@ export default function NetworkManagerVpnTest() {
      * @tc.size: SmallTest
      */
     it('NetworkManager_stopVpnExtensionAbility_0100', 0, (done: Function) => {
-      let caseName: string = 'NetworkManager_stopVpnExtensionAbility_0100';
+      let caseName = 'NetworkManager_stopVpnExtensionAbility_0100';
       let want: Want = {};
       try {
         vpnExtension.stopVpnExtensionAbility(want);
         console.log(`${caseName} stopVpnExtensionAbility success`);
         done();
-      } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.log(`${caseName} stopVpnExtensionAbility fail ${JSON.stringify(e)}`);
+      }
+      catch (error) {
+        console.log(`${caseName} stopVpnExtensionAbility fail ${JSON.stringify(error)}`);
         expect().assertFail();
         done();
       }
@@ -244,15 +244,15 @@ export default function NetworkManagerVpnTest() {
      * @tc.size: SmallTest
      */
     it('NetworkManager_stopVpnExtensionAbility_0200', 0, (done: Function) => {
-      let caseName: string = 'NetworkManager_stopVpnExtensionAbility_0200';
+      let caseName = 'NetworkManager_stopVpnExtensionAbility_0200';
       try {
         vpnExtension.stopVpnExtensionAbility(null);
         console.log(`${caseName} stopVpnExtensionAbility success`);
         done();
-      } catch (error) {
-        let e: BusinessError = error as BusinessError;
-        console.log(`${caseName} stopVpnExtensionAbility fail ${JSON.stringify(e)}`);
-        expect(e.code == 401).assertTrue();
+      }
+      catch (error) {
+        console.log(`${caseName} stopVpnExtensionAbility fail ${JSON.stringify(error)}`);
+        expect(error.code == 401).assertTrue();
         done();
       }
     })
