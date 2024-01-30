@@ -235,6 +235,23 @@ export default function photoPickerTest() {
       await selectWithOptionPromise(testNum, done, option, expectSelectNum);
     });
 
+    /**
+     * @tc.number    : SUB_MULTIMEDIA_PHOTOPICKER_SELECT_PROMISE_0700
+     * @tc.name      : photopicker_select_promise_007
+     * @tc.desc      : select with option preselectdUris
+     * @tc.size      : MEDIUM
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+    */
+    it("photopicker_select_promise_007", 0, async function (done) {
+      let testNum = "photopicker_select_promise_007";
+      let option = new photoAccessHelper.PhotoSelectOptions();
+      option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
+      option.maxSelectNumber = 1;
+      option.preselectdUris = undefined;
+      await selectWithOptionPromise(testNum, done, option, expectSelectNum);
+    });
+
     //callback
     /**
      * @tc.number    : SUB_MULTIMEDIA_PHOTOPICKER_SELECT_CALLBACK_0000
