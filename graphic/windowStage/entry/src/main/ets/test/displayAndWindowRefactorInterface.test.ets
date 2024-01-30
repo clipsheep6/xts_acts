@@ -371,7 +371,6 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
             console.log(msgStr + 'proData.type:' + proData.type);
             expect(proData.type == tempType).assertTrue();
             await (tempWnd as ohosWindow.Window).destroyWindow();
-            done();
           } catch (exception) {
             console.error(msgStr + 'Failed to obtain the window properties. Cause: ' + JSON.stringify(exception));
           }
@@ -379,6 +378,8 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
       } catch (exception) {
         console.error(msgStr + 'Failed to create the window. Cause: ' + JSON.stringify(exception));
       }
+      console.info(msgStr + `hereherer`)
+      done();
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0140

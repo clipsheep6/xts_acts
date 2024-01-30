@@ -1066,7 +1066,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       });
       (tempWnd as ohosWindow.Window).on('keyboardHeightChange', firstCall);
       (tempWnd as ohosWindow.Window).on('keyboardHeightChange', secondCall);
-      await inputClick('pageTwoInput', msgStr).catch(async (err: BusinessError) => {
+      await inputClick('pageTwoinput', msgStr).catch(async (err: BusinessError) => {
         console.info(msgStr + err);
         await (tempWnd as ohosWindow.Window).destroyWindow();
         expect(TRUE_FLAG).assertFail();
@@ -1084,7 +1084,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         done();
       })
       await sleep(1000);
-      await inputClick('pageTwoInputSecond', msgStr).catch(async (err: BusinessError) => {
+      await inputClick('pageTwoinputSecond', msgStr).catch(async (err: BusinessError) => {
         console.info(msgStr + err);
         await (tempWnd as ohosWindow.Window).destroyWindow();
         expect(TRUE_FLAG).assertFail();
