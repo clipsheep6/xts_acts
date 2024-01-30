@@ -1552,7 +1552,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_true : ${JSON.stringify(windowProperties_true)}`)
-      //@ts-ignore
+      // @ts-ignore
       expect(windowProperties_true.isPrivacyMode).assertTrue();
 
       await setPrivacyModeWin(tempWnd, false).catch((err: BusinessError) => {
@@ -1567,7 +1567,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_false : ${JSON.stringify(windowProperties_false)}`)
-      //@ts-ignore
+      // @ts-ignore
       expect(!windowProperties_false.isPrivacyMode).assertTrue();
       await tempWnd.destroy();
       done();
@@ -1640,7 +1640,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_true : ${JSON.stringify(windowProperties_true)}`)
-      //@ts-ignore
+      // @ts-ignore
       expect(windowProperties_true.isPrivacyMode).assertTrue();
 
       await setPrivacyModeFun(tempWnd, false).catch((err: BusinessError) => {
@@ -1655,7 +1655,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         done();
       })
       console.info(msgStr + `ohosWindow.windowProperties_false : ${JSON.stringify(windowProperties_false)}`)
-      //@ts-ignore
+      // @ts-ignore
       expect(!windowProperties_false.isPrivacyMode).assertTrue();
       await tempWnd.destroy();
       done();
