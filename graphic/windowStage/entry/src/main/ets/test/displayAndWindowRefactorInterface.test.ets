@@ -634,7 +634,6 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
       } catch (exception) {
         console.error(msgStr + 'Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
         expect().assertFail();
-        done()
       }
       console.log(msgStr + 'last done');
       done();
@@ -660,8 +659,6 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
             } catch (error) {
               console.info(msgStr + `ohosWindow.getLastWindow  catch error: ${JSON.stringify(error)}`)
             }
-            done();
-            return;
           }
           console.info(msgStr + 'Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
         })
@@ -699,7 +696,6 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
         await (tempWnd as ohosWindow.Window).showWindow().then(async (data) => {
           console.info(msgStr + 'Succeeded in showing the window. Data: ' + JSON.stringify(data));
           await (tempWnd as ohosWindow.Window).destroyWindow();
-          done();
         }).catch((err: BusinessError) => {
           console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
           expect().assertFail();
@@ -709,8 +705,8 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
         console.error(msgStr + 'Failed to create the window. Cause: ' + JSON.stringify(exception));
         expect().assertFail();
         done();
-      }
-      ;
+      };
+      done();
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_2110
@@ -748,9 +744,8 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
         }
         console.info(msgStr + 'Succeeded in showing the window. Data: ' + JSON.stringify(data));
         await winData.destroyWindow();
-        done();
       })
-
+      done();
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0980
