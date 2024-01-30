@@ -336,7 +336,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testCreateWindow_Type_Float_Win_Callback', 0, (done: Function) => {
+    it('testCreateWindow_Type_Float_Win_Callback', 0, async (done: Function) => {
       let caseName: string = 'testCreateWindow_Type_Float_Win_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
@@ -375,12 +375,10 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
           } catch (exception) {
             console.error(msgStr + 'Failed to obtain the window properties. Cause: ' + JSON.stringify(exception));
           }
-          ;
         })
       } catch (exception) {
         console.error(msgStr + 'Failed to create the window. Cause: ' + JSON.stringify(exception));
       }
-      ;
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0140
