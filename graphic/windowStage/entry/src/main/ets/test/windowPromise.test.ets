@@ -1715,7 +1715,6 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         }
       })
     })
-<<<<<<< HEAD
 
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STANDARD_JS_API_1280
@@ -1760,8 +1759,6 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         }
       })
     })
-=======
->>>>>>> 4568319f99e3b9a32c91c989c17f296ac3b484bc
 
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0100
