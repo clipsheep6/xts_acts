@@ -730,10 +730,10 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
         name: windowId, windowType: baseWndType, ctx: context
       };
 
-      createFirstWindow(windowConfig, msgStr, done)
+      createFirstWindow(windowConfig, msgStr, done())
 
       let winData: ohosWindow.Window;
-      winData = await createFirstWindow(windowConfig, msgStr, done);
+      winData = await createFirstWindow(windowConfig, msgStr, done());
       expect(!!winData).assertTrue();
       winData.showWindow(async (err, data) => {
         if (err.code) {
@@ -1851,8 +1851,7 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
         console.error(msgStr + 'try catch Failed to create the window. Cause: ' + JSON.stringify(exception));
         expect(exception.code === 401).assertTrue();
         done();
-      }
-      ;
+      };
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0120
