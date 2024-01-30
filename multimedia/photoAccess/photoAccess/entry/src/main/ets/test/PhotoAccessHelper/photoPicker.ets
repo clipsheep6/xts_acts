@@ -246,8 +246,8 @@ export default function photoPickerTest() {
     it("photopicker_select_promise_007", 0, async function (done) {
       let testNum = "photopicker_select_promise_007";
       let options = new photoAccessHelper.PhotoSelectOptions();
-      options.MIMEType =photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
-      options.maxSelectNumber =5;
+      options.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
+      options.maxSelectNumber = 1;
       options.preselectdUris = undefined;
       await selectWithOptionPromise(testNum, done, option, expectSelectNum);
     });
