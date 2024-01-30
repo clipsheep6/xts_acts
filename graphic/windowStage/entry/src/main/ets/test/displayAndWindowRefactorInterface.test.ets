@@ -631,13 +631,13 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
           done();
         })
         expect(lastWindow != null).assertTrue();
-        done();
       } catch (exception) {
         console.error(msgStr + 'Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
         expect().assertFail();
-        done();
+        done()
       }
-      ;
+      console.log(msgStr + 'last done');
+      done();
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0510
@@ -664,12 +664,12 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
             return;
           }
           console.info(msgStr + 'Succeeded in obtaining the top window. Data: ' + JSON.stringify(data));
-          done();
         })
       } catch (exception) {
         console.error(msgStr + 'Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
       }
-      ;
+      console.log(msgStr + 'last done');
+      done();
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_2120
