@@ -469,58 +469,58 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       let secondListenFlag = false
       let baseWndType = ohosWindow.WindowType.TYPE_FLOAT;
       let windowId = 'window_off_windowSizeChange_Test_002';
-      let windowConfig = {
+      let windowConfig:ohosWindow.Configuration = {
         name: windowId, windowType: baseWndType, ctx: context
       };
-      let tempWnd = null;
-      tempWnd = await ohosWindow.createWindow(windowConfig).catch((err) => {
+
+      let tempWnd:ohosWindow.Window | void = await ohosWindow.createWindow(windowConfig).catch((err:BusinessError) => {
         unexpectedError(err, caseName, 'ohosWindow.createWindow', TRUE_FLAG,done);
       });
       expect(!!tempWnd).assertTrue();
 
-      function firstCall() {
+      let firstCall:Callback<ohosWindow.Size> = ()=> {
         console.log(msgStr + "first listener trigger")
         firstListenFlag = true
       }
 
-      function secondCall() {
+      let secondCall:Callback<ohosWindow.Size> = ()=> {
         console.log(msgStr + "second listener trigger")
         secondListenFlag = true
       }
 
-      tempWnd.on('windowSizeChange', firstCall);
-      tempWnd.on('windowSizeChange', secondCall);
-      await tempWnd.show().catch((err) => {
+      (tempWnd as ohosWindow.Window).on('windowSizeChange', firstCall);
+      (tempWnd as ohosWindow.Window).on('windowSizeChange', secondCall);
+      await (tempWnd as ohosWindow.Window).show().catch((err:BusinessError) => {
         unexpectedError(err, caseName, 'tempWnd.show', TRUE_FLAG,done);
       });
       console.log(msgStr + 'tempWnd.show success');
-      await tempWnd.setWindowMode(102).catch((err) => {
+      await (tempWnd as ohosWindow.Window).setWindowMode(102).catch((err:BusinessError) => {
         unexpectedError(err, caseName, 'tempWnd.setWindowMode 102', TRUE_FLAG,done);
       });
-      await tempWnd.resize(200, 600).catch(async (err) => {
+      await (tempWnd as ohosWindow.Window).resize(200, 600).catch(async (err:BusinessError) => {
         console.error(msgStr + 'Failed to change the window size. Cause: ' + JSON.stringify(err));
         expect().assertFail();
-        await tempWnd.destroyWindow();
+        await (tempWnd as ohosWindow.Window).destroyWindow();
         done();
       })
       await sleep(1000);
-      tempWnd.off('windowSizeChange', firstCall);
+      (tempWnd as ohosWindow.Window).off('windowSizeChange', firstCall);
       firstListenFlag = false
       secondListenFlag = false
-      await tempWnd.resize(500, 500).catch(async (err) => {
+      await (tempWnd as ohosWindow.Window).resize(500, 500).catch(async (err:BusinessError) => {
         console.error(msgStr + 'Failed to change the window size. Cause: ' + JSON.stringify(err));
         expect().assertFail();
-        await tempWnd.destroyWindow();
+        await (tempWnd as ohosWindow.Window).destroyWindow();
         done();
       })
       await sleep(500);
       if (!firstListenFlag && secondListenFlag) {
-        tempWnd.off('windowSizeChange');
-        await tempWnd.destroyWindow();
+        (tempWnd as ohosWindow.Window).off('windowSizeChange');
+        await (tempWnd as ohosWindow.Window).destroyWindow();
         done();
       } else {
-        tempWnd.off('windowSizeChange');
-        await tempWnd.destroyWindow();
+        (tempWnd as ohosWindow.Window).off('windowSizeChange');
+        await (tempWnd as ohosWindow.Window).destroyWindow();
         expect(TRUE_FLAG).assertFail();
         done();
       }
