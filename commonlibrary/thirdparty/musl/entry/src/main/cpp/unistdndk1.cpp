@@ -36,6 +36,7 @@
 #define PARAM_0 0
 #define PARAM_2 2
 #define MPARAM_1 (-1)
+#define PARAM_0777 0777
 
 static const char *g_tempFile = "/data/storage/el2/base/files/fzl.txt";
 static const char *g_tempFileContent = "This is a test";
@@ -77,12 +78,13 @@ static napi_value PreadChk_One(napi_env env, napi_callback_info info)
 {
     char buf[BUF_SIZE];
     off_t offset = PARAM_0;
-    int fileDescribe = open(g_tempFile, O_CREAT | O_RDWR);
+    int fileDescribe = open(g_tempFile, O_CREAT | O_RDWR, PARAM_0777);
     NAPI_ASSERT(env, fileDescribe != MPARAM_1, "open Error");
     FILE *fp = fdopen(fileDescribe, "w+");
     fputs(g_tempFileContent, fp);
     fflush(fp);
     size_t ret = __pread_chk(fileDescribe, buf, COUNT, offset, sizeof(buf));
+    fclose(fp);
     close(fileDescribe);
     napi_value result = nullptr;
     napi_create_int32(env, ret == strlen(g_tempFileContent), &result);
@@ -104,12 +106,13 @@ extern "C" ssize_t __read_chk(int, void *, size_t, size_t);
 static napi_value ReadChk_One(napi_env env, napi_callback_info info)
 {
     char buf[BUF_SIZE];
-    int fileDescribe = open(g_tempFile, O_CREAT | O_RDWR);
+    int fileDescribe = open(g_tempFile, O_CREAT | O_RDWR, PARAM_0777);
     NAPI_ASSERT(env, fileDescribe != MPARAM_1, "open Error");
     FILE *fp = fdopen(fileDescribe, "w+");
     fputs(g_tempFileContent, fp);
     fflush(fp);
     size_t ret = __read_chk(fileDescribe, buf, BUF_SIZE, sizeof(buf));
+    fclose(fp);
     close(fileDescribe);
     napi_value result = nullptr;
     napi_create_int32(env, ret == strlen(g_tempFileContent), &result);
@@ -128,7 +131,7 @@ static napi_value ReadChk_Two(napi_env env, napi_callback_info info)
 
 static napi_value PWrite_One(napi_env env, napi_callback_info info)
 {
-    int fileDescribe = open(g_tempFile, O_CREAT | O_RDWR);
+    int fileDescribe = open(g_tempFile, O_CREAT | O_RDWR, PARAM_0777);
     NAPI_ASSERT(env, fileDescribe != MPARAM_1, "open Error");
     size_t ret = pwrite(fileDescribe, g_tempFileContent, strlen(g_tempFileContent), PARAM_0);
     close(fileDescribe);
@@ -149,7 +152,7 @@ static napi_value PWrite_Two(napi_env env, napi_callback_info info)
 static napi_value PRead64_One(napi_env env, napi_callback_info info)
 {
     char buf[BUF_SIZE];
-    int fileDescribe = open(g_tempFile, O_CREAT | O_RDWR);
+    int fileDescribe = open(g_tempFile, O_CREAT | O_RDWR, PARAM_0777);
     NAPI_ASSERT(env, fileDescribe != MPARAM_1, "open Error");
     pwrite(fileDescribe, g_tempFileContent, strlen(g_tempFileContent), PARAM_0);
     lseek(fileDescribe, PARAM_0, SEEK_SET);
@@ -172,7 +175,7 @@ static napi_value PRead64_Two(napi_env env, napi_callback_info info)
 
 static napi_value PWrite64_One(napi_env env, napi_callback_info info)
 {
-    int fileDescribe = open(g_tempFile, O_CREAT | O_RDWR);
+    int fileDescribe = open(g_tempFile, O_CREAT | O_RDWR, PARAM_0777);
     NAPI_ASSERT(env, fileDescribe != MPARAM_1, "open Error");
     size_t ret = pwrite64(fileDescribe, g_tempFileContent, strlen(g_tempFileContent), PARAM_0);
     close(fileDescribe);
@@ -193,7 +196,7 @@ static napi_value PWrite64_Two(napi_env env, napi_callback_info info)
 static napi_value Lseek_One(napi_env env, napi_callback_info info)
 {
     int seekLen = PARAM_2;
-    int fileDescribe = open(g_tempFile, O_CREAT | O_RDWR);
+    int fileDescribe = open(g_tempFile, O_CREAT | O_RDWR, PARAM_0777);
     NAPI_ASSERT(env, fileDescribe != MPARAM_1, "open Error");
     pwrite(fileDescribe, g_tempFileContent, strlen(g_tempFileContent), PARAM_0);
     int ret = lseek(fileDescribe, seekLen, SEEK_SET);
@@ -216,7 +219,7 @@ static napi_value Lseek_Two(napi_env env, napi_callback_info info)
 static napi_value Lseek64_One(napi_env env, napi_callback_info info)
 {
     int seekLen = PARAM_2;
-    int fileDescribe = open(g_tempFile, O_CREAT | O_RDWR);
+    int fileDescribe = open(g_tempFile, O_CREAT | O_RDWR, PARAM_0777);
     NAPI_ASSERT(env, fileDescribe != MPARAM_1, "open Error");
     pwrite(fileDescribe, g_tempFileContent, strlen(g_tempFileContent), PARAM_0);
     int ret = lseek64(fileDescribe, seekLen, SEEK_SET);

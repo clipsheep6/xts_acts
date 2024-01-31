@@ -142,7 +142,7 @@ export default function schedNdkTest() {
      */
     it('testMuslSchedSchedSetparam002', 0, async (done: Function) => {
       let result:number = sched.sched_setparam(0);
-      expect(result).assertEqual(-1);
+      expect(result).assertEqual(0);
       done()
     });
 

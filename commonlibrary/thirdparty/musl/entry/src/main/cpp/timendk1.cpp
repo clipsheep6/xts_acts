@@ -41,6 +41,7 @@
 #define PARAM_111 111
 #define PARAM_777 777
 #define PARAM_0666 0666
+#define PARAM_0777 0777
 #define MPARAM_123 (-123)
 
 extern "C" int __timer_gettime64(timer_t, struct itimerspec *);
@@ -144,6 +145,7 @@ static napi_value Futimes_One(napi_env env, napi_callback_info info)
     if (fd != MPARAM_1) {
         ret = futimes(fd, tv);
     }
+    close(fd);
     napi_value result = nullptr;
     napi_create_int32(env, ret == PARAM_0, &result);
     remove(TEST_FILE);
@@ -154,8 +156,9 @@ static napi_value Futimes_Two(napi_env env, napi_callback_info info)
 {
     static struct timeval tv[2];
 
-    int fd = open(TEST_FILE, O_CREAT);
+    int fd = open(TEST_FILE, O_CREAT, PARAM_0777);
     int ret = futimes(fd, tv);
+    close(fd);
     napi_value result = nullptr;
     napi_create_int32(env, ret == PARAM_0 && errno == EINVAL, &result);
     remove(TEST_FILE);
@@ -218,7 +221,7 @@ static napi_value TzName_Two(napi_env env, napi_callback_info info)
 
 static napi_value Utimes_One(napi_env env, napi_callback_info info)
 {
-    int fd = open(TEST_FILE, O_RDWR | O_RSYNC | O_CREAT);
+    int fd = open(TEST_FILE, O_RDWR | O_RSYNC | O_CREAT, PARAM_0777);
     close(fd);
     struct stat st;
     struct timeval tv[2] = {{1, 0}, {1, 0}};
@@ -234,7 +237,7 @@ static napi_value Utimes_One(napi_env env, napi_callback_info info)
 
 static napi_value Utimes_Two(napi_env env, napi_callback_info info)
 {
-    int fd = open(TEST_FILE, O_RDWR | O_RSYNC | O_CREAT);
+    int fd = open(TEST_FILE, O_RDWR | O_RSYNC | O_CREAT, PARAM_0777);
     close(fd);
 
     struct timeval tv[2];

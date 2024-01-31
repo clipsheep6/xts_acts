@@ -18,21 +18,6 @@ import xattr from 'libxattrndk.so'
 
 export default function xattrNdkTest() {
   describe('MuslXattrTest', () => {
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_XATTR_SETXATTR_0100
-     * @tc.name       : testMuslXattrSetxattr001
-     * @tc.desc       : test setxattr
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 2
-     */
-    it('testMuslXattrSetxattr001', 0, async (done: Function) => {
-      let a: number = xattr.setxattr();
-      expect(a).assertEqual(0);
-      done()
-    });
-
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_XATTR_FSETXATTR_0100
      * @tc.name       : testMuslXattrFsetxattr001

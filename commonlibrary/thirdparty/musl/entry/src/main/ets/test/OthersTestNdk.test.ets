@@ -231,8 +231,8 @@ export default function otherstestNdkTest() {
      * @tc.level      : Level 0
      */
     it('testMuslEpollEpollCreate001', 0, async (done: Function) => {
-      let result = otherstestndk.epoll_create();
-      expect(result).assertEqual(0);
+      let result: number = otherstestndk.epoll_create();
+      expect(result).assertLarger(0);
       done()
     });
 
@@ -245,8 +245,8 @@ export default function otherstestNdkTest() {
      * @tc.level      : Level 0
      */
     it('testMuslEpollEpollCreate1001', 0, async (done: Function) => {
-      let result = otherstestndk.epoll_create1();
-      expect(result).assertEqual(0);
+      let result: number = otherstestndk.epoll_create1();
+      expect(result).assertLarger(0);
       done()
     });
 
@@ -393,7 +393,7 @@ export default function otherstestNdkTest() {
      * @tc.level      : Level 0
      */
     it('testMuslXAttrFGetXAttr001', 0, async (done: Function) => {
-      expect(otherstestndk.fgetxattr()).assertEqual(0);
+      expect(otherstestndk.fgetxattr()).assertLarger(0);
       done()
     });
 
