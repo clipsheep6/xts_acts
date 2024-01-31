@@ -620,23 +620,25 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testGetLastWindow_Promise', 0, async (done: Function) => {
-      let caseName: string = 'testGetLastWindow_Promise';
-      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+    it('testGetLastWindow_Promise', 0, async (done:Function)=> {
+      let caseName = 'testGetLastWindow_Promise';
+      let msgStr = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
+      let proData = null
       try {
-        let lastWindow = await ohosWindow.getLastWindow(context).catch((err: BusinessError) => {
+        let lastWindow = await ohosWindow.getLastWindow(context).catch((err) => {
           console.error('Failed to obtain the top window. Cause: ' + JSON.stringify(err));
           expect().assertFail();
           done();
         })
         expect(lastWindow != null).assertTrue();
+        done();
       } catch (exception) {
         console.error(msgStr + 'Failed to obtain the top window. Cause: ' + JSON.stringify(exception));
         expect().assertFail();
+        done();
       }
-      console.log(msgStr + 'last done');
-      done();
+      ;
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0510
@@ -676,27 +678,28 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testShowWindowTest_Callback_Form', 0, async (done: Function) => {
-      let caseName: string = 'testShowWindowTest_Callback_Form';
-      let msgStr: string = 'jsUnittest ' + caseName + ' ';
+    it('testShowWindowTest_Callback_Form', 0, async (done:Function)=> {
+      let caseName = 'testShowWindowTest_Callback_Form';
+      let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let baseWndType: ohosWindow.WindowType = ohosWindow.WindowType.TYPE_FLOAT;
-      let windowId: string = 'testShowWindowTest_Callback_Form';
-      let windowConfig: ohosWindow.Configuration = {
+      let baseWndType = ohosWindow.WindowType.TYPE_FLOAT;
+      let windowId = 'testShowWindowTest_Callback_Form';
+      let windowConfig = {
         name: windowId, windowType: baseWndType, ctx: context
       };
-      let tempWnd: ohosWindow.Window | void;
+      let tempWnd = null;
       try {
-        tempWnd = await ohosWindow.createWindow(windowConfig).catch((err: BusinessError) => {
+        tempWnd = await ohosWindow.createWindow(windowConfig).catch((err) => {
           expect().assertFail();
           done();
         });
         console.log(msgStr + 'ohosWindow.createWindow ' + baseWndType + ' wnd: ' + JSON.stringify(tempWnd));
         expect(!!tempWnd).assertTrue();
-        await (tempWnd as ohosWindow.Window).showWindow().then(async (data) => {
+        await tempWnd.showWindow().then(async (data) => {
           console.info(msgStr + 'Succeeded in showing the window. Data: ' + JSON.stringify(data));
-          await (tempWnd as ohosWindow.Window).destroyWindow();
-        }).catch((err: BusinessError) => {
+          await tempWnd.destroyWindow();
+          done();
+        }).catch((err) => {
           console.error(msgStr + 'Failed to show the window. Cause: ' + JSON.stringify(err));
           expect().assertFail();
           done();
@@ -705,8 +708,8 @@ export default function displayAndWindowRefactorInterfaceTest(context: common.UI
         console.error(msgStr + 'Failed to create the window. Cause: ' + JSON.stringify(exception));
         expect().assertFail();
         done();
-      };
-      done();
+      }
+      ;
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_2110
