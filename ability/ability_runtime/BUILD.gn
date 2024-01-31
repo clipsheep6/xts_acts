@@ -33,7 +33,6 @@ group("ability_runtime") {
       "actscalltest:actscalltest",
       "actscleantemptest:cleantempfiles",
       "actscontextmonitoringtest:ActsContextMonitoringTest",
-      "actscontextmonitoringtest:ActsContextMonitoringTest",
       "actscrosscall:actscrosscall",
       "actsdataabilityaccessdatasharetest:dataabilityaccessdatashare",
       "actsfwkdataaccessortest:dataability",
