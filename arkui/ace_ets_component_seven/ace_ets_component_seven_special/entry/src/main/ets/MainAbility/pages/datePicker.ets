@@ -20,6 +20,7 @@ class DatePickerModifier1 implements AttributeModifier<DatePickerAttribute> {
       .disappearTextStyle({ color: '#FF000000', font: { size: '8fp', weight: FontWeight.Lighter } })
       .textStyle({ color: '#ff0000FF', font: { size: '26fp', weight: FontWeight.Normal } })
       .lunar(true)
+      .backgroundColor("#FF1234FF")
   }
 }
 

@@ -21,6 +21,7 @@ class MenuItemModifier1 implements AttributeModifier<MenuItemAttribute> {
       .labelFont({ size: 15 })
       .labelFontColor(Color.Red)
       .selected(true)
+      .selectIcon(true)
   }
 }
 

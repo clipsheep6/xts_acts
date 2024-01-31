@@ -22,6 +22,17 @@ class RadioModifier1 implements AttributeModifier<RadioAttribute> {
         uncheckedBorderColor: '#FF963852'
       })
       .checked(true)
+      instance.width("300px");
+      instance.height("100px");
+  }
+}
+
+class RadioModifier2 implements AttributeModifier<RadioAttribute> {
+  applyNormalAttribute(instance: RadioAttribute): void {
+    instance.responseRegion({ x: 40, y: 60, width: '80%', height: '70%' });
+    instance.size({ width: "190px", height: "90px" })
+    instance.padding({ top: "20px", right: "30px", left: "40px", bottom: "50px" })
+    instance.hoverEffect(HoverEffect.Highlight)
   }
 }
 
@@ -29,6 +40,7 @@ class RadioModifier1 implements AttributeModifier<RadioAttribute> {
 @Component
 struct RadioGroup {
   @State radioModifier1: RadioModifier1 = new RadioModifier1();
+  @State radioModifier2: RadioModifier2 = new RadioModifier2();
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -52,13 +64,8 @@ struct RadioGroup {
         .attributeModifier(this.radioModifier1)
 
       Radio({ value: 'Radio2', group: 'radioGroup' })
-        .checked(false)
-        .key("RadioTwo")
-        .height(50)
-        .width(50)
-        .onChange((value: boolean) => {
-          console.log('Radio2 status is ' + value)
-        })
+        .key("Radio2")
+        .attributeModifier(this.radioModifier2)
 
     }.width("100%").height("100%")
   }

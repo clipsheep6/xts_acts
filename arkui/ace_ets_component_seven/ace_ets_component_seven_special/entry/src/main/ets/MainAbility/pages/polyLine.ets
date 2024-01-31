@@ -15,6 +15,8 @@
 class PolyLinePoints implements AttributeModifier<PolylineAttribute> {
   applyNormalAttribute(instance: PolylineAttribute): void {
     instance.points([[0, 0], [20, 60], [100, 100]]);
+    instance.width("300px");
+    instance.height("100px");
   }
 }
 

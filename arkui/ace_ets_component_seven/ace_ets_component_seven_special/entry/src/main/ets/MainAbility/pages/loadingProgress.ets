@@ -19,6 +19,7 @@ class TestLoadingProgressModifier implements AttributeModifier<LoadingProgressAt
     instance
       .color(Color.Blue)
       .enableLoading(true)
+      .foregroundColor("#FF1234FF")
   }
 }
 
@@ -31,7 +32,7 @@ struct LoadingProgressExampleAdd {
     Column({ space: 5 }) {
       Text('Orbital LoadingProgress ').fontSize(9).fontColor(0xCCCCCC).width('90%')
       LoadingProgress()
-        .key('ArkUX_Stage_loadingProgress_attrs_0100')
+        .key('loadingProgresstest')
         .attributeModifier(this.modifier)
     }
     .width('100%')

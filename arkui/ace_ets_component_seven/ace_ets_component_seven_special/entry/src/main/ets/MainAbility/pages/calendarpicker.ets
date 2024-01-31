@@ -18,6 +18,13 @@ class CalendarPickerModifier1 implements AttributeModifier<CalendarPickerAttribu
     instance
       .edgeAlign(CalendarAlign.END, { dx: 10, dy: 15 })
       .textStyle({ color: '#FF182431', font: { size: 8, weight: FontWeight.Lighter } })
+    instance.border({ width:"3px", color: "#FFFFFFFF" })
+  }
+}
+
+class CalendarPickerModifier2 implements AttributeModifier<CalendarPickerAttribute> {
+  applyNormalAttribute(instance: CalendarPickerAttribute): void {
+    instance.padding({ top: "20px", right: "30px", left: "40px", bottom: "50px" })
   }
 }
 
@@ -25,6 +32,7 @@ class CalendarPickerModifier1 implements AttributeModifier<CalendarPickerAttribu
 @Component
 struct CalendarPickerExample {
   @State calendarPickerModifier: CalendarPickerModifier1 = new CalendarPickerModifier1()
+  @State calendarPickerModifier2: CalendarPickerModifier2 = new CalendarPickerModifier2()
   private selectedDate: Date = new Date('2026-02-11')
 
   build() {
@@ -32,6 +40,9 @@ struct CalendarPickerExample {
       CalendarPicker({ selected: this.selectedDate })
         .key('CalendarPickerKey1')
         .attributeModifier(this.calendarPickerModifier)
+      CalendarPicker({ selected: this.selectedDate })
+        .key('CalendarPickerKey2')
+        .attributeModifier(this.calendarPickerModifier2)
     }
     .width('100%')
     .height('100%')

@@ -25,6 +25,7 @@ class TextPickerModifier1 implements AttributeModifier<TextPickerAttribute> {
       .canLoop(false)
       .selectedIndex(2)
       .defaultPickerItemHeight('60px')
+      .backgroundColor('#FF654321')
   }
 }
 

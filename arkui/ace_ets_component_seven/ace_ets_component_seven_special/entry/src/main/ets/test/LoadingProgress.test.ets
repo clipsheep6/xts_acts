@@ -77,7 +77,7 @@ export default function loadingProgressJsunit() {
       console.info('ArkUX_Stage_loadingProgress_attrs_0101 START');
       setTimeout(() => {
         try {
-          let strJson = getInspectorByKey('ArkUX_Stage_loadingProgress_attrs_0101');
+          let strJson = getInspectorByKey('loadingProgresstest');
           let obj = JSON.parse(strJson);
           console.info("ArkUX_Stage_loadingProgress_attrs_0101 component obj is: " + JSON.stringify(obj));
           expect(obj.$attrs.enableLoading).assertEqual("true");
@@ -87,6 +87,24 @@ export default function loadingProgressJsunit() {
         }
         done();
       }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_loadingProgress_attrs_0102
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_loadingProgress_attrs_0102', 0, async function (done) {
+      console.info('ArkUX_Stage_loadingProgress_attrs_0102 START');
+      let strJson = getInspectorByKey('loadingProgresstest');
+      let obj = JSON.parse(strJson);
+      console.info("ArkUX_Stage_loadingProgress_attrs_0102 component obj is: " + JSON.stringify(obj));
+      expect(obj.$attrs.foregroundColor).assertEqual("#FF1234FF");
+      console.info('ArkUX_Stage_loadingProgress_attrs_0102 END ');
+      done();
     });
 
   })

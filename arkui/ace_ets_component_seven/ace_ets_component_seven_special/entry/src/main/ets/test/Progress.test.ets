@@ -98,5 +98,24 @@ export default function progressStyleJsunit() {
       console.info('testProgressStyle0003 END');
       done();
     });
+
+    /**
+     * @tc.number testProgressStyle0004
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testProgressStyle0003', 0, async function (done) {
+      console.info('testProgressStyle0004 START');
+      let strJson = getInspectorByKey('ProgressKey1');
+      let obj = JSON.parse(strJson);
+      console.info("[testProgressStyle0004] obj is: " + JSON.stringify(obj.$attrs));
+
+      expect(obj.$attrs.backgroundColor).assertEqual('#FF654321');
+      console.info('testProgressStyle0004 END');
+      done();
+    });
   })
 }

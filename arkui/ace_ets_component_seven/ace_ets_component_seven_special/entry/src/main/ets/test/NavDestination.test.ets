@@ -16,11 +16,12 @@
 import router from '@system.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import Utils from './Utils.ets'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function navDestinationJsunit() {
   describe('ActsAceNavDestinationTest', function () {
-    beforeAll(async function (done) {
-      console.info("NavDestination beforeAll start");
+    beforeEach(async function (done) {
+      console.info("NavDestination beforeEach start");
       let options = {
         uri: 'MainAbility/pages/navDestination',
       }
@@ -51,12 +52,14 @@ export default function navDestinationJsunit() {
      */
     it('testNavDestination', 0, async function (done) {
       console.info('[testNavDestination] START');
-      let strJson = getInspectorByKey('NavDestination1');
-      console.info("[testNavDestination] strJson is : " + strJson);
-      let obj = JSON.parse(strJson);
-      console.info("[testNavDestination] obj is : " + JSON.stringify(obj.$attrs));
-      // expect(obj.$attrs.hideTitleBar).assertEqual(false);
-      expect(true).assertEqual(true);
+      let driver = Driver.create();
+      let navDestinationText = await driver.findComponent(ON.id('NavDestinationText'));
+      let rect = await navDestinationText.getBounds();
+      console.info("[testNavDestination] obj rect is : " + JSON.stringify(rect));
+      let NavDestination1 = await driver.findComponent(ON.id('NavDestination1'));
+      let rectContent = await NavDestination1.getBounds();
+      console.info("[testNavDestination] obj rectContent is : " + JSON.stringify(rectContent));
+      expect(rect.top).assertEqual(rectContent.top);
       console.info('[testNavDestination] END');
       done();
     });

@@ -374,5 +374,24 @@ export default function swiperJsunit() {
       console.info('swiperTest_017 END');
       done();
     });
+
+    /**
+     * @tc.number swiperTest_018
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('swiperTest_018', 0, async function (done) {
+      console.info('swiperTest_018 START');
+      let strJsonNew = getInspectorByKey('swiper');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("swiperTest_018 component  is: " + JSON.stringify(objNew.$attrs));
+      
+      expect(objNew.$attrs.enabled).assertEqual(false);
+      console.info('swiperTest_018 END');
+      done();
+    });
   })
 }

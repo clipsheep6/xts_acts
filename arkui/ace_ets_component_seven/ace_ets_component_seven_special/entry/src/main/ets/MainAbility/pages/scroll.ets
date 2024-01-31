@@ -25,6 +25,8 @@ class ScrollModifier1 implements AttributeModifier<ScrollAttribute> {
       .scrollBarWidth(5)
       .edgeEffect(EdgeEffect.None)
       .scrollBarColor('#FF123456')
+      .clip(new Circle({ width: "500px" }))
+      .enablePaging(true)
   }
 }
 

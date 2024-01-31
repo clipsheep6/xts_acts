@@ -15,7 +15,7 @@
 class hideTitleBarModifier implements AttributeModifier<NavDestinationAttribute> {
 
   applyNormalAttribute(instance: NavDestinationAttribute): void {
-    instance.hideTitleBar(false)
+    instance.hideTitleBar(true)
   }
 }
 
@@ -27,7 +27,7 @@ struct hideTitleBarTest {
   build() {
     Column() {
       NavDestination() {
-        Text(`我是NavDestination第1页内容`).fontSize(50)
+        Text(`我是NavDestination第1页内容`).fontSize(50).key("NavDestinationText")
       }
       .key('NavDestination1')
       .attributeModifier(this.myModifier)

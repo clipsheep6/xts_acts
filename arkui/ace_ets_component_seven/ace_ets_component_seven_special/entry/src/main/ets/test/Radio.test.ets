@@ -14,7 +14,7 @@
  */
 
 import router from '@system.router';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import Utils from './Utils.ets'
 
 export default function radioGroupJsunit() {
@@ -48,7 +48,7 @@ export default function radioGroupJsunit() {
      * @tc.type   Function
      * @tc.level  0
      */
-    it('testRadioGroup001',0,async function (done){
+    it('testRadioGroup001', 0, async function (done) {
       console.info("[testRadioGroup001] START");
       let strJson = getInspectorByKey('RadioOne');
       let obj = JSON.parse(strJson);
@@ -70,7 +70,7 @@ export default function radioGroupJsunit() {
      * @tc.type   Function
      * @tc.level  0
      */
-    it('testRadioGroup002',0,async function (done){
+    it('testRadioGroup002', 0, async function (done) {
       console.info("[testRadioGroup002] START");
       let strJson = getInspectorByKey('RadioOne');
       let obj = JSON.parse(strJson);
@@ -78,6 +78,125 @@ export default function radioGroupJsunit() {
 
       expect(obj.$attrs.checked).assertEqual('true');
       console.info("[testRadioGroup002] END");
+      done();
+    });
+
+    /**
+     * @tc.number testRadioGroup003
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testRadioGroup003', 0, async function (done) {
+      console.info("[testRadioGroup003] START");
+      let strJson = getInspectorByKey('RadioOne');
+      let obj = JSON.parse(strJson);
+      console.info("[testRadioGroup003] obj  is: " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.width).assertEqual("300.00px");
+      console.info("[testRadioGroup003] END");
+      done();
+    });
+
+    /**
+     * @tc.number testRadioGroup004
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testRadioGroup004', 0, async function (done) {
+      console.info("[testRadioGroup004] START");
+      let strJson = getInspectorByKey('RadioOne');
+      let obj = JSON.parse(strJson);
+      console.info("[testRadioGroup004] obj  is: " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.height).assertEqual("100.00px");
+      console.info("[testRadioGroup004] END");
+      done();
+    });
+
+    /**
+     * @tc.number testRadioGroup005
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testRadioGroup005', 0, async function (done) {
+      console.info("[testRadioGroup005] START");
+      let strJson = getInspectorByKey('Radio2');
+      let obj = JSON.parse(strJson);
+      console.info("[testRadioGroup005] obj  is: " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.size.width).assertEqual('190.00px');
+      expect(obj.$attrs.size.height).assertEqual('90.00px');
+      console.info("[testRadioGroup005] END");
+      done();
+    });
+
+    /**
+     * @tc.number testRadioGroup006
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testRadioGroup006', 0, async function (done) {
+      console.info("[testRadioGroup006] START");
+      let strJson = getInspectorByKey('Radio2');
+      let obj = JSON.parse(strJson);
+      console.info("[testRadioGroup006] obj  is: " + JSON.stringify(obj.$attrs));
+
+      expect(JSON.parse(obj.$attrs.padding).top).assertEqual('20.00px');
+      expect(JSON.parse(obj.$attrs.padding).right).assertEqual('30.00px');
+      expect(JSON.parse(obj.$attrs.padding).left).assertEqual('40.00px');
+      expect(JSON.parse(obj.$attrs.padding).bottom).assertEqual('50.00px');
+      console.info("[testRadioGroup006] END");
+      done();
+    });
+
+    /**
+     * @tc.number testRadioGroup007
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testRadioGroup007', 0, async function (done) {
+      console.info("[testRadioGroup007] START");
+      let strJson = getInspectorByKey('Radio2');
+      let obj = JSON.parse(strJson);
+      console.info("[testRadioGroup007] obj  is: " + JSON.stringify(obj.$attrs));
+
+      let responseRegion = JSON.parse(obj.$attrs.responseRegion[0]);
+      expect(responseRegion.x).assertEqual("40.00vp");
+      expect(responseRegion.y).assertEqual("60.00vp");
+      expect(responseRegion.width).assertEqual("80.00%");
+      expect(responseRegion.height).assertEqual("70.00%");
+      console.info("[testRadioGroup007] END");
+      done();
+    });
+
+    /**
+     * @tc.number testRadioGroup008
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testRadioGroup008', 0, async function (done) {
+      console.info("[testRadioGroup008] START");
+      let strJson = getInspectorByKey('Radio2');
+      let obj = JSON.parse(strJson);
+      console.info("[testRadioGroup008] obj  is: " + JSON.stringify(obj.$attrs));
+
+      expect(obj.$attrs.hoverEffect).assertEqual('HoverEffect.Highlight');
+      console.info("[testRadioGroup008] END");
       done();
     });
 

@@ -32,7 +32,7 @@ export default function listItemGroupJsunit() {
         if (!("listItemGroup" == pages.name)) {
           console.info("get list_item_group state success " + JSON.stringify(pages.name));
           let result = await router.push(options);
-          await Utils.sleep(5000);
+          await Utils.sleep(2000);
           console.info("push list_item_group page success " + JSON.stringify(result));
         }
       } catch (err) {

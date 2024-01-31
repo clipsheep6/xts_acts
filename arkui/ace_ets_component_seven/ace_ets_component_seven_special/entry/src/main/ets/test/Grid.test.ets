@@ -80,26 +80,6 @@ export default function gridMaxCountJsunit() {
     });
 
     /**
-     * @tc.number GridJsunit_0102
-     * @tc.name   Test the properties of components
-     * @tc.desc   Set attribute values
-     * @tc.size   MediumTest
-     * @tc.type   Function
-     * @tc.level  0
-     */
-    it('GridJsunit_0102',0,async function (done){
-      console.info('[GridJsunit_0102] START');
-      let strJson = getInspectorByKey('GridKey1');
-      let obj = JSON.parse(strJson);
-      console.info("[GridJsunit_0102] obj GridJsunit_0102 is: " + JSON.stringify(obj.$attrs));
-
-      // expect(obj.$attrs.nestedScroll).assertEqual("{scrollForward:SELF_ONLY,scrollBackward:PARENT_FIRST}");
-      expect(true).assertEqual(true);
-      console.info('[GridJsunit_0102] END');
-      done();
-    });
-
-    /**
      * @tc.number GridJsunit_0103
      * @tc.name   Test the properties of components
      * @tc.desc   Set attribute values
@@ -400,6 +380,25 @@ export default function gridMaxCountJsunit() {
 
       expect(obj.$attrs.supportAnimation).assertEqual("true");
       console.info('[GridJsunit_0118] END');
+      done();
+    });
+
+    /**
+     * @tc.number GridJsunit_0119
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('GridJsunit_0119',0,async function (done){
+      console.info('[GridJsunit_0119] START');
+      let strJson = getInspectorByKey('GridKey1');
+      let obj = JSON.parse(strJson);
+      console.info("[GridJsunit_0119] obj GridJsunit_0119 is: " + JSON.stringify(obj.$attrs));
+
+      expect(JSON.parse(obj.$attrs.clip).shape).assertEqual("Circle");
+      console.info('[GridJsunit_0119] END');
       done();
     });
   })

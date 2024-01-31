@@ -19,6 +19,7 @@ class ProgressModifier1 implements AttributeModifier<ProgressAttribute> {
       .color('#FF123456')
       .value(12)
       .style({ strokeWidth: 20, scaleCount: 30, scaleWidth: 20 })
+      .backgroundColor('#FF654321')
   }
 }
 

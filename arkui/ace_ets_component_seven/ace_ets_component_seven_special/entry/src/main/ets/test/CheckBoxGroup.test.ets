@@ -137,5 +137,63 @@ export default function checkBoxGroupTest() {
       }
       done();
     });
+
+    /**
+     * @tc.number ArkUX_Stage_CheckboxGroup_1004
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_CheckboxGroup_1004', 0, async function (done) {
+
+      console.info('ArkUX_Stage_CheckboxGroup_1004 START');
+      let strJson = getInspectorByKey('checkboxNO');
+      console.info('ArkUX_Stage_CheckboxGroup_1004 START  :' + JSON.stringify(strJson));
+      let obj = JSON.parse(strJson);
+      expect(obj.$attrs.width).assertEqual("300.00px");
+      console.info('ArkUX_Stage_CheckboxGroup_1004 END ');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_CheckboxGroup_1005
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_CheckboxGroup_1005', 0, async function (done) {
+
+      console.info('ArkUX_Stage_CheckboxGroup_1005 START');
+      let strJson = getInspectorByKey('checkboxNO');
+      console.info('ArkUX_Stage_CheckboxGroup_1005 START  :' + JSON.stringify(strJson));
+      let obj = JSON.parse(strJson);
+      expect(obj.$attrs.height).assertEqual("100.00px");
+      console.info('ArkUX_Stage_CheckboxGroup_1005 END ');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_CheckboxGroup_1006
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_CheckboxGroup_1006', 0, async function (done) {
+
+      console.info('ArkUX_Stage_CheckboxGroup_1006 START');
+      let strJson = getInspectorByKey('checkboxGroup1');
+      console.info('ArkUX_Stage_CheckboxGroup_1006 START  :' + JSON.stringify(strJson));
+      let obj = JSON.parse(strJson);
+      expect(obj.$attrs.size.width).assertEqual('190.00px');
+      expect(obj.$attrs.size.height).assertEqual('90.00px');
+      console.info('ArkUX_Stage_CheckboxGroup_1006 END ');
+      done();
+    });
   })
 }

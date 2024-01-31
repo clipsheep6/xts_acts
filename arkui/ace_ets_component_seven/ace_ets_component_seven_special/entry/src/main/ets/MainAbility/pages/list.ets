@@ -38,6 +38,9 @@ class ListModifier1 implements AttributeModifier<ListAttribute> {
       .cachedCount(2)
       .chainAnimation(true)
       .sticky(StickyStyle.Header)
+      .clip(new Circle({ width: "500px" }))
+      .contentStartOffset(5)
+      .contentEndOffset(15)
   }
 }
 

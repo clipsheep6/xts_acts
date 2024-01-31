@@ -71,6 +71,7 @@ class TabsTrdModifier1 implements AttributeModifier<TabsAttribute>{
         
         nonScrollableLayoutStyle: this.barModeNonScrollableLayoutStyle
       })
+      .clip(new Circle({ width: "500px" }))
     }
   }
   @Entry

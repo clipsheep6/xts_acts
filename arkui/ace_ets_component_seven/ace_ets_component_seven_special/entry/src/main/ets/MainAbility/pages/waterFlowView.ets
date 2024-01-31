@@ -25,6 +25,7 @@ class WaterFlowModifier1 implements AttributeModifier<WaterFlowAttribute> {
       .rowsTemplate('1fr 1fr 1fr 1fr')
       .rowsGap(1)
       .layoutDirection(FlexDirection.Column)
+      .clip(new Circle({ width: "500px" }))
   }
 }
 

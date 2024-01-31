@@ -41,25 +41,6 @@ export default function waterFlowView() {
     });
 
     /**
-     * @tc.number waterFlowViewJsunit_0100
-     * @tc.name   Test the properties of components
-     * @tc.desc   Set attribute values
-     * @tc.size   MediumTest
-     * @tc.type   Function
-     * @tc.level  0
-     */
-    it('waterFlowViewJsunit_0100',0,async function (done){
-      console.info('[waterFlowViewJsunit_0100] START');
-      let strJson = getInspectorByKey('WaterFlowKey1');
-      let obj = JSON.parse(strJson);
-      console.info("[RectJsunit_0100] obj is: " + JSON.stringify(obj.$attrs));
-
-      //expect(obj.$attrs.nestedScroll).assertEqual("{scrollForward:SELF_ONLY,scrollBackward:SELF_FIRST}");
-      expect(true).assertEqual(true);
-      done();
-    });
-
-    /**
      * @tc.number waterFlowViewJsunit_0200
      * @tc.name   Test the properties of components
      * @tc.desc   Set attribute values
@@ -210,6 +191,25 @@ export default function waterFlowView() {
 
       expect(obj.$attrs['layoutDirection ']).assertEqual("FlexDirection.Column");
       console.info('[waterFlowViewJsunit_0900] END');
+      done();
+    });
+
+    /**
+     * @tc.number waterFlowViewJsunit_1000
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('waterFlowViewJsunit_1000',0,async function (done){
+      console.info('[waterFlowViewJsunit_1000] START');
+      let strJson = getInspectorByKey('WaterFlowKey1');
+      let obj = JSON.parse(strJson);
+      console.info("[waterFlowViewJsunit_1000] obj is: " + JSON.stringify(obj.$attrs));
+
+      expect(JSON.parse(obj.$attrs.clip).shape).assertEqual("Circle");
+      console.info('[waterFlowViewJsunit_1000] END');
       done();
     });
   

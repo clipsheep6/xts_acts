@@ -66,5 +66,41 @@ export default function polyLineJsunit() {
       console.info('[testpolyLine] END');
       done();
     });
+
+    /**
+     * @tc.number testpolyLine01
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testpolyLine01', 0, async function (done) {
+      console.info('[testpolyLine01] START');
+      let strJson = getInspectorByKey('polyLine');
+      let obj = JSON.parse(strJson);
+      console.info("[testpolyLine01] obj is : " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.height).assertEqual("100.00px");
+      console.info('[testpolyLine01] END');
+      done();
+    });
+
+    /**
+     * @tc.number testpolyLine02
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testpolyLine02', 0, async function (done) {
+      console.info('[testpolyLine02] START');
+      let strJson = getInspectorByKey('polyLine');
+      let obj = JSON.parse(strJson);
+      console.info("[testpolyLine02] obj is : " + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.width).assertEqual("300.00px");
+      console.info('[testpolyLine02] END');
+      done();
+    });
   })
 }

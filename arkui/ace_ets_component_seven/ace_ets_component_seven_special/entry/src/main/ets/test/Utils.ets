@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 // @ts-nocheck
+import systemDateTime from '@ohos.systemDateTime';
 
 export default class Utils {
   static rect_left;
@@ -110,5 +111,17 @@ export default class Utils {
     console.info('up touch started: ' + JSON.stringify(upPoint))
     sendTouchEvent(upPoint)
     await this.sleep(500)
+  }
+
+  static getRectHorizontalCenterX(rect): number {
+    return (rect.right - rect.left) / 2 + rect.left;
+  }
+
+  static getRectVerticalCenterY(rect): number {
+    return (rect.bottom - rect.top) / 2 + rect.top;
+  }
+  
+  static getSystemTime() {
+    return systemDateTime.getTime(true) / 1000
   }
 }

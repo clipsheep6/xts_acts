@@ -52,7 +52,7 @@ export default function selectJsunit() {
       console.info("ArkUI_Stage_Select_Layout_0100 start");
       let strJson = getInspectorByKey('selectTest');
       let objNew = JSON.parse(strJson);
-      console.info("ArkUI_Stage_Select_Layout_0100: arrowPosition=" + objNew.$attrs.arrowPosition)
+      console.info("ArkUI_Stage_Select_Layout_0100: obj=" +JSON.stringify(objNew.$attrs))
       expect(objNew.$attrs.arrowPosition == 'ArrowPosition.END').assertTrue();
       done();
     });
@@ -69,7 +69,7 @@ export default function selectJsunit() {
       console.info("ArkUI_Stage_Select_Space_0100 start");
       let strJson = getInspectorByKey('selectTest');
       let objNew = JSON.parse(strJson);
-      console.info("ArkUI_Stage_Select_Space_0100: space=" + objNew.$attrs.space);
+      console.info("ArkUI_Stage_Select_Space_0100: obj=" +JSON.stringify(objNew.$attrs));
       expect(objNew.$attrs.space).assertEqual('50.00vp');
       done();
     });
@@ -86,7 +86,7 @@ export default function selectJsunit() {
       console.info("ArkUI_Stage_Select_selected_0100 start");
       let strJson = getInspectorByKey('selectTest');
       let objNew = JSON.parse(strJson);
-      console.info("ArkUI_Stage_Select_selected_0100: space=" + objNew.$attrs.selected);
+      console.info("ArkUI_Stage_Select_selected_0100: obj=" +JSON.stringify(objNew.$attrs));
       expect(objNew.$attrs.selected).assertEqual("1");
       done();
     });
@@ -103,7 +103,7 @@ export default function selectJsunit() {
       console.info("ArkUI_Stage_Select_value_0100 start");
       let strJson = getInspectorByKey('selectTest');
       let objNew = JSON.parse(strJson);
-      console.info("ArkUI_Stage_Select_value_0100: space=" + objNew.$attrs.value);
+      console.info("ArkUI_Stage_Select_value_0100: obj=" +JSON.stringify(objNew.$attrs));
       expect(objNew.$attrs.value).assertEqual("Test");
       done();
     });
@@ -120,7 +120,7 @@ export default function selectJsunit() {
       console.info("ArkUI_Stage_Select_font_0100 start");
       let strJson = getInspectorByKey('selectTest');
       let objNew = JSON.parse(strJson);
-      console.info("ArkUI_Stage_Select_font_0100: space=" + objNew.$attrs.font.size);
+      console.info("ArkUI_Stage_Select_font_0100: obj=" +JSON.stringify(objNew.$attrs));
       expect(JSON.parse(objNew.$attrs.font).size).assertEqual('30.00fp');
       done();
     });
@@ -137,7 +137,7 @@ export default function selectJsunit() {
       console.info("ArkUI_Stage_Select_fontColor_0100 start");
       let strJson = getInspectorByKey('selectTest');
       let objNew = JSON.parse(strJson);
-      console.info("ArkUI_Stage_Select_fontColor_0100: space=" + objNew.$attrs.fontColor);
+      console.info("ArkUI_Stage_Select_fontColor_0100: obj=" +JSON.stringify(objNew.$attrs));
       expect(objNew.$attrs.fontColor).assertEqual('#FFCCCCCC');
       done();
     });
@@ -154,7 +154,7 @@ export default function selectJsunit() {
       console.info("ArkUI_Stage_Select_selectedOptionFont_0100 start");
       let strJson = getInspectorByKey('selectTest');
       let objNew = JSON.parse(strJson);
-      console.info("ArkUI_Stage_Select_selectedOptionFont_0100: space=" + objNew.$attrs.selectedOptionFont.size);
+      console.info("ArkUI_Stage_Select_selectedOptionFont_0100: obj=" +JSON.stringify(objNew.$attrs));
       expect(JSON.parse(objNew.$attrs.selectedOptionFont).size).assertEqual('40.00fp');
       done();
     });
@@ -203,7 +203,7 @@ export default function selectJsunit() {
       console.info("ArkUI_Stage_Select_selectedOptionBgColor_0100 start");
       let strJson = getInspectorByKey('selectTest');
       let objNew = JSON.parse(strJson);
-      console.info("ArkUI_Stage_Select_selectedOptionBgColor_0100: space=" + objNew.$attrs.selectedOptionBgColor);
+      console.info("ArkUI_Stage_Select_selectedOptionBgColor_0100: obj=" +JSON.stringify(objNew.$attrs));
       expect(objNew.$attrs.selectedOptionBgColor).assertEqual('#FFCCCCCC');
       done();
     });
@@ -220,7 +220,7 @@ export default function selectJsunit() {
       console.info("ArkUI_Stage_Select_optionBgColor_0100 start");
       let strJson = getInspectorByKey('selectTest');
       let objNew = JSON.parse(strJson);
-      console.info("ArkUI_Stage_Select_optionBgColor_0100: space=" + objNew.$attrs.optionBgColor);
+      console.info("ArkUI_Stage_Select_optionBgColor_0100: obj=" +JSON.stringify(objNew.$attrs));
       expect(objNew.$attrs.optionBgColor).assertEqual('#FFFFFFFF');
       done();
     });
@@ -237,7 +237,7 @@ export default function selectJsunit() {
       console.info("ArkUI_Stage_Select_optionFont_0100 start");
       let strJson = getInspectorByKey('selectTest');
       let objNew = JSON.parse(strJson);
-      console.info("ArkUI_Stage_Select_optionFont_0100: space=" + objNew.$attrs.optionFont.size);
+      console.info("ArkUI_Stage_Select_optionFont_0100: obj=" +JSON.stringify(objNew.$attrs));
       expect(JSON.parse(objNew.$attrs.optionFont).size).assertEqual('30.00fp');
       done();
     });
@@ -254,9 +254,96 @@ export default function selectJsunit() {
       console.info("ArkUI_Stage_Select_optionFontColor_0100 start");
       let strJson = getInspectorByKey('selectTest');
       let objNew = JSON.parse(strJson);
-      console.info("ArkUI_Stage_Select_optionFontColor_0100: space=" + objNew.$attrs.optionFontColor);
+      console.info("ArkUI_Stage_Select_optionFontColor_0100: obj=" +JSON.stringify(objNew.$attrs));
       expect(objNew.$attrs.optionFontColor).assertEqual('#FF000000');
       done();
     });
+    
+    /**
+     * @tc.number ArkUI_Stage_Select_0001
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_Stage_Select_0001', 0, async function (done) {
+      console.info("ArkUI_Stage_Select_0001 start");
+      let strJson = getInspectorByKey('selectTest');
+      let objNew = JSON.parse(strJson);
+      console.info("ArkUI_Stage_Select_0001 obj " +JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.width).assertEqual("600.00px");
+      done();
+    });
+
+    /**
+     * @tc.number ArkUI_Stage_Select_0002
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_Stage_Select_0002', 0, async function (done) {
+      console.info("ArkUI_Stage_Select_0002 start");
+      let strJson = getInspectorByKey('selectTest');
+      let objNew = JSON.parse(strJson);
+      console.info("ArkUI_Stage_Select_0002 obj " +JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.height).assertEqual("100.00px");
+      done();
+    });
+        
+    /**
+     * @tc.number ArkUI_Stage_Select_0003
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_Stage_Select_0003', 0, async function (done) {
+      console.info("ArkUI_Stage_Select_0003 start");
+      let strJson = getInspectorByKey('selectTest1');
+      let objNew = JSON.parse(strJson);
+      console.info("ArkUI_Stage_Select_0003 obj " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.size.width).assertEqual("290.00px");
+      expect(objNew.$attrs.size.height).assertEqual("90.00px");
+      done();
+    });
+
+    /**
+     * @tc.number ArkUI_Stage_Select_0004
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_Stage_Select_0004', 0, async function (done) {
+      console.info("ArkUI_Stage_Select_0004 start");
+      let strJson = getInspectorByKey('selectTest1');
+      let objNew = JSON.parse(strJson);
+      console.info("ArkUI_Stage_Select_0004 obj " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.optionWidth).assertEqual("120.000000");
+      done();
+    });
+
+    /**
+     * @tc.number ArkUI_Stage_Select_0005
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_Stage_Select_0005', 0, async function (done) {
+      console.info("ArkUI_Stage_Select_0005 start");
+      let strJson = getInspectorByKey('selectTest1');
+      let objNew = JSON.parse(strJson);
+      console.info("ArkUI_Stage_Select_0005 obj " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.optionHeight).assertEqual("20.000000");
+      done();
+    });
+    
   })
 }

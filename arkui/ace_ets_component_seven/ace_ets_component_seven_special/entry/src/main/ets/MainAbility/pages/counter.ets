@@ -16,6 +16,15 @@
 class CounterModifier1 implements AttributeModifier<CounterAttribute>{
   applyNormalAttribute(instance: CounterAttribute): void {
     instance.enableInc(true)
+    instance.width("300px");
+    instance.height("100px");
+  }
+}
+
+class CounterModifier2 implements AttributeModifier<CounterAttribute>{
+  applyNormalAttribute(instance: CounterAttribute): void {
+    instance.size({ width: "190px", height: "90px" })
+    instance.backgroundColor("#FF342354")
     instance.enableDec(true)
   }
 }
@@ -24,22 +33,31 @@ class CounterModifier1 implements AttributeModifier<CounterAttribute>{
 @Component
 struct CounterTest {
   @State CounterModifier1: CounterModifier1 = new CounterModifier1()
-  @State value: number = 0
+  @State CounterModifier2: CounterModifier2 = new CounterModifier2()
+  @State incValue: number = 0
+  @State decValue: number = 0
 
   build() {
     Row() {
       Column() {
+        Text(this.incValue.toString()).key("incValueTest");
+        Text(this.decValue.toString()).key("decValueTest");
         Counter() {
-          Text(this.value.toString())
-        }
-        .key("Counter")
-        .margin(100)
-        .attributeModifier(this.CounterModifier1)
-        .onInc(() => {
-            this.value++
+          Text(this.incValue.toString())
+        }.key("Counter")
+          .margin(100)
+          .attributeModifier(this.CounterModifier1)
+          .onInc(() => {
+            this.incValue++
           })
-        .onDec(() => {
-            this.value--
+
+        Counter() {
+          Text(this.decValue.toString())
+        }.key("Counter2")
+          .margin(100)
+          .attributeModifier(this.CounterModifier2)
+          .onDec(() => {
+            this.decValue--
           })
       }
       .width('100%')

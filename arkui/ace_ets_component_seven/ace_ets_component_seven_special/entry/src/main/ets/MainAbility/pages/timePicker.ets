@@ -19,6 +19,7 @@ class TimePickerModifier1 implements AttributeModifier<TimePickerAttribute> {
         .textStyle({ color: Color.Red, font: { size: '10px', weight: FontWeight.Normal } })
         .selectedTextStyle({ color: Color.Blue, font: { size: '20px', weight: FontWeight.Bold } })
         .disappearTextStyle({ color: Color.Black, font: { size: 8, weight: FontWeight.Lighter } })
+        .useMilitaryTime(true)
     }
   }
   

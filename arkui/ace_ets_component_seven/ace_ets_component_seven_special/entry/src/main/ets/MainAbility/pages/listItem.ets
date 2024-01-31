@@ -26,24 +26,8 @@ class ListItemModifier1 implements AttributeModifier<ListItemAttribute> {
 struct List_itemOnSelect {
   @State listItemModifier: ListItemModifier1 = new ListItemModifier1()
 
-  @Builder
-  itemEnd() {
-    Row() {
-      Button("Del").margin("4vp").key("Del")
-      Button("Set").margin("4vp").key("Set")
-    }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly)
-  }
-
   build() {
     Column() {
-      Button('Log Json Data')
-        .onClick(() => {
-          console.log(getInspectorByKey('ListItemKey1'))
-        })
-      Button("Click2").fontSize(50)
-        .onClick(() => {
-          console.info("Click2" + JSON.stringify(sendEventByKey("Del", 10, "")));
-        }).key("Click2")
       List({ space: 10 }) {
         ListItem() {
           Text("Hello world") {
