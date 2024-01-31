@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -14,7 +14,7 @@
  */
 
 import { describe, afterEach, it, expect } from "deccjsunit/index";
-import { sleep, startAbility, stopAbility } from "../../../../../../../common"
+import { sleep, startAbility, stopAbility, fetchOption } from "../../../../../../../common"
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
 
 export default function photoPickerTest() {
@@ -245,10 +245,12 @@ export default function photoPickerTest() {
     */
     it("photopicker_select_promise_007", 0, async function (done) {
       let testNum = "photopicker_select_promise_007";
+      let fetchResult = await helper.getAssets(fetchOps);
+      let asset = await fetchResult.getFirstObject();
       let option = new photoAccessHelper.PhotoSelectOptions();
       option.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
       option.maxSelectNumber = 1;
-      option.preselectdUris = undefined;
+      option.preselectdUris = [asset.uri];
       await selectWithOptionPromise(testNum, done, option, expectSelectNum);
     });
 
