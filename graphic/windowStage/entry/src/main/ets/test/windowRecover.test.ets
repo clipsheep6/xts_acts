@@ -15,6 +15,7 @@
 import { describe, beforeAll, it, expect } from "@ohos/hypium"
 import ohosWindow from '@ohos.window';
 import { BusinessError } from '@ohos.base';
+import common from '@ohos.app.ability.common';
 
 export default function windowRecoverTest(context:common.UIAbilityContext, windowStage:ohosWindow.WindowStage, abilityStorage:LocalStorage) {
   console.log('windowTest context: ' + JSON.stringify(context))
