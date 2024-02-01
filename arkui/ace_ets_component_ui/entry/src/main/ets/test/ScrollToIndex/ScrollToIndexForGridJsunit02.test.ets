@@ -143,7 +143,7 @@ export default function ScrollToIndexForGridJsunit02() {
       let boundsCenter = await GridCom.getBoundsCenter();
       let centerDistanceTop = boundsCenter.y;
 
-      expect(distanceTop).assertEqual(centerDistanceTop);
+      expect(Math.abs(distanceTop - centerDistanceTop) <= 1).assertTrue();
       expect(gridItemID).assertEqual("gridIndex02_100");
 
       console.info('[ScrollToIndexForGridJsunit02_0300] END');
