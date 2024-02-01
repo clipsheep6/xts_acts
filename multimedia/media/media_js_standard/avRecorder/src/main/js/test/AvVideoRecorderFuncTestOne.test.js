@@ -43,7 +43,7 @@ export default function avVideoRecorderTestOne() {
             audioSampleRate : 48000,
             fileFormat : media.ContainerFormatType.CFT_MPEG_4,
             videoBitrate : 280000, // 视频比特率
-            videoCodec : media.CodecMimeType.VIDEO_MPEG4,
+            videoCodec : media.CodecMimeType.VIDEO_AVC,
             videoFrameWidth : 640,  // 视频分辨率的宽
             videoFrameHeight : 480, // 视频分辨率的高
             videoFrameRate : 30 // 视频帧率
@@ -61,7 +61,7 @@ export default function avVideoRecorderTestOne() {
         let avProfileMpeg = {
             fileFormat: media.ContainerFormatType.CFT_MPEG_4,
             videoBitrate: 280000,
-            videoCodec: media.CodecMimeType.VIDEO_MPEG4,
+            videoCodec: media.CodecMimeType.VIDEO_AVC,
             videoFrameWidth: 640,
             videoFrameHeight: 480,
             videoFrameRate: 30
@@ -82,7 +82,7 @@ export default function avVideoRecorderTestOne() {
             audioSampleRate: 48000,
             fileFormat: media.ContainerFormatType.CFT_MPEG_4,
             videoBitrate: 280000,
-            videoCodec: media.CodecMimeType.VIDEO_MPEG4,
+            videoCodec: media.CodecMimeType.VIDEO_AVC,
             videoFrameWidth: 640,
             videoFrameHeight: 480,
             videoFrameRate: 30
@@ -159,6 +159,7 @@ export default function avVideoRecorderTestOne() {
         const CREATE_PROMISE_EVENT = 'createPromise';
         const PREPARE_PROMISE_EVENT = 'preparePromise';
         const GETINPUTSURFACE_PROMISE_EVENT = 'getInputSurfacePromise';
+        const GETAVRECORDERCONFIG_PROMISE_EVENT = 'getAVRecorderConfigPromise';
         const STARTRECORDER_PROMISE_EVENT = 'startPromise';
         const PAUSERECORDER_PROMISE_EVENT = 'pausePromise';
         const RESUMERECORDER_PROMISE_EVENT = 'resumePromise';
@@ -497,6 +498,19 @@ export default function avVideoRecorderTestOne() {
                 toNextStep(avRecorder, avConfig, recorderTime, steps, done);
             }).catch((err) => {
                 console.info('getInputSurface failed and catch error is ' + err.message);
+                toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+            });
+        });
+
+        eventEmitter.on(GETAVRECORDERCONFIG_PROMISE_EVENT, (avRecorder, avConfig, recorderTime, steps, done) => {
+            steps.shift();
+            avRecorder.getAVRecorderConfig().then((config) => {
+                console.info('getAVRecorderConfig success');
+                expect(config.audioSourceType).assertEqual(avConfig.audioSourceType);
+                expect(config.audioBitrate).assertEqual(avConfig.audioBitrate);
+                toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+            }).catch((err) => {
+                console.info('getAVRecorderConfig failed and catch error is ' + err.message);
                 toNextStep(avRecorder, avConfig, recorderTime, steps, done);
             });
         });
@@ -2675,7 +2689,7 @@ export default function avVideoRecorderTestOne() {
                 audioSampleRate : 48000,
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : 280000, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : 30 // 视频帧率
@@ -2726,7 +2740,7 @@ export default function avVideoRecorderTestOne() {
                 audioSampleRate : -1,
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : 280000, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : 30 // 视频帧率
@@ -2777,7 +2791,7 @@ export default function avVideoRecorderTestOne() {
                 audioSampleRate : 48000,
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : -1, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : 30 // 视频帧率
@@ -2828,7 +2842,7 @@ export default function avVideoRecorderTestOne() {
                 audioSampleRate : 48000,
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : 280000, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : -1 // 视频帧率
@@ -4171,7 +4185,7 @@ export default function avVideoRecorderTestOne() {
             let avNewProfile = {
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : 280000, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : 30 // 视频帧率
@@ -4223,7 +4237,7 @@ export default function avVideoRecorderTestOne() {
             let avNewProfile = {
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : 280000, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : 30 // 视频帧率
@@ -4277,7 +4291,7 @@ export default function avVideoRecorderTestOne() {
             let avNewProfile = {
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : 280000, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : 30 // 视频帧率
@@ -4333,7 +4347,7 @@ export default function avVideoRecorderTestOne() {
             let avNewProfile = {
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : 280000, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : 30 // 视频帧率
@@ -4387,7 +4401,7 @@ export default function avVideoRecorderTestOne() {
             let avNewProfile = {
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : 280000, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : 30 // 视频帧率
@@ -5177,7 +5191,7 @@ export default function avVideoRecorderTestOne() {
                 audioCodec : media.CodecMimeType.AUDIO_AAC,
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : 280000,
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4,
+                videoCodec : media.CodecMimeType.VIDEO_AVC,
                 videoFrameWidth : 640,
                 videoFrameHeight : 480,
                 videoFrameRate : 30,
@@ -5224,7 +5238,7 @@ export default function avVideoRecorderTestOne() {
                 audioCodec : media.CodecMimeType.AUDIO_AAC,
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : 280000,
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4,
+                videoCodec : media.CodecMimeType.VIDEO_AVC,
                 videoFrameWidth : 640,
                 videoFrameHeight : 480,
                 videoFrameRate : 30,
@@ -5271,7 +5285,7 @@ export default function avVideoRecorderTestOne() {
                 audioSampleRate : 48000,
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : -1, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : 30 // 视频帧率
@@ -5318,7 +5332,7 @@ export default function avVideoRecorderTestOne() {
                 audioSampleRate : 48000,
                 fileFormat : media.ContainerFormatType.CFT_MPEG_4, // 视频文件封装格式，只支持MP4
                 videoBitrate : 280000, // 视频比特率
-                videoCodec : media.CodecMimeType.VIDEO_MPEG4, // 视频文件编码格式，支持mpeg4和avc两种格式
+                videoCodec : media.CodecMimeType.VIDEO_AVC, // 视频文件编码格式，支持mpeg4和avc两种格式
                 videoFrameWidth : 640,  // 视频分辨率的宽
                 videoFrameHeight : 480, // 视频分辨率的高
                 videoFrameRate : -1 // 视频帧率
@@ -7883,6 +7897,37 @@ export default function avVideoRecorderTestOne() {
 
             eventEmitter.emit(mySteps[0], avRecorder, avConfigH264, recorderTime, mySteps, done);
             console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_1200 end')
+        })
+
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETAVRECORDERCONFIG_PROMISE_0100
+            * @tc.name      : 02. prepare->getAVRecorderConfig
+            * @tc.desc      : 1.create 2.prepare 3.getAVRecorderConfig
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level 2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETAVRECORDERCONFIG_PROMISE_0100', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETAVRECORDERCONFIG_PROMISE_0100 start')
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfigH264Aac.url = fdPath;
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_PROMISE_EVENT, SETONCALLBACK_EVENT, PREPARE_PROMISE_EVENT,
+                // init camera
+                GETINPUTSURFACE_PROMISE_EVENT, INITCAMERA_EVENT,
+                // getAVRecorderConfigPromise
+                GETAVRECORDERCONFIG_PROMISE_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_PROMISE_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+            eventEmitter.emit(mySteps[0], avRecorder, avConfigH264Aac, recorderTime, mySteps, done);
+
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_GETAVRECORDERCONFIG_PROMISE_0100 end')
         })
     })
 }
