@@ -60,6 +60,7 @@ group("ability_runtime") {
       "formmanager:formmanager",
       "freeinstalltest:freeinstalltest",
       "getrunningprocessinformation:getrunningprocessinformation",
+      "getrunningprocessinformationcase:getrunningprocessinformationcase",
       "newwant:newwant",
       "registerjserror:registerjserror",
       "shareextensionability:actsshareextensionability",

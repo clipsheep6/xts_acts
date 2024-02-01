@@ -1,0 +1,7 @@
+{
+  "src": [
+    "testability/pages/Index",
+    "MainAbility/pages/Index",
+    "MainAbility2/pages/Index"
+  ]
+}
