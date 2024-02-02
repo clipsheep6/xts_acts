@@ -599,5 +599,53 @@ describe('HidebugJsTest', function () {
         console.log('************* DFX_DFR_Hiprofiler_Interface_2200 Test end*************');
     });
 
+    /*
+     * @tc.number    : DFX_DFR_Hiprofiler_Interface_2300
+     * @tc.name      : dumpJsHeapData with abnormal parameter
+     * @tc.desc      : dumpJsHeapData
+     * @tc.number: test_2300
+     * @tc.level: Level 2
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     */
+    it('DFX_DFR_Hiprofiler_Interface_2300', 0, function() {
+        console.log('************* DFX_DFR_Hiprofiler_Interface_2300 Test start*************');
+        try {
+            let temp = hidebug.getAppNativeMemory();
+            expect(temp.pss>=BigInt(0)).assertTrue();
+            expect(temp.vss>=BigInt(0)).assertTrue();
+            expect(temp.rss>=BigInt(0)).assertTrue();
+            expect(temp.sharedDirty>=BigInt(0)).assertTrue();
+            expect(temp.privateDirty>=BigInt(0)).assertTrue();
+            expect(temp.sharedClean>=BigInt(0)).assertTrue();
+            expect(temp.privateClean>=BigInt(0)).assertTrue();
+        } catch (error) {
+        expect().assertFail();
+    }
+    console.log('************* DFX_DFR_Hiprofiler_Interface_2300 Test end*************');
+    });
+
+    /*
+     * @tc.number    : DFX_DFR_Hiprofiler_Interface_2400
+     * @tc.name      : dumpJsHeapData with abnormal parameter
+     * @tc.desc      : dumpJsHeapData
+     * @tc.number: test_2400
+     * @tc.level: Level 2
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     */
+    it('DFX_DFR_Hiprofiler_Interface_2400', 0, function() {
+        console.log('************* DFX_DFR_Hiprofiler_Interface_2400 Test start*************');
+        try {
+            let temp = hidebug.getSysMemory();
+            expect(temp.memTotal>=BigInt(0)).assertTrue();
+            expect(temp.memFree>=BigInt(0)).assertTrue();
+            expect(temp.memAvailable>=BigInt(0)).assertTrue();
+        } catch (error) {
+        expect().assertFail();
+    }
+    console.log('************* DFX_DFR_Hiprofiler_Interface_2400 Test end*************');
+    });
+
 })
 }
