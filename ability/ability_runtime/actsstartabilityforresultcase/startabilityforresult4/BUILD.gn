@@ -43,6 +43,3 @@ ohos_resources("actsamsstaticarelyhap_resources") {
   deps = [ ":actsamsstaticarelyhap_app_profile" ]
   hap_profile = "entry/src/main/module.json"
 }
-
-
-

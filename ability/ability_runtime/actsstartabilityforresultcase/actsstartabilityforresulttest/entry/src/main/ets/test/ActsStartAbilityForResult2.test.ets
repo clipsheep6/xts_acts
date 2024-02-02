@@ -45,7 +45,7 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number: SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4200
-     * @tc.name  : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4200
+     * @tc.name  : test One capability pulls up two different HAPs and terminates them
      * @tc.desc  : An ability pulls up the ability in two different hap and terminates it.
      * @tc.size  : MediumTest
      * @tc.type  : Function
@@ -191,7 +191,7 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number: SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_5800
-     * @tc.name  : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_5000
+     * @tc.name  : test Different applications, startAbilityForResult starts the ability of module.json
      * @tc.desc  : Depending on the application, startAbilityForResult has the ability to launch module.json.
      * @tc.size  : MediumTest
      * @tc.type  : Function
@@ -248,7 +248,7 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number: SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_6600
-     * @tc.name  : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_6600
+     * @tc.name  : test Same application, same HAP, ability chain pull up: 1 pull 2, 2 pull 3
      * @tc.desc  : With the same hap application, ability chain pull up: 1 pull 2,2 pull 3.
      * @tc.size  : MediumTest
      * @tc.type  : Function
