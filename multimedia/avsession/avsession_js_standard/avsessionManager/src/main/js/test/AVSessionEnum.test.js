@@ -15,7 +15,6 @@
 
 import avSession from '@ohos.multimedia.avsession';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium';
-import featureAbility from '@ohos.ability.featureAbility';
 
 export default function AVSessionEnum() {
     describe('AVSessionEnum', function () {
@@ -38,7 +37,7 @@ export default function AVSessionEnum() {
 
         /* *
          * @tc.number    : SUB_MULTIMEDIA_AVSESSION_CONNECTION_STATE_ENUM_0100
-         * @tc.name      : CONNECTION_STATE_ENUM_0100
+         * @tc.name      : compare all value in ConnectionState to number value
          * @tc.desc      : Testing enum of CONNECTION_STATE
          * @tc.size      : MediumTest
          * @tc.type      : Function
@@ -56,7 +55,7 @@ export default function AVSessionEnum() {
 
         /* *
          * @tc.number    : SUB_MULTIMEDIA_AVSESSION_AVCAST_CATEGORY_ENUM_0100
-         * @tc.name      : AVCAST_CATEGORY_ENUM_0100
+         * @tc.name      : compare all value in AVCastCategory to number value
          * @tc.desc      : Testing enum of AVCastCategory
          * @tc.size      : MediumTest
          * @tc.type      : Function
@@ -72,7 +71,7 @@ export default function AVSessionEnum() {
 
         /* *
          * @tc.number    : SUB_MULTIMEDIA_AVSESSION_DEVICE_TYPE_ENUM_0100
-         * @tc.name      : DEVICE_TYPE_ENUM_0100
+         * @tc.name      : compare all value in DeviceType to number value
          * @tc.desc      : Testing enum of DeviceType
          * @tc.size      : MediumTest
          * @tc.type      : Function
@@ -92,7 +91,7 @@ export default function AVSessionEnum() {
 
         /* *
          * @tc.number    : SUB_MULTIMEDIA_AVSESSION_PLAYBACKSTATE_ENUM_0100
-         * @tc.name      : AVSESSION_PLAYBACKSTATE_ENUM_0100
+         * @tc.name      : compare all value in PlaybackState to number value
          * @tc.desc      : Testing enum of PlaybackState
          * @tc.size      : MediumTest
          * @tc.type      : Function
@@ -110,15 +109,37 @@ export default function AVSessionEnum() {
 
         /* *
          * @tc.number    : SUB_MULTIMEDIA_AVSESSION_ERROR_CODE_ENUM_0100
-         * @tc.name      : AVSESSION_ERROR_CODE_ENUM_0100
+         * @tc.name      : compare all value in AVSessionErrorCode to number value
          * @tc.desc      : Testing enum of AVSessionErrorCode
          * @tc.size      : MediumTest
          * @tc.type      : Function
          * @tc.level     : Level2
          */
         it('SUB_MULTIMEDIA_AVSESSION_ERROR_CODE_ENUM_0100', 0, async function (done) {
+            console.info(`AVSessionErrorCode ERR_CODE_SERVICE_EXCEPTION is ${avSession.AVSessionErrorCode.ERR_CODE_SERVICE_EXCEPTION}`);
+            expect(avSession.AVSessionErrorCode.ERR_CODE_SERVICE_EXCEPTION).assertEqual(6600101);
+
+            console.info(`AVSessionErrorCode ERR_CODE_SESSION_NOT_EXIST is ${avSession.AVSessionErrorCode.ERR_CODE_SESSION_NOT_EXIST}`);
+            expect(avSession.AVSessionErrorCode.ERR_CODE_SESSION_NOT_EXIST).assertEqual(6600102);
+            
+            console.info(`AVSessionErrorCode ERR_CODE_CONTROLLER_NOT_EXIST is ${avSession.AVSessionErrorCode.ERR_CODE_CONTROLLER_NOT_EXIST}`);
+            expect(avSession.AVSessionErrorCode.ERR_CODE_CONTROLLER_NOT_EXIST).assertEqual(6600103);
+
+            console.info(`AVSessionErrorCode ERR_CODE_REMOTE_CONNECTION_ERR is ${avSession.AVSessionErrorCode.ERR_CODE_REMOTE_CONNECTION_ERR}`);
+            expect(avSession.AVSessionErrorCode.ERR_CODE_REMOTE_CONNECTION_ERR).assertEqual(6600104);
+
+            console.info(`AVSessionErrorCode ERR_CODE_COMMAND_INVALID is ${avSession.AVSessionErrorCode.ERR_CODE_COMMAND_INVALID}`);
+            expect(avSession.AVSessionErrorCode.ERR_CODE_COMMAND_INVALID).assertEqual(6600105);
+
+            console.info(`AVSessionErrorCode ERR_CODE_SESSION_INACTIVE is ${avSession.AVSessionErrorCode.ERR_CODE_SESSION_INACTIVE}`);
+            expect(avSession.AVSessionErrorCode.ERR_CODE_SESSION_INACTIVE).assertEqual(6600106);
+
+            console.info(`AVSessionErrorCode ERR_CODE_MESSAGE_OVERLOAD is ${avSession.AVSessionErrorCode.ERR_CODE_MESSAGE_OVERLOAD}`);
+            expect(avSession.AVSessionErrorCode.ERR_CODE_MESSAGE_OVERLOAD).assertEqual(6600107);
+
             console.info(`AVSessionErrorCode ERR_CODE_DEVICE_CONNECTION_FAILED is ${avSession.AVSessionErrorCode.ERR_CODE_DEVICE_CONNECTION_FAILED}`);
             expect(avSession.AVSessionErrorCode.ERR_CODE_DEVICE_CONNECTION_FAILED).assertEqual(6600108);
+
             console.info(`AVSessionErrorCode ERR_CODE_REMOTE_CONNECTION_NOT_EXIST is ${avSession.AVSessionErrorCode.ERR_CODE_REMOTE_CONNECTION_NOT_EXIST}`);
             expect(avSession.AVSessionErrorCode.ERR_CODE_REMOTE_CONNECTION_NOT_EXIST).assertEqual(6600109);
             done();
