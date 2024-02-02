@@ -84,7 +84,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_0100
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_0100
+     * @tc.name      : "Installing Hap1 and Hap2 for auxiliary applications of a single instance (different from testing applications)"
+     *                  The input parameter includes both want and resultCode, and the want includes activityName and bundleName
      * @tc.desc      : test  Ability loop pull up: 1 pull 2, 2 pull 1 (single example)
      * @tc.size      : MediumTest
      * @tc.type      : Function
@@ -170,8 +171,10 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_0300
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_0300
-     * @tc.desc      : test  test The Ability repeated start stop (single example)
+     * @tc.name      : test Ability repeated start stop (single example)
+     * @tc.desc      : HAP for installing auxiliary applications 
+     *                 for a single instance (different from testing applications),The input parameter includes both 
+     *                 want and resultCode, and the want includes activityName and bundleName
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
@@ -239,8 +242,9 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_0400
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_0400
-     * @tc.desc      : test The Ability repeated start stop (multiton example)
+     * @tc.name      : test Ability repeated start stop (multiple cases)
+     * @tc.desc      : The input parameter includes both 
+     *                 want and resultCode, and the want includes activityName and bundleName
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
@@ -334,8 +338,11 @@ export default function actsStartAbilityForResult() {
     })
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_0500
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_0500
-     * @tc.desc      : test The Ability repeated start stop (multiton example)
+     * @tc.name      : test Ability implicitly starts
+     * @tc.desc      : 1. implicitly start Ability2 through the startAbilityForResult interface, 
+     *                 with action as the input parameter
+     *                 2. Ability2 calls the terminateSelfWithResult interface to terminate Ability2. 
+     *                 The input parameters include want and resultCode, with want containing activityName and bundleName“
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
@@ -408,8 +415,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1200
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1200
-     * @tc.desc      : test StartAbilityForResult cannot receive information on the return value
+     * @tc.name      : test resultCode for undefined
+     * @tc.desc      : StartAbilityForResult cannot receive information on the return value
      *                 The input parameter includes want and resultCode,
      *                 which includes activityName and bundleName, and resultCode is "undefined"
      * @tc.size      : MediumTest
@@ -468,7 +475,7 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1300
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1300
+     * @tc.name      : test resultCode for string
      * @tc.desc      : test StartAbilityForResult cannot receive information on the return value
      *                 The input parameter includes want and resultCode,
      *                 which includes activityName and bundleName, and resultCode type is string
@@ -529,7 +536,7 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1400
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1400
+     * @tc.name      : test esultCode is a non numeric string
      * @tc.desc      : test StartAbilityForResult cannot receive information on the return value
      *                 The input parameter includes want and resultCode,
      *                 which includes activityName and bundleName, resultCode is a non numeric string
@@ -591,8 +598,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1500
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1500
-     * @tc.desc      : test StartAbilityForResult receives the same information as the input
+     * @tc.name      : test resultCode type is float
+     * @tc.desc      : StartAbilityForResult receives the same information as the input
      *                 parameter of terminateSelfWithResult, and the result code is an integer
      *                 converted from decimals
      *                 The input parameter includes want and resultCode,
@@ -645,8 +652,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1600
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1600
-     * @tc.desc      : test StartAbilityForResult cannot receive information on the return value
+     * @tc.name      : test resultCode is A number that is related to or
+     * @tc.desc      : StartAbilityForResult cannot receive information on the return value
      *                 The input parameter includes want and resultCode,
      *                 which includes activityName and bundleName,
      *                 resultCode is A number that is related to or
@@ -712,8 +719,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1700
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1700
-     * @tc.desc      : test StartAbilityForResult cannot receive information on the return value
+     * @tc.name      : test resultCode is Empty  string
+     * @tc.desc      : StartAbilityForResult cannot receive information on the return value
      *                 The input parameter includes want and resultCode,
      *                 which includes activityName and bundleName, and resultCode is Empty  string
      * @tc.size      : MediumTest
@@ -765,8 +772,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_2500
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_2500
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test The parameters in want are BigDecimal type,example parameters: {BigDecimal: 12.12345678911223656}
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, parameters is type BigDecimal
@@ -819,8 +826,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_2600
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_2600
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test The parameters in want are of type BigInteger
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, parameters is type BigInteger
@@ -873,8 +880,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_2700
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_2700
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test The parameters in want are of type boolean
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, which include activityName,
@@ -937,8 +944,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_2800
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_2800
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test In want, parameters are of type double,example parameters: {keyForDouble: 13.1234567891}
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, which include activityName
@@ -993,8 +1000,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_2900
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_2900
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test The parameters in want are of float type up to ,example parameters: {keyForFloat: 13.12345}
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, which include activityName
@@ -1048,8 +1055,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3000
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3000
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test The parameters in want are an int array
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, which include activityName,
@@ -1107,8 +1114,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3100
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3100
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test The parameters in want are JSON arrays
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, which include activityName,
@@ -1175,8 +1182,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3200
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3200
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test The parameters in the want are JSON type data
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, which include activityName,
@@ -1242,8 +1249,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3300
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3300
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test Parameters in want are individual characters
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, which include activityName,
@@ -1299,8 +1306,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3400
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3400
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test The parameters in want are strings
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, which include activityName,
@@ -1354,8 +1361,8 @@ export default function actsStartAbilityForResult() {
     })
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3600
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3600
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test The parameters in want are a string array
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, which include activityName,
@@ -1415,8 +1422,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3700
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3700
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test The parameters in want are integers
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, which include activityName,
@@ -1472,8 +1479,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3800
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_3800
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test Parameters in Want carry multiple keys and values
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, which include activityName,
@@ -1541,8 +1548,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4000
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4000
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test want is undefined
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, want is undefined
@@ -1595,8 +1602,8 @@ export default function actsStartAbilityForResult() {
 
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4100
-     * @tc.name      : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4100
-     * @tc.desc      : test The information of the return value received by startAbilityForResult
+     * @tc.name      : test want is {}
+     * @tc.desc      : The information of the return value received by startAbilityForResult
      *                 is consistent with the information of the input parameter of terminateSelfWithResult
      *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
      *                 The input parameters include want and resultCode, want is {}
