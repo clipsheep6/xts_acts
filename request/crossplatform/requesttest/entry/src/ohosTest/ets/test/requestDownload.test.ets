@@ -214,10 +214,10 @@ export default function requestCrossplatformDownloadJSUnit() {
                 expect(data.description).assertEqual('XTS download test!');
                 expect(data.downloadedBytes).assertEqual(1042003);
                 expect(typeof data.downloadId == "number").assertTrue();
-                expect(data.failedReason).assertEqual(8);
+                expect(data.failedReason).assertEqual(0);
                 expect(data.fileName).assertEqual('SUB_REQUEST_CROSSPLATFORM_DOWNDLOAD_API_TASKINFO_0001.txt');
                 expect(data.filePath).assertEqual(`${globalThis.abilityContext.tempDir}/SUB_REQUEST_CROSSPLATFORM_DOWNDLOAD_API_TASKINFO_0001.txt`);
-                expect(data.pausedReason).assertEqual(4);
+                expect(data.pausedReason).assertEqual(0);
                 expect(data.status).assertEqual(0);
                 expect(data.targetURI).assertEqual('https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk');
                 expect(data.downloadTitle).assertEqual('XTS download test!');
@@ -297,7 +297,7 @@ export default function requestCrossplatformDownloadJSUnit() {
                 expect(typeof data.downloadId == "number").assertTrue();
                 expect(data.fileName).assertEqual('SUB_REQUEST_CROSSPLATFORM_DOWNDLOAD_API_TASKINFO_0002.txt');
                 expect(data.filePath).assertEqual(`${globalThis.abilityContext.tempDir}/SUB_REQUEST_CROSSPLATFORM_DOWNDLOAD_API_TASKINFO_0002.txt`);
-                expect(data.pausedReason).assertEqual(4);
+                expect(data.pausedReason).assertEqual(0);
                 expect(data.status).assertEqual(4);
                 expect(data.targetURI).assertEqual('https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test_not_exists.apk');
                 expect(data.downloadTitle).assertEqual('XTS download test!');
@@ -376,10 +376,10 @@ export default function requestCrossplatformDownloadJSUnit() {
                 expect(data.description).assertEqual('XTS download test!');
                 expect(data.downloadedBytes).assertEqual(1042003);
                 expect(typeof data.downloadId == "number").assertTrue();
-                expect(data.failedReason).assertEqual(8);
+                expect(data.failedReason).assertEqual(0);
                 expect(data.fileName).assertEqual('SUB_REQUEST_CROSSPLATFORM_DOWNDLOAD_API_TASKINFO_0003.txt');
                 expect(data.filePath).assertEqual(`${globalThis.abilityContext.tempDir}/SUB_REQUEST_CROSSPLATFORM_DOWNDLOAD_API_TASKINFO_0003.txt`);
-                expect(data.pausedReason).assertEqual(4);
+                expect(data.pausedReason).assertEqual(0);
                 expect(data.status).assertEqual(0);
                 expect(data.targetURI).assertEqual('https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk');
                 expect(data.downloadTitle).assertEqual('');

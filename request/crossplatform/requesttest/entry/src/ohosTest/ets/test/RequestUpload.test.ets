@@ -276,8 +276,6 @@ export default function requestUploadCrossplatformJSUnit() {
       console.info("====>-----------------------SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_CALLBACK_0001 is starting-----------------------");
       try {
         console.info("====>SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_CALLBACK_0001 uploadConfig = " + JSON.stringify(uploadConfig));
-        File.uri = testFilePath;
-        console.info("====>testFilePath = " + JSON.stringify(testFilePath));
         request.uploadFile(globalThis.abilityContext, uploadConfig, async (err, uploadTask) => {
           console.info("====>SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_CALLBACK_0001 progress uploadTask =" + JSON.stringify(uploadTask));
           expect(uploadTask != undefined).assertEqual(true);
@@ -316,8 +314,6 @@ export default function requestUploadCrossplatformJSUnit() {
       console.info("====>-----------------------SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_PROMISE_0001 is starting-----------------------");
       try {
         console.info("====>SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_PROMISE_0001 UploadConfig = " + JSON.stringify(uploadConfig));
-        File.uri = testFilePath;
-        console.info("====>testFilePath = " + JSON.stringify(testFilePath));
         request.uploadFile(globalThis.abilityContext, uploadConfig).then((uploadTask) => {
           console.info("====>SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_PROMISE_0001 uploadTask = " + uploadTask);
           expect(true).assertEqual((uploadTask != undefined));
@@ -356,8 +352,6 @@ export default function requestUploadCrossplatformJSUnit() {
       console.info("====>-----------------------SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_0007 is starting-----------------------");
       try {
         console.info("====>SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_0007 UploadConfig = " + JSON.stringify(uploadConfig));
-        File.uri = testFilePath;
-        console.info("====>testFilePath = " + JSON.stringify(testFilePath));
         request.uploadFile(globalThis.abilityContext, uploadConfig).then((uploadTask) => {
           console.info("====>SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_0007 uploadTask = " + uploadTask);
           expect(true).assertEqual((uploadTask != undefined));
@@ -395,8 +389,6 @@ export default function requestUploadCrossplatformJSUnit() {
       console.info("====>-----------------------SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_0008 is starting-----------------------");
       try {
         console.info("====>SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_0008 UploadConfig = " + JSON.stringify(uploadConfig));
-        File.uri = testFilePath;
-        console.info("====>testFilePath = " + JSON.stringify(testFilePath));
         request.uploadFile(globalThis.abilityContext, uploadConfig).then((uploadTask) => {
           console.info("====>SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_0008 uploadTask = " + uploadTask);
           expect(true).assertEqual((uploadTask != undefined));
@@ -431,8 +423,6 @@ export default function requestUploadCrossplatformJSUnit() {
     it('SUB_REQUEST_CROSSPLATFORM_uploadFile_STAGE_API_CALLBACK_0001', 0, async function (done) {
       console.info("-----------------------SUB_REQUEST_CROSSPLATFORM_uploadFile_STAGE_API_CALLBACK_0001 is starting-----------------------");
       try {
-        File.uri = testFilePath;
-        console.info("====>testFilePath = " + JSON.stringify(testFilePath));
         request.uploadFile(globalThis.abilityContext, uploadConfig, (err, uploadTask)=>{
           console.info("====>SUB_REQUEST_CROSSPLATFORM_uploadFile_STAGE_API_CALLBACK_0001 uploadFile: " + uploadTask);
           try{
@@ -461,8 +451,6 @@ export default function requestUploadCrossplatformJSUnit() {
     it('SUB_REQUEST_CROSSPLATFORM_uploadFile_STAGE_API_PROMISE_0001', 0, async function (done) {
       console.info("-----------------------SUB_REQUEST_CROSSPLATFORM_uploadFile_STAGE_API_PROMISE_0001 is starting-----------------------");
       try{
-        File.uri = testFilePath;
-        console.info("====>testFilePath = " + JSON.stringify(testFilePath));
         request.uploadFile(globalThis.abilityContext, uploadConfig).then(uploadTask => {
           console.info("====>SUB_REQUEST_CROSSPLATFORM_uploadFile_STAGE_API_PROMISE_0001 uploadFile: " + uploadTask);
           try{
@@ -495,8 +483,6 @@ export default function requestUploadCrossplatformJSUnit() {
       console.info("====>-----------------------SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_DELETE_0001 is starting-----------------------");
       request.uploadFile(globalThis.abilityContext, uploadConfig, (err, uploadTask) => {
         try{
-          File.uri = testFilePath;
-          console.info("====>testFilePath = " + JSON.stringify(testFilePath));
           console.info("====>SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_DELETE_0001 uploadTask: " + uploadTask);
           expect(uploadTask != undefined).assertEqual(true);
           uploadTask.delete((err, data) => {
@@ -531,8 +517,6 @@ export default function requestUploadCrossplatformJSUnit() {
      */
     it('SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_DELETE_0002', 0, async function (done) {
       console.info("====>-----------------------SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_DELETE_0002 is starting-----------------------");
-      File.uri = testFilePath;
-      console.info("====>testFilePath = " + JSON.stringify(testFilePath));
       request.uploadFile(globalThis.abilityContext, uploadConfig, (err, uploadTask) => {
         console.info("====>SUB_REQUEST_CROSSPLATFORM_UPLOAD_API_DELETE_0002 uploadTask: " + uploadTask);
         try{
