@@ -16,14 +16,15 @@
                 "power-shell setmode 602",
                 "uinput -T -m 300 720 300 360 200",
                 "uinput -T -m 650 2760 650 1380 200",
-                "pidof download_server | xargs kill -9"
+                "pidof request_agent | xargs kill -9"
             ]
         },
         {
-        "test-file-name": [
-            "ActsRequestAuthorityTest.hap"
-        ],
-        "type": "AppInstallKit",
-        "cleanup-apps": true
-    }]
+            "test-file-name": [
+                "ActsRequestAuthorityTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ]
 }
