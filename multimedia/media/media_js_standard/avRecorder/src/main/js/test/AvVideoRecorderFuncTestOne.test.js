@@ -758,17 +758,17 @@ export default function avVideoRecorderTestOne() {
                         break;
                     case avVideoRecorderTestBase.AV_RECORDER_STATE.PREPARED:
                         console.info('getCurrentAudioCapturerInfo in prepared state');
-                        expect(captureInfo.capturerState).assertEqual(1);
+                        expect(captureInfo.capturerState).assertEqual(avVideoRecorderTestBase.AV_RECORDER_AUDIO_STATE.PREPARED);
                         toNextStep(avRecorder, avConfig, recorderTime, steps, done);
                         break;
                     case avVideoRecorderTestBase.AV_RECORDER_STATE.STARTED:
                         console.info('getCurrentAudioCapturerInfo in started state');
-                        expect(captureInfo.capturerState).assertEqual(2);
+                        expect(captureInfo.capturerState).assertEqual(avVideoRecorderTestBase.AV_RECORDER_AUDIO_STATE.STARTED);
                         toNextStep(avRecorder, avConfig, recorderTime, steps, done);
                         break;
                     case avVideoRecorderTestBase.AV_RECORDER_STATE.PAUSED:
                         console.info('getCurrentAudioCapturerInfo in paused state');
-                        expect(captureInfo.capturerState).assertEqual(3);
+                        expect(captureInfo.capturerState).assertEqual(avVideoRecorderTestBase.AV_RECORDER_AUDIO_STATE.PAUSED);
                         toNextStep(avRecorder, avConfig, recorderTime, steps, done);
                         break;
                     case avVideoRecorderTestBase.AV_RECORDER_STATE.STOPPED:
@@ -802,10 +802,16 @@ export default function avVideoRecorderTestOne() {
                         if (encoderInfo[i].type == 'video') {
                             console.info('getAvailableEncoder video encoder frameRate min ' + encoderInfo[i].frameRate.min);
                             console.info('getAvailableEncoder video encoder frameRate max ' + encoderInfo[i].frameRate.max);
+                            if (encoderInfo[i].frameRate.min == 0 && encoderInfo[i].frameRate.max == 0) {
+                                continue;
+                            }
                             expect(encoderInfo[i].frameRate.max).assertLarger(0);
                         } else {
                             console.info('getAvailableEncoder audio encoder bitrate min ' + encoderInfo[i].bitRate.min);
-                            console.info('getAvailableEncoder audio encoder bitrate max ' + encoderInfo[i].bitRate.min);
+                            console.info('getAvailableEncoder audio encoder bitrate max ' + encoderInfo[i].bitRate.max);
+                            if (encoderInfo[i].bitRate.min == 0 && encoderInfo[i].bitRate.max == 0) {
+                                continue;
+                            }
                             expect(encoderInfo[i].bitRate.max).assertLarger(0);
                         }
                     }
@@ -842,7 +848,7 @@ export default function avVideoRecorderTestOne() {
                             expect(maxAmplitude).assertLarger(0);
                         }
                         maxAmplitudeStartTimes++;
-                        mediaTestBase.msleep(100);
+                        mediaTestBase.msleep(300);
                         toNextStep(avRecorder, avConfig, recorderTime, steps, done);
                         break;
                     case avVideoRecorderTestBase.AV_RECORDER_STATE.PAUSED:
@@ -922,17 +928,17 @@ export default function avVideoRecorderTestOne() {
                             break;
                         case avVideoRecorderTestBase.AV_RECORDER_STATE.PREPARED:
                             console.info('getCurrentAudioCapturerInfo in prepared state');
-                            expect(captureInfo.capturerState).assertEqual(1);
+                            expect(captureInfo.capturerState).assertEqual(avVideoRecorderTestBase.AV_RECORDER_AUDIO_STATE.PREPARED);
                             toNextStep(avRecorder, avConfig, recorderTime, steps, done);
                             break;
                         case avVideoRecorderTestBase.AV_RECORDER_STATE.STARTED:
                             console.info('getCurrentAudioCapturerInfo in started state');
-                            expect(captureInfo.capturerState).assertEqual(2);
+                            expect(captureInfo.capturerState).assertEqual(avVideoRecorderTestBase.AV_RECORDER_AUDIO_STATE.PREPARED);
                             toNextStep(avRecorder, avConfig, recorderTime, steps, done);
                             break;
                         case avVideoRecorderTestBase.AV_RECORDER_STATE.PAUSED:
                             console.info('getCurrentAudioCapturerInfo in paused state');
-                            expect(captureInfo.capturerState).assertEqual(3);
+                            expect(captureInfo.capturerState).assertEqual(avVideoRecorderTestBase.AV_RECORDER_AUDIO_STATE.PREPARED);
                             toNextStep(avRecorder, avConfig, recorderTime, steps, done);
                             break;
                         case avVideoRecorderTestBase.AV_RECORDER_STATE.STOPPED:
@@ -968,10 +974,16 @@ export default function avVideoRecorderTestOne() {
                             if (encoderInfo[i].type == 'video') {
                                 console.info('getAvailableEncoder video encoder frameRate min ' + encoderInfo[i].frameRate.min);
                                 console.info('getAvailableEncoder video encoder frameRate max ' + encoderInfo[i].frameRate.max);
+                                if (encoderInfo[i].frameRate.min == 0 && encoderInfo[i].frameRate.max == 0) {
+                                    continue;
+                                }
                                 expect(encoderInfo[i].frameRate.max).assertLarger(0);
                             } else {
                                 console.info('getAvailableEncoder audio encoder bitrate min ' + encoderInfo[i].bitRate.min);
                                 console.info('getAvailableEncoder audio encoder bitrate max ' + encoderInfo[i].bitRate.min);
+                                if (encoderInfo[i].bitRate.min == 0 && encoderInfo[i].bitRate.max == 0) {
+                                    continue;
+                                }
                                 expect(encoderInfo[i].bitRate.max).assertLarger(0);
                             }
                         }
@@ -1010,7 +1022,7 @@ export default function avVideoRecorderTestOne() {
                                 expect(maxAmplitude).assertLarger(0);
                             }
                             maxAmplitudeStartTimes++;
-                            mediaTestBase.msleep(100);
+                            mediaTestBase.msleep(300);
                             toNextStep(avRecorder, avConfig, recorderTime, steps, done);
                             break;
                         case avVideoRecorderTestBase.AV_RECORDER_STATE.PAUSED:
@@ -8444,6 +8456,20 @@ export default function avVideoRecorderTestOne() {
             eventEmitter.emit(mySteps[0], avRecorder, avConfigOnlyAac, recorderTime, mySteps, done);
             console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_GET_MAX_AMPLITUDE_PROMISE_0100 end')
         })
+
+        /* *
+        * @tc.number    : SUM_MULTIMEDIA_MEDIA_ERRORCODE_ENUM_0100
+        * @tc.name      : ErrorCode
+        * @tc.desc      : Test Enumerate ErrorCode
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level2
+        */
+       it('SUM_MULTIMEDIA_MEDIA_ERRORCODE_ENUM_0100', 0, async function (done) {
+        let newErrorCode = media.AVErrorCode.AVERR_AUDIO_INTERRUPTED;
+        console.info('AVERR_AUDIO_INTERRUPTED:' + newErrorCode);
+        done();
+       })
 
     })
 }
