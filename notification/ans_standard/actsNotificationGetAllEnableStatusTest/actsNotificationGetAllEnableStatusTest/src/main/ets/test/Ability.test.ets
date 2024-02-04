@@ -27,11 +27,11 @@ export default function abilityTest() {
 
     /*
      * @tc.number: Acts_NotificationGetAllEnableStatus_0100
-     * @tc.name: getAllNotificationEnableStatus
+     * @tc.name: Acts_NotificationGetAllEnableStatus_0100: Get status successfully.
      * @tc.desc: Get all notification enable status successfully in db
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level4
+     * @tc.level     : Level1
      */
     it('Acts_NotificationGetAllEnableStatus_0100',0, async function (done) {
       console.info("Acts_NotificationGetAllEnableStatus_0100 start");
@@ -49,11 +49,11 @@ export default function abilityTest() {
 
     /*
      * @tc.number: Acts_NotificationGetAllEnableStatus_0200
-     * @tc.name: getAllNotificationEnableStatus
+     * @tc.name: Acts_NotificationGetAllEnableStatus_0100: Get status fail.
      * @tc.desc: Get all notification enable status fail in db
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level4
+     * @tc.level     : Level1
      */
     it('Acts_NotificationGetAllEnableStatus_0200',0, async function (done) {
       console.info("Acts_NotificationGetAllEnableStatus_0200 start");
@@ -76,11 +76,11 @@ export default function abilityTest() {
 
     /*
      * @tc.number: Acts_NotificationGetAllEnableStatus_0300
-     * @tc.name: getAllNotificationEnableStatus
+     * @tc.name: Acts_NotificationGetAllEnableStatus_0100: Get status fail.
      * @tc.desc: Get all notification enable status fail in db
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level4
+     * @tc.level     : Level1
      */
     it('Acts_NotificationGetAllEnableStatus_0300',0, async function (done) {
       console.info("Acts_NotificationGetAllEnableStatus_0300 start");
@@ -103,11 +103,11 @@ export default function abilityTest() {
 
     /*
      * @tc.number: Acts_NotificationGetAllEnableStatus_0400
-     * @tc.name: getAllNotificationEnableStatus
+     * @tc.name: Acts_NotificationGetAllEnableStatus_0100: Get status fail.
      * @tc.desc: Get all notification enable status fail in db
      * @tc.size      : MediumTest
      * @tc.type      : Function
-     * @tc.level     : Level4
+     * @tc.level     : Level1
      */
     it('Acts_NotificationGetAllEnableStatus_0400',0, async function (done) {
       console.info("Acts_NotificationGetAllEnableStatus_0400 start");
