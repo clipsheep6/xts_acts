@@ -35,6 +35,8 @@
 constexpr uint32_t DEFAULT_SAMPLERATE = 44100;
 constexpr uint64_t DEFAULT_BITRATE = 32000;
 constexpr uint32_t DEFAULT_CHANNEL_COUNT = 2;
+constexpr uint32_t AUDIO_32BITS_PER_SAMPLE = 3;
+constexpr uint32_t AUDIO_LEVEL_0 = 0;
 constexpr OH_AudioChannelLayout CHANNEL_LAYOUT = OH_AudioChannelLayout::CH_LAYOUT_STEREO;
 constexpr OH_BitsPerSample SAMPLE_FORMAT = OH_BitsPerSample::SAMPLE_F32LE;
 constexpr OH_BitsPerSample SAMPLE_FORMAT_S32 = OH_BitsPerSample::SAMPLE_S32LE;
@@ -345,7 +347,7 @@ static napi_value AudioEncoderSetParameter(napi_env env, napi_callback_info info
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_SAMPLE_FORMAT, SAMPLE_FORMAT_S32);
     OH_AVFormat_SetLongValue(format, OH_MD_KEY_CHANNEL_LAYOUT, CHANNEL_LAYOUT);
     OH_AVFormat_SetIntValue(format, OH_MD_KEY_AUDIO_COMPRESSION_LEVEL, 0);
-    OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITS_PER_CODED_SAMPLE, 3);
+    OH_AVFormat_SetIntValue(format, OH_MD_KEY_BITS_PER_CODED_SAMPLE, AUDIO_32BITS_PER_SAMPLE);
     audioEnc = OH_AudioCodec_CreateByMime(OH_AVCODEC_MIMETYPE_AUDIO_FLAC, true);
     OH_AudioCodec_Configure(audioEnc, format);
     OH_AudioCodec_Prepare(audioEnc);
