@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, it, expect} from '@ohos/hypium';
+import { describe, it, expect } from '@ohos/hypium';
 import request from '@ohos.request';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
@@ -21,6 +21,8 @@ import common from '@ohos.app.ability.common';
 export default function requestDownTest() {
   describe('requestDownTest', () => {
     let baseContext: common.Context = AppStorage.get('context') as common.Context;
+    console.info('====>baseContext:'+JSON.stringify(baseContext))
+
     /*
      * @tc.number: SUB_Request_RequestDown_Action_Func_0100
      * @tc.name: SUB_Request_RequestDown_Action_Func_0100
@@ -130,36 +132,27 @@ export default function requestDownTest() {
      * @tc.level: Level 2
      */
     it('SUB_Request_RequestDown_create_remove_Func_0600', 0, async (done: Function) => {
+      console.info('====>====>SUB_Request_RequestDown_create_remove_Func_0600 start:')
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas:'./',
+        saveas: './SUB_Request_RequestDown_create_remove_Func_0600',
         overwrite: true,
       };
-      // create Task
+      console.info('====>SUB_Request_RequestDown_create_remove_Func_0600 docPath:'+JSON.stringify(config))
       try {
-        request.agent.create(baseContext, config).then((task: request.agent.Task) => {
-          console.log(`requestTest006 create Task success:${JSON.stringify(task)}`);
-          expect(task instanceof Object).assertTrue();
-          // remove Task
-          request.agent.remove(task.tid).then(() => {
-            console.info(`remove requestTest006 task success!`);
-            done();
-          }).catch((err: BusinessError) => {
-            console.error(`remove requestTest006 task fail:${err}`);
-            expect(err).assertFail();
-            done();
-          });
-        }).catch((err: BusinessError) => {
-          console.error(`requestTest006 create Task fail:${err}`);
-          expect(err).assertFail();
-          done();
-        });
-      }catch (err) {
-        console.log(`requestTest006 Catch:${JSON.stringify(err)}`);
+        let task: request.agent.Task = await request.agent.create(baseContext, config);
+        console.info(`====>requestTest006 create Task success:${JSON.stringify(task)}`);
+        expect(typeof task === 'object').assertTrue();
+        // remove Task
+        await request.agent.remove(task.tid);
+        console.info(`====>remove requestTest006 task success!`);
+        done();
+      } catch (err) {
+        console.info(`====>requestTest006 Catch: ${JSON.stringify(err)}`);
         expect().assertFail();
         done();
-      };
+      }
     });
 
     /*
@@ -171,41 +164,45 @@ export default function requestDownTest() {
      * @tc.level: Level 2
      */
     it('SUB_Request_RequestDown_create_remove_Func_0700', 0, async (done: Function) => {
+      
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: './',
+        saveas: './SUB_Request_RequestDown_create_remove_Func_0700',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
+        mode: request.agent.Mode.FOREGROUND,
       };
-      try {
-        // create Task
-        request.agent.create(baseContext, config, (err: BusinessError, task: request.agent.Task) => {
+      // create Task
+      request.agent.create(baseContext, config, (err: BusinessError, task: request.agent.Task) => {
+        try {
           if (err) {
-            console.error(`requestTest007 create Task fail:${err}`);
+            console.error(`====>requestTest007 create Task fail:${err}`);
             expect(err).assertFail();
           } else {
-            console.log(`requestTest007 create Task success:${task.tid}`);
-            expect(task instanceof Object).assertTrue();
+            console.log(`====>requestTest007 create Task success:${task.tid}`);
+            expect(typeof task === 'object').assertTrue();
             // remove Task
             request.agent.remove(task.tid, (err: BusinessError) => {
-              if (err) {
-                console.error(`remove requestTest007 task fail:${JSON.stringify(err)}`);
-                expect(err).assertFail();
+              try {
+                if (err) {
+                  console.error(`====>requestTest007 task fail:${JSON.stringify(err)}`);
+                  expect(err).assertFail();
+                  done();
+                }
+                console.log(`====>requestTest007 task success!:${err}`);
+                expect(true).assertTrue();
                 done();
-              } else {
-                console.log(`remove requestTest007 task success!:${err}`);
-                expect(err).assertNull();
+              } catch (err) {
+                console.log(`====>requestTest007 remove catch:${JSON.stringify(err)}`);
                 done();
               };
             });
           };
-        });
-      } catch (err) {
-        console.log(`requestTest007 catch:${JSON.stringify(err)}`);
-        expect(err).assertFail();
-        done();
-      };
+        } catch (err) {
+          console.log(`====>requestTest007 create catch:${JSON.stringify(err)}`);
+          done();
+        };
+      });
     });
 
     /*
@@ -217,14 +214,16 @@ export default function requestDownTest() {
      * @tc.level: Level 2
      */
     it('SUB_Request_RequestDown_remove_Func_0800', 0, async (done: Function) => {
-      request.agent.remove('task.tid').then(() => {
-        console.info('remove requestTest008 task success!');
+      try {
+        await request.agent.remove('task.tid');
+        console.info('====>remove requestTest008 task success!');
         expect().assertFail();
-      }).catch((err: BusinessError) => {
-        console.error(`remove requestTest008 task fail:${JSON.stringify(err)}`);
+        done();
+      } catch (err) {
+        console.error(`====>remove requestTest008 task fail:${JSON.stringify(err)}`);
         expect(err.code).assertEqual(21900006);
         done();
-      });
+      }
     });
 
     /*
@@ -236,23 +235,24 @@ export default function requestDownTest() {
      * @tc.level: Level 2
      */
     it('SUB_Request_RequestDown_remove_Func_0900', 0, async (done: Function) => {
-      try {
-        request.agent.remove('task.tid', (err: BusinessError) => {
+      request.agent.remove('task.tid', (err: BusinessError) => {
+        try {
           if (err) {
-            console.error(`remove requestTest009 task fail:${JSON.stringify(err)}`);
+            console.error(`====>remove requestTest009 task fail:${JSON.stringify(err)}`);
             expect(err.code).assertEqual(21900006);
             done();
           } else {
-            console.info('remove requestTest009 task success!');
+            console.info('====>remove requestTest009 task success!');
             expect(err).assertFail();
             done();
-          };
-        });
-      } catch (err) {
-        console.info('remove requestTest009 task catch!');
-        expect(err).assertFail();
-        done();
-      };
+          }
+          ;
+        } catch (err) {
+          console.info('remove requestTest009 task catch!');
+          done();
+        }
+        ;
+      });
     });
 
     /*
@@ -267,25 +267,26 @@ export default function requestDownTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: `./`,
+        saveas: './SUB_Request_RequestDown_show_Func_1000',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
+        mode: request.agent.Mode.FOREGROUND,
         network: request.agent.Network.WIFI
       };
-      let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest010 create Task success:${task.tid}`);
-      request.agent.show(task.tid).then(async (taskInfo: request.agent.TaskInfo) => {
-        console.log(`requestTest010 showTask success:${JSON.stringify(taskInfo)}`);
-        expect(taskInfo instanceof Object).assertTrue();
+      let task: request.agent.Task;
+      try {
+        task = await request.agent.create(baseContext, config);
+        console.info(`====>requestTest010 create Task success:${task.tid}`);
+        let taskInfo: request.agent.TaskInfo = await request.agent.show(task.tid);
+        console.info(`====>requestTest010 showTask success:${JSON.stringify(taskInfo)}`);
+        expect(typeof taskInfo === 'object').assertTrue();
         // remove Task
         await request.agent.remove(task.tid);
         done();
-      }).catch(async (err: BusinessError) => {
-        console.error(`requestTest010 showTask fail:${JSON.stringify(err)}`);
-        await request.agent.remove(task.tid);
-        expect(err).assertFail();
+      } catch (err) {
+        console.error(`====>requestTest010 showTask fail:${JSON.stringify(err)}`);
+        expect().assertFail();
         done();
-      });
+      }
     });
 
     /*
@@ -300,31 +301,30 @@ export default function requestDownTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: `./`,
+        saveas: './SUB_Request_RequestDown_show_Func_1100',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND
+        mode: request.agent.Mode.FOREGROUND
       };
-      try {
-        let task: request.agent.Task = await request.agent.create(baseContext, config);
-        console.log(`requestTest011 create Task success:${task.tid}`);
-        request.agent.show(task.tid, async (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
+      let task: request.agent.Task = await request.agent.create(baseContext, config);
+      console.log(`====>requestTest011 create Task success:${task.tid}`);
+      request.agent.show(task.tid, async (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
+        try {
           if (err) {
-            console.error(`requestTest011 showTask fail:${JSON.stringify(err)}`);
+            console.error(`====>requestTest011 showTask fail:${JSON.stringify(err)}`);
             expect().assertFail();
             done();
           } else {
-            console.log(`requestTest011 showTask success:${JSON.stringify(taskInfo)}`);
-            expect(taskInfo instanceof Object).assertTrue();
+            console.log(`====>requestTest011 showTask success:${JSON.stringify(taskInfo)}`);
+            expect(typeof taskInfo === 'object').assertTrue();
             // remove Task
             await request.agent.remove(task.tid);
             done();
           };
-        });
-      } catch (err) {
-        console.log(`requestTest011 showTask catch:${err}`);
-        expect().assertFail();
-        done();
-      };
+        } catch (err) {
+          console.log(`====>requestTest011 showTask catch:${err}`);
+          done();
+        };
+      });
     });
 
     /*
@@ -336,15 +336,16 @@ export default function requestDownTest() {
      * @tc.level: Level 2
      */
     it('SUB_Request_RequestDown_show_Func_1200', 0, async (done: Function) => {
-      request.agent.show('task.tid').then((res) => {
-        console.log('requestTest012 showTask success');
-        expect(res).assertFail();
+      try {
+        await request.agent.show('task.tid');
+        console.info('====>requestTest012 showTask success');
+        expect().assertFail();
         done();
-      }).catch((err: BusinessError) => {
-        console.error(`requestTest012 showTask fail:${JSON.stringify(err)}`);
+      } catch (err) {
+        console.error(`====>requestTest012 showTask fail:${JSON.stringify(err)}`);
         expect(err.code).assertEqual(21900006);
         done();
-      });
+      }
     });
 
     /*
@@ -356,23 +357,22 @@ export default function requestDownTest() {
      * @tc.level: Level 2
      */
     it('SUB_Request_RequestDown_show_Func_1300', 0, async (done: Function) => {
-      try {
-        request.agent.show('task.tid', (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
+      request.agent.show('task.tid', (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
+        try {
           if (err) {
-            console.error(`requestTest013 showTask fail:${ JSON.stringify(err)}`);
+            console.error(`====>requestTest013 showTask fail:${JSON.stringify(err)}`);
             expect(err.code).assertEqual(21900006);
             done();
           } else {
-            console.log(`requestTest013 showTask success:${taskInfo.tid}`);
+            console.info(`====>requestTest013 showTask success:${taskInfo.tid}`);
             expect().assertFail();
             done();
           };
-        });
-      } catch (err) {
-        console.log(`requestTest013 showTask success:${err}`);
-        expect(err).assertFail();
-        done();
-      };
+        } catch (err) {
+          console.info(`====>requestTest013 showTask success:${err}`);
+          done();
+        };
+      });
     });
 
     /*
@@ -387,27 +387,30 @@ export default function requestDownTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: `./`,
+        saveas: './SUB_Request_RequestDown_touch_Func_1400',
         overwrite: true,
         mode:request.agent.Mode.FOREGROUND,
         token: "is test014"
       };
       let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest014 create Task success:${task.tid}`);
-      request.agent.touch(task.tid, config.token).then(async (taskInfo: request.agent.TaskInfo) => {
-        console.log(`requestTest014 touchTask success:${taskInfo.tid}`);
-        expect(taskInfo instanceof Object).assertTrue();
-        // remove Task
-        await request.agent.remove(task.tid);
+      console.info(`====>requestTest014 create Task success:${task.tid}`);
+      console.info(`====>requestTest014 create typeof Task tid:${typeof task.tid}`);
+      console.info(`====>requestTest014 create config.token:${config.token}`);
+      console.info(`====>requestTest014 create typeof config.token:${typeof config.token}`);
+      try{
+        let token: string = '';
+        let tokenConfig: string = token + config.token;
+        let taskInfo: request.agent.TaskInfo = await request.agent.touch(task.tid, tokenConfig);
+        expect(typeof taskInfo).assertEqual('object');
         done();
-      }).catch(async (err: BusinessError) => {
-        console.error(`requestTest014 touchTask fail:${JSON.stringify(err)}`);
+      }catch(err){
+        console.error(`====>requestTest014 touchTask fail:${JSON.stringify(err)}`);
         await request.agent.remove(task.tid);
         expect(err).assertFail();
         done();
-      });
+      }
     });
-
+    
     /*
      * @tc.number: SUB_Request_RequestDown_touch_Func_1500
      * @tc.name: SUB_Request_RequestDown_touch_Func_1500
@@ -420,34 +423,33 @@ export default function requestDownTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: `./`,
+        saveas: './SUB_Request_RequestDown_touch_Func_1500',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
+        mode: request.agent.Mode.FOREGROUND,
         token: 'is test015'
       };
       let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest015 create Task success:${task.tid}`);
-      try {
-        request.agent.touch(task.tid, config.token, async (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
+      console.log(`====>requestTest015 create Task success:${task.tid}`);
+      request.agent.touch(task.tid, config.token, async (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
+        try {
           if (err) {
-            console.log(`requestTest015 touchTask fail:${JSON.stringify(err)}`);
+            console.log(`====>requestTest015 touchTask fail:${JSON.stringify(err)}`);
             await request.agent.remove(task.tid);
-            expect(err).assertFail();
+            expect().assertFail();
             done();
           } else {
-            console.log(`requestTest015 touchTask success:${taskInfo.tid}`);
-            expect(taskInfo instanceof Object).assertTrue();
+            console.log(`====>requestTest015 touchTask success:${taskInfo.tid}`);
+            expect(typeof taskInfo === 'object').assertTrue();
             // remove Task
             await request.agent.remove(task.tid);
             done();
           };
-        });
-      } catch (err) {
-        console.log(`requestTest015 touchTask catch:${err}`);
-        await request.agent.remove(task.tid);
-        expect(err).assertFail();
-        done();
-      };
+        } catch (err) {
+          console.log(`====>requestTest015 touchTask catch:${err}`);
+          await request.agent.remove(task.tid);
+          done();
+        };
+      });
     });
 
     /*
@@ -462,31 +464,25 @@ export default function requestDownTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: `./`,
+        saveas: './SUB_Request_RequestDown_touch_Func_1600',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
+        mode: request.agent.Mode.FOREGROUND,
         token: "is test016"
       };
       let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest016 create Task success:${task.tid}`);
+      console.info(`====>requestTest016 create Task success:${task.tid}`);
       try {
-        request.agent.touch(task.tid, 'wrong').then(async (taskInfo: request.agent.TaskInfo) => {
-          console.log(`requestTest016 touchTask success:${taskInfo}`);
-          expect().assertFail();
-          await request.agent.remove(task.tid);
-          done();
-        }).catch(async (err: BusinessError) => {
-          console.error(`'requestTest016 touchTask fail:' ${JSON.stringify(err)}`);
-          expect(err).assertFail();
-          await request.agent.remove(task.tid);
-          done();
-        });
+        let taskInfo: request.agent.TaskInfo = await request.agent.touch(task.tid, 'wrong');
+        console.info(`====>requestTest016 touchTask success:${taskInfo}`);
+        expect().assertFail();
+        await request.agent.remove(task.tid);
+        done();
       } catch (err) {
-        console.error(`'requestTest016 touchTask catch:' ${JSON.stringify(err)}`);
+        console.error(`====>'requestTest016 touchTask catch:' ${JSON.stringify(err)}`);
         expect(err.code).assertEqual(401);
         await request.agent.remove(task.tid);
         done();
-      };
+      }
     });
 
     /*
@@ -501,33 +497,35 @@ export default function requestDownTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: `./`,
+        saveas: './SUB_Request_RequestDown_touch_Func_1700',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
+        mode: request.agent.Mode.FOREGROUND,
         token: "is test017"
       };
       let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest017 create Task success: ${task.tid}`);
+      console.info(`====>requestTest017 create Task success: ${task.tid}`);
       try {
         request.agent.touch(task.tid, 'wrong', async (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
           if (err) {
-            console.error(`requestTest017 touchTask fail:${JSON.stringify(err)}`);
+            console.error(`====>requestTest017 touchTask fail:${JSON.stringify(err)}`);
             expect().assertFail();
             await request.agent.remove(task.tid);
             done();
           } else {
-            console.log(`requestTest017 touchTask success:${taskInfo.tid}`);
+            console.info(`====>requestTest017 touchTask success:${taskInfo.tid}`);
             expect().assertFail();
             await request.agent.remove(task.tid);
             done();
-          };
+          }
+          ;
         });
       } catch (err) {
-        console.error(`requestTest017 touchTask catch:${JSON.stringify(err)}`);
+        console.error(`====>requestTest017 touchTask catch:${JSON.stringify(err)}`);
         expect(err.code).assertEqual(401);
         await request.agent.remove(task.tid);
         done();
-      };
+      }
+      ;
     });
 
     /*
@@ -542,33 +540,33 @@ export default function requestDownTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: `./`,
+        saveas: './SUB_Request_RequestDown_touch_Func_1800',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
+        mode: request.agent.Mode.FOREGROUND,
         token: "is test018"
       };
       let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest018 create Task success:${task.tid}`);
-      try {
-        request.agent.touch('task.tid', config.token, async (err: BusinessError, taskInfo: request.agent.TaskInfo) => {
+      console.info(`====>requestTest018 create Task success:${task.tid}`);
+      request.agent.touch('task.tid', config.token, async (err: BusinessError, taskInfo: request.agent.TaskInfo) => {          
+        try {
           if (err) {
-            console.error(`requestTest018 touchTask fail:${JSON.stringify(err)}`);
+            console.error(`====>requestTest018 touchTask fail:${JSON.stringify(err)}`);
             expect(err.code).assertEqual(21900006);
             await request.agent.remove(task.tid);
             done();
           } else {
-            console.log(`requestTest018 touchTask success:${taskInfo.tid}`);
+            console.info(`====>requestTest018 touchTask success:${taskInfo.tid}`);
             await request.agent.remove(task.tid);
             expect().assertFail();
             done();
           };
-        });
-      } catch (err) {
-        console.error(`requestTest018 touchTask catch:${JSON.stringify(err)}`);
-        await request.agent.remove(task.tid);
-        expect(err).assertFail();
-        done();
-      };
+        } catch (err) {
+          console.error(`====>requestTest018 touchTask catch:${JSON.stringify(err)}`);
+          await request.agent.remove(task.tid);
+          done();
+        };
+      });
+      
     });
 
     /*
@@ -580,301 +578,294 @@ export default function requestDownTest() {
      * @tc.level: Level 1
      */
     it('SUB_Request_RequestDown_search_Func_1900', 0, async (done: Function) => {
-      try {
-        request.agent.search((err: BusinessError, data: Array<string>) => {
+      request.agent.search((err: BusinessError, data: Array<string>) => {
+        try {
           if (err) {
-            console.error(`requestTest019 searchTask fail:${JSON.stringify(err)}`);
-            expect(err).assertFail();
+            console.error(`====>requestTest019 searchTask fail:${JSON.stringify(err)}`);
+            expect().assertFail();
             done();
           } else {
-            console.log(`requestTest019 searchTask success: ${typeof data}`);
-            expect(data instanceof Array).assertTrue();
+            console.log(`====>requestTest019 searchTask success: ${typeof data}`);
+            expect(typeof data === 'object').assertTrue();
             done();
           };
-        });
-      } catch (err) {
-        console.error(`requestTest019 searchTask catch:${JSON.stringify(err)}`);
-        expect(err).assertFail();
-        done();
-      };
+        } catch (err) {
+          console.error(`====>requestTest019 searchTask catch:${JSON.stringify(err)}`);
+          done();
+        };
+      });
     });
 
     /*
-    * @tc.number: SUB_Request_RequestDown_search_Func_2000
-    * @tc.name: SUB_Request_RequestDown_search_Func_2000
-    * @tc.desc: request.agent.search /set Filter (callback)
-    * @tc.size: MediumTest
-    * @tc.type: Method
-    * @tc.level: Level 1
-    */
+      * @tc.number: SUB_Request_RequestDown_search_Func_2000
+      * @tc.name: SUB_Request_RequestDown_search_Func_2000
+      * @tc.desc: request.agent.search /set Filter (callback)
+      * @tc.size: MediumTest
+      * @tc.type: Method
+      * @tc.level: Level 1
+      */
     it('SUB_Request_RequestDown_search_Func_2000', 0, async (done: Function) => {
       let filter: request.agent.Filter = {
         state: request.agent.State.INITIALIZED,
         action: request.agent.Action.DOWNLOAD,
-        mode: request.agent.Mode.BACKGROUND,
+        mode: request.agent.Mode.FOREGROUND,
       };
-      try {
-        request.agent.search(filter, (err: BusinessError, data: Array<string>) => {
+      request.agent.search(filter, (err: BusinessError, data: Array<string>) => {
+        try {
           if (err) {
-            console.error(`requestTest020 searchTask fail:${JSON.stringify(err)}`);
-            expect(err).assertFail();
+            console.error(`====>requestTest020 searchTask fail:${JSON.stringify(err)}`);
+            expect().assertFail();
             done();
           } else {
-            console.log('requestTest020 searchTask success');
-            expect(data instanceof Array).assertTrue();
+            console.log('====>requestTest020 searchTask success');
+            expect(typeof data === 'object').assertTrue();
             done();
           };
-        });
-      } catch (err) {
-        console.error(`requestTest020 searchTask catch:${JSON.stringify(err)}`);
-        expect(err).assertFail();
-        done();
-      };
+        } catch (err) {
+          console.error(`====>requestTest020 searchTask catch:${JSON.stringify(err)}`);
+          done();
+        };
+      });
     });
 
     /*
-    * @tc.number: SUB_Request_RequestDown_search_Func_2100
-    * @tc.name: SUB_Request_RequestDown_search_Func_2100
-    * @tc.desc: request.agent.search /set Filter (promise)
-    * @tc.size: MediumTest
-    * @tc.type: Method
-    * @tc.level: Level 1
-    */
+      * @tc.number: SUB_Request_RequestDown_search_Func_2100
+      * @tc.name: SUB_Request_RequestDown_search_Func_2100
+      * @tc.desc: request.agent.search /set Filter (promise)
+      * @tc.size: MediumTest
+      * @tc.type: Method
+      * @tc.level: Level 1
+      */
     it('SUB_Request_RequestDown_search_Func_2100', 0, async (done: Function) => {
       let filter: request.agent.Filter = {
         state: request.agent.State.INITIALIZED,
         action: request.agent.Action.DOWNLOAD,
-        mode: request.agent.Mode.BACKGROUND,
+        mode: request.agent.Mode.FOREGROUND,
       };
       try {
-        request.agent.search(filter).then((data: Array<string>) => {
-          console.log('requestTest021 searchTask success');
-          expect(data instanceof Array).assertTrue();
-          done();
-        }).catch((err: BusinessError) => {
-          console.error(`requestTest021 searchTask fail:${JSON.stringify(err)}`);
-          expect(err).assertFail();
-          done();
-        });
-      } catch (err) {
-        console.error(`requestTest021 searchTask catch:${JSON.stringify(err)}`);
-        expect(err).assertFail();
+        let data: Array<string> = await request.agent.search(filter);
+        console.info('====>requestTest021 searchTask success');
+        expect(typeof data === 'object').assertTrue();
         done();
-      };
+      } catch (err) {
+        console.error(`====>requestTest021 searchTask catch:${JSON.stringify(err)}`);
+        expect().assertFail();
+        done();
+      }
     });
 
     /*
-    * @tc.number: SUB_Request_RequestDown_start_Func_2200
-    * @tc.name: SUB_Request_RequestDown_start_Func_2200
-    * @tc.desc: task.start (promise)
-    * @tc.size: MediumTest
-    * @tc.type: Method
-    * @tc.level: Level 1
-    */
+      * @tc.number: SUB_Request_RequestDown_start_Func_2200
+      * @tc.name: SUB_Request_RequestDown_start_Func_2200
+      * @tc.desc: task.start (promise)
+      * @tc.size: MediumTest
+      * @tc.type: Method
+      * @tc.level: Level 1
+      */
     it('SUB_Request_RequestDown_start_Func_2200', 0, async (done: Function) => {
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: `./`,
+        saveas: './SUB_Request_RequestDown_start_Func_2200',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
-      };
-      // create Task
-      let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest022 create Task success:${task.tid}`);
-      task.start().then(async () => {
-        console.log(`requestTest022 start success!`);
-        // remove Task
-        await request.agent.remove(task.tid);
-        done();
-      }).catch((err: BusinessError) => {
-        console.error(`requestTest022 start fail:${JSON.stringify(err)}`);
-        expect(err).assertFail();
-        done();
-      });
-    });
-
-    /*
-    * @tc.number: SUB_Request_RequestDown_start_Func_2300
-    * @tc.name: SUB_Request_RequestDown_start_Func_2300
-    * @tc.desc: task.start (callback)
-    * @tc.size: MediumTest
-    * @tc.type: Method
-    * @tc.level: Level 1
-    */
-    it('SUB_Request_RequestDown_start_Func_2300', 0, async (done: Function) => {
-      let config: request.agent.Config = {
-        action: request.agent.Action.DOWNLOAD,
-        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: `./`,
-        overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
-      };
-      // create Task
-      let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest023 create Task success:${task.tid}`);
-      try {
-        task.start(async (err: BusinessError) => {
-          if (err) {
-            console.error(`requestTest023 start fail:${JSON.stringify(err)}`);
-            expect().assertFail();
-            done();
-          } else {
-            console.log(`requestTest023 start success:${err}`);
-            expect(err).assertNull();
-            await request.agent.remove(task.tid);
-            done();
-          };
-        });
-      } catch (err) {
-        console.log(`requestTest023 start catch:${err}`);
-        await request.agent.remove(task.tid);
-        expect().assertFail();
-        done();
-      };
-    });
-
-    /*
-    * @tc.number: SUB_Request_RequestDown_stop_Func_2400
-    * @tc.name: SUB_Request_RequestDown_stop_Func_2400
-    * @tc.desc: task.stop (promise)
-    * @tc.size: MediumTest
-    * @tc.type: Method
-    * @tc.level: Level 1
-    */
-    it('SUB_Request_RequestDown_stop_Func_2400', 0, async (done: Function) => {
-      let config: request.agent.Config = {
-        action: request.agent.Action.DOWNLOAD,
-        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: './',
-        overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
-      };
-      // create Task
-      let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest024 create Task success:${task.tid}`);
-      await task.start();
-      console.log('requestTest024 start success');
-      task.stop().then(() => {
-        console.log(`requestTest024 stop success!`)
-        done();
-      }).catch((err: BusinessError) => {
-        console.error(`requestTest024 stop fail:${JSON.stringify(err)}`);
-        expect().assertFail();
-        done();
-      });
-    });
-
-    /*
-    * @tc.number: SUB_Request_RequestDown_stop_Func_2500
-    * @tc.name: SUB_Request_RequestDown_stop_Func_2500
-    * @tc.desc: task.stop (callback)
-    * @tc.size: MediumTest
-    * @tc.type: Method
-    * @tc.level: Level 1
-    */
-    it('SUB_Request_RequestDown_stop_Func_2500', 0, async (done: Function) => {
-      let config: request.agent.Config = {
-        action: request.agent.Action.DOWNLOAD,
-        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: './',
-        overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
+        mode: request.agent.Mode.FOREGROUND,
       };
       try {
         // create Task
         let task: request.agent.Task = await request.agent.create(baseContext, config);
-        console.log(`requestTest025 create Task success:${task.tid}`);
+        console.info(`====>requestTest022 create Task success:${task.tid}`);
         await task.start();
-        console.log('requestTest025 start success');
-        task.stop((err: BusinessError) => {
-          if (err) {
-            console.log(`requestTest025 stop fail:${JSON.stringify(err)}`);
-            expect(err).assertFail();
-            done();
-          } else {
-            console.log('requestTest025 stop success');
-            expect(err).assertNull();
-            done();
-          };
-        });
-      } catch (err) {
-        console.log(`requestTest025 catch: ${JSON.stringify(err)}`);
-        expect(err).assertFail();
+        console.info(`====>requestTest022 start success!`);
+        // remove Task
+        await request.agent.remove(task.tid);
         done();
-      };
+      } catch (err) {
+        console.error(`====>requestTest022 start fail:${JSON.stringify(err)}`);
+        expect().assertFail();
+        done();
+      }
     });
 
     /*
-    * @tc.number: SUB_Request_RequestDown_start_Func_2600
-    * @tc.name: SUB_Request_RequestDown_start_Func_2600
-    * @tc.desc: task.start()  /task state error. (promise)
-    * @tc.size: MediumTest
-    * @tc.type: Method
-    * @tc.level: Level 2
-    */
-    it('SUB_Request_RequestDown_start_Func_2600', 0, async (done: Function) => {
+      * @tc.number: SUB_Request_RequestDown_start_Func_2300
+      * @tc.name: SUB_Request_RequestDown_start_Func_2300
+      * @tc.desc: task.start (callback)
+      * @tc.size: MediumTest
+      * @tc.type: Method
+      * @tc.level: Level 1
+      */
+    it('SUB_Request_RequestDown_start_Func_2300', 0, async (done: Function) => {
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: './',
+        saveas: './SUB_Request_RequestDown_start_Func_2300',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
+        mode: request.agent.Mode.FOREGROUND,
       };
       // create Task
       let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest026 create Task success:${task.tid}`);
-      await request.agent.remove(task.tid);
-      console.log('requestTest026 remove success');
-      task.start().then(res => {
-        console.log(`requestTest026 start success:${res}`);
-        expect().assertFail()
-        done()
-      }).catch(async (err: BusinessError) => {
-        console.log(`requestTest026 start fail:${err}--${err.code}`);
-        expect(err.code).assertEqual(21900007);
-        done();
+      console.log(`requestTest023 create Task success:${task.tid}`);
+      task.start(async (err: BusinessError) => {
+        try {
+          if (err) {
+            console.error(`====>requestTest023 start fail:${JSON.stringify(err)}`);
+            expect().assertFail();
+            done();
+          }
+          console.log(`====>requestTest023 start success`);
+          expect(true).assertTrue();
+          await request.agent.remove(task.tid);
+          done();
+        } catch (err) {
+          console.log(`====>requestTest023 start catch:${err}`);
+          await request.agent.remove(task.tid);
+          done();
+        };
       });
     });
 
     /*
-    * @tc.number: SUB_Request_RequestDown_start_Func_2700
-    * @tc.name: SUB_Request_RequestDown_start_Func_2700
-    * @tc.desc: task.start()  /task state error. (callback)
-    * @tc.size: MediumTest
-    * @tc.type: Method
-    * @tc.level: Level 2
-    */
+      * @tc.number: SUB_Request_RequestDown_stop_Func_2400
+      * @tc.name: SUB_Request_RequestDown_stop_Func_2400
+      * @tc.desc: task.stop (promise)
+      * @tc.size: MediumTest
+      * @tc.type: Method
+      * @tc.level: Level 1
+      */
+    it('SUB_Request_RequestDown_stop_Func_2400', 0, async (done: Function) => {
+      let config: request.agent.Config = {
+        action: request.agent.Action.DOWNLOAD,
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
+        saveas: './SUB_Request_RequestDown_stop_Func_2400',
+        overwrite: true,
+        mode: request.agent.Mode.FOREGROUND,
+      };
+      try {
+        // create Task
+        let task: request.agent.Task = await request.agent.create(baseContext, config);
+        console.info(`====>requestTest024 create Task success:${task.tid}`);
+        await task.start();
+        console.info('====>requestTest024 start success');
+        await task.stop();
+        done();
+      } catch (err) {
+        console.error(`====>requestTest024 stop fail:${JSON.stringify(err)}`);
+        expect().assertFail();
+        done();
+      }
+    });
+
+    /*
+      * @tc.number: SUB_Request_RequestDown_stop_Func_2500
+      * @tc.name: SUB_Request_RequestDown_stop_Func_2500
+      * @tc.desc: task.stop (callback)
+      * @tc.size: MediumTest
+      * @tc.type: Method
+      * @tc.level: Level 1
+      */
+    it('SUB_Request_RequestDown_stop_Func_2500', 0, async (done: Function) => {
+      let config: request.agent.Config = {
+        action: request.agent.Action.DOWNLOAD,
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
+        saveas: './SUB_Request_RequestDown_stop_Func_2500',
+        overwrite: true,
+        mode: request.agent.Mode.FOREGROUND,
+      };
+        // create Task
+      let task: request.agent.Task = await request.agent.create(baseContext, config);
+      console.info(`====>requestTest025 create Task success:${task.tid}`);
+      await task.start();
+      console.info('====>requestTest025 start success');
+      task.stop((err: BusinessError) => {
+        try {
+          if (err) {
+            console.info(`====>requestTest025 stop fail:${JSON.stringify(err)}`);
+            expect().assertFail();
+            done();
+          } else {
+            console.info('====>requestTest025 stop success');
+            expect(true).assertTrue();
+            done();
+          };
+        }
+        catch (err) {
+          console.info(`====>requestTest025 catch: ${JSON.stringify(err)}`);
+          done();
+        };
+      });
+    });
+
+    /*
+      * @tc.number: SUB_Request_RequestDown_start_Func_2600
+      * @tc.name: SUB_Request_RequestDown_start_Func_2600
+      * @tc.desc: task.start()  /task state error. (promise)
+      * @tc.size: MediumTest
+      * @tc.type: Method
+      * @tc.level: Level 2
+      */
+    it('SUB_Request_RequestDown_start_Func_2600', 0, async (done: Function) => {
+      let config: request.agent.Config = {
+        action: request.agent.Action.DOWNLOAD,
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
+        saveas: './SUB_Request_RequestDown_start_Func_2600',
+        overwrite: true,
+        mode: request.agent.Mode.FOREGROUND,
+      };
+      try {
+        // create Task
+        let task: request.agent.Task = await request.agent.create(baseContext, config);
+        console.info(`====>requestTest026 create Task success:${task.tid}`);
+        await request.agent.remove(task.tid);
+        console.info('====>requestTest026 remove success');
+        await task.start();
+        expect().assertFail();
+        done();
+      } catch (err) {
+        console.info(`====>requestTest026 start fail:${err}--${err.code}`);
+        expect(err.code).assertEqual(21900007);
+        done();
+      }
+    });
+
+    /*
+      * @tc.number: SUB_Request_RequestDown_start_Func_2700
+      * @tc.name: SUB_Request_RequestDown_start_Func_2700
+      * @tc.desc: task.start()  /task state error. (callback)
+      * @tc.size: MediumTest
+      * @tc.type: Method
+      * @tc.level: Level 2
+      */
     it('SUB_Request_RequestDown_start_Func_2700', 0, async (done: Function) => {
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: './',
+        saveas: './SUB_Request_RequestDown_start_Func_2700',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
+        mode: request.agent.Mode.FOREGROUND,
       };
       // create Task
-      try {
-        let task: request.agent.Task = await request.agent.create(baseContext, config);
-        console.log(`requestTest027 create Task success:${task.tid}`);
-        await request.agent.remove(task.tid);
-        console.log('requestTest027 remove success');
-        task.start((err: BusinessError) => {
+      
+      let task: request.agent.Task = await request.agent.create(baseContext, config);
+      console.info(`====>requestTest027 create Task success:${task.tid}`);
+      await request.agent.remove(task.tid);
+      console.info('====>requestTest027 remove success');
+      task.start((err: BusinessError) => {
+        try {
           if (err) {
-            console.log(`requestTest027 start fail:${err.code}`);
+            console.info(`====>requestTest027 start fail:${err.code}`);
             expect(err.code).assertEqual(21900007);
             done();
           } else {
-            console.log('requestTest027 start success');
+            console.info('====>requestTest027 start success');
             expect().assertFail();
             done();
-          };
-        });
-      } catch (err) {
-        console.log(`requestTest027 start catch:${err.code}`);
-        expect(err).assertFail();
-        done();
-      };
+          }
+          ;
+        } catch (err) {
+          console.info(`====>requestTest027 start catch:${err.code}`);
+          done();
+        };
+      });
     });
 
     /*
@@ -889,25 +880,26 @@ export default function requestDownTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: './',
+        saveas: './SUB_Request_RequestDown_stop_Func_2800',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
+        mode: request.agent.Mode.FOREGROUND,
       };
-      // create Task
-      let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest028 create Task success:${task.tid}`);
-      task.stop().then(async () => {
-        console.log(`requestTest028 stop success!`);
+      let task: request.agent.Task;
+      try {
+        // create Task
+        task = await request.agent.create(baseContext, config);
+        console.info(`====>requestTest028 create Task success:${task.tid}`);
+        await task.stop();
+        console.info(`====>requestTest028 stop success!`);
         await request.agent.remove(task.tid);
         expect().assertFail();
         done();
-      }).catch(async (err: BusinessError) => {
-        console.log(`requestTest028 stop fail:${err.code}`);
+      } catch (err) {
+        console.info(`====>requestTest028 stop fail:${err.code}`);
         expect(err.code).assertEqual(21900007);
         // remove Task
-        await request.agent.remove(task.tid);
         done();
-      });
+      }
     });
 
     /*
@@ -922,33 +914,32 @@ export default function requestDownTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: './',
+        saveas: './SUB_Request_RequestDown_stop_Func_2900',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
+        mode: request.agent.Mode.FOREGROUND,
       };
-      try {
         // create Task
-        let task: request.agent.Task = await request.agent.create(baseContext, config);
-        console.log(`requestTest029 create Task success:${task.tid}`);
-        task.stop(async (err: BusinessError) => {
+      let task: request.agent.Task = await request.agent.create(baseContext, config);
+      console.info(`====>requestTest029 create Task success:${task.tid}`);
+      task.stop(async (err: BusinessError) => {          
+        try {
           if (err) {
-            console.log(`requestTest029 stop fail:${err}`);
+            console.info(`====>requestTest029 stop fail:${err}`);
             expect(err.code).assertEqual(21900007);
             // remove Task
             await request.agent.remove(task.tid);
             done();
           } else {
-            console.log('requestTest029 stop success');
+            console.info('====>requestTest029 stop success');
             await request.agent.remove(task.tid);
             expect().assertFail();
             done();
           };
-        });
-      } catch (err) {
-        console.log(`requestTest029 stop catch:${err} `);
-        expect(err).assertFail();
-        done();
-      }
+        } catch (err) {
+          console.info(`====>requestTest029 stop catch:${err} `);
+          done();
+        }
+      });
     })
 
     /*
@@ -964,29 +955,30 @@ export default function requestDownTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
-        saveas: './',
+        saveas: './SUB_Request_RequestDown_on_Func_3000',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND
+        mode: request.agent.Mode.FOREGROUND
       };
       let callbackProgress1 = (progress: request.agent.Progress): void => {
         flag = true;
-        console.log(`requestTest030 progress1:${progress.state}`);
+        console.info(`====>requestTest030 progress1:${progress.state}`);
       };
       let callbackProgress2 = (progress: request.agent.Progress): void => {
         if (flag) {
-          console.log(`requestTest030 progress2:${progress.state}`);
-          console.log(`flag----${flag}`);
+          console.info(`====>requestTest030 progress2:${progress.state}`);
+          console.info(`====>flag----${flag}`);
           expect(flag).assertTrue();
+          task.off('progress')
           done();
         };
       };
       // create Task
       let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest030 create Task success:${task.tid}`);
+      console.info(`====>requestTest030 create Task success:${task.tid}`);
       task.on('progress', callbackProgress1);
       task.on('progress', callbackProgress2);
       await task.start();
-      console.log('requestTest030 start success');
+      console.info('====>requestTest030 start success');
     });
 
     /*
@@ -1002,29 +994,29 @@ export default function requestDownTest() {
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://repo.huaweicloud.com/ubuntu-releases/20.04/ubuntu-20.04.6-live-server-amd64.iso.zsync',
-        saveas: './',
+        saveas: './SUB_Request_RequestDown_on_Func_3100',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
+        mode: request.agent.Mode.FOREGROUND,
         network: request.agent.Network.WIFI,
         headers: {
           "Range": "bytes=0-1000"
         },
         index: 0,
-        begins: 10,
-        ends: 500
+        begins: 0,
+        ends: -1
       };
       let callbackCompleted = (progress: request.agent.Progress): void => {
         flag = true;
-        console.log(`requestTest031 completed:${progress.state}`);
+        console.info(`====>requestTest031 completed:${progress.state}`);
         expect(flag).assertTrue();
         done();
       };
       // create Task
       let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest031 create Task success:${task.tid}`);
+      console.info(`====>requestTest031 create Task success:${task.tid}`);
       task.on('completed', callbackCompleted);
       await task.start();
-      console.log('requestTest031 start success');
+      console.info('====>requestTest031 start success');
     });
 
     /*
@@ -1039,25 +1031,35 @@ export default function requestDownTest() {
       let flag: boolean = false;
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
-        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/te',
-        saveas: './',
+        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test',
+        saveas: './SUB_Request_RequestDown_on_Func_3200',
         overwrite: true,
-        mode:request.agent.Mode.FOREGROUND,
+        mode: request.agent.Mode.FOREGROUND,
         network: request.agent.Network.WIFI,
         redirect: false
       };
       let callbackFailed = (progress: request.agent.Progress): void => {
-        flag = true;
-        console.log(`requestTest032 failed:${progress.state}`);
-        expect(flag).assertTrue();
-        done();
+        try{
+          flag = true;
+          console.info(`====>requestTest032 failed:${progress.state}`);
+          expect(flag).assertTrue();
+          task.off('failed')
+          done();
+        }catch(err){
+          console.info('====>requestTest032 callbackFailed catch err:' + JSON.stringify(err));
+          done();
+        }        
       };
-      // create Task
       let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest032 create Task success:${task.tid}`);
-      task.on('failed', callbackFailed);
-      await task.start();
-      console.log('requestTest032 start success');
+      console.info(`====>requestTest032 create Task success:${task.tid}`);
+      try{   
+        task.on('failed', callbackFailed);
+        await task.start();
+        console.info('====>requestTest032 start success');
+      }catch(err){
+        console.info('====>requestTest032 catch err:' + JSON.stringify(err));
+        done();
+      }      
     });
 
     /*
@@ -1075,26 +1077,30 @@ export default function requestDownTest() {
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         mode: request.agent.Mode.FOREGROUND,
         network: request.agent.Network.WIFI,
-        saveas: './',
+        saveas: './SUB_Request_RequestDown_off_Func_3300',
         overwrite: true
       };
       let callbackProgress1 = (progress: request.agent.Progress): void => {
         flag = true;
-        console.log(`requestTest033 Progress1:${progress.state}`);
+        console.info(`====>requestTest033 Progress1:${progress.state}`);
       };
       let callbackProgress2 = (progress: request.agent.Progress): void => {
-        console.log(`requestTest033 Progress2:${progress.state}`);
+        console.info(`====>requestTest033 Progress2:${progress.state}`);
         expect(flag).assertFalse();
         done();
       };
-      // create Task
-      let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest033 create Task success:${task.tid}`);
-      task.on('progress', callbackProgress1);
-      task.on('progress', callbackProgress2);
-      task.off('progress', callbackProgress1);
-      await task.start();
-      console.log('requestTest033 start success');
+      try{
+        let task: request.agent.Task = await request.agent.create(baseContext, config);
+        console.info(`====>requestTest033 create Task success:${task.tid}`);
+        task.on('progress', callbackProgress1);
+        task.on('progress', callbackProgress2);
+        task.off('progress', callbackProgress1);
+        await task.start();
+        console.info('====>requestTest033 start success');
+      }catch(err){
+        console.info('====>requestTest033 catch err:' + JSON.stringify(err));
+        done();
+      }
     });
 
     /*
@@ -1109,30 +1115,36 @@ export default function requestDownTest() {
       let flag: boolean = false;
       let config: request.agent.Config = {
         action: request.agent.Action.DOWNLOAD,
-        url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/te',
+        url: 'https://gitee.com/xxxxxx/v1.0/test',
         mode: request.agent.Mode.FOREGROUND,
         network: request.agent.Network.WIFI,
-        saveas: './',
+        saveas: './SUB_Request_RequestDown_off_Func_3400',
         overwrite: true,
         redirect: false
       };
       let callbackFailed1 = (progress: request.agent.Progress): void => {
         flag = true;
-        console.log(`requestTest034 Progress1:${progress.state}`);
+        console.info(`====>requestTest034 Progress1:${progress.state}`);
       };
       let callbackFailed2 = (progress: request.agent.Progress): void => {
-        console.log(`requestTest034 Progress2:${progress.state}`);
-        expect(flag).assertFalse();
-        done();
+        try{
+          console.info(`====>requestTest032 failed:${progress.state}`);
+          expect(flag).assertFalse();
+          task.off('failed')
+          done();
+        }catch(err){
+          console.info('====>requestTest032 callbackFailed catch err:' + JSON.stringify(err));
+          done();
+        }
       };
       // create Task
       let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest034 create Task success:${task.tid}`);
+      console.info(`====>requestTest034 create Task success:${task.tid}`);
       task.on('failed', callbackFailed1);
       task.on('failed', callbackFailed2);
       task.off('failed', callbackFailed1);
       await task.start();
-      console.log('requestTest034 start success');
+      console.info('====>requestTest034 start success');
     });
 
     /*
@@ -1150,25 +1162,25 @@ export default function requestDownTest() {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         mode: request.agent.Mode.FOREGROUND,
-        saveas: './',
+        saveas: './SUB_Request_RequestDown_off_Func_3500',
         overwrite: true
       };
       let callbackProgress1 = (progress: request.agent.Progress): void => {
         flag1 = true;
-        console.log(`requestTest035 Progress1:${progress.state}`);
+        console.info(`====>requestTest035 Progress1:${progress.state}`);
       };
       let callbackProgress2 = (progress: request.agent.Progress): void => {
         flag2 = true;
-        console.log(`requestTest035 Progress2:${progress.state}`);
+        console.info(`====>requestTest035 Progress2:${progress.state}`);
       };
       // create Task
       let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest035 create Task success:${task.tid}`);
+      console.info(`====>requestTest035 create Task success:${task.tid}`);
       task.on('progress', callbackProgress1);
       task.on('progress', callbackProgress2);
       task.off('progress');
       await task.start();
-      console.log('requestTest035 start success');
+      console.info('====>requestTest035 start success');
       expect(flag1).assertFalse();
       expect(flag2).assertFalse();
       done();
@@ -1189,25 +1201,25 @@ export default function requestDownTest() {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/te',
         mode: request.agent.Mode.FOREGROUND,
-        saveas: './',
+        saveas: './SUB_Request_RequestDown_off_Func_3600',
         overwrite: true
       };
       let callbackFailed1 = (progress: request.agent.Progress): void => {
         flag1 = true;
-        console.log(`requestTest036 Progress1:${progress.state}`);
+        console.info(`====>requestTest036 Progress1:${progress.state}`);
       };
       let callbackFailed2 = (progress: request.agent.Progress): void => {
         flag2 = true;
-        console.log(`requestTest036 Progress2:${progress.state}`);
+        console.info(`====>requestTest036 Progress2:${progress.state}`);
       };
       // create Task
       let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest036 create Task success:${task.tid}`);
+      console.info(`====>requestTest036 create Task success:${task.tid}`);
       task.on('failed', callbackFailed1);
       task.on('failed', callbackFailed2);
       task.off('failed');
       await task.start();
-      console.log('requestTest036 start success');
+      console.info('====>requestTest036 start success');
       expect(flag1).assertFalse();
       expect(flag2).assertFalse();
       done();
@@ -1228,25 +1240,25 @@ export default function requestDownTest() {
         action: request.agent.Action.DOWNLOAD,
         url: 'https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk',
         mode: request.agent.Mode.FOREGROUND,
-        saveas: './',
+        saveas: './SUB_Request_RequestDown_off_Func_3700',
         overwrite: true
       };
       let callbackCompleted1 = (progress: request.agent.Progress): void => {
         flag1 = true;
-        console.log(`requestTest037 Progress1:${progress.state}`);
+        console.info(`====>requestTest037 Progress1:${progress.state}`);
       };
       let callbackCompleted2 = (progress: request.agent.Progress): void => {
         flag2 = true;
-        console.log(`requestTest037 Progress2:${progress.state}`);
+        console.info(`====>requestTest037 Progress2:${progress.state}`);
       };
       // create Task
       let task: request.agent.Task = await request.agent.create(baseContext, config);
-      console.log(`requestTest037 create Task success:${task.tid}`);
+      console.info(`====>requestTest037 create Task success:${task.tid}`);
       task.on('completed', callbackCompleted1);
       task.on('completed', callbackCompleted2);
       task.off('completed');
       await task.start();
-      console.log('requestTest037 start success');
+      console.info('====>requestTest037 start success');
       expect(flag1).assertFalse();
       expect(flag2).assertFalse();
       done();

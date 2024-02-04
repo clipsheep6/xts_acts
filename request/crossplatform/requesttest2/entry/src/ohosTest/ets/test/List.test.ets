@@ -17,6 +17,6 @@ import requestDownTest from './RequestDown.test'
 import requestUpTest from './RequestUp.test'
 
 export default function testsuite() {
-  requestDownTest()
-  requestUpTest()
+  requestDownTest();
+  requestUpTest();
 }
