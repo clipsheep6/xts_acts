@@ -23,6 +23,7 @@
 #include <multimedia/player_framework/native_averrors.h>
 #include <multimedia/player_framework/native_avmuxer.h>
 #include <multimedia/player_framework/native_avsource.h>
+#include <multimedia/player_framework/native_avformat.h>
 #include <sys/stat.h>
 #include <unistd.h>
 
@@ -147,6 +148,11 @@ static napi_value OHAVDemuxerSelectTrackByID(napi_env env, napi_callback_info in
     int returnValue = FAIL;
     backInfo = OH_AVDemuxer_SelectTrackByID(demuxer, audioTrackIndex);
     backInfoo = OH_AVDemuxer_SelectTrackByID(demuxer, videoTrackIndex);
+
+    int32_t isHDRVivid = 0;
+    OH_AVFormat *trackFormat = OH_AVSource_GetTrackFormt(GetSource(), videoTrackIndex);
+    OH_AVFormat_GetIntValue(trackFormat, OH_MD_KEY_VIDEO_IS_HDR_VIVID, &isHDRVivid);
+
     if (backInfo == AV_ERR_OK) {
         returnValue = SUCCESS;
     }
@@ -190,6 +196,32 @@ static napi_value OHAVDemuxerReadSample(napi_env env, napi_callback_info info)
     return result;
 }
 
+static napi_value OHAVDemuxerReadSampleBuffer(napi_env env, napi_callback_info info)
+{
+    OH_AVSource *oH_AVSource = GetSource();
+    OH_AVDemuxer *demuxer;
+    demuxer = OH_AVDemuxer_CreateWithSource(oH_AVSource);
+    int returnValue = FAIL;
+    OH_AVBuffer *buffer = OH_AVBuffer_Create(TWOTWOVAL);
+    uint32_t audioTrackIndex = ZEROVAL;
+    OH_AVDemuxer_SelectTrackByID(demuxer, audioTrackIndex);
+    OH_AVDemuxer_SeekToTime(demuxer, ZEROVAL, OH_AVSeekMode::SEEK_MODE_CLOSEST_SYNC);
+    if (OH_AVDemuxer_ReadSampleBuffer(demuxer, audioTrackIndex, buffer) == AV_ERR_OK) {
+        returnValue = SUCCESS;
+    }
+    napi_value result = nullptr;
+    OH_AVBuffer_Destroy(buffer);
+    if (oH_AVSource == nullptr) {
+        returnValue = PARAM_1;
+    }
+    if (demuxer == nullptr) {
+        returnValue = TWOTWOVAL;
+    }
+    napi_create_int32(env, returnValue, &result);
+    OH_AVDemuxer_Destroy(demuxer);
+    return result;
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -203,7 +235,8 @@ static napi_value Init(napi_env env, napi_value exports)
         {"oHAVDemuxerSeekToTime", nullptr, OHAVDemuxerSeekToTime, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHAVDemuxerSelectTrackByID", nullptr, OHAVDemuxerSelectTrackByID, nullptr, nullptr, nullptr, napi_default,
          nullptr},
-
+        {"oHAVDemuxerReadSampleBuffer", nullptr, OHAVDemuxerReadSampleBuffer, nullptr, nullptr, nullptr, napi_default,
+         nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
