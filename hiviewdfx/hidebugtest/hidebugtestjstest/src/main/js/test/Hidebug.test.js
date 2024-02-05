@@ -599,5 +599,24 @@ describe('HidebugJsTest', function () {
         console.log('************* DFX_DFR_Hiprofiler_Interface_2200 Test end*************');
     });
 
+    /*
+     * @tc.number    : DFX_DFR_Hiprofiler_Interface_2500
+     * @tc.name      : getSysCpuUsage
+     * @tc.desc      : getSysCpuUsage
+     * @tc.number: test_2500
+     * @tc.level: Level 2
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     */
+    it('DFX_DFR_Hiprofiler_Interface_2500', 0, function() {
+        console.log('************* DFX_DFR_Hiprofiler_Interface_2500 Test start*************');
+        try {
+            let systemUsage = hidebug.getSysCpuUsage();
+            expect(systemUsage >= 0 && systemUsage <= 1).assertTrue();
+        } catch (error) {
+            expect().assertFail();
+        }
+        console.log('************* DFX_DFR_Hiprofiler_Interface_2500 Test end*************');
+    });
 })
 }
