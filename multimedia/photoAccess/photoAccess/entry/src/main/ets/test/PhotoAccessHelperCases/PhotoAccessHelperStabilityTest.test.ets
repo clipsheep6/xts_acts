@@ -20,7 +20,7 @@ import buffer from '@ohos.buffer';
 import fs from '@ohos.file.fs';
 import { BusinessError } from '@ohos.base';
 import { getPermission, photoKeys, sleep } from '../../../../../../../common'
-import { checkSet,checkUri,checkReadAndWrite,columns,photoExtensions,videoExtensions,sizes } from './common.ets'
+import { checkSet,checkUri,checkReadAndWrite,columns,photoExtensions,videoExtensions,sizes,getPhotoAssetAttrs } from './common.ets'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 
 export default function PhotoAccessHelperStabilityTest() {
@@ -39,6 +39,7 @@ export default function PhotoAccessHelperStabilityTest() {
         const videoType = photoAccessHelper.PhotoType.VIDEO
         let fetchResultCount;
         let photoTitle: string = photoAccessHelper.PhotoKeys.TITLE.toString();
+        let attrsIndex = false
         const CREATE_EVENT = 'getPhotoAccessHelper';
         const GET_ASSETS_CALLBACK_EVENT = 'getAssetsCallback';
         const GET_ASSETS_PROMISE_EVENT = 'getAssetsCallPromise';
@@ -224,21 +225,15 @@ export default function PhotoAccessHelperStabilityTest() {
             steps.shift();
             try {
                 let onCallback1 = (changeData: photoAccessHelper.ChangeData) => {
-                    console.info('onCallback1 success, changData: ');
                     console.info('onCallback1 success, changData: ' + JSON.stringify(changeData));
                 }
-                // let callBackSet = Math.random() > 0.5;
-                // let uriSet = Math.random() > 0.5;
-                // let forChildUris = Math.random() > 0.5;
-                console.info(`phAccessHelper.registerChange before `);
-                phAccessHelper.registerChange(photoAsset.uri, true, onCallback1);
-                console.info(`phAccessHelper.registerChange after `);
-                phAccessHelper.unRegisterChange(photoAsset.uri);
-                console.info(`phAccessHelper.unRegisterChange after `);
-                // checkSet(callBackSet, uriSet, phAccessHelper, forChildUris, photoAsset, onCallback1)
+                let callBackSet = Math.random() > 0.5;
+                let uriSet = Math.random() > 0.5;
+                let forChildUris = Math.random() > 0.5;
+                checkSet(callBackSet, uriSet, phAccessHelper, forChildUris, photoAsset, onCallback1)
                 setTimeout(() => {
                     eventEmitter.emit(steps[0], phAccessHelper, fetchOptions, fetchResult, photoAsset, options, steps, done);
-                }, 300);
+                }, 500);
 
             } catch (err) {
                 console.error('REGISTER_CHANGE_EVENT failed, message = ', err);
@@ -250,7 +245,7 @@ export default function PhotoAccessHelperStabilityTest() {
             steps.shift();
             try {
                 let randomIndex;
-                if(fetchOptions.fetchColumns!=[]){
+                if(attrsIndex){
                     randomIndex = Math.floor(Math.random() * columns.length);
                 }else{
                     randomIndex = Math.floor(Math.random() * 3);
@@ -594,18 +589,16 @@ export default function PhotoAccessHelperStabilityTest() {
         eventEmitter.on(FETCHRESULT_GETLASTOBJECT_CALLBACK_EVENT, (phAccessHelper, fetchOptions, fetchResult, photoAsset, options, steps, done) => {
             steps.shift();
             try {
-                if (!fetchResult.isAfterLast()) {
-                    fetchResult.getLastObject((err, photoAsset) => {
-                        if (photoAsset != undefined) {
-                            expect(fetchResult.isAfterLast()).assertTrue()
-                            console.info('photoAsset displayName: ', photoAsset.displayName);
-                            toNextStep(phAccessHelper, fetchOptions, fetchResult, photoAsset, options, steps, done)
-                        } else {
-                            console.error('photoAsset failed with err: ' + err);
-                            expect(false).assertTrue();
-                        }
-                    });
-                }
+                fetchResult.getLastObject((err, photoAsset) => {
+                    if (photoAsset != undefined) {
+                        expect(fetchResult.isAfterLast()).assertTrue()
+                        console.info('photoAsset displayName: ', photoAsset.displayName);
+                        toNextStep(phAccessHelper, fetchOptions, fetchResult, photoAsset, options, steps, done)
+                    } else {
+                        console.error('photoAsset failed with err: ' + err);
+                        expect(false).assertTrue();
+                    }
+                });
             } catch (err) {
                 console.error('FETCHRESULT_GETLASTOBJECT_CALLBACK_EVENT failed, message = ', err);
                 expect(false).assertTrue();
@@ -615,11 +608,9 @@ export default function PhotoAccessHelperStabilityTest() {
         eventEmitter.on(FETCHRESULT_GETLASTOBJECT_PROMISE_EVENT, async (phAccessHelper, fetchOptions, fetchResult, photoAsset, options, steps, done) => {
             steps.shift();
             try {
-                if (!fetchResult.isAfterLast()) {
-                    let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getLastObject();
-                    expect(fetchResult.isAfterLast()).assertTrue()
-                    toNextStep(phAccessHelper, fetchOptions, fetchResult, photoAsset, options, steps, done)
-                }
+                let photoAsset: photoAccessHelper.PhotoAsset = await fetchResult.getLastObject();
+                expect(fetchResult.isAfterLast()).assertTrue()
+                toNextStep(phAccessHelper, fetchOptions, fetchResult, photoAsset, options, steps, done)
             } catch (err) {
                 console.error('FETCHRESULT_GETLASTOBJECT_PROMISE_EVENT failed, message = ', err);
                 expect(false).assertTrue();
@@ -1115,6 +1106,7 @@ export default function PhotoAccessHelperStabilityTest() {
                 END_EVENT
             )
             fetchOptions.fetchColumns = columns
+            attrsIndex = true
             eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
         })
 
@@ -1144,6 +1136,8 @@ export default function PhotoAccessHelperStabilityTest() {
                 // end
                 END_EVENT
             )
+            fetchOptions.fetchColumns = []
+            attrsIndex = false
             eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
         })
 
@@ -1202,6 +1196,7 @@ export default function PhotoAccessHelperStabilityTest() {
                 // end
                 END_EVENT
             )
+            fetchOptions.fetchColumns = columns
             eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
         })
 
@@ -1231,6 +1226,7 @@ export default function PhotoAccessHelperStabilityTest() {
                 // end
                 END_EVENT
             )
+            fetchOptions.fetchColumns = columns
             eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
         })
 
@@ -1426,6 +1422,383 @@ export default function PhotoAccessHelperStabilityTest() {
                 mySteps.push(
                     // photoAsset.get
                     PHOTOASSET_GETTHUMBNAIL_WITH_SIZES_PROMISE_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_PROMISE_EVENT,
+                // end
+                END_EVENT
+            )
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_2500
+           * @tc.name      : 025.fetchResult.getCount
+           * @tc.desc      : fetchResult.getCount 1000 times
+           * @tc.size      : MediumTest
+           * @tc.type      : Stability test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_2500', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and getPhotoAsset
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_GETCOUNT_EVENT
+            );
+            for(let i = 0; i< 999;i++)
+            {
+                mySteps.push(
+                    // photoAsset.get
+                    FETCHRESULT_GETCOUNT_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_PROMISE_EVENT,
+                // end
+                END_EVENT
+            )
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_2600
+           * @tc.name      : 026.fetchResult.isAfterLast
+           * @tc.desc      : fetchResult.isAfterLast 1000 times
+           * @tc.size      : MediumTest
+           * @tc.type      : Stability test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_2600', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and getPhotoAsset
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_ISAFTERLAST_EVENT
+            );
+            for(let i = 0; i< 999;i++)
+            {
+                mySteps.push(
+                    // photoAsset.get
+                    FETCHRESULT_ISAFTERLAST_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_PROMISE_EVENT,
+                // end
+                END_EVENT
+            )
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_2700
+           * @tc.name      : 027.fetchResult.close
+           * @tc.desc      : fetchResult.close callback 1000 times
+           * @tc.size      : MediumTest
+           * @tc.type      : Stability test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_2700', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and getPhotoAsset
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_CLOSE_EVENT
+            );
+            for(let i = 0; i< 999;i++)
+            {
+                mySteps.push(
+                    // photoAsset.get
+                    FETCHRESULT_CLOSE_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_PROMISE_EVENT,
+                // end
+                END_EVENT
+            )
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_2900
+           * @tc.name      : 029.fetchResult.getFirstObject
+           * @tc.desc      : fetchResult.getFirstObject callback 1000 times
+           * @tc.size      : MediumTest
+           * @tc.type      : Stability test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_2900', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and getPhotoAsset
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_GETFIRSTOBJECT_CALLBACK_EVENT
+            );
+            for(let i = 0; i< 999;i++)
+            {
+                mySteps.push(
+                    // photoAsset.get
+                    FETCHRESULT_GETFIRSTOBJECT_CALLBACK_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_PROMISE_EVENT,
+                // end
+                END_EVENT
+            )
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3000
+           * @tc.name      : 030.fetchResult.getFirstObject
+           * @tc.desc      : fetchResult.getFirstObject promise 1000 times
+           * @tc.size      : MediumTest
+           * @tc.type      : Stability test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3000', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and getPhotoAsset
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_GETFIRSTOBJECT_PROMISE_EVENT
+            );
+            for(let i = 0; i< 999;i++)
+            {
+                mySteps.push(
+                    // photoAsset.get
+                    FETCHRESULT_GETFIRSTOBJECT_PROMISE_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_PROMISE_EVENT,
+                // end
+                END_EVENT
+            )
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3100
+           * @tc.name      : 031.fetchResult.getNextObject
+           * @tc.desc      : fetchResult.getNextObject callback 1000 times
+           * @tc.size      : MediumTest
+           * @tc.type      : Stability test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3100', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and getPhotoAsset
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_GETNEXTOBJECT_CALLBACK_EVENT
+            );
+            for(let i = 0; i< 999;i++)
+            {
+                mySteps.push(
+                    // photoAsset.get
+                    FETCHRESULT_GETNEXTOBJECT_CALLBACK_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_PROMISE_EVENT,
+                // end
+                END_EVENT
+            )
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3200
+           * @tc.name      : 032.fetchResult.getNextObject
+           * @tc.desc      : fetchResult.getNextObject promise 1000 times
+           * @tc.size      : MediumTest
+           * @tc.type      : Stability test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3200', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and getPhotoAsset
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_GETNEXTOBJECT_PROMISE_EVENT
+            );
+            for(let i = 0; i< 999;i++)
+            {
+                mySteps.push(
+                    // photoAsset.get
+                    FETCHRESULT_GETNEXTOBJECT_PROMISE_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_PROMISE_EVENT,
+                // end
+                END_EVENT
+            )
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3300
+           * @tc.name      : 033.fetchResult.getLastObject
+           * @tc.desc      : fetchResult.getLastObject callback 1000 times
+           * @tc.size      : MediumTest
+           * @tc.type      : Stability test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3300', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and getPhotoAsset
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_GETLASTOBJECT_CALLBACK_EVENT
+            );
+            for(let i = 0; i< 999;i++)
+            {
+                mySteps.push(
+                    // photoAsset.get
+                    FETCHRESULT_GETLASTOBJECT_CALLBACK_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_PROMISE_EVENT,
+                // end
+                END_EVENT
+            )
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3400
+           * @tc.name      : 034.fetchResult.getLastObject
+           * @tc.desc      : fetchResult.getLastObject promise 1000 times
+           * @tc.size      : MediumTest
+           * @tc.type      : Stability test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3400', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and getPhotoAsset
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_GETLASTOBJECT_PROMISE_EVENT
+            );
+            for(let i = 0; i< 999;i++)
+            {
+                mySteps.push(
+                    // photoAsset.get
+                    FETCHRESULT_GETLASTOBJECT_PROMISE_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_PROMISE_EVENT,
+                // end
+                END_EVENT
+            )
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3500
+           * @tc.name      : 035.fetchResult.getObjectByPosition
+           * @tc.desc      : fetchResult.getObjectByPosition callback 1000 times
+           * @tc.size      : MediumTest
+           * @tc.type      : Stability test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3500', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and getPhotoAsset
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_GETOBJECTBYPOSITION_CALLBACK_EVENT
+            );
+            for(let i = 0; i< 999;i++)
+            {
+                mySteps.push(
+                    // photoAsset.get
+                    FETCHRESULT_GETOBJECTBYPOSITION_CALLBACK_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_PROMISE_EVENT,
+                // end
+                END_EVENT
+            )
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3600
+           * @tc.name      : 036.fetchResult.getObjectByPosition
+           * @tc.desc      : fetchResult.getObjectByPosition promise 1000 times
+           * @tc.size      : MediumTest
+           * @tc.type      : Stability test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3600', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and getPhotoAsset
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_GETOBJECTBYPOSITION_PROMISE_EVENT
+            );
+            for(let i = 0; i< 999;i++)
+            {
+                mySteps.push(
+                    // photoAsset.get
+                    FETCHRESULT_GETOBJECTBYPOSITION_PROMISE_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_PROMISE_EVENT,
+                // end
+                END_EVENT
+            )
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3700
+           * @tc.name      : 037.fetchResult.getAllObjects
+           * @tc.desc      : fetchResult.getAllObjects callback 1000 times
+           * @tc.size      : MediumTest
+           * @tc.type      : Stability test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3700', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and getPhotoAsset
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_GETALLOBJECTS_CALLBACK_EVENT
+            );
+            for(let i = 0; i< 999;i++)
+            {
+                mySteps.push(
+                    // photoAsset.get
+                    FETCHRESULT_GETALLOBJECTS_CALLBACK_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_PROMISE_EVENT,
+                // end
+                END_EVENT
+            )
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3800
+           * @tc.name      : 038.fetchResult.getAllObjects
+           * @tc.desc      : fetchResult.getAllObjects promise 1000 times
+           * @tc.size      : MediumTest
+           * @tc.type      : Stability test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_STABILITY_3800', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and getPhotoAsset
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_GETALLOBJECTS_PROMISE_EVENT
+            );
+            for(let i = 0; i< 999;i++)
+            {
+                mySteps.push(
+                    // photoAsset.get
+                    FETCHRESULT_GETALLOBJECTS_PROMISE_EVENT
                 )
             }
             mySteps.push(
