@@ -236,8 +236,6 @@ import comSizeAbilityTest_27 from './comSizeAbility/comSizeAbilityTest_27.test';
 import comSizeAbilityTest_28 from './comSizeAbility/comSizeAbilityTest_28.test';
 import comSizeAbilityTest_29 from './comSizeAbility/comSizeAbilityTest_29.test';
 import NavigationStack01Jsunit from './Navigation/NavigationStack01Jsunit.test';
-import NavigationStack02Jsunit from './Navigation/NavigationStack02Jsunit.test';
-import NavigationStack03Jsunit from './Navigation/NavigationStack03Jsunit.test';
 import NavigationStack10Jsunit from './Navigation/NavigationStack10Jsunit.test';
 import NavigationStack11Jsunit from './Navigation/NavigationStack11Jsunit.test';
 import NavigationStack12Jsunit from './Navigation/NavigationStack12Jsunit.test';
@@ -300,7 +298,20 @@ import getWaterFlowItemRect2 from './getItemRect/waterFlow/getWaterFlowItemRect2
 import getWaterFlowItemRect3 from './getItemRect/waterFlow/getWaterFlowItemRect3.test';
 import getWaterFlowItemRect4 from './getItemRect/waterFlow/getWaterFlowItemRect4.test';
 import getWaterFlowItemRect5 from './getItemRect/waterFlow/getWaterFlowItemRect5.test';
-
+import search_maxLength from './TextNewInterFace/search_maxLength.test';
+import search_maxLength2 from './TextNewInterFace/search_maxLength2.test';
+import textInput_caret from './TextNewInterFace/textInput_caret.test';
+import search_caret from './TextNewInterFace/search_caret.test';
+import MeasureJsunit from './MeasureJsunit.test.ets';
+import ScrollToIndexForWaterFlowJsunit01 from './ScrollToIndex/ScrollToIndexForWaterFlowJsunit01.test';
+import ScrollToIndexForWaterFlowJsunit02 from './ScrollToIndex/ScrollToIndexForWaterFlowJsunit02.test';
+import ScrollToIndexForGridJsunit01 from './ScrollToIndex/ScrollToIndexForGridJsunit01.test';
+import ScrollToIndexForGridJsunit02 from './ScrollToIndex/ScrollToIndexForGridJsunit02.test';
+import ScrollToIndexForGridJsunit03 from './ScrollToIndex/ScrollToIndexForGridJsunit03.test';
+import ChipAction from './Chip/ChipAction.test';
+import ChipOnClose from './Chip/ChipOnClose.test';
+import ChipAction2 from './Chip/ChipAction2.test';
+import ChipOnClose2 from './Chip/ChipOnClose2.test';
 export default function testsuite() {
  comSizeAbilityTest_01();
   comSizeAbilityTest_02();
@@ -522,8 +533,6 @@ export default function testsuite() {
   HoverJsunit23()
   HoverJsunit25()
   NavigationStack01Jsunit();
-  NavigationStack02Jsunit();
-  NavigationStack03Jsunit();
   NavigationStack10Jsunit();
   NavigationStack11Jsunit();
   NavigationStack12Jsunit();
@@ -558,4 +567,46 @@ export default function testsuite() {
   NavigationMode16Jsunit();
   NavigationMode17Jsunit();
   AnimationJsunit();
+  search_maxLength();
+  search_maxLength2();
+  textInput_caret();
+  search_caret();
+  ChipAction();
+  ChipOnClose();
+  ChipAction2();
+  ChipOnClose2();
+  getListItemRect1();
+  getListItemRect2();
+  getListItemRect3();
+  getListItemRect4();
+  getListItemRect5();
+  getListItemRect6();
+  getListItemGroupRect1();
+  getListItemGroupRect2();
+  getListItemGroupRect3();
+  getListItemGroupRect4();
+  getListItemGroupRect5();
+  getListItemGroupRect6();
+  getGridItemRect1();
+  getGridItemRect2();
+  getGridItemRect3();
+  getGridItemRect4();
+  getGridItemRect5();
+  getGridItemRect6();
+  getScrollItemRect1();
+  getScrollItemRect2();
+  getScrollItemRect3();
+  getScrollItemRect4();
+  getScrollItemRect5();
+  getWaterFlowItemRect1();
+  getWaterFlowItemRect2();
+  getWaterFlowItemRect3();
+  getWaterFlowItemRect4();
+  getWaterFlowItemRect5();
+  MeasureJsunit();
+  ScrollToIndexForWaterFlowJsunit01();
+  ScrollToIndexForWaterFlowJsunit02();
+  ScrollToIndexForGridJsunit01();
+  ScrollToIndexForGridJsunit02();
+  ScrollToIndexForGridJsunit03();
 }

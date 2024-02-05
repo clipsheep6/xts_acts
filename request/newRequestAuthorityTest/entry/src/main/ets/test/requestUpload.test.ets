@@ -106,7 +106,7 @@ export default function requestUploadJSUnit() {
     /**
      * @tc.number    SUB_Misc_REQUEST_Create_Upload_Callback_0010
      * @tc.desc      Starts a upload session.
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
@@ -134,7 +134,7 @@ export default function requestUploadJSUnit() {
     /**
      * @tc.number    SUB_Misc_REQUEST_Create_Upload_Promise_0010
      * @tc.desc      Starts a upload session.
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
@@ -157,7 +157,7 @@ export default function requestUploadJSUnit() {
     /**
      * @tc.number SUB_Misc_REQUEST_Remove_Upload_Callback_0010
      * @tc.desc Delete the upload task.
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
@@ -188,7 +188,7 @@ export default function requestUploadJSUnit() {
     /**
      * @tc.number SUB_Misc_REQUEST_Remove_Upload_Promise_0010
      * @tc.desc Delete the upload task.
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
@@ -210,7 +210,7 @@ export default function requestUploadJSUnit() {
     /**
      * @tc.number SUB_Misc_REQUEST_Start_Upload_Callback_0010
      * @tc.desc Suspend the upload task
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
@@ -230,7 +230,7 @@ export default function requestUploadJSUnit() {
             console.info("====>SUB_Misc_REQUEST_Start_Upload_Callback_0010 catch err: " + JSON.stringify(err));
           }
           console.info("-----------------------SUB_Misc_REQUEST_Start_Upload_Callback_0010 end-----------------------");
-          await sleep(10);
+          await sleep(100);
           done();
         });
       });
@@ -239,7 +239,7 @@ export default function requestUploadJSUnit() {
     /**
      * @tc.number SUB_Misc_REQUEST_Start_Upload_Promise_0010
      * @tc.desc Suspend the upload task
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
@@ -255,14 +255,14 @@ export default function requestUploadJSUnit() {
         expect().assertFail();
       }
       console.info("-----------------------SUB_Misc_REQUEST_Start_Upload_Promise_0010 end-----------------------");
-      await sleep(10);
+      await sleep(100);
       done();
     });
 
     /**
      * @tc.number SUB_Misc_REQUEST_Pause_Upload_Callback_0010
      * @tc.desc Restore the upload task
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
@@ -287,14 +287,14 @@ export default function requestUploadJSUnit() {
         });
       });
       console.info("-----------------------SUB_Misc_REQUEST_Pause_Upload_Callback_0010 end-----------------------");
-      await sleep(10);
+      await sleep(100);
       done();
     });
 
     /**
      * @tc.number SUB_Misc_REQUEST_Pause_Upload_Promise_0010
      * @tc.desc Restore the upload task
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
@@ -315,14 +315,14 @@ export default function requestUploadJSUnit() {
         }
       });
       console.info("-----------------------SUB_Misc_REQUEST_Pause_Upload_Promise_0010 end-----------------------");
-      await sleep(10);
+      await sleep(100);
       done();
     });
 
     /**
      * @tc.number SUB_Misc_REQUEST_Resume_Upload_Callback_0010
      * @tc.desc Get the upload task info
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
@@ -349,7 +349,7 @@ export default function requestUploadJSUnit() {
           })
         });
         console.info("-----------------------SUB_Misc_REQUEST_Resume_Upload_Callback_0010 end-----------------------");
-        await sleep(10);
+        await sleep(100);
         done();
       });
     });
@@ -357,7 +357,7 @@ export default function requestUploadJSUnit() {
     /**
      * @tc.number SUB_Misc_REQUEST_Resume_Upload_Promise_0010
      * @tc.desc Get the upload task info
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
@@ -381,14 +381,14 @@ export default function requestUploadJSUnit() {
         });
       });
       console.info("-----------------------SUB_Misc_REQUEST_Resume_Upload_Promise_0010 end-----------------------");
-      await sleep(10);
+      await sleep(100);
       done();
     });
 
     /**
      * @tc.number SUB_Misc_REQUEST_Stop_Upload_Callback_0010
      * @tc.desc Get the upload task info
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
@@ -412,7 +412,7 @@ export default function requestUploadJSUnit() {
           });
         });
         console.info("-----------------------SUB_Misc_REQUEST_Stop_Upload_Callback_0010 end-----------------------");
-        await sleep(10);
+        await sleep(100);
         done();
       });
     });
@@ -420,7 +420,7 @@ export default function requestUploadJSUnit() {
     /**
      * @tc.number SUB_Misc_REQUEST_Stop_Upload_Promise_0010
      * @tc.desc Get the upload task info
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
@@ -437,7 +437,7 @@ export default function requestUploadJSUnit() {
           done();
         } catch (err) {
           console.info("====>SUB_Misc_REQUEST_Stop_Upload_Promise_0010 upload stop err: " + JSON.stringify(err));
-          await sleep(10);
+          await sleep(100);
           done();
         }
       })

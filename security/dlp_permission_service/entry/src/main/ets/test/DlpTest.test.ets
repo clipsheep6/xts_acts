@@ -18,7 +18,6 @@ import account from '@ohos.account.distributedAccount'
 import account_osAccount from '@ohos.account.osAccount';
 import type Want from '@ohos.app.ability.Want';
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from '@ohos/hypium'
-import bundle from '@ohos.bundle';
 
 var DLPErrCode = {
   DLP_OK: 0,
@@ -48,17 +47,17 @@ export class TestDlpFileInfo {
 }
 
 const TAG = "DLP_XTS ";
-var user1: dlpPermission.AuthUser = {
-  "authAccount": "123@ohos.com",
-  "authAccountType": dlpPermission.AccountType.CLOUD_ACCOUNT,
-  "dlpFileAccess": dlpPermission.DLPFileAccess.READ_ONLY,
-  "permExpiryTime": 8888520175,
+let user1: dlpPermission.AuthUser = {
+  authAccount: "123@ohos.com",
+  authAccountType: dlpPermission.AccountType.CLOUD_ACCOUNT,
+  dlpFileAccess: dlpPermission.DLPFileAccess.READ_ONLY,
+  permExpiryTime: 8888520175,
 };
-var user2: dlpPermission.AuthUser = {
-  "authAccount": "456@ohos.com",
-  "authAccountType": dlpPermission.AccountType.CLOUD_ACCOUNT,
-  "dlpFileAccess": dlpPermission.DLPFileAccess.FULL_CONTROL,
-  "permExpiryTime": 8888520175,
+let user2: dlpPermission.AuthUser = {
+  authAccount: "456@ohos.com",
+  authAccountType: dlpPermission.AccountType.CLOUD_ACCOUNT,
+  dlpFileAccess: dlpPermission.DLPFileAccess.FULL_CONTROL,
+  permExpiryTime: 8888520175,
 };
 
 var userList = new Array(2);
@@ -67,184 +66,172 @@ userList[1] = user2;
 
 var userId;
 
+
 const accountAbility = account.getDistributedAccountAbility()
 const bundleName = "com.ohos.dlp_xts"
 const rootDir = "/data/storage/el1/base/"
 
+// 获取帐号信息
+async function getOsAccountInfo(): Promise<account_osAccount.OsAccountInfo> {
+  try {
+    let accountMgr = account_osAccount.getAccountManager();
+    return await accountMgr.getCurrentOsAccount();
+  } catch (err) {
+    console.error(TAG, 'getCurrentOsAccount failed', err.code, err.message);
+    expect(false).assertTrue();
+  }
+}
+
+// 帐号登录
+async function AccountLogin(accountName: string) {
+  await AccountLogout()
+  let info: account.DistributedInfo = {
+    name: "",
+    id: "1234",
+    event: "Ohos.account.event.LOGIN",
+    nickname: "nickname",
+    avatar: "avatar"
+  }
+  info.name = accountName
+  info.event = "Ohos.account.event.LOGIN"
+  try {
+    await accountAbility.setOsAccountDistributedInfo(info)
+  } catch (err) {
+    console.error(TAG, "setOsAccountDistributedInfo LOGIN failed", err.code, err.message);
+    expect(null).assertFail()
+    return
+  }
+  let user = await accountAbility.getOsAccountDistributedInfo()
+  expect(user.name).assertEqual(accountName)
+}
+
+// 帐号登出
+async function AccountLogout() {
+  let accountInfo = await accountAbility.getOsAccountDistributedInfo();
+  let info: account.DistributedInfo = {
+    name: "",
+    id: "1234",
+    event: "Ohos.account.event.LOGIN",
+    nickname: "nickname",
+    avatar: "avatar"
+  }
+  if (accountInfo.name === "ohosAnonymousName") {
+    return
+  }
+  info.name = accountInfo.name
+  info.event = "Ohos.account.event.LOGOUT"
+  try {
+    await accountAbility.setOsAccountDistributedInfo(info)
+  } catch (err) {
+    console.error(TAG, "setOsAccountDistributedInfo LOGOUT failed", err.code, err.message);
+    expect(null).assertFail()
+    return
+  }
+  let user: account.DistributedInfo = await accountAbility.getOsAccountDistributedInfo()
+  expect(user.name).assertEqual("ohosAnonymousName")
+}
+
+// 生成文件
+function genFile(path: string, content?) {
+  try {
+    let file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
+    let fd = file.fd;
+    if (content !== undefined) {
+      fs.writeSync(fd, content);
+    }
+    return fd;
+  } catch (err) {
+    console.error(TAG, 'openSync', path, 'failed', err.code, err.message);
+    return -1;
+  }
+}
+
+// 生成可选参数的DLP策略
+async function genTestOptionalDlpProperty(): Promise<dlpPermission.DLPProperty> {
+  let accountInfo = await getOsAccountInfo();
+  let property: dlpPermission.DLPProperty = {
+    ownerAccount: accountInfo.distributedInfo.name,
+    ownerAccountID: accountInfo.distributedInfo.id,
+    ownerAccountType: dlpPermission.AccountType.CLOUD_ACCOUNT,
+    contactAccount: accountInfo.distributedInfo.name,
+    offlineAccess: true,
+  };
+  return property;
+}
+
+// 生成DLP策略
+async function genTestDlpProperty(): Promise<dlpPermission.DLPProperty> {
+  let accountInfo = await getOsAccountInfo();
+  let property: dlpPermission.DLPProperty = {
+    ownerAccount: accountInfo.distributedInfo.name,
+    ownerAccountID: accountInfo.distributedInfo.id,
+    ownerAccountType: dlpPermission.AccountType.CLOUD_ACCOUNT,
+    authUserList: userList,
+    contactAccount: accountInfo.distributedInfo.name,
+    offlineAccess: true,
+    everyoneAccessList: [],
+  };
+  return property;
+}
+
+// 生成测试DLP文件
+async function genTestDlpFile(): Promise<TestDlpFileInfo> {
+  let dlpInfo: TestDlpFileInfo = new TestDlpFileInfo();
+  dlpInfo.plaintextPath = rootDir + "test_dlp.txt";
+  dlpInfo.ciphertextPath = rootDir + "test_dlp.txt.dlp";
+  let writeContent = "123456";
+  dlpInfo.plaintextFd = genFile(dlpInfo.plaintextPath, writeContent);
+  expect(dlpInfo.plaintextFd >= 0).assertTrue();
+  dlpInfo.ciphertextFd = genFile(dlpInfo.ciphertextPath);
+  expect(dlpInfo.ciphertextFd >= 0).assertTrue();
+
+  let property = await genTestDlpProperty();
+
+  try {
+    let dlpFile: dlpPermission.DLPFile = await dlpPermission.generateDLPFile(dlpInfo.plaintextFd, dlpInfo.ciphertextFd, property);
+    expect(true).assertTrue()
+    dlpInfo.dlpFile = dlpFile;
+    return dlpInfo;
+  } catch (err) {
+    console.error(TAG, "generateDLPFile failed", err.code, err.message);
+    fs.closeSync(dlpInfo.plaintextFd);
+    fs.closeSync(dlpInfo.ciphertextFd);
+    fs.unlinkSync(dlpInfo.ciphertextPath);
+    fs.unlinkSync(dlpInfo.plaintextPath);
+    expect(false).assertTrue()
+    return null;
+  }
+}
+
+// 关闭测试DLP文件
+async function closeTestDlpFile(dlpInfo: TestDlpFileInfo) {
+  try {
+    await dlpInfo.dlpFile.closeDLPFile();
+  } catch (err) {
+    console.error(TAG, "closeDLPFile failed", err.code, err.message);
+  }
+  fs.closeSync(dlpInfo.plaintextFd);
+  fs.closeSync(dlpInfo.ciphertextFd);
+  fs.unlinkSync(dlpInfo.ciphertextPath);
+  fs.unlinkSync(dlpInfo.plaintextPath);
+}
+
 export default function dlpTest() {
-  describe('dlpTest', function () {
-    // 获取帐号信息
-    async function getOsAccountInfo(): Promise<account_osAccount.OsAccountInfo> {
-      try {
-        let accountMgr = account_osAccount.getAccountManager();
-        return await accountMgr.getCurrentOsAccount();
-      } catch (err) {
-        console.error(TAG, 'getCurrentOsAccount failed', err.code, err.message);
-        expect(false).assertTrue();
-      }
-    }
+  describe('dlpTest', () => {
 
-    // 帐号登录
-    async function AccountLogin(accountName) {
-      await AccountLogout()
-      var info = {
-        name: "",
-        id: "1234",
-        event: "Ohos.account.event.LOGIN",
-        nickname: "nickname",
-        avatar: "avatar"
-      }
-      info.name = accountName
-      info.event = "Ohos.account.event.LOGIN"
-      try {
-        await accountAbility.setOsAccountDistributedInfo(info)
-      } catch (err) {
-        console.error(TAG, "setOsAccountDistributedInfo LOGIN failed", err.code, err.message);
-        expect(null).assertFail()
-        return
-      }
-      var user = await accountAbility.getOsAccountDistributedInfo()
-      expect(user.name).assertEqual(accountName)
-    }
-
-    // 帐号登出
-    async function AccountLogout() {
-      try {
-        var accountInfo = await accountAbility.getOsAccountDistributedInfo();
-      } catch (err) {
-        console.error(TAG, "getOsAccountDistributedInfo failed", err.code, err.message);
-        expect(null).assertFail();
-        return
-      }
-      var info = {
-        name: "",
-        id: "1234",
-        event: "Ohos.account.event.LOGIN",
-        nickname: "nickname",
-        avatar: "avatar"
-      }
-      if (accountInfo.name === "ohosAnonymousName") {
-        return
-      }
-      info.name = accountInfo.name
-      info.event = "Ohos.account.event.LOGOUT"
-      try {
-        await accountAbility.setOsAccountDistributedInfo(info)
-      } catch (err) {
-        console.error(TAG, "setOsAccountDistributedInfo LOGOUT failed", err.code, err.message);
-        expect(null).assertFail()
-        return
-      }
-      var user = await accountAbility.getOsAccountDistributedInfo()
-      expect(user.name).assertEqual("ohosAnonymousName")
-    }
-
-    // 生成文件
-    function genFile(path, content?) {
-      try {
-        var file = fs.openSync(path, fs.OpenMode.CREATE | fs.OpenMode.READ_WRITE);
-        let fd = file.fd;
-        if (content !== undefined) {
-          fs.writeSync(fd, content);
-        }
-        return fd;
-      } catch (err) {
-        console.error(TAG, 'openSync', path, 'failed', err.code, err.message);
-        return -1;
-      }
-    }
-
-    // 生成可选参数的DLP策略
-    async function genTestOptionalDlpProperty(): Promise<dlpPermission.DLPProperty> {
-      var accountInfo = await getOsAccountInfo();
-      var property: dlpPermission.DLPProperty = {
-        "ownerAccount": accountInfo.distributedInfo.name,
-        "ownerAccountID": accountInfo.distributedInfo.id,
-        "ownerAccountType": dlpPermission.AccountType.CLOUD_ACCOUNT,
-        "contactAccount": accountInfo.distributedInfo.name,
-        "offlineAccess": true,
-      };
-      return property;
-    }
-
-    // 生成DLP策略
-    async function genTestDlpProperty(): Promise<dlpPermission.DLPProperty> {
-      var accountInfo = await getOsAccountInfo();
-      var property: dlpPermission.DLPProperty = {
-        "ownerAccount": accountInfo.distributedInfo.name,
-        "ownerAccountID": accountInfo.distributedInfo.id,
-        "ownerAccountType": dlpPermission.AccountType.CLOUD_ACCOUNT,
-        "authUserList": userList,
-        "contactAccount": accountInfo.distributedInfo.name,
-        "offlineAccess": true,
-        "everyoneAccessList": [],
-      };
-      return property;
-    }
-
-    // 生成测试DLP文件
-    async function genTestDlpFile(): Promise<TestDlpFileInfo> {
-      let dlpInfo: TestDlpFileInfo = new TestDlpFileInfo();
-      dlpInfo.plaintextPath = rootDir + "test_dlp.txt";
-      dlpInfo.ciphertextPath = rootDir + "test_dlp.txt.dlp";
-      var writeContent = "123456";
-      dlpInfo.plaintextFd = genFile(dlpInfo.plaintextPath, writeContent);
-      expect(dlpInfo.plaintextFd >= 0).assertTrue();
-      dlpInfo.ciphertextFd = genFile(dlpInfo.ciphertextPath);
-      expect(dlpInfo.ciphertextFd >= 0).assertTrue();
-
-      var property = await genTestDlpProperty();
-
-      try {
-        var dlpFile = await dlpPermission.generateDLPFile(dlpInfo.plaintextFd, dlpInfo.ciphertextFd, property);
-        expect(true).assertTrue()
-        dlpInfo.dlpFile = dlpFile;
-        return dlpInfo;
-      } catch (err) {
-        console.error(TAG, "generateDLPFile failed", err.code, err.message);
-        fs.closeSync(dlpInfo.plaintextFd);
-        fs.closeSync(dlpInfo.ciphertextFd);
-        fs.unlinkSync(dlpInfo.ciphertextPath);
-        fs.unlinkSync(dlpInfo.plaintextPath);
-        expect(false).assertTrue()
-        return null;
-      }
-    }
-
-    // 关闭测试DLP文件
-    async function closeTestDlpFile(dlpInfo: TestDlpFileInfo) {
-      try {
-        await dlpInfo.dlpFile.closeDLPFile();
-      } catch (err) {
-        console.error(TAG, "closeDLPFile failed", err.code, err.message);
-      }
-      fs.closeSync(dlpInfo.plaintextFd);
-      fs.closeSync(dlpInfo.ciphertextFd);
-      fs.unlinkSync(dlpInfo.ciphertextPath);
-      fs.unlinkSync(dlpInfo.plaintextPath);
-    }
-
-    function timeOut() {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve('')
-        }, 200)
-      })
-    }
-
-    beforeAll(async function () {
+    beforeAll(async () => {
       // Presets an action, which is performed only once before all test cases of the test suite start.
       // This API supports only one parameter: preset action function.
       await AccountLogin("owner@ohos.com");
       const accountMgr = account_osAccount.getAccountManager();
-      userId = await accountMgr.getOsAccountLocalIdFromProcess();
+      userId = await accountMgr.getOsAccountLocalId();
     })
-    beforeEach(function () {
+    beforeEach(() => {
       // Presets an action, which is performed before each unit test case starts.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: preset action function.
     })
-    afterEach(function () {
+    afterEach(async (done) => {
       // Presets a clear action, which is performed after each unit test case ends.
       // The number of execution times is the same as the number of test cases defined by **it**.
       // This API supports only one parameter: clear action function.
@@ -252,8 +239,11 @@ export default function dlpTest() {
       if (files.length != 0) {
         console.error(TAG, "tmp file need delete", files);
       }
+      setTimeout(async () => {
+        await done();
+      }, 3000);
     })
-    afterAll(async function () {
+    afterAll(async () => {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
       await AccountLogout();
@@ -263,9 +253,12 @@ export default function dlpTest() {
      * @tc.number Test_getDLPSupportedFileTypes_001
      * @tc.name Test dlpPermission.getDLPSupportedFileTypes.
      * @tc.desc generateDLPFile success (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPSupportedFileTypes_001', 0, async function () {
-      var curTag = TAG + "Test_getDLPSupportedFileTypes_001";
+    it('Test_getDLPSupportedFileTypes_001', 0, async () => {
+      let curTag = TAG + "Test_getDLPSupportedFileTypes_001";
       console.info(curTag, "start");
 
       try {
@@ -287,9 +280,12 @@ export default function dlpTest() {
      * @tc.number Test_getDLPSupportedFileTypes_002
      * @tc.name Test dlpPermission.getDLPSupportedFileTypes.
      * @tc.desc generateDLPFile success (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPSupportedFileTypes_002', 0, async function (done) {
-      var curTag = TAG + "Test_generateDLPFile_002";
+    it('Test_getDLPSupportedFileTypes_002', 0, async () => {
+      let curTag = TAG + "Test_generateDLPFile_002";
       console.info(curTag, "start");
 
       dlpPermission.getDLPSupportedFileTypes(async (err, fileTypes) => {
@@ -297,7 +293,6 @@ export default function dlpTest() {
         expect(typeof (fileTypes)).assertEqual("object");
 
         console.info(curTag, "end");
-        done();
       });
     })
 
@@ -305,13 +300,16 @@ export default function dlpTest() {
      * @tc.number Test_setRetentionState_001
      * @tc.name Test dlpPermission.setRetentionState.
      * @tc.desc setRetentionState not from sandbox fail with code 19100006 (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_setRetentionState_001', 0, async function () {
-      var curTag = TAG + "Test_setRetentionState_001";
+    it('Test_setRetentionState_001', 0, async () => {
+      let curTag = TAG + "Test_setRetentionState_001";
       console.info(curTag, "start");
 
       try {
-        var uriArray = ['uri'];
+        let uriArray = ['uri'];
         await dlpPermission.setRetentionState(uriArray);
         expect(false).assertTrue();
       } catch (err) {
@@ -326,16 +324,18 @@ export default function dlpTest() {
      * @tc.number Test_setRetentionState_002
      * @tc.name Test dlpPermission.setRetentionState.
      * @tc.desc setRetentionState not from sandbox fail with code 19100006 (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_setRetentionState_002', 0, async function (done) {
-      var curTag = TAG + "Test_setRetentionState_002";
+    it('Test_setRetentionState_002', 0, async () => {
+      let curTag = TAG + "Test_setRetentionState_002";
       console.info(curTag, "start");
 
-      var uriArray = ['uri'];
+      let uriArray = ['uri'];
       dlpPermission.setRetentionState(uriArray, async (err) => {
         expect(err.code).assertEqual(DLPErrCode.ERR_JS_API_FOR_SANDBOX_ERROR);
         console.info(curTag, "end");
-        done();
       });
     });
 
@@ -343,9 +343,12 @@ export default function dlpTest() {
      * @tc.number Test_setRetentionState_003
      * @tc.name Test dlpPermission.setRetentionState.
      * @tc.desc setRetentionState sandbox  call success  (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_setRetentionState_003', 0, async function (done) {
-      var curTag = TAG + "Test_setRetentionState_003";
+    it('Test_setRetentionState_003', 0, async () => {
+      let curTag = TAG + "Test_setRetentionState_003";
       console.info(curTag, "start");
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
       let want: Want = {
@@ -375,16 +378,18 @@ export default function dlpTest() {
       }
       expect(result.resultCode).assertEqual(0);
       console.info(curTag, "end");
-      done();
     })
 
     /**
      * @tc.number Test_setRetentionState_004
      * @tc.name Test dlpPermission.setRetentionState.
      * @tc.desc setRetentionState sandbox call success  (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_setRetentionState_004', 0, async function (done) {
-      var curTag = TAG + "Test_setRetentionState_004";
+    it('Test_setRetentionState_004', 0, async () => {
+      let curTag = TAG + "Test_setRetentionState_004";
       console.info(curTag, "start", bundleName);
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
       let want: Want = {
@@ -405,7 +410,7 @@ export default function dlpTest() {
         console.info(curTag, "end");
         return;
       }
-      var uriArray = ['uri'];
+      let uriArray = ['uri'];
       await dlpPermission.cancelRetentionState(uriArray);
       try {
         await dlpPermission.uninstallDLPSandbox(bundleName, userId, sandboxInfo.appIndex);
@@ -414,16 +419,18 @@ export default function dlpTest() {
       }
       expect(result.resultCode).assertEqual(0);
       console.info(curTag, "end");
-      done();
     })
 
     /**
      * @tc.number Test_setRetentionState_005
      * @tc.name Test dlpPermission.setRetentionState.
      * @tc.desc setRetentionState sandbox  call parameter error  (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_setRetentionState_005', 0, async function (done) {
-      var curTag = TAG + "Test_setRetentionState_005";
+    it('Test_setRetentionState_005', 0, async () => {
+      let curTag = TAG + "Test_setRetentionState_005";
       console.info(curTag, "start");
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
       let want: Want = {
@@ -451,16 +458,18 @@ export default function dlpTest() {
         console.info(curTag, "uninstallDLPSandbox failed", err.code, err.message);
       }
       console.info(curTag, "end");
-      done();
     })
 
     /**
      * @tc.number Test_setRetentionState_006
      * @tc.name Test dlpPermission.setRetentionState.
      * @tc.desc setRetentionState sandbox call parameter error  (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_setRetentionState_006', 0, async function (done) {
-      var curTag = TAG + "Test_setRetentionState_006";
+    it('Test_setRetentionState_006', 0, async () => {
+      let curTag = TAG + "Test_setRetentionState_006";
       console.info(curTag, "start", bundleName);
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
       let want: Want = {
@@ -488,16 +497,18 @@ export default function dlpTest() {
         console.info(curTag, "uninstallDLPSandbox failed", err.code, err.message);
       }
       console.info(curTag, "end");
-      done();
     })
 
     /**
      * @tc.number Test_cancelRetentionState_001
      * @tc.name Test dlpPermission.cancelRetentionState.
      * @tc.desc cancelRetentionState success (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_cancelRetentionState_001', 0, async function () {
-      var curTag = TAG + "Test_cancelRetentionState_001";
+    it('Test_cancelRetentionState_001', 0, async () => {
+      let curTag = TAG + "Test_cancelRetentionState_001";
       console.info(curTag, "start");
 
       try {
@@ -517,16 +528,18 @@ export default function dlpTest() {
      * @tc.number Test_cancelRetentionState_002
      * @tc.name Test dlpPermission.cancelRetentionState.
      * @tc.desc cancelRetentionState success (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_cancelRetentionState_002', 0, async function (done) {
-      var curTag = TAG + "Test_cancelRetentionState_002";
+    it('Test_cancelRetentionState_002', 0, async () => {
+      let curTag = TAG + "Test_cancelRetentionState_002";
       console.info(curTag, "start");
 
-      var uriArray = ['uri'];
+      let uriArray = ['uri'];
       dlpPermission.cancelRetentionState(uriArray, async (err) => {
         expect(err).assertEqual(null);
         console.info(curTag, "end");
-        done();
       });
     })
 
@@ -534,9 +547,12 @@ export default function dlpTest() {
      * @tc.number Test_cancelRetentionState_003
      * @tc.name Test dlpPermission.cancelRetentionState.
      * @tc.desc cancelRetentionState invalid docUris  (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_cancelRetentionState_003', 0, async function () {
-      var curTag = TAG + "Test_cancelRetentionState_003";
+    it('Test_cancelRetentionState_003', 0, async () => {
+      let curTag = TAG + "Test_cancelRetentionState_003";
       console.info(curTag, "start");
 
       try {
@@ -555,9 +571,12 @@ export default function dlpTest() {
      * @tc.number Test_cancelRetentionState_004
      * @tc.name Test dlpPermission.cancelRetentionState.
      * @tc.desc cancelRetentionState invalid docUris  (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_cancelRetentionState_004', 0, async function (done) {
-      var curTag = TAG + "Test_cancelRetentionState_004";
+    it('Test_cancelRetentionState_004', 0, async () => {
+      let curTag = TAG + "Test_cancelRetentionState_004";
       console.info(curTag, "start");
 
       var docUris = [];
@@ -565,7 +584,6 @@ export default function dlpTest() {
         expect(err.code === DLPErrCode.ERR_JS_INVALID_PARAMETER).assertTrue();
 
         console.info(curTag, "end");
-        done();
       });
     })
 
@@ -573,9 +591,12 @@ export default function dlpTest() {
      * @tc.number Test_getRetentionSandboxList_001
      * @tc.name Test dlpPermission.getRetentionSandboxList
      * @tc.desc getRetentionSandboxList with bundle name success (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getRetentionSandboxList_001', 0, async function () {
-      var curTag = TAG + "Test_getRetentionSandboxList_001";
+    it('Test_getRetentionSandboxList_001', 0, async () => {
+      let curTag = TAG + "Test_getRetentionSandboxList_001";
       console.info(curTag, "start");
       let uri = 'uri';
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, uri);
@@ -584,7 +605,7 @@ export default function dlpTest() {
         "bundleName": bundleName,
         "parameters": {
           'ohos.dlp.params.index': sandboxInfo.appIndex,
-          'ohos.dlp.params.number':2,
+          'ohos.dlp.params.number': 2,
           'ohos.dlp.params.success': true
         }
       };
@@ -609,7 +630,7 @@ export default function dlpTest() {
       }
 
       try {
-        await dlpPermission.cancelRetentionState([uri,"uri2"]);
+        await dlpPermission.cancelRetentionState([uri, "uri2"]);
         expect(true).assertTrue();
       } catch (err) {
         console.error(curTag, "cancelRetentionState failed", err.code, err.message);
@@ -630,9 +651,12 @@ export default function dlpTest() {
      * @tc.number Test_getRetentionSandboxList_002
      * @tc.name Test dlpPermission.getRetentionSandboxList.
      * @tc.desc getRetentionSandboxList with bundleName success (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getRetentionSandboxList_002', 0, async function (done) {
-      var curTag = TAG + "Test_getRetentionSandboxList_002";
+    it('Test_getRetentionSandboxList_002', 0, async () => {
+      let curTag = TAG + "Test_getRetentionSandboxList_002";
       console.info(curTag, "start");
 
       let uri = 'uri';
@@ -660,7 +684,7 @@ export default function dlpTest() {
       dlpPermission.getRetentionSandboxList(bundleName, async (err, data) => {
         expect(err).assertEqual(null);
         try {
-          await dlpPermission.cancelRetentionState([uri,"uri2"]);
+          await dlpPermission.cancelRetentionState([uri, "uri2"]);
           expect(true).assertTrue();
         } catch (err) {
           console.error(curTag, "cancelRetentionState failed", err.code, err.message);
@@ -673,7 +697,6 @@ export default function dlpTest() {
           console.info(curTag, "uninstallDLPSandbox failed", err.code, err.message);
         }
         console.info(curTag, "end");
-        done();
       });
     })
 
@@ -681,9 +704,12 @@ export default function dlpTest() {
      * @tc.number Test_getRetentionSandboxList_003
      * @tc.name Test dlpPermission.getRetentionSandboxList
      * @tc.desc getRetentionSandboxList without bundle name success (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getRetentionSandboxList_003', 0, async function () {
-      var curTag = TAG + "Test_getRetentionSandboxList_003";
+    it('Test_getRetentionSandboxList_003', 0, async () => {
+      let curTag = TAG + "Test_getRetentionSandboxList_003";
       console.info(curTag, "start");
       let uri = 'uri';
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, uri);
@@ -713,7 +739,7 @@ export default function dlpTest() {
         console.error(curTag, "getRetentionSandboxList failed", err.code, err.message);
         expect(false).assertTrue();
       }
-       try {
+      try {
         await dlpPermission.cancelRetentionState([uri]);
         expect(true).assertTrue();
       } catch (err) {
@@ -735,9 +761,12 @@ export default function dlpTest() {
      * @tc.number Test_getRetentionSandboxList_004
      * @tc.name Test dlpPermission.getRetentionSandboxList.
      * @tc.desc getRetentionSandboxList without bundleName success (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getRetentionSandboxList_004', 0, async function (done) {
-      var curTag = TAG + "Test_getRetentionSandboxList_004";
+    it('Test_getRetentionSandboxList_004', 0, async () => {
+      let curTag = TAG + "Test_getRetentionSandboxList_004";
       console.info(curTag, "start");
       let uri = 'uri';
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, uri);
@@ -764,9 +793,8 @@ export default function dlpTest() {
         expect(err).assertEqual(null);
 
         console.info(curTag, "end");
-        done();
       });
-       try {
+      try {
         await dlpPermission.cancelRetentionState([uri]);
         expect(true).assertTrue();
       } catch (err) {
@@ -788,9 +816,12 @@ export default function dlpTest() {
      * @tc.number Test_getRetentionSandboxList_005
      * @tc.name Test dlpPermission.getRetentionSandboxList.
      * @tc.desc getRetentionSandboxList sandbox not allow call error  (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getRetentionSandboxList_005', 0, async function (done) {
-      var curTag = TAG + "Test_getRetentionSandboxList_005";
+    it('Test_getRetentionSandboxList_005', 0, async () => {
+      let curTag = TAG + "Test_getRetentionSandboxList_005";
       console.info(curTag, "start");
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
       let want: Want = {
@@ -817,16 +848,18 @@ export default function dlpTest() {
         console.info(curTag, "uninstallDLPSandbox failed", err.code, err.message);
       }
       console.info(curTag, "end");
-      done();
     })
 
     /**
      * @tc.number Test_getRetentionSandboxList_006
      * @tc.name Test dlpPermission.getRetentionSandboxList.
      * @tc.desc getRetentionSandboxList sandbox not allow call error  (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getRetentionSandboxList_006', 0, async function (done) {
-      var curTag = TAG + "Test_getRetentionSandboxList_006";
+    it('Test_getRetentionSandboxList_006', 0, async () => {
+      let curTag = TAG + "Test_getRetentionSandboxList_006";
       console.info(curTag, "start");
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
       let want: Want = {
@@ -853,16 +886,18 @@ export default function dlpTest() {
       }
       expect(result.resultCode).assertEqual(DLPErrCode.ERR_JS_API_NOT_FOR_SANDBOX_ERROR);
       console.info(curTag, "end");
-      done();
     })
 
     /**
      * @tc.number Test_getRetentionSandboxList_007
      * @tc.name Test dlpPermission.getRetentionSandboxList
      * @tc.desc getRetentionSandboxList  invalid parameter (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getRetentionSandboxList_007', 0, async function () {
-      var curTag = TAG + "Test_getRetentionSandboxList_007";
+    it('Test_getRetentionSandboxList_007', 0, async () => {
+      let curTag = TAG + "Test_getRetentionSandboxList_007";
       console.info(curTag, "start");
       try {
         // @ts-ignore
@@ -879,21 +914,24 @@ export default function dlpTest() {
      * @tc.number Test_getRetentionSandboxList_008
      * @tc.name Test dlpPermission.getRetentionSandboxList.
      * @tc.desc getRetentionSandboxList without bundleName success (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getRetentionSandboxList_008', 0, async function (done) {
-      var curTag = TAG + "Test_getRetentionSandboxList_008";
+    it('Test_getRetentionSandboxList_008', 0, async () => {
+      let curTag = TAG + "Test_getRetentionSandboxList_008";
       console.info(curTag, "start");
       try {
         // @ts-ignore
         dlpPermission.getRetentionSandboxList(-1, async (err, data) => {
           expect(false).assertTrue();
           console.info(curTag, "end");
-          done();
+
         });
       } catch (err) {
         expect(err.code).assertEqual(DLPErrCode.ERR_JS_PARAMETER_ERROR);
         console.info(curTag, "end");
-        done();
+
         return;
       }
       expect(false).assertTrue();
@@ -905,9 +943,12 @@ export default function dlpTest() {
      * @tc.number Test_getDLPFileAccessRecords_001
      * @tc.name Test dlpPermission.getDLPFileAccessRecords
      * @tc.desc getDLPFileAccessRecords success (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPFileAccessRecords_001', 0, async function () {
-      var curTag = TAG + "Test_getDLPFileAccessRecords_001";
+    it('Test_getDLPFileAccessRecords_001', 0, async () => {
+      let curTag = TAG + "Test_getDLPFileAccessRecords_001";
       console.info(curTag, "start");
       try {
         await dlpPermission.getDLPFileAccessRecords();
@@ -939,9 +980,12 @@ export default function dlpTest() {
      * @tc.number Test_getDLPFileAccessRecords_002
      * @tc.name Test dlpPermission.getDLPFileAccessRecords.
      * @tc.desc getDLPFileAccessRecords success (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPFileAccessRecords_002', 0, async function (done) {
-      var curTag = TAG + "Test_getRetentionSandboxList_002";
+    it('Test_getDLPFileAccessRecords_002', 0, async () => {
+      let curTag = TAG + "Test_getRetentionSandboxList_002";
       console.info(curTag, "start");
       try {
         await dlpPermission.getDLPFileAccessRecords();
@@ -961,7 +1005,6 @@ export default function dlpTest() {
           console.info(curTag, "uninstallDLPSandbox failed", err.code, err.message);
         }
         console.info(curTag, "end");
-        done();
       });
     })
 
@@ -969,9 +1012,12 @@ export default function dlpTest() {
      * @tc.number Test_getDLPFileAccessRecords_003
      * @tc.name Test dlpPermission.getDLPFileAccessRecords.
      * @tc.desc getDLPFileAccessRecords sandbox not allow call error  (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPFileAccessRecords_003', 0, async function (done) {
-      var curTag = TAG + "Test_getDLPFileAccessRecords_003";
+    it('Test_getDLPFileAccessRecords_003', 0, async () => {
+      let curTag = TAG + "Test_getDLPFileAccessRecords_003";
       console.info(curTag, "start");
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
       let want: Want = {
@@ -998,16 +1044,18 @@ export default function dlpTest() {
       }
       expect(result.resultCode).assertEqual(DLPErrCode.ERR_JS_API_NOT_FOR_SANDBOX_ERROR);
       console.info(curTag, "end");
-      done();
     })
 
     /**
      * @tc.number Test_getDLPFileAccessRecords_004
      * @tc.name Test dlpPermission.getDLPFileAccessRecords.
      * @tc.desc getDLPFileAccessRecords sandbox not allow call error  (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPFileAccessRecords_004', 0, async function (done) {
-      var curTag = TAG + "Test_getDLPFileAccessRecords_004";
+    it('Test_getDLPFileAccessRecords_004', 0, async () => {
+      let curTag = TAG + "Test_getDLPFileAccessRecords_004";
       console.info(curTag, "start");
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
       let want: Want = {
@@ -1034,16 +1082,18 @@ export default function dlpTest() {
       }
       expect(result.resultCode).assertEqual(DLPErrCode.ERR_JS_API_NOT_FOR_SANDBOX_ERROR);
       console.info(curTag, "end");
-      done();
     })
 
     /**
      * @tc.number Test_isDLPFile_001
      * @tc.name Test dlpPermission.isDLPFile.
      * @tc.desc isDLPFile success (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_isDLPFile_001', 0, async function () {
-      var curTag = TAG + "Test_isDLPFile_001";
+    it('Test_isDLPFile_001', 0, async () => {
+      let curTag = TAG + "Test_isDLPFile_001";
       console.info(curTag, "start");
 
       let dlpInfo = await genTestDlpFile();
@@ -1066,9 +1116,12 @@ export default function dlpTest() {
      * @tc.number Test_isDLPFile_002
      * @tc.name Test dlpPermission.isDLPFile.
      * @tc.desc isDLPFile success (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_isDLPFile_002', 0, async function (done) {
-      var curTag = TAG + "Test_isDLPFile_002";
+    it('Test_isDLPFile_002', 0, async () => {
+      let curTag = TAG + "Test_isDLPFile_002";
       console.info(curTag, "start");
       let dlpInfo = await genTestDlpFile();
 
@@ -1076,7 +1129,6 @@ export default function dlpTest() {
         expect(err).assertEqual(null);
         await closeTestDlpFile(dlpInfo);
         console.info(curTag, "end");
-        done();
       });
     })
 
@@ -1084,8 +1136,11 @@ export default function dlpTest() {
      * @tc.number Test_isDLPFile_003
      * @tc.name Test dlpPermission.isDLPFile.
      * @tc.desc isDLPFile invalid fd (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_isDLPFile_003', 0, async function () {
+    it('Test_isDLPFile_003', 0, async () => {
       var curTag = TAG + "Test_isDLPFile_003";
       console.info(curTag, "start");
 
@@ -1105,9 +1160,12 @@ export default function dlpTest() {
      * @tc.number Test_isDLPFile_004
      * @tc.name Test dlpPermission.isDLPFile.
      * @tc.desc isDLPFile success (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_isDLPFile_004', 0, async function (done) {
-      var curTag = TAG + "Test_isDLPFile_004";
+    it('Test_isDLPFile_004', 0, async () => {
+      let curTag = TAG + "Test_isDLPFile_004";
       console.info(curTag, "start");
       try {
         dlpPermission.isDLPFile(-1, (err, data) => {
@@ -1115,7 +1173,6 @@ export default function dlpTest() {
       } catch (err) {
         expect(err.code).assertEqual(DLPErrCode.ERR_JS_INVALID_PARAMETER);
         console.info(curTag, "end");
-        done();
       }
     })
 
@@ -1123,9 +1180,12 @@ export default function dlpTest() {
      * @tc.number Test_getDLPPermissionInfo_001
      * @tc.name Test dlpPermission.getDLPPermissionInfo.
      * @tc.desc test getDLPPermissionInfo in sandbox (Promise).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPPermissionInfo_001', 0, async function () {
-      var curTag = TAG + "Test_getDLPPermissionInfo_001";
+    it('Test_getDLPPermissionInfo_001', 0, async () => {
+      let curTag = TAG + "Test_getDLPPermissionInfo_001";
       console.info(curTag, "start");
 
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
@@ -1160,9 +1220,12 @@ export default function dlpTest() {
      * @tc.number Test_getDLPPermissionInfo_002
      * @tc.name Test dlpPermission.getDLPPermissionInfo.
      * @tc.desc test getDLPPermissionInfo in sandbox (Callback).
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPPermissionInfo_002', 0, async function () {
-      var curTag = TAG + "Test_getDLPPermissionInfo_002";
+    it('Test_getDLPPermissionInfo_002', 0, async () => {
+      let curTag = TAG + "Test_getDLPPermissionInfo_002";
       console.info(curTag, "start");
 
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
@@ -1197,9 +1260,12 @@ export default function dlpTest() {
      * @tc.number Test_getDLPPermissionInfo_003
      * @tc.name Test dlpPermission.getDLPPermissionInfo.
      * @tc.desc test getDLPPermissionInfo in not sandbox (Promise)
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPPermissionInfo_003', 0, async function () {
-      var curTag = TAG + "Test_getDLPPermissionInfo_003";
+    it('Test_getDLPPermissionInfo_003', 0, async () => {
+      let curTag = TAG + "Test_getDLPPermissionInfo_003";
       console.info(curTag, "start");
 
       try {
@@ -1216,9 +1282,12 @@ export default function dlpTest() {
      * @tc.number Test_getDLPPermissionInfo_004
      * @tc.name Test dlpPermission.getDLPPermissionInfo.
      * @tc.desc test getDLPPermissionInfo in not sandbox (Callback)
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPPermissionInfo_004', 0, async function () {
-      var curTag = TAG + "Test_getDLPPermissionInfo_004";
+    it('Test_getDLPPermissionInfo_004', 0, async () => {
+      let curTag = TAG + "Test_getDLPPermissionInfo_004";
       console.info(curTag, "start");
 
       dlpPermission.getDLPPermissionInfo(async (err, dlpPermInfo) => {
@@ -1232,9 +1301,12 @@ export default function dlpTest() {
      * @tc.number Test_getDLPPermissionInfo_005
      * @tc.name Test dlpPermission.getDLPPermissionInfo.
      * @tc.desc test getDLPPermissionInfo in read only sandbox (Promise)
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPPermissionInfo_005', 0, async function () {
-      var curTag = TAG + "Test_getDLPPermissionInfo_005";
+    it('Test_getDLPPermissionInfo_005', 0, async () => {
+      let curTag = TAG + "Test_getDLPPermissionInfo_005";
       console.info(curTag, "start");
 
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
@@ -1255,7 +1327,8 @@ export default function dlpTest() {
         console.info(curTag, "end");
         return;
       }
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_VIEW).assertEqual(dlpPermission.ActionFlagType.ACTION_VIEW);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_VIEW)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_VIEW);
       expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SAVE).assertEqual(0);
       expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SAVE_AS).assertEqual(0);
       expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_EDIT).assertEqual(0);
@@ -1281,9 +1354,12 @@ export default function dlpTest() {
      * @tc.number Test_getDLPPermissionInfo_006
      * @tc.name Test dlpPermission.getDLPPermissionInfo.
      * @tc.desc test getDLPPermissionInfo in content edit sandbox (Promise)
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPPermissionInfo_006', 0, async function () {
-      var curTag = TAG + "Test_getDLPPermissionInfo_006";
+    it('Test_getDLPPermissionInfo_006', 0, async () => {
+      let curTag = TAG + "Test_getDLPPermissionInfo_006";
       console.info(curTag, "start");
 
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.CONTENT_EDIT, userId, 'uri');
@@ -1304,14 +1380,22 @@ export default function dlpTest() {
         console.info(curTag, "end");
         return;
       }
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_VIEW).assertEqual(dlpPermission.ActionFlagType.ACTION_VIEW);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SAVE).assertEqual(dlpPermission.ActionFlagType.ACTION_SAVE);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SAVE_AS).assertEqual(dlpPermission.ActionFlagType.ACTION_SAVE_AS);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_EDIT).assertEqual(dlpPermission.ActionFlagType.ACTION_EDIT);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SCREEN_CAPTURE).assertEqual(dlpPermission.ActionFlagType.ACTION_SCREEN_CAPTURE);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SCREEN_SHARE).assertEqual(dlpPermission.ActionFlagType.ACTION_SCREEN_SHARE);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SCREEN_RECORD).assertEqual(dlpPermission.ActionFlagType.ACTION_SCREEN_RECORD);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_COPY).assertEqual(dlpPermission.ActionFlagType.ACTION_COPY);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_VIEW)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_VIEW);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SAVE)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_SAVE);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SAVE_AS)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_SAVE_AS);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_EDIT)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_EDIT);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SCREEN_CAPTURE)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_SCREEN_CAPTURE);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SCREEN_SHARE)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_SCREEN_SHARE);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SCREEN_RECORD)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_SCREEN_RECORD);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_COPY)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_COPY);
       expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_PRINT).assertEqual(0);
       expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_EXPORT).assertEqual(0);
       expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_PERMISSION_CHANGE).assertEqual(0);
@@ -1330,9 +1414,12 @@ export default function dlpTest() {
      * @tc.number Test_getDLPPermissionInfo_007
      * @tc.name Test dlpPermission.getDLPPermissionInfo.
      * @tc.desc test getDLPPermissionInfo in read only sandbox (Promise)
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPPermissionInfo_007', 0, async function () {
-      var curTag = TAG + "Test_getDLPPermissionInfo_007";
+    it('Test_getDLPPermissionInfo_007', 0, async () => {
+      let curTag = TAG + "Test_getDLPPermissionInfo_007";
       console.info(curTag, "start");
 
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
@@ -1364,13 +1451,16 @@ export default function dlpTest() {
       console.info(curTag, "end");
     })
 
-/**
+    /**
      * @tc.number Test_getDLPPermissionInfo_008
      * @tc.name Test dlpPermission.getDLPPermissionInfo.
      * @tc.desc test getDLPPermissionInfo in content fullcontrol sandbox (Promise)
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPPermissionInfo_008', 0, async function () {
-      var curTag = TAG + "Test_getDLPPermissionInfo_008";
+    it('Test_getDLPPermissionInfo_008', 0, async () => {
+      let curTag = TAG + "Test_getDLPPermissionInfo_008";
       console.info(curTag, "start");
 
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.FULL_CONTROL, userId, 'uri');
@@ -1391,17 +1481,28 @@ export default function dlpTest() {
         console.info(curTag, "end");
         return;
       }
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_VIEW).assertEqual(dlpPermission.ActionFlagType.ACTION_VIEW);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SAVE).assertEqual(dlpPermission.ActionFlagType.ACTION_SAVE);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SAVE_AS).assertEqual(dlpPermission.ActionFlagType.ACTION_SAVE_AS);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_EDIT).assertEqual(dlpPermission.ActionFlagType.ACTION_EDIT);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SCREEN_CAPTURE).assertEqual(dlpPermission.ActionFlagType.ACTION_SCREEN_CAPTURE);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SCREEN_SHARE).assertEqual(dlpPermission.ActionFlagType.ACTION_SCREEN_SHARE);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SCREEN_RECORD).assertEqual(dlpPermission.ActionFlagType.ACTION_SCREEN_RECORD);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_COPY).assertEqual(dlpPermission.ActionFlagType.ACTION_COPY);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_PRINT).assertEqual(dlpPermission.ActionFlagType.ACTION_PRINT);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_EXPORT).assertEqual(dlpPermission.ActionFlagType.ACTION_EXPORT);
-      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_PERMISSION_CHANGE).assertEqual(dlpPermission.ActionFlagType.ACTION_PERMISSION_CHANGE);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_VIEW)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_VIEW);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SAVE)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_SAVE);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SAVE_AS)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_SAVE_AS);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_EDIT)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_EDIT);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SCREEN_CAPTURE)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_SCREEN_CAPTURE);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SCREEN_SHARE)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_SCREEN_SHARE);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_SCREEN_RECORD)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_SCREEN_RECORD);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_COPY)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_COPY);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_PRINT)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_PRINT);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_EXPORT)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_EXPORT);
+      expect(result.want.parameters.info.flags & dlpPermission.ActionFlagType.ACTION_PERMISSION_CHANGE)
+        .assertEqual(dlpPermission.ActionFlagType.ACTION_PERMISSION_CHANGE);
       expect(result.want.parameters.info.dlpFileAccess).assertEqual(dlpPermission.DLPFileAccess.FULL_CONTROL);
       try {
         await dlpPermission.uninstallDLPSandbox(bundleName, userId, sandboxInfo.appIndex);
@@ -1417,9 +1518,12 @@ export default function dlpTest() {
      * @tc.number Test_getOriginalFileName_001
      * @tc.name Test dlpPermission.getOriginalFileName.
      * @tc.desc test getOriginalFileName
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getOriginalFileName_001', 0, async function () {
-      var curTag = TAG + "Test_getOriginalFileName_001";
+    it('Test_getOriginalFileName_001', 0, async () => {
+      let curTag = TAG + "Test_getOriginalFileName_001";
       console.info(curTag, "start");
 
       try {
@@ -1437,9 +1541,12 @@ export default function dlpTest() {
      * @tc.number Test_getOriginalFileName_002
      * @tc.name Test dlpPermission.getOriginalFileName.
      * @tc.desc test getOriginalFileName invalid fileName
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getOriginalFileName_002', 0, async function () {
-      var curTag = TAG + "Test_getOriginalFileName_002";
+    it('Test_getOriginalFileName_002', 0, async () => {
+      let curTag = TAG + "Test_getOriginalFileName_002";
       console.info(curTag, "start");
 
       try {
@@ -1457,13 +1564,16 @@ export default function dlpTest() {
      * @tc.number Test_getDLPSuffix_001
      * @tc.name Test dlpPermission.getDLPSuffix.
      * @tc.desc test getDLPSuffix
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_getDLPSuffix_001', 0, async function () {
-      var curTag = TAG + "Test_getDLPSuffix_001";
+    it('Test_getDLPSuffix_001', 0, async () => {
+      let curTag = TAG + "Test_getDLPSuffix_001";
       console.info(curTag, "start");
 
       try {
-        var name = dlpPermission.getDLPSuffix();
+        let name: string = dlpPermission.getDLPSuffix();
         expect(name).assertEqual('.dlp');
       } catch (err) {
         console.error(curTag, "getDLPSuffix failed", err.code, err.message);
@@ -1477,13 +1587,16 @@ export default function dlpTest() {
      * @tc.number Test_on_openDLPFile_001
      * @tc.name Test dlpPermission.on('openDLPFile').
      * @tc.desc test on('openDLPFile') success.
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_on_openDLPFile_001', 0, async function () {
-      var curTag = TAG + "Test_on_openDLPFile_001";
+    it('Test_on_openDLPFile_001', 0, async () => {
+      let curTag = TAG + "Test_on_openDLPFile_001";
       console.info(curTag, "start");
 
-      var called = false;
-      var srcUri = '123456'
+      let called = false;
+      let srcUri = '123456'
       try {
         dlpPermission.on('openDLPFile', (dlpFileInfo) => {
           expect(dlpFileInfo.uri).assertEqual(srcUri);
@@ -1512,9 +1625,12 @@ export default function dlpTest() {
      * @tc.number Test_on_openDLPFile_002
      * @tc.name Test dlpPermission.on('openDLPFile').
      * @tc.desc test on('openDLPFile') in sandbox.
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_on_openDLPFile_002', 0, async function () {
-      var curTag = TAG + "Test_on_openDLPFile_002";
+    it('Test_on_openDLPFile_002', 0, async () => {
+      let curTag = TAG + "Test_on_openDLPFile_002";
       console.info(curTag, "start");
 
       var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
@@ -1549,9 +1665,12 @@ export default function dlpTest() {
      * @tc.number Test_on_openDLPFile_003
      * @tc.name Test dlpPermission.on('openDLPFile').
      * @tc.desc test on('openDLPFile') invalid param.
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_on_openDLPFile_003', 0, async function () {
-      var curTag = TAG + "Test_on_openDLPFile_003";
+    it('Test_on_openDLPFile_003', 0, async () => {
+      let curTag = TAG + "Test_on_openDLPFile_003";
       console.info(curTag, "start");
 
       try {
@@ -1570,23 +1689,26 @@ export default function dlpTest() {
      * @tc.number Test_off_openDLPFile_001
      * @tc.name Test dlpPermission.off('openDLPFile').
      * @tc.desc test off('openDLPFile') success.
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_off_openDLPFile_001', 0, async function () {
-      var curTag = TAG + "Test_off_openDLPFile_001";
+    it('Test_off_openDLPFile_001', 0, async () => {
+      let curTag = TAG + "Test_off_openDLPFile_001";
       console.info(curTag, "start");
 
-      var called1 = 0;
+      let called1 = 0;
       let func1 = (dlpFileInfo) => {
         expect(dlpFileInfo.uri).assertEqual(srcUri);
         called1++;
       }
-      var called2 = 0;
+      let called2 = 0;
       let func2 = (dlpFileInfo) => {
         expect(dlpFileInfo.uri).assertEqual(srcUri);
         called2++;
       }
 
-      var srcUri = '123456'
+      let srcUri = '123456'
       try {
         dlpPermission.on('openDLPFile', func1);
       } catch (err) {
@@ -1636,23 +1758,26 @@ export default function dlpTest() {
      * @tc.number Test_off_openDLPFile_002
      * @tc.name Test dlpPermission.off('openDLPFile').
      * @tc.desc test off('openDLPFile') all callback success.
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_off_openDLPFile_002', 0, async function () {
-      var curTag = TAG + "Test_off_openDLPFile_002";
+    it('Test_off_openDLPFile_002', 0, async () => {
+      let curTag = TAG + "Test_off_openDLPFile_002";
       console.info(curTag, "start");
 
-      var called1 = 0;
+      let called1 = 0;
       let func1 = (dlpFileInfo) => {
         expect(dlpFileInfo.uri).assertEqual(srcUri);
         called1++;
       }
-      var called2 = 0;
+      let called2 = 0;
       let func2 = (dlpFileInfo) => {
         expect(dlpFileInfo.uri).assertEqual(srcUri);
         called2++;
       }
 
-      var srcUri = '123456'
+      let srcUri = '123456'
       try {
         dlpPermission.on('openDLPFile', func1);
       } catch (err) {
@@ -1701,9 +1826,12 @@ export default function dlpTest() {
      * @tc.number Test_off_openDLPFile_003
      * @tc.name Test dlpPermission.off('openDLPFile').
      * @tc.desc test off('openDLPFile') invalid param.
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
      */
-    it('Test_off_openDLPFile_003', 0, async function () {
-      var curTag = TAG + "Test_off_openDLPFile_003";
+    it('Test_off_openDLPFile_003', 0, async () => {
+      let curTag = TAG + "Test_off_openDLPFile_003";
       console.info(curTag, "start");
 
       try {
@@ -1716,5 +1844,195 @@ export default function dlpTest() {
 
       console.info(curTag, "end");
     })
+
+    /**
+     * @tc.number SUB_SECURITY_DLP_setSandboxAppConfig_0100
+     * @tc.name Test dlpPermission.setSandboxAppConfig
+     * @tc.desc test setSandboxAppConfig success promise.
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('SUB_SECURITY_DLP_setSandboxAppConfig_0100', 0, async () => {
+      var curTag = TAG + "SUB_SECURITY_DLP_setSandboxAppConfig_0100";
+      console.info(curTag, "start");
+
+      try {
+        await dlpPermission.setSandboxAppConfig('configInfo');
+      } catch (err) {
+        expect(false).assertTrue();
+      }
+      expect(true).assertTrue();
+      console.info(curTag, "end");
+    })
+
+    /**
+     * @tc.number SUB_SECURITY_DLP_setSandboxAppConfig_0200
+     * @tc.name Test dlpPermission.setSandboxAppConfig
+     * @tc.desc test setSandboxAppConfig invalid param.
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('SUB_SECURITY_DLP_setSandboxAppConfig_0200', 0, async () => {
+      let curTag = TAG + "SUB_SECURITY_DLP_setSandboxAppConfig_0200";
+      console.info(curTag, "start");
+
+      try {
+        // @ts-ignore
+        await dlpPermission.setSandboxAppConfig(111);
+      } catch (err) {
+        expect(err.code).assertEqual(DLPErrCode.ERR_JS_PARAMETER_ERROR);
+      }
+      console.info(curTag, "end");
+    })
+
+    /**
+     * @tc.number SUB_SECURITY_DLP_setSandboxAppConfig_0300
+     * @tc.name Test dlpPermission.setSandboxAppConfig
+     * @tc.desc test setSandboxAppConfig cannot be called by DLP sandbox application
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('SUB_SECURITY_DLP_setSandboxAppConfig_0300', 0, async () => {
+      let curTag = TAG + "SUB_SECURITY_DLP_setSandboxAppConfig_0300";
+      console.info(curTag, "start");
+      var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
+      let want: Want = {
+        "abilityName": "SandboxConfigPromise",
+        "bundleName": bundleName,
+        "parameters": {
+          'ohos.dlp.params.index': sandboxInfo.appIndex,
+          'ohos.dlp.params.method': 'set'
+        }
+      }
+      let result;
+      try {
+        result = await globalThis.context.startAbilityForResult(want);
+      } catch (err) {
+        console.info(curTag, "startAbility failed", err.code, err.message);
+      }
+      try {
+        await dlpPermission.uninstallDLPSandbox(bundleName, userId, sandboxInfo.appIndex);
+      } catch (err) {
+        console.info(curTag, "uninstallDLPSandbox failed", err.code, err.message);
+      }
+      expect(result.resultCode).assertEqual(DLPErrCode.ERR_JS_API_NOT_FOR_SANDBOX_ERROR);
+      console.info(curTag, "end");
+      return;
+    })
+
+    /**
+     * @tc.number SUB_SECURITY_DLP_getSandboxAppConfig_0100
+     * @tc.name Test dlpPermission.getSandboxAppConfig
+     * @tc.desc test getSandboxAppConfig success promise.
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('SUB_SECURITY_DLP_getSandboxAppConfig_0100', 0, async () => {
+      let curTag = TAG + "SUB_SECURITY_DLP_getSandboxAppConfig_0100";
+      console.info(curTag, "start");
+
+      try {
+        await dlpPermission.getSandboxAppConfig();
+      } catch (err) {
+        expect(false).assertTrue();
+      }
+      expect(true).assertTrue();
+      console.info(curTag, "end");
+    })
+
+    /**
+     * @tc.number SUB_SECURITY_DLP_cleanSandboxAppConfig_0100
+     * @tc.name Test dlpPermission.cleanSandboxAppConfig
+     * @tc.desc test cleanSandboxAppConfig success promise.
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('SUB_SECURITY_DLP_cleanSandboxAppConfig_0100', 0, async () => {
+      let curTag = TAG + "SUB_SECURITY_DLP_cleanSandboxAppConfig_0100";
+      console.info(curTag, "start");
+
+      try {
+        await dlpPermission.cleanSandboxAppConfig();
+      } catch (err) {
+        expect(false).assertTrue();
+        return;
+      }
+      expect(true).assertTrue();
+      console.info(curTag, "end");
+    })
+
+    /**
+     * @tc.number SUB_SECURITY_DLP_cleanSandboxAppConfig_0200
+     * @tc.name Test dlpPermission.cleanSandboxAppConfig
+     * @tc.desc test cleanSandboxAppConfig cannot be called by DLP sandbox application
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('SUB_SECURITY_DLP_cleanSandboxAppConfig_0200', 0, async () => {
+      let curTag = TAG + "SUB_SECURITY_DLP_cleanSandboxAppConfig_0200";
+      console.info(curTag, "start");
+      var sandboxInfo = await dlpPermission.installDLPSandbox(bundleName, dlpPermission.DLPFileAccess.READ_ONLY, userId, 'uri');
+      let want: Want = {
+        "abilityName": "SandboxConfigPromise",
+        "bundleName": bundleName,
+        "parameters": {
+          'ohos.dlp.params.index': sandboxInfo.appIndex,
+          'ohos.dlp.params.method': 'clean'
+        }
+      }
+      let result;
+      try {
+        result = await globalThis.context.startAbilityForResult(want);
+      } catch (err) {
+        console.info(curTag, "startAbility failed", err.code, err.message);
+      }
+      try {
+        await dlpPermission.uninstallDLPSandbox(bundleName, userId, sandboxInfo.appIndex);
+      } catch (err) {
+        console.info(curTag, "uninstallDLPSandbox failed", err.code, err.message);
+      }
+      expect(result.resultCode).assertEqual(DLPErrCode.ERR_JS_API_NOT_FOR_SANDBOX_ERROR);
+      console.info(curTag, "end");
+      return;
+    })
+
+    /**
+     * @tc.number SUB_SECURITY_DLP_startDLPManagerForResult_0100
+     * @tc.name Test dlpPermission.startDLPManagerForResult
+     * @tc.desc test startDLPManagerForResult cannot be called by DLP sandbox application
+     * @tc.size LargeTest
+     * @tc.type Function
+     * @tc.level Level 2
+     */
+    it('SUB_SECURITY_DLP_startDLPManagerForResult_0100', 0, async () => {
+      let curTag = TAG + "SUB_SECURITY_DLP_startDLPManagerForResult_0100";
+      console.info(curTag, "SUB_SECURITY_DLP_startDLPManagerForResult_0100 start");
+      try {
+        let context = globalThis.context; // 获取当前UIAbilityContext
+        let want: Want = {
+          "uri": "file://docs/storage/Users/currentUser/Desktop/1.txt",
+          "parameters": {
+            "displayName": ""
+          }
+        }; // 请求参数
+        // await dlpPermission.startDLPManagerForResult(context, want); // 打开DLP权限管理应用
+        dlpPermission.startDLPManagerForResult(context, want).then((res) => {
+          console.info('SUB_SECURITY_DLP_startDLPManagerForResult_0100 res.resultCode', res.resultCode);
+          console.info('SUB_SECURITY_DLP_startDLPManagerForResult_0100 res.want', JSON.stringify(res.want));
+        })
+      } catch (err) {
+        console.info(curTag, "SUB_SECURITY_DLP_startDLPManagerForResult_0100 startDLPManagerForResult failed", err.code, err.message);
+        expect(err.code == 19100017 && err.message == "displayName not exist in want parameters").assertTrue();
+      }
+      console.info(curTag, "SUB_SECURITY_DLP_startDLPManagerForResult_0100 end");
+      return;
+    })
+
   })
 }

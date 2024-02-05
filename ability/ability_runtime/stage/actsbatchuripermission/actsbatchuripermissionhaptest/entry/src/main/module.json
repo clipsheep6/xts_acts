@@ -5,7 +5,7 @@
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [
-      "phone","tablet"
+      "phone","tablet","2in1"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
@@ -43,17 +43,6 @@
       }
     ],
     "requestPermissions": [
-      {
-        "name": "ohos.permission.PROXY_AUTHORIZATION_URI",
-        "reason": "$string:app_name",
-        "usedScene": {
-          "abilities": [
-            "TestAbility",
-            "EntryAbility"
-          ],
-          "when": "inuse"
-        }
-      },
       {
         "name": "ohos.permission.FILE_ACCESS_MANAGER",
         "reason": "$string:app_name",

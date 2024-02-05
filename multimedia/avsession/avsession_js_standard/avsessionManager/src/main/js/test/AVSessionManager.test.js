@@ -50,15 +50,15 @@ export default function AVSessionManager() {
         })
 
         /* *
-            * @tc.number    : SUB_MULTIMEDIA_AVSESSION_CREATEAVSESSION_PROMISE_0100
-            * @tc.name      : CREATEAVSESSION_0100
-            * @tc.desc      : Testing createavSession with right parameter - promise
-            * @tc.size      : MediumTest
-            * @tc.type      : Function
-            * @tc.level     : Level0
-            */
+         * @tc.number    : SUB_MULTIMEDIA_AVSESSION_CREATEAVSESSION_PROMISE_0100
+         * @tc.name      : create AVSession(audio) - promise
+         * @tc.desc      : Testing createAVSession with right parameter audio - promise
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level0
+         */
         it('SUB_MULTIMEDIA_AVSESSION_CREATEAVSESSION_PROMISE_0100', 0, async function (done) {
-            await avSession.createAVSession(context, tag, type).then((data) => {
+            await avSession.createAVSession(context, tag, "audio").then((data) => {
                 currentAVSession = data;
                 if (currentAVSession.sessionId.length === 64) {
                     console.info('TestLog: avSession create successfully');
@@ -75,19 +75,19 @@ export default function AVSessionManager() {
             done();
         })
         /* *
-            * @tc.number    : SUB_MULTIMEDIA_AVSESSION_CREATEAVSESSION_PROMISE_0200
-            * @tc.name      : CREATEAVSESSION_0200
-            * @tc.desc      : Testing createavSession with wrong type
-            * @tc.size      : MediumTest
-            * @tc.type      : Function
-            * @tc.level     : Level2
-            */
+         * @tc.number    : SUB_MULTIMEDIA_AVSESSION_CREATEAVSESSION_PROMISE_0200
+         * @tc.name      : createAVSession(promise) with invalid param(errcode 401) - invalid value
+         * @tc.desc      : test createAVSession(promise) errcode 401
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level2
+         */
         it('SUB_MULTIMEDIA_AVSESSION_CREATEAVSESSION_PROMISE_0200', 0, async function (done) {
             await avSession.createAVSession(context, tag, 'aaa').then((data) => {
                 console.info('TestLog: avSession create successfully');
             }).catch((err) => {
                 console.info(`TestLog: avSession create error: code: ${err.code}, message: ${err.message}`);
-                expect(true).assertTrue();
+                expect(err.code).assertEqual(401);
             });
             sleep(200);
             currentAVSession = await avSession.createAVSession(context,tag,"audio");
@@ -95,35 +95,61 @@ export default function AVSessionManager() {
         })
 
         /* *
-            * @tc.number    : SUB_MULTIMEDIA_AVSESSION_CREATEAVSESSION_PROMISE_0300
-            * @tc.name      : CREATEAVSESSION_0300
-            * @tc.desc      : Testing createavSession with wrong parameter
-            * @tc.size      : MediumTest
-            * @tc.type      : Function
-            * @tc.level     : Level2
-            */
+         * @tc.number    : SUB_MULTIMEDIA_AVSESSION_CREATEAVSESSION_PROMISE_0300
+         * @tc.name      : createAVSession(promise) with invalid param(errcode 401) - empty string
+         * @tc.desc      : test createAVSession(promise) errcode 401
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level2
+         */
         it('SUB_MULTIMEDIA_AVSESSION_CREATEAVSESSION_PROMISE_0300', 0, async function (done) {
             await avSession.createAVSession(context, '', type).then((data) => {
                 console.info('TestLog: avSession create successfully');
             }).catch((err) => {
                 console.info(`TestLog: avSession create error: code: ${err.code}, message: ${err.message}`);
-                expect(true).assertTrue();
+                expect(err.code).assertEqual(401);
             });
             sleep(200);
             currentAVSession = await avSession.createAVSession(context,tag,"audio");
             done();
         })
 
+        /* *
+         * @tc.number    : SUB_MULTIMEDIA_AVSESSION_CREATEAVSESSION_PROMISE_0400
+         * @tc.name      : create AVSession(video) - promise
+         * @tc.desc      : Testing createAVSession with right parameter video - promise
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level0
+         */
+        it('SUB_MULTIMEDIA_AVSESSION_CREATEAVSESSION_PROMISE_0400', 0, async function (done) {
+            await avSession.createAVSession(context, tag, "video").then((data) => {
+                currentAVSession = data;
+                if (currentAVSession.sessionId.length === 64) {
+                    console.info('TestLog: avSession create successfully');
+                    expect(true).assertTrue();
+                }
+                else {
+                    console.info('TestLog: avSession create failed');
+                    expect(false).assertTrue();
+                }
+            }).catch((err) => {
+                console.info(`TestLog: avSession create error: code: ${err.code}, message: ${err.message}`);
+                expect(false).assertTrue();
+            });
+            done();
+        })
+
 
 
         /* *
-        * @tc.number    : SUB_MULTIMEDIA_AVSESSION_GETAVCASTCONTROLLER_CALLBACK_0100
-        * @tc.name      : GETAVCASTCONTROLLER_CALLBACK_0100
-        * @tc.desc      : Testing getavcastcontroller
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level2
-        */
+         * @tc.number    : SUB_MULTIMEDIA_AVSESSION_GETAVCASTCONTROLLER_CALLBACK_0100
+         * @tc.name      : getavcastcontroller - callback
+         * @tc.desc      : Testing call getavcastcontroller(callback)
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level2
+         */
         it('SUB_MULTIMEDIA_AVSESSION_GETAVCASTCONTROLLER_CALLBACK_0100', 0, async function (done) {
             try {
                 await avSession.createAVSession(context, tag, "audio").then((data) => {
@@ -152,13 +178,13 @@ export default function AVSessionManager() {
         })
 
         /* *
-        * @tc.number    : SUB_MULTIMEDIA_AVSESSION_GETAVCASTCONTROLLER_PROMISE_0100
-        * @tc.name      : GETAVCASTCONTROLLER_CALLBACK_0100
-        * @tc.desc      : Testing getavcastcontroller
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level2
-        */
+         * @tc.number    : SUB_MULTIMEDIA_AVSESSION_GETAVCASTCONTROLLER_PROMISE_0100
+         * @tc.name      : getavcastcontroller - promise
+         * @tc.desc      : Testing call getavcastcontroller(promise)
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level2
+         */
         it('SUB_MULTIMEDIA_AVSESSION_GETAVCASTCONTROLLER_PROMISE_0100', 0, async function (done) {
             try {
                 currentAVSession = await avSession.createAVSession(context, tag, "audio");
@@ -184,13 +210,13 @@ export default function AVSessionManager() {
 
 
         /* *
-        * @tc.number    : SUB_MULTIMEDIA_AVSESSION_STOPCASTING_CALLBACK_0100
-        * @tc.name      : STOPCASTING_CALLBACK_0100
-        * @tc.desc      : Testing stopCasting
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level2
-        */
+         * @tc.number    : SUB_MULTIMEDIA_AVSESSION_STOPCASTING_CALLBACK_0100
+         * @tc.name      : stopCasting - callback
+         * @tc.desc      : Testing call stopCasting(callback)
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level2
+         */
         it('SUB_MULTIMEDIA_AVSESSION_STOPCASTING_CALLBACK_0100', 0, async function (done) {
             try {
                 await avSession.createAVSession(context, tag, "audio").then((data) => {
@@ -217,14 +243,15 @@ export default function AVSessionManager() {
             }
             done();
         })
+        
         /* *
-    * @tc.number    : SUB_MULTIMEDIA_AVSESSION_STOPCASTING_PROMISE_0100
-    * @tc.name      : STOPCASTING_PROMISE_0100
-    * @tc.desc      : Testing getavcastcontroller
-    * @tc.size      : MediumTest
-    * @tc.type      : Function
-    * @tc.level     : Level2
-    */
+         * @tc.number    : SUB_MULTIMEDIA_AVSESSION_STOPCASTING_PROMISE_0100
+         * @tc.name      : stopCasting - promise
+         * @tc.desc      : Testing call stopCasting(promise)
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level2
+         */
         it('SUB_MULTIMEDIA_AVSESSION_STOPCASTING_PROMISE_0100', 0, async function (done) {
             try {
                 await avSession.createAVSession(context, tag, "audio").then((data) => {
@@ -249,14 +276,15 @@ export default function AVSessionManager() {
             }
             done();
         })
+
         /* *
-        * @tc.number    : SUB_MULTIMEDIA_AVSESSION_GETCURRENTITEM_CALLBACK_0100
-        * @tc.name      : GETCURRENTITEM_CALLBACK_0100
-        * @tc.desc      : Testing getcurrentitem
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level2
-        */
+         * @tc.number    : SUB_MULTIMEDIA_AVSESSION_GETCURRENTITEM_CALLBACK_0100
+         * @tc.name      : getCurrentItem - callback
+         * @tc.desc      : Testing call getCurrentItem(callback)
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level2
+         */
         it('SUB_MULTIMEDIA_AVSESSION_GETCURRENTITEM_CALLBACK_0100', 0, async function (done) {
             try {
                 await avSession.createAVSession(context, tag, "audio").then((data) => {
@@ -289,14 +317,15 @@ export default function AVSessionManager() {
             }
             done();
         })
+
         /* *
-        * @tc.number    : SUB_MULTIMEDIA_AVSESSION_GETCURRENTITEM_PROMISE_0100
-        * @tc.name      : GETCURRENTITEM_CALLBACK_0100
-        * @tc.desc      : Testing getcurrentitem
-        * @tc.size      : MediumTest
-        * @tc.type      : Function
-        * @tc.level     : Level2
-        */
+         * @tc.number    : SUB_MULTIMEDIA_AVSESSION_GETCURRENTITEM_PROMISE_0100
+         * @tc.name      : getCurrentItem - promise
+         * @tc.desc      : Testing call getCurrentItem(promise)
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level2
+         */
         it('SUB_MULTIMEDIA_AVSESSION_GETCURRENTITEM_PROMISE_0100', 0, async function (done) {
             try {
                 await avSession.createAVSession(context, tag, "audio").then((data) => {

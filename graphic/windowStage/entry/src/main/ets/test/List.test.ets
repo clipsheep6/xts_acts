@@ -18,12 +18,19 @@ import windowRefactorInterfaceTest from './windowRefactorInterface.test'
 import displayAndWindowRefactorInterfaceTest from './displayAndWindowRefactorInterface.test'
 import parameterVerificationIsOptional from './parameterVerificationIsOptional.test'
 import windowRichScene from './windowRichScene.test'
+import pipWindowTest from './pipwindow.test'
+import interfaceSupportSessionManagerTest from './interfaceSupportSessionManager.test'
+import windowRecoverTest from './windowRecover.test'
 
 export default function testsuite() {
+  parameterVerificationIsOptional(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
   windowCallbackTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
   windowPromiseTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
   windowRefactorInterfaceTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
   displayAndWindowRefactorInterfaceTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
-  parameterVerificationIsOptional(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
   windowRichScene(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
+  pipWindowTest(globalThis.abilityContext)
+  interfaceSupportSessionManagerTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
+  
+  windowRecoverTest(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
 }
