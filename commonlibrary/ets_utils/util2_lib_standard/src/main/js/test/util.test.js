@@ -4617,55 +4617,204 @@ describe('Base64HelperTest', function () {
      * @tc.name: test_encodeToStringSync_basic_base64_001
      * @tc.desc: Encodes the specified byte array into a String using the Base64 encoding scheme.
      */
-     it('test_encodeToStringSync_basic_base64_001', 0, function () {
+    it('test_encodeToStringSync_basic_base64_001', 0, function () {
       var that = new util.Base64Helper()
       var array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
       var result = that.encodeToStringSync(array, util.Type.BASIC);
       expect(result).assertEqual('TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=')
-  })
+    })
 
     /**
      * @tc.name: test_decodeSync_basic_base64_002
      * @tc.desc: Decodes a Base64 encoded String or input u8 array into a newly-allocated u8
         array using the Base64 encoding scheme.
      */
-        it('test_decodeSync_basic_base64_002', 0, function () {
-          var that = new util.Base64Helper()
-          var buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=';
-          var rarray = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-          var result = that.decodeSync(buff, util.Type.BASIC);
-          for (var i = 0; i < rarray.length; i++) {
-              expect(result[i]).assertEqual(rarray[i]);
-          }
-      })
+    it('test_decodeSync_basic_base64_002', 0, function () {
+        var that = new util.Base64Helper()
+        var buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=';
+        var rarray = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+        var result = that.decodeSync(buff, util.Type.BASIC);
+        for (var i = 0; i < rarray.length; i++) {
+            expect(result[i]).assertEqual(rarray[i]);
+        }
+    })
 
-      /**
-       * @tc.name: test_encodeToString_basic_base64_003
-       * @tc.desc: Asynchronously encodes the specified byte array into a String using the Base64 encoding scheme.
-       */
-      it('test_encodeToString_basic_base64_003', 0, async function () {
-          var that = new util.Base64Helper()
-          var array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-          that.encodeToString(array, util.Type.BASIC).then(val=>{
-              expect(val).assertEqual('TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=');
-          })
-      })
+    /**
+     * @tc.name: test_encodeToString_basic_base64_003
+     * @tc.desc: Asynchronously encodes the specified byte array into a String using the Base64 encoding scheme.
+     */
+    it('test_encodeToString_basic_base64_003', 0, async function () {
+        var that = new util.Base64Helper()
+        var array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+        that.encodeToString(array, util.Type.BASIC).then(val=>{
+            expect(val).assertEqual('TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=');
+        })
+    })
 
-      /**
-       * @tc.name: test_decode_basic_base64_004
-       * @tc.desc: Use the Base64 encoding scheme to asynchronously decode a Base64-encoded string or input u8
-          array into a newly allocated u8 array.
-       */
-      it('test_encodeToString_basic_base64_004', 0, async function () {
-          var that = new util.Base64Helper()
-          var buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=';
-          var array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
-          that.decode(buff, util.Type.BASIC).then(val=>{
-              for (var i = 0; i < array.length; i++) {
-                  expect(val[i]).assertEqual(array[i]);
-              }
-          })
-      })
+    /**
+     * @tc.name: test_decode_basic_base64_004
+     * @tc.desc: Use the Base64 encoding scheme to asynchronously decode a Base64-encoded string or input u8
+        array into a newly allocated u8 array.
+     */
+    it('test_encodeToString_basic_base64_004', 0, async function () {
+        var that = new util.Base64Helper()
+        var buff = 'TWFuaXNkaXN0aW5ndWlzaGVkbm90b25seWJ5aGlzcmVhc29uYnV0Ynl0aGlzc2luZ3VsYXJwYXNzaW9uZnJvbW90aGVyYW5pbWFsc3doaWNoaXNhbHVzdG9mdGhlbWluZGV4Y2VlZHN0aGVzaG9ydHZlaGVtZW5jZW9mYW55Y2FybmFscGxlYXN1cmU=';
+        var array = new Uint8Array([77,97,110,105,115,100,105,115,116,105,110,103,117,105,115,104,101,100,110,111,116,111,110,108,121,98,121,104,105,115,114,101,97,115,111,110,98,117,116,98,121,116,104,105,115,115,105,110,103,117,108,97,114,112,97,115,115,105,111,110,102,114,111,109,111,116,104,101,114,97,110,105,109,97,108,115,119,104,105,99,104,105,115,97,108,117,115,116,111,102,116,104,101,109,105,110,100,101,120,99,101,101,100,115,116,104,101,115,104,111,114,116,118,101,104,101,109,101,110,99,101,111,102,97,110,121,99,97,114,110,97,108,112,108,101,97,115,117,114,101]);
+        that.decode(buff, util.Type.BASIC).then(val=>{
+            for (var i = 0; i < array.length; i++) {
+                expect(val[i]).assertEqual(array[i]);
+            }
+        })
+    })
+
+    /**
+     * @tc.name: test_encodeToStringSync_base64url_001
+     * @tc.desc: Encodes the specified byte array into a String using the Base64 and Base64URL encoding scheme.
+     */
+    it('test_encodeToStringSync_base64url_001', 0, function () {
+        let that = new util.Base64Helper()
+        let array = new Uint8Array([2,192,254,253,5,132,69]);
+        let result = that.encodeToStringSync(array);
+        let resBas = that.encodeToStringSync(array, util.Type.BASIC);
+        let resUrl = that.encodeToStringSync(array, util.Type.BASIC_URL_SAFE);
+        expect(result).assertEqual('AsD+/QWERQ==');
+        expect(resBas).assertEqual('AsD+/QWERQ==');
+        expect(resUrl).assertEqual('AsD-_QWERQ');
+    })
+
+    /**
+     * @tc.name: test_encodeSync_base64url_001
+     * @tc.desc: Encodes all bytes from the specified u8 array into a newly-allocated u8.
+     */
+    it('test_encodeSync_base64url_001', 0, function () {
+        let that = new util.Base64Helper()
+        let array = new Uint8Array([2,192,254,253,5,132,69]);
+        let result = that.encodeSync(array);
+        let resBas = that.encodeSync(array, util.Type.BASIC);
+        let resUrl = that.encodeSync(array, util.Type.BASIC_URL_SAFE);
+        let arrBas = new Uint8Array([65,115,68,43,47,81,87,69,82,81,61,61]);
+        let arrUrl = new Uint8Array([65,115,68,45,95,81,87,69,82,81]);
+        expect(result.every((value, index) => value === arrBas[index])).assertEqual(true);
+        expect(resBas.every((value, index) => value === arrBas[index])).assertEqual(true);
+        expect(resUrl.every((value, index) => value === arrUrl[index])).assertEqual(true);
+    })
+
+    /**
+     * @tc.name: test_encodeToString_base64url_001
+     * @tc.desc: Asynchronously encodes the specified byte array into a String using the Base64 and
+     * Base64URL encoding scheme.
+     */
+    it('test_encodeToString_base64url_001', 0, function () {
+        let that = new util.Base64Helper();
+        let array = new Uint8Array([2, 192, 254, 253, 5, 132, 69]);
+        that.encodeToString(array).then(result => {
+            expect(result).assertEqual('AsD+/QWERQ==');
+        })
+        that.encodeToString(array, util.Type.BASIC).then(resBas => {
+            expect(resBas).assertEqual('AsD+/QWERQ==');
+        })
+        that.encodeToString(array, util.Type.BASIC_URL_SAFE).then(resUrl => {
+            expect(resUrl).assertEqual('AsD-_QWERQ');
+        })
+    })
+
+    /**
+     * @tc.name: test_encode_base64url_001
+     * @tc.desc: Asynchronously encodes all bytes in the specified u8 array into the newly allocated
+     * u8 array using the Base64 and Base64URL encoding scheme.
+     */
+    it('test_encode_base64url_001', 0, function () {
+        let that = new util.Base64Helper();
+        let array = new Uint8Array([2, 192, 254, 253, 5, 132, 69]);
+        let arrBas = new Uint8Array([65,115,68,43,47,81,87,69,82,81,61,61]);
+        let arrUrl = new Uint8Array([65,115,68,45,95,81,87,69,82,81]);
+        that.encode(array).then(result => {
+            expect(result.every((value, index) => value === arrBas[index])).assertEqual(true);
+        })
+        that.encode(array, util.Type.BASIC).then(resBas => {
+            expect(resBas.every((value, index) => value === arrBas[index])).assertEqual(true);
+        })
+        that.encode(array, util.Type.BASIC_URL_SAFE).then(resUrl => {
+            expect(resUrl.every((value, index) => value === arrUrl[index])).assertEqual(true);
+        })
+    })
+
+    /**
+     * @tc.name: test_decodeSync_base64url_001
+     * @tc.desc: Decodes String into a newly-allocated u8 array using the Base64 and Base64URL encoding scheme.
+     */
+    it('test_decodeSync_base64url_001', 0, function () {
+        let that = new util.Base64Helper();
+        let str = "AsD+/QWERQ==";
+        let strUrl = "AsD-_QWERQ";
+        let array = new Uint8Array([2,192,254,253,5,132,69]);
+        let result = that.decodeSync(str);
+        let resBas = that.decodeSync(str, util.Type.BASIC);
+        let resUrl = that.decodeSync(strUrl, util.Type.BASIC_URL_SAFE);
+        expect(result.every((value, index) => value === array[index])).assertEqual(true);
+        expect(resBas.every((value, index) => value === array[index])).assertEqual(true);
+        expect(resUrl.every((value, index) => value === array[index])).assertEqual(true);
+    })
+
+    /**
+     * @tc.name: test_decodeSync_base64url_002
+     * @tc.desc: Decodes input u8 array into a newly-allocated u8 array using the Base64 and Base64URL encoding scheme.
+     */
+    it('test_decodeSync_base64url_002', 0, function () {
+        let that = new util.Base64Helper();
+        let arrBas = new Uint8Array([65,115,68,43,47,81,87,69,82,81,61,61]);
+        let arrURL = new Uint8Array([65,115,68,45,95,81,87,69,82,81]);
+        let array = new Uint8Array([2,192,254,253,5,132,69]);
+        let result = that.decodeSync(arrBas);
+        let resBas = that.decodeSync(arrBas, util.Type.BASIC);
+        let resUrl = that.decodeSync(arrURL, util.Type.BASIC_URL_SAFE);
+        expect(result.every((value, index) => value === array[index])).assertEqual(true);
+        expect(resBas.every((value, index) => value === array[index])).assertEqual(true);
+        expect(resUrl.every((value, index) => value === array[index])).assertEqual(true);
+    })
+
+    /**
+     * @tc.name: test_decode_base64url_001
+     * @tc.desc: Use the Base64 and Base64URL encoding scheme to asynchronously decode a string into
+     * a newly allocated u8 array.
+     */
+    it('test_decode_base64url_001', 0, function () {
+        let that = new util.Base64Helper();
+        let str = "AsD+/QWERQ==";
+        let strUrl = "AsD-_QWERQ";
+        let array = new Uint8Array([2,192,254,253,5,132,69]);
+        that.decode(str).then(result => {
+            expect(result.every((value, index) => value === array[index])).assertEqual(true);
+        })
+        that.decode(str, util.Type.BASIC).then(resBas => {
+            expect(resBas.every((value, index) => value === array[index])).assertEqual(true);
+        })
+        that.decode(strUrl, util.Type.BASIC_URL_SAFE).then(resUrl => {
+            expect(resUrl.every((value, index) => value === array[index])).assertEqual(true);
+        })
+    })
+
+    /**
+     * @tc.name: test_decode_base64url_002
+     * @tc.desc: Use the Base64 and Base64URL encoding scheme to asynchronously decode a input u8 array into
+     * a newly allocated u8 array.
+     */
+    it('test_decode_base64url_002', 0, function () {
+        let that = new util.Base64Helper();
+        let arrBas = new Uint8Array([65,115,68,43,47,81,87,69,82,81,61,61]);
+        let arrUrl = new Uint8Array([65,115,68,45,95,81,87,69,82,81]);
+        let array = new Uint8Array([2,192,254,253,5,132,69]);
+        that.decode(arrBas).then(result => {
+            expect(result.every((value, index) => value === array[index])).assertEqual(true);
+        })
+        that.encode(arrBas, util.Type.BASIC).then(resBas => {
+            expect(resBas.every((value, index) => value === array[index])).assertEqual(true);
+        })
+        that.encode(arrUrl, util.Type.BASIC_URL_SAFE).then(resUrl => {
+            expect(resUrl.every((value, index) => value === array[index])).assertEqual(true);
+        })
+    })
+
 })
 
 describe('DecodeEncodeTest', function () {
