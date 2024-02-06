@@ -312,6 +312,84 @@ export default function addImage() {
         });
 
         /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_SCALE_PIXELMAP_SYNC_0100
+         * @tc.name      : Pixelmap Scale-sync
+         * @tc.desc      : 1.create pixelmap
+         *               : 2.call scale
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_SCALE_PIXELMAP_SYNC_0100', 0, async function (done) {
+            // var color = new ArrayBuffer(96);
+            // var bufferArr = new Uint8Array(color);
+            // for (var i = 0; i < bufferArr.length; i++) {
+            //     bufferArr[i] = i + 1;
+            // }
+            // let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
+            // let pixelmap = image.createPixelMap(color, opts);
+            // var pixelSize = pixelmap.getPixelBytesNumber();
+            // logger.log(`new pixel size ${pixelSize}`);
+            // var readBuffer = new ArrayBuffer(pixelSize);
+            // await pixelmap.readPixelsToBuffer(readBuffer);
+            // var bufferArr2 = new Uint8Array(readBuffer);
+            // for (var i = 0; i < bufferArr2.length; i++) {
+            //     if (bufferArr2[i] != data[i]) {
+            //         logger.log(`pixel[${i}] current[${bufferArr2[i]}] target[${data[i]}]`);
+            //         expect(false).assertTrue();
+            //         break;
+            //     }
+            // }
+            // expect(true).assertTrue();
+            const color = new ArrayBuffer(96);
+            let opts = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
+            let pixelmap = image.createPixelMapSync(color, opts)
+                if (pixelmap == undefined) {
+                    console.info('SUB_MULTIMEDIA_IMAGE_SCALE_PIXELMAP_SYNC_0100 createPixelMap failed');
+                    expect(false).assertTrue()
+                }
+                let numberX = 1.0;
+                let numberY = 4.0;
+                let scale1x4 = pixelmap.scaleSync(numberX,numberY);
+                if (scale1x4 == undefined) {
+                    console.info('SUB_MULTIMEDIA_IMAGE_SCALE_PIXELMAP_SYNC_0100 scale1x4 is empty');
+                    expect(false).assertTrue()
+                }else{
+                    console.info('SUB_MULTIMEDIA_IMAGE_SCALE_PIXELMAP_SYNC_0100 success ');
+                    expect(true).assertTrue()
+                }
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_SCALE_PIXELMAP_SYNC_0200
+         * @tc.name      : Pixelmap Scale-sync
+         * @tc.desc      : 1.create pixelmap
+         *               : 2.call scale
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_SCALE_PIXELMAP_SYNC_0200', 0, async function (done) {
+            const color = new ArrayBuffer(96);
+            let opts = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
+            let pixelmap = image.createPixelMapSync(color, opts)
+                if (pixelmap == undefined) {
+                    console.info('SUB_MULTIMEDIA_IMAGE_SCALE_PIXELMAP_SYNC_0100 createPixelMap failed');
+                    expect(false).assertTrue()
+                }
+                let numberX = 2.0;
+                let numberY = 1.0;
+                let scale2x1 = pixelmap.scaleSync(numberX,numberY);
+                if (scale2x1 == undefined) {
+                    console.info('SUB_MULTIMEDIA_IMAGE_SCALE_PIXELMAP_SYNC_0100 scale2x1 is empty');
+                    expect(false).assertTrue()
+                }else{
+                    console.info('SUB_MULTIMEDIA_IMAGE_SCALE_PIXELMAP_SYNC_0100 success ');
+                    expect(true).assertTrue()
+                }
+        })
+
+        /**
          * @tc.number    : SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAP_CALLBACK_0100
          * @tc.name      : create pixelmap-callback (editable: true, pixelFormat: RGBA_8888, size: { height: 4, width: 6 }, bytes = buffer,scaleMode: 0, alphaType: 0)
          * @tc.desc      : 1.create InitializationOptions object
