@@ -35,7 +35,7 @@ export default function abilityTest() {
      */
     it('Acts_NotificationGetAllEnableStatus_0100',0, async function (done) {
       console.info("Acts_NotificationGetAllEnableStatus_0100 start");
-      await notificationManager.getAllNotificationEnableStatus().then((data) => {
+      await notificationManager.getAllNotificationEnabledBundles().then((data) => {
         console.info("Acts_NotificationGetAllEnableStatus_0100 db data is" + JSON.stringify(data));
         let res = JSON.stringify(data);
         expect(res).assertContain("com.example.actsnotificaiongetallenablestatustest");
