@@ -15,6 +15,24 @@
 
 import events_emitter from '@ohos.events.emitter'
 
+declare enum SecurityComponentLayoutDirection {
+  HORIZONTAL = 0,
+  VERTICAL = 1
+}
+
+declare enum PasteIconStyle {
+  LINES = 0
+}
+
+declare enum PasteButtonOnClickResult {
+  SUCCESS = 0,
+  TEMPORARY_AUTHORIZATION_FAILED = 1
+}
+
+declare enum PasteDescription {
+  PASTE = 0
+}
+
 @Entry
 @Component
 struct pasteButton {
@@ -30,7 +48,7 @@ struct pasteButton {
   @State fontSize: number = 16
   @State fontStyle: FontStyle = FontStyle.Normal
   @State fontWeight: FontWeight = FontWeight.Medium
-  @State fontFamily: string = 'HarmonyOS Sans'
+  @State fontFamily: string = 'OpenHarmony Sans'
   @State fontColor: number = 0xffffffff
   @State iconColor: number = 0xffffffff
   @State bgColor: number = 0xff007dff
@@ -46,7 +64,7 @@ struct pasteButton {
   @State clipSet: boolean = false
   @State columnWidth: string = '100%'
   @State columnHeight: string = '100%'
-  private stateChangeCallBack = (eventData) => {
+  private stateChangeCallBack = (eventData: events_emitter.EventData) => {
     if (eventData != null) {
       console.debug("====>page_pasteButton page state change called:" + JSON.stringify(eventData));
       if (eventData.data.bgType != null) {
@@ -138,7 +156,7 @@ struct pasteButton {
 
   onPageShow() {
     console.debug('====>page_pasteButton page show called');
-    var stateChangeEvent = {
+    let stateChangeEvent: events_emitter.InnerEvent = {
       eventId: 1,
       priority: events_emitter.EventPriority.LOW
     }
@@ -156,12 +174,12 @@ struct pasteButton {
         PasteButton({ icon: PasteIconStyle.LINES, text: PasteDescription.PASTE, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -197,17 +215,18 @@ struct pasteButton {
         }.type(ButtonType.Capsule)
         .margin({
           top: 200,
-          bottom:60
+          bottom: 60
         }).backgroundColor('#00000000')
+
         PasteButton({ icon: PasteIconStyle.LINES, text: PasteDescription.PASTE, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: PasteButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }

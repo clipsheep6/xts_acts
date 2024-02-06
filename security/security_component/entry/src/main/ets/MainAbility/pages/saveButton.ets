@@ -15,6 +15,32 @@
 
 import events_emitter from '@ohos.events.emitter'
 
+declare enum SecurityComponentLayoutDirection {
+  HORIZONTAL = 0,
+  VERTICAL = 1
+}
+
+declare enum SaveIconStyle {
+  FULL_FILLED = 0,
+  LINES = 1
+}
+
+declare enum SaveDescription {
+  DOWNLOAD = 0,
+  DOWNLOAD_FILE = 1,
+  SAVE = 2,
+  SAVE_IMAGE = 3,
+  SAVE_FILE = 4,
+  DOWNLOAD_AND_SHARE = 5,
+  RECEIVE = 6,
+  CONTINUE_TO_RECEIVE = 7
+}
+
+declare enum SaveButtonOnClickResult {
+  SUCCESS = 0,
+  TEMPORARY_AUTHORIZATION_FAILED = 1
+}
+
 @Entry
 @Component
 struct saveButton {
@@ -30,7 +56,7 @@ struct saveButton {
   @State fontSize: number = 16
   @State fontStyle: FontStyle = FontStyle.Normal
   @State fontWeight: FontWeight = FontWeight.Medium
-  @State fontFamily: string = 'HarmonyOS Sans'
+  @State fontFamily: string = 'OpenHarmony Sans'
   @State fontColor: number = 0xffffffff
   @State iconColor: number = 0xffffffff
   @State bgColor: number = 0xff007dff
@@ -46,7 +72,7 @@ struct saveButton {
   @State clipSet: boolean = false
   @State columnWidth: string = '100%'
   @State columnHeight: string = '100%'
-  private stateChangeCallBack = (eventData) => {
+  private stateChangeCallBack = (eventData: events_emitter.EventData) => {
     if (eventData != null) {
       console.debug("====>page_saveButton page state change called:" + JSON.stringify(eventData));
       if (eventData.data.bgType != null) {
@@ -138,7 +164,7 @@ struct saveButton {
 
   onPageShow() {
     console.debug('====>page_saveButton page show called');
-    var stateChangeEvent = {
+    let stateChangeEvent: events_emitter.InnerEvent = {
       eventId: 1,
       priority: events_emitter.EventPriority.LOW
     }
@@ -156,12 +182,12 @@ struct saveButton {
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: SaveButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -197,17 +223,18 @@ struct saveButton {
         }.type(ButtonType.Capsule)
         .margin({
           top: 200,
-          bottom:60
+          bottom: 60
         }).backgroundColor('#00000000')
+
         SaveButton({ icon: SaveIconStyle.FULL_FILLED, text: SaveDescription.DOWNLOAD, buttonType: this.bgType })
           .onClick((event: ClickEvent, result: SaveButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }

@@ -15,6 +15,35 @@
 
 import events_emitter from '@ohos.events.emitter'
 
+declare enum SecurityComponentLayoutDirection {
+  HORIZONTAL = 0,
+  VERTICAL = 1
+}
+
+declare enum LocationIconStyle {
+  FULL_FILLED = 0,
+  LINES = 1
+}
+
+declare enum LocationDescription {
+  CURRENT_LOCATION = 0,
+  ADD_LOCATION = 1,
+  SELECT_LOCATION = 2,
+  SHARE_LOCATION = 3,
+  SEND_LOCATION = 4,
+  LOCATING = 5,
+  LOCATION = 6,
+  SEND_CURRENT_LOCATION = 7,
+  RELOCATION = 8,
+  PUNCH_IN = 9,
+  CURRENT_POSITION = 10
+}
+
+declare enum LocationButtonOnClickResult {
+  SUCCESS = 0,
+  TEMPORARY_AUTHORIZATION_FAILED = 1
+}
+
 @Entry
 @Component
 struct locationButton {
@@ -30,7 +59,7 @@ struct locationButton {
   @State fontSize: number = 16
   @State fontStyle: FontStyle = FontStyle.Normal
   @State fontWeight: FontWeight = FontWeight.Medium
-  @State fontFamily: string = 'HarmonyOS Sans'
+  @State fontFamily: string = 'OpenHarmony Sans'
   @State fontColor: number = 0xffffffff
   @State iconColor: number = 0xffffffff
   @State bgColor: number = 0xff007dff
@@ -46,7 +75,7 @@ struct locationButton {
   @State clipSet: boolean = false
   @State columnWidth: string = '100%'
   @State columnHeight: string = '100%'
-  private stateChangeCallBack = (eventData) => {
+  private stateChangeCallBack = (eventData: events_emitter.EventData) => {
     if (eventData != null) {
       console.debug("====>page_locationButton page state change called:" + JSON.stringify(eventData));
       if (eventData.data.bgType != null) {
@@ -138,7 +167,7 @@ struct locationButton {
 
   onPageShow() {
     console.debug('====>page_locationButton page show called');
-    var stateChangeEvent = {
+    let stateChangeEvent: events_emitter.InnerEvent = {
       eventId: 1,
       priority: events_emitter.EventPriority.LOW
     }
@@ -153,15 +182,19 @@ struct locationButton {
   build() {
     Row() {
       Column() {
-        LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.CURRENT_LOCATION, buttonType: this.bgType })
+        LocationButton({
+          icon: LocationIconStyle.FULL_FILLED,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: this.bgType
+        })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -197,17 +230,22 @@ struct locationButton {
         }.type(ButtonType.Capsule)
         .margin({
           top: 200,
-          bottom:60
+          bottom: 60
         }).backgroundColor('#00000000')
-        LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.CURRENT_LOCATION, buttonType: this.bgType })
+
+        LocationButton({
+          icon: LocationIconStyle.FULL_FILLED,
+          text: LocationDescription.CURRENT_LOCATION,
+          buttonType: this.bgType
+        })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }

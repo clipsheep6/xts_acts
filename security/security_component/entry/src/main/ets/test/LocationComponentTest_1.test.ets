@@ -18,15 +18,20 @@ import events_emitter from '@ohos.events.emitter';
 import { Driver, ON } from '@ohos.UiTest'
 import Utils from './Utils';
 
+declare enum LocationButtonOnClickResult {
+  SUCCESS = 0,
+  TEMPORARY_AUTHORIZATION_FAILED = 1
+}
+
 export default function locationComponentTest_1() {
-  describe('locationComponentTest_1', function () {
-    beforeAll(async function (done) {
-      let options = {
+  describe('locationComponentTest_1', () => {
+    beforeAll(async (done: Function) => {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/locationButton_1',
       }
       try {
         router.clear();
-        let pages = router.getState();
+        let pages: router.RouterState = router.getState();
         console.info("====>locationComponentTest_1 get state success " + JSON.stringify(pages));
         if (!("locationButton_1" == pages.name)) {
           console.info("====>locationComponentTest_1 get state success " + JSON.stringify(pages.name));
@@ -40,7 +45,7 @@ export default function locationComponentTest_1() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("====>locationComponentTest_1 after each called");
     });
@@ -49,23 +54,22 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2300
      * @tc.name Test_Security_Button_Location_2300
      * @tc.desc Test SecurityComponent The button style is a line and text describes the location selected and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_2300', 0, async function (done) {
+    it('Test_Security_Button_Location_2300', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_2300] START====');
       await Utils.sleep(1000);
       let strJsonNew = getInspectorByKey('keyLocation2');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.icon:" + obj.$attrs.icon);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.icon).assertEqual(1);
-      expect(obj.$attrs.text).assertEqual(1);
+      console.info("====>component obj.$attrs.icon:" + JSON.parse(strJsonNew).$attrs.icon);
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.icon).assertEqual(1);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(1);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_2300] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_2300] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -80,7 +84,7 @@ export default function locationComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -89,7 +93,7 @@ export default function locationComponentTest_1() {
         console.info("====>[Test_Security_Button_Location_2300] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_2300] button is:" + JSON.stringify(button));
@@ -104,21 +108,20 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2400
      * @tc.name Test_Security_Button_Location_2400
      * @tc.desc Test SecurityComponent The text describes the location selected and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_2400', 0, async function (done) {
+    it('Test_Security_Button_Location_2400', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_2400] START====');
       await Utils.sleep(1000);
       let strJsonNew = getInspectorByKey('keyLocation3');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(2);
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(2);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_2400] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_2400] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -133,7 +136,7 @@ export default function locationComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -142,7 +145,7 @@ export default function locationComponentTest_1() {
         console.info("====>[Test_Security_Button_Location_2400] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_2400] button is:" + JSON.stringify(button));
@@ -157,21 +160,20 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2500
      * @tc.name Test_Security_Button_Location_2500
      * @tc.desc Test SecurityComponent The text describes a shared location and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_2500', 0, async function (done) {
+    it('Test_Security_Button_Location_2500', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_2500] START====');
       await Utils.sleep(1000);
       let strJsonNew = getInspectorByKey('keyLocation4');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(3);
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(3);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_2500] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_2500] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -186,7 +188,7 @@ export default function locationComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -195,7 +197,7 @@ export default function locationComponentTest_1() {
         console.info("====>[Test_Security_Button_Location_2500] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_2500] button is:" + JSON.stringify(button));
@@ -210,21 +212,20 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2600
      * @tc.name Test_Security_Button_Location_2600
      * @tc.desc Test SecurityComponent The text describes the location of the send and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_2600', 0, async function (done) {
+    it('Test_Security_Button_Location_2600', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_2600] START====');
       await Utils.sleep(1000);
       let strJsonNew = getInspectorByKey('keyLocation5');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(4);
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(4);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_2600] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_2600] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -239,7 +240,7 @@ export default function locationComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -248,7 +249,7 @@ export default function locationComponentTest_1() {
         console.info("====>[Test_Security_Button_Location_2600] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_2600] button is:" + JSON.stringify(button));
@@ -263,21 +264,20 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2700
      * @tc.name Test_Security_Button_Location_2700
      * @tc.desc Test SecurityComponent The text describes positioning and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_2700', 0, async function (done) {
+    it('Test_Security_Button_Location_2700', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_2700] START====');
       await Utils.sleep(1000);
       let strJsonNew = getInspectorByKey('keyLocation6');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(5);
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(5);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_2700] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_2700] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -292,7 +292,7 @@ export default function locationComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -301,7 +301,7 @@ export default function locationComponentTest_1() {
         console.info("====>[Test_Security_Button_Location_2700] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_2700] button is:" + JSON.stringify(button));
@@ -316,21 +316,20 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2800
      * @tc.name Test_Security_Button_Location_2800
      * @tc.desc Test SecurityComponent The text describes the location and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_2800', 0, async function (done) {
+    it('Test_Security_Button_Location_2800', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_2800] START====');
       await Utils.sleep(1000);
       let strJsonNew = getInspectorByKey('keyLocation7');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(6);
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(6);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_2800] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_2800] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -345,7 +344,7 @@ export default function locationComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -354,7 +353,7 @@ export default function locationComponentTest_1() {
         console.info("====>[Test_Security_Button_Location_2800] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_2800] button is:" + JSON.stringify(button));
@@ -369,21 +368,20 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2900
      * @tc.name Test_Security_Button_Location_2900
      * @tc.desc Test SecurityComponent The text describes the real-time location of the send and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_2900', 0, async function (done) {
+    it('Test_Security_Button_Location_2900', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_2900] START====');
       await Utils.sleep(1000);
       let strJsonNew = getInspectorByKey('keyLocation8');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(7);
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(7);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_2900] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_2900] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -398,7 +396,7 @@ export default function locationComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -407,7 +405,7 @@ export default function locationComponentTest_1() {
         console.info("====>[Test_Security_Button_Location_2900] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_2900] button is:" + JSON.stringify(button));
@@ -422,21 +420,20 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_3000
      * @tc.name Test_Security_Button_Location_3000
      * @tc.desc Test SecurityComponent The text describes repositioning and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_3000', 0, async function (done) {
+    it('Test_Security_Button_Location_3000', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_3000] START====');
       await Utils.sleep(1000);
       let strJsonNew = getInspectorByKey('keyLocation9');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(8);
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(8);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_3000] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_3000] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -451,7 +448,7 @@ export default function locationComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -460,7 +457,7 @@ export default function locationComponentTest_1() {
         console.info("====>[Test_Security_Button_Location_3000] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_3000] button is:" + JSON.stringify(button));
@@ -475,21 +472,20 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_3100
      * @tc.name Test_Security_Button_Location_3100
      * @tc.desc Test SecurityComponent The text description is punch card positioning and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_3100', 0, async function (done) {
+    it('Test_Security_Button_Location_3100', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_3100] START====');
       await Utils.sleep(1000);
       let strJsonNew = getInspectorByKey('keyLocation10');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(9);
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(9);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_3100] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_3100] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -504,7 +500,7 @@ export default function locationComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -513,7 +509,7 @@ export default function locationComponentTest_1() {
         console.info("====>[Test_Security_Button_Location_3100] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_3100] button is:" + JSON.stringify(button));
@@ -528,21 +524,20 @@ export default function locationComponentTest_1() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_3200
      * @tc.name Test_Security_Button_Location_3200
      * @tc.desc Test SecurityComponent The text describes the location and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_3200', 0, async function (done) {
+    it('Test_Security_Button_Location_3200', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_3200] START====');
       await Utils.sleep(1000);
       let strJsonNew = getInspectorByKey('keyLocation11');
-      let obj = JSON.parse(strJsonNew);
-      console.info("====>component obj.$attrs.text:" + obj.$attrs.text);
-      expect(obj.$attrs.text).assertEqual(10);
+      console.info("====>component obj.$attrs.text:" + JSON.parse(strJsonNew).$attrs.text);
+      expect(JSON.parse(strJsonNew).$attrs.text).assertEqual(10);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_3200] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_3200] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -557,7 +552,7 @@ export default function locationComponentTest_1() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -566,7 +561,7 @@ export default function locationComponentTest_1() {
         console.info("====>[Test_Security_Button_Location_3200] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_3200] button is:" + JSON.stringify(button));

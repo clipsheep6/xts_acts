@@ -14,6 +14,36 @@
  */
 
 import events_emitter from '@ohos.events.emitter'
+import RectValue from './Rect'
+
+declare enum SecurityComponentLayoutDirection {
+  HORIZONTAL = 0,
+  VERTICAL = 1
+}
+
+declare enum LocationIconStyle {
+  FULL_FILLED = 0,
+  LINES = 1
+}
+
+declare enum LocationDescription {
+  CURRENT_LOCATION = 0,
+  ADD_LOCATION = 1,
+  SELECT_LOCATION = 2,
+  SHARE_LOCATION = 3,
+  SEND_LOCATION = 4,
+  LOCATING = 5,
+  LOCATION = 6,
+  SEND_CURRENT_LOCATION = 7,
+  RELOCATION = 8,
+  PUNCH_IN = 9,
+  CURRENT_POSITION = 10
+}
+
+declare enum LocationButtonOnClickResult {
+  SUCCESS = 0,
+  TEMPORARY_AUTHORIZATION_FAILED = 1
+}
 
 @Entry
 @Component
@@ -29,7 +59,7 @@ struct locationButton_1 {
   @State fontSize: number = 16
   @State fontStyle: FontStyle = FontStyle.Normal
   @State fontWeight: FontWeight = FontWeight.Medium
-  @State fontFamily: string = 'HarmonyOS Sans'
+  @State fontFamily: string = 'OpenHarmony Sans'
   @State fontColor: number = 0xffffffff
   @State iconColor: number = 0xffffffff
   @State bgColor: number = 0x7dff
@@ -43,20 +73,24 @@ struct locationButton_1 {
   @State bottom: number = 8
   @State middle: number = 4
   @State heightValue: number = 4
-  marginValue = {top:30, bottom:30, left:10, right:10}
+  marginValue: RectValue = { top: 30, bottom: 30, left: 10, right: 10 }
 
   build() {
     Column() {
       Row() {
-        LocationButton({ icon: LocationIconStyle.LINES, text: LocationDescription.ADD_LOCATION, buttonType: this.bgType })
+        LocationButton({
+          icon: LocationIconStyle.LINES,
+          text: LocationDescription.ADD_LOCATION,
+          buttonType: this.bgType
+        })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -85,16 +119,21 @@ struct locationButton_1 {
           .textIconSpace(this.middle)
           .key("keyLocation2")
       }.width('100%').height(this.heightValue).margin(this.marginValue)
+
       Row() {
-        LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.SELECT_LOCATION, buttonType: this.bgType })
+        LocationButton({
+          icon: LocationIconStyle.FULL_FILLED,
+          text: LocationDescription.SELECT_LOCATION,
+          buttonType: this.bgType
+        })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -123,16 +162,21 @@ struct locationButton_1 {
           .textIconSpace(this.middle)
           .key("keyLocation3")
       }.width('100%').height(this.heightValue).margin(this.marginValue)
+
       Row() {
-        LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.SHARE_LOCATION, buttonType: this.bgType })
+        LocationButton({
+          icon: LocationIconStyle.FULL_FILLED,
+          text: LocationDescription.SHARE_LOCATION,
+          buttonType: this.bgType
+        })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -161,16 +205,21 @@ struct locationButton_1 {
           .textIconSpace(this.middle)
           .key("keyLocation4")
       }.width('100%').height(this.heightValue).margin(this.marginValue)
+
       Row() {
-        LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.SEND_LOCATION, buttonType: this.bgType })
+        LocationButton({
+          icon: LocationIconStyle.FULL_FILLED,
+          text: LocationDescription.SEND_LOCATION,
+          buttonType: this.bgType
+        })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -199,16 +248,21 @@ struct locationButton_1 {
           .textIconSpace(this.middle)
           .key("keyLocation5")
       }.width('100%').height(this.heightValue).margin(this.marginValue)
+
       Row() {
-        LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.LOCATING, buttonType: this.bgType })
+        LocationButton({
+          icon: LocationIconStyle.FULL_FILLED,
+          text: LocationDescription.LOCATING,
+          buttonType: this.bgType
+        })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -237,16 +291,21 @@ struct locationButton_1 {
           .textIconSpace(this.middle)
           .key("keyLocation6")
       }.width('100%').height(this.heightValue).margin(this.marginValue)
+
       Row() {
-        LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.LOCATION, buttonType: this.bgType })
+        LocationButton({
+          icon: LocationIconStyle.FULL_FILLED,
+          text: LocationDescription.LOCATION,
+          buttonType: this.bgType
+        })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -275,16 +334,21 @@ struct locationButton_1 {
           .textIconSpace(this.middle)
           .key("keyLocation7")
       }.width('100%').height(this.heightValue).margin(this.marginValue)
+
       Row() {
-        LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.SEND_CURRENT_LOCATION, buttonType: this.bgType })
+        LocationButton({
+          icon: LocationIconStyle.FULL_FILLED,
+          text: LocationDescription.SEND_CURRENT_LOCATION,
+          buttonType: this.bgType
+        })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -313,16 +377,21 @@ struct locationButton_1 {
           .textIconSpace(this.middle)
           .key("keyLocation8")
       }.width('100%').height(this.heightValue).margin(this.marginValue)
+
       Row() {
-        LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.RELOCATION, buttonType: this.bgType })
+        LocationButton({
+          icon: LocationIconStyle.FULL_FILLED,
+          text: LocationDescription.RELOCATION,
+          buttonType: this.bgType
+        })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -351,16 +420,21 @@ struct locationButton_1 {
           .textIconSpace(this.middle)
           .key("keyLocation9")
       }.width('100%').height(this.heightValue).margin(this.marginValue)
+
       Row() {
-        LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.PUNCH_IN, buttonType: this.bgType })
+        LocationButton({
+          icon: LocationIconStyle.FULL_FILLED,
+          text: LocationDescription.PUNCH_IN,
+          buttonType: this.bgType
+        })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }
@@ -389,16 +463,21 @@ struct locationButton_1 {
           .textIconSpace(this.middle)
           .key("keyLocation10")
       }.width('100%').height(this.heightValue).margin(this.marginValue)
+
       Row() {
-        LocationButton({ icon: LocationIconStyle.FULL_FILLED, text: LocationDescription.CURRENT_POSITION, buttonType: this.bgType })
+        LocationButton({
+          icon: LocationIconStyle.FULL_FILLED,
+          text: LocationDescription.CURRENT_POSITION,
+          buttonType: this.bgType
+        })
           .onClick((event: ClickEvent, result: LocationButtonOnClickResult) => {
             try {
-              var clickData = {
+              let clickData: events_emitter.EventData = {
                 data: {
                   "clickResult": result,
                 }
               }
-              var clickEvent = {
+              let clickEvent: events_emitter.InnerEvent = {
                 eventId: 2,
                 priority: events_emitter.EventPriority.LOW
               }

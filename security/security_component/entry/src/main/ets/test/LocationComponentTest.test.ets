@@ -18,15 +18,25 @@ import events_emitter from '@ohos.events.emitter';
 import { Driver, ON } from '@ohos.UiTest'
 import Utils from './Utils';
 
+declare enum LocationButtonOnClickResult {
+  SUCCESS = 0,
+  TEMPORARY_AUTHORIZATION_FAILED = 1
+}
+
+declare enum SecurityComponentLayoutDirection {
+  HORIZONTAL = 0,
+  VERTICAL = 1
+}
+
 export default function locationComponentTest() {
-  describe('locationComponentTest', function () {
-    beforeAll(async function (done) {
-      let options = {
+  describe('locationComponentTest', () => {
+    beforeAll(async (done: Function) => {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/locationButton',
       }
       try {
         router.clear();
-        let pages = router.getState();
+        let pages: router.RouterState = router.getState();
         console.info("====>locationComponentTest get state success " + JSON.stringify(pages));
         if (!("locationButton" == pages.name)) {
           console.info("====>locationComponentTest get state success " + JSON.stringify(pages.name));
@@ -40,7 +50,7 @@ export default function locationComponentTest() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("====>locationComponentTest after each called");
     });
@@ -49,54 +59,53 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_0100
      * @tc.name Test_Security_Button_Location_0100
      * @tc.desc Test SecurityComponent Default parameters and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_0100', 0, async function (done) {
+    it('Test_Security_Button_Location_0100', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_0100] START====');
       let strJson = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.icon).assertEqual(0);
-      expect(obj.$attrs.text).assertEqual(0);
-      expect(obj.$attrs.buttonType).assertEqual(0);
-      expect(obj.$attrs.iconSize).assertEqual('16.00vp');
-      expect(obj.$attrs.layoutDirection).assertEqual(0);
-      expect(obj.$attrs.position.x).assertEqual('0.00vp');
-      expect(obj.$attrs.position.y).assertEqual('0.00vp');
-      expect(obj.$attrs.markAnchor.x).assertEqual('0.00vp');
-      expect(obj.$attrs.markAnchor.y).assertEqual('0.00vp');
-      expect(obj.$attrs.offset.x).assertEqual('0.00vp');
-      expect(obj.$attrs.offset.y).assertEqual('0.00vp');
-      expect(obj.$attrs.fontSize).assertEqual('16.00fp');
-      expect(obj.$attrs.fontStyle).assertEqual(0);
-      expect(obj.$attrs.fontWeight).assertEqual('FontWeight.Medium');
-      expect(obj.$attrs.fontFamily).assertEqual('HarmonyOS Sans');
-      expect(obj.$attrs.fontColor).assertEqual('#FFFFFFFF');
-      expect(obj.$attrs.iconColor).assertEqual('#FFFFFFFF');
-      expect(obj.$attrs.backgroundColor).assertEqual('#FF007DFF');
-      expect(obj.$attrs.borderStyle).assertEqual(1);
-      expect(obj.$attrs.borderWidth).assertEqual('0.00vp');
-      expect(obj.$attrs.borderColor).assertEqual('#FFFFFFFF');
-      expect(obj.$attrs.borderRadius).assertEqual('0.00vp');
-      expect(obj.$attrs.padding.left).assertEqual('24.00vp');
-      expect(obj.$attrs.padding.right).assertEqual('24.00vp');
-      expect(obj.$attrs.padding.top).assertEqual('8.00vp');
-      expect(obj.$attrs.padding.bottom).assertEqual('8.00vp');
-      expect(obj.$attrs.textIconSpace).assertEqual('4.00vp');
+      expect(JSON.parse(strJson).$attrs.icon).assertEqual(0);
+      expect(JSON.parse(strJson).$attrs.text).assertEqual(0);
+      expect(JSON.parse(strJson).$attrs.buttonType).assertEqual(0);
+      expect(JSON.parse(strJson).$attrs.iconSize).assertEqual('16.00vp');
+      expect(JSON.parse(strJson).$attrs.layoutDirection).assertEqual(0);
+      expect(JSON.parse(strJson).$attrs.position.x).assertEqual('0.00vp');
+      expect(JSON.parse(strJson).$attrs.position.y).assertEqual('0.00vp');
+      expect(JSON.parse(strJson).$attrs.markAnchor.x).assertEqual('0.00vp');
+      expect(JSON.parse(strJson).$attrs.markAnchor.y).assertEqual('0.00vp');
+      expect(JSON.parse(strJson).$attrs.offset.x).assertEqual('0.00vp');
+      expect(JSON.parse(strJson).$attrs.offset.y).assertEqual('0.00vp');
+      expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('16.00fp');
+      expect(JSON.parse(strJson).$attrs.fontStyle).assertEqual(0);
+      expect(JSON.parse(strJson).$attrs.fontWeight).assertEqual('FontWeight.Medium');
+      expect(JSON.parse(strJson).$attrs.fontFamily).assertEqual('OpenHarmony Sans');
+      expect(JSON.parse(strJson).$attrs.fontColor).assertEqual('#FFFFFFFF');
+      expect(JSON.parse(strJson).$attrs.iconColor).assertEqual('#FFFFFFFF');
+      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FF007DFF');
+      expect(JSON.parse(strJson).$attrs.borderStyle).assertEqual(1);
+      expect(JSON.parse(strJson).$attrs.borderWidth).assertEqual('0.00vp');
+      expect(JSON.parse(strJson).$attrs.borderColor).assertEqual('#FFFFFFFF');
+      expect(JSON.parse(strJson).$attrs.borderRadius).assertEqual('0.00vp');
+      expect(JSON.parse(strJson).$attrs.padding.left).assertEqual('24.00vp');
+      expect(JSON.parse(strJson).$attrs.padding.right).assertEqual('24.00vp');
+      expect(JSON.parse(strJson).$attrs.padding.top).assertEqual('8.00vp');
+      expect(JSON.parse(strJson).$attrs.padding.bottom).assertEqual('8.00vp');
+      expect(JSON.parse(strJson).$attrs.textIconSpace).assertEqual('4.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = async (clickData) => {
+        let clickCallback = async (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_0100] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_0100] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
             console.info("====>[Test_Security_Button_Location_0100] 设置权限成功");
             expect(clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS).assertTrue();
             await Utils.sleep(500);
-            let driver = Driver.create();
+            let driver: Driver = Driver.create();
             console.info("====>[Test_Security_Button_Location_0100] driver is:" + JSON.stringify(driver));
-            let flag = false;
+            let flag: boolean = false;
             console.info("====>[Test_Security_Button_Location_0100] flag is:" + flag);
             for (let i = 0; i < 5; i++) {
               console.info("====>[Test_Security_Button_Location_0100] loop START====" + i);
@@ -107,20 +116,21 @@ export default function locationComponentTest() {
               console.info("====>[Test_Security_Button_Location_0100] textComponent is:" + JSON.stringify(textComponent));
               await Utils.sleep(200)
               if (textComponent != undefined && textComponent != null) {
-                try{
+                try {
                   await textComponent.click();
                   console.info("====>[Test_Security_Button_Location_0100] textComponentClick finishfinishfinish");
                 } catch (err) {
                   console.info("====>[Test_Security_Button_Location_0100] textComponentClick err : " + JSON.stringify(err));
-                };
+                }
+                ;
               }
               let knowBtn = await driver.findComponent(ON.text('知道了'));
               console.info("====>[Test_Security_Button_Location_0100] knowBtn is:" + JSON.stringify(knowBtn));
-              if(knowBtn !== null){
+              if (knowBtn !== null) {
                 console.info("====>[Test_Security_Button_Location_0100] knowBtnClick START====");
                 await knowBtn.click();
                 console.info("====>[Test_Security_Button_Location_0100] reClick====" + i);
-              }else{
+              } else {
                 flag = true;
               }
             }
@@ -133,7 +143,7 @@ export default function locationComponentTest() {
             done()
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -142,7 +152,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0100] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_0100] button is:" + JSON.stringify(button));
@@ -157,16 +167,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_0200
      * @tc.name Test_Security_Button_Location_0200
      * @tc.desc Test SecurityComponent layoutDirection attribute is VERTICAL and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_0200', 0, async function (done) {
+    it('Test_Security_Button_Location_0200', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_0200] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -182,7 +192,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -197,7 +207,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -207,12 +217,11 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0200] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.layoutDirection).assertEqual(SecurityComponentLayoutDirection.VERTICAL);
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.layoutDirection).assertEqual(SecurityComponentLayoutDirection.VERTICAL);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_0200] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_0200] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -227,7 +236,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -236,7 +245,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0200] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_0200] button is:" + JSON.stringify(button));
@@ -252,16 +261,16 @@ export default function locationComponentTest() {
      * @tc.name Test_Security_Button_Location_0300
      * @tc.desc Test SecurityComponent position.x is 150.00vp and position.y is 20.00vp
      * markAnchor.x is 20.00vp and markAnchor.y is 20.00vp and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_0300', 0, async function (done) {
+    it('Test_Security_Button_Location_0300', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_0300] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -277,7 +286,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -292,7 +301,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -302,15 +311,14 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0300] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.position.x).assertEqual('150.00vp');
-      expect(obj.$attrs.position.y).assertEqual('20.00vp');
-      expect(obj.$attrs.markAnchor.x).assertEqual('20.00vp');
-      expect(obj.$attrs.markAnchor.y).assertEqual('20.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.position.x).assertEqual('150.00vp');
+      expect(JSON.parse(strJsonNew).$attrs.position.y).assertEqual('20.00vp');
+      expect(JSON.parse(strJsonNew).$attrs.markAnchor.x).assertEqual('20.00vp');
+      expect(JSON.parse(strJsonNew).$attrs.markAnchor.y).assertEqual('20.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_0300] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_0300] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -325,7 +333,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -334,7 +342,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0300] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_0300] button is:" + JSON.stringify(button));
@@ -349,16 +357,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_0400
      * @tc.name Test_Security_Button_Location_0400
      * @tc.desc Test SecurityComponent offset and markAnchor attribute is normal and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_0400', 0, async function (done) {
+    it('Test_Security_Button_Location_0400', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_0400] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -374,7 +382,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -389,7 +397,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -399,15 +407,14 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0400] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation1');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.offset.x).assertEqual('100.00vp');
-      expect(obj.$attrs.offset.y).assertEqual('100.00vp');
-      expect(obj.$attrs.markAnchor.x).assertEqual('20.00vp');
-      expect(obj.$attrs.markAnchor.y).assertEqual('20.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation1');
+      expect(JSON.parse(strJsonNew).$attrs.offset.x).assertEqual('100.00vp');
+      expect(JSON.parse(strJsonNew).$attrs.offset.y).assertEqual('100.00vp');
+      expect(JSON.parse(strJsonNew).$attrs.markAnchor.x).assertEqual('20.00vp');
+      expect(JSON.parse(strJsonNew).$attrs.markAnchor.y).assertEqual('20.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_0400] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_0400] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -422,7 +429,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -431,7 +438,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0400] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_0400] button is:" + JSON.stringify(button));
@@ -446,16 +453,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_0500
      * @tc.name Test_Security_Button_Location_0500
      * @tc.desc Test SecurityComponent FontStyle attribute is Italic and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_0500', 0, async function (done) {
+    it('Test_Security_Button_Location_0500', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_0500] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -471,7 +478,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Italic,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -486,7 +493,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -496,12 +503,11 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0500] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.fontStyle).assertEqual(1);
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.fontStyle).assertEqual(1);
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_0500] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_0500] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -516,7 +522,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -525,7 +531,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0500] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_0500] button is:" + JSON.stringify(button));
@@ -540,16 +546,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_0600
      * @tc.name Test_Security_Button_Location_0600
      * @tc.desc Test SecurityComponent FontWeight attribute is Lighter and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_0600', 0, async function (done) {
+    it('Test_Security_Button_Location_0600', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_0600] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -565,7 +571,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Lighter,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -580,7 +586,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -590,12 +596,11 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0600] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.fontWeight).assertEqual('FontWeight.Lighter');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.fontWeight).assertEqual('FontWeight.Lighter');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_0600] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_0600] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -610,7 +615,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -619,7 +624,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0600] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_0600] button is:" + JSON.stringify(button));
@@ -634,16 +639,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_0700
      * @tc.name Test_Security_Button_Location_0700
      * @tc.desc Test SecurityComponent FontWeight attribute is Normal and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_0700', 0, async function (done) {
+    it('Test_Security_Button_Location_0700', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_0700] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -659,7 +664,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Normal,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -674,7 +679,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -684,12 +689,11 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0700] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.fontWeight).assertEqual('FontWeight.Normal');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.fontWeight).assertEqual('FontWeight.Normal');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_0700] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_0700] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -704,7 +708,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -713,7 +717,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0700] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_0700] button is:" + JSON.stringify(button));
@@ -728,16 +732,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_0800
      * @tc.name Test_Security_Button_Location_0800
      * @tc.desc Test SecurityComponent FontWeight attribute is Regular and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_0800', 0, async function (done) {
+    it('Test_Security_Button_Location_0800', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_0800] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -753,7 +757,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Regular,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -768,7 +772,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -778,12 +782,11 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0800] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.fontWeight).assertEqual('FontWeight.Regular');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.fontWeight).assertEqual('FontWeight.Regular');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_0800] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_0800] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -798,7 +801,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -807,7 +810,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0800] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_0800] button is:" + JSON.stringify(button));
@@ -822,16 +825,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_0900
      * @tc.name Test_Security_Button_Location_0900
      * @tc.desc Test SecurityComponent FontWeight attribute is Bold and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_0900', 0, async function (done) {
+    it('Test_Security_Button_Location_0900', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_0900] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -847,7 +850,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Bold,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -862,7 +865,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -872,12 +875,11 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0900] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.fontWeight).assertEqual('FontWeight.Bold');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.fontWeight).assertEqual('FontWeight.Bold');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_0900] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_0900] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -892,7 +894,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -901,7 +903,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_0900] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_0900] button is:" + JSON.stringify(button));
@@ -916,16 +918,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_1000
      * @tc.name Test_Security_Button_Location_1000
      * @tc.desc Test SecurityComponent FontWeight attribute is Bolder and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_1000', 0, async function (done) {
+    it('Test_Security_Button_Location_1000', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_1000] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -941,7 +943,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Bolder,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -956,7 +958,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -966,12 +968,11 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1000] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.fontWeight).assertEqual('FontWeight.Bolder');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.fontWeight).assertEqual('FontWeight.Bolder');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_1000] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_1000] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -986,7 +987,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -995,7 +996,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1000] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_1000] button is:" + JSON.stringify(button));
@@ -1010,16 +1011,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_1100
      * @tc.name Test_Security_Button_Location_1100
      * @tc.desc Test SecurityComponent BorderStyle is Dotted , borderWidth , borderColor , borderRadius attribute is normal and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_1100', 0, async function (done) {
+    it('Test_Security_Button_Location_1100', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_1100] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1035,7 +1036,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -1050,7 +1051,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1060,15 +1061,14 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1100] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.borderStyle).assertEqual(2);
-      expect(obj.$attrs.borderWidth).assertEqual('5.00vp');
-      expect(obj.$attrs.borderColor).assertEqual('#FFFFFFFF');
-      expect(obj.$attrs.borderRadius).assertEqual('5.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.borderStyle).assertEqual(2);
+      expect(JSON.parse(strJsonNew).$attrs.borderWidth).assertEqual('5.00vp');
+      expect(JSON.parse(strJsonNew).$attrs.borderColor).assertEqual('#FFFFFFFF');
+      expect(JSON.parse(strJsonNew).$attrs.borderRadius).assertEqual('5.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_1100] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_1100] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -1083,7 +1083,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1092,7 +1092,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1100] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_1100] button is:" + JSON.stringify(button));
@@ -1107,16 +1107,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_1200
      * @tc.name Test_Security_Button_Location_1200
      * @tc.desc Test SecurityComponent BorderStyle attribute is Dashed and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_1200', 0, async function (done) {
+    it('Test_Security_Button_Location_1200', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_1200] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1132,7 +1132,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -1147,7 +1147,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1157,15 +1157,14 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1200] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.borderStyle).assertEqual(1);
-      expect(obj.$attrs.borderWidth).assertEqual('5.00vp');
-      expect(obj.$attrs.borderColor).assertEqual('#FFFFFFFF');
-      expect(obj.$attrs.borderRadius).assertEqual('5.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.borderStyle).assertEqual(1);
+      expect(JSON.parse(strJsonNew).$attrs.borderWidth).assertEqual('5.00vp');
+      expect(JSON.parse(strJsonNew).$attrs.borderColor).assertEqual('#FFFFFFFF');
+      expect(JSON.parse(strJsonNew).$attrs.borderRadius).assertEqual('5.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_1200] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_1200] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -1180,7 +1179,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1189,7 +1188,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1200] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_1200] button is:" + JSON.stringify(button));
@@ -1204,16 +1203,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_1300
      * @tc.name Test_Security_Button_Location_1300
      * @tc.desc Test SecurityComponent BorderStyle attribute is Solid and Authorization is successful
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_1300', 0, async function (done) {
+    it('Test_Security_Button_Location_1300', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_1300] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1229,7 +1228,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -1244,7 +1243,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1254,15 +1253,14 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1300] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.borderStyle).assertEqual(0);
-      expect(obj.$attrs.borderWidth).assertEqual('5.00vp');
-      expect(obj.$attrs.borderColor).assertEqual('#FFFFFFFF');
-      expect(obj.$attrs.borderRadius).assertEqual('5.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.borderStyle).assertEqual(0);
+      expect(JSON.parse(strJsonNew).$attrs.borderWidth).assertEqual('5.00vp');
+      expect(JSON.parse(strJsonNew).$attrs.borderColor).assertEqual('#FFFFFFFF');
+      expect(JSON.parse(strJsonNew).$attrs.borderRadius).assertEqual('5.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_1300] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_1300] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -1277,7 +1275,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1286,7 +1284,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1300] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_1300] button is:" + JSON.stringify(button));
@@ -1301,16 +1299,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_1400
      * @tc.name Test_Security_Button_Location_1400
      * @tc.desc Test SecurityComponent offset.x attribute is 200.00vp result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_1400', 0, async function (done) {
+    it('Test_Security_Button_Location_1400', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_1400] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1326,7 +1324,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -1341,7 +1339,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1351,17 +1349,17 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1400] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation1');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.offset.x).assertEqual('200.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation1');
+      expect(JSON.parse(strJsonNew).$attrs.offset.x).assertEqual('200.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_1400] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_1400] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED) {
             console.info("====>[Test_Security_Button_Location_1400] ERR CASE 成功");
-            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED).assertTrue();
+            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED)
+              .assertTrue();
             console.info("====>[Test_Security_Button_Location_1400] END====");
             done();
           } else {
@@ -1371,7 +1369,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1380,7 +1378,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1400] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_1400] button is:" + JSON.stringify(button));
@@ -1395,16 +1393,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_1500
      * @tc.name Test_Security_Button_Location_1500
      * @tc.desc Test SecurityComponent offset.x attribute is -200.00vp result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_1500', 0, async function (done) {
+    it('Test_Security_Button_Location_1500', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_1500] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1420,7 +1418,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -1435,7 +1433,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1445,17 +1443,17 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1500] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation1');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.offset.x).assertEqual('-200.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation1');
+      expect(JSON.parse(strJsonNew).$attrs.offset.x).assertEqual('-200.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_1500] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_1500] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED) {
             console.info("====>[Test_Security_Button_Location_1500] ERR CASE 成功");
-            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED).assertTrue();
+            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED)
+              .assertTrue();
             console.info("====>[Test_Security_Button_Location_1500] END====");
             done();
           } else {
@@ -1465,7 +1463,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1474,7 +1472,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1500] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponents(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_1500] button is:" + JSON.stringify(button));
@@ -1489,16 +1487,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_1600
      * @tc.name Test_Security_Button_Location_1600
      * @tc.desc Test SecurityComponent iconSize attribute is 160.00vp result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_1600', 0, async function (done) {
+    it('Test_Security_Button_Location_1600', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_1600] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1514,7 +1512,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -1529,7 +1527,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1539,17 +1537,17 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1600] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.iconSize).assertEqual('160.00vp');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.iconSize).assertEqual('160.00vp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_1600] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_1600] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED) {
             console.info("====>[Test_Security_Button_Location_1600] ERR CASE 成功");
-            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED).assertTrue();
+            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED)
+              .assertTrue();
             console.info("====>[Test_Security_Button_Location_1600] END====");
             done();
           } else {
@@ -1559,7 +1557,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1568,7 +1566,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1600] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_1600] button is:" + JSON.stringify(button));
@@ -1583,16 +1581,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_1700
      * @tc.name Test_Security_Button_Location_1700
      * @tc.desc Test SecurityComponent iconColor attribute is too light result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_1700', 0, async function (done) {
+    it('Test_Security_Button_Location_1700', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_1700] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1608,7 +1606,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0x10ff0000,
             "bgColor": 0xff007dff,
@@ -1623,7 +1621,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1633,17 +1631,17 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1700] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.iconColor).assertEqual('#10FF0000');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.iconColor).assertEqual('#10FF0000');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_1700] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_1700] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED) {
             console.info("====>[Test_Security_Button_Location_1700] ERR CASE 成功");
-            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED).assertTrue();
+            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED)
+              .assertTrue();
             console.info("====>[Test_Security_Button_Location_1700] END====");
             done();
           } else {
@@ -1653,7 +1651,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1662,7 +1660,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1700] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_1700] button is:" + JSON.stringify(button));
@@ -1679,16 +1677,16 @@ export default function locationComponentTest() {
      * @tc.desc Test SecurityComponent buttonType is 0 , iconSize is 20.00vp
      * , iconColor is #FFFA0050  and backgroundColor is #FFFF0000,
      * Due to the similarity of the icon and background color result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_1800', 0, async function (done) {
+    it('Test_Security_Button_Location_1800', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_1800] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1704,7 +1702,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xfffa0050,
             "bgColor": 0xffff0000,
@@ -1719,7 +1717,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1729,20 +1727,20 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1800] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.buttonType).assertEqual(0);
-      expect(obj.$attrs.iconSize).assertEqual('20.00vp');
-      expect(obj.$attrs.iconColor).assertEqual('#FFFA0050');
-      expect(obj.$attrs.backgroundColor).assertEqual('#FFFF0000');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.buttonType).assertEqual(0);
+      expect(JSON.parse(strJsonNew).$attrs.iconSize).assertEqual('20.00vp');
+      expect(JSON.parse(strJsonNew).$attrs.iconColor).assertEqual('#FFFA0050');
+      expect(JSON.parse(strJsonNew).$attrs.backgroundColor).assertEqual('#FFFF0000');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_1800] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_1800] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED) {
             console.info("====>[Test_Security_Button_Location_1800] ERR CASE 成功");
-            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED).assertTrue();
+            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED)
+              .assertTrue();
             console.info("====>[Test_Security_Button_Location_1800] END====");
             done();
           } else {
@@ -1752,7 +1750,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1761,7 +1759,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1800] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_1800] button is:" + JSON.stringify(button));
@@ -1776,16 +1774,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_1900
      * @tc.name Test_Security_Button_Location_1900
      * @tc.desc Test SecurityComponent iconSize attribute is too small result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_1900', 0, async function (done) {
+    it('Test_Security_Button_Location_1900', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_1900] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1801,7 +1799,7 @@ export default function locationComponentTest() {
             "fontSize": 20,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -1816,7 +1814,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1826,18 +1824,18 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1900] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.iconSize).assertEqual('1.00vp');
-      expect(obj.$attrs.fontSize).assertEqual('20.00fp');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.iconSize).assertEqual('1.00vp');
+      expect(JSON.parse(strJsonNew).$attrs.fontSize).assertEqual('20.00fp');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_1900] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_1900] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED) {
             console.info("====>[Test_Security_Button_Location_1900] ERR CASE 成功");
-            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED).assertTrue();
+            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED)
+              .assertTrue();
             console.info("====>[Test_Security_Button_Location_1900] END====");
             done();
           } else {
@@ -1847,7 +1845,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1856,7 +1854,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_1900] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_1900] button is:" + JSON.stringify(button));
@@ -1871,16 +1869,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2000
      * @tc.name Test_Security_Button_Location_2000
      * @tc.desc Test SecurityComponent iconColor attribute is transparent result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_2000', 0, async function (done) {
+    it('Test_Security_Button_Location_2000', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_2000] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1896,7 +1894,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": Color.Transparent,
             "bgColor": 0xff007dff,
@@ -1911,7 +1909,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1921,17 +1919,17 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_2000] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.iconColor).assertEqual('#00000000');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.iconColor).assertEqual('#00000000');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_2000] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_2000] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED) {
             console.info("====>[Test_Security_Button_Location_2000] ERR CASE 成功");
-            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED).assertTrue();
+            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED)
+              .assertTrue();
             console.info("====>[Test_Security_Button_Location_2000] END====");
             done();
           } else {
@@ -1941,7 +1939,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -1950,7 +1948,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_2000] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_2000] button is:" + JSON.stringify(button));
@@ -1965,16 +1963,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2100
      * @tc.name Test_Security_Button_Location_2100
      * @tc.desc Test SecurityComponent fontColor attribute is transparent result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_2100', 0, async function (done) {
+    it('Test_Security_Button_Location_2100', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_2100] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -1990,7 +1988,7 @@ export default function locationComponentTest() {
             "fontSize": 16,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": Color.Transparent,
             "iconColor": 0xffffffff,
             "bgColor": 0xff007dff,
@@ -2005,7 +2003,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -2015,17 +2013,17 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_2100] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.fontColor).assertEqual('#00000000');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.fontColor).assertEqual('#00000000');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_2100] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_2100] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED) {
             console.info("====>[Test_Security_Button_Location_2100] ERR CASE 成功");
-            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED).assertTrue();
+            expect(clickData.data.clickResult == LocationButtonOnClickResult.TEMPORARY_AUTHORIZATION_FAILED)
+              .assertTrue();
             console.info("====>[Test_Security_Button_Location_2100] END====");
             done();
           } else {
@@ -2035,7 +2033,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -2044,7 +2042,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_2100] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_2100] button is:" + JSON.stringify(button));
@@ -2059,16 +2057,16 @@ export default function locationComponentTest() {
      * @tc.number SUB_SEC_AccCtl_Specialltem_XTS_Controls_Location_2200
      * @tc.name Test_Security_Button_Location_2200
      * @tc.desc Test SecurityComponent backgroundColor attribute is transparent result in Authorization is failed
-     * @tc.size MEDIUM
+     * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level 3
      * @tc.require
      */
-    it('Test_Security_Button_Location_2200', 0, async function (done) {
+    it('Test_Security_Button_Location_2200', 0, async (done: Function) => {
       console.info('====>[Test_Security_Button_Location_2200] START====');
       await Utils.sleep(1000);
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "icon": 0,
             "textType": 0,
@@ -2084,7 +2082,7 @@ export default function locationComponentTest() {
             "fontSize": 20,
             "fontStyle": FontStyle.Normal,
             "fontWeight": FontWeight.Medium,
-            "fontFamily": 'HarmonyOS Sans',
+            "fontFamily": 'OpenHarmony Sans',
             "fontColor": 0xffffffff,
             "iconColor": 0xffffffff,
             "bgColor": Color.Transparent,
@@ -2099,7 +2097,7 @@ export default function locationComponentTest() {
             "middle": 4
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 1,
           priority: events_emitter.EventPriority.LOW
         }
@@ -2109,12 +2107,11 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_2200] change component data error: " + err.message);
       }
       await Utils.sleep(1000);
-      let strJsonNew = getInspectorByKey('keyLocation');
-      let obj = JSON.parse(strJsonNew);
-      expect(obj.$attrs.backgroundColor).assertEqual('#00000000');
+      let strJsonNew: string = getInspectorByKey('keyLocation');
+      expect(JSON.parse(strJsonNew).$attrs.backgroundColor).assertEqual('#00000000');
       await Utils.sleep(1000);
       try {
-        let clickCallback = (clickData) => {
+        let clickCallback = (clickData: events_emitter.EventData) => {
           console.info("====>[Test_Security_Button_Location_2200] get clickEvent result is: " + JSON.stringify(clickEvent));
           console.info("====>[Test_Security_Button_Location_2200] get clickData.data.clickResult is: " + JSON.stringify(clickData.data.clickResult));
           if (clickData.data.clickResult == LocationButtonOnClickResult.SUCCESS) {
@@ -2129,7 +2126,7 @@ export default function locationComponentTest() {
             done();
           }
         }
-        var clickEvent = {
+        let clickEvent: events_emitter.InnerEvent = {
           eventId: 2,
           priority: events_emitter.EventPriority.LOW
         }
@@ -2138,7 +2135,7 @@ export default function locationComponentTest() {
         console.info("====>[Test_Security_Button_Location_2200] once clickEvent err : " + JSON.stringify(err));
       }
       try {
-        let driver = Driver.create();
+        let driver: Driver = Driver.create();
         let button = await driver.findComponent(ON.type('LocationButton'));
         await Utils.sleep(500);
         console.info("====>[Test_Security_Button_Location_2200] button is:" + JSON.stringify(button));
