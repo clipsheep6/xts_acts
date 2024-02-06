@@ -20,8 +20,8 @@ import drm from '@ohos.multimedia.drm';
 import util from '@ohos.util';
 import media from '@ohos.multimedia.media';
 
-letuuid;
-letsysSupport = drm.isMediaKeySystemSupported("com.clearplay.drm");
+let uuid;
+let sysSupport = drm.isMediaKeySystemSupported("com.clearplay.drm");
 console.log("sysSupport is", sysSupport);
 if (sysSupport === true) {
     uuid = "com.clearplay.drm";
@@ -72,7 +72,7 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_0100', 0, function (done) {
-            letdrmMediaKeySystem = drm.createMediaKeySystem(uuid);
+            let drmMediaKeySystem = drm.createMediaKeySystem(uuid);
             expect(drmMediaKeySystem).not();
             drmMediaKeySystem.destroy();
             expect(drmMediaKeySystem.getStatistics()).assertUndefined();
@@ -87,7 +87,7 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_0200', 1, function (done) {
-            letdrmMediaKeySystem = drm.createMediaKeySystem("405E6D359B9A41E8B843DD3C6E72C42C");
+            let drmMediaKeySystem = drm.createMediaKeySystem("405E6D359B9A41E8B843DD3C6E72C42C");
             expect(drmMediaKeySystem).assertUndefined();
             done();
         })
@@ -100,7 +100,7 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_0300', 1, function (done) {
-            letdrmMediaKeySystem = drm.createMediaKeySystem("");
+            let drmMediaKeySystem = drm.createMediaKeySystem("");
             expect(drmMediaKeySystem).assertUndefined();
             done();
         })
@@ -113,7 +113,7 @@ export default function abilityTest() {
         // * @tc.level     : Level0
         // */
         // it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_0400', 0, function (done) {
-        //   letisSysSupport = drm.isMediaKeySystemSupported(uuid);
+        //   let isSysSupport = drm.isMediaKeySystemSupported(uuid);
         //   expect(isSysSupport).assertTrue();
         //   done();
         // })
@@ -126,7 +126,7 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_0500', 1, function (done) {
-            letisSysSupport = drm.isMediaKeySystemSupported("405E6D359B9A41E8B843DD3C6E72C42C");
+            let isSysSupport = drm.isMediaKeySystemSupported("405E6D359B9A41E8B843DD3C6E72C42C");
             expect(isSysSupport).assertFalse();
             done();
         })
@@ -139,7 +139,7 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_0600', 1, function (done) {
-            letisSysSupport = drm.isMediaKeySystemSupported("");
+            let isSysSupport = drm.isMediaKeySystemSupported("");
             expect(isSysSupport).assertUndefined();
             done();
         })
@@ -152,7 +152,7 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_0700', 0, function (done) {
-            letisSysSupport = drm.isMediaKeySystemSupported(uuid, "video/mp4");
+            let isSysSupport = drm.isMediaKeySystemSupported(uuid, "video/mp4");
             expect(isSysSupport).assertTrue();
             done();
         })
@@ -165,7 +165,7 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_0800', 1, function (done) {
-            letisSysSupport = drm.isMediaKeySystemSupported("405E6D359B9A41E8B843DD3C6E72C42C", "video/mp4");
+            let isSysSupport = drm.isMediaKeySystemSupported("405E6D359B9A41E8B843DD3C6E72C42C", "video/mp4");
             expect(isSysSupport).assertFalse();
             done();
         })
@@ -178,7 +178,7 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_0900', 1, function (done) {
-            letisSysSupport = drm.isMediaKeySystemSupported("", "video/mp4");
+            let isSysSupport = drm.isMediaKeySystemSupported("", "video/mp4");
             expect(isSysSupport).assertUndefined();
             done();
         })
@@ -191,7 +191,7 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_1000', 1, function (done) {
-            letisSysSupport = drm.isMediaKeySystemSupported(uuid, "1111/2222");
+            let isSysSupport = drm.isMediaKeySystemSupported(uuid, "1111/2222");
             if (sysSupport === true) {
                 expect(isSysSupport).assertFalse();
             }
@@ -206,7 +206,7 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_1100', 1, function (done) {
-            letisSysSupport = drm.isMediaKeySystemSupported(uuid, "");
+            let isSysSupport = drm.isMediaKeySystemSupported(uuid, "");
             expect(isSysSupport).assertUndefined();
             done();
         })
@@ -219,7 +219,7 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_1200', 0, function (done) {
-            letisSysSupport = drm.isMediaKeySystemSupported(uuid, "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+            let isSysSupport = drm.isMediaKeySystemSupported(uuid, "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
             expect(isSysSupport).assertTrue();
             done();
         })
@@ -232,7 +232,7 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_1300', 1, function (done) {
-            letisSysSupport = drm.isMediaKeySystemSupported("405E6D359B9A41E8B843DD3C6E72C42C", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+            let isSysSupport = drm.isMediaKeySystemSupported("405E6D359B9A41E8B843DD3C6E72C42C", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
             expect(isSysSupport).assertFalse();
             done();
         })
@@ -245,7 +245,7 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_1400', 1, function (done) {
-            letisSysSupport = drm.isMediaKeySystemSupported(uuid, "1111/22222", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+            let isSysSupport = drm.isMediaKeySystemSupported(uuid, "1111/22222", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
             if (sysSupport === true) {
                 expect(isSysSupport).assertFalse();
             }
@@ -260,7 +260,7 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_1500', 1, function (done) {
-            letisSysSupport = drm.isMediaKeySystemSupported(uuid, "video/mp4", 7);
+            let isSysSupport = drm.isMediaKeySystemSupported(uuid, "video/mp4", 7);
             expect(isSysSupport).assertUndefined();
             done();
         })
@@ -273,7 +273,7 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_1600', 1, function (done) {
-            letisSysSupport = drm.isMediaKeySystemSupported("", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+            let isSysSupport = drm.isMediaKeySystemSupported("", "video/mp4", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
             expect(isSysSupport).assertUndefined();
             done();
         })
@@ -286,7 +286,7 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_1700', 1, function (done) {
-            letisSysSupport = drm.isMediaKeySystemSupported(uuid, "", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+            let isSysSupport = drm.isMediaKeySystemSupported(uuid, "", drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
             expect(isSysSupport).assertFalse();
             done();
         })
@@ -299,28 +299,28 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_1800', 0, function (done) {
-            letdrmMediaKeySystem = drm.createMediaKeySystem(uuid);
-            letdrmMediaKeySession = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+            let drmMediaKeySystem = drm.createMediaKeySystem(uuid);
+            let drmMediaKeySession = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
             expect(drmMediaKeySession.getContentProtectionLevel()).not();
             drmMediaKeySession.destroy();
             expect(drmMediaKeySession.getContentProtectionLevel()).assertUndefined();
 
-            letdrmMediaKeySession1 = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+            let drmMediaKeySession1 = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
             expect(drmMediaKeySession1.getContentProtectionLevel()).not();
             drmMediaKeySession1.destroy();
             expect(drmMediaKeySession1.getContentProtectionLevel()).assertUndefined();
 
-            letdrmMediaKeySession2 = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_HW_CRYPTO);
+            let drmMediaKeySession2 = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_HW_CRYPTO);
             expect(drmMediaKeySession2.getContentProtectionLevel()).not();
             drmMediaKeySession2.destroy();
             expect(drmMediaKeySession2.getContentProtectionLevel()).assertUndefined();
 
-            letdrmMediaKeySession3 = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_ENHANCED_HW);
+            let drmMediaKeySession3 = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_ENHANCED_HW);
             expect(drmMediaKeySession3.getContentProtectionLevel()).not();
             drmMediaKeySession3.destroy();
             expect(drmMediaKeySession3.getContentProtectionLevel()).assertUndefined();
 
-            letdrmMediaKeySession4 = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_MAX);
+            let drmMediaKeySession4 = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_MAX);
             expect(drmMediaKeySession4.getContentProtectionLevel()).not();
             drmMediaKeySession4.destroy();
             expect(drmMediaKeySession4.getContentProtectionLevel()).assertUndefined();
@@ -338,8 +338,8 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_2000', 0, function (done) {
-            letdrmMediaKeySystem = drm.createMediaKeySystem(uuid);
-            letdrmMediaKeySession = drmMediaKeySystem.createMediaKeySession(5);
+            let drmMediaKeySystem = drm.createMediaKeySystem(uuid);
+            let drmMediaKeySession = drmMediaKeySystem.createMediaKeySession(5);
             expect(drmMediaKeySession).assertUndefined();
             drmMediaKeySystem.destroy();
             done();
@@ -354,9 +354,9 @@ export default function abilityTest() {
         // */
         // //TODO:提单用例，重复执行结果不一致
         // it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_2100', 0, function (done) {
-        //   letdrmMediaKeySystem = drm.createMediaKeySystem(uuid);
+        //   let drmMediaKeySystem = drm.createMediaKeySystem(uuid);
         //   console.log("start drmMediaKeySystem 1",drmMediaKeySystem);
-        //   letsession = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+        //   let session = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
         //   expect(session.getContentProtectionLevel()).not();
         //   drmMediaKeySystem.destroy();
         //   expect(session.getContentProtectionLevel()).assertEqual(0);
@@ -373,18 +373,18 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_2200', 0, function (done) {
-            letdrmMediaKeySystem = drm.createMediaKeySystem(uuid);
+            let drmMediaKeySystem = drm.createMediaKeySystem(uuid);
             console.log("start drmMediaKeySystem", drmMediaKeySystem);
-            letsession = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+            let session = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
             console.log("start session", session);
             expect(session).not();
             if (sysSupport === true) {
                 console.log("start true", sysSupport);
-                letresult = session.requireSecureDecoderModule("video/avc");
+                let result = session.requireSecureDecoderModule("video/avc");
                 expect(result).assertFalse();
-                letresult = session.requireSecureDecoderModule("video/hevc");
+                let result = session.requireSecureDecoderModule("video/hevc");
                 expect(result).assertFalse();
-                letresult = session.requireSecureDecoderModule("video/avs3");
+                let result = session.requireSecureDecoderModule("video/avs3");
                 expect(result).assertFalse();
             }
             session.destroy();
@@ -400,9 +400,9 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_2300', 0, function (done) {
-            letdrmMediaKeySystem = drm.createMediaKeySystem(uuid);
-            letsession = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-            letresult = session.requireSecureDecoderModule("hls/ts");
+            let drmMediaKeySystem = drm.createMediaKeySystem(uuid);
+            let session = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+            let result = session.requireSecureDecoderModule("hls/ts");
             if (sysSupport === true) {
                 expect(result).assertFalse();
             }
@@ -419,9 +419,9 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_2400', 0, function (done) {
-            letdrmMediaKeySystem = drm.createMediaKeySystem(uuid);
-            letsession = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-            letresult = session.requireSecureDecoderModule("1111/22222");
+            let drmMediaKeySystem = drm.createMediaKeySystem(uuid);
+            let session = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+            let result = session.requireSecureDecoderModule("1111/22222");
             if (sysSupport === true) {
                 expect(result).assertFalse();
             }
@@ -438,10 +438,10 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_2500', 0, function (done) {
-            letdrmMediaKeySystem = drm.createMediaKeySystem(uuid);
+            let drmMediaKeySystem = drm.createMediaKeySystem(uuid);
             console.log("drmMediaKeySystem is", drmMediaKeySystem);
-            letsession = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-            letresult = session.requireSecureDecoderModule("");
+            let session = drmMediaKeySystem.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+            let result = session.requireSecureDecoderModule("");
             if (sysSupport === true) {
                 expect(result).assertFalse();
             }
@@ -458,7 +458,7 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_MEDIA_DRM_FRAMEWORK_API_2600', 0, function (done) {
-            letdrmMediaKeySystem = drm.createMediaKeySystem(uuid);
+            let drmMediaKeySystem = drm.createMediaKeySystem(uuid);
             expect(drmMediaKeySystem).not();
             drmMediaKeySystem.destroy();
             expect(drmMediaKeySystem.getMaxContentProtectionLevel()).assertUndefined();
@@ -482,13 +482,13 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_0100', 0, function (done) {
-            letdrmsys = drm.createMediaKeySystem(uuid);
-            letprovisionRequestData: drm.ProvisionRequest = drmsys.generateKeySystemRequest();
+            let drmsys = drm.createMediaKeySystem(uuid);
+            let provisionRequestData: drm.ProvisionRequest = drmsys.generateKeySystemRequest();
             console.log("provisionRequestData.data is:", provisionRequestData.data);
             console.log("provisionRequestData.defaultUrl is:", provisionRequestData.defaultURL);
-            letarry = new Uint8Array([1, 2, 3, 4, 5]);
+            let arry = new Uint8Array([1, 2, 3, 4, 5]);
             drmsys.processKeySystemResponse(arry);
-            letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+            let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
             expect(session).not();
             session.destroy();
             drmsys.destroy();
@@ -503,10 +503,10 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_0200', 0, function (done) {
-            letdrmsys = drm.createMediaKeySystem(uuid);
+            let drmsys = drm.createMediaKeySystem(uuid);
             drmsys.generateKeySystemRequest();
             drmsys.processKeySystemResponse(null);
-            letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+            let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
             expect(session).not();
             session.destroy();
             drmsys.destroy();
@@ -522,20 +522,20 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_0300', 0, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_SW_CRYPTO);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
-                letDrmRequest: drm.MediaKeyRequest = session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData);
+                let DrmRequest: drm.MediaKeyRequest = session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData);
                 console.log("DrmRequest mediaKeyRequestType is", DrmRequest.mediaKeyRequestType);
                 console.log("DrmRequest defaultURL is", DrmRequest.defaultURL);
-                letresponseArray = new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
                 session.processMediaKeyResponse(responseArray);
-                letkeyvalue = session.checkMediaKeyStatus();
+                let keyvalue = session.checkMediaKeyStatus();
                 expect(keyvalue[0].value).assertEqual('MediaKey is OK');
                 session.destroy();
                 drmsys.destroy();
@@ -552,15 +552,15 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_0400', 0, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
-                letDrmRequest = session.generateMediaKeyRequest("1111/2222", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData);
+                let DrmRequest = session.generateMediaKeyRequest("1111/2222", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData);
                 expect(DrmRequest).assertUndefined();
                 session.destroy();
                 drmsys.destroy();
@@ -576,15 +576,15 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_0500', 0, function (done) {
-            letdrmsys = drm.createMediaKeySystem(uuid);
-            letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-            letbase64 = new util.Base64();
-            letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-            letoptionalData = [{
+            let drmsys = drm.createMediaKeySystem(uuid);
+            let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+            let base64 = new util.Base64();
+            let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+            let optionalData = [{
                 name: "optionalDataName",
                 value: "optionalDataValue"
             }];
-            letDrmRequest = session.generateMediaKeyRequest(null, uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData);
+            let DrmRequest = session.generateMediaKeyRequest(null, uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData);
             expect(DrmRequest).assertUndefined();
             session.destroy();
             drmsys.destroy();
@@ -600,15 +600,15 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_0600', 0, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q=');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q=');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
-                letDrmRequest = session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData);
+                let DrmRequest = session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData);
                 expect(DrmRequest).assertUndefined();
                 session.destroy();
                 drmsys.destroy();
@@ -624,13 +624,13 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_0700', 0, function (done) {
-            letdrmsys = drm.createMediaKeySystem(uuid);
-            letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-            letoptionalData = [{
+            let drmsys = drm.createMediaKeySystem(uuid);
+            let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+            let optionalData = [{
                 name: "optionalDataName",
                 value: "optionalDataValue"
             }];
-            letDrmRequest = session.generateMediaKeyRequest("video/mp4", null, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData);
+            let DrmRequest = session.generateMediaKeyRequest("video/mp4", null, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData);
             expect(DrmRequest).assertUndefined();
             session.destroy();
             drmsys.destroy();
@@ -646,15 +646,15 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_0800', 0, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
-                letDrmRequest = session.generateMediaKeyRequest("video/mp4", uint8pssh, 3, optionalData);
+                let DrmRequest = session.generateMediaKeyRequest("video/mp4", uint8pssh, 3, optionalData);
                 expect(DrmRequest).assertUndefined();
                 session.destroy();
                 drmsys.destroy();
@@ -671,18 +671,18 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_0900', 0, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData);
-                letresponseArray = new Uint8Array([1, 2, 3, 4, 5]);
+                let responseArray = new Uint8Array([1, 2, 3, 4, 5]);
                 session.processMediaKeyResponse(responseArray);
-                letkeyvalue = session.checkMediaKeyStatus();
+                let keyvalue = session.checkMediaKeyStatus();
                 expect(keyvalue).assertUndefined();
                 session.destroy();
                 drmsys.destroy();
@@ -699,17 +699,17 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_1000', 0, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData);
                 session.processMediaKeyResponse(null);
-                letkeyvalue = session.checkMediaKeyStatus();
+                let keyvalue = session.checkMediaKeyStatus();
                 expect(keyvalue).assertUndefined();
                 session.destroy();
                 drmsys.destroy();
@@ -726,21 +726,21 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_1100', 0, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_OFFLINE, optionalData);
-                letresponseArray = new Uint8Array([0x30, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x30, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session.processMediaKeyResponse(responseArray);
-                letkeyvalue = session.checkMediaKeyStatus();
+                let keyvalue = session.checkMediaKeyStatus();
                 expect(keyvalue[0].value).assertEqual('MediaKey is OK');
                 session.clearMediaKeys();
-                letkeyvalue = session.checkMediaKeyStatus();
+                let keyvalue = session.checkMediaKeyStatus();
                 expect(keyvalue).assertUndefined();
                 session.destroy();
                 drmsys.destroy();
@@ -757,21 +757,21 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_1200', 0, async function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData);
-                letresponseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session.processMediaKeyResponse(responseArray);
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
+                let keyIds = drmsys.getOfflineMediaKeyIds();
                 console.log("keyIds is", keyIds);
-                letarry = new Uint8Array(keyIds[0]);
-                letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
+                let arry = new Uint8Array(keyIds[0]);
+                let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
                 session.destroy();
                 drmsys.destroy();
@@ -788,20 +788,20 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_1300', 0, async function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData);
-                letresponseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session.processMediaKeyResponse(responseArray);
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
-                letarry = new Uint8Array(keyIds[0]);
-                letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
+                let keyIds = drmsys.getOfflineMediaKeyIds();
+                let arry = new Uint8Array(keyIds[0]);
+                let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
                 drmsys.clearOfflineMediaKeys(arry);
                 OfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
@@ -820,9 +820,9 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_1400', 0, function (done) {
-            letdrmsys = drm.createMediaKeySystem(uuid);
-            letarry = new Uint8Array([1, 2, 3, 4, 5]);
-            letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
+            let drmsys = drm.createMediaKeySystem(uuid);
+            let arry = new Uint8Array([1, 2, 3, 4, 5]);
+            let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
             if (sysSupport === true) {
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_UNKNOWN);
             }
@@ -838,8 +838,8 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_1500', 0, function (done) {
-            letdrmsys = drm.createMediaKeySystem(uuid);
-            letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(null);
+            let drmsys = drm.createMediaKeySystem(uuid);
+            let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(null);
             expect(OfflineKeyState).assertUndefined();
             drmsys.destroy();
             done();
@@ -854,20 +854,20 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_1600', 0, async function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData);
-                letresponseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session.processMediaKeyResponse(responseArray);
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
-                letarry = new Uint8Array(keyIds[0]);
-                letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
+                let keyIds = drmsys.getOfflineMediaKeyIds();
+                let arry = new Uint8Array(keyIds[0]);
+                let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
 
                 drmsys.clearOfflineMediaKeys(new Uint8Array([1, 2, 3, 4, 5]));
@@ -889,21 +889,21 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_1700', 0, async function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData);
-                letresponseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session.processMediaKeyResponse(responseArray);
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
+                let keyIds = drmsys.getOfflineMediaKeyIds();
 
-                letarry = new Uint8Array(keyIds[0]);
-                letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
+                let arry = new Uint8Array(keyIds[0]);
+                let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
 
                 drmsys.clearOfflineMediaKeys(null);
@@ -925,22 +925,22 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_1800', 0, async function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData);
-                letresponseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session.processMediaKeyResponse(responseArray);
 
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
+                let keyIds = drmsys.getOfflineMediaKeyIds();
 
-                letarry = new Uint8Array(keyIds[0]);
-                letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
+                let arry = new Uint8Array(keyIds[0]);
+                let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
 
                 drmsys.clearOfflineMediaKeys(arry);
@@ -965,20 +965,20 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_1900', 0, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData);
-                letresponseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session.processMediaKeyResponse(responseArray);
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
-                letkeyArray = new Uint8Array(keyIds[0]);
-                letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
+                let keyIds = drmsys.getOfflineMediaKeyIds();
+                let keyArray = new Uint8Array(keyIds[0]);
+                let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
                 session.generateOfflineReleaseRequest(keyArray);
                 session.processOfflineReleaseResponse(keyArray, responseArray);
@@ -999,22 +999,22 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_2000', 0, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData);
-                letresponseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session.processMediaKeyResponse(responseArray);
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
-                letarry = new Uint8Array(keyIds[0]);
-                letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
+                let keyIds = drmsys.getOfflineMediaKeyIds();
+                let arry = new Uint8Array(keyIds[0]);
+                let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
-                letkeyArray = new Uint8Array([1, 2, 3, 4, 5]);
+                let keyArray = new Uint8Array([1, 2, 3, 4, 5]);
                 session.generateOfflineReleaseRequest(keyArray);
                 session.processOfflineReleaseResponse(keyArray, responseArray);
                 OfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
@@ -1034,22 +1034,22 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_2100', 0, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData);
-                letresponseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session.processMediaKeyResponse(responseArray);
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
-                letarry = new Uint8Array(keyIds[0]);
-                letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
+                let keyIds = drmsys.getOfflineMediaKeyIds();
+                let arry = new Uint8Array(keyIds[0]);
+                let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(arry);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
-                letOfflineReleaseRequest = session.generateOfflineReleaseRequest(null);
+                let OfflineReleaseRequest = session.generateOfflineReleaseRequest(null);
                 expect(OfflineReleaseRequest).assertUndefined();
                 session.destroy();
                 drmsys.destroy();
@@ -1066,22 +1066,22 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_2200', 0, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData);
-                letresponseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session.processMediaKeyResponse(responseArray);
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
-                letkeyArray = new Uint8Array(keyIds[0]);
+                let keyIds = drmsys.getOfflineMediaKeyIds();
+                let keyArray = new Uint8Array(keyIds[0]);
                 session.generateOfflineReleaseRequest(keyArray);
                 session.processOfflineReleaseResponse(new Uint8Array([1, 2, 3, 4, 5]), responseArray);
-                letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
+                let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
                 session.destroy();
                 drmsys.destroy();
@@ -1098,22 +1098,22 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_2300', 0, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData);
-                letresponseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session.processMediaKeyResponse(responseArray);
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
-                letkeyArray = new Uint8Array(keyIds[0]);
+                let keyIds = drmsys.getOfflineMediaKeyIds();
+                let keyArray = new Uint8Array(keyIds[0]);
                 session.generateOfflineReleaseRequest(keyArray);
                 session.processOfflineReleaseResponse(null, responseArray);
-                letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
+                let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
                 session.destroy();
                 drmsys.destroy();
@@ -1130,20 +1130,20 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_2400', 0, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData);
-                letresponseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session.processMediaKeyResponse(responseArray);
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
-                letkeyArray = new Uint8Array(keyIds[0]);
-                letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
+                let keyIds = drmsys.getOfflineMediaKeyIds();
+                let keyArray = new Uint8Array(keyIds[0]);
+                let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
                 session.generateOfflineReleaseRequest(keyArray);
                 session.processOfflineReleaseResponse(keyArray, new Uint8Array([1, 2, 3, 4, 5]));
@@ -1164,22 +1164,22 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_2500', 0, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData);
-                letresponseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session.processMediaKeyResponse(responseArray);
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
-                letkeyArray = new Uint8Array(keyIds[0]);
+                let keyIds = drmsys.getOfflineMediaKeyIds();
+                let keyArray = new Uint8Array(keyIds[0]);
                 session.generateOfflineReleaseRequest(keyArray);
                 session.processOfflineReleaseResponse(keyArray, null);
-                letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
+                let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
                 session.destroy();
                 drmsys.destroy();
@@ -1196,25 +1196,25 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_2600', 0, async function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession1 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session1 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session1.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData);
-                letresponseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session1.processMediaKeyResponse(responseArray);
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
-                letkeyArray = new Uint8Array(keyIds[0]);
-                letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
+                let keyIds = drmsys.getOfflineMediaKeyIds();
+                let keyArray = new Uint8Array(keyIds[0]);
+                let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
                 session1.destroy();
                 //TODO:会话销毁以后离线许可证无法获取0102
                 expect(drmsys.getOfflineMediaKeyStatus(keyArray)).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_UNKNOWN);
-                letsession2 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let session2 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
                 session2.restoreOfflineMediaKeys(keyArray);
                 OfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
@@ -1233,23 +1233,23 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_2700', 0, async function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession1 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letbase64 = new util.Base64();
-                letuint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
-                letoptionalData = [{
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session1 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let base64 = new util.Base64();
+                let uint8pssh = base64.decodeSync('AAAAi3Bzc2gAAAAAPV5tNZuaQei4Q908bnLELAAAAGt7InZlcnNpb24iOiJWMS4wIiwiY29udGVudElEIjoiZEhNdE1qWTBMVEV3T0RBdFlXVnoiLCJraWRzIjpbIkcrRWsvK1htVWtwQkhRZ1hZV1FRSWc9PSJdLCJlbnNjaGVtYSI6ImNiYzEifQ==');
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue"
                 }];
                 session1.generateMediaKeyRequest("video/mp4", uint8pssh, drm.MediaKeyType.MEDIA_KEY_TYPE_ONLINE, optionalData);
-                letresponseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 session1.processMediaKeyResponse(responseArray);
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
-                letkeyArray = new Uint8Array(keyIds[0]);
+                let keyIds = drmsys.getOfflineMediaKeyIds();
+                let keyArray = new Uint8Array(keyIds[0]);
 
-                letsession2 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let session2 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
                 session2.restoreOfflineMediaKeys(keyArray);
-                letOfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
+                let OfflineKeyState = drmsys.getOfflineMediaKeyStatus(keyArray);
                 expect(OfflineKeyState).assertEqual(drm.OfflineMediaKeyStatus.OFFLINE_MEDIA_KEY_STATUS_USABLE);
                 session1.destroy();
                 session2.destroy();
@@ -1266,8 +1266,8 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_2800', 0, function (done) {
-            letdrmsys = drm.createMediaKeySystem(uuid);
-            letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+            let drmsys = drm.createMediaKeySystem(uuid);
+            let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
             session.restoreOfflineMediaKeys(new Uint8Array([1, 2, 3, 4, 5]));
             expect(1).assertEqual(1);
             session.destroy();
@@ -1283,8 +1283,8 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_2900', 0, function (done) {
-            letdrmsys = drm.createMediaKeySystem(uuid);
-            letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+            let drmsys = drm.createMediaKeySystem(uuid);
+            let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
             session.restoreOfflineMediaKeys(null);
             expect(1).assertEqual(1);
             session.destroy();
@@ -1300,9 +1300,9 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_3000', 0, function (done) {
-            letdrmsys = drm.createMediaKeySystem(uuid);
+            let drmsys = drm.createMediaKeySystem(uuid);
             drmsys.generateKeySystemRequest();
-            letcstatus = drmsys.getCertificateStatus();
+            let cstatus = drmsys.getCertificateStatus();
             expect(cstatus).assertEqual(drm.CertificateStatus.CERT_STATUS_PROVISIONED);
             drmsys.destroy();
             done();
@@ -1316,11 +1316,11 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_3100', 0, function (done) {
-            letdrmsys = drm.createMediaKeySystem(uuid);
-            letcstatus = drmsys.getCertificateStatus();
+            let drmsys = drm.createMediaKeySystem(uuid);
+            let cstatus = drmsys.getCertificateStatus();
             expect(cstatus).assertEqual(drm.CertificateStatus.CERT_STATUS_PROVISIONED);
 
-            letdrmsys2 = drm.createMediaKeySystem(uuid);
+            let drmsys2 = drm.createMediaKeySystem(uuid);
             drmsys2.getCertificateStatus();
             expect(cstatus).assertEqual(drm.CertificateStatus.CERT_STATUS_PROVISIONED);
             drmsys.destroy();
@@ -1336,13 +1336,13 @@ export default function abilityTest() {
         * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_3200', 0, function (done) {
-            letdrmsys = drm.createMediaKeySystem(uuid);
-            letcstatus = drmsys.getCertificateStatus();
+            let drmsys = drm.createMediaKeySystem(uuid);
+            let cstatus = drmsys.getCertificateStatus();
             expect(cstatus).assertEqual(drm.CertificateStatus.CERT_STATUS_PROVISIONED);
 
             drmsys.destroy();
 
-            letdrmsys2 = drm.createMediaKeySystem(uuid);
+            let drmsys2 = drm.createMediaKeySystem(uuid);
             drmsys2.getCertificateStatus();
             expect(cstatus).assertEqual(drm.CertificateStatus.CERT_STATUS_PROVISIONED);
             drmsys2.destroy();
@@ -1358,9 +1358,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_0100', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR, "ABC");
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
                 expect(getCfg).assertEqual("ABC");
                 mediaKeySystem.destroy();
             }
@@ -1375,8 +1375,8 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_0200', 1, function (done) {
-            letmediaKeySystem = drm.createMediaKeySystem(uuid);
-            letgetCfg = mediaKeySystem.getConfigurationString(null);
+            let mediaKeySystem = drm.createMediaKeySystem(uuid);
+            let getCfg = mediaKeySystem.getConfigurationString(null);
             if (sysSupport === true) {
                 console.log("getCfg is:", getCfg);
                 expect(getCfg).assertUndefined();
@@ -1394,9 +1394,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_0300', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString("version_id", "1.1");
-                letgetCfg = mediaKeySystem.getConfigurationString("version_id");
+                let getCfg = mediaKeySystem.getConfigurationString("version_id");
                 expect(getCfg).assertEqual("1.1");
                 mediaKeySystem.destroy();
             }
@@ -1412,9 +1412,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_0400', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR, null);
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -1430,9 +1430,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_0500', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR, 'ABC');
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
                 expect(getCfg).assertEqual('ABC');
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR, 'EFGH');
                 getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
@@ -1451,9 +1451,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_0600', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION, "1.1");
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION);
                 expect(getCfg).assertEqual("1.1");
                 mediaKeySystem.destroy();
             }
@@ -1469,9 +1469,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_0700', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION, null);
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -1487,9 +1487,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_0800', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION, "Test Set Get Config");
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION);
                 expect(getCfg).assertEqual("Test Set Get Config");
                 mediaKeySystem.destroy();
             }
@@ -1505,9 +1505,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_0900', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION, null);
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -1523,9 +1523,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_1000', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS, "AES");
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS);
                 expect(getCfg).assertEqual("AES");
                 mediaKeySystem.destroy();
             }
@@ -1541,9 +1541,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_1100', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS, null);
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -1559,9 +1559,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_1200', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID, "7E8G9D");
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID);
                 expect(getCfg).assertEqual("7E8G9D");
                 mediaKeySystem.destroy();
             }
@@ -1577,9 +1577,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_1300', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID, null);
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -1595,8 +1595,8 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_1400', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -1612,9 +1612,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_1500', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX, '0');
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
                 expect(getCfg).assertEqual("0");
                 mediaKeySystem.destroy();
             }
@@ -1630,9 +1630,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_1600', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX, null);
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -1648,9 +1648,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_1700', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX, "65");
-                letgetCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
+                let getCfg = mediaKeySystem.getConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
                 expect(getCfg).assertEqual("65");
                 mediaKeySystem.destroy();
             }
@@ -1667,12 +1667,12 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_1900', 1, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
+                let drmsys = drm.createMediaKeySystem(uuid);
                 drmsys.setConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX, "1");
-                letgetCfg = drmsys.getConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
+                let getCfg = drmsys.getConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
                 expect(getCfg).assertEqual('1');
-                letsession1 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letsession2 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let session1 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let session2 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
                 expect(session2).not();
                 session1.destroy();
                 session2.destroy();
@@ -1689,10 +1689,10 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_2000', 1, function (done) {
-            letdrmsys = drm.createMediaKeySystem(uuid);
-            letsession1 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-            letsession2 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-            letgetCfg = drmsys.getConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_CURRENT);
+            let drmsys = drm.createMediaKeySystem(uuid);
+            let session1 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+            let session2 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+            let getCfg = drmsys.getConfigurationString(drm.PreDefinedConfigName.CONFIG_SESSION_CURRENT);
             if (sysSupport === true) {
                 expect(getCfg).assertEqual(getCfg);
             }
@@ -1710,36 +1710,36 @@ export default function abilityTest() {
         * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_DRM_GET_METRIC_2100', 1, function (done) {
-            letmediaKeySystem = drm.createMediaKeySystem(uuid);
-            letsessionArray = [];
-            letmetric = mediaKeySystem.getStatistics();
-            for (letitem of metric) {
+            let mediaKeySystem = drm.createMediaKeySystem(uuid);
+            let sessionArray = [];
+            let metric = mediaKeySystem.getStatistics();
+            for (let item of metric) {
                 console.log("XX TEST metric" + item.name + ':' + item.value);
                 if (item.name === drm.PreDefinedConfigName.CONFIG_SESSION_CURRENT) {
                     expect(item.value).assertEqual('0');
                 }
             }
-            for (leti = 0; i < 64; i++) {
+            for (let i = 0; i < 64; i++) {
                 sessionArray[i] = mediaKeySystem.createMediaKeySession();
             }
-            letmetric2 = mediaKeySystem.getStatistics();
-            for (letitem2 of metric2) {
+            let metric2 = mediaKeySystem.getStatistics();
+            for (let item2 of metric2) {
                 console.log("XX TEST metric2" + item2.name + ':' + item2.value);
                 if (item2.name === drm.PreDefinedConfigName.CONFIG_SESSION_CURRENT) {
                     expect(item2.value).assertEqual('64');
                 }
             }
-            for (letj = 0; j < 32; j++) {
+            for (let j = 0; j < 32; j++) {
                 sessionArray[j].destroy();
             }
-            letmetric3 = mediaKeySystem.getStatistics();
-            for (letitem3 of metric3) {
+            let metric3 = mediaKeySystem.getStatistics();
+            for (let item3 of metric3) {
                 console.log("XX TEST metric3" + item3.name + ':' + item3.value);
                 if (item3.name === drm.PreDefinedConfigName.CONFIG_SESSION_CURRENT) {
                     expect(item3.value).assertEqual('32');
                 }
             }
-            for (letk = 32; k < 64; k++) {
+            for (let k = 32; k < 64; k++) {
                 sessionArray[k].destroy();
             }
             mediaKeySystem.destroy();
@@ -1755,11 +1755,11 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_2300', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
-                letvalueArray = stringToUint8Array("ABC");
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
+                let valueArray = stringToUint8Array("ABC");
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR, valueArray);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
-                for (leti = 0; i < getCfg.length; i++) {
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
+                for (let i = 0; i < getCfg.length; i++) {
                     expect(getCfg[i]).assertEqual(valueArray[i]);
                 }
                 mediaKeySystem.destroy();
@@ -1776,11 +1776,11 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_2400', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
-                letvalueArray = stringToUint8Array("ABC");
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
+                let valueArray = stringToUint8Array("ABC");
                 mediaKeySystem.setConfigurationByteArray("version_id", valueArray);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray("version_id");
-                for (leti = 0; i < getCfg.length; i++) {
+                let getCfg = mediaKeySystem.getConfigurationByteArray("version_id");
+                for (let i = 0; i < getCfg.length; i++) {
                     expect(getCfg[i]).assertEqual(valueArray[i]);
                 }
                 mediaKeySystem.destroy();
@@ -1797,9 +1797,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_2500', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR, null);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -1815,17 +1815,17 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_2600', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
-                letvalueArray = stringToUint8Array("ABC");
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
+                let valueArray = stringToUint8Array("ABC");
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR, valueArray);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
-                for (leti = 0; i < getCfg.length; i++) {
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
+                for (let i = 0; i < getCfg.length; i++) {
                     expect(getCfg[i]).assertEqual(valueArray[i]);
                 }
                 valueArray = stringToUint8Array("EFG");
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR, valueArray);
                 getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VENDOR);
-                for (leti = 0; i < getCfg.length; i++) {
+                for (let i = 0; i < getCfg.length; i++) {
                     expect(getCfg[i]).assertEqual(valueArray[i]);
                 }
                 mediaKeySystem.destroy();
@@ -1842,11 +1842,11 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_2700', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
-                letvalueArray = stringToUint8Array("1.1");
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
+                let valueArray = stringToUint8Array("1.1");
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION, valueArray);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION);
-                for (leti = 0; i < getCfg.length; i++) {
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION);
+                for (let i = 0; i < getCfg.length; i++) {
                     expect(getCfg[i]).assertEqual(valueArray[i]);
                 }
                 mediaKeySystem.destroy();
@@ -1863,9 +1863,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_2800', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION, null);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION);
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_VERSION);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -1881,11 +1881,11 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_2900', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
-                letvalueArray = stringToUint8Array("Test Set Get Config");
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
+                let valueArray = stringToUint8Array("Test Set Get Config");
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION, valueArray);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION);
-                for (leti = 0; i < getCfg.length; i++) {
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION);
+                for (let i = 0; i < getCfg.length; i++) {
                     expect(getCfg[i]).assertEqual(valueArray[i]);
                 }
                 mediaKeySystem.destroy();
@@ -1902,9 +1902,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_3000', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION, null);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION);
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_DESCRIPTION);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -1920,11 +1920,11 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_3100', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
-                letvalueArray = stringToUint8Array("AES");
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
+                let valueArray = stringToUint8Array("AES");
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS, valueArray);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS);
-                for (leti = 0; i < getCfg.length; i++) {
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS);
+                for (let i = 0; i < getCfg.length; i++) {
                     expect(getCfg[i]).assertEqual(valueArray[i]);
                 }
                 mediaKeySystem.destroy();
@@ -1941,9 +1941,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_3200', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS, null);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS);
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_ALGORITHMS);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -1959,11 +1959,11 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_3300', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
-                letvalueArray = stringToUint8Array("7E8G9D");
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
+                let valueArray = stringToUint8Array("7E8G9D");
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID, valueArray);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID);
-                for (leti = 0; i < getCfg.length; i++) {
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID);
+                for (let i = 0; i < getCfg.length; i++) {
                     expect(getCfg[i]).assertEqual(valueArray[i]);
                 }
                 mediaKeySystem.destroy();
@@ -1980,9 +1980,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_3400', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID, null);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID);
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_DEVICE_UNIQUE_ID);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -1998,8 +1998,8 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_3500', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -2015,11 +2015,11 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_3600', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
-                letvalueArray = stringToUint8Array("0");
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
+                let valueArray = stringToUint8Array("0");
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX, valueArray);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
-                for (leti = 0; i < getCfg.length; i++) {
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
+                for (let i = 0; i < getCfg.length; i++) {
                     expect(getCfg[i]).assertEqual(valueArray[i]);
                 }
                 mediaKeySystem.destroy();
@@ -2036,9 +2036,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_3700', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX, null);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -2054,11 +2054,11 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_3800', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
-                letvalueArray = stringToUint8Array("65");
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
+                let valueArray = stringToUint8Array("65");
                 mediaKeySystem.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX, valueArray);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
-                for (leti = 0; i < getCfg.length; i++) {
+                let getCfg = mediaKeySystem.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
+                for (let i = 0; i < getCfg.length; i++) {
                     expect(getCfg[i]).assertEqual(valueArray[i]);
                 }
                 mediaKeySystem.destroy();
@@ -2075,15 +2075,15 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_3900', 1, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letvalueArray = stringToUint8Array("1");
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let valueArray = stringToUint8Array("1");
                 drmsys.setConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX, valueArray);
-                letgetCfg = drmsys.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
-                for (leti = 0; i < getCfg.length; i++) {
+                let getCfg = drmsys.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_MAX);
+                for (let i = 0; i < getCfg.length; i++) {
                     expect(getCfg[i]).assertEqual(valueArray[i]);
                 }
                 drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letsession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
                 expect(session).not();
                 session.destroy();
                 drmsys.destroy();
@@ -2100,10 +2100,10 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_4000', 1, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsession1 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letsession2 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letgetCfg = drmsys.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_CURRENT);
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let session1 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let session2 = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let getCfg = drmsys.getConfigurationByteArray(drm.PreDefinedConfigName.CONFIG_SESSION_CURRENT);
                 expect(getCfg).assertEqual(getCfg);
                 session1.destroy();
                 session2.destroy();
@@ -2121,8 +2121,8 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_SET_GET_CONFIG_4100', 1, function (done) {
             if (sysSupport === true) {
-                letmediaKeySystem = drm.createMediaKeySystem(uuid);
-                letgetCfg = mediaKeySystem.getConfigurationByteArray(null);
+                let mediaKeySystem = drm.createMediaKeySystem(uuid);
+                let getCfg = mediaKeySystem.getConfigurationByteArray(null);
                 expect(getCfg).assertUndefined();
                 mediaKeySystem.destroy();
             }
@@ -2139,18 +2139,18 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_0100', 1, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letkeySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letsign = 1;
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let keySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let sign = 1;
                 keySession.on('keyRequired', (eventInfo) => {
                     console.info('bbbbb receive keyRequired ' + eventInfo.info);
                     console.info('bbbbb receive keyRequired ' + eventInfo.extraInfo);
                     sign = 2;
                 });
 
-                letresponseArray = new Uint8Array([0x31, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x31, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
                 keySession.processMediaKeyResponse(responseArray);
-                letoptionalData = [{
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue",
                 }];
@@ -2174,9 +2174,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_0200', 1, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letkeySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letsign = 1;
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let keySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let sign = 1;
                 keySession.on('keyRequired', (eventInfo) => {
                     console.info('bbbbb receive keyRequired ' + eventInfo.info);
                     console.info('bbbbb receive keyRequired ' + eventInfo.extraInfo);
@@ -2184,9 +2184,9 @@ export default function abilityTest() {
                 });
 
                 keySession.off('keyRequired');
-                letresponseArray = new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
                 keySession.processMediaKeyResponse(responseArray);
-                letoptionalData = [{
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue",
                 }];
@@ -2209,18 +2209,18 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_0300', 1, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letkeySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letsign = 1;
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let keySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let sign = 1;
                 keySession.on('keyExpired', (eventInfo) => {
                     console.info('bbbbb receive keyExpired ' + eventInfo.info);
                     console.info('bbbbb receive keyExpired ' + eventInfo.extraInfo);
                     sign = 2;
                 });
 
-                letresponseArray = new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
                 keySession.processMediaKeyResponse(responseArray);
-                letoptionalData = [{
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue",
                 }];
@@ -2245,9 +2245,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_0400', 1, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letkeySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letsign = 1;
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let keySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let sign = 1;
                 keySession.on('keyExpired', (eventInfo) => {
                     console.info('bbbbb receive keyExpired ' + eventInfo.info);
                     console.info('bbbbb receive keyExpired ' + eventInfo.extraInfo);
@@ -2256,9 +2256,9 @@ export default function abilityTest() {
 
                 keySession.off('keyExpired');
 
-                letresponseArray = new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
                 keySession.processMediaKeyResponse(responseArray);
-                letoptionalData = [{
+                let optionalData = [{
                     name: "optionalDataName",
                     value: "optionalDataValue",
                 }];
@@ -2282,20 +2282,20 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_0500', 1, async function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letkeySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letsign = 1;
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let keySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let sign = 1;
                 keySession.on('expirationUpdate', (eventInfo) => {
                     console.info('bbbbb receive expirationUpdate ' + eventInfo.info);
                     console.info('bbbbb receive expirationUpdate ' + eventInfo.extraInfo);
                     sign = 2;
                 });
 
-                letresponseTest = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseTest = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 keySession.processMediaKeyResponse(responseTest);
 
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
-                letkeyArray = new Uint8Array(keyIds[0]);
+                let keyIds = drmsys.getOfflineMediaKeyIds();
+                let keyArray = new Uint8Array(keyIds[0]);
                 console.log("keyArray is:", keyArray);
                 keySession.generateOfflineReleaseRequest(keyArray);
                 keySession.processOfflineReleaseResponse(keyArray, responseTest);
@@ -2319,9 +2319,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_0600', 1, async function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letkeySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letsign = 1;
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let keySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let sign = 1;
                 keySession.on('expirationUpdate', (eventInfo) => {
                     console.info('bbbbb receive expirationUpdate ' + eventInfo.info);
                     console.info('bbbbb receive expirationUpdate ' + eventInfo.extraInfo);
@@ -2329,11 +2329,11 @@ export default function abilityTest() {
                 });
                 keySession.off('expirationUpdate');
 
-                letresponseTest = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
+                let responseTest = new Uint8Array([0x31, 0x56, 0x55, 0x52, 0x53, 0x54, 0x56, 0x39, 0x55, 0x52, 0x56, 0x4E, 0x55, 0x58, 0x30, 0x4E, 0x4A, 0x52, 0x46, 0x38, 0x77, 0x4E, 0x41, 0x3D, 0x3D, 0x3A, 0x42, 0x4E, 0x4F, 0x71, 0x2B, 0x4F, 0x68, 0x6D, 0x65, 0x6B, 0x42, 0x41, 0x30, 0x36, 0x72, 0x34, 0x36, 0x47, 0x5A, 0x36, 0x42, 0x41, 0x3D, 0x3D]);
                 keySession.processMediaKeyResponse(responseTest);
 
-                letkeyIds = drmsys.getOfflineMediaKeyIds();
-                letkeyArray = new Uint8Array(keyIds[0]);
+                let keyIds = drmsys.getOfflineMediaKeyIds();
+                let keyArray = new Uint8Array(keyIds[0]);
                 console.log("keyArray is:", keyArray);
                 keySession.generateOfflineReleaseRequest(keyArray);
                 keySession.processOfflineReleaseResponse(keyArray, responseTest);
@@ -2355,9 +2355,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_0700', 1, async function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letkeySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letsign = 1;
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let keySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let sign = 1;
                 keySession.on('keysChange', (keyInfo, newKeyAvailable) => {
 					console.info('bbbbb receive keysChange newKeyAvailable:' + newKeyAvailable);
 					for (let index = 0; index < keyInfo.length; index++){
@@ -2368,7 +2368,7 @@ export default function abilityTest() {
                     sign = 2;
                 });
 
-                letresponseArray = new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
                 keySession.processMediaKeyResponse(responseArray);
                 expect(sign).assertEqual(2);
                 keySession.off('keysChange');
@@ -2388,9 +2388,9 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_0800', 1, async function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letkeySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                letsign = 1;
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let keySession = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
+                let sign = 1;
                 keySession.on('keysChange', (keyInfo, newKeyAvailable) => {
 					console.info('bbbbb receive keysChange newKeyAvailable' + newKeyAvailable);
 					for (let index = 0; index < keyInfo.length; index++){
@@ -2402,7 +2402,7 @@ export default function abilityTest() {
                 });
                 keySession.off('keysChange');
 
-                letresponseArray = new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
+                let responseArray = new Uint8Array([0x30, 0x64, 0x6E, 0x5A, 0x32, 0x4E, 0x57, 0x74, 0x76, 0x4D, 0x47, 0x34, 0x34, 0x4E, 0x6A, 0x42, 0x30, 0x4D, 0x32, 0x77, 0x33, 0x4E, 0x67, 0x3D, 0x3D, 0x3A, 0x59, 0x7A, 0x56, 0x78, 0x63, 0x48, 0x64, 0x70, 0x61, 0x6D, 0x30, 0x34, 0x59, 0x57, 0x45, 0x34, 0x5A, 0x48, 0x6B, 0x79, 0x4D, 0x67, 0x3D, 0x3D]);
                 keySession.processMediaKeyResponse(responseArray);
                 expect(sign).assertEqual(1);
                 keySession.destroy();
@@ -2420,8 +2420,8 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_0900', 1, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsign = 1;
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let sign = 1;
                 drmsys.on('keySystemRequired', (eventInfo) => {
                     console.info('bbbbb receive keySystemRequired ' + eventInfo.info);
                     console.info('bbbbb receive keySystemRequired ' + eventInfo.extraInfo);
@@ -2444,8 +2444,8 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_KEY_SESSION_ON_OFF_1000', 1, function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
-                letsign = 1;
+                let drmsys = drm.createMediaKeySystem(uuid);
+                let sign = 1;
                 drmsys.on('keySystemRequired', (eventInfo) => {
                     console.info('bbbbb receive keySystemRequired ' + eventInfo.info);
                     console.info('bbbbb receive keySystemRequired ' + eventInfo.extraInfo);
@@ -2469,7 +2469,7 @@ export default function abilityTest() {
         */
         it('SUB_MULTIMEDIA_DRM_AVPLAYER_0200', 1, async function (done) {
             if (sysSupport === true) {
-                letdrmsys = drm.createMediaKeySystem(uuid);
+                let drmsys = drm.createMediaKeySystem(uuid);
                 let avPlayer = await media.createAVPlayer();
                 let keyInfo = avPlayer.getMediaKeySystemInfos()
                 for (let item = 0; item < keyInfo.length; item++) {

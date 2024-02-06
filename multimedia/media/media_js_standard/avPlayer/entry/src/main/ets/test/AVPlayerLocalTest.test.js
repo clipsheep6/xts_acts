@@ -559,10 +559,6 @@ export default function AVPlayerLocalTest() {
             console.log(`DRM clearplay is sysSupport: ${sysSupport}`);
             if (sysSupport === true) {
                 uuid = "com.clearplay.drm";
-            } else {
-                uuid = "com.wiseplay.drm";
-            }
-            if (sysSupport === true) {
                 var drmsys = drm.createMediaKeySystem(uuid);
                 let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
                 let avPlayer = await media.createAVPlayer();
@@ -586,10 +582,6 @@ export default function AVPlayerLocalTest() {
             console.log(`DRM clearplay is sysSupport: ${sysSupport}`);
             if (sysSupport === true) {
                 uuid = "com.clearplay.drm";
-            } else {
-                uuid = "com.wiseplay.drm";
-            }
-            if (sysSupport === true) {
                 var drmsys = drm.createMediaKeySystem(uuid);
                 let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
                 let avPlayer = await media.createAVPlayer();
