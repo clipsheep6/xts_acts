@@ -60,7 +60,7 @@ ohos_moduletest_suite("ActsGraphicGlesExtensionTest") {
     "$comPath:libnative_image",
     "$comPath:libsurface",
     "$comPath/frameworks/opengl_wrapper:EGL",
-    "$comPath/frameworks/opengl_wrapper:GLESv2",
+    "$comPath/frameworks/opengl_wrapper:GLESv3",
     "$comPath/rosen/modules/composer/native_vsync:libnative_vsync",
     "$comPath/rosen/modules/composer/vsync:libvsync",
     "$comPath/utils:buffer_handle",
