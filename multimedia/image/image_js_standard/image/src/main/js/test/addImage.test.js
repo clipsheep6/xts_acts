@@ -321,26 +321,6 @@ export default function addImage() {
          * @tc.level     : Level 0
          */
         it('SUB_MULTIMEDIA_IMAGE_SCALE_PIXELMAP_SYNC_0100', 0, async function (done) {
-            // var color = new ArrayBuffer(96);
-            // var bufferArr = new Uint8Array(color);
-            // for (var i = 0; i < bufferArr.length; i++) {
-            //     bufferArr[i] = i + 1;
-            // }
-            // let opts = { editable: true, pixelFormat: 3, size: { height: 4, width: 6 } }
-            // let pixelmap = image.createPixelMap(color, opts);
-            // var pixelSize = pixelmap.getPixelBytesNumber();
-            // logger.log(`new pixel size ${pixelSize}`);
-            // var readBuffer = new ArrayBuffer(pixelSize);
-            // await pixelmap.readPixelsToBuffer(readBuffer);
-            // var bufferArr2 = new Uint8Array(readBuffer);
-            // for (var i = 0; i < bufferArr2.length; i++) {
-            //     if (bufferArr2[i] != data[i]) {
-            //         logger.log(`pixel[${i}] current[${bufferArr2[i]}] target[${data[i]}]`);
-            //         expect(false).assertTrue();
-            //         break;
-            //     }
-            // }
-            // expect(true).assertTrue();
             const color = new ArrayBuffer(96);
             let opts = { editable: true, pixelFormat: 2, size: { height: 6, width: 8 } }
             let pixelmap = image.createPixelMapSync(color, opts)
