@@ -38,6 +38,7 @@
         "description": "$string:SecondAbility_desc",
         "icon": "$media:icon",
         "label": "$string:SecondAbility_label",
+        "exported":true,
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
         "launchType": "multiton",
@@ -56,6 +57,29 @@
                 "port": "8080",
                 "path": "query/student"
               }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "ThirdAbility",
+        "srcEntry": "./ets/thirdability/ThirdAbility.ts",
+        "description": "$string:ThirdAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:ThirdAbility_label",
+        "exported": true,
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "launchType": "multiton",
+        "skills": [
+          {
+            "actions": [
+              "abc"
+            ],
+            "entities": [
+              "ab",
+              "acd",
+              "acc"
             ]
           }
         ]
