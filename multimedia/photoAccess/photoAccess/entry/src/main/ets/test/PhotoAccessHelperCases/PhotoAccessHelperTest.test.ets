@@ -15,7 +15,7 @@
 
 import photoAccessHelper from '@ohos.file.photoAccessHelper';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
-import { checkSet,checkUri,checkReadAndWrite,columns,photoExtensions,videoExtensions,sizes } from './common.ets'
+import { checkSet,checkUri,checkReadAndWrite,columns,photoExtensions,videoExtensions,sizes,getPhotoAssetAttrs } from './common.ets'
 import { BusinessError } from '@ohos.base';
 import { getPermission, photoKeys } from '../../../../../../../common'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
@@ -275,18 +275,6 @@ export default function PhotoAccessHelperTest() {
             }
             checkSet(callBackSet, uriSet, phAccessHelper, forChildUris, photoAsset, onCallback1)
             releaseHelperPromise(phAccessHelper,done)
-        }
-
-        function getPhotoAssetAttrs(photoAsset){
-            let photoAssetUri: photoAccessHelper.MemberType = photoAsset.get(photoAccessHelper.PhotoKeys.URI.toString());
-            expect(photoAssetUri).not().assertUndefined()
-            console.info('photoAsset.uri : ' + photoAssetUri);
-            let photoAssetType: photoAccessHelper.MemberType = photoAsset.get(photoAccessHelper.PhotoKeys.PHOTO_TYPE.toString());
-            expect(photoAssetType).not().assertUndefined()
-            console.info('photoAsset.photoType : ' + photoAssetType);
-            let photoAssetName: photoAccessHelper.MemberType = photoAsset.get(photoAccessHelper.PhotoKeys.DISPLAY_NAME.toString());
-            expect(photoAssetName).not().assertUndefined()
-            console.info('photoAsset.displayName : ' + photoAssetName);
         }
 
         function getPhotoAssetAttrsCallback(phAccessHelper,fetchOptions, done){
