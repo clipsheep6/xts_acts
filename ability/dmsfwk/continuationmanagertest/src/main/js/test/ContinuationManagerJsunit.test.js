@@ -19,7 +19,7 @@ const TEST_DEVICE_ID = "test_deviceId";
 const TEST_CONNECT_STATUS = continuationManager.DeviceConnectState.CONNECTED;
 let token = -1;
 import featureAbility from '@ohos.ability.featureAbility';
-import { UiDriver, BY } from '@ohos.UiTest'
+import { UiDriver, BY } from '@ohos.UiTest';
 
 export default function continuationManagerTest() {
     describe('continuationManagerTest', function () {
