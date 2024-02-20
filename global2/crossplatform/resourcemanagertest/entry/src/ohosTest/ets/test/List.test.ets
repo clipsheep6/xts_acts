@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import abilityTest from './Ability.test'
-import resourceManagerTest from './ResourceManager.test'
+import abilityTest from './Ability.test';
+import resourceManagerTest from './ResourceManager.test';
 
 export default function testsuite() {
-  abilityTest()
-  resourceManagerTest()
+  abilityTest();
+  resourceManagerTest();
 }
