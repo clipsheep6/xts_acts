@@ -21,10 +21,7 @@
       "name": "sizeList2",
       "value":[
         {
-          "value":"little"
-        },
-        {
-          "value":"much"
+          "value":"$string:Test_name1"
         }
       ]
     }
