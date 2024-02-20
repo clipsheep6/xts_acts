@@ -382,7 +382,7 @@ export default function requestCrossplatformDownloadJSUnit() {
                 expect(data.pausedReason).assertEqual(0);
                 expect(data.status).assertEqual(0);
                 expect(data.targetURI).assertEqual('https://gitee.com/chenzhixue/downloadTest/releases/download/v1.0/test.apk');
-                expect(data.downloadTitle).assertEqual('');
+                expect(data.downloadTitle).assertEqual('download');
                 expect(data.downloadTotalBytes).assertEqual(1042003);
               } catch (err) {
                 console.error("====>SUB_REQUEST_CROSSPLATFORM_DOWNDLOAD_API_TASKINFO_0003 throw_error" + JSON.stringify(err));
