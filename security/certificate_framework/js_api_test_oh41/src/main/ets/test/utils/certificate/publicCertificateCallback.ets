@@ -501,11 +501,7 @@ function verifyX509CRLCallback(crlType: string, flag?: string | cryptoFramework.
         expect(convertKeyPair != null).assertTrue();
         let pubKey = convertKeyPair.pubKey;
         if (flag != undefined) {
-          if (flag != "error") {
-            pubKey = flag as cryptoFramework.PubKey;
-          } else {
-            pubKey = convertKeyPair.priKey;
-          }
+          pubKey = flag as cryptoFramework.PubKey;
         }
         return verifyX509CRL(globalCrlInstance, pubKey);
       })
