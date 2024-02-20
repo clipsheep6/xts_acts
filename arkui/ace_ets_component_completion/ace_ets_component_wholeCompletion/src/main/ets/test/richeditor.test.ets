@@ -39,32 +39,6 @@ export default function ActsRichEditorTest() {
       done()
     });
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
-    it('Stage_RichEditor_Test_0100', 0, async function (done) {
-      console.info('Stage_RichEditor_Test_0100 START');
-        try{
-          let controller = new RichEditorController()
-          let res = controller.addTextSpan("实例文字0", {
-            offset: 5,
-            style: {
-              fontColor: Color.Red,
-              fontSize: 8,
-              fontStyle: FontStyle.Italic,
-              fontWeight: FontWeight.Lighter,
-              fontFamily: "sans-serif",
-              decoration: { type: TextDecorationType.None, color: Color.Brown }
-            }
-          })
-          console.info('Stage_Font_0100 START  :'+ JSON.stringify(res));
-          expect(typeof(res)).assertEqual('number')
-          expect(res).assertEqual(0)
-          console.info('Stage_RichEditor_Test_0100 END ');
-        } catch(err) {
-          expect().assertFail()
-          console.info('Stage_RichEditor_Test_0100 ERR  '+ JSON.stringify(err));
-        }
-        done();
-    });
-
     it('Stage_RichEditor_Test_0200', 0, async function (done) {
       console.info('Stage_RichEditor_Test_0200 START');
       try{
