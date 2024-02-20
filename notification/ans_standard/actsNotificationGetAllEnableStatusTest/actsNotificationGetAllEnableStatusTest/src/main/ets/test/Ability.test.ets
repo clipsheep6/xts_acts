@@ -39,6 +39,12 @@ export default function abilityTest() {
         console.info("Acts_NotificationGetAllEnableStatus_0100 db data is" + JSON.stringify(data));
         let res = JSON.stringify(data);
         expect(res).assertContain("com.example.actsnotificaiongetallenablestatustest");
+        data.forEach(element => {
+          console.info("Acts_NotificationGetAllEnableStatus_0100 db uid is" + JSON.stringify(element.uid));
+          console.info("Acts_NotificationGetAllEnableStatus_0100 db bundle is" + JSON.stringify(element.bundle));
+          expect(element.uid).assertLarger(0);
+          expect(element.bundle !== "").assertTrue();
+        });
         done();
       }).catch((err) => {
         console.log("Acts_NotificationGetAllEnableStatus_0100 db error is" + JSON.stringify(err));
