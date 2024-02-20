@@ -366,7 +366,8 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
                 })
                 return;
             }
-            osAccountManager.createOsAccount("osAccountNameIdSerialA", osaccount.OsAccountType.NORMAL, (err, data) => {
+            osAccountManager.createOsAccount("osAccountNameIdSerialA", "shortName", osaccount.OsAccountType.NORMAL, 
+                (err, data) => {
                 console.info("====>create os account err: " + JSON.stringify(err));
                 console.info("====>create os account OsAccountInfo: " + JSON.stringify(data));
                 expect(err).assertEqual(null);
@@ -429,7 +430,7 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
                 done();
                 return;
             }
-            var OsAccountInfo = await osAccountManager.createOsAccount("accountIdSerialB", osaccount.OsAccountType.GUEST);
+            var OsAccountInfo = await osAccountManager.createOsAccount("accountIdSerialB", "shortName", osaccount.OsAccountType.GUEST);
             console.info("====>create os account OsAccountInfo: " + JSON.stringify(OsAccountInfo));
             expect(OsAccountInfo.localName).assertEqual("accountIdSerialB");
             localId = OsAccountInfo.localId;
