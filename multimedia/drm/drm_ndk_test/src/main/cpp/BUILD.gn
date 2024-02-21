@@ -16,6 +16,8 @@ import("//build/ohos.gni")
 import("//foundation/arkui/napi/napi.gni")
 
 MEDIA_DRM_DIR = "//foundation/multimedia/drm_framework/"
+MEDIA_AVCODEC_DIR = "//foundation/multimedia/av_codec/"
+MEDIA_FOUNDATION_DIR = "//foundation/multimedia/media_foundation/"
 config("config") {
   visibility = [ ":*" ]
   cflags = [
@@ -34,11 +36,15 @@ ohos_shared_library("entry") {
   libs = [ rebase_path(libcxx_ndk_shared_file) ]
 
   include_dirs = [
+    "$MEDIA_FOUNDATION_DIR/interface/kits/c",
+    "$MEDIA_AVCODEC_DIR/interfaces/kits/c",
     "$MEDIA_DRM_DIR/interfaces/kits/c/drm_capi/include",
     "$MEDIA_DRM_DIR/interfaces/kits/c/drm_capi/common",
   ]
   external_deps = [
+    "av_codec:capi_packages",
     "hilog:hilog_ndk",
+    "media_foundation:capi_packages",
     "napi:ace_napi",
   ]
   deps = [
