@@ -12,15 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeEach, afterEach, it, expect, beforeAll} from "@ohos/hypium";
+import { describe, beforeEach, afterEach, it, expect, beforeAll } from "@ohos/hypium";
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 import router from '@system.router';
-// @ts-nocheck
+
 let emitKey = "emitDeleteEntireCookie";
+
 export default function webViewDeleteEntireCookie() {
-  describe('ActsAceWebDevWebViewDeleteEntireCookieTest', function () {
-    beforeAll(async function (done) {
+  describe('ActsAceWebDevWebViewDeleteEntireCookieTest', () => {
+    beforeAll(async () => {
       let options = {
         uri: 'MainAbility/pages/webViewDeleteEntireCookie',
       }
@@ -37,42 +38,42 @@ export default function webViewDeleteEntireCookie() {
       } catch (err) {
         console.error("push webViewDeleteEntireCookie page error: " + err);
       }
-      done()
+
     });
-    beforeEach(async function (done) {
+    beforeEach(async () => {
       await Utils.sleep(2000);
       console.info("webViewDeleteEntireCookie beforeEach start");
-      done();
+
     })
-    afterEach(async function (done) {
+    afterEach(async () => {
       console.info("webViewDeleteEntireCookie afterEach start:" + emitKey);
       try {
-            let backData = {
-                data: {
-                    "ACTION": emitKey
-                }
-            }
-            let backEvent = {
-                eventId:10,
-                priority:events_emitter.EventPriority.LOW
-            }
-            console.info("start send emitKey");
-            events_emitter.emit(backEvent, backData);
+        let backData: events_emitter.EventData = {
+          data: {
+            "ACTION": emitKey
+          }
+        }
+        let backEvent: events_emitter.InnerEvent = {
+          eventId: 10,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("start send emitKey");
+        events_emitter.emit(backEvent, backData);
       } catch (err) {
-            console.info("emit emitKey  err: " + JSON.stringify(err));
+        console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-      done();
+
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWCOOKIE_API_0200
      *tc.name testDeleteEntireCookie
      *tc.desc test interface of existCookie after deleteentirecookie
      */
-    it('testDeleteEntireCookie',0,async function(done){
-      emitKey="emitDeleteEntireCookie";
-      Utils.registerEvent("testDeleteEntireCookie",false,348,done);
-      sendEventByKey('webViewDeleteEntireCookie',10,'');
+    it('testDeleteEntireCookie', 0, async () => {
+      emitKey = "emitDeleteEntireCookie";
+      Utils.registerEvent("testDeleteEntireCookie", false, 348);
+      sendEventByKey('webViewDeleteEntireCookie', 10, '');
     })
   })
 }

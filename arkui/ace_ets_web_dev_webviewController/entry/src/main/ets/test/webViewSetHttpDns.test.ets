@@ -12,15 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeEach, afterEach, it, expect, beforeAll} from "@ohos/hypium";
+import { describe, beforeEach, afterEach, it, expect, beforeAll } from "@ohos/hypium";
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 import router from '@system.router';
-// @ts-nocheck
+
 let emitKey = "emitSetHttpDnsSecureOnlyExample";
+
 export default function webViewSetHttpDns() {
-  describe('ActsAceWebDevWebViewSetHttpDnsTest', function () {
-    beforeAll(async function (done) {
+  describe('ActsAceWebDevWebViewSetHttpDnsTest', () => {
+    beforeAll(async () => {
       let options = {
         uri: 'MainAbility/pages/webViewSetHttpDns',
       }
@@ -37,72 +38,72 @@ export default function webViewSetHttpDns() {
       } catch (err) {
         console.error("push webViewSetHttpDns page error: " + err);
       }
-      done()
+
     });
-    beforeEach(async function (done) {
+    beforeEach(async () => {
       await Utils.sleep(2000);
       console.info("webViewSetHttpDns beforeEach start");
-      done();
+
     })
-    afterEach(async function (done) {
+    afterEach(async () => {
       console.info("webViewSetHttpDns afterEach start:" + emitKey);
       try {
-            let backData = {
-                data: {
-                    "ACTION": emitKey
-                }
-            }
-            let backEvent = {
-                eventId:10,
-                priority:events_emitter.EventPriority.LOW
-            }
-            console.info("start send emitKey");
-            events_emitter.emit(backEvent, backData);
+        let backData: events_emitter.EventData = {
+          data: {
+            "ACTION": emitKey
+          }
+        }
+        let backEvent: events_emitter.InnerEvent = {
+          eventId: 10,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("start send emitKey");
+        events_emitter.emit(backEvent, backData);
       } catch (err) {
-            console.info("emit emitKey  err: " + JSON.stringify(err));
+        console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-      done();
+
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWSETHTTPDNS_API_0100
      *tc.name testSetHttpDnsSecureOnlyExample
      *tc.desc test interface of sethttpdns with parameter SetHttpDnsSecureOnlyExample
      */
-    it('testSetHttpDnsSecureOnlyExample',0,async function(done){
-      emitKey="emitSetHttpDnsSecureOnlyUserDefine";
-      Utils.registerEvent("testSetHttpDnsSecureOnlyExample","baidu.com",354,done);
-      sendEventByKey('webViewSetHttpDns',10,'');
+    it('testSetHttpDnsSecureOnlyExample', 0, async () => {
+      emitKey = "emitSetHttpDnsSecureOnlyUserDefine";
+      Utils.registerEvent("testSetHttpDnsSecureOnlyExample", "baidu.com", 354);
+      sendEventByKey('webViewSetHttpDns', 10, '');
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWSETHTTPDNS_API_0200
      *tc.name testSetHttpDnsSecureOnlyUserDefine
      *tc.desc test interface of sethttpdns with parameter SetHttpDnsSecureOnlyExample
      */
-    it('testSetHttpDnsSecureOnlyUserDefine',0,async function(done){
-      emitKey="emitSetHttpDnsAutoExample";
-      Utils.registerEvent("testSetHttpDnsSecureOnlyUserDefine","success",356,done);
-      sendEventByKey('webViewSetHttpDns',10,'');
+    it('testSetHttpDnsSecureOnlyUserDefine', 0, async () => {
+      emitKey = "emitSetHttpDnsAutoExample";
+      Utils.registerEvent("testSetHttpDnsSecureOnlyUserDefine", "success", 356);
+      sendEventByKey('webViewSetHttpDns', 10, '');
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWSETHTTPDNS_API_0300
      *tc.name testSetHttpDnsAutoExample
      *tc.desc test interface of sethttpdns with parameter SetHttpDnsSecureOnlyExample
      */
-    it('testSetHttpDnsAutoExample',0,async function(done){
-      emitKey="emitSetHttpDnsOffExample";
-      Utils.registerEvent("testSetHttpDnsAutoExample","华为 - 构建万物互联的智能世界",358,done);
-      sendEventByKey('webViewSetHttpDns',10,'');
+    it('testSetHttpDnsAutoExample', 0, async () => {
+      emitKey = "emitSetHttpDnsOffExample";
+      Utils.registerEvent("testSetHttpDnsAutoExample", "华为 - 构建万物互联的智能世界", 358);
+      sendEventByKey('webViewSetHttpDns', 10, '');
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWSETHTTPDNS_API_0400
      *tc.name testSetHttpDnsOffExample
      *tc.desc test interface of sethttpdns with parameter SetHttpDnsSecureOnlyExample
      */
-    it('testSetHttpDnsOffExample',0,async function(done){
-      emitKey="emitSetHttpDnsOffExample";
-      Utils.registerEvent("testSetHttpDnsOffExample","OpenAtom OpenHarmony",360,done);
-      sendEventByKey('webViewSetHttpDns',10,'');
+    it('testSetHttpDnsOffExample', 0, async () => {
+      emitKey = "emitSetHttpDnsOffExample";
+      Utils.registerEvent("testSetHttpDnsOffExample", "OpenAtom OpenHarmony", 360);
+      sendEventByKey('webViewSetHttpDns', 10, '');
     })
   })
 }

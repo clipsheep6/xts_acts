@@ -17,10 +17,12 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 import router from '@system.router';
+
 let emitKey = "emitOnWindowNew01";
+
 export default function webViewOnWindowNewJsunit() {
-  describe('ActsAceWebViewOnWindowNewJsunitTest', function () {
-    beforeAll(async function (done) {
+  describe('ActsAceWebViewOnWindowNewJsunitTest', () => {
+    beforeAll(async () => {
       let options = {
         uri: "MainAbility/pages/onWindowNew"
       }
@@ -38,32 +40,32 @@ export default function webViewOnWindowNewJsunit() {
         console.error("push onWindowNew page error: " + err);
       }
       await Utils.sleep(2000);
-      done()
+
     })
-    beforeEach(async function (done) {
+    beforeEach(async () => {
       console.info("web beforeEach start");
-      done();
+
     })
-    afterEach(async function (done) {
-      console.info("ActsAceWebViewOnWindowNewJsunitTest afterEach start:"+emitKey);
+    afterEach(async () => {
+      console.info("ActsAceWebViewOnWindowNewJsunitTest afterEach start:" + emitKey);
       try {
-            let backData = {
-                data: {
-                    "ACTION": emitKey
-                }
-            }
-            let backEvent = {
-                eventId:10,
-                priority:events_emitter.EventPriority.LOW
-            }
-            console.info("start send emitKey");
-            events_emitter.emit(backEvent, backData);
+        let backData: events_emitter.EventData = {
+          data: {
+            "ACTION": emitKey
+          }
+        }
+        let backEvent: events_emitter.InnerEvent = {
+          eventId: 10,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("start send emitKey");
+        events_emitter.emit(backEvent, backData);
       } catch (err) {
-            console.info("emit emitKey  err: " + JSON.stringify(err));
+        console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
       console.info("ActsAceWebViewOnWindowNewJsunitTest afterEach end");
-      done();
+
     })
     /*
     *tc.number SUB_ACE_BASIC_ETS_API_ONWINDOWNEW_0100
@@ -71,20 +73,20 @@ export default function webViewOnWindowNewJsunit() {
     *tc.desc test api OnWindowNew by execute window.open function,at the same time,set MutliWindowAccess to true,
     *         allowWindowOpenMethod to true,javaScriptAccess to true
     */
-    it('testOnWindowNew01',0,async function(done){
-      emitKey="emitOnWindowNew02";
-      Utils.registerEvent("testOnWindowNew01", 1, 7100, done);
-      sendEventByKey('onWindowNew',10, '');
+    it('testOnWindowNew01', 0, async () => {
+      emitKey = "emitOnWindowNew02";
+      Utils.registerEvent("testOnWindowNew01", 1, 7100);
+      sendEventByKey('onWindowNew', 10, '');
     })
-     /*
-     *tc.number SUB_ACE_BASIC_ETS_API_ONWINDOWNEW_0200
-     *tc.name testOnWindowNew02
-     *tc.desc test api OnWindowNew by execute window.open function,at the same time,set MutliWindowAccess to true,
-     *         allowWindowOpenMethod to false,javaScriptAccess to true
-     */
-     it('testOnWindowNew02',0,async function(done){
-      emitKey="emitOnWindowNew03";
-      Utils.registerEvent("testOnWindowNew02", 0, 7102, done);
+    /*
+    *tc.number SUB_ACE_BASIC_ETS_API_ONWINDOWNEW_0200
+    *tc.name testOnWindowNew02
+    *tc.desc test api OnWindowNew by execute window.open function,at the same time,set MutliWindowAccess to true,
+    *         allowWindowOpenMethod to false,javaScriptAccess to true
+    */
+    it('testOnWindowNew02', 0, async () => {
+      emitKey = "emitOnWindowNew03";
+      Utils.registerEvent("testOnWindowNew02", 0, 7102);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -93,9 +95,9 @@ export default function webViewOnWindowNewJsunit() {
      *tc.desc test api OnWindowNew by execute window.open function,at the same time,set MutliWindowAccess to true,
      *         allowWindowOpenMethod to false,javaScriptAccess to false
      */
-    it('testOnWindowNew03',0,async function(done){
-      emitKey="emitOnWindowNew04";
-      Utils.registerEvent("testOnWindowNew03", 0, 7104, done);
+    it('testOnWindowNew03', 0, async () => {
+      emitKey = "emitOnWindowNew04";
+      Utils.registerEvent("testOnWindowNew03", 0, 7104);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -104,9 +106,9 @@ export default function webViewOnWindowNewJsunit() {
      *tc.desc test api OnWindowNew by execute window.open function,at the same time,set MutliWindowAccess to false,
      *         allowWindowOpenMethod to false,javaScriptAccess to true
      */
-    it('testOnWindowNew04',0,async function(done){
-      emitKey="emitOnPageVisibleLoadUrl";
-      Utils.registerEvent("testOnWindowNew04", 0, 7106, done);
+    it('testOnWindowNew04', 0, async () => {
+      emitKey = "emitOnPageVisibleLoadUrl";
+      Utils.registerEvent("testOnWindowNew04", 0, 7106);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -114,10 +116,10 @@ export default function webViewOnWindowNewJsunit() {
     *tc.name testOnPageVisibleLoadUrl
     *tc.desc test api onPageVisible by load new url
     */
-    it('testOnPageVisibleLoadUrl',0,async function(done){
-      emitKey="emitOnPageVisibleRefresh";
+    it('testOnPageVisibleLoadUrl', 0, async () => {
+      emitKey = "emitOnPageVisibleRefresh";
       let url = 'resource://rawfile/index.html';
-      Utils.registerEvent("testOnPageVisibleLoadUrl", url, 7108, done);
+      Utils.registerEvent("testOnPageVisibleLoadUrl", url, 7108);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -125,10 +127,10 @@ export default function webViewOnWindowNewJsunit() {
     *tc.name testOnPageVisibleRefresh
     *tc.desc test api onPageVisible by refresh
     */
-    it('testOnPageVisibleRefresh',0,async function(done){
-      emitKey="emitBlockNetWorkTrue";
+    it('testOnPageVisibleRefresh', 0, async () => {
+      emitKey = "emitBlockNetWorkTrue";
       let url = 'resource://rawfile/index.html';
-      Utils.registerEvent("testOnPageVisibleRefresh", url, 7110, done);
+      Utils.registerEvent("testOnPageVisibleRefresh", url, 7110);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -136,10 +138,10 @@ export default function webViewOnWindowNewJsunit() {
     *tc.name testBlockNetWorkTrue
     *tc.desc test api blockNetWork set to true by load online website
     */
-    it('testBlockNetWorkTrue',0,async function(done){
-      emitKey="emitBlockNetWorkFalse";
+    it('testBlockNetWorkTrue', 0, async () => {
+      emitKey = "emitBlockNetWorkFalse";
       let url = "http://www.weibo.com/";
-      Utils.registerEvent("testBlockNetWorkTrue", url, 7112, done);
+      Utils.registerEvent("testBlockNetWorkTrue", url, 7112);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -147,10 +149,10 @@ export default function webViewOnWindowNewJsunit() {
     *tc.name testBlockNetWorkFalse
     *tc.desc test api blockNetWork set to false by load online website
     */
-   it('testBlockNetWorkFalse',0,async function(done){
-     emitKey="emitGetOriginsPromiseLoadLocalHtml01";
-     let title = "weibo.com";
-      Utils.registerEvent("testBlockNetWorkFalse", title, 7114, done);
+    it('testBlockNetWorkFalse', 0, async () => {
+      emitKey = "emitGetOriginsPromiseLoadLocalHtml01";
+      let title = "weibo.com";
+      Utils.registerEvent("testBlockNetWorkFalse", title, 7114);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -158,9 +160,9 @@ export default function webViewOnWindowNewJsunit() {
     *tc.name testGetOriginsPromiseLoadLocalHtml01
     *tc.desc test api GetOrigins promise mode by load loacal html
     */
-     it('testGetOriginsPromiseLoadLocalHtml01', 0, async function(done){
+    it('testGetOriginsPromiseLoadLocalHtml01', 0, async () => {
       emitKey = 'emitGetOriginsPromiseLoadLocalHtml01';
-      Utils.registerLargerEvent("testGetOriginsPromiseLoadLocalHtml01", 7166, done);
+      Utils.registerLargerEvent("testGetOriginsPromiseLoadLocalHtml01", 7166);
       sendEventByKey('onWindowNew', 10, '');
     })
   })

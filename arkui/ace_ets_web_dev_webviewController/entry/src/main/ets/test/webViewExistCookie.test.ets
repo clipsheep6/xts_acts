@@ -12,15 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeEach, afterEach, it, expect, beforeAll} from "@ohos/hypium";
+import { describe, beforeEach, afterEach, it, expect, beforeAll } from "@ohos/hypium";
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 import router from '@system.router';
-// @ts-nocheck
+
 let emitKey = "emitExistCookie";
+
 export default function webViewExistCookie() {
-  describe('ActsAceWebDevWebViewExistCookieTest', function () {
-    beforeAll(async function (done) {
+  describe('ActsAceWebDevWebViewExistCookieTest', () => {
+    beforeAll(async () => {
       let options = {
         uri: 'MainAbility/pages/webViewExistCookie',
       }
@@ -37,42 +38,42 @@ export default function webViewExistCookie() {
       } catch (err) {
         console.error("push webViewExistCookie page error: " + err);
       }
-      done()
+
     });
-    beforeEach(async function (done) {
+    beforeEach(async () => {
       await Utils.sleep(2000);
       console.info("webViewExistCookie beforeEach start");
-      done();
+
     })
-    afterEach(async function (done) {
+    afterEach(async () => {
       console.info("webViewExistCookie afterEach start:" + emitKey);
       try {
-            let backData = {
-                data: {
-                    "ACTION": emitKey
-                }
-            }
-            let backEvent = {
-                eventId:10,
-                priority:events_emitter.EventPriority.LOW
-            }
-            console.info("start send emitKey");
-            events_emitter.emit(backEvent, backData);
+        let backData: events_emitter.EventData = {
+          data: {
+            "ACTION": emitKey
+          }
+        }
+        let backEvent: events_emitter.InnerEvent = {
+          eventId: 10,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("start send emitKey");
+        events_emitter.emit(backEvent, backData);
       } catch (err) {
-            console.info("emit emitKey  err: " + JSON.stringify(err));
+        console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-      done();
+
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWCOOKIE_API_0100
      *tc.name testExistCookie
      *tc.desc test interface of existCookie after setcookie
      */
-    it('testExistCookie',0,async function(done){
-      emitKey="emitExistCookie";
-      Utils.registerEvent("testExistCookie",true,346,done);
-      sendEventByKey('webViewExistCookie',10,'');
+    it('testExistCookie', 0, async () => {
+      emitKey = "emitExistCookie";
+      Utils.registerEvent("testExistCookie", true, 346);
+      sendEventByKey('webViewExistCookie', 10, '');
     })
   })
 }

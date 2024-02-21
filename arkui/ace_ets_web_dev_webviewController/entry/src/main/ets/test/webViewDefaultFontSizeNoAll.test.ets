@@ -12,15 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeEach, afterEach, it, expect, beforeAll} from "@ohos/hypium";
+import { describe, beforeEach, afterEach, it, expect, beforeAll } from "@ohos/hypium";
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 import router from '@system.router';
-// @ts-nocheck
+
 let emitKey = "emitdefaultFontSizeAndminFontSizeNoAll";
+
 export default function webViewDefaultFontSizeNoAll() {
-  describe('ActsAceWebDevWebViewDefaultFontSizeNoAllTest', function () {
-    beforeAll(async function (done) {
+  describe('ActsAceWebDevWebViewDefaultFontSizeNoAllTest', () => {
+    beforeAll(async () => {
       let options = {
         uri: 'MainAbility/pages/webViewDefaultFontSizeNoAll',
       }
@@ -37,42 +38,42 @@ export default function webViewDefaultFontSizeNoAll() {
       } catch (err) {
         console.error("push webViewDefaultFontSizeNoAll page error: " + err);
       }
-      done()
+
     });
-    beforeEach(async function (done) {
+    beforeEach(async () => {
       await Utils.sleep(2000);
       console.info("webViewDefaultFontSizeNoAll beforeEach start");
-      done();
+
     })
-    afterEach(async function (done) {
+    afterEach(async () => {
       console.info("webViewDefaultFontSizeNoAll afterEach start:" + emitKey);
       try {
-            let backData = {
-                data: {
-                    "ACTION": emitKey
-                }
-            }
-            let backEvent = {
-                eventId:10,
-                priority:events_emitter.EventPriority.LOW
-            }
-            console.info("start send emitKey");
-            events_emitter.emit(backEvent, backData);
+        let backData: events_emitter.EventData = {
+          data: {
+            "ACTION": emitKey
+          }
+        }
+        let backEvent: events_emitter.InnerEvent = {
+          eventId: 10,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("start send emitKey");
+        events_emitter.emit(backEvent, backData);
       } catch (err) {
-            console.info("emit emitKey  err: " + JSON.stringify(err));
+        console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-      done();
+
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWPATR6_API_0600
      *tc.name testNoDefaultFontSizeAndNoMinFontSize
      *tc.desc test with no set defaultfontsize or minfontsize
      */
-    it('testNoDefaultFontSizeAndNoMinFontSize',0,async function(done){
-      emitKey="emitdefaultFontSizeAndminFontSizeNoAll";
-      Utils.registerEvent("testNoDefaultFontSizeAndNoMinFontSize","16px",340,done);
-      sendEventByKey('webViewDefaultFontSizeNoAll',10,'');
+    it('testNoDefaultFontSizeAndNoMinFontSize', 0, async () => {
+      emitKey = "emitdefaultFontSizeAndminFontSizeNoAll";
+      Utils.registerEvent("testNoDefaultFontSizeAndNoMinFontSize", "16px", 340);
+      sendEventByKey('webViewDefaultFontSizeNoAll', 10, '');
     })
   })
 }

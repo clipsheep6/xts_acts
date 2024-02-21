@@ -12,15 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeEach, afterEach, it, expect, beforeAll} from "@ohos/hypium";
+import { describe, beforeEach, afterEach, it, expect, beforeAll } from "@ohos/hypium";
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 import router from '@system.router';
-// @ts-nocheck
+
 let emitKey = "emitOnHttpErrorRecvExampleIsReadyFalse";
+
 export default function webViewONHttpErrorRecvExampleIsReady() {
-  describe('ActsAceWebDevWebViewONHttpErrorRecvExampleIsReadyTest', function () {
-    beforeAll(async function (done) {
+  describe('ActsAceWebDevWebViewONHttpErrorRecvExampleIsReadyTest', () => {
+    beforeAll(async () => {
       let options = {
         uri: 'MainAbility/pages/webViewONHttpErrorRecvExampleIsReady',
       }
@@ -37,42 +38,42 @@ export default function webViewONHttpErrorRecvExampleIsReady() {
       } catch (err) {
         console.error("push webViewONHttpErrorRecvExampleIsReady page error: " + err);
       }
-      done()
+
     });
-    beforeEach(async function (done) {
+    beforeEach(async () => {
       await Utils.sleep(2000);
       console.info("webViewONHttpErrorRecvExampleIsReady beforeEach start");
-      done();
+
     })
-    afterEach(async function (done) {
+    afterEach(async () => {
       console.info("webViewONHttpErrorRecvExampleIsReady afterEach start:" + emitKey);
       try {
-            let backData = {
-                data: {
-                    "ACTION": emitKey
-                }
-            }
-            let backEvent = {
-                eventId:10,
-                priority:events_emitter.EventPriority.LOW
-            }
-            console.info("start send emitKey");
-            events_emitter.emit(backEvent, backData);
+        let backData: events_emitter.EventData = {
+          data: {
+            "ACTION": emitKey
+          }
+        }
+        let backEvent: events_emitter.InnerEvent = {
+          eventId: 10,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("start send emitKey");
+        events_emitter.emit(backEvent, backData);
       } catch (err) {
-            console.info("emit emitKey  err: " + JSON.stringify(err));
+        console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-      done();
+
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWERRORRECV_API_0300
      *tc.name testOnHttpErrorRecvExampleIsReadyFalse
      *tc.desc test interface of onHttpErrorReceive with parameter used by example but setResponseIsReady false
      */
-    it('testOnHttpErrorRecvExampleIsReadyFalse',0,async function(done){
-      emitKey="emitOnHttpErrorRecvExampleIsReadyFalse";
-      Utils.registerEvent("testOnHttpErrorRecvExampleIsReadyFalse","",394,done);
-      sendEventByKey('webViewONHttpErrorRecvExampleIsReady',10,'');
+    it('testOnHttpErrorRecvExampleIsReadyFalse', 0, async () => {
+      emitKey = "emitOnHttpErrorRecvExampleIsReadyFalse";
+      Utils.registerEvent("testOnHttpErrorRecvExampleIsReadyFalse", "", 394);
+      sendEventByKey('webViewONHttpErrorRecvExampleIsReady', 10, '');
     })
   })
 }

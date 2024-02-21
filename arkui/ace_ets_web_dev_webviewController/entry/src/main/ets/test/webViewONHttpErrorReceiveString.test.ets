@@ -12,15 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeEach, afterEach, it, expect, beforeAll} from "@ohos/hypium";
+import { describe, beforeEach, afterEach, it, expect, beforeAll } from "@ohos/hypium";
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 import router from '@system.router';
-// @ts-nocheck
+
 let emitKey = "emitOnHttpErrorReceiveByString";
+
 export default function webViewONHttpErrorReceiveString() {
-  describe('ActsAceWebDevWebViewONHttpErrorReceiveStringTest', function () {
-    beforeAll(async function (done) {
+  describe('ActsAceWebDevWebViewONHttpErrorReceiveStringTest', () => {
+    beforeAll(async () => {
       let options = {
         uri: 'MainAbility/pages/webViewONHttpErrorReceiveString',
       }
@@ -37,43 +38,43 @@ export default function webViewONHttpErrorReceiveString() {
       } catch (err) {
         console.error("push webViewONHttpErrorReceiveString page error: " + err);
       }
-      done()
+
     });
-    beforeEach(async function (done) {
+    beforeEach(async () => {
       await Utils.sleep(2000);
       console.info("webViewONHttpErrorReceiveString beforeEach start");
-      done();
+
     })
-    afterEach(async function (done) {
+    afterEach(async () => {
       console.info("webViewONHttpErrorReceiveString afterEach start:" + emitKey);
       try {
-            let backData = {
-                data: {
-                    "ACTION": emitKey
-                }
-            }
-            let backEvent = {
-                eventId:10,
-                priority:events_emitter.EventPriority.LOW
-            }
-            console.info("start send emitKey");
-            events_emitter.emit(backEvent, backData);
+        let backData: events_emitter.EventData = {
+          data: {
+            "ACTION": emitKey
+          }
+        }
+        let backEvent: events_emitter.InnerEvent = {
+          eventId: 10,
+          priority: events_emitter.EventPriority.LOW
+        }
+        console.info("start send emitKey");
+        events_emitter.emit(backEvent, backData);
       } catch (err) {
-            console.info("emit emitKey  err: " + JSON.stringify(err));
+        console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-      done();
+
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWERRORRECV_API_0500
      *tc.name testOnHttpErrorReceiveByString
      *tc.desc test interface of onHttpErrorReceive with parameter used by string
      */
-    it('testOnHttpErrorReceiveByString',0,async function(done){
-      emitKey="emitOnHttpErrorReceiveByString";
-      Utils.registerEvent("testOnHttpErrorReceiveByString",403,399,done);
-      Utils.registerEvent("testOnHttpErrorReceiveByString",1,400,done);
-      sendEventByKey('webViewONHttpErrorReceiveString',10,'');
+    it('testOnHttpErrorReceiveByString', 0, async () => {
+      emitKey = "emitOnHttpErrorReceiveByString";
+      Utils.registerEvent("testOnHttpErrorReceiveByString", 403, 399);
+      Utils.registerEvent("testOnHttpErrorReceiveByString", 1, 400);
+      sendEventByKey('webViewONHttpErrorReceiveString', 10, '');
     })
   })
 }
