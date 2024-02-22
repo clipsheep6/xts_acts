@@ -70,9 +70,9 @@ export default function webViewDeleteEntireCookie() {
      *tc.name testDeleteEntireCookie
      *tc.desc test interface of existCookie after deleteentirecookie
      */
-    it('testDeleteEntireCookie', 0, async () => {
+    it('testDeleteEntireCookie', 0, async (done: Function) => {
       emitKey = "emitDeleteEntireCookie";
-      Utils.registerEvent("testDeleteEntireCookie", false, 348);
+      Utils.registerEvent("testDeleteEntireCookie", false, 348, done);
       sendEventByKey('webViewDeleteEntireCookie', 10, '');
     })
   })

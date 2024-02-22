@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
+import { describe, beforeAll, beforeEach, afterEach, it, expect } from "@ohos/hypium";
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils.ets';
 import router from '@system.router';
@@ -149,9 +149,9 @@ export default function webViewSrollByJsunit() {
      * tc.desc When calling the scrollTo interface, y=0 and the x input parameter is negative, which is half the
      * page length
     */
-    it('testScrollByEight', 0, async () => {
+    it('testScrollByEight', 0, async (done: Function) => {
       emitKey = "emitScrollByNine";
-      Utils.registerEvent("testScrollByEight", "[0,0]", 242);
+      Utils.registerEvent("testScrollByEight", "[0,0]", 242, done);
       sendEventByKey('webcomponentScrollBy', 10, '');
     })
     /*
@@ -160,9 +160,9 @@ export default function webViewSrollByJsunit() {
      * tc.desc When calling the scrollTo interface, the yx input parameter is a positive number, which is half
      * the width and height of the page
     */
-    it('testScrollByNine', 0, async () => {
+    it('testScrollByNine', 0, async (done: Function) => {
       emitKey = "emitScrollByTen";
-      Utils.registerEvent("testScrollByNine", true, 244);
+      Utils.registerEvent("testScrollByNine", true, 244, done);
       sendEventByKey('webcomponentScrollBy', 10, '');
     })
     /*
@@ -171,9 +171,9 @@ export default function webViewSrollByJsunit() {
      * tc.desc When the scrollTo interface is called, the yx input parameter is a positive number, which exceeds
      * the page width and height
     */
-    it('testScrollByTen', 0, async () => {
+    it('testScrollByTen', 0, async (done: Function) => {
       emitKey = "emitScrollByEleven";
-      Utils.registerEvent("testScrollByTen", true, 246);
+      Utils.registerEvent("testScrollByTen", true, 246, done);
       sendEventByKey('webcomponentScrollBy', 10, '');
     })
     /*
@@ -182,9 +182,9 @@ export default function webViewSrollByJsunit() {
      * tc.desc When calling the scrollTo interface, the yx input parameter is negative, which is half the width
      * and height of the page
     */
-    it('testScrollByEleven', 0, async () => {
+    it('testScrollByEleven', 0, async (done: Function) => {
       emitKey = "emitScrollByTwelve";
-      Utils.registerEvent("testScrollByEleven", "[0,0]", 248);
+      Utils.registerEvent("testScrollByEleven", "[0,0]", 248, done);
       sendEventByKey('webcomponentScrollBy', 10, '');
     })
     /*
@@ -193,9 +193,9 @@ export default function webViewSrollByJsunit() {
      * tc.desc When calling the scrollTo interface, the yx input parameter is negative, which exceeds the page
      * width and height
     */
-    it('testScrollByTwelve', 0, async () => {
+    it('testScrollByTwelve', 0, async (done: Function) => {
       emitKey = "emitScrollByTwelve";
-      Utils.registerEvent("testScrollByTwelve", "[0,0]", 250);
+      Utils.registerEvent("testScrollByTwelve", "[0,0]", 250, done);
       sendEventByKey('webcomponentScrollBy', 10, '');
     })
   })
