@@ -68,7 +68,7 @@ export default function runJavaScript() {
      *tc.name RunJsCallback
      *tc.desic test RunJavascrit interface when choose callback mode.
      */
-    it('RunJsCallback', 0, async () => {
+    it('RunJsCallback', 0, async (done: Function) => {
       emitKey = "emitRunJsPromise";
       Utils.registerEvent("testRunJsCallback", 'testRunJavaScript', 126, done);
       sendEventByKey('webcomponent01', 10, '');
@@ -79,7 +79,7 @@ export default function runJavaScript() {
      *tc.name RunJsPromise
      *tc.desic test RunJavascrit interface when choose promise mode.
      */
-    it('RunJsPromise', 0, async () => {
+    it('RunJsPromise', 0, async (done: Function) => {
       Utils.registerEvent("testRunJsPromise", '\"testRunJavaScript\"', 128, done);
       sendEventByKey('webcomponent01', 10, '');
     })

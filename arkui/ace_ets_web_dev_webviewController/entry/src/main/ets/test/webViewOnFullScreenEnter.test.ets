@@ -69,10 +69,10 @@ export default function webViewOnFullScreenEnter() {
      *tc.name testOnFullScreenEnter
      *tc.desc test interface of onfullscreenenter with runjavascript handleFullScreen
      */
-    it('testOnFullScreenEnter', 0, async () => {
+    it('testOnFullScreenEnter', 0, async (done: Function) => {
       sendEventByKey('TestwebViewOnFullScreenEnter', 10, '');
       emitKey = "emitOnfullscreenenter";
-      Utils.registerEvent("testOnFullScreenEnter", "2\"true\"", 342);
+      Utils.registerEvent("testOnFullScreenEnter", "2\"true\"", 342, done);
       sendEventByKey('webViewOnFullScreenEnter', 10, '');
     })
   })

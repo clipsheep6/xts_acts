@@ -70,9 +70,9 @@ export default function webViewOnFirstCont() {
      *tc.name testOnfirstcontentfulpaint
      *tc.desc onfirstcontentfulpaint with web src null
      */
-    it('testOnfirstcontentfulpaint', 0, async () => {
+    it('testOnfirstcontentfulpaint', 0, async (done: Function) => {
       emitKey = "emitOnfirstcontentfulpaint";
-      Utils.registerEvent("testOnfirstcontentfulpaint", "NoSrcTest", 322);
+      Utils.registerEvent("testOnfirstcontentfulpaint", "NoSrcTest", 322, done);
       sendEventByKey('webViewOnFirstCont', 10, '');
     })
   })

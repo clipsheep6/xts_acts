@@ -70,9 +70,9 @@ export default function webViewOnInterceptReqThree() {
      *tc.name testOnInterceptRequestThird
      *tc.desc onInterceptRequest with setting setresponsecede 404
      */
-    it('testOnInterceptRequestThird', 0, async () => {
+    it('testOnInterceptRequestThird', 0, async (done: Function) => {
       emitKey = "emitOnInterceptRequestThird";
-      Utils.registerEvent("testOnInterceptRequestThird", 404, 310);
+      Utils.registerEvent("testOnInterceptRequestThird", 404, 310, done);
       sendEventByKey('webViewOnInterceptReqThree', 10, '');
     })
   })

@@ -69,9 +69,9 @@ export default function webViewOnFirstContTwo() {
      *tc.name testOnfirstcontentfulpaintvisibilitynone
      *tc.desc onfirstcontentfulpaint with web visibility none
      */
-    it('testOnfirstcontentfulpaintvisibilitynone', 0, async () => {
+    it('testOnfirstcontentfulpaintvisibilitynone', 0, async (done: Function) => {
       emitKey = "emitNoneOnfirstcontentfulpaint";
-      Utils.registerEvent("testOnfirstcontentfulpaintvisibilitynone", "VisibilityNoneTest", 324);
+      Utils.registerEvent("testOnfirstcontentfulpaintvisibilitynone", "VisibilityNoneTest", 324, done);
       sendEventByKey('webViewOnFirstContTwo', 10, '');
     })
   })

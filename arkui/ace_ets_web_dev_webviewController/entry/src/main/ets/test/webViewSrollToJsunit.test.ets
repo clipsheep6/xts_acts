@@ -71,9 +71,9 @@ export default function webViewSrollToJsunit() {
      * tc.name testScrollToOne
      * tc.desc When calling the scrollTo interface, the x,y input parameters are negative
    */
-    it('testScrollToOne', 0, async () => {
+    it('testScrollToOne', 0, async (done: Function) => {
       emitKey = "emitScrollToTwo";
-      Utils.registerEvent("testScrollToOne", "[0,0]", 214);
+      Utils.registerEvent("testScrollToOne", "[0,0]", 214, done);
       sendEventByKey('webcomponentScrolTo', 10, '');
     })
     /*
@@ -82,9 +82,9 @@ export default function webViewSrollToJsunit() {
      * tc.desc When calling the scrollTo interface, the x input parameter is negative and the y input parameter is
      * positive, which is greater than the page height
     */
-    it('testScrollToTwo', 0, async () => {
+    it('testScrollToTwo', 0, async (done: Function) => {
       emitKey = "emitScrollToThree";
-      Utils.registerEvent("testScrollToTwo", true, 216);
+      Utils.registerEvent("testScrollToTwo", true, 216, done);
       sendEventByKey('webcomponentScrolTo', 10, '');
     })
     /*
@@ -93,9 +93,9 @@ export default function webViewSrollToJsunit() {
      * tc.desc When calling the scrollTo interface, the x input parameter is negative and the y input parameter is
      * positive, which is less than the page height
     */
-    it('testScrollToThree', 0, async () => {
+    it('testScrollToThree', 0, async (done: Function) => {
       emitKey = "emitScrollToFour";
-      Utils.registerEvent("testScrollToThree", "[0,200]", 218);
+      Utils.registerEvent("testScrollToThree", "[0,200]", 218, done);
       sendEventByKey('webcomponentScrolTo', 10, '');
     })
     /*
@@ -104,9 +104,9 @@ export default function webViewSrollToJsunit() {
      * tc.desc When calling the scrollTo interface, the y input parameter is negative and the x input parameter is
      * positive, which is less than the page length
     */
-    it('testScrollToFour', 0, async () => {
+    it('testScrollToFour', 0, async (done: Function) => {
       emitKey = "emitScrollToFive";
-      Utils.registerEvent("testScrollToFour", "[200,0]", 220);
+      Utils.registerEvent("testScrollToFour", "[200,0]", 220, done);
       sendEventByKey('webcomponentScrolTo', 10, '');
     })
     /*
@@ -115,9 +115,9 @@ export default function webViewSrollToJsunit() {
       * tc.desc When calling the scrollTo interface, the y input parameter is negative and the x input parameter is
       * positive, which is greater than the page length
    */
-    it('testScrollToFive', 0, async () => {
+    it('testScrollToFive', 0, async (done: Function) => {
       emitKey = "emitScrollToSix";
-      Utils.registerEvent("testScrollToFive", true, 222);
+      Utils.registerEvent("testScrollToFive", true, 222, done);
       sendEventByKey('webcomponentScrolTo', 10, '');
     })
     /*
@@ -126,9 +126,9 @@ export default function webViewSrollToJsunit() {
      * tc.desc When calling the scrollTo interface, the y input parameter is a positive number and the x input parameter
      * is a positive number, both of which are less than the page height
    */
-    it('testScrollToSix', 0, async () => {
+    it('testScrollToSix', 0, async (done: Function) => {
       emitKey = "emitScrollToSeven";
-      Utils.registerEvent("testScrollToSix", "[200,200]", 224);
+      Utils.registerEvent("testScrollToSix", "[200,200]", 224, done);
       sendEventByKey('webcomponentScrolTo', 10, '');
     })
     /*
@@ -137,9 +137,9 @@ export default function webViewSrollToJsunit() {
       * tc.desc When the scrollTo interface is called, the y input parameter is a positive number and the x input
       * parameter is a positive number, both of which are greater than the page width and height
     */
-    it('testScrollToSeven', 0, async () => {
+    it('testScrollToSeven', 0, async (done: Function) => {
       emitKey = "emitScrollToSeven";
-      Utils.registerEvent("testScrollToSeven", true, 226);
+      Utils.registerEvent("testScrollToSeven", true, 226, done);
       sendEventByKey('webcomponentScrolTo', 10, '');
     })
   })

@@ -70,9 +70,9 @@ export default function webViewOnBeforeUnload() {
      *tc.name testOnBeforeUnload
      *tc.desc onBeforeUnload after page refresh
      */
-    it('testOnBeforeUnload', 0, async () => {
+    it('testOnBeforeUnload', 0, async (done: Function) => {
       emitKey = "emitOnBeforeUnloadAgain";
-      Utils.registerEvent("testOnBeforeUnload", "Is it OK to leave/reload this page?", 302);
+      Utils.registerEvent("testOnBeforeUnload", "Is it OK to leave/reload this page?", 302, done);
       sendEventByKey('webViewOnBeforeUnload', 10, '');
       sendEventByKey('TestwebViewOnBeforeUnload', 10, '');
     })
@@ -81,10 +81,10 @@ export default function webViewOnBeforeUnload() {
      *tc.name testOnBeforeUnloadAgain
      *tc.desc onBeforeUnload after page loadUrl new
      */
-    it('testOnBeforeUnloadAgain', 0, async () => {
+    it('testOnBeforeUnloadAgain', 0, async (done: Function) => {
       sendEventByKey('TestwebViewOnBeforeUnload', 10, '');
       emitKey = "emitOnBeforeUnloadAgain";
-      Utils.registerEvent("testOnBeforeUnloadAgain", "Is it OK to leave/reload this page?", 304);
+      Utils.registerEvent("testOnBeforeUnloadAgain", "Is it OK to leave/reload this page?", 304, done);
       sendEventByKey('webViewOnBeforeUnload', 10, '');
     })
   })

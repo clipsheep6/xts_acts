@@ -70,10 +70,10 @@ export default function webViewOnAudioStateChanged() {
      *tc.name testOnAudioStateChangedPlay
      *tc.desc test interface of onaudiostatechanged with audio play
      */
-    it('testOnAudioStateChangedPlay', 0, async () => {
+    it('testOnAudioStateChangedPlay', 0, async (done: Function) => {
       emitKey = "emitAudioStatePause";
-      Utils.registerEvent("testOnAudioStateChangedPlay", true, 411);
-      Utils.registerEvent("testOnAudioStateChangedPlay", "false", 412);
+      Utils.registerEvent("testOnAudioStateChangedPlay", true, 411, done);
+      Utils.registerEvent("testOnAudioStateChangedPlay", "false", 412, done);
       sendEventByKey('webViewOnAudioStateChanged', 10, '');
     })
     /*
@@ -81,10 +81,10 @@ export default function webViewOnAudioStateChanged() {
      *tc.name testOnAudioStateChangedPause
      *tc.desc test interface of onaudiostatechanged with audio pause
      */
-    it('testOnAudioStateChangedPause', 0, async () => {
+    it('testOnAudioStateChangedPause', 0, async (done: Function) => {
       emitKey = "emitAudioStatePause";
-      Utils.registerEvent("testOnAudioStateChangedPause", false, 413);
-      Utils.registerEvent("testOnAudioStateChangedPause", "true", 414);
+      Utils.registerEvent("testOnAudioStateChangedPause", false, 413, done);
+      Utils.registerEvent("testOnAudioStateChangedPause", "true", 414, done);
       sendEventByKey('webViewOnAudioStateChanged', 10, '');
     })
   })

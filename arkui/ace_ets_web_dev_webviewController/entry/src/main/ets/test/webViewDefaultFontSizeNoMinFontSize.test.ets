@@ -70,9 +70,9 @@ export default function webViewDefaultFontSizeNoMinFontSize() {
      *tc.name testDefaultFontSize7AndNoMinFontSize
      *tc.desc test with defaultfontsize 7 and no set minfontsize
      */
-    it('testDefaultFontSize7AndNoMinFontSize', 0, async () => {
+    it('testDefaultFontSize7AndNoMinFontSize', 0, async (done: Function) => {
       emitKey = "emitdefaultFontSize17AndCssFontSize9";
-      Utils.registerEvent("testDefaultFontSize7AndNoMinFontSize", "8px", 336);
+      Utils.registerEvent("testDefaultFontSize7AndNoMinFontSize", "8px", 336, done);
       sendEventByKey('webViewDefaultFontSizeNoMinFontSize', 10, '');
     })
     /*
@@ -80,9 +80,9 @@ export default function webViewDefaultFontSizeNoMinFontSize() {
      *tc.name testDefaultFontSize17AndCssFontSize9
      *tc.desc test with defaultfontsize 17 and css font-size 9
      */
-    it('testDefaultFontSize17AndCssFontSize9', 0, async () => {
+    it('testDefaultFontSize17AndCssFontSize9', 0, async (done: Function) => {
       emitKey = "emitdefaultFontSize17AndCssFontSize9";
-      Utils.registerEvent("testDefaultFontSize17AndCssFontSize9", "9px", 338);
+      Utils.registerEvent("testDefaultFontSize17AndCssFontSize9", "9px", 338, done);
       sendEventByKey('webViewDefaultFontSizeNoMinFontSize', 10, '');
     })
   })

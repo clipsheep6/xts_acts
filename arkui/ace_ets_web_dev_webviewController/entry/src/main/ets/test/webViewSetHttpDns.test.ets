@@ -70,9 +70,9 @@ export default function webViewSetHttpDns() {
      *tc.name testSetHttpDnsSecureOnlyExample
      *tc.desc test interface of sethttpdns with parameter SetHttpDnsSecureOnlyExample
      */
-    it('testSetHttpDnsSecureOnlyExample', 0, async () => {
+    it('testSetHttpDnsSecureOnlyExample', 0, async (done: Function) => {
       emitKey = "emitSetHttpDnsSecureOnlyUserDefine";
-      Utils.registerEvent("testSetHttpDnsSecureOnlyExample", "baidu.com", 354);
+      Utils.registerEvent("testSetHttpDnsSecureOnlyExample", "baidu.com", 354, done);
       sendEventByKey('webViewSetHttpDns', 10, '');
     })
     /*
@@ -80,9 +80,9 @@ export default function webViewSetHttpDns() {
      *tc.name testSetHttpDnsSecureOnlyUserDefine
      *tc.desc test interface of sethttpdns with parameter SetHttpDnsSecureOnlyExample
      */
-    it('testSetHttpDnsSecureOnlyUserDefine', 0, async () => {
+    it('testSetHttpDnsSecureOnlyUserDefine', 0, async (done: Function) => {
       emitKey = "emitSetHttpDnsAutoExample";
-      Utils.registerEvent("testSetHttpDnsSecureOnlyUserDefine", "success", 356);
+      Utils.registerEvent("testSetHttpDnsSecureOnlyUserDefine", "success", 356, done);
       sendEventByKey('webViewSetHttpDns', 10, '');
     })
     /*
@@ -90,9 +90,9 @@ export default function webViewSetHttpDns() {
      *tc.name testSetHttpDnsAutoExample
      *tc.desc test interface of sethttpdns with parameter SetHttpDnsSecureOnlyExample
      */
-    it('testSetHttpDnsAutoExample', 0, async () => {
+    it('testSetHttpDnsAutoExample', 0, async (done: Function) => {
       emitKey = "emitSetHttpDnsOffExample";
-      Utils.registerEvent("testSetHttpDnsAutoExample", "华为 - 构建万物互联的智能世界", 358);
+      Utils.registerEvent("testSetHttpDnsAutoExample", "华为 - 构建万物互联的智能世界", 358, done);
       sendEventByKey('webViewSetHttpDns', 10, '');
     })
     /*
@@ -100,9 +100,9 @@ export default function webViewSetHttpDns() {
      *tc.name testSetHttpDnsOffExample
      *tc.desc test interface of sethttpdns with parameter SetHttpDnsSecureOnlyExample
      */
-    it('testSetHttpDnsOffExample', 0, async () => {
+    it('testSetHttpDnsOffExample', 0, async (done: Function) => {
       emitKey = "emitSetHttpDnsOffExample";
-      Utils.registerEvent("testSetHttpDnsOffExample", "OpenAtom OpenHarmony", 360);
+      Utils.registerEvent("testSetHttpDnsOffExample", "OpenAtom OpenHarmony", 360, done);
       sendEventByKey('webViewSetHttpDns', 10, '');
     })
   })

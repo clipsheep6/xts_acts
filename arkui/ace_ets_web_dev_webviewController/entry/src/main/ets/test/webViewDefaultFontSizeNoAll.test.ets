@@ -70,9 +70,9 @@ export default function webViewDefaultFontSizeNoAll() {
      *tc.name testNoDefaultFontSizeAndNoMinFontSize
      *tc.desc test with no set defaultfontsize or minfontsize
      */
-    it('testNoDefaultFontSizeAndNoMinFontSize', 0, async () => {
+    it('testNoDefaultFontSizeAndNoMinFontSize', 0, async (done: Function) => {
       emitKey = "emitdefaultFontSizeAndminFontSizeNoAll";
-      Utils.registerEvent("testNoDefaultFontSizeAndNoMinFontSize", "16px", 340);
+      Utils.registerEvent("testNoDefaultFontSizeAndNoMinFontSize", "16px", 340, done);
       sendEventByKey('webViewDefaultFontSizeNoAll', 10, '');
     })
   })

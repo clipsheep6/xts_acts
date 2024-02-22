@@ -70,9 +70,9 @@ export default function webViewMediaOption() {
      *tc.name testMediaOption
      *tc.desc test interface of mediaoption with true
      */
-    it('testMediaOption', 0, async () => {
+    it('testMediaOption', 0, async (done: Function) => {
       emitKey = "emitMediaOptionTrue";
-      Utils.registerEvent("testMediaOption", false, 415);
+      Utils.registerEvent("testMediaOption", false, 415, done);
       sendEventByKey('webViewMediaOption', 10, '');
     })
   })

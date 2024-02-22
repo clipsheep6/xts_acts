@@ -70,9 +70,9 @@ export default function webViewOnFirstContFour() {
      *tc.name testOnfirstcontentfulpaintrefresh
      *tc.desc onfirstcontentfulpaint with web refresh
      */
-    it('testOnfirstcontentfulpaintrefresh', 0, async () => {
+    it('testOnfirstcontentfulpaintrefresh', 0, async (done: Function) => {
       emitKey = "emitRefreshOnfirstcontentfulpaint";
-      Utils.registerEvent("testOnfirstcontentfulpaintrefresh", true, 328);
+      Utils.registerEvent("testOnfirstcontentfulpaintrefresh", true, 328, done);
       sendEventByKey('webViewOnFirstContFour', 10, '');
     })
   })

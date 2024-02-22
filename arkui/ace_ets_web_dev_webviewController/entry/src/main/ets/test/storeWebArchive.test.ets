@@ -73,9 +73,9 @@ export default function storeWebArchive() {
    *tc.name testStoreWebArchiveCallback
    *tc.desic test storeWebArchive interface when choose Callback mode and autoName parameter is ture.
    */
-    it('testStoreWebArchiveCallback', 0, async () => {
+    it('testStoreWebArchiveCallback', 0, async (done: Function) => {
       emitKey = "emitStoreWebArchiveCallbackFalse";
-      Utils.registerEvent("testStoreWebArchiveCallback", "/data/storage/el2/base/index.html.mht", 130);
+      Utils.registerEvent("testStoreWebArchiveCallback", "/data/storage/el2/base/index.html.mht", 130, done);
       sendEventByKey('webcomponent02', 10, '');
     })
 
@@ -84,9 +84,9 @@ export default function storeWebArchive() {
    *tc.name testStoreWebArchiveCallbackFalse
    *tc.desic test storeWebArchive interface when choose Callback mode and autoName parameter is false.
    */
-    it('testStoreWebArchiveCallbackFalse', 0, async () => {
+    it('testStoreWebArchiveCallbackFalse', 0, async (done: Function) => {
       emitKey = "emitStoreWebArchivePromise";
-      Utils.registerEvent("testStoreWebArchiveCallbackFalse", "/data/storage/el2/base/index.html.mht", 132);
+      Utils.registerEvent("testStoreWebArchiveCallbackFalse", "/data/storage/el2/base/index.html.mht", 132, done);
       sendEventByKey('webcomponent02', 10, '');
     })
 
@@ -95,9 +95,9 @@ export default function storeWebArchive() {
      *tc.name testStoreWebArchivePromise
      *tc.desic test storeWebArchive interface when choose Promise mode and autoName parameter is ture.
      */
-    it('testStoreWebArchivePromise', 0, async () => {
+    it('testStoreWebArchivePromise', 0, async (done: Function) => {
       emitKey = "emitStoreWebArchivePromiseFlase";
-      Utils.registerEvent("testStoreWebArchivePromise", "/data/storage/el2/base/index.html-0.mht", 134);
+      Utils.registerEvent("testStoreWebArchivePromise", "/data/storage/el2/base/index.html-0.mht", 134, done);
       sendEventByKey('webcomponent02', 10, '');
     })
 
@@ -106,8 +106,8 @@ export default function storeWebArchive() {
      *tc.name testStoreWebArchivePromiseFalse
      *tc.desic test storeWebArchive interface when choose Promise mode and autoName parameter is false.
      */
-    it('testStoreWebArchivePromiseFalse', 0, async () => {
-      Utils.registerEvent("testStoreWebArchivePromiseFalse", "/data/storage/el2/base/index.html-2.mht", 136);
+    it('testStoreWebArchivePromiseFalse', 0, async (done: Function) => {
+      Utils.registerEvent("testStoreWebArchivePromiseFalse", "/data/storage/el2/base/index.html-2.mht", 136, done);
       sendEventByKey('webcomponent02', 10, '');
     })
   })

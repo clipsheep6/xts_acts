@@ -70,10 +70,10 @@ export default function webViewOnScroll() {
      *tc.name testOnscroll
      *tc.desc onscroll after scrollby 100,100
      */
-    it('testOnscroll', 0, async () => {
+    it('testOnscroll', 0, async (done: Function) => {
       emitKey = "emitOnscrollAgain";
-      Utils.registerEvent("testOnscroll", 100, 312);
-      Utils.registerEvent("testOnscroll", 100, 314);
+      Utils.registerEvent("testOnscroll", 100, 312, done);
+      Utils.registerEvent("testOnscroll", 100, 314, done);
       sendEventByKey('webViewOnScroll', 10, '');
     })
     /*
@@ -81,10 +81,10 @@ export default function webViewOnScroll() {
      *tc.name testOnscrollAgain
      *tc.desc onscroll after scrollby -100,-100
      */
-    it('testOnscrollAgain', 0, async () => {
+    it('testOnscrollAgain', 0, async (done: Function) => {
       emitKey = "emitOnscrollAgain";
-      Utils.registerEvent("testOnscrollAgain", 50, 316);
-      Utils.registerEvent("testOnscrollAgain", 50, 318);
+      Utils.registerEvent("testOnscrollAgain", 50, 316, done);
+      Utils.registerEvent("testOnscrollAgain", 50, 318, done);
       sendEventByKey('webViewOnScroll', 10, '');
     })
   })

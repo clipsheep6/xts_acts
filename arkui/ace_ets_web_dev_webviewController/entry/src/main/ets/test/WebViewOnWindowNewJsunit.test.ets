@@ -73,9 +73,9 @@ export default function webViewOnWindowNewJsunit() {
     *tc.desc test api OnWindowNew by execute window.open function,at the same time,set MutliWindowAccess to true,
     *         allowWindowOpenMethod to true,javaScriptAccess to true
     */
-    it('testOnWindowNew01', 0, async () => {
+    it('testOnWindowNew01', 0, async (done: Function) => {
       emitKey = "emitOnWindowNew02";
-      Utils.registerEvent("testOnWindowNew01", 1, 7100);
+      Utils.registerEvent("testOnWindowNew01", 1, 7100, done);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -84,9 +84,9 @@ export default function webViewOnWindowNewJsunit() {
     *tc.desc test api OnWindowNew by execute window.open function,at the same time,set MutliWindowAccess to true,
     *         allowWindowOpenMethod to false,javaScriptAccess to true
     */
-    it('testOnWindowNew02', 0, async () => {
+    it('testOnWindowNew02', 0, async (done: Function) => {
       emitKey = "emitOnWindowNew03";
-      Utils.registerEvent("testOnWindowNew02", 0, 7102);
+      Utils.registerEvent("testOnWindowNew02", 0, 7102, done);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -95,9 +95,9 @@ export default function webViewOnWindowNewJsunit() {
      *tc.desc test api OnWindowNew by execute window.open function,at the same time,set MutliWindowAccess to true,
      *         allowWindowOpenMethod to false,javaScriptAccess to false
      */
-    it('testOnWindowNew03', 0, async () => {
+    it('testOnWindowNew03', 0, async (done: Function) => {
       emitKey = "emitOnWindowNew04";
-      Utils.registerEvent("testOnWindowNew03", 0, 7104);
+      Utils.registerEvent("testOnWindowNew03", 0, 7104, done);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -106,9 +106,9 @@ export default function webViewOnWindowNewJsunit() {
      *tc.desc test api OnWindowNew by execute window.open function,at the same time,set MutliWindowAccess to false,
      *         allowWindowOpenMethod to false,javaScriptAccess to true
      */
-    it('testOnWindowNew04', 0, async () => {
+    it('testOnWindowNew04', 0, async (done: Function) => {
       emitKey = "emitOnPageVisibleLoadUrl";
-      Utils.registerEvent("testOnWindowNew04", 0, 7106);
+      Utils.registerEvent("testOnWindowNew04", 0, 7106, done);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -116,10 +116,10 @@ export default function webViewOnWindowNewJsunit() {
     *tc.name testOnPageVisibleLoadUrl
     *tc.desc test api onPageVisible by load new url
     */
-    it('testOnPageVisibleLoadUrl', 0, async () => {
+    it('testOnPageVisibleLoadUrl', 0, async (done: Function) => {
       emitKey = "emitOnPageVisibleRefresh";
       let url = 'resource://rawfile/index.html';
-      Utils.registerEvent("testOnPageVisibleLoadUrl", url, 7108);
+      Utils.registerEvent("testOnPageVisibleLoadUrl", url, 7108, done);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -127,10 +127,10 @@ export default function webViewOnWindowNewJsunit() {
     *tc.name testOnPageVisibleRefresh
     *tc.desc test api onPageVisible by refresh
     */
-    it('testOnPageVisibleRefresh', 0, async () => {
+    it('testOnPageVisibleRefresh', 0, async (done: Function) => {
       emitKey = "emitBlockNetWorkTrue";
       let url = 'resource://rawfile/index.html';
-      Utils.registerEvent("testOnPageVisibleRefresh", url, 7110);
+      Utils.registerEvent("testOnPageVisibleRefresh", url, 7110, done);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -138,10 +138,10 @@ export default function webViewOnWindowNewJsunit() {
     *tc.name testBlockNetWorkTrue
     *tc.desc test api blockNetWork set to true by load online website
     */
-    it('testBlockNetWorkTrue', 0, async () => {
+    it('testBlockNetWorkTrue', 0, async (done: Function) => {
       emitKey = "emitBlockNetWorkFalse";
       let url = "http://www.weibo.com/";
-      Utils.registerEvent("testBlockNetWorkTrue", url, 7112);
+      Utils.registerEvent("testBlockNetWorkTrue", url, 7112, done);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -149,10 +149,10 @@ export default function webViewOnWindowNewJsunit() {
     *tc.name testBlockNetWorkFalse
     *tc.desc test api blockNetWork set to false by load online website
     */
-    it('testBlockNetWorkFalse', 0, async () => {
+    it('testBlockNetWorkFalse', 0, async (done: Function) => {
       emitKey = "emitGetOriginsPromiseLoadLocalHtml01";
       let title = "weibo.com";
-      Utils.registerEvent("testBlockNetWorkFalse", title, 7114);
+      Utils.registerEvent("testBlockNetWorkFalse", title, 7114, done);
       sendEventByKey('onWindowNew', 10, '');
     })
     /*
@@ -160,9 +160,9 @@ export default function webViewOnWindowNewJsunit() {
     *tc.name testGetOriginsPromiseLoadLocalHtml01
     *tc.desc test api GetOrigins promise mode by load loacal html
     */
-    it('testGetOriginsPromiseLoadLocalHtml01', 0, async () => {
+    it('testGetOriginsPromiseLoadLocalHtml01', 0, async (done: Function) => {
       emitKey = 'emitGetOriginsPromiseLoadLocalHtml01';
-      Utils.registerLargerEvent("testGetOriginsPromiseLoadLocalHtml01", 7166);
+      Utils.registerLargerEvent("testGetOriginsPromiseLoadLocalHtml01", 7166, done);
       sendEventByKey('onWindowNew', 10, '');
     })
   })

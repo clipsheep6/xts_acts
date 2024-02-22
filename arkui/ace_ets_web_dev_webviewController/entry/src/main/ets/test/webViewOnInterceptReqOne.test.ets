@@ -70,9 +70,9 @@ export default function webViewOnInterceptReqOne() {
      *tc.name testOnInterceptRequest
      *tc.desc onInterceptRequest without setting webresourceresponse
      */
-    it('testOnInterceptRequest', 0, async () => {
+    it('testOnInterceptRequest', 0, async (done: Function) => {
       emitKey = "emitOnInterceptRequest";
-      Utils.registerEvent("testOnInterceptRequest", "success", 306);
+      Utils.registerEvent("testOnInterceptRequest", "success", 306, done);
       sendEventByKey('webViewOnInterceptReqOne', 10, '');
     })
   })

@@ -48,9 +48,9 @@ export default function webViewOnErrorReceive02Jsunit() {
     *tc.desc test api onErrorReceive  by load html which contain of "<iframe
              src="https://wrong.host.badssl.com"></iframe>"
     */
-    it('testOnErrorReceive02', 0, async () => {
+    it('testOnErrorReceive02', 0, async (done: Function) => {
       let isMainFrame = false;
-      Utils.registerEvent("testOnErrorReceive02", isMainFrame, 7120);
+      Utils.registerEvent("testOnErrorReceive02", isMainFrame, 7120, done);
       sendEventByKey('onErrorReceive02', 10, '');
     })
   })

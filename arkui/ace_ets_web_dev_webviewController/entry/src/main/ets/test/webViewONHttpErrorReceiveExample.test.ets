@@ -70,9 +70,9 @@ export default function webViewONHttpErrorReceiveExample() {
      *tc.name testOnHttpErrorReceiveByExample
      *tc.desc test interface of onHttpErrorReceive with parameter used by example
      */
-    it('testOnHttpErrorReceiveByExample', 0, async () => {
+    it('testOnHttpErrorReceiveByExample', 0, async (done: Function) => {
       emitKey = "emitOnHttpErrorReceiveByExample";
-      Utils.registerEvent("testOnHttpErrorReceiveByExample", "intercept test", 392);
+      Utils.registerEvent("testOnHttpErrorReceiveByExample", "intercept test", 392, done);
       sendEventByKey('webViewONHttpErrorReceiveExample', 10, '');
     })
   })

@@ -70,10 +70,10 @@ export default function webViewONHttpErrorReceiveIframe() {
      *tc.name testOnHttpErrorReceiveByIframeHtml
      *tc.desc test interface of onHttpErrorReceive with parameter used by html file with iframe
      */
-    it('testOnHttpErrorReceiveByIframeHtml', 0, async () => {
+    it('testOnHttpErrorReceiveByIframeHtml', 0, async (done: Function) => {
       emitKey = "emitOnHttpErrorReceiveByIframeHtml";
-      Utils.registerEvent("testOnHttpErrorReceiveByIframeHtml", false, 396);
-      Utils.registerEvent("testOnHttpErrorReceiveByIframeHtml", "index", 398);
+      Utils.registerEvent("testOnHttpErrorReceiveByIframeHtml", false, 396, done);
+      Utils.registerEvent("testOnHttpErrorReceiveByIframeHtml", "index", 398, done);
       sendEventByKey('webViewONHttpErrorReceiveIframe', 10, '');
     })
   })

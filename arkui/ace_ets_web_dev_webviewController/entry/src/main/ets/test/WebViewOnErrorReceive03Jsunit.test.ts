@@ -47,19 +47,19 @@ export default function webViewOnErrorReceive03Jsunit() {
     *tc.name testOnErrorReceive03
     *tc.desc test api onErrorReceive  by load 'https://wrong.host.badssl.com/'
     */
-    it('testOnErrorReceive03', 0, async () => {
+    it('testOnErrorReceive03', 0, async (done: Function) => {
       let errorIfo = 'ERR_CERT_COMMON_NAME_INVALID';
       let errorCode = -200;
       let url = 'https://wrong.host.badssl.com/';
       let isMainFrame = true;
       let isRedirect = false;
       let isRequestGesture = false;
-      Utils.registerEvent("testOnErrorReceive03", errorIfo, 7122);
-      Utils.registerEvent("testOnErrorReceive03", errorCode, 7124);
-      Utils.registerEvent("testOnErrorReceive03", url, 7126);
-      Utils.registerEvent("testOnErrorReceive03", isMainFrame, 7128);
-      Utils.registerEvent("testOnErrorReceive03", isRedirect, 7130);
-      Utils.registerEvent("testOnErrorReceive03", isRequestGesture, 7132);
+      Utils.registerEvent("testOnErrorReceive03", errorIfo, 7122, done);
+      Utils.registerEvent("testOnErrorReceive03", errorCode, 7124, done);
+      Utils.registerEvent("testOnErrorReceive03", url, 7126, done);
+      Utils.registerEvent("testOnErrorReceive03", isMainFrame, 7128, done);
+      Utils.registerEvent("testOnErrorReceive03", isRedirect, 7130, done);
+      Utils.registerEvent("testOnErrorReceive03", isRequestGesture, 7132, done);
 
       let a = [{
         "headerKey": "Accept",
@@ -82,7 +82,7 @@ export default function webViewOnErrorReceive03Jsunit() {
         "headerKey": "User-Agent",
         "headerValue": "Mozilla/5.0 (Window NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) CHrome/105.0.0.0 Safari/537.36 Edg/105.0.1343.27"
       }]
-      Utils.registerEvent("testOnErrorReceive03", JSON.stringify(a), 7134);
+      Utils.registerEvent("testOnErrorReceive03", JSON.stringify(a), 7134, done);
 
       sendEventByKey('onErrorReceive03', 10, '');
     })

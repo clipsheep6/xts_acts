@@ -70,10 +70,10 @@ export default function webViewONHttpErrorReceiveNumber() {
      *tc.name testOnHttpErrorReceiveByNumber
      *tc.desc test interface of onHttpErrorReceive with parameter used by number handle
      */
-    it('testOnHttpErrorReceiveByNumber', 0, async () => {
+    it('testOnHttpErrorReceiveByNumber', 0, async (done: Function) => {
       emitKey = "emitOnHttpErrorReceiveByNumber";
-      Utils.registerEvent("testOnHttpErrorReceiveByNumber", 403, 401);
-      Utils.registerEvent("testOnHttpErrorReceiveByNumber", "1.1.1.123/index.html", 402);
+      Utils.registerEvent("testOnHttpErrorReceiveByNumber", 403, 401, done);
+      Utils.registerEvent("testOnHttpErrorReceiveByNumber", "1.1.1.123/index.html", 402, done);
       sendEventByKey('webViewONHttpErrorReceiveNumber', 10, '');
     })
   })

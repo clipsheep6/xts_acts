@@ -70,9 +70,9 @@ export default function webViewDefaultFontSizeWithMinLogical() {
      *tc.name testDefaultFontSizeHalfAndMinFontSizeHalf
      *tc.desc test with defaultfontsize 0.5 , minfontsize 0.5 and minLogicalFontSize 0.5
      */
-    it('testDefaultFontSizeHalfAndMinFontSizeHalf', 0, async () => {
+    it('testDefaultFontSizeHalfAndMinFontSizeHalf', 0, async (done: Function) => {
       emitKey = "emitdefaultFontSizeHalfAndminFontSizeHalf";
-      Utils.registerEvent("testDefaultFontSizeHalfAndMinFontSizeHalf", "1px", 330);
+      Utils.registerEvent("testDefaultFontSizeHalfAndMinFontSizeHalf", "1px", 330, done);
       sendEventByKey('webViewDefaultFontSizeWithMinLogical', 10, '');
     })
   })

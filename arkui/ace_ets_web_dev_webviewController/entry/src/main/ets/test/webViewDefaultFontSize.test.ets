@@ -70,9 +70,9 @@ export default function webViewDefaultFontSize() {
      *tc.name testDefaultFontSize73AndMinFontSize1
      *tc.desc test with defaultfontsize 73 and minfontsize 1
      */
-    it('testDefaultFontSize73AndMinFontSize1', 0, async () => {
+    it('testDefaultFontSize73AndMinFontSize1', 0, async (done: Function) => {
       emitKey = "emitdefaultFontSize73AndminFontSize73";
-      Utils.registerEvent("testDefaultFontSize73AndMinFontSize1", "72px", 332);
+      Utils.registerEvent("testDefaultFontSize73AndMinFontSize1", "72px", 332, done);
       sendEventByKey('webViewDefaultFontSize', 10, '');
     })
     /*
@@ -80,9 +80,9 @@ export default function webViewDefaultFontSize() {
      *tc.name testDefaultFontSize73AndMinFontSize73
      *tc.desc test with defaultfontsize 73 and minfontsize 73
      */
-    it('testDefaultFontSize73AndMinFontSize73', 0, async () => {
+    it('testDefaultFontSize73AndMinFontSize73', 0, async (done: Function) => {
       emitKey = "emitdefaultFontSize73AndminFontSize73";
-      Utils.registerEvent("testDefaultFontSize73AndMinFontSize73", "72px", 334);
+      Utils.registerEvent("testDefaultFontSize73AndMinFontSize73", "72px", 334, done);
       sendEventByKey('webViewDefaultFontSize', 10, '');
     })
   })

@@ -70,10 +70,10 @@ export default function webViewSetAudioMuted() {
      *tc.name testSetAudioMuted
      *tc.desc test interface of setaudiomuted with muted true
      */
-    it('testSetAudioMuted', 0, async () => {
+    it('testSetAudioMuted', 0, async (done: Function) => {
       emitKey = "emitSetAudioDisMuted";
-      Utils.registerEvent("testSetAudioMuted", "true", 405);
-      Utils.registerEvent("testSetAudioMuted", '"muted"', 406);
+      Utils.registerEvent("testSetAudioMuted", "true", 405, done);
+      Utils.registerEvent("testSetAudioMuted", '"muted"', 406, done);
       sendEventByKey('webViewSetAudioMuted', 10, '');
     })
     /*
@@ -81,10 +81,10 @@ export default function webViewSetAudioMuted() {
      *tc.name testSetAudioDisMuted
      *tc.desc test interface of setaudiomuted with muted false
      */
-    it('testSetAudioDisMuted', 0, async () => {
+    it('testSetAudioDisMuted', 0, async (done: Function) => {
       emitKey = "emitSetAudioDisMuted";
-      Utils.registerEvent("testSetAudioDisMuted", "false", 407);
-      Utils.registerEvent("testSetAudioDisMuted", '"unmuted"', 408);
+      Utils.registerEvent("testSetAudioDisMuted", "false", 407, done);
+      Utils.registerEvent("testSetAudioDisMuted", '"unmuted"', 408, done);
       sendEventByKey('webViewSetAudioMuted', 10, '');
     })
   })

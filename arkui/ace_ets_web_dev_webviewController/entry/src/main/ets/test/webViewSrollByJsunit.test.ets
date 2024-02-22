@@ -72,9 +72,9 @@ export default function webViewSrollByJsunit() {
       * tc.desc When calling the scrollTo interface, x=0 and the y input parameter is a positive number,
       * which is half the page height
     */
-    it('testScrollByOne', 0, async () => {
+    it('testScrollByOne', 0, async (done: Function) => {
       emitKey = "emitScrollByTwo";
-      Utils.registerEvent("testScrollByOne", true, 228);
+      Utils.registerEvent("testScrollByOne", true, 228, done);
       sendEventByKey('webcomponentScrollBy', 10, '');
     })
     /*
@@ -83,9 +83,9 @@ export default function webViewSrollByJsunit() {
       * tc.desc When calling the scrollTo interface, x=0 and the y input parameter is a positive number,
       * which is greater than the content height
     */
-    it('testScrollByTwo', 0, async () => {
+    it('testScrollByTwo', 0, async (done: Function) => {
       emitKey = "emitScrollByThree";
-      Utils.registerEvent("testScrollByTwo", true, 230);
+      Utils.registerEvent("testScrollByTwo", true, 230, done);
       sendEventByKey('webcomponentScrollBy', 10, '');
     })
     /*
@@ -94,9 +94,9 @@ export default function webViewSrollByJsunit() {
       * tc.desc When calling the scrollTo interface, x=0 and the y input parameter is negative, which is half the
       * page height
     */
-    it('testScrollByThree', 0, async () => {
+    it('testScrollByThree', 0, async (done: Function) => {
       emitKey = "emitScrollByFour";
-      Utils.registerEvent("testScrollByThree", "[0,0]", 232);
+      Utils.registerEvent("testScrollByThree", "[0,0]", 232, done);
       sendEventByKey('webcomponentScrollBy', 10, '');
     })
     /*
@@ -105,9 +105,9 @@ export default function webViewSrollByJsunit() {
       * tc.desc When calling the scrollTo interface, x=0 and the y input parameter is negative, exceeding the
       * page height
     */
-    it('testScrollByFour', 0, async () => {
+    it('testScrollByFour', 0, async (done: Function) => {
       emitKey = "emitScrollByFive";
-      Utils.registerEvent("emitScrollByFour", "[0,0]", 234);
+      Utils.registerEvent("emitScrollByFour", "[0,0]", 234, done);
       sendEventByKey('webcomponentScrollBy', 10, '');
     })
     /*
@@ -116,9 +116,9 @@ export default function webViewSrollByJsunit() {
      * tc.desc When calling the scrollTo interface, y=0 and the x input parameter is a positive number, which is
      * half the page length
     */
-    it('testScrollByFive', 0, async () => {
+    it('testScrollByFive', 0, async (done: Function) => {
       emitKey = "emitScrollBySix";
-      Utils.registerEvent("testScrollByFive", true, 236);
+      Utils.registerEvent("testScrollByFive", true, 236, done);
       sendEventByKey('webcomponentScrollBy', 10, '');
     })
     /*
@@ -127,9 +127,9 @@ export default function webViewSrollByJsunit() {
      * tc.desc When calling the scrollTo interface, y=0 and the x input parameter is positive, which is
      * greater than the page length
     */
-    it('testScrollBySix', 0, async () => {
+    it('testScrollBySix', 0, async (done: Function) => {
       emitKey = "emitScrollBySeven";
-      Utils.registerEvent("testScrollBySix", true, 238);
+      Utils.registerEvent("testScrollBySix", true, 238, done);
       sendEventByKey('webcomponentScrollBy', 10, '');
     })
     /*
@@ -138,9 +138,9 @@ export default function webViewSrollByJsunit() {
      * tc.desc When calling the scrollTo interface, y=0 and the x input parameter is negative, which is greater
      * than the page length
     */
-    it('testScrollBySeven', 0, async () => {
+    it('testScrollBySeven', 0, async (done: Function) => {
       emitKey = "emitScrollByEight";
-      Utils.registerEvent("testScrollBySeven", "[0,0]", 240);
+      Utils.registerEvent("testScrollBySeven", "[0,0]", 240, done);
       sendEventByKey('webcomponentScrollBy', 10, '');
     })
     /*

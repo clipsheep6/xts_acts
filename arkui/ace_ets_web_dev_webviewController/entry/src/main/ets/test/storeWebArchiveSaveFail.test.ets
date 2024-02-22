@@ -69,9 +69,9 @@ export default function storeWebArchiveSaveFail() {
      *tc.name testStoreWebArchiveCallback
      *tc.desic test storeWebArchiveCallback interface when save file failed.
      */
-    it('testStoreWebArchiveCallback', 0, async () => {
+    it('testStoreWebArchiveCallback', 0, async (done: Function) => {
       emitKey = "emitStoreWebArchivePromiseSaveFail";
-      Utils.registerEvent("testStoreWebArchiveCallback", "/data/storage/el2/base/blanknull.html.mht", 138);
+      Utils.registerEvent("testStoreWebArchiveCallback", "/data/storage/el2/base/blanknull.html.mht", 138, done);
       sendEventByKey('webcomponent03', 10, '');
     })
 
@@ -80,9 +80,9 @@ export default function storeWebArchiveSaveFail() {
      *tc.name testStoreWebArchivePromise
      *tc.desic test storeWebArchivePromise interface when save file failed.
      */
-    it('testStoreWebArchivePromise', 0, async () => {
+    it('testStoreWebArchivePromise', 0, async (done: Function) => {
 
-      Utils.registerEvent("testStoreWebArchivePromise", "/data/storage/el2/base/blanknull.html-0.mht", 140);
+      Utils.registerEvent("testStoreWebArchivePromise", "/data/storage/el2/base/blanknull.html-0.mht", 140, done);
       sendEventByKey('webcomponent03', 10, '');
     })
   })

@@ -70,9 +70,9 @@ export default function webViewONHttpErrorRecvExampleIsReady() {
      *tc.name testOnHttpErrorRecvExampleIsReadyFalse
      *tc.desc test interface of onHttpErrorReceive with parameter used by example but setResponseIsReady false
      */
-    it('testOnHttpErrorRecvExampleIsReadyFalse', 0, async () => {
+    it('testOnHttpErrorRecvExampleIsReadyFalse', 0, async (done: Function) => {
       emitKey = "emitOnHttpErrorRecvExampleIsReadyFalse";
-      Utils.registerEvent("testOnHttpErrorRecvExampleIsReadyFalse", "", 394);
+      Utils.registerEvent("testOnHttpErrorRecvExampleIsReadyFalse", "", 394, done);
       sendEventByKey('webViewONHttpErrorRecvExampleIsReady', 10, '');
     })
   })

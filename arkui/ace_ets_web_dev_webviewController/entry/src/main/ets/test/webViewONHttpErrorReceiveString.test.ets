@@ -70,10 +70,10 @@ export default function webViewONHttpErrorReceiveString() {
      *tc.name testOnHttpErrorReceiveByString
      *tc.desc test interface of onHttpErrorReceive with parameter used by string
      */
-    it('testOnHttpErrorReceiveByString', 0, async () => {
+    it('testOnHttpErrorReceiveByString', 0, async (done: Function) => {
       emitKey = "emitOnHttpErrorReceiveByString";
-      Utils.registerEvent("testOnHttpErrorReceiveByString", 403, 399);
-      Utils.registerEvent("testOnHttpErrorReceiveByString", 1, 400);
+      Utils.registerEvent("testOnHttpErrorReceiveByString", 403, 399, done);
+      Utils.registerEvent("testOnHttpErrorReceiveByString", 1, 400, done);
       sendEventByKey('webViewONHttpErrorReceiveString', 10, '');
     })
   })

@@ -72,9 +72,9 @@ export default function webViewHasImageJsunit() {
       * tc.desc There are offline images in the H5 page that are loaded using the img tag, and the interface
       * hasImage:Promise results in true
     */
-    it('testHasImagePm', 0, async () => {
+    it('testHasImagePm', 0, async (done: Function) => {
       emitKey = "emitHasImagePmSvg";
-      Utils.registerEvent("testHasImagePm", true, 202);
+      Utils.registerEvent("testHasImagePm", true, 202, done);
       sendEventByKey('webImagecomponent', 10, '');
     })
     /*
@@ -83,9 +83,9 @@ export default function webViewHasImageJsunit() {
       * tc.desc There is no image loaded using the img tag in the H5 page, only svg, and the interface
       * hasImage:Promise result is false
     */
-    it('testHasImagePmSvg', 0, async () => {
+    it('testHasImagePmSvg', 0, async (done: Function) => {
       emitKey = "emitHasImagePmOnline";
-      Utils.registerEvent("testHasImageSvg", false, 204);
+      Utils.registerEvent("testHasImageSvg", false, 204, done);
       sendEventByKey('webImagecomponent', 10, '');
     })
     /*
@@ -94,9 +94,9 @@ export default function webViewHasImageJsunit() {
       * tc.desc The H5 page has an online web page loaded using the img tag, and the interface
       * hasImage:Promise result is false
     */
-    it('testHasImagePmOnline', 0, async () => {
+    it('testHasImagePmOnline', 0, async (done: Function) => {
       emitKey = "emitHasImageCb";
-      Utils.registerEvent("testHasImagePmOnline", false, 206);
+      Utils.registerEvent("testHasImagePmOnline", false, 206, done);
       sendEventByKey('webImagecomponent', 10, '');
     })
     /*
@@ -105,9 +105,9 @@ export default function webViewHasImageJsunit() {
       * tc.desc There are offline images in the H5 page that are loaded using the img tag, and the interface
       * hasImage:Callback results in true
     */
-    it('testHasImageCb', 0, async () => {
+    it('testHasImageCb', 0, async (done: Function) => {
       emitKey = "emitHasImageCbSvg";
-      Utils.registerEvent("testHasImageCb", true, 208);
+      Utils.registerEvent("testHasImageCb", true, 208, done);
       sendEventByKey('webImagecomponent', 10, '');
     })
     /*
@@ -116,9 +116,9 @@ export default function webViewHasImageJsunit() {
      * tc.desc There is no image loaded using the img tag in the H5 page, only svg, and the interface
      * hasImage:Callback result is false
    */
-    it('testHasImageCbSvg', 0, async () => {
+    it('testHasImageCbSvg', 0, async (done: Function) => {
       emitKey = "emitHasImageCbOnline";
-      Utils.registerEvent("testHasImageCbSvg", false, 210);
+      Utils.registerEvent("testHasImageCbSvg", false, 210, done);
       sendEventByKey('webImagecomponent', 10, '');
     })
     /*
@@ -127,9 +127,9 @@ export default function webViewHasImageJsunit() {
      * tc.desc The H5 page has an online web page loaded using the img tag, and the interface
      * hasImage:Callback result is false
    */
-    it('testHasImageCbOnline', 0, async () => {
+    it('testHasImageCbOnline', 0, async (done: Function) => {
       emitKey = "emitHasImageCbOnline";
-      Utils.registerEvent("testHasImageCbOnline", false, 212);
+      Utils.registerEvent("testHasImageCbOnline", false, 212, done);
       sendEventByKey('webImagecomponent', 10, '');
     })
   })

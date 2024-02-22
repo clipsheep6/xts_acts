@@ -71,9 +71,9 @@ export default function webViewSetPrintBackgroundJsunit() {
      * tc.name testSetPrintBackgroundOne
      * tc.desc Support printing background colors
    */
-    it('testSetPrintBackgroundOne', 0, async () => {
+    it('testSetPrintBackgroundOne', 0, async (done: Function) => {
       emitKey = "emitSetPrintBackgroundOne";
-      Utils.registerEvent("testSetPrintBackgroundOne", false, 214);
+      Utils.registerEvent("testSetPrintBackgroundOne", false, 214, done);
       sendEventByKey('webcomponentSetPrintBackground', 10, '');
     })
   })

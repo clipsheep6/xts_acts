@@ -50,9 +50,9 @@ export default function webViewControllerJsunit() {
      *tc.name testGetWebId
      *tc.desc Get the WebId
      */
-    it('testGetWebId', 0, async () => {
+    it('testGetWebId', 0, async (done: Function) => {
       emitKey = "emitFetchCookieSync";
-      Utils.registerEvent("testGetWebId", 6, 100);
+      Utils.registerEvent("testGetWebId", 6, 100, done);
       sendEventByKey('webcomponent', 10, '');
     })
 
@@ -61,9 +61,9 @@ export default function webViewControllerJsunit() {
      *tc.name testFetchCookieSync
      *tc.desc test for FetchCookieSync 
      */
-    it('testFetchCookieSync', 0, async () => {
+    it('testFetchCookieSync', 0, async (done: Function) => {
       emitKey = "emitFetchCookieCallback";
-      Utils.registerEvent("testFetchCookieSync", "a=b", 126);
+      Utils.registerEvent("testFetchCookieSync", "a=b", 126, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -71,9 +71,9 @@ export default function webViewControllerJsunit() {
      *tc.name testFetchCookieCallback
      *tc.desc test for FetchCookieCallback 
      */
-    it('testFetchCookieCallback', 0, async () => {
+    it('testFetchCookieCallback', 0, async (done: Function) => {
       emitKey = "emitFetchCookiePromise";
-      Utils.registerEvent("testFetchCookieSync", "a=c", 128);
+      Utils.registerEvent("testFetchCookieSync", "a=c", 128, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -81,9 +81,9 @@ export default function webViewControllerJsunit() {
      *tc.name testFetchCookiePromise
      *tc.desc test for FetchCookiePromise 
      */
-    it('testFetchCookiePromise', 0, async () => {
+    it('testFetchCookiePromise', 0, async (done: Function) => {
       emitKey = "emitConfigCookieSync";
-      Utils.registerEvent("testFetchCookiePromise", "a=d", 130);
+      Utils.registerEvent("testFetchCookiePromise", "a=d", 130, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -91,9 +91,9 @@ export default function webViewControllerJsunit() {
      *tc.name testConfigCookieSync
      *tc.desc test for ConfigCookieSync 
      */
-    it('testConfigCookieSync', 0, async () => {
+    it('testConfigCookieSync', 0, async (done: Function) => {
       emitKey = "emitConfigCookieCallback";
-      Utils.registerEvent("testConfigCookieSync", "a=e", 132);
+      Utils.registerEvent("testConfigCookieSync", "a=e", 132, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -101,9 +101,9 @@ export default function webViewControllerJsunit() {
      *tc.name testConfigCookieCallback
      *tc.desc test for ConfigCookieCallback 
      */
-    it('testConfigCookieCallback', 0, async () => {
+    it('testConfigCookieCallback', 0, async (done: Function) => {
       emitKey = "emitConfigCookiePromise";
-      Utils.registerEvent("testConfigCookieCallback", "a=f", 134);
+      Utils.registerEvent("testConfigCookieCallback", "a=f", 134, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -111,9 +111,9 @@ export default function webViewControllerJsunit() {
      *tc.name testConfigCookiePromise
      *tc.desc test for ConfigCookiePromise 
      */
-    it('testConfigCookiePromise', 0, async () => {
+    it('testConfigCookiePromise', 0, async (done: Function) => {
       emitKey = "emitClearAllCookiesSync";
-      Utils.registerEvent("testConfigCookiePromise", "a=g", 136);
+      Utils.registerEvent("testConfigCookiePromise", "a=g", 136, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -121,9 +121,9 @@ export default function webViewControllerJsunit() {
      *tc.name testClearAllCookiesSync
      *tc.desc test for ClearAllCookiesSync 
      */
-    it('testClearAllCookiesSync', 0, async () => {
+    it('testClearAllCookiesSync', 0, async (done: Function) => {
       emitKey = "emitClearAllCookiesCallback";
-      Utils.registerEvent("testClearAllCookiesSync", "", 138);
+      Utils.registerEvent("testClearAllCookiesSync", "", 138, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -131,9 +131,9 @@ export default function webViewControllerJsunit() {
      *tc.name testClearAllCookiesCallback
      *tc.desc test for ClearAllCookiesCallback 
      */
-    it('testClearAllCookiesCallback', 0, async () => {
+    it('testClearAllCookiesCallback', 0, async (done: Function) => {
       emitKey = "emitClearAllCookiesPromise";
-      Utils.registerEvent("testClearAllCookiesCallback", "", 140);
+      Utils.registerEvent("testClearAllCookiesCallback", "", 140, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -141,9 +141,9 @@ export default function webViewControllerJsunit() {
      *tc.name testClearAllCookiesPromise
      *tc.desc test for ClearAllCookiesPromise 
      */
-    it('testClearAllCookiesPromise', 0, async () => {
+    it('testClearAllCookiesPromise', 0, async (done: Function) => {
       emitKey = "emitClearSessionCookieSync";
-      Utils.registerEvent("testClearAllCookiesPromise", "", 142);
+      Utils.registerEvent("testClearAllCookiesPromise", "", 142, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -151,9 +151,9 @@ export default function webViewControllerJsunit() {
      *tc.name testClearSessionCookieSync
      *tc.desc test for ClearSessionCookieSync 
      */
-    it('testClearSessionCookieSync', 0, async () => {
+    it('testClearSessionCookieSync', 0, async (done: Function) => {
       emitKey = "emitClearSessionCookieCallback";
-      Utils.registerEvent("testClearSessionCookieSync", "", 144);
+      Utils.registerEvent("testClearSessionCookieSync", "", 144, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -161,9 +161,9 @@ export default function webViewControllerJsunit() {
      *tc.name testClearSessionCookieCallback
      *tc.desc test for ClearSessionCookieCallback 
      */
-    it('testClearSessionCookieCallback', 0, async () => {
+    it('testClearSessionCookieCallback', 0, async (done: Function) => {
       emitKey = "emitClearSessionCookiePromise";
-      Utils.registerEvent("testClearSessionCookieCallback", "", 146);
+      Utils.registerEvent("testClearSessionCookieCallback", "", 146, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -171,9 +171,9 @@ export default function webViewControllerJsunit() {
      *tc.name testClearSessionCookiePromise
      *tc.desc test for ClearSessionCookiePromise 
      */
-    it('testClearSessionCookiePromise', 0, async () => {
+    it('testClearSessionCookiePromise', 0, async (done: Function) => {
       emitKey = "emitPostUrl";
-      Utils.registerEvent("testClearSessionCookiePromise", "", 148);
+      Utils.registerEvent("testClearSessionCookiePromise", "", 148, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -181,9 +181,9 @@ export default function webViewControllerJsunit() {
      *tc.name testPostUrl
      *tc.desc test for PostUrl 
      */
-    it('testPostUrl', 0, async () => {
+    it('testPostUrl', 0, async (done: Function) => {
       emitKey = "emitgetUserAgent";
-      Utils.registerEvent("testPostUrl", "http://www.example.com/", 150);
+      Utils.registerEvent("testPostUrl", "http://www.example.com/", 150, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -191,10 +191,10 @@ export default function webViewControllerJsunit() {
      *tc.name testGetUserAgent
      *tc.desc Get the UserAgent
      */
-    it('testGetUserAgent', 0, async () => {
+    it('testGetUserAgent', 0, async (done: Function) => {
       emitKey = "emitgetUserAgentAgain";
       let userAgent = "success";
-      Utils.registerEvent("testGetUserAgent", userAgent, 1020);
+      Utils.registerEvent("testGetUserAgent", userAgent, 1020, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -202,10 +202,10 @@ export default function webViewControllerJsunit() {
      *tc.name testGetUserAgentAgain
      *tc.desc Get the UserAgent again
      */
-    it('testGetUserAgentAgain', 0, async () => {
+    it('testGetUserAgentAgain', 0, async (done: Function) => {
       emitKey = "emitpageDown";
       let userAgent = "success";
-      Utils.registerEvent("testGetUserAgentAgain", userAgent, 104);
+      Utils.registerEvent("testGetUserAgentAgain", userAgent, 104, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -213,9 +213,9 @@ export default function webViewControllerJsunit() {
      *tc.name testPageDown
      *tc.desc Go pageDown
      */
-    it('testPageDown', 0, async () => {
+    it('testPageDown', 0, async (done: Function) => {
       emitKey = "emitpageUp";
-      Utils.registerEvent("testPageDown", true, 106);
+      Utils.registerEvent("testPageDown", true, 106, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -223,9 +223,9 @@ export default function webViewControllerJsunit() {
      *tc.name testPageUp
      *tc.desc Go pageUp
      */
-    it('testPageUp', 0, async () => {
+    it('testPageUp', 0, async (done: Function) => {
       emitKey = "emitpageDownAgain";
-      Utils.registerEvent("testPageUp", true, 108);
+      Utils.registerEvent("testPageUp", true, 108, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -233,9 +233,9 @@ export default function webViewControllerJsunit() {
      *tc.name testPageDownAgain
      *tc.desc Go PageDown Again
      */
-    it('testPageDownAgain', 0, async () => {
+    it('testPageDownAgain', 0, async (done: Function) => {
       emitKey = "emitpageUpAgain";
-      Utils.registerEvent("testPageDownAgain", true, 110);
+      Utils.registerEvent("testPageDownAgain", true, 110, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -243,9 +243,9 @@ export default function webViewControllerJsunit() {
      *tc.name testPageUpAgain
      *tc.desc Go PageUp again
      */
-    it('testPageUpAgain', 0, async () => {
+    it('testPageUpAgain', 0, async (done: Function) => {
       emitKey = "emitGetFavicon";
-      Utils.registerEvent("testPageUpAgain", true, 112);
+      Utils.registerEvent("testPageUpAgain", true, 112, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -253,9 +253,9 @@ export default function webViewControllerJsunit() {
      *tc.name testGetFavicon
      *tc.desc test for getFavicon
      */
-    it('testGetFavicon', 0, async () => {
+    it('testGetFavicon', 0, async (done: Function) => {
       emitKey = "emitGetFaviconAgain";
-      Utils.registerEvent("testGetFavicon", null, 114);
+      Utils.registerEvent("testGetFavicon", null, 114, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -263,9 +263,9 @@ export default function webViewControllerJsunit() {
      *tc.name testGetFaviconAgain
      *tc.desc test for getFavicon again
      */
-    it('testGetFaviconAgain', 0, async () => {
+    it('testGetFaviconAgain', 0, async (done: Function) => {
       emitKey = "emitGetOriginalUrl";
-      Utils.registerEvent("testGetFaviconAgain", true, 116);
+      Utils.registerEvent("testGetFaviconAgain", true, 116, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -273,10 +273,10 @@ export default function webViewControllerJsunit() {
      *tc.name testGetOriginalUrl
      *tc.desc test for getOriginalUrl
      */
-    it('testGetOriginalUrl', 0, async () => {
+    it('testGetOriginalUrl', 0, async (done: Function) => {
       emitKey = "emitGetOriginalUrlTwo";
       let indexUrl = "//rawfile/indexCopy.html";
-      Utils.registerEvent("testGetOriginalUrl", indexUrl, 118);
+      Utils.registerEvent("testGetOriginalUrl", indexUrl, 118, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -284,10 +284,10 @@ export default function webViewControllerJsunit() {
      *tc.name testGetOriginalUrlTwo
      *tc.desc test for getOriginalUrl again
      */
-    it('testGetOriginalUrlTwo', 0, async () => {
+    it('testGetOriginalUrlTwo', 0, async (done: Function) => {
       emitKey = "emitSetNetworkAvailable";
       let indexUrl = "//rawfile/indexCopy.html//rawfile/indexTwo.html";
-      Utils.registerEvent("testGetOriginalUrlTwo", indexUrl, 120);
+      Utils.registerEvent("testGetOriginalUrlTwo", indexUrl, 120, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -295,9 +295,9 @@ export default function webViewControllerJsunit() {
      *tc.name testSetNetworkAvailable
      *tc.desc test for setNetworkAvailable
      */
-    it('testSetNetworkAvailable', 0, async () => {
+    it('testSetNetworkAvailable', 0, async (done: Function) => {
       emitKey = "emitSetNetworkAvailableAgain";
-      Utils.registerEvent("testSetNetworkAvailable", false, 122);
+      Utils.registerEvent("testSetNetworkAvailable", false, 122, done);
       sendEventByKey('webcomponent', 10, '');
     })
     /*
@@ -305,9 +305,9 @@ export default function webViewControllerJsunit() {
      *tc.name testSetNetworkAvailableAgain
      *tc.desc test for setNetworkAvailable again
      */
-    it('testSetNetworkAvailableAgain', 0, async () => {
+    it('testSetNetworkAvailableAgain', 0, async (done: Function) => {
       emitKey = "emitSetNetworkAvailableAgain";
-      Utils.registerEvent("testSetNetworkAvailableAgain", true, 124);
+      Utils.registerEvent("testSetNetworkAvailableAgain", true, 124, done);
       sendEventByKey('webcomponent', 10, '');
     })
   })

@@ -70,9 +70,9 @@ export default function webViewInVokeFalse() {
      *tc.name testInvokeAllowAndRetainAllFalse
      *tc.desc test interface of invoke with parameter allow and retain all false
      */
-    it('testInvokeAllowAndRetainAllFalse', 0, async () => {
+    it('testInvokeAllowAndRetainAllFalse', 0, async (done: Function) => {
       emitKey = "emitAllowAndRetainAllFalse";
-      Utils.registerEvent("testInvokeAllowAndRetainAllFalse", "\"位置服务被拒绝\"", 352);
+      Utils.registerEvent("testInvokeAllowAndRetainAllFalse", "\"位置服务被拒绝\"", 352, done);
       sendEventByKey('webViewInVokeFalse', 10, '');
     })
   })

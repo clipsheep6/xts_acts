@@ -70,9 +70,9 @@ export default function webViewOnSslError() {
      *tc.name testOnsslerroreventreceive
      *tc.desc onsslerroreventreceive after load http://http.badssl.com/
      */
-    it('testOnsslerroreventreceive', 0, async () => {
+    it('testOnsslerroreventreceive', 0, async (done: Function) => {
       emitKey = "emitOnsslerroreventreceive";
-      Utils.registerEvent("testOnsslerroreventreceive", "1", 320);
+      Utils.registerEvent("testOnsslerroreventreceive", "1", 320, done);
       sendEventByKey('webViewOnSslError', 10, '');
     })
   })

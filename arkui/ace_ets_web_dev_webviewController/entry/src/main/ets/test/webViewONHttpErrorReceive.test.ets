@@ -70,23 +70,23 @@ export default function webViewONHttpErrorReceive() {
      *tc.name testOnHttpErrorReceiveFixedUserAgent
      *tc.desc test interface of onHttpErrorReceive with parameter fixed userAgent
      */
-    it('testOnHttpErrorReceiveFixedUserAgent', 0, async () => {
+    it('testOnHttpErrorReceiveFixedUserAgent', 0, async (done: Function) => {
       emitKey = "emitOnHttpErrorReceiveFixedUserAgent";
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "http://1.1.1.123/index.html", 362);
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", true, 364);
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", false, 366);
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", false, 368);
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "GET", 370);
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", '""', 372);
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "utf-8", 374);
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "text/html", 376);
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", 403, 378);
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "Forbidden", 380);
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "User-Agent", 382);
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.88 Mobile Safari/537.36", 384);
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "X-Frame-Options", 386);
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "SAMEORIGIN", 388);
-      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "Direct IP access not allowed | Cloudflare", 390);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "http://1.1.1.123/index.html", 362, done);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", true, 364, done);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", false, 366, done);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", false, 368, done);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "GET", 370, done);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", '""', 372, done);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "utf-8", 374, done);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "text/html", 376, done);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", 403, 378, done);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "Forbidden", 380, done);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "User-Agent", 382, done);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "Mozilla/5.0 (X11; Linux aarch64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.88 Mobile Safari/537.36", 384, done);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "X-Frame-Options", 386, done);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "SAMEORIGIN", 388, done);
+      Utils.registerEvent("testOnHttpErrorReceiveFixedUserAgent", "Direct IP access not allowed | Cloudflare", 390, done);
       sendEventByKey('webViewONHttpErrorReceive', 10, '');
     })
   })

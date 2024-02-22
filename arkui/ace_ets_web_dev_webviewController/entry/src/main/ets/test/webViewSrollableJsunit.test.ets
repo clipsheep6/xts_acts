@@ -71,9 +71,9 @@ export default function webViewSrollableJsunit() {
      * tc.name testScrollableOne
      * tc.desc When calling the scrollTo interface, the x,y input parameters are negative
    */
-    it('testScrollableOne', 0, async () => {
+    it('testScrollableOne', 0, async (done: Function) => {
       emitKey = "emitScrollableTwo";
-      Utils.registerEvent("testScrollableOne", "[0,0]", 214);
+      Utils.registerEvent("testScrollableOne", "[0,0]", 214, done);
       sendEventByKey('webcomponentScrollable', 10, '');
     })
     /*
@@ -82,9 +82,9 @@ export default function webViewSrollableJsunit() {
      * tc.desc When calling the scrollTo interface, the x input parameter is negative and the y input parameter is
      * positive, which is greater than the page height
     */
-    it('testScrollableTwo', 0, async () => {
+    it('testScrollableTwo', 0, async (done: Function) => {
       emitKey = "emitScrollableThree";
-      Utils.registerEvent("testScrollableTwo", false, 216);
+      Utils.registerEvent("testScrollableTwo", false, 216, done);
       sendEventByKey('webcomponentScrollable', 10, '');
     })
     /*
@@ -93,9 +93,9 @@ export default function webViewSrollableJsunit() {
      * tc.desc When calling the scrollTo interface, the x input parameter is negative and the y input parameter is
      * positive, which is less than the page height
     */
-    it('testScrollableThree', 0, async () => {
+    it('testScrollableThree', 0, async (done: Function) => {
       emitKey = "emitScrollableFour";
-      Utils.registerEvent("testScrollableThree", "[0,0]", 218);
+      Utils.registerEvent("testScrollableThree", "[0,0]", 218, done);
       sendEventByKey('webcomponentScrollable', 10, '');
     })
     /*
@@ -104,9 +104,9 @@ export default function webViewSrollableJsunit() {
      * tc.desc When calling the scrollTo interface, the y input parameter is negative and the x input parameter is
      * positive, which is less than the page length
     */
-    it('testScrollableFour', 0, async () => {
+    it('testScrollableFour', 0, async (done: Function) => {
       emitKey = "emitScrollableFive";
-      Utils.registerEvent("testScrollableFour", "[0,0]", 220);
+      Utils.registerEvent("testScrollableFour", "[0,0]", 220, done);
       sendEventByKey('webcomponentScrollable', 10, '');
     })
     /*
@@ -115,9 +115,9 @@ export default function webViewSrollableJsunit() {
       * tc.desc When calling the scrollTo interface, the y input parameter is negative and the x input parameter is
       * positive, which is greater than the page length
    */
-    it('testScrollableFive', 0, async () => {
+    it('testScrollableFive', 0, async (done: Function) => {
       emitKey = "emitScrollableSix";
-      Utils.registerEvent("testScrollableFive", false, 222);
+      Utils.registerEvent("testScrollableFive", false, 222, done);
       sendEventByKey('webcomponentScrollable', 10, '');
     })
     /*
@@ -126,9 +126,9 @@ export default function webViewSrollableJsunit() {
      * tc.desc When calling the scrollTo interface, the y input parameter is a positive number and the x input parameter
      * is a positive number, both of which are less than the page height
    */
-    it('testScrollableSix', 0, async () => {
+    it('testScrollableSix', 0, async (done: Function) => {
       emitKey = "emitScrollableSeven";
-      Utils.registerEvent("testScrollableSix", "[0,0]", 224);
+      Utils.registerEvent("testScrollableSix", "[0,0]", 224, done);
       sendEventByKey('webcomponentScrollable', 10, '');
     })
     /*
@@ -137,9 +137,9 @@ export default function webViewSrollableJsunit() {
       * tc.desc When the scrollTo interface is called, the y input parameter is a positive number and the x input
       * parameter is a positive number, both of which are greater than the page width and height
     */
-    it('testScrollableSeven', 0, async () => {
+    it('testScrollableSeven', 0, async (done: Function) => {
       emitKey = "emitScrollableSeven";
-      Utils.registerEvent("testScrollableSeven", false, 226);
+      Utils.registerEvent("testScrollableSeven", false, 226, done);
       sendEventByKey('webcomponentScrollable', 10, '');
     })
   })

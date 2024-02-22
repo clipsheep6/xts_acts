@@ -70,9 +70,9 @@ export default function webViewExistCookie() {
      *tc.name testExistCookie
      *tc.desc test interface of existCookie after setcookie
      */
-    it('testExistCookie', 0, async () => {
+    it('testExistCookie', 0, async (done: Function) => {
       emitKey = "emitExistCookie";
-      Utils.registerEvent("testExistCookie", true, 346);
+      Utils.registerEvent("testExistCookie", true, 346, done);
       sendEventByKey('webViewExistCookie', 10, '');
     })
   })

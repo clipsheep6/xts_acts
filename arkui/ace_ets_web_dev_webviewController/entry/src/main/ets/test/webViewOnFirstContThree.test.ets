@@ -70,9 +70,9 @@ export default function webViewOnFirstContThree() {
      *tc.name testOnfirstcontentfulpaintloadurl
      *tc.desc onfirstcontentfulpaint with web load url
      */
-    it('testOnfirstcontentfulpaintloadurl', 0, async () => {
+    it('testOnfirstcontentfulpaintloadurl', 0, async (done: Function) => {
       emitKey = "emitLoadUrlOnfirstcontentfulpaint";
-      Utils.registerEvent("testOnfirstcontentfulpaintloadurl", true, 326);
+      Utils.registerEvent("testOnfirstcontentfulpaintloadurl", true, 326, done);
       sendEventByKey('webViewOnFirstContThree', 10, '');
     })
   })

@@ -70,10 +70,10 @@ export default function webViewOnFullScreenExit() {
      *tc.name testOnFullScreenExit
      *tc.desc test interface of onfullscreenexit with runjavascript exitFullscreen
      */
-    it('testOnFullScreenExit', 0, async () => {
+    it('testOnFullScreenExit', 0, async (done: Function) => {
       sendEventByKey('TestwebViewOnFullScreenExit', 10, '');
       emitKey = "emitOnfullscreenexit";
-      Utils.registerEvent("testOnFullScreenExit", "2\"false\"", 344);
+      Utils.registerEvent("testOnFullScreenExit", "2\"false\"", 344, done);
       sendEventByKey('webViewOnFullScreenExit', 10, '');
     })
   })
