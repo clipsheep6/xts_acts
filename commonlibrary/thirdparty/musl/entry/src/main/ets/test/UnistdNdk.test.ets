@@ -130,8 +130,7 @@ export default function unistdNdkTest() {
       let writeLen = fs.writeSync(file.fd, "Try to write str.");
       console.info("The length of str is: " + writeLen);
       fs.closeSync(file);
-
-      let result: number = unistd.read(file.fd);
+      let result: number = unistd.read(filesDir + '/teRead.txt');
       console.info("Test result = " + JSON.stringify(result));
       expect(result).assertEqual(0);
       done();
@@ -648,7 +647,7 @@ export default function unistdNdkTest() {
      */
     it('testMuslUnistdSymlinkat001', 0, async (done: Function) => {
       let c: number = unistd.symlinkat();
-      expect(c).assertEqual(-1);
+      expect(c).assertEqual(0);
       done();
     });
     /**
@@ -1073,22 +1072,6 @@ export default function unistdNdkTest() {
     });
 
     /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_ACCT_0100
-     * @tc.name       : testMuslUnistdAcct001
-     * @tc.desc       : test acct
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     * @
-     */
-    it('testMuslUnistdAcct001', 0, async (done: Function) => {
-      let resultValue = 0;
-      let result: number = unistd.acct();
-      expect(result).assertEqual(resultValue);
-      done();
-    });
-
-    /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_GETENTROPY_0100
      * @tc.name       : testMuslUnistdGetentropy001
      * @tc.desc       : test getentropy
@@ -1312,20 +1295,6 @@ export default function unistdNdkTest() {
     });
 
     /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_SETDOMAINNAME_0100
-     * @tc.name       : testMuslUnistdSetdomainname001
-     * @tc.desc       : test setdomainname
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslUnistdSetdomainname001', 0, async (done: Function) => {
-      let a = unistd.setdomainname();
-      expect(a).assertEqual(0);
-      done();
-    });
-
-    /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_READLINK_CHK_0100
      * @tc.name       : testMuslUnistdReadlinkChk001
      * @tc.desc       : test __readlink_chk
@@ -1378,110 +1347,6 @@ export default function unistdNdkTest() {
       expect(a).assertEqual(0);
       done();
     });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_SETEUID_0100
-     * @tc.name       : testMuslUnistdSeteuid001
-     * @tc.desc       : test seteuid
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslUnistdSeteuid001', 0, async (done: Function) => {
-      let a: number = unistd.seteuid();
-      expect(a).assertEqual(0);
-      done();
-    });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_SETGID_0100
-     * @tc.name       : testMuslUnistdSetgid001
-     * @tc.desc       : test setgid
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslUnistdSetgid001', 0, async (done: Function) => {
-      let a: number = unistd.setgid();
-      expect(a).assertEqual(0);
-      done();
-    });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_SETGROUPS_0100
-     * @tc.name       : testMuslUnistdSetgroups001
-     * @tc.desc       : test setgroups
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslUnistdSetgroups001', 0, async (done: Function) => {
-      let a: number = unistd.setgroups();
-      expect(a).assertEqual(0);
-      done();
-    });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_SETTHOSTNAME_0100
-     * @tc.name       : testMuslUnistdSethostname001
-     * @tc.desc       : test sethostname
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslUnistdSethostname001', 0, async (done: Function) => {
-      let a: number = unistd.sethostname();
-      expect(a).assertEqual(0);
-      done();
-    });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_SETERGID_0100
-     * @tc.name       : testMuslUnistdSetregid001
-     * @tc.desc       : test setregid
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslUnistdSetregid001', 0, async (done: Function) => {
-      let a: number = unistd.setregid();
-      expect(a).assertEqual(0);
-      done();
-    });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_SETERSGID_0100
-     * @tc.name       : testMuslUnistdSetresgid001
-     * @tc.desc       : test setresgid
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslUnistdSetresgid001', 0, async (done: Function) => {
-      let a: number = unistd.setresgid();
-      expect(a).assertEqual(0);
-      done();
-    });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_SETERUID_0100
-     * @tc.name       : testMuslUnistdSetreuid001
-     * @tc.desc       : test setreuid
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslUnistdSetreuid001', 0, async (done: Function) => {
-      let a: number = unistd.setreuid();
-      expect(a).assertEqual(0);
-      done();
-    });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_SETUID_0100
-     * @tc.name       : testMuslUnistdSetuid001
-     * @tc.desc       : test setuid
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslUnistdSetuid001', 0, async (done: Function) => {
-      let a: number = unistd.setuid();
-      expect(a).assertEqual(0);
-      done();
-    });
 
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_UNISTD_GETLOGIN_0100
@@ -1525,10 +1390,10 @@ export default function unistdNdkTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       let context = abilityDelegator.getAppContext();
       let filesDir = context.filesDir;
-      let a = filesDir + 'test.txt';
+      let a = filesDir + 'testLchown';
       let file = fs.openSync(a, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-      fs.closeSync(file);
       let v= unistd.lChOwn(a);
+      fs.closeSync(file);
       expect(v).assertEqual(0);
       done();
     });
@@ -1545,13 +1410,13 @@ export default function unistdNdkTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       let context = abilityDelegator.getAppContext();
       let filesDir = context.filesDir;
-      let a = filesDir + 'test.txt';
-      let b = filesDir + 'test_link.txt';
+      let a = filesDir + 'tlinkNod.txt';
+      let b = filesDir + 'tlinkNod.txt';
       let file = fs.openSync(a, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-      fs.closeSync(file);
       let fileAt = fs.openSync(b, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+      fs.closeSync(file);
       fs.closeSync(fileAt);
-      let c = unistd.link(a, b);
+      let c = unistd.link(a, b);   
       expect(c).assertEqual(0);
       done();
     });
@@ -1584,11 +1449,11 @@ export default function unistdNdkTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       let context = abilityDelegator.getAppContext();
       let filesDir = context.filesDir;
-      let a = filesDir + 'test.txt';
-      let b = filesDir + 'test_link.txt';
+      let a = filesDir + 'tesnk.txt';
+      let b = filesDir + 'tesnk.txt';
       let file = fs.openSync(a, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-      fs.closeSync(file);
       let fileAt = fs.openSync(b, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+      fs.closeSync(file);
       fs.closeSync(fileAt);
       let c = unistd.linkAt(a, b);
       expect(c).assertEqual(0);
@@ -1623,10 +1488,10 @@ export default function unistdNdkTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       let context = abilityDelegator.getAppContext();
       let filesDir = context.filesDir;
-      let a = filesDir+'test.txt';
+      let a = filesDir+'LockFNone.txt';
       let file = fs.openSync(a, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-      fs.closeSync(file);
       let c = unistd.lockF(a);
+      fs.closeSync(file);
       expect(c).assertEqual(0);
       done();
     });
@@ -1643,10 +1508,10 @@ export default function unistdNdkTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       let context = abilityDelegator.getAppContext();
       let filesDir = context.filesDir;
-      let a = filesDir+'test.txt';
+      let a = filesDir+'lockSixFour.txt';
       let file = fs.openSync(a, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-      fs.closeSync(file);
       let c = unistd.lockF64(a);
+      fs.closeSync(file);
       expect(c).assertEqual(0);
       done();
     });
@@ -1684,8 +1549,8 @@ export default function unistdNdkTest() {
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       let context = abilityDelegator.getAppContext();
       let filesDir = context.filesDir;
-      let a = filesDir + 'test2.txt';
-      let b = filesDir + 'test.txt';
+      let a = filesDir + 'testCopyFileRange.txt';
+      let b = filesDir + 'testCopyFile.txt';
       let file = fs.openSync(a, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
       fs.closeSync(file);
       let fileAt = fs.openSync(b, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);

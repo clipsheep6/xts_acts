@@ -47,6 +47,7 @@
 #define PARAM_17 17
 #define PARAM_5 5
 #define PARAM_80 80
+#define PARAM_0777 0777
 #define PARAM_250068492 250068492
 #define PARAM_2064035584 2064035584
 #define PARAM_208622688 208622688
@@ -107,9 +108,9 @@ static napi_value Mbtowc_One(napi_env env, napi_callback_info info)
 
 static napi_value Mbtowc_Two(napi_env env, napi_callback_info info)
 {
-    const char *test = "musl";
     wchar_t wc[ARRY_MAX];
-    int ret = mbtowc(wc, test, MINUSONE);
+    errno = 0;
+    int ret = mbtowc(wc, nullptr, MINUSONE);
     napi_value result = nullptr;
     napi_create_int32(env, ret == SUCCESS && errno == EBADF, &result);
     return result;
@@ -214,7 +215,7 @@ static napi_value Wprintf_Two(napi_env env, napi_callback_info info)
 
 static napi_value Fwscanf_One(napi_env env, napi_callback_info info)
 {
-    int fd = open(TEMP_FILE, O_CREAT | O_RDWR);
+    int fd = open(TEMP_FILE, O_CREAT | O_RDWR, PARAM_0777);
     int ret = PARAM_0;
     FILE *fp = fdopen(fd, "w+");
     if (fp) {
@@ -226,6 +227,7 @@ static napi_value Fwscanf_One(napi_env env, napi_callback_info info)
         fclose(fp);
         remove(TEMP_FILE);
     }
+    close(fd);
     napi_value result = nullptr;
     napi_create_int32(env, ret == SUCCESS, &result);
     return result;
@@ -233,7 +235,7 @@ static napi_value Fwscanf_One(napi_env env, napi_callback_info info)
 
 static napi_value Fwscanf_Two(napi_env env, napi_callback_info info)
 {
-    int fd = open(TEMP_FILE, O_CREAT | O_RDWR);
+    int fd = open(TEMP_FILE, O_CREAT | O_RDWR, PARAM_0777);
     int ret = PARAM_0;
     FILE *fp = fdopen(fd, "w+");
     if (fp) {
@@ -244,6 +246,7 @@ static napi_value Fwscanf_Two(napi_env env, napi_callback_info info)
         fclose(fp);
         remove(TEMP_FILE);
     }
+    close(fd);
     napi_value result = nullptr;
     napi_create_int32(env, ret == SUCCESS, &result);
     return result;

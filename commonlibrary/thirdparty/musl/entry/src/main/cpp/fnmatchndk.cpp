@@ -17,6 +17,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <dlfcn.h>
+#include <fcntl.h>
 #include <fnmatch.h>
 #include <js_native_api_types.h>
 #include <poll.h>
@@ -32,6 +33,8 @@
 #include <threads.h>
 #include <unistd.h>
 #include <utime.h>
+#include <cstdio>
+#include <cerrno>
 
 #define PARAM_5 5
 #define PARAM_0 0
@@ -49,13 +52,26 @@
 #define PARAM_16 16
 #define PARAM_15 15
 #define PARAM_20 20
+#define SUCCESS 1
+#define SIZE_64 64
+#define SIZE_10 10
+#define SEC_TIME 123840
+#define FAIL (-1)
+#define MPARAM_1 (-1)
+#define TEST_SIZE 2
+#define MICROSECONDS (1000000)
+#define TEST_FILE "/data/storage/el2/base/files/test.txt"
+#define PARAM_0777 0777
+#define PATH "/data/storage/el2/base/files/utime64.txt"
+#define TEST_FILE_NAME "test.txt"
+#define TEST_FILE_PATH "/data/storage/el2/base/files/"
+#define PARAM_0666 0666
 
 static napi_value FnMatch(napi_env env, napi_callback_info info)
 {
-    char firstStr[] = ".txt";
-    char secondStr[] = "test.txt";
-    int num = FNM_NOESCAPE;
-    int backParam = fnmatch(firstStr, secondStr, num);
+    char firstStr[] = "video_???_test.txt";
+    char secondStr[] = "video_010_test.txt";
+    int backParam = fnmatch(firstStr, secondStr, FNM_NOESCAPE);
     napi_value result = nullptr;
     napi_create_int32(env, backParam, &result);
     return result;
@@ -109,8 +125,8 @@ static napi_value FStat_time64(napi_env env, napi_callback_info info)
     struct stat stat {};
     returnParam = __fstat_time64(fileDescribe, &stat);
     napi_value result = nullptr;
-    napi_create_int32(env, returnParam, &result);
     close(fileDescribe);
+    napi_create_int32(env, returnParam, &result);
     return result;
 }
 
@@ -141,12 +157,26 @@ static napi_value Stat_time64(napi_env env, napi_callback_info info)
 extern "C" int __utimensat_time64(int, const char *, const struct timespec[2], int);
 static napi_value UTimeNsAt_time64(napi_env env, napi_callback_info info)
 {
-    int returnParam = PARAM_1, firstParam = PARAM_1, fourthParam = PARAM_1;
-    const char *secondParam = nullptr;
-    const struct timespec timeSpec[2]{};
-    returnParam = __utimensat_time64(firstParam, secondParam, timeSpec, fourthParam);
+    size_t argc = PARAM_1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    int toCppResult = FAIL;
+    size_t length = SIZE_64, stresult = PARAM_0;
+    char path[SIZE_64] = {PARAM_0};
+    napi_get_value_string_utf8(env, args[0], path, length, &stresult);
+    int fileDescribe = open(path, O_CREAT);
+    const long sec = SEC_TIME;
+    struct timespec times[] = {{.tv_sec = PARAM_0}, {.tv_sec = sec}};
+    int utimensatValue = __utimensat_time64(fileDescribe, path, times, PARAM_0);
+    close(fileDescribe);
+    struct stat statbuf = {PARAM_0};
+    utimensatValue = stat(path, &statbuf);
+    if (utimensatValue == PARAM_0 && statbuf.st_mtim.tv_sec == sec) {
+        toCppResult = SUCCESS;
+    }
+    remove(path);
     napi_value result = nullptr;
-    napi_create_int32(env, returnParam, &result);
+    napi_create_int32(env, toCppResult, &result);
     return result;
 }
 
@@ -261,51 +291,68 @@ static napi_value DiffTime64(napi_env env, napi_callback_info info)
 extern "C" void *__dlsym_time64(void *__restrict, const char *__restrict);
 static napi_value DlSym_time64(napi_env env, napi_callback_info info)
 {
-    void *backInfo = nullptr;
-    int backParam = PARAM_UNNORMAL;
     const char *path = "/system/lib/extensionability/libstatic_subscriber_extension_module.z.so";
     void *ptr = dlopen(path, RTLD_LAZY);
-    backInfo = __dlsym_time64(ptr, "OHOS_EXTENSION_GetExtensionModule");
-    if (backInfo != nullptr) {
-        backParam = PARAM_0;
-    }
+    errno = PARAM_0;
+    __dlsym_time64(ptr, "OHOS_EXTENSION_GetExtensionModule");
     napi_value result = nullptr;
-    napi_create_int32(env, backParam, &result);
-    dlclose(ptr);
+    napi_create_int32(env, errno, &result);
     return result;
 }
 
 extern "C" int __futimens_time64(int, const struct timespec[2]);
 static napi_value FuTimeNs_time64(napi_env env, napi_callback_info info)
 {
-    int backParam = PARAM_UNNORMAL, firstParam = PARAM_1;
-    const struct timespec secondParam[2]{};
-    backParam = __futimens_time64(firstParam, secondParam);
-    napi_value result = nullptr;
-    napi_create_int32(env, backParam, &result);
+    int fileDescribe = open(PATH, O_CREAT);
+    int ret = __futimens_time64(fileDescribe, ((struct timespec[2]){{.tv_nsec = UTIME_OMIT}, {.tv_nsec = UTIME_OMIT}}));
+    napi_value result;
+    napi_create_int32(env, ret, &result);
+    close(fileDescribe);
+    remove(PATH);
     return result;
 }
 
 extern "C" int __futimes_time64(int, const struct timeval[2]);
 static napi_value FuTimes_time64(napi_env env, napi_callback_info info)
 {
-    int backParam = PARAM_UNNORMAL, firstParam = PARAM_1;
-    const struct timeval secondParam[2]{};
-    backParam = __futimes_time64(firstParam, secondParam);
+    struct stat s;
+    static struct timeval tv[2];
+    tv[0].tv_sec = s.st_atime;
+    tv[0].tv_usec = PARAM_0;
+    tv[1].tv_sec = s.st_mtime;
+    tv[1].tv_usec = PARAM_0;
+    int ret = MPARAM_1;
+    int fileDescribe = open(TEST_FILE, O_RDWR | O_CREAT, PARAM_0777);
+    if (fileDescribe != MPARAM_1) {
+        ret = __futimes_time64(fileDescribe, tv);
+    }
     napi_value result = nullptr;
-    napi_create_int32(env, backParam, &result);
+    napi_create_int32(env, ret, &result);
+    remove(TEST_FILE);
     return result;
 }
 
 extern "C" int __futimesat_time64(int, const char *, const struct timeval[2]);
 static napi_value FuTimesAt_time64(napi_env env, napi_callback_info info)
 {
-    int backParam = PARAM_UNNORMAL, firstParam = PARAM_1;
-    const char *secondParam = nullptr;
-    const struct timeval thirdParam[2]{};
-    backParam = __futimesat_time64(firstParam, secondParam, thirdParam);
-    napi_value result = nullptr;
-    napi_create_int32(env, backParam, &result);
+    int dir_fd = open(TEST_FILE_PATH, O_RDONLY | O_DIRECTORY);
+    int fileDescribe = openat(dir_fd, TEST_FILE_NAME, O_CREAT | O_RDWR | O_EXCL, PARAM_0666);
+    const char *msg = "helloworld";
+    write(fileDescribe, "msg", sizeof(msg));
+    struct timeval tv[2];
+    struct stat st;
+    fstat(fileDescribe, &st);
+    close(fileDescribe);
+    tv[0].tv_sec = st.st_atime + PARAM_1;
+    tv[0].tv_usec = PARAM_0;
+    tv[1].tv_sec = st.st_mtime + PARAM_1;
+    tv[1].tv_usec = PARAM_0;
+    int ret = __futimesat_time64(dir_fd, TEST_FILE_NAME, tv);
+    unlinkat(dir_fd, TEST_FILE_NAME, PARAM_0);
+    close(dir_fd);
+    remove(TEST_FILE);
+    napi_value result;
+    napi_create_int32(env, ret, &result);
     return result;
 }
 
@@ -374,12 +421,22 @@ static napi_value Localtime64_r(napi_env env, napi_callback_info info)
 extern "C" int __lutimes_time64(const char *, const struct timeval[2]);
 static napi_value LuTimes_time64(napi_env env, napi_callback_info info)
 {
-    int backParam = PARAM_UNNORMAL;
-    const char *firstParam = nullptr;
-    const struct timeval secondParam[2]{};
-    backParam = __lutimes_time64(firstParam, secondParam);
-    napi_value result = nullptr;
-    napi_create_int32(env, backParam, &result);
+    int ret;
+    struct stat s;
+    static struct timeval tv[TEST_SIZE] = {{0L, 0L}, {0L, 0L}};
+    tv[0].tv_sec = s.st_atime;
+    tv[0].tv_usec = PARAM_0;
+    tv[1].tv_sec = s.st_mtime;
+    tv[1].tv_usec = PARAM_0;
+    int fd = open("/data/storage/el2/base/files/Fzl.txt", O_RDWR | O_CREAT, PARAM_0666);
+    close(fd);
+    ret = __lutimes_time64("/data/storage/el2/base/files/Fzl.txt", tv);
+    napi_value result;
+    if (ret == FAIL) {
+        napi_create_int32(env, FAIL, &result);
+    } else {
+        napi_create_int32(env, PARAM_0, &result);
+    }
     return result;
 }
 
@@ -464,13 +521,11 @@ static napi_value PThread_rwLock_timedWrLock_time64(napi_env env, napi_callback_
 extern "C" int __recvmmsg_time64(int, struct mmsghdr *, unsigned int, unsigned int, struct timespec *);
 static napi_value ReCvmMsg_time64(napi_env env, napi_callback_info info)
 {
-    int backParam = PARAM_UNNORMAL, firstParam = PARAM_1;
-    struct mmsghdr secondParam {};
-    unsigned int thirdParam = PARAM_1, fourthParam = PARAM_1;
-    struct timespec fifthParam {};
-    backParam = __recvmmsg_time64(firstParam, &secondParam, thirdParam, fourthParam, &fifthParam);
+    int resultValue = FAIL;
+    struct mmsghdr msg[SIZE_10];
+    resultValue = __recvmmsg_time64(PARAM_0, msg, SIZE_10, PARAM_0, PARAM_0);
     napi_value result = nullptr;
-    napi_create_int32(env, backParam, &result);
+    napi_create_int32(env, resultValue, &result);
     return result;
 }
 
@@ -597,9 +652,14 @@ static napi_value TimeGm_time64(napi_env env, napi_callback_info info)
 extern "C" int __timerfd_gettime64(int, struct itimerspec *);
 static napi_value TimerFd_getTime64(napi_env env, napi_callback_info info)
 {
-    int backParam, firstParam = PARAM_1;
+    int backParam = PARAM_1;
+    int fileDescribe = open(PATH, O_CREAT);
     struct itimerspec secondParam {};
-    backParam = __timerfd_gettime64(firstParam, &secondParam);
+    secondParam.it_interval.tv_sec = PARAM_1;
+    secondParam.it_interval.tv_nsec = PARAM_0;
+    secondParam.it_value.tv_sec = PARAM_0;
+    secondParam.it_value.tv_nsec = PARAM_0;
+    backParam = __timerfd_gettime64(fileDescribe, &secondParam);
     napi_value result = nullptr;
     napi_create_int32(env, backParam, &result);
     return result;
@@ -608,12 +668,15 @@ static napi_value TimerFd_getTime64(napi_env env, napi_callback_info info)
 extern "C" int __timerfd_settime64(int, int, const struct itimerspec *, struct itimerspec *);
 static napi_value TimerFd_setTime64(napi_env env, napi_callback_info info)
 {
-    int backParam, firstParam = PARAM_1, secondParam = PARAM_1;
-    struct itimerspec thirdParam {};
-    struct itimerspec fourthParam {};
-    backParam = __timerfd_settime64(firstParam, secondParam, &thirdParam, &fourthParam);
+    struct itimerspec its = {{PARAM_0, PARAM_0}, {TEST_SIZE, PARAM_0}};
+    struct itimerspec val;
+    int fileDescribe, time_value;
+    fileDescribe = timerfd_create(CLOCK_REALTIME, PARAM_0);
+    time_value = __timerfd_settime64(fileDescribe, PARAM_0, &its, nullptr);
+    time_value = usleep(MICROSECONDS);
+    time_value = __timerfd_gettime64(fileDescribe, &val);
     napi_value result = nullptr;
-    napi_create_int32(env, backParam, &result);
+    napi_create_int32(env, time_value, &result);
     return result;
 }
 
@@ -631,24 +694,42 @@ static napi_value TimerSpec_get_time64(napi_env env, napi_callback_info info)
 extern "C" int __utime64(const char *, const struct utimbuf *);
 static napi_value UTime64(napi_env env, napi_callback_info info)
 {
-    int backParam;
-    const char *firstParam = nullptr;
-    struct utimbuf secondParam {};
-    backParam = __utime64(firstParam, &secondParam);
+    size_t argc = PARAM_1;
+    napi_value args[PARAM_1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    struct utimbuf ubuf;
+    struct stat statinfo;
+    int toCppResult = FAIL;
+    size_t length = SIZE_64, stresult = PARAM_0;
+    char strTemp[length];
+    napi_get_value_string_utf8(env, args[0], strTemp, length, &stresult);
+    int fileDescribe = open(strTemp, O_CREAT);
+    close(fileDescribe);
+    stat(strTemp, &statinfo);
+    ubuf.modtime = PARAM_0;
+    time(&ubuf.actime);
+    if (__utime64(strTemp, &ubuf) == PARAM_0) {
+        stat(strTemp, &statinfo);
+        if (statinfo.st_mtim.tv_sec == PARAM_0) {
+            toCppResult = PARAM_1;
+        }
+    }
     napi_value result = nullptr;
-    napi_create_int32(env, backParam, &result);
+    napi_create_int32(env, toCppResult, &result);
     return result;
 }
 
 extern "C" int __utimes_time64(const char *, const struct timeval[2]);
 static napi_value UTimes_time64(napi_env env, napi_callback_info info)
 {
-    int backParam;
-    const char *firstParam = nullptr;
-    const struct timeval secondParam[2] = {};
-    backParam = __utimes_time64(firstParam, secondParam);
+    int fileDescribe = open(TEST_FILE, O_RDWR | O_RSYNC | O_CREAT);
+    close(fileDescribe);
+    struct timeval tv[2];
+    tv[0].tv_usec = PARAM_1;
+    int ret = __utimes_time64(TEST_FILE, tv);
     napi_value result = nullptr;
-    napi_create_int32(env, backParam, &result);
+    napi_create_int32(env, ret, &result);
+    remove(TEST_FILE);
     return result;
 }
 

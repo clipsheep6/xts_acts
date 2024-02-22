@@ -14,7 +14,7 @@
  */
 
 import { describe, expect, it } from '@ohos/hypium'
-import libgen from 'liblibgenndk.so'
+import libgen from 'libgenndk.so'
 
 export default function libgenNdkTest() {
   describe('MuslLibgenTest', () => {

@@ -96,6 +96,7 @@ static napi_value Vfwprintf(napi_env env, napi_callback_info info)
     } else {
         napi_create_int32(env, PARAM_0, &result);
     }
+    fclose(file);
     return result;
 }
 
@@ -1679,7 +1680,7 @@ static napi_value Fwide(napi_env env, napi_callback_info info)
     }
     napi_value result = nullptr;
     napi_create_int32(env, ret, &result);
-
+    fclose(fp);
     return result;
 }
 

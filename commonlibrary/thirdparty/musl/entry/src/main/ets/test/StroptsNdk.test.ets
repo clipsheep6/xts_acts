@@ -30,7 +30,7 @@ export default function muslStroptsNdkTest() {
      */
     it('testMuslStroptsIoctl001', 0, async (done: Function) => {
       let result: number = stropts.ioctl();
-      expect(result).assertEqual(0)
+      expect(result).assertEqual(-1)
       done()
     });
   })

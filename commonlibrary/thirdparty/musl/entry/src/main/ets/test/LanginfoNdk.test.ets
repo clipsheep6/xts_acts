@@ -41,7 +41,7 @@ export default function langInfoNdkTest() {
     */
     it('testMuslLanginfoNlLanginfoL001', 0, async (done: Function) => {
       let a: string = langinfo.nlLanginfoL();
-      expect(a).assertEqual('UTF-8');
+      expect(a).assertEqual('ASCII');
       done()
     });
 

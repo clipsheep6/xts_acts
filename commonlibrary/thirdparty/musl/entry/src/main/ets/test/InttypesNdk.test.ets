@@ -100,8 +100,8 @@ export default function inttypesNdkTest() {
      */
     it('testMuslInttypesImaxdiv001', 0, async (done: Function) => {
       let result: number = inttypes.imaxdiv(5, 2);
-      expect(result['quot']).assertEqual(3);
-      expect(result['rem']).assertEqual(20);
+      expect(result['quot']).assertEqual(2);
+      expect(result['rem']).assertEqual(1);
       done()
     });
     /**
@@ -114,8 +114,8 @@ export default function inttypesNdkTest() {
      */
     it('testMuslInttypesImaxdiv002', 0, async (done: Function) => {
       let result: number = inttypes.imaxdiv(4, 2);
-      expect(result['quot']).assertEqual(3);
-      expect(result['rem']).assertEqual(20);
+      expect(result['quot']).assertEqual(2);
+      expect(result['rem']).assertEqual(0);
       done()
     });
 

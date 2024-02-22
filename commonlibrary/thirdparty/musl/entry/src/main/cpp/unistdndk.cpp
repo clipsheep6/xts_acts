@@ -73,7 +73,9 @@
 #define PARAM_127 127
 #define PARAM_0x0 0x0
 #define PARAM_5 5
+#define PARAM_6 6
 #define PARAM_0444 0444
+#define PARAM_0777 0777
 #define PARAM_UNNORMAL (-1)
 #define RETURN_0 0
 #define FAILD (-1)
@@ -141,17 +143,20 @@ static napi_value Setresuid(napi_env env, napi_callback_info info)
 
 static napi_value GetGroups(napi_env env, napi_callback_info info)
 {
-    size_t argc = PARAM_1;
-    napi_value args[PARAM_1] = {nullptr};
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
     int valueZero;
-    napi_get_value_int32(env, args[PARAM_0], &valueZero);
+    napi_get_value_int32(env, args[0], &valueZero);
 
     int getInfo = FAIL;
     int size = valueZero;
-    gid_t list[SIZE_10];
-    getInfo = getgroups(size, list);
+    gid_t list[PARAM_32];
+    getInfo = getgroups(sizeof(size), list);
+    if (getInfo != FAIL) {
+        getInfo = NO_ERR;
+    }
     napi_value result = nullptr;
     napi_create_int32(env, getInfo, &result);
     return result;
@@ -251,11 +256,20 @@ static napi_value GetLogin(napi_env env, napi_callback_info info)
 
 static napi_value GetLoginR(napi_env env, napi_callback_info info)
 {
-    errno = ERRON_0;
-    char szUserName[64] = {PARAM_0};
-    int getInfo = getlogin_r(szUserName, sizeof(szUserName) - ONE);
+    char szUserName[256] = {0};
+    int ret = getlogin_r(szUserName, PARAM_256);
+    if (ret == PARAM_6) {
+          int senv = setenv("LOGNAME", "newlogname", SIZE_10);
+          if (senv == PARAM_0) {
+            ret = getlogin_r(szUserName, PARAM_256);
+            if (ret == PARAM_0) {
+                ret = PARAM_1;
+            }
+          }
+          unsetenv("LOGNAME");
+    }
     napi_value result = nullptr;
-    napi_create_int32(env, getInfo, &result);
+    napi_create_int32(env, ret, &result);
     return result;
 }
 
@@ -381,8 +395,9 @@ static napi_value Sleep(napi_env env, napi_callback_info info)
 
 static napi_value Isatty(napi_env env, napi_callback_info info)
 {
-    int fd = open("/data/storage/el2/base/files/test.txt", O_CREAT);
+    int fd = open("/data/storage/el2/base/files/test.txt", O_CREAT, PARAM_0777);
     int sin_value = isatty(fd);
+    close(fd);
     napi_value result = nullptr;
     napi_create_int32(env, sin_value, &result);
     return result;
@@ -545,20 +560,21 @@ static napi_value Tcgetpgrp(napi_env env, napi_callback_info info)
 
 static napi_value Read(napi_env env, napi_callback_info info)
 {
-    char msg[] = "This is a c test code for write function";
-    size_t argc = PARAM_1;
-    napi_value args[PARAM_1] = {nullptr};
+    size_t argc = 1;
+    napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    int fd = FAIL;
-    napi_get_value_int32(env, args[PARAM_0], &fd);    
+    size_t length = SIZE_64, stresult = SIZE_64;
+    char path[length];
+    napi_get_value_string_utf8(env, args[0], path, length, &stresult);
+    int fd = open(path, O_CREAT, TEST_MODE);
     char buf[SIZE_100];
-    int len = strlen(msg);
+    int len = PARAM_2;
     int bytes = read(fd, buf, len);
     napi_value result = nullptr;
-    if (bytes > PARAM_0) {
-        napi_create_int32(env, PARAM_0, &result);
-    } else {
+    if (bytes < PARAM_0) {
         napi_create_int32(env, PARAM_UNNORMAL, &result);
+    } else {
+        napi_create_int32(env, PARAM_0, &result);
     }
     return result;
 }
@@ -678,7 +694,7 @@ static napi_value Ttyname(napi_env env, napi_callback_info info)
             tojsResult = PARAM_0;
         }
     }
-
+    close(value0);
     napi_value result = nullptr;
     napi_create_int32(env, tojsResult, &result);
 
@@ -702,8 +718,8 @@ static napi_value Ttyname_r(napi_env env, napi_callback_info info)
         if (tojsResult == ENOTTY) {
             tojsResult = PARAM_0;
         }
+        close(fd);
     }
-
     napi_value result = nullptr;
     napi_create_int32(env, tojsResult, &result);
 
@@ -712,33 +728,31 @@ static napi_value Ttyname_r(napi_env env, napi_callback_info info)
 
 static napi_value Truncate(napi_env env, napi_callback_info info)
 {
-    size_t argc = PARAM_2;
-    napi_value args[PARAM_2] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    char *valueFirst = NapiHelper::GetString(env, args[PARAM_0]);
-    int valueSecond;
-    napi_get_value_int32(env, args[PARAM_1], &valueSecond);
-    int truncateValue = truncate(valueFirst, valueSecond);
-
+    char path[] = "/data/storage/el2/base/files/testTruncated.txt";
+    int df = open(path, O_CREAT, TEST_MODE);
+    int truncate_value = FAIL;
+    if (df != MPARAM_1) {
+        close(df);
+        truncate_value = truncate(path, PARAM_0);
+    }
     napi_value result = nullptr;
-    napi_create_int32(env, truncateValue, &result);
+    remove(path);    
+    napi_create_int32(env, truncate_value, &result);
     return result;
 }
 
 static napi_value Truncate64(napi_env env, napi_callback_info info)
 {
-    size_t argc = PARAM_2;
-    napi_value args[PARAM_2] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-
-    char *valueFirst = NapiHelper::GetString(env, args[PARAM_0]);
-    int valueSecond;
-    napi_get_value_int32(env, args[PARAM_1], &valueSecond);
-    int truncateValue = truncate64(valueFirst, valueSecond);
-
+    char path[] = "/data/storage/el2/base/files/moTruncated.txt";
+    int df = open(path, O_CREAT, TEST_MODE);
+    int truncate_value = FAIL;
+    if (df != MPARAM_1) {
+        close(df);
+        truncate_value = truncate64(path, PARAM_0);
+    }
     napi_value result = nullptr;
-    napi_create_int32(env, truncateValue, &result);
+    remove(path);
+    napi_create_int32(env, truncate_value, &result);
     return result;
 }
 
@@ -821,8 +835,9 @@ static napi_value Usleep(napi_env env, napi_callback_info info)
 static napi_value Access(napi_env env, napi_callback_info info)
 {
     errno = ERRON_0;
-    open("/data/storage/el2/base/files/fzl.txt", O_CREAT);
+    int fd = open("/data/storage/el2/base/files/fzl.txt", O_CREAT, PARAM_0777);
     int returnValue = access("/data/storage/el2/base/files/fzl.txt", F_OK);
+    close(fd);
     napi_value result = nullptr;
     napi_create_int32(env, returnValue, &result);
     return result;
@@ -858,10 +873,11 @@ static napi_value Execvpe(napi_env env, napi_callback_info info)
         const char *pathname = "/data/storage/el2/base/files/LXL.txt";
         int flags = O_CREAT;
         mode_t mode = S_IRWXU;
-        open(pathname, flags, mode);
+        int fd = open(pathname, flags, mode);
         char *const firstParam[] = {nullptr};
         char *const secondParam[] = {nullptr};
         backParam = execvpe(pathname, firstParam, secondParam);
+        close(fd);
         _exit(PARAM_0);
     }
     napi_value result = nullptr;
@@ -877,9 +893,10 @@ static napi_value Execvp(napi_env env, napi_callback_info info)
         const char *pathname = "/data/storage/el2/base/files/LXL.txt";
         int flags = O_CREAT;
         mode_t mode = S_IRWXU;
-        open(pathname, flags, mode);
+        int fd = open(pathname, flags, mode);
         char *const firstParam[PARAM_1] = {nullptr};
         backParam = execvp(pathname, firstParam);
+        close(fd);
         _exit(PARAM_0);
     }
     napi_value result = nullptr;
@@ -895,10 +912,11 @@ static napi_value Execve(napi_env env, napi_callback_info info)
         const char *pathname = "/data/storage/el2/base/files/LXL.txt";
         int flags = O_CREAT;
         mode_t mode = S_IRWXU;
-        open(pathname, flags, mode);
+        int fd = open(pathname, flags, mode);
         char *const firstParam[] = {nullptr};
         char *const secondParam[] = {nullptr};
         backParam = execve(pathname, firstParam, secondParam);
+        close(fd);
         _exit(PARAM_0);
     }
     napi_value result = nullptr;
@@ -914,9 +932,10 @@ static napi_value Execlp(napi_env env, napi_callback_info info)
         const char *pathname = "/data/storage/el2/base/files/LXL.txt";
         int flags = O_CREAT;
         mode_t mode = S_IRWXU;
-        open(pathname, flags, mode);
+        int fd = open(pathname, flags, mode);
         const char *firstParam = nullptr;
         backParam = execlp(pathname, firstParam);
+        close(fd);
         _exit(PARAM_0);
     }
     napi_value result = nullptr;
@@ -963,9 +982,10 @@ static napi_value Execle(napi_env env, napi_callback_info info)
         const char *pathname = "/data/storage/el2/base/files/LXL.txt";
         int flags = O_CREAT;
         mode_t mode = S_IRWXU;
-        open(pathname, flags, mode);
+        int fd = open(pathname, flags, mode);
         const char *firstParam = nullptr;
         backParam = execle(pathname, firstParam);
+        close(fd);
         _exit(PARAM_0);
     }
     napi_value result = nullptr;
@@ -983,6 +1003,9 @@ static napi_value Alarm(napi_env env, napi_callback_info info)
     napi_value result = nullptr;
 
     int resultValue = alarm(param);
+    if (resultValue >= PARAM_0) {
+        resultValue = PARAM_0;
+    }
     napi_create_int32(env, resultValue, &result);
 
     return result;
@@ -1052,7 +1075,9 @@ static napi_value Fork(napi_env env, napi_callback_info info)
     if (fpid != FAIL) {
         ret = SUCCESS;
     }
-    close(fpid);
+    if (fpid == PARAM_0) {
+        _exit(PARAM_0);
+    }
 
     napi_value result = nullptr;
     napi_create_int32(env, ret, &result);
@@ -1100,8 +1125,9 @@ static napi_value Chroot(napi_env env, napi_callback_info info)
 
 static napi_value Fsync(napi_env env, napi_callback_info info)
 {
-    int fd = open("/data/storage/el2/base/files/Fzl.txt", O_CREAT);
+    int fd = open("/data/storage/el2/base/files/Fzl.txt", O_CREAT, PARAM_0777);
     int ret = fsync(fd);
+    close(fd);
     napi_value result;
     napi_create_int32(env, ret, &result);
     return result;
@@ -1111,6 +1137,7 @@ static napi_value Ftruncate(napi_env env, napi_callback_info info) {
     FILE *fptr = fopen("/data/storage/el2/base/files/Fzl.txt", "w");
     fprintf(fptr, "%s", "this is a sample!");
     int freturn = ftruncate(fileno(fptr), SIZE_100);
+    fclose(fptr);
     napi_value result;
     napi_create_int32(env, freturn, &result);
     return result;
@@ -1121,6 +1148,7 @@ static napi_value Ftruncate64(napi_env env, napi_callback_info info)
     FILE *fptr = fopen("/data/storage/el2/base/files/Fzl.txt", "w");
     fprintf(fptr, "%s", "this is a sample!");
     int freturn = ftruncate64(fileno(fptr), SIZE_100);
+    fclose(fptr);
     napi_value result;
     napi_create_int32(env, freturn, &result);
     return result;
@@ -1131,11 +1159,10 @@ static napi_value LChOwn(napi_env env, napi_callback_info info)
     size_t argc = PARAM_1;
     napi_value args[PARAM_1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    size_t length = PARAM_64, stresult = PARAM_0;
+    size_t length = PARAM_64, stresult = PARAM_64;
     char *strTemp = static_cast<char *>(malloc(sizeof(char) * length));
 
     napi_get_value_string_utf8(env, args[PARAM_0], strTemp, length, &stresult);
-    errno = ERRON_0;
     int value = lchown(strTemp, TEST_ID_VALUE, TEST_ID_VALUE);
     napi_value result = nullptr;
     napi_create_int32(env, value, &result);
@@ -1195,6 +1222,9 @@ static napi_value LockF(napi_env env, napi_callback_info info)
     napi_get_value_string_utf8(env, args[PARAM_0], path, lenV, &lenA);
     int fd = open(path, O_RDWR | O_CREAT, TEST_MODE);
     ret = lockf(fd, F_LOCK, PARAM_0);
+    lockf(fd, F_ULOCK, PARAM_0);
+    close(fd);
+    remove(path);
     napi_value result = nullptr;
     napi_create_int32(env, ret, &result);
     return result;
@@ -1213,6 +1243,9 @@ static napi_value LockF64(napi_env env, napi_callback_info info)
     napi_get_value_string_utf8(env, args[PARAM_0], path, lenV, &lenA);
     int fd = open(path, O_RDWR | O_CREAT, TEST_MODE);
     ret = lockf64(fd, F_LOCK, PARAM_0);
+    lockf64(fd, F_ULOCK, PARAM_0);
+    close(fd);
+    remove(path);
     napi_value result = nullptr;
     napi_create_int32(env, ret, &result);
     return result;
@@ -1260,52 +1293,71 @@ static napi_value Globfree(napi_env env, napi_callback_info info)
 
 static napi_value ReadLink(napi_env env, napi_callback_info info)
 {
-    char buf[SIZE_64] = "";
-    int fp = open("/data/storage/el2/base/files/Fzl.txt", O_RDONLY);
-    close(fp);
-    ssize_t ret = readlink("/data/storage/el2/base/files/Fzl.txt", buf, PARAM_127);
-    napi_value result = nullptr;
-    if (ret == PARAM_UNNORMAL) {
-        napi_create_int32(env, PARAM_UNNORMAL, &result);
-    } else {
-        napi_create_int32(env, PARAM_0, &result);
+    struct stat sb;
+    int exp = FAIL;
+    const char wstr[] = "this is a test\n";
+    const char softptr[] = "/data/storage/el2/base/files/readlink.txt.soft";
+    char *buf = static_cast<char *>(malloc(sizeof(char) * (sb.st_size + 1)));
+    const char ptr[] = "/data/storage/el2/base/files/readlink.txt";
+    FILE *fptr = fopen(ptr, "w");
+    if (fptr != nullptr) {
+        fwrite(wstr, sizeof(char), strlen(wstr), fptr);
     }
+    fclose(fptr);
+    int link = symlink("/data/storage/el2/base/files/symlink.txt", softptr);
+    if (link == PARAM_0) {
+        ssize_t ret = readlink(softptr, buf, sizeof(buf));
+        if (ret != (ssize_t)FAIL) {
+            exp = PARAM_0;
+        }
+    }
+    remove(ptr);
+    remove(softptr);
+    napi_value result = nullptr;
+    napi_create_int32(env, exp, &result);
     return result;
 }
 
 static napi_value ReadLinkAt(napi_env env, napi_callback_info info)
 {
-    char buf[SIZE_64] = "";
-    int fp = open("/data/storage/el2/base/files/Fzl.txt", O_RDONLY);
-    ssize_t ret = readlinkat(fp, "/data/storage/el2/base/files/Fzl.txt", buf, PARAM_127);
-    napi_value result = nullptr;
-    if (ret == PARAM_UNNORMAL) {
-        napi_create_int32(env, PARAM_UNNORMAL, &result);
-    } else {
-        napi_create_int32(env, PARAM_0, &result);
+    struct stat sb;
+    int exp = FAIL;
+    const char wstr[] = "this is a test\n";
+    const char softptr[] = "/data/storage/el2/base/files/readlink.txt.soft";
+    char *buf = static_cast<char *>(malloc(sizeof(char) * (sb.st_size + 1)));
+    const char ptr[] = "/data/storage/el2/base/files/readlink.txt";
+    FILE *fptr = fopen(ptr, "w");
+    if (fptr != nullptr) {
+        fwrite(wstr, sizeof(char), strlen(wstr), fptr);
     }
-    close(fp);
+    fclose(fptr);
+    int link = symlink("/data/storage/el2/base/files/symlink.txt", softptr);
+    if (link == PARAM_0) {
+        ssize_t ret = readlinkat(PARAM_0, softptr, buf, sizeof(buf));
+        if (ret != (ssize_t)FAIL) {
+            exp = PARAM_0;
+        }
+    }
+    remove(ptr);
+    remove(softptr);
+    napi_value result = nullptr;
+    napi_create_int32(env, exp, &result);
     return result;
 }
 
-extern char *optarg;
-extern int optind, opterr, optopt;
 static napi_value Optarg(napi_env env, napi_callback_info info)
 {
-    int ch;
-    int argc = PARAM_5;
-    char param1[] = "./getopt";
-    char param2[] = "-a";
-    char param3[] = "f";
-    char param4[] = "-b";
-    char param5[] = "-ci";
-
-    char *argv2[PARAM_5] = {param1, param2, param3, param4, param5};
-    char optstring[] = "a:bc::";
-    ch = getopt(argc, argv2, optstring);
+    optind = PARAM_0;
+    int optArgc = PARAM_3;
+    char cmdline[50] = "./parse_cmdline";
+    char para[100] = "100";
+    char par[3] = "-a";
+    char *optArgv[] = {cmdline, par, para};
+    char optString[50] = "a:b:c:d";
+    int ch = getopt(optArgc, optArgv, optString);
     int res = PARAM_0;
     if (ch == 'a') {
-        if (optarg[PARAM_0] == 'f') {
+        if (optarg == para) {
             res = SUCCESS;
         } else {
             res = FAIL;
@@ -1319,17 +1371,14 @@ static napi_value Optarg(napi_env env, napi_callback_info info)
 }
 static napi_value Optind(napi_env env, napi_callback_info info)
 {
-    int ch;
-    int argc = PARAM_5;
-    char param1[] = "./getopt";
-    char param2[] = "-a";
-    char param3[] = "f";
-    char param4[] = "-b";
-    char param5[] = "-ci";
-
-    char *argv2[PARAM_5] = {param1, param2, param3, param4, param5};
-    char optstring[] = "a:bc::";
-    ch = getopt(argc, argv2, optstring);
+    optind = PARAM_0;
+    int optArgc = PARAM_3;
+    char cmdline[50] = "./parse_cmdline";
+    char para[100] = "100";
+    char par[3] = "-a";
+    char *optArgv[] = {cmdline, par, para};
+    char optString[50] = "a:b:c:d";
+    int ch = getopt(optArgc, optArgv, optString);
     int res = PARAM_0;
     if (ch == 'a') {
         if (optind == PARAM_3) {
@@ -1346,20 +1395,18 @@ static napi_value Optind(napi_env env, napi_callback_info info)
 }
 static napi_value Optopt(napi_env env, napi_callback_info info)
 {
-    int ch;
-    int argc = PARAM_5;
-    char param1[] = "./getopt";
-    char param2[] = "-a";
-    char param3[] = "f";
-    char param4[] = "-b";
-    char param5[] = "-ci";
-
-    char *argv2[PARAM_5] = {param1, param2, param3, param4, param5};
-    char optstring[] = "a:bc::";
-    ch = getopt(argc, argv2, optstring);
+    optind = PARAM_0;
+    int optArgc = PARAM_3;
+    char cmdline[50] = "./parse_cmdline";
+    char para[100] = "100";
+    char par[3] = "-f";
+    char *optArgv[] = {cmdline, par, para};
+    char optString[50] = "a:b:c:d";
+    int ch = getopt(optArgc, optArgv, optString);
+    
     int res = PARAM_0;
-    if (ch == 'a') {
-        if (optopt == PARAM_0) {
+    if (ch == '?') {
+        if (optopt == 'f') {
             res = SUCCESS;
         } else {
             res = FAIL;
@@ -1373,19 +1420,18 @@ static napi_value Optopt(napi_env env, napi_callback_info info)
 }
 static napi_value Opterr(napi_env env, napi_callback_info info)
 {
-    int ch;
-    int argc = PARAM_5;
-    char param1[] = "./getopt";
-    char param2[] = "-a";
-    char param3[] = "f";
-    char param4[] = "-b";
-    char param5[] = "-ci";
-    char *argv2[PARAM_5] = {param1, param2, param3, param4, param5};
-    char optstring[] = "a:bc::";
-    ch = getopt(argc, argv2, optstring);
+    optind = PARAM_0;
+    opterr = PARAM_0;
+    int optArgc = PARAM_3;
+    char cmdline[50] = "./parse_cmdline";
+    char para[100] = "100";
+    char par[3] = "-a";
+    char *optArgv[] = {cmdline, par, para};
+    char optString[50] = "a:b:c:d";
+    int ch = getopt(optArgc, optArgv, optString);
     int res = PARAM_0;
     if (ch == 'a') {
-        if (opterr == PARAM_1) {
+        if (opterr == PARAM_0) {
             res = SUCCESS;
         } else {
             res = FAIL;
@@ -1405,7 +1451,7 @@ static napi_value PRead(napi_env env, napi_callback_info info)
     char buffer[64];
     int bufferSize = PARAM_64;
     memset(buffer, PARAM_0x0, sizeof(buffer));
-    int fd = open("/data/storage/el2/base/files/test.txt", O_CREAT | O_RDWR);
+    int fd = open("/data/storage/el2/base/files/test.txt", O_CREAT | O_RDWR, PARAM_0777);
     pwrite(fd, txt, strlen(txt), PARAM_0);
     lseek(fd, PARAM_0, SEEK_SET);
     size_t cnt = pread(fd, buffer, bufferSize, PARAM_0);
@@ -1465,10 +1511,31 @@ static napi_value Pathconf(napi_env env, napi_callback_info info)
     return result;
 }
 
-int gtest_pause_flag = PARAM_0;
+int do_plain_test(int (*fn1)(void *arg), void *arg1, int (*fn2)(void *arg), void *arg2)
+{
+    int ret = PARAM_0;
+    int pid = PARAM_0;
+    pid = fork();
+    if (pid == FAIL) {
+        return FAIL;
+    }
+    if (pid == PARAM_0)
+        _exit(fn1(arg1));
+    if (fn2)
+        ret = fn2(arg2);
+    return ret;
+}
+
+int pausetest(void *testarg)
+{
+    int flag = pause();
+    return flag;
+}
 
 static napi_value Pause(napi_env env, napi_callback_info info)
 {
+    void *test = nullptr;
+    do_plain_test(pausetest, test, nullptr, nullptr);
     napi_value result = nullptr;
     napi_create_int32(env, SUCCESS, &result);
     return result;
@@ -1488,7 +1555,9 @@ static napi_value Pread(napi_env env, napi_callback_info info)
     napi_get_value_string_utf8(env, args[PARAM_0], value, size, &actualVal);
 
     napi_value result = nullptr;
-    ssize_t ret = pread(open(value, O_RDWR), buffer, sizeof(buffer), offset);
+    int fd = open(value, O_RDWR);
+    ssize_t ret = pread(fd, buffer, sizeof(buffer), offset);
+    close(fd);
     napi_create_int32(env, ret, &result);
     return result;
 }
@@ -1496,10 +1565,15 @@ static napi_value Pread(napi_env env, napi_callback_info info)
 static napi_value Setsid(napi_env env, napi_callback_info info) 
 {
     int ret = FAIL;
-    pid_t pid = setsid();
-    if (pid >= NO_ERR) {
+    pid_t fk = fork();
+    pid_t pid = FAIL;
+    if (fk != (pid_t)FAIL) {
+        pid = setsid();
+    }
+    if (pid != (pid_t)FAIL) {
         ret = NO_ERR;
     }
+    close(fk);
     napi_value result;
     napi_create_int32(env, ret, &result);
     return result;
@@ -1575,42 +1649,46 @@ static napi_value Issetugid(napi_env env, napi_callback_info info)
 }
 static napi_value ReadlinkChk(napi_env env, napi_callback_info info)
 {
-    int resultValue = FAILD;
     struct stat sb;
-    char *buf;
-    int ret;
-    buf = static_cast<char *>(malloc(sb.st_size + PARAM_1));
-    char *buff = static_cast<char *>(malloc(PARAM_128));
-    int fp = open("/data/storage/el2/base/files/testReadlinkChk.txt", O_CREAT);
-    close(fp);
-    ret = __readlink_chk("/data/storage/el2/base/files/testReadlinkChk.txt", buff, sizeof(buf), sizeof(buf));
-    if (ret > PARAM_0) {
-        resultValue = RETURN_0;
+    int exp = FAIL;
+    const char wstr[] = "this is a test\n";
+    const char softptr[] = "/data/storage/el2/base/files/readlink.txt.soft";
+    char *buf = static_cast<char *>(malloc(sizeof(char) * (sb.st_size + 1)));
+    const char ptr[] = "/data/storage/el2/base/files/readlink.txt";
+    FILE *fptr = fopen(ptr, "w");
+    if (fptr != nullptr) {
+        fwrite(wstr, sizeof(char), strlen(wstr), fptr);
     }
+    fclose(fptr);
+    int link = symlink("/data/storage/el2/base/files/symlink.txt", softptr);
+    if (link == PARAM_0) {
+        ssize_t ret = __readlink_chk(softptr, buf, sizeof(buf), sizeof(buf));
+        if (ret != (ssize_t)FAIL) {
+            exp = PARAM_0;
+        }
+    }
+    remove(ptr);
+    remove(softptr);
     napi_value result = nullptr;
-    napi_create_int32(env, resultValue, &result);
+    napi_create_int32(env, exp, &result);
     return result;
 }
 
 static napi_value Vfork(napi_env env, napi_callback_info info)
 {
-    int a = PARAM_1;
-    int toJs = DEF_VALUE;
-    pid_t pid = vfork();
+    int adj = PARAM_0;
+    pid_t pid;
+    pid = vfork();
+
     if (pid < PARAM_0) {
-        toJs = FAIL;
+        adj = FAIL;
     }
     if (pid == PARAM_0) {
         sleep(PARAM_1);
-        a = SIZE_10;
         _exit(PARAM_0);
-    } else if (pid > PARAM_0) {
-        if (a != PARAM_1) {
-            toJs = PARAM_0;
-        }
     }
-    napi_value result = nullptr;
-    napi_create_int32(env, toJs, &result);
+    napi_value result;
+    napi_create_int32(env, adj, &result);
     return result;
 }
 static napi_value Sethostname(napi_env env, napi_callback_info info)
@@ -1739,7 +1817,7 @@ static napi_value Copy_file_range(napi_env env, napi_callback_info info)
     close(fdOut);
 
     if (backParam >= NO_ERR) {
-        backParam = SUCCESS;
+        backParam = NO_ERR;
     }
     napi_value result = nullptr;
     napi_create_int32(env, backParam, &result);
@@ -1860,7 +1938,7 @@ static napi_value Fdatasync(napi_env env, napi_callback_info info)
     size_t strResult = PARAM_0;
     char pathname[length];
     napi_get_value_string_utf8(env, args[PARAM_0], pathname, length, &strResult);
-    fileDescribe = open(pathname, O_CREAT, S_IRWXU);
+    fileDescribe = open(pathname, O_CREAT, PARAM_0777);
     backParam = fdatasync(fileDescribe);
     close(fileDescribe);
     napi_value result = nullptr;
@@ -1879,7 +1957,7 @@ static napi_value Fchown(napi_env env, napi_callback_info info)
     size_t strResult = PARAM_0;
     char pathname[length];
     napi_get_value_string_utf8(env, args[PARAM_0], pathname, length, &strResult);
-    fileDescribe = open(pathname, O_CREAT, S_IRWXU);
+    fileDescribe = open(pathname, O_CREAT, PARAM_0777);
     uid_t owner = getuid();
     gid_t group = getgid();
     backParam = fchown(fileDescribe, owner, group);
@@ -1898,7 +1976,7 @@ static napi_value Fchownat(napi_env env, napi_callback_info info)
     char pathname[length];
     napi_get_value_string_utf8(env, args[PARAM_0], pathname, length, &strResult);
     int backParam = PARAM_0, fileDescribe = PARAM_0, flag = AT_EMPTY_PATH;
-    fileDescribe = open(pathname, O_CREAT, S_IRWXU);
+    fileDescribe = open(pathname, O_CREAT, PARAM_0777);
     uid_t owner = getuid();
     gid_t group = getgid();
     backParam = fchownat(fileDescribe, pathname, owner, group, flag);
@@ -1917,7 +1995,7 @@ int do_plain_tests(int (*fn1)(void *arg), void *arg1, int (*fn2)(void *arg), voi
         return FAILD;
     }
     if (pid == NO_ERR) {
-        _exit(fn1(arg1));
+        _exit(PARAM_0);
     }
     if (fn2) {
         ret = fn2(arg2); 

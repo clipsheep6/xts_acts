@@ -164,7 +164,6 @@ static napi_value NsSkiPrr(napi_env env, napi_callback_info info)
     } else {
         napi_create_int32(env, FAILD, &result);
     }
-    napi_create_int32(env, ret, &result);
     return result;
 }
 
