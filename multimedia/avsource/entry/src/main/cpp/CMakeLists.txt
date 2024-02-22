@@ -42,3 +42,6 @@ target_link_libraries(mediaavsourcendk PUBLIC libace_napi.z.so libhilog_ndk.z.so
 
 add_library(nativeavmuxerndk SHARED nativeavmuxerndk.cpp)
 target_link_libraries(nativeavmuxerndk PUBLIC libace_napi.z.so libhilog_ndk.z.so libnative_media_core.so libnative_media_codecbase.so libnative_media_venc.so libnative_window.so libnative_media_avmuxer.so)
+
+add_library(entry SHARED hello.cpp)
+target_link_libraries(entry PUBLIC libace_napi.z.so libdrm_framework.z.so libnative_drm.so libnative_media_acodec.so libnative_media_vdec.so libnative_media_codecbase.so libhilog_ndk.z.so libnative_media_avdemuxer.so libnative_media_avsource.so libnative_media_avmuxer.so)
