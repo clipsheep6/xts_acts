@@ -1007,9 +1007,12 @@ export default function interfaceSupportSessionManagerTest(context, windowStage,
       await tempWnd.destroyWindow();
     })
     /**
-     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_3810
-     * @tc.name testResize_SubWindow_LimitMin_Callback
-     * @tc.desc Verify that the main window size is limited
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_3810
+     * @tc.name      : testResize_SubWindow_LimitMin_Callback
+     * @tc.desc      : Verify that the main window size is limited
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
      */
     it('testResize_SubWindow_LimitMin_Callback', 0, async function (done) {
       let caseName = 'testResize_SubWindow_LimitMin_Callback';
@@ -1078,9 +1081,12 @@ export default function interfaceSupportSessionManagerTest(context, windowStage,
       }
     })
     /**
-     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_3820
-     * @tc.name testResize_SubWindow_LimitMax_Callback
-     * @tc.desc Verify that the main window size is limited
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_3820
+     * @tc.name      : testResize_SubWindow_LimitMax_Callback
+     * @tc.desc      : Verify that the main window size is limited
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
      */
     it('testResize_SubWindow_LimitMax_Callback', 0, async function (done) {
       let caseName = 'testResize_SubWindow_LimitMax_Callback';
@@ -1149,16 +1155,19 @@ export default function interfaceSupportSessionManagerTest(context, windowStage,
       }
     })
     /**
-     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_3830
-     * @tc.name testResize_SubWindow_Over_MaxLimits
-     * @tc.desc Verify that the main window size is limited
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_3830
+     * @tc.name      : testResize_SubWindow_Over_MaxLimits
+     * @tc.desc      : Verify that the main window size is limited
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
      */
     it('testResize_SubWindow_Over_MaxLimits', 0, async function () {
       let caseName = 'testResize_SubWindow_Over_MaxLimits';
       let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
       let subMin = null;
-      subMin = await windowStage.createSubWindow('testResize_SubWindow_LimitMax_Promise').catch((err: BusinessError) => {
+      subMin = await windowStage.createSubWindow('testResize_SubWindow_Over_MaxLimits').catch((err: BusinessError) => {
         console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
       });
       expect(!!subMin).assertTrue();
