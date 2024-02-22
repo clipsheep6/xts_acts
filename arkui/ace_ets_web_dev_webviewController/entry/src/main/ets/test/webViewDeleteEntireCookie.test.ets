@@ -63,7 +63,6 @@ export default function webViewDeleteEntireCookie() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWCOOKIE_API_0200
