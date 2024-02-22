@@ -18,15 +18,15 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import display from '@ohos.display';
 
 export default function inputMethodNormalJSUnit() {
-  describe('inputMethodNormalJSUnit', function () {
+  describe('inputMethodNormalJSUnit', () => {
     console.info("====>************* inputMethodNormalJSUnit settings Test start*************");
 
-    beforeAll(async (done)=>{
+    beforeAll(async (done) => {
       let display_info;
       let getFocusCmd = '';
       let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       display_info = display.getDefaultDisplaySync();
-      getFocusCmd = `uinput -T -c ${display_info.width*0.5}  ${ Math.round(display_info.height*0.4) }`;
+      getFocusCmd = `uinput -T -c ${display_info.width * 0.5}  ${Math.round(display_info.height * 0.4)}`;
       console.debug('====>runCmd info:' + getFocusCmd);
       await abilityDelegator.executeShellCommand(getFocusCmd);
       done();
@@ -40,27 +40,25 @@ export default function inputMethodNormalJSUnit() {
      * @tc.type    Function
      * @tc.level   Level2
      */
-    it('inputmethodNomal_test_switchInputMethod_001', 0, async function (done) {
+    it('inputmethodNomal_test_switchInputMethod_001', 0, async (done:Function) => {
       console.info("====>************* inputmethodNomal_test_switchInputMethod_001 Test start*************");
       let inputM = inputMethod.getCurrentInputMethod()
       console.info("inputmethodNomal_test_switchInputMethod_001 getCurrentInputMethod: " + JSON.stringify(inputM));
-      let inputMethodProperty = {
-        packageName: inputM.packageName,
-        methodId: inputM.methodId,
-        name: inputM.packageName,
-        id: inputM.methodId,
+      let inputMethodProperty: inputMethod.InputMethodProperty = {
+        packageName: inputM.name,
+        methodId: inputM.id,
+        name: inputM.name,
+        id: inputM.id,
         extra: {}
       }
-      try{
+      try {
         console.info('====>inputmethodNomal_test_switchInputMethod_001 switchInputMethod permission fail')
         await inputMethod.switchInputMethod(inputMethodProperty);
         expect().assertFail();
-        done();
-      }catch(err){
+      } catch (err) {
         console.error('====>inputmethodNomal_test_switchInputMethod_001 switchInputMethod catch err' + JSON.stringify(err))
         expect(err.code).assertEqual(201);
         expect(err.message).assertContain("the permissions check fails");
-        done();
         console.info("====>inputmethodNomal_test_switchInputMethod_001 end");
       }
     });
@@ -73,31 +71,31 @@ export default function inputMethodNormalJSUnit() {
      * @tc.type    Function
      * @tc.level   Level2
      */
-    it('inputmethodNomal_test_switchInputMethod_002', 0, async function (done) {
+    it('inputmethodNomal_test_switchInputMethod_002', 0, async (done:Function) => {
       console.info("====>************* inputmethodNomal_test_switchInputMethod_002 Test start*************");
       let inputM = inputMethod.getCurrentInputMethod()
       console.info("inputmethodNomal_test_switchInputMethod_002 getCurrentInputMethod: " + JSON.stringify(inputM));
-      let inputMethodProperty = {
-        packageName: inputM.packageName,
-        methodId: inputM.methodId,
-        name: inputM.packageName,
-        id: inputM.methodId,
+      let inputMethodProperty: inputMethod.InputMethodProperty = {
+        packageName: inputM.name,
+        methodId: inputM.id,
+        name: inputM.name,
+        id: inputM.id,
         extra: {}
       }
       inputMethod.switchInputMethod(inputMethodProperty, (err, data) => {
-        try{
-          if(err){
+        try {
+          if (err) {
             console.info("====>inputmethodNomal_test_switchInputMethod_002 switchInputMethod permission fail: " + JSON.stringify(err));
             expect(err.code).assertEqual(201);
-            done();
-          }else{
+
+          } else {
             console.info('====>inputmethodNomal_test_switchInputMethod_002 success: ' + data);
             expect().assertFail();
-            done();
+
           }
-        }catch(err){
+        } catch (err) {
           console.error("====>inputmethodNomal_test_switchInputMethod_002 catch err: " + JSON.stringify(err));
-          done();
+
           console.info("====>inputmethodNomal_test_switchInputMethod_002 end");
         }
       });
@@ -111,23 +109,23 @@ export default function inputMethodNormalJSUnit() {
      * @tc.type    Function
      * @tc.level   Level2
      */
-    it('inputmethodNomal_test_showSoftKeyboard_001', 0, async function (done) {
+    it('inputmethodNomal_test_showSoftKeyboard_001', 0, async (done:Function) => {
       console.info("====>*************inputmethodNomal_test_showSoftKeyboard_001 start******************");
       let inputMethodCtrl = inputMethod.getInputMethodController()
       inputMethodCtrl.showSoftKeyboard((err, data) => {
-        try{
-          if(err){
+        try {
+          if (err) {
             console.info("====>inputmethodNomal_test_showSoftKeyboard_001 showSoftKeyboard permission fail: " + JSON.stringify(err));
             expect(err.code).assertEqual(201);
-            done();
-          }else{
+
+          } else {
             console.info('====>inputmethodNomal_test_showSoftKeyboard_001 success: ' + data);
             expect().assertFail();
-            done();
+
           }
-        }catch(err){
+        } catch (err) {
           console.error("====>inputmethodNomal_test_showSoftKeyboard_001 catch err: " + JSON.stringify(err));
-          done();
+
           console.info("====>inputmethodNomal_test_showSoftKeyboard_001 end");
         }
       });
@@ -141,19 +139,19 @@ export default function inputMethodNormalJSUnit() {
      * @tc.type    Function
      * @tc.level   Level2
      */
-    it('inputmethodNomal_test_showSoftKeyboard_002', 0, async function (done) {
+    it('inputmethodNomal_test_showSoftKeyboard_002', 0, async (done:Function) => {
       console.info("====>*********inputmethodNomal_test_showSoftKeyboard_002 start************");
       let inputMethodCtrl = inputMethod.getInputMethodController();
-      try{
+      try {
         console.info('====>inputmethodNomal_test_showSoftKeyboard_002 showSoftKeyboard permission fail')
         await inputMethodCtrl.showSoftKeyboard();
         expect().assertFail();
-        done();
-      }catch(err){
+
+      } catch (err) {
         console.error('====>inputmethodNomal_test_showSoftKeyboard_002 showSoftKeyboard catch err' + JSON.stringify(err))
         expect(err.code).assertEqual(201);
         expect(err.message).assertContain("the permissions check fails");
-        done();
+
         console.info("====>inputmethodNomal_test_showSoftKeyboard_002 end");
       }
     });
@@ -166,23 +164,23 @@ export default function inputMethodNormalJSUnit() {
      * @tc.type    Function
      * @tc.level   Level2
      */
-    it('inputmethodNomal_test_hideSoftKeyboard_001', 0, async function (done) {
+    it('inputmethodNomal_test_hideSoftKeyboard_001', 0, async (done:Function) => {
       console.info("====>*********inputmethodNomal_test_hideSoftKeyboard_001 start************");
       let inputMethodCtrl = inputMethod.getInputMethodController()
       inputMethodCtrl.hideSoftKeyboard((err, data) => {
-        try{
-          if(err){
+        try {
+          if (err) {
             console.info("====>inputmethodNomal_test_hideSoftKeyboard_001 hideSoftKeyboard permission fail: " + JSON.stringify(err));
             expect(err.code).assertEqual(201);
-            done();
-          }else{
+
+          } else {
             console.info('====>inputmethodNomal_test_hideSoftKeyboard_001 success: ' + data);
             expect().assertFail();
-            done();
+
           }
-        }catch(err){
+        } catch (err) {
           console.error("====>inputmethodNomal_test_hideSoftKeyboard_001 catch err: " + JSON.stringify(err));
-          done();
+
           console.info("====>inputmethodNomal_test_hideSoftKeyboard_001 end");
         }
       });
@@ -196,19 +194,19 @@ export default function inputMethodNormalJSUnit() {
      * @tc.type    Function
      * @tc.level   Level2
      */
-    it('inputmethodNomal_test_hideSoftKeyboard_002', 0, async function (done) {
+    it('inputmethodNomal_test_hideSoftKeyboard_002', 0, async (done:Function) => {
       console.info("====>*********inputmethodNomal_test_hideSoftKeyboard_002 start************");
       let inputMethodCtrl = inputMethod.getInputMethodController()
-      try{
+      try {
         console.info('====>inputmethodNomal_test_hideSoftKeyboard_002 hideSoftKeyboard permission fail')
         await inputMethodCtrl.hideSoftKeyboard();
         expect().assertFail();
-        done();
-      }catch(err){
+
+      } catch (err) {
         console.error('====>inputmethodNomal_test_hideSoftKeyboard_002 hideSoftKeyboard catch err' + JSON.stringify(err))
         expect(err.code).assertEqual(201);
         expect(err.message).assertContain("the permissions check fails");
-        done();
+
         console.info("====>inputmethodNomal_test_hideSoftKeyboard_002 end");
       }
     });
