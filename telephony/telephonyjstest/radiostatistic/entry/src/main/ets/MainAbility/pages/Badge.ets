@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 @Entry
 @Component
 struct badge {
-  @State counts: number = 33
-  @State message: string = 'new'
-  @State active: boolean = false
+  @State counts: number = 33;
+  @State message: string = 'new';
+  @State active: boolean = false;
   private content: string = "badge Page";
 
   onPageShow() {
@@ -44,15 +44,16 @@ struct badge {
           }) {
             Button('message')
               .onClick(() => {
-                this.counts++
+                this.counts++;
               })
-              .width(100).height(50).backgroundColor(0x317aff)
+              .width(100).height(50)
+              .backgroundColor(0x317aff)
           }
-          .width(100)
-          .height(50)
+          .width(100).height(50)
           .key('badge')
 
-          Text("BadgePosition.RightTop").fontSize(16)
+          Text("BadgePosition.RightTop")
+            .fontSize(16)
           Badge({
             count: this.counts,
             position: BadgePosition.RightTop,
@@ -61,15 +62,16 @@ struct badge {
           }) {
             Button('message')
               .onClick(() => {
-                this.counts++
+                this.counts++;
               })
-              .width(100).height(50).backgroundColor(0x317aff)
+              .width(100).height(50)
+              .backgroundColor(0x317aff)
           }
-          .width(100)
-          .height(50)
+          .width(100).height(50)
           .key('badge1')
 
-          Text("BadgePosition.Left").fontSize(16)
+          Text("BadgePosition.Left")
+            .fontSize(16)
           Badge({
             count: this.counts,
             position: BadgePosition.Left,
@@ -78,18 +80,17 @@ struct badge {
           }) {
             Button('message')
               .onClick(() => {
-                this.counts++
+                this.counts++;
               })
-              .width(100).height(50).backgroundColor(0x317aff)
+              .width(100).height(50)
+              .backgroundColor(0x317aff)
           }
-          .width(100)
-          .height(50)
+          .width(100).height(50)
           .key('badge2')
         }
       }
     }
     .key('flex')
-    .width('100%')
-    .height('100%')
+    .width('100%').height('100%')
   }
 }

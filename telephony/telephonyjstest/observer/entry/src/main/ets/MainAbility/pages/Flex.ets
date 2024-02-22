@@ -16,7 +16,7 @@
 @Entry
 @Component
 struct flex {
-  private content: string = "Flex Page"
+  private content: string = "Flex Page";
 
   onPageShow() {
     console.info('Flex page show called');
@@ -29,7 +29,10 @@ struct flex {
   build() {
     Column() {
       Column({ space : 2 }) {
-        Text('direction:Column').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Text('direction:Column')
+          .fontSize(9)
+          .fontColor(0xCCCCCC)
+          .width('90%')
         Flex({
           direction: FlexDirection.Column,
           wrap: FlexWrap.NoWrap,
@@ -37,17 +40,25 @@ struct flex {
           alignItems:ItemAlign.Start,
           alignContent: FlexAlign.Start,
         }) {
-          Text('1').width('100%').height(20).backgroundColor(0xF5DEB3)
-          Text('2').width('100%').height(20).backgroundColor(0xD2B48C)
-          Text('3').width('100%').height(20).backgroundColor(0xF5DEB3)
+          Text('1')
+            .width('100%').height(20)
+            .backgroundColor(0xF5DEB3)
+          Text('2')
+            .width('100%').height(20)
+            .backgroundColor(0xD2B48C)
+          Text('3')
+            .width('100%').height(20)
+            .backgroundColor(0xF5DEB3)
         }
         .key('flex')
-        .height(70)
-        .width('90%')
+        .height(70).width('90%')
         .padding(10)
         .backgroundColor(0xAFEEEE)
 
-        Text('direction:Row').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Text('direction:Row')
+          .fontSize(9)
+          .fontColor(0xCCCCCC)
+          .width('90%')
         Flex({
           direction: FlexDirection.Row,
           wrap: FlexWrap.Wrap,
@@ -55,13 +66,18 @@ struct flex {
           alignItems:ItemAlign.Start,
           alignContent: FlexAlign.Center,
         }) {
-          Text('1').width('20%').height(20).backgroundColor(0xF5DEB3)
-          Text('2').width('20%').height(20).backgroundColor(0xD2B48C)
-          Text('3').width('20%').height(20).backgroundColor(0xF5DEB3)
+          Text('1')
+            .width('20%').height(20)
+            .backgroundColor(0xF5DEB3)
+          Text('2')
+            .width('20%').height(20)
+            .backgroundColor(0xD2B48C)
+          Text('3')
+            .width('20%').height(20)
+            .backgroundColor(0xF5DEB3)
         }
         .key('flex1')
-        .height(70)
-        .width('90%')
+        .height(70).width('90%')
         .padding(10)
         .backgroundColor(0xAFEEEE)
 
@@ -73,13 +89,18 @@ struct flex {
           alignItems:ItemAlign.End,
           alignContent: FlexAlign.End,
         }) {
-          Text('1').width('50%').height(20).backgroundColor(0xF5DEB3)
-          Text('2').width('50%').height(20).backgroundColor(0xD2B48C)
-          Text('3').width('50%').height(20).backgroundColor(0xF5DEB3)
+          Text('1')
+            .width('50%').height(20)
+            .backgroundColor(0xF5DEB3)
+          Text('2')
+            .width('50%').height(20)
+            .backgroundColor(0xD2B48C)
+          Text('3')
+            .width('50%').height(20)
+            .backgroundColor(0xF5DEB3)
         }
         .key('flex2')
-        .height(90)
-        .width('90%')
+        .height(90).width('90%')
         .padding(10)
         .backgroundColor(0xAFEEEE)
 
@@ -88,13 +109,18 @@ struct flex {
           justifyContent: FlexAlign.SpaceBetween,
           wrap: FlexWrap.Wrap,
         }) {
-          Text('1').width('100%').height(20).backgroundColor(0xF5DEB3)
-          Text('2').width('100%').height(20).backgroundColor(0xD2B48C)
-          Text('3').width('100%').height(20).backgroundColor(0xF5DEB3)
+          Text('1')
+            .width('100%').height(20)
+            .backgroundColor(0xF5DEB3)
+          Text('2')
+            .width('100%').height(20)
+            .backgroundColor(0xD2B48C)
+          Text('3')
+            .width('100%').height(20)
+            .backgroundColor(0xF5DEB3)
         }
         .key('flex3')
-        .height(100)
-        .width('90%')
+        .height(100).width('90%')
         .padding(10)
         .backgroundColor(0xAFEEEE)
 
@@ -104,13 +130,18 @@ struct flex {
           alignContent: FlexAlign.SpaceEvenly,
           wrap: FlexWrap.Wrap,
         }) {
-          Text('1').width('50%').height(20).backgroundColor(0xF5DEB3)
-          Text('2').width('50%').height(20).backgroundColor(0xD2B48C)
-          Text('3').width('50%').height(20).backgroundColor(0xF5DEB3)
+          Text('1')
+            .width('50%').height(20)
+            .backgroundColor(0xF5DEB3)
+          Text('2')
+            .width('50%').height(20)
+            .backgroundColor(0xD2B48C)
+          Text('3')
+            .width('50%').height(20)
+            .backgroundColor(0xF5DEB3)
         }
         .key('flex4')
-        .height(90)
-        .width('90%')
+        .height(90).width('90%')
         .padding(10)
         .backgroundColor(0xAFEEEE)
 
@@ -120,16 +151,24 @@ struct flex {
           alignContent: FlexAlign.SpaceAround,
           wrap: FlexWrap.Wrap,
         }) {
-          Text('1').width('50%').height(20).backgroundColor(0xF5DEB3)
-          Text('2').width('50%').height(20).backgroundColor(0xD2B48C)
-          Text('3').width('50%').height(20).backgroundColor(0xF5DEB3)
+          Text('1')
+            .width('50%').height(20)
+            .backgroundColor(0xF5DEB3)
+          Text('2')
+            .width('50%').height(20)
+            .backgroundColor(0xD2B48C)
+          Text('3')
+            .width('50%').height(20)
+            .backgroundColor(0xF5DEB3)
         }
         .key('flex5')
-        .height(90)
-        .width('90%')
+        .height(90).width('90%')
         .padding(10)
         .backgroundColor(0xAFEEEE)
-      }.width('100%').margin({ top: 5 })
-    }.width('100%')
+      }
+      .width('100%')
+      .margin({ top: 5 })
+    }
+    .width('100%')
   }
 }

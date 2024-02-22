@@ -15,13 +15,14 @@
 
 import { describe, expect, it, afterEach, afterAll, beforeAll } from '@ohos/hypium';
 import http from '@ohos.net.http';
+import { BusinessError } from '@ohos.base';
 
-let httpRequest = http.createHttp();
-let address_baidu = "https://www.baidu.com";
-let address_baidu2 = "http://www.baidu.com";
-let address_post = "https://httpbin.org/post";
+let httpRequest: http.HttpRequest = http.createHttp();
+let address_baidu: string = "https://www.baidu.com";
+let address_baidu2: string = "http://www.baidu.com";
+let address_post: string = "https://httpbin.org/post";
 
-let httpRequestOptions_post:http.HttpRequestOptions = {
+let httpRequestOptions_post: http.HttpRequestOptions = {
   method: http.RequestMethod.POST,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -29,7 +30,7 @@ let httpRequestOptions_post:http.HttpRequestOptions = {
   connectTimeout: 60000
 }
 
-let httpRequestOptions_resumeFrom_1:http.HttpRequestOptions = {
+let httpRequestOptions_resumeFrom_1: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -40,7 +41,7 @@ let httpRequestOptions_resumeFrom_1:http.HttpRequestOptions = {
   resumeTo: 100
 };
 
-let httpRequestOptions_resumeFrom_2G:http.HttpRequestOptions = {
+let httpRequestOptions_resumeFrom_2G: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -49,7 +50,7 @@ let httpRequestOptions_resumeFrom_2G:http.HttpRequestOptions = {
   resumeFrom: 2147483648
 };
 
-let httpRequestOptions_resumeFrom_err:http.HttpRequestOptions = {
+let httpRequestOptions_resumeFrom_err: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -58,7 +59,7 @@ let httpRequestOptions_resumeFrom_err:http.HttpRequestOptions = {
   resumeFrom: -1
 };
 
-let httpRequestOptions_resumeFrom_undefined:http.HttpRequestOptions = {
+let httpRequestOptions_resumeFrom_undefined: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -67,7 +68,7 @@ let httpRequestOptions_resumeFrom_undefined:http.HttpRequestOptions = {
   resumeFrom: undefined
 };
 
-let httpRequestOptions_resumeFrom_null:http.HttpRequestOptions = {
+let httpRequestOptions_resumeFrom_null: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -76,7 +77,7 @@ let httpRequestOptions_resumeFrom_null:http.HttpRequestOptions = {
   resumeFrom: null
 };
 
-let httpRequestOptions_clientCert:http.HttpRequestOptions = {
+let httpRequestOptions_clientCert: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -85,12 +86,12 @@ let httpRequestOptions_clientCert:http.HttpRequestOptions = {
   clientCert: {
     certPath: 'etc/ssl/certs/client.crt',
     keyPath: "etc/ssl/certs/client.key",
-	keyPassword: "test1234",
-	certType: http.CertType.PEM
+    keyPassword: "test1234",
+    certType: http.CertType.PEM
   }
 };
 
-let httpRequestOptions_clientCert_err:http.HttpRequestOptions = {
+let httpRequestOptions_clientCert_err: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -99,11 +100,11 @@ let httpRequestOptions_clientCert_err:http.HttpRequestOptions = {
   clientCert: {
     certPath: 'xxxxxxxx',
     keyPath: "xxxxxxxx",
-	certType: http.CertType.DER
+    certType: http.CertType.DER
   }
 };
 
-let httpRequestOptions_clientCert_emptyObj:http.HttpRequestOptions = {
+let httpRequestOptions_clientCert_emptyObj: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -116,7 +117,7 @@ let httpRequestOptions_clientCert_emptyObj:http.HttpRequestOptions = {
   }
 };
 
-let httpRequestOptions_clientCert_undefined:http.HttpRequestOptions = {
+let httpRequestOptions_clientCert_undefined: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -125,7 +126,7 @@ let httpRequestOptions_clientCert_undefined:http.HttpRequestOptions = {
   clientCert: undefined
 };
 
-let httpRequestOptions_clientCert_null:http.HttpRequestOptions = {
+let httpRequestOptions_clientCert_null: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -134,7 +135,7 @@ let httpRequestOptions_clientCert_null:http.HttpRequestOptions = {
   clientCert: null
 };
 
-let httpRequestOptions_dnsOverHttps:http.HttpRequestOptions = {
+let httpRequestOptions_dnsOverHttps: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -143,7 +144,7 @@ let httpRequestOptions_dnsOverHttps:http.HttpRequestOptions = {
   dnsOverHttps: 'https://dns.alidns.com/dns-query'
 };
 
-let httpRequestOptions_dnsOverHttps_emptyStr:http.HttpRequestOptions = {
+let httpRequestOptions_dnsOverHttps_emptyStr: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -152,7 +153,7 @@ let httpRequestOptions_dnsOverHttps_emptyStr:http.HttpRequestOptions = {
   dnsOverHttps: ''
 };
 
-let httpRequestOptions_dnsOverHttps_undefined:http.HttpRequestOptions = {
+let httpRequestOptions_dnsOverHttps_undefined: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -161,7 +162,7 @@ let httpRequestOptions_dnsOverHttps_undefined:http.HttpRequestOptions = {
   dnsOverHttps: undefined
 };
 
-let httpRequestOptions_dnsOverHttps_null:http.HttpRequestOptions = {
+let httpRequestOptions_dnsOverHttps_null: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -170,7 +171,7 @@ let httpRequestOptions_dnsOverHttps_null:http.HttpRequestOptions = {
   dnsOverHttps: null
 };
 
-let httpRequestOptions_dnsServers:http.HttpRequestOptions = {
+let httpRequestOptions_dnsServers: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -179,7 +180,7 @@ let httpRequestOptions_dnsServers:http.HttpRequestOptions = {
   dnsServers: ["114.114.115.115:53", "114.114.114.114:53", "8.8.8.8:53"]
 };
 
-let httpRequestOptions_dnsServers_emptyArr:http.HttpRequestOptions = {
+let httpRequestOptions_dnsServers_emptyArr: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -188,7 +189,7 @@ let httpRequestOptions_dnsServers_emptyArr:http.HttpRequestOptions = {
   dnsServers: []
 };
 
-let httpRequestOptions_dnsServers_undefined:http.HttpRequestOptions = {
+let httpRequestOptions_dnsServers_undefined: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -197,7 +198,7 @@ let httpRequestOptions_dnsServers_undefined:http.HttpRequestOptions = {
   dnsServers: undefined
 };
 
-let httpRequestOptions_dnsServers_null:http.HttpRequestOptions = {
+let httpRequestOptions_dnsServers_null: http.HttpRequestOptions = {
   method: http.RequestMethod.GET,
   extraData: "MineMine",
   header: { 'Content-Type': 'application/json' },
@@ -206,7 +207,7 @@ let httpRequestOptions_dnsServers_null:http.HttpRequestOptions = {
   dnsServers: null
 };
 
-function dataSendProgress_on_callback(data:Object) {
+function dataSendProgress_on_callback(data: Object) {
   console.log("dataSendProgress_on_callback receive len:" + JSON.stringify(data));
 }
 
@@ -219,12 +220,12 @@ function expectFalse() {
 };
 
 export default function NetworkManagerHttpEnhanceTest() {
-  beforeAll(async ()=> {
+  beforeAll(async () => {
     console.log('NetworkManagerHttpEnhanceTest beforeAll start');
     console.log('NetworkManagerHttpEnhanceTest beforeAll end');
   });
 
-  describe("NetworkManagerHttpEnhanceTest", ()=> {
+  describe("NetworkManagerHttpEnhanceTest", () => {
     /**
      * @tc.number SUB_NetworkManager_HTTP_on_dataSendProgress_0100
      * @tc.name http::on
@@ -233,17 +234,18 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_on_dataSendProgress_0100", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_on_dataSendProgress_0100";
+    it("SUB_NetworkManager_HTTP_on_dataSendProgress_0100", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_on_dataSendProgress_0100";
       try {
         httpRequest.on('dataSendProgress', dataSendProgress_on_callback);
-        httpRequest.request(address_post, httpRequestOptions_post, (err, data) => {
+        httpRequest.request(address_post, httpRequestOptions_post, (err: BusinessError, data: http.HttpResponse) => {
           console.log(`${caseName} on dataSendProgress success, data: ${JSON.stringify(data)}`);
           expect(data.responseCode == 200).assertTrue();
           done();
         })
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error: ${JSON.stringify(e)}`);
         expectFalse();
         done();
       }
@@ -257,15 +259,16 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_on_dataSendProgress_0200", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_on_dataSendProgress_0200";
+    it("SUB_NetworkManager_HTTP_on_dataSendProgress_0200", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_on_dataSendProgress_0200";
       try {
         httpRequest.on(undefined, dataSendProgress_on_callback);
-	      expectFalse();
+        expectFalse();
         done();
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error: ${JSON.stringify(e)}`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -278,15 +281,16 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_on_dataSendProgress_0300", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_on_dataSendProgress_0300";
+    it("SUB_NetworkManager_HTTP_on_dataSendProgress_0300", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_on_dataSendProgress_0300";
       try {
         httpRequest.on(null, dataSendProgress_on_callback);
-	      expectFalse();
+        expectFalse();
         done();
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error: ${JSON.stringify(e)}`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -299,11 +303,11 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_off_dataSendProgress_0100", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_off_dataSendProgress_0100";
+    it("SUB_NetworkManager_HTTP_off_dataSendProgress_0100", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_off_dataSendProgress_0100";
       try {
         httpRequest.on('dataSendProgress', dataSendProgress_on_callback);
-        httpRequest.request(address_post, httpRequestOptions_post, (err, data) => {
+        httpRequest.request(address_post, httpRequestOptions_post, (err: BusinessError, data: http.HttpResponse) => {
           console.log(`${caseName} request success, data: ${JSON.stringify(data)}`);
           httpRequest.off("dataSendProgress");
           console.log(`${caseName} off dataSendProgress finish`);
@@ -311,7 +315,8 @@ export default function NetworkManagerHttpEnhanceTest() {
           done();
         })
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error: ${JSON.stringify(e)}`);
         expectFalse();
         done();
       }
@@ -325,15 +330,16 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_off_dataSendProgress_0200", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_off_dataSendProgress_0200";
+    it("SUB_NetworkManager_HTTP_off_dataSendProgress_0200", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_off_dataSendProgress_0200";
       try {
         httpRequest.off(undefined);
-	      expectFalse();
+        expectFalse();
         done();
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error: ${JSON.stringify(e)}`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -346,15 +352,16 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_off_dataSendProgress_0300", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_off_dataSendProgress_0300";
+    it("SUB_NetworkManager_HTTP_off_dataSendProgress_0300", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_off_dataSendProgress_0300";
       try {
         httpRequest.off(null);
-	      expectFalse();
+        expectFalse();
         done();
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(error.code == 401).assertTrue();
+        let e: BusinessError = error as BusinessError;
+        console.log(`${caseName} catch error: ${JSON.stringify(e)}`);
+        expect(e.code == 401).assertTrue();
         done();
       }
     });
@@ -367,9 +374,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_resumeFrom_0100", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_resumeFrom_0100";
-        httpRequest.request(address_baidu, httpRequestOptions_resumeFrom_1, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_resumeFrom_0100", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_resumeFrom_0100";
+      httpRequest.request(address_baidu, httpRequestOptions_resumeFrom_1, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -390,9 +397,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_resumeFrom_0300", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_resumeFrom_0300";
-      httpRequest.request(address_baidu, httpRequestOptions_resumeFrom_err, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_resumeFrom_0300", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_resumeFrom_0300";
+      httpRequest.request(address_baidu, httpRequestOptions_resumeFrom_err, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -413,9 +420,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_resumeFrom_0200", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_resumeFrom_0200";
-      httpRequest.request(address_baidu, httpRequestOptions_resumeFrom_2G, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_resumeFrom_0200", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_resumeFrom_0200";
+      httpRequest.request(address_baidu, httpRequestOptions_resumeFrom_2G, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -436,9 +443,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_resumeFrom_0400", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_resumeFrom_0400";
-      httpRequest.request(address_baidu, httpRequestOptions_resumeFrom_undefined, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_resumeFrom_0400", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_resumeFrom_0400";
+      httpRequest.request(address_baidu, httpRequestOptions_resumeFrom_undefined, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -459,9 +466,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_resumeFrom_0500", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_resumeFrom_0500";
-      httpRequest.request(address_baidu, httpRequestOptions_resumeFrom_null, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_resumeFrom_0500", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_resumeFrom_0500";
+      httpRequest.request(address_baidu, httpRequestOptions_resumeFrom_null, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -483,9 +490,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_clientCert_0100", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_clientCert_0100";
-      httpRequest.request(address_baidu, httpRequestOptions_clientCert, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_clientCert_0100", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_clientCert_0100";
+      httpRequest.request(address_baidu, httpRequestOptions_clientCert, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expect(err !== undefined).assertTrue();
@@ -506,9 +513,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_clientCert_0200", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_clientCert_0200";
-      httpRequest.request(address_baidu, httpRequestOptions_clientCert_err, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_clientCert_0200", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_clientCert_0200";
+      httpRequest.request(address_baidu, httpRequestOptions_clientCert_err, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expect(err !== undefined).assertTrue();
@@ -529,9 +536,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_clientCert_0300", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_clientCert_0300";
-      httpRequest.request(address_baidu, httpRequestOptions_clientCert_emptyObj, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_clientCert_0300", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_clientCert_0300";
+      httpRequest.request(address_baidu, httpRequestOptions_clientCert_emptyObj, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -552,9 +559,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_clientCert_0400", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_clientCert_0400";
-      httpRequest.request(address_baidu, httpRequestOptions_clientCert_undefined, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_clientCert_0400", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_clientCert_0400";
+      httpRequest.request(address_baidu, httpRequestOptions_clientCert_undefined, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -575,9 +582,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_clientCert_0500", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_clientCert_0500";
-      httpRequest.request(address_baidu, httpRequestOptions_clientCert_null, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_clientCert_0500", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_clientCert_0500";
+      httpRequest.request(address_baidu, httpRequestOptions_clientCert_null, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -598,9 +605,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_dnsOverHttps_0100", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_dnsOverHttps_0100";
-      httpRequest.request(address_baidu2, httpRequestOptions_dnsOverHttps, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_dnsOverHttps_0100", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_dnsOverHttps_0100";
+      httpRequest.request(address_baidu2, httpRequestOptions_dnsOverHttps, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -621,9 +628,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_dnsOverHttps_0200", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_dnsOverHttps_0200";
-      httpRequest.request(address_baidu2, httpRequestOptions_dnsOverHttps_emptyStr, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_dnsOverHttps_0200", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_dnsOverHttps_0200";
+      httpRequest.request(address_baidu2, httpRequestOptions_dnsOverHttps_emptyStr, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -644,9 +651,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_dnsOverHttps_0300", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_dnsOverHttps_0300";
-      httpRequest.request(address_baidu2, httpRequestOptions_dnsOverHttps_undefined, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_dnsOverHttps_0300", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_dnsOverHttps_0300";
+      httpRequest.request(address_baidu2, httpRequestOptions_dnsOverHttps_undefined, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -667,9 +674,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_dnsOverHttps_0400", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_dnsOverHttps_0400";
-      httpRequest.request(address_baidu2, httpRequestOptions_dnsOverHttps_null, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_dnsOverHttps_0400", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_dnsOverHttps_0400";
+      httpRequest.request(address_baidu2, httpRequestOptions_dnsOverHttps_null, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -690,9 +697,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_dnsServers_0100", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_dnsServers_0100";
-      httpRequest.request(address_baidu, httpRequestOptions_dnsServers, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_dnsServers_0100", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_dnsServers_0100";
+      httpRequest.request(address_baidu, httpRequestOptions_dnsServers, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -713,9 +720,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_dnsServers_0200", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_dnsServers_0200";
-      httpRequest.request(address_baidu, httpRequestOptions_dnsServers_emptyArr, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_dnsServers_0200", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_dnsServers_0200";
+      httpRequest.request(address_baidu, httpRequestOptions_dnsServers_emptyArr, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -736,9 +743,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_dnsServers_0300", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_dnsServers_0300";
-      httpRequest.request(address_baidu, httpRequestOptions_dnsServers_undefined, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_dnsServers_0300", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_dnsServers_0300";
+      httpRequest.request(address_baidu, httpRequestOptions_dnsServers_undefined, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -759,9 +766,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_dnsServers_0400", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_dnsServers_0400";
-      httpRequest.request(address_baidu, httpRequestOptions_dnsServers_null, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_dnsServers_0400", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_dnsServers_0400";
+      httpRequest.request(address_baidu, httpRequestOptions_dnsServers_null, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();
@@ -782,9 +789,9 @@ export default function NetworkManagerHttpEnhanceTest() {
      * @tc.type: Function
      * @tc.size: SmallTest
      */
-    it("SUB_NetworkManager_HTTP_request_performanceTiming_0100", 0, async (done:Function)=> {
-      let caseName = "SUB_NetworkManager_HTTP_request_performanceTiming_0100";
-      httpRequest.request(address_post, httpRequestOptions_post, (err, data) => {
+    it("SUB_NetworkManager_HTTP_request_performanceTiming_0100", 0, async (done: Function) => {
+      let caseName: string = "SUB_NetworkManager_HTTP_request_performanceTiming_0100";
+      httpRequest.request(address_post, httpRequestOptions_post, (err: BusinessError, data: http.HttpResponse) => {
         if (err) {
           console.log(`${caseName} request failed, err: ${JSON.stringify(err)}`);
           expectFalse();

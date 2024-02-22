@@ -12,11 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 @Entry
 @Component
 struct span_textcase {
-
   onPageShow() {
     console.info('Span page show called');
   }
@@ -52,8 +51,7 @@ struct span_textcase {
             .key('span3')
         }
       }
-      .width(300)
-      .height(300)
+      .width(300).height(300)
       .borderColor(Color.Pink)
       .borderWidth(4)
     }

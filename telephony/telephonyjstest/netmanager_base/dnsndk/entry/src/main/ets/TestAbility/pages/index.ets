@@ -17,10 +17,10 @@
 @Component
 struct Index {
   aboutToAppear() {
-    console.info('TestAbility index aboutToAppear')
+    console.info('TestAbility index aboutToAppear');
   }
 
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   build() {
     Row() {
@@ -38,8 +38,7 @@ struct Index {
           top: 20
         })
         .backgroundColor('#0D9FFB')
-        .width('35%')
-        .height('5%')
+        .width('35%').height('5%')
         .onClick(() => {
         })
       }

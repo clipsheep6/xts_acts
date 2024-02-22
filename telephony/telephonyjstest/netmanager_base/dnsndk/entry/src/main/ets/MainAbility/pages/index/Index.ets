@@ -13,19 +13,19 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
-import { Hypium } from '@ohos/hypium'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { Hypium } from '@ohos/hypium';
 import testsuite from '../../../test/List.test';
 
 @Entry
 @Component
 struct Index {
   aboutToAppear() {
-    console.info('start run testcase!!!!')
-    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-    console.info('start run testcase!!!')
-    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
+    console.info('start run testcase!!!!');
+    let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs = AbilityDelegatorRegistry.getArguments();
+    console.info('start run testcase!!!');
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
   }
 
   build() {
@@ -38,7 +38,6 @@ struct Index {
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
     }
-    .width('100%')
-    .height('100%')
+    .width('100%').height('100%')
   }
 }
