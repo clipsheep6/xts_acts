@@ -31,7 +31,6 @@ export default function resourceManagerTest() {
           console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0100 ${value.length}`);
           expect(value.length == 6790).assertTrue();
         } else {
-          console.log('testGetMediaContentResIdCallback001 err.code ' + err.code);
           console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0100 errCode ${err.code}`);
           console.log(`SUB_Global_Resource_Manager_0100_GetMediaContent_Func_0100 errMessage ${err.message}`);
           expect().assertFail()
