@@ -76,5 +76,115 @@ export default function menuSecondTest() {
       let obj = JSON.parse(getInspectorByKey("floatingMenuBuilder"))
       console.info('ArkUX_Stage_Menu_Preview_0200 preview :' + JSON.stringify(obj.$attrs.preview));
     })
+
+    /**
+     * @tc.number ArkUX_Stage_Menu_ContextMenuAnimationScale_0100
+     * @tc.name Test scale option of context menu animation options
+     * @tc.desc Test scale option of context menu animation options
+     */
+    it('ArkUX_Stage_Menu_ContextMenuAnimationScale_RightClick_0100', 0, async function () {
+      let obj = JSON.parse(getInspectorByKey("animationOptionsScaleClick001"))
+      expect(obj === null || obj === undefined).assertFalse()
+    })
+
+    /**
+     * @tc.number ArkUX_Stage_Menu_ContextMenuAnimationScale_0100
+     * @tc.name Test scale option of context menu animation options
+     * @tc.desc Test scale option of context menu animation options
+     */
+    it('ArkUX_Stage_Menu_ContextMenuAnimationScale_0100', 0, async function () {
+      let obj = JSON.parse(getInspectorByKey("animationOptionsScale001"))
+      expect(obj === null || obj === undefined).assertFalse()
+    })
+
+    /**
+     * @tc.number ArkUX_Stage_Menu_ContextMenuAnimationScale_0110
+     * @tc.name Test scale option of context menu animation options
+     * @tc.desc Test scale option of context menu animation options
+     */
+    it('ArkUX_Stage_Menu_ContextMenuAnimationScale_0110', 0, async function () {
+      let obj = JSON.parse(getInspectorByKey("animationOptionsScaleCustom001"))
+      expect(obj === null || obj === undefined).assertFalse()
+    })
+
+    /**
+     * @tc.number ArkUX_Stage_Menu_ContextMenuAnimationScale_0200
+     * @tc.name Test scale option of context menu animation options
+     * @tc.desc Test scale option of context menu animation options
+     */
+    it('ArkUX_Stage_Menu_ContextMenuAnimationScale_0200', 0, async function () {
+      let obj = JSON.parse(getInspectorByKey("animationOptionsScale002"))
+      expect(obj === null || obj === undefined).assertFalse()
+    })
+
+    /**
+     * @tc.number ArkUX_Stage_Menu_ContextMenuAnimationScale_0210
+     * @tc.name Test scale option of context menu animation options
+     * @tc.desc Test scale option of context menu animation options
+     */
+    it('ArkUX_Stage_Menu_ContextMenuAnimationScale_0210', 0, async function () {
+      let obj = JSON.parse(getInspectorByKey("animationOptionsScaleCustom002"))
+      expect(obj === null || obj === undefined).assertFalse()
+    })
+
+    /**
+     * @tc.number ArkUX_Stage_Menu_ContextMenuAnimationScale_0300
+     * @tc.name Test scale option of context menu animation options
+     * @tc.desc Test scale option of context menu animation options
+     */
+    it('ArkUX_Stage_Menu_ContextMenuAnimationScale_0300', 0, async function () {
+      let obj = JSON.parse(getInspectorByKey("animationOptionsScale003"))
+      expect(obj === null || obj === undefined).assertFalse()
+    })
+
+    /**
+     * @tc.number ArkUX_Stage_Menu_ContextMenuAnimationScale_0310
+     * @tc.name Test scale option of context menu animation options
+     * @tc.desc Test scale option of context menu animation options
+     */
+    it('ArkUX_Stage_Menu_ContextMenuAnimationScale_0310', 0, async function () {
+      let obj = JSON.parse(getInspectorByKey("animationOptionsScaleCustom003"))
+      expect(obj === null || obj === undefined).assertFalse()
+    })
+
+    /**
+     * @tc.number ArkUX_Stage_Menu_ContextMenuAnimationScale_0400
+     * @tc.name Test scale option of context menu animation options
+     * @tc.desc Test scale option of context menu animation options
+     */
+    it('ArkUX_Stage_Menu_ContextMenuAnimationScale_0400', 0, async function () {
+      let obj = JSON.parse(getInspectorByKey("animationOptionsScale004"))
+      expect(obj === null || obj === undefined).assertFalse()
+    })
+
+    /**
+     * @tc.number ArkUX_Stage_Menu_ContextMenuAnimationScale_0410
+     * @tc.name Test scale option of context menu animation options
+     * @tc.desc Test scale option of context menu animation options
+     */
+    it('ArkUX_Stage_Menu_ContextMenuAnimationScale_0410', 0, async function () {
+      let obj = JSON.parse(getInspectorByKey("animationOptionsScaleCustom004"))
+      expect(obj === null || obj === undefined).assertFalse()
+    })
+
+    /**
+     * @tc.number ArkUX_Stage_Menu_ContextMenuAnimationEmpty_0100
+     * @tc.name Test empty context menu animation options
+     * @tc.desc Test empty context menu animation options
+     */
+    it('ArkUX_Stage_Menu_ContextMenuAnimationEmpty_0100', 0, async function () {
+      let obj = JSON.parse(getInspectorByKey("emptyAnimationOptions"))
+      expect(obj === null || obj === undefined).assertFalse()
+    })
+
+    /**
+     * @tc.number ArkUX_Stage_Menu_ContextMenuAnimationEmpty_0110
+     * @tc.name Test empty context menu animation options
+     * @tc.desc Test empty context menu animation options
+     */
+    it('ArkUX_Stage_Menu_ContextMenuAnimationEmpty_0110', 0, async function () {
+      let obj = JSON.parse(getInspectorByKey("emptyAnimationOptionsCustom"))
+      expect(obj === null || obj === undefined).assertFalse()
+    })
   })
 }
