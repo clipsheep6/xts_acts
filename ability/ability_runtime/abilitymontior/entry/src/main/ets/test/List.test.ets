@@ -12,10 +12,11 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-import abilityTest from './Ability.test'
-import abilityTestSync from './Ability.Synctest'
+
+import abilityTest from './Ability.test';
+import abilityTestSync from './Ability.Synctest';
 
 export default function testsuite() {
-  abilityTest()
-  abilityTestSync()
+  abilityTest();
+  abilityTestSync();
 }
