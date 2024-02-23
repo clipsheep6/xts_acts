@@ -16,6 +16,7 @@
 import deviceInfo from '@ohos.deviceInfo'
 import media from '@ohos.multimedia.media'
 import camera from '@ohos.multimedia.camera'
+import colorSpaceManager from '@ohos.graphics.colorSpaceManager'
 import display from '@ohos.display';
 import * as mediaTestBase from '../../../../../MediaTestBase.js';
 import * as avRecorderTestBase from '../../../../../AVRecorderTestBase.js';
@@ -353,6 +354,10 @@ export default function avVideoRecorderTestOne() {
             // 创建VideoOutput对象
             // let profile = cameraOutputCapability.videoProfiles[0];
             let profile = myProfile;
+            if (avConfig.profile.hasOwnProperty('isHdr') && avConfig.profile.isHdr) {
+                profile.format = camera.CameraFormat.CAMERA_FORMAT_YCRCB_P010;
+                console.info('camera configure 10bits record stream.');
+            }
             try {
                 videoOutput = cameraManager.createVideoOutput(profile, videoSurfaceId)
                 console.info('createVideoOutput success');
@@ -396,6 +401,16 @@ export default function avVideoRecorderTestOne() {
                 console.info('beginConfig success');
             } catch (error) {
                 console.error('Failed to beginConfig. errorCode = ' + error.code);
+            }
+
+            // 配置色彩空间
+            try {
+                if (avConfig.profile.hasOwnProperty('isHdr') && avConfig.profile.isHdr) {
+                    captureSession.setColorSpace(colorSpaceManager.ColorSpace.BT2020_HLG);
+                    console.info('setColorSpace success');
+                }
+            } catch (error) {
+                console.error('Failed to setColorSpace. errorCode = ' + error.code);
             }
 
             // 向会话中添加相机输入流
@@ -8621,6 +8636,49 @@ export default function avVideoRecorderTestOne() {
 
             eventEmitter.emit(mySteps[0], avRecorder, avConfigOnlyAac, recorderTime, mySteps, done);
             console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_GET_MAX_AMPLITUDE_PROMISE_0100 end')
+        })
+
+        /* *
+        * @tc.number    : SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_HDR_0100
+        * @tc.name      : 02.AVRecorder Record isHdr
+        * @tc.desc      : Recorder hdr video
+        * @tc.size      : MediumTest
+        * @tc.type      : Function test
+        * @tc.level     : Level2
+        */
+        it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_HDR_0100', 0, async function (done) {
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_HDR_0100 start')
+            if (deviceInfo.deviceInfo === 'default') {
+                console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_HDR_0100 end(unsupport HDR)')
+                return;
+            }
+            let fileName = avVideoRecorderTestBase.resourceName()
+            fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
+            fdPath = "fd://" + fdObject.fdNumber;
+            avConfigH265Aac.url = fdPath
+            avConfigH265Aac.profile.isHdr = true
+
+            let mySteps = new Array(
+                // init avRecorder
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_CALLBACK_EVENT,
+                // init camera
+                GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
+                // start recorder
+                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
+                // pause recorder
+                PAUSERECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
+                // resume recorder
+                STARTCAMERA_EVENT, RESUMERECORDER_CALLBACK_EVENT,
+                // stop recorder
+                STOPRECORDER_CALLBACK_EVENT, STOPCAMERA_EVENT,
+                // release avRecorder and camera
+                RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
+                // end
+                END_EVENT
+            );
+
+            eventEmitter.emit(mySteps[0], avRecorder, avConfigH265Aac, recorderTime, mySteps, done);
+            console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_HDR_0100 end')
         })
 
         /* *
