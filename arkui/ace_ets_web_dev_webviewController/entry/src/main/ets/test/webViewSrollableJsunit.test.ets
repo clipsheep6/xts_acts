@@ -22,7 +22,7 @@ let emitKey = "emitScrollableOne";
 
 export default function webViewSrollableJsunit() {
   describe('ActsAceWebViewScrollableTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: "MainAbility/pages/webViewScrollable"
       }
@@ -39,14 +39,14 @@ export default function webViewSrollableJsunit() {
       } catch (err) {
         console.error("push webViewScrollable page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewScrollable beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewScrollable afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -64,7 +64,7 @@ export default function webViewSrollableJsunit() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      * tc.number SUB_ACE_BASIC_ETS_API_TESTSCROLLABLE_0100

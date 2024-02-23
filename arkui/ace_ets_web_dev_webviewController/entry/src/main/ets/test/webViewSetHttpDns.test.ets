@@ -21,7 +21,7 @@ let emitKey = "emitSetHttpDnsSecureOnlyExample";
 
 export default function webViewSetHttpDns() {
   describe('ActsAceWebDevWebViewSetHttpDnsTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewSetHttpDns',
       }
@@ -38,14 +38,14 @@ export default function webViewSetHttpDns() {
       } catch (err) {
         console.error("push webViewSetHttpDns page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewSetHttpDns beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewSetHttpDns afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewSetHttpDns() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWSETHTTPDNS_API_0100

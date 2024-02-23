@@ -21,7 +21,7 @@ let emitKey = "emitStoreWebArchiveCallback";
 
 export default function storeWebArchive() {
   describe('ActsAceWebControllerTest1', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: "MainAbility/pages/storeWebArchive"
       }
@@ -39,13 +39,13 @@ export default function storeWebArchive() {
         console.error("push storeWebArchive page error: " + err);
       }
       await Utils.sleep(2000);
-
+      done();
     })
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       console.info("web beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("ActsAceWebControllerTest afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -64,7 +64,7 @@ export default function storeWebArchive() {
       }
       await Utils.sleep(2000);
       console.info("ActsAceWebViewOnWindowNewJsunitTest afterEach end");
-
+      done();
     })
 
 

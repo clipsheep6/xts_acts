@@ -21,7 +21,7 @@ let emitKey = "emitDeleteEntireCookie";
 
 export default function webViewDeleteEntireCookie() {
   describe('ActsAceWebDevWebViewDeleteEntireCookieTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewDeleteEntireCookie',
       }
@@ -38,14 +38,14 @@ export default function webViewDeleteEntireCookie() {
       } catch (err) {
         console.error("push webViewDeleteEntireCookie page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewDeleteEntireCookie beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done) => {
       console.info("webViewDeleteEntireCookie afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,6 +63,7 @@ export default function webViewDeleteEntireCookie() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWCOOKIE_API_0200

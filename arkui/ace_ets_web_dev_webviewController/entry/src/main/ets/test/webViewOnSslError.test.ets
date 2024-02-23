@@ -21,7 +21,7 @@ let emitKey = "emitOnsslerroreventreceive";
 
 export default function webViewOnSslError() {
   describe('ActsAceWebDevWebViewOnSslErrorTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewOnSslError',
       }
@@ -38,14 +38,14 @@ export default function webViewOnSslError() {
       } catch (err) {
         console.error("push webViewOnSslError page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewOnSslError beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewOnSslError afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewOnSslError() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWPATR4_API_0100

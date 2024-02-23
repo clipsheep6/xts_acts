@@ -21,7 +21,7 @@ let emitKey = "emitOnHttpErrorRecvExampleIsReadyFalse";
 
 export default function webViewONHttpErrorRecvExampleIsReady() {
   describe('ActsAceWebDevWebViewONHttpErrorRecvExampleIsReadyTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewONHttpErrorRecvExampleIsReady',
       }
@@ -38,14 +38,14 @@ export default function webViewONHttpErrorRecvExampleIsReady() {
       } catch (err) {
         console.error("push webViewONHttpErrorRecvExampleIsReady page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewONHttpErrorRecvExampleIsReady beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewONHttpErrorRecvExampleIsReady afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewONHttpErrorRecvExampleIsReady() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWERRORRECV_API_0300

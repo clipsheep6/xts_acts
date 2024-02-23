@@ -22,7 +22,7 @@ let emitKey = "emitScrollByOne";
 
 export default function webViewSrollByJsunit() {
   describe('ActsAceWebViewScrollByTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: "MainAbility/pages/webViewScrollBy"
       }
@@ -39,14 +39,14 @@ export default function webViewSrollByJsunit() {
       } catch (err) {
         console.error("push webViewScrollBy page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewScrollBy beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewScrollBy afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -64,7 +64,7 @@ export default function webViewSrollByJsunit() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
       * tc.number SUB_ACE_BASIC_ETS_API_TESTSCROLLBY_0100

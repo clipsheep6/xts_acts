@@ -21,7 +21,7 @@ let emitKey = "emitAudioStatePlay";
 
 export default function webViewOnAudioStateChanged() {
   describe('ActsAceWebDevWebViewOnAudioStateChangedTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewOnAudioStateChanged',
       }
@@ -38,14 +38,14 @@ export default function webViewOnAudioStateChanged() {
       } catch (err) {
         console.error("push webViewOnAudioStateChanged page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewOnAudioStateChanged beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewOnAudioStateChanged afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewOnAudioStateChanged() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWAUDIOSTATE_API_0100

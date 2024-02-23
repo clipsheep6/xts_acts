@@ -21,7 +21,7 @@ let emitKey = "emitExistCookie";
 
 export default function webViewExistCookie() {
   describe('ActsAceWebDevWebViewExistCookieTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewExistCookie',
       }
@@ -38,14 +38,14 @@ export default function webViewExistCookie() {
       } catch (err) {
         console.error("push webViewExistCookie page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewExistCookie beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewExistCookie afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewExistCookie() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWCOOKIE_API_0100

@@ -22,7 +22,7 @@ import router from '@system.router';
 
 export default function webViewHasImageJsunit() {
   describe('ActsAcewebViewHasImageJsunitTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: "MainAbility/pages/webViewHasImage"
       }
@@ -39,14 +39,14 @@ export default function webViewHasImageJsunit() {
       } catch (err) {
         console.error("push webViewHasImage page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("web beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("web afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -64,7 +64,7 @@ export default function webViewHasImageJsunit() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
       * tc.number SUB_ACE_BASIC_ETS_API_TESTHASIMAGE_0100

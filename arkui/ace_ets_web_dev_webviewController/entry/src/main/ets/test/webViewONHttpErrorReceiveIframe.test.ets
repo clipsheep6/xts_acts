@@ -21,7 +21,7 @@ let emitKey = "emitOnHttpErrorReceiveByIframeHtml";
 
 export default function webViewONHttpErrorReceiveIframe() {
   describe('ActsAceWebDevWebViewONHttpErrorReceiveIframeTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewONHttpErrorReceiveIframe',
       }
@@ -38,14 +38,14 @@ export default function webViewONHttpErrorReceiveIframe() {
       } catch (err) {
         console.error("push webViewONHttpErrorReceiveIframe page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewONHttpErrorReceiveIframe beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewONHttpErrorReceiveIframe afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewONHttpErrorReceiveIframe() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWERRORRECV_API_0400

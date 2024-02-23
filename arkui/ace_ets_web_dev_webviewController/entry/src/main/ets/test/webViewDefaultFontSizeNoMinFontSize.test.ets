@@ -21,7 +21,7 @@ let emitKey = "emitdefaultFontSize7AndNominFontSize";
 
 export default function webViewDefaultFontSizeNoMinFontSize() {
   describe('ActsAceWebDevWebViewDefaultFontSizeNoMinFontSizeTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewDefaultFontSizeNoMinFontSize',
       }
@@ -38,14 +38,14 @@ export default function webViewDefaultFontSizeNoMinFontSize() {
       } catch (err) {
         console.error("push webViewDefaultFontSizeNoMinFontSize page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewDefaultFontSizeNoMinFontSize beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewDefaultFontSizeNoMinFontSize afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewDefaultFontSizeNoMinFontSize() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWPATR6_API_0400

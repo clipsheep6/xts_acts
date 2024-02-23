@@ -21,7 +21,7 @@ let emitKey = "emitOnscroll";
 
 export default function webViewOnScroll() {
   describe('ActsAceWebDevWbViewOnScrollTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewOnScroll',
       }
@@ -38,14 +38,14 @@ export default function webViewOnScroll() {
       } catch (err) {
         console.error("push webViewOnScroll page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewOnScroll beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewOnScroll afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewOnScroll() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWPATR3_API_0100

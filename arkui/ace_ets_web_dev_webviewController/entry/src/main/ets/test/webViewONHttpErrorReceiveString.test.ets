@@ -21,7 +21,7 @@ let emitKey = "emitOnHttpErrorReceiveByString";
 
 export default function webViewONHttpErrorReceiveString() {
   describe('ActsAceWebDevWebViewONHttpErrorReceiveStringTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewONHttpErrorReceiveString',
       }
@@ -38,14 +38,14 @@ export default function webViewONHttpErrorReceiveString() {
       } catch (err) {
         console.error("push webViewONHttpErrorReceiveString page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewONHttpErrorReceiveString beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewONHttpErrorReceiveString afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewONHttpErrorReceiveString() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWERRORRECV_API_0500

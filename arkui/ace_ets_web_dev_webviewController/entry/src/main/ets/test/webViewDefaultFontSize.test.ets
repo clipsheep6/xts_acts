@@ -21,7 +21,7 @@ let emitKey = "emitdefaultFontSize73AndminFontSize1";
 
 export default function webViewDefaultFontSize() {
   describe('ActsAceWebDevWebViewDefaultFontSizeTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewDefaultFontSize',
       }
@@ -38,14 +38,14 @@ export default function webViewDefaultFontSize() {
       } catch (err) {
         console.error("push webViewDefaultFontSize page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewDefaultFontSize beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewDefaultFontSize afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewDefaultFontSize() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWPATR6_API_0200

@@ -21,7 +21,7 @@ let emitKey = "emitStoreWebArchiveCallbackSaveFail";
 
 export default function storeWebArchiveSaveFail() {
   describe('ActsAceWebControllerTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: "MainAbility/pages/storeWebArchiveSaveFail"
       }
@@ -39,11 +39,13 @@ export default function storeWebArchiveSaveFail() {
         console.error("push storeWebArchiveSaveFail page error: " + err);
       }
       await Utils.sleep(2000);
+      done();
     })
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       console.info("web beforeEach start");
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("ActsAceWebControllerTest afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -62,6 +64,7 @@ export default function storeWebArchiveSaveFail() {
       }
       await Utils.sleep(2000);
       console.info("ActsAceWebControllerTest afterEach end");
+      done();
     })
 
     /*

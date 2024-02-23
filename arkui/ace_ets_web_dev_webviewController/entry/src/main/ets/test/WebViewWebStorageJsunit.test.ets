@@ -21,7 +21,7 @@ let emitKey = 'emitGetOriginsCallbackLoadWebkit';
 
 export default function WebViewWebStorageJsunit() {
   describe('actsAceWebViewWebStorageJsunit', () => {
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       let options = {
         uri: "MainAbility/pages/webStorage"
       }
@@ -39,9 +39,9 @@ export default function WebViewWebStorageJsunit() {
         console.error("push webStorage page error: " + err);
       }
       await Utils.sleep(2000);
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       try {
         let backData: events_emitter.EventData = {
           data: {
@@ -58,7 +58,7 @@ export default function WebViewWebStorageJsunit() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
     *tc.number SUB_ACE_BASIC_ETS_API_GETORIGINS_0100

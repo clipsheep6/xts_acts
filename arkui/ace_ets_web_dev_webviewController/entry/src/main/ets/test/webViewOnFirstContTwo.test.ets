@@ -21,7 +21,7 @@ let emitKey = "emitNoneOnfirstcontentfulpaint";
 
 export default function webViewOnFirstContTwo() {
   describe('ActsAceWebDevWebViewOnFirstContTwoTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewOnFirstContTwo',
       }
@@ -38,13 +38,14 @@ export default function webViewOnFirstContTwo() {
       } catch (err) {
         console.error("push webViewOnFirstContTwo page error: " + err);
       }
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewOnFirstContTwo beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewOnFirstContTwo afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -62,7 +63,7 @@ export default function webViewOnFirstContTwo() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWPATR5_API_0200

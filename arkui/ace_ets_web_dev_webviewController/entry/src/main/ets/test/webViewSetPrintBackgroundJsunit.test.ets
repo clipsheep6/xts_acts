@@ -22,7 +22,7 @@ let emitKey = "emitSetPrintBackgroundOne";
 
 export default function webViewSetPrintBackgroundJsunit() {
   describe('ActsAceWebViewSetPrintBackgroundTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: "MainAbility/pages/webViewSetPrintBackground"
       }
@@ -39,14 +39,14 @@ export default function webViewSetPrintBackgroundJsunit() {
       } catch (err) {
         console.error("push webViewSetPrintBackground page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewSetPrintBackground beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewSetPrintBackground afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -64,7 +64,7 @@ export default function webViewSetPrintBackgroundJsunit() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      * tc.number SUB_ACE_BASIC_ETS_API_SETPRINTBACKGROUND_0100

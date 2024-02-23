@@ -21,7 +21,7 @@ let emitKey = "emitOnInterceptRequestSecond";
 
 export default function webViewOnInterceptReqTwo() {
   describe('ActsAceWebDevWebViewOnInterceptReqTwoTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewOnInterceptReqTwo',
       }
@@ -38,14 +38,14 @@ export default function webViewOnInterceptReqTwo() {
       } catch (err) {
         console.error("push webViewOnInterceptReqTwo page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewOnInterceptReqTwo beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewOnInterceptReqTwo afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewOnInterceptReqTwo() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWPATR2_API_0200

@@ -19,7 +19,7 @@ import router from '@system.router';
 
 export default function webViewOnErrorReceive03Jsunit() {
   describe('ActsAceWebDevWebViewOnErrorReceive03Test', () => {
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       let options = {
         uri: "MainAbility/pages/onErrorReceive03"
       }
@@ -37,10 +37,10 @@ export default function webViewOnErrorReceive03Jsunit() {
         console.error("push onErrorReceive03 page error: " + err);
       }
       await Utils.sleep(2000);
-
+      done();
     })
-    afterEach(async () => {
-
+    afterEach(async (done: Function) => {
+      done();
     })
     /*
     *tc.number SUB_ACE_BASIC_ETS_API_ONERRORRECEIVE_0300

@@ -21,7 +21,7 @@ let emitKey = "emitOnfullscreenenter";
 
 export default function webViewOnFullScreenEnter() {
   describe('ActsAceWebDevWebViewOnFullScreenEnterTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewOnFullScreenEnter',
       }
@@ -38,13 +38,14 @@ export default function webViewOnFullScreenEnter() {
       } catch (err) {
         console.error("push webViewOnFullScreenEnter page error: " + err);
       }
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewOnFullScreenEnter beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewOnFullScreenEnter afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -62,7 +63,7 @@ export default function webViewOnFullScreenEnter() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWFULLSCREEN_API_0100

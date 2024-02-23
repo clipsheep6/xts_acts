@@ -21,7 +21,7 @@ let emitKey = "emitGetCertificateCallback";
 
 export default function webViewGetCertificate() {
   describe('ActsAceWebDevWebViewGetCertificateTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewGetCertificate',
       }
@@ -38,14 +38,14 @@ export default function webViewGetCertificate() {
       } catch (err) {
         console.error("push webViewGetCertificate page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewGetCertificate beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewGetCertificate afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewGetCertificate() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWCERTIFICATE_API_0100

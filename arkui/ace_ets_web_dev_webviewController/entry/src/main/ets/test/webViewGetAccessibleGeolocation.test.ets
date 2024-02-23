@@ -21,7 +21,7 @@ let emitKey = "emitGetAccessAllowAndRetainAllFalse";
 
 export default function webViewGetAccessibleGeolocation() {
   describe('ActsAceWebDevWebViewGetAccessibleGeolocationTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewGetAccessibleGeolocation',
       }
@@ -38,14 +38,14 @@ export default function webViewGetAccessibleGeolocation() {
       } catch (err) {
         console.error("push webViewGetAccessibleGeolocation page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewGetAccessibleGeolocation beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewGetAccessibleGeolocation afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewGetAccessibleGeolocation() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWGETACCGEO_API_0100

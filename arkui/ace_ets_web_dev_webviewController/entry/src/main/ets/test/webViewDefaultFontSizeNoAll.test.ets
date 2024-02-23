@@ -21,7 +21,7 @@ let emitKey = "emitdefaultFontSizeAndminFontSizeNoAll";
 
 export default function webViewDefaultFontSizeNoAll() {
   describe('ActsAceWebDevWebViewDefaultFontSizeNoAllTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewDefaultFontSizeNoAll',
       }
@@ -38,14 +38,14 @@ export default function webViewDefaultFontSizeNoAll() {
       } catch (err) {
         console.error("push webViewDefaultFontSizeNoAll page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewDefaultFontSizeNoAll beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewDefaultFontSizeNoAll afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewDefaultFontSizeNoAll() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWPATR6_API_0600

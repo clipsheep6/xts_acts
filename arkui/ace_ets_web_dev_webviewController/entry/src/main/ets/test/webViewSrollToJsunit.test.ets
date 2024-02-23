@@ -22,7 +22,7 @@ let emitKey = "emitScrollToOne";
 
 export default function webViewSrollToJsunit() {
   describe('ActsAceWebViewScrollToTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: "MainAbility/pages/webViewScrollTo"
       }
@@ -39,14 +39,14 @@ export default function webViewSrollToJsunit() {
       } catch (err) {
         console.error("push webViewScrollTo page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewScrollTo beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewScrollTo afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -64,7 +64,7 @@ export default function webViewSrollToJsunit() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      * tc.number SUB_ACE_BASIC_ETS_API_TESTSCROLLTO_0100

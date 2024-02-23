@@ -21,7 +21,7 @@ let emitKey = "emitAllowAndRetainAllTrue";
 
 export default function webViewInVoke() {
   describe('ActsAceWebDevWebViewInVokeTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewInVoke',
       }
@@ -38,14 +38,14 @@ export default function webViewInVoke() {
       } catch (err) {
         console.error("push webViewInVoke page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewInVoke beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewInVoke afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewInVoke() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWINVOKE_API_0200

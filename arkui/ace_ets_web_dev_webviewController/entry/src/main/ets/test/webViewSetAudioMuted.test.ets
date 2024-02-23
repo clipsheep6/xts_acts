@@ -21,7 +21,7 @@ let emitKey = "emitSetAudioMuted";
 
 export default function webViewSetAudioMuted() {
   describe('ActsAceWebDevWebViewSetAudioMutedTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewSetAudioMuted',
       }
@@ -38,14 +38,14 @@ export default function webViewSetAudioMuted() {
       } catch (err) {
         console.error("push webViewSetAudioMuted page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewSetAudioMuted beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewSetAudioMuted afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewSetAudioMuted() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWMUTED_API_0100

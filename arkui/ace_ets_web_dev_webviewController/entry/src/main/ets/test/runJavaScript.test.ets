@@ -21,7 +21,7 @@ let emitKey = "emitRunJsCallback";
 
 export default function runJavaScript() {
   describe('ActsAceWebControllerTest2', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: "MainAbility/pages/runJavaScript"
       }
@@ -39,11 +39,13 @@ export default function runJavaScript() {
         console.error("push runJavaScript page error: " + err);
       }
       await Utils.sleep(2000);
+      done();
     })
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       console.info("web beforeEach start");
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("ActsAceWebControllerTest afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -62,6 +64,7 @@ export default function runJavaScript() {
       }
       await Utils.sleep(2000);
       console.info("ActsAceWebControllerTest afterEach end");
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_RUNJAVASCRIPT_API_001

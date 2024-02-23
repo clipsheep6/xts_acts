@@ -21,7 +21,7 @@ let emitKey = "emitMediaOptionTrue";
 
 export default function webViewMediaOption() {
   describe('ActsAceWebDevWebViewMediaOptionTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewMediaOption',
       }
@@ -38,14 +38,14 @@ export default function webViewMediaOption() {
       } catch (err) {
         console.error("push webViewMediaOption page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewMediaOption beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewMediaOption afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewMediaOption() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEWMEDIAOP_API_0100

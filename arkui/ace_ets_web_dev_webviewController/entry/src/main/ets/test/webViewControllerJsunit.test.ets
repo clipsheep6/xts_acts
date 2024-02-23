@@ -20,10 +20,10 @@ let emitKey = "emitGetWebId";
 
 export default function webViewControllerJsunit() {
   describe('ActsAceWebDevWebViewControllerTest', () => {
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("web beforeEach start");
-
+      done();
     })
     afterEach(async () => {
       console.info("web afterEach start:" + emitKey);
@@ -43,7 +43,7 @@ export default function webViewControllerJsunit() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_API_0100

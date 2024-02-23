@@ -22,7 +22,7 @@ let emitKey = "emitOnWindowNew01";
 
 export default function webViewOnWindowNewJsunit() {
   describe('ActsAceWebViewOnWindowNewJsunitTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: "MainAbility/pages/onWindowNew"
       }
@@ -40,13 +40,13 @@ export default function webViewOnWindowNewJsunit() {
         console.error("push onWindowNew page error: " + err);
       }
       await Utils.sleep(2000);
-
+      done();
     })
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       console.info("web beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("ActsAceWebViewOnWindowNewJsunitTest afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -65,7 +65,7 @@ export default function webViewOnWindowNewJsunit() {
       }
       await Utils.sleep(2000);
       console.info("ActsAceWebViewOnWindowNewJsunitTest afterEach end");
-
+      done();
     })
     /*
     *tc.number SUB_ACE_BASIC_ETS_API_ONWINDOWNEW_0100

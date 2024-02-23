@@ -21,7 +21,7 @@ let emitKey = "emitOnBeforeUnload";
 
 export default function webViewOnBeforeUnload() {
   describe('ActsAceWebDevWebViewOnBeforeUnloadTest', () => {
-    beforeAll(async () => {
+    beforeAll(async (done: Function) => {
       let options = {
         uri: 'MainAbility/pages/webViewOnBeforeUnload',
       }
@@ -38,14 +38,14 @@ export default function webViewOnBeforeUnload() {
       } catch (err) {
         console.error("push webViewOnBeforeUnload page error: " + err);
       }
-
+      done();
     });
-    beforeEach(async () => {
+    beforeEach(async (done: Function) => {
       await Utils.sleep(2000);
       console.info("webViewOnBeforeUnload beforeEach start");
-
+      done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("webViewOnBeforeUnload afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
@@ -63,7 +63,7 @@ export default function webViewOnBeforeUnload() {
         console.info("emit emitKey  err: " + JSON.stringify(err));
       }
       await Utils.sleep(2000);
-
+      done();
     })
     /*
      *tc.number SUB_ACE_BASIC_ETS_WEBVIEW_API_0100
