@@ -1,0 +1,21 @@
+{
+    "app": {
+        "bundleName": "com.example.locks",
+        "vendor": "huawei",
+        "versionCode": 1000000,
+        "versionName": "1.0.0",
+        "icon": "$media:icon",
+        "label": "$string:app_name",
+        "distributedNotificationEnabled": true,
+        "debug": false,
+        "description": "$string:app_name",
+        "keepAlive": true,
+        "singleUser": true,
+        "minAPIVersion": 10,
+        "targetAPIVersion": 10,
+        "car": {
+            "apiCompatibleVersion": 10,
+            "singleUser": false
+        }
+    }
+}
