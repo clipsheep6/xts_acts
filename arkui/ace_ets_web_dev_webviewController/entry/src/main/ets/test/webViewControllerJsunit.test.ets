@@ -25,7 +25,7 @@ export default function webViewControllerJsunit() {
       console.info("web beforeEach start");
       done();
     })
-    afterEach(async () => {
+    afterEach(async (done: Function) => {
       console.info("web afterEach start:" + emitKey);
       try {
         let backData: events_emitter.EventData = {
