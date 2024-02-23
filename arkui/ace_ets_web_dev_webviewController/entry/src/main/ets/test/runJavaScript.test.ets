@@ -18,7 +18,6 @@ import Utils from './Utils.ets';
 import router from '@system.router';
 
 let emitKey = "emitRunJsCallback";
-
 export default function runJavaScript() {
   describe('ActsAceWebControllerTest2', () => {
     beforeAll(async (done: Function) => {
