@@ -15,6 +15,7 @@
 
 import Ability from '@ohos.app.ability.UIAbility';
 import common from '@ohos.app.ability.common';
+import window from '@ohos.window';
 
 export default class MainAbility2 extends Ability {
   onCreate(want, launchParam) {
@@ -27,11 +28,11 @@ export default class MainAbility2 extends Ability {
     AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", undefined);
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     console.log("[Demo] MainAbility2 onWindowStageCreate");
 
-    windowStage.setUIContent(this.context, "pages/index", null)
+    windowStage.loadContent("pages/index", null);
     setTimeout(() => {
       AppStorage.get<common.UIAbilityContext>("abilityContext").terminateSelf().then(() => {
         console.log("====>in terminateSelf====>");

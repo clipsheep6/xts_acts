@@ -26,8 +26,8 @@ function sleep(time: number) {
 
 export default function abilityTest() {
   let delegator: abilityDelegatorRegistry.AbilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-  let monitor: abilityDelegatorRegistry.AbilityMonitor = undefined;
-  let monitor1: abilityDelegatorRegistry.AbilityMonitor = undefined;
+  let monitor: abilityDelegatorRegistry.AbilityMonitor;
+  let monitor1: abilityDelegatorRegistry.AbilityMonitor;
   let TAG = "";
 
   describe('ActsAbilityMonitor', () => {

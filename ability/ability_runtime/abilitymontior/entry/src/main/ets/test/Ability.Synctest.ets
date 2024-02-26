@@ -27,7 +27,7 @@ function sleep(time: number) {
 }
 
 export default function abilityTestSync() {
-  let monitor: abilityDelegatorRegistry.AbilityMonitor = undefined;
+  let monitor: abilityDelegatorRegistry.AbilityMonitor;
   let abilitydelegator: abilityDelegatorRegistry.AbilityDelegator = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator");
   describe('ActsAbilityMonitorSync', () => {
     afterEach(async (done: Function) => {

@@ -15,7 +15,7 @@
 
 @Entry
 @Component
-struct Index {
+struct Index1 {
   @State message: string = 'MainAbility';
 
   aboutToAppear() {
