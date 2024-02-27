@@ -28,7 +28,7 @@ let videoProfile = {
     audioSampleRate: 48000,
     fileFormat: 'mp4',
     videoBitrate: 2000000,
-    videoCodec: 'video/mp4v-es',
+    videoCodec: 'video/avc',
     videoFrameWidth: 640,
     videoFrameHeight: 480,
     videoFrameRate: 30
@@ -263,12 +263,11 @@ export default function CameraErrorCodeUsecaseTest() {
     }
 
     async function releaseVideoReceiveSurface() {
-        console.log(TAG + 'Entering releaseVideoReceiveSurface')
-        videoRecorder.release((err) => {
-            console.info(TAG + 'Entering release video receiver')
-        })
+        console.log(TAG + 'Entering releaseVideoReceiveSurface');
+        await videoRecorder.release();
+        videoRecorder = null;
         await closeFd();
-        console.log(TAG + 'Exit releaseVideoReceiveSurface')
+        console.log(TAG + 'Exit releaseVideoReceiveSurface');
     }
 
     function createOutput(idx: any) {
@@ -341,8 +340,8 @@ export default function CameraErrorCodeUsecaseTest() {
             }
         })
 
-        afterAll(function () {
-            releaseVideoReceiveSurface();
+        afterAll(async function () {
+            await releaseVideoReceiveSurface();
             sleep(1000);
             console.info('afterAll case');
         })
