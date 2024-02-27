@@ -74,16 +74,21 @@ export default function abilityTest() {
         }
       }
       console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 start");
-      delegator.addAbilityMonitor(monitor, (async (err) => {
-        console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 addAbilityMonitor err: " + err.code);
-        delegator.startAbility(
-          {
-            bundleName: 'com.example.abilitymonitortest',
-            abilityName: 'MainAbility2'
-          }).then(async () => {
-          console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 success");
-        })
-      }))
+      try {
+        delegator.addAbilityMonitor(monitor, (async (err) => {
+          console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 addAbilityMonitor err: " + err.code);
+          console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 addAbilityMonitor successfully " );
+          delegator.startAbility(
+            {
+              bundleName: 'com.example.abilitymonitortest',
+              abilityName: 'MainAbility2'
+            }).then(async () => {
+            console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 success");
+          })
+        }))
+      } catch (e) {
+        console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 addAbilityMonitor failed: " + JSON.stringify(e));
+      }
     })
 
     /**
@@ -107,16 +112,21 @@ export default function abilityTest() {
         }
       }
       console.log(TAG + " addAbilityMonitor start");
-      delegator.addAbilityMonitor(monitor, (async (err) => {
-        console.log(TAG + " addAbilityMonitor====>" + err.code);
-        await delegator.startAbility(
-          {
-            bundleName: 'com.example.abilitymonitortest',
-            abilityName: 'MainAbility2'
-          }).then(async () => {
-          console.log(TAG + "====>0200startAbility success====>");
-        })
-      }))
+      try {
+        delegator.addAbilityMonitor(monitor, (async (err) => {
+          console.log(TAG + " addAbilityMonitor====>" + err.code);
+          console.info(TAG + "====>ACTS_AddAbilityMonitor_0200 addAbilityMonitor successfully " );
+          await delegator.startAbility(
+            {
+              bundleName: 'com.example.abilitymonitortest',
+              abilityName: 'MainAbility2'
+            }).then(async () => {
+            console.log(TAG + "====>0200startAbility success====>");
+          })
+        }))
+      } catch (e) {
+        console.info(TAG + "====>ACTS_AddAbilityMonitor_0200 addAbilityMonitor failed: " + JSON.stringify(e));
+      }
     })
 
     /**
