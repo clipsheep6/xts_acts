@@ -53,7 +53,7 @@ export default class EntryAbility extends UIAbility {
     console.info("ActsNotificationPermissionUnsystemRely handle start");
     notificationManager.getAllNotificationEnabledBundles().then((data) => {
       console.info("ActsNotificationPermissionUnsystemRely db data is" + JSON.stringify(data));
-    }).catch((err) => {
+    }).catch((err: Base.BusinessError) => {
       console.log("ActsNotificationPermissionUnsystemRely db error is" + JSON.stringify(err));
       promiseErrCode = err.code;
     })
