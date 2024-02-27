@@ -50,6 +50,7 @@ export default function abilityTest() {
       }).catch((err) => {
         console.log("Acts_NotificationGetAllEnableStatus_0100 db error is" + JSON.stringify(err));
         expect().assertFail();
+        done();
     })
       await sleep(1000);
     })
@@ -78,6 +79,7 @@ export default function abilityTest() {
       }).catch((err) => {
         console.log("Acts_NotificationGetAllEnableStatus_0200 startAbilityForResult error is" + JSON.stringify(err));
         expect().assertFail();
+        done();
       })
     })
 
@@ -105,6 +107,7 @@ export default function abilityTest() {
       }).catch((err) => {
         console.log("Acts_NotificationGetAllEnableStatus_0300 startAbilityForResult error is" + JSON.stringify(err));
         expect().assertFail();
+        done();
       })
     })
 
@@ -132,6 +135,7 @@ export default function abilityTest() {
       }).catch((err) => {
         console.log("Acts_NotificationGetAllEnableStatus_0400 startAbilityForResult error is" + JSON.stringify(err));
         expect().assertFail();
+        done();
       })
     })
   })
