@@ -20,12 +20,15 @@ import window from '@ohos.window';
 export default class MainAbility2 extends Ability {
   onCreate(want, launchParam) {
     console.log("[Demo] MainAbility2 onCreate");
-    AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", this.context);
+    globalThis.abilityWant = want;
+    globalThis.abilityContext = this.context;
+    // AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", this.context);
   }
 
   onDestroy() {
     console.log("[Demo] MainAbility2 onDestroy");
-    AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", undefined);
+    globalThis.abilityContext = undefined;
+    // AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", undefined);
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
@@ -34,7 +37,10 @@ export default class MainAbility2 extends Ability {
 
     windowStage.loadContent("pages/index", null);
     setTimeout(() => {
-      AppStorage.get<common.UIAbilityContext>("abilityContext").terminateSelf().then(() => {
+      // AppStorage.get<common.UIAbilityContext>("abilityContext")!.terminateSelf().then(() => {
+      //   console.log("====>in terminateSelf====>");
+      // })
+      globalThis.abilityContext.terminateSelf().then(() => {
         console.log("====>in terminateSelf====>");
       })
     }, 2000)

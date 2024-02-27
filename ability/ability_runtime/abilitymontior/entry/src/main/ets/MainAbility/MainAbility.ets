@@ -25,6 +25,8 @@ import { Hypium } from '@ohos/hypium';
 export default class MainAbility extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log('MainAbility onCreate');
+    globalThis.abilityWant = want;
+    globalThis.abilityWant.parameters.timeout = 15000;
     let abilityDelegator: abilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     let abilityDelegatorArguments: abilityDelegatorRegistry.AbilityDelegatorArgs = AbilityDelegatorRegistry.getArguments();
     console.info('start run testcase!!!');
