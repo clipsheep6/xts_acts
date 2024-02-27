@@ -12,37 +12,145 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import audio from '@ohos.multimedia.audio';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import featureAbility from '@ohos.ability.featureAbility';
 import fileio from '@ohos.fileio';
 import * as env from './Const';
 import uitest from "@ohos.UiTest";
+import { BusinessError } from '@ohos.base';
+
+let Tag = 'AudioCpaturerEnhanceTest: ';
+let flag1: boolean = false;
+let flag2: boolean = false;
+let dirPath: string;
+
+function callback1() {
+  console.info(`TestLog: audioCapturerChange command callback1 success`);
+  flag1 = true;
+}
+
+function callback2() {
+  console.info(`TestLog: audioCapturerChange command callback2 success`);
+  flag2 = true;
+}
+
+function sleep(ms: number) {
+  return new Promise<number>(resolve => setTimeout(resolve, ms));
+}
+
+async function getFd(fileName: string) {
+  let context = featureAbility.getContext();
+  await context.getFilesDir().then((data) => {
+    dirPath = data + '/' + fileName;
+    console.info(`${Tag} case2 dirPath is  ${JSON.stringify(dirPath)}`);
+  })
+}
+
+
+async function recordingFun(audioCap: audio.AudioCapturer) {
+  try {
+    let audioParamsGet = await audioCap.getStreamInfo();
+    if (audioParamsGet != undefined && audioParamsGet != null) {
+      console.info(`${Tag} Capturer getStreamInfo:${JSON.stringify(audioParamsGet)}`);
+    } else {
+      console.info(`${Tag} audioParamsGet are incorrect,is :  ${JSON.stringify(audioParamsGet)}`);
+      expect(false).assertTrue();
+    }
+  } catch (err) {
+    console.log(`${Tag} getStreamInfo  :ERROR:  ${JSON.stringify(err.message)} ${JSON.stringify(err.code)}`);
+    expect(false).assertTrue();
+  }
+  try {
+    let audioParamsGet = await audioCap.getCapturerInfo();
+    if (audioParamsGet != undefined) {
+      console.info(`${Tag} Capturer CapturerInfo: ${JSON.stringify(audioParamsGet)}`);
+    } else {
+      console.info(`${Tag} audioParamsGet are incorrect , is :  ${JSON.stringify(audioParamsGet)}`);
+      expect(false).assertTrue();
+    }
+  } catch (err) {
+    console.log(`${Tag} CapturerInfo :ERROR:  ${JSON.stringify(err.message)} ${JSON.stringify(err.code)}`);
+    expect(false).assertTrue();
+  }
+  try {
+    await audioCap.start();
+    console.log(`${Tag} start ok`);
+    let bufferSize = await audioCap.getBufferSize();
+    console.log(`${Tag} bufferSize: ${JSON.stringify(bufferSize)} , dirPath: ${JSON.stringify(dirPath)}`);
+    let fd = fileio.openSync(dirPath, 0o102, 0o777);
+    console.log(`${Tag} fd: ${JSON.stringify(fd)}`);
+    if (fd !== null) {
+      console.info(`${Tag} file fd created`);
+    } else {
+      console.info(`${Tag} Capturer start : ERROR `);
+      expect(false).assertTrue();
+    }
+    fd = fileio.openSync(dirPath, 0o2002, 0o666);
+    console.log(`${Tag} fd-re: ${JSON.stringify(fd)}`);
+    if (fd !== null) {
+      console.info(`${Tag} file fd opened : Append Mode :PASS`);
+    }
+    else {
+      console.info(`${Tag} file fd Open: Append Mode : FAILED`);
+      expect(false).assertTrue();
+    }
+    let numBuffersToCapture = 45;
+    while (numBuffersToCapture) {
+      if (numBuffersToCapture % 5 == 0) {
+        console.info(`${Tag} ---------READ BUFFER---------`);
+      }
+      let buffer = await audioCap.read(bufferSize, true);
+      if (numBuffersToCapture % 5 == 0) {
+        console.info(`${Tag} ---------WRITE BUFFER---------`);
+      }
+      let number = fileio.writeSync(fd, buffer);
+      if (numBuffersToCapture % 5 == 0) {
+        console.info(`${Tag} BufferRecLog: data written:  ${JSON.stringify(number)}`);
+        console.info(`${Tag} numBuffersToCapture: ${numBuffersToCapture}`)
+      }
+      numBuffersToCapture--;
+    }
+    console.log(`${Tag} read ok`);
+  } catch (err) {
+    console.log(`${Tag} start-read err: ${JSON.stringify(err)}`);
+    expect(false).assertTrue();
+  }
+}
+
+async function releaseFun(audioCap: audio.AudioCapturer) {
+  try {
+    await audioCap.release();
+    console.log(`${Tag} release success`);
+  } catch (err) {
+    console.log(`${Tag} release fail,err : ${JSON.stringify(err)}`);
+  }
+}
+
+function getCapturerInfo(CapturerChangeInfo) {
+  let str = ``;
+  let Info = CapturerChangeInfo[0];
+  str += `nStreamId:${Info.streamId}, ClientUid:${Info.clientUid}, State:${Info.capturerState}, muted:${Info.muted},
+              Source:${Info.capturerInfo.source}, Flag:${Info.capturerInfo.capturerFlags},\n`;
+  for (let j = 0; j < Info.deviceDescriptors.length; j++) {
+    let descriptor = Info.deviceDescriptors[j];
+    str += `__deviceDescriptors_${j}\n`;
+    str += `Id:${descriptor.id}, Type:${descriptor.deviceType}, Role:${descriptor.deviceRole},
+                Name:${descriptor.name}, Address:${descriptor.address}, SampleRates:${descriptor.sampleRates[0]},
+                ChannelCounts:${descriptor.channelCounts[0]}, ChannelMask:${descriptor.channelMasks}, encodingTypes:${descriptor.encodingTypes[0]}\n`;
+  }
+  return str;
+}
 
 export default function audioCapturerEnhanceTest() {
-  describe('onOffAudioCapturerChange', function () {
-    let Tag = 'AudioCpaturerEnhanceTest: ';
-    let dirPath;
-    let audioCap = null;
-    let audioManager = null;
-    let flag1: boolean = false;
-    let flag2: boolean = false;
+  describe('onOffAudioCapturerChange', () => {
 
-    function callback1() {
-        console.info(`TestLog: audioCapturerChange command callback1 success`);
-        flag1 = true;
-    }
+    let audioCap: audio.AudioCapturer = null;
+    let audioManager: audio.AudioManager = null;
 
-    function callback2() {
-        console.info(`TestLog: audioCapturerChange command callback2 success`);
-        flag2 = true;
-    }
 
-    function sleep(ms) {
-      return new Promise(resolve => setTimeout(resolve, ms));
-    }
-
-    beforeAll(async function () {
+    beforeAll(async () => {
       console.info("beforeAll case");
       try {
         audioManager = audio.getAudioManager();
@@ -53,13 +161,13 @@ export default function audioCapturerEnhanceTest() {
       console.info('TestLog: Start Testing AudioCpaturerEnhanceTest Interfaces');
       sleep(1000);
     });
-    beforeEach(async function () {
+    beforeEach(async () => {
       console.info(`${Tag} beforeEach: Prerequisites at the test case level`);
     })
-    afterEach(async function () {
+    afterEach(async () => {
       try {
         await audioCap.off('audioCapturerChange');
-         console.log(`off-audioCapturerChange success`)
+        console.log(`off-audioCapturerChange success`)
       } catch (error) {
         console.log(`off-audioCapturerChange err: ${error.message}, ${error.code}`)
       }
@@ -77,111 +185,10 @@ export default function audioCapturerEnhanceTest() {
       console.info(`${Tag} afterEach: Test case-level clearance conditions`);
       await sleep(1000);
     })
-    afterAll(async function () {
+    afterAll(async () => {
       console.info(`${Tag} afterAll: Test suite-level cleanup condition`);
     })
 
-    async function getFd(fileName) {
-      let context = featureAbility.getContext();
-      await context.getFilesDir().then((data) => {
-        dirPath = data + '/' + fileName;
-        console.info(`${Tag} case2 dirPath is  ${JSON.stringify(dirPath)}`);
-      })
-    }
-
-    async function recordingFun(audioCap) {
-      try {
-        let audioParamsGet = await audioCap.getStreamInfo();
-        if (audioParamsGet != undefined && audioParamsGet != null) {
-          console.info(`${Tag} Capturer getStreamInfo:${JSON.stringify(audioParamsGet)}`);
-        } else {
-          console.info(`${Tag} audioParamsGet are incorrect,is :  ${JSON.stringify(audioParamsGet)}`);
-          expect(false).assertTrue();
-        }
-      } catch (err) {
-        console.log(`${Tag} getStreamInfo  :ERROR:  ${JSON.stringify(err.message)} ${JSON.stringify(err.code)}`);
-        expect(false).assertTrue();
-      }
-      try {
-        let audioParamsGet = await audioCap.getCapturerInfo();
-        if (audioParamsGet != undefined) {
-          console.info(`${Tag} Capturer CapturerInfo: ${JSON.stringify(audioParamsGet)}`);
-        } else {
-          console.info(`${Tag} audioParamsGet are incorrect , is :  ${JSON.stringify(audioParamsGet)}`);
-          expect(false).assertTrue();
-        }
-      } catch (err) {
-        console.log(`${Tag} CapturerInfo :ERROR:  ${JSON.stringify(err.message)} ${JSON.stringify(err.code)}`);
-        expect(false).assertTrue();
-      }
-      try {
-        await audioCap.start();
-        console.log(`${Tag} start ok`);
-        let bufferSize = await audioCap.getBufferSize();
-        console.log(`${Tag} bufferSize: ${JSON.stringify(bufferSize)} , dirPath: ${JSON.stringify(dirPath)}`);
-        let fd = fileio.openSync(dirPath, 0o102, 0o777);
-        console.log(`${Tag} fd: ${JSON.stringify(fd)}`);
-        if (fd !== null) {
-          console.info(`${Tag} file fd created`);
-        } else {
-          console.info(`${Tag} Capturer start : ERROR `);
-          expect(false).assertTrue();
-        }
-        fd = fileio.openSync(dirPath, 0o2002, 0o666);
-        console.log(`${Tag} fd-re: ${JSON.stringify(fd)}`);
-        if (fd !== null) {
-          console.info(`${Tag} file fd opened : Append Mode :PASS`);
-        }
-        else {
-          console.info(`${Tag} file fd Open: Append Mode : FAILED`);
-          expect(false).assertTrue();
-        }
-        let numBuffersToCapture = 45;
-        while (numBuffersToCapture) {
-          if (numBuffersToCapture % 5 == 0) {
-            console.info(`${Tag} ---------READ BUFFER---------`);
-          }
-          let buffer = await audioCap.read(bufferSize, true);
-          if (numBuffersToCapture % 5 == 0) {
-            console.info(`${Tag} ---------WRITE BUFFER---------`);
-          }
-          let number = fileio.writeSync(fd, buffer);
-          if (numBuffersToCapture % 5 == 0) {
-            console.info(`${Tag} BufferRecLog: data written:  ${JSON.stringify(number)}`);
-            console.info(`${Tag} numBuffersToCapture: ${numBuffersToCapture}`)
-          }
-          numBuffersToCapture--;
-        }
-        console.log(`${Tag} read ok`);
-      } catch (err) {
-        console.log(`${Tag} start-read err: ${JSON.stringify(err)}`);
-        expect(false).assertTrue();
-      }
-    }
-
-    async function releaseFun(audioCap) {
-      try {
-        await audioCap.release();
-        console.log(`${Tag} release success`);
-      } catch (err) {
-        console.log(`${Tag} release fail,err : ${JSON.stringify(err)}`);
-      }
-    }
-
-    function getCapturerInfo(CapturerChangeInfo) {
-      let str = ``;
-      let Info = CapturerChangeInfo[0];
-      str += `nStreamId:${Info.streamId}, ClientUid:${Info.clientUid}, State:${Info.capturerState}, muted:${Info.muted},
-              Source:${Info.capturerInfo.source}, Flag:${Info.capturerInfo.capturerFlags},\n`;
-      for (let j = 0; j < Info.deviceDescriptors.length; j++) {
-        let descriptor = Info.deviceDescriptors[j];
-        str += `__deviceDescriptors_${j}\n`;
-        str += `Id:${descriptor.id}, Type:${descriptor.deviceType}, Role:${descriptor.deviceRole},
-                Name:${descriptor.name}, Address:${descriptor.address}, SampleRates:${descriptor.sampleRates[0]},
-                ChannelCounts:${descriptor.channelCounts[0]}, ChannelMask:${descriptor.channelMasks}, encodingTypes:${descriptor.encodingTypes[0]}\n`;
-      }
-      return str;
-    }
 
     /**
      * @tc.number    : SUB_MULTIMEDIA_AUDIO_CAPTURER_ON_AUDIOCAPTURERCHANGE_0300
@@ -191,25 +198,25 @@ export default function audioCapturerEnhanceTest() {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_ON_AUDIOCAPTURERCHANGE_0300', 2, async function (done) {
-      let AudioStreamInfo = {
+    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_ON_AUDIOCAPTURERCHANGE_0300', 2, async (done: Function) => {
+      let AudioStreamInfo: audio.AudioStreamInfo = {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
         channels: audio.AudioChannel.CHANNEL_2,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
       }
-      let AudioCapturerInfo = {
+      let AudioCapturerInfo: audio.AudioCapturerInfo = {
         source: audio.SourceType.SOURCE_TYPE_MIC,
         capturerFlags: 0
       }
-      let AudioCapturerOptions = {
+      let AudioCapturerOptions: audio.AudioCapturerOptions = {
         streamInfo: AudioStreamInfo,
         capturerInfo: AudioCapturerInfo
       }
       try {
-        await audio.createAudioCapturer(AudioCapturerOptions).then((data)=>{
+        await audio.createAudioCapturer(AudioCapturerOptions).then((data) => {
           audioCap = data;
-        }).catch((err)=>{
+        }).catch((err: BusinessError) => {
           console.info(' AudioCapturer Created catch ERROR' + err.message);
         });
       } catch (error) {
@@ -239,25 +246,25 @@ export default function audioCapturerEnhanceTest() {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_ON_AUDIOCAPTURERCHANGE_0400', 2, async function (done) {
-      let AudioStreamInfo = {
+    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_ON_AUDIOCAPTURERCHANGE_0400', 2, async (done: Function) => {
+      let AudioStreamInfo: audio.AudioStreamInfo = {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
         channels: audio.AudioChannel.CHANNEL_2,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
       }
-      let AudioCapturerInfo = {
+      let AudioCapturerInfo: audio.AudioCapturerInfo = {
         source: audio.SourceType.SOURCE_TYPE_MIC,
         capturerFlags: 0
       }
-      let AudioCapturerOptions = {
+      let AudioCapturerOptions: audio.AudioCapturerOptions = {
         streamInfo: AudioStreamInfo,
         capturerInfo: AudioCapturerInfo
       }
       try {
-        await audio.createAudioCapturer(AudioCapturerOptions).then((data)=>{
+        await audio.createAudioCapturer(AudioCapturerOptions).then((data) => {
           audioCap = data;
-        }).catch((err)=>{
+        }).catch((err: BusinessError) => {
           console.info(' AudioCapturer Created catch ERROR' + err.message);
         });
       } catch (error) {
@@ -287,25 +294,25 @@ export default function audioCapturerEnhanceTest() {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_ON_AUDIOCAPTURERCHANGE_0500', 2, async function (done) {
-      let AudioStreamInfo = {
+    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_ON_AUDIOCAPTURERCHANGE_0500', 2, async (done: Function) => {
+      let AudioStreamInfo: audio.AudioStreamInfo = {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
         channels: audio.AudioChannel.CHANNEL_2,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
       }
-      let AudioCapturerInfo = {
+      let AudioCapturerInfo: audio.AudioCapturerInfo = {
         source: audio.SourceType.SOURCE_TYPE_MIC,
         capturerFlags: 0
       }
-      let AudioCapturerOptions = {
+      let AudioCapturerOptions: audio.AudioCapturerOptions = {
         streamInfo: AudioStreamInfo,
         capturerInfo: AudioCapturerInfo
       }
       try {
-        await audio.createAudioCapturer(AudioCapturerOptions).then((data)=>{
+        await audio.createAudioCapturer(AudioCapturerOptions).then((data) => {
           audioCap = data;
-        }).catch((err)=>{
+        }).catch((err: BusinessError) => {
           console.info(' AudioCapturer Created catch ERROR' + err.message);
         });
       } catch (error) {
@@ -334,25 +341,25 @@ export default function audioCapturerEnhanceTest() {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_OFF_AUDIOCAPTURERCHANGE_0100', 2, async function (done) {
-      let AudioStreamInfo = {
+    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_OFF_AUDIOCAPTURERCHANGE_0100', 2, async (done: Function) => {
+      let AudioStreamInfo: audio.AudioStreamInfo = {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
         channels: audio.AudioChannel.CHANNEL_2,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
       }
-      let AudioCapturerInfo = {
+      let AudioCapturerInfo: audio.AudioCapturerInfo = {
         source: audio.SourceType.SOURCE_TYPE_MIC,
         capturerFlags: 0
       }
-      let AudioCapturerOptions = {
+      let AudioCapturerOptions: audio.AudioCapturerOptions = {
         streamInfo: AudioStreamInfo,
         capturerInfo: AudioCapturerInfo
       }
       try {
-        await audio.createAudioCapturer(AudioCapturerOptions).then((data)=>{
+        await audio.createAudioCapturer(AudioCapturerOptions).then((data) => {
           audioCap = data;
-        }).catch((err)=>{
+        }).catch((err: BusinessError) => {
           console.info(' AudioCapturer Created catch ERROR' + err.message);
         });
       } catch (error) {
@@ -382,25 +389,25 @@ export default function audioCapturerEnhanceTest() {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_OFF_AUDIOCAPTURERCHANGE_0200', 2, async function (done) {
-      let AudioStreamInfo = {
+    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_OFF_AUDIOCAPTURERCHANGE_0200', 2, async (done: Function) => {
+      let AudioStreamInfo: audio.AudioStreamInfo = {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
         channels: audio.AudioChannel.CHANNEL_2,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
       }
-      let AudioCapturerInfo = {
+      let AudioCapturerInfo: audio.AudioCapturerInfo = {
         source: audio.SourceType.SOURCE_TYPE_MIC,
         capturerFlags: 0
       }
-      let AudioCapturerOptions = {
+      let AudioCapturerOptions: audio.AudioCapturerOptions = {
         streamInfo: AudioStreamInfo,
         capturerInfo: AudioCapturerInfo
       }
       try {
-        await audio.createAudioCapturer(AudioCapturerOptions).then((data)=>{
+        await audio.createAudioCapturer(AudioCapturerOptions).then((data) => {
           audioCap = data;
-        }).catch((err)=>{
+        }).catch((err: BusinessError) => {
           console.info(' AudioCapturer Created catch ERROR' + err.message);
         });
       } catch (error) {
@@ -430,25 +437,25 @@ export default function audioCapturerEnhanceTest() {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_OFF_AUDIOCAPTURERCHANGE_0300', 2, async function (done) {
-      let AudioStreamInfo = {
+    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_OFF_AUDIOCAPTURERCHANGE_0300', 2, async (done: Function) => {
+      let AudioStreamInfo: audio.AudioStreamInfo = {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
         channels: audio.AudioChannel.CHANNEL_2,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
       }
-      let AudioCapturerInfo = {
+      let AudioCapturerInfo: audio.AudioCapturerInfo = {
         source: audio.SourceType.SOURCE_TYPE_MIC,
         capturerFlags: 0
       }
-      let AudioCapturerOptions = {
+      let AudioCapturerOptions: audio.AudioCapturerOptions = {
         streamInfo: AudioStreamInfo,
         capturerInfo: AudioCapturerInfo
       }
       try {
-        await audio.createAudioCapturer(AudioCapturerOptions).then((data)=>{
+        await audio.createAudioCapturer(AudioCapturerOptions).then((data) => {
           audioCap = data;
-        }).catch((err)=>{
+        }).catch((err: BusinessError) => {
           console.info(' AudioCapturer Created catch ERROR' + err.message);
         });
       } catch (error) {
@@ -478,25 +485,25 @@ export default function audioCapturerEnhanceTest() {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_ON_AUDIOCAPTURERCHANGE_0600', 2, async function (done) {
-      let AudioStreamInfo = {
+    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_ON_AUDIOCAPTURERCHANGE_0600', 2, async (done: Function) => {
+      let AudioStreamInfo: audio.AudioStreamInfo = {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
         channels: audio.AudioChannel.CHANNEL_2,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
       }
-      let AudioCapturerInfo = {
+      let AudioCapturerInfo: audio.AudioCapturerInfo = {
         source: audio.SourceType.SOURCE_TYPE_MIC,
         capturerFlags: 0
       }
-      let AudioCapturerOptions = {
+      let AudioCapturerOptions: audio.AudioCapturerOptions = {
         streamInfo: AudioStreamInfo,
         capturerInfo: AudioCapturerInfo
       }
       try {
-        await audio.createAudioCapturer(AudioCapturerOptions).then((data)=>{
+        await audio.createAudioCapturer(AudioCapturerOptions).then((data) => {
           audioCap = data;
-        }).catch((err)=>{
+        }).catch((err: BusinessError) => {
           console.info(' AudioCapturer Created catch ERROR' + err.message);
         });
         await getFd("capture_js-44100-2C-16B.pcm");
@@ -534,25 +541,25 @@ export default function audioCapturerEnhanceTest() {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_ON_AUDIOCAPTURERCHANGE_0700', 2, async function (done) {
-      let AudioStreamInfo = {
+    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_ON_AUDIOCAPTURERCHANGE_0700', 2, async (done: Function) => {
+      let AudioStreamInfo: audio.AudioStreamInfo = {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
         channels: audio.AudioChannel.CHANNEL_2,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
       }
-      let AudioCapturerInfo = {
+      let AudioCapturerInfo: audio.AudioCapturerInfo = {
         source: audio.SourceType.SOURCE_TYPE_MIC,
         capturerFlags: 0
       }
-      let AudioCapturerOptions = {
+      let AudioCapturerOptions: audio.AudioCapturerOptions = {
         streamInfo: AudioStreamInfo,
         capturerInfo: AudioCapturerInfo
       }
       try {
-        await audio.createAudioCapturer(AudioCapturerOptions).then((data)=>{
+        await audio.createAudioCapturer(AudioCapturerOptions).then((data) => {
           audioCap = data;
-        }).catch((err)=>{
+        }).catch((err: BusinessError) => {
           console.info(' AudioCapturer Created catch ERROR' + err.message);
         });
         await getFd("capture_js-44100-2C-16B.pcm");
@@ -593,25 +600,25 @@ export default function audioCapturerEnhanceTest() {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_ON_AUDIOCAPTURERCHANGE_0800', 2, async function (done) {
-      let AudioStreamInfo = {
+    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_ON_AUDIOCAPTURERCHANGE_0800', 2, async (done: Function) => {
+      let AudioStreamInfo: audio.AudioStreamInfo = {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
         channels: audio.AudioChannel.CHANNEL_2,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
       }
-      let AudioCapturerInfo = {
+      let AudioCapturerInfo: audio.AudioCapturerInfo = {
         source: audio.SourceType.SOURCE_TYPE_MIC,
         capturerFlags: 0
       }
-      let AudioCapturerOptions = {
+      let AudioCapturerOptions: audio.AudioCapturerOptions = {
         streamInfo: AudioStreamInfo,
         capturerInfo: AudioCapturerInfo
       }
       try {
-        await audio.createAudioCapturer(AudioCapturerOptions).then((data)=>{
+        await audio.createAudioCapturer(AudioCapturerOptions).then((data) => {
           audioCap = data;
-        }).catch((err)=>{
+        }).catch((err: BusinessError) => {
           console.info(' AudioCapturer Created catch ERROR' + err.message);
         });
         await getFd("capture_js-44100-2C-16B.pcm");
@@ -652,25 +659,25 @@ export default function audioCapturerEnhanceTest() {
      * @tc.type      : Function
      * @tc.level     : Level 2
      */
-    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_ONOFF_AUDIOCAPTURERCHANGE_0100', 2, async function (done) {
-      let AudioStreamInfo = {
+    it('SUB_MULTIMEDIA_AUDIO_CAPTURER_ONOFF_AUDIOCAPTURERCHANGE_0100', 2, async (done: Function) => {
+      let AudioStreamInfo: audio.AudioStreamInfo = {
         samplingRate: audio.AudioSamplingRate.SAMPLE_RATE_44100,
         channels: audio.AudioChannel.CHANNEL_2,
         sampleFormat: audio.AudioSampleFormat.SAMPLE_FORMAT_S16LE,
         encodingType: audio.AudioEncodingType.ENCODING_TYPE_RAW
       }
-      let AudioCapturerInfo = {
+      let AudioCapturerInfo: audio.AudioCapturerInfo = {
         source: audio.SourceType.SOURCE_TYPE_MIC,
         capturerFlags: 0
       }
-      let AudioCapturerOptions = {
+      let AudioCapturerOptions: audio.AudioCapturerOptions = {
         streamInfo: AudioStreamInfo,
         capturerInfo: AudioCapturerInfo
       }
       try {
-        await audio.createAudioCapturer(AudioCapturerOptions).then((data)=>{
+        await audio.createAudioCapturer(AudioCapturerOptions).then((data) => {
           audioCap = data;
-        }).catch((err)=>{
+        }).catch((err: BusinessError) => {
           console.info(' AudioCapturer Created catch ERROR' + err.message);
         });
         await getFd("capture_js-44100-2C-16B.pcm");
