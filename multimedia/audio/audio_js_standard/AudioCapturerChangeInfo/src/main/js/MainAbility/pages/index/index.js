@@ -12,20 +12,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import file from '@system.file'
 
-const injectRef = Object.getPrototypeOf(global) || global
-injectRef.regeneratorRuntime = require('@babel/runtime/regenerator')
+const injectRef = Object.getPrototypeOf(global) || global;
+injectRef.regeneratorRuntime = require('@babel/runtime/regenerator');
 
 export default {
-   data: {
-       title: ""
-   },
+    data: {
+        title: ""
+    },
     onInit() {
-       this.title = this.$t('strings.world');
+        this.title = this.$t('strings.world');
     },
     onShow() {
-       console.info('onShow finish')
+        console.info('onShow finish')
     },
     onReady() {
     },
