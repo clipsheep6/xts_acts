@@ -63,7 +63,7 @@ export default function abilityTest() {
      */
     it('ACTS_AddAbilityMonitor_Callback_0100', 0, async (done: Function) => {
       TAG = "ACTS_AddAbilityMonitor_Callback_0100";
-      console.log(TAG + " start");
+      console.log(TAG + "====> start");
 
       monitor = {
         abilityName: 'MainAbility2',
@@ -74,7 +74,9 @@ export default function abilityTest() {
         }
       }
       console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 start");
+      console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 begin");
       try {
+        delegator = abilityDelegatorRegistry.getAbilityDelegator();
         delegator.addAbilityMonitor(monitor, (async (err) => {
           console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 addAbilityMonitor err: " + err.code);
           console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 addAbilityMonitor successfully " );
