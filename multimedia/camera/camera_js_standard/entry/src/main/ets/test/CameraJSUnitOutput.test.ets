@@ -18,7 +18,7 @@ import media from '@ohos.multimedia.media';
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import featureAbility from '@ohos.ability.featureAbility';
-const TAG = "CameraUnitTest: ";
+const TAG = "CameraJSUnitOutputTest: ";
 
 let captureLocation = {
   latitude: 0,
@@ -41,7 +41,7 @@ let videoProfile = {
   audioSampleRate: 48000,
   fileFormat: 'mp4',
   videoBitrate: 2000000,
-  videoCodec: 'video/mp4v-es',
+  videoCodec: 'video/avc',
   videoFrameWidth: 640,
   videoFrameHeight: 480,
   videoFrameRate: 30
@@ -164,6 +164,8 @@ export default function cameraJSUnitOutput() {
 
   async function release() {
     console.log(TAG + "start release");
+    await videoRecorder.release();
+    videoRecorder = null;
     await captureSession.release();
     console.log(TAG + "release end")
   }
@@ -213,9 +215,9 @@ export default function cameraJSUnitOutput() {
       console.info('afterEach case');
     })
 
-    afterAll(function () {
+    afterAll(async function () {
       closeFd();
-      release();
+      await release();
       console.info('afterAll case');
     })
 

@@ -16,7 +16,7 @@
 import camera from '@ohos.multimedia.camera';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import featureAbility from '@ohos.ability.featureAbility';
-const TAG = "CameraModuleTest: ";
+const TAG = "CameraTorchTest: ";
 
 let mCameraManager;
 let mCameraNum;
