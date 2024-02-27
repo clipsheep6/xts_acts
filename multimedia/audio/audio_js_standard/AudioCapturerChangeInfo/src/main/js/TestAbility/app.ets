@@ -18,14 +18,14 @@ import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/List.test';
 
 export default {
-    onCreate() {
-        console.info('TestApplication onCreate');
-        let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-        let abilityDelegatorArguments = abilityDelegatorRegistry.getArguments();
-        console.info('start run testcase!!!');
-        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
-    },
-    onDestroy() {
-        console.info("TestApplication onDestroy");
-    }
+  onCreate() {
+    console.info('TestApplication onCreate');
+    let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments = abilityDelegatorRegistry.getArguments();
+    console.info('start run testcase!!!');
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+  },
+  onDestroy() {
+    console.info("TestApplication onDestroy");
+  }
 };
