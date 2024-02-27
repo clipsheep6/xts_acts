@@ -14,11 +14,12 @@
  */
 import InputMethodExtensionAbility from '@ohos.InputMethodExtensionAbility';
 import { KeyboardController } from './KeyboardController';
+import Want from '@ohos.app.ability.Want';
 
 export default class InputKeyService extends InputMethodExtensionAbility {
   private keyboardController: KeyboardController;
 
-  onCreate(want) {
+  onCreate(want: Want) {
     console.log("====>onCreate onCreate onCreate onCreate onCreate onCreate InputKeyService************************");
 
     this.keyboardController = new KeyboardController(this.context);
