@@ -50,7 +50,7 @@ export default class MainAbility3 extends Ability {
       // AppStorage.get<common.UIAbilityContext>("abilityContext").terminateSelf().then(() => {
       //   console.log("====>in terminateSelf====>");
       // })
-      globalThis.abilityContext.terminateSelf().then(() => {
+      this.context.terminateSelf().then(() => {
         console.log("====>in terminateSelf====>");
       })
     }, TERMINATE_SELF_TIME)
