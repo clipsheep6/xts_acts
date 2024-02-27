@@ -77,6 +77,11 @@ export default function abilityTest() {
       console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 begin");
       try {
         delegator = abilityDelegatorRegistry.getAbilityDelegator();
+        if (delegator) {
+          console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 delegator exists");
+        } else {
+          console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 delegator is not exists");
+        }
         delegator.addAbilityMonitor(monitor, (async (err) => {
           console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 addAbilityMonitor err: " + err.code);
           console.info(TAG + "====>ACTS_AddAbilityMonitor_0100 addAbilityMonitor successfully " );
