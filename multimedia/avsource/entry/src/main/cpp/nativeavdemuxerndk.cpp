@@ -191,7 +191,7 @@ static napi_value OHAVDemuxerReadSample(napi_env env, napi_callback_info info)
     OH_AVDemuxer *demuxer;
     demuxer = OH_AVDemuxer_CreateWithSource(oH_AVSource);
     int returnValue = FAIL;
-    OH_AVMemory *buffer = OH_AVMemory_Create(TWOTWOVAL);
+    OH_AVMemory *buffer = OH_AVMemory_Create(BIGVAL);
     uint32_t audioTrackIndex = ZEROVAL;
     OH_AVDemuxer_SelectTrackByID(demuxer, audioTrackIndex);
     OH_AVCodecBufferAttr attrInfo;
