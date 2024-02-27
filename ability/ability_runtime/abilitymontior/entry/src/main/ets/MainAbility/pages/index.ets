@@ -13,6 +13,9 @@
 * limitations under the License.
 */
 
+import router from '@system.router';
+import file from '@system.file';
+
 @Entry
 @Component
 struct Index1 {
