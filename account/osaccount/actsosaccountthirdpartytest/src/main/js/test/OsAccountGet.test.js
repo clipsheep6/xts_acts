@@ -21,13 +21,13 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
         afterEach(async function (done) {
             console.info("====>afterEach start====");
             var osAccountManager = osaccount.getAccountManager();
-            var accounts = await osAccountManager.queryAllCreatedOsAccounts()
-            for (let i = 0; i < accounts.length; i++) {
-                var localId = accounts[i].localId
-                if (localId != 100) {
-                    await osAccountManager.removeOsAccount(localId)
-                }
-            }
+            // var accounts = await osAccountManager.queryAllCreatedOsAccounts()
+            // for (let i = 0; i < accounts.length; i++) {
+            //     var localId = accounts[i].localId
+            //     if (localId != 100) {
+            //         await osAccountManager.removeOsAccount(localId)
+            //     }
+            // }
             done();
         })
         /*
@@ -429,7 +429,36 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
                 done();
                 return;
             }
-            var OsAccountInfo = await osAccountManager.createOsAccount("accountIdSerialB", osaccount.OsAccountType.GUEST);
+            try {
+                osAccountManager.createOsAccount("zsm*1", osaccount.OsAccountType.NORMAL,
+                  (err: BusinessError, osAccountInfo: osaccount.OsAccountInfo)=>{
+                    osAccountManager.removeOsAccount(osAccountInfo.localId).then(() => {
+                      console.log('removeOsAccount successfully');
+                    }).catch((err: BusinessError) => {
+                        console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
+                    });
+                });
+            } catch (err) {
+                console.log('========= creatre os account exception1: ' + JSON.stringify(err));
+            }
+
+            try {
+                let options2 = {shortName: 'zsm*2'};
+                osAccountManager.createOsAccount("zsm*1", osaccount.OsAccountType.NORMAL,
+                  (err: BusinessError, osAccountInfo: osaccount.OsAccountInfo)=>{
+                    osAccountManager.removeOsAccount(osAccountInfo.localId).then(() => {
+                      console.log('removeOsAccount successfully');
+                    }).catch((err: BusinessError) => {
+                        console.log('removeOsAccount failed, error: ' + JSON.stringify(err));
+                    });
+                });
+            } catch (err) {
+                console.log('========= creatre os account exception2: ' + JSON.stringify(err));
+            }
+            let options = {shortName: 'shortName'};
+            var OsAccountInfo = await osAccountManager.createOsAccount("accountIdSerialB", osaccount.OsAccountType.NORMAL, options);
+
+            // var OsAccountInfo = await osAccountManager.createOsAccount("accountIdSerialB", osaccount.OsAccountType.GUEST, {shortName: 'shortName'});
             console.info("====>create os account OsAccountInfo: " + JSON.stringify(OsAccountInfo));
             expect(OsAccountInfo.localName).assertEqual("accountIdSerialB");
             localId = OsAccountInfo.localId;
@@ -438,7 +467,7 @@ export default function ActsOsAccountThirdPartyTest_third_2() {
             var getlocalId = await osAccountManager.getOsAccountLocalIdBySerialNumber(serialNumber);
             console.info("====>get localId:" + getlocalId + " by serialNumber: " + serialNumber);
             expect(getlocalId).assertEqual(localId);
-            await osAccountManager.removeOsAccount(localId);
+            // await osAccountManager.removeOsAccount(localId);
             console.info("====>ActsOsAccountLocalIdSerial_0600 end====");
             done();
         });
