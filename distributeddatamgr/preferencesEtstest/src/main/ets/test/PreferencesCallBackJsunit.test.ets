@@ -51,13 +51,13 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name clear callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_2200
+         * @tc.name testPreferencesClear0012
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_2200
          * @tc.desc clear callback interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
-         * 
+         *
          */
         it('testPreferencesClear0012', 0, async function (done) {
             await mPreferences.put(KEY_TEST_STRING_ELEMENT, "test");
@@ -70,8 +70,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name has string callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_1200
+         * @tc.name testPreferencesHasKey0032
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_1200
          * @tc.desc has string callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -86,8 +86,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name has int callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_1600
+         * @tc.name testPreferencesHasKey0033
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_1600
          * @tc.desc has int callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -102,8 +102,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name has float callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_1500
+         * @tc.name testPreferencesHasKey0034
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_1500
          * @tc.desc has float callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -118,8 +118,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name has long callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_1700
+         * @tc.name testPreferencesHasKey0035
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_1700
          * @tc.desc has long callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -134,8 +134,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name has boolean callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_1400
+         * @tc.name testPreferencesHasKey0036
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_1400
          * @tc.desc has boolean callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -150,8 +150,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name get defaultValue callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_2100
+         * @tc.name testPreferencesGetDefValue0062
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_2100
          * @tc.desc get defaultValue callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -166,8 +166,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name get float callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_1800
+         * @tc.name testPreferencesGetFloat0072
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_1800
          * @tc.desc get float callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -183,8 +183,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name get int callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_1900
+         * @tc.name testPreferencesGetInt0082
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_1900
          * @tc.desc get int callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -200,8 +200,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name get long callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_1100
+         * @tc.name testPreferencesGetLong0092
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_1100
          * @tc.desc get long callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -219,8 +219,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name get String callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_2000
+         * @tc.name testPreferencesGetString102
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_2000
          * @tc.desc get String callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -237,8 +237,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name put boolean callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_0300
+         * @tc.name testPreferencesPutBoolean0122
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_0300
          * @tc.desc put boolean callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -257,8 +257,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name put float callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_0400
+         * @tc.name testPreferencesPutFloat0132
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_0400
          * @tc.desc put float callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -277,8 +277,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name put int callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_0500
+         * @tc.name testPreferencesPutInt0142
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_0500
          * @tc.desc put int callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -297,8 +297,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name put long callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_1000
+         * @tc.name testPreferencesPutLong0152
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_1000
          * @tc.desc put long callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -318,8 +318,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name put String callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_0900
+         * @tc.name testPreferencesPutString0162
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_0900
          * @tc.desc put String callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -338,8 +338,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name clear put get flush String callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_2500
+         * @tc.name testPreferencesCallback0172
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_2500
          * @tc.desc flush String callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -379,8 +379,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name put StringArray callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_0800
+         * @tc.name testPreferencesPutStringArray0001
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_0800
          * @tc.desc put String callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -400,8 +400,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name put NumberArray callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_0700
+         * @tc.name testPreferencesPutNumArray0001
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_0700
          * @tc.desc put String callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -421,8 +421,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name put BoolArray callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_0600
+         * @tc.name testPreferencesPutBoolArray0001
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_0600
          * @tc.desc put String callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -442,8 +442,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name getAll callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_2400
+         * @tc.name testPreferencesGetAll0001
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_2400
          * @tc.desc getAll callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -487,8 +487,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name getPreferences callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_2300
+         * @tc.name testPreferencesGetPreferences0001
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_2300
          * @tc.desc getPreferences callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -509,8 +509,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name deletePreferences callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_0200
+         * @tc.name testPreferencesDeletePreferences0001
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_0200
          * @tc.desc deletePreferences callback interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -540,8 +540,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name removePreferencesFromCache interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_0100
+         * @tc.name testRemovePreferencesFromCache0001
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_0100
          * @tc.desc removePreferencesFromCache interface test
          * @tc.size MediumTest
          * @tc.type Function
@@ -570,8 +570,8 @@ export default function preferencesCallBackTest(){
         })
 
         /**
-         * @tc.name get defaultValue callback interface test
-         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceJsApiCallbackTest_1300
+         * @tc.name testPreferencesGetDefValue0173
+         * @tc.number SUB_DistributedData_Preference_SDK_PreferenceEtsApiCallbackTest_1300
          * @tc.desc get defaultValue callback interface test
          * @tc.size MediumTest
          * @tc.type Function
