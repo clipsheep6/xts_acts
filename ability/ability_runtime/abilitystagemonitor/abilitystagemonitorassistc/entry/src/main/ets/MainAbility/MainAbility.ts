@@ -13,34 +13,35 @@
 * limitations under the License.
 */
 
-import Ability from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
 export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        console.info('MainAbilityMonitor onCreate')
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.info('MainAbilityMonitor onCreate');
+  }
 
+  onDestroy() {
+    console.info('MainAbilityMonitor onDestroy');
+  }
 
-    onDestroy() {
-        console.info('MainAbilityMonitor onDestroy')
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.info('MainAbilityMonitor onWindowStageCreate');
+    windowStage.loadContent('MainAbility/pages/index', null);
+    // globalThis.abilityContext = this.context;
+  }
 
-    onWindowStageCreate(windowStage) {
-        console.info('MainAbilityMonitor onWindowStageCreate')
-        windowStage.setUIContent(this.context, 'MainAbility/pages/index', null)
+  onWindowStageDestroy() {
+    console.info('MainAbilityMonitor onWindowStageDestroy');
+  }
 
-        globalThis.abilityContext = this.context;
-    }
+  onForeground() {
+    console.info('MainAbilityMonitor onForeground');
+  }
 
-    onWindowStageDestroy() {
-        console.info('MainAbilityMonitor onWindowStageDestroy')
-    }
-
-    onForeground() {
-        console.info('MainAbilityMonitor onForeground')
-    }
-
-    onBackground() {
-        console.info('MainAbilityMonitor onBackground')
-    }
-};
+  onBackground() {
+    console.info('MainAbilityMonitor onBackground');
+  }
+}
