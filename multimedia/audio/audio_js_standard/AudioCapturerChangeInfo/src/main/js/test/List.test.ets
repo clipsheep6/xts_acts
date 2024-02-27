@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
- import audioCapturerChange from './AudioCapturerChangeInfo.test.js'
- 
- export default function testsuite() {
-   audioCapturerChange()
- }
+import audioCapturerChange from './AudioCapturerChangeInfo.test';
+
+export default function testsuite() {
+  audioCapturerChange();
+}
 
 
