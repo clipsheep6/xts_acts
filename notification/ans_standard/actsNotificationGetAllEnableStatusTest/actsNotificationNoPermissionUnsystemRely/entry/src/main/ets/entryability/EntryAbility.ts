@@ -50,7 +50,7 @@ export default class EntryAbility extends UIAbility {
     console.info("ActsNotificationNoPermissionUnsystemRely is onForeground");
     
     let promiseErrCode;
-    console.info("ActsNotificationNoPermissionUnsystemRely luoji start");
+    console.info("ActsNotificationNoPermissionUnsystemRely handle start");
     notificationManager.getAllNotificationEnabledBundles().then((data) => {
       console.info("ActsNotificationNoPermissionUnsystemRely db data is" + JSON.stringify(data));
     }).catch((err) => {
