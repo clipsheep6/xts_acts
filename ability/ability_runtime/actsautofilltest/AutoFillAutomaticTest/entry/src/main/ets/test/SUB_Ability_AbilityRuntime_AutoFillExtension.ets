@@ -35,7 +35,7 @@ function sleep(ms): Promise<any> {
 }
 
 async function startRelyAbility() : Promise<void> {
-  await abilityDelegator.executeShellCommand('aa start -b com.ohos.passwordbox -a EntryAbility').then(data => {
+  await abilityDelegator.executeShellCommand('aa start -b com.huawei.hmos.passwordvault -a EntryAbility').then(data => {
     hilog.info(0x0000, 'ActsAutoFillExtensionTest', '%{public}s', 'beforeEach aa start data is: ' + data.stdResult);
   }).catch(err => {
     hilog.info(0x0000, 'ActsAutoFillExtensionTest', '%{public}s', 'beforeEach err is: ' + JSON.stringify(err));
@@ -45,7 +45,7 @@ async function startRelyAbility() : Promise<void> {
 export default function abilityTest() {
   describe('ActsAutoFillExtensionTest', function () {
     afterEach(async function (done) {
-      await abilityDelegator.executeShellCommand('aa force-stop com.ohos.passwordbox');
+      await abilityDelegator.executeShellCommand('aa force-stop com.huawei.hmos.passwordvault');
       done();
     })
 
@@ -257,8 +257,8 @@ export default function abilityTest() {
           console.info('out verify begin');
           expect(context.currentHapModuleInfoName == 'entry').assertTrue();
           expect(context.configLanguage == 'zh-Hans').assertTrue();
-          expect(context.extensionAbilityInfoBundleName == 'com.ohos.passwordbox').assertTrue();
-          expect(context.applicationInfoName == 'com.ohos.passwordbox').assertTrue();
+          expect(context.extensionAbilityInfoBundleName == 'com.huawei.hmos.passwordvault').assertTrue();
+          expect(context.applicationInfoName == 'com.huawei.hmos.passwordvault').assertTrue();
           console.info('out verify middle1');
           expect(context.applicationContextCacheDir.indexOf('/cache') != -1).assertTrue();
           expect(context.applicationContextTempDir.indexOf('/temp') != -1).assertTrue();

@@ -169,7 +169,7 @@ async function verifyContextProperties(context): Promise<void> {
     console.error(`getApplicationContext failed, error.code: ${error.code}, error.message: ${error.message}`);
   }
   try {
-    let bundleContext = context.createBundleContext('com.ohos.passwordbox');
+    let bundleContext = context.createBundleContext('com.huawei.hmos.passwordvault');
     autoFillContextData.parameters.bundleContextApplicationInfo =
       JSON.stringify(bundleContext.applicationInfo).substring(0, MAX_STR_LENGTH);
   } catch (error) {
@@ -181,7 +181,7 @@ async function verifyContextProperties(context): Promise<void> {
     autoFillContextData.parameters.moduleContextApplicationInfoFirst =
       JSON.stringify(moduleContextA.applicationInfo).substring(0, MAX_STR_LENGTH);
 
-    let moduleContextB = context.createModuleContext('com.ohos.passwordbox', 'entry');
+    let moduleContextB = context.createModuleContext('com.huawei.hmos.passwordvault', 'entry');
     autoFillContextData.parameters.moduleContextApplicationInfoSecond =
       JSON.stringify(moduleContextB.applicationInfo).substring(0, MAX_STR_LENGTH);
   } catch (error) {
