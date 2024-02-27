@@ -13,8 +13,8 @@
 * limitations under the License.
 */
 
-import abilityStageMonitorTest from './AbilityStageMonitor.test'
+import abilityStageMonitorTest from './AbilityStageMonitor.test';
 
 export default function testsuite() {
-  abilityStageMonitorTest()
+  abilityStageMonitorTest();
 }
