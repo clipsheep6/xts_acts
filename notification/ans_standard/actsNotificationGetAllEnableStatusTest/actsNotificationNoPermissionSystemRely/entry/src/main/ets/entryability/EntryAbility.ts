@@ -66,7 +66,7 @@ export default class EntryAbility extends UIAbility {
             PromiseErrCode:promiseErrCode,
           }
         }
-      }, (err) => {
+      }, (err: Base.BusinessError) => {
         console.info("ActsNotificationNoPermissionSystemRelyterminateSelfWithResult err is :" + JSON.stringify(err));
       });
     }, 1000);

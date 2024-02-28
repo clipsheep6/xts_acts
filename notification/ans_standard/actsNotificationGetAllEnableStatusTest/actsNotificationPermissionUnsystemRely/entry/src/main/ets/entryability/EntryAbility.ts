@@ -17,6 +17,7 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 import notificationManager from '@ohos.notificationManager'
+import Base from '@ohos.base';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want, launchParam) {
@@ -66,7 +67,7 @@ export default class EntryAbility extends UIAbility {
             PromiseErrCode:promiseErrCode,
           }
         }
-      }, (err) => {
+      }, (err: Base.BusinessError) => {
         console.info("actsNotificationPermissionUnsystemRelyterminateSelfWithResult err is :" + JSON.stringify(err));
       });
     }, 1000);
