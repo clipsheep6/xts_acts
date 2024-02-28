@@ -439,7 +439,7 @@ export default function actsStartAbilityForResult() {
           .then((result) => {
             // Performing normal business operations
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
-            AssertionFailed(done);
+            expect(result.want.bundleName).assertEqual("");
           })
           .catch((err) => {
             // Processing business logic errors
@@ -499,8 +499,7 @@ export default function actsStartAbilityForResult() {
           .then((result) => {
             // Performing normal business operations
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
-            expect().assertFail();
-            done();
+           expect(result.want.bundleName).assertEqual("");
           })
           .catch((err) => {
             // Processing business logic errors
@@ -561,8 +560,9 @@ export default function actsStartAbilityForResult() {
             // Performing normal business operations
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult sbundleName is ${result.want.bundleName}`);
-            expect().assertFail();
-            done();
+            expect(result.resultCode).assertEqual("test");
+            expect(result.want.bundleName).assertEqual("");
+
           })
           .catch((err) => {
             // Processing business logic errors
