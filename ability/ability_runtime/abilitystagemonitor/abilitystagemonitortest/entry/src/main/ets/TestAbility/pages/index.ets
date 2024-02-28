@@ -19,7 +19,7 @@ struct Index {
   @State message: string = 'TestAbility Hello';
 
   aboutToAppear() {
-    console.info('TestAbility index aboutToAppear')
+    console.info('TestAbility index aboutToAppear');
   }
 
   build() {

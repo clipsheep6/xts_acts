@@ -248,7 +248,7 @@ export default function abilityStageMonitorTest() {
           done();
         }).catch((err: BusinessError) => {
           console.info("SUB_AA_AbilityStageMonitor_0500 waitAbilityStageMonitor err: " + JSON.stringify(err));
-          expect(err.code).assertEqual(-1);
+          expect(err.code).assertEqual(16000100);
           done();
         })
 
@@ -286,10 +286,11 @@ export default function abilityStageMonitorTest() {
       })
         .then((abilityStage) => {
           console.info("stageMonitor waitAbilityStageMonitor callback, abilityStage: " + JSON.stringify(abilityStage));
-        }).catch((err: BusinessError) => {
+        })
+        .catch((err: BusinessError) => {
           console.info("SUB_AA_AbilityStageMonitor_0600 waitAbilityStageMonitor err: " + JSON.stringify(err));
-          expect(err.code).assertEqual(-1)
-          done()
+          expect(err.code).assertEqual(16000100);
+          done();
         })
 
       console.info("SUB_AA_AbilityStageMonitor_0600 start ability");
@@ -342,9 +343,10 @@ export default function abilityStageMonitorTest() {
       })
         .then((abilityStage) => {
           console.info("stageMonitor waitAbilityStageMonitor callback, abilityStage: " + JSON.stringify(abilityStage));
-        }).catch((err: BusinessError) => {
+        })
+        .catch((err: BusinessError) => {
           console.info("SUB_AA_AbilityStageMonitor_0700 waitAbilityStageMonitor err: " + JSON.stringify(err));
-          expect(err.code).assertEqual(-1);
+          expect(err.code).assertEqual(16000100);
         })
 
       console.info("SUB_AA_AbilityStageMonitor_0700 removeAbilityStageMonitor");
@@ -399,9 +401,10 @@ export default function abilityStageMonitorTest() {
       })
         .then((abilityStage) => {
           console.info("stageMonitor waitAbilityStageMonitor callback, abilityStage: " + JSON.stringify(abilityStage));
-        }).catch((err: BusinessError) => {
+        })
+        .catch((err: BusinessError) => {
           console.info("SUB_AA_AbilityStageMonitor_0800 waitAbilityStageMonitor err: " + JSON.stringify(err));
-          expect(err.code).assertEqual(-1);
+          expect(err.code).assertEqual(16000100);
         })
 
       try {
@@ -445,9 +448,10 @@ export default function abilityStageMonitorTest() {
           JSON.stringify(abilityStage));
           expect().assertFail();
           done();
-        }).catch((err: BusinessError) => {
+        })
+        .catch((err: BusinessError) => {
           console.info("stageMonitor waitAbilityStageMonitor err = " + JSON.stringify(err));
-          expect(err.code).assertEqual(-1);
+          expect(err.code).assertEqual(16000100);
           done();
         })
       test(3000);
