@@ -1572,22 +1572,24 @@ export default function actsStartAbilityForResult() {
         }
         globalThis.context.startAbilityForResult(want18)
           .then((result) => {
+            expect(result.resultCode).assertEqual(199900);
+            expect(result.want.bundleName).assertEqual("");
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
-            AssertionFailed(done)
           })
           .catch((err) => {
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult catch err, err is ${JSON.stringify(err)}`);
           });
         await sleep(500)
 
-    let want: Want = undefined;
-    let resultCode = 199900;
+        let want: Want = undefined;
+        let resultCode = 199900;
         // 3， terminateSelfWithResult
         globalThis.context2.terminateSelfWithResult({
           want,
           resultCode
         })
           .then((result) => {
+             
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult succeed, result is ${JSON.stringify(result)}`);
           })
           .catch((err) => {
