@@ -15,11 +15,21 @@
 
 import {
   fileio, FILE_CONTENT, prepareFile, nextFileName,
-  describe, it, expect,
+  describe, it, expect, beforeAll
 } from '../../Common';
 
 export default function fileioChmod() {
 describe('fileio_chmod', function () {
+  const TARGETVERSION = 11;
+  let bundleInfo;
+beforeAll(() => {
+  try {
+    bundleInfo = bundleManager.getBundleInfoForSelfSync(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION);
+    console.log('Target version: ' + bundleInfo.targetVersion);
+  } catch(e) {
+    console.info('getBundleInfoForSelfSync failed for' + e);
+  }
+});
 
   /**
    * @tc.number SUB_DF_FILEIO_CHMODSYNC_0000
@@ -33,16 +43,20 @@ describe('fileio_chmod', function () {
   it('fileio_test_chmod_sync_000', 0, async function () {
     let fpath = await nextFileName('fileio_test_chmod_sync_000');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
-
+  
     try {
       fileio.chmodSync(fpath, 0o770);
-      expect((fileio.statSync(fpath).mode & 0o777) == 0o664).assertTrue();
+      if (bundleInfo.targetVersion < TARGETVERSION) {
+        expect((fileio.statSync(fpath).mode & 0o777) == 0o770).assertTrue();
+      } else {
+        expect((fileio.statSync(fpath).mode & 0o777) == 0o660).assertTrue();
+      }
       fileio.unlinkSync(fpath);
     } catch (e) {
       console.info('fileio_test_chmod_sync_000 has failed for ' + e);
       expect(null).assertFail();
     }
-  });
+  });  
 
   /**
    * @tc.number SUB_DF_FILEIO_CHMODASYNC_0000
@@ -56,10 +70,14 @@ describe('fileio_chmod', function () {
   it('fileio_test_chmod_async_000', 0, async function (done) {
     let fpath = await nextFileName('fileio_test_chmod_async_000');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
-
+  
     try {
       await fileio.chmod(fpath, 0o770);
-      expect((fileio.statSync(fpath).mode & 0o777) == 0o664).assertTrue();
+      if (bundleInfo.targetVersion < TARGETVERSION) {
+        expect((fileio.statSync(fpath).mode & 0o777) == 0o770).assertTrue();
+      } else {
+        expect((fileio.statSync(fpath).mode & 0o777) == 0o660).assertTrue();
+      }
       fileio.unlinkSync(fpath);
       done();
     } catch (e) {
@@ -82,19 +100,21 @@ describe('fileio_chmod', function () {
     let fpath = await nextFileName('fileio_test_chmod_async_001');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
-    try {
-      fileio.chmod(fpath, 0o770, (err) => {
+    fileio.chmod(fpath, 0o770, async (err) => {
         if (err) {
-          console.error('fileio_test_chmod_async_001 has failed in callback: ' + err);
+            console.error('fileio_test_chmod_async_001 has failed in callback: ' + err);
+            expect(null).assertFail();
+            done();
+        } else {
+            if (bundleInfo.targetVersion < TARGETVERSION) {
+              expect((fileio.statSync(fpath).mode & 0o777) == 0o770).assertTrue();
+            } else {
+              expect((fileio.statSync(fpath).mode & 0o777) == 0o660).assertTrue();
+            }
+            await fileio.unlink(fpath);
+            done();
         }
-        expect((fileio.statSync(fpath).mode & 0o777) == 0o664).assertTrue();
-        fileio.unlinkSync(fpath);
-        done();
-      });
-    } catch (e) {
-      console.info('fileio_test_chmod_async_001 has failed for ' + e);
-      expect(null).assertFail();
-    }
-  });
+    });
+});
 });
 }

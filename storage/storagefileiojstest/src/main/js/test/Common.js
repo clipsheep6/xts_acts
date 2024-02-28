@@ -20,7 +20,7 @@ import featureAbility from '@ohos.ability.featureAbility';
 export const FILE_CONTENT = 'hello world';
 
 import {
-  describe, it, expect
+  describe, it, expect, beforeAll
 }
 from '@ohos/hypium'
 
@@ -139,5 +139,6 @@ export {
   isInclude,
   describe,
   it,
-  expect
+  expect,
+  beforeAll
 };

@@ -15,11 +15,22 @@
 
 import {
   fileio, FILE_CONTENT, prepareFile, nextFileName,
-  describe, it, expect,
+  describe, it, expect,beforeAll
 } from '../../Common';
 
 export default function fileioFchmod() {
 describe('fileio_fchmod', function () {
+  const TARGETVERSION = 11;
+  let bundleInfo;
+beforeAll(() => {
+  try {
+    bundleInfo = bundleManager.getBundleInfoForSelfSync(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION);
+    console.log('Target version: ' + bundleInfo.targetVersion);
+  } catch(e) {
+    console.info('getBundleInfoForSelfSync failed for' + e);
+  }
+});
+
 
   /**
    * @tc.number SUB_DF_FILEIO_FCHMOD_SYNC_0000
@@ -37,7 +48,11 @@ describe('fileio_fchmod', function () {
     try {
       let fd = fileio.openSync(fpath, 0o2);
       fileio.fchmodSync(fd, 0o666);
-      expect((fileio.statSync(fpath).mode & 0o777) == 0o664).assertTrue();
+      if (bundleInfo.targetVersion < TARGETVERSION) {
+        expect((fileio.statSync(fpath).mode & 0o777) == 0o666).assertTrue();
+      } else {
+        expect((fileio.statSync(fpath).mode & 0o777) == 0o660).assertTrue();
+      }
       fileio.closeSync(fd);
       fileio.unlinkSync(fpath);
     } catch (e) {
@@ -59,22 +74,27 @@ describe('fileio_fchmod', function () {
     let fpath = await nextFileName('fileio_test_fchmod_async_000');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
-    try {
-      let fd = fileio.openSync(fpath, 0o1, 0o0200);
-      fileio.fchmod(fd, 1002, (err) => {
+    let fd = fileio.openSync(fpath, 0o1, 0o0200);
+    fileio.fchmod(fd, 1002, (err) => {
         if (err) {
-          console.error('fileio_test_fchmod_async_000 has failed in callback: ' + err);
+            console.error('fileio_test_fchmod_async_000 has failed in callback: ' + err);
+            expect(null).assertFail();
+            fileio.closeSync(fd);
+            fileio.unlinkSync(fpath);
+            done();
+        } else {
+            if (bundleInfo.targetVersion < TARGETVERSION) {
+              expect((fileio.statSync(fpath).mode & 0o777) == 1002).assertTrue();
+            } else {
+              expect((fileio.statSync(fpath).mode & 0o777) == 0o660).assertTrue();
+            }
+            fileio.closeSync(fd);
+            fileio.unlinkSync(fpath);
+            done();
         }
-        expect((fileio.statSync(fpath).mode & 0o777) == 0o664).assertTrue();
-        fileio.closeSync(fd);
-        fileio.unlinkSync(fpath);
-        done();
-      });
-    } catch (e) {
-      console.info('fileio_test_fchmod_async_000 has failed for ' + e);
-      expect(null).assertFail();
-    }
-  });
+    });
+});
+
 
   /**
    * @tc.number SUB_DF_FILEIO_FCHMOD_ASYNC_0100
@@ -89,17 +109,25 @@ describe('fileio_fchmod', function () {
     let fpath = await nextFileName('fileio_test_fchmod_async_001');
     expect(prepareFile(fpath, FILE_CONTENT)).assertTrue();
 
-    try {
-      let fd = fileio.openSync(fpath, 0o1, 0o020);
-      await fileio.fchmod(fd, 0o100);
-      expect((fileio.statSync(fpath).mode & 0o777) == 0o664).assertTrue();
-      fileio.closeSync(fd);
-      fileio.unlinkSync(fpath);
-      done();
-    } catch (e) {
-      console.info('fileio_test_fchmod_async_001 has failed for ' + e);
-      expect(null).assertFail();
-    }
-  });
+    let fd = fileio.openSync(fpath, 0o1, 0o020);
+    fileio.fchmod(fd, 0o100, async (err) => {
+        if (err) {
+            console.error('fileio_test_fchmod_async_001 has failed in callback: ' + err);
+            expect(null).assertFail();
+            fileio.closeSync(fd);
+            fileio.unlinkSync(fpath);
+            done();
+        } else {
+            if (bundleInfo.targetVersion < TARGETVERSION) {
+                expect((fileio.statSync(fpath).mode & 0o777) == 0o100).assertTrue();
+            } else {
+                expect((fileio.statSync(fpath).mode & 0o777) == 0o660).assertTrue();
+            }
+            fileio.closeSync(fd);
+            fileio.unlinkSync(fpath);
+            done();
+        }
+    });
+});
 });
 }
