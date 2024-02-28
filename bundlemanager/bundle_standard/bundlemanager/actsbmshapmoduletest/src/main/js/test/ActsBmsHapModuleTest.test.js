@@ -33,6 +33,7 @@ const SECOND_SCENE_HAP_NAME = 'com.example.bmsmainabilitysecondscene.MyApplicati
 const THIRD_TWO_HAP_NAME = 'com.example.third2.MyApplication';
 const THIRD_FIVE_HAP_NAME = 'com.example.third5.BmsThirdBundle5';
 const SYSTEM_ONE_HAP_NAME = 'com.example.system1.BmsSystemBundle1';
+const CODE_PATH = "/data/app/el1/bundle/public/com.example.bmsmainabilityfirstscene";
 
 export default function ActsBmsHapModuleTest() {
 describe('ActsBmsHapModuleTest', function () {
@@ -65,6 +66,7 @@ describe('ActsBmsHapModuleTest', function () {
                 expect(hapModuleInfo.mainAbilityName).assertEqual(FIRSTMAINABILITY);
                 expect(hapModuleInfo.abilityInfo.length).assertLarger(0);
                 expect(hapModuleInfo.installationFree).assertEqual(false);
+                expect(hapModuleInfo.codePath).assertEqual(CODE_PATH);
                 done();
             }
         }
