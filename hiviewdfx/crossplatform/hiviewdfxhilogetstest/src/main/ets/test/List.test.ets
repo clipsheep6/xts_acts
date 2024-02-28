@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import HilogJsTest from './hilog.test'
+import HilogJsTest from './hilog.test';
 
 export default function testsuite() {
-  HilogJsTest()
+  HilogJsTest();
 }
