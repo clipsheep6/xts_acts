@@ -192,5 +192,34 @@ export default function buttonJsunit() {
       done();
     });
 
+    /**
+     * @tc.number testButton1609
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testButton1609', 0, async function (done) {
+      console.info('testButton1609 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('button2');//测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+
+      let strJsonNew2 = getInspectorByKey('button');//测试组件的key名称
+      let objNew2 = JSON.parse(strJsonNew2);
+
+      console.info("testButton1609 component  is: " + JSON.stringify(objNew.$attrs));
+      console.info("testButton1609 component2  is: " + JSON.stringify(objNew2.$attrs));
+      expect(objNew.$attrs.index).assertEqual('5'); //
+      expect(objNew2.$attrs.index).assertEqual('5'); //
+      console.info('testButton1609 END');
+      done();
+    });
+
   })
 }
