@@ -21,13 +21,13 @@ import type { UIContext } from '@ohos.arkui.UIContext';
 
 let options: router.RouterOptions = {
   url: 'pages/LoggedInPage'
-}
+};
 let account: AccountInfo = {
   id: 0,
   username: '',
   password: '',
   newPassword: ''
-}
+};
 
 @Entry
 @Component

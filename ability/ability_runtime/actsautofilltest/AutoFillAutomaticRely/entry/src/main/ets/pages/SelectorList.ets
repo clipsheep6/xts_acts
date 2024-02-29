@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-import autoFillManager from '@ohos.app.ability.autoFillManager'
-import hilog from '@ohos.hilog'
+import autoFillManager from '@ohos.app.ability.autoFillManager';
+import hilog from '@ohos.hilog';
 
-let storage = LocalStorage.getShared()
+let storage = LocalStorage.getShared();
 let fillCallback = storage.get<autoFillManager.FillRequestCallback>('fillCallback');
 let viewData: autoFillManager.ViewData | undefined = storage.get<autoFillManager.ViewData>('viewData');
 let pageNodeInfos = storage.get<Array<autoFillManager.PageNodeInfo>>('pageNodeInfos');
@@ -65,7 +65,7 @@ function cancelFunc() {
 @Entry
 @Component
 struct SelectorList {
-  @State message: string = 'AutoFill Page'
+  @State message: string = 'AutoFill Page';
 
   build() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
@@ -80,7 +80,7 @@ struct SelectorList {
         .justifyContent(FlexAlign.SpaceBetween)
 
         Row() {
-          Text('Got ViewData, string length: '+ JSON.stringify(viewData).length)
+          Text('Got ViewData, string length: ' + JSON.stringify(viewData).length)
             .fontWeight(FontWeight.Bold)
             .margin({ bottom: 10 })
         }

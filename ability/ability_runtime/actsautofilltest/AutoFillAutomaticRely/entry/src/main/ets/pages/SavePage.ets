@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import autoFillManager from '@ohos.app.ability.autoFillManager'
+import autoFillManager from '@ohos.app.ability.autoFillManager';
 import hilog from '@ohos.hilog';
 
 let storage = LocalStorage.getShared();
@@ -27,13 +27,13 @@ function SuccessFunc(success: boolean) {
     }
     saveRequestCallback.onFailure();
   }
-  hilog.error(0x0000, 'testTag', 'saveRequestCallback is nullptr!')
+  hilog.error(0x0000, 'testTag', 'saveRequestCallback is nullptr!');
 }
 
 @Entry
 @Component
 struct SavePage {
-  @State message: string = 'Save Account?'
+  @State message: string = 'Save Account?';
 
   build() {
     Row() {
