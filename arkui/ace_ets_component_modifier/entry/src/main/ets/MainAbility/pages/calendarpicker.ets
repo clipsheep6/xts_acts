@@ -12,26 +12,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { CalendarPickerModifier } from "@ohos.arkui.modifier";
 
-class CalendarPickerModifier1 implements AttributeModifier<CalendarPickerAttribute> {
+class CustomModifier extends CalendarPickerModifier {
   applyNormalAttribute(instance: CalendarPickerAttribute): void {
-    instance
-      .edgeAlign(CalendarAlign.END, { dx: 10, dy: 15 })
-      .textStyle({ color: '#FF182431', font: { size: 8, weight: FontWeight.Lighter } })
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.edgeAlign(CalendarAlign.START,{dx: 10, dy: 10})
   }
 }
 
 @Entry
 @Component
 struct CalendarPickerExample {
-  @State calendarPickerModifier: CalendarPickerModifier1 = new CalendarPickerModifier1()
+  @State customModifier: CalendarPickerModifier = new CustomModifier()
+    .edgeAlign(CalendarAlign.END, { dx: 10, dy: 15 })
+    .textStyle({ color: '#FF182431', font: { size: 8, weight: FontWeight.Lighter } })
   private selectedDate: Date = new Date('2026-02-11')
 
   build() {
     Column() {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
+
       CalendarPicker({ selected: this.selectedDate })
         .key('CalendarPickerKey1')
-        .attributeModifier(this.calendarPickerModifier)
+        .attributeModifier(this.customModifier as CustomModifier)
     }
     .width('100%')
     .height('100%')

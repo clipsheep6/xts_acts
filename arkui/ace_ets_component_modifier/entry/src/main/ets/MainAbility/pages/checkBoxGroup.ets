@@ -12,32 +12,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { CheckboxGroupModifier } from "@ohos.arkui.modifier";
 
-class TestCheckboxGroupModifier implements AttributeModifier<CheckboxGroupAttribute> {
-  mMark: MarkStyle = { strokeColor: '#FF00FF', size: 10, strokeWidth: 15 }
-  mUnselectedColor: ResourceColor = '#FF123456'
-  mSelectAll: boolean = true
-  mSelectedColor: ResourceColor = '#FF321456'
-
+class CustomModifier extends CheckboxGroupModifier {
   applyNormalAttribute(instance: CheckboxGroupAttribute): void {
-    instance
-      .mark(this.mMark)
-      .unselectedColor(this.mUnselectedColor)
-      .selectAll(this.mSelectAll)
-      .selectedColor(this.mSelectedColor)
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.selectAll(false)
   }
 }
 
 @Entry
 @Component
 struct TestCheckboxGroupPage {
-  @State modifier: TestCheckboxGroupModifier = new TestCheckboxGroupModifier()
+  private mMark: MarkStyle = { strokeColor: '#FF00FF', size: 10, strokeWidth: 15 }
+  private mUnselectedColor: ResourceColor = '#FF123456'
+  private mSelectAll: boolean = true
+  private mSelectedColor: ResourceColor = '#FF321456'
+
+  @State customModifier: CheckboxGroupModifier = new CustomModifier()
+    .mark(this.mMark)
+    .unselectedColor(this.mUnselectedColor)
+    .selectAll(this.mSelectAll)
+    .selectedColor(this.mSelectedColor)
 
   build() {
     Column() {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
+
       CheckboxGroup({ group: 'checkboxGroup' })
         .key('checkboxNO')
-        .attributeModifier(this.modifier)
+        .attributeModifier(this.customModifier as CustomModifier)
     }
     .width('100%')
       .height('100%')

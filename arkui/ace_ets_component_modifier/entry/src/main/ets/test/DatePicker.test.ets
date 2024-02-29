@@ -16,6 +16,7 @@
 import router from '@system.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import Utils from './Utils.ets'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest';
 
 export default function datePickerJsunit() {
   describe('ActsAceDatePickerTest', function () {
@@ -123,6 +124,30 @@ export default function datePickerJsunit() {
       expect(disappearTextStyle['font'].size).assertEqual('8.00fp');
       expect(disappearTextStyle['font'].weight).assertEqual('FontWeight.Lighter');
       console.info('[testDatePicker0024] END');
+      done();
+    });
+
+    /**
+     * @tc.number testDatePicker0025
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testDatePicker0025', 0, async function (done) {
+      console.info('testDatePicker0025 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('DatePicker'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("testDatePicker0025 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.lunar).assertEqual('false'); //
+
+      console.info('testDatePicker0025 END');
       done();
     });
   })
