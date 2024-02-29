@@ -51,6 +51,7 @@ import getThumbnailTest from './PhotoAsset/getThumbnail'
 import photoPickerTest from './PhotoAccessHelper/photoPicker'
 import PhotoAccessHelperTest from  './PhotoAccessHelperCases/PhotoAccessHelperTest.test.ets'
 import PhotoAccessHelperStabilityTest from  './PhotoAccessHelperCases/PhotoAccessHelperStabilityTest.test.ets'
+import performanceTest from './PhotoAccessHelperCases/performanceTest.test'
 import setAlbumNameChangeRequestTest from './MediaAlbumChangeRequest/setAlbumName'
 import getAlbumChangeRequestTest from './MediaAlbumChangeRequest/getAlbum'
 import addRemoveAssetsChangeRequestTest from './MediaAlbumChangeRequest/addRemoveAssets'
@@ -104,6 +105,7 @@ export default function testsuite () {
   getThumbnailTest()
   photoPickerTest()
   PhotoAccessHelperTest()
+  performanceTest()
   setAlbumNameChangeRequestTest()
   getAlbumChangeRequestTest()
   addRemoveAssetsChangeRequestTest()
