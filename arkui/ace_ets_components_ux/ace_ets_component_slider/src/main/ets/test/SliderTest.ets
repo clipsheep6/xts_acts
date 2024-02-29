@@ -2403,5 +2403,292 @@ export default function sliderTest() {
       }, 500)
     })
 
+    /**
+      * @tc.number ArkUX_Stage_Slider_trackColor_0100
+      * @tc.name   Test the trackColor property of the Slider component
+      * @tc.desc   Set the trackColor attribute to 0xFFAAAAAA
+      */
+    it('ArkUX_Stage_Slider_trackColor_0100', 0, async function (done) {
+      console.info('[ArkUX_Stage_Slider_trackColor_0100] START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Slider_trackColor_0100');
+          let obj = JSON.parse(strJson);
+          console.info("----ArkUX_Stage_Slider_trackColor_0100 is" + JSON.stringify(obj.$attrs.trackColor));
+          expect(obj.$attrs.trackColor).assertEqual(
+            "[{\"color\":\"#FFAAAAAA\",\"offset\":\"0.000000\"},{\"color\":\"#FFAAAAAA\",\"offset\":\"1.000000\"}]");
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Slider_trackColor_0100 ERROR: ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    })
+
+    /**
+      * @tc.number ArkUX_Stage_Slider_trackColor_0200
+      * @tc.name   Test the trackColor property of the Slider component
+      * @tc.desc   Set the trackColor attribute to [{color: 0xFFFF0000, offset: 0}, {color: 0xFFFFFFFF, offset: 1}]
+      */
+    it('ArkUX_Stage_Slider_trackColor_0200', 0, async function (done) {
+      console.info('[ArkUX_Stage_Slider_trackColor_0200] START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Slider_trackColor_0200');
+          let obj = JSON.parse(strJson);
+          console.info("----ArkUX_Stage_Slider_trackColor_0200 is" + JSON.stringify(obj.$attrs.trackColor));
+          expect(obj.$attrs.trackColor).assertEqual(
+            "[{\"color\":\"#FFFF0000\",\"offset\":\"0.000000\"},{\"color\":\"#FFFFFFFF\",\"offset\":\"1.000000\"}]");
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Slider_trackColor_0200 ERROR: ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    })
+
+    /**
+      * @tc.number ArkUX_Stage_Slider_trackColor_0300
+      * @tc.name   Test the trackColor property of the Slider component
+      * @tc.desc   Set the trackColor attribute to [{color: '#FFFF9A35', offset: 0}, {color: '#FFFFFFFF', offset: 1}]
+      */
+    it('ArkUX_Stage_Slider_trackColor_0300', 0, async function (done) {
+      console.info('[ArkUX_Stage_Slider_trackColor_0300] START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Slider_trackColor_0300');
+          let obj = JSON.parse(strJson);
+          console.info("----ArkUX_Stage_Slider_trackColor_0300 is" + JSON.stringify(obj.$attrs.trackColor));
+          expect(obj.$attrs.trackColor).assertEqual(
+            "[{\"color\":\"#FFFF9A35\",\"offset\":\"0.000000\"},{\"color\":\"#FFFFFFFF\",\"offset\":\"1.000000\"}]");
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Slider_trackColor_0300 ERROR: ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    })
+
+    /**
+      * @tc.number ArkUX_Stage_Slider_trackColor_0400
+      * @tc.name   Test the trackColor property of the Slider component
+      * @tc.desc   Set the trackColor attribute to [{color: Color.Red, offset: 0}, {color: Color.White, offset: 1}]
+      */
+    it('ArkUX_Stage_Slider_trackColor_0400', 0, async function (done) {
+      console.info('[ArkUX_Stage_Slider_trackColor_0400] START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Slider_trackColor_0400');
+          let obj = JSON.parse(strJson);
+          console.info("----ArkUX_Stage_Slider_trackColor_0400 is" + JSON.stringify(obj.$attrs.trackColor));
+          expect(obj.$attrs.trackColor).assertEqual(
+            "[{\"color\":\"#FFFF0000\",\"offset\":\"0.000000\"},{\"color\":\"#FFFFFFFF\",\"offset\":\"1.000000\"}]");
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Slider_trackColor_0400 ERROR: ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    })
+
+    /**
+      * @tc.number ArkUX_Stage_Slider_trackColor_0500
+      * @tc.name   Test the trackColor property of the Slider component
+      * @tc.desc   Set the trackColor attribute to 
+      * [{color: $r($r("app.color.start_track_color")), offset: 0},
+      *  {color: $r("app.color.end_track_color"), offset: 1}]
+      */
+    it('ArkUX_Stage_Slider_trackColor_0500', 0, async function (done) {
+      console.info('[ArkUX_Stage_Slider_trackColor_0500] START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Slider_trackColor_0500');
+          let obj = JSON.parse(strJson);
+          console.info("----ArkUX_Stage_Slider_trackColor_0500 is" + JSON.stringify(obj.$attrs.trackColor));
+          expect(obj.$attrs.trackColor).assertEqual(
+            "[{\"color\":\"#FF19D41C\",\"offset\":\"0.000000\"},{\"color\":\"#FFC709E9\",\"offset\":\"1.000000\"}]");
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Slider_trackColor_0500 ERROR: ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    })
+
+     /**
+      * @tc.number ArkUX_Stage_Slider_trackColor_0600
+      * @tc.name   Test the trackColor property of the Slider component
+      * @tc.desc   Set the trackColor attribute to null
+      */
+    it('ArkUX_Stage_Slider_trackColor_0600', 0, async function (done) {
+      console.info('[ArkUX_Stage_Slider_trackColor_0600] START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Slider_trackColor_0600');
+          let obj = JSON.parse(strJson);
+          console.info("----ArkUX_Stage_Slider_trackColor_0600 is" + JSON.stringify(obj.$attrs.trackColor));
+          let strJsonDefault = getInspectorByKey('ArkUX_Stage_Slider_trackColor_default');
+          let objDefault = JSON.parse(strJsonDefault);
+          expect(obj.$attrs.trackColor).assertEqual(objDefault.$attrs.trackColor);
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Slider_trackColor_0600 ERROR: ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    })
+
+    /**
+      * @tc.number ArkUX_Stage_Slider_trackColor_0700
+      * @tc.name   Test the trackColor property of the Slider component
+      * @tc.desc   Set the trackColor attribute to undefined
+      */
+    it('ArkUX_Stage_Slider_trackColor_0700', 0, async function (done) {
+      console.info('[ArkUX_Stage_Slider_trackColor_0700] START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Slider_trackColor_0700');
+          let obj = JSON.parse(strJson);
+          console.info("----ArkUX_Stage_Slider_trackColor_0700 is" + JSON.stringify(obj.$attrs.trackColor));
+          let strJsonDefault = getInspectorByKey('ArkUX_Stage_Slider_trackColor_default');
+          let objDefault = JSON.parse(strJsonDefault);
+          expect(obj.$attrs.trackColor).assertEqual(objDefault.$attrs.trackColor);
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Slider_trackColor_0700 ERROR: ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    })
+
+    /**
+      * @tc.number ArkUX_Stage_Slider_trackColor_0800
+      * @tc.name   Test the trackColor property of the Slider component
+      * @tc.desc   Set the trackColor attribute to 
+      * [{color: Color.Red, offset: 0}, {color: Color.Blue, offset: 0.3},
+      *  {color: 0xFF00FF00, offset: 0.6}, {color: Color.White, offset: 1}]
+      */
+    it('ArkUX_Stage_Slider_trackColor_0800', 0, async function (done) {
+      console.info('[ArkUX_Stage_Slider_trackColor_0800] START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Slider_trackColor_0800');
+          let obj = JSON.parse(strJson);
+          console.info("----ArkUX_Stage_Slider_trackColor_0800 is" + JSON.stringify(obj.$attrs.trackColor));
+          expect(obj.$attrs.trackColor).assertEqual(
+            "[{\"color\":\"#FFFF0000\",\"offset\":\"0.000000\"},{\"color\":\"#FF0000FF\",\"offset\":\"0.300000\"}," +
+            "{\"color\":\"#FF00FF00\",\"offset\":\"0.600000\"},{\"color\":\"#FFFFFFFF\",\"offset\":\"1.000000\"}]");
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Slider_trackColor_0800 ERROR: ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    })
+
+    /**
+      * @tc.number ArkUX_Stage_Slider_trackColor_0900
+      * @tc.name   Test the trackColor property of the Slider component
+      * @tc.desc   Set the trackColor attribute to empty gradient
+      */
+    it('ArkUX_Stage_Slider_trackColor_0900', 0, async function (done) {
+      console.info('[ArkUX_Stage_Slider_trackColor_0900] START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Slider_trackColor_0900');
+          let obj = JSON.parse(strJson);
+          console.info("----ArkUX_Stage_Slider_trackColor_0900 is" + JSON.stringify(obj.$attrs.trackColor));
+          let strJsonDefault = getInspectorByKey('ArkUX_Stage_Slider_trackColor_default');
+          let objDefault = JSON.parse(strJsonDefault);
+          expect(obj.$attrs.trackColor).assertEqual(objDefault.$attrs.trackColor);
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Slider_trackColor_0900 ERROR: ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    })
+
+    /**
+      * @tc.number ArkUX_Stage_Slider_trackColor_1000
+      * @tc.name   Test the trackColor property of the Slider component
+      * @tc.desc   Set the trackColor attribute to [{color: Color.Red, offset: 0}, {color: Color.Blue, offset: 0.3}
+      * {color: "Color.Green", offset: 0.5}, {color: Color.White, offset: 1}]
+      */
+    it('ArkUX_Stage_Slider_trackColor_1000', 0, async function (done) {
+      console.info('[ArkUX_Stage_Slider_trackColor_1000] START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Slider_trackColor_1000');
+          let obj = JSON.parse(strJson);
+          console.info("----ArkUX_Stage_Slider_trackColor_1000 is" + JSON.stringify(obj.$attrs.trackColor));
+          expect(obj.$attrs.trackColor).assertEqual(
+            "[{\"color\":\"#FFFF0000\",\"offset\":\"0.000000\"},{\"color\":\"#FF0000FF\",\"offset\":\"0.300000\"}]");
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Slider_trackColor_1000 ERROR: ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    })
+
+    /**
+      * @tc.number ArkUX_Stage_Slider_trackColor_1100
+      * @tc.name   Test the trackColor property of the Slider component
+      * @tc.desc   Set the trackColor attribute to [{color: Color.Red, offset: 0}, {color: Color.Blue, offset: -0.3},
+      * {color: '#FF00FF00', offset: 'xxx'}, {color: Color.White, offset: 10}, {color: "#FFC709E9", offset: 1}]
+      */
+    it('ArkUX_Stage_Slider_trackColor_1100', 0, async function (done) {
+      console.info('[ArkUX_Stage_Slider_trackColor_1100] START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Slider_trackColor_1100');
+          let obj = JSON.parse(strJson);
+          console.info("----ArkUX_Stage_Slider_trackColor_1100 is" + JSON.stringify(obj.$attrs.trackColor));
+          expect(obj.$attrs.trackColor).assertEqual(
+            "[{\"color\":\"#FFFF0000\",\"offset\":\"0.000000\"},{\"color\":\"#FF0000FF\",\"offset\":\"0.000000\"}," +
+            "{\"color\":\"#FF00FF00\",\"offset\":\"0.000000\"},{\"color\":\"#FFFFFFFF\",\"offset\":\"1.000000\"}," +
+            "{\"color\":\"#FFC709E9\",\"offset\":\"1.000000\"}]");
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Slider_trackColor_1100 ERROR: ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    })
+
+    /**
+      * @tc.number ArkUX_Stage_Slider_trackColor_1200
+      * @tc.name   Test the trackColor property of the Slider component
+      * @tc.desc   Set the trackColor attribute to [{color: Color.Red, offset: 0.2}]
+      */
+    it('ArkUX_Stage_Slider_trackColor_1200', 0, async function (done) {
+      console.info('[ArkUX_Stage_Slider_trackColor_1200] START');
+      setTimeout(() => {
+        try {
+          let strJson = getInspectorByKey('ArkUX_Stage_Slider_trackColor_1200');
+          let obj = JSON.parse(strJson);
+          console.info("----ArkUX_Stage_Slider_trackColor_1200 is" + JSON.stringify(obj.$attrs.trackColor));
+          expect(obj.$attrs.trackColor).assertEqual(
+            "[{\"color\":\"#FFFF0000\",\"offset\":\"0.200000\"},{\"color\":\"#FFFF0000\",\"offset\":\"0.200000\"}]");
+          done();
+        } catch (err) {
+          expect().assertFail();
+          console.info('ArkUX_Stage_Slider_trackColor_1200 ERROR: ' + JSON.stringify(err));
+          done();
+        }
+      }, 500)
+    })
   })
 }

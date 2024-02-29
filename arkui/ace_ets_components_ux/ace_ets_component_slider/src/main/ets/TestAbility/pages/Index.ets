@@ -43,6 +43,23 @@ struct SliderTest {
   private sliderShapeRect: SliderBlockStyle = { type: SliderBlockType.SHAPE, shape: this.Rect }
   private sliderDefault: SliderBlockStyle = { type: SliderBlockType.DEFAULT }
 
+  private track_color_solid: number = 0xFFAAAAAA
+  private track_color_linear_number: LinearGradient = new LinearGradient([{color: 0xFFFF0000, offset: 0}, {color: 0xFFFFFFFF, offset: 1}])
+  private track_color_linear_string: LinearGradient = new LinearGradient([{color: '#FFFF9A35', offset: 0}, {color: '#FFFFFFFF', offset: 1}])
+  private track_color_linear_color: LinearGradient = new LinearGradient([{color: Color.Red, offset: 0}, {color: Color.White, offset: 1}])
+  private track_color_linear_resource: LinearGradient = new LinearGradient([{color: $r("app.color.start_track_Color"), offset: 0},
+  {color: $r("app.color.end_track_Color"), offset: 1}])
+  private track_color_linear_null: LinearGradient = null
+  private track_color_linear_undefined: LinearGradient = undefined
+  private track_color_linear_size4: LinearGradient = new LinearGradient([{color: Color.Red, offset: 0}, {color: Color.Blue, offset: 0.3},
+  {color: 0xFF00FF00, offset: 0.6}, {color: Color.White, offset: 1}])
+  private track_color_linear_empty: LinearGradient = new LinearGradient([])
+  private track_color_linear_invalid1: LinearGradient = new LinearGradient([{color: Color.Red, offset: 0}, {color: Color.Blue, offset: 0.3},
+  {color: "Color.Green", offset: 0.5}, {color: Color.White, offset: 1}])
+  private track_color_linear_invalid2: LinearGradient = new LinearGradient([{color: Color.Red, offset: 0}, {color: Color.Blue, offset: -0.3},
+  {color: '#FF00FF00', offset: 'xxx'}, {color: Color.White, offset: 10}, {color: "#FFC709E9", offset: 1}])
+  private track_color_linear_invalid3: LinearGradient = new LinearGradient([{color: Color.Red, offset: 0.2}])
+
   build() {
     Row() {
       Column() {
@@ -985,6 +1002,121 @@ struct SliderTest {
           .key('ArkUX_Stage_Slider_blockStyle_1400')
           .blockStyle(this.sliderShapeCircle)
           .size(null)
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_trackColor_default')
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_trackColor_0100')
+          .trackColor(this.track_color_solid)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_trackColor_0200')
+          .trackColor(this.track_color_linear_number)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_trackColor_0300')
+          .trackColor(this.track_color_linear_string)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_trackColor_0400')
+          .trackColor(this.track_color_linear_color)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_trackColor_0500')
+          .trackColor(this.track_color_linear_resource)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_trackColor_0600')
+          .trackColor(this.track_color_linear_null)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_trackColor_0700')
+          .trackColor(this.track_color_linear_undefined)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_trackColor_0800')
+          .trackColor(this.track_color_linear_size4)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_trackColor_0900')
+          .trackColor(this.track_color_linear_empty)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_trackColor_1000')
+          .trackColor(this.track_color_linear_invalid1)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_trackColor_1100')
+          .trackColor(this.track_color_linear_invalid2)
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('ArkUX_Stage_Slider_trackColor_1200')
+          .trackColor(this.track_color_linear_invalid3)
       }
       .width('100%')
     }

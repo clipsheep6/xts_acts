@@ -11,6 +11,14 @@
       {
         "name": "start_Step_Color",
         "value": "#FF19D41C"
+      },
+      {
+        "name": "start_track_Color",
+        "value": "#FF19D41C"
+      },
+      {
+        "name": "end_track_Color",
+        "value": "#FFC709E9"
       }
     ]
   }
