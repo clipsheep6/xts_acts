@@ -1972,5 +1972,95 @@ export default function performanceTest() {
             tag = '[Statistics]fetchResult.getObjectByPosition callback'
             eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
         })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_PERFORMANCE_3400
+           * @tc.name      : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_PERFORMANCE_3400
+           * @tc.desc      : fetchResult.getObjectByPosition promise with sizes 10 times , get average time
+           * @tc.size      : MediumTest
+           * @tc.type      : Performance test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_PERFORMANCE_3400', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and fetchResult.getObjectByPosition
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_GETOBJECTBYPOSITION_PROMISE_EVENT
+            );
+            for(let i = 0; i< 9;i++)
+            {
+                mySteps.push(
+                    // fetchResult.getObjectByPosition
+                    FETCHRESULT_GETOBJECTBYPOSITION_PROMISE_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_CALLBACK_EVENT, GET_AVERAGE_TIME, 
+                // end
+                END_EVENT
+            )
+            tag = '[Statistics]fetchResult.getObjectByPosition promise'
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_PERFORMANCE_3500
+           * @tc.name      : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_PERFORMANCE_3500
+           * @tc.desc      : fetchResult.getAllObjects callback with sizes 10 times , get average time
+           * @tc.size      : MediumTest
+           * @tc.type      : Performance test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_PERFORMANCE_3500', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and fetchResult.getAllObjects
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_GETALLOBJECTS_CALLBACK_EVENT
+            );
+            for(let i = 0; i< 9;i++)
+            {
+                mySteps.push(
+                    // fetchResult.getAllObjects
+                    FETCHRESULT_GETALLOBJECTS_CALLBACK_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_CALLBACK_EVENT, GET_AVERAGE_TIME, 
+                // end
+                END_EVENT
+            )
+            tag = '[Statistics] fetchResult.getAllObjects callback'
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
+
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_PERFORMANCE_3600
+           * @tc.name      : SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_PERFORMANCE_3600
+           * @tc.desc      : fetchResult.getAllObjects promise with sizes 10 times , get average time
+           * @tc.size      : MediumTest
+           * @tc.type      : Performance test
+           * @tc.level     : Level3
+           */
+        it('SUB_MULTIMEDIA_MEDIA_PHOTOACCESSHELPER_PERFORMANCE_3600', 3, function (done) {
+            let mySteps = new Array(
+                // getPhotoAccessHelper and fetchResult.getAllObjects
+                CREATE_EVENT, GET_PHOTOASSET_EVENT, FETCHRESULT_GETALLOBJECTS_PROMISE_EVENT
+            );
+            for(let i = 0; i< 9;i++)
+            {
+                mySteps.push(
+                    // fetchResult.getAllObjects
+                    FETCHRESULT_GETALLOBJECTS_PROMISE_EVENT
+                )
+            }
+            mySteps.push(
+                // release
+                RELEASE_CALLBACK_EVENT, GET_AVERAGE_TIME, 
+                // end
+                END_EVENT
+            )
+            tag = '[Statistics]fetchResult.getAllObjects promise'
+            eventEmitter.emit(mySteps[0],fetchOptions, videoType, "mp4", options, mySteps, done);
+        })
     })
 }
