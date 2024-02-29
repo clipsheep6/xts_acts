@@ -19,7 +19,7 @@ import common from '@ohos.app.ability.common';
 import notification from '@ohos.notificationManager'
 import notificationSubscribe from '@ohos.notificationSubscribe';
 
-function sleep(ms:number) {
+function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
@@ -48,7 +48,7 @@ export default function abilityTest() {
      * @tc.type: Function
      * @tc.level: Level1
      */
-    it('ActsEmergencyNotificationTest_0100',0, async function (done) {
+    it('ActsEmergencyNotificationTest_0100', 0, async function (done) {
       console.info('ActsEmergencyNotificationTest_0100 start');
       let want = {
         bundleName: 'com.example.actcemergencynotificationrely',
@@ -74,10 +74,10 @@ export default function abilityTest() {
             additionalText: "test_additionalText"
           }
         },
-        notificationSlotType:notification.SlotType.EMERGENCY_INFORMATION
+        notificationSlotType: notification.SlotType.EMERGENCY_INFORMATION
       };
 
-      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult)=>{
+      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult) => {
         console.info('ActsEmergencyNotificationTest_0100 startAbilityForResult successful');
         setTimeout(() => {
           console.info('ActsEmergencyNotificationTest_0100 data is: ' + JSON.stringify(data));
@@ -102,10 +102,38 @@ export default function abilityTest() {
      * @tc.type: Function
      * @tc.level: Level1
      */
-    it('ActsEmergencyNotificationTest_0200',0, async function (done) {
+    it('ActsEmergencyNotificationTest_0200', 0, async function (done) {
       console.info('ActsEmergencyNotificationTest_0200 start');
+      let notificationSlot: notification.NotificationSlot = {
+        notificationType: notification.SlotType.EMERGENCY_INFORMATION
+      };
 
       await notification.addSlot(notification.SlotType.EMERGENCY_INFORMATION).then(() => {
+        console.info("ActsEmergencyNotificationTest_0200 addSlot success");
+      }).catch((err: Base.BusinessError) => {
+        console.error(`ActsEmergencyNotificationTest_0200 addSlot fail: ${JSON.stringify(err)}`);
+        expect().assertFail();
+        done();
+      });
+
+      await notification.getSlots().then((data: Array<notification.NotificationSlot>) => {
+        console.info("ActsEmergencyNotificationTest_0200 getSlots success, data: " + JSON.stringify(data));
+        expect(JSON.stringify(data)).assertContain(notification.SlotType.EMERGENCY_INFORMATION);
+      }).catch((err: Base.BusinessError) => {
+        console.error(`ActsEmergencyNotificationTest_0200 getSlots failed, code is ${err}`);
+        expect().assertFail();
+        done();
+      });
+
+      await notification.removeAllSlots().then(() => {
+        console.info("ActsEmergencyNotificationTest_0200 removeAllSlots success");
+      }).catch((err: Base.BusinessError) => {
+        console.error(`ActsEmergencyNotificationTest_0200 removeAllSlots failed, code is ${err}`);
+        expect().assertFail();
+        done();
+      });
+
+      await notification.addSlot(notificationSlot).then(() => {
         console.info("ActsEmergencyNotificationTest_0200 addSlot success");
       }).catch((err: Base.BusinessError) => {
         console.error(`ActsEmergencyNotificationTest_0200 addSlot fail: ${JSON.stringify(err)}`);
@@ -132,7 +160,7 @@ export default function abilityTest() {
      * @tc.type: Function
      * @tc.level: Level1
      */
-    it('ActsEmergencyNotificationTest_0300',0, async function (done) {
+    it('ActsEmergencyNotificationTest_0300', 0, async function (done) {
       console.info('ActsEmergencyNotificationTest_0300 start')
       let want = {
         bundleName: 'com.example.actcemergencynotificationrely',
@@ -158,14 +186,13 @@ export default function abilityTest() {
             additionalText: "test_additionalText"
           }
         },
-        notificationControlFlags:notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_SOUND,
-        notificationSlotType:notification.SlotType.EMERGENCY_INFORMATION
+        notificationControlFlags: notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_SOUND,
+        notificationSlotType: notification.SlotType.EMERGENCY_INFORMATION
       };
-      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult)=>{
+      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult) => {
         console.info('ActsEmergencyNotificationTest_0300 startAbilityForResult successful');
         setTimeout(() => {
           console.info('ActsEmergencyNotificationTest_0300 data is ' + JSON.stringify(data));
-          // (data.want.parameters.NotificationControlFlagStatus & notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_SOUND)
           expect(data.want.parameters.NotificationControlFlagStatus).assertEqual(CLOSE_SOUND);
           done();
         }, 3000);
@@ -186,7 +213,7 @@ export default function abilityTest() {
      * @tc.type: Function
      * @tc.level: Level1
      */
-    it('ActsEmergencyNotificationTest_0400',0, async function (done) {
+    it('ActsEmergencyNotificationTest_0400', 0, async function (done) {
       console.info('ActsEmergencyNotificationTest_0400 start')
       let want = {
         bundleName: 'com.example.actcemergencynotificationrely',
@@ -212,10 +239,10 @@ export default function abilityTest() {
             additionalText: "test_additionalText"
           }
         },
-        notificationControlFlags:notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_VIBRATION,
-        notificationSlotType:notification.SlotType.EMERGENCY_INFORMATION
+        notificationControlFlags: notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_VIBRATION,
+        notificationSlotType: notification.SlotType.EMERGENCY_INFORMATION
       };
-      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult)=>{
+      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult) => {
         console.info('ActsEmergencyNotificationTest_0400 startAbilityForResult successful');
         setTimeout(() => {
           console.info('ActsEmergencyNotificationTest_0400 data is ' + JSON.stringify(data));
@@ -239,7 +266,7 @@ export default function abilityTest() {
      * @tc.type: Function
      * @tc.level: Level1
      */
-    it('ActsEmergencyNotificationTest_0500',0, async function (done) {
+    it('ActsEmergencyNotificationTest_0500', 0, async function (done) {
       console.info('ActsEmergencyNotificationTest_0500 start')
       let want = {
         bundleName: 'com.example.actcemergencynotificationrely',
@@ -265,10 +292,10 @@ export default function abilityTest() {
             additionalText: "test_additionalText"
           }
         },
-        notificationControlFlags:notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_BANNER,
-        notificationSlotType:notification.SlotType.EMERGENCY_INFORMATION
+        notificationControlFlags: notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_BANNER,
+        notificationSlotType: notification.SlotType.EMERGENCY_INFORMATION
       };
-      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult)=>{
+      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult) => {
         console.info('ActsEmergencyNotificationTest_0500 startAbilityForResult successful');
         setTimeout(() => {
           console.info('ActsEmergencyNotificationTest_0500 data is ' + JSON.stringify(data));
@@ -292,7 +319,7 @@ export default function abilityTest() {
      * @tc.type: Function
      * @tc.level: Level1
      */
-    it('ActsEmergencyNotificationTest_0600',0, async function (done) {
+    it('ActsEmergencyNotificationTest_0600', 0, async function (done) {
       console.info('ActsEmergencyNotificationTest_0600 start')
       let want = {
         bundleName: 'com.example.actcemergencynotificationrely',
@@ -318,10 +345,10 @@ export default function abilityTest() {
             additionalText: "test_additionalText"
           }
         },
-        notificationControlFlags:notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_LOCKSCREEN,
-        notificationSlotType:notification.SlotType.EMERGENCY_INFORMATION
+        notificationControlFlags: notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_LOCKSCREEN,
+        notificationSlotType: notification.SlotType.EMERGENCY_INFORMATION
       };
-      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult)=>{
+      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult) => {
         console.info('ActsEmergencyNotificationTest_0600 startAbilityForResult successful');
         setTimeout(() => {
           console.info('ActsEmergencyNotificationTest_0600 data is ' + JSON.stringify(data));
@@ -345,7 +372,7 @@ export default function abilityTest() {
      * @tc.type: Function
      * @tc.level: Level1
      */
-    it('ActsEmergencyNotificationTest_0700',0, async function (done) {
+    it('ActsEmergencyNotificationTest_0700', 0, async function (done) {
       console.info('ActsEmergencyNotificationTest_0700 start')
       let want = {
         bundleName: 'com.example.actcemergencynotificationrely',
@@ -371,10 +398,10 @@ export default function abilityTest() {
             additionalText: "test_additionalText"
           }
         },
-        notificationControlFlags:notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_LIGHTSCREEN,
-        notificationSlotType:notification.SlotType.EMERGENCY_INFORMATION
+        notificationControlFlags: notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_LIGHTSCREEN,
+        notificationSlotType: notification.SlotType.EMERGENCY_INFORMATION
       };
-      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult)=>{
+      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult) => {
         console.info('ActsEmergencyNotificationTest_0700 startAbilityForResult successful');
         setTimeout(() => {
           console.info('ActsEmergencyNotificationTest_0700 data is ' + JSON.stringify(data));
@@ -398,7 +425,7 @@ export default function abilityTest() {
      * @tc.type: Function
      * @tc.level: Level1
      */
-    it('ActsEmergencyNotificationTest_0800',0, async function (done) {
+    it('ActsEmergencyNotificationTest_0800', 0, async function (done) {
       console.info('ActsEmergencyNotificationTest_0800 start')
       let want = {
         bundleName: 'com.example.actcemergencynotificationrely',
@@ -424,10 +451,10 @@ export default function abilityTest() {
             additionalText: "test_additionalText"
           }
         },
-        notificationControlFlags:notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_STATUSBAR_ICON,
-        notificationSlotType:notification.SlotType.EMERGENCY_INFORMATION
+        notificationControlFlags: notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_STATUSBAR_ICON,
+        notificationSlotType: notification.SlotType.EMERGENCY_INFORMATION
       };
-      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult)=>{
+      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult) => {
         console.info('ActsEmergencyNotificationTest_0800 startAbilityForResult successful');
         setTimeout(() => {
           console.info('ActsEmergencyNotificationTest_0800 data is ' + JSON.stringify(data));
@@ -451,7 +478,7 @@ export default function abilityTest() {
      * @tc.type: Function
      * @tc.level: Level1
      */
-    it('ActsEmergencyNotificationTest_0900',0, async function (done) {
+    it('ActsEmergencyNotificationTest_0900', 0, async function (done) {
       console.info('ActsEmergencyNotificationTest_0900 start')
       let wantFirst = {
         bundleName: 'com.example.actsemergencynotificationnormalrely',
@@ -479,7 +506,7 @@ export default function abilityTest() {
 
       notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
-      globalThis.abilityContext.startAbilityForResult(wantFirst).then((data: common.AbilityResult)=>{
+      globalThis.abilityContext.startAbilityForResult(wantFirst).then((data: common.AbilityResult) => {
         console.info('ActsEmergencyNotificationTest_0900 startAbilityForResult successful');
         expect(data.want.parameters.PubishErrcode).assertEqual(401);
         expect(data.want.parameters.AddSlotErrcode).assertEqual(401);
@@ -499,7 +526,7 @@ export default function abilityTest() {
      * @tc.type: Function
      * @tc.level: Level1
      */
-    it('ActsEmergencyNotificationTest_1000',0, async function (done) {
+    it('ActsEmergencyNotificationTest_1000', 0, async function (done) {
       console.info('ActsEmergencyNotificationTest_1000 start');
       let want = {
         bundleName: 'com.example.actcemergencynotificationrely',
@@ -525,17 +552,17 @@ export default function abilityTest() {
             additionalText: "test_additionalText"
           }
         },
-        notificationSlotType:notification.SlotType.EMERGENCY_INFORMATION,
+        notificationSlotType: notification.SlotType.EMERGENCY_INFORMATION,
         notificationControlFlags:
-        notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_SOUND  |
-        notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_LOCKSCREEN  |
+        notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_SOUND |
+        notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_LOCKSCREEN |
         notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_BANNER |
-        notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_LIGHTSCREEN  |
-        notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_VIBRATION  |
-        notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_STATUSBAR_ICON 
+        notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_LIGHTSCREEN |
+        notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_VIBRATION |
+        notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_STATUSBAR_ICON
       };
 
-      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult)=>{
+      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult) => {
         console.info('ActsEmergencyNotificationTest_1000 startAbilityForResult successful');
         setTimeout(() => {
           console.info('ActsEmergencyNotificationTest_1000 data is: ' + JSON.stringify(data));
@@ -560,7 +587,7 @@ export default function abilityTest() {
      * @tc.type: Function
      * @tc.level: Level1
      */
-    it('ActsEmergencyNotificationTest_1100',0, async function (done) {
+    it('ActsEmergencyNotificationTest_1100', 0, async function (done) {
       console.info('ActsEmergencyNotificationTest_1100 start')
       let wantSecond = {
         bundleName: 'com.example.actsemergencynotificationnormalrely',
@@ -592,7 +619,7 @@ export default function abilityTest() {
 
       notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
-      globalThis.abilityContext.startAbility(wantSecond).then(()=>{
+      globalThis.abilityContext.startAbility(wantSecond).then(() => {
         console.info('ActsEmergencyNotificationTest_1100 startAbilityForResult successful');
         done();
       }).catch((err: Base.BusinessError) => {
