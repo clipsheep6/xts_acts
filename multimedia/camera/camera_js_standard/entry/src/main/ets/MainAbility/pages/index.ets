@@ -13,19 +13,19 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
 import cameraKit from '../../test/Camera.test.ets'
 
 let TAG = 'CameraModuleTest: '
-var mXComponentController: XComponentController = new XComponentController()
-var surfaceId: any
 
 @Entry
 @Component
 struct CameraIndex {
   @State isShowSettings: boolean = false
-  @State previewSize: string = '75%'
+  @State previewSize: string = '75%';
+  private mXComponentController: XComponentController = new XComponentController();
+  private surfaceId: string;
 
   aboutToAppear() {
     console.info('--------------aboutToAppear--------------')
@@ -37,18 +37,16 @@ struct CameraIndex {
         id: '',
         type: 'surface',
         libraryname: '',
-        controller: mXComponentController
+        controller: this.mXComponentController
       })
         .onLoad(() => {
           console.info('CameraModuleTest: OnLoad() is called!')
-          mXComponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 });
-          surfaceId = mXComponentController.getXComponentSurfaceId()
-          globalThis.surfaceId = surfaceId
-          console.info('CameraModuleTest: XComponent onLoad surfaceId: ' + surfaceId)
-          var abilityDelegator: any
-          abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-          var abilityDelegatorArguments: any
-          abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+          this.mXComponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 });
+          this.surfaceId = this.mXComponentController.getXComponentSurfaceId()
+          globalThis.surfaceId = this.surfaceId
+          console.info('CameraModuleTest: XComponent onLoad surfaceId: ' + this.surfaceId)
+          let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+          let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
           //console.info(0x00, 'testTag', '%{public}s', 'start run testcase!!!'); 
           Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, cameraKit)
         })
