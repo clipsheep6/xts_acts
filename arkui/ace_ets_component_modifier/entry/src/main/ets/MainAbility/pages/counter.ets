@@ -12,29 +12,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { CounterModifier } from "@ohos.arkui.modifier";
 
-class CounterModifier1 implements AttributeModifier<CounterAttribute>{
+class CustomModifier extends CounterModifier{
+
   applyNormalAttribute(instance: CounterAttribute): void {
-    instance.enableInc(true)
-    instance.enableDec(true)
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.enableInc(false)
   }
 }
 
 @Entry
 @Component
 struct CounterTest {
-  @State CounterModifier1: CounterModifier1 = new CounterModifier1()
+  @State customModifier: CounterModifier = new CustomModifier()
+    .enableInc(true)
+    .enableDec(true)
   @State value: number = 0
 
   build() {
     Row() {
       Column() {
+        Button("change value").onClick(() => {
+          (this.customModifier as CustomModifier).onChange1();
+        }).key("changeButton")
+
         Counter() {
           Text(this.value.toString())
         }
         .key("Counter")
         .margin(100)
-        .attributeModifier(this.CounterModifier1)
+        .attributeModifier(this.customModifier as CustomModifier)
         .onInc(() => {
             this.value++
           })

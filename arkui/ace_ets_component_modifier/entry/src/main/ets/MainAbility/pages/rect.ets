@@ -12,46 +12,62 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { RectModifier } from "@ohos.arkui.modifier";
 
-class RectModifier1 implements AttributeModifier<RectAttribute>{
+class CustomModifier extends RectModifier {
   applyNormalAttribute(instance: RectAttribute): void {
-    instance.radiusHeight(8);
+    super.applyNormalAttribute?.(instance);
+  }
+  onChange() {
+    this.radiusHeight(9)
   }
 }
 
-class RectModifier2 implements AttributeModifier<RectAttribute>{
+class CustomModifier1 extends RectModifier {
   applyNormalAttribute(instance: RectAttribute): void {
-    instance.radius(6);
+    super.applyNormalAttribute?.(instance);
+  }
+  onChange() {
+    this.radius(7)
   }
 }
 
-class RectModifier3 implements AttributeModifier<RectAttribute>{
+class CustomModifier2 extends RectModifier {
   applyNormalAttribute(instance: RectAttribute): void {
-    instance.radiusWidth(12);
+    super.applyNormalAttribute?.(instance);
+  }
+  onChange() {
+    this.radiusWidth(13)
   }
 }
 
 @Entry
 @Component
 struct RectTest {
-  @State RectModifier1: RectModifier1 = new RectModifier1()
-  @State RectModifier2: RectModifier1 = new RectModifier2()
-  @State RectModifier3: RectModifier1 = new RectModifier3()
+  @State customModifier1: RectModifier = new CustomModifier()
+  @State customModifier2: RectModifier = new CustomModifier()
+  @State customModifier3: RectModifier = new CustomModifier()
   @State value: number = 0
 
   build() {
       Column() {
+        Button("change value").onClick(() => {
+          (this.customModifier1 as CustomModifier).onChange();
+          (this.customModifier2 as CustomModifier).onChange();
+          (this.customModifier3 as CustomModifier).onChange();
+        }).key("changeButton")
+
           Rect({ width: '80%', height: '20%' })
           .key("Rect1")
-          .attributeModifier(this.RectModifier1)
+            .attributeModifier(this.customModifier1 as CustomModifier)
 
           Rect({ width: '60%', height: '30%' })
           .key("Rect2")
-          .attributeModifier(this.RectModifier2)
+            .attributeModifier(this.customModifier2 as CustomModifier)
 
           Rect({ width: '40%', height: '40%' })
           .key("Rect3")
-          .attributeModifier(this.RectModifier3)
+            .attributeModifier(this.customModifier3 as CustomModifier)
 
           Rect({ width: '80%', height: '20%' })
           .key("Rect11")

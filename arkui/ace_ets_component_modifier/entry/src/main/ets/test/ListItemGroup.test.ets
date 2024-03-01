@@ -17,6 +17,7 @@ import events_emitter from '@ohos.events.emitter';
 import router from '@system.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import Utils from './Utils.ets'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest';
 
 export default function listItemGroupJsunit() {
   describe('listItemGroupJsunit', function () {
@@ -64,4 +65,27 @@ export default function listItemGroupJsunit() {
       done();
     });
   })
+
+  /**
+   * @tc.number testList_item_group0008
+   * @tc.name   Test the properties of components
+   * @tc.desc   Change attribute values
+   * @tc.size   MediumTest
+   * @tc.type   Function
+   * @tc.level  0
+   */
+  it('testList_item_group0008', 0, async function (done) {
+    console.info('testList_item_group0008 START');
+    let driver = Driver.create();
+    let button = await driver.findComponent(ON.id('changeButton'));
+    await button.click();
+    await Utils.sleep(2000)
+
+    let strJsonNew = getInspectorByKey('ListItemGroupKey1'); //测试组件的key名称
+    let objNew = JSON.parse(strJsonNew);
+    console.info("testList_item_group0008 component  is: " + JSON.stringify(objNew.$attrs));
+    expect(objNew.$attrs.divider.strokeWidth).assertEqual("13.00vp"); //
+    console.info('testList_item_group0008 END');
+    done();
+  });
 }

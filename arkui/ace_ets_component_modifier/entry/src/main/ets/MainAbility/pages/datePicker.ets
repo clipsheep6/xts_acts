@@ -12,32 +12,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { DatePickerModifier } from "@ohos.arkui.modifier";
 
-class DatePickerModifier1 implements AttributeModifier<DatePickerAttribute> {
+class CustomModifier extends DatePickerModifier {
+
   applyNormalAttribute(instance: DatePickerAttribute): void {
-    instance
-      .selectedTextStyle({ color: '#ff182431', font: { size: '18fp', weight: FontWeight.Normal } })
-      .disappearTextStyle({ color: '#FF000000', font: { size: '8fp', weight: FontWeight.Lighter } })
-      .textStyle({ color: '#ff0000FF', font: { size: '26fp', weight: FontWeight.Normal } })
-      .lunar(true)
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.textStyle({ color: '#ff0000FF', font: { size: '27fp', weight: FontWeight.Normal } })
   }
 }
 
 @Entry
 @Component
 struct DatePickerExample {
-  @State datePickerModifier1: DatePickerModifier1 = new DatePickerModifier1();
+  @State customModifier: DatePickerModifier = new CustomModifier()
+    .selectedTextStyle({ color: '#ff182431', font: { size: '18fp', weight: FontWeight.Normal } })
+    .disappearTextStyle({ color: '#FF000000', font: { size: '8fp', weight: FontWeight.Lighter } })
+    .textStyle({ color: '#ff0000FF', font: { size: '26fp', weight: FontWeight.Normal } })
+    .lunar(true);
   private selectedDate: Date = new Date('2021-08-08')
 
   build() {
     Column() {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
+
       DatePicker({
         start: new Date('1970-1-1'),
         end: new Date('2100-1-1'),
         selected: this.selectedDate
       })
       .key('DatePicker')
-      .attributeModifier(this.datePickerModifier1)
+      .attributeModifier(this.customModifier as CustomModifier)
     }
     .width('100%')
     .height('100%')

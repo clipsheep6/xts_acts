@@ -12,31 +12,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { ButtonModifier } from "@ohos.arkui.modifier";
 
-class ButtonModifier1 implements AttributeModifier<ButtonAttribute> {
+class CustomModifier extends ButtonModifier {
   applyNormalAttribute(instance: ButtonAttribute): void {
-    instance.type(ButtonType.Circle)
-      .stateEffect(true)
-      .fontColor(0xCCCCCC)
-      .fontSize(12)
-      .fontWeight(FontWeight.Normal)
-      .fontFamily('cursive')
-      .fontStyle(FontStyle.Normal)
-      //.labelStyle({overflow: TextOverflow.Clip})
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.fontSize(13)
   }
 }
 
-class ButtonModifier2 implements AttributeModifier<ButtonAttribute> {
+class CustomModifier2 extends ButtonModifier {
   applyNormalAttribute(instance: ButtonAttribute): void {
-    instance.labelStyle({overflow: TextOverflow.Clip})
+    super.applyNormalAttribute?.(instance);
+  }
+  onChange1() {
+    this.labelStyle({overflow: TextOverflow.Clip})
   }
 }
+
 
 @Entry
 @Component
 struct ButtonExample {
-  @State buttonModifier: ButtonModifier1 = new ButtonModifier1();
-  @State buttonModifier2: ButtonModifier2 = new ButtonModifier2();
+  @State buttonModifier: ButtonModifier = new CustomModifier()
+    .type(ButtonType.Circle)
+    .stateEffect(true)
+    .fontColor(0xCCCCCC)
+    .fontSize(12)
+    .fontWeight(FontWeight.Normal)
+    .fontFamily('cursive')
+    .fontStyle(FontStyle.Normal)
+  @State buttonModifier2: ButtonModifier = new CustomModifier2()
+    .labelStyle({overflow: TextOverflow.Clip})
   @State buttonTypeValue: ButtonType = ButtonType.Normal;
   @State fontSizeValue: string = '20px';
   @State fontColorValue: Color = Color.Black;
@@ -49,19 +59,24 @@ struct ButtonExample {
 
   build() {
     Column() {
+      Button("change value").onClick(() => {
+        (this.buttonModifier as CustomModifier).onChange1();
+        (this.buttonModifier2 as CustomModifier).onChange1();
+      }).key("changeButton")
+
       Button('Ok', { type: this.buttonTypeValue, stateEffect: true })
         .borderRadius(8)
         .backgroundColor(0x317aff)
         .width(90)
         .key('button')
-        .attributeModifier(this.buttonModifier)
+        .attributeModifier(this.buttonModifier as CustomModifier)
 
       Button('Ok2', { type: this.buttonTypeValue, stateEffect: true })
         .borderRadius(8)
         .backgroundColor(0x317aff)
         .width(90)
         .key('button2')
-        .attributeModifier(this.buttonModifier2)
+        .attributeModifier(this.buttonModifier2 as CustomModifier)
     }
 
   }

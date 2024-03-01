@@ -12,43 +12,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { PolylineModifier } from "@ohos.arkui.modifier";
+import { PolygonModifier } from "@ohos.arkui.modifier";
 
-class CustomModifier extends PolylineModifier {
+//修改基类
+class CustomModifier extends PolygonModifier {
 
-  applyNormalAttribute(instance: PolylineAttribute): void {
+  applyNormalAttribute(instance: PolygonAttribute): void {
     super.applyNormalAttribute?.(instance);
   }
+
   onChange() {
-    this.points([[1, 1], [20, 61], [100, 101]])
+    this.points([[1, 1], [50, 100], [100, 0]])
   }
 }
 
+
 @Entry
 @Component
-  struct PolyLinePointsExample {
-  @State customModifier: PolylineModifier = new CustomModifier()
-    .points([[0, 0], [20, 60], [100, 100]]);
+  struct PolygonExample {
+  @State customModifier: PolygonModifier = new CustomModifier()
+    .points([[0, 0], [50, 100], [100, 0]]);
   build() {
     Column({ space: 10 }) {
       Button("change value").onClick(() => {
         (this.customModifier as CustomModifier).onChange();
       }).key("changeButton")
 
-      Polyline({ width: 100, height: 100 })
-        .attributeModifier(this.customModifier as CustomModifier)
-        .key("polyLine")
-        .fillOpacity(0)
-        .stroke(Color.Blue)
-        .strokeWidth(3)
-
-        Polyline({ width: 100, height: 100 })
-        .points([[0, 0], [20, 60], [100, 100]])
-        .key("polyLine1")
-        .fillOpacity(0)
-        .stroke(Color.Blue)
-        .strokeWidth(3)
-
+      Polygon({ width: 200, height: 150 })
+        .attributeModifier(this.customModifier  as CustomModifier)
+        .fill(Color.Green)
+        .key('polygon1')
+      ;
     }.width('100%')
   }
 }
