@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
 import testsuite from "../test/List.test";
@@ -19,14 +20,12 @@ import testsuite from "../test/List.test";
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
 
   aboutToAppear() {
     console.info("aboutToAppear start!!!!")
-    var abilityDelegator: any
-    abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var abilityDelegatorArguments: any
-    abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
     console.info('start run testcase!!!')
     Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
   }
