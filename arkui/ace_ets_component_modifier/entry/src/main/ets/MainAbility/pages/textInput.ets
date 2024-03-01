@@ -67,9 +67,6 @@ struct TextTimerExample {
       TextInput({ placeholder: 'input your password...' })
         .key('TextInputKey1')
         .attributeModifier(this.customModifier as CustomModifier)
-        .onTimer((utc: number, elapsedTime: number) => {
-          console.info('textInput notCountDown utc is：' + utc + ', elapsedTime: ' + elapsedTime)
-        })
     }
     }
     .margin({ top: 5 })
