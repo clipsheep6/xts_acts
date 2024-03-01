@@ -57,6 +57,6 @@
         "MainAbility/pages/geometryTransition",
         "MainAbility/pages/motionPath",
         "MainAbility/pages/shortcutKey",
-        "MainAbility/pages/idKey"
+        "MainAbility/pages/common1"
     ]
 }

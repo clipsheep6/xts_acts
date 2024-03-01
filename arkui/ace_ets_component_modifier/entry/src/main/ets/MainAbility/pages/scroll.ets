@@ -12,19 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { ScrollModifier } from "@ohos.arkui.modifier";
 
-class ScrollModifier1 implements AttributeModifier<ScrollAttribute> {
+class CustomModifier extends ScrollModifier {
   applyNormalAttribute(instance: ScrollAttribute): void {
-    instance
-      .scrollSnap({ snapAlign: ScrollSnapAlign.NONE, enableSnapToStart: true, enableSnapToEnd: true })
-      .friction(0.6)
-      .enableScrollInteraction(true)
-      .nestedScroll({ scrollForward: NestedScrollMode.SELF_FIRST, scrollBackward: NestedScrollMode.PARENT_FIRST })
-      .scrollable(ScrollDirection.Vertical)
-      .scrollBar(BarState.Auto)
-      .scrollBarWidth(5)
-      .edgeEffect(EdgeEffect.None)
-      .scrollBarColor('#FF123456')
+    super.applyNormalAttribute?.(instance);
+  }
+  onChange1() {
+    this.scrollBarColor('#FF222222')
   }
 }
 
@@ -33,24 +28,22 @@ class ScrollModifier1 implements AttributeModifier<ScrollAttribute> {
 struct ScrollOnScrollBegin {
   scroller: Scroller = new Scroller()
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @State scrollModifier: ScrollModifier1 = new ScrollModifier1()
+  @State customModifier: ScrollModifier = new CustomModifier()
+    .scrollSnap({ snapAlign: ScrollSnapAlign.NONE, enableSnapToStart: true, enableSnapToEnd: true })
+    .friction(1)
+    .enableScrollInteraction(true)
+    .nestedScroll({ scrollForward: NestedScrollMode.SELF_FIRST, scrollBackward: NestedScrollMode.PARENT_FIRST })
+    .scrollable(ScrollDirection.Vertical)
+    .scrollBar(BarState.Auto)
+    .scrollBarWidth(5)
+    .edgeEffect(EdgeEffect.None)
+    .scrollBarColor('#FF123456')
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-
-      Text("scroll-OnScrollBegin")
-        .width(100)
-        .height(70)
-        .fontSize(20)
-        .opacity(1)
-        .align(Alignment.TopStart)
-        .fontColor(0xCCCCCC)
-        .lineHeight(25)
-        .border({ width: 1 })
-        .padding(10)
-        .textAlign(TextAlign.Center)
-        .textOverflow({ overflow: TextOverflow.None })
-        .key("onScrollBeginText")
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
 
       Scroll(this.scroller) {
         Column() {
@@ -66,10 +59,11 @@ struct ScrollOnScrollBegin {
           }, (item: string) => item)
         }.width('100%')
       }
-      .key("ScrollKey1")
-      .attributeModifier(this.scrollModifier)
-      .width("100%")
-      .height("100%")
+        .key("ScrollKey1")
+        .attributeModifier(this.customModifier as CustomModifier)
+        .width("100%")
+        .height("100%")
+
     }.width("100%").height("100%")
   }
 }

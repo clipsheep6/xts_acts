@@ -67,9 +67,10 @@ import transitionJsunit from './TransitionJsunit.test.ets';
 import geometryTransitionJsunit from './GeometryTransitionJsunit.test.ets';
 import motionPathJsunit from './MotionPathJsunit.test.ets';
 import shortcutKeyJsunit from './ShortcutKey.test.ets';
-import idKeyJsunit from './IdKeyJsunit.test.ets';
+import common1Jsunit from './Common1.test.ets';
 
 export default function testsuite() {
+  common1Jsunit();
   // idKeyJsunit();
   // shortcutKeyJsunit();
   // sharedTransitionJsunit();
@@ -86,7 +87,7 @@ export default function testsuite() {
   // buttonJsunit();
   // calendarPickerJsunit();
   // timepickerJsunit();
-  datePickerJsunit();
+  // datePickerJsunit();
   // textpickerJsunit();
   // sliderJsunit();
   // selectJsunit();
@@ -103,8 +104,8 @@ export default function testsuite() {
   // gridItemJsunit();
   // gridJsunit();
   swiperJsunit();
-  // waterFlowViewJsunit();
-  // scrollJsunit();
+  waterFlowViewJsunit();
+  scrollJsunit();
   // textTimerJsunit();
   // textClockJsunit();
   // qrCodeJsunitJsunit();

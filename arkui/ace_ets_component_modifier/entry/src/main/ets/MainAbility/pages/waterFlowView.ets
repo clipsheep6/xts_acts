@@ -12,42 +12,54 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { WaterFlowModifier } from "@ohos.arkui.modifier";
 
-class WaterFlowModifier1 implements AttributeModifier<WaterFlowAttribute> {
+class CustomModifier extends WaterFlowModifier {
   applyNormalAttribute(instance: WaterFlowAttribute): void {
-    instance
-      .nestedScroll({ scrollForward: NestedScrollMode.SELF_ONLY, scrollBackward: NestedScrollMode.SELF_FIRST })
-      .friction(0.6)
-      .enableScrollInteraction(true)
-      .columnsTemplate('1fr 1fr 1fr 1fr')
-      .itemConstraintSize({ minWidth: 1, maxWidth: 10, minHeight: 1, maxHeight: 10 })
-      .columnsGap(1)
-      .rowsTemplate('1fr 1fr 1fr 1fr')
-      .rowsGap(1)
-      .layoutDirection(FlexDirection.Column)
+    super.applyNormalAttribute?.(instance);
+  }
+  onChange1() {
+    this.columnsGap(2)
   }
 }
 
 @Entry
 @Component
 export struct WaterFlowView {
-  @State waterFlowModifier: WaterFlowModifier1 = new WaterFlowModifier1()
+
+  @State customModifier: WaterFlowModifier = new CustomModifier()
+    .nestedScroll({ scrollForward: NestedScrollMode.SELF_ONLY, scrollBackward: NestedScrollMode.SELF_FIRST })
+    .friction(1)
+    .enableScrollInteraction(true)
+    .columnsTemplate('1fr 1fr 1fr 1fr')
+    .itemConstraintSize({ minWidth: 1, maxWidth: 10, minHeight: 1, maxHeight: 10 })
+    .columnsGap(1)
+    .rowsTemplate('1fr 1fr 1fr 1fr')
+    .rowsGap(1)
+    .layoutDirection(FlexDirection.Column)
+
   scroller: Scroller = new Scroller()
 
   build() {
-    WaterFlow() {
-      ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9], (item: number) => {
-        FlowItem() {
-          Column() {
-            Text('N' + item).fontSize(12)
+    Column() {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
+
+      WaterFlow() {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9], (item: number) => {
+          FlowItem() {
+            Column() {
+              Text('N' + item).fontSize(12)
+            }
           }
-        }
-        .width('100%')
-        .height('10')
-        .backgroundColor('#FF00FF00')
-      }, (item: string) => item)
+            .width('100%')
+            .height('10')
+            .backgroundColor('#FF00FF00')
+        }, (item: string) => item)
+      }
+      .key('WaterFlowKey1')
+      .attributeModifier(this.customModifier  as CustomModifier)
     }
-    .key('WaterFlowKey1')
-    .attributeModifier(this.waterFlowModifier)
   }
 }
