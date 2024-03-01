@@ -110,7 +110,7 @@ export default function imageJsunit() {
       let strJsonNew = getInspectorByKey('image');
       let objNew = JSON.parse(strJsonNew);
       console.info("imageTest_0004 component  is: " + JSON.stringify(objNew.$attrs));
-      let sourceSize = obj.$attrs.sourceSize;
+      let sourceSize = objNew.$attrs.sourceSize;
 
       expect(sourceSize.width).assertEqual('200');
       expect(sourceSize.height).assertEqual('100');

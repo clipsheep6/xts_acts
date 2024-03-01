@@ -60,6 +60,14 @@
         "MainAbility/pages/shortcutKey",
         "MainAbility/pages/common1",
         "MainAbility/pages/Polygon",
-        "MainAbility/pages/span"
+        "MainAbility/pages/span",
+        "MainAbility/pages/blank",
+        "MainAbility/pages/divider",
+        "MainAbility/pages/gridCol",
+        "MainAbility/pages/gridRow",
+        "MainAbility/pages/image",
+        "MainAbility/pages/imageAnimator",
+        "MainAbility/pages/patternLock",
+        "MainAbility/pages/video"
     ]
 }

@@ -31,7 +31,6 @@ struct VideoExample {
   @State previewUri: Resource = $r('app.media.icon')
   @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
   @State isAutoPlay: boolean = false
-  @State showControls: boolean = true
 
   @State customModifier: VideoModifier = new CustomModifier()
     .muted(false)
@@ -50,8 +49,7 @@ struct VideoExample {
         Video({
           src: this.videoSrc,
           previewUri: this.previewUri,
-          currentProgressRate: this.curRate,
-          controller: this.controller
+          currentProgressRate: this.curRate
         })
           .width(250)
           .height(200)

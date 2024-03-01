@@ -71,9 +71,17 @@ import common1Jsunit from './Common1.test.ets';
 import polygonJsunit from './Polygon.test.ets';
 import common9Jsunit from './Common9Jsunit.test.ets';
 import idKeyJsunit from './SpanJsunit.test.ets';
+import blankJsunit from './Blank.test.ets';
+import dividerJsunit from './Divider.test.ets';
+import gridColJsunit from './GridCol.test.ets';
+import gridRowJsunit from './GridRow.test.ets';
+import imageJsunit from './Image.test.ets';
+import imageAnimatorJsunit from './ImageAnimator.test.ets';
+import patternLockJsunit from './PatternLock.test.ets';
+import videoJsunit from './Video.test.ets';
 
 export default function testsuite() {
-  common1Jsunit();
+  // common1Jsunit();
   // idKeyJsunit();
   // shortcutKeyJsunit();
   // sharedTransitionJsunit();
@@ -85,11 +93,11 @@ export default function testsuite() {
   // tabsSecondJsunit();
   // tabsThirdJsunit();
   // stepperItemJsunit();
-  // navigatorJsunit();
+  navigatorJsunit();
   // navigationJsunit()
   // buttonJsunit();
   // calendarPickerJsunit();
-  // timepickerJsunit();
+  timepickerJsunit();
   // datePickerJsunit();
   // textpickerJsunit();
   // sliderJsunit();
@@ -103,8 +111,8 @@ export default function testsuite() {
   // alphabetIndexerJsunit();
   // listItemGroupJsunit();
   // listItemJsunit();
-  // listJsunit();
-  // gridItemJsunit();
+  listJsunit();
+  gridItemJsunit();
   // gridJsunit();
   swiperJsunit();
   waterFlowViewJsunit();
@@ -123,13 +131,21 @@ export default function testsuite() {
   // checkBoxGroupJsunit();
   // formComponentJsunit();
   // panelJsunit();
-  // toggleJsunit();
+  toggleJsunit();
   // rectJsunit();
   // polyLineJsunit();
-  // navDestinationJsunit();
-  // navRouterJsunit();
+  navDestinationJsunit();
+  navRouterJsunit();
   // counterJsunit();
   // polygonJsunit();
   // common9Jsunit();
   // spanJsunit();
+  blankJsunit();
+  dividerJsunit();
+  gridColJsunit();
+  gridRowJsunit();
+  imageJsunit();
+  imageAnimatorJsunit();
+  patternLockJsunit();
+  videoJsunit();
 }
