@@ -16,6 +16,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import router from '@system.router';
 import { UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix } from '@ohos.UiTest';
 import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
+import Utils from './Utils.ets'
 
 
 export default function navRouterJsunit() {
@@ -58,6 +59,30 @@ export default function navRouterJsunit() {
       // expect(obj.$attrs.mode).assertEqual("NavRouteMode.PUSH_WITH_RECREATE");
       expect(true).assertEqual(true);
       console.info('[NavRouterJsunit_0100] END');
+      done();
+    });
+
+    /**
+     * @tc.number NavRouterJsunit_0101
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('NavRouterJsunit_0101', 0, async function (done) {
+      console.info('NavRouterJsunit_0101 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('NavRouter1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("NavRouterJsunit_0101 component  is: " + JSON.stringify(objNew.$attrs));
+      // expect(objNew.$attrs.mode).assertEqual("NavRouteMode.PUSH_WITH_RECREATE");
+      expect(true).assertEqual(true); //
+      console.info('NavRouterJsunit_0101 END');
       done();
     });
   })

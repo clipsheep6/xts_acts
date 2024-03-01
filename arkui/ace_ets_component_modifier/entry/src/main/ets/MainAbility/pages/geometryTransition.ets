@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 import events_emitter from '@ohos.events.emitter';
-class GeometryTransitionModifier1 implements AttributeModifier<ButtonAttribute> {
+import {ButtonModifier} from "@ohos.arkui.modifier";
+
+class CustomModifier extends ButtonModifier {
   applyNormalAttribute(instance: ButtonAttribute): void {
-    instance.geometryTransition('geometryTransition');
+    super.applyNormalAttribute?.(instance);
   }
 }
 
@@ -24,8 +26,9 @@ class GeometryTransitionModifier1 implements AttributeModifier<ButtonAttribute> 
 struct geometryTransition7Example {
   @State btn1: boolean = false
   @State show: string = "show"
-  @State geometryTransitionModifier1: GeometryTransitionModifier1 = new GeometryTransitionModifier1()
-
+  @State geometryTransitionModifier1: ButtonAttribute = new CustomModifier()
+          .geometryTransition("picture")
+          
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, }) {
       Button(this.show).width(80).height(30).backgroundColor(0x317aff).margin({ bottom: 50 }).key('button')
@@ -57,7 +60,7 @@ struct geometryTransition7Example {
       if (this.btn1) {
         Button() {
           Image($r('app.media.icon')).width("80%").height(300)
-        }.attributeModifier(this.geometryTransitionModifier1)
+        }.attributeModifier(this.geometryTransitionModifier1 as ButtonModifier)
       }
     }.height(400).width("100%").padding({ top: 100 })
   }

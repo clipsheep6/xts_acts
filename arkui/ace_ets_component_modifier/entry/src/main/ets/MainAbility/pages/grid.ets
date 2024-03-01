@@ -12,40 +12,51 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { GridModifier } from "@ohos.arkui.modifier";
 
-class GridModifier1 implements AttributeModifier<GridAttribute> {
+
+//修改基类
+class CustomModifier extends GridModifier {
   applyNormalAttribute(instance: GridAttribute): void {
-    instance
-      .friction(0.6)
-      .enableScrollInteraction(true)
-      .nestedScroll({ scrollForward: NestedScrollMode.SELF_FIRST, scrollBackward: NestedScrollMode.PARENT_FIRST })
-      .edgeEffect(EdgeEffect.Spring)
-      .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
-      .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
-      .columnsGap(10)
-      .rowsGap(10)
-      .scrollBarWidth(5)
-      .scrollBarColor(Color.Pink)
-      .scrollBar(BarState.On)
-      .cachedCount(10)
-      .editMode(true)
-      .multiSelectable(true)
-      .maxCount(10)
-      .minCount(2)
-      .cellLength(12)
-      .layoutDirection(GridDirection.Row)
-      .supportAnimation(true)
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange() {
+    this.rowsGap(11)
   }
 }
 
 @Entry
 @Component
 struct GridMaxCount {
-  @State gridModifier: GridModifier1 = new GridModifier1()
+  @State customModifier: GridModifier = new CustomModifier()
+    .friction(0.6)
+    .enableScrollInteraction(true)
+    .nestedScroll({ scrollForward: NestedScrollMode.SELF_FIRST, scrollBackward: NestedScrollMode.PARENT_FIRST })
+    .edgeEffect(EdgeEffect.Spring)
+    .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
+    .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
+    .columnsGap(10)
+    .rowsGap(10)
+    .scrollBarWidth(5)
+    .scrollBarColor(Color.Pink)
+    .scrollBar(BarState.On)
+    .cachedCount(10)
+    .editMode(true)
+    .multiSelectable(true)
+    .maxCount(10)
+    .minCount(2)
+    .cellLength(12)
+    .layoutDirection(GridDirection.Row)
+    .supportAnimation(true)
   @State Number: String[] = ['5', '6', '7', '8', '9']
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange();
+      }).key("changeButton")
 
       Text("grid-MaxCount")
         .width(100)
@@ -143,7 +154,7 @@ struct GridMaxCount {
           }
         }
         .key("GridKey1")
-        .attributeModifier(this.gridModifier)
+        .attributeModifier(this.customModifier as CustomModifier)
       }
     }
     .width("100%")

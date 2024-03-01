@@ -16,6 +16,7 @@
 import router from '@system.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import Utils from './Utils.ets'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest';
 
 export default function polyLineJsunit() {
   describe('ActsAcepolyLineTest', function () {
@@ -64,6 +65,29 @@ export default function polyLineJsunit() {
       expect(obj.$attrs.points).assertEqual(obj1.$attrs.points);
 
       console.info('[testpolyLine] END');
+      done();
+    });
+
+    /**
+     * @tc.number testpolyLine_001
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testpolyLine_001', 0, async function (done) {
+      console.info('testpolyLine_001 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('polyLine'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("testpolyLine_001 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.points[0][0]).assertEqual('1'); //
+      console.info('testpolyLine_001 END');
       done();
     });
   })

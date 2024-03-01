@@ -12,26 +12,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { TimePickerModifier } from "@ohos.arkui.modifier";
 
-class TimePickerModifier1 implements AttributeModifier<TimePickerAttribute> {
-    applyNormalAttribute(instance: TimePickerAttribute): void {
-      instance
-        .textStyle({ color: Color.Red, font: { size: '10px', weight: FontWeight.Normal } })
-        .selectedTextStyle({ color: Color.Blue, font: { size: '20px', weight: FontWeight.Bold } })
-        .disappearTextStyle({ color: Color.Black, font: { size: 8, weight: FontWeight.Lighter } })
-    }
+class CustomModifier extends TimePickerModifier {
+  applyNormalAttribute(instance: TimePickerAttribute): void {
+    super.applyNormalAttribute?.(instance);
   }
-  
+
+  onChange1() {
+    this.textStyle({ color: Color.Red, font: { size: '10px', weight: FontWeight.Normal } })
+  }
+}
+
   @Entry
   @Component
   struct TimePickerExample {
-    @State timePickerModifier: TimePickerModifier1 = new TimePickerModifier1()
     private selectedTime: Date = new Date('2022-07-22T08:00:00')
+    @State customModifier: TimePickerModifier = new CustomModifier()
+      .textStyle({ color: Color.Red, font: { size: '10px', weight: FontWeight.Normal } })
+      .selectedTextStyle({ color: Color.Blue, font: { size: '20px', weight: FontWeight.Bold } })
+      .disappearTextStyle({ color: Color.Black, font: { size: 8, weight: FontWeight.Lighter } })
+
     build() {
       Column() {
-        TimePicker({ selected: this.selectedTime })
-          .key('timePickerDefault')
-          .attributeModifier(this.timePickerModifier)
+        Button("change value").onClick(() => {
+          (this.customModifier as CustomModifier).onChange1();
+        }).key("changeButton")
+
+        Column() {
+          TimePicker({ selected: this.selectedTime })
+            .key('timePickerDefault')
+            .attributeModifier(this.customModifier as CustomModifier)
+        }
       }
+      .width('100%')
     }
   }

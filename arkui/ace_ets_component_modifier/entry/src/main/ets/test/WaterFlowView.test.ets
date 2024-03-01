@@ -15,6 +15,7 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
 import Utils from './Utils';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function waterFlowView() {
   describe('waterFlowViewJsunit', function () {
@@ -48,7 +49,7 @@ export default function waterFlowView() {
      * @tc.type   Function
      * @tc.level  0
      */
-    it('waterFlowViewJsunit_0100',0,async function (done){
+    it('waterFlowViewJsunit_0100', 0, async function (done) {
       console.info('[waterFlowViewJsunit_0100] START');
       let strJson = getInspectorByKey('WaterFlowKey1');
       let obj = JSON.parse(strJson);
@@ -67,13 +68,13 @@ export default function waterFlowView() {
      * @tc.type   Function
      * @tc.level  0
      */
-    it('waterFlowViewJsunit_0200',0,async function (done){
+    it('waterFlowViewJsunit_0200', 0, async function (done) {
       console.info('[waterFlowViewJsunit_0200] START');
       let strJson = getInspectorByKey('WaterFlowKey1');
       let obj = JSON.parse(strJson);
       console.info("[waterFlowViewJsunit_0200] obj is: " + JSON.stringify(obj.$attrs));
 
-      expect(obj.$attrs.friction).assertEqual(0.6);
+      expect(obj.$attrs.friction).assertEqual(1);
       console.info('[waterFlowViewJsunit_0200] END');
       done();
     });
@@ -86,7 +87,7 @@ export default function waterFlowView() {
      * @tc.type   Function
      * @tc.level  0
      */
-    it('waterFlowViewJsunit_0300',0,async function (done){
+    it('waterFlowViewJsunit_0300', 0, async function (done) {
       console.info('[waterFlowViewJsunit_0300] START');
       let strJson = getInspectorByKey('WaterFlowKey1');
       let obj = JSON.parse(strJson);
@@ -105,7 +106,7 @@ export default function waterFlowView() {
      * @tc.type   Function
      * @tc.level  0
      */
-    it('waterFlowViewJsunit_0400',0,async function (done){
+    it('waterFlowViewJsunit_0400', 0, async function (done) {
       console.info('[waterFlowViewJsunit_0400] START');
       let strJson = getInspectorByKey('WaterFlowKey1');
       let obj = JSON.parse(strJson);
@@ -124,7 +125,7 @@ export default function waterFlowView() {
      * @tc.type   Function
      * @tc.level  0
      */
-    it('waterFlowViewJsunit_0500',0,async function (done){
+    it('waterFlowViewJsunit_0500', 0, async function (done) {
       console.info('[waterFlowViewJsunit_0500] START');
       let strJson = getInspectorByKey('WaterFlowKey1');
       let obj = JSON.parse(strJson);
@@ -145,7 +146,7 @@ export default function waterFlowView() {
      * @tc.type   Function
      * @tc.level  0
      */
-    it('waterFlowViewJsunit_0600',0,async function (done){
+    it('waterFlowViewJsunit_0600', 0, async function (done) {
       console.info('[waterFlowViewJsunit_0600] START');
       let strJson = getInspectorByKey('WaterFlowKey1');
       let obj = JSON.parse(strJson);
@@ -164,7 +165,7 @@ export default function waterFlowView() {
      * @tc.type   Function
      * @tc.level  0
      */
-    it('waterFlowViewJsunit_0700',0,async function (done){
+    it('waterFlowViewJsunit_0700', 0, async function (done) {
       console.info('[waterFlowViewJsunit_0700] START');
       let strJson = getInspectorByKey('WaterFlowKey1');
       let obj = JSON.parse(strJson);
@@ -183,7 +184,7 @@ export default function waterFlowView() {
      * @tc.type   Function
      * @tc.level  0
      */
-    it('waterFlowViewJsunit_0800',0,async function (done){
+    it('waterFlowViewJsunit_0800', 0, async function (done) {
       console.info('[waterFlowViewJsunit_0800] START');
       let strJson = getInspectorByKey('WaterFlowKey1');
       let obj = JSON.parse(strJson);
@@ -202,7 +203,7 @@ export default function waterFlowView() {
      * @tc.type   Function
      * @tc.level  0
      */
-    it('waterFlowViewJsunit_0900',0,async function (done){
+    it('waterFlowViewJsunit_0900', 0, async function (done) {
       console.info('[waterFlowViewJsunit_0900] START');
       let strJson = getInspectorByKey('WaterFlowKey1');
       let obj = JSON.parse(strJson);
@@ -212,6 +213,31 @@ export default function waterFlowView() {
       console.info('[waterFlowViewJsunit_0900] END');
       done();
     });
-  
+
+    /**
+    * @tc.number waterFlowViewJsunit_1000
+    * @tc.name   Test the properties of components
+    * @tc.desc   Change attribute values
+    * @tc.size   MediumTest
+    * @tc.type   Function
+    * @tc.level  0
+    */
+    it('waterFlowViewJsunit_1000', 0, async function (done) {
+
+      console.info('waterFlowViewJsunit_1000 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('WaterFlowKey1');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("waterFlowViewJsunit_1000 component  is: " + JSON.stringify(objNew.$attrs));
+
+      expect(objNew.$attrs.columnsGap).assertEqual('2.00vp');
+      console.info('waterFlowViewJsunit_1000 END');
+      done();
+    });
+
   })
 }

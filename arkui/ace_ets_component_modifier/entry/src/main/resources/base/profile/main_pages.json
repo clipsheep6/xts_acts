@@ -48,6 +48,7 @@
         "MainAbility/pages/panel",
         "MainAbility/pages/toggle",
         "MainAbility/pages/rect",
+        "MainAbility/pages/common_9",
         "MainAbility/pages/polyLine",
         "MainAbility/pages/counter",
         "MainAbility/pages/navDestination",
@@ -57,7 +58,8 @@
         "MainAbility/pages/geometryTransition",
         "MainAbility/pages/motionPath",
         "MainAbility/pages/shortcutKey",
-        "MainAbility/pages/idKey",
+        "MainAbility/pages/common1",
+        "MainAbility/pages/Polygon",
         "MainAbility/pages/span"
     ]
 }

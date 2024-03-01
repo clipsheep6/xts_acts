@@ -18,6 +18,7 @@ import router from '@system.router';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import Utils from './Utils.ets'
 import events_emitter from '@ohos.events.emitter';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function gridItemOnSelectJsunit() {
   describe('gridItemOnSelectTest', function () {
@@ -154,6 +155,29 @@ export default function gridItemOnSelectJsunit() {
       
       expect(obj.$attrs.selectable).assertEqual("true");
       console.info('[testGridItem_0105] END');
+      done();
+    });
+
+    /**
+     * @tc.number testGridItem_0106
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testGridItem_0106', 0, async function (done) {
+      console.info('testGridItem_0106 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('GridItemKey1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("testGridItem_0106 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.rowStart).assertEqual('2'); //
+      console.info('testGridItem_0106 END');
       done();
     });
   })

@@ -16,6 +16,7 @@
 import router from '@system.router';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import Utils from './Utils.ets'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest';
 
 export default function pathNewTest() {
   describe('pathNewTest', function () {
@@ -56,6 +57,30 @@ export default function pathNewTest() {
       console.info("[testPathNe0004] commands value :" + obj.$attrs.commands);
       expect(obj.$attrs.commands).assertEqual("M100 0 L0 100 L50 200 L150 200 L200 100 Z");
       console.info('pathNe testPathNe0004 END');
+      done();
+    });
+
+    /**
+     * @tc.number testPathNe0005
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testPathNe0005', 0, async function (done) {
+      console.info('testPathNe0005 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('PathKey1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("testPathNe0005 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.commands).assertEqual("M100 0 L0 100 L50 200 L150 200 L200 200 Z"); //
+
+      console.info('testPathNe0005 END');
       done();
     });
 

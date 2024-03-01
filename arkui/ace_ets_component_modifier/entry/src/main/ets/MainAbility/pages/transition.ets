@@ -13,9 +13,11 @@
  * limitations under the License.
  */
 import events_emitter from '@ohos.events.emitter'
-class TransitionModifier1 implements AttributeModifier<ButtonAttribute> {
+import {ButtonModifier} from "@ohos.arkui.modifier";
+
+class CustomModifier extends ButtonModifier {
   applyNormalAttribute(instance: ButtonAttribute): void {
-    instance.transition({ type: TransitionType.Insert, scale: { x: 0, y: 1.0, z: 1.0 }, opacity: 1 });
+    super.applyNormalAttribute?.(instance);
   }
 }
 
@@ -28,7 +30,8 @@ struct TransitionTest7Example {
   @State transitionTypeOne: TransitionType = TransitionType.Insert
   @State transitionTypeTwo: TransitionType = TransitionType.Delete
   @State transitionTypeThree: TransitionType = TransitionType.All
-  @State transitionMod: TransitionModifier1 = new TransitionModifier1()
+  @State transitionMod: ButtonAttribute = new CustomModifier()
+        .transition({ type: TransitionType.Insert, scale: { x: 0, y: 1.0, z: 1.0 }, opacity: 1 });
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, }) {
@@ -67,7 +70,7 @@ struct TransitionTest7Example {
       if (this.btn1) {
         Button() {
           Image($r('app.media.icon')).width("80%").height(300).key('image')
-        }.attributeModifier(this.transitionMod)
+        }.attributeModifier(this.transitionMod as ButtonModifier)
           .key('button1')
       }
     }.height(400).width("100%").padding({ top: 100 })
