@@ -19,7 +19,7 @@ import * as env from './Const';
 import { BusinessError } from '@ohos.base';
 
 let Tag = 'AudioCpaturerEnhanceTest: ';
-let audioCap: audio.AudioCapturer = null;
+let audioCap = null;
 
 function sleep(ms: number) {
   return new Promise<number>(resolve => setTimeout(resolve, ms));

@@ -20,7 +20,7 @@ import { BusinessError } from '@ohos.base';
 
 let Tag = 'AudioCpaturerEnhanceTest: ';
 let dirPath: string;
-let audioCap: audio.AudioCapturer = null;
+let audioCap = null;
 let audioManager: audio.AudioManager = null;
 let flag1: boolean = false;
 let flag2: boolean = false;
