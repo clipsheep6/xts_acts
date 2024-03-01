@@ -65,7 +65,7 @@ struct TextTimerExample {
           console.log(getInspectorByKey('textInputKey1'))
         })
       TextInput({ placeholder: 'input your password...' })
-        .key('TextInputKey1')
+        .key('textInputKey1')
         .attributeModifier(this.customModifier as CustomModifier)
     }
     }
