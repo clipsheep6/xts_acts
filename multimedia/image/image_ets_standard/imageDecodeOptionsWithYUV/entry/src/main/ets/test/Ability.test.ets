@@ -1,3 +1,17 @@
+/*
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import fs from '@ohos.file.fs';
 import image from '@ohos.multimedia.image';
@@ -131,9 +145,8 @@ export default function decodeOptionsWithYUVAbilityTest() {
     })
     
     /**
-     *
      * @tc.number    : SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0100
-     * @tc.name      : createPixelMap(decodingOptions)-pixelFormat:8(NV21)-JPEG_444
+     * @tc.name      : Test_createPixelMap_decodingOptions_pixelFormat_8_JPEG_444
      * @tc.desc      : 1.create imageSource
      *                 2.set index and DecodeOptions
      *                 3.create PixelMap
@@ -143,7 +156,7 @@ export default function decodeOptionsWithYUVAbilityTest() {
      * @tc.level     : Level 1
      */
     it("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0100", 0, async (done: Function) => {
-      await getFd("test-tree-444.jpg");
+      await getFd("test_tree_444.jpg");
       try{
         await getResult('SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0100',
           240, 180, 8, 'decodingOptions');
@@ -159,7 +172,7 @@ export default function decodeOptionsWithYUVAbilityTest() {
 
     /**
      * @tc.number    : SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0200
-     * @tc.name      : createPixelMap(decodingOptions)-pixelFormat:8(NV21)-JPEG_ODD_440
+     * @tc.name      : Test_createPixelMap_decodingOptions_pixelFormat_8_NV21_JPEG_ODD_440
      * @tc.desc      : 1.create imageSource
      *                 2.set index and DecodeOptions
      *                 3.create PixelMap
@@ -169,7 +182,7 @@ export default function decodeOptionsWithYUVAbilityTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0200", 0, async (done: Function) => {
-      await getFd("test-treeodd-440.jpg");
+      await getFd("test_treeodd_440.jpg");
       try{
         await getResult("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0200",
           240, 180, 8, 'decodingOptions');
@@ -185,17 +198,17 @@ export default function decodeOptionsWithYUVAbilityTest() {
 
     /**
      * @tc.number    : SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0300
-     * @tc.name      : createPixelMap(decodingOptions)-pixelFormat:8(NV21)-JPEG_422
+     * @tc.name      : Test_createPixelMap_decodingOptions_pixelFormat_8_NV21_JPEG_422
      * @tc.desc      : 1.create imageSource
      *                 2.set index and DecodeOptions
      *                 3.create PixelMap
      *                 4.callback return undefined
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0300", 0, async (done: Function) => {
-      await getFd("test-tree-422.jpg");
+      await getFd("test_tree_422.jpg");
       try{
         await getResult("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0300",
           240, 180, 8, 'decodingOptions');
@@ -211,17 +224,17 @@ export default function decodeOptionsWithYUVAbilityTest() {
 
     /**
      * @tc.number    : SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0400
-     * @tc.name      : createPixelMap(decodingOptions, asyncCallback)-pixelFormat:8(NV21)-JPEG_ODD_420
+     * @tc.name      : Test_createPixelMap_decodingOptions_asyncCallback_pixelFormat_8_NV21_JPEG_ODD_420
      * @tc.desc      : 1.create imageSource
      *                 2.set index and DecodeOptions
      *                 3.create PixelMap
      *                 4.callback return undefined
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0400", 0, async (done: Function) => {
-      await getFd("test-treeodd-420.jpg");
+      await getFd("test_treeodd_420.jpg");
       try{
         await getResult("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0400",
           240, 180, 8, 'callBackCreate');
@@ -237,17 +250,17 @@ export default function decodeOptionsWithYUVAbilityTest() {
 
     /**
      * @tc.number    : SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0500
-     * @tc.name      : createPixelMap(decodingOptions, asyncCallback)-pixelFormat:8(NV21)-JPEG_411
+     * @tc.name      : Test_createPixelMap_decodingOptions_asyncCallback_pixelFormat_8_NV21_JPEG_411
      * @tc.desc      : 1.create imageSource
      *                 2.set index and DecodeOptions
      *                 3.create PixelMap
      *                 4.callback return undefined
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0500", 0, async (done: Function) => {
-      await getFd("test-tree-411.jpg");
+      await getFd("test_tree_411.jpg");
       try{
         await getResult("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0500",
           240, 180, 8, 'callBackCreate');
@@ -263,17 +276,17 @@ export default function decodeOptionsWithYUVAbilityTest() {
 
     /**
      * @tc.number    : SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0600
-     * @tc.name      : createPixelMap(decodingOptions, asyncCallback)-pixelFormat:8(NV21)-JPEG_ODD_400
+     * @tc.name      : Test_createPixelMap_decodingOptions_asyncCallback_pixelFormat_8_NV21_JPEG_ODD_400
      * @tc.desc      : 1.create imageSource
      *                 2.set index and DecodeOptions
      *                 3.create PixelMap
      *                 4.callback return undefined
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0600", 0, async (done: Function) => {
-      await getFd("test-treeodd-400.jpg");
+      await getFd("test_treeodd_400.jpg");
       try{
         await getResult("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0600",
           240, 180, 8, 'callBackCreate');
@@ -289,7 +302,7 @@ export default function decodeOptionsWithYUVAbilityTest() {
 
     /**
      * @tc.number    : SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0700
-     * @tc.name      : createPixelMap(decodingOptions)-pixelFormat:9(NV12)-JPEG_444
+     * @tc.name      : Test_createPixelMap_decodingOptions_pixelFormat_9_NV12_JPEG_444
      * @tc.desc      : 1.create imageSource
      *                 2.set index and DecodeOptions
      *                 3.create PixelMap
@@ -299,7 +312,7 @@ export default function decodeOptionsWithYUVAbilityTest() {
      * @tc.level     : Level 1
      */
     it("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0700", 0, async (done: Function) => {
-      await getFd("test-tree-444.jpg");
+      await getFd("test_tree_444.jpg");
       try{
         await getResult("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0700",
           480, 180, 9, 'decodingOptions');
@@ -315,7 +328,7 @@ export default function decodeOptionsWithYUVAbilityTest() {
 
     /**
      * @tc.number    : SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0800
-     * @tc.name      : createPixelMap(decodingOptions)-pixelFormat:9(NV12)-JPEG_ODD_440
+     * @tc.name      : Test_createPixelMap_decodingOptions_pixelFormat_9_NV12_JPEG_ODD_440
      * @tc.desc      : 1.create imageSource
      *                 2.set index and DecodeOptions
      *                 3.create PixelMap
@@ -325,7 +338,7 @@ export default function decodeOptionsWithYUVAbilityTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0800", 0, async (done: Function) => {
-      await getFd("test-treeodd-440.jpg");
+      await getFd("test_treeodd_440.jpg");
       try{
         await getResult("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0800",
           480, 180, 9, 'decodingOptions');
@@ -341,7 +354,7 @@ export default function decodeOptionsWithYUVAbilityTest() {
 
     /**
      * @tc.number    : SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0900
-     * @tc.name      : createPixelMap(decodingOptions)-pixelFormat:9(NV12)-JPEG_422
+     * @tc.name      : Test_createPixelMap_decodingOptions_pixelFormat_9_NV12_JPEG_422
      * @tc.desc      : 1.create imageSource
      *                 2.set index and DecodeOptions
      *                 3.create PixelMap
@@ -351,7 +364,7 @@ export default function decodeOptionsWithYUVAbilityTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0900", 0, async (done: Function) => {
-      await getFd("test-tree-422.jpg");
+      await getFd("test_tree_422.jpg");
       try{
         await getResult("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_0900",
           480, 180, 9, 'decodingOptions');
@@ -367,17 +380,17 @@ export default function decodeOptionsWithYUVAbilityTest() {
 
     /**
      * @tc.number    : SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_1000
-     * @tc.name      : createPixelMap(decodingOptions, asyncCallback)-pixelFormat:9(NV12)-JPEG_ODD_420
+     * @tc.name      : Test_createPixelMap_decodingOptions_asyncCallback_pixelFormat_9_NV12_JPEG_ODD_420
      * @tc.desc      : 1.create imageSource
      *                 2.set index and DecodeOptions
      *                 3.create PixelMap
      *                 4.callback return undefined
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_1000", 0, async (done: Function) => {
-      await getFd("test-treeodd-420.jpg");
+      await getFd("test_treeodd_420.jpg");
       try{
         await getResult("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_1000",
           480, 180, 9, 'callBackCreate');
@@ -393,17 +406,17 @@ export default function decodeOptionsWithYUVAbilityTest() {
 
     /**
      * @tc.number    : SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_1100
-     * @tc.name      : createPixelMap(decodingOptions, asyncCallback)-pixelFormat:9(NV12)-JPEG_411
+     * @tc.name      : Test_createPixelMap_decodingOptions_asyncCallback_pixelFormat_9_NV12_JPEG_411
      * @tc.desc      : 1.create imageSource
      *                 2.set index and DecodeOptions
      *                 3.create PixelMap
      *                 4.callback return undefined
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_1100", 0, async (done: Function) => {
-      await getFd("test-tree-411.jpg");
+      await getFd("test_tree_411.jpg");
       try{
         await getResult("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_1100",
           480, 180, 9, 'callBackCreate');
@@ -419,17 +432,17 @@ export default function decodeOptionsWithYUVAbilityTest() {
 
     /**
      * @tc.number    : SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_1200
-     * @tc.name      : createPixelMap(decodingOptions, asyncCallback)-pixelFormat:9(NV12)-JPEG_ODD_400
+     * @tc.name      : Test_createPixelMap_decodingOptions_asyncCallback_pixelFormat_9_NV12_JPEG_ODD_400
      * @tc.desc      : 1.create imageSource
      *                 2.set index and DecodeOptions
      *                 3.create PixelMap
      *                 4.callback return undefined
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_1200", 0, async (done: Function) => {
-      await getFd("test-treeodd-400.jpg");
+      await getFd("test_treeodd_400.jpg");
       try{
         await getResult("SUB_DECODEOPTIONS_WITH_YUV_CREATEPIXELMAP_PIXELFORMAT_1200",
           480, 180, 9, 'callBackCreate');

@@ -27,18 +27,18 @@
             "type": "PushKit",
             "pre-push": [],
             "push": [
-                "./resource/image/test-tree-400.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
-                "./resource/image/test-tree-411.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
-                "./resource/image/test-tree-420.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
-                "./resource/image/test-tree-422.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
-                "./resource/image/test-tree-440.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
-                "./resource/image/test-tree-444.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
-                "./resource/image/test-treeodd-400.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
-                "./resource/image/test-treeodd-411.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
-                "./resource/image/test-treeodd-420.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
-                "./resource/image/test-treeodd-422.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
-                "./resource/image/test-treeodd-440.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
-                "./resource/image/test-treeodd-444.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files"
+                "./resource/image/test_tree_400.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
+                "./resource/image/test_tree_411.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
+                "./resource/image/test_tree_420.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
+                "./resource/image/test_tree_422.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
+                "./resource/image/test_tree_440.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
+                "./resource/image/test_tree_444.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
+                "./resource/image/test_treeodd_400.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
+                "./resource/image/test_treeodd_411.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
+                "./resource/image/test_treeodd_420.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
+                "./resource/image/test_treeodd_422.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
+                "./resource/image/test_treeodd_440.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files",
+                "./resource/image/test_treeodd_444.jpg ->/data/app/el2/100/base/ohos.acts.image.decodeOptionsWithYUV/haps/entry/files"
             ]
         }
     ]
