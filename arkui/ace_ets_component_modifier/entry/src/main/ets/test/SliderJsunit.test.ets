@@ -13,9 +13,12 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
+import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
+import router from '@system.router';
+
 export default function sliderTest() {
     describe('sliderJsunit', function () {
       beforeEach(async function (done) {
@@ -368,5 +371,251 @@ export default function sliderTest() {
         }
       }, 500)
     })
+
+    /**
+     * @tc.number ArkUX_Stage_Slider_trackThickness_0110
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Slider_trackThickness_0110', 0, async function (done) {
+      
+      console.info('ArkUX_Stage_Slider_trackThickness_0110 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('slider');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_Slider_trackThickness_0110 component is: " + JSON.stringify(objNew.$attrs));
+      
+      expect(objNew.$attrs.stepSize).assertEqual("1.00vp");
+      console.info('ArkUX_Stage_Slider_trackThickness_0110 END');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Slider_trackThickness_011
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Slider_trackThickness_011', 0, async function (done) {
+      
+      console.info('ArkUX_Stage_Slider_trackThickness_011 START');
+      let strJsonNew = getInspectorByKey('slider');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_Slider_trackThickness_011 component is: " + JSON.stringify(objNew.$attrs));
+      
+      expect(objNew.$attrs.stepColor).assertEqual("#FFFF0000");
+      console.info('ArkUX_Stage_Slider_trackThickness_011 END');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Slider_trackThickness_012
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Slider_trackThickness_012', 0, async function (done) {
+      
+      console.info('ArkUX_Stage_Slider_trackThickness_012 START');
+      let strJsonNew = getInspectorByKey('slider');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_Slider_trackThickness_012 component is: " + JSON.stringify(objNew.$attrs));
+      
+      expect(objNew.$attrs.blockBorderWidth).assertEqual("50.00vp");
+      console.info('ArkUX_Stage_Slider_trackThickness_012 END');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Slider_trackThickness_013
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Slider_trackThickness_013', 0, async function (done) {
+      
+      console.info('ArkUX_Stage_Slider_trackThickness_013 START');
+      let strJsonNew = getInspectorByKey('slider');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_Slider_trackThickness_013 component is: " + JSON.stringify(objNew.$attrs));
+      
+      expect(objNew.$attrs.trackBorderRadius).assertEqual("30.00vp");
+      console.info('ArkUX_Stage_Slider_trackThickness_013 END');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Slider_trackThickness_014
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Slider_trackThickness_014', 0, async function (done) {
+      
+      console.info('ArkUX_Stage_Slider_trackThickness_014 START');
+      let strJsonNew = getInspectorByKey('slider');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_Slider_trackThickness_014 component is: " + JSON.stringify(objNew.$attrs));
+      
+      expect(objNew.$attrs.showTips).assertEqual("true");
+      console.info('ArkUX_Stage_Slider_trackThickness_014 END');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Slider_trackThickness_015
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Slider_trackThickness_015', 0, async function (done) {
+      
+      console.info('ArkUX_Stage_Slider_trackThickness_015 START');
+      let strJsonNew = getInspectorByKey('slider');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_Slider_trackThickness_015 component is: " + JSON.stringify(objNew.$attrs));
+      
+      expect(objNew.$attrs.blockBorderColor).assertEqual("#FFFF0000");
+      console.info('ArkUX_Stage_Slider_trackThickness_015 END');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Slider_trackThickness_017
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Slider_trackThickness_017', 0, async function (done) {
+      
+      console.info('ArkUX_Stage_Slider_trackThickness_017 START');
+      let strJsonNew = getInspectorByKey('slider');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_Slider_trackThickness_017 component is: " + JSON.stringify(objNew.$attrs));
+      
+      expect(objNew.$attrs.blockSize?.width).assertEqual('10.00px');
+      expect(objNew.$attrs.blockSize?.height).assertEqual('10.00px');
+      console.info('ArkUX_Stage_Slider_trackThickness_017 END');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Slider_trackThickness_018
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Slider_trackThickness_018', 0, async function (done) {
+      
+      console.info('ArkUX_Stage_Slider_trackThickness_018 START');
+      let strJsonNew = getInspectorByKey('slider');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_Slider_trackThickness_018 component is: " + JSON.stringify(objNew.$attrs));
+      
+      expect(objNew.$attrs.blockColor).assertEqual("#FFFF0000");
+      console.info('ArkUX_Stage_Slider_trackThickness_018 END');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Slider_trackThickness_019
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Slider_trackThickness_019', 0, async function (done) {
+      
+      console.info('ArkUX_Stage_Slider_trackThickness_019 START');
+      let strJsonNew = getInspectorByKey('slider');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_Slider_trackThickness_019 component is: " + JSON.stringify(objNew.$attrs));
+      
+      expect(objNew.$attrs.trackColor).assertEqual("#FFFF0000");
+      console.info('ArkUX_Stage_Slider_trackThickness_019 END');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Slider_trackThickness_020
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Slider_trackThickness_020', 0, async function (done) {
+      
+      console.info('ArkUX_Stage_Slider_trackThickness_020 START');
+      let strJsonNew = getInspectorByKey('slider');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_Slider_trackThickness_020 component is: " + JSON.stringify(objNew.$attrs));
+      
+      expect(objNew.$attrs.selectedColor).assertEqual("#FFFF0000");
+      console.info('ArkUX_Stage_Slider_trackThickness_020 END');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Slider_trackThickness_021
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Slider_trackThickness_021', 0, async function (done) {
+      
+      console.info('ArkUX_Stage_Slider_trackThickness_021 START');
+      let strJsonNew = getInspectorByKey('slider');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_Slider_trackThickness_021 component is: " + JSON.stringify(objNew.$attrs));
+      
+      expect(objNew.$attrs.showSteps).assertEqual("false");
+      console.info('ArkUX_Stage_Slider_trackThickness_021 END');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Slider_trackThickness_022
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Slider_trackThickness_022', 0, async function (done) {
+      
+      console.info('ArkUX_Stage_Slider_trackThickness_022 START');
+      let strJsonNew = getInspectorByKey('slider');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_Slider_trackThickness_022 component is: " + JSON.stringify(objNew.$attrs));
+      
+      expect(objNew.$attrs.trackThickness).assertEqual('2.00px');
+      console.info('ArkUX_Stage_Slider_trackThickness_022 END');
+      done();
+    });
   })
 }

@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
+import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 import router from '@system.router';
+
 export default function textpickerJsunit() {
   describe('textpickerJsunit', function () {
     beforeEach(async function (done) {
@@ -164,6 +166,102 @@ export default function textpickerJsunit() {
       let obj = JSON.parse(strJson);
       console.info("[ArkUI_textpicker_006] obj:" + JSON.stringify(obj.$attrs));
       expect(obj.$attrs.defaultPickerItemHeight).assertEqual('60.00px');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUI_textpicker_007
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_textpicker_007', 0, async function (done) {
+      console.info('[ArkUI_textpicker_007] START');
+      let strJson = getInspectorByKey('textPicker');
+      let obj = JSON.parse(strJson);
+      console.info("[ArkUI_textpicker_007] obj:" + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.defaultPickerItemHeight).assertEqual('16.00fp');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUI_textpicker_008
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_textpicker_008', 0, async function (done) {
+      console.info('[ArkUI_textpicker_008] START');
+      let strJson = getInspectorByKey('textPicker');
+      let obj = JSON.parse(strJson);
+      console.info("[ArkUI_textpicker_008] obj:" + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.disappearTextStyle.color).assertEqual("#FF0000FF");
+      expect(obj.$attrs.disappearTextStyle.font.size).assertEqual("15.00fp");
+      expect(obj.$attrs.disappearTextStyle.font.weight).assertEqual("FontWeight.Lighter");
+      done();
+    });
+
+    /**
+     * @tc.number ArkUI_textpicker_009
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_textpicker_009', 0, async function (done) {
+      console.info('[ArkUI_textpicker_009] START');
+      let strJson = getInspectorByKey('textPicker');
+      let obj = JSON.parse(strJson);
+      console.info("[ArkUI_textpicker_009] obj:" + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.selectedTextStyle.font.size).assertEqual("20.00fp");
+      expect(obj.$attrs.selectedTextStyle.font.weight).assertEqual("FontWeight.Normal");
+      done();
+    });
+
+    /**
+     * @tc.number ArkUI_textpicker_010
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_textpicker_010', 0, async function (done) {
+      console.info('[ArkUI_textpicker_010] START');
+      let strJson = getInspectorByKey('textPicker');
+      let obj = JSON.parse(strJson);      
+      let strJson1 = getInspectorByKey('textPickerDefault1');
+      let obj1 = JSON.parse(strJson1);
+
+      console.info("[ArkUI_textpicker_010] obj:" + JSON.stringify(obj.$attrs));
+      //得到json值与 设置不一致，与原生json返回做对比验证
+      expect(JSON.stringify(obj.$attrs.selectedIndex)).assertEqual(JSON.stringify(obj1.$attrs.selectedIndex));
+      done();
+    });
+
+    /**
+     * @tc.number ArkUI_textpicker_011
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_textpicker_011', 0, async function (done) {
+      console.info('[ArkUI_textpicker_011] START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+      let strJson = getInspectorByKey('textPicker');
+      let obj = JSON.parse(strJson);
+      console.info("[ArkUI_textpicker_011] obj:" + JSON.stringify(obj.$attrs));
+      expect(obj.$attrs.canLoop).assertEqual("true");
       done();
     });
   })

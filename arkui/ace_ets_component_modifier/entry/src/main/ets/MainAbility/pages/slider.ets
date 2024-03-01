@@ -13,6 +13,18 @@
  * limitations under the License.
  */
 
+import { SliderModifier } from "@ohos.arkui.modifier";
+
+class CustomModifier extends SliderModifier {
+  applyNormalAttribute(instance: SliderAttribute): void {
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.stepSize(1)
+  }
+}
+
 class SliderBlockBorderColorModifier1 implements AttributeModifier<SliderAttribute>{
   applyNormalAttribute(instance: SliderAttribute): void {
     instance.blockBorderColor(0xFFA500)
@@ -96,19 +108,33 @@ struct SliderTest {
   private sliderShapeRect: SliderBlockStyle = { type: SliderBlockType.SHAPE, shape: this.Rect }
   private sliderDefault: SliderBlockStyle = { type: SliderBlockType.DEFAULT }
 
-  @State blockBorderColormodifier1 : SliderBlockBorderColorModifier1 =  new SliderBlockBorderColorModifier1()
-  @State blockBorderWidthmodifier1 : SliderBlockBorderWidthModifier1 =  new SliderBlockBorderWidthModifier1()
-  @State stepColormodifier1 : SliderStepColorModifier1 =  new SliderStepColorModifier1()
-  @State trackBorderRadiusmodifier1 : SliderTrackBorderRadiusModifier1 =  new SliderTrackBorderRadiusModifier1()
-  @State blockSizemodifier1 : SliderBlockSizeModifier1 =  new SliderBlockSizeModifier1()
-  @State stepSizemodifier1 : SliderStepSizeModifier1 =  new SliderStepSizeModifier1()
-  @State blockStylemodifier1 : SliderBlockStyleModifier1 =  new SliderBlockStyleModifier1()
-  @State blockColormodifier1 : SliderBlockColorModifier1 =  new SliderBlockColorModifier1()
-  @State trackColormodifier1 : SliderTrackColorModifier1 =  new SliderTrackColorModifier1()
-  @State selectedColormodifier1 : SliderSelectedColorModifier1 =  new SliderSelectedColorModifier1()
-  @State showStepsmodifier1 : SliderShowStepsModifier1 =  new SliderShowStepsModifier1()
-  @State showTipsmodifier1 : SliderShowTipsModifier1 =  new SliderShowTipsModifier1()
-  @State trackThicknessmodifier1 : SliderTrackThicknessModifier1 =  new SliderTrackThicknessModifier1()
+  @State blockBorderColormodifier1: SliderBlockBorderColorModifier1 = new SliderBlockBorderColorModifier1()
+  @State blockBorderWidthmodifier1: SliderBlockBorderWidthModifier1 = new SliderBlockBorderWidthModifier1()
+  @State stepColormodifier1: SliderStepColorModifier1 = new SliderStepColorModifier1()
+  @State trackBorderRadiusmodifier1: SliderTrackBorderRadiusModifier1 = new SliderTrackBorderRadiusModifier1()
+  @State blockSizemodifier1: SliderBlockSizeModifier1 = new SliderBlockSizeModifier1()
+  @State stepSizemodifier1: SliderStepSizeModifier1 = new SliderStepSizeModifier1()
+  @State blockStylemodifier1: SliderBlockStyleModifier1 = new SliderBlockStyleModifier1()
+  @State blockColormodifier1: SliderBlockColorModifier1 = new SliderBlockColorModifier1()
+  @State trackColormodifier1: SliderTrackColorModifier1 = new SliderTrackColorModifier1()
+  @State selectedColormodifier1: SliderSelectedColorModifier1 = new SliderSelectedColorModifier1()
+  @State showStepsmodifier1: SliderShowStepsModifier1 = new SliderShowStepsModifier1()
+  @State showTipsmodifier1: SliderShowTipsModifier1 = new SliderShowTipsModifier1()
+  @State trackThicknessmodifier1: SliderTrackThicknessModifier1 = new SliderTrackThicknessModifier1()
+  @State customModifier: SliderModifier = new CustomModifier()
+    .stepSize(2)
+    .stepColor("#FFFF0000")
+    .blockBorderWidth(50)
+    .trackBorderRadius(30)
+    .showTips(true)
+    .blockBorderColor("#FFFF0000")
+    .blockStyle({ type: SliderBlockType.SHAPE, shape: new Path() })
+    .blockSize({ width: '10px', height: '10px' })
+    .blockColor("#FFFF0000")
+    .trackColor("#FFFF0000")
+    .selectedColor("#FFFF0000")
+    .showSteps(false)
+    .trackThickness('2px')
 
   build() {
     Row() {
@@ -229,6 +255,19 @@ struct SliderTest {
         })
           .key('ArkUX_Stage_Slider_trackThickness_0100')
           .attributeModifier(this.trackThicknessmodifier1)
+
+        Button("change value").onClick(() => {
+          (this.customModifier as CustomModifier).onChange1();
+        }).key("changeButton")
+
+        Slider({
+          value: this.inSetValueOne,
+          min: 0,
+          max: 100,
+          style: SliderStyle.InSet
+        })
+          .key('slider')
+          .attributeModifier(this.customModifier as CustomModifier)
       }
       .width('100%')
     }

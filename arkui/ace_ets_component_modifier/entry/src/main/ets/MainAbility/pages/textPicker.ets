@@ -13,6 +13,18 @@
  * limitations under the License.
  */
 
+import { TextPickerModifier } from "@ohos.arkui.modifier";
+
+class CustomModifier extends TextPickerModifier {
+  applyNormalAttribute(instance: TextPickerAttribute): void {
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.canLoop(true)
+  }
+}
+
 class TextPickerModifier1 implements AttributeModifier<TextPickerAttribute> {
   disappearTextStyle: PickerTextStyle = { color: Color.Black, font: { size: 8, weight: FontWeight.Lighter } }
   textStyle: PickerTextStyle = { color: Color.Red, font: { size: '10px', weight: FontWeight.Normal } }
@@ -23,7 +35,7 @@ class TextPickerModifier1 implements AttributeModifier<TextPickerAttribute> {
       .textStyle(this.textStyle)
       .selectedTextStyle(this.selectedTextStyle)
       .canLoop(false)
-      .selectedIndex(2)
+      .selectedIndex(3)
       .defaultPickerItemHeight('60px')
   }
 }
@@ -32,16 +44,30 @@ class TextPickerModifier1 implements AttributeModifier<TextPickerAttribute> {
 @Component
 struct TextPickerExample {
   @State modifier1: TextPickerModifier1 = new TextPickerModifier1()
+  @State customModifier: TextPickerModifier = new CustomModifier()
+    .canLoop(false)
+    .disappearTextStyle({ color: Color.Blue, font: { size: 15, weight: FontWeight.Lighter } })
+    .selectedTextStyle({ font: { size: 20, weight: FontWeight.Normal } })
+    .selectedIndex(3)
+    .defaultPickerItemHeight("16")
 
   build() {
     Column() {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
+      
       TextPicker({ range: ['peach1', 'peach2', 'peach3', 'peach4'] })
         .attributeModifier(this.modifier1)
         .key('textPickerDefault')
 
-        TextPicker({ range: ['peach1', 'peach2', 'peach3', 'peach4'] })
-        .selectedIndex(2)
+      TextPicker({ range: ['peach1', 'peach2', 'peach3', 'peach4'] })
+        .selectedIndex(3)
         .key('textPickerDefault1')
+
+      TextPicker({ range: ['peach1', 'peach2', 'peach3', 'peach4'] })
+        .attributeModifier(this.customModifier as CustomModifier)
+        .key('textPicker')
     }
   }
 }
