@@ -24,6 +24,7 @@ import audioEnCoderNdkTest from './AudioEnCoderNdk.test';
 import mediaAvSourceNdkTest from './MediaAvSourceNdk.test';
 import audioDecoderAvBufferTest from './AudioDecAvBufferNdk.test';
 import audioEncoderAvBufferTest from './AudioEncAvBufferNdk.test';
+import abilityTest from './Ability.test';
 
 export default function testsuite() {
   videoEnCoderNdkTest();
@@ -38,4 +39,5 @@ export default function testsuite() {
   mediaAvSourceNdkTest();
   audioDecoderAvBufferTest();
   audioEncoderAvBufferTest();
+  abilityTest();
 }

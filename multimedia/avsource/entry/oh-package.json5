@@ -21,7 +21,8 @@
     "@types/libmediacodecbasexdlndk.so": "file:./src/main/cpp/types/libmediacodecbasexdlndk",
     "@types/libaudiodecoderxdlndk.so": "file:./src/main/cpp/types/libaudiodecoderxdlndk",
     "@types/libaudioencoderxdlndk.so": "file:./src/main/cpp/types/libaudioencoderxdlndk",
-    "@types/libmultimediaCore.so": "file:./src/main/cpp/types/libmultimediaCore"
+    "@types/libmultimediaCore.so": "file:./src/main/cpp/types/libmultimediaCore",
+    "@types/libentry.so": "file:./src/main/cpp/types/libentry"
   },
   "author": "",
   "name": "entry",
