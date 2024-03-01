@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium";
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
@@ -239,6 +240,30 @@ export default function panelJsunit() {
       expect(obj.$attrs.backgroundMask).assertEqual(obj3.$attrs.backgroundMask);
 
       console.info('[test_panel_002] END');
+      done();
+    });
+
+     /**
+     * @tc.number test_panel_0011
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+     it('test_panel_0011', 0, async function (done) {
+
+      console.info('test_panel_0011 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('PanelKey2');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("test_panel_0011 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.backgroundMask).assertEqual("#11bb44");
+      console.info('test_panel_0011 END');
       done();
     });
   })

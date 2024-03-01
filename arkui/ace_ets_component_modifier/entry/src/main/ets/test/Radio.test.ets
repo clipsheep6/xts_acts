@@ -16,6 +16,7 @@
 import router from '@system.router';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import Utils from './Utils.ets'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest';
 
 export default function radioGroupJsunit() {
   describe('radioGroupTest', function () {
@@ -78,6 +79,29 @@ export default function radioGroupJsunit() {
 
       expect(obj.$attrs.checked).assertEqual('true');
       console.info("[testRadioGroup002] END");
+      done();
+    });
+
+    /**
+     * @tc.number testRadioGroup003
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testRadioGroup003', 0, async function (done) {
+      console.info('testRadioGroup003 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('RadioOne'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("testRadioGroup003 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.checked).assertEqual('false'); //
+      console.info('testRadioGroup003 END');
       done();
     });
 

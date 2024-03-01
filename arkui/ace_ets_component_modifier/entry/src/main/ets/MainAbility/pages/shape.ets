@@ -12,43 +12,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class ShapeModifier1 implements AttributeModifier<ShapeAttribute>{
+import { ShapeModifier } from "@ohos.arkui.modifier";
+
+class CustomModifier extends ShapeModifier {
+
+
   applyNormalAttribute(instance: ShapeAttribute): void {
+    super.applyNormalAttribute?.(instance);
+  }
 
-    instance.viewPort({ x: 1, y: -2, width: 100, height: 200 })
-
-      .stroke(Color.Pink)
-
-      .fill(0x317AF7)
-
-      .strokeDashOffset(15)
-
-      .strokeDashArray([30])
-
-      .strokeLineJoin(LineJoinStyle.Round)
-
-      .strokeLineCap(LineCapStyle.Round)
-
-      .strokeOpacity(0.5)
-
-      .strokeMiterLimit(5)
-
-      .mesh([10], 1, 1)
-
-      .strokeWidth("20px")
-
-      .fillOpacity(2)
-
-      .antiAlias(true)
+  onChange1() {
+    this.strokeDashOffset(16)
   }
 }
 
 @Entry
 @Component
 struct ShapeExample {
-  @State shapeModifier: ShapeModifier1 = new ShapeModifier1()
+  @State customModifier: ShapeModifier = new CustomModifier()
+    .viewPort({ x: 1, y: -2, width: 100, height: 200 })
+    .stroke(Color.Pink)
+    .fill(0x317AF7)
+    .strokeDashOffset(15)
+    .strokeDashArray([30])
+    .strokeLineJoin(LineJoinStyle.Round)
+    .strokeLineCap(LineCapStyle.Round)
+    .strokeOpacity(0.5)
+    .strokeMiterLimit(5)
+    .mesh([10], 1, 1)
+    .strokeWidth("20px")
+    .fillOpacity(2)
+    .antiAlias(true)
+
   build() {
     Column({ space: 10 }) {
+
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
+
       Text('basic').fontSize(11).fontColor(0xCCCCCC).width(320)
       // 在Shape的(-2, -2)点绘制一个 300 * 50 带边框的矩形,颜色0x317AF7,边框颜色黑色,边框宽度4,边框间隙20,向左偏移10,线条两端样式为半圆,拐角样式圆角,抗锯齿(默认开启)
       // 在Shape的(-2, 58)点绘制一个 300 * 50 带边框的椭圆,颜色0x317AF7,边框颜色黑色,边框宽度4,边框间隙20,向左偏移10,线条两端样式为半圆,拐角样式圆角,抗锯齿(默认开启)
@@ -60,7 +62,7 @@ struct ShapeExample {
       }
       .width(350)
         .key("ShapeKey1")
-        .attributeModifier(this.shapeModifier)
+        .attributeModifier(this.customModifier as CustomModifier)
       // 分别在Shape的(0, 0)、(-5, -5)点绘制一个 300 * 50 带边框的矩形,可以看出之所以将视口的起始位置坐标设为负值是因为绘制的起点默认为线宽的中点位置，因此要让边框完全显示则需要让视口偏移半个线宽
       Shape() {
         Rect().width(300).height(50)

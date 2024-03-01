@@ -12,35 +12,42 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { CheckboxModifier } from "@ohos.arkui.modifier";
 
-class CheckboxModifier1 implements AttributeModifier<CheckboxAttribute>{
+class CustomModifier extends CheckboxModifier{
+
   applyNormalAttribute(instance: CheckboxAttribute): void {
+    super.applyNormalAttribute?.(instance);
+  }
 
-    instance.select(false)
-
-      .selectedColor(0xed6f21)
-
-      .unselectedColor(0x00ff00)
-
-      .mark({
-        strokeColor: Color.Black,
-        size: 50,
-        strokeWidth: 5
-      })
+  onChange1() {
+    this.select(true)
   }
 }
 
 @Entry
 @Component
 struct checkBoxTest {
-  @State checkboxModifier1: CheckboxModifier1 = new CheckboxModifier1()
+  @State customModifier: CheckboxModifier = new CustomModifier()
+    .select(false)
+    .selectedColor(0xed6f21)
+    .unselectedColor(0x00ff00)
+    .mark({
+        strokeColor: Color.Black,
+        size: 50,
+        strokeWidth: 5
+      })
 
   build() {
     Row() {
       Column() {
+        Button("change value").onClick(() => {
+          (this.customModifier as CustomModifier).onChange1();
+        }).key("changeButton")
+
         Checkbox({ name: 'checkbox1', group: 'checkboxGroup1' })
           .key("Checkbox_0100")
-          .attributeModifier(this.checkboxModifier1)
+          .attributeModifier(this.customModifier as CustomModifier)
           .onChange((value: boolean) => {
             console.info('Checkbox1 change is' + value)
           })

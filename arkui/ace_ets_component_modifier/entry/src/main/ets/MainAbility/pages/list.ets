@@ -12,32 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { ListModifier } from "@ohos.arkui.modifier";
 
-class ListModifier1 implements AttributeModifier<ListAttribute> {
+class CustomModifier extends ListModifier {
   applyNormalAttribute(instance: ListAttribute): void {
-    instance
-      .scrollSnapAlign(ScrollSnapAlign.NONE)
-      .lanes(1)
-      .friction(0.6)
-      .enableScrollInteraction(true)
-      .nestedScroll({ scrollForward: NestedScrollMode.SELF_ONLY, scrollBackward: NestedScrollMode.SELF_FIRST })
-      .chainAnimationOptions({
-        minSpace: 1,
-        maxSpace: 2,
-        conductivity: 0.6,
-        intensity: 0.2,
-        edgeEffect: ChainEdgeEffect.DEFAULT
-      })
-      .alignListItem(ListItemAlign.Start)
-      .listDirection(Axis.Vertical)
-      .scrollBar(BarState.Off)
-      .edgeEffect(EdgeEffect.Spring)
-      .divider({ strokeWidth: 1, color: '#FF00FFFF', startMargin: 2, endMargin: 3 })
-      .editMode(true)
-      .multiSelectable(true)
-      .cachedCount(2)
-      .chainAnimation(true)
-      .sticky(StickyStyle.Header)
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.lanes(1)
   }
 }
 
@@ -45,10 +28,38 @@ class ListModifier1 implements AttributeModifier<ListAttribute> {
 @Component
 struct ListExample {
   private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  @State listModifier: ListModifier1 = new ListModifier1()
+  @State customModifier: ListModifier = new CustomModifier()
+    .scrollSnapAlign(ScrollSnapAlign.NONE)
+    .lanes(1)
+    .friction(0.6)
+    .enableScrollInteraction(true)
+    .nestedScroll({ scrollForward: NestedScrollMode.SELF_ONLY, scrollBackward: NestedScrollMode.SELF_FIRST })
+    .chainAnimationOptions({
+      minSpace: 1,
+      maxSpace: 2,
+      conductivity: 0.6,
+      intensity: 0.2,
+      edgeEffect: ChainEdgeEffect.DEFAULT
+    })
+    .alignListItem(ListItemAlign.Start)
+    .listDirection(Axis.Vertical)
+    .scrollBar(BarState.Off)
+    .edgeEffect(EdgeEffect.Spring)
+    .divider({ strokeWidth: 1, color: '#FF00FFFF', startMargin: 2, endMargin: 3 })
+    .editMode(true)
+    .multiSelectable(true)
+    .cachedCount(2)
+    .chainAnimation(true)
+    .sticky(StickyStyle.Header)
+    .contentEndOffset(1)
+    .contentStartOffset(1)
 
   build() {
     Column() {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
+
       Button('Log Json Data')
         .onClick(() => {
           console.log(getInspectorByKey('ListKey1'))
@@ -68,7 +79,7 @@ struct ListExample {
         }, (item: string) => item)
       }
       .key('ListKey1')
-      .attributeModifier(this.listModifier)
+      .attributeModifier(this.customModifier as CustomModifier)
       .width('90%')
     }
     .width('100%')

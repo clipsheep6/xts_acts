@@ -14,6 +14,7 @@
  */
 
 import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 import router from '@system.router';
 import Utils from './Utils';
 
@@ -110,6 +111,33 @@ export default function MenuJsunit() {
       } catch (err) {
         console.info('ArkUX_Stage_Menu_attrs_0102 ERR  ' + JSON.stringify(err));
       }
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_Menu_attrs_0103
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+     it('ArkUX_Stage_Menu_attrs_0103', 0, async function (done) {
+
+      console.info('ArkUX_Stage_Menu_attrs_0103 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('MenuKey1');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_Menu_attrs_0103 component  is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.borderRadius.topLeft).assertEqual(20);
+      expect(objNew.$attrs.borderRadius.topRight).assertEqual(20);
+      expect(objNew.$attrs.borderRadius.bottomLeft).assertEqual(20);
+      expect(objNew.$attrs.borderRadius.bottomRight).assertEqual(20);
+      console.info('ArkUX_Stage_Menu_attrs_0103 END');
       done();
     });
 

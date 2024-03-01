@@ -13,25 +13,38 @@
  * limitations under the License.
  */
 
-class FormComponentModifier implements AttributeModifier<FormComponentAttribute>{
-	applyNormalAttribute(instance: FormComponentAttribute): void {
-		instance.size({ width: 200, height: 300 });
-		instance.allowUpdate(false);
-		instance.dimension(FormDimension.Dimension_2_1);
-		instance.visibility(Visibility.Visible);
-		instance.moduleName('model1');
-	}
+
+import { FormComponentModifier } from "@ohos.arkui.modifier";
+
+class CustomModifier extends FormComponentModifier {
+  applyNormalAttribute(instance: FormComponentAttribute): void {
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.size({ width: 100, height: 200 })
+  }
 }
 
 //FormComponent
 @Entry
 @Component
   struct FormComponentExample {
-	@State buttonMod: FormComponentModifier = new FormComponentModifier()
+	@State customModifier: FormComponentModifier = new CustomModifier()
+		.size({ width: 200, height: 300 })
+		.allowUpdate(false)
+		.dimension(FormDimension.Dimension_2_1)
+		.visibility(Visibility.Visible)
+		.moduleName('model1')
+
 	@State formId: number = 0;
 
 	build() {
 		Column() {
+			Button("change value").onClick(() => {
+        		(this.customModifier as CustomModifier).onChange1();
+      		}).key("changeButton")
+
 			Text('this is a card')
 				.fontSize(50)
 				.fontWeight(FontWeight.Bold)
@@ -45,7 +58,7 @@ class FormComponentModifier implements AttributeModifier<FormComponentAttribute>
 				temporary: false
 			})
 			.key('FormComponentKey1')
-			.attributeModifier(this.buttonMod)
+			.attributeModifier(this.customModifier as CustomModifier)
 
       FormComponent({
 				id: this.formId,

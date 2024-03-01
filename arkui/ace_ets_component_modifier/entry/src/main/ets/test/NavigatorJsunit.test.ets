@@ -16,6 +16,7 @@
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import router from '@system.router';
 import Utils from './Utils';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function navigatorJsunit() {
   describe('NavigatorClickTest', function () {
@@ -114,6 +115,29 @@ export default function navigatorJsunit() {
       console.info("[test_Navigator_0024] component obj is: " + JSON.stringify(obj));
       expect(obj.$attrs.type).assertEqual('NavigationType.Push');
       console.info('[test_Navigator_0024] END');
+      done();
+    });
+
+    /**
+     * @tc.number test_Navigator_0025
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('test_Navigator_0025', 0, async function (done) {
+      console.info('test_Navigator_0025 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('Navigator1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("test_Navigator_0025 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.active).assertEqual('true'); //
+      console.info('test_Navigator_0025 END');
       done();
     });
   })

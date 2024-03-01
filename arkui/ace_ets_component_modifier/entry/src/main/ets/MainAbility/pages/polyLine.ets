@@ -12,20 +12,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class PolyLinePoints implements AttributeModifier<PolylineAttribute> {
+import { PolylineModifier } from "@ohos.arkui.modifier";
+
+class CustomModifier extends PolylineModifier {
+
   applyNormalAttribute(instance: PolylineAttribute): void {
-    instance.points([[0, 0], [20, 60], [100, 100]]);
+    super.applyNormalAttribute?.(instance);
+  }
+  onChange() {
+    this.points([[1, 1], [20, 61], [100, 101]])
   }
 }
 
 @Entry
 @Component
   struct PolyLinePointsExample {
-  @State buttonMod: PolyLinePoints = new PolyLinePoints()
+  @State customModifier: PolylineModifier = new CustomModifier()
+    .points([[0, 0], [20, 60], [100, 100]]);
   build() {
     Column({ space: 10 }) {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange();
+      }).key("changeButton")
+
       Polyline({ width: 100, height: 100 })
-        .attributeModifier(this.buttonMod)
+        .attributeModifier(this.customModifier as CustomModifier)
         .key("polyLine")
         .fillOpacity(0)
         .stroke(Color.Blue)

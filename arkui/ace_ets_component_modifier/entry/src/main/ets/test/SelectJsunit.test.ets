@@ -14,6 +14,7 @@
  */
 
 import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 import Utils from './Utils';
 import router from '@system.router';
 export default function selectJsunit() {
@@ -258,5 +259,30 @@ export default function selectJsunit() {
       expect(objNew.$attrs.optionFontColor).assertEqual('#FF000000');
       done();
     });
+
+    /**
+     * @tc.number ArkUI_Stage_Select_optionFontColor_0101
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+     it('ArkUI_Stage_Select_optionFontColor_0101', 0, async function (done) {
+
+      console.info('ArkUI_Stage_Select_optionFontColor_0101 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('selectTest');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUI_Stage_Select_optionFontColor_0101 component  is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.selected).assertEqual(2);
+      console.info('ArkUI_Stage_Select_optionFontColor_0101 END ');
+      done();
+    });
+
   })
 }

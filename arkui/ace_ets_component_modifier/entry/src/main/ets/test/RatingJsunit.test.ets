@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 import router from '@system.router';
-import {UiDriver, BY} from '@ohos.UiTest';
+import Utils from './Utils';
 
 export default function RatingJsunit() {
   describe('RatingJsunit', function () {
@@ -48,7 +49,7 @@ export default function RatingJsunit() {
      * @tc.level  0
      */
     it('RatingJsunit_0100', 0, async function (done) {
-      
+
       console.info('[RatingJsunit_0100] START');
       let strJson = getInspectorByKey('rating1');
       let obj = JSON.parse(strJson);
@@ -67,7 +68,7 @@ export default function RatingJsunit() {
      * @tc.level  0
      */
     it('RatingJsunit_0200', 0, async function (done) {
-      
+
       console.info('[RatingJsunit_0200] START');
       let strJson = getInspectorByKey('rating1');
       let obj = JSON.parse(strJson);
@@ -88,7 +89,7 @@ export default function RatingJsunit() {
      * @tc.level  0
      */
     it('RatingJsunit_0300', 0, async function (done) {
-      
+
       console.info('[RatingJsunit_0300] START');
       let strJson = getInspectorByKey('rating1');
       let obj = JSON.parse(strJson);
@@ -98,6 +99,30 @@ export default function RatingJsunit() {
       expect(JSON.parse(obj.$attrs.starStyle).foregroundUri).assertEqual("resources/base/media/star_2.png");
       expect(JSON.parse(obj.$attrs.starStyle).secondaryUri).assertEqual("resources/base/media/star_3.png");
       console.info('[RatingJsunit_0300] END');
+      done();
+    });
+
+    /**
+     * @tc.number RatingJsunit_0400
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+     it('RatingJsunit_0400', 0, async function (done) {
+
+      console.info('RatingJsunit_0400 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('rating1');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("RatingJsunit_0400 component  is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.stars).assertEqual(4);
+      console.info('RatingJsunit_0400 END ');
       done();
     });
 

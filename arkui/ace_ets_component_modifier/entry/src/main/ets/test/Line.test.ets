@@ -16,6 +16,7 @@
 import router from '@system.router';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import Utils from './Utils.ets'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest';
 
 export default function lineNeJsunit() {
   describe('lineNeTest', function () {
@@ -73,6 +74,29 @@ export default function lineNeJsunit() {
       console.info("[testLineNe00072] obj value :" + obj.$attrs);
       expect(obj.$attrs.endPoint[0]).assertEqual(200);
       console.info('lineNe testLineNe00072 END');
+      done();
+    });
+
+    /**
+     * @tc.number testLineNe00073
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testLineNe00073', 0, async function (done) {
+      console.info('testLineNe00073 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('LineKey1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("testLineNe00073 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.startPoint[0]).assertEqual(1); //
+      console.info('testLineNe00073 END');
       done();
     });
   })

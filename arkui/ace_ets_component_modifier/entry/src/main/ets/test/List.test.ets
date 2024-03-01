@@ -15,6 +15,7 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
 import Utils from './Utils';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function list() {
   describe('listJsunit', function () {
@@ -349,5 +350,65 @@ export default function list() {
       done();
     });
 
+    /**
+     * @tc.number ListJsunit_0116
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ListJsunit_0116', 0, async function (done) {
+      console.info('[ListJsunit_0116] START');
+      let strJson = getInspectorByKey('ListKey1');
+      let obj = JSON.parse(strJson);
+      console.info("[ListJsunit_0116] obj is: " + JSON.stringify(obj.$attrs));
+
+      expect(obj.$attrs.contentEndOffset).assertEqual("1");
+      console.info('[ListJsunit_0116] END');
+      done();
+    });
+
+    /**
+     * @tc.number ListJsunit_0117
+     * @tc.name   Test the properties of components
+     * @tc.desc   Set attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ListJsunit_0117', 0, async function (done) {
+      console.info('[ListJsunit_0117] START');
+      let strJson = getInspectorByKey('ListKey1');
+      let obj = JSON.parse(strJson);
+      console.info("[ListJsunit_0117] obj is: " + JSON.stringify(obj.$attrs));
+
+      expect(obj.$attrs.contentStartOffset).assertEqual("1");
+      console.info('[ListJsunit_0117] END');
+      done();
+    });
+
+    /**
+     * @tc.number ListJsunit_0118
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ListJsunit_0118', 0, async function (done) {
+      console.info('ListJsunit_0118 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('ListKey1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ListJsunit_0118 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.lanes).assertEqual('1'); //
+      console.info('ListJsunit_0118 END');
+      done();
+    });
   })
 }

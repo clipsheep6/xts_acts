@@ -12,45 +12,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { PanelModifier } from "@ohos.arkui.modifier";
 
-class TestPanelModifier implements AttributeModifier<PanelAttribute> {
+
+class CustomModifier extends PanelModifier {
   applyNormalAttribute(instance: PanelAttribute): void {
-    instance.backgroundMask('#ff000000');
-    instance.customHeight(10);
-
+    super.applyNormalAttribute?.(instance);
   }
-}
-
-class TestPanelModifier1 implements AttributeModifier<PanelAttribute> {
-  applyNormalAttribute(instance: PanelAttribute): void {
-    instance.miniHeight(20);
-    instance.halfHeight(300);
-    instance.fullHeight(800);
-    instance.type(PanelType.Foldable);
-    instance.showCloseIcon(true);
-    instance.show(true);
-    instance.mode(PanelMode.Full);
-    instance.dragBar(true);
+  onChange1() {
+    this.backgroundMask('#11bb44')
   }
 }
 
 @Entry
 @Component
 struct TestPanelPage {
-  @State modifier: TestPanelModifier = new TestPanelModifier()
-  @State modifier1: TestPanelModifier1 = new TestPanelModifier1()
+  @State customModifier: PanelModifier = new CustomModifier()
+    .backgroundMask('#ff000000')
+    .customHeight(10)
+  @State customModifier1: PanelModifier = new CustomModifier()
+    .miniHeight(20)
+    .halfHeight(300)
+    .fullHeight(800)
+    .type(PanelType.Foldable)
+    .showCloseIcon(true)
+    .show(true)
+    .mode(PanelMode.Full)
+    .dragBar(true)
 
   build() {
     Column() {
       Panel(true)
         .key('PanelKey2')
-        .attributeModifier(this.modifier).height('30%')
+        .attributeModifier(this.customModifier as CustomModifier).height('30%')
       Panel(true)
         .key('PanelKey3')
         .backgroundMask('#ff000000').height('30%')
       Panel(true)
         .key('PanelKey1')
-        .attributeModifier(this.modifier1).height('30%')
+        .attributeModifier(this.customModifier1 as CustomModifier).height('30%')
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
     }
 		.width('100%')
     .height('100%')

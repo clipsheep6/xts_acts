@@ -14,6 +14,7 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 import Utils from './Utils';
 
 export default function menuItemJsunit() {
@@ -133,8 +134,32 @@ export default function menuItemJsunit() {
 
       //expect(obj.$attrs.selected).assertEqual(false);
       expect(true).assertEqual(true);
-      
+
       console.info('[menuItemJsunit05] END');
+      done();
+    });
+
+    /**
+     * @tc.number menuItemJsunit06
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+     it('menuItemJsunit06', 0, async function (done) {
+
+      console.info('menuItemJsunit06 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('menuItem_options1');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("menuItemJsunit06 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.labelFontColor).assertEqual(Color.Orange);
+      console.info('menuItemJsunit06 END');
       done();
     });
 

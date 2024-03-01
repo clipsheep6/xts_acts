@@ -12,26 +12,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { ToggleModifier } from "@ohos.arkui.modifier";
 
-class ToggleModifier1 implements AttributeModifier<ToggleAttribute> {
+class CustomModifier extends ToggleModifier {
+
   applyNormalAttribute(instance: ToggleAttribute): void {
-    instance.selectedColor("#FF0000FF");
-    instance.switchPointColor('#FF008000');
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.selectedColor("#FF0000FF")
   }
 }
 
 @Entry
 @Component
 struct ToggleTest {
-  @State toggleModifier: ToggleModifier1 = new ToggleModifier1()
+  @State customModifier: ToggleModifier = new CustomModifier()
+    .selectedColor("#FF0000FF")
+    .switchPointColor('#FF008000')
 
   build() {
-    Column({ space: 5 }) {
-      Toggle({ type: ToggleType.Switch, isOn: false })
-        .key("toggleCheckbox")
-        .attributeModifier(this.toggleModifier)
+    Column() {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
+
+      Column({ space: 5 }) {
+        Toggle({ type: ToggleType.Switch, isOn: false })
+          .key("toggleCheckbox")
+          .attributeModifier(this.customModifier as CustomModifier)
+      }
+      .width('100%')
+      .height('100%')
     }
     .width('100%')
-    .height('100%')
   }
 }

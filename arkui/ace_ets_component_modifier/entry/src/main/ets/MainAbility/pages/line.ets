@@ -12,29 +12,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { LineModifier } from "@ohos.arkui.modifier";
 
-class LineModifier1 implements AttributeModifier<LineAttribute> {
+class CustomModifier extends LineModifier {
+
   applyNormalAttribute(instance: LineAttribute): void {
-    instance
-      .startPoint([0, 1])
-      .endPoint([200, 220])
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.startPoint([1, 2])
   }
 }
 
 @Entry
 @Component
 struct LineNe {
-  @State lineModifier: LineModifier1 = new LineModifier1()
+  @State customModifier: LineModifier = new CustomModifier()
+    .startPoint([0, 1])
+    .endPoint([200, 220])
 
   build() {
     Column() {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
 
       Line()
         .fillOpacity(0)
         .stroke(Color.Red)
         .strokeWidth(3)
         .key("LineKey1")
-        .attributeModifier(this.lineModifier)
+        .attributeModifier(this.customModifier as CustomModifier)
     }
     .width('100%')
     .height('100%')

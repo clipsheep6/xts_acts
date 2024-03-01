@@ -15,6 +15,7 @@
  */
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium";
 import router from '@system.router';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 import bundle from '@ohos.bundle.bundleManager';
@@ -137,5 +138,31 @@ export default function formComponentJsunitJsunit() {
       console.info('[test_formComponentJsunit005] END');
       done();
     });
+
+    /**
+     * @tc.number test_formComponentJsunit006
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+     it('test_formComponentJsunit006', 0, async function (done) {
+
+      console.info('test_formComponentJsunit006 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('FormComponentKey1');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("test_formComponentJsunit006 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.size.width).assertEqual("100.00vp");
+      expect(objNew.$attrs.size.height).assertEqual("200.00vp");
+      console.info('test_formComponentJsunit006 END ');
+      done();
+    });
+
   })
 }

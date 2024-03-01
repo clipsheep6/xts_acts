@@ -13,25 +13,33 @@
  * limitations under the License.
  */
 
-class TestHyperlinkModifier implements AttributeModifier<HyperlinkAttribute> {
-	mColor: ResourceColor = '#FF789456'
+import { HyperlinkModifier } from "@ohos.arkui.modifier";
 
-	applyNormalAttribute(instance: HyperlinkAttribute): void {
-		instance
-			.color(this.mColor)
-	}
+class CustomModifier extends HyperlinkModifier {
+  applyNormalAttribute(instance: HyperlinkAttribute): void {
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.color(Color.Orange)
+  }
 }
 
 @Entry
 @Component
 struct TestHyperlinkPage {
-	@State modifier: TestHyperlinkModifier = new TestHyperlinkModifier()
+	mColor: ResourceColor = '#FF789456'
+	@State customModifier: HyperlinkModifier = new CustomModifier()
+		.color(this.mColor)
 
 	build() {
 		Column() {
+			Button("change value").onClick(() => {
+	        	(this.customModifier as CustomModifier).onChange1();
+    		}).key("changeButton")
 			Hyperlink('https://example.com/')
 				.key('HyperlinkKey1')
-				.attributeModifier(this.modifier)
+				.attributeModifier(this.customModifier as CustomModifier)
 		}
 			.width('100%')
 			.height('100%')

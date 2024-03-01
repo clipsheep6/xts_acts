@@ -79,6 +79,28 @@ export default function toggleJsunit() {
       console.info('[ToggleJsunit002] END');
       done();
     });
-    
+
+    /**
+     * @tc.number ToggleJsunit003
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ToggleJsunit003', 0, async function (done) {
+      console.info('ToggleJsunit003 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('toggleCheckbox'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ToggleJsunit003 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.selectedColor).assertEqual("#FF0000FF"); //
+      console.info('ToggleJsunit003 END');
+      done();
+    });
   })
 }

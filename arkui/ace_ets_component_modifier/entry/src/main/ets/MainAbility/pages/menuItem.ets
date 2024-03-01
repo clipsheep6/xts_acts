@@ -13,33 +13,41 @@
  * limitations under the License.
  */
 
-class MenuItemModifier1 implements AttributeModifier<MenuItemAttribute> {
+import { MenuItemModifier } from "@ohos.arkui.modifier";
+
+class CustomModifier extends MenuItemModifier {
   applyNormalAttribute(instance: MenuItemAttribute): void {
-    instance
-      .contentFont({ size: 10 })
-      .contentFontColor(Color.Blue)
-      .labelFont({ size: 15 })
-      .labelFontColor(Color.Red)
-      .selected(true)
+    super.applyNormalAttribute?.(instance);
+  }
+  onChange1() {
+    this.labelFontColor(Color.Orange)
   }
 }
 
 @Entry
 @Component
 struct menuItemPage {
-  @State menuItemModifier1: MenuItemModifier1 = new MenuItemModifier1()
+  @State customModifier: MenuItemModifier = new CustomModifier()
+    .contentFont({ size: 10 })
+    .contentFontColor(Color.Blue)
+    .labelFont({ size: 15 })
+    .labelFontColor(Color.Red)
+    .selected(true)
 
   build() {
     Row() {
       Column() {
+        Button("change value").onClick(() => {
+          (this.customModifier as CustomModifier).onChange1();
+        }).key("changeButton")
         Menu() {
           MenuItem({
             content: "content1",
             endIcon: "resource/base/media/icon.png",
             labelInfo: "labelInfo1",
           })
-            .key("menuItem_options1")
-            .attributeModifier(this.menuItemModifier1)
+          .key("menuItem_options1")
+          .attributeModifier(this.customModifier as CustomModifier)
         }
       }
       .width('100%')

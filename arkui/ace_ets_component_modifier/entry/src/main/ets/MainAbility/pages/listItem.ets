@@ -12,19 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { ListItemModifier } from "@ohos.arkui.modifier";
 
-class ListItemModifier1 implements AttributeModifier<ListItemAttribute> {
+class CustomModifier extends ListItemModifier {
+
   applyNormalAttribute(instance: ListItemAttribute): void {
-    instance
-      .selected(true)
-      .selectable(true)
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange() {
+    this.selectable(false)
   }
 }
+
 
 @Entry
 @Component
 struct List_itemOnSelect {
-  @State listItemModifier: ListItemModifier1 = new ListItemModifier1()
+  @State customModifier: ListItemModifier = new CustomModifier()
+    .selected(true)
+    .selectable(true)
 
   @Builder
   itemEnd() {
@@ -36,6 +43,10 @@ struct List_itemOnSelect {
 
   build() {
     Column() {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange();
+      }).key("changeButton")
+
       Button('Log Json Data')
         .onClick(() => {
           console.log(getInspectorByKey('ListItemKey1'))
@@ -56,7 +67,7 @@ struct List_itemOnSelect {
           .backgroundColor(0xFFFFFF)
         }
         .key("ListItemKey1")
-        .attributeModifier(this.listItemModifier)
+        .attributeModifier(this.customModifier as CustomModifier)
       }
     }
     .padding(10)

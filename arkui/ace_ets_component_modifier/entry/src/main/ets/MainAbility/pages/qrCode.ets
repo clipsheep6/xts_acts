@@ -14,30 +14,41 @@
  */
 
 import events_emitter from '@ohos.events.emitter';
+import { QRCodeModifier } from "@ohos.arkui.modifier";
 
-class QrCodeModifier1 implements AttributeModifier<QRCodeAttribute> {
+class CustomModifier extends QRCodeModifier {
   applyNormalAttribute(instance: QRCodeAttribute): void {
-    instance
-      .contentOpacity(0.1)
-      .color("#FF0011FF")
-      .backgroundColor("#FF008000")
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.contentOpacity(0.1)
   }
 }
 
 @Entry
 @Component
 struct QrCode {
-  @State qrCodeModifier: QrCodeModifier1 = new QrCodeModifier1()
+  @State customModifier: QRCodeModifier = new CustomModifier()
+    .contentOpacity(0.1)
+    .color("#FF0011FF")
+    .backgroundColor("#FF008000")
 
   build() {
+    Column({ space: 5 }) {
+    Button("change value").onClick(() => {
+      (this.customModifier as CustomModifier).onChange1();
+    }).key("changeButton")
     Column({ space: 5 }) {
 
       QRCode('https://example.com')
         .key("QrCodeColorKey1")
-        .attributeModifier(this.qrCodeModifier)
+        .attributeModifier(this.customModifier as CustomModifier)
     }
     .width('100%')
     .height('100%')
+    .margin({ top: 5 })
+    }
     .margin({ top: 5 })
   }
 }

@@ -13,9 +13,30 @@
  * limitations under the License.
  */
 
-class AlphabetIndexerModifier1 implements AttributeModifier<AlphabetIndexerAttribute> {
+import { AlphabetIndexerModifier } from "@ohos.arkui.modifier";
+
+class CustomModifier extends AlphabetIndexerModifier {
   applyNormalAttribute(instance: AlphabetIndexerAttribute): void {
-    instance
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.selected(2)
+  }
+}
+
+@Entry
+@Component
+struct AlphabetIndexerTest {
+  private value: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
+    'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+    'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+  popupSelectedColorNum: number = 0x00CED1
+  popupUnselectedColorNum: number = 0xC0FF3E
+  popupItemBackgroundNum: number = 0x8470FF
+  popupItemFontSizeNum: number = 30
+  popupItemFontWeightNum: number = FontWeight.Normal
+  @State customModifier1: AlphabetIndexerModifier = new CustomModifier()
       .font({ size: 18, weight: FontWeight.Normal })
       .selectedFont({ size: 28, weight: FontWeight.Bold })
       .color(0x000000)
@@ -27,46 +48,26 @@ class AlphabetIndexerModifier1 implements AttributeModifier<AlphabetIndexerAttri
       .popupFont({ size: 28, weight: FontWeight.Bold })
       .popupColor(0xFFA500)
       .popupBackground(0x32CD32)
-  }
-}
-
-class AlphabetIndexerModifier2 implements AttributeModifier<AlphabetIndexerAttribute> {
-  popupSelectedColorNum: number = 0x00CED1
-  popupUnselectedColorNum: number = 0xC0FF3E
-  popupItemBackgroundNum: number = 0x8470FF
-  popupItemFontSizeNum: number = 30
-  popupItemFontWeightNum: number = FontWeight.Normal
-
-  applyNormalAttribute(instance: AlphabetIndexerAttribute): void {
-
-    instance
+  @State customModifier2: AlphabetIndexerModifier = new CustomModifier()
       .selected(1)
       .popupPosition({ x: 90.0, y: 50.0 })
       .popupSelectedColor(this.popupSelectedColorNum)
       .popupUnselectedColor(this.popupUnselectedColorNum)
       .popupItemBackgroundColor(this.popupItemBackgroundNum)
       .popupItemFont({ size: this.popupItemFontSizeNum, weight: this.popupItemFontWeightNum })
-  }
-}
-
-@Entry
-@Component
-struct AlphabetIndexerTest {
-  private value: string[] = ['#', 'A', 'B', 'C', 'D', 'E', 'F', 'G',
-    'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
-    'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-  @State alphabetIndexerModifier1: AlphabetIndexerModifier1 = new AlphabetIndexerModifier1()
-  @State alphabetIndexerModifier2: AlphabetIndexerModifier2 = new AlphabetIndexerModifier2()
 
   build() {
     Row() {
+      Button("change value").onClick(() => {
+        (this.customModifier2 as CustomModifier).onChange1();
+      }).key("changeButton")
       AlphabetIndexer({ arrayValue: this.value, selected: 0 })
         .key('alphabetIndexerTest1')
-        .attributeModifier(this.alphabetIndexerModifier1)
+        .attributeModifier(this.customModifier1 as CustomModifier)
 
       AlphabetIndexer({ arrayValue: this.value, selected: 0 })
         .key('alphabetIndexerTest2')
-        .attributeModifier(this.alphabetIndexerModifier2)
+        .attributeModifier(this.customModifier2 as CustomModifier)
     }.backgroundColor(0x00FFFF).width('100%').height('100%')
   }
 }

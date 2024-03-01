@@ -13,19 +13,31 @@
  * limitations under the License.
  */
 
-class ListItemGroupModifier1 implements AttributeModifier<ListItemGroupAttribute> {
+import { ListItemGroupModifier } from "@ohos.arkui.modifier";
+
+class CustomModifier extends ListItemGroupModifier {
+
   applyNormalAttribute(instance: ListItemGroupAttribute): void {
-    instance.divider({ strokeWidth: 12, color: '#FF123456', startMargin: 2, endMargin: 2 })
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange() {
+    this.divider({ strokeWidth: 13, color: '#FF123456', startMargin: 2, endMargin: 2 })
   }
 }
 
 @Entry
 @Component
 struct ListItemGroupExample {
-  @State listItemGroupModifier: ListItemGroupModifier1 = new ListItemGroupModifier1()
+  @State customModifier: ListItemGroupModifier = new CustomModifier()
+    .divider({ strokeWidth: 12, color: '#FF123456', startMargin: 2, endMargin: 2 })
 
   build() {
     Column() {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange();
+      }).key("changeButton")
+
       List({ space: 20 }) {
         ListItemGroup() {
           ListItem() {
@@ -38,7 +50,7 @@ struct ListItemGroupExample {
           }
         }
         .key('ListItemGroupKey1')
-        .attributeModifier(this.listItemGroupModifier)
+        .attributeModifier(this.customModifier as CustomModifier)
         .borderRadius(20)
       }
       .width('90%')

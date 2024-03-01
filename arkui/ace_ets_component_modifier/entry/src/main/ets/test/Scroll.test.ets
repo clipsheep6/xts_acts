@@ -14,9 +14,10 @@
  */
 
 import router from '@system.router';
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import Utils from './Utils.ets'
 import events_emitter from '@ohos.events.emitter';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function scrollOnScrollBeginJsunit() {
   describe('scrollTest', function () {
@@ -74,7 +75,7 @@ export default function scrollOnScrollBeginJsunit() {
       let obj = JSON.parse(strJson);
       console.info("[testScroll0002] obj is: " + JSON.stringify(obj.$attrs));
 
-      expect(obj.$attrs.friction).assertEqual(0.6);
+      expect(obj.$attrs.friction).assertEqual(1);
       console.info('testScroll0001 END');
       done();
     });
@@ -107,7 +108,7 @@ export default function scrollOnScrollBeginJsunit() {
      * @tc.type   Function
      * @tc.level  0
      */
-    it('testStestScroll0004croll0001', 0, async function (done) {
+    it('testScroll0004', 0, async function (done) {
       console.info('testScroll0004 START');
       let strJson = getInspectorByKey('ScrollKey1');
       let obj = JSON.parse(strJson);
@@ -214,6 +215,29 @@ export default function scrollOnScrollBeginJsunit() {
       done();
     });
 
-    
+    /**
+    * @tc.number swiperTest_018
+    * @tc.name   Test the properties of components
+    * @tc.desc   Change attribute values
+    * @tc.size   MediumTest
+    * @tc.type   Function
+    * @tc.level  0
+    */
+    it('testScroll0010', 0, async function (done) {
+      console.info('testScroll0010 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('ScrollKey1');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("testScroll0010 component  is: " + JSON.stringify(objNew.$attrs));
+
+      expect(objNew.$attrs.scrollBarColor).assertEqual("#FF222222");
+      console.info('testScroll0010 END');
+      done();
+    });
+
   })
 }

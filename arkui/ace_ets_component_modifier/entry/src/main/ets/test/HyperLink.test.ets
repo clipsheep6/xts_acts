@@ -14,6 +14,7 @@
  */
 
 import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 import router from '@system.router';
 import Utils from './Utils';
 
@@ -64,6 +65,30 @@ export default function hyperLinkJsunit() {
         }
         done();
       }, 500)
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_hyperLink_attrs_0101
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+     it('ArkUX_Stage_hyperLink_attrs_0101', 0, async function (done) {
+
+      console.info('ArkUX_Stage_hyperLink_attrs_0101 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('HyperlinkKey1');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_hyperLink_attrs_0101 component  is: " + JSON.stringify(objNew));
+      expect(objNew.$attrs.color).assertEqual(Color.Orange);
+      console.info('ArkUX_Stage_hyperLink_attrs_0101 END ');
+      done();
     });
 
   })

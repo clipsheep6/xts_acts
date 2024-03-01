@@ -17,6 +17,7 @@ import events_emitter from '@ohos.events.emitter';
 import router from '@system.router';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import Utils from './Utils.ets'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest';
 
 export default function listItemJsunit() {
   describe('listItemTest', function () {
@@ -77,6 +78,29 @@ export default function listItemJsunit() {
 
       expect(obj.$attrs.selectable).assertEqual(true);
       console.info('selectOnSelect testList_itemOnSelect00052 END');
+      done();
+    });
+
+    /**
+     * @tc.number testList_itemOnSelect00053
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testList_itemOnSelect00053', 0, async function (done) {
+      console.info('testList_itemOnSelect00053 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('ListItemKey1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("testList_itemOnSelect00053 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.selectable).assertEqual(false);
+      console.info('testList_itemOnSelect00053 END');
       done();
     });
   })

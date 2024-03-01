@@ -16,6 +16,7 @@
 import router from '@system.router';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
 import Utils from './Utils.ets'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function progressStyleJsunit() {
   describe('progressStyleTest', function () {
@@ -96,6 +97,28 @@ export default function progressStyleJsunit() {
 
       expect(obj.$attrs.style).assertEqual('{"strokeWidth":"20.00vp","scaleCount":"30","scaleWidth":"20.00vp"}');
       console.info('testProgressStyle0003 END');
+      done();
+    });
+    /**
+     * @tc.number testProgressStyle0004
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testProgressStyle0004', 0, async function (done) {
+      console.info('testProgressStyle0004 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('ProgressKey1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("testProgressStyle0004 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.value).assertEqual('5'); //
+      console.info('testProgressStyle0004 END');
       done();
     });
   })

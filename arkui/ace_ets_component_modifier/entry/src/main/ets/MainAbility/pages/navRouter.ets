@@ -12,10 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { NavRouterModifier } from "@ohos.arkui.modifier";
 
-class navModeModifier implements AttributeModifier<NavRouterAttribute> {
-  applyNormalAttribute(instance: NavRouterAttribute): void {
-    instance.mode(NavRouteMode.PUSH_WITH_RECREATE);
+class CustomModifier extends NavRouterModifier {
+  applyNormalAttribute?(instance: NavRouterAttribute): void {
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.mode(NavRouteMode.PUSH_WITH_RECREATE)
   }
 }
 
@@ -23,14 +28,22 @@ class navModeModifier implements AttributeModifier<NavRouterAttribute> {
 @Entry
 @Component
 struct NavRouterExample {
-  @State myModifier: navModeModifier = new navModeModifier()
+  @State customModifier: NavRouterModifier = new CustomModifier()
+    .mode(NavRouteMode.PUSH_WITH_RECREATE)
 
   build() {
     Column() {
-      NavRouter() {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
+
+      Column() {
+        NavRouter() {
+        }
+        .key('NavRouter1')
+        .attributeModifier(this.customModifier as CustomModifier)
       }
-      .key('NavRouter1')
-      .attributeModifier(this.myModifier)
     }
+    .width('100%')
   }
 }

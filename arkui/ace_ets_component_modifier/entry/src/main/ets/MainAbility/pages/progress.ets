@@ -12,22 +12,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { ProgressModifier } from "@ohos.arkui.modifier";
 
-class ProgressModifier1 implements AttributeModifier<ProgressAttribute> {
+class CustomModifier extends ProgressModifier {
   applyNormalAttribute(instance: ProgressAttribute): void {
-    instance
-      .color('#FF123456')
-      .value(12)
-      .style({ strokeWidth: 20, scaleCount: 30, scaleWidth: 20 })
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.value(5)
   }
 }
 
 @Entry
 @Component
 struct ProgressExample {
-  @State progressModifier: ProgressModifier1 = new ProgressModifier1()
+  @State customModifier: ProgressModifier = new CustomModifier()
+    .color('#FF123456')
+    .value(12)
+    .style({ strokeWidth: 20, scaleCount: 30, scaleWidth: 20 })
 
   build() {
+    Column({ space: 5 }) {
+    Button("change value").onClick(() => {
+      (this.customModifier as CustomModifier).onChange1();
+    }).key("changeButton")
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('Log Json Data')
         .onClick(() => {
@@ -50,9 +59,11 @@ struct ProgressExample {
         Progress({ value: 20, total: 150, type: ProgressType.ScaleRing })
           .width(100)
           .key("ProgressKey1")
-          .attributeModifier(this.progressModifier)
+          .attributeModifier(this.customModifier as CustomModifier)
       }
     }.width("100%").height("100%")
+    }
+    .margin({ top: 5 })
   }
 }
 
