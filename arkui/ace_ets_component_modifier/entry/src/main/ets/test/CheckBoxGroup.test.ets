@@ -16,6 +16,7 @@
 import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
 import router from '@system.router';
 import Utils from './Utils';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest';
 
 export default function checkBoxGroupTest() {
   describe('ActsCheckBoxGroupTest', function () {
@@ -135,6 +136,29 @@ export default function checkBoxGroupTest() {
         expect().assertFail();
         console.info('ArkUX_Stage_CheckboxGroup_CheckMarkWidth_1003 ERR  ' + JSON.stringify(err));
       }
+      done();
+    });
+
+    /**
+     * @tc.number ArkUX_Stage_CheckboxGroup_CheckMarkWidth_1004
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_CheckboxGroup_CheckMarkWidth_1004', 0, async function (done) {
+      console.info('ArkUX_Stage_CheckboxGroup_CheckMarkWidth_1004 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('checkboxNO'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_CheckboxGroup_CheckMarkWidth_1004 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.select).assertEqual('true'); //
+      console.info('ArkUX_Stage_CheckboxGroup_CheckMarkWidth_1004 END');
       done();
     });
   })

@@ -16,6 +16,7 @@
 import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
 import router from '@system.router';
 import Utils from './Utils';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest';
 
 export default function checkboxJsunit() {
   describe('checkboxJsunit', function () {
@@ -143,6 +144,30 @@ export default function checkboxJsunit() {
         }
         done();
       }, 500)
+    });
+
+
+    /**
+     * @tc.number ArkUX_Stage_Checkbox_attrs_0201
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_Checkbox_attrs_0201', 0, async function (done) {
+      console.info('ArkUX_Stage_Checkbox_attrs_0201 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('Checkbox_0100'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_Checkbox_attrs_0201 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.select).assertEqual("true"); //
+      console.info('ArkUX_Stage_Checkbox_attrs_0201 END');
+      done();
     });
 
   })

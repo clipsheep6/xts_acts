@@ -20,14 +20,16 @@ class CustomModifier extends ButtonModifier {
   }
 
   onChange1() {
-    this.index(5)
+    this.fontSize(13)
   }
 }
 
 class CustomModifier2 extends ButtonModifier {
   applyNormalAttribute(instance: ButtonAttribute): void {
     super.applyNormalAttribute?.(instance);
-    // instance.labelStyle({overflow: TextOverflow.Clip})
+  }
+  onChange1() {
+    this.labelStyle({overflow: TextOverflow.Clip})
   }
   onChange1() {
     this.index(5)
@@ -66,8 +68,6 @@ struct ButtonExample {
     .fontStyle(FontStyle.Normal)
   @State buttonModifier2: ButtonModifier = new CustomModifier2()
     .labelStyle({overflow: TextOverflow.Clip})
-  // @State buttonModifier1: ButtonModifier1 = new ButtonModifier1();
-  // @State buttonModifier2: ButtonModifier2 = new ButtonModifier2();
   @State buttonTypeValue: ButtonType = ButtonType.Normal;
   @State fontSizeValue: string = '20px';
   @State fontColorValue: Color = Color.Black;
@@ -98,20 +98,6 @@ struct ButtonExample {
         .width(90)
         .key('button2')
         .attributeModifier(this.buttonModifier2 as CustomModifier)
-      //
-      // Button('Ok', { type: this.buttonTypeValue, stateEffect: true })
-      //   .borderRadius(8)
-      //   .backgroundColor(0x317aff)
-      //   .width(90)
-      //   .key('button')
-      //   .attributeModifier(this.buttonModifier)
-      //
-      // Button('Ok2', { type: this.buttonTypeValue, stateEffect: true })
-      //   .borderRadius(8)
-      //   .backgroundColor(0x317aff)
-      //   .width(90)
-      //   .key('button2')
-      //   .attributeModifier(this.buttonModifier2)
     }
 
   }

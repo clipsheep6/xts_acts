@@ -17,6 +17,8 @@ import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 import router from '@system.router';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest';
+
 export default function calendarPickerJsunit() {
   describe('ActsAceCalendarPickerTest', function () {
     beforeEach(async function (done) {
@@ -84,6 +86,32 @@ export default function calendarPickerJsunit() {
       expect(textStyle.font.size).assertEqual("8.00fp");
       expect(textStyle.font.weight).assertEqual("FontWeight.Lighter");
       console.info('[ArkUI_Stage_CalendarPicker_attributeModifier_0101] END');
+      done();
+    });
+
+    /**
+     * @tc.number ArkUI_Stage_CalendarPicker_attributeModifier_0102
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_Stage_CalendarPicker_attributeModifier_0102', 0, async function (done) {
+      console.info('ArkUI_Stage_CalendarPicker_attributeModifier_0102 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('CalendarPickerKey1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUI_Stage_CalendarPicker_attributeModifier_0102 component  is: " + JSON.stringify(objNew.$attrs));
+
+      let edgeAlign = objNew.$attrs.edgeAlign;
+      expect(edgeAlign.alignType).assertEqual("CalendarAlign.START");
+
+      console.info('ArkUI_Stage_CalendarPicker_attributeModifier_0102 END');
       done();
     });
   })

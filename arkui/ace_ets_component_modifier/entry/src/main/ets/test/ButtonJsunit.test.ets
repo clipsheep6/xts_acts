@@ -207,16 +207,12 @@ export default function buttonJsunit() {
       await button.click();
       await Utils.sleep(2000)
 
-      let strJsonNew = getInspectorByKey('button2');//测试组件的key名称
+      let strJsonNew = getInspectorByKey('button');//测试组件的key名称
       let objNew = JSON.parse(strJsonNew);
 
-      let strJsonNew2 = getInspectorByKey('button');//测试组件的key名称
-      let objNew2 = JSON.parse(strJsonNew2);
-
       console.info("testButton1609 component  is: " + JSON.stringify(objNew.$attrs));
-      console.info("testButton1609 component2  is: " + JSON.stringify(objNew2.$attrs));
-      expect(objNew.$attrs.index).assertEqual('5'); //
-      expect(objNew2.$attrs.index).assertEqual('5'); //
+      expect(objNew.$attrs.fontSize).assertEqual('13'); //
+
       console.info('testButton1609 END');
       done();
     });

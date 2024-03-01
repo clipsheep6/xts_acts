@@ -12,26 +12,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { RadioModifier } from "@ohos.arkui.modifier";
 
-class RadioModifier1 implements AttributeModifier<RadioAttribute> {
+class CustomModifier extends RadioModifier {
   applyNormalAttribute(instance: RadioAttribute): void {
-    instance
-      .radioStyle({
-        indicatorColor: '#FF123456',
-        checkedBackgroundColor: '#FF147258',
-        uncheckedBorderColor: '#FF963852'
-      })
-      .checked(true)
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.checked(false)
   }
 }
 
 @Entry
 @Component
 struct RadioGroup {
-  @State radioModifier1: RadioModifier1 = new RadioModifier1();
+  @State customModifier: RadioModifier = new CustomModifier()
+    .radioStyle({
+      indicatorColor: '#FF123456',
+      checkedBackgroundColor: '#FF147258',
+      uncheckedBorderColor: '#FF963852'
+    })
+    .checked(true);
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
 
       Text("radio-Group")
         .width(100)
@@ -49,7 +58,7 @@ struct RadioGroup {
 
       Radio({ value: 'Radio1', group: 'radioGroup' })
         .key("RadioOne")
-        .attributeModifier(this.radioModifier1)
+        .attributeModifier(this.customModifier as CustomModifier)
 
       Radio({ value: 'Radio2', group: 'radioGroup' })
         .checked(false)
