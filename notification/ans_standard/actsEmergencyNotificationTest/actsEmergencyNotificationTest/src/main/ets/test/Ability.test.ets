@@ -27,7 +27,7 @@ let ALL_OPEN: number = 63; //  011111
 let CLOSE_SOUND: number = 62; //  111110
 let CLOSE_LOCKSCREEN: number = 61; //  111101
 let CLOSE_BANNER: number = 59; //  111011
-let CLOSE_LIGHTSCREEN: number = 55; //  110111
+let CLOSE_LIGHT_SCREEN: number = 55; //  110111
 let CLOSE_VIBRATION: number = 47; //  101111
 let CLOSE_STATUSBAR_ICON: number = 31; //  011111
 let ALL_CLOSE: number = 0; //000000
@@ -398,14 +398,14 @@ export default function abilityTest() {
             additionalText: "test_additionalText"
           }
         },
-        notificationControlFlags: notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_LIGHTSCREEN,
+        notificationControlFlags: notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_LIGHT_SCREEN,
         notificationSlotType: notification.SlotType.EMERGENCY_INFORMATION
       };
       globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult) => {
         console.info('ActsEmergencyNotificationTest_0700 startAbilityForResult successful');
         setTimeout(() => {
           console.info('ActsEmergencyNotificationTest_0700 data is ' + JSON.stringify(data));
-          expect(data.want.parameters.NotificationControlFlagStatus).assertEqual(CLOSE_LIGHTSCREEN);
+          expect(data.want.parameters.NotificationControlFlagStatus).assertEqual(CLOSE_LIGHT_SCREEN);
           done();
         }, 3000);
       }).catch((err: Base.BusinessError) => {
@@ -557,7 +557,7 @@ export default function abilityTest() {
         notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_SOUND |
         notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_LOCKSCREEN |
         notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_BANNER |
-        notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_LIGHTSCREEN |
+        notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_LIGHT_SCREEN |
         notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_VIBRATION |
         notification.NotificationControlFlagStatus.NOTIFICATION_STATUS_CLOSE_STATUSBAR_ICON
       };
