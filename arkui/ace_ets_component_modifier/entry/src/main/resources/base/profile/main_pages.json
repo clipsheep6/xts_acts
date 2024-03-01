@@ -68,6 +68,7 @@
         "MainAbility/pages/image",
         "MainAbility/pages/imageAnimator",
         "MainAbility/pages/patternLock",
-        "MainAbility/pages/video"
+        "MainAbility/pages/video",
+        "MainAbility/pages/textInput"
     ]
 }
