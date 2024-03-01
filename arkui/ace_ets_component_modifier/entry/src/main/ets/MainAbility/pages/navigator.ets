@@ -12,12 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class NavigatorModifier implements AttributeModifier<NavigatorAttribute> {
-  applyNormalAttribute(instance: NavigatorAttribute): void {
-    instance.params({ params: 'modifier' })
-      .active(true)
-      .target('')
-      .type(NavigationType.Push)
+import { NavigatorModifier } from "@ohos.arkui.modifier";
+
+class CustomModifier extends NavigatorModifier {
+  applyNavigatorAttribute(instance: NavigatorAttribute): void {
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.active(true)
   }
 }
 
@@ -28,25 +31,34 @@ struct NavigatorCode {
   @State Text: string = 'news';
   @State target: string = 'pages/NavigatorDetailCode';
   @State typeValue: NavigationType = NavigationType.Back;
-  @State modifier: NavigatorModifier = new NavigatorModifier()
+  @State customModifier: NavigatorModifier = new CustomModifier()
+    .active(true)
+    .target('')
+    .type(NavigationType.Push)
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
-      Navigator() {
-        Text('Go to ' + this.Text + ' page').width('100%').textAlign(TextAlign.Center)
-      }
-      .params({ text: this.Text })
-      .active(this.active)
-      .target(this.target)
-      .type(this.typeValue)
-      .key('Navigator')
+    Column() {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
 
-      Navigator() {
-        Text('Go to ' + this.Text + ' page').width('100%').textAlign(TextAlign.Center)
-      }
-      .attributeModifier(this.modifier)
-      .key('Navigator1')
-    }.height(150).width(350).padding(35)
+      Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+        Navigator() {
+          Text('Go to ' + this.Text + ' page').width('100%').textAlign(TextAlign.Center)
+        }
+        .params({ text: this.Text })
+        .active(this.active)
+        .target(this.target)
+        .type(this.typeValue)
+        .key('Navigator')
 
+        Navigator() {
+          Text('Go to ' + this.Text + ' page').width('100%').textAlign(TextAlign.Center)
+        }
+        .attributeModifier(this.customModifier as CustomModifier)
+        .key('Navigator1')
+      }.height(150).width(350).padding(35)
+    }
+    .width('100%')
   }
 }

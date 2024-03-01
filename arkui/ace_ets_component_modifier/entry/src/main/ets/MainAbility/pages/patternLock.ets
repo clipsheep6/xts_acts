@@ -12,40 +12,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { ToggleModifier } from "@ohos.arkui.modifier";
+import { PatternLockModifier } from "@ohos.arkui.modifier";
 
-class CustomModifier extends ToggleModifier {
-
-  applyNormalAttribute(instance: ToggleAttribute): void {
+class CustomModifier extends PatternLockModifier {
+  applyPatternLockAttribute(instance: PatternLockAttribute): void {
     super.applyNormalAttribute?.(instance);
   }
 
   onChange1() {
-    this.selectedColor("#FF0000FF")
+    this.sideLength(0)
   }
 }
 
 @Entry
 @Component
-struct ToggleTest {
-  @State customModifier: ToggleModifier = new CustomModifier()
-    .selectedColor("#FF0000FF")
-    .switchPointColor('#FF008000')
+struct PatternLockExample {
+  @State customModifier: PatternLockModifier = new CustomModifier()
+    .sideLength(0)
+    .circleRadius(10)
+    .selectedColor("#ff00ff")
+    .regularColor("#ff00ff")
+    .activeColor("#ff00ff")
+    .pathColor("#ff00ff")
+    .pathStrokeWidth("12vp")
+    .autoReset(true)
+
 
   build() {
-    Column() {
+    Column({ space: 5 }) {
       Button("change value").onClick(() => {
         (this.customModifier as CustomModifier).onChange1();
       }).key("changeButton")
 
-      Column({ space: 5 }) {
-        Toggle({ type: ToggleType.Switch, isOn: false })
-          .key("toggleCheckbox")
+      Column() {
+        PatternLock()
           .attributeModifier(this.customModifier as CustomModifier)
+          .key('patternLock')
       }
-      .width('100%')
-      .height('100%')
     }
-    .width('100%')
+    .margin({ top: 5 })
   }
 }

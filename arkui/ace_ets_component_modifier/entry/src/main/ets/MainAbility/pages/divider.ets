@@ -12,40 +12,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { ToggleModifier } from "@ohos.arkui.modifier";
+import { DividerModifier } from "@ohos.arkui.modifier";
 
-class CustomModifier extends ToggleModifier {
-
-  applyNormalAttribute(instance: ToggleAttribute): void {
+class CustomModifier extends DividerModifier {
+  applyDividerAttribute(instance: DividerAttribute): void {
     super.applyNormalAttribute?.(instance);
   }
 
   onChange1() {
-    this.selectedColor("#FF0000FF")
+    this.color("#ff00ff")
   }
 }
 
 @Entry
 @Component
-struct ToggleTest {
-  @State customModifier: ToggleModifier = new CustomModifier()
-    .selectedColor("#FF0000FF")
-    .switchPointColor('#FF008000')
+struct BlankExample {
+  @State customModifier: DividerModifier = new CustomModifier()
+    .lineCap(LineCapStyle.Round)
+    .strokeWidth(10)
+    .color("#ff00ff")
+    .vertical(false)
 
   build() {
-    Column() {
+    Column({ space: 5 }) {
       Button("change value").onClick(() => {
         (this.customModifier as CustomModifier).onChange1();
       }).key("changeButton")
 
-      Column({ space: 5 }) {
-        Toggle({ type: ToggleType.Switch, isOn: false })
-          .key("toggleCheckbox")
+      Column() {
+        Text('Horizontal divider111').fontSize(9).backgroundColor(Color.Gray)
+        Divider()
           .attributeModifier(this.customModifier as CustomModifier)
-      }
-      .width('100%')
-      .height('100%')
+          .key('divider')
+        Text('Horizontal divider222').fontSize(9).backgroundColor(Color.Gray)
+      }.backgroundColor(Color.Gray).padding(20)
     }
-    .width('100%')
+    .margin({ top: 5 })
   }
 }

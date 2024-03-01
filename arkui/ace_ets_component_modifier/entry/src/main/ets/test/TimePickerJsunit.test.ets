@@ -17,6 +17,7 @@ import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 import router from '@system.router';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function timepickerJsunit() {
   describe('ActsAceTimePickerTest', function () {
@@ -106,7 +107,32 @@ export default function timepickerJsunit() {
       done();
     });
 
-    
+    /**
+     * @tc.number ArkUI_Stage_timepicker_3001
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUI_Stage_timepicker_3001', 0, async function (done) {
+      console.info('ArkUI_Stage_timepicker_3001 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('timePickerDefault'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUI_Stage_timepicker_3001 component  is: " + JSON.stringify(objNew.$attrs));
+      let disappearTextStyle = objNew.$attrs.disappearTextStyle;
+
+      expect(disappearTextStyle.color).assertEqual(Color.Red);
+      expect(disappearTextStyle.font.size).assertEqual('10px');
+      expect(disappearTextStyle.font.weight).assertEqual('FontWeight.Normal');
+      console.info('ArkUI_Stage_timepicker_3001 END');
+      done();
+    });
   })
 }
 

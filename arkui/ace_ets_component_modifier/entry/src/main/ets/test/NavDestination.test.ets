@@ -16,6 +16,7 @@
 import router from '@system.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import Utils from './Utils.ets'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function navDestinationJsunit() {
   describe('ActsAceNavDestinationTest', function () {
@@ -58,6 +59,29 @@ export default function navDestinationJsunit() {
       // expect(obj.$attrs.hideTitleBar).assertEqual(false);
       expect(true).assertEqual(true);
       console.info('[testNavDestination] END');
+      done();
+    });
+
+    /**
+     * @tc.number testNavDestination_01
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testNavDestination_01', 0, async function (done) {
+      console.info('testNavDestination_01 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('NavDestination1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("testNavDestination_01 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.hideTitleBar).assertEqual('false'); //
+      console.info('testNavDestination_01 END');
       done();
     });
   })
