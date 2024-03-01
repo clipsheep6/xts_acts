@@ -48,6 +48,7 @@
         "MainAbility/pages/panel",
         "MainAbility/pages/toggle",
         "MainAbility/pages/rect",
+        "MainAbility/pages/common_9",
         "MainAbility/pages/polyLine",
         "MainAbility/pages/counter",
         "MainAbility/pages/navDestination",

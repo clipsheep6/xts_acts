@@ -31,7 +31,29 @@ class CustomModifier2 extends ButtonModifier {
   onChange1() {
     this.labelStyle({overflow: TextOverflow.Clip})
   }
+  onChange1() {
+    this.index(5)
+  }
 }
+
+// class ButtonModifier1 implements AttributeModifier<ButtonAttribute> {
+//   applyNormalAttribute(instance: ButtonAttribute): void {
+//     instance.type(ButtonType.Circle)
+//       .stateEffect(true)
+//       .fontColor(0xCCCCCC)
+//       .fontSize(12)
+//       .fontWeight(FontWeight.Normal)
+//       .fontFamily('cursive')
+//       .fontStyle(FontStyle.Normal)
+//       //.labelStyle({overflow: TextOverflow.Clip})
+//   }
+// }
+//
+// class ButtonModifier2 implements AttributeModifier<ButtonAttribute> {
+//   applyNormalAttribute(instance: ButtonAttribute): void {
+//     instance.labelStyle({overflow: TextOverflow.Clip})
+//   }
+// }
 
 @Entry
 @Component
