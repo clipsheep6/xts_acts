@@ -99,14 +99,14 @@ describe('relationalStoreEncryptTest', function () {
         console.info(TAG + "*************Unit Test Begin*************")
 
         /**
-         * @tc.name RdbEncryptTest_0010
+         * @tc.name RdbEncryptTest0010
          * @tc.number SUB_DistributedData_RelationalStore_SDK_EncrpytEtsAPITest_0100
          * @tc.desc RelationalStore create encrypt db test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 1
          */
-        it('RdbEncryptTest_0010', 0, async function (done) {
+        it('RdbEncryptTest0010', 0, async function (done) {
             console.info(TAG + "************* RdbEncryptTest_0010 start *************")
             data_rdb.getRdbStore(context, STORE_CONFIG_ENCRYPT).then((store) => {
                 done()
@@ -118,14 +118,14 @@ describe('relationalStoreEncryptTest', function () {
         })
 
         /**
-         * @tc.name RdbEncryptTest_0020
+         * @tc.name RdbEncryptTest0020
          * @tc.number SUB_DistributedData_RelationalStore_SDK_EncrpytEtsAPITest_0200
          * @tc.desc RelationalStore create unencrypted db test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 1
          */
-        it('RdbEncryptTest_0020', 0, async function (done) {
+        it('RdbEncryptTest0020', 0, async function (done) {
             console.info(TAG + "************* RdbEncryptTest_0020 start *************")
             let storePromise = data_rdb.getRdbStore(context, STORE_CONFIG_UNENCRYPT);
             storePromise.then((store) => {
@@ -140,14 +140,14 @@ describe('relationalStoreEncryptTest', function () {
 
 
         /**
-         * @tc.name RdbEncryptTest_0030
+         * @tc.name RdbEncryptTest0030
          * @tc.number SUB_DistributedData_RelationalStore_SDK_EncrpytEtsAPITest_0300
          * @tc.desc RelationalStore Encrypt function test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 1
          */
-        it('RdbEncryptTest_0030', 0, async function (done) {
+        it('RdbEncryptTest0030', 0, async function (done) {
             console.info(TAG + "************* RdbEncryptTest_0030 start *************")
             rdbStore = await CreatRdbStore(context, STORE_CONFIG_ENCRYPT)
             let predicates = new data_rdb.RdbPredicates("test")
@@ -172,14 +172,14 @@ describe('relationalStoreEncryptTest', function () {
         })
 
         /**
-         * @tc.name RdbEncryptTest_0040
+         * @tc.name RdbEncryptTest0040
          * @tc.number SUB_DistributedData_RelationalStore_SDK_EncrpytEtsAPITest_0400
          * @tc.desc RelationalStore Encrypt function test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 1
          */
-         it('RdbEncryptTest_0040', 0, async function (done) {
+         it('RdbEncryptTest0040', 0, async function (done) {
             console.info(TAG + "************* RdbEncryptTest_0040 start *************")
             rdbStore = await CreatRdbStore(context, STORE_CONFIG_ENCRYPT)
             rdbStore = null

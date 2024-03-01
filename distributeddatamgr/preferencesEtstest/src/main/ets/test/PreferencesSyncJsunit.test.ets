@@ -51,13 +51,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_1900
-         * @tc.name SUB_DDM_Preferences_PutSync_0100
+         * @tc.name PreferencesPutSync0100
          * @tc.desc putSync StringArray interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_PutSync_0100', 0, function (done) {
+        it('PreferencesPutSync0100', 0, function (done) {
             mPreferences.clearSync();
             const stringArr = ['1', '2', '3'];
             mPreferences.putSync(KEY_TEST_STRING_ARRAY_ELEMENT, stringArr);
@@ -71,13 +71,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_1700
-         * @tc.name SUB_DDM_Preferences_PutSync_0200
+         * @tc.name PreferencesPutSync0200
          * @tc.desc putSync numberArr interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_PutSync_0200', 0, async function (done) {
+        it('PreferencesPutSync0200', 0, async function (done) {
             mPreferences.clearSync();
             const numberArr = [1, 2, 3];
             mPreferences.putSync(KEY_TEST_NUMBER_ARRAY_ELEMENT, numberArr);
@@ -91,13 +91,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_1300
-         * @tc.name SUB_DDM_Preferences_PutSync_0300
+         * @tc.name PreferencesPutSync0300
          * @tc.desc putSync boolArr interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_PutSync_0300', 0, async function (done) {
+        it('PreferencesPutSync0300', 0, async function (done) {
             mPreferences.clearSync();
             const boolArr = [true, true, false];
             mPreferences.putSync(KEY_TEST_BOOL_ARRAY_ELEMENT, boolArr);
@@ -111,13 +111,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_0300
-         * @tc.name SUB_DDM_Preferences_GetAllSync_0100
+         * @tc.name PreferencesGetAllSync0100
          * @tc.desc getAllSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_GetAllSync_0100', 0, async function (done) {
+        it('PreferencesGetAllSync0100', 0, async function (done) {
             mPreferences.clearSync();
             const doubleArr = [11, 22, 33];
             const stringArr = ['11', '22', '33'];
@@ -150,13 +150,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_0100
-         * @tc.name SUB_DDM_Preferences_ClearSync_0100
+         * @tc.name PreferencesClearSync0100
          * @tc.desc clearSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_ClearSync_0100', 0, async function (done) {
+        it('PreferencesClearSync0100', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_STRING_ELEMENT, "test");
             await mPreferences.flush();
@@ -168,13 +168,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_2900
-         * @tc.name SUB_DDM_Preferences_HasSync_0100
+         * @tc.name PreferencesHasSync0100
          * @tc.desc hasSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_HasSync_0100', 0, async function (done) {
+        it('PreferencesHasSync0100', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_STRING_ELEMENT, "test");
             const ret = mPreferences.hasSync(KEY_TEST_STRING_ELEMENT);
@@ -184,13 +184,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_2700
-         * @tc.name SUB_DDM_Preferences_HasSync_0200
+         * @tc.name PreferencesHasSync0200
          * @tc.desc hasSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_HasSync_0200', 0, async function (done) {
+        it('PreferencesHasSync0200', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_INT_ELEMENT, 1);
             const ret = mPreferences.hasSync(KEY_TEST_INT_ELEMENT);
@@ -200,13 +200,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_2600
-         * @tc.name SUB_DDM_Preferences_HasSync_0300
+         * @tc.name PreferencesHasSync0300
          * @tc.desc hasSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_HasSync_0300', 0, async function (done) {
+        it('PreferencesHasSync0300', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_FLOAT_ELEMENT, 2.0);
             const ret = mPreferences.hasSync(KEY_TEST_FLOAT_ELEMENT);
@@ -216,13 +216,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_2500
-         * @tc.name SUB_DDM_Preferences_HasSync_0400
+         * @tc.name PreferencesHasSync0400
          * @tc.desc hasSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_HasSync_0400', 0, async function (done) {
+        it('PreferencesHasSync0400', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_BOOLEAN_ELEMENT, false);
             const ret = mPreferences.hasSync(KEY_TEST_BOOLEAN_ELEMENT);
@@ -232,13 +232,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_2800
-         * @tc.name SUB_DDM_Preferences_HasSync_0500
+         * @tc.name PreferencesHasSync0500
          * @tc.desc hasSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_HasSync_0500', 0, async function (done) {
+        it('PreferencesHasSync0500', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_LONG_ELEMENT, 0);
             const ret = mPreferences.hasSync(KEY_TEST_LONG_ELEMENT);
@@ -248,13 +248,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_2400
-         * @tc.name SUB_DDM_Preferences_HasSync_0600
+         * @tc.name PreferencesHasSync0600
          * @tc.desc hasSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_HasSync_0600', 0, async function (done) {
+        it('PreferencesHasSync0600', 0, async function (done) {
             mPreferences.clearSync();
             const ret = mPreferences.hasSync(KEY_TEST_LONG_ELEMENT);
             console.info('ret = ' + ret);
@@ -264,13 +264,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_0800
-         * @tc.name SUB_DDM_Preferences_GetSync_0100
+         * @tc.name PreferencesGetSync0100
          * @tc.desc getSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_GetSync_0100', 0, async function (done) {
+        it('PreferencesGetSync0100', 0, async function (done) {
             mPreferences.clearSync();
             const ret = mPreferences.getSync(KEY_TEST_STRING_ELEMENT, "defaultValue");
             expect('defaultValue').assertEqual(ret);
@@ -279,13 +279,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_0400
-         * @tc.name SUB_DDM_Preferences_GetSync_0200
+         * @tc.name PreferencesGetSync0200
          * @tc.desc getSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_GetSync_0200', 0, async function (done) {
+        it('PreferencesGetSync0200', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_FLOAT_ELEMENT, 3.0);
             const ret = mPreferences.getSync(KEY_TEST_FLOAT_ELEMENT, 0.0);
@@ -295,13 +295,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_0500
-         * @tc.name SUB_DDM_Preferences_GetSync_0300
+         * @tc.name PreferencesGetSync0300
          * @tc.desc getSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_GetSync_0300', 0, async function (done) {
+        it('PreferencesGetSync0300', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_INT_ELEMENT, 3);
             const ret = mPreferences.getSync(KEY_TEST_INT_ELEMENT, 0.0);
@@ -311,13 +311,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_0600
-         * @tc.name SUB_DDM_Preferences_GetSync_0400
+         * @tc.name PreferencesGetSync0400
          * @tc.desc getSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_GetSync_0400', 0, async function (done) {
+        it('PreferencesGetSync0400', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_LONG_ELEMENT, 3);
             const ret = mPreferences.getSync(KEY_TEST_LONG_ELEMENT, 0);
@@ -327,13 +327,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_0700
-         * @tc.name SUB_DDM_Preferences_GetSync_0500
+         * @tc.name PreferencesGetSync0500
          * @tc.desc getSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_GetSync_0500', 0, async function (done) {
+        it('PreferencesGetSync0500', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_STRING_ELEMENT, "test");
             await mPreferences.flush();
@@ -344,13 +344,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_1200
-         * @tc.name SUB_DDM_Preferences_PutSync_0400
+         * @tc.name PreferencesPutSync0400
          * @tc.desc putSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_PutSync_0400', 0, async function (done) {
+        it('PreferencesPutSync0400', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_BOOLEAN_ELEMENT, true);
             let per = mPreferences.getSync(KEY_TEST_BOOLEAN_ELEMENT, false);
@@ -363,13 +363,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_1400
-         * @tc.name SUB_DDM_Preferences_PutSync_0500
+         * @tc.name PreferencesPutSync0500
          * @tc.desc putSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_PutSync_0500', 0, async function (done) {
+        it('PreferencesPutSync0500', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_FLOAT_ELEMENT, 4.0);
             let per = mPreferences.getSync(KEY_TEST_FLOAT_ELEMENT, 0.0);
@@ -382,13 +382,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_1500
-         * @tc.name SUB_DDM_Preferences_PutSync_0600
+         * @tc.name PreferencesPutSync0600
          * @tc.desc putSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_PutSync_0600', 0, async function (done) {
+        it('PreferencesPutSync0600', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_INT_ELEMENT, 4);
             let per = mPreferences.getSync(KEY_TEST_INT_ELEMENT, 0);
@@ -401,13 +401,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_1600
-         * @tc.name SUB_DDM_Preferences_PutSync_0700
+         * @tc.name PreferencesPutSync0700
          * @tc.desc putSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_PutSync_0700', 0, async function (done) {
+        it('PreferencesPutSync0700', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_LONG_ELEMENT, 4);
             let per = mPreferences.getSync(KEY_TEST_LONG_ELEMENT, 0);
@@ -420,13 +420,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_1800
-         * @tc.name SUB_DDM_Preferences_PutSync_0800
+         * @tc.name PreferencesPutSync0800
          * @tc.desc putSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_PutSync_0800', 0, async function (done) {
+        it('PreferencesPutSync0800', 0, async function (done) {
             mPreferences.clearSync();
             mPreferences.putSync(KEY_TEST_STRING_ELEMENT, '');
             let per = mPreferences.getSync(KEY_TEST_STRING_ELEMENT, "defaultvalue");
@@ -439,13 +439,13 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_0200
-         * @tc.name SUB_DDM_Preferences_deleteSync_0100
+         * @tc.name PreferencesDeleteSync0100
          * @tc.desc deleteSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_deleteSync_0100', 0, async function (done) {
+        it('PreferencesDeleteSync0100', 0, async function (done) {
             mPreferences.putSync(KEY_TEST_STRING_ELEMENT, "abc");
             expect("abc").assertEqual(mPreferences.getSync(KEY_TEST_STRING_ELEMENT, "default"));
             mPreferences.deleteSync(KEY_TEST_STRING_ELEMENT);
@@ -455,14 +455,14 @@ export default function PreferencesSyncTest() {
 
         /**
          * @tc.number SUB_DistributedData_Preference_SDK_PreferenceHelperEtsTest_2000
-         * @tc.name SUB_DDM_Preferences_removePreferencesFromCacheSync_0100
+         * @tc.name PreferencesRemovePreferencesFromCacheSync0100
          * @tc.desc removePreferencesFromCacheSync interface test
          * @tc.size MediumTest
          * @tc.type Function
          * @tc.level Level 2
          */
-        it('SUB_DDM_Preferences_removePreferencesFromCacheSync_0100', 0, async function (done) {
-            console.log("SUB_DDM_Preferences_removePreferencesFromCacheSync_0100 begin.");
+        it('PreferencesRemovePreferencesFromCacheSync0100', 0, async function (done) {
+            console.log("PreferencesRemovePreferencesFromCacheSync0100 begin.");
             mPreferences = await data_preferences.getPreferences(context, NAME);
             await mPreferences.clearSync();
             await mPreferences.putSync(KEY_TEST_STRING_ELEMENT, 'test')
@@ -475,10 +475,10 @@ export default function PreferencesSyncTest() {
                 console.log("flush done.");
                 await data_preferences.removePreferencesFromCacheSync(context, NAME);
                 let value = mPreferences.getSync(KEY_TEST_STRING_ELEMENT, "defaultvalue")
-                console.log("SUB_DDM_Preferences_removePreferencesFromCacheSync_0100 end." + value);
+                console.log("PreferencesRemovePreferencesFromCacheSync0100 end." + value);
                 expect('test').assertEqual(value);
                 done();
-                console.log("SUB_DDM_Preferences_removePreferencesFromCacheSync_0100 end.");
+                console.log("PreferencesRemovePreferencesFromCacheSync0100 end.");
             });
         })
     })
