@@ -12,40 +12,49 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { ToggleModifier } from "@ohos.arkui.modifier";
+import { ImageModifier } from "@ohos.arkui.modifier";
 
-class CustomModifier extends ToggleModifier {
-
-  applyNormalAttribute(instance: ToggleAttribute): void {
+class CustomModifier extends ImageModifier {
+  applyImageAttribute(instance: ImageAttribute): void {
     super.applyNormalAttribute?.(instance);
   }
 
   onChange1() {
-    this.selectedColor("#FF0000FF")
+    this.syncLoad(true)
   }
 }
 
 @Entry
 @Component
-struct ToggleTest {
-  @State customModifier: ToggleModifier = new CustomModifier()
-    .selectedColor("#FF0000FF")
-    .switchPointColor('#FF008000')
+struct ImageExample {
+  @State customModifier: ImageModifier = new CustomModifier()
+    .copyOption(CopyOptions.None)
+    .colorFilter(0.5)
+    .syncLoad(true)
+    .sourceSize({width: 200,height: 100})
+    .interpolation(ImageInterpolation.None)
+    .renderMode(ImageRenderMode.Original)
+    .autoResize(true)
+    .objectRepeat(ImageRepeat.NoRepeat)
+    .objectFit(ImageFit.None)
+    .fillColor("ff00ff")
+    .fitOriginalSize(true)
+    .matchTextDirection(true)
+    .alt("aaa")
+    .draggable(false)
 
   build() {
-    Column() {
+    Column({ space: 5 }) {
       Button("change value").onClick(() => {
         (this.customModifier as CustomModifier).onChange1();
       }).key("changeButton")
 
-      Column({ space: 5 }) {
-        Toggle({ type: ToggleType.Switch, isOn: false })
-          .key("toggleCheckbox")
+      Column() {
+        Image($r('app.media.blr_2'))
           .attributeModifier(this.customModifier as CustomModifier)
+          .key('image')
       }
-      .width('100%')
-      .height('100%')
     }
-    .width('100%')
+    .margin({ top: 5 })
   }
 }

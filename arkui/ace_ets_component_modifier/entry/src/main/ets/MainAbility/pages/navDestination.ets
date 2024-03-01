@@ -12,25 +12,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class hideTitleBarModifier implements AttributeModifier<NavDestinationAttribute> {
+import { NavDestinationModifier } from "@ohos.arkui.modifier";
 
-  applyNormalAttribute(instance: NavDestinationAttribute): void {
-    instance.hideTitleBar(false)
+class CustomModifier extends NavDestinationModifier {
+  applyNavDestinationAttribute(instance: NavDestinationAttribute): void {
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.hideTitleBar(false)
   }
 }
 
 @Entry
 @Component
 struct hideTitleBarTest {
-  @State myModifier: hideTitleBarModifier = new hideTitleBarModifier()
+  @State customModifier: NavDestinationModifier = new CustomModifier()
+    .hideTitleBar(false)
 
   build() {
     Column() {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
+
       NavDestination() {
         Text(`我是NavDestination第1页内容`).fontSize(50)
       }
       .key('NavDestination1')
-      .attributeModifier(this.myModifier)
+      .attributeModifier(this.customModifier as CustomModifier)
       .backgroundColor('#ccc')
       .title(`NavDestination`)
 

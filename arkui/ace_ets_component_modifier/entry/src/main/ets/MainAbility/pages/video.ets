@@ -12,40 +12,53 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { ToggleModifier } from "@ohos.arkui.modifier";
+import { VideoModifier } from "@ohos.arkui.modifier";
 
-class CustomModifier extends ToggleModifier {
-
-  applyNormalAttribute(instance: ToggleAttribute): void {
+class CustomModifier extends VideoModifier {
+  applyVideoAttribute(instance: VideoAttribute): void {
     super.applyNormalAttribute?.(instance);
   }
 
   onChange1() {
-    this.selectedColor("#FF0000FF")
+    this.muted(true)
   }
 }
 
 @Entry
 @Component
-struct ToggleTest {
-  @State customModifier: ToggleModifier = new CustomModifier()
-    .selectedColor("#FF0000FF")
-    .switchPointColor('#FF008000')
+struct VideoExample {
+  @State videoSrc: Resource = $rawfile('video.mp4')
+  @State previewUri: Resource = $r('app.media.icon')
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
+  @State isAutoPlay: boolean = false
+  @State showControls: boolean = true
+
+  @State customModifier: VideoModifier = new CustomModifier()
+    .muted(false)
+    .autoPlay(false)
+    .controls(true)
+    .loop(false)
+    .objectFit(ImageFit.Cover)
 
   build() {
-    Column() {
+    Column({ space: 5 }) {
       Button("change value").onClick(() => {
         (this.customModifier as CustomModifier).onChange1();
       }).key("changeButton")
 
-      Column({ space: 5 }) {
-        Toggle({ type: ToggleType.Switch, isOn: false })
-          .key("toggleCheckbox")
+      Column() {
+        Video({
+          src: this.videoSrc,
+          previewUri: this.previewUri,
+          currentProgressRate: this.curRate,
+          controller: this.controller
+        })
+          .width(250)
+          .height(200)
           .attributeModifier(this.customModifier as CustomModifier)
+          .key('video')
       }
-      .width('100%')
-      .height('100%')
     }
-    .width('100%')
+    .margin({ top: 5 })
   }
 }
