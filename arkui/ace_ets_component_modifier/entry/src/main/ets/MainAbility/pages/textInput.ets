@@ -1,0 +1,77 @@
+/**
+ * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+import { TextInputModifier } from "@ohos.arkui.modifier";
+
+class CustomModifier extends TextInputModifier {
+  applyNormalAttribute(instance: TextInputAttribute): void {
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.fontSize(14)
+  }
+}
+
+@Entry
+@Component
+struct TextTimerExample {
+  @State customModifier: TextInputModifier = new CustomModifier()
+    .maxLines(3)
+    .showUnderline(true)
+    .showError('Error')
+    .passwordIcon({ onIconSrc: 'begin', offIconSrc: 'end' })
+    .style(TextInputStyle.Inline)
+    .selectionMenuHidden(true)
+    .barState(BarState.Auto)
+    .enableKeyboardOnFocus(true)
+    .caretStyle({width:12})
+    .selectedBackgroundColor(Color.Blue)
+    .caretPosition(1)
+    .caretColor('#007DFF')
+    .placeholderFont({ size: 14, weight: 400 })
+    .placeholderColor(Color.Grey)
+    .type(InputType.Password)
+    .enterKeyType(EnterKeyType.Done)
+    .maxLength(9)
+    .fontColor('#182431')
+    .fontSize(14)
+    .fontStyle(FontStyle.Normal)
+    .fontWeight(FontWeight.Bold)
+    .fontFamily('Arial) HarmonyOS Sans')
+    .copyOption(CopyOptions.None)
+    .showPasswordIcon(true)
+    .textAlign(TextAlign.Center)
+
+  build() {
+    Column({ space: 5 }) {
+    Button("change value").onClick(() => {
+      (this.customModifier as CustomModifier).onChange1();
+    }).key("changeButton")
+    Column() {
+      Button('Log Json Data')
+        .onClick(() => {
+          console.log(getInspectorByKey('textInputKey1'))
+        })
+      TextInput({ placeholder: 'input your password...' })
+        .key('TextInputKey1')
+        .attributeModifier(this.customModifier as CustomModifier)
+        .onTimer((utc: number, elapsedTime: number) => {
+          console.info('textInput notCountDown utc is：' + utc + ', elapsedTime: ' + elapsedTime)
+        })
+    }
+    }
+    .margin({ top: 5 })
+  }
+}

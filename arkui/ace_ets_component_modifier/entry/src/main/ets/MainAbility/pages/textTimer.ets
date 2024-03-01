@@ -12,6 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { TextTimerModifier } from "@ohos.arkui.modifier";
+
+class CustomModifier extends TextTimerModifier {
+  applyNormalAttribute(instance: TextTimerAttribute): void {
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.fontSize(5)
+  }
+}
+
 class TextTimerModifier1 implements AttributeModifier<TextTimerAttribute> {
   applyNormalAttribute(instance: TextTimerAttribute): void {
     instance
@@ -27,8 +39,14 @@ class TextTimerModifier1 implements AttributeModifier<TextTimerAttribute> {
 @Entry
 @Component
 struct TextTimerExample {
-  @State textTimerModifier: TextTimerModifier1 = new TextTimerModifier1()
   textTimerController: TextTimerController = new TextTimerController()
+  @State customModifier: TextTimerModifier = new CustomModifier()
+    .fontSize(20)
+    .fontColor(Color.Pink)
+    .format('mm:ss.SS')
+    .fontWeight(FontWeight.Normal)
+    .fontFamily("cursive")
+    .fontStyle(FontStyle.Italic)
 
   build() {
     Column() {
@@ -38,7 +56,7 @@ struct TextTimerExample {
         })
       TextTimer({ isCountDown: true, count: 30000, controller: this.textTimerController })
         .key('TextTimerKey1')
-        .attributeModifier(this.textTimerModifier)
+        .attributeModifier(this.customModifier as CustomModifier)
         .onTimer((utc: number, elapsedTime: number) => {
           console.info('textTimer notCountDown utc is：' + utc + ', elapsedTime: ' + elapsedTime)
         })

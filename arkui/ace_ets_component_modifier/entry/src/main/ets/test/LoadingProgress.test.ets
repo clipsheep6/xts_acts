@@ -16,6 +16,7 @@
 import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
 import router from '@system.router';
 import Utils from './Utils';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function loadingProgressJsunit() {
   describe('loadingProgress', function () {
@@ -88,6 +89,27 @@ export default function loadingProgressJsunit() {
         done();
       }, 500)
     });
+    /**
+     * @tc.number ArkUX_Stage_loadingProgress_attrs_0102
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('ArkUX_Stage_loadingProgress_attrs_0102', 0, async function (done) {
+      console.info('ArkUX_Stage_loadingProgress_attrs_0102 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
 
+      let strJsonNew = getInspectorByKey('ArkUX_Stage_loadingProgress_attrs_0100'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUX_Stage_loadingProgress_attrs_0102 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.enableLoading).assertEqual("true"); //
+      console.info('ArkUX_Stage_loadingProgress_attrs_0102 END');
+      done();
+    });
   })
 }

@@ -14,21 +14,20 @@
  */
 import { GridModifier } from "@ohos.arkui.modifier";
 
-
-//修改基类
 class CustomModifier extends GridModifier {
   applyNormalAttribute(instance: GridAttribute): void {
     super.applyNormalAttribute?.(instance);
   }
 
-  onChange() {
-    this.rowsGap(11)
+  onChange1() {
+    this.rowsGap(5)
   }
 }
 
 @Entry
 @Component
 struct GridMaxCount {
+  @State Number: String[] = ['5', '6', '7', '8', '9']
   @State customModifier: GridModifier = new CustomModifier()
     .friction(0.6)
     .enableScrollInteraction(true)
@@ -49,14 +48,13 @@ struct GridMaxCount {
     .cellLength(12)
     .layoutDirection(GridDirection.Row)
     .supportAnimation(true)
-  @State Number: String[] = ['5', '6', '7', '8', '9']
 
   build() {
+    Column({ space: 5 }) {
+    Button("change value").onClick(() => {
+      (this.customModifier as CustomModifier).onChange1();
+    }).key("changeButton")
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
-
-      Button("change value").onClick(() => {
-        (this.customModifier as CustomModifier).onChange();
-      }).key("changeButton")
 
       Text("grid-MaxCount")
         .width(100)
@@ -159,6 +157,8 @@ struct GridMaxCount {
     }
     .width("100%")
     .height("100%")
+    }
+    .margin({ top: 5 })
   }
 }
 

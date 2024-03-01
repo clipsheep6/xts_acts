@@ -17,6 +17,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 export default function gaugeJsunit() {
   describe('gaugeTest', function () {
     beforeEach(async function (done) {
@@ -175,22 +176,25 @@ export default function gaugeJsunit() {
     });
 
     /**
-     * @tc.number testGauge0128
+     * @tc.number testGauge0129
      * @tc.name   Test the properties of components
-     * @tc.desc   Set attribute values
+     * @tc.desc   Change attribute values
      * @tc.size   MediumTest
      * @tc.type   Function
      * @tc.level  0
      */
-    it('testGauge0128', 0, async function (done) {
-      console.info('[testGauge0128] START');
-      let strJsonNew = getInspectorByKey('GaugeKey1');
-      let obj = JSON.parse(strJsonNew);
-      console.info("[testGauge0128] obj testGauge0128obj is: " + JSON.stringify(obj.$attrs));
-      //expect(obj.$attrs.description).assertEqual('');
-      expect(true).assertEqual(true);
+    it('testGauge0129', 0, async function (done) {
+      console.info('testGauge0129 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
 
-      console.info('[testGauge0128] END');
+      let strJsonNew = getInspectorByKey('GaugeKey1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("testGauge0129 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.strokeWidth).assertEqual('5'); //
+      console.info('testGauge0129 END');
       done();
     });
   })

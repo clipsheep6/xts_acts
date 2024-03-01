@@ -14,41 +14,54 @@
  */
 
 import events_emitter from '@ohos.events.emitter';
+import { GaugeModifier } from "@ohos.arkui.modifier";
 
-class GaugeModifier1 implements AttributeModifier<GaugeAttribute> {
+class CustomModifier extends GaugeModifier {
+  //descriptionBuilder:CustomBuilder;
   applyNormalAttribute(instance: GaugeAttribute): void {
-    instance.strokeWidth(5)
-      .endAngle(360)
-      .startAngle(0)
-      .value(1)
-      .colors([['#FF123456', 1], ['#FF654321', 2]])
-      .indicator({
-        icon: "abc",
-        space: `${15}px`
-      })
-      .trackShadow({
-        radius: 5,
-        offsetX: 15,
-        offsetY: 15
-      })
-      // .description(undefined)
+    super.applyNormalAttribute?.(instance);
+  }
+
+
+  onChange1() {
+    this.strokeWidth(5)
   }
 }
 
 @Entry
 @Component
 struct GaugeExample {
-  @State gaugeModifier: GaugeModifier1 = new GaugeModifier1()
+  @State customModifier: GaugeModifier = new CustomModifier()
+    .strokeWidth(5)
+    .endAngle(360)
+    .startAngle(0)
+    .value(1)
+    .colors([['#FF123456', 1], ['#FF654321', 2]])
+    .indicator({
+      icon: "abc",
+      space: `${15}px`
+    })
+    .trackShadow({
+      radius: 5,
+      offsetX: 15,
+      offsetY: 15
+    })
 
   build() {
+    Column({ space: 5 }) {
+    Button("change value").onClick(() => {
+      (this.customModifier as CustomModifier).onChange1();
+    }).key("changeButton")
     Column() {
 
       Gauge({ value: 0, min: 0, max: 100 })
         .key("GaugeKey1")
-        .attributeModifier(this.gaugeModifier)
+        .attributeModifier(this.customModifier as CustomModifier)
     }
     .width('100%')
     .margin({ top: 300 })
+    }
+    .margin({ top: 5 })
   }
 }
 

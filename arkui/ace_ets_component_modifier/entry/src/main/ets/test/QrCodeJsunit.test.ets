@@ -16,6 +16,7 @@ import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "
 import router from '@system.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 import bundle from '@ohos.bundle.bundleManager';
 
 export default function qrCodeJsunit() {
@@ -94,6 +95,28 @@ export default function qrCodeJsunit() {
       
       expect(obj.$attrs.backgroundColor).assertEqual("#FF008000");
       console.info('[test_qrCode_003] END');
+      done();
+    });
+    /**
+     * @tc.number test_qrCode_004
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('test_qrCode_004', 0, async function (done) {
+      console.info('test_qrCode_004 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('QrCodeColorKey1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("test_qrCode_004 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.contentOpacity).assertEqual('0.1'); //
+      console.info('test_qrCode_004 END');
       done();
     });
   })

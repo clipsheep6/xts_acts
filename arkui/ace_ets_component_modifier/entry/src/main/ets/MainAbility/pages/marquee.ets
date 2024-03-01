@@ -12,22 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { MarqueeModifier } from "@ohos.arkui.modifier";
 
-class MarqueeModifier1 implements AttributeModifier<MarqueeAttribute> {
+class CustomModifier extends MarqueeModifier {
   applyNormalAttribute(instance: MarqueeAttribute): void {
-    instance
-      .fontColor('#FF00FFFF')
-      .fontSize(35)
-      .allowScale(true)
-      .fontWeight(500)
-      .fontFamily('medium')
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.fontSize(5)
   }
 }
 
 @Entry
 @Component
 struct MarqueeExample {
-  @State marqueeModifier: MarqueeModifier1 = new MarqueeModifier1()
   @State start: boolean = false
   @State fromStart: boolean = true
   @State step: number = 50
@@ -36,8 +35,18 @@ struct MarqueeExample {
   @State fontColor: Color = Color.Blue;
   @State fontSize: number = 50;
   @State onActionCalledThree: boolean = false;
+  @State customModifier: MarqueeModifier = new CustomModifier()
+    .fontColor('#FF00FFFF')
+    .fontSize(35)
+    .allowScale(true)
+    .fontWeight(500)
+    .fontFamily('medium')
 
   build() {
+    Column({ space: 5 }) {
+    Button("change value").onClick(() => {
+      (this.customModifier as CustomModifier).onChange1();
+    }).key("changeButton")
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Marquee({
         start: this.start,
@@ -47,9 +56,11 @@ struct MarqueeExample {
         src: this.src
       })
         .key('MarqueeKey1')
-        .attributeModifier(this.marqueeModifier)
+        .attributeModifier(this.customModifier as CustomModifier)
     }
     .width('100%')
       .height('100%')
+    }
+    .margin({ top: 5 })
   }
 }

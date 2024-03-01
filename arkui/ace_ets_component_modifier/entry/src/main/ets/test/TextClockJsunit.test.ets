@@ -14,6 +14,7 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
+import Utils from './Utils';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
 
@@ -156,6 +157,27 @@ export default function TextClockJsunit() {
       console.info('[TextClock_0600] END');
       done();
     });
+    /**
+     * @tc.number TextClock_0601
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('TextClock_0601', 0, async function (done) {
+      console.info('TextClock_0601 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
 
+      let strJsonNew = getInspectorByKey('TextClockKey1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("TextClock_0601 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.fontSize).assertEqual('5'); //
+      console.info('TextClock_0601 END');
+      done();
+    });
   })
 }

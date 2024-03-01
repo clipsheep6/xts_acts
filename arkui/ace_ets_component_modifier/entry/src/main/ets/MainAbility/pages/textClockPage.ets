@@ -12,16 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { TextClockModifier } from "@ohos.arkui.modifier";
 
-class TextClockModifier1 implements AttributeModifier<TextClockAttribute> {
+class CustomModifier extends TextClockModifier {
   applyNormalAttribute(instance: TextClockAttribute): void {
-    instance
-      .format('hh:mm:ss')
-      .fontColor('#FF123456')
-      .fontSize(15)
-      .fontWeight(FontWeight.Normal)
-      .fontFamily("cursive")
-      .fontStyle(FontStyle.Italic)
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.fontSize(5)
   }
 }
 
@@ -33,11 +32,21 @@ struct TextClockPage {
   @State format: string = 'hms'
   @State status: string = 'run'
   @State change: string = 'no change'
-  @State textClockModifier: TextClockModifier1 = new TextClockModifier1()
+  @State customModifier: TextClockModifier = new CustomModifier()
+    .format('hh:mm:ss')
+    .fontColor('#FF123456')
+    .fontSize(15)
+    .fontWeight(FontWeight.Normal)
+    .fontFamily("cursive")
+    .fontStyle(FontStyle.Italic)
   // 导入对象
   controller: TextClockController = new TextClockController()
 
   build() {
+    Column({ space: 5 }) {
+    Button("change value").onClick(() => {
+      (this.customModifier as CustomModifier).onChange1();
+    }).key("changeButton")
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('Current milliseconds is ' + this.accumulateTime)
         .fontSize(20)
@@ -46,7 +55,7 @@ struct TextClockPage {
       TextClock({ timeZoneOffset: this.timeZoneOffset, controller: this.controller })
         .margin(20)
         .key('TextClockKey1')
-        .attributeModifier(this.textClockModifier)
+        .attributeModifier(this.customModifier as CustomModifier)
         .onDateChange((value: number) => {
           this.change = 'change'
           this.accumulateTime = value
@@ -69,5 +78,7 @@ struct TextClockPage {
     }
     .width('100%')
     .height('100%')
+    }
+    .margin({ top: 5 })
   }
 }

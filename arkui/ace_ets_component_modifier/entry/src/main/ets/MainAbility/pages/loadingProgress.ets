@@ -12,29 +12,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import { LoadingProgressModifier } from "@ohos.arkui.modifier";
 
-
-class TestLoadingProgressModifier implements AttributeModifier<LoadingProgressAttribute> {
+class CustomModifier extends LoadingProgressModifier {
   applyNormalAttribute(instance: LoadingProgressAttribute): void {
-    instance
-      .color(Color.Blue)
-      .enableLoading(true)
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.enableLoading(true)
   }
 }
 
 @Entry
 @Component
 struct LoadingProgressExampleAdd {
-  @State modifier: TestLoadingProgressModifier = new TestLoadingProgressModifier()
+  @State customModifier: LoadingProgressModifier = new CustomModifier()
+    .color(Color.Blue)
+    .enableLoading(true)
 
   build() {
+    Column({ space: 5 }) {
+    Button("change value").onClick(() => {
+      (this.customModifier as CustomModifier).onChange1();
+    }).key("changeButton")
     Column({ space: 5 }) {
       Text('Orbital LoadingProgress ').fontSize(9).fontColor(0xCCCCCC).width('90%')
       LoadingProgress()
         .key('ArkUX_Stage_loadingProgress_attrs_0100')
-        .attributeModifier(this.modifier)
+        .attributeModifier(this.customModifier as CustomModifier)
     }
     .width('100%')
+    .margin({ top: 5 })
+    }
     .margin({ top: 5 })
   }
 }

@@ -16,7 +16,10 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
 import Utils from './Utils';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 import events_emitter from '@ohos.events.emitter';
+
+
 export default function datapanelJsunit() {
   describe('dataPanelTest', function () {
     beforeEach(async function (done) {
@@ -132,5 +135,29 @@ export default function datapanelJsunit() {
       console.info('testDataPanel05 END');
       done();
     });
+
+    /**
+     * @tc.number testDataPanel06
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testDataPanel06', 0, async function (done) {
+      console.info('testDataPanel06 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew = getInspectorByKey('DataPanelKey1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("testDataPanel06 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.strokeWidth).assertEqual('5'); //
+      console.info('testDataPanel06 END');
+      done();
+    });
+
   })
 }

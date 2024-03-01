@@ -15,6 +15,7 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
 import Utils from './Utils';
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 
 export default function textTimer() {
   describe('textTimerJsunit', function () {
@@ -233,6 +234,27 @@ export default function textTimer() {
       console.info('textTimerJsunit_0600 END');
       done();
     });
+    /**
+     * @tc.number textTimerJsunit_0601
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('textTimerJsunit_0601', 0, async function (done) {
+      console.info('textTimerJsunit_0601 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
 
+      let strJsonNew = getInspectorByKey('TextTimerKey1'); //测试组件的key名称
+      let objNew = JSON.parse(strJsonNew);
+      console.info("textTimerJsunit_0601 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.fontSize).assertEqual('5'); //
+      console.info('textTimerJsunit_0601 END');
+      done();
+    });
   })
 }
