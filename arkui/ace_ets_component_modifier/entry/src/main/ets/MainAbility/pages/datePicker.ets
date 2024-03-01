@@ -21,7 +21,7 @@ class CustomModifier extends DatePickerModifier {
   }
 
   onChange1() {
-    this.lunar(false)
+    this.textStyle({ color: '#ff0000FF', font: { size: '27fp', weight: FontWeight.Normal } })
   }
 }
 

@@ -145,8 +145,8 @@ export default function datePickerJsunit() {
       let strJsonNew = getInspectorByKey('DatePicker'); //测试组件的key名称
       let objNew = JSON.parse(strJsonNew);
       console.info("testDatePicker0025 component  is: " + JSON.stringify(objNew.$attrs));
-      expect(objNew.$attrs.lunar).assertEqual('false'); //
-
+      let textStyle = objNew.$attrs.textStyle;
+      expect(textStyle['font'].size).assertEqual("27.00fp");
       console.info('testDatePicker0025 END');
       done();
     });

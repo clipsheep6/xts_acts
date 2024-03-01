@@ -68,7 +68,7 @@ import geometryTransitionJsunit from './GeometryTransitionJsunit.test.ets';
 import motionPathJsunit from './MotionPathJsunit.test.ets';
 import shortcutKeyJsunit from './ShortcutKey.test.ets';
 import idKeyJsunit from './IdKeyJsunit.test.ets';
-
+import polygonJsunit from './Polygon.test.ets';
 export default function testsuite() {
   // idKeyJsunit();
   // shortcutKeyJsunit();
@@ -125,4 +125,5 @@ export default function testsuite() {
   // navDestinationJsunit();
   // navRouterJsunit();
   // counterJsunit();
+  polygonJsunit();
 }

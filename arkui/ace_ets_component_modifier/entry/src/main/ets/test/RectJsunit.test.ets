@@ -16,6 +16,7 @@
 import router from '@system.router';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import Utils from './Utils.ets'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest';
 
 export default function rectJsunit() {
   describe('ActsAcerectTest', function () {
@@ -109,5 +110,35 @@ export default function rectJsunit() {
       done();
     });
 
+    /**
+     * @tc.number testrect__001
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+    it('testrect__001', 0, async function (done) {
+      console.info('testrect__001 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+
+      let strJsonNew1 = getInspectorByKey('Rect1'); //测试组件的key名称
+      let objNew1 = JSON.parse(strJsonNew1);
+      let strJsonNew2 = getInspectorByKey('Rect2'); //测试组件的key名称
+      let objNew2 = JSON.parse(strJsonNew2);
+      let strJsonNew3 = getInspectorByKey('Rect3'); //测试组件的key名称
+      let objNew3 = JSON.parse(strJsonNew3);
+      console.info("testrect__001 component  is: " + JSON.stringify(objNew1.$attrs));
+      console.info("testrect__001 component  is: " + JSON.stringify(objNew2.$attrs));
+      console.info("testrect__001 component  is: " + JSON.stringify(objNew3.$attrs));
+      expect(objNew1.$attrs.radiusHeight).assertEqual('9');
+      expect(objNew1.$attrs.radius).assertEqual('7');
+      expect(objNew1.$attrs.radiusWidth).assertEqual('12');
+      console.info('testrect__001 END');
+      done();
+    });
   })
 }
