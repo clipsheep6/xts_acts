@@ -13,37 +13,46 @@
  * limitations under the License.
  */
 
-class SelectModifier1 implements AttributeModifier<SelectAttribute> {
-    font: Font = { size: 30, weight: 400, family: 'serif', style: FontStyle.Normal }
-    fontColor: Color = 0xCCCCCC
-    spaceValue: number = 8
-    spaceValueString: string = '50.00vp'
-    arrowPosition: ArrowPosition = ArrowPosition.END
+import { SelectModifier } from "@ohos.arkui.modifier";
 
-    applyNormalAttribute(instance: SelectAttribute): void {
-        instance.selected(1)
-            .value('Test')
-            .font(this.font)
-            .fontColor(this.fontColor)
-            .selectedOptionFont({ size: 40, weight: 500, family: 'serif', style: FontStyle.Normal })
-            .selectedOptionFontColor(0x000000)
-            .selectedOptionBgColor(0xCCCCCC)
-            .optionBgColor(0xFFFFFF)
-            .optionFont({ size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
-            .optionFontColor(0x000000)
-            .menuAlign(MenuAlignType.START)
-            .space(this.spaceValueString)
-            .arrowPosition(this.arrowPosition)
-    }
+class CustomModifier extends SelectModifier {
+  applyNormalAttribute(instance: SelectAttribute): void {
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.selected(2)
+  }
 }
 
 @Entry
 @Component
   struct SelectExample {
-    @State selectModifier1: SelectModifier1 = new SelectModifier1()
+    font: Font = { size: 30, weight: 400, family: 'serif', style: FontStyle.Normal }
+    fontColor: Color = 0xCCCCCC
+    spaceValue: number = 8
+    spaceValueString: string = '50.00vp'
+    arrowPosition: ArrowPosition = ArrowPosition.END
+    @State customModifier: SelectModifier = new CustomModifier()
+        .selected(1)
+        .value('Test')
+        .font(this.font)
+        .fontColor(this.fontColor)
+        .selectedOptionFont({ size: 40, weight: 500, family: 'serif', style: FontStyle.Normal })
+        .selectedOptionFontColor(0x000000)
+        .selectedOptionBgColor(0xCCCCCC)
+        .optionBgColor(0xFFFFFF)
+        .optionFont({ size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
+        .optionFontColor(0x000000)
+        .menuAlign(MenuAlignType.START)
+        .space(this.spaceValueString)
+        .arrowPosition(this.arrowPosition)
 
     build() {
         Column() {
+            Button("change value").onClick(() => {
+              (this.customModifier as CustomModifier).onChange1();
+            }).key("changeButton")
             Select([{ value: 'aaa', icon: "/common/public_icon.svg" },
             { value: 'bbb', icon: "/common/public_icon.svg" },
             { value: 'ccc', icon: "/common/public_icon.svg" },
@@ -53,8 +62,7 @@ class SelectModifier1 implements AttributeModifier<SelectAttribute> {
                 })
                 .key('selectTest')
                 .margin({ bottom: 40 })
-                .attributeModifier(this.selectModifier1)
-
+                .attributeModifier(this.customModifier as CustomModifier)
         }
     }
 }

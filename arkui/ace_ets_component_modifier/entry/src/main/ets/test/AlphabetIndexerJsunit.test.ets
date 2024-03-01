@@ -14,6 +14,7 @@
  */
 
 import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
+import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 import Utils from './Utils';
 import router from '@system.router';
 
@@ -56,7 +57,7 @@ export default function alphabetIndexerJsunit() {
       expect(obj.$attrs.font.fontSize).assertEqual("18.00fp");
       done();
     });
- 
+
     /**
      * @tc.number ArkUI_AlphabetIndexer_0102
      * @tc.name   Test the properties of components
@@ -72,7 +73,7 @@ export default function alphabetIndexerJsunit() {
       expect(obj.$attrs.selectFont.fontSize).assertEqual("28.00fp");
       done();
     });
-    
+
     /**
      * @tc.number ArkUI_AlphabetIndexer_0103
      * @tc.name   Test the properties of components
@@ -311,6 +312,28 @@ export default function alphabetIndexerJsunit() {
       done();
     });
 
+    /**
+     * @tc.number ArkUI_AlphabetIndexer_0118
+     * @tc.name   Test the properties of components
+     * @tc.desc   Change attribute values
+     * @tc.size   MediumTest
+     * @tc.type   Function
+     * @tc.level  0
+     */
+     it('ArkUI_AlphabetIndexer_0118', 0, async function (done) {
+
+      console.info('ArkUI_AlphabetIndexer_0118 START');
+      let driver = Driver.create();
+      let button = await driver.findComponent(ON.id('changeButton'));
+      await button.click();
+      await Utils.sleep(2000)
+      let strJsonNew = getInspectorByKey('alphabetIndexerTest2');
+      let objNew = JSON.parse(strJsonNew);
+      console.info("ArkUI_AlphabetIndexer_0118 component  is: " + JSON.stringify(objNew.$attrs));
+      expect(objNew.$attrs.selected).assertEqual(2);
+      console.info('ArkUI_AlphabetIndexer_0118 END');
+      done();
+    });
 
   })
 }

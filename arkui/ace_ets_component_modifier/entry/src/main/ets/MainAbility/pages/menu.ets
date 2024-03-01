@@ -13,24 +13,28 @@
  * limitations under the License.
  */
 
+import { MenuModifier } from "@ohos.arkui.modifier";
 
-class TestMenuModifier implements AttributeModifier<MenuAttribute> {
-  mRadius: Dimension | BorderRadiuses = '12vp'
-  mFontColor: ResourceColor = '#FF123654'
-  mFont: Font = { size: 20, weight: FontWeight.Normal, family: 'medium', style: FontStyle.Normal }
-
+class CustomModifier extends MenuModifier {
   applyNormalAttribute(instance: MenuAttribute): void {
-    instance
-      .radius(this.mRadius)
-      .fontColor(this.mFontColor)
-      .font(this.mFont)
+    super.applyNormalAttribute?.(instance);
+  }
+
+  onChange1() {
+    this.radius(20)
   }
 }
 
 @Entry
 @Component
 struct TestMenuPage {
-  @State modifier: TestMenuModifier = new TestMenuModifier()
+  mRadius: Dimension | BorderRadiuses = '12vp'
+  mFontColor: ResourceColor = '#FF123654'
+  mFont: Font = { size: 20, weight: FontWeight.Normal, family: 'medium', style: FontStyle.Normal }
+  @State customModifier: MenuModifier = new CustomModifier()
+    .radius(this.mRadius)
+    .fontColor(this.mFontColor)
+    .font(this.mFont)
 
   build() {
     Column() {
@@ -39,7 +43,10 @@ struct TestMenuPage {
         MenuItem({ content: "粘贴", labelInfo: "Ctrl+V" })
       }
       .key('MenuKey1')
-      .attributeModifier(this.modifier)
+      .attributeModifier(this.customModifier as CustomModifier)
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();
+      }).key("changeButton")
     }
     .width('100%')
     .height('100%')

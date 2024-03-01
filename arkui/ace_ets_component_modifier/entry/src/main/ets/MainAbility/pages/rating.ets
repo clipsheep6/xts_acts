@@ -13,31 +13,21 @@
  * limitations under the License.
  */
 
-class RatingModifier1 implements AttributeModifier<RatingAttribute>{
-  stars: number = 5
-  stepSize: number = 0.5
-  backgroundUri: string = 'resources/base/media/star_1.png'
-  foregroundUri: string = 'resources/base/media/star_2.png'
-  secondaryUri: string = 'resources/base/media/star_3.png'
+import { RatingModifier } from "@ohos.arkui.modifier";
+
+class CustomModifier extends RatingModifier {
   applyNormalAttribute(instance: RatingAttribute): void {
+    super.applyNormalAttribute?.(instance);
+  }
 
-    instance.stars(this.stars)
-
-      .stepSize(this.stepSize)
-
-      .starStyle({
-        backgroundUri: this.backgroundUri,
-
-        foregroundUri: this.foregroundUri,
-
-        secondaryUri: this.secondaryUri
-      })
+  onChange1() {
+    this.stars(4)
   }
 }
+
 @Entry
 @Component
 struct RatingPage {
-  @State ratingModifier: RatingModifier1 = new RatingModifier1()
   @State rating: number = 3.5
   @State indicator: boolean = true
   @State stars: number = 5
@@ -46,13 +36,25 @@ struct RatingPage {
   @State backgroundUri: string = 'resources/base/media/star_1.png'
   @State foregroundUri: string = 'resources/base/media/star_2.png'
   @State secondaryUri: string = 'resources/base/media/star_3.png'
+
+  @State customModifier: RatingModifier = new CustomModifier()
+    .stars(this.stars)
+    .stepSize(this.stepSize)
+    .starStyle({
+      backgroundUri: this.backgroundUri,
+      foregroundUri: this.foregroundUri,
+      secondaryUri: this.secondaryUri})
+
   build() {
     Column() {
+      Button("change value").onClick(() => {
+        (this.customModifier as CustomModifier).onChange1();})
+        .key("changeButton")
       Column() {
         Rating({ rating: this.rating, indicator: this.indicator })
           .key('rating1')
           .margin({ top: 24 })
-          .attributeModifier(this.ratingModifier)
+          .attributeModifier(this.customModifier as CustomModifier)
       }.width(360).height(150).backgroundColor('#FFFFFF').margin({ top: 68 })
     }.width('100%').height('100%').backgroundColor('#F1F3F5')
   }
