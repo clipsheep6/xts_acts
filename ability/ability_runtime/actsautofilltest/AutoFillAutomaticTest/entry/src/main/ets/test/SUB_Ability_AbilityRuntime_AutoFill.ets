@@ -23,21 +23,22 @@ import commonEventManager from '@ohos.commonEventManager';
 let driver = Driver.create();
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-function sleep(ms): Promise<any> {
+function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function startRelyAbility() : Promise<void> {
-  await abilityDelegator.executeShellCommand('aa start -b com.ohos.passwordbox -a EntryAbility').then(data => {
-    hilog.info(0x0000, 'ActsAutoFillTest', '%{public}s', 'beforeEach aa start data is: ' + data.stdResult);
-  }).catch(err => {
-    hilog.info(0x0000, 'ActsAutoFillTest', '%{public}s', 'beforeEach err is: ' + JSON.stringify(err));
-  });
+async function startRelyAbility(): Promise<void> {
+  await abilityDelegator.executeShellCommand('aa start -b com.ohos.passwordbox -a EntryAbility')
+    .then(data => {
+      hilog.info(0x0000, 'ActsAutoFillTest', '%{public}s', 'beforeEach aa start data is: ' + data.stdResult);
+    }).catch((err: BusinessError) => {
+      hilog.info(0x0000, 'ActsAutoFillTest', '%{public}s', 'beforeEach err is: ' + JSON.stringify(err));
+    });
 }
 
 export default function abilityTest() {
-  describe('ActsAutoFillTest', function () {
-    afterEach(async function (done) {
+  describe('ActsAutoFillTest', () => {
+    afterEach(async (done: Function) => {
       await abilityDelegator.executeShellCommand('aa force-stop com.ohos.passwordbox');
       done();
     })
@@ -49,7 +50,7 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoFill_0700', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoFill_0700', 0, async (done: Function) => {
       const TAG = 'SUB_Ability_AbilityRuntime_AutoFill_0700_TAG';
       await sleep(2000);
       await startRelyAbility();
@@ -94,7 +95,7 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoFill_0800', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoFill_0800', 0, async (done: Function) => {
       const TAG = 'SUB_Ability_AbilityRuntime_AutoFill_0800_TAG';
       await sleep(2000);
       await startRelyAbility();
@@ -138,7 +139,7 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoFill_0100', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoFill_0100', 0, async (done: Function) => {
       const TAG = 'SUB_Ability_AbilityRuntime_AutoFill_0100_TAG';
       console.info(TAG, 'start.');
 
@@ -176,7 +177,7 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoFill_0200', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoFill_0200', 0, async (done: Function) => {
       const TAG = 'SUB_Ability_AbilityRuntime_AutoFill_0200_TAG';
       console.info(TAG, 'start.');
 
@@ -214,7 +215,7 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoFill_0300', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoFill_0300', 0, async (done: Function) => {
       const TAG = 'SUB_Ability_AbilityRuntime_AutoFill_0300_TAG';
       console.info(TAG, 'start.');
 
@@ -251,7 +252,7 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoFill_0400', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoFill_0400', 0, async (done: Function) => {
       const TAG = 'SUB_Ability_AbilityRuntime_AutoFill_0400_TAG';
       console.info(TAG, 'start.');
 
@@ -289,7 +290,7 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoFill_0500', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoFill_0500', 0, async (done: Function) => {
       const TAG = 'SUB_Ability_AbilityRuntime_AutoFill_0500_TAG';
       console.info(TAG, 'start.');
 
@@ -328,7 +329,7 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoFill_0600', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoFill_0600', 0, async (done: Function) => {
       const TAG = 'SUB_Ability_AbilityRuntime_AutoFill_0600_TAG';
       console.info(TAG, 'start.');
 
