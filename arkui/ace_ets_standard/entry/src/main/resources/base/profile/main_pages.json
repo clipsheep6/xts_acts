@@ -12,6 +12,7 @@
         "MainAbility/pages/Scroll",
         "MainAbility/pages/Stack",
         "MainAbility/pages/Image",
+        "MainAbility/pages/MediaCachedImage",
         "MainAbility/pages/Progress",
         "MainAbility/pages/Qrcode",
         "MainAbility/pages/Rating",
