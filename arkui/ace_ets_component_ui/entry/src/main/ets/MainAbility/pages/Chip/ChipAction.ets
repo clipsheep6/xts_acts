@@ -17,11 +17,11 @@ import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
 @Entry
 @Component
 struct ChipAction {
-  @State text: string = ''
+  @State text: string = '';
 
   build() {
     Column() {
-      Column(){
+      Column() {
         Chip({
           prefixIcon: {
             src: $r('app.media.icon'),
@@ -39,7 +39,7 @@ struct ChipAction {
             src: $r('app.media.icon'),
             size: { width: 16, height: 16 },
             fillColor: Color.Red,
-            action:() => {
+            action: () => {
               this.text = 'action'
             }
           },
@@ -48,8 +48,13 @@ struct ChipAction {
           enabled: true,
           backgroundColor: 0x808080,
         })
-      }.width(120).borderWidth(1).key('ChipActionCol')
-      Text(this.text).key('ChipAction')
+      }
+      .width(120)
+      .borderWidth(1)
+      .key('ChipActionCol')
+
+      Text(this.text)
+        .key('ChipAction')
     }
   }
 }

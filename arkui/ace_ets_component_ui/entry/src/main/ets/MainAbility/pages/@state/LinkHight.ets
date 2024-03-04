@@ -43,7 +43,9 @@ struct Child_CJ {
         })
         .key('LinkHeight3')
 
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }
 
@@ -55,9 +57,10 @@ struct Index_CJ {
   build() {
     Column() {
       Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.hight)) + " number is " + JSON.stringify(this.hight))
-        .fontSize(20).margin(30).key('LinkHight')
-      Child_CJ({hight: this.hight})
-
+        .fontSize(20)
+        .margin(30)
+        .key('LinkHight')
+      Child_CJ({ hight: this.hight })
     }
   }
 }

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../../../utils/MessageManager';
+import {MessageManager,Callback, Message} from '../../../utils/MessageManager';
 
 @Entry
 @Component
@@ -29,13 +29,13 @@ struct getGridItemRect5 {
   @State width1: number = 0
   @State height1: number = 0
 
-  messageManager:MessageManager = new MessageManager()
+  messageManager:MessageManager<number> = new MessageManager()
   onPageShow() {
     console.info('getGridItemRect5 onPageShow');
     globalThis.value = {
       name:'messageManager',message:this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<number> = (message: Message<number>) => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'index') {
         this.index = message.value;
