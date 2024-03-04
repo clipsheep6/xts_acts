@@ -14,15 +14,16 @@
  */
 
 // 父组件arrViewB中的类对象ClassA与子组件ViewA保持数据同步时，可以使用@ObjectLink和@Observed，绑定该数据对象的父组件和其他子组件同步更新
-let nextID: number = 0
+let nextID: number = 0;
+
 @Observed
 class ClassA {
-  public num: number
-  public id: number
+  public num: number;
+  public id: number;
 
   constructor(num: number) {
-    this.num = num
-    this.id = nextID++
+    this.num = num;
+    this.id = nextID++;
   }
 }
 
@@ -32,7 +33,7 @@ struct arrViewA {
 
   build() {
     Row() {
-      Text("viewA: "+`${this.data.num}`)
+      Text("viewA: " + `${this.data.num}`)
 
     }.margin({ top: 10 })
   }
@@ -52,26 +53,38 @@ struct arrViewB {
         })
       Text('hello: ' + JSON.stringify(this.arrA)).fontSize(20).margin(15)
         .key("view_arrObl")
-      Button(`ViewB: change`).fontSize(15).margin(5).margin(10)
+      Button(`ViewB: change`)
+        .fontSize(15)
+        .margin(5)
+        .margin(10)
         .key("change_ArrObl")
         .onClick(() => {
           // 改变某一个Array值
           this.arrA[0] = new ClassA(8)
         })
 
-      Button(`ViewB: push`).fontSize(15).margin(5).margin(10)
+      Button(`ViewB: push`)
+        .fontSize(15)
+        .margin(5)
+        .margin(10)
         .key("add_ArrObl")
         .onClick(() => {
           this.arrA.push(new ClassA(7))
         })
 
-      Button(`ViewB: shift`).fontSize(15).margin(5).margin(10)
+      Button(`ViewB: shift`)
+        .fontSize(15)
+        .margin(5)
+        .margin(10)
         .key("delete_Arr1")
         .onClick(() => {
           this.arrA.shift()
         })
 
-      Button(`ViewB: pop`).fontSize(15).margin(5).margin(10)
+      Button(`ViewB: pop`)
+        .fontSize(15)
+        .margin(5)
+        .margin(10)
         .key("delete_Arr2")
         .onClick(() => {
           this.arrA.pop()

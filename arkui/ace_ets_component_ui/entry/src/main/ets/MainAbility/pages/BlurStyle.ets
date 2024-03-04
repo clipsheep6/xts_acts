@@ -16,11 +16,13 @@
 @Entry
 @Component
 struct BlurStyle1 {
-
   build() {
     Column() {
       Text("BlurStyle.BACKGROUND_THIN").margin(5).id("BACKGROUND_THIN")
-        .backgroundBlurStyle(BlurStyle.BACKGROUND_THIN, { colorMode: ThemeColorMode.SYSTEM, adaptiveColor: AdaptiveColor.DEFAULT })
+        .backgroundBlurStyle(BlurStyle.BACKGROUND_THIN, {
+          colorMode: ThemeColorMode.SYSTEM,
+          adaptiveColor: AdaptiveColor.DEFAULT
+        })
       Text("BlurStyle.BACKGROUND_REGULAR").margin(5).id("BACKGROUND_REGULAR")
         .backgroundBlurStyle(BlurStyle.BACKGROUND_REGULAR, { adaptiveColor: AdaptiveColor.AVERAGE })
       Text("BlurStyle.BACKGROUND_THICK").margin(5).id("BACKGROUND_THICK")

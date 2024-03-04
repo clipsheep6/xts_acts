@@ -23,7 +23,7 @@ class ClassA30 {
 
 @Component
 struct ChildPropObject {
-  @Prop subValue: number = 0
+  @Prop subValue: number = 0;
 
   build() {
     Column() {
@@ -54,7 +54,7 @@ struct PropInit1 {
             this.title.value = 111;
           })
 
-        ChildPropObject({subValue: this.title.value})
+        ChildPropObject({ subValue: this.title.value })
       }
     }
   }

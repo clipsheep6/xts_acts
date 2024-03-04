@@ -13,22 +13,25 @@
  * limitations under the License.
  */
 
-enum KFC{A11=1,B11=2,C11=3}
+enum KFC {A11 = 1, B11 = 2, C11 = 3};
 
 @Entry
 @Component
 struct PropEnum {
-  @State enumA: KFC = KFC.A11
+  @State enumA: KFC = KFC.A11;
 
   build() {
-    Column({space:5}) {
+    Column({ space: 5 }) {
       Button("Reset").id("PropEnum_reset")
         .onClick(() => {
           this.enumA = KFC.A11
         })
       Text('@Prop 支持数据类型：enum').fontSize(18)
-      Text('Father State: ' + this.enumA).margin(10).width("100%")
-        .key("PropEnum").backgroundColor(this.enumA)
+      Text('Father State: ' + this.enumA)
+        .margin(10)
+        .width("100%")
+        .key("PropEnum")
+        .backgroundColor(this.enumA)
         .onClick(() => {
           this.enumA = KFC.B11
         })
@@ -44,11 +47,14 @@ struct ChildPropEnum {
   @Prop enumB: KFC = KFC.A11;
 
   build() {
-    Column({space:5}) {
+    Column({ space: 5 }) {
       Text('@Prop 单向的 内部修改不会改变父组件').fontSize(18)
 
-      Text('Child Prop: ' + this.enumB).margin(10).width("100%")
-        .key("ChildPropEnum").backgroundColor(this.enumB)
+      Text('Child Prop: ' + this.enumB)
+        .margin(10)
+        .width("100%")
+        .key("ChildPropEnum")
+        .backgroundColor(this.enumB)
         .onClick(() => {
           this.enumB = KFC.C11
         })

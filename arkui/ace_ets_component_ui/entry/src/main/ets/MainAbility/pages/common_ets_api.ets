@@ -16,11 +16,9 @@
 @Entry
 @Component
 struct Common_ts_ets_apiStaticClear {
-  @StorageLink('varA') varA: number = 2
-  private label: string = 'count'
-  @StorageLink('highScore') highScore: number = 0
-
-
+  @StorageLink('varA') varA: number = 2;
+  private label: string = 'count';
+  @StorageLink('highScore') highScore: number = 0;
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -39,7 +37,7 @@ struct Common_ts_ets_apiStaticClear {
         .textOverflow({ overflow: TextOverflow.None })
         .key("labelAAd")
         .onClick(() => {
-          Environment.envProp("test",200);
+          Environment.envProp("test", 200);
         })
       Text(`${this.label}: ${this.varA}`)
         .width(320)
@@ -71,7 +69,7 @@ struct Common_ts_ets_apiStaticClear {
         .textOverflow({ overflow: TextOverflow.None })
         .key("labelC")
         .onClick(() => {
-           PersistentStorage.persistProp("delete",0);
+          PersistentStorage.persistProp("delete", 0);
         })
       Text(`${this.label}: ${this.varA}`)
         .width(320)
@@ -121,10 +119,9 @@ struct Common_ts_ets_apiStaticClear {
         .onClick(() => {
           LocalStorage.getShared();
         })
-
-
-
-    }.width("100%").height("100%")
+    }
+    .width("100%")
+    .height("100%")
   }
 }
 

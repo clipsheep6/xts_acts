@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import hilog from '@ohos.hilog';
 import router from '@ohos.router';
 import { Router } from '@ohos.arkui.UIContext';
@@ -27,13 +27,12 @@ struct RouterPushOne {
 
   onPageShow() {
     let routerUI: Router = globalThis.uiContext.getRouter();
-    this.routerUI = routerUI
+    this.routerUI = routerUI;
   }
 
-  @State message: string = 'RouterPushUrlOne'
-  @State messageUI: string = 'UIRouterPushUrlOne'
-  @State routerUI: Router = undefined
-
+  @State message: string = 'RouterPushUrlOne';
+  @State messageUI: string = 'UIRouterPushUrlOne';
+  @State routerUI: Router = undefined;
 
   build() {
     Row() {

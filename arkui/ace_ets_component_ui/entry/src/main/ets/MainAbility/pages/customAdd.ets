@@ -31,9 +31,11 @@ struct IndexComponent {
     this.textColor = Color.Red;
     console.info('IndexComponent onBackPress');
   }
+
   aboutToReuse() {
     console.info('aboutReuse');
   }
+
   build() {
     Column() {
       Text('Hello World')

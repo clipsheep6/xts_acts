@@ -16,12 +16,15 @@
 @Entry
 @Component
 struct PropString {
-  @State stringA: string = "Hello"
+  @State stringA: string = "Hello";
 
   build() {
-    Column({space:5}) {
-      Text('@Prop 支持数据类型：string').fontSize(18)
-      Text('Father State: ' + this.stringA).margin(10).width("100%")
+    Column({ space: 5 }) {
+      Text('@Prop 支持数据类型：string')
+        .fontSize(18)
+      Text('Father State: ' + this.stringA)
+        .margin(10)
+        .width("100%")
         .id("PropString_A")
         .onClick(() => {
           this.stringA = "Hi"
@@ -38,12 +41,15 @@ struct ChildPropString {
   @Prop stringB: string = '';
 
   build() {
-    Column({space:5}) {
-      Text('@Prop 单向的 内部修改不会改变父组件').fontSize(18)
-      Text('Child Prop: ' + this.stringB).margin(10).width("100%")
+    Column({ space: 5 }) {
+      Text('@Prop 单向的 内部修改不会改变父组件')
+        .fontSize(18)
+      Text('Child Prop: ' + this.stringB)
+        .margin(10)
+        .width("100%")
         .id("ChildPropString_A")
         .onClick(() => {
-          this.stringB = "World"
+          this.stringB = "World";
         })
     }.width('100%')
     .margin({ top: 50 })

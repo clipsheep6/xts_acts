@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-AppStorage.clear()
+AppStorage.clear();
 AppStorage.setOrCreate('PropA', 160);
 let storage36 = new LocalStorage();
-let link361: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('PropA',48)
-let link362: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('sss',48)
+let link361: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('PropA', 48);
+let link362: SubscribedAbstractProperty<number> = AppStorage.SetAndLink('sss', 48);
 
 @Entry(storage36)
 @Component
@@ -35,7 +35,6 @@ struct LocalStorage36 {
         .onClick(() => {
           this.link1Date = link361.get()
           this.link1Date2 = link362.get()
-
         })
     }
   }
