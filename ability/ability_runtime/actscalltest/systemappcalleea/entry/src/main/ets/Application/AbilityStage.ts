@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import AbilityStage from "@ohos.app.ability.AbilityStage"
 
-var onAcceptWantCalledSeq;
+import AbilityStage from "@ohos.app.ability.AbilityStage";
+
+let onAcceptWantCalledSeq;
 
 export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.log("SystemCallTest MyAbilityStage onCreate")
-    }
+  onCreate() {
+    console.log("SystemCallTest MyAbilityStage onCreate");
+  }
 }
