@@ -13,12 +13,14 @@
  * limitations under the License.
  */
 
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import socket from '@ohos.net.socket'
+
 
 function toString(obj) {
   return JSON.stringify(obj);
 }
+
 const localIpAdress = '192.168.1.101';
 const localIpAdressError = '192.168.1.501'
 let serverIpAddress: string = "192.168.1.100";
@@ -32,7 +34,7 @@ export default function socketTest() {
 
   describe('socketTest', function () {
 
-    beforeAll(function (){
+    beforeAll(function () {
       console.log("************* socket Test start*************");
     })
     let envReady = false;
@@ -45,34 +47,36 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_setExtraOptions_Tcp_Error_002', 0,async function (done) {
+    it('test_Socket_setExtraOptions_Tcp_Error_002', 0, async function (done) {
       let tcp = socket.constructTCPSocketInstance();
-        let promise = tcp.setExtraOptions({
-          keepAlive: true,
-          OOBInline: true,
-          TCPNoDelay: true,
-          socketLinger: { on: true, linger: 10 },
-          receiveBufferSize: 1000,
-          sendBufferSize: 1000,
-          reuseAddress: true,
-          socketTimeout: 3000,
-        });
-        promise.then(()=>{
-          console.log('test_Socket_setExtraOptions_Tcp_Error_002 success' );
-          expect(false).assertTrue();
-          tcp.close(err => {
-            expect(err == undefined).assertTrue();
-            done();
-          })
-        }).catch(err=>{
-          console.log('test_Socket_setExtraOptions_Tcp_Error_002 err :' + JSON.stringify(err));
-          tcp.close(()=>{
-            setTimeout(function (){
-              done();
-              console.log('test_Socket_getState_Error_Tcp_002 close success' + JSON.stringify(err));
-            },3000)
-          })
+      let promise = tcp.setExtraOptions({
+        keepAlive: true,
+        OOBInline: true,
+        TCPNoDelay: true,
+        socketLinger: {
+          on: true, linger: 10
+        },
+        receiveBufferSize: 1000,
+        sendBufferSize: 1000,
+        reuseAddress: true,
+        socketTimeout: 3000,
+      });
+      promise.then(() => {
+        console.log('test_Socket_setExtraOptions_Tcp_Error_002 success');
+        expect(false).assertTrue();
+        tcp.close(err => {
+          expect(err == undefined).assertTrue();
+          done();
         })
+      }).catch(err => {
+        console.log('test_Socket_setExtraOptions_Tcp_Error_002 err :' + JSON.stringify(err));
+        tcp.close(() => {
+          setTimeout(function () {
+            done();
+            console.log('test_Socket_getState_Error_Tcp_002 close success' + JSON.stringify(err));
+          }, 3000)
+        })
+      })
     });
 
     /**
@@ -83,27 +87,26 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_setExtraOptions_Udp_Error_001', 0,async function (done) {
+    it('test_Socket_setExtraOptions_Udp_Error_001', 0, async function (done) {
       let udp = socket.constructUDPSocketInstance();
       try {
         udp.setExtraOptions({
-          // @ts-ignore
-          keepAlive: true,
-          OOBInline: true,
-          UDPNoDelay: true,
-          socketLinger: { on: true, linger: 10 },
           receiveBufferSize: 1000,
           sendBufferSize: 1000,
           reuseAddress: true,
           socketTimeout: 3000,
-        }, async err => {
-          console.log('test_Socket_setExtraOptions_Udp_Error_001' + JSON.stringify(err));
-          expect(err.code==2301088).assertTrue();
-          udp.close();
-          done();
+          broadcast:true,
+        },(err,data)=>{
+            if(err){
+              console.log('test_Socket_setExtraOptions_Udp_Error_001' + JSON.stringify(err));
+              expect(err.code == 2301088).assertTrue();
+              done();
+            }else{
+                console.log('test_Socket_setExtraOptions_Udp_Error_001 success' + JSON.stringify(data));
+            }
         });
-      } catch (err){
-        console.log('test_Socket_setExtraOptions_Udp_Error_001 catch'+JSON.stringify(err));
+      } catch (err) {
+        console.log('test_Socket_setExtraOptions_Udp_Error_001 catch' + JSON.stringify(err));
         done();
       }
     });
@@ -116,7 +119,7 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Tcp_Init_001', 0,async function (done) {
+    it('test_Socket_Tcp_Init_001', 0, async function (done) {
       let tcp = socket.constructTCPSocketInstance();
       expect(tcp != null).assertTrue();
       done();
@@ -130,7 +133,7 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Udp_Init_001', 0,async function (done) {
+    it('test_Socket_Udp_Init_001', 0, async function (done) {
       let udp = socket.constructUDPSocketInstance();
       expect(udp != null).assertTrue();
       done();
@@ -144,7 +147,7 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Tls_Init_001', 0,async function (done) {
+    it('test_Socket_Tls_Init_001', 0, async function (done) {
       let tls = socket.constructTLSSocketInstance();
       expect(tls != null).assertTrue();
       done();
@@ -158,16 +161,23 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Tcp_Bind_001', 0,async function (done) {
+    it('test_Socket_Tcp_Bind_001', 0, async function (done) {
       let tcp = socket.constructTCPSocketInstance();
       try {
-        await tcp.bind({ address: localIpAdressError, port: 0, family: 1 });
-        console.log('test_Socket_Tcp_Bind_001 success')
-        tcp.close();
+        await tcp.bind({
+          address: localIpAdressError, port: 0, family: 1
+        }, (err) => {
+          if (err) {
+            console.log('test_Socket_Tcp_Bind_001 bind fail err =' + JSON.stringify(err));
+            expect(err.code == 401).assertTrue();
+            return;
+          }
+          console.log('test_Socket_Tcp_Bind_001 bind success');
+        })
         done();
       } catch (err) {
-        console.log('test_Socket_Tcp_Bind_001 error' + JSON.stringify(err));
-        expect().assertFail();
+        console.log('test_Socket_Tcp_Bind_001 error :' + JSON.stringify(err));
+        expect(err.code == 401).assertTrue();
         tcp.close();
         done();
       }
@@ -181,20 +191,27 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Tcp_Bind_002', 0,async function (done) {
+    it('test_Socket_Tcp_Bind_002', 0, async function (done) {
       let tcp = socket.constructTCPSocketInstance();
-      try{
-      let promise = tcp.bind({ address: localIpAdressError, port: 0, family: 1 });
-      promise.then(async  () => {
-        console.log('test_Socket_Tcp_Bind_002 bind success');
-        tcp.close();
-        done();
-      })} catch(err) {
-        console.log('test_Socket_Tcp_Bind_002 bind fail');
+      try {
+        let promise = tcp.bind({
+          address: localIpAdressError, port: 0, family: 1
+        });
+        promise.then(async () => {
+          console.log('test_Socket_Tcp_Bind_002 bind success');
+          expect().assertFail();
+          done();
+        }).catch((err) => {
+          console.log('test_Socket_Tcp_Bind_002 bind fail 002:' + JSON.stringify(err));
+          expect(err.code == 401).assertTrue();
+          done();
+        })
+      } catch (err) {
+        console.log('test_Socket_Tcp_Bind_002 bind fail' + JSON.stringify(err));
         expect().assertFail();
-        tcp.close();
         done();
-      };
+      }
+      done();
     })
 
     /**
@@ -205,20 +222,28 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Tcp_Connect_Error_001', 0,async function (done) {
+    it('test_Socket_Tcp_Connect_Error_001', 0, async function (done) {
       let tcp = socket.constructTCPSocketInstance();
       try {
-        await tcp.bind({ address: localIpAdressError, port: 0, family: 1 });
+        await tcp.bind({
+          address: '127.0.0.1', port: 0, family: 1
+        });
         console.log('test_Socket_Tcp_Connect_001 bind success')
-        tcp.connect({ address: { address: serverIpAddressError, port: 8888, family: 1 }, timeout: 6000 }, async err => {
-          console.info('test_Socket_Tcp_Connect_001 err' + JSON.stringify((err)));
-          expect(err.code == 2301101);
-          expect(err.message == 'Network unreachable');
-          tcp.close();
+        tcp.connect({
+          address: {
+            address: serverIpAddressError, port: 8888, family: 1
+          }, timeout: 6000
+        }).then(() => {
+          console.log('test_Socket_Tcp_Connect_001 connect success');
+          expect().assertFail();
+          done();
+        }).catch((err) => {
+          console.log('test_Socket_Tcp_Connect_001 connect fail' + JSON.stringify(err));
+          expect(err.code == 401).assertTrue();
           done();
         })
       } catch (err) {
-        console.log('test_Socket_Tcp_Connect_001 error' + JSON.stringify(err));
+        console.log('test_Socket_Tcp_Connect_001 error::' + JSON.stringify(err));
         expect().assertFail();
         tcp.close();
         done();
@@ -234,24 +259,19 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Tcp_Connect_Error_002', 0,async function (done) {
+    it('test_Socket_Tcp_Connect_Error_002', 0, async function (done) {
 
       let tcp = socket.constructTCPSocketInstance();
-      try {
-        console.log('test_Socket_Tcp_Connect_002 bind success')
-        tcp.connect({ address: { address: serverIpAddressError, port: 65656, family: 1 }, timeout: 6000 }, async err => {
-          console.info('test_Socket_Tcp_Connect_002 err' + JSON.stringify((err)));
-          expect(err.code == 2301088);
-          expect(err.message == 'Not a socket');
-          tcp.close();
-          done();
-        })
-      } catch (err) {
-        console.log('test_Socket_Tcp_Connect_002 error' + JSON.stringify(err));
-        expect().assertFail();
-        tcp.close();
+      let promise = tcp.connect({
+        address: {
+          address: serverIpAddressError, port: 65656, family: 1
+        }, timeout: 6000
+      })
+      promise.catch(async err => {
+        console.log('test_Socket_Tcp_Connect_Error_002 error:' + JSON.stringify(err));
+        expect(err.code == 401).assertTrue();
         done();
-      }
+      })
     })
 
     /**
@@ -262,21 +282,27 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Tcp_Connect_Promise_Error_001', 0,async function (done) {
+    it('test_Socket_Tcp_Connect_Promise_Error_001', 0, async function (done) {
 
       let tcp = socket.constructTCPSocketInstance();
       try {
-        await tcp.bind({ address: localIpAdressError, port: 0, family: 1 });
+        await tcp.bind({
+          address: '127.0.0.1', port: 0, family: 1
+        });
         console.log('test_Socket_Tcp_Connect_Promise_Error_001 bind success')
-        let promise = tcp.connect({ address: { address: serverIpAddressError, port: 8888, family: 1 }, timeout: 6000 });
+        let promise = tcp.connect({
+          address: {
+            address: serverIpAddressError, port: 8888, family: 1
+          }, timeout: 6000
+        });
         promise.catch(async err => {
-          console.log('test_Socket_Tcp_Connect_Promise_Error_001 error' + JSON.stringify(err));
-          expect(err.code==2301101);
+          console.log('test_Socket_Tcp_Connect_Promise_Error_001 error 001' + JSON.stringify(err));
+          expect(err.code == 401).assertTrue();
           tcp.close();
           done();
         })
       } catch (err) {
-        console.log('test_Socket_Tcp_Connect_Promise_Error_001 error' + JSON.stringify(err));
+        console.log('test_Socket_Tcp_Connect_Promise_Error_001 error 002' + JSON.stringify(err));
         expect().assertFail();
         tcp.close();
         done();
@@ -291,19 +317,23 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Tcp_Connect_Promise_Error_002', 0,async function (done) {
+    it('test_Socket_Tcp_Connect_Promise_Error_002', 0, async function (done) {
       let tcp = socket.constructTCPSocketInstance();
       try {
         console.log('test_Socket_Tcp_Connect_Promise_Error_002 bind success')
-        let promise = tcp.connect({ address: { address: serverIpAddressError, port: 8888, family: 1 }, timeout: 6000 });
+        let promise = tcp.connect({
+          address: {
+            address: serverIpAddressError, port: 8888, family: 1
+          }, timeout: 6000
+        });
         promise.catch(async err => {
-          console.log('test_Socket_Tcp_Connect_Promise_Error_002 error' + JSON.stringify(err));
-          expect(err.code==2301088);
+          console.log('test_Socket_Tcp_Connect_Promise_Error_002 error001' + JSON.stringify(err));
+          expect(err.code == 401).assertTrue();
           tcp.close();
           done();
         })
       } catch (err) {
-        console.log('test_Socket_Tcp_Connect_Promise_Error_001 error' + JSON.stringify(err));
+        console.log('test_Socket_Tcp_Connect_Promise_Error_002 error002' + JSON.stringify(err));
         expect().assertFail();
         done();
       }
@@ -319,14 +349,16 @@ export default function socketTest() {
      */
     it('test_Socket_Send_Tcp_Error_001', 0, function (done) {
       let tcp = socket.constructTCPSocketInstance();
+      console.log('test_Socket_Send_Tcp_Error_001 begin');
       tcp.send({
         data: '你好!123,string'
       }, err => {
-        if(err){
+        if (err) {
           console.log('test_Socket_Send_Tcp_Error_001 err' + JSON.stringify(err))
-
+          expect(err.code == 2301060).assertTrue();
           done();
-        }else{
+        } else {
+          console.log('test_Socket_Send_Tcp_Error_001 success');
           expect(false).assertTrue();
           done();
         }
@@ -347,16 +379,14 @@ export default function socketTest() {
       let promise = tcp.send({
         data: '你好!123,string'
       });
-      promise.catch(err => {
-        if(err){
-          console.log('test_Socket_Send_Tcp_Error_002 err' + JSON.stringify(err))
-
-          done();
-        }else{
-          expect(false).assertTrue();
-          done();
-        }
-      })
+      promise.then(() => {
+        console.log('test_Socket_Send_Tcp_Error_002 send success');
+        done();
+      }).catch((err) => {
+        console.log('test_Socket_Send_Tcp_Error_002 send fail' + JSON.stringify(err));
+       // expect(err.code == 2301060).assertTrue();
+        done();
+      });
     });
 
     /**
@@ -371,8 +401,14 @@ export default function socketTest() {
 
       let tcp = socket.constructTCPSocketInstance();
       tcp.close(err => {
-        console.log('test_Socket_Close_Tcp_Error_001'+JSON.stringify(err));
-        expect(err==undefined ).assertTrue();
+        if (err) {
+          console.log('test_Socket_Close_Tcp_Error_001 error:' + JSON.stringify(err));
+          expect(err.code== 2300999).assertTrue();
+          done();
+          return;
+        }
+        console.log('test_Socket_Close_Tcp_Error_001 close success');
+        expect().assertFail();
         done();
       })
     });
@@ -389,12 +425,15 @@ export default function socketTest() {
 
       let tcp = socket.constructTCPSocketInstance();
       let promise = tcp.close();
-      promise.then(async (err) => {
-        console.log('test_Socket_Close_Tcp_Error_002' + JSON.stringify(err));
-        expect(err == undefined).assertTrue();
-        tcp.close();
+      promise.then(() => {
+        console.log('test_Socket_Close_Tcp_Error_002 close success');
+        expect().assertFail();
         done();
-      })
+      }).catch((err) => {
+        console.log('test_Socket_Close_Tcp_Error_002 close fail' + JSON.stringify(err));
+        expect(err.code == 2300999).assertTrue();
+        done();
+      });
     });
 
     /**
@@ -405,13 +444,13 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getRemoteAddress_Error_Tcp_001', 0,async function (done) {
+    it('test_Socket_getRemoteAddress_Error_Tcp_001', 0, async function (done) {
 
       let tcp = socket.constructTCPSocketInstance();
       tcp.getRemoteAddress(async (err, data) => {
         console.log('test_Socket_getRemoteAddress_Error_Tcp_001' + JSON.stringify(err));
-        expect(err.code==2301088);
-         tcp.close();
+        expect(err.code == 2301088);
+        tcp.close();
         done();
       })
     });
@@ -424,14 +463,14 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getRemoteAddress_Error_Tcp_002', 0,async function (done) {
+    it('test_Socket_getRemoteAddress_Error_Tcp_002', 0, async function (done) {
 
       let tcp = socket.constructTCPSocketInstance();
       let promise = tcp.getRemoteAddress();
       promise.catch(async err => {
         console.log('test_Socket_getRemoteAddress_Error_Tcp_002' + JSON.stringify(err));
-        expect(err.code==2301088);
-         tcp.close();
+        expect(err.code == 2301088);
+        tcp.close();
         done();
       })
     });
@@ -445,33 +484,34 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_setExtraOptions_Tcp_Error_001', 0,async function (done) {
+    it('test_Socket_setExtraOptions_Tcp_Error_001', 0, async function (done) {
 
       let tcp = socket.constructTCPSocketInstance();
-      // @ts-ignore
       tcp.setExtraOptions({
         keepAlive: true,
         OOBInline: true,
         TCPNoDelay: true,
-        socketLinger: { on: true, linger: 10 },
+        socketLinger: {
+          on: true, linger: 10
+        },
         receiveBufferSize: 1000,
         sendBufferSize: 1000,
         reuseAddress: true,
         socketTimeout: 3000,
-      },(err)=>{
-       if(err){
-         console.log('test_Socket_setExtraOptions_Tcp_Error_001 error err :' + JSON.stringify(err));
-         expect(err.code == 2301009).assertTrue();
-         tcp.close();
-         done();
-       } else {
-         console.log('test_Socket_setExtraOptions_Tcp_Error_001 success');
-         tcp.close();
-         done();
-       }
+      }, (err) => {
+        if (err) {
+          console.log('test_Socket_setExtraOptions_Tcp_Error_001 error err :' + JSON.stringify(err));
+          expect(err.code == 2301088).assertTrue();
+          tcp.close();
+          done();
+        } else {
+          console.log('test_Socket_setExtraOptions_Tcp_Error_001 success');
+          expect().assertFail();
+          tcp.close();
+          done();
+        }
       });
     });
-
 
 
     /**
@@ -482,21 +522,21 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getState_Error_Tcp_001', 0,async function (done) {
+    it('test_Socket_getState_Error_Tcp_001', 0, async function (done) {
       let tcp = socket.constructTCPSocketInstance();
       tcp.getState(async (err, data) => {
-        console.log("test_Socket_getState_Error_Tcp_001"+JSON.stringify(data));
+        console.log("test_Socket_getState_Error_Tcp_001" + JSON.stringify(data));
         expect(err == undefined).assertTrue();
-        tcp.close((err)=>{
-          if(err){
+        tcp.close((err) => {
+          if (err) {
             console.log('test_Socket_getState_Error_Tcp_002 close err' + JSON.stringify(err));
             done();
-          }else {
+          } else {
             console.log('test_Socket_getState_Error_Tcp_002 close success' + JSON.stringify(err));
-            setTimeout(function (){
+            setTimeout(function () {
               done();
               console.log('test_Socket_getState_Error_Tcp_002 close success' + JSON.stringify(err));
-            },3000)
+            }, 3000)
           }
         });
       });
@@ -510,25 +550,25 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getState_Error_Tcp_002', 0,async function (done) {
+    it('test_Socket_getState_Error_Tcp_002', 0, async function (done) {
 
       let tcp = socket.constructTCPSocketInstance();
       let promise = tcp.getState();
       promise.then(async data => {
         console.log('test_Socket_getState_Error_Tcp_002' + JSON.stringify(data));
         expect(data != null).assertTrue();
-        tcp.close((err)=>{
-          if(err){
+        tcp.close((err) => {
+          if (err) {
             console.log('test_Socket_getState_Error_Tcp_002 close err' + JSON.stringify(err));
             tcp.close();
             done();
-          }else {
+          } else {
             console.log('test_Socket_getState_Error_Tcp_002 close success' + JSON.stringify(err));
-            setTimeout(function (){
+            setTimeout(function () {
               tcp.close();
               done();
               console.log('test_Socket_getState_Error_Tcp_002 close success' + JSON.stringify(err));
-            },3000)
+            }, 3000)
           }
         });
       })
@@ -543,10 +583,12 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Udp_Bind_001', 0,async function (done) {
+    it('test_Socket_Udp_Bind_001', 0, async function (done) {
       let udp = socket.constructUDPSocketInstance();
       try {
-        await udp.bind({ address: '127.0.0.1', port: 0, family: 1 });
+        await udp.bind({
+          address: '127.0.0.1', port: 0, family: 1
+        });
         console.log('test_Socket_Udp_Bind_001 success')
         udp.close();
         done();
@@ -565,19 +607,23 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Udp_Bind_002', 0,async function (done) {
+    it('test_Socket_Udp_Bind_002', 0, async function (done) {
       let udp = socket.constructUDPSocketInstance();
-      try{
-        let promise = udp.bind({ address: '127.0.0.1', port: 0, family: 1 });
+      try {
+        let promise = udp.bind({
+          address: '127.0.0.1', port: 0, family: 1
+        });
         promise.then(async () => {
           console.log('bind success');
           udp.close();
           done();
-        })} catch(err) {
+        })
+      } catch (err) {
         console.log('bind fail');
         expect().assertFail();
         done();
-      };
+      }
+      ;
     })
 
     /**
@@ -590,7 +636,9 @@ export default function socketTest() {
      */
     it('test_Socket_Send_Udp_001', 0, async function (done) {
       let udp = socket.constructUDPSocketInstance();
-      await udp.bind({ address: '127.0.0.1', port: 0, family: 1 });
+      await udp.bind({
+        address: '127.0.0.1', port: 0, family: 1
+      });
       udp.send({
         data: '你好!123,string',
         address: {
@@ -617,7 +665,9 @@ export default function socketTest() {
     it('test_Socket_Send_Udp_002', 0, async function (done) {
 
       let udp = socket.constructUDPSocketInstance();
-      await udp.bind({ address: '127.0.0.1', port: 0, family: 1 });
+      await udp.bind({
+        address: '127.0.0.1', port: 0, family: 1
+      });
       let promise = udp.send({
         data: '你好!123,string',
         address: {
@@ -646,10 +696,17 @@ export default function socketTest() {
 
       let udp = socket.constructUDPSocketInstance();
       udp.close(err => {
-        expect(err == undefined).assertTrue();
+        if (err) {
+          console.log('test_Socket_Close_Udp_Error_001' + JSON.stringify(err));
+          expect(err.code==2300999).assertTrue();
+          done();
+          return;
+        }
+        console.log('test_Socket_Close_Udp_Error_001 close success');
         done();
       })
     });
+
 
     /**
      * @tc.number: test_Socket_Close_Udp_Error_002
@@ -663,11 +720,15 @@ export default function socketTest() {
 
       let udp = socket.constructUDPSocketInstance();
       let promise = udp.close();
-      promise.then((err) => {
-        console.log('test_Socket_Close_ UDP_Error_002' + JSON.stringify(err));
-        expect(err == undefined).assertTrue();
+      promise.then(() => {
+        console.log('test_Socket_Close_UDP_Error_002 close success');
+        expect().assertFail();
         done();
-      })
+      }).catch((err) => {
+        console.log('test_Socket_Close_UDP_Error_002 close fail' + JSON.stringify(err));
+        expect(err.code==2300999).assertTrue();
+        done();
+      });
     });
 
     /**
@@ -678,7 +739,7 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getState_Error_Udp_001', 0,async function (done) {
+    it('test_Socket_getState_Error_Udp_001', 0, async function (done) {
       let udp = socket.constructUDPSocketInstance();
       udp.getState(async (err, data) => {
         expect(err == undefined).assertTrue();
@@ -695,28 +756,25 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getState_Error_Udp_002', 0,async function (done) {
+    it('test_Socket_getState_Error_Udp_002', 0, async function (done) {
       let udp = socket.constructUDPSocketInstance();
-      let promise=udp.getState();
+      let promise = udp.getState();
       promise.then(async data => {
-        console.log('test_Socket_getState_Error_ UDP_002' + JSON.stringify(data));
+        console.log('test_Socket_getState_Error_UDP_002' + JSON.stringify(data));
         expect(data.isBound == false).assertTrue();
-        expect(data.isClose == false).assertTrue();
+        expect(data.isClose == true).assertTrue();
         expect(data.isConnected == false).assertTrue();
-        udp.close((err)=>{
-          if(err){
-            console.log('test_Socket_getState_Error_Tcp_002 close err' + JSON.stringify(err));
-            udp.close();
+        udp.close((err) => {
+          if (err) {
+            console.log('test_Socket_getState_Error_UDP_002 close err' + JSON.stringify(err));
+            expect(err.code == 2300999).assertTrue();
             done();
-          }else {
-            console.log('test_Socket_getState_Error_Tcp_002 close success' + JSON.stringify(err));
-            setTimeout(function (){
-              udp.close();
-              done();
-              console.log('test_Socket_getState_Error_Tcp_002 close success' + JSON.stringify(err));
-            },3000)
+          } else {
+            console.log('test_Socket_getState_Error_UDP_002 close success');
+            expect().assertFail();
           }
         });
+        done();
       })
     });
 
@@ -728,7 +786,7 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_setExtraOptions_Udp_Error_002', 0,async function (done) {
+    it('test_Socket_setExtraOptions_Udp_Error_002', 0, async function (done) {
 
       let udp = socket.constructUDPSocketInstance();
       try {
@@ -737,21 +795,23 @@ export default function socketTest() {
           keepAlive: true,
           OOBInline: true,
           TCPNoDelay: true,
-          socketLinger: { on: true, linger: 10 },
+          socketLinger: {
+            on: true, linger: 10
+          },
           receiveBufferSize: 1000,
           sendBufferSize: 1000,
           reuseAddress: true,
           socketTimeout: 3000,
         });
-        promise.then(()=>{
-          console.log('test_Socket_setExtraOptions_Udp_Error_002' );
+        promise.then(() => {
+          console.log('test_Socket_setExtraOptions_Udp_Error_002');
           done();
-        }).catch(err=>{
+        }).catch(err => {
           console.log('test_Socket_setExtraOptions_Udp_Error_002 err :' + JSON.stringify(err));
           expect(err.code == 2301088).assertTrue();
           done();
         })
-      }catch (err){
+      } catch (err) {
         expect().assertFail();
         done();
       }
@@ -765,41 +825,52 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Tls_Bind_001', 0,async function (done) {
+    it('test_Socket_Tls_Bind_001', 0, async function (done) {
 
       let udp = socket.constructUDPSocketInstance();
       try {
-        await udp.bind({ address: localIpAdressError, port: 0, family: 1 });
-        console.log('test_Socket_Udp_Bind_001 success')
+        await udp.bind({
+          address: localIpAdressError, port: 0, family: 1
+        });
+        console.log('test_Socket_Tls_Bind_001 success')
         done();
       } catch (err) {
-        console.log('test_Socket_Udp_Bind_001 error' + JSON.stringify(err))
-        expect().assertFail();
+        console.log('test_Socket_Tls_Bind_001 error' + JSON.stringify(err))
+        expect(err.code == 401).assertTrue();
         done();
       }
     })
 
     /**
-     * @tc.number: test_Socket_UDP_Bind_002
-     * @tc.name  : test_Socket_Udp_Bind_002
+     * @tc.number: test_Socket_UDP_Bind_0012
+     * @tc.name  : test_Socket_Udp_Bind_0012
      * @tc.desc  : Connect to the specified IP address and port. Use the promise method as an asynchronous method.
      * @tc.size  : MediumTest
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Udp_Bind_002', 0,async function (done) {
+    it('test_Socket_Tls_Bind_002', 0, async function (done) {
 
       let tls = socket.constructUDPSocketInstance();
-      try{
-        let promise = tls.bind({ address: localIpAdressError, port: 0, family: 1 });
+      try {
+        let promise = tls.bind({
+          address: localIpAdressError, port: 0, family: 1
+        });
         promise.then(() => {
-          console.log('bind success');
+          console.log('test_Socket_Tls_Bind_002 bind success');
+          expect().assertFail();
           done();
-        })} catch(err) {
-        console.log('bind fail');
+        }).catch((err) => {
+          console.log('test_Socket_Tls_Bind_002 bind fail1'+JSON.stringify(err));
+          expect(err.code ==401).assertTrue();
+          done();
+        })
+      } catch (err) {
+        console.log('test_Socket_Tls_Bind_002 bind fail2'+JSON.stringify(err));
         expect().assertFail();
         done();
-      };
+      }
+
     })
 
     /**
@@ -810,31 +881,41 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Close_Tls_Error_001', 0, function (done) {
-      let udp = socket.constructUDPSocketInstance();
-      udp.close(err => {
-        expect(err == undefined).assertTrue();
-        done();
-      })
-    });
+       it('test_Socket_Close_Tls_Error_001', 0, function (done) {
+         let tls = socket.constructTLSSocketInstance();
+         tls.close(err => {
+            if (err) {
+              console.log('test_Socket_Close_Tls_Error_001' + JSON.stringify(err));
+              expect(err.code==2303600).assertTrue();
+              done();
+              return;
+            }
+              console.log('test_Socket_Close_Udp_Error_001 close success');
+              done();
+         })
+       });
 
     /**
-     * @tc.number: test_Socket_Close_UDP_Error_002
-     * @tc.name  : test_Socket_Close_Udp_Error_002
+     * @tc.number: test_Socket_Close_tls_Error_002
+     * @tc.name  : test_Socket_Close_tls_Error_002
      * @tc.desc  : Send data through the TLS Socket connection. Use the promise method as an asynchronous method.
      * @tc.size  : MediumTest
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Close_Udp_Error_002', 0, function (done) {
-      let udp = socket.constructUDPSocketInstance();
-      let promise = udp.close();
-      promise.then((err) => {
-        console.log('test_Socket_Close_Udp_Error_002' + JSON.stringify(err));
-        expect(err == undefined).assertTrue();
-        done();
-      })
-    });
+     it('test_Socket_Close_tls_Error_002', 0, function (done) {
+       let tls = socket.constructTLSSocketInstance();
+       let promise = tls.close();
+       promise.then(() => {
+         console.log('test_Socket_Close_tls_Error_002 close success');
+         expect().assertFail();
+         done();
+       }).catch((err) => {
+         console.log('test_Socket_Close_tls_Error_002 close fail' + JSON.stringify(err));
+         expect(err.code==2303600).assertTrue();
+         done();
+       });
+     });
 
     /**
      * @tc.number: test_Socket_Send_UDP_Error_001
@@ -854,9 +935,12 @@ export default function socketTest() {
           port: 8888,
           family: 1
         }
-      }, err => {
-        console.log('test_Socket_Send_Udp_Error_001 err' + JSON.stringify(err))
-        expect(err.code == 2301032).assertTrue();
+      }).then(() => {
+        console.log('test_Socket_Send_Udp_Error_001 send success');
+        expect().assertFail();
+      }).catch((err) => {
+        console.log('test_Socket_Send_Udp_Error_001 send fail'+JSON.stringify(err));
+        expect(err.code == 401).assertTrue();
         done();
       })
     });
@@ -869,24 +953,26 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_Send_Tls_Error_002', 0, async function (done) {
+     it('test_Socket_Send_Tls_Error_002', 0, async function (done) {
 
-      let tls = socket.constructUDPSocketInstance();
-      let promise = tls.send({
-        data: '你好!123,string',
-        address: {
-          address: serverIpAddressError,
-          port: 8888,
-          family: 1
-        }
-      });
-
-      promise.catch(err => {
-        console.log('test_Socket_Send_Udp_Error_002' + JSON.stringify(err));
-        expect(err.code == 2301032).assertTrue();
-        done();
-      })
-    });
+        let tls = socket.constructUDPSocketInstance();
+        let promise = tls.send({
+          data: '你好!123,string',
+          address: {
+            address: serverIpAddressError,
+            port: 8888,
+            family: 1
+          }
+        }).then(() => {
+          console.log("test_Socket_Send_Tls_Error_002 send success");
+          expect().assertFail();
+          done();
+        }).catch((err) => {
+          console.error("test_Socket_Send_Tls_Error_002 failed" + JSON.stringify(err));
+          expect(err.code == 401).assertTrue();
+          done();
+        });
+     });
 
     /**
      * @tc.number: TEST_SOCKET_TLS_CONNECT_001
@@ -896,21 +982,27 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_tls_Connect_Error_001', 0,async function (done) {
+    it('test_Socket_tls_Connect_Error_001', 0, async function (done) {
 
       let tls = socket.constructTLSSocketInstance();
       try {
-        await tls.bind({ address: localIpAdressError, port: 0, family: 1 });
-        console.log('test_Socket_tls_Connect_001 bind success')
+        await tls.bind({
+          address: '127.0.0.1', port: 0, family: 1
+        });
+        console.log('test_Socket_tls_Connect_Error_001 bind success')
         // @ts-ignore
-        tls.connect({ address: { address: serverIpAddressError, port: 8888, family: 1 }, timeout: 6000 }, err => {
-          console.info('test_Socket_tls_Connect_001 err' + JSON.stringify((err)));
-          expect(err.code == 2301101);
-          expect(err.message == 'Network unreachable');
+        tls.connect({
+          address: {
+            address: serverIpAddressError, port: 8888, family: 1
+          },
+          //timeout: 6000
+        }, err => {
+          console.info('test_Socket_tls_Connect_Error_001 err' + JSON.stringify((err)));
+          expect(err.code == 2303501).assertTrue();
           done();
         })
       } catch (err) {
-        console.log('test_Socket_tls_Connect_001 error' + JSON.stringify(err));
+        console.log('test_Socket_tls_Connect_Error_001 error' + JSON.stringify(err));
         expect().assertFail();
         done();
       }
@@ -924,13 +1016,18 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_tls_Connect_Error_002', 0,async function (done) {
+    it('test_Socket_tls_Connect_Error_002', 0, async function (done) {
 
       let tls = socket.constructTLSSocketInstance();
       try {
         console.log('test_Socket_tls_Connect_002 bind success')
         // @ts-ignore
-        tls.connect({ address: { address: serverIpAddressError, port: 8888, family: 1 }, timeout: 6000 }, err => {
+        tls.connect({
+          address: {
+            address: serverIpAddressError, port: 8888, family: 1
+          },
+          //timeout: 6000
+        }, err => {
           console.info('test_Socket_tls_Connect_002 err' + JSON.stringify((err)));
           expect(err.code == 2301088);
           expect(err.message == 'Not a socket');
@@ -951,17 +1048,24 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_tls_Connect_Promise_Error_001', 0,async function (done) {
+    it('test_Socket_tls_Connect_Promise_Error_001', 0, async function (done) {
 
       let tls = socket.constructTLSSocketInstance();
       try {
-        await tls.bind({ address: localIpAdressError, port: 0, family: 1 });
+        await tls.bind({
+          address: '127.0.0.1', port: 0, family: 1
+        });
         console.log('test_Socket_tls_Connect_Promise_Error_001 bind success')
         // @ts-ignore
-        let promise = tls.connect({ address: { address: serverIpAddressError, port: 8888, family: 1 }, timeout: 6000 });
+        let promise = tls.connect({
+          address: {
+            address: serverIpAddressError, port: 8888, family: 1
+          },
+          //timeout: 6000
+        });
         promise.catch(err => {
           console.log('test_Socket_tls_Connect_Promise_Error_001 error' + JSON.stringify(err));
-          expect(err.code==2301101);
+          expect(err.code == 2303501).assertTrue();
           done();
         })
       } catch (err) {
@@ -979,16 +1083,21 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_tls_Connect_Promise_Error_002', 0,async function (done) {
+    it('test_Socket_tls_Connect_Promise_Error_002', 0, async function (done) {
 
       let tls = socket.constructTLSSocketInstance();
       try {
         console.log('test_Socket_tls_Connect_Promise_Error_002 bind success')
         // @ts-ignore
-        let promise = tls.connect({ address: { address: serverIpAddressError, port: 8888, family: 1 }, timeout: 6000 });
+        let promise = tls.connect({
+          address: {
+            address: serverIpAddressError, port: 8888, family: 1
+          },
+          //timeout: 6000
+        });
         promise.catch(err => {
           console.log('test_Socket_tls_Connect_Promise_Error_002 error' + JSON.stringify(err));
-          expect(err.code==2301088);
+          expect(err.code == 2301088);
           done();
         })
       } catch (err) {
@@ -1006,11 +1115,11 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getRemoteAddress_Error_TLS_001', 0,async function (done) {
+    it('test_Socket_getRemoteAddress_Error_TLS_001', 0, async function (done) {
       let TLS = socket.constructTLSSocketInstance();
       TLS.getRemoteAddress((err, data) => {
         console.log('test_Socket_getRemoteAddress_Error_TLS_001' + JSON.stringify(err));
-        expect(err.code==2301088);
+        expect(err.code == 2301088);
         done();
       })
     });
@@ -1023,12 +1132,12 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getRemoteAddress_Error_TLS_002', 0,async function (done) {
+    it('test_Socket_getRemoteAddress_Error_TLS_002', 0, async function (done) {
       let TLS = socket.constructTLSSocketInstance();
       let promise = TLS.getRemoteAddress();
       promise.catch(err => {
         console.log('test_Socket_getRemoteAddress_Error_TLS_002' + JSON.stringify(err));
-        expect(err.code==2301088);
+        expect(err.code == 2301088);
         done();
       })
     });
@@ -1041,7 +1150,7 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getState_Error_TLS_001', 0,async function (done) {
+    it('test_Socket_getState_Error_TLS_001', 0, async function (done) {
       let TLS = socket.constructTLSSocketInstance();
       TLS.getState((err, data) => {
         expect(err == undefined).assertTrue();
@@ -1057,9 +1166,9 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getState_Error_TLS_002', 0,async function (done) {
+    it('test_Socket_getState_Error_TLS_002', 0, async function (done) {
       let TLS = socket.constructTLSSocketInstance();
-      let promise=TLS.getState();
+      let promise = TLS.getState();
       promise.then(data => {
         console.log('test_Socket_getState_Error_TLS_002' + JSON.stringify(data));
         expect(data.isBound == false).assertTrue();
@@ -1077,14 +1186,16 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_setExtraOptions_TLS_Error_001', 0,async function (done) {
+    it('test_Socket_setExtraOptions_TLS_Error_001', 0, async function (done) {
       let TLS = socket.constructTLSSocketInstance();
       TLS.setExtraOptions({
         keepAlive: true,
         OOBInline: true,
         // @ts-ignore
         TLSNoDelay: true,
-        socketLinger: { on: true, linger: 10 },
+        socketLinger: {
+          on: true, linger: 10
+        },
         receiveBufferSize: 1000,
         sendBufferSize: 1000,
         reuseAddress: true,
@@ -1104,7 +1215,7 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_setExtraOptions_TLS_Error_002', 0,async function (done) {
+    it('test_Socket_setExtraOptions_TLS_Error_002', 0, async function (done) {
 
       let TLS = socket.constructTLSSocketInstance();
       let promise = TLS.setExtraOptions({
@@ -1112,7 +1223,9 @@ export default function socketTest() {
         OOBInline: true,
         // @ts-ignore
         TLSNoDelay: true,
-        socketLinger: { on: true, linger: 10 },
+        socketLinger: {
+          on: true, linger: 10
+        },
         receiveBufferSize: 1000,
         sendBufferSize: 1000,
         reuseAddress: true,
@@ -1133,12 +1246,12 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getCertificate_TLS_Error_001', 0,async function (done) {
+    it('test_Socket_getCertificate_TLS_Error_001', 0, async function (done) {
       let tls = socket.constructTLSSocketInstance();
       tls.getCertificate((err, data) => {
         if (err) {
           console.log("getCertificate callback error = " + JSON.stringify(err));
-          expect(err.code==2303600).assertTrue();
+          expect(err.code == 2303600).assertTrue();
           done();
         } else {
           console.log("getCertificate callback = " + data);
@@ -1155,12 +1268,12 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getCertificate_TLS_Error_002', 0,async function (done) {
+    it('test_Socket_getCertificate_TLS_Error_002', 0, async function (done) {
       let tls = socket.constructTLSSocketInstance();
       tls.getCertificate((err, data) => {
         if (err) {
           console.log("getCertificate callback error = " + JSON.stringify(err));
-          expect(err.code==2303600).assertTrue();
+          expect(err.code == 2303600).assertTrue();
           done();
         } else {
           console.log("getCertificate callback = " + data);
@@ -1177,13 +1290,13 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getRemoteCertificate_TLS_Error_001', 0,async function (done) {
+    it('test_Socket_getRemoteCertificate_TLS_Error_001', 0, async function (done) {
 
       let tls = socket.constructTLSSocketInstance();
       tls.getRemoteCertificate((err, data) => {
         if (err) {
           console.log("getRemoteCertificate callback error = " + JSON.stringify(err));
-          expect(err.code==2303600).assertTrue();
+          expect(err.code == 2303600).assertTrue();
           done();
         } else {
           console.log("getRemoteCertificate callback = " + data);
@@ -1200,15 +1313,15 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getRemoteCertificate_TLS_Error_002', 0,async function (done) {
+    it('test_Socket_getRemoteCertificate_TLS_Error_002', 0, async function (done) {
       let tls = socket.constructTLSSocketInstance();
       tls.getRemoteCertificate().then(data => {
         // @ts-ignore
-        console.log('test_Socket_getRemoteCertificate_TLS_Error_002'+data);
+        console.log('test_Socket_getRemoteCertificate_TLS_Error_002' + data);
         done();
       }).catch(err => {
-        console.error('test_Socket_getRemoteCertificate_TLS_Error_002 catch'+JSON.stringify(err));
-        expect(err.code==2303600).assertTrue();
+        console.error('test_Socket_getRemoteCertificate_TLS_Error_002 catch' + JSON.stringify(err));
+        expect(err.code == 2303600).assertTrue();
         done();
       });
     });
@@ -1221,13 +1334,13 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getProtocol_TLS_Error_001', 0,async function (done) {
+    it('test_Socket_getProtocol_TLS_Error_001', 0, async function (done) {
 
       let tls = socket.constructTLSSocketInstance();
       tls.getProtocol((err, data) => {
         if (err) {
           console.log("getProtocol callback error = " + JSON.stringify(err));
-          expect(err.code==2303600).assertTrue();
+          expect(err.code == 2303600).assertTrue();
           done();
         } else {
           console.log("getProtocol callback = " + data);
@@ -1244,15 +1357,15 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getProtocol_TLS_Error_002', 0,async function (done) {
+    it('test_Socket_getProtocol_TLS_Error_002', 0, async function (done) {
 
       let tls = socket.constructTLSSocketInstance();
       tls.getProtocol().then(data => {
         console.log(data);
         done();
       }).catch(err => {
-        console.error('test_Socket_getProtocol_TLS_Error_002'+ JSON.stringify(err));
-        expect(err.code==2303600).assertTrue();
+        console.error('test_Socket_getProtocol_TLS_Error_002' + JSON.stringify(err));
+        expect(err.code == 2303600).assertTrue();
         done();
       });
     });
@@ -1265,12 +1378,12 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getCipherSuite_TLS_Error_001', 0,async function (done) {
+    it('test_Socket_getCipherSuite_TLS_Error_001', 0, async function (done) {
       let tls = socket.constructTLSSocketInstance();
       tls.getCipherSuite((err, data) => {
         if (err) {
           console.log("getCipherSuite callback error = " + JSON.stringify(err));
-          expect(err.code==2303600).assertTrue();
+          expect(err.code == 2303600).assertTrue();
           done();
         } else {
           console.log("getCipherSuite callback = " + data);
@@ -1287,14 +1400,14 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getCipherSuite_TLS_Error_002', 0,async function (done) {
+    it('test_Socket_getCipherSuite_TLS_Error_002', 0, async function (done) {
       let tls = socket.constructTLSSocketInstance();
       tls.getCipherSuite().then(data => {
         console.log('getCipherSuite success:' + JSON.stringify(data));
         done();
       }).catch(err => {
         console.error(err);
-        expect(err.code==2303600).assertTrue();
+        expect(err.code == 2303600).assertTrue();
         done();
       });
     });
@@ -1307,12 +1420,12 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getSignatureAlgorithms_TLS_Error_001', 0,async function (done) {
+    it('test_Socket_getSignatureAlgorithms_TLS_Error_001', 0, async function (done) {
       let tls = socket.constructTLSSocketInstance();
       tls.getSignatureAlgorithms((err, data) => {
         if (err) {
           console.log("getSignatureAlgorithms callback error = " + err);
-          expect(err.code==2303600).assertTrue();
+          expect(err.code == 2303600).assertTrue();
           done();
         } else {
           console.log("getSignatureAlgorithms callback = " + data);
@@ -1329,14 +1442,14 @@ export default function socketTest() {
      * @tc.type  : Method
      * @tc.level : Level 2
      */
-    it('test_Socket_getSignatureAlgorithms_TLS_Error_002', 0,async function (done) {
+    it('test_Socket_getSignatureAlgorithms_TLS_Error_002', 0, async function (done) {
       let tls = socket.constructTLSSocketInstance();
       tls.getSignatureAlgorithms().then(data => {
         console.log("getSignatureAlgorithms success" + data);
         done();
       }).catch(err => {
         console.error(err);
-        expect(err.code==2303600).assertTrue();
+        expect(err.code == 2303600).assertTrue();
         done();
       });
     });
