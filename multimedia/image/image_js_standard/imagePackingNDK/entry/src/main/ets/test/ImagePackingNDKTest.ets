@@ -25,24 +25,19 @@ const ERR_CODE = 62980115;
 
 class Log {
   myName: string;
-  log: (msg: string) => void;
-}
-
-class ResultValue {
-  code: number;
-  result?: ESObject;
+  log: (msg:string)=>void;
 }
 
 function logger(caseName: string): Log {
   return {
     myName: caseName,
-    log: (msg: string) => {
+    log: (msg)=> {
       console.info(caseName + ' ' + msg);
     }
   }
 }
 
-async function getWriteFd(fileName: string): Promise<[string, number]> {
+async function getWriteFd(fileName: string) {
   let fdNumber: number = undefined;
   let filePath: string = undefined;
   try {
@@ -72,12 +67,12 @@ async function getWriteFd(fileName: string): Promise<[string, number]> {
   return [filePath, fdNumber];
 }
 
-function checkNdkRes(res: ResultValue) {
+function checkNdkRes(res) {
   expect(res != undefined).assertTrue();
   expect(res.code == CODE_SUCCESS).assertTrue();
 }
 
-async function createTestImageSource(picName: string) {
+async function createTestImageSource(picName:string) {
   try {
     let resMgr = await resourceManager.getResourceManager();
     let value = await resMgr.getRawFileContent(picName)
@@ -96,7 +91,7 @@ async function createTestPixelMap() {
 async function createTest(done: Function, testNum: string) {
   try {
     let log = logger(testNum);
-    let packer: ResultValue = ndkTest.create()
+    let packer = ndkTest.create()
     checkNdkRes(packer)
     expect(packer.result != undefined).assertTrue();
     log.log("packer create finished");
@@ -111,14 +106,14 @@ async function createTest(done: Function, testNum: string) {
 async function nativeInitTest(done: Function, testNum: string) {
   try {
     let log = logger(testNum);
-    let packer: ResultValue = ndkTest.create()
+    let packer = ndkTest.create()
     if (packer == undefined || packer.code != CODE_SUCCESS || packer.result == undefined) {
       log.log("packer create failed");
       expect().assertFail();
       done();
       return
     }
-    let initRes: ResultValue = ndkTest.initNative(packer.result);
+    let initRes = ndkTest.initNative(packer.result);
     checkNdkRes(initRes);
     log.log("packer init native finished");
     done();
@@ -132,14 +127,14 @@ async function nativeInitTest(done: Function, testNum: string) {
 async function packToDataTest(done: Function, testNum: string, source: image.ImageSource | PixelMap, packOpts: image.PackingOption) {
   try {
     let log = logger(testNum);
-    let packer: ResultValue = ndkTest.create()
+    let packer = ndkTest.create()
     if (packer == undefined || packer.code != CODE_SUCCESS || packer.result == undefined) {
       log.log("packer create failed");
       expect().assertFail();
       done();
       return
     }
-    let packingRes: ResultValue = ndkTest.packToData(packer.result, source, packOpts);
+    let packingRes = ndkTest.packToData(packer.result, source, packOpts);
     checkNdkRes(packingRes);
     expect(packingRes.result != undefined).assertTrue();
     log.log("packer packingRes.result " + JSON.stringify(new Uint8Array(packingRes.result).length));
@@ -154,14 +149,14 @@ async function packToDataTest(done: Function, testNum: string, source: image.Ima
 async function packToFileTest(done: Function, testNum: string, source: image.ImageSource | PixelMap, writeFd: number, packOpts: image.PackingOption) {
   try {
     let log = logger(testNum);
-    let packer: ResultValue = ndkTest.create()
+    let packer = ndkTest.create()
     if (packer == undefined || packer.code != CODE_SUCCESS || packer.result == undefined) {
       log.log("packer create failed");
       expect().assertFail();
       done();
       return
     }
-    let packingRes: ResultValue = ndkTest.packToFile(packer.result, source, writeFd, packOpts);
+    let packingRes = ndkTest.packToFile(packer.result, source, writeFd, packOpts);
     log.log(`packingRes : ${JSON.stringify(packingRes)}`)
     checkNdkRes(packingRes);
     ndkTest.release(packer.result);
@@ -177,7 +172,7 @@ async function packToFileTest(done: Function, testNum: string, source: image.Ima
 async function releaseTest(done: Function, testNum: string) {
   try {
     let log = logger(testNum);
-    let packer: ResultValue = ndkTest.create()
+    let packer = ndkTest.create()
     if (packer == undefined || packer.code != CODE_SUCCESS || packer.result == undefined) {
       log.log("packer create failed");
       expect().assertFail();
@@ -185,7 +180,7 @@ async function releaseTest(done: Function, testNum: string) {
       return
     }
 
-    let releaseRes: ResultValue = ndkTest.release(packer.result);
+    let releaseRes = ndkTest.release(packer.result);
     checkNdkRes(releaseRes);
     log.log("release result " + releaseRes.code);
     done();
@@ -199,14 +194,14 @@ async function releaseTest(done: Function, testNum: string) {
 async function packToDataErrTest(done: Function, testNum: string, source: image.ImageSource, packOpts: image.PackingOption) {
   try {
     let log = logger(testNum);
-    let packer: ResultValue = ndkTest.create()
+    let packer = ndkTest.create()
     if (packer == undefined || packer.code != CODE_SUCCESS || packer.result == undefined) {
       log.log("packer create failed");
       expect().assertFail();
       done();
       return
     }
-    let packingRes: ResultValue = ndkTest.packToData(packer.result, source, packOpts);
+    let packingRes = ndkTest.packToData(packer.result, source, packOpts);
     log.log("packer packingRes.result " + JSON.stringify(packingRes));
     expect(packingRes.code == ERR_CODE).assertTrue();
     done();
@@ -220,14 +215,14 @@ async function packToDataErrTest(done: Function, testNum: string, source: image.
 async function packToFileErrTest(done: Function, testNum: string, source: image.ImageSource, writeFd: number, packOpts: image.PackingOption) {
   try {
     let log = logger(testNum);
-    let packer: ResultValue = ndkTest.create()
+    let packer = ndkTest.create()
     if (packer == undefined || packer.code != CODE_SUCCESS || packer.result == undefined) {
       log.log("packer create failed");
       expect().assertFail();
       done();
       return
     }
-    let packingRes: ResultValue = ndkTest.packToFile(packer.result, source, writeFd, packOpts);
+    let packingRes = ndkTest.packToFile(packer.result, source, writeFd, packOpts);
     log.log(`packingRes : ${JSON.stringify(packingRes)}`)
     expect(packingRes.code == ERR_CODE).assertTrue();
     ndkTest.release(packer.result);
@@ -322,8 +317,8 @@ export default function ImagePackingNDKTest() {
       let source = await createTestImageSource("test.png")
       expect(source != undefined).assertTrue();
       let path: string, fd: number;
-      let tem = [path, fd];
-      tem = await getWriteFd("test_write_image_source.jpg")
+      let r: [] = [path, fd];
+      r =  await getWriteFd("test_write_image_source.jpg")
       expect(fd != undefined).assertTrue();
       let packOpts: image.PackingOption = {
         format: "image/jpeg", quality: 100
@@ -375,8 +370,8 @@ export default function ImagePackingNDKTest() {
       expect(source != undefined).assertTrue();
       console.log('image source ' + (source != undefined))
       let path: string, fd: number;
-      let tem = [path, fd];
-      tem = await getWriteFd("test_write_image_source.webp")
+      let r: [] = [path, fd];
+      r =  await getWriteFd("test_write_image_source.webp")
       expect(fd != undefined).assertTrue();
       let packOpts: image.PackingOption = {
         format: "image/webp", quality: 100
@@ -428,8 +423,8 @@ export default function ImagePackingNDKTest() {
       expect(source != undefined).assertTrue();
 
       let path: string, fd: number;
-      let tem = [path, fd];
-      tem = await getWriteFd("test_write_image_source.png")
+      let r: [] = [path, fd];
+      r =  await getWriteFd("test_write_image_source.png")
       expect(fd != undefined).assertTrue();
       let packOpts: image.PackingOption = {
         format: "image/png", quality: 100
@@ -453,7 +448,7 @@ export default function ImagePackingNDKTest() {
      * @tc.level     : Level 0
      */
     it('SUB_MULTIMEDIA_IMAGE_PACKERNDK_PACK_PIXEL_MAP_TO_JPG_DATA_0400', 0, async (done: Function) => {
-      let source: PixelMap = await createTestPixelMap()
+      let source = await createTestPixelMap()
       expect(source != undefined).assertTrue();
       let packOpts: image.PackingOption = {
         format: "image/jpeg", quality: 100
@@ -474,11 +469,11 @@ export default function ImagePackingNDKTest() {
      */
     it('SUB_MULTIMEDIA_IMAGE_PACKERNDK_PACK_PIXEL_MAP_TO_JPG_FILE_0400', 0, async (done: Function) => {
       let log = logger("SUB_MULTIMEDIA_IMAGE_PACKERNDK_PACK_PIXEL_MAP_TO_JPG_FILE_0400");
-      let source: PixelMap = await createTestPixelMap()
+      let source = await createTestPixelMap()
       expect(source != undefined).assertTrue();
       let path: string, fd: number;
-      let tem = [path, fd];
-      tem = await getWriteFd("test_write_pixel_map.jpg")
+      let r: [] = [path, fd];
+      r =  await getWriteFd("test_write_pixel_map.jpg")
       expect(fd != undefined).assertTrue();
       let packOpts: image.PackingOption = {
         format: "image/jpeg", quality: 100
@@ -527,8 +522,8 @@ export default function ImagePackingNDKTest() {
       console.log('pixel map ' + (source != undefined))
       expect(source != undefined).assertTrue();
       let path: string, fd: number;
-      let tem = [path, fd];
-      tem = await getWriteFd("test_write_pixel_map.webp")
+      let r: [] = [path, fd];
+      r =  await getWriteFd("test_write_pixel_map.webp")
       expect(fd != undefined).assertTrue();
       let packOpts: image.PackingOption = {
         format: "image/webp", quality: 100
@@ -576,8 +571,8 @@ export default function ImagePackingNDKTest() {
       let source = await createTestPixelMap()
       expect(source != undefined).assertTrue();
       let path: string, fd: number;
-      let tem = [path, fd];
-      tem = await getWriteFd("test_write_pixel_map.png")
+      let r: [] = [path, fd];
+      r =  await getWriteFd("test_write_pixel_map.png")
       expect(fd != undefined).assertTrue();
       let packOpts: image.PackingOption = {
         format: "image/png", quality: 100
@@ -684,7 +679,7 @@ export default function ImagePackingNDKTest() {
     it('SUB_MULTIMEDIA_IMAGE_PACKERNDK_PACK_IMAGE_SOURCE_TO_DATA_ERR_0400', 0, async (done: Function) => {
       let source = await createTestImageSource("test.png")
       expect(source != undefined).assertTrue();
-      let packOpts = {
+      let packOpts: image.PackingOption = {
         quality: 10
       };
       await packToDataErrTest(done, "SUB_MULTIMEDIA_IMAGE_PACKERNDK_PACK_IMAGE_SOURCE_TO_DATA_ERR_0400", source,
@@ -706,8 +701,8 @@ export default function ImagePackingNDKTest() {
       let source = await createTestImageSource("test.png")
       expect(source != undefined).assertTrue();
       let path: string, fd: number;
-      let tem = [path, fd];
-      tem = await getWriteFd("test_write_pixel_map_erra.jpeg")
+      let r: [] = [path, fd];
+      r =  await getWriteFd("test_write_pixel_map_erra.jpeg")
       expect(fd != undefined).assertTrue();
       let packOpts: image.PackingOption = {
         format: "image/txt", quality: 100
@@ -731,8 +726,8 @@ export default function ImagePackingNDKTest() {
       let source = await createTestImageSource("test.png")
       expect(source != undefined).assertTrue();
       let path: string, fd: number;
-      let tem = [path, fd];
-      tem = await getWriteFd("test_write_pixel_map_errb.jpeg")
+      let r: [] = [path, fd];
+      r =  await getWriteFd("test_write_pixel_map_errb.jpeg")
       expect(fd != undefined).assertTrue();
       let packOpts: image.PackingOption = {
         format: "image/jpeg", quality: 101
@@ -756,10 +751,10 @@ export default function ImagePackingNDKTest() {
       let source = await createTestImageSource("test.png")
       expect(source != undefined).assertTrue();
       let path: string, fd: number;
-      let tem = [path, fd];
-      tem = await getWriteFd("test_write_pixel_map_errc.jpeg")
+      let r: [] = [path, fd];
+      r =  await getWriteFd("test_write_pixel_map_errc.jpeg")
       expect(fd != undefined).assertTrue();
-      let packOpts = {
+      let packOpts: image.PackingOption = {
         format: "image/jpeg"
       };
       await packToFileErrTest(done, "SUB_MULTIMEDIA_IMAGE_PACKERNDK_PACK_IMAGE_SOURCE_TO_FILE_ERR_0300", source,
@@ -781,10 +776,10 @@ export default function ImagePackingNDKTest() {
       let source = await createTestImageSource("test.png")
       expect(source != undefined).assertTrue();
       let path: string, fd: number;
-      let tem = [path, fd];
-      tem = await getWriteFd("test_write_pixel_map_errc.jpeg")
+      let r: [] = [path, fd];
+      r =  await getWriteFd("test_write_pixel_map_errc.jpeg")
       expect(fd != undefined).assertTrue();
-      let packOpts = {
+      let packOpts: image.PackingOption = {
         quality: 10
       };
       await packToFileErrTest(done, "SUB_MULTIMEDIA_IMAGE_PACKERNDK_PACK_IMAGE_SOURCE_TO_FILE_ERR_0400", source,
