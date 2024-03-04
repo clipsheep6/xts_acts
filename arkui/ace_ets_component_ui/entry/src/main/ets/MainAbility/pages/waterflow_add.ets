@@ -15,18 +15,19 @@
 @Entry
 @Component
 struct WaterflowDemo {
-  @State minSize: number = 50
-  @State maxSize: number = 100
-  @State fontSize: number = 24
-  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  scroller: Scroller = new Scroller()
-  @State  datsSource:number[] = [12,1,0,2,3,4,5,6,7,8,9,12,1,0,2,3,4,5,6,7,8,9]
+  @State minSize: number = 50;
+  @State maxSize: number = 100;
+  @State fontSize: number = 24;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  scroller: Scroller = new Scroller();
+  @State datsSource: number[] = [12, 1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 12, 1, 0, 2, 3, 4, 5, 6, 7, 8, 9];
 
   aboutToAppear() {
 
   }
 
-  @Builder itemFoot() {
+  @Builder
+  itemFoot() {
     Column() {
       Text(`Footer`)
         .fontSize(10)
@@ -74,8 +75,8 @@ struct WaterflowDemo {
       })
       .enableScrollInteraction(true)
       .nestedScroll({
-        scrollForward:NestedScrollMode.PARENT_FIRST,
-        scrollBackward:NestedScrollMode.SELF_FIRST
+        scrollForward: NestedScrollMode.PARENT_FIRST,
+        scrollBackward: NestedScrollMode.SELF_FIRST
       })
       .backgroundColor(0xFAEEE0)
       .width('100%')

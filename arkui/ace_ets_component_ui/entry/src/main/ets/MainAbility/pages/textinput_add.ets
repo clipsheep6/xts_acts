@@ -15,14 +15,15 @@
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
-  controller: TextInputController = new TextInputController()
-  @State isHidden:boolean = false
-  @State value1: string = ''
-  @State value2: string = ''
+  @State text: string = '';
+  controller: TextInputController = new TextInputController();
+  @State isHidden: boolean = false;
+  @State value1: string = '';
+  @State value2: string = '';
 
   // 自定义键盘组件
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
       Grid() {
         ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
@@ -50,12 +51,12 @@ struct TextInputExample {
         .key('textInputAdd')
         .fontSize(14)
         .customKeyboard(this.CustomKeyboardBuilder())
-        .onContentScroll((totalOffsetX: number, totalOffsetY: number) =>{
+        .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
         })
-        .onTextSelectionChange((selectionStart: number, selectionEnd: number)=>{
-              this.value1 = selectionStart + "";
-              this.value2  = selectionEnd + "";
-              this.controller.getTextContentLineCount();
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.value1 = selectionStart + "";
+          this.value2 = selectionEnd + "";
+          this.controller.getTextContentLineCount();
         })
         .fontColor(Color.Black)
         .enableKeyboardOnFocus(true)
@@ -73,10 +74,10 @@ struct TextInputExample {
           // 将光标移动至第一个字符后
           this.controller.caretPosition(1)
         })
-       Button('stopEditing')
+      Button('stopEditing')
         .onClick(() => {
           this.controller.stopEditing();
-        }).margin({top:20})  
+        }).margin({ top: 20 })
       // 密码输入框
       TextInput({ placeholder: 'input your password...' })
         .width(400)

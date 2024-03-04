@@ -17,22 +17,21 @@
 @Entry
 @Component
 struct textEnabledDemo {
-  @State text1: string = 'onClick-禁用'
-  @State text2: string = 'onTouch-禁用'
-  @State text3: string = 'onKeyEvent-禁用'
-
-  @State text4: string = '鼠标事件onHover-禁用'
-  @State text5: string = '鼠标事件onMouse-禁用'
-  @State action: string = ''
-  @State mouseBtn: string = ''
-
-  @State text6: string = '焦点事件-禁用'
+  @State text1: string = 'onClick-禁用';
+  @State text2: string = 'onTouch-禁用';
+  @State text3: string = 'onKeyEvent-禁用';
+  @State text4: string = '鼠标事件onHover-禁用';
+  @State text5: string = '鼠标事件onMouse-禁用';
+  @State action: string = '';
+  @State mouseBtn: string = '';
+  @State text6: string = '焦点事件-禁用';
 
   build() {
     Column({ space: 10 }) {
-      Text(this.text1).key("texEnd1")
+      Text(this.text1)
+        .key("texEnd1")
         .padding(10)
-        .border({width: 1})
+        .border({ width: 1 })
         .textAlign(TextAlign.Center)
         .width('90%')
         .onClick(() => {
@@ -40,9 +39,10 @@ struct textEnabledDemo {
         })
         .enabled(false)
 
-      Text(this.text2).key("texEnd2")
+      Text(this.text2)
+        .key("texEnd2")
         .padding(10)
-        .border({width: 1})
+        .border({ width: 1 })
         .textAlign(TextAlign.Center)
         .width('90%')
         .onTouch(() => {
@@ -50,9 +50,10 @@ struct textEnabledDemo {
         })
         .enabled(false)
 
-      Text(this.text3).key("texEnd3")
+      Text(this.text3)
+        .key("texEnd3")
         .padding(10)
-        .border({width: 1})
+        .border({ width: 1 })
         .textAlign(TextAlign.Center)
         .width('90%')
         .onKeyEvent(() => {
@@ -60,9 +61,10 @@ struct textEnabledDemo {
         })
         .enabled(false)
 
-      Text(this.text4).key("texEnd4")
+      Text(this.text4)
+        .key("texEnd4")
         .padding(10)
-        .border({width: 1})
+        .border({ width: 1 })
         .textAlign(TextAlign.Center)
         .width('90%')
         .onHover(() => {
@@ -70,16 +72,17 @@ struct textEnabledDemo {
         })
         .enabled(false)
 
-      Text(this.text5).key("texEnd5")
+      Text(this.text5)
+        .key("texEnd5")
         .padding(10)
-        .border({width: 1})
+        .border({ width: 1 })
         .textAlign(TextAlign.Center)
         .width('90%')
         .onClick((event: MouseEvent) => {
-          switch (event.button){
+          switch (event.button) {
             case MouseButton.None:
-             this.mouseBtn = 'None';
-             break;
+              this.mouseBtn = 'None';
+              break;
             case MouseButton.Left:
               this.mouseBtn = 'Left';
               break;
@@ -96,7 +99,7 @@ struct textEnabledDemo {
               this.mouseBtn = 'Middle';
               break;
           }
-          switch (event.action){
+          switch (event.action) {
             case MouseAction.Hover:
               this.action = 'Hover';
               break;
@@ -114,9 +117,10 @@ struct textEnabledDemo {
         })
         .enabled(false)
 
-      Text(this.text6).key("texEnd6")
+      Text(this.text6)
+        .key("texEnd6")
         .padding(10)
-        .border({width: 1})
+        .border({ width: 1 })
         .textAlign(TextAlign.Center)
         .width('90%')
         .focusable(true)

@@ -16,9 +16,9 @@
 @Entry
 @Component
 struct XComponentType1 {
-  @State XComponentType1: XComponentType = XComponentType.SURFACE
-  private surfaceId : string =''
-  xcomponentController: XComponentController = new XComponentController()
+  @State XComponentType1: XComponentType = XComponentType.SURFACE;
+  private surfaceId: string = '';
+  xcomponentController: XComponentController = new XComponentController();
 
   build() {
     Column() {
@@ -26,9 +26,10 @@ struct XComponentType1 {
         id: 'xcomponent1',
         type: XComponentType.SURFACE,
         controller: this.xcomponentController
-      }).id('xcomponent_1')
+      })
+        .id('xcomponent_1')
         .onLoad(() => {
-          this.xcomponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
+          this.xcomponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 });
           this.surfaceId = this.xcomponentController.getXComponentSurfaceId()
           console.log(this.surfaceId)
         })
@@ -40,9 +41,10 @@ struct XComponentType1 {
         id: 'xcomponent2',
         type: XComponentType.COMPONENT,
         controller: this.xcomponentController
-      }).id('xcomponent_2')
+      })
+        .id('xcomponent_2')
         .onLoad(() => {
-          this.xcomponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
+          this.xcomponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 });
           this.surfaceId = this.xcomponentController.getXComponentSurfaceId()
           console.log(this.surfaceId)
         })
@@ -54,9 +56,10 @@ struct XComponentType1 {
         id: 'xcomponent3',
         type: XComponentType.TEXTURE,
         controller: this.xcomponentController
-      }).id('xcomponent_3')
+      })
+        .id('xcomponent_3')
         .onLoad(() => {
-          this.xcomponentController.setXComponentSurfaceSize({surfaceWidth:1920,surfaceHeight:1080});
+          this.xcomponentController.setXComponentSurfaceSize({ surfaceWidth: 1920, surfaceHeight: 1080 });
           this.surfaceId = this.xcomponentController.getXComponentSurfaceId()
           console.log(this.surfaceId)
         })
@@ -65,6 +68,6 @@ struct XComponentType1 {
         .margin(5)
     }
     .backgroundColor(Color.Black)
-    .position({x: 0, y: 48})
+    .position({ x: 0, y: 48 })
   }
 }
