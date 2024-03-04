@@ -12,22 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import commonEvent from '@ohos.commonEvent'
+
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
+import commonEventManager from '@ohos.commonEventManager';
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 const MAX_MISSION_NUM = 1024;
 
-var systemAppCalleeABundleName = "com.example.systemappcalleea";
-var systemAppCalleeAMainAbilityName = "com.example.systemappcalleea.MainAbility";
-var thirdAppABundleName = "com.example.thirdappa";
-var thirdAppAMainAbilityName = "com.example.thirdappa.MainAbility";
-var thirdCallTestBundleName = "com.example.thirdcalltest";
-var thirdCallTestMainAbilityName = "com.example.thirdcalltest.MainAbility";
-var thirdCallTestSecondAbilityName = "com.example.thirdcalltest.SecondAbility";
-var thirdCallTestThirdAbilityName = "com.example.thirdcalltest.ThirdAbility";
-var thirdCallTestForthAbilityName = "com.example.thirdcalltest.ForthAbility";
-var thirdCallTestFifthAbilityName = "com.example.thirdcalltest.FifthAbility";
-var subscriberInfo = {
+let systemAppCalleeABundleName = "com.example.systemappcalleea";
+let systemAppCalleeAMainAbilityName = "com.example.systemappcalleea.MainAbility";
+let thirdAppABundleName = "com.example.thirdappa";
+let thirdAppAMainAbilityName = "com.example.thirdappa.MainAbility";
+let thirdCallTestBundleName = "com.example.thirdcalltest";
+let thirdCallTestMainAbilityName = "com.example.thirdcalltest.MainAbility";
+let thirdCallTestSecondAbilityName = "com.example.thirdcalltest.SecondAbility";
+let thirdCallTestThirdAbilityName = "com.example.thirdcalltest.ThirdAbility";
+let thirdCallTestForthAbilityName = "com.example.thirdcalltest.ForthAbility";
+let thirdCallTestFifthAbilityName = "com.example.thirdcalltest.FifthAbility";
+let subscriberInfo: commonEventManager.CommonEventSubscribeInfo = {
   events: ["CallTest"],
 };
 
@@ -36,26 +40,26 @@ class MySequenceable {
   str: string = "default";
   result: string = "default";
 
-  constructor(num, string, result) {
+  constructor(num: number, str: string, result: string) {
     this.num = num;
-    this.str = string;
+    this.str = str;
     this.result = result;
   }
 
-  setMySequence(num, string, result) {
+  setMySequence(num: number, str: string, result: string) {
     this.num = num;
-    this.str = string;
+    this.str = str;
     this.result = result;
   }
 
-  marshalling(messageParcel) {
+  marshalling(messageParcel: ESObject) {
     messageParcel.writeInt(this.num);
     messageParcel.writeString(this.str);
     messageParcel.writeString(this.result);
     return true;
   }
 
-  unmarshalling(messageParcel) {
+  unmarshalling(messageParcel: ESObject) {
     this.num = messageParcel.readInt();
     this.str = messageParcel.readString();
     this.result = messageParcel.readString();
@@ -63,24 +67,23 @@ class MySequenceable {
   }
 }
 
-function delay(time) {
-  let delta;
+function delay(time: number) {
+  let delta: number;
   if (typeof time != 'number' || time <= 0) {
     delta = 100;
   } else {
     delta = Math.round(time);
   }
-  for (let start = Date.now(); Date.now() - start <= delta; );
+  for (let start = Date.now(); Date.now() - start <= delta; ) ;
 }
 
 export default function abilityTest() {
-  describe('ActsAbilityTest', function () {
-
-    beforeEach(async (done) => {
+  describe('ActsAbilityTest', () => {
+    beforeEach(async (done: Function) => {
       done();
     })
 
-    afterEach(async (done) => {
+    afterEach(async (done: Function) => {
       setTimeout(() => {
         done();
       }, 500)
@@ -91,19 +94,20 @@ export default function abilityTest() {
      * @tc.name: The thirdApp is not allowed to startAbilityByCall.
      * @tc.desc: Verify that the thirdApp is not allowed to startAbilityByCall.
      */
-    it('ACTS_CommonComponent_Call_1100', 0, async function (done) {
+    it('ACTS_CommonComponent_Call_1100', 0, async (done: Function) => {
       console.log('ACTS_CommonComponent_Call_1100 begin');
-      let want = {
+      let want: Want = {
         bundleName: thirdCallTestBundleName,
         abilityName: thirdCallTestForthAbilityName,
-      }
-      globalThis.abilityContext.startAbilityByCall(want)
+      };
+
+      AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbilityByCall(want)
         .then(data => {
           console.info(`ACTS_CommonComponent_Call_1100 startAbilityByCall SUCCESS`);
           expect().assertFail();
           done();
         })
-        .catch(error => {
+        .catch((error: BusinessError) => {
           console.info(`ACTS_CommonComponent_Call_1100 startAbilityByCall Catch`);
           done();
         });
@@ -114,19 +118,19 @@ export default function abilityTest() {
      * @tc.name: The thirdApp is not allowed to startAbilityByCall.
      * @tc.desc: Verify that the thirdApp is not allowed to startAbilityByCall.
      */
-    it('ACTS_CommonComponent_Call_1500', 0, async function (done) {
+    it('ACTS_CommonComponent_Call_1500', 0, async (done: Function) => {
       console.log('ACTS_CommonComponent_Call_1500 begin');
-      let want = {
+      let want: Want = {
         bundleName: systemAppCalleeABundleName,
         abilityName: systemAppCalleeAMainAbilityName,
-      }
-      globalThis.abilityContext.startAbilityByCall(want)
+      };
+      AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbilityByCall(want)
         .then(data => {
           console.info(`ACTS_CommonComponent_Call_1500 startAbilityByCall SUCCESS`);
           expect().assertFail();
           done();
         })
-        .catch(error => {
+        .catch((error: BusinessError) => {
           console.info(`ACTS_CommonComponent_Call_1500 startAbilityByCall Catch`);
           done();
         });
@@ -137,19 +141,19 @@ export default function abilityTest() {
      * @tc.name: The thirdApp is not allowed to startAbilityByCall.
      * @tc.desc: Verify that the thirdApp is not allowed to startAbilityByCall.
      */
-    it('ACTS_CommonComponent_Call_1600', 0, async function (done) {
+    it('ACTS_CommonComponent_Call_1600', 0, async (done: Function) => {
       console.log('ACTS_CommonComponent_Call_1600 begin');
-      let want = {
+      let want: Want = {
         bundleName: thirdAppABundleName,
         abilityName: thirdAppAMainAbilityName,
       }
-      globalThis.abilityContext.startAbilityByCall(want)
+      AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbilityByCall(want)
         .then(data => {
           console.info(`ACTS_CommonComponent_Call_1600 startAbilityByCall SUCCESS`);
           expect().assertFail();
           done();
         })
-        .catch(error => {
+        .catch((error: BusinessError) => {
           console.info(`ACTS_CommonComponent_Call_1600 startAbilityByCall Catch`);
           done();
         });
