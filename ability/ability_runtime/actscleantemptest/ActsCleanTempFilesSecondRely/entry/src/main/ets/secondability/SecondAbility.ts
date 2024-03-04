@@ -17,7 +17,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 import commonEvent from '@ohos.commonEventManager';
-import fs, { type Filter } from '@ohos.file.fs';
+import fs, { Filter } from '@ohos.file.fs';
+
 
 const BUFSIZE = 1024;
 let DELAY_TIME = 100;
