@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import hilog from '@ohos.hilog';
 import Ability from '@ohos.app.ability.UIAbility';
 import type Window from '@ohos.window';
@@ -77,85 +78,93 @@ export default class SecondAbility extends Ability {
       return receivedData;
     }
 
-    globalThis.multipleAndSingleCallFunction_0100 = () => {
+    AppStorage.setOrCreate<Function>("multipleAndSingleCallFunction_0100", () => {
       console.info('====> secondAbility');
       this.callee.on('call', sendMsgCallback);
-    };
+    })
 
-    globalThis.Acts_SingleInstanceCallFunction_1000 = () => {
+    AppStorage.setOrCreate<Function>("Acts_SingleInstanceCallFunction_1000", () => {
       console.info('====>single second Acts_SingleInstanceCallFunction_1000');
       context.startAbilityByCall({
         bundleName: 'com.acts.thirdpartyapprely',
         abilityName: 'SecondAbility',
-      }).then((caller) => {
-        console.info('====>Acts_SingleInstanceCallFunction_1000 multiple startAbilityByCall caller:' +
-        JSON.stringify(caller));
-        let param = new MyParcelable(0, 'Acts_SingleInstanceCallFunction_1000 multiple', false);
-        caller.callWithResult('call', param).then((data) => {
-          let receivedData = new MyParcelable(0, '', false);
-          data.readParcelable(receivedData);
-          let commonEventData = {
-            parameters: {
-              num: receivedData.num,
-              str: receivedData.str,
-            }
-          };
-          commonEvent.publish('ACTS_RELEASE_EVENT', commonEventData, (err) => {
-            console.log('====>Acts_SingleInstanceCallFunction_1000 multyple publish err:' +
-            JSON.stringify(err));
-            this.terminate();
-          });
-        }).catch((err) => {
-          console.info('====>Acts_SingleInstanceCallFunction_1000 callWithResult err:' + JSON.stringify(err));
+      })
+        .then((caller) => {
+          console.info('====>Acts_SingleInstanceCallFunction_1000 multiple startAbilityByCall caller:' +
+          JSON.stringify(caller));
+          let param = new MyParcelable(0, 'Acts_SingleInstanceCallFunction_1000 multiple', false);
+          caller.callWithResult('call', param)
+            .then((data) => {
+              let receivedData = new MyParcelable(0, '', false);
+              data.readParcelable(receivedData);
+              let commonEventData = {
+                parameters: {
+                  num: receivedData.num,
+                  str: receivedData.str,
+                }
+              };
+              commonEvent.publish('ACTS_RELEASE_EVENT', commonEventData, (err) => {
+                console.log('====>Acts_SingleInstanceCallFunction_1000 multyple publish err:' +
+                JSON.stringify(err));
+                this.terminate();
+              });
+            })
+            .catch((err) => {
+              console.info('====>Acts_SingleInstanceCallFunction_1000 callWithResult err:' + JSON.stringify(err));
+            });
+        })
+        .catch((err) => {
+          console.info('====>Acts_SingleInstanceCallFunction_1000 startAbilityByCall err:' + JSON.stringify(err));
         });
-      }).catch((err) => {
-        console.info('====>Acts_SingleInstanceCallFunction_1000 startAbilityByCall err:' + JSON.stringify(err));
-      });
-    };
+    })
 
-    globalThis.Acts_SingleInstanceCallFunction_1100 = () => {
+    AppStorage.setOrCreate<Function>("Acts_SingleInstanceCallFunction_1100", () => {
       this.callee.on('call', sendMsgCallbackFromCallee);
       context.startAbilityByCall({
         bundleName: 'com.acts.thirdpartyapprely',
         abilityName: 'SecondAbility',
-      }).then((caller) => {
-        console.info('====>Acts_SingleInstanceCallFunction_1100 callappreply startAbilityByCall caller:' +
-        JSON.stringify(caller));
-        let param = new MyParcelable(0, 'Acts_SingleInstanceCallFunction_1100', false);
-        caller.callWithResult('call', param).then((data) => {
-          console.info('====>Acts_SingleInstanceCallFunction_1100 callappreply callWithResult data:' +
-          JSON.stringify(data));
-          let receivedData2 = new MyParcelable(0, '', false);
-          data.readParcelable(receivedData2);
-          let commonEventData = {
-            parameters: {
-              num: receivedData2.num,
-              str: receivedData2.str,
-            }
-          };
-          commonEvent.publish('ACTS_SECOND_CALL_EVENT', commonEventData, (err) => {
-            console.log('====>Acts_SingleInstanceCallFunction_1100 multyple publish err:' +
-            JSON.stringify(err));
-            this.terminate();
-          });
-        }).catch((err) => {
-          console.info('====>Acts_SingleInstanceCallFunction_1100 callappreply callWithResult err:' +
+      })
+        .then((caller) => {
+          console.info('====>Acts_SingleInstanceCallFunction_1100 callappreply startAbilityByCall caller:' +
+          JSON.stringify(caller));
+          let param = new MyParcelable(0, 'Acts_SingleInstanceCallFunction_1100', false);
+          caller.callWithResult('call', param)
+            .then((data) => {
+              console.info('====>Acts_SingleInstanceCallFunction_1100 callappreply callWithResult data:' +
+              JSON.stringify(data));
+              let receivedData2 = new MyParcelable(0, '', false);
+              data.readParcelable(receivedData2);
+              let commonEventData = {
+                parameters: {
+                  num: receivedData2.num,
+                  str: receivedData2.str,
+                }
+              };
+              commonEvent.publish('ACTS_SECOND_CALL_EVENT', commonEventData, (err) => {
+                console.log('====>Acts_SingleInstanceCallFunction_1100 multyple publish err:' +
+                JSON.stringify(err));
+                this.terminate();
+              });
+            })
+            .catch((err) => {
+              console.info('====>Acts_SingleInstanceCallFunction_1100 callappreply callWithResult err:' +
+              JSON.stringify(err));
+            });
+        })
+        .catch((err) => {
+          console.info('====>Acts_SingleInstanceCallFunction_1100 callappreply startAbilityByCall err:' +
           JSON.stringify(err));
         });
-      }).catch((err) => {
-        console.info('====>Acts_SingleInstanceCallFunction_1100 callappreply startAbilityByCall err:' +
-        JSON.stringify(err));
-      });
-    };
+    })
 
     if (want.action === 'multipleAndSingleCallFunction_0100') {
-      globalThis.multipleAndSingleCallFunction_0100();
+      AppStorage.get<Function>("multipleAndSingleCallFunction_0100")!();
     }
     if (want.action === 'Acts_SingleInstanceCallFunction_1000') {
-      globalThis.Acts_SingleInstanceCallFunction_1000();
+      AppStorage.get<Function>("Acts_SingleInstanceCallFunction_1000")!();
     }
     if (want.action === 'Acts_SingleInstanceCallFunction_1100') {
-      globalThis.Acts_SingleInstanceCallFunction_1100();
+      AppStorage.get<Function>("Acts_SingleInstanceCallFunction_1100")!();
     }
   }
 
@@ -200,11 +209,13 @@ export default class SecondAbility extends Ability {
 
   terminate(): void {
     setTimeout(() => {
-      this.context.terminateSelf().then(() => {
-        console.debug('====>terminateSelf end');
-      }).catch((err) => {
-        console.debug('====>terminateSelf err:' + JSON.stringify(err));
-      });
+      this.context.terminateSelf()
+        .then(() => {
+          console.debug('====>terminateSelf end');
+        })
+        .catch((err) => {
+          console.debug('====>terminateSelf err:' + JSON.stringify(err));
+        });
     }, TIME_OUT);
   }
 }
