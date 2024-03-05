@@ -12,33 +12,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
+
+import Ability from '@ohos.app.ability.UIAbility';
+
 export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        console.log("jws onCreate");
-    }
+  onCreate(want, launchParam) {
+    console.log("jws onCreate");
+  }
 
-    onDestroy() {
-        console.log("jws onDestroy");
-    }
+  onDestroy() {
+    console.log("jws onDestroy");
+  }
 
-    onWindowStageCreate(windowStage) {
-        console.log("jws onWindowStageCreate");
-    }
+  onWindowStageCreate(windowStage) {
+    console.log("jws onWindowStageCreate");
+  }
 
-    onWindowStageDestroy() {
-        console.log("jws onWindowStageDestroy");
-    }
+  onWindowStageDestroy() {
+    console.log("jws onWindowStageDestroy");
+  }
 
-    onForeground() {
-        console.log("jws onForeground");
-    }
+  onForeground() {
+    console.log("jws onForeground");
+  }
 
-    onBackground() {
-        console.log("jws onBackground");
-    }
+  onBackground() {
+    console.log("jws onBackground");
+  }
 
-    call(){
+  call() {
 
-    }
+  }
 }
