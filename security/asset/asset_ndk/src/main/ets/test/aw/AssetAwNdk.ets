@@ -1,6 +1,6 @@
 import hilog from '@ohos.hilog';
 //import asset from '@ohos.security.asset';
-import { asset } from '@kit.AssetStoreKit';
+import asset from '@ohos.security.asset';
 import util from '@ohos.util';
 
 export const assetQueryTrue = 9999;

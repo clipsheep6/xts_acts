@@ -6,8 +6,8 @@ import * as aw from './aw/AssetAwNdk';
 import myAssetNdk from 'libassetNdkTest.so';
 import util from '@ohos.util';
 
-import { asset } from '@kit.AssetStoreKit';
-
+//import { asset } from '@kit.AssetStoreKit';
+import asset from '@ohos.security.asset';
 export default function AssetNdkTest() {
   describe('ActsAssetNdkTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
