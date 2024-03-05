@@ -18,8 +18,12 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { Driver, ON } from '@ohos.UiTest';
 import commonEvent from '@ohos.commonEventManager';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import commonEventManager from '@ohos.commonEventManager';
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
-let ACTS_CrossCallFunction = {
+let ACTS_CrossCallFunction: commonEventManager.CommonEventSubscribeInfo = {
   events: ['ACTS_CROSS_CALL_EVENT']
 };
 
@@ -30,7 +34,7 @@ const TAG = '[Sample_MyApp]';
 const DOMAIN = 0xF811;
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-function sleep(time) {
+function sleep(time: number) {
   return new Promise<void>((resolve, reject) => {
     setTimeout(() => {
       resolve();
@@ -39,9 +43,9 @@ function sleep(time) {
 }
 
 export default function abilityTest() {
-  describe('ActsAppTest', function () {
-    beforeEach(async (done) => {
-      setTimeout(function () {
+  describe('ActsAppTest', () => {
+    beforeEach(async (done: Function) => {
+      setTimeout(() => {
         console.info('====>beforeEach called');
         done();
       }, 3000);
@@ -53,8 +57,8 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      * @tc.level:1
      */
-    it('ACTS_NFC_SelectTypes_0100', 0, async (done) => {
-      let want = {
+    it('ACTS_NFC_SelectTypes_0100', 0, async (done: Function) => {
+      let want: Want = {
         action: 'ohos.nfc.tag.test.action',
         type: '',
         parameters: {
@@ -64,7 +68,7 @@ export default function abilityTest() {
           ]
         }
       };
-      globalThis.abilitycontext.startAbility(
+      AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(
         want, (err) => {
         if (err.code) {
           console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -97,8 +101,8 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      * @tc.level:1
      */
-    it('ACTS_NFC_SelectTypes_0200', 0, async (done) => {
-      let want = {
+    it('ACTS_NFC_SelectTypes_0200', 0, async (done: Function) => {
+      let want: Want = {
         action: 'ohos.nfc.tag.test.action',
         type: 'tag-tech/NFcA',
         parameters: {
@@ -107,7 +111,7 @@ export default function abilityTest() {
           ]
         }
       };
-      globalThis.abilitycontext.startAbility(
+      AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(
         want, (err) => {
         if (err.code) {
           console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -141,17 +145,16 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      * @tc.level:1
      */
-    it('ACTS_NFC_SelectTypes_0300', 0, async (done) => {
+    it('ACTS_NFC_SelectTypes_0300', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0300 begin');
-      let want = {
+      let want: Want = {
         action: 'ohos.nfc.tag.test.action',
         type: '',
         parameters: {
-          'ohos.ability.params.uriTypes': [
-          ]
+          'ohos.ability.params.uriTypes': []
         }
       };
-      globalThis.abilitycontext.startAbility(
+      AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(
         want, (err) => {
         if (err.code) {
           console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -173,17 +176,16 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      * @tc.level:1
      */
-    it('ACTS_NFC_SelectTypes_0400', 0, async (done) => {
+    it('ACTS_NFC_SelectTypes_0400', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0400 begin');
-      let want = {
+      let want: Want = {
         action: 'ohos.nfc.tag.test.action',
         type: 'tag-tech/NFcA',
         parameters: {
-          'ohos.ability.params.uriTypes': [
-          ]
+          'ohos.ability.params.uriTypes': []
         }
       };
-      globalThis.abilitycontext.startAbility(
+      AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(
         want, (err) => {
         if (err.code) {
           console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`)
@@ -217,9 +219,9 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      * @tc.level:1
      */
-    it('ACTS_NFC_SelectTypes_0500', 0, async (done) => {
+    it('ACTS_NFC_SelectTypes_0500', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0500 begin');
-      let want = {
+      let want: Want = {
         action: 'ohos.nfc.tag.action.TAG',
         type: '',
         parameters: {
@@ -229,7 +231,7 @@ export default function abilityTest() {
           ]
         }
       };
-      globalThis.abilitycontext.startAbility(
+      AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(
         want, (err) => {
         if (err.code) {
           console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -260,17 +262,16 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      * @tc.level:1
      */
-    it('ACTS_NFC_SelectTypes_0600', 0, async (done) => {
+    it('ACTS_NFC_SelectTypes_0600', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0600 begin');
-      let want = {
+      let want: Want = {
         action: 'ohos.nfc.tag.action.TAG',
         type: 'tag-tech/NFcA',
         parameters: {
-          'ohos.ability.params.uriTypes': [
-          ]
+          'ohos.ability.params.uriTypes': []
         }
       };
-      globalThis.abilitycontext.startAbility(
+      AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(
         want, (err) => {
         if (err.code) {
           console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -301,9 +302,9 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      * @tc.level:3
      */
-    it('ACTS_NFC_SelectTypes_0700', 0, async (done) => {
+    it('ACTS_NFC_SelectTypes_0700', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0700 begin');
-      let want = {
+      let want: Want = {
         action: 'ohos.nfc.tag.test.action',
         type: 'tag-tech/NFcA',
         parameters: {
@@ -313,15 +314,14 @@ export default function abilityTest() {
           ]
         }
       };
-      globalThis.abilitycontext.startAbility(
+      AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(
         want, (err) => {
         if (err.code) {
           console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
           return;
         }
         console.info('startAbility succeed');
-      }
-      );
+      });
       await driver.delayMs(2000);
       await driver.assertComponentExist(ON.text("MulAbFirst"));
       await driver.assertComponentExist(ON.text("MulAbSecond"));
@@ -345,11 +345,11 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      * @tc.level:3
      */
-    it('ACTS_NFC_SelectTypes_0800' ,0, async (done) => {
+    it('ACTS_NFC_SelectTypes_0800', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0800 begin');
-      let want = {
+      let want: Want = {
         action: 'ohos.nfc.tag.test.action',
-        type:'tag-tech/NFcA',
+        type: 'tag-tech/NFcA',
         parameters: {
           'ohos.ability.params.uriTypes': [
             'tag-tech/MultiHapNFCA',
@@ -357,15 +357,14 @@ export default function abilityTest() {
           ]
         }
       };
-      globalThis.abilitycontext.startAbility(
-        want,(err) => {
+      AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(
+        want, (err) => {
         if (err.code) {
           console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
           return;
         }
         console.info('startAbility succeed');
-      }
-      );
+      });
       await driver.delayMs(2000);
       await driver.assertComponentExist(ON.text("MulHapFirst"));
       console.info('startAbility MulHapFirst exist');
@@ -391,9 +390,9 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      * @tc.level:1
      */
-    it('ACTS_NFC_SelectTypes_0900', 0, async (done) => {
+    it('ACTS_NFC_SelectTypes_0900', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_0900 begin');
-      let want = {
+      let want: Want = {
         action: 'ohos.want.action.select',
         type: 'tag-tech/NFcA',
         parameters: {
@@ -403,7 +402,7 @@ export default function abilityTest() {
           ]
         }
       };
-      globalThis.abilitycontext.startAbility(
+      AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(
         want, (err) => {
         if (err.code) {
           console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
@@ -435,9 +434,9 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      * @tc.level:1
      */
-    it('ACTS_NFC_SelectTypes_1000', 0, async (done) => {
+    it('ACTS_NFC_SelectTypes_1000', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1000 begin');
-      let want = {
+      let want: Want = {
         action: 'ohos.nfc.tag.test.action',
         type: '',
         parameters: {
@@ -446,34 +445,34 @@ export default function abilityTest() {
           ]
         }
       };
-      let subscriber;
-      commonEvent.createSubscriber(ACTS_CrossCallFunction).then(async (data) => {
-        subscriber = data;
-        commonEvent.subscribe(subscriber, subscribeCallBack);
-        globalThis.abilitycontext.startAbility(
-          want, (err) => {
-          if (err.code) {
-            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-            return;
+      let subscriber: commonEventManager.CommonEventSubscriber;
+      commonEvent.createSubscriber(ACTS_CrossCallFunction)
+        .then(async (data) => {
+          subscriber = data;
+          commonEvent.subscribe(subscriber, (err, data) => {
+            console.info('====>ACTS_NFC_SelectTypes_1000 subscribeCallBack data:' + JSON.stringify(data));
+            if (data.event === 'ACTS_CROSS_CALL_EVENT') {
+              expect(data.parameters.message === 'select').assertTrue();
+              commonEvent.unsubscribe(subscriber, async () => {
+                console.info('====>ACTS_NFC_SelectTypes_1000 unSubscribeCallback kill');
+                let cmdkill = 'pkill -f com.example.mytest4';
+                await abilityDelegator.executeShellCommand(cmdkill);
+                await driver.delayMs(2000);
+                done();
+              })
+            }
+          });
+          AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(
+            want, (err) => {
+            if (err.code) {
+              console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+              return;
+            }
+            console.info('startAbility succeed');
           }
-          console.info('startAbility succeed');
-        }
-        );
+          );
+        });
 
-      });
-      function subscribeCallBack(err, data) {
-        console.info('====>ACTS_NFC_SelectTypes_1000 subscribeCallBack data:' + JSON.stringify(data));
-        if (data.event === 'ACTS_CROSS_CALL_EVENT') {
-          expect(data.parameters.message === 'select').assertTrue();
-          commonEvent.unsubscribe(subscriber, async () => {
-            console.info('====>ACTS_NFC_SelectTypes_1000 unSubscribeCallback kill');
-            let cmdkill = 'pkill -f com.example.mytest4';
-            await abilityDelegator.executeShellCommand(cmdkill);
-            await driver.delayMs(2000);
-            done();
-          })
-        }
-      }
       setTimeout(() => {
       }, CASE_TIME_OUT);
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1000 end');
@@ -485,43 +484,42 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      * @tc.level:1
      */
-    it('ACTS_NFC_SelectTypes_1100', 0, async (done) => {
+    it('ACTS_NFC_SelectTypes_1100', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1100 begin');
-      let want = {
+      let want: Want = {
         action: 'ohos.nfc.tag.test.action',
         type: 'tag-tech/Single',
         parameters: {
-          'ohos.ability.params.uriTypes': [
-          ]
+          'ohos.ability.params.uriTypes': []
         }
       };
-      let subscriber;
-      commonEvent.createSubscriber(ACTS_CrossCallFunction).then(async (data) => {
-        subscriber = data;
-        commonEvent.subscribe(subscriber, subscribeCallBack);
-        globalThis.abilitycontext.startAbility(
-          want, (err) => {
-          if (err.code) {
-            console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
-            return;
+      let subscriber: commonEventManager.CommonEventSubscriber;
+      commonEvent.createSubscriber(ACTS_CrossCallFunction)
+        .then(async (data) => {
+          subscriber = data;
+          commonEvent.subscribe(subscriber, (err, data) => {
+            console.info('====>ACTS_NFC_SelectTypes_1100 subscribeCallBack data:' + JSON.stringify(data));
+            if (data.event === 'ACTS_CROSS_CALL_EVENT') {
+              expect(data.parameters.message === 'select').assertTrue();
+              commonEvent.unsubscribe(subscriber, async () => {
+                console.info('====>ACTS_NFC_SelectTypes_1100 unSubscribeCallback kill');
+                let cmdkill = 'pkill -f com.example.mytest4';
+                await abilityDelegator.executeShellCommand(cmdkill);
+                await driver.delayMs(2000);
+                done();
+              })
+            }
+          });
+          AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(
+            want, (err) => {
+            if (err.code) {
+              console.error(`startAbility failed, code is ${err.code}, message is ${err.message}`);
+              return;
+            }
+            console.info('startAbility succeed');
           }
-          console.info('startAbility succeed');
-        }
-        );
-      })
-      function subscribeCallBack(err, data) {
-        console.info('====>ACTS_NFC_SelectTypes_1100 subscribeCallBack data:' + JSON.stringify(data));
-        if (data.event === 'ACTS_CROSS_CALL_EVENT') {
-          expect(data.parameters.message === 'select').assertTrue();
-          commonEvent.unsubscribe(subscriber, async () => {
-            console.info('====>ACTS_NFC_SelectTypes_1100 unSubscribeCallback kill');
-            let cmdkill = 'pkill -f com.example.mytest4';
-            await abilityDelegator.executeShellCommand(cmdkill);
-            await driver.delayMs(2000);
-            done();
-          })
-        }
-      }
+          );
+        })
       setTimeout(() => {
       }, CASE_TIME_OUT);
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1100 end');
@@ -533,9 +531,9 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      * @tc.level:3
      */
-    it('ACTS_NFC_SelectTypes_1200',0, async function (done) {
+    it('ACTS_NFC_SelectTypes_1200', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1200 begin');
-      let want = {
+      let want: Want = {
         action: "ohos.nfc.tag.test.action",
         type: '',
         parameters: {
@@ -544,23 +542,25 @@ export default function abilityTest() {
           ]
         }
       };
-      await globalThis.abilitycontext.startAbility(want).then(() => {
-        console.info('startAbility first succeed');
-        expect(true).assertTrue();
-      }).catch((err) => {
-        console.error(`startAbility first failed, error is ${JSON.stringify(err)}`);
-        expect(true).assertFalse();
-        done();
-      });
-      await globalThis.abilitycontext.startAbility(want).then(() => {
-        console.info('startAbility second succeed');
-        expect(true).assertTrue();
-        done();
-      }).catch((err) => {
-        console.error(`startAbility second failed, error is ${JSON.stringify(err)}`);
-        expect(true).assertFalse();
-        done();
-      });
+      await AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(want)
+        .then(() => {
+          console.info('startAbility first succeed');
+          expect(true).assertTrue();
+        }).catch((err: BusinessError) => {
+          console.error(`startAbility first failed, error is ${JSON.stringify(err)}`);
+          expect(true).assertFalse();
+          done();
+        });
+      await AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(want)
+        .then(() => {
+          console.info('startAbility second succeed');
+          expect(true).assertTrue();
+          done();
+        }).catch((err: BusinessError) => {
+          console.error(`startAbility second failed, error is ${JSON.stringify(err)}`);
+          expect(true).assertFalse();
+          done();
+        });
     })
 
     /*
@@ -569,9 +569,9 @@ export default function abilityTest() {
      * @tc.desc: Set the Want parameter, test the specified Types type, and match the corresponding application
      * @tc.level:3
      */
-    it('ACTS_NFC_SelectTypes_1300',0, async function (done) {
+    it('ACTS_NFC_SelectTypes_1300', 0, async (done: Function) => {
       hilog.info(DOMAIN, TAG, '%{public}s', 'ACTS_NFC_SelectTypes_1300 begin');
-      let wantSingle = {
+      let wantSingle: Want = {
         action: "ohos.nfc.tag.test.action",
         type: '',
         parameters: {
@@ -580,7 +580,7 @@ export default function abilityTest() {
           ]
         }
       };
-      let wantStandard = {
+      let wantStandard: Want = {
         action: "ohos.nfc.tag.test.action",
         type: '',
         parameters: {
@@ -589,33 +589,39 @@ export default function abilityTest() {
           ]
         }
       };
-      await globalThis.abilitycontext.startAbility(wantSingle).then(() => {
-        console.info('startAbility first succeed');
-        expect(true).assertTrue();
-      }).catch((err) => {
-        console.error(`startAbility first failed, error is ${JSON.stringify(err)}`);
-        expect(true).assertFalse();
-        done();
-      });
+      await AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(wantSingle)
+        .then(() => {
+          console.info('startAbility first succeed');
+          expect(true).assertTrue();
+        })
+        .catch((err: BusinessError) => {
+          console.error(`startAbility first failed, error is ${JSON.stringify(err)}`);
+          expect(true).assertFalse();
+          done();
+        });
       await driver.delayMs(2000);
-      await globalThis.abilitycontext.startAbility(wantStandard).then(() => {
-        console.info('startAbility wantStandard succeed');
-        expect(true).assertTrue();
-      }).catch((err) => {
-        console.error(`startAbility wantStandard failed, error is ${JSON.stringify(err)}`);
-        expect(true).assertFalse();
-        done();
-      });
+      await AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(wantStandard)
+        .then(() => {
+          console.info('startAbility wantStandard succeed');
+          expect(true).assertTrue();
+        })
+        .catch((err: BusinessError) => {
+          console.error(`startAbility wantStandard failed, error is ${JSON.stringify(err)}`);
+          expect(true).assertFalse();
+          done();
+        });
       await driver.delayMs(2000);
-      await globalThis.abilitycontext.startAbility(wantSingle).then(() => {
-        console.info('startAbility second succeed');
-        expect(true).assertTrue();
-        done();
-      }).catch((err) => {
-        console.error(`startAbility second failed, error is ${JSON.stringify(err)}`);
-        expect(true).assertFalse();
-        done();
-      });
+      await AppStorage.get<common.UIAbilityContext>("abilitycontext")!.startAbility(wantSingle)
+        .then(() => {
+          console.info('startAbility second succeed');
+          expect(true).assertTrue();
+          done();
+        })
+        .catch((err: BusinessError) => {
+          console.error(`startAbility second failed, error is ${JSON.stringify(err)}`);
+          expect(true).assertFalse();
+          done();
+        });
     })
   })
 }
