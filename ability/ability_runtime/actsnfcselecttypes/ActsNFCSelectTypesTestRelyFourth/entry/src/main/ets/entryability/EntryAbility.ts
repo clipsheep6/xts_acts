@@ -17,27 +17,31 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 import commonEvent from '@ohos.commonEventManager';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 let message;
 let commonEventData = {
-  parameters:{
-    message:message,
+  parameters: {
+    message: message,
   }
 };
 let timeout = 50;
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Abilitytest4 onCreate');
-    globalThis.terminate = () => {
+    AppStorage.setOrCreate<Function>("terminate", () => {
       setTimeout(() => {
-        this.context.terminateSelf().then(() => {
-          console.info('====>EntryAbility terminateSelf end');
-        }).catch((err) => {
-          console.info('====>EntryAbility terminateSelf err:' + JSON.stringify(err));
-        });
+        this.context.terminateSelf()
+          .then(() => {
+            console.info('====>EntryAbility terminateSelf end');
+          })
+          .catch((err) => {
+            console.info('====>EntryAbility terminateSelf err:' + JSON.stringify(err));
+          });
       }, timeout);
-    };
+    })
     console.info('Ability4 onCreate' + JSON.stringify(want));
     let actionStr = want.action;
     if (actionStr === 'ohos.nfc.tag.test.action') {
@@ -45,7 +49,7 @@ export default class EntryAbility extends UIAbility {
       commonEventData.parameters.message = 'select';
       commonEvent.publish('ACTS_CROSS_CALL_EVENT', commonEventData, (err) => {
         console.info('====>' + actionStr + ' apublish err:' + JSON.stringify(err));
-        globalThis.terminate();
+        AppStorage.get<Function>("terminate")!();
       });
     }
   }
