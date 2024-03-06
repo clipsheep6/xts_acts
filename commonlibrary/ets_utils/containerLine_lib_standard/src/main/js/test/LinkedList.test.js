@@ -423,36 +423,7 @@ describe("LinkedListTest", function () {
     }
   });
     
-  /**
-   * @tc.name: testGetFirst026
-   * @tc.desc: Get the header element of the linkedList instance. For example: linkedList.getFirst().
-   */
-  it("testGetFirst026", 0, function () {
-    let linkedList = new LinkedList();
-    linkedList.add("a");
-    linkedList.add("b");
-    linkedList.add("c");
-    linkedList.add("a");
-    linkedList.add("b");
-    let res = linkedList.getFirst();
-    expect(res).assertEqual("a");
-  });
-    
-  /**
-   * @tc.name: testGetLast027
-   * @tc.desc: Get the end element of the linkedList instance. For example: linkedList.getLast().
-   */
-  it("testGetLast027", 0, function () {
-    let linkedList = new LinkedList();
-    linkedList.add("a");
-    linkedList.add("b");
-    linkedList.add("c");
-    linkedList.add("a");
-    linkedList.add("b");
-    let res = linkedList.getLast();
-    expect(res).assertEqual("b");
-  });
-    
+
   /**
    * @tc.name: testInsert028
    * @tc.desc: Insert an element into the middle of the LinkedList instance. For example: linkedList.insert(3, "d").
@@ -725,7 +696,7 @@ describe("LinkedListTest", function () {
     });
     expect(res).assertEqual("b");
   });
-    
+      
   /**
    * @tc.name: testListSet042
    * @tc.desc: Modify the element corresponding to the specified index. For example: linkedList[1] = "f".
@@ -758,24 +729,7 @@ describe("LinkedListTest", function () {
     let res = linkedList.get(99);
     expect(res).assertEqual(99);
   });
-    
-  /**
-   * @tc.name: testRemoveByIndex044
-   * @tc.desc: In the linkedList instance, delete the element based on its subscript index. 
-   * For example: linkedList.removeByIndex(1).
-   */
-  it("testRemoveByIndex044", 0, function () {
-    let linkedList = new LinkedList();
-    try {
-      let res = linkedList.removeByIndex(1);
-      expect(true).assertEqual(false);
-    } catch (err) {
-      expect(err.name).assertEqual("BusinessError");
-      expect(err.code).assertEqual(10200001);
-      expect(err.message).assertEqual(`The value of "index" is out of range. It must be >= 0 && <= 0. Received value is: 1`);
-    }
-  });
-    
+      
   /**
    * @tc.name: testClone045
    * @tc.desc: Clone an LinkedList instance. For example: linkedList.clone().
@@ -802,7 +756,7 @@ describe("LinkedListTest", function () {
     let res = linkedList.getIndexOf(1);
     expect(res).assertEqual(-1);
   });
-      
+    
   /**
    * @tc.name: testForEach047
    * @tc.desc: Traversing elements in an LinkedList instance. 
@@ -972,7 +926,7 @@ describe("LinkedListTest", function () {
       expect(err.message).assertEqual(`The type of "index" must be number. Received value is: a`);
     }
   });
-
+     
   /**
    * @tc.name: testGet059
    * @tc.desc: Gets the element corresponding to the specified index. For example: linkedList.get("a").

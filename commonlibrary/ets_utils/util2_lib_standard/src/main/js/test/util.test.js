@@ -7258,5 +7258,82 @@ describe('DecodeEncodeTest', function () {
             expect(e.toString()).assertEqual("BusinessError: The type of Parameter must be Uint8Array.")
         }
     })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_0001
+     * @tc.name: testwrite001
+     * @tc.desc:  Returns a decoded string, ensuring that any incomplete multibyte characters at the end of the Uint8Array are
+     * comitted from the returned string and stored in an internal buffer.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it("testwrite001", 0, function () {
+        let decoder = new util.StringDecoder('utf8');
+        let input = [0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD];
+        const decoded = decoder.write(input);
+        expect(decoded).assertEqual('你好');
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_0002
+     * @tc.name: testwrite002
+     * @tc.desc: Returns a decoded string, ensuring that any incomplete multibyte characters at the end of the Uint8Array are
+     * comitted from the returned string and stored in an internal buffer.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it("testwrite002", 0, function () {
+        let decoder = new util.StringDecoder('utf8');
+        let input = [0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD];
+        const decoded = decoder.write(input.toString());
+        expect(decoded).assertEqual('你好');
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_0003
+     * @tc.name: testend001
+     * @tc.desc: Returns any remaining input stored in the internal buffer as a string.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it("testend001", 0, function () {
+        let decoder = new util.StringDecoder('utf8');
+        let input = [0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD];
+        const decoded = decoder.end();
+        expect(decoded).assertEqual('你好');
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_0004
+     * @tc.name: testend002
+     * @tc.desc: Returns any remaining input stored in the internal buffer as a string.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it("testend002", 0, function () {
+        let decoder = new util.StringDecoder('utf8');
+        let input = [0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD];
+        const decoded = decoder.end(input.toString());
+        expect(decoded).assertEqual('你好');
+    });
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_UTIL_0005
+     * @tc.name: testend003
+     * @tc.desc: Returns any remaining input stored in the internal buffer as a string.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it("testGet003", 0, function () {
+        let decoder = new util.StringDecoder('utf8');
+        let input = [0xE4, 0xBD, 0xA0, 0xE5, 0xA5, 0xBD];
+        const decoded = decoder.end(input);
+        expect(decoded).assertEqual('你好');
+    });
 })
 }
