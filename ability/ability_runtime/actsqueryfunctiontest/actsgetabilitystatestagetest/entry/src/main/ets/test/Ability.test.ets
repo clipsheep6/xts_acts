@@ -81,14 +81,7 @@ export default function abilityTest() {
             console.log("====>ACTS_GetAbilityState_0200 state:" + state);
             expect(state).assertEqual(AbilityDelegatorRegistry.AbilityLifecycleState.BACKGROUND);
             console.log("====>ACTS_GetAbilityState_0200 end====");
-            try {
-              commonEvent.unsubscribe(subscriber, () => {
-                console.log("ACTS_GetAbilityState_0200====>UnSubscribe CallBack====>");
-                done();
-              });
-            } catch(e) {
-                console.log("ACTS_GetAbilityState_0200====>UnSubscribe failed====>" + JSON.stringify(e));
-            }
+            done();
           }
         }
       )
@@ -116,7 +109,8 @@ export default function abilityTest() {
       let count = 0;
       let subscriber: commonEventManager.CommonEventSubscriber;
 
-      commonEvent.createSubscriber(subscriberInfo_MainAbility)
+      try {
+         commonEvent.createSubscriber(subscriberInfo_MainAbility)
         .then(async (data) => {
           console.log("ACTS_GetAbilityState_0300====>Create Subscriber====>");
           subscriber = data;
@@ -145,6 +139,10 @@ export default function abilityTest() {
             }
           });
         })
+      } catch (e) {
+          console.log("ACTS_GetAbilityState_0300====>Create Subscriber failed:====>" + e.code + ":" + e.message);
+      }
+     
 
       abilityDelegator.addAbilityMonitor(
         {
@@ -165,10 +163,7 @@ export default function abilityTest() {
                   console.log("====>doAbilityBackground_0300 data:" + JSON.stringify(err));
                   expect(err.code).assertEqual(0);
                   console.log("====>ACTS_GetAbilityState_0300 end====");
-                  commonEvent.unsubscribe(subscriber, () => {
-                    console.log("ACTS_GetAbilityState_0300====>UnSubscribe CallBack====>");
-                    done();
-                  });
+                  done();
                 })
               })
             }
@@ -252,10 +247,7 @@ export default function abilityTest() {
             console.log("====>UNINITIALIZED:" + AbilityDelegatorRegistry.AbilityLifecycleState.UNINITIALIZED);
             expect(state).assertEqual(AbilityDelegatorRegistry.AbilityLifecycleState.UNINITIALIZED);
             console.log("====>ACTS_GetAbilityState_0600 end====");
-            commonEvent.unsubscribe(subscriber, () => {
-              console.log("ACTS_GetAbilityState_0600====>UnSubscribe CallBack====>");
-              done();
-            });
+            done();
           }
         })
         .then(() => {
