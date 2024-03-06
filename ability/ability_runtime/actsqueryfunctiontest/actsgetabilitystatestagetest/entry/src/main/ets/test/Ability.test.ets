@@ -81,10 +81,14 @@ export default function abilityTest() {
             console.log("====>ACTS_GetAbilityState_0200 state:" + state);
             expect(state).assertEqual(AbilityDelegatorRegistry.AbilityLifecycleState.BACKGROUND);
             console.log("====>ACTS_GetAbilityState_0200 end====");
-            commonEvent.unsubscribe(subscriber, () => {
-              console.log("ACTS_GetAbilityState_0200====>UnSubscribe CallBack====>");
-              done();
-            });
+            try {
+              commonEvent.unsubscribe(subscriber, () => {
+                console.log("ACTS_GetAbilityState_0200====>UnSubscribe CallBack====>");
+                done();
+              });
+            } catch(e) {
+                console.log("ACTS_GetAbilityState_0200====>UnSubscribe failed====>" + JSON.stringify(e));
+            }
           }
         }
       )
