@@ -13,8 +13,8 @@
 
 import("//build/config/ohos/config.gni")
 import("//build/ohos.gni")
-import("//base/security/asset/asset.gni")
 import("//foundation/arkui/napi/napi.gni")
+import("//foundation/barrierfree/accessibility/accessibility_aafwk.gni")
 
 ASSET_ROOT_DIR = "//base/security/asset/"
 
@@ -33,39 +33,20 @@ config("public_config") {
 }
 
 ohos_shared_library("assetNdkTest") {
-  
-  sources = [ "./src/hello.cpp" ]
-  if (!(product_name == "m40")) {
-    if (target_cpu == "arm") {
-      libs = [ "${clang_base_path}/../libcxx-ndk/lib/arm-linux-ohos/c++/libc++_shared.so" ]
-    } else if (target_cpu == "arm64") {
-      libs = [ "${clang_base_path}/../libcxx-ndk/lib/aarch64-linux-ohos/c++/libc++_shared.so" ]
-    } else {
-      libs = []
-    }
-  }
-
+  testonly = true
+  subsystem_name = "security"
+  part_name = "asset"
+  sources = [ "./hello.cpp" ]
+  libs = [ rebase_path(libcxx_ndk_shared_file) ]
   include_dirs =
-      [ "../cpp" ]
+      [ "$ASSET_ROOT_DIR/interfaces/kits/c/inc" ]
 
   configs = [ ":config" ]
-
-include_dirs = [ 
-  "$ASSET_ROOT_DIR/interfaces/kits/c/inc" ,
-  "$ASSET_ROOT_DIR/frameworks/js/napi/inc"
-
-]
-  external_deps = [
-    "hilog:hilog_ndk",
-    "napi:ace_napi",
+  deps = [
+    "$ASSET_ROOT_DIR//interfaces/kits/c:asset_ndk",
   ]
-  deps = [ 
-    "$ASSET_ROOT_DIR/frameworks/js/napi:asset_napi",
-    "//foundation/arkui/napi/napi:ace_napi"
-   ]
-
+ external_deps = [ "napi:ace_napi" ]
   output_extension = "so"
 
-  part_name = "asset"
-  subsystem_name = "security"
 }
+
