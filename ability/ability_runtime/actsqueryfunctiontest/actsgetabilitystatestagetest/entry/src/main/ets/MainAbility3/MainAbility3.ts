@@ -13,49 +13,51 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.app.ability.UIAbility'
-import commonEvent from '@ohos.commonEvent'
+import Ability from '@ohos.app.ability.UIAbility';
+import commonEvent from '@ohos.commonEvent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
 function publishCallBackOne() {
   console.log("====MainAbility3 Publish CallBack GetCurrentTopAbility");
 }
+
 export default class MainAbility3 extends Ability {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("MainAbility3 onCreate");
+  }
 
-    onCreate(want, launchParam) {
-        console.log("MainAbility3 onCreate")
-    }
+  onDestroy() {
+    // Ability is destroying, release resources for this ability
+    console.log("MainAbility3 onDestroy");
+  }
 
-    onDestroy() {
-        // Ability is destroying, release resources for this ability
-        console.log("MainAbility3 onDestroy")
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("MainAbility3 onWindowStageCreate");
+    windowStage.loadContent("pages/index", null);
+    windowStage.on('windowStageEvent', (data) => {
+      console.log(`ActsGetAbilityStatestAgeTest onWindwoStageMainAbilty3 is : ${JSON.stringify(data)}`);
+      if (data == 2) {
+        console.log(`ActsGetAbilityStatestAgeTest getWindowStageActiveMainAbility3 is sucess`);
+        commonEvent.publish("GetCurrentTopAbility", publishCallBackOne);
+      }
+    })
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("MainAbility3 onWindowStageCreate");
-        windowStage.setUIContent(this.context, "pages/index", null);
-        globalThis.ability3Context = this.context;
-        windowStage.on('windowStageEvent', (data) => {
-          console.log(`ActsGetAbilityStatestAgeTest onWindwoStageMainAbilty3 is : ${JSON.stringify(data)}`);
-          if (data == 2 ) {
-            console.log(`ActsGetAbilityStatestAgeTest getWindowStageActiveMainAbility3 is sucess`);
-            commonEvent.publish("GetCurrentTopAbility", publishCallBackOne);
-          }
-        })
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("MainAbility3 onWindowStageDestroy");
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("MainAbility3 onWindowStageDestroy")
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("MainAbility3 onForeground");
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("MainAbility3 onForeground")
-    }
-
-    onBackground() {
-        // Ability has back to background
-        console.log("MainAbility3 onBackground")
-    }
-};
+  onBackground() {
+    // Ability has back to background
+    console.log("MainAbility3 onBackground");
+  }
+}
