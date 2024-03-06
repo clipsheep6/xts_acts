@@ -37,6 +37,7 @@ const ERROR_CODE_FUNC_REGISTERED = 16200004;
 const ERROR_CODE_FUNC_NOT_EXIST = 16200005;
 const ERROR_CODE_INNER_ERROR = 16000050;
 const ERROR_CODE_TYPE_ERROR = 16000002;
+const ERROR_CODE_CANNOT_FIND_COMPONENT = 16000019;
 
 class MySequenceable {
   num: number = 0;
@@ -852,7 +853,7 @@ export default function abilityTest() {
       }).catch(err => {
         console.log('ACTS_CommonComponent_Call_5300 call err.code: ' + JSON.stringify(err.code) +
           ' err.msg: ' + JSON.stringify(err.message));
-        expect(err.code).assertEqual(ERROR_CODE_INNER_ERROR);
+        expect(err.code).assertEqual(ERROR_CODE_CANNOT_FIND_COMPONENT);
         exceptionFlag = true;
       });
 
