@@ -1,9 +1,24 @@
+
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import hilog from '@ohos.hilog';
 import asset from '@ohos.security.asset';
 //import { asset } from '@kit.AssetStoreKit';
 import util from '@ohos.util';
-// import {Driver} from '@kit.TestKit';
-import keyCode, { KeyCode } from '@ohos.multimodalInput.keyCode';
+
 
 export const secLong = "0123456789123456".repeat(64);
 
@@ -20,7 +35,7 @@ export const aliasTooLong = "0123456789123456".repeat(16) + '1';
 
 export const labelLong = "0123456789123456".repeat(32);
 
-export const labelTooLong = "0123456789123456".repeat(32) + '1';
+export const labelTooLong = "0123456789123456".repeat(128) + '1';
 
 export class retAll {
   alias: string = '';
@@ -61,33 +76,6 @@ export const labelList = [
 
 export const updateSecret = 'ihadbeenupdated';
 
-export const PASSWORD = [2001,2001,2001,2001,2001,2001];
-export async function setPassword() {
-  //todo
-}
-export async function clearPassword() {
-  //todo
-}
-// export async function lockScreen() {
-//   let driver:Driver = Driver.create();
-//   await driver.triggerKey(KeyCode.KEYCODE_POWER);
-//   await driver.triggerKey(KeyCode.KEYCODE_POWER);
-// }
-// export async function unlockScreen() {
-//   let driver:Driver = Driver.create();
-//   await driver.wakeUpDisplay();
-//   await driver.swipe(700,2300,700,1200);
-//   for(let i = 0;i<6;i++){
-//     await driver.triggerKey(PASSWORD[i]);
-//   }
-// }
-
-// export async function pressPassword() {
-//   let driver:Driver = Driver.create();
-//   for(let i = 0;i<6;i++){
-//     await driver.triggerKey(PASSWORD[i]);
-//   }
-// }
 
 export const Sleep = (ms:number)=> {
     return new Promise<void>(resolve=>setTimeout(resolve,ms));

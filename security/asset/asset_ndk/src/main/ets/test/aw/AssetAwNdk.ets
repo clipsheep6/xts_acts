@@ -1,6 +1,20 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import hilog from '@ohos.hilog';
-//import asset from '@ohos.security.asset';
 import asset from '@ohos.security.asset';
+//import { asset } from '@kit.AssetStoreKit';
 import util from '@ohos.util';
 
 export const assetQueryTrue = 9999;
@@ -84,10 +98,6 @@ export async function cleanData() {
   }
 }
 
-export async function addSome() {
-  assetAddEasy('qwert','000000');
-}
-
 export async function assetAddEasy(alias:string,secret:string) {
   let attr:asset.AssetMap = new Map();
   attr.set(asset.Tag.ALIAS,StringToArray(alias));
@@ -130,200 +140,5 @@ export async function assetAddAllAuth(attr:asset.AssetMap) {
     attr.set(asset.Tag.DATA_LABEL_NORMAL_1, StringToArray(labelList[i]));
     attr.set(asset.Tag.AUTH_TYPE, authList[i]);
     await assetAddAttr(attr);
-  }
-}
-
-export async function assetRemove(alias:string) {
-  let attr :asset.AssetMap= new Map();
-  attr.set(asset.Tag.ALIAS, StringToArray(alias));
-  return await assetRemoveAttr(attr);
-}
-export async function assetRemoveAttr(attr:asset.AssetMap) {
-  try{
-    await asset.removeSync(attr);
-    return 0
-  }catch(e){
-    return e.code
-  }
-}
-
-export async function assetQueryAttr(attr:asset.AssetMap) :Promise<asset.AssetMap[]|number>{
-  try{
-    return await asset.querySync(attr);
-  }catch(e){
-    return e.code
-  }
-}
-
-
-
-export async function assetQueryEasy(attr:asset.AssetMap) {
-  let re  =  await assetQueryAttr(attr);
-  if (typeof re == typeof 1){
-    return re;
-  }else{
-    let re0 = (re as asset.AssetMap[])[0] as asset.AssetMap;
-    let ret: retAll = {
-      alias: ArrayToString(re0.get(asset.Tag.ALIAS)as Uint8Array),
-      secret: ArrayToString(re0.get(asset.Tag.SECRET)as Uint8Array),
-      label1: ArrayToString(re0.get(asset.Tag.DATA_LABEL_NORMAL_1)as Uint8Array),
-      label2: ArrayToString(re0.get(asset.Tag.DATA_LABEL_NORMAL_2)as Uint8Array),
-      label3: ArrayToString(re0.get(asset.Tag.DATA_LABEL_NORMAL_3)as Uint8Array),
-      label4: ArrayToString(re0.get(asset.Tag.DATA_LABEL_NORMAL_4)as Uint8Array),
-      critical1: ArrayToString(re0.get(asset.Tag.DATA_LABEL_CRITICAL_1)as Uint8Array),
-      critical2: ArrayToString(re0.get(asset.Tag.DATA_LABEL_CRITICAL_2)as Uint8Array),
-      critical3: ArrayToString(re0.get(asset.Tag.DATA_LABEL_CRITICAL_3)as Uint8Array),
-      critical4: ArrayToString(re0.get(asset.Tag.DATA_LABEL_CRITICAL_4)as Uint8Array),
-    }
-
-    return ret;
-  }
-}
-
-export async function assetQueryAll(alias:string,targetSecret:string) {
-  let attr:asset.AssetMap = new Map();
-  attr.set(asset.Tag.ALIAS, StringToArray(alias));
-  attr.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL);
-  let re =  await assetQueryAttr(attr);
-  if (typeof re == typeof 1){
-    return re;
-  }else{
-    let tmpre:asset.AssetMap = (re as asset.AssetMap[])[0];
-    let s = ArrayToString(tmpre.get(asset.Tag.SECRET) as Uint8Array);
-    if(targetSecret==s){
-      return 0;
-    }else{
-      return -1;
-    }
-  }
-}
-
-export async function assetQueryNum(attr:asset.AssetMap) {
-  try{
-    let ret:asset.AssetMap[] = await asset.querySync(attr);
-    return ret.length
-  }catch(e){
-    return e.code
-  }
-}
-
-export async function assetUpdate(alias:string) {
-  let attr:asset.AssetMap = new Map();
-  attr.set(asset.Tag.ALIAS, StringToArray(alias))
-  let attr2:asset.AssetMap = new Map();
-  attr2.set(asset.Tag.SECRET, StringToArray(updateSecret));
-  try{
-    await asset.updateSync(attr,attr2);
-    return 0
-  }catch(e){
-    return e.code
-  }
-}
-export async function assetUpdateEasy(alias:string,newSecret:string) {
-  let attr:asset.AssetMap = new Map();
-  attr.set(asset.Tag.ALIAS, StringToArray(alias));
-  let attr2:asset.AssetMap = new Map();
-  attr2.set(asset.Tag.SECRET, StringToArray(newSecret));
-  try{
-    await asset.updateSync(attr,attr2);
-    return 0
-  }catch(e){
-    return e.code
-  }
-}
-
-export async function assetUpdateAttrs(attr:asset.AssetMap,attr2:asset.AssetMap) {
-  try{
-    await asset.updateSync(attr,attr2);
-    return 0
-  }catch(e){
-    return e.code
-  }
-}
-
-export async function assetPreQuery(attr:asset.AssetMap):Promise<Uint8Array|number> {
-  try{
-    let challenge:Uint8Array = await asset.preQuerySync(attr);
-    return challenge;
-  }catch(e){
-    return e.code
-  }
-}
-export async function assetPreQueryExpect(attr:asset.AssetMap):Promise<Uint8Array|number> {
-  try{
-    await asset.preQuerySync(attr);
-    return 0;
-  }catch(e){
-    return e.code
-  }
-}
-
-export async function assetPreQueryEasy(): Promise<Uint8Array|number> {
-  let attr:asset.AssetMap = new Map();
-  try{
-    let challenge:Uint8Array = await asset.preQuerySync(attr);
-    return challenge;
-  }catch(e){
-    return e.code
-  }
-}
-
-export async function assetPostQuery(challenge:Uint8Array) {
-  try{
-    let attr: asset.AssetMap = new Map();
-    attr.set(asset.Tag.AUTH_CHALLENGE,challenge)
-    await asset.postQuerySync(attr);
-    return 0;
-  }catch(e){
-    return e.code
-  }
-}
-export async function assetPostQueryAttr(attr:asset.AssetMap) {
-  try{
-    await asset.postQuerySync(attr);
-    return 0;
-  }catch(e){
-    return e.code
-  }
-}
-
-export async function basicCRUD(attr:asset.AssetMap) {
-  attr.set(asset.Tag.ALIAS, StringToArray(aliasNameList[0]))
-  attr.set(asset.Tag.SECRET, StringToArray(secretList[0]));
-  let attr2: asset.AssetMap = new Map();
-  attr2.set(asset.Tag.ALIAS, StringToArray(aliasNameList[0]))
-  let attr4: asset.AssetMap = new Map();
-  attr4.set(asset.Tag.SECRET, StringToArray(updateSecret));
-  try{
-    await asset.addSync(attr);
-    await asset.removeSync(attr2);
-    await asset.addSync(attr);
-    await asset.updateSync(attr2,attr4);
-    attr2.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL)
-    await asset.querySync(attr2);
-    return 0
-  }catch(e){
-    return e.code
-  }
-}
-
-export async function basicCRUD2(attr:asset.AssetMap) {
-  attr.set(asset.Tag.ALIAS, StringToArray(aliasNameList[1]))
-  attr.set(asset.Tag.SECRET, StringToArray(secretList[0]));
-  let attr2: asset.AssetMap = new Map();
-  attr2.set(asset.Tag.ALIAS, StringToArray(aliasNameList[0]))
-  attr2.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL)
-  let attr3: asset.AssetMap = new Map();
-  attr3.set(asset.Tag.ALIAS, StringToArray(aliasNameList[0]))
-  let attr4: asset.AssetMap = new Map();
-  attr4.set(asset.Tag.SECRET, StringToArray(updateSecret));
-  try{
-    await asset.addSync(attr);
-    await asset.querySync(attr2);
-    await asset.updateSync(attr3,attr4);
-    await asset.removeSync(attr2);
-    return 0
-  }catch(e){
-    return e.code
   }
 }

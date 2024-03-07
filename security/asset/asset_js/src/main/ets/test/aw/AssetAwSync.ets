@@ -1,3 +1,18 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import hilog from '@ohos.hilog';
 import asset from '@ohos.security.asset';
 //import { asset } from '@kit.AssetStoreKit';
@@ -20,7 +35,7 @@ export const aliasTooLong = "0123456789123456".repeat(16) + '1';
 
 export const labelLong = "0123456789123456".repeat(32);
 
-export const labelTooLong = "0123456789123456".repeat(32) + '1';
+export const labelTooLong = "0123456789123456".repeat(128) + '1';
 
 export class retAll {
   alias: string = '';
@@ -84,75 +99,6 @@ export function ArrayToString(arr: Uint8Array) {
   return str;
 }
 
-// @Concurrent
-// export function assetAddTaskPool(times:number,attr:asset.AssetMap,testAlias:string):number {
-//   let textEncoder = new util.TextEncoder();
-//   let beginTime = new Date().getTime();
-//   for (let i = 0; i < times; i++) {
-//     let alias = textEncoder.encodeInto(testAlias + String(i))
-//     attr.set(asset.Tag.ALIAS, alias);
-//     try{
-//       asset.addSync(attr);
-//     } catch (e) {
-//     return e.code
-//   }
-
-//   }
-//   let endTime = new Date().getTime();
-//   return (endTime - beginTime) / times;
-// }
-
-// @Concurrent
-// export function assetQueryTaskPool(times:number,attr:asset.AssetMap,testAlias:string):number {
-//   let textEncoder = new util.TextEncoder();
-//   let beginTime = new Date().getTime();
-//   for (let i = 0; i < times; i++) {
-//     let alias = textEncoder.encodeInto(testAlias + String(i))
-//     attr.set(asset.Tag.ALIAS, alias);
-//     try{
-//     asset.querySync(attr);
-//   } catch (e) {
-//     return e.code
-//   }
-//   }
-//   let endTime = new Date().getTime();
-//   return (endTime - beginTime) / times;
-// }
-
-// @Concurrent
-// export function assetUpdateTaskPool(times:number,attr1:asset.AssetMap,attr2:asset.AssetMap,testAlias:string):number {
-//   let textEncoder = new util.TextEncoder();
-//   let beginTime = new Date().getTime();
-//   for (let i = 0; i < times; i++) {
-//     let alias = textEncoder.encodeInto(testAlias + String(i))
-//     attr1.set(asset.Tag.ALIAS, alias);
-//     try{
-//     asset.updateSync(attr1,attr2);
-//   } catch (e) {
-//     return e.code
-//   }
-//   }
-//   let endTime = new Date().getTime();
-//   return (endTime - beginTime) / times;
-// }
-
-// @Concurrent
-// export function assetRemoveTaskPool(times:number,attr:asset.AssetMap,testAlias:string):number {
-//   let textEncoder = new util.TextEncoder();
-//   let beginTime = new Date().getTime();
-//   for (let i = 0; i < times; i++) {
-//     let alias = textEncoder.encodeInto(testAlias + String(i))
-//     attr.set(asset.Tag.ALIAS, alias);
-//     try{
-//     asset.removeSync(attr);
-//   } catch (e) {
-//     return e.code
-//   }
-//   }
-//   let endTime = new Date().getTime();
-//   return (endTime - beginTime) / times;
-// }
-
 export function cleanData() {
   let attr: asset.AssetMap = new Map();
   try {
@@ -165,6 +111,74 @@ export function cleanData() {
 
 export function addSome() {
   assetAddEasy('qwert', '000000');
+}
+
+
+export function assetAddTask(times:number,attr:asset.AssetMap,testAlias:string):number {
+  let textEncoder = new util.TextEncoder();
+  let beginTime = new Date().getTime();
+  for (let i = 0; i < times; i++) {
+    let alias = textEncoder.encodeInto(testAlias + String(i))
+    attr.set(asset.Tag.ALIAS, alias);
+    try{
+      asset.addSync(attr);
+    } catch (e) {
+      return e.code
+    }
+
+  }
+  let endTime = new Date().getTime();
+  return (endTime - beginTime) / times;
+}
+
+
+export function assetQueryTask(times:number,attr:asset.AssetMap,testAlias:string):number {
+  let textEncoder = new util.TextEncoder();
+  let beginTime = new Date().getTime();
+  for (let i = 0; i < times; i++) {
+    let alias = textEncoder.encodeInto(testAlias + String(i))
+    attr.set(asset.Tag.ALIAS, alias);
+    try{
+      asset.querySync(attr);
+    } catch (e) {
+      return e.code
+    }
+  }
+  let endTime = new Date().getTime();
+  return (endTime - beginTime) / times;
+}
+
+export function assetUpdateTask(times:number,attr1:asset.AssetMap,attr2:asset.AssetMap,testAlias:string):number {
+  let textEncoder = new util.TextEncoder();
+  let beginTime = new Date().getTime();
+  for (let i = 0; i < times; i++) {
+    let alias = textEncoder.encodeInto(testAlias + String(i))
+    attr1.set(asset.Tag.ALIAS, alias);
+    try{
+      asset.updateSync(attr1,attr2);
+    } catch (e) {
+      return e.code
+    }
+  }
+  let endTime = new Date().getTime();
+  return (endTime - beginTime) / times;
+}
+
+
+export function assetRemoveTask(times:number,attr:asset.AssetMap,testAlias:string):number {
+  let textEncoder = new util.TextEncoder();
+  let beginTime = new Date().getTime();
+  for (let i = 0; i < times; i++) {
+    let alias = textEncoder.encodeInto(testAlias + String(i))
+    attr.set(asset.Tag.ALIAS, alias);
+    try{
+      asset.removeSync(attr);
+    } catch (e) {
+      return e.code
+    }
+  }
+  let endTime = new Date().getTime();
+  return (endTime - beginTime) / times;
 }
 
 export function assetAddEasy(alias: string, secret: string) {

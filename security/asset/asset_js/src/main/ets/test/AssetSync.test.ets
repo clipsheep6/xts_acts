@@ -1,9 +1,25 @@
+/*
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import * as aw from './aw/AssetAwSync';
 //import { asset } from '@kit.AssetStoreKit';
 
 import asset from '@ohos.security.asset'
-//import taskpool from '@ohos.taskpool';
+import taskpool from '@ohos.taskpool';
 
 
 export default function AssetSynctest() {
@@ -75,7 +91,7 @@ export default function AssetSynctest() {
         .assertEqual(0);
       attr2.set(asset.Tag.ALIAS, aw.StringToArray(aw.aliasNameList[3]));
       attr2.set(asset.Tag.IS_PERSISTENT, false);
-      attr2.set(asset.Tag.REQUIRE_PASSWORD_SET, true);
+      //attr2.set(asset.Tag.REQUIRE_PASSWORD_SET, true);
       attr2.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_UNLOCKED);
       expect(aw.assetAddAttr(attr2))
         .assertEqual(0);
@@ -131,85 +147,45 @@ export default function AssetSynctest() {
 
     });
 
-    // /**
-    //  * @tc.number SUB_Security_DataSecurity_Asset_Sync_Stability_0100
-    //  * @tc. name 同步接口压力测试
-    //  * @tc.desc test error cases
-    //  * @tc.size Medium
-    //  * @tc.type Func
-    //  * @tc.level Level3
-    //  */
-    // it('SUB_Security_DataSecurity_Asset_Sync_Stability_0100', 0, async (done: Function) => {
-    //   let stressTime = 1 * 1 * 10 * 1000;
-    //   //let stressTime = 6 * 60 * 60 * 1000;
-    //   let endTime = new Date().getTime() + stressTime;
-    //   while (new Date().getTime() < endTime) {
-    //     let testAlias = "0123456789123456".repeat(15);
-    //     let attr: asset.AssetMap = new Map();
-    //     let times = 2;
-    //     attr.set(asset.Tag.SECRET, aw.StringToArray(aw.secLong));
-    //     attr.set(asset.Tag.DATA_LABEL_NORMAL_1, aw.StringToArray(aw.labelLong));
-    //     attr.set(asset.Tag.DATA_LABEL_NORMAL_2, aw.StringToArray(aw.labelLong));
-    //     attr.set(asset.Tag.DATA_LABEL_NORMAL_3, aw.StringToArray(aw.labelLong));
-    //     attr.set(asset.Tag.DATA_LABEL_NORMAL_4, aw.StringToArray(aw.labelLong));
-    //     attr.set(asset.Tag.DATA_LABEL_CRITICAL_1, aw.StringToArray(aw.labelLong));
-    //     attr.set(asset.Tag.DATA_LABEL_CRITICAL_2, aw.StringToArray(aw.labelLong));
-    //     attr.set(asset.Tag.DATA_LABEL_CRITICAL_3, aw.StringToArray(aw.labelLong));
-    //     attr.set(asset.Tag.DATA_LABEL_CRITICAL_4, aw.StringToArray(aw.labelLong));
-    //     attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_POWERED_ON);
-    //     let attr2: asset.AssetMap = new Map();
-    //     let attr3: asset.AssetMap = new Map();
+    /**
+     * @tc.number SUB_Security_DataSecurity_Asset_Sync_Stability_0200
+     * @tc. name 同步接口性能测试
+     * @tc.desc test error cases
+     * @tc.size Medium
+     * @tc.type Func
+     * @tc.level Level3
+     */
+    it('SUB_Security_DataSecurity_Asset_Sync_Stability_0200', 0, async (done: Function) => {
+      let testAlias = "0123456789123456".repeat(15);
+      let attr: asset.AssetMap = new Map();
 
-    //     expect(await taskpool.execute(aw.assetAddTaskPool, times, attr, testAlias)).assertLess(120);
-    //     attr2.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL);
-    //     expect(await taskpool.execute(aw.assetQueryTaskPool, times, attr2, testAlias)).assertLess(120);
-    //     attr2.delete(asset.Tag.RETURN_TYPE);
-    //     attr3.set(asset.Tag.SECRET, aw.StringToArray(aw.labelLong));
-    //     expect(await taskpool.execute(aw.assetUpdateTaskPool, times, attr2, attr3, testAlias)).assertLess(120);
-    //     expect(await taskpool.execute(aw.assetRemoveTaskPool, times, attr2, testAlias)).assertLess(50);
-    //   }
-    //   done();
-    // });
+      let times = 50;
+      //attr.set(asset.Tag.ALIAS, aw.StringToArray(aw.aliasLong));
+      attr.set(asset.Tag.SECRET, aw.StringToArray(aw.secLong));
+      attr.set(asset.Tag.DATA_LABEL_NORMAL_1, aw.StringToArray(aw.labelLong));
+      attr.set(asset.Tag.DATA_LABEL_NORMAL_2, aw.StringToArray(aw.labelLong));
+      attr.set(asset.Tag.DATA_LABEL_NORMAL_3, aw.StringToArray(aw.labelLong));
+      attr.set(asset.Tag.DATA_LABEL_NORMAL_4, aw.StringToArray(aw.labelLong));
+      attr.set(asset.Tag.DATA_LABEL_CRITICAL_1, aw.StringToArray(aw.labelLong));
+      attr.set(asset.Tag.DATA_LABEL_CRITICAL_2, aw.StringToArray(aw.labelLong));
+      attr.set(asset.Tag.DATA_LABEL_CRITICAL_3, aw.StringToArray(aw.labelLong));
+      attr.set(asset.Tag.DATA_LABEL_CRITICAL_4, aw.StringToArray(aw.labelLong));
+      attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_POWERED_ON);
 
-    // /**
-    //  * @tc.number SUB_Security_DataSecurity_Asset_Sync_Stability_0200
-    //  * @tc. name 同步接口性能测试
-    //  * @tc.desc test error cases
-    //  * @tc.size Medium
-    //  * @tc.type Func
-    //  * @tc.level Level3
-    //  */
-    // it('SUB_Security_DataSecurity_Asset_Sync_Stability_0200', 0, async (done: Function) => {
-    //   let testAlias = "0123456789123456".repeat(15);
-    //   let attr: asset.AssetMap = new Map();
-
-    //   let times = 10;
-    //   //attr.set(asset.Tag.ALIAS, aw.StringToArray(aw.aliasLong));
-    //   attr.set(asset.Tag.SECRET, aw.StringToArray(aw.secLong));
-    //   attr.set(asset.Tag.DATA_LABEL_NORMAL_1, aw.StringToArray(aw.labelLong));
-    //   attr.set(asset.Tag.DATA_LABEL_NORMAL_2, aw.StringToArray(aw.labelLong));
-    //   attr.set(asset.Tag.DATA_LABEL_NORMAL_3, aw.StringToArray(aw.labelLong));
-    //   attr.set(asset.Tag.DATA_LABEL_NORMAL_4, aw.StringToArray(aw.labelLong));
-    //   attr.set(asset.Tag.DATA_LABEL_CRITICAL_1, aw.StringToArray(aw.labelLong));
-    //   attr.set(asset.Tag.DATA_LABEL_CRITICAL_2, aw.StringToArray(aw.labelLong));
-    //   attr.set(asset.Tag.DATA_LABEL_CRITICAL_3, aw.StringToArray(aw.labelLong));
-    //   attr.set(asset.Tag.DATA_LABEL_CRITICAL_4, aw.StringToArray(aw.labelLong));
-    //   attr.set(asset.Tag.ACCESSIBILITY, asset.Accessibility.DEVICE_POWERED_ON);
-
-    //   expect(await taskpool.execute(aw.assetAddTaskPool, times, attr, testAlias)).assertLess(120);
-    //   let attr2: asset.AssetMap = new Map();
-    //   attr2.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL);
-    //   expect(await taskpool.execute(aw.assetQueryTaskPool, times, attr2, testAlias)).assertLess(120);
+      expect(aw.assetAddTask(times, attr, testAlias)).assertLess(120);
+      let attr2: asset.AssetMap = new Map();
+      attr2.set(asset.Tag.RETURN_TYPE, asset.ReturnType.ALL);
+      expect(aw.assetQueryTask(times, attr2, testAlias)).assertLess(120);
 
 
-    //   attr2.delete(asset.Tag.RETURN_TYPE);
-    //   let attr3: asset.AssetMap = new Map();
-    //   attr3.set(asset.Tag.SECRET, aw.StringToArray(aw.labelLong));
-    //   expect(await taskpool.execute(aw.assetUpdateTaskPool, times, attr2, attr3, testAlias)).assertLess(120);
-    //   expect(await taskpool.execute(aw.assetRemoveTaskPool, times, attr2, testAlias)).assertLess(50);
+      attr2.delete(asset.Tag.RETURN_TYPE);
+      let attr3: asset.AssetMap = new Map();
+      attr3.set(asset.Tag.SECRET, aw.StringToArray(aw.labelLong));
+      expect(aw.assetUpdateTask(times, attr2, attr3, testAlias)).assertLess(120);
+      expect(aw.assetRemoveTask(times, attr2, testAlias)).assertLess(50);
 
-    //   done();
-    // });
+      done();
+    });
 
     /**
      * @tc.number SUB_Security_DataSecurity_Asset_Sync_Func_0200
