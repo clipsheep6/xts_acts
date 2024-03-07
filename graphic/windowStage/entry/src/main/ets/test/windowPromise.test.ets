@@ -17,6 +17,7 @@ import ohosWindow from '@ohos.window';
 import display from '@ohos.display';
 import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
+import deviceInfo from '@ohos.deviceInfo';
 
 
 function expectedError(TRUE_FLAG: boolean, error: BusinessError, caseName: string, apiName: string, done: Function, code: number) {
@@ -60,8 +61,11 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
     let systemWindowTypeDic: Record<string, number> = {
       'TYPE_FLOAT': 8,
     }
-
+    let currentDeviceIsRk = false;
     beforeAll(() => {
+      let deviceTypeInfo = deviceInfo.deviceType
+      currentDeviceIsRk = deviceTypeInfo === 'default' ? true : false;
+      console.info('the value of the deviceType is :' + deviceInfo.deviceType);
       console.log('jsunittest beforeall ohosWindow.WindowType=' + JSON.stringify(ohosWindow.WindowType.TYPE_FLOAT));
       systemWindowTypeDicArr = Object.keys(systemWindowTypeDic);
       console.log('jsUnittest beforeAll systemWindowTypeDicArr=' + JSON.stringify(systemWindowTypeDicArr) + '   ,length=' + systemWindowTypeDicArr.length);
@@ -823,19 +827,21 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         });
       } catch (err) {
         console.log(msgStr + 'ohosWindow.create catch err:' + JSON.stringify(err));
+        expect().assertFail();
+        done();
       }
-      if (tempWnd != undefined) {
-        let tempWindow: ohosWindow.Window = tempWnd as ohosWindow.Window
-        expect(!!tempWindow).assertTrue();
-        console.log(msgStr + 'tempWnd.loadContent start');
-        let load: void = await tempWindow.loadContent('pages/second/second').catch((err: BusinessError) => {
-          unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.loadContent', done);
-          console.log(msgStr + 'tempWnd.loadContent(pages/second/second) err=' + JSON.stringify(err));
-        });
-        console.log(msgStr + 'tempWnd.loadContent(pages/second/second) load=' + JSON.stringify(load));
-        expect(!Boolean(load)).assertTrue();
-        await tempWindow.destroy();
-      }
+      let tempWindow: ohosWindow.Window = tempWnd as ohosWindow.Window
+      expect(!!tempWindow).assertTrue();
+      console.log(msgStr + 'tempWnd.loadContent start');
+      let load: void = await tempWindow.loadContent('pages/second/second').then(() => {
+        console.info(msgStr + ' Succeeded in loading the content.');
+        expect().assertFail();
+        done();
+      }).catch((err: BusinessError) => {
+        expect(err.code).assertEqual(401);
+        console.log(msgStr + 'tempWnd.loadContent(pages/second/second) err=' + JSON.stringify(err));
+      });
+      await tempWindow.destroy();
       done();
     })
 
@@ -1540,6 +1546,36 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       }
     })
     /**
+    * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0200
+    * @tc.name      : testSetSpecificSystemBarEnabled_2_Function_Promise
+    * @tc.desc      : Test the function of setSpecificSystemBarEnabled
+    * @tc.size      : MediumTest
+    * @tc.type      : Function
+    * @tc.level     : Level3
+    */
+    it('testSetSpecificSystemBarEnabled_2_Function_Promise', 0, async function(done){
+      let msgStr = 'testSetSpecificSystemBarEnabled_2';
+      console.log(msgStr + 'begin')
+      try {
+        let windowClass = await ohosWindow.getLastWindow(context);
+        let specificSystemBar: ohosWindow.SpecificSystemBar = 'navigationIndicator'
+        let promise = windowClass.setSpecificSystemBarEnabled(specificSystemBar, true);
+        promise.then(() => {
+          console.log(msgStr + 'Succeeded in setting the system bar to be invisible.');
+          expect(true).assertTrue();
+          done();
+        }).catch((error) => {
+          console.log(msgStr + 'Failed to set the system bar to be invisible. Cause:' + JSON.stringify(error));
+          expect().assertFail();
+          done();
+        });
+      } catch (error) {
+        console.log(msgStr + 'Failed to set the system bar to be invisible. Cause:' + JSON.stringify(error));
+        expect().assertFail();
+        done();
+      }
+    })
+    /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STANDARD_JS_API_1220
      * @tc.name      : testSetWindowDecorVisible
      * @tc.desc      : test the function of SetWindowDecorVisible
@@ -1562,11 +1598,14 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
 
         } catch (exception) {
           console.error(msgStr + 'Failed to set the visibility of window decor. Cause: ' + JSON.stringify(exception));
-          if (exception.code == 801) {
-            expect(true).assertTrue()
-            done()
-          } else {
+          if (!currentDeviceIsRk) {
+            console.error(msgStr + 'Failed to keep keyboard onFocus. Cause: ' + JSON.stringify(exception));
             expect().assertFail();
+            done();
+          } else {
+            console.log(msgStr + '当前设备类型不支持系统能力SystemCapability.Window.SessionManager')
+            console.log(msgStr + +JSON.stringify(exception))
+            expect(exception.code).assertEqual(801);
             done();
           }
         }
@@ -1594,11 +1633,14 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
           done()
         } catch (exception) {
           console.error(msgStr + ' Failed to set the height of window decor. Cause: ' + JSON.stringify(exception));
-          if (exception.code == 801) {
-            expect(true).assertTrue()
-            done()
-          } else {
+          if (!currentDeviceIsRk) {
+            console.error(msgStr + 'Failed to keep keyboard onFocus. Cause: ' + JSON.stringify(exception));
             expect().assertFail();
+            done();
+          } else {
+            console.log(msgStr + '当前设备类型不支持系统能力SystemCapability.Window.SessionManager')
+            console.log(msgStr + +JSON.stringify(exception))
+            expect(exception.code).assertEqual(801);
             done();
           }
         }
