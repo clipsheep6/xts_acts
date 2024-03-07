@@ -12,43 +12,48 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.app.ability.UIAbility';
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+
 export default class Ability1 extends Ability {
-    onCreate(want, launchParam) {
-        console.log("Ability1 onCreate");
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("Ability1 onCreate");
+  }
 
-    onDestroy() {
-        // Ability is destroying, release resources for this ability
-        console.log("Ability1 onDestroy");
-    }
+  onDestroy() {
+    // Ability is destroying, release resources for this ability
+    console.log("Ability1 onDestroy");
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("Ability1 onWindowStageCreate");
-        windowStage.setUIContent(this.context, "pages/index1", null);
-        globalThis.ability2Context = this.context;
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("Ability1 onWindowStageCreate");
+    windowStage.loadContent("pages/index1", null);
+    AppStorage.setOrCreate<common.UIAbilityContext>("ability2Context", this.context);
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("Ability1 onWindowStageDestroy");
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("Ability1 onWindowStageDestroy");
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("Ability1 onForeground");
-        setTimeout(()=>{
-            this.context.startAbility(
-                {
-                    bundleName: 'com.example.actsgetcurrenttopabilitystageatest',
-                    abilityName: 'Ability2'
-                })
-        }, 1500);
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("Ability1 onForeground");
+    setTimeout(() => {
+      this.context.startAbility(
+        {
+          bundleName: 'com.example.actsgetcurrenttopabilitystageatest',
+          abilityName: 'Ability2'
+        })
+    }, 1500);
+  }
 
-    onBackground() {
-        // Ability has back to background
-        console.log("Ability1 onBackground");
-    }
-};
+  onBackground() {
+    // Ability has back to background
+    console.log("Ability1 onBackground");
+  }
+}
