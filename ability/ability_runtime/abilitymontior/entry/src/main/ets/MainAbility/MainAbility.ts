@@ -16,38 +16,38 @@ import Ability from '@ohos.app.ability.UIAbility'
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
 import { Hypium } from '@ohos/hypium'
 import testsuite from '../test/List.test'
+import Want from '@ohos.app.ability.Want'
+import AbilityConstant from '@ohos.app.ability.AbilityConstant'
 
 export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        console.log('MainAbility onCreate')
-        globalThis.abilityWant = want;
-        globalThis.abilityWant.parameters.timeout = 15000;
-        var abilityDelegator: any
-        abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-        var abilityDelegatorArguments: any
-        abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
-        console.info('start run testcase!!!')
-        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log('MainAbility onCreate')
+    globalThis.abilityWant = want;
+    globalThis.abilityWant.parameters.timeout = 15000;
+    let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+    let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
+    console.info('start run testcase!!!')
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
+  }
 
-    onDestroy() {
-        console.log('MainAbility onDestroy')
-    }
+  onDestroy() {
+    console.log('MainAbility onDestroy')
+  }
 
-    onWindowStageCreate(windowStage) {
-        console.log('MainAbility onWindowStageCreate')
-        windowStage.setUIContent(this.context, 'MainAbility/pages/index', null)
-    }
+  onWindowStageCreate(windowStage) {
+    console.log('MainAbility onWindowStageCreate')
+    windowStage.setUIContent(this.context, 'MainAbility/pages/index', null)
+  }
 
-    onWindowStageDestroy() {
-        console.log('MainAbility onWindowStageDestroy')
-    }
+  onWindowStageDestroy() {
+    console.log('MainAbility onWindowStageDestroy')
+  }
 
-    onForeground() {
-        console.log('MainAbility onForeground')
-    }
+  onForeground() {
+    console.log('MainAbility onForeground')
+  }
 
-    onBackground() {
-        console.log('MainAbility onBackground')
-    }
+  onBackground() {
+    console.log('MainAbility onBackground')
+  }
 };

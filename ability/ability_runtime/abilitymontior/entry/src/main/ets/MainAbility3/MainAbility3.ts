@@ -14,6 +14,8 @@
 */
 import Ability from '@ohos.app.ability.UIAbility'
 import commonEvent from '@ohos.commonEvent'
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 let TERMINATE_SELF_TIME = 2000;
 let EVENT_TIME = 500;
@@ -21,8 +23,9 @@ let EVENT_TIME = 500;
 function PublishCallBack() {
   console.debug("====>Publish CallBack ====>");
 }
+
 export default class MainAbility3 extends Ability {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log("[Demo] MainAbility3 onCreate")
     globalThis.abilityWant = want;
     globalThis.abilityContext = this.context
@@ -38,8 +41,8 @@ export default class MainAbility3 extends Ability {
     console.log("[Demo] MainAbility3 onWindowStageCreate")
 
     windowStage.setUIContent(this.context, "pages/index", null)
-    setTimeout(()=>{
-      globalThis.abilityContext.terminateSelf().then(()=>{
+    setTimeout(() => {
+      globalThis.abilityContext.terminateSelf().then(() => {
         console.log("====>in terminateSelf====>");
       })
     }, TERMINATE_SELF_TIME);
@@ -53,7 +56,7 @@ export default class MainAbility3 extends Ability {
   onForeground() {
     // Ability has brought to foreground
     console.log("[Demo] MainAbility3 onForeground")
-    setTimeout(()=>{
+    setTimeout(() => {
       commonEvent.publish("commonEvent_foreground", PublishCallBack);
     }, EVENT_TIME);
   }
