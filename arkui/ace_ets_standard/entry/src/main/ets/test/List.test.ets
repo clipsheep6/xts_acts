@@ -23,6 +23,7 @@ import rowSplitJsunit from './RowSplitJsunit.test.ets'
 import ScrollJsunit from './ScrollJsunit.test.ets'
 import StackJsunit from './StackJsunit.test.ets'
 import imageJsunit from './ImageJsunit.test.ets'
+import mediaCachedImageJsunit from './MediaCachedImageJsunit.test.ets'
 import progressJsunit from './ProgressJsunit.test.ets'
 import qrcodeJsunit from './QrcodeJsunit.test.ets'
 import ratingJsunit from './RatingJsunit.test.ets'
@@ -44,6 +45,7 @@ export default function testsuite() {
   ScrollJsunit()
   StackJsunit()
   imageJsunit()
+  mediaCachedImageJsunit()
   progressJsunit()
   qrcodeJsunit()
   ratingJsunit()
