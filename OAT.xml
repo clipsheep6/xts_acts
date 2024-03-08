@@ -73,12 +73,14 @@ Note:If the text contains special characters, please escape them according to th
                 <filteritem type="filename" name="*.abc" desc="all bin file have check"/>
 				<filteritem type="filename" name="*.ogg" desc="all bin file have check"/>
 				<filteritem type="filename" name="*.json" desc="all bin file have check"/>
+				<filteritem type="filename" name="*.h264" desc="all h264 file have check"/>
             </filefilter>
             <filefilter name="defaultFilter" desc="Filters for default" >
                 <filteritem type="filepath" name="global/global_stage/entry/src/main/resources/rawfile/rawfiletest.xml" desc="resource files do not to be added"/>
                 <filteritem type="filepath" name="global/crossplatform/resourcemanageretstest/src/main/resources/rawfile/rawfiletest.xml" desc="resource files do not to be added"/>
                 <filteritem type="filepath" name="global/global_napi_test/entry/src/main/resources/rawfile/test/aa.xml" desc="resource files do not to be added"/>
                 <filteritem type="filepath" name="global/resmgr_standard/resmgrjs/src/main/resources/rawfile/rawfiletest.xml" desc="resource files do not to be added"/>
+                <filteritem type="filepath" name="multimedia/fixavsource/entry/src/main/resources/rawfile/out_320_240_10s(1).h264" desc="resource files do not to be added"/>
             </filefilter>
         </filefilterlist>
     </oatconfig>
