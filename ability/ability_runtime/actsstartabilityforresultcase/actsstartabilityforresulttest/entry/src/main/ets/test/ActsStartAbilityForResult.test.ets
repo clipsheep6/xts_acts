@@ -144,6 +144,7 @@ export default function actsStartAbilityForResult() {
         .catch((err) => {
           console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult catch err, err is ${JSON.stringify(err)}`);
           AssertionFailed(done);
+
         });
 
       await sleep(500)
@@ -426,10 +427,6 @@ export default function actsStartAbilityForResult() {
     it('SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1200', 3, async (done) => {
       TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1200';
       try {
-        setTimeout(() => {
-          expect(true).assertTrue();
-          done();
-        }, 2000)
         // 2, startAbilityForResult
         let want2: Want = {
           bundleName: 'com.acts.startabilityforresult',
@@ -486,10 +483,6 @@ export default function actsStartAbilityForResult() {
     it('SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1300', 3, async (done) => {
       TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1300';
       try {
-        setTimeout(() => {
-          expect(true).assertTrue();
-          done();
-        }, 2000)
         // 2, startAbilityForResult
         let want3: Want = {
           bundleName: 'com.acts.startabilityforresult',
@@ -499,7 +492,7 @@ export default function actsStartAbilityForResult() {
           .then((result) => {
             // Performing normal business operations
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
-           expect(result.want.bundleName).assertEqual("");
+            expect(result.want.bundleName).assertEqual("");
           })
           .catch((err) => {
             // Processing business logic errors
@@ -546,10 +539,6 @@ export default function actsStartAbilityForResult() {
     it('SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1400', 3, async (done) => {
       TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1400';
       try {
-        setTimeout(() => {
-          expect(true).assertTrue();
-          done();
-        }, 2000)
         // 2, startAbilityForResult
         let want3: Want = {
           bundleName: 'com.acts.startabilityforresult',
@@ -670,10 +659,6 @@ export default function actsStartAbilityForResult() {
         let b = 13;
         // result is 61，because The binary of 61 0011 1101
         let resultCode = a | b;
-        setTimeout(() => {
-          expect(true).assertTrue();
-          done();
-        }, 3000)
         // 2, startAbilityForResult
         let want5: Want = {
           bundleName: 'com.acts.startabilityforresult',
@@ -685,7 +670,7 @@ export default function actsStartAbilityForResult() {
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult sbundleName is ${result.want.bundleName}`);
             expect(result.resultCode).assertEqual(resultCode);
-            done();
+          
           })
           .catch((err) => {
             AssertionFailed(done)
@@ -694,11 +679,7 @@ export default function actsStartAbilityForResult() {
           });
         await sleep(2000)
         // 3， terminateSelfWithResult
-        // Return the AbilityResult information to the interface caller
-        // let abilityResult = {
-        //   want5,
-        //   resultCode:resultCode
-        // };
+      
         globalThis.context2.terminateSelfWithResult({
           resultCode: resultCode,
           want: want5
@@ -730,10 +711,10 @@ export default function actsStartAbilityForResult() {
     it('SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1700', 3, async (done) => {
       TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1700 ';
 
-      setTimeout(() => {
-        expect(true).assertTrue();
-        done();
-      }, 5000)
+      // setTimeout(() => {
+      // expect(true).assertTrue();
+      //  done();
+      // }, 5000)
 
       try {
         // 2, startAbilityForResult
@@ -745,12 +726,14 @@ export default function actsStartAbilityForResult() {
           .then((result) => {
             // Performing normal business operations
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
-            AssertionFailed(done);
+            expect(result.resultCode).assertEqual('');
+            expect(result.want.bundleName).assertEqual('');
+
           })
           .catch((err) => {
             // Processing business logic errors
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, err is ${JSON.stringify(err)}`);
-            done();
+            AssertionFailed(done)
           });
         await sleep(500)
         globalThis.context2.terminateSelfWithResult({
@@ -1560,10 +1543,13 @@ export default function actsStartAbilityForResult() {
     it('SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4000', 3, async (done) => {
       TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4000 ';
 
-      setTimeout(() => {
-        expect(true).assertTrue();
-        done();
-      }, 5000)
+      
+      /**
+      * setTimeout(() => {
+      * expect(true).assertTrue();
+      *  done();
+      *}, 5000)
+      *
 
       try {
         let want18: Want = {
