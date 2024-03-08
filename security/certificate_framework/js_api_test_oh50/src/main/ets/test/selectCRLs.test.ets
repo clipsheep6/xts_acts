@@ -141,7 +141,7 @@ export default function certFrameworkSelectCRLsJsAPIFunctionTestUnit() {
       try {
         const crls = await crlFunc.checkSelectCRLs(PEM, [1, 2], param, IS_PROMISE);
         expect(crls != null).assertTrue();
-        expect(crls.length === 1).assertTrue();
+        expect(crls.length === 2).assertTrue();
       }
       catch (err) {
         expect(null).assertFail();
