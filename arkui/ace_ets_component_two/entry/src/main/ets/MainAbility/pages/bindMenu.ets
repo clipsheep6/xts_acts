@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +18,9 @@ import events_emitter from '@ohos.events.emitter'
 @Component
 struct MenuExample {
   @State onActionCalled: boolean = true
-  @Builder MenuBuilder() {
+
+  @Builder
+  MenuBuilder() {
     Flex({ direction: FlexDirection.Column, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
       Text('text1')
         .fontSize(20)
@@ -41,12 +42,12 @@ struct MenuExample {
         .onClick(() => {
           console.info("bindMenu button START")
           try {
-            var backData = {
+            let backData: events_emitter.EventData = {
               data: {
                 "ACTION": this.onActionCalled,
               }
             }
-            var backEvent = {
+            let backEvent: events_emitter.InnerEvent = {
               eventId: 64,
               priority: events_emitter.EventPriority.LOW
             }
