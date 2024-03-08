@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium"
+
+import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
 import { Component, Driver, ON } from '@ohos.UiTest';
 import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
@@ -37,7 +38,7 @@ export default function searchJsunit() {
       } catch (err) {
         console.error("push search page error " + JSON.stringify(err));
       }
-      done()
+      done();
     });
 
     afterEach(async () => {

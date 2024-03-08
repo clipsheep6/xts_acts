@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import { afterEach, beforeEach, describe, expect, it } from '@ohos/hypium';
 import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
@@ -36,7 +37,7 @@ export default function scrollBarJsunit() {
       } catch (err) {
         console.error("push scrollBar page error " + JSON.stringify(err));
       }
-      done()
+      done();
     });
 
     afterEach(async () => {

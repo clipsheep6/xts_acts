@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import events_emitter from '@ohos.events.emitter';
 
 @Entry
@@ -30,22 +31,22 @@ struct ClickExample {
         .fontSize(20)
         .onTouch((event: TouchEvent) => {
           if (event.type === TouchType.Down) {
-            this.eventType = 'Down'
+            this.eventType = 'Down';
           }
           if (event.type === TouchType.Up) {
-            this.eventType = 'Up'
+            this.eventType = 'Up';
           }
           if (event.type === TouchType.Move) {
-            this.eventType = 'Move'
+            this.eventType = 'Move';
           }
           if (event.source === SourceType.Unknown) {
-            this.SourceType = 'Unknown'
+            this.SourceType = 'Unknown';
           }
           if (event.source === SourceType.Mouse) {
-            this.SourceType = 'Mouse'
+            this.SourceType = 'Mouse';
           }
           if (event.source === SourceType.TouchScreen) {
-            this.SourceType = 'TouchScreen'
+            this.SourceType = 'TouchScreen';
           }
           console.info(this.text = 'source：' + event.source);
           try {
@@ -58,14 +59,20 @@ struct ClickExample {
               eventId: 198,
               priority: events_emitter.EventPriority.LOW
             }
-            console.info("sourceTypeTest_0100 start to emit action state")
-            events_emitter.emit(backEvent, backData)
+            console.info("sourceTypeTest_0100 start to emit action state");
+            events_emitter.emit(backEvent, backData);
           } catch (err) {
-            console.info("sourceTypeTest_0100 emit action state err: " + JSON.stringify(err.message))
+            console.info("sourceTypeTest_0100 emit action state err: " + JSON.stringify(err.message));
           }
         })
         .key('button')
-      Text(this.text).padding(15).fontSize(20).key('text')
-    }.height(350).width('100%').padding(10)
+      Text(this.text)
+        .padding(15)
+        .fontSize(20)
+        .key('text')
+    }
+    .height(350)
+    .width('100%')
+    .padding(10)
   }
 }

@@ -14,8 +14,8 @@
  */
 
 import router from '@ohos.router';
-import { describe, beforeAll, afterEach, it, expect } from "@ohos/hypium"
-import Utils from './Utils'
+import { describe, beforeAll, afterEach, it, expect } from "@ohos/hypium";
+import Utils from './Utils';
 
 export default function waterFlowDemoJsunit() {
   describe('waterFlowDemoTest', () => {
@@ -37,7 +37,7 @@ export default function waterFlowDemoJsunit() {
       } catch (err) {
         console.error("push waterflowDemo page error: " + err);
       }
-      done()
+      done();
     });
 
     afterEach(async () => {
@@ -59,6 +59,5 @@ export default function waterFlowDemoJsunit() {
       expect(obj!.$type).assertEqual('WaterFlow');
       done();
     });
-
   })
 }

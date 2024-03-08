@@ -12,27 +12,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import events_emitter from '@ohos.events.emitter'
+
+import events_emitter from '@ohos.events.emitter';
 
 @Entry
 @Component
 struct SearchExample {
-  @State changeValue: string = ''
-  @State submitValue: string = ''
+  @State changeValue: string = '';
+  @State submitValue: string = '';
   @State textFont: Font = {
     size: 10,
     weight: 10,
     family: 'serif',
     style: FontStyle.Normal
   }
-  @State searchButton: string = "10"
-  @State maxLength: number = 19
-  @State copyOption: CopyOptions = CopyOptions.LocalDevice
-  controller: SearchController = new SearchController()
-  controller2: SearchController = new SearchController()
-  @State caretIndex: number = 9999
-  @State text: string = ''
-  @State positionInfo: CaretOffset = { index: 9999, x: 0, y: 0 }
+  @State searchButton: string = "10";
+  @State maxLength: number = 19;
+  @State copyOption: CopyOptions = CopyOptions.LocalDevice;
+  @State caretIndex: number = 9999;
+  @State text: string = '';
+  @State positionInfo: CaretOffset = { index: 9999, x: 0, y: 0 };
+  controller: SearchController = new SearchController();
+  controller2: SearchController = new SearchController();
   private stateChangCallBack = (eventData: events_emitter.EventData) => {
     console.info("search page state change called:" + JSON.stringify(eventData));
     if (eventData != null) {
@@ -82,10 +83,10 @@ struct SearchExample {
           style: FontStyle.Normal
         })
         .onSubmit((value: string) => {
-          this.submitValue = value
+          this.submitValue = value;
         })
         .onChange((value: string) => {
-          this.changeValue = value
+          this.changeValue = value;
         })
 
       Search({ value: this.text, placeholder: 'input content', controller: this.controller2 })
@@ -104,26 +105,16 @@ struct SearchExample {
         .backgroundColor('#00FF00')
         .margin(15)
         .onClick(() => {
-          console.info('text length:' + this.text.length)
-          this.controller2.caretPosition(this.text.length)
-          this.positionInfo = this.controller2.getCaretOffset()
-          console.info("index:" + this.positionInfo.index)
-          this.caretIndex = this.positionInfo.index
+          console.info('text length:' + this.text.length);
+          this.controller2.caretPosition(this.text.length);
+          this.positionInfo = this.controller2.getCaretOffset();
+          console.info("index:" + this.positionInfo.index);
+          this.caretIndex = this.positionInfo.index;
         })
         .key('caretOffsetBtn')
 
-      Text("Index" + this.caretIndex).key('caretOffsetText')
+      Text("Index" + this.caretIndex)
+        .key('caretOffsetText');
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-

@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import RouterParamData from '../utils/RouterParamData';
@@ -24,7 +25,9 @@ struct OhosRouterB {
       Text('B Page')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
-    }.width('100%').height('100%')
+    }
+    .width('100%')
+    .height('100%')
   }
 
   onPageShow() {

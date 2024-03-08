@@ -12,13 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import prompt from '@system.prompt';
 
 @Entry
 @Component
 struct promptExample {
-  @State text: string = 'item1'
-  @State color: string = '#000000'
+  @State text: string = 'item1';
+  @State color: string = '#000000';
 
   build() {
     Column() {

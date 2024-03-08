@@ -26,7 +26,7 @@ struct RadioExample {
           .width(50)
           .key('radio1')
           .onChange((value: boolean) => {
-            console.log('Radio1 status is ' + value)
+            console.log('Radio1 status is ' + value);
           })
       }
 
@@ -38,7 +38,7 @@ struct RadioExample {
           .width(50)
           .key('radio2')
           .onChange((value: boolean) => {
-            console.log('Radio2 status is ' + value)
+            console.log('Radio2 status is ' + value);
           })
       }
 
@@ -50,9 +50,10 @@ struct RadioExample {
           .width(49)
           .key('radio3')
           .onChange((value: boolean) => {
-            console.log('Radio3 status is ' + value)
+            console.log('Radio3 status is ' + value);
           })
       }
-    }.padding({ top: 30 })
+    }
+    .padding({ top: 30 })
   }
 }

@@ -12,22 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { WaterFlowDataSource } from './WaterFlowDataSource'
+
+import { WaterFlowDataSource } from './WaterFlowDataSource';
 
 @Entry
 @Component
 struct WaterflowDemo {
-  @State minSize: number = 50
-  @State maxSize: number = 100
-  @State fontSize: number = 24
-  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
+  @State minSize: number = 50;
+  @State maxSize: number = 100;
+  @State fontSize: number = 24;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
   scroller: Scroller = new Scroller();
   datasource: WaterFlowDataSource = new WaterFlowDataSource();
 
   // 计算flow item宽/高
   getSize() {
-    let ret = Math.floor(Math.random() * this.maxSize)
-    return (ret > this.minSize ? ret : this.minSize)
+    let ret = Math.floor(Math.random() * this.maxSize);
+    return (ret > this.minSize ? ret : this.minSize);
   }
 
   @Builder
@@ -49,7 +50,9 @@ struct WaterflowDemo {
         LazyForEach(this.datasource, (item: number) => {
           FlowItem() {
             Column() {
-              Text("N" + item).fontSize(12).height('16')
+              Text("N" + item)
+                .fontSize(12)
+                .height('16')
               Image('res/waterFlowTest(' + item % 5 + ').jpg')
                 .objectFit(ImageFit.Fill)
             }
@@ -71,10 +74,10 @@ struct WaterflowDemo {
       .columnsGap(10)
       .rowsGap(5)
       .onReachStart(() => {
-        console.info("onReachStart")
+        console.info("onReachStart");
       })
       .onReachEnd(() => {
-        console.info("onReachEnd")
+        console.info("onReachEnd");
       })
       .backgroundColor(0xFAEEE0)
       .width('100%')

@@ -12,16 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import events_emitter from '@ohos.events.emitter';
 
 @Entry
 @Component
 struct linearGradientExample {
-  @State direction1: GradientDirection = GradientDirection.LeftTop
+  @State direction1: GradientDirection = GradientDirection.LeftTop;
 
   build() {
     Column({ space: 5 }) {
-      Text('linearGradient').fontSize(12).width('90%').fontColor(0xCCCCCC)
+      Text('linearGradient')
+        .fontSize(12)
+        .width('90%')
+        .fontColor(0xCCCCCC)
       Row()
         .width(100)
         .height(100)
@@ -29,7 +33,8 @@ struct linearGradientExample {
           angle: 45,
           direction: this.direction1,
           colors: [[0xAEE1E1, 0.0], [0xD3E0DC, 0.3], [0xFCD1D1, 1.0]]
-        }).key("GradientDirection")
+        })
+        .key("GradientDirection")
     }
     .width('100%')
     .padding({ top: 5 })
@@ -41,19 +46,19 @@ struct linearGradientExample {
       eventId: 106,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEventOne, this.stateChangCallBack)
+    events_emitter.on(stateChangeEventOne, this.stateChangCallBack);
     console.info('gradientDirection page show called');
     let stateChangeEventTwo: events_emitter.InnerEvent = {
       eventId: 107,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEventTwo, this.stateChangCallBack)
+    events_emitter.on(stateChangeEventTwo, this.stateChangCallBack);
     console.info('gradientDirection page show called');
     let stateChangeEventThree: events_emitter.InnerEvent = {
       eventId: 108,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEventThree, this.stateChangCallBack)
+    events_emitter.on(stateChangeEventThree, this.stateChangCallBack);
   }
 
   private stateChangCallBack = (eventData: events_emitter.EventData) => {
@@ -61,7 +66,7 @@ struct linearGradientExample {
       console.info("GradientDirection page state change called:" + JSON.stringify(eventData));
       if (eventData!.data!.ACTION != null) {
         this.direction1 = eventData!.data!.ACTION;
-        console.log("direction1 is" + eventData!.data!.ACTION)
+        console.log("direction1 is" + eventData!.data!.ACTION);
       }
     }
   }

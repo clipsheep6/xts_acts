@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import events_emitter from '@ohos.events.emitter';
 
 @Entry
@@ -65,9 +66,11 @@ struct ListItemExample {
             .textAlign(TextAlign.Center)
             .backgroundColor(0x696969)
             .onClick(() => {
-              this.editFlag = !this.editFlag
+              this.editFlag = !this.editFlag;
             })
-        }.sticky(this.sticky).key('ListItem')
+        }
+        .sticky(this.sticky)
+        .key('ListItem')
 
         ForEach(this.arr, (item: number) => {
           ListItem() {
@@ -78,18 +81,23 @@ struct ListItemExample {
               .textAlign(TextAlign.Center)
               .borderRadius(10)
               .backgroundColor(0xFFFFFF)
-          }.editable(this.editFlag)
+          }
+          .editable(this.editFlag)
         }, (item: number) => item.toString())
       }
       .key('List')
       .editMode(this.editMode)
       .onItemDelete((index: number) => {
-        console.info(this.arr[index - 1] + 'Delete')
-        this.arr.splice(index - 1, 1)
-        this.editFlag = false
-        return true
+        console.info(this.arr[index - 1] + 'Delete');
+        this.arr.splice(index - 1, 1);
+        this.editFlag = false;
+        return true;
       })
       .width('90%')
-    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding({ top: 5 })
   }
 }

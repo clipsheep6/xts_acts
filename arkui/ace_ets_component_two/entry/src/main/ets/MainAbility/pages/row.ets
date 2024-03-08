@@ -12,13 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import events_emitter from '@ohos.events.emitter'
+
+import events_emitter from '@ohos.events.emitter';
 
 @Entry
 @Component
 struct RowTest {
-  @State alignItems: VerticalAlign = VerticalAlign.Center
-  @State justifyContent: FlexAlign = FlexAlign.Start
+  @State alignItems: VerticalAlign = VerticalAlign.Center;
+  @State justifyContent: FlexAlign = FlexAlign.Start;
   private stateChangCallBack = (eventData: events_emitter.EventData) => {
     console.info("row page stateChangCallBack");
     if (eventData != null) {
@@ -38,40 +39,104 @@ struct RowTest {
       eventId: 182,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEvent, this.stateChangCallBack)
+    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
   }
 
   build() {
     Column({ space: 5 }) {
-      Text('space').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('space')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       Row({ space: 5 }) {
-        Row().width('30%').height(50).backgroundColor(0xAFEEEE)
-        Row().width('30%').height(50).backgroundColor(0x00FFFF)
-      }.width('90%').height(107).border({ width: 1 }).key('Row')
+        Row()
+          .width('30%')
+          .height(50)
+          .backgroundColor(0xAFEEEE)
+        Row()
+          .width('30%')
+          .height(50)
+          .backgroundColor(0x00FFFF)
+      }
+      .width('90%')
+      .height(107)
+      .border({ width: 1 })
+      .key('Row')
 
-      Text('alignItems(Top)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('alignItems(Top)')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       Row() {
-        Row().width('30%').height(50).backgroundColor(0xAFEEEE)
-        Row().width('30%').height(50).backgroundColor(0x00FFFF)
-      }.alignItems(VerticalAlign.Top).height('15%').border({ width: 1 })
+        Row()
+          .width('30%')
+          .height(50)
+          .backgroundColor(0xAFEEEE)
+        Row()
+          .width('30%')
+          .height(50)
+          .backgroundColor(0x00FFFF)
+      }
+      .alignItems(VerticalAlign.Top)
+      .height('15%')
+      .border({ width: 1 })
 
-      Text('alignItems(Center)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('alignItems(Center)')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       Row() {
-        Row().width('30%').height(50).backgroundColor(0xAFEEEE)
-        Row().width('30%').height(50).backgroundColor(0x00FFFF)
-      }.alignItems(VerticalAlign.Center).height('15%').border({ width: 1 })
+        Row()
+          .width('30%')
+          .height(50)
+          .backgroundColor(0xAFEEEE)
+        Row()
+          .width('30%')
+          .height(50)
+          .backgroundColor(0x00FFFF)
+      }
+      .alignItems(VerticalAlign.Center)
+      .height('15%')
+      .border({ width: 1 })
 
-      Text('justifyContent(End)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('justifyContent(End)')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       Row() {
-        Row().width('30%').height(50).backgroundColor(0xAFEEEE)
-        Row().width('30%').height(50).backgroundColor(0x00FFFF)
-      }.width('90%').border({ width: 1 }).alignItems(VerticalAlign.Bottom).justifyContent(FlexAlign.End)
+        Row()
+          .width('30%')
+          .height(50)
+          .backgroundColor(0xAFEEEE)
+        Row()
+          .width('30%')
+          .height(50)
+          .backgroundColor(0x00FFFF)
+      }
+      .width('90%')
+      .border({ width: 1 })
+      .alignItems(VerticalAlign.Bottom)
+      .justifyContent(FlexAlign.End)
 
-      Text('justifyContent(Center)').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('justifyContent(Center)')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       Row() {
-        Row().width('30%').height(50).backgroundColor(0xAFEEEE)
-        Row().width('30%').height(49).backgroundColor(0x00FFFF)
-      }.width('90%').border({ width: 1 }).alignItems(VerticalAlign.Center).justifyContent(FlexAlign.Center)
-    }.width('100%')
+        Row()
+          .width('30%')
+          .height(50)
+          .backgroundColor(0xAFEEEE)
+        Row()
+          .width('30%')
+          .height(49)
+          .backgroundColor(0x00FFFF)
+      }
+      .width('90%')
+      .border({ width: 1 })
+      .alignItems(VerticalAlign.Center)
+      .justifyContent(FlexAlign.Center)
+    }
+    .width('100%')
   }
 }

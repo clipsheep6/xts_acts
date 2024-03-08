@@ -16,9 +16,6 @@
 @Entry
 @Component
 struct MyComponent {
-  aboutToAppear() {
-  }
-
   build() {
     Flex({
       direction: FlexDirection.Column,

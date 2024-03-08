@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import events_emitter from '@ohos.events.emitter';
 
 @Entry
 @Component
 struct LoadingProgressExample {
-  @State color: Color = Color.Blue
+  @State color: Color = Color.Blue;
   private stateChangCallBack = (eventData: events_emitter.EventData) => {
     console.info("LoadingProgress page stateChangCallBack");
     if (eventData != null) {
@@ -34,7 +35,7 @@ struct LoadingProgressExample {
       eventId: 124,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEvent, this.stateChangCallBack)
+    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
   }
 
   build() {
@@ -48,6 +49,8 @@ struct LoadingProgressExample {
       LoadingProgress()
         .height(50)
         .color(Color.Black)
-    }.width('100%').margin({ top: 6 })
+    }
+    .width('100%')
+    .margin({ top: 6 })
   }
 }

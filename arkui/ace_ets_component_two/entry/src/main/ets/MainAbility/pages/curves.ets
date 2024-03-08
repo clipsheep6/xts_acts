@@ -12,13 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Curves from '@ohos.curves'
+
+import Curves from '@ohos.curves';
 
 @Entry
 @Component
 struct ImageComponent {
-  @State widthSize: number = 200
-  @State heightSize: number = 200
+  @State widthSize: number = 200;
+  @State heightSize: number = 200;
 
   build() {
     Column() {

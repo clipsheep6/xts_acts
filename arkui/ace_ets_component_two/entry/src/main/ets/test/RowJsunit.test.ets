@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium"
+import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
 import router from '@ohos.router';
 import Utils from './Utils';
 
@@ -36,7 +36,7 @@ export default function rowJsunit() {
       } catch (err) {
         console.error("push row page error " + JSON.stringify(err));
       }
-      done()
+      done();
     });
 
     afterEach(async () => {

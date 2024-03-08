@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import router from '@ohos.router';
 import RouterParamData from '../utils/RouterParamData';
 
@@ -93,6 +94,8 @@ struct OhosRouterA {
             params: this.routerParamData
           });
         });
-    }.width('100%').height('100%')
+    }
+    .width('100%')
+    .height('100%')
   }
 }

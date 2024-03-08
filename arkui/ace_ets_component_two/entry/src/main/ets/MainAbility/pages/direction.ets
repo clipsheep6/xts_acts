@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import events_emitter from '@ohos.events.emitter';
 
 @Entry
 @Component
 struct Index {
-  @State direction1: FlexDirection = FlexDirection.Column
+  @State direction1: FlexDirection = FlexDirection.Column;
 
   build() {
     Flex({ direction: this.direction1, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -41,7 +42,7 @@ struct Index {
       eventId: 84,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEvent, this.stateChangCallBack)
+    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
   }
 
   private stateChangCallBack = (eventData: events_emitter.EventData) => {

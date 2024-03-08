@@ -23,8 +23,8 @@ struct PieceCode {
   @State fontColor: string = "#FF008000";
   @State iconPosition: IconPosition = IconPosition.End;
   @State fontStyle: FontStyle = FontStyle.Italic;
-  @State showDelete: boolean = false
-  @State onActionCalled: boolean = false
+  @State showDelete: boolean = false;
+  @State onActionCalled: boolean = false;
 
   onPageShow() {
     console.info('piece page show called');
@@ -66,7 +66,7 @@ struct PieceCode {
         .fontStyle(this.fontStyle)
         .showDelete(this.showDelete)
         .onClose(() => {
-          console.info("Piece onClose")
+          console.info("Piece onClose");
           this.onActionCalled = true;
           try {
             let backData: events_emitter.EventData = {
@@ -78,10 +78,10 @@ struct PieceCode {
               eventId: 155,
               priority: events_emitter.EventPriority.LOW
             }
-            console.info("piece onClose start to emit action state")
-            events_emitter.emit(backEvent, backData)
+            console.info("piece onClose start to emit action state");
+            events_emitter.emit(backEvent, backData);
           } catch (err) {
-            console.info("piece onClose emit action state err: " + JSON.stringify(err.message))
+            console.info("piece onClose emit action state err: " + JSON.stringify(err.message));
           }
         })
         .key("piece")
@@ -89,7 +89,7 @@ struct PieceCode {
         .margin(30)
         .key('button1')
         .onClick(() => {
-          this.showDelete = true
+          this.showDelete = true;
           try {
             let backData: events_emitter.EventData = {
               data: {
@@ -100,13 +100,15 @@ struct PieceCode {
               eventId: 156,
               priority: events_emitter.EventPriority.LOW
             }
-            console.info("close to emit action state")
-            events_emitter.emit(backEvent, backData)
+            console.info("close to emit action state");
+            events_emitter.emit(backEvent, backData);
           } catch (err) {
-            console.info("close action state err: " + JSON.stringify(err.message))
+            console.info("close action state err: " + JSON.stringify(err.message));
           }
         })
-    }.width('100%').margin({ top: 300 })
+    }
+    .width('100%')
+    .margin({ top: 300 })
     .height('100%')
   }
 }

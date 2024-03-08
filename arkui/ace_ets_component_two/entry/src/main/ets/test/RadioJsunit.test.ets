@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium"
+import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
 import router from '@ohos.router';
 import Utils from './Utils';
 
@@ -36,7 +36,7 @@ export default function radioJsunit() {
       } catch (err) {
         console.error("push radio page error " + err);
       }
-      done()
+      done();
     });
 
     afterEach(async () => {

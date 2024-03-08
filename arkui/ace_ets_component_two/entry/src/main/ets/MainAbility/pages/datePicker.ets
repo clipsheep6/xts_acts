@@ -12,13 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import events_emitter from '@ohos.events.emitter';
 
 @Entry
 @Component
 struct DatePickerExample01 {
-  private selectedDate: Date = new Date('2021-08-08')
-  @State useMilitaryTime: boolean = true
+  private selectedDate: Date = new Date('2021-08-08');
+  @State useMilitaryTime: boolean = true;
 
   build() {
     Column() {
@@ -43,10 +44,10 @@ struct DatePickerExample01 {
               eventId: 80,
               priority: events_emitter.EventPriority.LOW
             }
-            console.info("DatePicker start to emit action state")
-            events_emitter.emit(backEvent, backData)
+            console.info("DatePicker start to emit action state");
+            events_emitter.emit(backEvent, backData);
           } catch (err) {
-            console.info("DatePicker emit action state err: " + JSON.stringify(err.message))
+            console.info("DatePicker emit action state err: " + JSON.stringify(err.message));
           }
         })
     }.width('100%')
@@ -58,7 +59,7 @@ struct DatePickerExample01 {
       eventId: 81,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEvent, this.stateChangCallBack)
+    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
   }
 
   private stateChangCallBack = (eventData: events_emitter.EventData) => {

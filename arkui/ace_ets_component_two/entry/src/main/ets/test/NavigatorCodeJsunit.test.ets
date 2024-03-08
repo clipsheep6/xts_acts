@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium"
+import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
 import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
@@ -39,7 +39,7 @@ export default function navigatorCodeJsunit() {
       } catch (err) {
         console.error("push NavigatorClick page error:" + JSON.stringify(err));
       }
-      done()
+      done();
     });
 
     afterEach(async () => {

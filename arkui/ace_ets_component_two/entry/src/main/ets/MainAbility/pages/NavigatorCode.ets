@@ -29,7 +29,7 @@ struct NavigatorCode {
         this.typeValue = navigationTypeValue;
         console.info("this.typeValue:" + this.typeValue);
       } else {
-        console.info("navigationTypeValue is null or empty " + NavigatorCode);
+        console.info("navigationTypeValue is null or empty ");
       }
     } else {
       console.info("NavigatorCode page color not change called:" + JSON.stringify(eventData));
@@ -48,21 +48,32 @@ struct NavigatorCode {
       eventId: 138,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEvent2, this.stateChangCallBack)
+    events_emitter.on(stateChangeEvent2, this.stateChangCallBack);
   }
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
       Navigator({ target: 'pages/NavigatorDetailCode', type: NavigationType.Push }) {
-        Text('Go to ' + this.Text + ' page').width('100%').textAlign(TextAlign.Center)
-      }.params({ text: this.Text }).key('button')
+        Text('Go to ' + this.Text + ' page')
+          .width('100%')
+          .textAlign(TextAlign.Center)
+      }
+      .params({ text: this.Text })
+      .key('button')
 
       Navigator() {
-        Text('Back to previous page').width('100%').textAlign(TextAlign.Center)
-      }.active(this.active).key('NavigatorType')
+        Text('Back to previous page')
+          .width('100%')
+          .textAlign(TextAlign.Center)
+      }
+      .active(this.active)
+      .key('NavigatorType')
       .onClick(() => {
         this.active = true
       })
-    }.height(150).width(350).padding(35)
+    }
+    .height(150)
+    .width(350)
+    .padding(35)
   }
 }

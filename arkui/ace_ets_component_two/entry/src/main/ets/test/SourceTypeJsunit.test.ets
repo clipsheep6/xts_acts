@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium"
+
+import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
 import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
@@ -37,7 +38,7 @@ export default function sourceTypeJsunit() {
       } catch (err) {
         console.error("push sourceType page error:" + err);
       }
-      done()
+      done();
     });
 
     afterEach(async () => {

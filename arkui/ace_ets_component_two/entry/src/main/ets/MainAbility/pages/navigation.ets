@@ -12,19 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import events_emitter from '@ohos.events.emitter';
 
 @Entry
 @Component
 struct NavigationExample {
-  private arr: number[] = [0, 1, 2, 3, 4, 5]
-  @State hideBar: boolean = true
-  @State toolBar: boolean = true
-  @State hideToolBar: boolean = false
-  @State hideTitleBar: boolean = false
-  @State hideBackButton: boolean = false
-  @State onActionCalled: boolean = false
-  @State titleMode: NavigationTitleMode = NavigationTitleMode.Free
+  private arr: number[] = [0, 1, 2, 3, 4, 5];
+  @State hideBar: boolean = true;
+  @State toolBar: boolean = true;
+  @State hideToolBar: boolean = false;
+  @State hideTitleBar: boolean = false;
+  @State hideBackButton: boolean = false;
+  @State onActionCalled: boolean = false;
+  @State titleMode: NavigationTitleMode = NavigationTitleMode.Free;
   private stateChangCallBack = (eventData: events_emitter.EventData) => {
     if (eventData != null) {
       console.info("tabs page state change called:" + JSON.stringify(eventData));
@@ -49,7 +50,7 @@ struct NavigationExample {
       eventId: 135,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEvent, this.stateChangCallBack)
+    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
   }
 
   @Builder
@@ -62,7 +63,7 @@ struct NavigationExample {
         .fontSize(30)
     }
     .onClick(() => {
-      console.log("title")
+      console.log("title");
     })
   }
 
@@ -76,13 +77,16 @@ struct NavigationExample {
         .width(25)
         .height(25)
         .margin({ left: 30 })
-    }.width(100)
+    }
+    .width(100)
   }
 
   build() {
     Column() {
       Navigation() {
-        Search({ value: '', placeholder: "" }).width('85%').margin(26)
+        Search({ value: '', placeholder: "" })
+          .width('85%')
+          .margin(26)
         List({ space: 5, initialIndex: 0 }) {
           ForEach(this.arr, (item: number) => {
             ListItem() {
@@ -93,7 +97,8 @@ struct NavigationExample {
                 .borderRadius(15)
                 .fontSize(16)
                 .textAlign(TextAlign.Center)
-            }.editable(true)
+            }
+            .editable(true)
           }, (item: number) => item.toString())
         }
         .listDirection(Axis.Vertical)
@@ -121,10 +126,10 @@ struct NavigationExample {
                 eventId: 1366,
                 priority: events_emitter.EventPriority.LOW
               }
-              console.info("navigationContent1 start to emit action state")
-              events_emitter.emit(backEvent, backData)
+              console.info("navigationContent1 start to emit action state");
+              events_emitter.emit(backEvent, backData);
             } catch (err) {
-              console.info("navigationContent1 emit action state err: " + JSON.stringify(err.message))
+              console.info("navigationContent1 emit action state err: " + JSON.stringify(err.message));
             }
           })
           .margin({ left: 135, top: 60 })
@@ -142,19 +147,20 @@ struct NavigationExample {
         items: [
           {
             value: 'app', icon: 'images/grid.svg', action: () => {
-            console.log("app")
+            console.log("app");
           }
           },
           {
             value: 'add', icon: 'images/add.svg', action: () => {
-            console.log("add")
+            console.log("add");
           }
           },
           {
             value: 'collect', icon: 'images/collect.svg', action: () => {
-            console.log("collect")
+            console.log("collect");
           }
-          }]
+          }
+        ]
       })
       .hideToolBar(this.hideBar)
     }

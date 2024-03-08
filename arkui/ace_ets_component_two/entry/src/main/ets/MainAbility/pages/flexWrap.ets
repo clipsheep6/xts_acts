@@ -12,31 +12,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import events_emitter from '@ohos.events.emitter'
+
+import events_emitter from '@ohos.events.emitter';
 
 @Entry
 @Component
 struct FlexWrapExample {
-  @State width1: string = '20%'
-  @State height1: number = 40
-  @State backgroundColor1: Color = 0xD2B48C
+  @State width1: string = '20%';
+  @State height1: number = 40;
+  @State backgroundColor1: Color = 0xD2B48C;
 
   build() {
     Column() {
       Column({ space: 5 }) {
-        Text('WrapReverse').fontSize(9).fontColor(0xCCCCCC).width('90%')
+        Text('WrapReverse')
+          .fontSize(9)
+          .fontColor(0xCCCCCC)
+          .width('90%')
         Flex({ wrap: FlexWrap.WrapReverse, direction: FlexDirection.Row }) {
-          Text('1').width(this.width1).height(this.height1).backgroundColor(this.backgroundColor1)
-          Text('2').width(this.width1).height(this.height1).backgroundColor(this.backgroundColor1)
-          Text('3').width(this.width1).height(this.height1).backgroundColor(this.backgroundColor1)
+          Text('1')
+            .width(this.width1)
+            .height(this.height1)
+            .backgroundColor(this.backgroundColor1)
+          Text('2')
+            .width(this.width1)
+            .height(this.height1)
+            .backgroundColor(this.backgroundColor1)
+          Text('3')
+            .width(this.width1)
+            .height(this.height1)
+            .backgroundColor(this.backgroundColor1)
             .key('WrapReverse')
         }
         .width('90%')
         .height(120)
         .padding(10)
         .backgroundColor(0xAFEEEE)
-      }.width('100%').margin({ top: 5 })
-    }.width('100%')
+      }
+      .width('100%')
+      .margin({ top: 5 })
+    }
+    .width('100%')
   }
 
   onPageShow() {
@@ -45,7 +61,7 @@ struct FlexWrapExample {
       eventId: 100,
       priority: events_emitter.EventPriority.LOW
     }
-    events_emitter.on(stateChangeEvent, this.stateChangCallBack)
+    events_emitter.on(stateChangeEvent, this.stateChangCallBack);
   }
 
   private stateChangCallBack = (eventData: events_emitter.EventData) => {

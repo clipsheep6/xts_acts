@@ -12,7 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium"
+
+import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
 import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter'
 import Utils from './Utils';
@@ -38,7 +39,7 @@ export default function imageAnimatorJsunit() {
       } catch (err) {
         console.error("push imageAnimator page error: " + err);
       }
-      done()
+      done();
     });
 
     afterEach(async () => {
