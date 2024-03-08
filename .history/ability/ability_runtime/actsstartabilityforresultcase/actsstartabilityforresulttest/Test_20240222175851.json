@@ -15,9 +15,7 @@
                 "StartAbilityForResultHap4.hap",
                 "StartAbilityForResultHap5.hap",
                 "ActsStartAbilityForResultAssist1Test.hap",
-                "ActsStartAbilityForResultAssist2Test.hap",
-                "StartAbilityForResultHap5800.hap",
-                "StartAbilityForResultHap5000.hap"
+                "ActsStartAbilityForResultAssist2Test.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true

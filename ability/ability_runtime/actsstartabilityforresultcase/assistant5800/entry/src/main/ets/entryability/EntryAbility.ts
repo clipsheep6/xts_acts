@@ -61,7 +61,7 @@ export default class EntryAbility extends UIAbility {
   }
   terminateSelfWithResult(){
     let terwant25: Want = {
-      bundleName: 'com.acts.assistant5800',
+      bundleName: 'com.example.assistant5800',
       abilityName: 'EntryAbility',
     };
 

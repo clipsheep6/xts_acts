@@ -89,10 +89,10 @@ export default class EntryAbility extends UIAbility {
       resultCode
     };
     console.info(`${TAG} abilityResult:${JSON.stringify(abilityResult)}`)
-    commonEventManager.publish(TAG + "_result",{data:JSON.stringify(abilityResult)}, (err) => {
-    });
     this.context.terminateSelfWithResult(abilityResult,()=>{
       hilog.info(0x0000, 'testTag', '%{public}s', 'terminateSelfWithResult   1');
+      commonEventManager.publish(TAG + "_result",{data:JSON.stringify(abilityResult)}, (err) => {
+      });
     })
   }
 

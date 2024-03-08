@@ -23,7 +23,7 @@ import commonEventManager from '@ohos.commonEventManager';
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
-    hilog.info(0x0000, 'testTag5800', '%{public}s', 'Ability onCreate');
+    hilog.info(0x0000, 'testTag5000', '%{public}s', 'Ability onCreate');
     globalThis.context = this.context
     commonEventManager.publish("AbilityOncreate", (err) => {
       console.log("AbilityOncreate publish");
@@ -31,32 +31,32 @@ export default class EntryAbility extends UIAbility {
   }
 
   onDestroy(): void {
-    hilog.info(0x0000, 'testTag5800', '%{public}s', 'Ability onDestroy');
+    hilog.info(0x0000, 'testTag5000', '%{public}s', 'Ability onDestroy');
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
     // Main window is created, set main page for this ability
-    hilog.info(0x0000, 'testTag5800', '%{public}s', 'Ability onWindowStageCreate');
+    hilog.info(0x0000, 'testTag5000', '%{public}s', 'Ability onWindowStageCreate');
     commonEventManager.publish("AbilityOnWindowStageCreate", (err) => {
       console.log("AbilityStageOncreate publish");
     });
     windowStage.loadContent('pages/Index', (err, data) => {
       if (err.code) {
-        hilog.error(0x0000, 'testTag5800', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
+        hilog.error(0x0000, 'testTag5000', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
-      hilog.info(0x0000, 'testTag5800', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
+      hilog.info(0x0000, 'testTag5000', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
   }
 
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
-    hilog.info(0x0000, 'testTag5800', '%{public}s', 'Ability onWindowStageDestroy');
+    hilog.info(0x0000, 'testTag5000', '%{public}s', 'Ability onWindowStageDestroy');
   }
 
   onForeground(): void {
     // Ability has brought to foreground
-    hilog.info(0x0000, 'testTag5800', '%{public}s', 'Ability onForeground');
+    hilog.info(0x0000, 'testTag5000', '%{public}s', 'Ability onForeground');
     commonEventManager.publish("AbilityOnForeground", (err) => {
       console.log("AbilityStageOncreate publish");
     });
@@ -70,6 +70,6 @@ export default class EntryAbility extends UIAbility {
 
   onBackground(): void {
     // Ability has back to background
-    hilog.info(0x0000, 'testTag5800', '%{public}s', 'Ability onBackground');
+    hilog.info(0x0000, 'testTag5000', '%{public}s', 'Ability onBackground');
   }
 }

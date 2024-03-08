@@ -15,9 +15,12 @@
 
 import actsStartAbilityForResult from './ActsStartAbilityForResult.test';
 import actsStartAbilityForResult2 from './ActsStartAbilityForResult2.test';
+import actsStartAbilityForResult3 from './ActsStartAbilityForResult3.test';
+
 
 export default function testsuite() {
   actsStartAbilityForResult();
   actsStartAbilityForResult2();
+  actsStartAbilityForResult3();
 
 }

@@ -18,6 +18,7 @@
                 "ActsStartAbilityForResultAssist2Test.hap",
                 "StartAbilityForResultHap5800.hap",
                 "StartAbilityForResultHap5000.hap"
+
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
