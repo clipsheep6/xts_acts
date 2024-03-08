@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -111,4 +112,19 @@ struct PieceCode {
     .margin({ top: 300 })
     .height('100%')
   }
+}
+
+function Piece(arg0: {
+  content: string;
+  icon: string;
+}) {
+  throw new Error('Function not implemented.');
+}
+
+
+function Piece(arg0: {
+  content: string;
+  icon: string;
+}) {
+  throw new Error('Function not implemented.');
 }
