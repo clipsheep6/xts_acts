@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,16 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium";
-import router from '@system.router';
+import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
 export default function pieceJsunit() {
-  describe('appInfoTest_two_6', function () {
-    beforeEach(async function (done) {
-      let options = {
-        uri: 'MainAbility/pages/PieceCode',
+  describe('appInfoTest_two_6', () => {
+    beforeEach(async (done: Function) => {
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/PieceCode',
       }
       try {
         router.clear();
@@ -30,7 +29,7 @@ export default function pieceJsunit() {
         console.info("get PieceCode state success " + JSON.stringify(pages));
         if (!("PieceCode" == pages.name)) {
           console.info("get PieceCode pages success " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push PieceCode page success " + JSON.stringify(result));
         }
@@ -40,20 +39,20 @@ export default function pieceJsunit() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(2000);
       console.info("PieceCode after each called");
     });
 
-    it('test_pieceCode_01', 0, async function (done) {
+    it('test_pieceCode_01', 0, async (done: Function) => {
       console.info('test_pieceCode_01 START');
       await Utils.sleep(1500);
-      let callback = (indexEvent) => {
-        console.info("test_pieceCode_01 get state result is: " + JSON.stringify(indexEvent));
-        expect(indexEvent.data.showDelete).assertEqual(true);
+      let callback = (indexData: events_emitter.EventData) => {
+        console.info("test_pieceCode_01 get state result is: " + JSON.stringify(indexData));
+        expect(indexData!.data!.showDelete).assertEqual(true);
         done();
       }
-      let indexEvent = {
+      let indexEvent: events_emitter.InnerEvent = {
         eventId: 156,
         priority: events_emitter.EventPriority.LOW
       }
@@ -62,14 +61,14 @@ export default function pieceJsunit() {
       } catch (err) {
         console.info("test_pieceCode_01 on events_emitter err : " + JSON.stringify(err));
       }
-      console.info("test_pieceCode_01 click result is: " + JSON.stringify(sendEventByKey('button1',10,"")));
+      console.info("test_pieceCode_01 click result is: " + JSON.stringify(sendEventByKey('button1', 10, "")));
       await Utils.sleep(1000);
-      var callback1 = (eventData) => {
+      let callback1 = (eventData: events_emitter.EventData) => {
         console.info("test_pieceCode_01 get event state result is: " + JSON.stringify(eventData));
-        expect(eventData.data.ACTION).assertEqual(true);
+        expect(eventData!.data!.ACTION).assertEqual(true);
         done();
       }
-      var innerEventOne = {
+      let innerEventOne: events_emitter.InnerEvent = {
         eventId: 155,
         priority: events_emitter.EventPriority.LOW
       }

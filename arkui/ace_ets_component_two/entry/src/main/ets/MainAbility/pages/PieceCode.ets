@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -21,60 +20,61 @@ import events_emitter from '@ohos.events.emitter';
 struct PieceCode {
   @State content: string = "piece";
   @State icon: string = "1";
-  @State fontColor: Color = "#FF008000";
+  @State fontColor: string = "#FF008000";
   @State iconPosition: IconPosition = IconPosition.End;
   @State fontStyle: FontStyle = FontStyle.Italic;
-  @State showDelete :boolean = false
-  @State onActionCalled :boolean = false
+  @State showDelete: boolean = false
+  @State onActionCalled: boolean = false
 
   onPageShow() {
     console.info('piece page show called');
-    var stateChangeEvent = {
+    let stateChangeEvent: events_emitter.InnerEvent = {
       eventId: 154,
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack);
   }
-  private stateChangCallBack = (eventData) => {
+
+  private stateChangCallBack = (eventData: events_emitter.EventData) => {
     if (eventData != null) {
       console.info("piece page state change called:" + JSON.stringify(eventData));
-      let pieceObj = JSON.parse(eventData.data.pieceObj);
-      if(pieceObj) {
-        this.content = pieceObj.content;
-        this.icon = pieceObj.icon;
+      let pieceObj: ESObject = JSON.parse(eventData.data!.pieceObj);
+      if (pieceObj) {
+        this.content = pieceObj!.content;
+        this.icon = pieceObj!.icon;
       }
-      if(eventData.data.iconPosition != null) {
-        this.iconPosition = eventData.data.iconPosition;
+      if (eventData.data!.iconPosition != null) {
+        this.iconPosition = eventData.data!.iconPosition;
       }
-      if(eventData.data.fontStyle != null) {
-        this.fontStyle = eventData.data.fontStyle;
+      if (eventData.data!.fontStyle != null) {
+        this.fontStyle = eventData.data!.fontStyle;
       }
-      if(eventData.data.Color != null) {
-        this.Color = eventData.data.Color;
+      if (eventData.data!.Color != null) {
+        this.fontColor = eventData.data!.Color;
       }
-      if(eventData.data.showDelete != null) {
-        this.showDelete = eventData.data.showDelete;
+      if (eventData.data!.showDelete != null) {
+        this.showDelete = eventData.data!.showDelete;
       }
     }
   }
 
   build() {
     Column() {
-      Piece({ content: this.content , icon: this.icon })
+      Piece({ content: this.content, icon: this.icon })
         .iconPosition(this.iconPosition)
-        .fontColor(this.Color)
+        .fontColor(this.fontColor)
         .fontStyle(this.fontStyle)
         .showDelete(this.showDelete)
-        .onClose(()=>{
+        .onClose(() => {
           console.info("Piece onClose")
           this.onActionCalled = true;
           try {
-            var backData = {
+            let backData: events_emitter.EventData = {
               data: {
                 "ACTION": this.onActionCalled,
               }
             }
-            var backEvent = {
+            let backEvent: events_emitter.InnerEvent = {
               eventId: 155,
               priority: events_emitter.EventPriority.LOW
             }
@@ -89,23 +89,23 @@ struct PieceCode {
         .margin(30)
         .key('button1')
         .onClick(() => {
-        this.showDelete = true
-        try {
-          var backData = {
-            data: {
-              "showDelete": this.showDelete,
+          this.showDelete = true
+          try {
+            let backData: events_emitter.EventData = {
+              data: {
+                "showDelete": this.showDelete,
+              }
             }
+            let backEvent: events_emitter.InnerEvent = {
+              eventId: 156,
+              priority: events_emitter.EventPriority.LOW
+            }
+            console.info("close to emit action state")
+            events_emitter.emit(backEvent, backData)
+          } catch (err) {
+            console.info("close action state err: " + JSON.stringify(err.message))
           }
-          var backEvent = {
-            eventId: 156,
-            priority: events_emitter.EventPriority.LOW
-          }
-          console.info("close to emit action state")
-          events_emitter.emit(backEvent, backData)
-        } catch (err) {
-          console.info("close action state err: " + JSON.stringify(err.message))
-        }
-      })
+        })
     }.width('100%').margin({ top: 300 })
     .height('100%')
   }

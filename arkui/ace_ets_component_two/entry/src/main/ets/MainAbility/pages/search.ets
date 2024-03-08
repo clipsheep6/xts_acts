@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,47 +17,46 @@ import events_emitter from '@ohos.events.emitter'
 @Entry
 @Component
 struct SearchExample {
-  @State changevalue: string= ''
-  @State submitvalue: string= ''
-  @State textFont:Font = {
-          size: 10,
-          weight: 10,
-          family: 'serif', 
-          style: FontStyle.Normal
-        }
-  @State searchButton:string = "10"
-  @State maxLength: nubmer = 19
-  @State copyOption:CopyOptions = CopyOptions.Local
-  controller: SearchController= new SearchController()
-  controller2: SearchController= new SearchController()
-  @State caretIndex : number = 9999
+  @State changeValue: string = ''
+  @State submitValue: string = ''
+  @State textFont: Font = {
+    size: 10,
+    weight: 10,
+    family: 'serif',
+    style: FontStyle.Normal
+  }
+  @State searchButton: string = "10"
+  @State maxLength: number = 19
+  @State copyOption: CopyOptions = CopyOptions.LocalDevice
+  controller: SearchController = new SearchController()
+  controller2: SearchController = new SearchController()
+  @State caretIndex: number = 9999
   @State text: string = ''
   @State positionInfo: CaretOffset = { index: 9999, x: 0, y: 0 }
-
-  private stateChangCallBack = (eventData) => {
+  private stateChangCallBack = (eventData: events_emitter.EventData) => {
     console.info("search page state change called:" + JSON.stringify(eventData));
     if (eventData != null) {
-      if (eventData.data.textFont != null) {
-        this.textFont = eventData.data.textFont;
+      if (eventData.data!.textFont != null) {
+        this.textFont = eventData.data!.textFont;
       }
-      if (eventData.data.searchButton != null) {
-        this.searchButton = eventData.data.searchButton;
+      if (eventData.data!.searchButton != null) {
+        this.searchButton = eventData.data!.searchButton;
       }
-      if (eventData.data.text != null) {
-        this.text = eventData.data.text;
+      if (eventData.data!.text != null) {
+        this.text = eventData.data!.text;
       }
-      if (eventData.data.maxLength != null) {
-        this.maxLength = eventData.data.maxLength;
+      if (eventData.data!.maxLength != null) {
+        this.maxLength = eventData.data!.maxLength;
       }
-      if (eventData.data.copyOption != null) {
-        this.copyOption = eventData.data.copyOption;
+      if (eventData.data!.copyOption != null) {
+        this.copyOption = eventData.data!.copyOption;
       }
     }
   }
 
   onPageShow() {
     console.info('search page show called');
-    var stateChangeEvent = {
+    let stateChangeEvent: events_emitter.InnerEvent = {
       eventId: 190,
       priority: events_emitter.EventPriority.LOW
     }
@@ -67,8 +65,8 @@ struct SearchExample {
 
   build() {
     Column() {
-      Text(this.submitvalue)
-      Text(this.changevalue)
+      Text(this.submitValue)
+      Text(this.changeValue)
       Search({ value: '', placeholder: 'input content', controller: this.controller })
         .searchButton('search')
         .textFont(this.textFont)
@@ -84,10 +82,10 @@ struct SearchExample {
           style: FontStyle.Normal
         })
         .onSubmit((value: string) => {
-          this.submitvalue = value
+          this.submitValue = value
         })
         .onChange((value: string) => {
-          this.changevalue = value
+          this.changeValue = value
         })
 
       Search({ value: this.text, placeholder: 'input content', controller: this.controller2 })
