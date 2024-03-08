@@ -621,7 +621,7 @@ export default function abilityTest() {
         }
       }, (async (err) => {
         console.log(TAG + "====>remove0200-addAbilityMonitor success====>" + err.code);
-        delegator.removeAbilityMonitor({
+        await delegator.removeAbilityMonitor({
           abilityName: 'MainAbility2',
           onAbilityForeground: () => {
             console.log(TAG + "====>onAbilityForeground ====>");
@@ -665,7 +665,7 @@ export default function abilityTest() {
         }
       }, (async (err) => {
         console.log(TAG + "====>remove0300-addAbilityMonitor success====>" + err.code);
-        delegator.removeAbilityMonitor({
+        await delegator.removeAbilityMonitor({
           abilityName: 'MainAbility2',
           onAbilityBackground: () => {
             console.log(TAG + "====>onAbilityBackground ====>");
@@ -709,7 +709,7 @@ export default function abilityTest() {
         }
       }, (async (err) => {
         console.log(TAG + "====>remove0400-addAbilityMonitor success====>" + err.code);
-        delegator.removeAbilityMonitor({
+        await delegator.removeAbilityMonitor({
           abilityName: 'MainAbility2',
           onAbilityDestroy: () => {
             console.log("====>onAbilityDestroy ====>");
@@ -753,7 +753,7 @@ export default function abilityTest() {
         }
       }, (async (err) => {
         console.log("====>remove0500-addAbilityMonitor success====>" + err.code);
-        delegator.removeAbilityMonitor({
+        await delegator.removeAbilityMonitor({
           abilityName: 'MainAbility2',
           onWindowStageCreate: () => {
             console.log("====>onWindowStageCreate ====>");
@@ -797,7 +797,7 @@ export default function abilityTest() {
         }
       }, (async (err) => {
         console.log(TAG + "====>remove0600-addAbilityMonitor success====>" + err.code);
-        delegator.removeAbilityMonitor({
+        await delegator.removeAbilityMonitor({
           abilityName: 'MainAbility2',
           onWindowStageDestroy: () => {
             console.log(TAG + "====>onWindowStageDestroy ====>");
@@ -835,7 +835,7 @@ export default function abilityTest() {
       let data = abilityDelegatorRegistry.getAbilityDelegator()
       console.log(TAG + "remove0700-getAbilityDelegator data is" + JSON.stringify(data))
       console.log(TAG + " removeAbilityMonitor start");
-      data.removeAbilityMonitor({
+      await data.removeAbilityMonitor({
         abilityName: 'WrongName',
         onAbilityCreate: () => {
           console.log(TAG + "====>onAbilityCreate====>");
