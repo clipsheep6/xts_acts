@@ -15,13 +15,13 @@
 
 import { describe, afterEach, it, expect } from "@ohos/hypium";
 import commonEvent from '@ohos.commonEvent';
-import missionManager from '@ohos.application.missionManager';
 import commonEventManager from '@ohos.commonEventManager';
 import Want from '@ohos.app.ability.Want';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
 import { Caller, OnReleaseCallback } from '@ohos.app.ability.UIAbility';
 import { Callee } from '@ohos.app.ability.UIAbility';
+import rpc from '@ohos.rpc';
 
 let sysABundleName = "com.example.systemcalltest";
 let sysASecondAbilityName = "com.example.systemcalltest.SecondAbility";
@@ -47,8 +47,8 @@ const ERROR_CODE_TYPE_ERROR = 16000002;
 
 class MySequenceable {
   num: number = 0;
-  str: String = "default";
-  result: String = "default";
+  str: string = "default";
+  result: string = "default";
 
   constructor(num: number, str: string, result: string) {
     this.num = num;
@@ -60,6 +60,20 @@ class MySequenceable {
     this.num = num;
     this.str = str;
     this.result = result;
+  }
+
+  marshalling(messageParcel: rpc.MessageSequence) {
+    messageParcel.writeInt(this.num);
+    messageParcel.writeString(this.str);
+    messageParcel.writeString(this.result);
+    return true;
+  }
+
+  unmarshalling(messageParcel: rpc.MessageSequence) {
+    this.num = messageParcel.readInt();
+    this.str = messageParcel.readString();
+    this.result = messageParcel.readString();
+    return true;
   }
 }
 
@@ -512,12 +526,11 @@ export default function abilityTest() {
      * @tc.desc: Verify that the parameter method of the Callee.on function is an empty string.
      */
     it('ACTS_CommonComponent_Call_3100', 0, async (done: Function) => {
-      console.log('ACTS_CommonComponent_Call_3100 begin');
-
       let finishFlag = 0;
       try {
-        AppStorage.get<Callee>("callee")!.on('', (data) => {
+        AppStorage.get<Callee>("callee")!.on('', (data): rpc.Parcelable => {
           console.log('ACTS_CommonComponent_Call_3100 onTest');
+          return new MySequenceable(0, 'ACTS_CommonComponent_Call_3100', 'ACTS_CommonComponent_Call_3100 onTest');
         });
       } catch (err) {
         console.log('ACTS_CommonComponent_Call_3100 call err.code: ' + JSON.stringify(err.code) +
@@ -540,8 +553,9 @@ export default function abilityTest() {
 
       let finishFlag = 0;
       try {
-        AppStorage.get<Callee>("callee")!.on(null, () => {
+        AppStorage.get<Callee>("callee")!.on(null, (data): rpc.Parcelable => {
           console.log('ACTS_CommonComponent_Call_3200 onTest');
+          return new MySequenceable(0, 'ACTS_CommonComponent_Call_3200', 'ACTS_CommonComponent_Call_3200 onTest');
         });
       } catch (err) {
         console.log('ACTS_CommonComponent_Call_3200 call err.code: ' + JSON.stringify(err.code) + ' err.msg: ' + JSON.stringify(err.message));
@@ -563,8 +577,9 @@ export default function abilityTest() {
 
       let finishFlag = 0;
       try {
-        AppStorage.get<Callee>("callee")!.on(null, () => {
+        AppStorage.get<Callee>("callee")!.on(null, (data): rpc.Parcelable => {
           console.log('ACTS_CommonComponent_Call_3300 onTest');
+          return new MySequenceable(0, 'ACTS_CommonComponent_Call_3300', 'ACTS_CommonComponent_Call_3300 onTest');
         });
       } catch (err) {
         console.log('ACTS_CommonComponent_Call_3300 call err.code: ' + JSON.stringify(err.code) + ' err.msg: ' + JSON.stringify(err.message));
@@ -648,7 +663,10 @@ export default function abilityTest() {
       console.log('ACTS_CommonComponent_Call_4300 begin');
       let finishFlag = 0;
       try {
-        AppStorage.get<Callee>("callee")!.on('testCall', "");
+        AppStorage.get<Callee>("callee")!.on('testCall', (data): rpc.Parcelable => {
+          console.log('ACTS_CommonComponent_Call_4300 onTest');
+          return new MySequenceable(0, 'ACTS_CommonComponent_Call_4300', 'ACTS_CommonComponent_Call_4300 onTest');
+        });
       } catch (err) {
         console.log('ACTS_CommonComponent_Call_4300 call err.code: ' + JSON.stringify(err.code) + ' err.msg: ' + JSON.stringify(err.message));
         expect(err.code).assertEqual(ERROR_CODE_INVALID_PARAM);
@@ -709,8 +727,9 @@ export default function abilityTest() {
       let finishFlag = 0;
 
       try {
-        AppStorage.get<Callee>("callee").on('ACTS_CommonComponent_Call_5000', () => {
+        AppStorage.get<Callee>("callee").on('ACTS_CommonComponent_Call_5000', (data): rpc.Parcelable => {
           console.log('ACTS_CommonComponent_Call_5000 testCallback');
+          return new MySequenceable(0, 'ACTS_CommonComponent_Call_5000', 'ACTS_CommonComponent_Call_5000 testCallback');
         });
       } catch (err) {
         console.log('ACTS_CommonComponent_Call_5000 call err' + err);
@@ -719,8 +738,9 @@ export default function abilityTest() {
         done();
       }
       try {
-        AppStorage.get<Callee>("callee")!.on('ACTS_CommonComponent_Call_5000', () => {
+        AppStorage.get<Callee>("callee")!.on('ACTS_CommonComponent_Call_5000', (data): rpc.Parcelable => {
           console.log('ACTS_CommonComponent_Call_5000 testCallback');
+          return new MySequenceable(0, 'ACTS_CommonComponent_Call_5000', 'ACTS_CommonComponent_Call_5000 testCallback');
         });
       } catch (err) {
         console.log('ACTS_CommonComponent_Call_5000 call err.code: ' + JSON.stringify(err.code) +
@@ -745,8 +765,9 @@ export default function abilityTest() {
       let finishFlag = 0;
 
       try {
-        AppStorage.get<Callee>("callee")!.on('ACTS_CommonComponent_Call_5100', () => {
+        AppStorage.get<Callee>("callee")!.on('ACTS_CommonComponent_Call_5100', (data): rpc.Parcelable => {
           console.log('ACTS_CommonComponent_Call_5100 testCallback');
+          return new MySequenceable(0, 'ACTS_CommonComponent_Call_5100', 'ACTS_CommonComponent_Call_5100 testCallback');
         });
         AppStorage.get<Callee>("callee")!.off('ACTS_CommonComponent_Call_5100');
       } catch (err) {
@@ -899,7 +920,8 @@ export default function abilityTest() {
       }
       let releaseCallback = "NotFunction";
       try {
-        caller.off('release', releaseCallback);
+        caller.off('release', (releaseCallback) => {
+        });
       } catch (e) {
         console.log('ACTS_CommonComponent_Call_5700 Caller onRelease fail ' + e);
         done();
@@ -928,7 +950,7 @@ export default function abilityTest() {
       }
       let flag = false;
       try {
-        caller.off('Not release', (data) => {
+        caller.off('release', (data) => {
           console.log('ACTS_CommonComponent_Call_5800 releaseCallBack:' + data);
           expect(data).assertEqual("died");
           done();
@@ -961,7 +983,7 @@ export default function abilityTest() {
       }
       let flag = false;
       try {
-        caller.off('Not release');
+        caller.off('release');
       } catch (e) {
         console.log('ACTS_CommonComponent_Call_5900 Caller onRelease fail ' + e);
         done();
