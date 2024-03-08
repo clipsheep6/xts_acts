@@ -18,14 +18,25 @@ import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import bundleManager from '@ohos.bundle.bundleManager';
 import dataSharePredicates from '@ohos.data.dataSharePredicates';
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import fs from '@ohos.file.fs';
+import fileuri from "@ohos.file.fileuri";
 
 const delegator = abilityDelegatorRegistry.getAbilityDelegator();
+const phAccessHelper = photoAccessHelper.getPhotoAccessHelper(globalThis.abilityContext);
 const photoType = photoAccessHelper.PhotoType;
 const photoKeys = photoAccessHelper.PhotoKeys;
 const albumKeys = photoAccessHelper.AlbumKeys;
 const albumType = photoAccessHelper.AlbumType;
 const albumSubtype = photoAccessHelper.AlbumSubtype;
 const DEFAULT_SLEEP_TIME = 10;
+const context = globalThis.abilityContext;
+const pathDir = context.filesDir;
+
+let validImageExt = ['.jpg'];
+let validVideoExt = ['.mp4'];
+let rawImageUri = '';
+let rawVideoUri = '';
+
 export async function sleep(times = DEFAULT_SLEEP_TIME) : Promise<void> {
   await new Promise(res => setTimeout(res, times));
 };
@@ -242,6 +253,69 @@ export async function stopAbility(bundleName: string) : Promise<void> {
   }).catch(err => {
     console.error(`[picker] stop abilityFailed: ${err}`);
   });
+}
+
+export async function getSandboxPath(rawAssetName: Array<string>) {
+  console.info("getSandboxPath start");
+  console.info('getSandboxPath rawAssetName: ' + rawAssetName)
+  try {
+    for(let index = 0;index < rawAssetName.length;index++){
+      let fileName = rawAssetName[index];
+      let rawExtension: string = fileName.split('.')[1];
+      let filePath = pathDir + '/' + fileName;
+      console.info("file pathDir: " + filePath);
+      let resource = context.resourceManager;
+      let rawFile = await resource.getRawFileContent(fileName);
+      let file = await fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+      await fs.write(file.fd,rawFile.buffer);
+      await fs.close(file.fd);
+      let fileUri = fileuri.getUriFromPath(filePath);
+      if (validImageExt.includes(('.' + rawExtension))) {
+        rawImageUri = fileUri;
+      }
+      if (validVideoExt.includes(('.' + rawExtension))) {
+        rawVideoUri = fileUri;
+      }
+    } 
+  } catch (error) {
+    console.info(`getSandboxPath failed, error: ${error}`)
+  }
+}
+
+export async function pushCreateAsset(names: Array<string>){
+  console.info('pushCreateAsset start')
+  let successNum = 0;
+  let fileUri = '';
+  let photoType: photoAccessHelper.PhotoType;
+  let resourceType: photoAccessHelper.ResourceType;
+  try{
+    console.info('Push_createAsset name: ' + names)
+    for (let j = 0; j < names.length; j++) {
+      let name = names[j];
+      let extension: string = name.split('.')[1];
+      if (validImageExt.includes(('.' + extension))) {
+        photoType = photoAccessHelper.PhotoType.IMAGE;
+        resourceType = photoAccessHelper.ResourceType.IMAGE_RESOURCE;
+        fileUri = rawImageUri;
+      } else if (validVideoExt.includes(('.' + extension))) {
+        photoType = photoAccessHelper.PhotoType.VIDEO;
+        resourceType = photoAccessHelper.ResourceType.VIDEO_RESOURCE;
+        fileUri = rawVideoUri;
+      }
+      let options: photoAccessHelper.CreateOptions = {
+        title: name.split('.')[0]
+      }
+      let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(globalThis.abilityContext, photoType, extension, options);
+      assetChangeRequest.addResource(resourceType, fileUri);
+      await phAccessHelper.applyChanges(assetChangeRequest);
+      successNum++;
+    }
+    await sleep(5000);
+    console.info('pushCreateAsset successfully fileNumber: ' + successNum);
+  }catch(err){
+    console.info('pushCreateAsset push resource failed: ' + err)
+    return;
+  }
 }
 
 export {
