@@ -392,5 +392,7 @@
         "MainAbility/pages/back_router/pageA",
         "MainAbility/pages/back_router/pageB",
         "MainAbility/pages/back_router/pageC"
+        "MainAbility/pages/detail/deReplace",
+        "MainAbility/pages/router/routerReplace"
     ]
 }

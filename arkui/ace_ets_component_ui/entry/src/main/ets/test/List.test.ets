@@ -319,6 +319,7 @@ import Router4 from './Router/Router4.test'
 import aboutToAppearRouterTest from './back_router/init_page.test';
 import aboutToAppearRouterTest2 from './back_router/init_page2.test';
 import goWithParams from './back_router/A_page.test'
+import routerReplaceJsunit from './routerReplaceJsunit.test.ets';
 export default function testsuite() {
   Router1()
   Router2()
@@ -623,4 +624,5 @@ export default function testsuite() {
   ScrollToIndexForGridJsunit01();
   ScrollToIndexForGridJsunit02();
   ScrollToIndexForGridJsunit03();
+  routerReplaceJsunit();
 }
