@@ -98,22 +98,21 @@ export default function pageTransitionJsunit() {
         console.log("pageTransitionTest_0400 change component data error: " + err.message);
       }
       await Utils.sleep(4000);
-      let callback = (indexEventOne: events_emitter.EventData) => {
-        try {
-          console.info("pageTransitionTest_0400 get state result is: " + JSON.stringify(indexEventOne));
-          expect(indexEventOne!.data!.scale).assertEqual(6);
-          expect(indexEventOne!.data!.opacity).assertEqual(5);
-          expect(indexEventOne!.data!.type).assertEqual(RouteType.Push);
-        } catch (err) {
-          console.info("pageTransitionTest_0400 get state result is err:  " + JSON.stringify(err));
-        }
-      }
       let indexEventOne: events_emitter.InnerEvent = {
         eventId: 144,
-        priority: events_emitter.EventPriority.LOW
+        priority: events_emitter.EventPriority.HIGH
       }
       try {
-        events_emitter.on(indexEventOne, callback);
+        events_emitter.on(indexEventOne, (indexEventOne: events_emitter.EventData) => {
+          try {
+            console.info("pageTransitionTest_0400 get state result is: " + JSON.stringify(indexEventOne));
+            expect(indexEventOne!.data!.scale).assertEqual(6);
+            expect(indexEventOne!.data!.opacity).assertEqual(5);
+            expect(indexEventOne!.data!.type).assertEqual(NavigationType.Push);
+          } catch (err) {
+            console.info("pageTransitionTest_0400 get state result is err:  " + JSON.stringify(err));
+          }
+        });
       } catch (err) {
         console.info("pageTransitionTest_0400 on events_emitter err : " + JSON.stringify(err));
       }

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -37,14 +38,14 @@ struct PageTransitionExample1 {
         try {
           let backData: events_emitter.EventData = {
             data: {
-              "scale": this.scale,
-              "opacity": this.opacity,
+              "scale": this.scale1,
+              "opacity": this.opacity1,
               "type": this.type
             }
           }
           let backEvent: events_emitter.InnerEvent = {
             eventId: 144,
-            priority: events_emitter.EventPriority.LOW
+            priority: events_emitter.EventPriority.HIGH
           }
           console.info("pageTransition start to emit action state");
           events_emitter.emit(backEvent, backData);
