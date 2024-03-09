@@ -66,6 +66,7 @@ export default function placementJsunit() {
       await Utils.sleep(1500);
       console.info("placementTest_0100 clickOne result is: " + JSON.stringify(sendEventByKey('image', 10, "")));
       console.info('placementTest_0100 END');
+      done();
     });
 
     it('placementTest_0200', 0, async (done: Function) => {

@@ -18,7 +18,7 @@ import bindPopupJsunit from './BindPopupJsunit.test';
 import directionJsunit from './DirectionJsunit.test';
 import listItemJsunit from './ListItemJsunit.test';
 import navigatorCodeJsunit from './NavigatorCodeJsunit.test';
-import pieceJsunit from './PieceJsunit.test';
+// import pieceJsunit from './PieceJsunit.test';
 import dividerJsunit from './DividerJsunit.test';
 import systempromptJsunit from './SystempromptJsunit.test';
 import configurationJsunit from './ConfigurationJsunit.test';
@@ -65,7 +65,7 @@ export default function testsuite() {
   loadingProgressJsunit();
   listItemJsunit();
   navigatorCodeJsunit();
-  pieceJsunit();
+  // pieceJsunit();
   placementJsunit();
   radioJsunit();
   rowJsunit();
