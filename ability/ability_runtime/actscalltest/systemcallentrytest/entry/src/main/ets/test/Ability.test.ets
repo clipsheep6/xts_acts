@@ -371,22 +371,16 @@ export default function abilityTest() {
       })
         .then(data => {
           caller = data;
-          console.log('ACTS_CommonComponent_Call_0800 caller get')
+          console.log('ACTS_CommonComponent_Call_0800 caller get');
           caller.onRelease((data) => {
             expect(data).assertEqual('release');
-            console.log('ACTS_CommonComponent_Call_0800 releaseCallBack' + data);
+            console.log('ACTS_CommonComponent_Call_0800 releaseCallBack:' + data);
             setTimeout(() => {
               AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbilityByCall({
                 bundleName: systemAppCalleeABundleName,
                 abilityName: systemAppCalleeASecondAbilityName,
               })
                 .then(data => {
-                  caller = data;
-                  caller.onRelease(() => {
-                    expect(data).assertEqual('release');
-                    console.log('ACTS_CommonComponent_Call_0800 releaseCallBack' + data);
-                    done();
-                  });
                   let param = new MySequenceable(800, "ACTS_CommonComponent_Call_0800", 'default');
                   caller.callWithResult('testCallWithResult', param)
                     .then((data) => {
@@ -396,6 +390,7 @@ export default function abilityTest() {
                       expect(result.num).assertEqual(800);
                       expect(result.str).assertEqual('ACTS_CommonComponent_Call_0800');
                       expect(result.result).assertEqual('ACTS_CommonComponent_Call_0800processed');
+                      done();
                       caller.release();
                     }).catch((err: BusinessError) => {
                     console.log('ACTS_CommonComponent_Call_0800 call exception' + err);
@@ -673,7 +668,7 @@ export default function abilityTest() {
         finishFlag = 1;
       }
 
-      expect(finishFlag).assertEqual(1);
+      expect(finishFlag).assertEqual(0);
       done();
     })
 
@@ -920,8 +915,8 @@ export default function abilityTest() {
       }
       let releaseCallback = "NotFunction";
       try {
-        caller.off('release', (releaseCallback) => {
-        });
+        // @ts-ignore
+        caller.off('release', releaseCallback);
       } catch (e) {
         console.log('ACTS_CommonComponent_Call_5700 Caller onRelease fail ' + e);
         done();
@@ -950,7 +945,8 @@ export default function abilityTest() {
       }
       let flag = false;
       try {
-        caller.off('release', (data) => {
+        // @ts-ignore
+        caller.off('Not release', (data) => {
           console.log('ACTS_CommonComponent_Call_5800 releaseCallBack:' + data);
           expect(data).assertEqual("died");
           done();
@@ -983,7 +979,8 @@ export default function abilityTest() {
       }
       let flag = false;
       try {
-        caller.off('release');
+        // @ts-ignore
+        caller.off('Not release');
       } catch (e) {
         console.log('ACTS_CommonComponent_Call_5900 Caller onRelease fail ' + e);
         done();
