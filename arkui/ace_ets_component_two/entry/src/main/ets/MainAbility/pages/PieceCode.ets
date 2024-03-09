@@ -61,7 +61,7 @@ struct PieceCode {
 
   build() {
     Column() {
-      Piece({icon: this.icon, content: this.content})
+      Piece({ content: this.content, icon: this.icon })
         .iconPosition(this.iconPosition)
         .fontColor(this.fontColor)
         .fontStyle(this.fontStyle)
@@ -114,12 +114,17 @@ struct PieceCode {
   }
 }
 
-@Component
-struct Piece {
-  private content: string = "piece";
-  private icon: string = "1";
+function Piece(arg0: {
+  content: string;
+  icon: string;
+}) {
+  throw new Error('Function not implemented.');
+}
 
-  build() {
 
-  }
+function Piece(arg0: {
+  content: string;
+  icon: string;
+}) {
+  throw new Error('Function not implemented.');
 }
