@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import provisionResourcesTest from './provisionResources'
 import checkAlbumAttrTest from './AbsAlbum/checkAttr'
 import albumGetAssetsTest from './AbsAlbum/getAssets'
 import addAssetsTest from './Album/addAssets'
@@ -63,8 +63,10 @@ import addResourceChangeRequestTest from './MediaAssetChangeRequest/addResource'
 import getWriteCacheHandlerTest from './MediaAssetChangeRequest/getWriteCacheHandler'
 import requestImageTest from './MediaAssetManager/requestImage'
 import requestImageDataTest from './MediaAssetManager/requestImageData'
+import deleteResourcesTest from './deleteResource'
 
 export default function testsuite () {
+  provisionResourcesTest()
   getPhotoAccessHelperTest()
   checkAlbumAttrTest()
   albumGetAssetsTest()
@@ -115,4 +117,5 @@ export default function testsuite () {
   getWriteCacheHandlerTest()
   requestImageTest()
   requestImageDataTest()
+  deleteResourcesTest()
 }
