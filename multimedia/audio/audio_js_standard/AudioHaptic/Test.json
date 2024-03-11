@@ -21,7 +21,10 @@
             "run-command": [
                 "power-shell wakeup",
                 "uinput -T -m 300 2700 280 200",
-                "power-shell setmode 602"
+                "power-shell setmode 602",
+                "mount -o rw,remount /sys_prod",
+                "mkdir -p /sys_prod/resource/media/AudioHaptic",
+                "chmod 777 -R /sys_prod/resource/media/AudioHaptic"
             ],
             "teardown-command":[
                 "power-shell setmode 600"
@@ -31,7 +34,10 @@
             "type": "PushKit",
             "pre-push": [],
             "push": [
-               
+                "./resource/audio/audioManager/ringtone.ogg ->/sys_prod/resource/media/AudioHaptic/",
+                "./resource/audio/audioManager/ringtone.json ->/sys_prod/resource/media/AudioHaptic/",
+                "./resource/audio/audioManager/notification.ogg ->/sys_prod/resource/media/AudioHaptic/",
+                "./resource/audio/audioManager/notification.json ->/sys_prod/resource/media/AudioHaptic/"
             ]
         }
     ]
