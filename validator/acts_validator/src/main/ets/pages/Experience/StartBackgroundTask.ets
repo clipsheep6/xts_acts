@@ -34,6 +34,7 @@ struct CustomContainerUser {
   @State Vue: boolean = false;
   @State StartEnable: boolean = true;
   @State time: number = 0;
+  @State time1: string = '';
   @State select: number = 2;
   @State appName: string = '后台任务';
   @State appBundleName: string = "com.ohos.launcher";
@@ -139,13 +140,13 @@ struct CustomContainerUser {
                   .onClick(async () => {
                     globalThis.ShowFloatingWindow();
                     this.StartEnable = !this.StartEnable;
-                    let str:Want = {
+                    let str: Want = {
                       bundleName: "com.ohos.launcher",
                       abilityName: "com.ohos.launcher.MainAbility",
                     }
                     abilityContext.startAbility(str).then((data) => {
 
-                    }).catch((error:BusinessError) => {
+                    }).catch((error: BusinessError) => {
 
                     })
                   })
@@ -161,8 +162,9 @@ struct CustomContainerUser {
                   .onClick(() => {
                     this.StartEnable = !this.StartEnable;
                     let report = globalThis.resultNum;
-                    let head = report.indexOf(":");
-                    this.time = report.substring(head + 1);
+                    let head: number = report.indexOf(":");
+                    this.time1 = report.substring(head + 1);
+                    this.time = parseFloat(this.time1);
                     let time = this.time;
                     if (0 < time && time < 600) {
                       this.Vue = true;
@@ -202,6 +204,7 @@ struct CustomContainerUser {
         Vue: $Vue,
         StartEnable: $StartEnable,
         time: $time,
+        time1: $time1,
         appName: $appName,
         appBundleName: $appBundleName,
         appAbilityName: $appAbilityName,

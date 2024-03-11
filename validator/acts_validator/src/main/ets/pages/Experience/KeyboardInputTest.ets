@@ -32,8 +32,8 @@ struct CustomContainerUser {
   @State Vue: boolean = false;
   @State StartEnable: boolean = true;
   @State time: number = 0;
-  @State select: number = 2;
   @State time1: string = '';
+  @State select: number = 2;
   @State appName: string = '信息';
   @State appBundleName: string = 'com.ohos.mms';
   @State appAbilityName: string = 'com.ohos.mms.MainAbility';
@@ -201,9 +201,9 @@ struct CustomContainerUser {
         content: this.specificNoParam,
         name: $name,
         Vue: $Vue,
-        time1: $time1,
         StartEnable: $StartEnable,
         time: $time,
+        time1: $time1,
         appName: $appName,
         appBundleName: $appBundleName,
         appAbilityName: $appAbilityName,
