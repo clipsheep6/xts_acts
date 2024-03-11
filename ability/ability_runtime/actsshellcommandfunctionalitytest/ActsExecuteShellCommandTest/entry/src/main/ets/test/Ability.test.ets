@@ -18,8 +18,6 @@ import appManager from '@ohos.application.appManager';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { BusinessError } from '@ohos.base';
 
-;
-
 export default function abilityTest() {
   describe('ACTS_ExecuteShellCommandTest', () => {
 
@@ -170,7 +168,7 @@ export default function abilityTest() {
     it('ACTS_ExecuteShellCommand_Callback_0700', 0, async (done: Function) => {
       console.log("ACTS_ExecuteShellCommand_0700 --- start");
       let cmd = 'aa help';
-      let code: undefined | void;
+      let code: ESObject;
       setTimeout(() => {
         console.log('ACTS_ExecuteShellCommand_Callback_0700 code:' + JSON.stringify(code))
         if (code != undefined) {
@@ -317,7 +315,7 @@ export default function abilityTest() {
         }, (data: ESObject) => {
           console.log('ACTS_ExecuteShellCommand_Promise_0600 -2 executeShellCommand: start ');
           console.log('ACTS_ExecuteShellCommand_Promise_0600 -2 executeShellCommand:data' + JSON.stringify(data));
-          expect(data.code).assertEqual(-1);
+          expect(data.code).assertEqual(16000100);
           console.log('ACTS_ExecuteShellCommand_Callback_0600 -2 executeShellCommand: end');
           flag = false;
           done();
@@ -342,7 +340,7 @@ export default function abilityTest() {
     it('ACTS_ExecuteShellCommand_Promise_0700', 0, async (done: Function) => {
       console.log("ACTS_ExecuteShellCommand_Promise_0700 --- start");
       let cmd = 'aa help';
-      let code: undefined | void;
+      let code: ESObject;
       code = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilityDelegator")!.executeShellCommand(cmd, null);
       setTimeout(() => {
         console.log('ACTS_ExecuteShellCommand_Callback_0700 code:' + JSON.stringify(code));
