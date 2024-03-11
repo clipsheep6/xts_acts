@@ -170,16 +170,20 @@ export default function abilityTest() {
       let cmd = 'aa help';
       let code: ESObject;
       setTimeout(() => {
-        console.log('ACTS_ExecuteShellCommand_Callback_0700 code:' + JSON.stringify(code))
+        console.log('ACTS_ExecuteShellCommand_Callback_0700 code:' + JSON.stringify(code));
         if (code != undefined) {
           expect().assertFail();
         }
         done();
       }, 3000)
-      code = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilityDelegator")!.executeShellCommand(cmd, null, () => {
-        console.log('ACTS_ExecuteShellCommand_Callback_0700 fail:')
-        expect().assertFail();
-      })
+      try {
+        code = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilityDelegator")!.executeShellCommand(cmd, null, () => {
+          console.log('ACTS_ExecuteShellCommand_Callback_0700 fail:');
+          expect().assertFail();
+        })
+      } catch (e) {
+        console.log('ACTS_ExecuteShellCommand_Callback_0700 executeShellCommand failed:' + JSON.stringify(e));
+      }
     })
 
     /**
@@ -341,7 +345,12 @@ export default function abilityTest() {
       console.log("ACTS_ExecuteShellCommand_Promise_0700 --- start");
       let cmd = 'aa help';
       let code: ESObject;
-      code = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilityDelegator")!.executeShellCommand(cmd, null);
+      try {
+        code = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilityDelegator")!.executeShellCommand(cmd, null);
+      } catch(e) {
+        console.log('ACTS_ExecuteShellCommand_Callback_0700 executeShellCommand failed:' + JSON.stringify(e));
+        done();
+      }
       setTimeout(() => {
         console.log('ACTS_ExecuteShellCommand_Callback_0700 code:' + JSON.stringify(code));
         if (code != undefined) {
