@@ -25,6 +25,7 @@ import relationalStorePredicatesComplexFiledTest from './RelationalStorePredicat
 import relationalStorePredicatesJoinTest from './RelationalStorePredicatesJoinJsunit.test';
 import relationalStoreTransactionTest from './RelationalStoreTransactionJsunit.test';
 import relationalStoreResultSetTest from './RelationalStoreResultSetJsunit.test';
+import relationalStorePredicatesTest from './RelationalStorePredicatesJsunit.test';
 
 
 export default function testsuite() {
@@ -41,5 +42,6 @@ export default function testsuite() {
   relationalStorePredicatesComplexFiledTest()
   relationalStorePredicatesJoinTest()
   relationalStoreResultSetTest()
+  relationalStorePredicatesTest()
 }
 
