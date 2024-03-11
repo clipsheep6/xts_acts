@@ -130,7 +130,6 @@ export default function actsStartAbilityForResult() {
         };
         globalThis.context.startAbilityForResult(want1, async (err: any, result: common.AbilityResult) => {
           console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}---startAbilityForResult1:${JSON.stringify(err)}`);
-
           if (err.code) {
             console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}startAbilityForResult failed, code is ${err.code}, message is ${err.message}`);
             return;
@@ -149,6 +148,7 @@ export default function actsStartAbilityForResult() {
           expect(result1.want.parameters.info).assertEqual(result.want.parameters.info)
           expect(result1.resultCode).assertEqual(result.resultCode)
         });
+        await sleep(3000)
         let want2: Want = {
           deviceId: '',
           bundleName: "com.example.aa_assistant2",

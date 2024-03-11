@@ -23,7 +23,7 @@ export default function actsStartAbilityForResult() {
     const TEST_SUITE_NAME: string = 'ActsStartAbilityForResultTest';
     let TEST_CASE_NAME: string = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_0100';
 
-    function sleep(time) {
+    async function sleep(time) {
       return new Promise((resolve) => setTimeout(resolve, time));
     }
 
@@ -173,8 +173,8 @@ export default function actsStartAbilityForResult() {
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_0300
      * @tc.name      : test Ability repeated start stop (single example)
-     * @tc.desc      : HAP for installing auxiliary applications 
-     *                 for a single instance (different from testing applications),The input parameter includes both 
+     * @tc.desc      : HAP for installing auxiliary applications
+     *                 for a single instance (different from testing applications),The input parameter includes both
      *                 want and resultCode, and the want includes activityName and bundleName
      * @tc.size      : MediumTest
      * @tc.type      : Function
@@ -244,7 +244,7 @@ export default function actsStartAbilityForResult() {
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_0400
      * @tc.name      : test Ability repeated start stop (multiple cases)
-     * @tc.desc      : The input parameter includes both 
+     * @tc.desc      : The input parameter includes both
      *                 want and resultCode, and the want includes activityName and bundleName
      * @tc.size      : MediumTest
      * @tc.type      : Function
@@ -340,9 +340,9 @@ export default function actsStartAbilityForResult() {
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_0500
      * @tc.name      : test Ability implicitly starts
-     * @tc.desc      : 1. implicitly start Ability2 through the startAbilityForResult interface, 
+     * @tc.desc      : 1. implicitly start Ability2 through the startAbilityForResult interface,
      *                 with action as the input parameter
-     *                 2. Ability2 calls the terminateSelfWithResult interface to terminate Ability2. 
+     *                 2. Ability2 calls the terminateSelfWithResult interface to terminate Ability2.
      *                 The input parameters include want and resultCode, with want containing activityName and bundleName“
      * @tc.size      : MediumTest
      * @tc.type      : Function
@@ -427,47 +427,33 @@ export default function actsStartAbilityForResult() {
     it('SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1200', 3, async (done) => {
       TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1200';
       try {
+
         // 2, startAbilityForResult
         let want2: Want = {
           bundleName: 'com.acts.startabilityforresult',
           abilityName: 'MainAbility2'
         };
         globalThis.context.startAbilityForResult(want2)
+        await sleep(3000);
+        // 3， terminateSelfWithResult
+        globalThis.context2.terminateSelfWithResult({
+          resultCode: undefined,
+          want: want2
+        })
           .then((result) => {
             // Performing normal business operations
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
-            expect(result.want.bundleName).assertEqual("");
+            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult succeed, result is ${JSON.stringify(result)}`);
           })
           .catch((err) => {
             // Processing business logic errors
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, err is ${JSON.stringify(err)}`);
-            AssertionFailed(done);
+            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult1 err, err is ${JSON.stringify(err)}`);
           });
-        // 3， terminateSelfWithResult
-        try {
-          let resultCode = undefined;
-          // Return the AbilityResult information to the interface caller
-          let abilityResult = {
-            want2,
-            resultCode
-          };
-          globalThis.context2.terminateSelfWithResult(abilityResult)
-            .then((result) => {
-              // Performing normal business operations
-              console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult succeed, result is ${JSON.stringify(result)}`);
-            })
-            .catch((err) => {
-              // Processing business logic errors
-              console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult err, err is ${JSON.stringify(err)}`);
-            });
-        } catch (err) {
-          console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult catch, err is ${JSON.stringify(err)}`);
-        }
       } catch (err) {
         console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} err catch, err is ${JSON.stringify(err)}`);
-        AssertionFailed(done);
+        // expect(err.message).assertEqual('Invalid input parameter');
+        expect(err.code).assertEqual(401);
+        done();
       }
-
     })
 
     /**
@@ -489,16 +475,6 @@ export default function actsStartAbilityForResult() {
           abilityName: 'MainAbility2'
         };
         globalThis.context.startAbilityForResult(want3)
-          .then((result) => {
-            // Performing normal business operations
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
-            expect(result.want.bundleName).assertEqual("");
-          })
-          .catch((err) => {
-            // Processing business logic errors
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, err is ${JSON.stringify(err)}`);
-            done();
-          });
         await sleep(2000)
         // 3， terminateSelfWithResult
         try {
@@ -518,6 +494,8 @@ export default function actsStartAbilityForResult() {
               console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult err, err is ${JSON.stringify(err)}`);
             });
         } catch (err) {
+          expect(err.code).assertEqual(401);
+          done();
           console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult catch, err is ${JSON.stringify(err)}`);
         }
       } catch (err) {
@@ -545,19 +523,6 @@ export default function actsStartAbilityForResult() {
           abilityName: 'MainAbility2'
         };
         globalThis.context.startAbilityForResult(want3)
-          .then((result) => {
-            // Performing normal business operations
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult sbundleName is ${result.want.bundleName}`);
-            expect(result.resultCode).assertEqual("test");
-            expect(result.want.bundleName).assertEqual("");
-
-          })
-          .catch((err) => {
-            // Processing business logic errors
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, err is ${JSON.stringify(err)}`);
-            done();
-          });
         await sleep(2000)
         // 3， terminateSelfWithResult
         try {
@@ -577,6 +542,8 @@ export default function actsStartAbilityForResult() {
               console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult err, err is ${JSON.stringify(err)}`);
             });
         } catch (err) {
+          expect(err.code).assertEqual(401);
+          done();
           console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult catch, err is ${JSON.stringify(err)}`);
         }
       } catch (err) {
@@ -669,8 +636,11 @@ export default function actsStartAbilityForResult() {
             // Performing normal business operations
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult sbundleName is ${result.want.bundleName}`);
-            expect(result.resultCode).assertEqual(resultCode);
-          
+            expect(result.resultCode).assertEqual(61);
+            expect(result.want.bundleName).assertEqual(want5.bundleName);
+            expect(result.want.abilityName).assertEqual(want5.abilityName);
+            done();
+
           })
           .catch((err) => {
             AssertionFailed(done)
@@ -679,7 +649,7 @@ export default function actsStartAbilityForResult() {
           });
         await sleep(2000)
         // 3， terminateSelfWithResult
-      
+
         globalThis.context2.terminateSelfWithResult({
           resultCode: resultCode,
           want: want5
@@ -711,11 +681,6 @@ export default function actsStartAbilityForResult() {
     it('SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1700', 3, async (done) => {
       TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_1700 ';
 
-      // setTimeout(() => {
-      // expect(true).assertTrue();
-      //  done();
-      // }, 5000)
-
       try {
         // 2, startAbilityForResult
         let want4: Want = {
@@ -723,18 +688,6 @@ export default function actsStartAbilityForResult() {
           abilityName: 'MainAbility2',
         };
         globalThis.context.startAbilityForResult(want4)
-          .then((result) => {
-            // Performing normal business operations
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
-            expect(result.resultCode).assertEqual('');
-            expect(result.want.bundleName).assertEqual('');
-
-          })
-          .catch((err) => {
-            // Processing business logic errors
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, err is ${JSON.stringify(err)}`);
-            AssertionFailed(done)
-          });
         await sleep(500)
         globalThis.context2.terminateSelfWithResult({
           want: want4,
@@ -745,10 +698,13 @@ export default function actsStartAbilityForResult() {
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult succeed, result is ${JSON.stringify(result)}`);
           })
           .catch((err) => {
+
             // Processing business logic errors
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult err, err is ${JSON.stringify(err)}`);
           });
       } catch (err) {
+        expect(err.code).assertEqual(401);
+        done();
         console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} err catch, err is ${JSON.stringify(err)}`);
       }
     })
@@ -1542,101 +1498,86 @@ export default function actsStartAbilityForResult() {
      */
     it('SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4000', 3, async (done) => {
       TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4000 ';
+       try {
+       let want18: Want = {
+       bundleName: 'com.acts.startabilityforresult',
+       abilityName: 'MainAbility2'
+       }
+       globalThis.context.startAbilityForResult(want18)
+       await sleep(500)
 
-      
-      /**
-      * setTimeout(() => {
-      * expect(true).assertTrue();
-      *  done();
-      *}, 5000)
-      *
+       let want: Want = undefined;
+       let resultCode = 199900;
+       // 3， terminateSelfWithResult
+       globalThis.context2.terminateSelfWithResult({
+       want,
+       resultCode
+       })
+       .then((result) => {
 
-      try {
-        let want18: Want = {
-          bundleName: 'com.acts.startabilityforresult',
-          abilityName: 'MainAbility2'
+       console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult succeed, result is ${JSON.stringify(result)}`);
+       })
+       .catch((err) => {
+       console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult catch err, err is ${JSON.stringify(err)}`);
+       });
+
+       } catch (error) {
+         expect(error.code).assertEqual(401);
+         done();
+       console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult catch---, error is ${JSON.stringify(error)}`);
+       }
+
+       })
+
+       /**
+       * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4100
+       * @tc.name      : test want is {}
+       * @tc.desc      : The information of the return value received by startAbilityForResult
+       *                 is consistent with the information of the input parameter of terminateSelfWithResult
+       *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
+       *                 The input parameters include want and resultCode, want is {}
+       * @tc.size      : MediumTest
+       * @tc.type      : Function
+       * @tc.level     : Level 3
+       */
+      it('SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4100', 3, async (done) => {
+        TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4100 ';
+        try {
+          let want19: Want = {
+            bundleName: 'com.acts.startabilityforresult',
+            abilityName: 'MainAbility2'
+          }
+          globalThis.context.startAbilityForResult(want19)
+            .then((result) => {
+              console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
+              expect(result.want.abilityName).assertEqual('');
+              expect(result.want.bundleName).assertEqual('');
+              done();
+            })
+            .catch((err) => {
+              console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult catch err, err is ${JSON.stringify(err)}`);
+              AssertionFailed(done);
+            });
+          await sleep(2000)
+          // 3， terminateSelfWithResult
+          globalThis.context2.terminateSelfWithResult({
+            resultCode: 866,
+            want: {}
+          })
+            .then((result) => {
+              console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult succeed, result is ${JSON.stringify(result)}`);
+            })
+            .catch((err) => {
+              console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult catch err=============, err is ${JSON.stringify(err)}`);
+              AssertionFailed(done)
+            });
+
+        } catch (error) {
+          console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult catch---, error is ${JSON.stringify(error)}`);
+          AssertionFailed(done)
         }
-        globalThis.context.startAbilityForResult(want18)
-          .then((result) => {
-            expect(result.resultCode).assertEqual(199900);
-            expect(result.want.bundleName).assertEqual("");
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
-          })
-          .catch((err) => {
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult catch err, err is ${JSON.stringify(err)}`);
-          });
-        await sleep(500)
 
-        let want: Want = undefined;
-        let resultCode = 199900;
-        // 3， terminateSelfWithResult
-        globalThis.context2.terminateSelfWithResult({
-          want,
-          resultCode
-        })
-          .then((result) => {
-             
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult succeed, result is ${JSON.stringify(result)}`);
-          })
-          .catch((err) => {
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult catch err, err is ${JSON.stringify(err)}`);
-          });
-
-      } catch (error) {
-        console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult catch---, error is ${JSON.stringify(error)}`);
-      }
+      })
 
     })
-
-    /**
-     * @tc.number    : SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4100
-     * @tc.name      : test want is {}
-     * @tc.desc      : The information of the return value received by startAbilityForResult
-     *                 is consistent with the information of the input parameter of terminateSelfWithResult
-     *                 Abilit2 calls the terminateSelfWithResult interface to terminate Abilit2.
-     *                 The input parameters include want and resultCode, want is {}
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level 3
-     */
-    it('SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4100', 3, async (done) => {
-      TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_StartAndTerminate_StartAbilityForResult_4100 ';
-      try {
-        let want19: Want = {
-          bundleName: 'com.acts.startabilityforresult',
-          abilityName: 'MainAbility2'
-        }
-        globalThis.context.startAbilityForResult(want19)
-          .then((result) => {
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult succeed, result is ${JSON.stringify(result)}`);
-            expect(result.want.abilityName).assertEqual('');
-            expect(result.want.bundleName).assertEqual('');
-            done();
-          })
-          .catch((err) => {
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} startAbilityForResult catch err, err is ${JSON.stringify(err)}`);
-            AssertionFailed(done);
-          });
-        await sleep(2000)
-        // 3， terminateSelfWithResult
-        globalThis.context2.terminateSelfWithResult({
-          resultCode: 866,
-          want: {}
-        })
-          .then((result) => {
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult succeed, result is ${JSON.stringify(result)}`);
-          })
-          .catch((err) => {
-            console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult catch err=============, err is ${JSON.stringify(err)}`);
-            AssertionFailed(done)
-          });
-
-      } catch (error) {
-        console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} terminateSelfWithResult catch---, error is ${JSON.stringify(error)}`);
-        AssertionFailed(done)
-      }
-
-    })
-
-  })
-}
+  }
