@@ -12,7 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import ImagePackingNDKTest from './ImagePackingNDKTest';
+
 export default function testsuite() {
-    ImagePackingNDKTest();
+  ImagePackingNDKTest();
 }
