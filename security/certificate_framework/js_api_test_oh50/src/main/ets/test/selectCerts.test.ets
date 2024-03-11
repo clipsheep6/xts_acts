@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -470,7 +470,6 @@ export default function certFrameworkSelectCertsJsAPIFunctionTestUnit() {
         const certs = await certFunc.checkSelectCerts(PEM, [2], param, IS_PROMISE);
         expect(certs != null).assertTrue();
         expect(certs.length === 0).assertTrue();
-        console.info('SUB_Security_Cert_Framework_Select_Certs_Func_5200 certs: ' + certs.length)
       }
       catch (err) {
         expect(null).assertFail();
@@ -499,7 +498,6 @@ export default function certFrameworkSelectCertsJsAPIFunctionTestUnit() {
         const certs = await certFunc.checkSelectCerts(PEM, [1], param, IS_PROMISE);
         expect(certs != null).assertTrue();
         expect(certs.length === 0).assertTrue();
-        console.info('SUB_Security_Cert_Framework_Select_Certs_Func_5300 certs: ' + certs.length)
       }
       catch (err) {
         expect(null).assertFail();
@@ -580,7 +578,6 @@ export default function certFrameworkSelectCertsJsAPIFunctionTestUnit() {
       catch (err) {
         expect(null).assertFail();
       }
-
       done();
     });
 
@@ -604,7 +601,6 @@ export default function certFrameworkSelectCertsJsAPIFunctionTestUnit() {
       catch (err) {
         expect(null).assertFail();
       }
-
       done();
     });
 
@@ -628,7 +624,6 @@ export default function certFrameworkSelectCertsJsAPIFunctionTestUnit() {
       catch (err) {
         expect(null).assertFail();
       }
-
       done();
     });
 
@@ -895,14 +890,12 @@ export default function certFrameworkSelectCertsJsAPIFunctionTestUnit() {
      */
     it("SUB_Security_Cert_Framework_Select_Certs_Func_7000", 0, async (done: Function) => {
       const param: cert.X509CertMatchParameters = {
-        extendedKeyUsage: ['1.3.6.1.5.5.7.3.1', '1.3.6.1.5.5.7.3.2']
+        extendedKeyUsage: CERT_DATA_PEM_PARAMETERS[1].extendedKeyUsage
       };
       try {
         const certs = await certFunc.checkSelectCerts(PEM, [6], param, IS_PROMISE);
         expect(certs != null).assertTrue();
-        //expect(certs.length === 0).assertTrue();
-
-        console.info('------7000----result : ' + JSON.stringify(certs.length))
+        expect(certs.length === 0).assertTrue();
       }
       catch (err) {
         expect(null).assertFail();
@@ -1722,6 +1715,5 @@ export default function certFrameworkSelectCertsJsAPIFunctionTestUnit() {
       }
       done();
     });
-
   });
 }

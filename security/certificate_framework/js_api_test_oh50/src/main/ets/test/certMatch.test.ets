@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -183,8 +183,9 @@ export default function certFrameworkCertMatchJsAPIFunctionTestUnit() {
       const param: cert.X509CertMatchParameters = {
         subjectAlternativeNames: [
           {
-            type: cert.GeneralNameType.GENERAL_NAME_TYPE_REGISTERED_ID,
-            name: new Uint8Array([0x30, 0x82, 0x01])
+            type: cert.GeneralNameType.GENERAL_NAME_TYPE_DNS_NAME,
+            name: new Uint8Array([0x82, 0x12, 0x77, 0x77, 0x77, 0x2E, 0x67, 0x6C, 0x6F, 0x62, 0x61, 0x6C, 0x73, 0x69,
+              0x67, 0x6E, 0x2E, 0x63, 0x6F, 0x6D])
           }
         ]
       };
@@ -1583,5 +1584,6 @@ export default function certFrameworkCertMatchJsAPIFunctionTestUnit() {
       }
       done();
     });
+
   });
 }

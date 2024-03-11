@@ -15,8 +15,7 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import cert from '@ohos.security.cert';
-import fileIo from '@ohos.file.fs'
-import ArrayList from '@ohos.util.ArrayList';
+import { BusinessError } from '@ohos.base';
 
 export default function certFrameworkCreateTrustAnchorJsAPIFunctionTestUnit() {
   describe("certFrameworkCreateTrustAnchorJsAPIFunctionTestUnit", () => {
@@ -36,13 +35,13 @@ export default function certFrameworkCreateTrustAnchorJsAPIFunctionTestUnit() {
           expect(data.length == 1).assertTrue();
           expect(data[0].CACert.getNotBeforeTime() == '240204100516Z\u0000').assertTrue();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -66,13 +65,13 @@ export default function certFrameworkCreateTrustAnchorJsAPIFunctionTestUnit() {
             expect(null).assertFail();
             done();
           })
-          .catch((err) => {
-            console.log(`${caseName} failed, err: ${JSON.stringify(err)}`);
+          .catch((err: BusinessError) => {
+            console.error(`${caseName} failed, err: ${JSON.stringify(err)}`);
             expect(err.code == 19030001).assertTrue();
             done();
           });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -95,13 +94,13 @@ export default function certFrameworkCreateTrustAnchorJsAPIFunctionTestUnit() {
             expect(null).assertFail();
             done();
           })
-          .catch((err) => {
-            console.log(`${caseName} failed, err: ${JSON.stringify(err)}`);
+          .catch((err: BusinessError) => {
+            console.error(`${caseName} failed, err: ${JSON.stringify(err)}`);
             expect(null).assertFail();
             done();
           });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == 401).assertTrue();
         done();
       }
@@ -125,13 +124,13 @@ export default function certFrameworkCreateTrustAnchorJsAPIFunctionTestUnit() {
             expect(null).assertFail();
             done();
           })
-          .catch((err) => {
-            console.log(`${caseName} failed, err: ${JSON.stringify(err)}`);
+          .catch((err: BusinessError) => {
+            console.error(`${caseName} failed, err: ${JSON.stringify(err)}`);
             expect(err.code == 19030001).assertTrue();
             done();
           });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -154,13 +153,13 @@ export default function certFrameworkCreateTrustAnchorJsAPIFunctionTestUnit() {
             expect(null).assertFail();
             done();
           })
-          .catch((err) => {
-            console.log(`${caseName} failed, err: ${JSON.stringify(err)}`);
+          .catch((err: BusinessError) => {
+            console.error(`${caseName} failed, err: ${JSON.stringify(err)}`);
             expect(null).assertFail();
             done();
           });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == 401).assertTrue();
         done();
       }
@@ -182,13 +181,13 @@ export default function certFrameworkCreateTrustAnchorJsAPIFunctionTestUnit() {
             expect(null).assertFail();
             done();
           })
-          .catch((err) => {
-            console.log(`${caseName} failed, err: ${JSON.stringify(err)}`);
+          .catch((err: BusinessError) => {
+            console.error(`${caseName} failed, err: ${JSON.stringify(err)}`);
             expect(null).assertFail();
             done();
           });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == 401).assertTrue();
         done();
       }
@@ -210,13 +209,13 @@ export default function certFrameworkCreateTrustAnchorJsAPIFunctionTestUnit() {
             expect(null).assertFail();
             done();
           })
-          .catch((err) => {
-            console.log(`${caseName} failed, err: ${JSON.stringify(err)}`);
+          .catch((err: BusinessError) => {
+            console.error(`${caseName} failed, err: ${JSON.stringify(err)}`);
             expect(null).assertFail();
             done();
           });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == 401).assertTrue();
         done();
       }
@@ -238,13 +237,13 @@ export default function certFrameworkCreateTrustAnchorJsAPIFunctionTestUnit() {
             expect(null).assertFail();
             done();
           })
-          .catch((err) => {
-            console.log(`${caseName} failed, err: ${JSON.stringify(err)}`);
+          .catch((err: BusinessError) => {
+            console.error(`${caseName} failed, err: ${JSON.stringify(err)}`);
             expect(null).assertFail();
             done();
           });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == 401).assertTrue();
         done();
       }
@@ -266,13 +265,13 @@ export default function certFrameworkCreateTrustAnchorJsAPIFunctionTestUnit() {
             expect(null).assertFail();
             done();
           })
-          .catch((err) => {
-            console.log(`${caseName} failed, err: ${JSON.stringify(err)}`);
+          .catch((err: BusinessError) => {
+            console.error(`${caseName} failed, err: ${JSON.stringify(err)}`);
             expect(null).assertFail();
             done();
           });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == 401).assertTrue();
         done();
       }

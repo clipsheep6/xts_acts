@@ -15,6 +15,7 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import cert from '@ohos.security.cert';
+import { BusinessError } from '@ohos.base';
 
 export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
   describe("certFrameworkCertChainExtJsAPIFunctionTestUnit", () => {
@@ -54,13 +55,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
           expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           expect(data.validationResult.trustAnchor.nameConstraints != null).assertTrue();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -98,13 +99,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
         cert.buildX509CertChain(param).then((data) => {
           expect(null).assertFail();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(err.code == cert.CertResult.INVALID_PARAMS).assertTrue();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -141,13 +142,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
           expect(data.certChain.getCertList().length == 2).assertTrue();
           expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -186,13 +187,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
           expect(data.certChain.getCertList().length == 1).assertTrue();
           expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -231,13 +232,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
           expect(data.certChain.getCertList().length == 2).assertTrue();
           expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -276,13 +277,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
           expect(data.certChain.getCertList().length == 2).assertTrue();
           expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -322,13 +323,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
           expect(data.certChain.getCertList().length == 2).assertTrue();
           expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -367,13 +368,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
           expect(data.certChain.getCertList().length == 2).assertTrue();
           expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -411,13 +412,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
           expect(data.certChain.getCertList().length == 2).assertTrue();
           expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -454,13 +455,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
         cert.buildX509CertChain(param).then((data) => {
           expect(null).assertFail();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(err.code == cert.CertResult.INVALID_PARAMS).assertTrue();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -498,13 +499,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
         cert.buildX509CertChain(param).then((data) => {
           expect(null).assertFail();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(err.code == cert.CertResult.INVALID_PARAMS).assertTrue();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -542,13 +543,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
         cert.buildX509CertChain(param).then((data) => {
           expect(null).assertFail();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(err.code == cert.CertResult.INVALID_PARAMS).assertTrue();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -586,13 +587,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
         cert.buildX509CertChain(param).then((data) => {
           expect(null).assertFail();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
         done();
       }
@@ -625,13 +626,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
         cert.buildX509CertChain(param).then((data) => {
           expect(null).assertFail();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
         done();
       }
@@ -668,13 +669,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
         cert.buildX509CertChain(param).then((data) => {
           expect(null).assertFail();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
         done();
       }
@@ -708,13 +709,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
         cert.buildX509CertChain(param).then((data) => {
           expect(null).assertFail();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
         done();
       }
@@ -748,13 +749,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
         cert.buildX509CertChain(param).then((data) => {
           expect(null).assertFail();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
         done();
       }
@@ -793,13 +794,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
           expect(data.certChain.getCertList().length == 2).assertTrue();
           expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -838,13 +839,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
           expect(data.certChain.getCertList().length == 2).assertTrue();
           expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(null).assertFail();
         done();
       }
@@ -875,13 +876,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
         cert.buildX509CertChain(param).then((data) => {
           expect(null).assertFail();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
         done();
       }
@@ -912,13 +913,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
         cert.buildX509CertChain(param).then((data) => {
           expect(null).assertFail();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
         done();
       }
@@ -939,13 +940,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
         cert.buildX509CertChain(param).then((data) => {
           expect(null).assertFail();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
         done();
       }
@@ -966,13 +967,13 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
         cert.buildX509CertChain(param).then((data) => {
           expect(null).assertFail();
           done();
-        }).catch((err) => {
-          console.log(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
           expect(null).assertFail();
           done();
         });
       } catch (error) {
-        console.log(`${caseName} catch error: ${JSON.stringify(error)}`);
+        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
         expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
         done();
       }
