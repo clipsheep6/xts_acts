@@ -27,24 +27,6 @@ export default function AudioHaptic() {
     let tag = 'AudioHapticTest:';
     let AudioHapticManager = audioHaptic.getAudioHapticManager();
     let testAbilityContext:common.UIAbilityContext;
-    async function resourceFile(resourcePath : string) {
-      // 1.读取文件
-      let uint8Array:Uint8Array = testAbilityContext.resourceManager.getRawFileContentSync(resourcePath);
-      let fileName = resourcePath.substring(resourcePath.lastIndexOf('/') + 1);
-      console.log(`${tag} fileName:${fileName}`);
-      // 2.创建沙箱文件
-      let filePath = testAbilityContext.filesDir + '/' + fileName;
-      if (fileIo.accessSync(filePath)){
-        fileIo.unlinkSync(filePath);
-      }
-      let file : fileIo.File = fileIo.openSync(filePath,fileIo.OpenMode.READ_WRITE | fileIo.OpenMode.CREATE);
-      // 3.resource下文件写入沙箱文件
-      fileIo.writeSync(file.fd,uint8Array.buffer);
-      // 4.关闭文件
-      fileIo.closeSync(file);
-      console.log(`${tag} filePath:${filePath}`);
-      return filePath;
-    }
     let Notification_Audio_Uri = '';
     let Notificatio_Haptic_Uri = '';
     let Ringtone_Audio_Uri = '';
@@ -64,10 +46,11 @@ export default function AudioHaptic() {
       testAbilityContext = AppStorage.get<common.UIAbilityContext>('TestAbilityContext') as common.UIAbilityContext;
       try {
 
-        Notification_Audio_Uri = await resourceFile('notification.ogg');
-        Notificatio_Haptic_Uri = await resourceFile('notification.json');
-        Ringtone_Audio_Uri = await resourceFile('ringtone.ogg');
-        Ringtone_Haptic_Uri = await resourceFile('ringtone.json');
+
+        Notification_Audio_Uri = 'sys_prod/resource/media/AudioHaptic/notification.ogg';
+        Notificatio_Haptic_Uri = 'sys_prod/resource/media/AudioHaptic/notification.json';
+        Ringtone_Audio_Uri = 'sys_prod/resource/media/AudioHaptic/ringtone.ogg';
+        Ringtone_Haptic_Uri = 'sys_prod/resource/media/AudioHaptic/ringtone.json';
 
         
         console.log(`${tag} ${Ringtone_Audio_Uri}`);
@@ -85,9 +68,9 @@ export default function AudioHaptic() {
     beforeEach(function () {
       console.log(`beforeEach come in`);
     })
-    afterEach(function () {
+    afterEach(async function () {
       if (AudioHapticPlayer != null) {
-        AudioHapticPlayer.release();
+        await AudioHapticPlayer.release();
       }
       console.log(`afterEach come in`);
     })
@@ -961,7 +944,7 @@ export default function AudioHaptic() {
           console.log(`${tag} AUDIO_HAPTIC_TYPE_AUDIO ismute : ${typeof (ismute)}`);
           expect(ismute).assertEqual(true);
           await sleep(100);
-          AudioHapticPlayer.release();
+          await AudioHapticPlayer.release();
           console.log(`${tag} AudioHapticPlayer release success`);
           expect(true).assertTrue();
           done();
@@ -1001,7 +984,7 @@ export default function AudioHaptic() {
           console.log(`${tag} AUDIO_HAPTIC_TYPE_AUDIO ismute : ${typeof (ismute)}`);
           expect(ismute).assertEqual(false);
           await sleep(100);
-          AudioHapticPlayer.release();
+          await AudioHapticPlayer.release();
           console.log(`${tag} AudioHapticPlayer release success`);
           expect(true).assertTrue();
           done();
@@ -1041,7 +1024,7 @@ export default function AudioHaptic() {
           console.log(`${tag} AUDIO_HAPTIC_TYPE_AUDIO ismute : ${typeof (ismute)}`);
           expect(ismute).assertEqual(true);
           await sleep(100);
-          AudioHapticPlayer.release();
+          await AudioHapticPlayer.release();
           console.log(`${tag} AudioHapticPlayer release success`);
           expect(true).assertTrue();
           done();
@@ -1081,7 +1064,7 @@ export default function AudioHaptic() {
           console.log(`${tag} AUDIO_HAPTIC_TYPE_AUDIO ismute : ${typeof (ismute)}`);
           expect(ismute).assertEqual(false);
           await sleep(100);
-          AudioHapticPlayer.release();
+          await AudioHapticPlayer.release();
           console.log(`${tag} AudioHapticPlayer release success`);
           expect(true).assertTrue();
           done();
@@ -1122,7 +1105,7 @@ export default function AudioHaptic() {
           console.log(`${tag} AUDIO_HAPTIC_TYPE_AUDIO ismute : ${typeof (ismute)}`);
           expect(ismute).assertEqual(true);
           await sleep(100);
-          AudioHapticPlayer.release();
+          await AudioHapticPlayer.release();
           console.log(`${tag} AudioHapticPlayer release success`);
           expect(true).assertTrue();
           done();
@@ -1162,7 +1145,7 @@ export default function AudioHaptic() {
           console.log(`${tag} AUDIO_HAPTIC_TYPE_AUDIO ismute : ${typeof (ismute)}`);
           expect(ismute).assertEqual(false);
           await sleep(100);
-          AudioHapticPlayer.release();
+          await AudioHapticPlayer.release();
           console.log(`${tag} AudioHapticPlayer release success`);
           expect(true).assertTrue();
           done();
@@ -1202,7 +1185,7 @@ export default function AudioHaptic() {
           console.log(`${tag} AUDIO_HAPTIC_TYPE_AUDIO ismute : ${typeof (ismute)}`);
           expect(ismute).assertEqual(true);
           await sleep(100);
-          AudioHapticPlayer.release();
+          await AudioHapticPlayer.release();
           console.log(`${tag} AudioHapticPlayer release success`);
           expect(true).assertTrue();
           done();
@@ -1242,7 +1225,7 @@ export default function AudioHaptic() {
           console.log(`${tag} AUDIO_HAPTIC_TYPE_AUDIO ismute : ${typeof (ismute)}`);
           expect(ismute).assertEqual(false);
           await sleep(100);
-          AudioHapticPlayer.release();
+          await AudioHapticPlayer.release();
           console.log(`${tag} AudioHapticPlayer release success`);
           expect(true).assertTrue();
           done();
@@ -1285,7 +1268,7 @@ export default function AudioHaptic() {
         } catch (err) {
           console.log(`${tag} isMuted fail: ${JSON.stringify(err)}, ${err.code}`);
           expect(Number(err.code)).assertEqual(401);
-          AudioHapticPlayer.release();
+          await AudioHapticPlayer.release();
           console.log(`${tag} AudioHapticPlayer release success`);
           done()
         }
@@ -1324,7 +1307,7 @@ export default function AudioHaptic() {
         } catch (err) {
           console.log(`${tag} isMuted fail: ${JSON.stringify(err)}, ${err.code}`);
           expect(Number(err.code)).assertEqual(401);
-          AudioHapticPlayer.release();
+          await AudioHapticPlayer.release();
           console.log(`${tag} AudioHapticPlayer release success`);
           done()
         }
@@ -1363,7 +1346,7 @@ export default function AudioHaptic() {
         } catch (err) {
           console.log(`${tag} isMuted fail: ${JSON.stringify(err)}, ${err.code}`);
           expect(Number(err.code)).assertEqual(401);
-          AudioHapticPlayer.release();
+          await AudioHapticPlayer.release();
           console.log(`${tag} AudioHapticPlayer release success`);
           done()
         }
