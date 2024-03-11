@@ -12,64 +12,68 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import Ability from '@ohos.app.ability.UIAbility';
 import commonEvent from '@ohos.commonEvent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
-var TAG1 = 'StageOnAndOffScreen:MainAbility:';
-var listPush1 = "StageOnAndOffScreen_MainAbility_";
-var lifeList = [];
+let TAG1 = 'StageOnAndOffScreen:MainAbility:';
+let listPush1 = "StageOnAndOffScreen_MainAbility_";
+let lifeList = [];
+
 export default class MainAbility extends Ability {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log(TAG1 + 'onCreate');
+    lifeList.push('onCreate');
+  }
 
-    onCreate(want, launchParam) {
-        console.log(TAG1 + 'onCreate');
-        lifeList.push('onCreate');
+  onDestroy() {
+    console.log(TAG1 + 'onDestroy');
+  }
+
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log(TAG1 + 'onWindowStageCreate');
+
+    windowStage.loadContent("pages/index", (err, data) => {
+      if (err.code) {
+        console.log(TAG1 + 'Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.log(TAG1 + 'Succeeded in loading the content. Data: ' + JSON.stringify(data));
+    });
+  }
+
+  onWindowStageDestroy() {
+    console.log(TAG1 + 'onWindowStageDestroy');
+  }
+
+  onForeground() {
+    console.log(TAG1 + 'onForeground');
+    lifeList.push('onForeground');
+
+    let options = {
+      parameters: {
+        lifeList: lifeList
+      }
     }
+    commonEvent.publish(listPush1 + "onForeground", options, (err) => {
+      console.log(TAG1 + listPush1 + "onForeground");
+    });
+  }
 
-    onDestroy() {
-        console.log(TAG1 + 'onDestroy');
+  onBackground() {
+    console.log(TAG1 + 'onBackground');
+    lifeList.push('onBackground');
+
+    let options = {
+      parameters: {
+        lifeList: lifeList
+      }
     }
-
-    onWindowStageCreate(windowStage) {
-        console.log(TAG1 + 'onWindowStageCreate');
-
-        windowStage.loadContent("pages/index", (err, data) => {
-            if (err.code) {
-                console.log(TAG1 + 'Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.log(TAG1 + 'Succeeded in loading the content. Data: ' + JSON.stringify(data));
-        });
-    }
-
-    onWindowStageDestroy() {
-        console.log(TAG1 + 'onWindowStageDestroy');
-    }
-
-    onForeground() {
-        console.log(TAG1 + 'onForeground');
-        lifeList.push('onForeground');
-
-        let options = {
-            parameters: {
-                lifeList: lifeList
-            }
-        }
-        commonEvent.publish(listPush1 + "onForeground", options, (err) => {
-            console.log(TAG1 + listPush1 + "onForeground");
-        });
-    }
-
-    onBackground() {
-        console.log(TAG1 + 'onBackground');
-        lifeList.push('onBackground');
-
-        let options = {
-            parameters: {
-                lifeList: lifeList
-            }
-        }
-        commonEvent.publish(listPush1 + "onBackground", options, (err) => {
-            console.log(TAG1 + listPush1 + "onBackground");
-        });
-    }
-};
+    commonEvent.publish(listPush1 + "onBackground", options, (err) => {
+      console.log(TAG1 + listPush1 + "onBackground");
+    });
+  }
+}
