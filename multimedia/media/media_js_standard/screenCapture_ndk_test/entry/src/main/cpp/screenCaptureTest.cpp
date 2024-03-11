@@ -320,6 +320,8 @@ static napi_value InitWidthErr(napi_env env, napi_callback_info info)
 
     bool isMicrophone = false;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
+    bool canvasRotation = false;
+    OH_AVScreenCapture_SetScreenCanvasRotation(screenCapture, canvasRotation);
     OH_AVSCREEN_CAPTURE_ErrCode result = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVScreenCapture_Release(screenCapture);
     napi_value res;
@@ -1262,6 +1264,8 @@ static napi_value ConfigureCombination_01(napi_env env, napi_callback_info info)
 
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
+    bool canvasRotation = true;
+    OH_AVScreenCapture_SetScreenCanvasRotation(screenCapture, canvasRotation);
     SetScreenCaptureCallback(screenCapture, screenCaptureCb);
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCapture(screenCapture);
@@ -1542,6 +1546,51 @@ static napi_value ScreenCaptureInnerAudio(napi_env env, napi_callback_info info)
     return res;
 }
 
+
+// OH_Media_SetScreenCanvasRotation_001
+static napi_value SetScreenCanvasRotation_01(napi_env env, napi_callback_info info)
+{
+    g_aFlag = 1;
+    g_vFlag = 1;
+    int32_t time = 5;
+    FILE *audioFile = nullptr;
+    OH_AVScreenCapture* screenCapture = CreateScreenCapture();
+    OH_AVScreenCaptureConfig config_;
+    SetConfig(config_);
+    config_.videoInfo.videoCapInfo.videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA;
+    audioFile = OpenAFile(audioFile, "SUB_MULTIMEDIA_SCREEN_CAPTURE_CANVASROTATION_0001");
+    screenCaptureCb = std::make_shared<ScreenCaptureNdkTestCallback>(screenCapture, audioFile, nullptr, nullptr);
+
+    bool canvasRotation = false;
+    OH_AVScreenCapture_SetScreenCanvasRotation(screenCapture, canvasRotation);
+    SetScreenCaptureCallback(screenCapture, screenCaptureCb);
+    OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
+    OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCapture(screenCapture);
+    sleep(time);
+    canvasRotation = true;
+    OH_AVScreenCapture_SetScreenCanvasRotation(screenCapture, canvasRotation);
+    sleep(g_recordTime);
+    canvasRotation = false;
+    OH_AVScreenCapture_SetScreenCanvasRotation(screenCapture, canvasRotation);
+    sleep(g_recordTime);
+    OH_AVSCREEN_CAPTURE_ErrCode result3 = OH_AVScreenCapture_StopScreenCapture(screenCapture);
+    DelCallback(screenCapture);
+    OH_AVScreenCapture_Release(screenCapture);
+    CloseFile(audioFile, nullptr);
+    screenCaptureCb = nullptr;
+    napi_value res;
+    OH_AVSCREEN_CAPTURE_ErrCode result;
+    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK
+        && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
+        result = AV_SCREEN_CAPTURE_ERR_OK;
+    } else {
+        LOG(false, "init/start/stop failed, init: %d, start: %d, stop: %d", result1, result2, result3);
+        result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
+    }
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -1588,6 +1637,7 @@ static napi_value Init(napi_env env, napi_value exports)
         {"configCombination_04", nullptr, ConfigureCombination_04, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"multiInstance", nullptr, ScreenCaptureMultiInstance, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"innerAudioAndMicAudio", nullptr, ScreenCaptureInnerAudio, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"setScreenCanvasRotation_01", nullptr, SetScreenCanvasRotation_01, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
