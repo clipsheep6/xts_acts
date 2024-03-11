@@ -99,7 +99,7 @@ export default function abilityTest() {
         bundleName: 'com.example.actsnotificationnopermissionunsystemrely',
         abilityName: 'EntryAbility'
       };
-      await globalThis.abilityContext.tartAbilityForResult(want).then((data: common.AbilityResult)=>{
+      await globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult)=>{
         console.info("Acts_NotificationGetAllEnableStatus_0300 startAbilityForResult successful");
         setTimeout(() => {
           console.info("Acts_NotificationGetAllEnableStatus_0300 data is " + JSON.stringify(data));
@@ -127,7 +127,7 @@ export default function abilityTest() {
         bundleName: 'com.example.actsnotificationnopermissionsystemrely',
         abilityName: 'EntryAbility'
       };
-      await globalThis.abilityContext.tartAbilityForResult(want).then((data: common.AbilityResult)=>{
+      await globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult)=>{
         console.info("Acts_NotificationGetAllEnableStatus_0400 startAbilityForResult successful");
         setTimeout(() => {
           console.info("Acts_NotificationGetAllEnableStatus_0400 data is " + JSON.stringify(data));
