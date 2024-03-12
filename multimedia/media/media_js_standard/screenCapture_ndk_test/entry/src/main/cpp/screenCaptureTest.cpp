@@ -1547,7 +1547,7 @@ static napi_value ScreenCaptureInnerAudio(napi_env env, napi_callback_info info)
 }
 
 
-// OH_Media_SetScreenCanvasRotation_001
+// OH_Media_SetScreenCanvasRotation_01
 static napi_value SetScreenCanvasRotation_01(napi_env env, napi_callback_info info)
 {
     g_aFlag = 1;
@@ -1637,7 +1637,8 @@ static napi_value Init(napi_env env, napi_value exports)
         {"configCombination_04", nullptr, ConfigureCombination_04, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"multiInstance", nullptr, ScreenCaptureMultiInstance, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"innerAudioAndMicAudio", nullptr, ScreenCaptureInnerAudio, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"setScreenCanvasRotation_01", nullptr, SetScreenCanvasRotation_01, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"setScreenCanvasRotation_01", nullptr, SetScreenCanvasRotation_01, nullptr, nullptr, nullptr, napi_default,
+            nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
