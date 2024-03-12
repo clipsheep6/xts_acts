@@ -1561,7 +1561,7 @@ static napi_value SetScreenCanvasRotation_01(napi_env env, napi_callback_info in
     audioFile = OpenAFile(audioFile, "SUB_MULTIMEDIA_SCREEN_CAPTURE_CANVASROTATION_0001");
     screenCaptureCb = std::make_shared<ScreenCaptureNdkTestCallback>(screenCapture, audioFile, nullptr, nullptr);
 
-    bool canvasRotation = false;
+    bool canvasRotation = true;
     OH_AVScreenCapture_SetScreenCanvasRotation(screenCapture, canvasRotation);
     SetScreenCaptureCallback(screenCapture, screenCaptureCb);
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);

@@ -520,6 +520,20 @@ export default function nativeApiScreenCaptureJsunit() {
             done()
         })
         /* *
+            * @tc.number    : SUB_MULTIMEDIA_SCREEN_CAPTURE_ROTATIONTEST_0100
+            * @tc.name      : Test OH_AVScreenCapture_SetScreenCanvasRotation
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_SCREEN_CAPTURE_ROTATIONTEST_0100', 0, async function (done) {
+            let a = myScreenCaptureNdk.setScreenCanvasRotation_01();
+            console.info(Tag + "SUB_MULTIMEDIA_SCREEN_CAPTURE_ROTATIONTEST_0100-------------setScreenCanvasRotation_01:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
             * @tc.number    : SUB_MULTIMEDIA_SCREEN_CAPTURE_CONFIG_COMBINATION_0100
             * @tc.name      : Test VideoSize and CaptureMode combination
             * @tc.desc      :
