@@ -1547,7 +1547,7 @@ static napi_value ScreenCaptureInnerAudio(napi_env env, napi_callback_info info)
 }
 
 
-// OH_Media_SetScreenCanvasRotation_01
+// OH_AVScreenCapture_SetScreenCanvasRotation
 static napi_value SetScreenCanvasRotation_01(napi_env env, napi_callback_info info)
 {
     g_aFlag = 1;
