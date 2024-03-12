@@ -23,7 +23,6 @@ export default function select() {
       console.info("select beforeEach start");
       done();
     })
-
     afterEach(async function (done) {
       console.info("[selectTest_afterEach] start");
       try {
