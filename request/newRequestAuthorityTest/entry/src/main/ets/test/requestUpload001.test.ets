@@ -498,6 +498,7 @@ export default function requestUploadOnetJSUnitTest() {
             console.info("====>SUB_Misc_REQUEST_On_Upload_Progress_0010 pro: " + JSON.stringify(pro));
             expect(true).assertTrue();
             await sleep(100);
+            await request.agent.remove(task.tid);
             done();
           }
 
@@ -557,6 +558,7 @@ export default function requestUploadOnetJSUnitTest() {
               } catch (err) {
                 console.info("====>SUB_Misc_REQUEST_Off_Upload_Progress_0010 offProgress fail err: " + JSON.stringify(err));
               }
+              await request.agent.remove(task.tid);
               done();
             }, 100)
           } catch (err) {
@@ -613,6 +615,7 @@ export default function requestUploadOnetJSUnitTest() {
                 expect(flag).assertTrue();
                 expect(flag1).assertFalse();
                 console.info("====>SUB_Misc_REQUEST_Off_Upload_Progress_0020 offProgress success flag: " + flag);
+                await request.agent.remove(task.tid);
                 done();
               } catch (err) {
                 console.info("====>SUB_Misc_REQUEST_Off_Upload_Progress_0020 offProgress fail err: " + JSON.stringify(err));
@@ -670,6 +673,7 @@ export default function requestUploadOnetJSUnitTest() {
             console.info("====>SUB_Misc_REQUEST_On_Upload_Progress_0030 task progress on arr: " + JSON.stringify(arr));
             task.off('progress');
             expect(arr.join()).assertEqual(arr1.join());
+            await request.agent.remove(task.tid);
             done();
           } catch (err) {
             console.info("====>SUB_Misc_REQUEST_On_Upload_Progress_0030 catch err: " + JSON.stringify(err));
@@ -717,6 +721,7 @@ export default function requestUploadOnetJSUnitTest() {
             await sleep(100);
             console.info("====>SUB_Misc_REQUEST_Off_Upload_Progress_0030 task progress on arr: " + JSON.stringify(arr));
             expect(arr.length).assertEqual(0);
+            await request.agent.remove(task.tid);
             done();
           } catch (err) {
             console.info("====>SUB_Misc_REQUEST_Off_Upload_Progress_0030 catch err: " + JSON.stringify(err));
@@ -748,6 +753,7 @@ export default function requestUploadOnetJSUnitTest() {
             console.info("====>SUB_Misc_REQUEST_On_Upload_Progress_0040 pro: " +  JSON.stringify(pro));
             expect(true).assertTrue();
             await sleep(100);
+            await request.agent.remove(task.tid);
             done();
           }
 
@@ -806,6 +812,7 @@ export default function requestUploadOnetJSUnitTest() {
               } catch (err) {
                 console.info("====>SUB_Misc_REQUEST_Off_Download_Progress_0040 offProgress fail err: " + JSON.stringify(err));
               }
+              await request.agent.remove(task.tid);
               done();
             }, 100)
           } catch (err) {
@@ -850,6 +857,7 @@ export default function requestUploadOnetJSUnitTest() {
             task.on('completed', on_completedCallback, 'a');
             await task.start();
             await sleep(100);
+            await request.agent.remove(task.tid);
             done();
           } catch (err) {
             console.info("====>SUB_Misc_REQUEST_On_Upload_Completed_001 catch err: " + JSON.stringify(err));
@@ -898,6 +906,7 @@ export default function requestUploadOnetJSUnitTest() {
               } catch (err) {
                 console.info("====>SUB_Misc_REQUEST_Off_Upload_Completed_0010 offCompleted fail err: " + JSON.stringify(err));
               }
+              await request.agent.remove(task.tid);
               done();
             }, 100)
           } catch (err) {
@@ -945,6 +954,8 @@ export default function requestUploadOnetJSUnitTest() {
         await sleep(10)
         expect(flage).assertTrue();
         task2.off('completed', on_offCompletedCallback2);
+        await request.agent.remove(task1.tid);
+        await request.agent.remove(task2.tid);
         done();
       } catch (err) {
         console.info("====>SUB_REQUEST_Off_Upload_Completed_0200 create catch err: " + JSON.stringify(err));
@@ -990,6 +1001,7 @@ export default function requestUploadOnetJSUnitTest() {
             console.info("====>SUB_Misc_REQUEST_On_Upload_Completed_0030 task completed on arr: " + arr);
             task.off('completed');
             expect(true).assertEqual(true);
+            await request.agent.remove(task.tid);
             done();
           } catch (err) {
             console.info("====>SUB_Misc_REQUEST_On_Upload_Completed_0030 catch err: " + JSON.stringify(err));
@@ -1037,6 +1049,7 @@ export default function requestUploadOnetJSUnitTest() {
             await sleep(100);
             console.info("====>SUB_Misc_REQUEST_Off_Upload_Completed_0030 task completed on arr: " + JSON.stringify(arr));
             expect(arr.length).assertEqual(0);
+            await request.agent.remove(task.tid);
             done();
           } catch (err) {
             console.info("====>SUB_Misc_REQUEST_Off_Upload_Completed_0030 catch err: " + JSON.stringify(err));
@@ -1067,6 +1080,7 @@ export default function requestUploadOnetJSUnitTest() {
             task.off('completed', on_completedCallback);
             console.info("====>SUB_Misc_REQUEST_On_Upload_Completed_0040 pro: " + JSON.stringify(pro));
             expect(true).assertTrue();
+            await request.agent.remove(task.tid);
             done();
           }
           try {
@@ -1124,6 +1138,7 @@ export default function requestUploadOnetJSUnitTest() {
               } catch (err) {
                 console.info("====>SUB_Misc_REQUEST_Off_Upload_Completed_0040 offCompleted fail err: " + JSON.stringify(err));
               }
+              await request.agent.remove(task.tid);
               done();
             }, 100)
           } catch (err) {
@@ -1329,6 +1344,7 @@ export default function requestUploadOnetJSUnitTest() {
             task.off('failed');
             console.info("====>SUB_Misc_REQUEST_On_Upload_Failed_0030 task progress on arr: " + JSON.stringify(arr));
             expect(arr.join()).assertEqual(arr1.join());
+            await request.agent.remove(task.tid);
             done();
           } catch (err) {
             console.info("====>SUB_Misc_REQUEST_On_Upload_Failed_0030 catch err: " + JSON.stringify(err));
@@ -1376,6 +1392,7 @@ export default function requestUploadOnetJSUnitTest() {
             await sleep(100);
             console.info("====>SUB_Misc_REQUEST_Off_Upload_Failed_0030 task failed on arr: " + JSON.stringify(arr));
             expect(arr.length).assertEqual(0);
+            await request.agent.remove(task.tid);
             done();
           } catch (err) {
             console.info("====>SUB_Misc_REQUEST_Off_Upload_Failed_0030 catch err: " + JSON.stringify(err));
@@ -1578,6 +1595,7 @@ export default function requestUploadOnetJSUnitTest() {
             task.off('failed', on_failedCallback);
             expect(true).assertTrue();
             console.info('====>SUB_REQUEST_On_Upload_Failed_0500 background onFailed success');
+            await request.agent.remove(task.tid);
             done();
           }
           try {
@@ -1628,6 +1646,7 @@ export default function requestUploadOnetJSUnitTest() {
             task.off('failed', on_failedCallback);
             expect(true).assertTrue();
             console.info('====>SUB_REQUEST_On_Upload_Failed_0600 background onFailed success');
+            await request.agent.remove(task.tid);
             done();
           }
           try {
@@ -1692,15 +1711,17 @@ export default function requestUploadOnetJSUnitTest() {
           let pro1 = (task1: request.agent.Progress) => {
             console.info("====>SUB_REQUEST_On_Upload_Failed_0300 pro1: " + JSON.stringify(task1));
             arr.push(0);
+            await request.agent.remove(task.tid);
           }
 
-          let pro2 = (task2: request.agent.Progress) => {
+          let pro2 = async (task2: request.agent.Progress) => {
             try {
               task.off('failed');
               console.info("====>SUB_REQUEST_On_Upload_Failed_0300 pro2: " + JSON.stringify(task2));
               arr.push(1);
               console.info("====>SUB_REQUEST_On_Upload_Failed_0300 task2 failed on arr: " + JSON.stringify(arr));
               expect(arr.join()).assertEqual(arr1.join());
+              await request.agent.remove(task.tid);
               done();
             } catch (err) {
               console.info("====>SUB_REQUEST_On_Upload_Failed_0300 catch err: " + JSON.stringify(err));
@@ -1767,6 +1788,7 @@ export default function requestUploadOnetJSUnitTest() {
               arr.push(2);
               console.info("====>SUB_REQUEST_Off_Upload_Failed_0500 task3 failed on arr: " + JSON.stringify(arr));
               expect(arr.join()).assertEqual(arr1.join());
+              await request.agent.remove(task.tid);
               done();
             } catch (err) {
               console.info("====>SUB_REQUEST_Off_Upload_Failed_0500 catch err: " + JSON.stringify(err));
@@ -1831,6 +1853,7 @@ export default function requestUploadOnetJSUnitTest() {
               arr.push(2);
               console.info("====>SUB_REQUEST_Off_Upload_Failed_0600 task3 failed on arr: " + JSON.stringify(arr));
               expect(arr[0]).assertEqual(2);
+              await request.agent.remove(task.tid);
               done();
             } catch (err) {
               console.info("====>SUB_REQUEST_Off_Upload_Failed_0600 catch err: " + JSON.stringify(err));
@@ -2421,7 +2444,7 @@ export default function requestUploadOnetJSUnitTest() {
         }
       }
 
-      function subscriberCallback (err, data){
+      async function subscriberCallback (err, data){
         try {
           console.info("====>SUB_REQUEST_Upload_broadcastEvent_0200 subscriberCallback data:"
           + JSON.stringify(data));

@@ -58,7 +58,7 @@ export default function requestDownloadOneJSUnitTest() {
             console.info("====>SUB_Misc_REQUEST_create_Callback_0140 create err: " + JSON.stringify(err));
             expect().assertFail();
           }
-          task.on("completed", (progress) => {
+          task.on("completed", async (progress) => {
             task.off("completed");
             let downloadSize = progress.sizes[0];
             console.info('====>downloadSize:' + downloadSize);
@@ -66,6 +66,7 @@ export default function requestDownloadOneJSUnitTest() {
             console.info('====>fileSize:'+ fileSize);
             expect(downloadSize).assertEqual(fileSize);
             console.info("====>----------SUB_Misc_REQUEST_create_Callback_0140 is end---------------");
+            await request.agent.remove(task.tid);
             done();
           });
           await task.start();
@@ -109,6 +110,7 @@ export default function requestDownloadOneJSUnitTest() {
           let fileSize = config.ends - config.begins + 1
           console.info('====>fileSize:'+ fileSize)
           expect(downloadSize).assertEqual(fileSize)
+          await request.agent.remove(task.tid);
           done();
         }
         task.on("completed", onCompletedCallback)
@@ -148,12 +150,13 @@ export default function requestDownloadOneJSUnitTest() {
             console.info("====>SUB_Misc_REQUEST_create_Callback_0160 create err: " + JSON.stringify(err));
             expect().assertFail();
           }
-          task.on("completed", (progress) => {
+          task.on("completed", async (progress) => {
             task.off("completed");
             let downloadSize = progress.sizes[0];
             console.info('====>downloadSize:' + downloadSize);
             expect(downloadSize).assertEqual(100);
             console.info("====>----------SUB_Misc_REQUEST_create_Callback_0160 is end---------------");
+            await request.agent.remove(task.tid);
             done();
           });
           await task.start();
@@ -195,6 +198,7 @@ export default function requestDownloadOneJSUnitTest() {
           let downloadSize = progress.sizes[0];
           console.info('====>downloadSize:' + downloadSize);
           expect(downloadSize).assertEqual(100);
+          await request.agent.remove(task.tid);
           done();
         }
         task.on("completed", onCompletedCallback);
@@ -234,7 +238,7 @@ export default function requestDownloadOneJSUnitTest() {
             console.info("====>SUB_Misc_REQUEST_create_Callback_0170 create err: " + JSON.stringify(err));
             expect().assertFail();
           }
-          task.on("completed", (progress) => {
+          task.on("completed", async (progress) => {
             task.off("completed");
             let downloadSize = progress.sizes[0];
             console.info('====>downloadSize:' + downloadSize);
@@ -242,6 +246,7 @@ export default function requestDownloadOneJSUnitTest() {
             console.info('====>fileSize:'+ fileSize);
             expect(downloadSize).assertEqual(fileSize);
             console.info("====>-----------------SUB_Misc_REQUEST_create_Callback_0170 is end--------------------");
+            await request.agent.remove(task.tid);
             done();
           });
           await task.start();
@@ -285,6 +290,7 @@ export default function requestDownloadOneJSUnitTest() {
           let fileSize = config.ends - config.begins + 1;
           console.info('====>fileSize:'+ fileSize);
           expect(downloadSize).assertEqual(fileSize);
+          await request.agent.remove(task.tid);
           done();
         }
         task.on("completed", onCompletedCallback);
@@ -324,10 +330,11 @@ export default function requestDownloadOneJSUnitTest() {
             console.info("====>SUB_Misc_REQUEST_create_Callback_0180 create err: " + JSON.stringify(err));
             expect().assertFail();
           }
-          task.on("failed", (progress) => {
+          task.on("failed", async (progress) => {
             task.off("failed");
             console.info('====>upload task failed.' + JSON.stringify(progress));
             expect(progress.state).assertEqual(65);
+            await request.agent.remove(task.tid);
             done();
           });
           await task.start();
@@ -363,10 +370,11 @@ export default function requestDownloadOneJSUnitTest() {
       console.info("====>-------------------SUB_Misc_REQUEST_Create_Promise_0180 is starting---------------------");
       try{
         let task = await request.agent.create(globalThis.abilityContext, config);
-        let createOffCallback = (progress) => {
+        let createOffCallback = async (progress) => {
           console.info('====>upload task failed.' + JSON.stringify(progress));
           task.off("failed");
           expect(progress.state).assertEqual(65);
+          await request.agent.remove(task.tid);
           done();
         };
         task.on("failed", createOffCallback);
