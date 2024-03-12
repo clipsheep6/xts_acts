@@ -531,7 +531,7 @@ export default function OnAndOffScreenTest() {
                 commonEvent.unsubscribe(subscriber, async (err, data) => {
                   console.log(TAG + "UnSubscribeInfoCallback : " + JSON.stringify(data));
                   for (let i of listCheck) {
-                    expect(lifeSet.has(listCheck[i])).assertTrue();
+                    expect(lifeSet.has(i)).assertTrue();
                   }
                   expect(status1).assertTrue();
                   done();
