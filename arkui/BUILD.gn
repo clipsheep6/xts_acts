@@ -27,6 +27,7 @@ group("arkui") {
     "ace_ets_component_apilack:ActsAceEtsApiLackTest",
     "ace_ets_component_attrlack:ActsAceEtsAttrLackTest",
     "ace_ets_component_basic:ActsAceEtsComponentBasicTest",
+    "ace_ets_component_basic/ace_ets_component_basic_select/ace_ets_component_basic_select_api12:ActsAceBasicSelectTest",
     "ace_ets_component_common_attrss:componentAttrssTest",
     "ace_ets_component_completion:componentCompletionTest",
     "ace_ets_component_container:ActsAceEtsComponentContainerTest",
