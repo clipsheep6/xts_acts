@@ -19,6 +19,8 @@ group("netmanager_websocket") {
     deps = [
       "sslcertverify:ActsNetworkManagerSSLCertVerifyTest",
       "websocketcertverify:ActsNetworkManagerWebSocketCertVerifyTest",
+      "NetManagerWSProxy:ActsNetManagerWSProxyTest",
+      "NetManagerWSSupportCustomProtocol:ActsNetManagerWSSupportCustomProtocolTest",
     ]
   }
 }
