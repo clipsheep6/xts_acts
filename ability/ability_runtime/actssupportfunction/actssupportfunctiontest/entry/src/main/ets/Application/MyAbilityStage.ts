@@ -12,11 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import AbilityStage from "@ohos.app.ability.AbilityStage";
 
-var TAG0 = 'SupportFunction:TestAbilityStage:';
+let TAG0 = 'SupportFunction:TestAbilityStage:';
+
 export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.log(TAG0 + "onCreate")
-    }
+  onCreate() {
+    console.log(TAG0 + "onCreate");
+  }
 }
