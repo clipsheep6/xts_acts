@@ -14,19 +14,24 @@
  */
 
 import Ability from '@ohos.app.ability.UIAbility';
-import commonEvent from '@ohos.commonEvent';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
+import { Hypium } from '@ohos/hypium';
+import testsuite from '../test/List.test';
 import Want from '@ohos.app.ability.Want';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
 import window from '@ohos.window';
 
-let TAG1 = 'StageOnAndOffScreen:MainAbility:';
-let listPush1 = "StageOnAndOffScreen_MainAbility_";
-let lifeList = [];
+let TAG1 = 'ActsOnAndOffScreenTest:MainAbility:';
 
 export default class MainAbility extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log(TAG1 + 'onCreate');
-    lifeList.push('onCreate');
+    AppStorage.setOrCreate<common.UIAbilityContext>("abilityTestContext", this.context);
+    let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+    let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs = AbilityDelegatorRegistry.getArguments();
+    console.log('start run testcase!!!');
+    Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
   }
 
   onDestroy() {
@@ -35,7 +40,6 @@ export default class MainAbility extends Ability {
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     console.log(TAG1 + 'onWindowStageCreate');
-
     windowStage.loadContent("pages/index", (err, data) => {
       if (err.code) {
         console.log(TAG1 + 'Failed to load the content. Cause:' + JSON.stringify(err));
@@ -51,29 +55,9 @@ export default class MainAbility extends Ability {
 
   onForeground() {
     console.log(TAG1 + 'onForeground');
-    lifeList.push('onForeground');
-
-    let options = {
-      parameters: {
-        lifeList: lifeList
-      }
-    }
-    commonEvent.publish(listPush1 + "onForeground", options, (err) => {
-      console.log(TAG1 + listPush1 + "onForeground");
-    });
   }
 
   onBackground() {
     console.log(TAG1 + 'onBackground');
-    lifeList.push('onBackground');
-
-    let options = {
-      parameters: {
-        lifeList: lifeList
-      }
-    }
-    commonEvent.publish(listPush1 + "onBackground", options, (err) => {
-      console.log(TAG1 + listPush1 + "onBackground");
-    });
   }
 }

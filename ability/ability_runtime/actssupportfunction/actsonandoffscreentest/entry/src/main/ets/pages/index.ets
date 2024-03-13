@@ -12,14 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct Index {
-  aboutToAppear() {
-    console.log('ActsOnAndOffScreenTest MainAbility index aboutToAppear')
-  }
+  @State message: string = 'Hello World ActsOnAndOffScreenTest 1';
 
-  @State message: string = 'Hello World ActsOnAndOffScreenTest 1'
+  aboutToAppear() {
+    console.log('ActsOnAndOffScreenTest MainAbility index aboutToAppear');
+  }
 
   build() {
     Row() {

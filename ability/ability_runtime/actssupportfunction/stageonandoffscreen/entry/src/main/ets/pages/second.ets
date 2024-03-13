@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct Second {
-  @State message: string = 'Hello World StageOnAndOffScreen 2'
+  @State message: string = 'Hello World StageOnAndOffScreen 2';
 
   build() {
     Row() {
@@ -28,14 +29,13 @@ struct Second {
             Text('StageOnAndOffScreen_MainAbility2')
               .fontSize(20)
               .fontWeight(FontWeight.Bold)
-          }.type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
+          }
+          .type(ButtonType.Capsule)
+          .margin({ top: 20 })
           .backgroundColor('#0D9FFB')
           .width('30%')
           .height('5%')
-          .onClick(()=>{
+          .onClick(() => {
           })
         }
       }
