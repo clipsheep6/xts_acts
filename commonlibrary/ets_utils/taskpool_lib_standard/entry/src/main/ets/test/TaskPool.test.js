@@ -70,7 +70,7 @@ describe('ActsAbilityTest', function () {
               }
             }
             catch (e) {
-              console.info("taskpoolXTS061 catch error: " + e);
+              console.info("taskpoolXTS001 catch error: " + e);
             }
         }
         function promiseCase() {
@@ -83,7 +83,7 @@ describe('ActsAbilityTest', function () {
             return p
         }
 
-        let ss = new worker.ThreadWorker("entry/ets/workers/worker.js")
+        let ss = new worker.ThreadWorker("entry/ets/worker/worker.js")
         let res = 0
         let flag = false
         ss.onexit = function () {
