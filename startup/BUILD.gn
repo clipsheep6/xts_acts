@@ -17,7 +17,6 @@ group("startup") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "crossplatform/deviceInfoetstest:ActsCrossplatformDeviceInfoTest",
       "startup_standard:startup_standard",
     ]
   }
