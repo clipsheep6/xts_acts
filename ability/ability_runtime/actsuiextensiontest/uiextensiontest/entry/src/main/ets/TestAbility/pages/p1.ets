@@ -14,9 +14,10 @@
  */
 
 import hilog from '@ohos.hilog';
-import commonEventManager from '@ohos.commonEventManager'
+import commonEventManager from '@ohos.commonEventManager';
+import router from '@ohos.router';
 
-const TAG: string = '[P1]'
+const TAG: string = '[P1]';
 
 @Entry
 @Component
@@ -25,32 +26,33 @@ struct P1 {
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility index aboutToAppear');
   }
+
   build() {
     Row() {
       Column() {
         UIExtensionComponent({
           bundleName: 'com.acts.uiextensionprovider',
           abilityName: 'UIExtAbility'
-        }).width('100%').height('35%')
-          .onResult((data)=>{
+        })
+          .width('100%')
+          .height('35%')
+          .onResult((data) => {
             let onResultEvent = 'ACTS_UIExtension_OnResult';
-            let options = {
+            commonEventManager.publish(onResultEvent, {
               parameters: {
                 'result': data
               }
-            }
-            commonEventManager.publish(onResultEvent, options, (err) => {
+            }, (err) => {
               console.log(TAG + 'ACTS_UIExtension_OnResult');
             });
           })
-          .onReceive((data)=>{
+          .onReceive((data) => {
             let onReceiveEvent = 'ACTS_UIExtension_OnReceive';
-            let options = {
+            commonEventManager.publish(onReceiveEvent, {
               parameters: {
                 'result': data
               }
-            }
-            commonEventManager.publish(onReceiveEvent, options, (err) => {
+            }, (err) => {
               console.log(TAG + 'ACTS_UIExtension_OnReceive');
             });
           })

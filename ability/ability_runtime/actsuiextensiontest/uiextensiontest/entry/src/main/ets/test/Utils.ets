@@ -12,24 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import commonEventManager from '@ohos.commonEventManager'
+
+import commonEventManager from '@ohos.commonEventManager';
+
 export default class Utils {
-    static sleep(time) {
-      return new Promise<void>((resolve, reject) => {
-        setTimeout(() => {
-          resolve()
-        }, time)
-      }).then(() => {
-        console.info(`sleep ${time} over...`)
+  static sleep(time: number) {
+    return new Promise<void>((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, time)
+    })
+      .then(() => {
+        console.info(`sleep ${time} over...`);
       })
-    }
-
-    static unsubscribe(subscriber) {
-      if(subscriber != undefined){
-        commonEventManager.unsubscribe(subscriber, async (err, data) => {
-          console.log("UnSubscribeInfoCallback : " + JSON.stringify(data));
-        });
-      }
-    }
-
   }
+
+  static unsubscribe(subscriber: commonEventManager.CommonEventSubscriber) {
+    if (subscriber != undefined) {
+      commonEventManager.unsubscribe(subscriber, async (err, data) => {
+        console.log("UnSubscribeInfoCallback : " + JSON.stringify(data));
+      });
+    }
+  }
+}
