@@ -1250,7 +1250,7 @@ export default function abilityTest() {
 
     /*
      * @tc.number  : ACTS_UIExtension_RequestModalUIExtension002
-     * @tc.name    : test request Modal UIExtension 
+     * @tc.name    : test request Modal UIExtension
      * @tc.desc    : request Modal UIExtension by want
      */
     it('ACTS_UIExtension_RequestModalUIExtension002', 0, async (done: Function) => {
