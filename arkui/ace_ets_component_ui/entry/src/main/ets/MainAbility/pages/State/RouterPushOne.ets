@@ -15,7 +15,7 @@
 
 import hilog from '@ohos.hilog';
 import router from '@ohos.router';
-import { Router } from '@ohos.arkui.UIContext';
+import { Router, UIContext } from '@ohos.arkui.UIContext';
 
 @Entry
 @Component
@@ -26,8 +26,9 @@ struct RouterPushOne {
   }
 
   onPageShow() {
-    let routerUI: Router = globalThis.uiContext.getRouter();
-    this.routerUI = routerUI;
+    let uiContext: UIContext = this.getUIContext?.()
+    let routerUI: Router = uiContext.getRouter();
+    this.routerUI = routerUI
   }
 
   @State message: string = 'RouterPushUrlOne';
@@ -38,6 +39,9 @@ struct RouterPushOne {
     Row() {
       Column() {
         Text(this.message)
+        Text("RouterPushThree " + JSON.stringify(router.getParams()))
+          .fontSize(20)
+          .id("Text_RouterPushThree_Params")
         Button("turn_RouterPushUrlTwo_noParms")
           .type(ButtonType.Capsule)
           .margin({
@@ -90,7 +94,6 @@ struct RouterPushOne {
             })
           })
 
-
         Text(this.messageUI)
         Button("turn_UIRouterPushUrlTwo_noParms")
           .type(ButtonType.Capsule)
@@ -116,7 +119,7 @@ struct RouterPushOne {
                 view: "params"
               }
             })
-          })
+          })        
 
         Button("turn_UIRouterPushReplace_noParms")
           .type(ButtonType.Capsule)

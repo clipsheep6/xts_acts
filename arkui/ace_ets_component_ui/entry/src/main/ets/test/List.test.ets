@@ -609,4 +609,21 @@ export default function testsuite() {
   ScrollToIndexForGridJsunit01();
   ScrollToIndexForGridJsunit02();
   ScrollToIndexForGridJsunit03();
+  NavRouter_onStateChange1();
+  NavRouter_onStateChange2();
+  NavDestination_onBackPressed();
+  router_back1();
+  router_push1();
+  routerReplaceJsunit();
+  pushPageInit();
+ Router1();
+ Router2();
+ Router3();
+ Router4();
+ aboutToAppearRouterTest();
+ aboutToAppearRouterTest2();
+ goWithParams();
+  RouterPushUrlJsunit();
+  RouterWithParamJsunit();
+  RouterUrlErrorJsunit();
 }
