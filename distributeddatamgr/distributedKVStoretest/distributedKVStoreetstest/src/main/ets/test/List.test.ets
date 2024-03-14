@@ -15,8 +15,12 @@
 
 import deviceKvStoreCallbackTest from './DeviceKvStoreCallbackEtsTest';
 import deviceKvStorePromiseTest from './DeviceKvStoreKVPromiseEtsTest';
+import kvStoreBackupCallbackJsunittest from './KvStoreBackupCallbackEtsTest';
+import KvStoreResultSetTest from './KvStoreResultSetKVEtsTest';
 
 export default function testsuite() {
   deviceKvStoreCallbackTest()
   deviceKvStorePromiseTest()
+  kvStoreBackupCallbackJsunittest()
+  KvStoreResultSetTest()
 }
