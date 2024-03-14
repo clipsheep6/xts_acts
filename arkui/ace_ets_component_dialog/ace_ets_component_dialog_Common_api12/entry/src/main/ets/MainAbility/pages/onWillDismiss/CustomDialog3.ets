@@ -1,10 +1,24 @@
+/**
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 @CustomDialog
 struct CustomDialogExample3 {
   @Link textValue: string
   @Link inputValue: string
 
   controller?: CustomDialogController
-  // 若尝试在CustomDialog中传入多个其他的Controller，以实现在CustomDialog中打开另一个或另一些CustomDialog，那么此处需要将指向自己的controller放在所有controller的后面
+
   cancel: () => void = () => {
   }
   confirm: () => void = () => {
@@ -37,7 +51,6 @@ struct CustomDialogExample3 {
       }.margin({ bottom: 10 })
 
     }.borderRadius(10)
-    // 如果需要使用border属性或cornerRadius属性，请和borderRadius属性一起使用。
   }
 }
 @Entry
@@ -45,7 +58,7 @@ struct CustomDialogExample3 {
 struct CustomDialogUser3 {
   @State textValue: string = ''
   @State inputValue: string = 'click me'
-  @State text: string = 'CustomDialog2';
+  @State text: string = 'CustomDialog3';
   dialogController: CustomDialogController | null = new CustomDialogController({
     builder: CustomDialogExample3({
       cancel: ()=> { this.onCancel() },
@@ -55,6 +68,7 @@ struct CustomDialogUser3 {
     }),
     cancel: this.exitApp,
     autoCancel: false,
+    showInSubWindow: true,
     onWillDismiss:(dismissDialog: DismissDialog)=> {
       console.info("reason=" + JSON.stringify(dismissDialog.reason))
       this.text = "reason=" + JSON.stringify(dismissDialog.reason)
@@ -73,9 +87,8 @@ struct CustomDialogUser3 {
     cornerRadius: 10,
   })
 
-  // 在自定义组件即将析构销毁时将dialogControlle置空
   aboutToDisappear() {
-    this.dialogController = null // 将dialogController置空
+    this.dialogController = null
   }
 
   onCancel() {
@@ -92,6 +105,13 @@ struct CustomDialogUser3 {
   build() {
     Column() {
       Text(this.text).fontSize(30).margin(30).id("CustomDialog3Text")
+      Button("Reset")
+        .id("CustomDialog3Reset")
+        .backgroundColor("#ff0000")
+        .margin(30)
+        .onClick(() => {
+          this.text = "CustomDialog3"
+        })
       Button(this.inputValue)
         .id("CustomDialog3")
         .onClick(() => {

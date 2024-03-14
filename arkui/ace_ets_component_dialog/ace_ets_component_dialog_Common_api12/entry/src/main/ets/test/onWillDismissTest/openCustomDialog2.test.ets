@@ -61,7 +61,7 @@ export default function openCustomDialog2() {
       windowClass1 = await window.getLastWindow(globalThis.abilityContext);
       let properties1: window.WindowProperties = windowClass1.getWindowProperties();
       console.info("[openCustomDialog2_0100] title: " + JSON.stringify(properties1.type));
-      expect(properties1.type).assertEqual(0)//0表示应用子窗口TYPE_APP
+      expect(properties1.type).assertEqual(0)
 
       let button1 = await driver.findComponent(ON.text('确认'));
       await button1.click();
@@ -71,7 +71,7 @@ export default function openCustomDialog2() {
       windowClass = await window.getLastWindow(globalThis.abilityContext);
       let properties: window.WindowProperties = windowClass.getWindowProperties();
       console.info("[openCustomDialog2_0100] title: " + JSON.stringify(properties.type));
-      expect(properties.type).assertEqual(1)//0表示应用子窗口TYPE_APP
+      expect(properties.type).assertEqual(1)
 
       console.info('[openCustomDialog2_0100] END');
       done();

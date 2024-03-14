@@ -17,7 +17,7 @@ import router from '@system.router';
 import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
-
+import window from '@ohos.window';
 
 export default function CustomDialog1() {
   describe('CustomDialog1', function () {
@@ -36,6 +36,11 @@ export default function CustomDialog1() {
           await CommonFunc.sleep(2000);
           console.info("push CustomDialog1 success: " + JSON.stringify(result));
         }
+        let driver = await Driver.create()
+        await CommonFunc.sleep(1000);
+        let Column = await driver.findComponent(ON.id('CustomDialog1Reset'));
+        await CommonFunc.sleep(1000);
+        await Column.click();
       } catch (err) {
         console.error("push CustomDialog1 page error: " + err);
         expect().assertFail();
@@ -59,6 +64,12 @@ export default function CustomDialog1() {
       await driver.triggerKey(2070);
       await CommonFunc.sleep(1000);
 
+      let windowClass: window.Window | undefined = undefined;
+      windowClass = await window.getLastWindow(globalThis.abilityContext);
+      let properties: window.WindowProperties = windowClass.getWindowProperties();
+      console.info("[CustomDialog1_0100] title: " + JSON.stringify(properties.type));
+      expect(properties.type).assertEqual(0)
+
       let button1 = await driver.findComponent(ON.text('confirm'));
       await button1.click();
       await CommonFunc.sleep(1000);
@@ -71,7 +82,12 @@ export default function CustomDialog1() {
       console.info('[CustomDialog1_0100] END');
       done();
     });
-
+    /* *
+    * @tc.number: SUB_ACE_STATUSMANAGER_SUPPORTUUNION_0350
+    * @tc.name  : CustomDialog1_0200
+    * @tc.desc  : To test that the Provide decorator supports union types.
+    * @tc.level : Level 2
+    */
     it('CustomDialog1_0200', 0, async function (done) {
       console.info('CustomDialog1_0200 START');
       let driver = await Driver.create()
@@ -82,6 +98,12 @@ export default function CustomDialog1() {
 
       await driver.click(200,200);
       await CommonFunc.sleep(1000);
+
+      let windowClass: window.Window | undefined = undefined;
+      windowClass = await window.getLastWindow(globalThis.abilityContext);
+      let properties: window.WindowProperties = windowClass.getWindowProperties();
+      console.info("[CustomDialog1_0200] title: " + JSON.stringify(properties.type));
+      expect(properties.type).assertEqual(0)
 
       let button1 = await driver.findComponent(ON.text('confirm'));
       await button1.click();

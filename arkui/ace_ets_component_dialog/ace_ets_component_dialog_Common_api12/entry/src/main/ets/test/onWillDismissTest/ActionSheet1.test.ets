@@ -67,11 +67,16 @@ export default function ActionSheet1() {
       windowClass = await window.getLastWindow(globalThis.abilityContext);
       let properties: window.WindowProperties = windowClass.getWindowProperties();
       console.info("[IsShowClose_0100] title: " + JSON.stringify(properties.type));
-      expect(properties.type).assertEqual(1)//0表示应用子窗口TYPE_APP
+      expect(properties.type).assertEqual(1)
       console.info('[ActionSheet1_0100] END');
       done();
     });
-
+    /* *
+    * @tc.number: SUB_ACE_STATUSMANAGER_SUPPORTUUNION_0350
+    * @tc.name  : ActionSheet1_0200
+    * @tc.desc  : To test that the Provide decorator supports union types.
+    * @tc.level : Level 2
+    */
     it('ActionSheet1_0200', 0, async function (done) {
       console.info('ActionSheet1_0200 START');
       let driver = await Driver.create()
@@ -88,7 +93,7 @@ export default function ActionSheet1() {
       windowClass = await window.getLastWindow(globalThis.abilityContext);
       let properties: window.WindowProperties = windowClass.getWindowProperties();
       console.info("[IsShowClose_0100] title: " + JSON.stringify(properties.type));
-      expect(properties.type).assertEqual(1)//0表示应用子窗口TYPE_APP
+      expect(properties.type).assertEqual(1)
       console.info('[ActionSheet1_0200] END');
       done();
     });
