@@ -15,7 +15,7 @@
 
 import audio from '@ohos.multimedia.audio';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
-
+q
 describe('audioRendererChange', function () {
 
     let audioStreamManager;

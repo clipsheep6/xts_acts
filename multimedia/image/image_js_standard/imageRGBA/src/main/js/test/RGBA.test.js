@@ -15,7 +15,7 @@
 
 import image from "@ohos.multimedia.image";
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "deccjsunit/index";
-
+q
 describe("Image", function () {
     let globalpixelmap;
     const { RGBA_F16, BGRA_8888, ALPHA_8, RGB_565, ARGB_8888, UNKNOWN, RGB_888 } = image.PixelMapFormat;

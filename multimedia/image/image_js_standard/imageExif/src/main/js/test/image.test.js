@@ -17,7 +17,7 @@ import image from '@ohos.multimedia.image'
 import fileio from '@ohos.fileio'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index'
 import featureAbility from '@ohos.ability.featureAbility'
-
+q
 describe('imageExif', function () {
     let filePath;
     let fdNumber;
