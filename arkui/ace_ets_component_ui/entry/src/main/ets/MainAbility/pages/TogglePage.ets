@@ -22,14 +22,14 @@ struct TogglePage {
   @State selectedColor: string = '#FFFF0000';
   @State switchPointColor: string = '#FF008000';
   @State text: string = 'no change';
-  messageManager: MessageManager = new MessageManager();
+  messageManager: MessageManager<ESObject> = new MessageManager();
 
   onPageShow() {
     console.info('Toggle onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback = (message: any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'type') {
         this.type = message.value

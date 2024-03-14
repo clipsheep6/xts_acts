@@ -26,20 +26,28 @@ struct TextInputExample {
   CustomKeyboardBuilder() {
     Column() {
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: string) => {
           GridItem() {
             Button(item + "")
               .width(110)
           }
         })
-      }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
+      }
+      .maxCount(3)
+      .columnsGap(10)
+      .rowsGap(10)
+      .padding(5)
     }.backgroundColor(Color.Gray)
   }
 
   build() {
     Column() {
-      Text('value1:' + this.value1).fontSize(18).margin(15)
-      Text('value2:' + this.value2).fontSize(18).margin(15)
+      Text('value1:' + this.value1)
+        .fontSize(18)
+        .margin(15)
+      Text('value2:' + this.value2)
+        .fontSize(18)
+        .margin(15)
       TextInput({ text: this.text, placeholder: 'input your word...', controller: this.controller })
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })

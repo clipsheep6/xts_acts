@@ -42,14 +42,14 @@ struct StepperExample {
   @State nextLabel: string = "下一步"
   @State prevLabel: string = "返回"
   @State testState: ItemState = ItemState.Normal
-  messageManager: MessageManager = new MessageManager()
+  messageManager: MessageManager<ESObject> = new MessageManager()
 
   onPageShow() {
     console.info('stepper onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback = (message: any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'nextLabel') {
         this.nextLabel = message.value

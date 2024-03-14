@@ -32,11 +32,10 @@ struct CountDownComponent1 {
 
         Text("Prop子组件颜色Red-->null")
         Button('button')
-          .backgroundColor(this.color2);
-        .
-        onClick(() => {
-          this.color2 = null
-        })
+          .backgroundColor(this.color2)
+          .onClick(() => {
+            this.color2 = null
+          })
           .key('ziProp2Btn2')
 
         Text("Prop子组件文本100-->undefined")

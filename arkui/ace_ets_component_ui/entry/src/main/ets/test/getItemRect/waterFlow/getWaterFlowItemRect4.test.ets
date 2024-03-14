@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../../MainAbility/utils/MessageManager';
 
 
 export default function getWaterFlowItemRect4() {
-  describe('getWaterFlowItemRect4', () =>{
-    beforeEach(async (done:Function) =>{
+  describe('getWaterFlowItemRect4', () => {
+    beforeEach(async (done: Function) => {
       console.info("getWaterFlowItemRect4 beforeEach start");
       let options: router.RouterOptions = {
         url: 'MainAbility/pages/getItemRect/waterFlow/getWaterFlowItemRect4',
@@ -42,9 +55,11 @@ export default function getWaterFlowItemRect4() {
       }
       done();
     });
-    afterEach(async () =>{
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
-      router.back({uri: 'MainAbility/pages/index/index'})
+      router.back({
+        url: 'MainAbility/pages/index/index'
+      })
       console.info("BadgeFocus after each called");
     });
 
@@ -54,11 +69,15 @@ export default function getWaterFlowItemRect4() {
     * @tc.desc  : set index to 0,set visibility of flowItem0 to Visibility.Visible
     * @tc.level : Level 2
     */
-    it('getWaterFlowItemRect4_0100', 0, async (done:Function) =>{
+    it('getWaterFlowItemRect4_0100', 0, async (done: Function) => {
 
       console.info('[getWaterFlowItemRect4_0100] START');
-      globalThis.value.message.notify({name:'index', value:0});
-      globalThis.value.message.notify({name:'visibility1', value:Visibility.Visible});
+      globalThis.value.message.notify({
+        name: 'index', value: 0
+      });
+      globalThis.value.message.notify({
+        name: 'visibility1', value: Visibility.Visible
+      });
       await CommonFunc.sleep(1000);
 
       let driver = Driver.create();
@@ -114,7 +133,7 @@ export default function getWaterFlowItemRect4() {
     * @tc.desc  : set index to 0,set visibility of flowItem0 to Visibility.Hidden
     * @tc.level : Level 2
     */
-    it('getWaterFlowItemRect4_0200', 0, async (done:Function) =>{
+    it('getWaterFlowItemRect4_0200', 0, async (done: Function) => {
 
       console.info('[getWaterFlowItemRect4_0200] START');
       await CommonFunc.sleep(1000);
@@ -171,14 +190,13 @@ export default function getWaterFlowItemRect4() {
     });
 
 
-
     /* *
     * @tc.number: SUB_ACE_TS_COMPONENT_getWaterFlowItemRect4_0300
     * @tc.name  : onGetItemRect
     * @tc.desc  : set index to 0,set visibility of flowItem0 to Visibility.None
     * @tc.level : Level 2
     */
-    it('getWaterFlowItemRect4_0300', 0, async (done:Function) =>{
+    it('getWaterFlowItemRect4_0300', 0, async (done: Function) => {
 
       console.info('[getWaterFlowItemRect4_0300] START');
       await CommonFunc.sleep(1000);

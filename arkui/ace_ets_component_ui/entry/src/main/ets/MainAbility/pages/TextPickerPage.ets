@@ -23,14 +23,14 @@ struct TextPickerPage {
   @State defaultPickerItemHeight: number = 20;
   @State getValue: string = 'value';
   @State getIndex: number = 0;
-  messageManager: MessageManager = new MessageManager();
+  messageManager: MessageManager<ESObject> = new MessageManager();
 
   onPageShow() {
     console.info('TextPicker onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback = (message: any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'fruits') {
         this.fruits = message.value

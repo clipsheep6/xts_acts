@@ -58,7 +58,7 @@ export default function getGridItemRect3() {
     afterEach(async () => {
       await CommonFunc.sleep(1000);
       router.back({
-        uri: 'MainAbility/pages/index/index'
+        url: 'MainAbility/pages/index/index'
       })
       console.info("BadgeFocus after each called");
     });

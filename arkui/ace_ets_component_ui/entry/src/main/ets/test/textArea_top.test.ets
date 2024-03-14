@@ -113,9 +113,7 @@ export default function textArea_top() {
       console.log('column_01.top' + column_01.top)
 
       let driver = await Driver.create();
-      await driver.click(
-        Math.round(vp2px(100)), Math.round(vp2px(200))
-        // (textArea_01.left + (textArea_01.right - textArea_01.left) /2),(textArea_01.top + (textArea_01.bottom - textArea_01.top) /2));
+      await driver.click(Math.round(vp2px(100)), Math.round(vp2px(200)));
       await CommonFunc.sleep(1000);
 
       expect(textArea_01.top).assertEqual(column_01.top);

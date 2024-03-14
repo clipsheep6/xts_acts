@@ -72,7 +72,7 @@ export default function HoverJsunit17() {
       let strJsonB = getInspectorByKey('hoverB17');
       console.info("[HoverJsunit_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJsonB)));
       console.info("[HoverJsunit_0200] title: " + JSON.stringify(JSON.parse(strJsonB).$attrs.content));
-      expect(JSON.parse(JSON.parse(strJsonB).$attrs.content).assertEqual('Bfalse');
+      expect(JSON.parse(JSON.parse(strJsonB).$attrs.content).assertEqual('Bfalse'));
       console.info('[HoverJsunit_0200] END');
       done();
     });
@@ -109,7 +109,7 @@ export default function HoverJsunit17() {
       let strJsonA = getInspectorByKey('hoverA17');
       console.info("[HoverJsunit_0300] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJsonA)));
       console.info("[HoverJsunit_0300] title: " + JSON.stringify(JSON.parse(strJsonA).$attrs.content));
-      expect(JSON.parse(JSON.parse(strJsonA).$attrs.content).assertEqual('Afalse');
+      expect(JSON.parse(JSON.parse(strJsonA).$attrs.content).assertEqual('Afalse'));
 
       let strJsonB = getInspectorByKey('hoverB17');
       console.info("[HoverJsunit_0300] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJsonB)));

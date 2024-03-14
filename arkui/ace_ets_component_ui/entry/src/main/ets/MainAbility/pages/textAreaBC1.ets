@@ -36,14 +36,14 @@ struct TextAreaExampleBC1 {
   @State message4: string = 'text';
   @State text2: string = 'test2';
   @State message5: string = 'start';
-  messageManager: MessageManager = new MessageManager();
+  messageManager: MessageManager<ESObject> = new MessageManager();
 
   onPageShow() {
     console.info('TextArea onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback = (message: any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'text') {
         this.text = message.value

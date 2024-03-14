@@ -12,7 +12,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { Message } from '../../../ace_ets_component_three/MainAbility/utils/MessageManager';
 
 import { MessageManager, Callback } from '../utils/MessageManager';
 

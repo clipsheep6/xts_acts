@@ -24,14 +24,14 @@ struct NavDestinationPage {
   @State hideTitleBar: boolean = false;
   @State backColor: Color = Color.Grey;
   @State title: string = 'NavDestination';
-  messageManager: MessageManager<number> = new MessageManager();
+  messageManager: MessageManager<ESObject> = new MessageManager();
 
   onPageShow() {
     console.info('NavRouter onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback = (message: any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'arr') {
         this.arr = message.value

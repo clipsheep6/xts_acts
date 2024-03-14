@@ -14,15 +14,28 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../../MainAbility/utils/MessageManager';
 import ohosrouter from '@ohos.router';
 
 
 export default function getWaterFlowItemRect1() {
-  describe('getWaterFlowItemRect1', () =>{
-    beforeEach(async (done:Function) =>{
+  describe('getWaterFlowItemRect1', () => {
+    beforeEach(async (done: Function) => {
       console.info("getWaterFlowItemRect1 beforeEach start");
       let options: router.RouterOptions = {
         url: 'MainAbility/pages/getItemRect/waterFlow/getWaterFlowItemRect1',
@@ -43,9 +56,11 @@ export default function getWaterFlowItemRect1() {
       }
       done();
     });
-    afterEach(async () =>{
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
-      router.back({uri: 'MainAbility/pages/index/index'})
+      router.back({
+        url: 'MainAbility/pages/index/index'
+      })
       console.info("BadgeFocus after each called");
     });
 
@@ -55,10 +70,12 @@ export default function getWaterFlowItemRect1() {
     * @tc.desc  : set index to 0
     * @tc.level : Level 2
     */
-    it('getWaterFlowItemRect1_0100', 0, async (done:Function) =>{
+    it('getWaterFlowItemRect1_0100', 0, async (done: Function) => {
 
       console.info('[getWaterFlowItemRect1_0100] START');
-      globalThis.value.message.notify({name:'index', value:0});
+      globalThis.value.message.notify({
+        name: 'index', value: 0
+      });
       await CommonFunc.sleep(1000);
 
       let driver = Driver.create();
@@ -113,10 +130,12 @@ export default function getWaterFlowItemRect1() {
     * @tc.desc  : set index to -1
     * @tc.level : Level 2
     */
-    it('getWaterFlowItemRect1_0200', 0, async (done:Function) =>{
+    it('getWaterFlowItemRect1_0200', 0, async (done: Function) => {
 
       console.info('[getWaterFlowItemRect1_0200] START');
-      globalThis.value.message.notify({name:'index', value:-1});
+      globalThis.value.message.notify({
+        name: 'index', value: -1
+      });
       await CommonFunc.sleep(1000);
 
       let driver = Driver.create();
@@ -171,13 +190,15 @@ export default function getWaterFlowItemRect1() {
     * @tc.desc  : set index to 0,The first sub component slides out of the screen
     * @tc.level : Level 2
     */
-    it('getWaterFlowItemRect1_0300', 0, async (done:Function) =>{
+    it('getWaterFlowItemRect1_0300', 0, async (done: Function) => {
 
       console.info('[getWaterFlowItemRect1_0300] START');
 
       await CommonFunc.sleep(1000);
       try {
-        ohosrouter.back({url:'MainAbility/pages/index/index'});
+        ohosrouter.back({
+          url: 'MainAbility/pages/index/index'
+        });
         await CommonFunc.sleep(500);
         ohosrouter.clear();
         await CommonFunc.sleep(500);
@@ -191,7 +212,6 @@ export default function getWaterFlowItemRect1() {
               data3: [123, 456, 789]
             }
           }
-
         }).then(() => {
           // success
         })
@@ -203,7 +223,9 @@ export default function getWaterFlowItemRect1() {
         console.error("push getScrollItemRect5 page error: " + err);
       }
 
-      globalThis.value.message.notify({name:'index', value:0});
+      globalThis.value.message.notify({
+        name: 'index', value: 0
+      });
       await CommonFunc.sleep(1000);
 
       let driver = Driver.create();
@@ -264,10 +286,12 @@ export default function getWaterFlowItemRect1() {
     * @tc.desc  : set index to 100
     * @tc.level : Level 2
     */
-    it('getWaterFlowItemRect1_0400', 0, async (done:Function) =>{
+    it('getWaterFlowItemRect1_0400', 0, async (done: Function) => {
 
       console.info('[getWaterFlowItemRect1_0400] START');
-      globalThis.value.message.notify({name:'index', value:100});
+      globalThis.value.message.notify({
+        name: 'index', value: 100
+      });
       await CommonFunc.sleep(1000);
 
       let driver = Driver.create();
