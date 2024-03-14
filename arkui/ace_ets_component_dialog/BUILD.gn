@@ -16,5 +16,6 @@ group("ActsAceEtsComponentDialogTest") {
   deps = [
     "ace_ets_component_PickerDialog_API12:ActsAceEtsComponentPickerDialog",
     "ace_ets_component_dialog_Menu_api12:ActsAceEtsComponentDialogMenuTest",
+    "ace_ets_component_dialog_Common_api12:ActsAceEtsComponentDialogCommonTest",
   ]
 }
