@@ -12,37 +12,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
-import commonEvent from '@ohos.commonEvent'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import commonEvent from '@ohos.commonEvent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
 let sendMessageTime = 2000;
-function PublishCallBackOne() {
-  console.info('====>Publish CallBack ACTS_StartAbility_0100_CommonEvent====>');
-  setTimeout(()=>{
-    globalThis.abilityContext2.terminateSelf();
-  }, sendMessageTime)
-  console.info('====>terminateSelf succese====>');
-}
-export default class MainAbility extends Ability {
 
-  onCreate(want, launchParam) {
+export default class MainAbility extends Ability {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log('MainAbility2 onCreate');
   }
 
   onDestroy() {
     console.log('MainAbility2 onDestroy');
-    setTimeout(()=>{
-      commonEvent.publish('ACTS_TerminateSelf_CommonEvent', ()=>{
+    setTimeout(() => {
+      commonEvent.publish('ACTS_TerminateSelf_CommonEvent', () => {
         console.info('====>publish ACTS_TerminateSelf_CommonEvent====>');
       });
     }, sendMessageTime)
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('MainAbility2 onWindowStageCreate');
-    windowStage.setUIContent(this.context, 'MainAbility/pages/second/second', null);
-    globalThis.abilityContext2 = this.context;
-    commonEvent.publish('ACTS_InterfaceMultiUsers_0100_Start_CommonEvent', PublishCallBackOne);
+    windowStage.loadContent('MainAbility/pages/second/second', null);
+    commonEvent.publish('ACTS_InterfaceMultiUsers_0100_Start_CommonEvent',() => {
+      console.info('====>Publish CallBack ACTS_StartAbility_0100_CommonEvent====>');
+      setTimeout(() => {
+        this.context.terminateSelf();
+      }, sendMessageTime)
+      console.info('====>terminateSelf succese====>');
+    });
   }
 
   onWindowStageDestroy() {
@@ -56,4 +58,4 @@ export default class MainAbility extends Ability {
   onBackground() {
     console.log('MainAbility onBackground');
   }
-};
+}

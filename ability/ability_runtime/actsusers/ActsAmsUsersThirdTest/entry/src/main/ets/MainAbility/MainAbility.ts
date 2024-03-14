@@ -12,34 +12,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
 
 export default class MainAbility extends Ability {
-
-  onCreate(want, launchParam) {
-    console.log("MainAbility onCreate")
-    globalThis.abilityWant = want;
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("MainAbility onCreate");
   }
 
   onDestroy() {
-    console.log("MainAbility onDestroy")
+    console.log("MainAbility onDestroy");
   }
 
-  onWindowStageCreate(windowStage) {
-    console.log("MainAbility onWindowStageCreate")
-    globalThis.abilityContext = this.context
-    windowStage.setUIContent(this.context, "MainAbility/pages/index/index", null)
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log("MainAbility onWindowStageCreate");
+    AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", this.context);
+    windowStage.loadContent("MainAbility/pages/index/index", null);
   }
 
   onWindowStageDestroy() {
-    console.log("MainAbility onWindowStageDestroy")
+    console.log("MainAbility onWindowStageDestroy");
   }
 
   onForeground() {
-    console.log("MainAbility onForeground")
+    console.log("MainAbility onForeground");
   }
 
   onBackground() {
-    console.log("MainAbility onBackground")
+    console.log("MainAbility onBackground");
   }
-};
+}

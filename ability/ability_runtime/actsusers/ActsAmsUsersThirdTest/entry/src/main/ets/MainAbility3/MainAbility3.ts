@@ -12,42 +12,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
 export default class MainAbility extends Ability {
-
-  onCreate(want, launchParam) {
-    console.log("MainAbility3 onCreate")
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("MainAbility3 onCreate");
   }
 
   onDestroy() {
-    console.log("MainAbility3 onDestroy")
+    console.log("MainAbility3 onDestroy");
   }
 
-  onWindowStageCreate(windowStage) {
-    console.log("MainAbility3 onWindowStageCreate")
-    globalThis.abilityContext3 = this.context
-    windowStage.setUIContent(this.context, "pages/index/second", null)
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log("MainAbility3 onWindowStageCreate");
+    windowStage.loadContent("pages/index/second", null);
   }
 
   onWindowStageDestroy() {
-    console.log("MainAbility3 onWindowStageDestroy")
+    console.log("MainAbility3 onWindowStageDestroy");
   }
 
   onForeground() {
     console.log("MainAbility3 onForeground");
     let sendMessageTime = 1000;
-    setTimeout(()=>{
-      globalThis.abilityContext3.terminateSelfWithResult(
+    setTimeout(() => {
+      this.context.terminateSelfWithResult(
         {
-          resultCode:1,
-          want:{
-            action:'ACTION'
+          resultCode: 1,
+          want: {
+            action: 'ACTION'
           }
         }, (err, data) => {
-          console.info("MainAbility3====>terminateSelfWithResult succese err====>" + JSON.stringify(err));
-          console.info("MainAbility3====>terminateSelfWithResult succese data====>" + JSON.stringify(data));
-        });
+        console.info("MainAbility3====>terminateSelfWithResult succese err====>" + JSON.stringify(err));
+        console.info("MainAbility3====>terminateSelfWithResult succese data====>" + JSON.stringify(data));
+      });
       console.info("MainAbility3====>terminateSelf end====>");
     }, sendMessageTime);
   }
@@ -55,4 +57,4 @@ export default class MainAbility extends Ability {
   onBackground() {
     console.log("MainAbility3 onBackground")
   }
-};
+}
