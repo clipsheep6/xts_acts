@@ -17,6 +17,7 @@
 struct ActionSheet2Example {
   @State text: string = 'ActionSheet2';
 
+
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button("Reset")
