@@ -24,6 +24,7 @@ group("ans_standard") {
       "actsNotificationPublishTest:ActsNotificationPublishTest",
       "actsNotificationRequestTest:ActsNotificationRequestTest",
       "actsNotificationSecondaryDirectoryTest:ActsNotificationSecondaryDirectoryTest",
+      "actsNotificationSetBadgeByBundleTest:ActsNotificationSetBadgeByBundleTest",
       "actsNotificationShowTest:ActsNotificationShowTest",
       "actsNotificationSlotTest:ActsNotificationSlotTest",
       "actsNotificationSystemAPITest:ActsNotificationSystemAPITest",

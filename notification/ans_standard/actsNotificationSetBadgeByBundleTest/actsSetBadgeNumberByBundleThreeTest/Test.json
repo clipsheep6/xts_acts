@@ -1,0 +1,20 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "180000",
+        "bundle-name": "com.acts.setbadgenumberbybundlethreetest",
+        "module-name": "entry_test",
+        "shell-timeout": "600000",
+        "testcase-timeout": "30000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsSetBadgeNumberByBundleThreeTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ] 
+}
