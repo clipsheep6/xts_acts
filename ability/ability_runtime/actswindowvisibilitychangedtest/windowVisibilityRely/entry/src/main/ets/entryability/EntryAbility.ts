@@ -17,6 +17,8 @@ import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
 import commonEventManager from '@ohos.commonEventManager';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 let applicationState = 0;
 let commonEventData = {
@@ -25,10 +27,10 @@ let commonEventData = {
   }
 };
 const delayTime = 1000;
+
 export default class EntryAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
-    globalThis.applicationContext = this.context.getApplicationContext();
   }
 
   onDestroy() {
@@ -57,12 +59,13 @@ export default class EntryAbility extends UIAbility {
     // Ability has brought to foreground
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onForeground');
     setTimeout(async () => {
-      globalThis.applicationContext.getRunningProcessInformation().then((data) => {
-        commonEventData.parameters.applicationState = data[0].state;
-        commonEventManager.publish('visibilityState', commonEventData, (error) => {
-          console.info('publish data : ' + JSON.stringify(error));
-        });
-      }).catch((error) => {
+      this.context.getApplicationContext().getRunningProcessInformation()
+        .then((data) => {
+          commonEventData.parameters.applicationState = data[0].state;
+          commonEventManager.publish('visibilityState', commonEventData, (error) => {
+            console.info('publish data : ' + JSON.stringify(error));
+          });
+        }).catch((error) => {
         console.info('error' + JSON.stringify(error));
       });
     }, delayTime);
