@@ -12,32 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import Ability from '@ohos.app.ability.UIAbility';
 import commonEventManager from '@ohos.commonEventManager';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
 const sleepTimeOne = 1000;
 
-function publishCallBack() {
-  console.log('====>Publish CallBack ACTS_StartAbilityEvent====>');
-  globalThis.ability2Context.terminateSelf().then(()=>{
-    console.log('====>terminateSelf success====>');
-  });
-}
-
-function timeout() {
-  globalThis.ability2Context.startAbility(
-    {
-      bundleName: 'com.example.uiextensiontest',
-      abilityName: 'TestAbility',
-    }
-  ).then(()=>{
-    console.log('====>start com.example.uiextensiontest.TestAbility finish====>');
-  });
-}
-
 export default class MainAbility2 extends Ability {
-
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log('MainAbility2 onCreate');
   }
 
@@ -46,10 +31,10 @@ export default class MainAbility2 extends Ability {
     console.log('MainAbility2 onDestroy');
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     console.log('MainAbility2 onWindowStageCreate');
-    windowStage.setUIContent(this.context, 'pages/index2', null);
+    windowStage.loadContent('pages/index2', null);
   }
 
   onWindowStageDestroy() {
@@ -60,14 +45,29 @@ export default class MainAbility2 extends Ability {
   onForeground() {
     // Ability has brought to foreground
     console.log('MainAbility2 onForeground');
-    globalThis.ability2Context = this.context;
-    setTimeout(timeout, sleepTimeOne);
+    setTimeout(() => {
+      this.context.startAbility(
+        {
+          bundleName: 'com.example.uiextensiontest',
+          abilityName: 'TestAbility',
+        }
+      ).then(() => {
+        console.log('====>start com.example.uiextensiontest.TestAbility finish====>');
+      });
+    }, sleepTimeOne);
   }
 
   onBackground() {
     // Ability has back to background
     console.log('MainAbility2 onBackground');
     let onResultEvent = 'ACTS_UIExtension_StartAbility_OnResult';
-    commonEventManager.publish(onResultEvent, publishCallBack);
+    commonEventManager.publish(onResultEvent,
+      () => {
+        console.log('====>Publish CallBack ACTS_StartAbilityEvent====>');
+        this.context.terminateSelf()
+          .then(() => {
+            console.log('====>terminateSelf success====>');
+          });
+      });
   }
-};
+}
