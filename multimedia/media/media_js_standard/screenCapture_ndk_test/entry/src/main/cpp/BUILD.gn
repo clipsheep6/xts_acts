@@ -35,6 +35,7 @@ ohos_shared_library("screenCaptureNdkTest") {
   ]
   deps = [
     "$MEDIA_ROOT_DIR/interfaces/kits/c:native_avscreen_capture",
+    "//third_party/bounds_checking_function:libsec_static",
   ]
   configs = [ ":config" ]
   output_extension = "so"
