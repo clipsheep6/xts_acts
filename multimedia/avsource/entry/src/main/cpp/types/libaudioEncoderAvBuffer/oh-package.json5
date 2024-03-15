@@ -16,5 +16,5 @@
   "name": "libaudioEncoderAvBuffer.so",
   "types": "./index.d.ts",
   "version": "",
-  "description": "Function list of multimedia/player_framework/native_avcodec_audiocodec.h"
+  "description": "Function list of multimedia/av_codec/native_avcodec_audiocodec.h"
 }
