@@ -43,7 +43,6 @@ struct openCustomDialogTrueExample {
           .margin(100)
           .onClick(() => {
             promptAction.openCustomDialog({
-              isModal: true,
               showInSubWindow: true,
               builder: customDialogBuilder.bind(this)
             }).then((dialogId: number) => {
