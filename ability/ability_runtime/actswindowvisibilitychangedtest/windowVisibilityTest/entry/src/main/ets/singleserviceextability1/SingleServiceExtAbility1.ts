@@ -18,8 +18,10 @@ import display from '@ohos.display';
 import window from '@ohos.window';
 import rpc from '@ohos.rpc';
 import commonEventManager from '@ohos.commonEventManager';
+import common from '@ohos.app.ability.common';
 
 const delayTime = 500;
+
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -31,23 +33,23 @@ let commonEventData = {
   }
 };
 
-globalThis.GetApplicationState2 = async () => {
+AppStorage.setOrCreate<Function>("GetApplicationState2", async () => {
   console.info(TAG, 'GetApplicationState Start!');
-  let processInfo = await globalThis.singleExtApplicationContext.getRunningProcessInformation();
+  let processInfo = await AppStorage.get<common.ApplicationContext>("singleExtApplicationContext")!.getRunningProcessInformation();
   console.info(TAG, processInfo[0].pid + processInfo[0].uid + processInfo[0].processName + processInfo[0].bundleNames + processInfo[0].state);
   commonEventData.parameters.applicationState = processInfo[0].state;
   console.info(TAG, `applicationState : ${commonEventData.parameters.applicationState}`);
   commonEventManager.publish('visibilityState', commonEventData, (error) => {
     console.info(TAG, 'publish data : ' + JSON.stringify(error));
   });
-};
-globalThis.createWindow2 = async (name, windowType, rect) => {
+})
+AppStorage.setOrCreate<Function>("createWindow2", async (name, windowType, rect) => {
   let win;
   console.info(TAG, 'Start creating window.');
   let configuration = {
     name: name,
     windowType: windowType,
-    ctx: globalThis.singleExtAbilityContext
+    ctx: AppStorage.get<common.ServiceExtensionContext>("singleExtAbilityContext")!
   };
   try {
     win = await window.createWindow(configuration);
@@ -60,7 +62,7 @@ globalThis.createWindow2 = async (name, windowType, rect) => {
   } catch {
     console.error('Window create failed!');
   }
-};
+})
 
 const TAG: string = 'ServiceExtAbilityTAG';
 
@@ -71,24 +73,24 @@ class StubTest extends rpc.RemoteObject {
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onCreate(want) {
     console.info(TAG, `onCreate, want: ${want.abilityName}`);
-    globalThis.singleExtAbilityContext = this.context;
-    globalThis.singleExtApplicationContext = this.context.getApplicationContext();
+    AppStorage.setOrCreate<common.ServiceExtensionContext>("singleExtAbilityContext", this.context);
+    AppStorage.setOrCreate<common.ApplicationContext>("singleExtApplicationContext", this.context.getApplicationContext());
   }
 
   onRequest(want, startId) {
     console.info(TAG, `onRequest, want: ${JSON.stringify(want)}`);
-    globalThis.abilityWant = want;
-    display.getDefaultDisplay().then(async (dis) => {
-      let navigationBarRect = {
-        left: 400,
-        top: 200,
-        width: 200,
-        height: 600
-      };
-      await globalThis.createWindow2('uiPages3', window.WindowType.TYPE_FLOAT, navigationBarRect);
-      await sleep(delayTime);
-      await globalThis.GetApplicationState2();
-    });
+    display.getDefaultDisplay()
+      .then(async (dis) => {
+        let navigationBarRect = {
+          left: 400,
+          top: 200,
+          width: 200,
+          height: 600
+        };
+        await AppStorage.get<Function>("createWindow2")!('uiPages3', window.WindowType.TYPE_FLOAT, navigationBarRect);
+        await sleep(delayTime);
+        await AppStorage.get<Function>("GetApplicationState2")!();
+      });
   }
 
   onConnect(want) {

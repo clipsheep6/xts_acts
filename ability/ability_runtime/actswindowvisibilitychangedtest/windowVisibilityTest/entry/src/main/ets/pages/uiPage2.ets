@@ -24,7 +24,6 @@ struct UiPage2 {
         Text(this.message)
           .fontSize(50)
           .fontStyle(FontStyle.Italic)
-
         Button() {
           Text('get app state')
             .fontSize(20)

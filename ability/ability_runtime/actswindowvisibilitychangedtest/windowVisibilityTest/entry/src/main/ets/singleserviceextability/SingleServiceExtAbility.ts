@@ -17,20 +17,21 @@ import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 import display from '@ohos.display';
 import window from '@ohos.window';
 import rpc from '@ohos.rpc';
+import common from '@ohos.app.ability.common';
 
-globalThis.GetApplicationState1 = async () => {
+AppStorage.setOrCreate<Function>("GetApplicationState1", async () => {
   console.info(TAG, 'GetApplicationState Start!');
-  let processInfo = await globalThis.singleExtApplicationContext.getRunningProcessInformation();
+  let processInfo = await AppStorage.get<common.ApplicationContext>("singleExtApplicationContext")!.getRunningProcessInformation();
   console.info(TAG, processInfo[0].pid + processInfo[0].uid + processInfo[0].processName + processInfo[0].bundleNames + processInfo[0].state);
-};
+})
 
-globalThis.createWindow1 = async (name, windowType, rect) => {
+AppStorage.setOrCreate<Function>("createWindow1", async (name, windowType, rect) => {
   let win;
   console.info(TAG, 'Start creating window.');
   let configuration = {
     name: name,
     windowType: windowType,
-    ctx: globalThis.singleExtAbilityContext
+    ctx: AppStorage.get<common.ServiceExtensionContext>("singleExtAbilityContext")!
   };
   try {
     win = await window.createWindow(configuration);
@@ -43,7 +44,7 @@ globalThis.createWindow1 = async (name, windowType, rect) => {
   } catch {
     console.error('Window create failed!');
   }
-};
+})
 
 const TAG: string = 'ServiceExtAbilityTAG';
 
@@ -54,13 +55,12 @@ class StubTest extends rpc.RemoteObject {
 export default class ServiceExtAbility extends ServiceExtensionAbility {
   onCreate(want) {
     console.info(TAG, `onCreate, want: ${want.abilityName}`);
-    globalThis.singleExtAbilityContext = this.context;
-    globalThis.singleExtApplicationContext = this.context.getApplicationContext();
+    AppStorage.setOrCreate<common.ServiceExtensionContext>("singleExtAbilityContext", this.context);
+    AppStorage.setOrCreate<common.ApplicationContext>("singleExtApplicationContext", this.context.getApplicationContext());
   }
 
   onRequest(want, startId) {
     console.info(TAG, `onRequest, want: ${JSON.stringify(want)}`);
-    globalThis.abilityWant = want;
     display.getDefaultDisplay().then((dis) => {
       let navigationBarRect = {
         left: 400,
@@ -68,7 +68,7 @@ export default class ServiceExtAbility extends ServiceExtensionAbility {
         width: 200,
         height: 600
       };
-      globalThis.createWindow1('uiPages', window.WindowType.TYPE_FLOAT, navigationBarRect);
+      AppStorage.get<Function>("createWindow1")!('uiPages', window.WindowType.TYPE_FLOAT, navigationBarRect);
     });
   }
 

@@ -24,7 +24,6 @@ struct Index {
         Text(this.message)
           .fontSize(25)
           .fontStyle(FontStyle.Italic)
-
         Button() {
           Text('get app state')
             .fontSize(20)
