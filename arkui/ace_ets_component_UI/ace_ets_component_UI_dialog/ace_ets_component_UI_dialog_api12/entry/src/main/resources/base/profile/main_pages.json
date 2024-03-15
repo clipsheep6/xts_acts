@@ -1,0 +1,9 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/DialogCallback/CalendarDialogCallback",
+        "MainAbility/pages/DialogCallback/DatePickerDialogCallback",
+        "MainAbility/pages/DialogCallback/TextPickerDialogCallback",
+        "MainAbility/pages/DialogCallback/TimePickerDialogCallback"
+    ]
+}
