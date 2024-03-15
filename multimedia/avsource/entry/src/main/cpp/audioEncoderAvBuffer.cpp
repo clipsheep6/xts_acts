@@ -16,8 +16,8 @@
 #include "napi/native_api.h"
 #include <condition_variable>
 #include <js_native_api_types.h>
-#include <multimedia/native_audio_channel_layout.h>
-#include <multimedia/player_framework/native_avcodec_audiocodec.h>
+#include <multimedia/media_foundation/native_audio_channel_layout.h>
+#include <multimedia/av_codec/native_avcodec_audiocodec.h>
 #include <multimedia/player_framework/native_avcapability.h>
 #include <multimedia/player_framework/native_avcodec_base.h>
 #include <multimedia/player_framework/native_averrors.h>

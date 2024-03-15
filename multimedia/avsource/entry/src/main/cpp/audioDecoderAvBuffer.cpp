@@ -17,11 +17,11 @@
 #include <condition_variable>
 #include <js_native_api_types.h>
 #include <multimedia/player_framework/native_avcapability.h>
-#include <multimedia/player_framework/native_avcodec_audiocodec.h>
+#include <multimedia/av_codec/native_avcodec_audiocodec.h>
 #include <multimedia/player_framework/native_avcodec_base.h>
 #include <multimedia/player_framework/native_averrors.h>
 #include <multimedia/player_framework/native_avformat.h>
-#include <multimedia/player_framework/native_avbuffer.h>
+#include <multimedia/media_foundation/native_avbuffer.h>
 #include <pthread.h>
 #include <queue>
 #include <fstream>
