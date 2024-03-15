@@ -121,7 +121,7 @@ export default function UiTest() {
             await driver.delayMs(waitUiReadyMs)
             await driver.mouseMoveWithTrack(center1, center2, 600)
             await driver.delayMs(waitUiReadyMs)
-            let newButton = await driver.findComponent(ON.id('jump'))
+            let newButton = await driver.findComponent(ON.text('jump'))
             expect(newButton == null).assertTrue()
         })
 
@@ -134,6 +134,14 @@ export default function UiTest() {
             await startAbility('com.uitestScene.acts', 'com.uitestScene.acts.MainAbility')
             let driver = Driver.create()
             await driver.delayMs(waitUiReadyMs)
+            let inputText = await driver.findComponent(ON.type('TextInput'))
+            await inputText.click()
+            await driver.delayMs(waitUiReadyMs)
+            let permissionBtn = await driver.findComponent(ON.text('同意'))
+            if (permissionBtn != null) {
+                await permissionBtn.click()
+                await driver.delayMs(waitUiReadyMs)
+            }
             let input = await driver.findComponent(ON.type('TextInput'))
             await input.clearText()
             await driver.delayMs(waitUiReadyMs)
@@ -1400,11 +1408,11 @@ export default function UiTest() {
             let bounds1 = await image1.getBounds()
             await image1.pinchIn(0.5);
             await driver.delayMs(waitUiReadyMs)
-            let image2 = await driver.findComponent(ON.type('test_pict'))
+            let image2 = await driver.findComponent(ON.id('test_pict'))
             let bounds2 = await image2.getBounds()
             expect(bounds2 != bounds1).assertTrue()
             await image2.pinchOut(1.2);
-            let image3 = await driver.findComponent(ON.type('test_pict'))
+            let image3 = await driver.findComponent(ON.id('test_pict'))
             let bounds3 = await image3.getBounds()
             expect(bounds3 != bounds2).assertTrue()
             await driver.pressBack()
@@ -1423,37 +1431,24 @@ export default function UiTest() {
             let button = await driver.findComponent(ON.id('jump'))
             await button.click()
             await driver.delayMs(waitUiReadyMs)
-            let image1 = await driver.findComponent(ON.type('Image'))
+            let image1 = await driver.findComponent(ON.id('test_pict'))
             let bounds1 = await image1.getBounds()
+            let left = bounds1.left
+            let right = bounds1.right
+            let centerY = (bounds1.top + bounds1.bottom) / 2
             let pointer = PointerMatrix.create(2,11)
             await driver.delayMs(300)
-            pointer.setPoint(0,0,{x:245,y:480})
-            pointer.setPoint(0,1,{x:250,y:480})
-            pointer.setPoint(0,2,{x:255,y:480})
-            pointer.setPoint(0,3,{x:260,y:480})
-            pointer.setPoint(0,4,{x:265,y:480})
-            pointer.setPoint(0,5,{x:270,y:480})
-            pointer.setPoint(0,6,{x:275,y:480})
-            pointer.setPoint(0,7,{x:280,y:480})
-            pointer.setPoint(0,8,{x:285,y:480})
-            pointer.setPoint(0,9,{x:290,y:480})
-            pointer.setPoint(0,10,{x:295,y:480})
-            pointer.setPoint(1,0,{x:505,y:480})
-            pointer.setPoint(1,1,{x:500,y:480})
-            pointer.setPoint(1,2,{x:495,y:480})
-            pointer.setPoint(1,3,{x:490,y:480})
-            pointer.setPoint(1,4,{x:485,y:480})
-            pointer.setPoint(1,5,{x:480,y:480})
-            pointer.setPoint(1,6,{x:475,y:480})
-            pointer.setPoint(1,7,{x:470,y:480})
-            pointer.setPoint(1,8,{x:465,y:480})
-            pointer.setPoint(1,9,{x:460,y:480})
-            pointer.setPoint(1,10,{x:455,y:480})
-            await driver.injectMultiPointerAction(pointer, 600)
-            let image2 = await driver.findComponent(ON.type('Image'))
+            for (let step = 0; step < 11; step++) {
+                pointer.setPoint(0, step, {x: left + 200 - (step + 1) *20, y: centerY + step * 20})
+            }
+            for (let step = 1; step < 11; step++) {
+                pointer.setPoint(1, step, {x: right - 200 + (step + 1) *20, y: centerY - step * 20})
+            }
+            await driver.injectMultiPointerAction(pointer, 400)
+            await driver.delayMs(3000)
+            let image2 = await driver.findComponent(ON.id('test_pict'))
             let bounds2= await image2.getBounds()
             expect(bounds2 != bounds1).assertTrue()
-            await driver.pressBack()
             await stopApplication('com.uitestScene.acts')
         })
 
