@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-export const setScreenCanvasRotation_01: () => number;
+export const setCanvasRotation_01: () => number;
