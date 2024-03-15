@@ -12,12 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import AbilityStage from "@ohos.app.ability.AbilityStage"
+
+import AbilityStage from "@ohos.app.ability.AbilityStage";
+import common from '@ohos.app.ability.common';
 
 export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.log("MyAbilityStage onCreate")
-	// globalThis.stageOnCreateRun = 1;
-	globalThis.abilityStageContext = this.context;
-    }
+  onCreate() {
+    console.log("MyAbilityStage onCreate")
+    // globalThis.stageOnCreateRun = 1;
+    AppStorage.setOrCreate<common.AbilityStageContext>("abilityStageContext", this.context);
+  }
 }
