@@ -321,7 +321,7 @@ static napi_value InitWidthErr(napi_env env, napi_callback_info info)
     bool isMicrophone = false;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     bool canvasRotation = false;
-    OH_AVScreenCapture_SetCanvasRotation(screenCapture, canvasRotation);
+    OH_AVScreenCapture_SetScreenCanvasRotation(screenCapture, canvasRotation);
     OH_AVSCREEN_CAPTURE_ErrCode result = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVScreenCapture_Release(screenCapture);
     napi_value res;
@@ -1265,7 +1265,7 @@ static napi_value ConfigureCombination_01(napi_env env, napi_callback_info info)
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     bool canvasRotation = true;
-    OH_AVScreenCapture_SetCanvasRotation(screenCapture, canvasRotation);
+    OH_AVScreenCapture_SetScreenCanvasRotation(screenCapture, canvasRotation);
     SetScreenCaptureCallback(screenCapture, screenCaptureCb);
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCapture(screenCapture);
@@ -1562,16 +1562,16 @@ static napi_value SetCanvasRotation_01(napi_env env, napi_callback_info info)
     screenCaptureCb = std::make_shared<ScreenCaptureNdkTestCallback>(screenCapture, audioFile, nullptr, nullptr);
 
     bool canvasRotation = true;
-    OH_AVScreenCapture_SetCanvasRotation(screenCapture, canvasRotation);
+    OH_AVScreenCapture_SetScreenCanvasRotation(screenCapture, canvasRotation);
     SetScreenCaptureCallback(screenCapture, screenCaptureCb);
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCapture(screenCapture);
     sleep(time);
     canvasRotation = true;
-    OH_AVScreenCapture_SetCanvasRotation(screenCapture, canvasRotation);
+    OH_AVScreenCapture_SetScreenCanvasRotation(screenCapture, canvasRotation);
     sleep(g_recordTime);
     canvasRotation = false;
-    OH_AVScreenCapture_SetCanvasRotation(screenCapture, canvasRotation);
+    OH_AVScreenCapture_SetScreenCanvasRotation(screenCapture, canvasRotation);
     sleep(g_recordTime);
     OH_AVSCREEN_CAPTURE_ErrCode result3 = OH_AVScreenCapture_StopScreenCapture(screenCapture);
     DelCallback(screenCapture);
@@ -1650,7 +1650,7 @@ static napi_module demoModule = {
     .nm_flags = 0,
     .nm_filename = nullptr,
     .nm_register_func = Init,
-    .nm_modname = "entry",
+    .nm_modname = "screenCaptureNdkTest",
     .nm_priv = ((void*)0),
     .reserved = { 0 },
 };
