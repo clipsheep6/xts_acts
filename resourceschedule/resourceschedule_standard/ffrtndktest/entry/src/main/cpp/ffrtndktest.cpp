@@ -71,7 +71,7 @@ void OnePlusForTest(void* arg)
 void OnePlusForTestQos(void* arg)
 {
     ffrt_usleep(SLEEPTIME);
-    int qosVal = ffrt_this_task_update_qos(static_cast<ffrt_qos_t>(ffrt_qos_utility));
+    int qosVal = ffrt_this_task_update_qos(static_cast<ffrt_qos_t>(ffrt_qos_background));
     (*static_cast<int*>(arg)) = qosVal;
 }
 
