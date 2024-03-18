@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import actsFaContextTest from './ActsFaContextTest.test'
+import actsFaContextTest from './ActsFaContextTest.test';
 
 export default function testsuite() {
-  actsFaContextTest()
+  actsFaContextTest();
 }
