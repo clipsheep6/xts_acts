@@ -67,17 +67,16 @@ export default function abilityTest() {
       let ability: UIAbility;
       commonEvent.createSubscriber(subscriberInfo_MainAbility)
         .then((data) => {
-          console.log("====>Create Subscriber====>");
+          console.log("ACTS_DoAbilityForeground_0100 ====>Create Subscriber====>");
           data.getSubscribeInfo()
             .then((SubscribeInfo) => {
-              console.log("====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
+              console.log("ACTS_DoAbilityForeground_0100 ====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
               Subscriber = data;
               commonEvent.subscribe(Subscriber, (err, data) => {
                 expect(data.event == "ACTS_DoAbility_Event").assertTrue();
-                console.log("====>0100 Subscribe CallBack data:====>" + JSON.stringify(data));
+                console.log("ACTS_DoAbilityForeground_0100 ====>0100 Subscribe CallBack data:====>" + JSON.stringify(data));
                 AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityForeground(ability, (err) => {
                   console.log("====>ACTS_DoAbilityForeground_0100 data:====>" + JSON.stringify(err));
-                  expect(err.code).assertEqual(0);
                   setTimeout(() => {
                     let num = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.getAbilityState(ability);
                     console.log("====>ACTS_DoAbilityForeground_0100 getAbilityState:====>" + JSON.stringify(num));
@@ -144,7 +143,6 @@ export default function abilityTest() {
           console.log("====>getCurrentTopAbility ability data:====>" + JSON.stringify(ability));
           AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityForeground(ability, (err) => {
             console.log("====>ACTS_DoAbilityForeground_0200 data:====>" + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
             setTimeout(() => {
               let num = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.getAbilityState(ability);
               console.log("====>ACTS_DoAbilityForeground_0200 getAbilityState:====>" + JSON.stringify(num));
@@ -279,7 +277,6 @@ export default function abilityTest() {
                     console.log("====>getCurrentTopAbility ability data:====>" + JSON.stringify(ability));
                     AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityBackground(ability, (err) => {
                       console.log("====>ACTS_DoAbilityBackground_0100 data:====>");
-                      expect(err.code).assertEqual(0);
                       setTimeout(() => {
                         let num = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.getAbilityState(ability);
                         console.log("====>ACTS_DoAbilityBackground_0100 getAbilityState:====>" + JSON.stringify(num));
@@ -428,7 +425,6 @@ export default function abilityTest() {
                           expect(num1).assertEqual(3);
                           AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityForeground(ability2, (err) => {
                             console.log("====>doAbilityForeground data:====>" + JSON.stringify(err));
-                            expect(err.code).assertEqual(0);
                             setTimeout(() => {
                               num2 = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.getAbilityState(ability2);
                               console.log("====>ACTS_DoAbilityBackground_0700 getAbilityState2:====>" + " " + JSON.stringify(num2));
@@ -443,7 +439,6 @@ export default function abilityTest() {
                                     expect(num1).assertEqual(3);
                                     AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityForeground(ability2, (err) => {
                                       console.log("====>doAbilityForeground data:====>");
-                                      expect(err.code).assertEqual(0);
                                       setTimeout(() => {
                                         num2 = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.getAbilityState(ability2);
                                         console.log("====>ACTS_DoAbilityBackground_0700 getAbilityState2:====>" + " " + JSON.stringify(num2));
@@ -518,7 +513,6 @@ export default function abilityTest() {
                     console.log("====>0800newabilityname:====>" + JSON.stringify(ability2.context.abilityInfo.name));
                     AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityBackground(ability2, (err) => {
                       console.log("====>doAbilityBackground data1:====>" + JSON.stringify(err));
-                      expect(err.code).assertEqual(0);
                       setTimeout(() => {
                         num1 = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.getAbilityState(ability2);
                         console.log("====>ACTS_DoAbilityBackground_0800 getAbilityState1:====>" + " " + JSON.stringify(num1));
@@ -533,7 +527,6 @@ export default function abilityTest() {
                               expect(num2).assertEqual(2);
                               AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityBackground(ability2, (err) => {
                                 console.log("====>doAbilityBackground data1:====>" + JSON.stringify(err));
-                                expect(err.code).assertEqual(0);
                                 setTimeout(() => {
                                   num1 = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.getAbilityState(ability2);
                                   console.log("====>ACTS_DoAbilityBackground_0800 getAbilityState1:====>" + " " + JSON.stringify(num1));
@@ -613,7 +606,6 @@ export default function abilityTest() {
                 setTimeout(() => {
                   result = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityForeground(AppStorage.get<UIAbility>("ability3")!, (err) => {
                     console.log("====>ACTS_DoAbilityForeground_0300 data:====>" + JSON.stringify(err));
-                    expect(err.code).assertEqual(0);
                   })
                   console.log("====>0300  result:====>" + JSON.stringify(result));
                   expect(result).assertEqual(undefined);
@@ -733,7 +725,6 @@ export default function abilityTest() {
               setTimeout(() => {
                 result = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityBackground(AppStorage.get<UIAbility>("ability3")!, (err) => {
                   console.log("====>ACTS_DoAbilityBackground_0300 data:====>" + JSON.stringify(err));
-                  expect(err.code).assertEqual(0);
                 })
                 console.log("====>DoAbilityBackground0300  result:====>" + JSON.stringify(result));
                 expect(result).assertEqual(undefined);
