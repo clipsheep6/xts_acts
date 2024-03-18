@@ -69,8 +69,8 @@ export default function PopupOptionsTrue() {
       console.info("[PopupOptionsTrue_0100] title: " + JSON.stringify(properties.type));
       expect(properties.type).assertEqual(0)//0表示应用子窗口TYPE_APP
 
-      await CommonFunc.sleep(1000);
-      await driver.click(200,200);
+      let btn = await driver.findComponent(ON.text('确认'));
+      await btn.click();
       await CommonFunc.sleep(1000);
       console.info('[PopupOptionsTrue_0100] END');
       done();
