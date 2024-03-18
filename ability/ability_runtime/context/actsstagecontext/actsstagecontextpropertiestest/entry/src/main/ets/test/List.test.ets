@@ -13,10 +13,11 @@
 * limitations under the License.
 */
 
-import stageContextPropertiesTest from './StageContextProperties.test'
-import stageContextPropertiesTestUpdateConfiguration from './StageContextPropertiesUpdateConfiguration.test'
+import stageContextPropertiesTest from './StageContextProperties.test';
+import stageContextPropertiesTestUpdateConfiguration from './StageContextPropertiesUpdateConfiguration.test';
+import common from '@ohos.app.ability.common';
 
 export default function testsuite() {
-  stageContextPropertiesTest(globalThis.abilityContext)
-  stageContextPropertiesTestUpdateConfiguration(globalThis.abilityContext.getApplicationContext())
+  stageContextPropertiesTest(AppStorage.get<common.UIAbilityContext>("abilityContext")!);
+  stageContextPropertiesTestUpdateConfiguration(AppStorage.get<common.UIAbilityContext>("abilityContext")!.getApplicationContext());
 }
