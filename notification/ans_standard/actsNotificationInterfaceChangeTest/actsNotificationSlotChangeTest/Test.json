@@ -22,8 +22,7 @@
         "wait 10",
         "power-shell wakeup",
         "uinput -T -m 300 2700 280 200",
-        "power-shell setmode 602",
-        "setenforce 0"
+        "power-shell setmode 602"
       ]
     }
   ]
