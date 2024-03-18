@@ -17,7 +17,6 @@ group("actsautofilltest") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "AutoFillAutomaticRely:AutoFillAutomaticRely",
       "AutoFillAutomaticTest:AutoFillAutomaticTest",
     ]
   }

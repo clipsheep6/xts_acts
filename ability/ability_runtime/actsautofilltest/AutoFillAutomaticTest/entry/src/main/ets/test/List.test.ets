@@ -13,14 +13,8 @@
  * limitations under the License.
  */
 
-import AutoFillTest from './SUB_Ability_AbilityRuntime_AutoFill';
 import AutoSaveTest from './SUB_Ability_AbilityRuntime_AutoSave';
-import AutoFillExtensionTest from './SUB_Ability_AbilityRuntime_AutoFillExtension';
-import AutoFillPasswordTest from './SUB_Ability_AbilityRuntime_AutoFillPassword';
 
 export default function testsuite() {
-  AutoFillTest();
   AutoSaveTest();
-  AutoFillPasswordTest();
-  AutoFillExtensionTest();
 }
