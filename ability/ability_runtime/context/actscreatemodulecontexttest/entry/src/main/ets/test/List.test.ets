@@ -13,8 +13,8 @@
 * limitations under the License.
 */
 
-import actsCreateModuleContextTest from './CreateModuleContext.test'
+import actsCreateModuleContextTest from './CreateModuleContext.test';
 
 export default function testsuite() {
-  actsCreateModuleContextTest()
+  actsCreateModuleContextTest();
 }
