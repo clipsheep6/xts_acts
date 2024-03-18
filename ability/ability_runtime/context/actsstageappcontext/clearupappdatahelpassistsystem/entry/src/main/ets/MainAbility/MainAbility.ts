@@ -13,9 +13,12 @@
  * limitations under the License.
  */
 
-import Ability from '@ohos.app.ability.UIAbility'
+import Ability from '@ohos.app.ability.UIAbility';
 import fs from '@ohos.file.fs';
 import commonEventManager from '@ohos.commonEventManager';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
 let TAG = 'clearUpApplicationDataHelpStystem';
 let clearUpApplicationData = (context, startType): void => {
@@ -34,10 +37,10 @@ let clearUpApplicationData = (context, startType): void => {
       console.error(TAG + '  err.code: ' + JSON.stringify(err));
     });
   }
-};
+}
 
 export default class MainAbility extends Ability {
-  async onCreate(want, launchParam) {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     let startType = want.parameters?.startType;
     let createFile = want.parameters?.createFile;
     let notClear = want.parameters?.notClear;
@@ -78,9 +81,8 @@ export default class MainAbility extends Ability {
     notClear && this.context.terminateSelf();
   }
 
-  onWindowStageCreate(windowStage) {
-    console.log('MainAbility onWindowStageCreate')
-    windowStage.setUIContent(this.context, 'pages/index', null)
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log('MainAbility onWindowStageCreate');
+    windowStage.loadContent('pages/index', null);
   }
-
-};
+}
