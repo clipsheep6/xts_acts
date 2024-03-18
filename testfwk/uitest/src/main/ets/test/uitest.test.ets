@@ -160,29 +160,29 @@ export default function UiTest() {
          * @tc.desc: scroll the mouse wheel at the specified location to specify the cell.
          */
         it('testMouseScroll', 0, async () => {
-	        await startAbility('com.uitestScene.acts', 'com.uitestScene.acts.MainAbility')
-		    let driver = Driver.create()
-		    await driver.delayMs(waitUiReadyMs)
-		    let btn = await driver.findComponent(ON.id('jump'))
-		    await btn.click()
-		    await driver.delayMs(waitUiReadyMs)
-		    let img1 = await driver.findComponent(ON.type('Image').inWindow('com.uitestScene.acts'))
-		    let bounds1 = await img1.getBounds()
-		    let center1 = await img1.getBoundsCenter()
-		    await driver.mouseScroll(center1,false,5,2072,0,20)
-		    await driver.delayMs(waitUiReadyMs)
-		    let img2 = await driver.findComponent(ON.type('Image').inWindow('com.uitestScene.acts'))
-		    let bounds2 = await img2.getBounds()
-		    expect(bounds1 != bounds2).assertTrue()
+            await startAbility('com.uitestScene.acts', 'com.uitestScene.acts.MainAbility')
+            let driver = Driver.create()
+            await driver.delayMs(waitUiReadyMs)
+            let btn = await driver.findComponent(ON.id('jump'))
+            await btn.click()
+            await driver.delayMs(waitUiReadyMs)
+            let img1 = await driver.findComponent(ON.id('test_pict'))
+            let bounds1 = await img1.getBounds()
+            let center1 = await img1.getBoundsCenter()
+            await driver.mouseScroll(center1,false,5,2072,0,20)
+            await driver.delayMs(waitUiReadyMs)
+            let img2 = await driver.findComponent(ON.id('test_pict'))
+            let bounds2 = await img2.getBounds()
+            expect(bounds1 != bounds2).assertTrue()
 
-		    await driver.pressBack()
-		    await driver.delayMs(waitUiReadyMs)
-		    let Scroll = await driver.findComponent(ON.type('Scroll'))
-		    let center = await Scroll.getBoundsCenter()
-		    await driver.mouseScroll(center,true,30)
-		    await driver.delayMs(waitUiReadyMs)
-		    let button1 = await driver.findComponent(ON.text('next page'))
-		    expect(button1 == null).assertTrue()
+            await driver.pressBack()
+            await driver.delayMs(waitUiReadyMs)
+            let Scroll = await driver.findComponent(ON.type('Scroll'))
+            let center = await Scroll.getBoundsCenter()
+            await driver.mouseScroll(center,true,30)
+            await driver.delayMs(waitUiReadyMs)
+            let button1 = await driver.findComponent(ON.text('next page'))
+            expect(button1 == null).assertTrue()
         })
 
         /*
@@ -1441,7 +1441,7 @@ export default function UiTest() {
             for (let step = 0; step < 11; step++) {
                 pointer.setPoint(0, step, {x: left + 200 - (step + 1) *20, y: centerY + step * 20})
             }
-            for (let step = 1; step < 11; step++) {
+            for (let step = 0; step < 11; step++) {
                 pointer.setPoint(1, step, {x: right - 200 + (step + 1) *20, y: centerY - step * 20})
             }
             await driver.injectMultiPointerAction(pointer, 400)
