@@ -13,8 +13,9 @@
 * limitations under the License.
 */
 
-import stageAppContextTest from './StageAppContext.test'
+import stageAppContextTest from './StageAppContext.test';
+import common from '@ohos.app.ability.common';
 
 export default function testsuite() {
-  stageAppContextTest(globalThis.abilityContext)
+  stageAppContextTest(AppStorage.get<common.UIAbilityContext>("abilityContext")!);
 }
