@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+import provisionResourcesTest from './provisionResources'
 import checkAlbumAttrTest from './AbsAlbum/checkAttr'
 import albumGetAssetsTest from './AbsAlbum/getAssets'
 import addAssetsTest from './Album/addAssets'
@@ -61,8 +61,11 @@ import getAssetChangeRequestTest from './MediaAssetChangeRequest/getAsset'
 import setTitleChangeRequestTest from './MediaAssetChangeRequest/setTitle'
 import addResourceChangeRequestTest from './MediaAssetChangeRequest/addResource'
 import getWriteCacheHandlerTest from './MediaAssetChangeRequest/getWriteCacheHandler'
+import requestImageTest from './MediaAssetManager/requestImage'
+import requestImageDataTest from './MediaAssetManager/requestImageData'
 
 export default function testsuite () {
+  provisionResourcesTest()
   getPhotoAccessHelperTest()
   checkAlbumAttrTest()
   albumGetAssetsTest()
@@ -111,4 +114,6 @@ export default function testsuite () {
   setTitleChangeRequestTest()
   addResourceChangeRequestTest()
   getWriteCacheHandlerTest()
+  requestImageTest()
+  requestImageDataTest()
 }

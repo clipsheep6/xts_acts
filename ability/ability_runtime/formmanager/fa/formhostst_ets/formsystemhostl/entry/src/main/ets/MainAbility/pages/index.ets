@@ -21,8 +21,8 @@ import formHost from '@ohos.application.formHost';
 @Component
 struct Index {
   @State formId: number = 0;
-  @State bundle: string = `com.form.formsystemtestservicea.hmservice`;
-  @State ability: string = `com.form.formsystemtestservicea.hmservice.MainAbility`;
+  @State bundle: string = `com.acts.form.formsystemtestservicea.hmservice`;
+  @State ability: string = `com.acts.form.formsystemtestservicea.hmservice.MainAbility`;
   @State moduleName: string = `entry`;
   @State name: string = `Form_Js001`;
   @State canCreateForm: boolean = false;
@@ -36,7 +36,7 @@ struct Index {
   private subscriberFormDeleteEvent = {
     events: ["FMS_FormDelete_commonEvent"]
   };
-  private TAG = `[FormComponent.hostl]`;
+  private TAG = `[FormComponent.host.l]`;
   private formOnAcquiredEvent = `FMS_FormOnAcquired_commonEvent`;
   private formOnRequestEvent = `FMS_FormOnRequest_commonEvent`;
   private formOnDeletedEvent = "FMS_FormOnDeleted_commonEvent";

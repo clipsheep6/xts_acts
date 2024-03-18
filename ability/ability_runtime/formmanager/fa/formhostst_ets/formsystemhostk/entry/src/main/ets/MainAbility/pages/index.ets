@@ -22,8 +22,8 @@ import systemTime from '@ohos.systemTime';
 @Component
 struct Index {
   @State formId: number = 0;
-  @State bundle: string = `com.form.formsystemtestservicea.hmservice`;
-  @State ability: string = `com.form.formsystemtestservicea.hmservice.MainAbility`;
+  @State bundle: string = `com.acts.form.formsystemtestservicea.hmservice`;
+  @State ability: string = `com.acts.form.formsystemtestservicea.hmservice.MainAbility`;
   @State moduleName: string = `entry`;
   @State name: string = `Form_Js001`;
   @State canCreateForm: boolean = false;
@@ -59,7 +59,7 @@ struct Index {
   private subscriberFormTerminateEvent = {
     events: ["FMS_FormTerminate_commonEvent"]
   };
-  private TAG = `[FormComponent.hostk]`;
+  private TAG = `[FormComponent.host.k]`;
 
   private formOnAcquiredEvent = "FMS_FormOnAcquired_commonEvent";
   private formOnRequestEvent = "FMS_FormOnRequest_commonEvent";
@@ -152,7 +152,7 @@ struct Index {
         if (want.parameters.createSecondForm) {
           this.createSecondForm = want.parameters.createSecondForm;
           this.secondParam = want.parameters.secondParam;
-          console.info(`====onRequestCallback123====>` + JSON.stringify(want.parameters.secondParam));
+          console.info(`====${this.TAG} onRequestCallback123====>` + JSON.stringify(want.parameters.secondParam));
         }
         if (want.parameters.createTempAndNormal) {
           this.createTempAndNormal = want.parameters.createTempAndNormal;

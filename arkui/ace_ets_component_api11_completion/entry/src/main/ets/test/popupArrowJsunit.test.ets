@@ -51,6 +51,10 @@ export default function popupArrowJsunit() {
      */
     it('popupArrowJsunit_0100', 0, async function (done) {
       console.info('[popupArrowJsunit_0100] START');
+      let driver = await Driver.create()
+      await CommonFunc.sleep(1000);
+      let button = await driver.findComponent(ON.id('popup_arrow'));
+      await button.click();
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('popup_arrow');
       let obj = JSON.parse(strJson);

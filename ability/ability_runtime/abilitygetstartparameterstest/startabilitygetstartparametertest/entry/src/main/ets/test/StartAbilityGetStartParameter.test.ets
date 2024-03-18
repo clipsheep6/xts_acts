@@ -14,54 +14,73 @@
  */
 
 import hilog from '@ohos.hilog';
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import commonEvent from '@ohos.commonEvent';
+import { BusinessError } from '@ohos.base';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import commonEventManager from '@ohos.commonEventManager';
+import common from '@ohos.app.ability.common';
 
-const TEST_SUITE_NAME: string = 'StartAbilityGetStartParameterTest'
-const EVENT_CASE_300 = 'ABILITY_StartAbility_GetStartParameters_0300'
-const EVENT_CASE_400 = 'ABILITY_StartAbility_GetStartParameters_0400'
-const EVENT_CASE_500 = 'ABILITY_StartAbility_GetStartParameters_0500'
-const EVENT_CASE_600 = 'ABILITY_StartAbility_GetStartParameters_0600'
-const EVENT_CASE_700 = 'ABILITY_StartAbility_GetStartParameters_0700'
-const EVENT_CASE_800 = 'ABILITY_StartAbility_GetStartParameters_0800'
-const EVENT_CASE_1400 = 'ABILITY_StartAbility_GetStartParameters_1400'
-const EVENT_CASE_1500 = 'ABILITY_StartAbility_GetStartParameters_1500'
-const CALLER_PID = 'ohos.aafwk.param.callerPid'
-const CALLER_TOKEN = 'ohos.aafwk.param.callerToken'
-const CALLER_UID = 'ohos.aafwk.param.callerUid'
+const TEST_SUITE_NAME: string = 'StartAbilityGetStartParameterTest';
+const EVENT_CASE_300 = 'ABILITY_StartAbility_GetStartParameters_0300';
+const EVENT_CASE_400 = 'ABILITY_StartAbility_GetStartParameters_0400';
+const EVENT_CASE_500 = 'ABILITY_StartAbility_GetStartParameters_0500';
+const EVENT_CASE_600 = 'ABILITY_StartAbility_GetStartParameters_0600';
+const EVENT_CASE_700 = 'ABILITY_StartAbility_GetStartParameters_0700';
+const EVENT_CASE_800 = 'ABILITY_StartAbility_GetStartParameters_0800';
+const EVENT_CASE_1400 = 'ABILITY_StartAbility_GetStartParameters_1400';
+const EVENT_CASE_1500 = 'ABILITY_StartAbility_GetStartParameters_1500';
+const CALLER_PID = 'ohos.aafwk.param.callerPid';
+const CALLER_TOKEN = 'ohos.aafwk.param.callerToken';
+const CALLER_UID = 'ohos.aafwk.param.callerUid';
 let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
-let accessTokenId: any;
-let uid: any;
+let accessTokenId: ESObject;
+let uid: ESObject;
+let pid: ESObject;
 
-async function sleep(time) {
-  await new Promise((resolve, reject) => {
-    setTimeout(resolve, time)
+async function sleep(time: number) {
+  await new Promise<void>((resolve, reject) => {
+    setTimeout(resolve, time);
   })
 }
 
-export default function StartAbilityGetStartParameterTest() {
-
-  function getLocalHapData() {
-    try {
-      let cmd = 'bm dump -n com.ohos.startabilitygetstartparametertest';
-      abilityDelegator.executeShellCommand(cmd, (err, result) => {
-        console.info(`${TEST_SUITE_NAME} executeShellCommand err: ${JSON.stringify(err)} ,result: ${result.stdResult}`);
-        let resultObject = JSON.parse(result.stdResult.split('com.ohos.startabilitygetstartparametertest:')[1])
-        console.info(`${TEST_SUITE_NAME} executeShellCommand resultObject: ${resultObject}`);
-        accessTokenId = resultObject.applicationInfo.accessTokenId
-        uid = resultObject.applicationInfo.uid
-      })
-    } catch (err) {
-      console.info(`${TEST_SUITE_NAME} executeShellCommand exception: ${JSON.stringify(err)}`);
-      expect().assertFail()
-    }
+async function getLocalHapData() {
+  try {
+    console.info(`${TEST_SUITE_NAME} case begin getLocalHapData`);
+    let cmd2 = 'ps -ef | grep com.ohos.startabilitygetstartparametertest';
+    await abilityDelegator.executeShellCommand(cmd2).then((result) => {
+      console.info(`${TEST_SUITE_NAME} executeShellCommand result: ${JSON.stringify(result.stdResult)}`);
+      pid = JSON.stringify(result.stdResult);
+    }).catch(((err: BusinessError) => {
+      console.info(`${TEST_SUITE_NAME} executeShellCommand catch: ${JSON.stringify(err)}`);
+      expect().assertFail();
+    }))
+  } catch (err) {
+    console.info(`${TEST_SUITE_NAME} executeShellCommand exception: ${JSON.stringify(err)}`);
+    expect().assertFail();
   }
+}
 
-  describe('StartAbilityGetStartParameterTest', function () {
-    beforeAll(() => {
-      getLocalHapData()
+export default function StartAbilityGetStartParameterTest() {
+  describe('StartAbilityGetStartParameterTest', () => {
+    beforeAll(async (done: Function) => {
+      console.info(`${TEST_SUITE_NAME} case begin beforeAll`);
+      let cmd = 'bm dump -n com.ohos.startabilitygetstartparametertest';
+      await abilityDelegator.executeShellCommand(cmd).then((result) => {
+        console.info(`${TEST_SUITE_NAME} executeShellCommand result: ${JSON.stringify(result.stdResult)}`);
+        let resultObject: ESObject = JSON.parse(result.stdResult.split('com.ohos.startabilitygetstartparametertest:')[1]);
+        console.info(`${TEST_SUITE_NAME} executeShellCommand resultObject: ${resultObject}`);
+        accessTokenId = resultObject.applicationInfo.accessTokenId;
+        uid = resultObject.applicationInfo.uid;
+        console.info(`${TEST_SUITE_NAME} accessTokenId result: ${accessTokenId}`);
+        console.info(`${TEST_SUITE_NAME} uid result: ${uid}`);
+      }).catch(((err: BusinessError) => {
+        console.info(`${TEST_SUITE_NAME} executeShellCommand catch: ${JSON.stringify(err)}`);
+        expect().assertFail();
+      }))
+      done();
     })
+
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0700
      * @tc.name      : For different applications, ability1 starts ability2 by startAbility
@@ -71,34 +90,38 @@ export default function StartAbilityGetStartParameterTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-
-    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0700", 3, async function (done) {
+    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0700", 3, async (done: Function) => {
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0700';
       try {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case begin`);
+        await commonEvent.createSubscriber({
+          events: [EVENT_CASE_700]
+        }).then((subscriber) => {
+          console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}`, 'createSubscriber success');
+          commonEvent.subscribe(subscriber, async (err, eventData) => {
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success pid: ${pid}`);
+            let callPid: ESObject = eventData.parameters.pid;
+            let tokenId: ESObject = eventData.parameters.tokenId;
+            let userId: ESObject = eventData.parameters.uid;
+            expect(pid).assertContain(callPid);
+            expect(userId == uid).assertEqual(true);
+            expect(tokenId == accessTokenId).assertEqual(true);
+            commonEvent.unsubscribe(subscriber, (err, data) => {
+              console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
+              done();
+            })
+          })
+        })
+
+        await getLocalHapData();
+
         abilityDelegator.startAbility({
           bundleName: 'com.ohos.getstartparameterhelper',
           abilityName: 'EntryAbility',
         }, (err, data) => {
           console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}`, 'start ability success');
-          commonEvent.createSubscriber({
-            events: [EVENT_CASE_700]
-          }, (err, subscriber) => {
-            commonEvent.subscribe(subscriber, (err, eventData) => {
-              console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
-              console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
-              let callPid = eventData.parameters.pid
-              let tokenId = eventData.parameters.tokenId
-              let userId = eventData.parameters.uid
-              // expect(callPid).assertEqual(pid)
-              expect(userId == uid).assertEqual(true)
-              expect(tokenId == accessTokenId).assertEqual(true)
-              commonEvent.unsubscribe(subscriber, (err, data) => {
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
-                done()
-              })
-            })
-          })
         })
       } catch (err) {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case fail: ${JSON.stringify(err)}`);
@@ -117,35 +140,38 @@ export default function StartAbilityGetStartParameterTest() {
      * @tc.type      : Function
      */
 
-    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0800", 3, async function (done) {
+    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0800", 3, async (done: Function) => {
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0800';
       try {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case begin`);
-        globalThis.abilityContext.startAbilityForResult({
+
+        let commonEventSubscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+          events: [EVENT_CASE_800]
+        }
+        await commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
+          commonEvent.subscribe(subscriber, (err, eventData) => {
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
+            let callPid: ESObject = eventData.parameters.pid;
+            let tokenId: ESObject = eventData.parameters.tokenId;
+            let userId: ESObject = eventData.parameters.uid;
+            expect(pid).assertContain(callPid);
+            expect(userId == uid).assertEqual(true);
+            expect(tokenId == accessTokenId).assertEqual(true);
+            commonEvent.unsubscribe(subscriber, (err, data) => {
+              console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
+              done();
+            })
+          })
+        })
+
+        AppStorage.get<common.UIAbilityContext>("abilityContext").startAbilityForResult({
           bundleName: 'com.ohos.getstartparameterhelper2',
           abilityName: 'EntryAbility',
         },
           (err, data) => {
             console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}`, `err ${JSON.stringify(err)} start ability success, 
             data : ${JSON.stringify(data)}`);
-            let commonEventSubscribeInfo = {
-              events: [EVENT_CASE_800]
-            }
-            commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
-              commonEvent.subscribe(subscriber, (err, eventData) => {
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
-                let callPid = eventData.parameters.pid
-                let tokenId = eventData.parameters.tokenId
-                let userId = eventData.parameters.uid
-                expect(userId == uid).assertEqual(true)
-                expect(tokenId == accessTokenId).assertEqual(true)
-                commonEvent.unsubscribe(subscriber, (err, data) => {
-                  console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
-                  done()
-                })
-              })
-            })
           })
       } catch (err) {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case fail: ${JSON.stringify(err)}`);
@@ -163,7 +189,7 @@ export default function StartAbilityGetStartParameterTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_1500", 3, async function (done) {
+    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_1500", 3, async (done: Function) => {
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_1500';
       try {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case begin`);
@@ -171,31 +197,34 @@ export default function StartAbilityGetStartParameterTest() {
           console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}`, `err ${JSON.stringify(err)} start ability success, 
           data : ${JSON.stringify(result)}`);
         })
-        globalThis.abilityContext.startAbility({
+
+        let commonEventSubscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+          events: [EVENT_CASE_1500]
+        }
+        await commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
+          commonEvent.subscribe(subscriber, (err, eventData) => {
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
+            let callPid: ESObject = eventData.parameters.pid;
+            let tokenId: ESObject = eventData.parameters.tokenId;
+            let userId: ESObject = eventData.parameters.uid;
+            expect(pid).assertContain(callPid);
+            expect(userId == uid).assertEqual(true);
+            expect(tokenId == accessTokenId).assertEqual(true);
+            commonEvent.unsubscribe(subscriber, (err, data) => {
+              console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
+              done();
+            })
+          })
+        })
+
+        AppStorage.get<common.UIAbilityContext>("abilityContext").startAbility({
           bundleName: 'com.ohos.getstartparameterhelper3',
           abilityName: 'EntryAbility',
         },
           (err, data) => {
             console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}`, `err ${JSON.stringify(err)} start ability success, 
             data : ${JSON.stringify(data)}`);
-            let commonEventSubscribeInfo = {
-              events: [EVENT_CASE_1500]
-            }
-            commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
-              commonEvent.subscribe(subscriber, (err, eventData) => {
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
-                let callPid = eventData.parameters.pid
-                let tokenId = eventData.parameters.tokenId
-                let userId = eventData.parameters.uid
-                expect(userId == uid).assertEqual(true)
-                expect(tokenId == accessTokenId).assertEqual(true)
-                commonEvent.unsubscribe(subscriber, (err, data) => {
-                  console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
-                  done()
-                })
-              })
-            })
           })
       } catch (err) {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case fail: ${JSON.stringify(err)}`);
@@ -213,36 +242,37 @@ export default function StartAbilityGetStartParameterTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0500", 3, async function (done) {
+    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0500", 3, async (done: Function) => {
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0500';
       try {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case begin`);
-        globalThis.abilityContext.startAbility({
+
+        let commonEventSubscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+          events: [EVENT_CASE_500]
+        }
+        await commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
+          commonEvent.subscribe(subscriber, (err, eventData) => {
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
+            let callPid: ESObject = eventData.parameters.pid;
+            let tokenId: ESObject = eventData.parameters.tokenId;
+            let userId: ESObject = eventData.parameters.uid;
+            expect(pid).assertContain(callPid);
+            expect(userId == uid).assertEqual(true);
+            expect(tokenId == accessTokenId).assertEqual(true);
+            commonEvent.unsubscribe(subscriber, (err, data) => {
+              console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
+              done();
+            })
+          })
+        })
+        AppStorage.get<common.UIAbilityContext>("abilityContext").startAbility({
           bundleName: 'com.ohos.startabilitygetstartparametertest',
           abilityName: 'FirstAbility',
         },
           (err, data) => {
             console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}`, `err ${JSON.stringify(err)} start ability success, 
             data : ${JSON.stringify(data)}`);
-            let commonEventSubscribeInfo = {
-              events: [EVENT_CASE_500]
-            }
-            commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
-              commonEvent.subscribe(subscriber, (err, eventData) => {
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
-                let callPid = eventData.parameters.pid
-                let tokenId = eventData.parameters.tokenId
-                let userId = eventData.parameters.uid
-                expect(userId == uid).assertEqual(true)
-                expect(tokenId == accessTokenId).assertEqual(true)
-                commonEvent.unsubscribe(subscriber, (err, data) => {
-                  console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
-                  done()
-                })
-              })
-            })
-
           })
       } catch (err) {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case fail: ${JSON.stringify(err)}`);
@@ -260,35 +290,37 @@ export default function StartAbilityGetStartParameterTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0600", 3, async function (done) {
+    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0600", 3, async (done: Function) => {
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0600';
       try {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case begin`);
-        globalThis.abilityContext.startAbilityForResult({
+
+        let commonEventSubscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+          events: [EVENT_CASE_600]
+        }
+        await commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
+          commonEvent.subscribe(subscriber, (err, eventData) => {
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
+            let callPid: ESObject = eventData.parameters.pid;
+            let tokenId: ESObject = eventData.parameters.tokenId;
+            let userId: ESObject = eventData.parameters.uid;
+            expect(pid).assertContain(callPid);
+            expect(userId == uid).assertEqual(true);
+            expect(tokenId == accessTokenId).assertEqual(true);
+            commonEvent.unsubscribe(subscriber, (err, data) => {
+              console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
+              done();
+            })
+          })
+        })
+        AppStorage.get<common.UIAbilityContext>("abilityContext").startAbilityForResult({
           bundleName: 'com.ohos.startabilitygetstartparametertest',
           abilityName: 'SecondAbility',
         },
           (err, data) => {
             console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}`, `err ${JSON.stringify(err)} start ability success, 
             data : ${JSON.stringify(data)}`);
-            let commonEventSubscribeInfo = {
-              events: [EVENT_CASE_600]
-            }
-            commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
-              commonEvent.subscribe(subscriber, (err, eventData) => {
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
-                let callPid = eventData.parameters.pid
-                let tokenId = eventData.parameters.tokenId
-                let userId = eventData.parameters.uid
-                expect(userId == uid).assertEqual(true)
-                expect(tokenId == accessTokenId).assertEqual(true)
-                commonEvent.unsubscribe(subscriber, (err, data) => {
-                  console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
-                  done()
-                })
-              })
-            })
           })
       } catch (err) {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case fail: ${JSON.stringify(err)}`);
@@ -306,7 +338,7 @@ export default function StartAbilityGetStartParameterTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0300", 3, async function (done) {
+    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0300", 3, async (done: Function) => {
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0300';
       try {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case begin`);
@@ -314,31 +346,33 @@ export default function StartAbilityGetStartParameterTest() {
           console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}`, `err ${JSON.stringify(err)} start ability success, 
           data : ${JSON.stringify(result)}`);
         })
-        globalThis.abilityContext.startAbility({
+
+        let commonEventSubscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+          events: [EVENT_CASE_300]
+        }
+        await commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
+          commonEvent.subscribe(subscriber, (err, eventData) => {
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
+            let callPid: ESObject = eventData.parameters.pid;
+            let tokenId: ESObject = eventData.parameters.tokenId;
+            let userId: ESObject = eventData.parameters.uid;
+            expect(pid).assertContain(callPid);
+            expect(userId == uid).assertEqual(true);
+            expect(tokenId == accessTokenId).assertEqual(true);
+            commonEvent.unsubscribe(subscriber, (err, data) => {
+              console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
+              done();
+            })
+          })
+        })
+        AppStorage.get<common.UIAbilityContext>("abilityContext").startAbility({
           bundleName: 'com.ohos.startabilitygetstartparametertest',
           abilityName: 'ThirdAbility',
         },
           (err, data) => {
             console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}`, `err ${JSON.stringify(err)} start ability success, 
             data : ${JSON.stringify(data)}`);
-            let commonEventSubscribeInfo = {
-              events: [EVENT_CASE_300]
-            }
-            commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
-              commonEvent.subscribe(subscriber, (err, eventData) => {
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
-                let callPid = eventData.parameters.pid
-                let tokenId = eventData.parameters.tokenId
-                let userId = eventData.parameters.uid
-                expect(userId == uid).assertEqual(true)
-                expect(tokenId == accessTokenId).assertEqual(true)
-                commonEvent.unsubscribe(subscriber, (err, data) => {
-                  console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
-                  done()
-                })
-              })
-            })
           })
       } catch (err) {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case fail: ${JSON.stringify(err)}`);
@@ -356,35 +390,37 @@ export default function StartAbilityGetStartParameterTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0400", 3, async function (done) {
+    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0400", 3, async (done: Function) => {
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_0400';
       try {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case begin`);
-        globalThis.abilityContext.startAbilityForResult({
+
+        let commonEventSubscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+          events: [EVENT_CASE_400]
+        }
+        await commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
+          commonEvent.subscribe(subscriber, (err, eventData) => {
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
+            let callPid: ESObject = eventData.parameters.pid;
+            let tokenId: ESObject = eventData.parameters.tokenId;
+            let userId: ESObject = eventData.parameters.uid;
+            expect(pid).assertContain(callPid);
+            expect(userId == uid).assertEqual(true);
+            expect(tokenId == accessTokenId).assertEqual(true);
+            commonEvent.unsubscribe(subscriber, (err, data) => {
+              console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
+              done();
+            })
+          })
+        })
+        AppStorage.get<common.UIAbilityContext>("abilityContext").startAbilityForResult({
           bundleName: 'com.ohos.startabilitygetstartparametertest',
           abilityName: 'FourthAbility',
         },
           (err, data) => {
             console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}`, `err ${JSON.stringify(err)} start ability success,
              data : ${JSON.stringify(data)}`);
-            let commonEventSubscribeInfo = {
-              events: [EVENT_CASE_400]
-            }
-            commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
-              commonEvent.subscribe(subscriber, (err, eventData) => {
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
-                let callPid = eventData.parameters.pid
-                let tokenId = eventData.parameters.tokenId
-                let userId = eventData.parameters.uid
-                expect(userId == uid).assertEqual(true)
-                expect(tokenId == accessTokenId).assertEqual(true)
-                commonEvent.unsubscribe(subscriber, (err, data) => {
-                  console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
-                  done()
-                })
-              })
-            })
           })
       } catch (err) {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case fail: ${JSON.stringify(err)}`);
@@ -402,7 +438,7 @@ export default function StartAbilityGetStartParameterTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_1400", 3, async function (done) {
+    it("SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_1400", 3, async (done: Function) => {
       const TEST_CASE_NAME = 'SUB_Ability_AbilityRuntime_ABILITY_StartAbility_GetStartParameters_1400';
       try {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case begin`);
@@ -410,31 +446,33 @@ export default function StartAbilityGetStartParameterTest() {
           console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}`, `err ${JSON.stringify(err)} start ability success,
            data : ${JSON.stringify(result)}`);
         })
-        globalThis.abilityContext.startAbility({
+
+        let commonEventSubscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
+          events: [EVENT_CASE_1400]
+        }
+        await commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
+          commonEvent.subscribe(subscriber, (err, eventData) => {
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
+            console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
+            let callPid: ESObject = eventData.parameters.pid;
+            let tokenId: ESObject = eventData.parameters.tokenId;
+            let userId: ESObject = eventData.parameters.uid;
+            expect(pid).assertContain(callPid);
+            expect(userId == uid).assertEqual(true);
+            expect(tokenId == accessTokenId).assertEqual(true);
+            commonEvent.unsubscribe(subscriber, (err, data) => {
+              console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
+              done();
+            })
+          })
+        })
+        AppStorage.get<common.UIAbilityContext>("abilityContext").startAbility({
           bundleName: 'com.ohos.startabilitygetstartparametertest',
           abilityName: 'FifthAbility',
         },
           (err, data) => {
             console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME}`, `err ${JSON.stringify(err)} start ability success, 
             data : ${JSON.stringify(data)}`);
-            let commonEventSubscribeInfo = {
-              events: [EVENT_CASE_1400]
-            }
-            commonEvent.createSubscriber(commonEventSubscribeInfo).then((subscriber) => {
-              commonEvent.subscribe(subscriber, (err, eventData) => {
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success: ${JSON.stringify(eventData)}`);
-                console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} subscribe success localhapuid: ${uid}, accessTokenId: ${accessTokenId}`);
-                let callPid = eventData.parameters.pid
-                let tokenId = eventData.parameters.tokenId
-                let userId = eventData.parameters.uid
-                expect(userId == uid).assertEqual(true)
-                expect(tokenId == accessTokenId).assertEqual(true)
-                commonEvent.unsubscribe(subscriber, (err, data) => {
-                  console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} unsubscribe success`);
-                  done()
-                })
-              })
-            })
           })
       } catch (err) {
         console.info(`${TEST_SUITE_NAME}#${TEST_CASE_NAME} case fail: ${JSON.stringify(err)}`);
