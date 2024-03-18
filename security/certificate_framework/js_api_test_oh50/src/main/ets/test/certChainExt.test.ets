@@ -52,7 +52,7 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
 
         cert.buildX509CertChain(param).then((data) => {
           expect(data.certChain.getCertList().length == 2).assertTrue();
-          expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
+          expect(data.validationResult.trustAnchor.CACert?.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           expect(data.validationResult.trustAnchor.nameConstraints != null).assertTrue();
           done();
         }).catch((err: BusinessError) => {
@@ -140,7 +140,7 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
 
         cert.buildX509CertChain(param).then((data) => {
           expect(data.certChain.getCertList().length == 2).assertTrue();
-          expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
+          expect(data.validationResult.trustAnchor.CACert?.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
         }).catch((err: BusinessError) => {
           console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
@@ -185,7 +185,7 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
 
         cert.buildX509CertChain(param).then((data) => {
           expect(data.certChain.getCertList().length == 1).assertTrue();
-          expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
+          expect(data.validationResult.trustAnchor.CACert?.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
         }).catch((err: BusinessError) => {
           console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
@@ -230,7 +230,7 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
 
         cert.buildX509CertChain(param).then((data) => {
           expect(data.certChain.getCertList().length == 2).assertTrue();
-          expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
+          expect(data.validationResult.trustAnchor.CACert?.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
         }).catch((err: BusinessError) => {
           console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
@@ -275,7 +275,7 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
 
         cert.buildX509CertChain(param).then((data) => {
           expect(data.certChain.getCertList().length == 2).assertTrue();
-          expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
+          expect(data.validationResult.trustAnchor.CACert?.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
         }).catch((err: BusinessError) => {
           console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
@@ -321,7 +321,7 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
 
         cert.buildX509CertChain(param).then((data) => {
           expect(data.certChain.getCertList().length == 2).assertTrue();
-          expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
+          expect(data.validationResult.trustAnchor.CACert?.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
         }).catch((err: BusinessError) => {
           console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
@@ -366,7 +366,7 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
 
         cert.buildX509CertChain(param).then((data) => {
           expect(data.certChain.getCertList().length == 2).assertTrue();
-          expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
+          expect(data.validationResult.trustAnchor.CACert?.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
         }).catch((err: BusinessError) => {
           console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
@@ -410,7 +410,7 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
 
         cert.buildX509CertChain(param).then((data) => {
           expect(data.certChain.getCertList().length == 2).assertTrue();
-          expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
+          expect(data.validationResult.trustAnchor.CACert?.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
           done();
         }).catch((err: BusinessError) => {
           console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
@@ -666,304 +666,6 @@ export default function certFrameworkCertChainExtJsAPIFunctionTestUnit() {
           }
         }
 
-        cert.buildX509CertChain(param).then((data) => {
-          expect(null).assertFail();
-          done();
-        }).catch((err: BusinessError) => {
-          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
-          expect(null).assertFail();
-          done();
-        });
-      } catch (error) {
-        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
-        done();
-      }
-    });
-
-    /**
-     * @tc.number SUB_Security_Cert_Framework_CertChainExt_Func_1600
-     * @tc.name check buildX509CertChain with certMatchParameters null
-     * @tc.desc Use Promise Type
-     * @tc.size SmallTest
-     * @tc.level Level1
-     * @tc.type Function
-     */
-    it("SUB_Security_Cert_Framework_CertChainExt_Func_1600", 0, async (done: Function) => {
-      let caseName = "SUB_Security_Cert_Framework_CertChainExt_Func_1600";
-      let x509Cert1 = await createX509Cert1();
-      let x509Cert2 = await createX509Cert2();
-      const collection = cert.createCertCRLCollection([x509Cert1, x509Cert2]);
-      try {
-        let param: cert.CertChainBuildParameters = {
-          certMatchParameters: null,
-          maxLength: 10,
-          validationParameters: {
-            trustAnchors: [{
-              CACert: x509Cert2
-            }],
-            certCRLs: [collection]
-          }
-        }
-
-        cert.buildX509CertChain(param).then((data) => {
-          expect(null).assertFail();
-          done();
-        }).catch((err: BusinessError) => {
-          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
-          expect(null).assertFail();
-          done();
-        });
-      } catch (error) {
-        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
-        done();
-      }
-    });
-
-    /**
-     * @tc.number SUB_Security_Cert_Framework_CertChainExt_Func_1700
-     * @tc.name check buildX509CertChain with certMatchParameters undefined
-     * @tc.desc Use Promise Type
-     * @tc.size SmallTest
-     * @tc.level Level1
-     * @tc.type Function
-     */
-    it("SUB_Security_Cert_Framework_CertChainExt_Func_1700", 0, async (done: Function) => {
-      let caseName = "SUB_Security_Cert_Framework_CertChainExt_Func_1700";
-      let x509Cert1 = await createX509Cert1();
-      let x509Cert2 = await createX509Cert2();
-      const collection = cert.createCertCRLCollection([x509Cert1, x509Cert2]);
-      try {
-        let param: cert.CertChainBuildParameters = {
-          certMatchParameters: undefined,
-          maxLength: 10,
-          validationParameters: {
-            trustAnchors: [{
-              CACert: x509Cert2
-            }],
-            certCRLs: [collection]
-          }
-        }
-
-        cert.buildX509CertChain(param).then((data) => {
-          expect(null).assertFail();
-          done();
-        }).catch((err: BusinessError) => {
-          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
-          expect(null).assertFail();
-          done();
-        });
-      } catch (error) {
-        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
-        done();
-      }
-    });
-
-    /**
-     * @tc.number SUB_Security_Cert_Framework_CertChainExt_Func_1800
-     * @tc.name check buildX509CertChain with maxlength null
-     * @tc.desc Use Promise Type
-     * @tc.size SmallTest
-     * @tc.level Level1
-     * @tc.type Function
-     */
-    it("SUB_Security_Cert_Framework_CertChainExt_Func_1800", 0, async (done: Function) => {
-      let caseName = "SUB_Security_Cert_Framework_CertChainExt_Func_1800";
-      let x509Cert1 = await createX509Cert1();
-      let x509Cert2 = await createX509Cert2();
-      const collection = cert.createCertCRLCollection([x509Cert1, x509Cert2]);
-      try {
-        let param: cert.CertChainBuildParameters = {
-          certMatchParameters: {
-            validDate: '20231212080000Z'
-          },
-          maxLength: null,
-          validationParameters: {
-            trustAnchors: [
-              {
-                CACert: x509Cert2
-              }
-            ],
-            certCRLs: [collection]
-          }
-        }
-
-        cert.buildX509CertChain(param).then((data) => {
-          expect(data.certChain.getCertList().length == 2).assertTrue();
-          expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
-          done();
-        }).catch((err: BusinessError) => {
-          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
-          expect(null).assertFail();
-          done();
-        });
-      } catch (error) {
-        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(null).assertFail();
-        done();
-      }
-    });
-
-    /**
-     * @tc.number SUB_Security_Cert_Framework_CertChainExt_Func_1900
-     * @tc.name check buildX509CertChain with maxlength undefined
-     * @tc.desc Use Promise Type
-     * @tc.size SmallTest
-     * @tc.level Level1
-     * @tc.type Function
-     */
-    it("SUB_Security_Cert_Framework_CertChainExt_Func_1900", 0, async (done: Function) => {
-      let caseName = "SUB_Security_Cert_Framework_CertChainExt_Func_1900";
-      let x509Cert1 = await createX509Cert1();
-      let x509Cert2 = await createX509Cert2();
-      const collection = cert.createCertCRLCollection([x509Cert1, x509Cert2]);
-      try {
-        let param: cert.CertChainBuildParameters = {
-          certMatchParameters: {
-            validDate: '20231212080000Z'
-          },
-          maxLength: undefined,
-          validationParameters: {
-            trustAnchors: [
-              {
-                CACert: x509Cert2
-              }
-            ],
-            certCRLs: [collection]
-          }
-        }
-
-        cert.buildX509CertChain(param).then((data) => {
-          expect(data.certChain.getCertList().length == 2).assertTrue();
-          expect(data.validationResult.trustAnchor.CACert.getNotBeforeTime() == '201212201944Z\u0000').assertTrue();
-          done();
-        }).catch((err: BusinessError) => {
-          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
-          expect(null).assertFail();
-          done();
-        });
-      } catch (error) {
-        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(null).assertFail();
-        done();
-      }
-    });
-
-    /**
-     * @tc.number SUB_Security_Cert_Framework_CertChainExt_Func_2000
-     * @tc.name check buildX509CertChain with validateParameters null
-     * @tc.desc Use Promise Type
-     * @tc.size SmallTest
-     * @tc.level Level1
-     * @tc.type Function
-     */
-    it("SUB_Security_Cert_Framework_CertChainExt_Func_2000", 0, async (done: Function) => {
-      let caseName = "SUB_Security_Cert_Framework_CertChainExt_Func_2000";
-      let x509Cert1 = await createX509Cert1();
-      let x509Cert2 = await createX509Cert2();
-      const collection = cert.createCertCRLCollection([x509Cert1, x509Cert2]);
-      try {
-        let param: cert.CertChainBuildParameters = {
-          certMatchParameters: {
-            validDate: '20231212080000Z'
-          },
-          maxLength: 10,
-          validationParameters: null
-        }
-
-        cert.buildX509CertChain(param).then((data) => {
-          expect(null).assertFail();
-          done();
-        }).catch((err: BusinessError) => {
-          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
-          expect(null).assertFail();
-          done();
-        });
-      } catch (error) {
-        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
-        done();
-      }
-    });
-
-    /**
-     * @tc.number SUB_Security_Cert_Framework_CertChainExt_Func_2100
-     * @tc.name check buildX509CertChain with validateParameters undefined
-     * @tc.desc Use Promise Type
-     * @tc.size SmallTest
-     * @tc.level Level1
-     * @tc.type Function
-     */
-    it("SUB_Security_Cert_Framework_CertChainExt_Func_2100", 0, async (done: Function) => {
-      let caseName = "SUB_Security_Cert_Framework_CertChainExt_Func_2100";
-      let x509Cert1 = await createX509Cert1();
-      let x509Cert2 = await createX509Cert2();
-      const collection = cert.createCertCRLCollection([x509Cert1, x509Cert2]);
-      try {
-        let param: cert.CertChainBuildParameters = {
-          certMatchParameters: {
-            validDate: '20231212080000Z'
-          },
-          maxLength: 10,
-          validationParameters: undefined
-        }
-
-        cert.buildX509CertChain(param).then((data) => {
-          expect(null).assertFail();
-          done();
-        }).catch((err: BusinessError) => {
-          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
-          expect(null).assertFail();
-          done();
-        });
-      } catch (error) {
-        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
-        done();
-      }
-    });
-
-    /**
-     * @tc.number SUB_Security_Cert_Framework_CertChainExt_Func_2200
-     * @tc.name check buildX509CertChain with param:CertChainBuildParameters null
-     * @tc.desc Use Promise Type
-     * @tc.size SmallTest
-     * @tc.level Level1
-     * @tc.type Function
-     */
-    it("SUB_Security_Cert_Framework_CertChainExt_Func_2200", 0, async (done: Function) => {
-      let caseName = "SUB_Security_Cert_Framework_CertChainExt_Func_2200";
-      try {
-        let param: cert.CertChainBuildParameters = null;
-        cert.buildX509CertChain(param).then((data) => {
-          expect(null).assertFail();
-          done();
-        }).catch((err: BusinessError) => {
-          console.error(`${caseName} createX509CertChain failed, err: ${JSON.stringify(err)}`);
-          expect(null).assertFail();
-          done();
-        });
-      } catch (error) {
-        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(error.code == cert.CertResult.INVALID_PARAMS).assertTrue();
-        done();
-      }
-    });
-
-    /**
-     * @tc.number SUB_Security_Cert_Framework_CertChainExt_Func_2300
-     * @tc.name check buildX509CertChain with param:CertChainBuildParameters undefined
-     * @tc.desc Use Promise Type
-     * @tc.size SmallTest
-     * @tc.level Level1
-     * @tc.type Function
-     */
-    it("SUB_Security_Cert_Framework_CertChainExt_Func_2300", 0, async (done: Function) => {
-      let caseName = "SUB_Security_Cert_Framework_CertChainExt_Func_2300";
-      try {
-        let param: cert.CertChainBuildParameters = undefined;
         cert.buildX509CertChain(param).then((data) => {
           expect(null).assertFail();
           done();

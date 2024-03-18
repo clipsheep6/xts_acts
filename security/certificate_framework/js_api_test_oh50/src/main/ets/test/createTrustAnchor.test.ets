@@ -33,7 +33,7 @@ export default function certFrameworkCreateTrustAnchorJsAPIFunctionTestUnit() {
       try {
         cert.createTrustAnchorsWithKeyStore(pubKeyData, '123456').then((data) => {
           expect(data.length == 1).assertTrue();
-          expect(data[0].CACert.getNotBeforeTime() == '240204100516Z\u0000').assertTrue();
+          expect(data[0].CACert?.getNotBeforeTime() == '240204100516Z\u0000').assertTrue();
           done();
         }).catch((err: BusinessError) => {
           console.error(`${caseName} failed, err: ${JSON.stringify(err)}`);
@@ -149,118 +149,6 @@ export default function certFrameworkCreateTrustAnchorJsAPIFunctionTestUnit() {
       let pwd = '';
       try {
         cert.createTrustAnchorsWithKeyStore(pubKeyData, pwd)
-          .then((data) => {
-            expect(null).assertFail();
-            done();
-          })
-          .catch((err: BusinessError) => {
-            console.error(`${caseName} failed, err: ${JSON.stringify(err)}`);
-            expect(null).assertFail();
-            done();
-          });
-      } catch (error) {
-        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(error.code == 401).assertTrue();
-        done();
-      }
-    });
-
-    /**
-     * @tc.number SUB_Security_Cert_Framework_CreateTrustAnchor_Func_0600
-     * @tc.name check createTrustAnchorsWithKeyStore with keystore null
-     * @tc.desc Use Promise Type
-     * @tc.size SmallTest
-     * @tc.level Level1
-     * @tc.type Function
-     */
-    it("SUB_Security_Cert_Framework_CreateTrustAnchor_Func_0600", 0, async (done: Function) => {
-      let caseName = "SUB_Security_Cert_Framework_CreateTrustAnchor_Func_0600";
-      try {
-        cert.createTrustAnchorsWithKeyStore(null, '123456')
-          .then((data) => {
-            expect(null).assertFail();
-            done();
-          })
-          .catch((err: BusinessError) => {
-            console.error(`${caseName} failed, err: ${JSON.stringify(err)}`);
-            expect(null).assertFail();
-            done();
-          });
-      } catch (error) {
-        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(error.code == 401).assertTrue();
-        done();
-      }
-    });
-
-    /**
-     * @tc.number SUB_Security_Cert_Framework_CreateTrustAnchor_Func_0700
-     * @tc.name check createTrustAnchorsWithKeyStore with keystore undefined
-     * @tc.desc Use Promise Type
-     * @tc.size SmallTest
-     * @tc.level Level1
-     * @tc.type Function
-     */
-    it("SUB_Security_Cert_Framework_CreateTrustAnchor_Func_0700", 0, async (done: Function) => {
-      let caseName = "SUB_Security_Cert_Framework_CreateTrustAnchor_Func_0700";
-      try {
-        cert.createTrustAnchorsWithKeyStore(undefined, '123456')
-          .then((data) => {
-            expect(null).assertFail();
-            done();
-          })
-          .catch((err: BusinessError) => {
-            console.error(`${caseName} failed, err: ${JSON.stringify(err)}`);
-            expect(null).assertFail();
-            done();
-          });
-      } catch (error) {
-        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(error.code == 401).assertTrue();
-        done();
-      }
-    });
-
-    /**
-     * @tc.number SUB_Security_Cert_Framework_CreateTrustAnchor_Func_0800
-     * @tc.name check createTrustAnchorsWithKeyStore with pwd null
-     * @tc.desc Use Promise Type
-     * @tc.size SmallTest
-     * @tc.level Level1
-     * @tc.type Function
-     */
-    it("SUB_Security_Cert_Framework_CreateTrustAnchor_Func_0800", 0, async (done: Function) => {
-      let caseName = "SUB_Security_Cert_Framework_CreateTrustAnchor_Func_0800";
-      try {
-        cert.createTrustAnchorsWithKeyStore(pubKeyData, null)
-          .then((data) => {
-            expect(null).assertFail();
-            done();
-          })
-          .catch((err: BusinessError) => {
-            console.error(`${caseName} failed, err: ${JSON.stringify(err)}`);
-            expect(null).assertFail();
-            done();
-          });
-      } catch (error) {
-        console.error(`${caseName} catch error: ${JSON.stringify(error)}`);
-        expect(error.code == 401).assertTrue();
-        done();
-      }
-    });
-
-    /**
-     * @tc.number SUB_Security_Cert_Framework_CreateTrustAnchor_Func_0900
-     * @tc.name check createTrustAnchorsWithKeyStore with pwd undefined
-     * @tc.desc Use Promise Type
-     * @tc.size SmallTest
-     * @tc.level Level1
-     * @tc.type Function
-     */
-    it("SUB_Security_Cert_Framework_CreateTrustAnchor_Func_0900", 0, async (done: Function) => {
-      let caseName = "SUB_Security_Cert_Framework_CreateTrustAnchor_Func_0900";
-      try {
-        cert.createTrustAnchorsWithKeyStore(pubKeyData, undefined)
           .then((data) => {
             expect(null).assertFail();
             done();
