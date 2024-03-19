@@ -592,22 +592,22 @@ export default function abilityTest() {
       let flag = true;
       commonEvent.createSubscriber(subscriberInfo_MainAbility)
         .then((data) => {
-          console.log("====>Create Subscriber====>");
+          console.log("====> ACTS_DoAbilityForeground_0300 Create Subscriber====>");
           data.getSubscribeInfo()
             .then((SubscribeInfo) => {
-              console.log("====>SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
+              console.log("====> ACTS_DoAbilityForeground_0300 SubscribeInfo is====>" + JSON.stringify(SubscribeInfo));
               Subscriber = data;
               commonEvent.subscribe(Subscriber, (err, data) => {
                 expect(data.event == "ACTS_DoAbility_Event").assertTrue();
-                console.log("====>0300 Subscribe CallBack data:====>" + JSON.stringify(data));
-                console.log("====>0300 Subscribe CallBack globalThis.ability3:====>" + JSON.stringify(AppStorage.get<UIAbility>("ability3")!));
-                console.log("====>0300 ability3 name:====>" + JSON.stringify(AppStorage.get<UIAbility>("ability3")!.context.abilityInfo.name));
+                console.log("====>ACTS_DoAbilityForeground_0300 Subscribe CallBack data:====>" + JSON.stringify(data));
+                console.log("====>ACTS_DoAbilityForeground_0300 Subscribe CallBack globalThis.ability3:====>" + JSON.stringify(AppStorage.get<UIAbility>("ability3")!));
+                console.log("====>ACTS_DoAbilityForeground_0300 ability3 name:====>" + JSON.stringify(AppStorage.get<UIAbility>("ability3")!.context.abilityInfo.name));
                 setTimeout(() => {
                   AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityForeground(AppStorage.get<UIAbility>("ability3")!, (err) => {
                     console.log("====>ACTS_DoAbilityForeground_0300 doAbilityForeground successfully");
                   })
                   commonEvent.unsubscribe(Subscriber, () => {
-                    console.log("====>UnSubscribeCallback====>");
+                    console.log("====> ACTS_DoAbilityForeground_0300 UnSubscribeCallback====>");
                     flag = false;
                     setTimeout(() => {
                       done();
@@ -615,14 +615,14 @@ export default function abilityTest() {
                   });
                 }, START_ABILITY_TIMEOUT_THOUSAND)
               });
-              console.log("====>start startAbility====>");
+              console.log("====> ACTS_DoAbilityForeground_0300 start startAbility====>");
               AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.startAbility(
                 {
                   bundleName: 'com.example.testapi',
                   abilityName: 'MainAbility3'
                 })
                 .then(() => {
-                  console.log("====>startAbility end====>");
+                  console.log("====> ACTS_DoAbilityForeground_0300 startAbility end====>");
                 })
             })
         })
@@ -630,9 +630,9 @@ export default function abilityTest() {
       setTimeout(() => {
         if (flag == true) {
           expect().assertFail();
-          console.log('ACTS_DoAbilityForeground_0300 - timeout');
+          console.log('======> ACTS_DoAbilityForeground_0300 - timeout');
           commonEvent.unsubscribe(Subscriber, () => {
-            console.log("====>UnSubscribeCallback====>");
+            console.log("====> ACTS_DoAbilityForeground_0300 UnSubscribeCallback====>");
             flag = false;
             setTimeout(() => {
               done();
