@@ -281,6 +281,41 @@ export default function stageContextPropertiesTest(abilityContext: common.UIAbil
      * @tc.level 3
      */
 
+    it('SUB_AA_OpenHarmony_Context_0500', 0, async (done: Function) => {
+      TAG = "SUB_AA_OpenHarmony_Context_0500";
+      console.log(TAG + " --- start");
+      checkApplicationContextDir(abilityContext.getApplicationContext());
+      await commonEvent.createSubscriber(subscriberInfo_AbilityContext).then(async (data) => {
+        console.log(TAG + " Create Subscriber");
+        Subscriber = data;
+        commonEvent.subscribe(Subscriber, (err, data) => {
+          console.log(TAG + " Subscribe CallBack data: " + JSON.stringify(data) + "err: " + JSON.stringify(err));
+          checkContextDirEqualA(abilityContext.getApplicationContext(),
+            globalThis.abilityContextA.getApplicationContext());
+          checkContextDirEqualA(abilityContext.getApplicationContext(),
+            globalThis.abilityStageContextA.getApplicationContext());
+          checkContextDirEqualA(abilityContext.getApplicationContext(),
+            AppStorage.get<common.AbilityStageContext>("abilityStageContext")!.getApplicationContext());
+          commonEvent.unsubscribe(Subscriber, () => {
+            console.log(TAG + " UnSubscribe CallBack");
+            done();
+          });
+        });
+      })
+      await abilityContext.startAbility({
+        bundleName: "com.example.stagecontextpropertiestest",
+        abilityName: "MainAbility3",
+      })
+        .then((data) => {
+          console.log(TAG + ' - startAbility: ' + JSON.stringify(data));
+        })
+        .catch((err: BusinessError) => {
+          console.log(TAG + " - start failed" + JSON.stringify(err));
+          expect().assertFail();
+          done();
+        })
+    });
+
     /**
      * @tc.number: SUB_AA_OpenHarmony_Context_0600
      * @tc.name: Check that context paths of different Ability in the different hap are the same.
