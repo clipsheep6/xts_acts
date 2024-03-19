@@ -13,23 +13,23 @@
  * limitations under the License.
  */
 
-import promptAction from '@ohos.promptAction'
+import promptAction from '@ohos.promptAction';
+import { BusinessError } from '@ohos.base';
 
 @Entry
 @Component
 struct PromptActionOptions {
-
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Button('PromptActionDialog')
-	    .key('ShowDialog')
+        .key('ShowDialog')
         .onClick(() => {
           promptAction.showDialog({
             title: 'Title Info',
             message: 'Message Info',
             alignment: DialogAlignment.TopStart,
             offset: { dx: 10, dy: 100 },
-            maskRect: { x: 0, y: 100, width: '100%', height: '80%'  },
+            maskRect: { x: 0, y: 100, width: '100%', height: '80%' },
             buttons: [
               {
                 text: 'button1',
@@ -41,10 +41,10 @@ struct PromptActionOptions {
               }
             ]
           })
-            .then(data=>{
-             console.info('showDialog success,click button:'+ data.index);
-          }).catch(error=>{
-             console.info('showDialog error:'+ error);
+            .then(data => {
+              console.info('showDialog success,click button:' + data.index);
+            }).catch((error: BusinessError) => {
+            console.info('showDialog error:' + error);
           })
         })
     }.width('100%')

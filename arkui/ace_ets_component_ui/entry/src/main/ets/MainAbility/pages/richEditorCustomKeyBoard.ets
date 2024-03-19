@@ -19,7 +19,8 @@ struct RichEditorExample {
   controller: RichEditorController = new RichEditorController()
 
   // 自定义键盘组件
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
       Grid() {
         ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
@@ -42,10 +43,11 @@ struct RichEditorExample {
 
   build() {
     Column() {
-      RichEditor({ controller: this.controller })
-        // 绑定自定义键盘
+      RichEditor({ controller: this.controller })// 绑定自定义键盘
         .key('richEditor1')
-        .customKeyboard(this.CustomKeyboardBuilder()).margin(10).border({ width: 1 })
+        .customKeyboard(this.CustomKeyboardBuilder())
+        .margin(10)
+        .border({ width: 1 })
         .height(200)
     }
   }

@@ -1,4 +1,3 @@
-
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,6 +13,7 @@
  * limitations under the License.
  */
 let storage = new LocalStorage();
+
 @Entry(storage)
 @Component
 struct WidgetCard {

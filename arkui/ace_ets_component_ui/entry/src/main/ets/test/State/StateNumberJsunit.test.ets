@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function StateNumberJsunit() {
-  describe('StateNumberJsunit', function () {
-    beforeEach(async function (done) {
+  describe('StateNumberJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("StateNumberJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/State/StateNumber',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/State/StateNumber',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function StateNumberJsunit() {
         console.info("get StateNumberJsunit state pages: " + JSON.stringify(pages));
         if (!("StateNumber" == pages.name)) {
           console.info("get StateNumberJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push StateNumberJsunit success: " + JSON.stringify(result));
         }
@@ -42,119 +55,121 @@ export default function StateNumberJsunit() {
       }
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
-      router.back({uri:"MainAbility/pages/index/index"});
+      router.back({
+        url: "MainAbility/pages/index/index"
+      });
     });
 
-    it('StateNumberJsunit_0100', 0, async function (done) {
+    it('StateNumberJsunit_0100', 0, async (done: Function) => {
 
       console.info('StateNumberJsunit_0100 START');
-      let strJson = getInspectorByKey('state_string');
-      let obj = JSON.parse(strJson);
-      console.info("[StateNumberJsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[StateNumberJsunit_0100] label: " + JSON.stringify(obj.$attrs.label));
-      expect(obj.$attrs.label).assertEqual("string: hello");
+      let strJson: string = getInspectorByKey('state_string');
+
+      console.info("[StateNumberJsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateNumberJsunit_0100] label: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual("string: hello");
       console.info('[StateNumberJsunit_0100] END');
       done();
     });
 
-    it('StateNumberJsunit_0200', 0, async function (done) {
+    it('StateNumberJsunit_0200', 0, async (done: Function) => {
 
       console.info('StateNumberJsunit_0200 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('state_string'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('state_string');
-      let obj = JSON.parse(strJson);
-      console.info("[StateNumberJsunit_0200] component obj is: " + JSON.stringify(obj));
-      console.info("[StateNumberJsunit_0200] label: " + JSON.stringify(obj.$attrs.label));
-      expect(obj.$attrs.label).assertEqual("string: world");
+      let strJson: string = getInspectorByKey('state_string');
+
+      console.info("[StateNumberJsunit_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateNumberJsunit_0200] label: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual("string: world");
       console.info('[StateNumberJsunit_0200] END');
       done();
     });
 
-    it('StateNumberJsunit_0300', 0, async function (done) {
+    it('StateNumberJsunit_0300', 0, async (done: Function) => {
 
       console.info('StateNumberJsunit_0300 START');
-      let strJson = getInspectorByKey('state_number');
-      let obj = JSON.parse(strJson);
-      console.info("[StateNumberJsunit_0300] component obj is: " + JSON.stringify(obj));
-      console.info("[StateNumberJsunit_0300] label: " + JSON.stringify(obj.$attrs.label));
-      expect(obj.$attrs.label).assertEqual("number: 0");
+      let strJson: string = getInspectorByKey('state_number');
+
+      console.info("[StateNumberJsunit_0300] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateNumberJsunit_0300] label: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual("number: 0");
       console.info('[StateNumberJsunit_0300] END');
       done();
     });
 
-    it('StateNumberJsunit_0400', 0, async function (done) {
+    it('StateNumberJsunit_0400', 0, async (done: Function) => {
 
       console.info('StateNumberJsunit_0400 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('state_number'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('state_number');
-      let obj = JSON.parse(strJson);
-      console.info("[StateNumberJsunit_0400] component obj is: " + JSON.stringify(obj));
-      console.info("[StateNumberJsunit_0400] label: " + JSON.stringify(obj.$attrs.label));
-      expect(obj.$attrs.label).assertEqual("number: 8");
+      let strJson: string = getInspectorByKey('state_number');
+
+      console.info("[StateNumberJsunit_0400] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateNumberJsunit_0400] label: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual("number: 8");
       console.info('[StateNumberJsunit_0400] END');
       done();
     });
 
-    it('StateNumberJsunit_0500', 0, async function (done) {
+    it('StateNumberJsunit_0500', 0, async (done: Function) => {
 
       console.info('StateNumberJsunit_0500 START');
-      let strJson = getInspectorByKey('state_Boolean');
-      let obj = JSON.parse(strJson);
-      console.info("[StateNumberJsunit_0500] component obj is: " + JSON.stringify(obj));
-      console.info("[StateNumberJsunit_0500] label: " + JSON.stringify(obj.$attrs.label));
-      expect(obj.$attrs.label).assertEqual("Boolean: true");
+      let strJson: string = getInspectorByKey('state_Boolean');
+
+      console.info("[StateNumberJsunit_0500] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateNumberJsunit_0500] label: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual("Boolean: true");
       console.info('[StateNumberJsunit_0500] END');
       done();
     });
 
-    it('StateNumberJsunit_0600', 0, async function (done) {
+    it('StateNumberJsunit_0600', 0, async (done: Function) => {
 
       console.info('StateNumberJsunit_0600 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('state_Boolean'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('state_Boolean');
-      let obj = JSON.parse(strJson);
-      console.info("[StateNumberJsunit_0600] component obj is: " + JSON.stringify(obj));
-      console.info("[StateNumberJsunit_0600] label: " + JSON.stringify(obj.$attrs.label));
-      expect(obj.$attrs.label).assertEqual("Boolean: false");
+      let strJson: string = getInspectorByKey('state_Boolean');
+
+      console.info("[StateNumberJsunit_0600] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateNumberJsunit_0600] label: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual("Boolean: false");
       console.info('[StateNumberJsunit_0600] END');
       done();
     });
 
-    it('StateNumberJsunit_0700', 0, async function (done) {
+    it('StateNumberJsunit_0700', 0, async (done: Function) => {
 
       console.info('StateNumberJsunit_0700 START');
-      let strJson = getInspectorByKey('state_enum');
-      let obj = JSON.parse(strJson);
-      console.info("[StateNumberJsunit_0700] component obj is: " + JSON.stringify(obj));
-      console.info("[StateNumberJsunit_0700] label: " + JSON.stringify(obj.$attrs.label));
-      expect(obj.$attrs.label).assertEqual("enum: #ff0000ff");
+      let strJson: string = getInspectorByKey('state_enum');
+
+      console.info("[StateNumberJsunit_0700] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateNumberJsunit_0700] label: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual("enum: #ff0000ff");
       console.info('[StateNumberJsunit_0700] END');
       done();
     });
 
-    it('StateNumberJsunit_0800', 0, async function (done) {
+    it('StateNumberJsunit_0800', 0, async (done: Function) => {
 
       console.info('StateNumberJsunit_0800 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('state_enum'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('state_enum');
-      let obj = JSON.parse(strJson);
-      console.info("[StateNumberJsunit_0800] component obj is: " + JSON.stringify(obj));
-      console.info("[StateNumberJsunit_0800] label: " + JSON.stringify(obj.$attrs.label));
-      expect(obj.$attrs.label).assertEqual("enum: #ffff0000");
+      let strJson: string = getInspectorByKey('state_enum');
+
+      console.info("[StateNumberJsunit_0800] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateNumberJsunit_0800] label: " + JSON.stringify(JSON.parse(strJson).$attrs.label));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual("enum: #ffff0000");
       console.info('[StateNumberJsunit_0800] END');
       done();
     });

@@ -13,30 +13,30 @@
  * limitations under the License.
  */
 
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct PatternLockPage {
-  @State passwords: Number[] = []
-  @State message: string = 'please input password!'
-  @State sideLength: string = '200'
-  @State circleRadius: string = '9'
-  @State regularColor: string = '#FF000000'
-  @State selectedColor: string = '#228B22'
-  @State activeColor: string = '#B0C4DE'
-  @State pathColor: string = '#90EE90'
-  @State pathStrokeWidth: number = 18
-  @State autoReset: boolean = true
+  @State passwords: Number[] = [];
+  @State message: string = 'please input password!';
+  @State sideLength: string = '200';
+  @State circleRadius: string = '9';
+  @State regularColor: string = '#FF000000';
+  @State selectedColor: string = '#228B22';
+  @State activeColor: string = '#B0C4DE';
+  @State pathColor: string = '#90EE90';
+  @State pathStrokeWidth: number = 18;
+  @State autoReset: boolean = true;
   private patternLockController: PatternLockController = new PatternLockController()
-  messageManager:MessageManager = new MessageManager()
+  messageManager: MessageManager<ESObject> = new MessageManager()
 
   onPageShow() {
     console.info('PatternLockPage onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'passwords') {
         this.passwords = message.value
@@ -119,10 +119,10 @@ struct PatternLockPage {
       Text(this.passwords.toString()).margin(20).fontSize(15).key('password1')
       PatternLock(this.patternLockController)
         .key('default')
-        
+
       PatternLock(this.patternLockController)
         .key('PatternLock')
-        .sideLength(96*3)
+        .sideLength(96 * 3)
         .circleRadius(6)
         .regularColor($r('sys.color.ohos_id_color_foreground'))
         .selectedColor($r('sys.color.ohos_id_color_foreground'))

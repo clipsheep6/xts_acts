@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 class MyDataSource implements IDataSource {
-  private list: number[] = []
+  private list: string[] = []
   private listener: DataChangeListener
 
-  constructor(list: number[]) {
+  constructor(list: string[]) {
     this.list = list
   }
 
@@ -24,7 +24,7 @@ class MyDataSource implements IDataSource {
     return this.list.length
   }
 
-  getData(index: number): any {
+  getData(index: number): string {
     return this.list[index]
   }
 
@@ -41,10 +41,11 @@ class MyDataSource implements IDataSource {
 struct SwiperExample {
   private swiperController: SwiperController = new SwiperController()
   private data: MyDataSource = new MyDataSource([])
-  @State  stringValue : string = "hello"
+  @State stringValue: string = "hello"
+
   aboutToAppear(): void {
-    let list = []
-    for (var i = 1; i <= 10; i++) {
+    let list: string[] = []
+    for (let i = 1; i <= 10; i++) {
       list.push(i.toString());
     }
     this.data = new MyDataSource(list)
@@ -54,8 +55,13 @@ struct SwiperExample {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
         LazyForEach(this.data, (item: string) => {
-          Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(30)
-        }, item => item)
+          Text(item)
+            .width('90%')
+            .height(160)
+            .backgroundColor(0xAFEEEE)
+            .textAlign(TextAlign.Center)
+            .fontSize(30)
+        }, (item: string) => item)
       }
       .cachedCount(2)
       .index(1)
@@ -66,12 +72,13 @@ struct SwiperExample {
       .duration(1000)
       .itemSpace(0)
       .displayArrow({
-        showBackground:true,
-        isSidebarMiddle:true,
-        backgroundSize:24,
-        backgroundColor:Color.White,
-        arrowSize:18,
-        arrowColor:Color.Blue},false)
+        showBackground: true,
+        isSidebarMiddle: true,
+        backgroundSize: 24,
+        backgroundColor: Color.White,
+        arrowSize: 18,
+        arrowColor: Color.Blue
+      }, false)
       .curve(Curve.Linear)
       .onChange((index: number) => {
         console.info(index.toString())
@@ -93,7 +100,8 @@ struct SwiperExample {
       .onAnimationEnd((index: number, extraInfo: SwiperAnimationEvent) => {
         console.info("index: " + index)
         console.info("current offset: " + extraInfo.currentOffset)
-      }).key('swiperAdd')
+      })
+      .key('swiperAdd')
 
       Row({ space: 12 }) {
         Button('showNext')

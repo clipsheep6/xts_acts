@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function fontJsunit() {
-  describe('fontJsunit', function () {
-    beforeEach(async function (done) {
+  describe('fontJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("GridColOffsetJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/fontAdd',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/fontAdd',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function fontJsunit() {
         console.info("get GridColOffsetJsunit state pages: " + JSON.stringify(pages));
         if (!("fontAdd" == pages.name)) {
           console.info("get GridColOffsetJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push GridColOffsetJsunit success: " + JSON.stringify(result));
         }
@@ -43,83 +56,84 @@ export default function fontJsunit() {
       done();
     });
 
-    it('fontJsunit_0100', 0, async function (done) {
+    it('fontJsunit_0100', 0, async (done: Function) => {
       // Get the information of the font
       console.info('fontJsunit_0100 START');
       let driver = Driver.create();
       let btn = await driver.findComponent(ON.id('getSystemFontList'));
       await btn.click();
       await CommonFunc.sleep(100);
-      let strJson = getInspectorByKey('fontlist');
-      let obj = JSON.parse(strJson);
-      console.info("[GridColOffsetJsunit_0100] component  strJson:" + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("");
+      let strJson: string = getInspectorByKey('fontlist');
+
+      console.info("[GridColOffsetJsunit_0100] component  strJson:" + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("");
       done();
     });
 
-    it('fontJsunit_0200', 0, async function (done) {
+    it('fontJsunit_0200', 0, async (done: Function) => {
       // Get the information of the font
       console.info('fontJsunit_0200 START');
       let driver = Driver.create();
       let btn = await driver.findComponent(ON.id('getgetFontByName'));
       await btn.click();
       await CommonFunc.sleep(100);
-      let strJson = getInspectorByKey('fontName');
-      let obj = JSON.parse(strJson);
-      console.info("[GridColOffsetJsunit_0200] component  strJson:" + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("");
+      let strJson: string = getInspectorByKey('fontName');
+
+      console.info("[GridColOffsetJsunit_0200] component  strJson:" + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("");
       done();
     });
 
-     it('fontJsunit_0300', 0, async function (done) {
+    it('fontJsunit_0300', 0, async (done: Function) => {
       // Get the information of the font
       console.info('fontJsunit_0300 START');
       try {
         let font = globalThis.uiContext.getFont().getSystemFontList()
-        expect(font !=null).assertTrue();
+        expect(font != null).assertTrue();
       } catch (err) {
         console.error("fontJsunit_0300 error " + JSON.stringify(err));
       }
       done();
     });
 
-     it('fontJsunit_0400', 0, async function (done) {
+    it('fontJsunit_0400', 0, async (done: Function) => {
       // Get the information of the font
       console.info('fontJsunit_0400 START');
       try {
         let font = globalThis.uiContext.getFont().getFontByName('HarmonyOS Sans Italic')
-        expect(font !=null).assertTrue();
+        expect(font != null).assertTrue();
       } catch (err) {
         console.error("fontJsunit_0400 error " + JSON.stringify(err));
       }
       done();
     });
 
-     it('fontJsunit_0500', 0, async function (done) {
+    it('fontJsunit_0500', 0, async (done: Function) => {
       // Get the information of the font
       console.info('fontJsunit_0500 START');
       try {
         let font = globalThis.uiContext.getFont().getUIInspector();
-        expect(font !=null).assertTrue();
+        expect(font != null).assertTrue();
       } catch (err) {
         console.error("fontJsunit_0500 error " + JSON.stringify(err));
       }
       done();
     });
 
-    it('fontJsunit_0600', 0, async function (done) {
+    it('fontJsunit_0600', 0, async (done: Function) => {
       // Get the information of the font
       console.info('fontJsunit_0600 START');
       try {
         let font = globalThis.uiContext.getFont().getComponentUtils();
-        expect(font !=null).assertTrue();
+        expect(font != null).assertTrue();
       } catch (err) {
         console.error("fontJsunit_0600 error " + JSON.stringify(err));
       }
       done();
     });
-
-
-
   })
 }

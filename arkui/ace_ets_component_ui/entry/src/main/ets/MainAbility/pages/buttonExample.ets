@@ -1,4 +1,3 @@
-
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,52 +12,51 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback, Message } from '../utils/MessageManager';
+
 @Entry
 @Component
 struct ButtonExample {
-  @State bttype:ButtonType = ButtonType.Normal
-  @State stateEffect:boolean = true
-  @State str:string = "Disable1"
-  messageManager:MessageManager = new MessageManager()
-  
-  
-  @State fontColor:Color = Color.Red
-  @State fontFamily:string = "123"
-  @State fontStyle:FontStyle = FontStyle.Italic
-  @State fontWeight:FontWeight = FontWeight.Lighter
-  @State fontSize: string = '12'
+  @State bttype: ButtonType = ButtonType.Normal;
+  @State stateEffect: boolean = true;
+  @State str: string = "Disable1";
+  messageManager: MessageManager<ESObject> = new MessageManager();
+  @State fontColor: Color = Color.Red;
+  @State fontFamily: string = "123";
+  @State fontStyle: FontStyle = FontStyle.Italic;
+  @State fontWeight: FontWeight = FontWeight.Lighter;
+  @State fontSize: string = '12';
 
   onPageShow() {
     console.info('ButtonExample onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: Message<ESObject>) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'bttype') {
-          this.bttype = message.value
+        this.bttype = message.value;
       }
       if (message.name == 'stateEffect') {
-          this.stateEffect = message.value
+        this.stateEffect = message.value;
       }
 
       if (message.name == 'fontSize') {
-          this.fontSize = message.value
+        this.fontSize = message.value;
       }
       if (message.name == 'fontColor') {
-          this.fontColor = message.value
+        this.fontColor = message.value;
       }
       if (message.name == 'fontFamily') {
-          this.fontFamily = message.value
+        this.fontFamily = message.value;
       }
       if (message.name == 'fontStyle') {
-          this.fontStyle = message.value
+        this.fontStyle = message.value;
       }
       if (message.name == 'fontWeight') {
-          this.fontWeight = message.value
+        this.fontWeight = message.value;
       }
-      
+
     }
     this.messageManager.registerCallback(callback)
 
@@ -68,8 +66,16 @@ struct ButtonExample {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
       Text('Normal button').fontSize(9).fontColor(0xCCCCCC)
       Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
-        Button('OK', { type: this.bttype, stateEffect: this.stateEffect}).borderRadius(8).backgroundColor(0x317aff).width(90).fontSize(this.fontSize).key('btok')
-        .fontColor(this.fontColor).fontFamily(this.fontFamily).fontStyle(this.fontStyle).fontWeight(this.fontWeight)
+        Button('OK', { type: this.bttype, stateEffect: this.stateEffect })
+          .borderRadius(8)
+          .backgroundColor(0x317aff)
+          .width(90)
+          .fontSize(this.fontSize)
+          .key('btok')
+          .fontColor(this.fontColor)
+          .fontFamily(this.fontFamily)
+          .fontStyle(this.fontStyle)
+          .fontWeight(this.fontWeight)
         Button({ type: ButtonType.Normal, stateEffect: true }) {
           Row() {
             LoadingProgress().width(20).height(20).margin({ left: 12 }).color(0xFFFFFF)
@@ -77,8 +83,12 @@ struct ButtonExample {
           }.alignItems(VerticalAlign.Center)
         }.borderRadius(8).backgroundColor(0x317aff).width(90).height(40)
 
-        Button('Disable', { type: ButtonType.Normal, stateEffect: false }).opacity(0.4)
-          .borderRadius(8).backgroundColor(0x317aff).width(90).key('btdisable')
+        Button('Disable', { type: ButtonType.Normal, stateEffect: false })
+          .opacity(0.4)
+          .borderRadius(8)
+          .backgroundColor(0x317aff)
+          .width(90)
+          .key('btdisable')
       }
 
       Text('Capsule button').fontSize(9).fontColor(0xCCCCCC)
@@ -91,9 +101,13 @@ struct ButtonExample {
           }.alignItems(VerticalAlign.Center).width(90).height(40)
         }.backgroundColor(0x317aff)
 
-        Button(this.str, { type: ButtonType.Capsule, stateEffect: true }).opacity(0.4)
-          .backgroundColor(0x317aff).width(90).key('btdisable1').onClick(() => {
-               this.str = "click"
+        Button(this.str, { type: ButtonType.Capsule, stateEffect: true })
+          .opacity(0.4)
+          .backgroundColor(0x317aff)
+          .width(90)
+          .key('btdisable1')
+          .onClick(() => {
+            this.str = "click"
           })
       }
 

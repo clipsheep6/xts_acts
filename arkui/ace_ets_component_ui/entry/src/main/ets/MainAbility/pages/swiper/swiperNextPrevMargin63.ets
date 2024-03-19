@@ -15,18 +15,18 @@
 
 
 class MyDataSource63 implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -39,21 +39,21 @@ class MyDataSource63 implements IDataSource {
 @Entry
 @Component
 struct SwiperNextPrevMarginExample63 {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource63 = new MyDataSource63([])
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource63 = new MyDataSource63([]);
 
   aboutToAppear(): void {
     let list: number[] = []
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource63(list)
+    this.data = new MyDataSource63(list);
   }
 
   build() {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
-        LazyForEach(this.data, (item: string,index:number) => {
+        LazyForEach(this.data, (item: string, index: number) => {
           Text(item)
             .width('100%')
             .height(160)
@@ -61,7 +61,8 @@ struct SwiperNextPrevMarginExample63 {
             .textAlign(TextAlign.Center)
             .borderColor(Color.Red)
             .borderWidth(0)
-            .fontSize(30).key(index+"")
+            .fontSize(30)
+            .key(index + "")
         }, (item: string) => item)
       }
       .cachedCount(2)
@@ -72,8 +73,8 @@ struct SwiperNextPrevMarginExample63 {
       .prevMargin(6)
       .displayCount(1)
       .borderWidth(0)
-       .width(250)
-       .displayMode(SwiperDisplayMode.STRETCH)
+      .width(250)
+      .displayMode(SwiperDisplayMode.STRETCH)
       .loop(false)
       .duration(1000)
 

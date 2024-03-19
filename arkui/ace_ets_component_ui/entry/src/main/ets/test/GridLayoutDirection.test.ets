@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function GridLayoutDirection() {
-  describe('GridLayoutDirection', function () {
-    beforeEach(async function (done) {
+  describe('GridLayoutDirection', () => {
+    beforeEach(async (done: Function) => {
       console.info("GridLayoutDirection beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/GridLayoutDirection',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/GridLayoutDirection',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function GridLayoutDirection() {
         console.info("get GridLayoutDirection state pages: " + JSON.stringify(pages));
         if (!("GridLayoutDirection" == pages.name)) {
           console.info("get GridLayoutDirection state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push GridLayoutDirection page result: " + JSON.stringify(result));
         }
@@ -49,11 +62,13 @@ export default function GridLayoutDirection() {
       * @tc.desc  : Set layoutDirection to GridDirection.ColumnReverse
       * @tc.level : Level 2
       */
-    it('GridLayoutDirection_001', 0, async function (done) {
+    it('GridLayoutDirection_001', 0, async (done: Function) => {
 
       console.info('[GridLayoutDirection_001] START');
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'layoutDirection', value: GridDirection.ColumnReverse });
+      globalThis.value.message.notify({
+        name: 'layoutDirection', value: GridDirection.ColumnReverse
+      });
       await CommonFunc.sleep(1000);
       let GridItem00 = CommonFunc.getComponentRect('GridItem00');
       let GridItem01 = CommonFunc.getComponentRect('GridItem01');
@@ -70,11 +85,13 @@ export default function GridLayoutDirection() {
       * @tc.desc  : Set layoutDirection to GridDirection.Column
       * @tc.level : Level 2
       */
-    it('GridLayoutDirection_002', 0, async function (done) {
+    it('GridLayoutDirection_002', 0, async (done: Function) => {
 
       console.info('[GridLayoutDirection_002] START');
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'layoutDirection', value: GridDirection.Column });
+      globalThis.value.message.notify({
+        name: 'layoutDirection', value: GridDirection.Column
+      });
       await CommonFunc.sleep(200);
       let GridItem00 = CommonFunc.getComponentRect('GridItem00');
       let GridItem01 = CommonFunc.getComponentRect('GridItem01');
@@ -91,11 +108,13 @@ export default function GridLayoutDirection() {
       * @tc.desc  : Set layoutDirection to GridDirection.RowReverse
       * @tc.level : Level 2
       */
-    it('GridLayoutDirection_003', 0, async function (done) {
+    it('GridLayoutDirection_003', 0, async (done: Function) => {
 
       console.info('[GridLayoutDirection_003] START');
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'layoutDirection', value: GridDirection.RowReverse });
+      globalThis.value.message.notify({
+        name: 'layoutDirection', value: GridDirection.RowReverse
+      });
       await CommonFunc.sleep(200);
       let GridItem00 = CommonFunc.getComponentRect('GridItem00');
       let GridItem01 = CommonFunc.getComponentRect('GridItem01');
@@ -112,11 +131,13 @@ export default function GridLayoutDirection() {
       * @tc.desc  : Set layoutDirection to GridDirection.Row
       * @tc.level : Level 2
       */
-    it('GridLayoutDirection_004', 0, async function (done) {
+    it('GridLayoutDirection_004', 0, async (done: Function) => {
 
       console.info('[GridLayoutDirection_004] START');
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'layoutDirection', value: GridDirection.Row });
+      globalThis.value.message.notify({
+        name: 'layoutDirection', value: GridDirection.Row
+      });
       await CommonFunc.sleep(200);
       let GridItem00 = CommonFunc.getComponentRect('GridItem00');
       let GridItem01 = CommonFunc.getComponentRect('GridItem01');
@@ -133,11 +154,13 @@ export default function GridLayoutDirection() {
       * @tc.desc  : Set layoutDirection to GridDirection.ColumnReverse
       * @tc.level : Level 2
       */
-    it('GridLayoutDirection_005', 0, async function (done) {
+    it('GridLayoutDirection_005', 0, async (done: Function) => {
 
       console.info('[GridLayoutDirection_005] START');
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'gridPadding', value: 50 });
+      globalThis.value.message.notify({
+        name: 'gridPadding', value: 50
+      });
       await CommonFunc.sleep(200);
       let GridLayoutDirKey = CommonFunc.getComponentRect('GridLayoutDirKey');
       let GridItem00 = CommonFunc.getComponentRect('GridItem00');
@@ -154,21 +177,20 @@ export default function GridLayoutDirection() {
       * @tc.desc  : Set layoutDirection to GridDirection.ColumnReverse
       * @tc.level : Level 2
       */
-    it('GridLayoutDirection_006', 0, async function (done) {
+    it('GridLayoutDirection_006', 0, async (done: Function) => {
 
       console.info('[GridLayoutDirection_006] START');
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'gridMargin', value: 50 });
+      globalThis.value.message.notify({
+        name: 'gridMargin', value: 50
+      });
       await CommonFunc.sleep(200);
       let GridLayoutDirKey = CommonFunc.getComponentRect('GridLayoutDirKey');
       let ColumnKey = CommonFunc.getComponentRect('ColumnKey');
       await CommonFunc.sleep(1000);
       expect(Math.round(GridLayoutDirKey.top - ColumnKey.top)).assertEqual(Math.round(vp2px(50)));
-
       console.info('[GridLayoutDirection_006] END');
       done();
     });
-
-
   })
 }

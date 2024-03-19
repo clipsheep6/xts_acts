@@ -17,25 +17,27 @@
 @Entry
 @Component
 struct areaChangeEnabled {
-  @State enable: boolean = true
-  @State text1: string = 'Text'
-  @State testTextStr: string = 'Text'
-  @State text2: string = 'Text Visible Change'
-
-  private arr: number[] = [0, 1, 2, 3, 4, 5]
-  scroller: Scroller = new Scroller()
+  @State enable: boolean = true;
+  @State text1: string = 'Text';
+  @State testTextStr: string = 'Text';
+  @State text2: string = 'Text Visible Change';
+  private arr: number[] = [0, 1, 2, 3, 4, 5];
+  scroller: Scroller = new Scroller();
 
   build() {
     Column({ space: 20 }) {
-      Column(){
+      Column() {
         Text(this.text1).key("aCanEnable")
-          .margin({top: 20})
+          .margin({ top: 20 })
           .onAreaChange(() => {
             this.text1 = 'onAreaChange 已触发'
           })
           .enabled(false)
 
-      }.width('100%').height('20%').backgroundColor('#F1F3F5')
+      }
+      .width('100%')
+      .height('20%')
+      .backgroundColor('#F1F3F5')
 
 
       Column() {
@@ -62,7 +64,7 @@ struct areaChangeEnabled {
               }
             }).enabled(false)
 
-          ForEach(this.arr, (item:number) => {
+          ForEach(this.arr, (item: number) => {
             Text(item.toString())
               .width('90%')
               .height(150)
@@ -71,7 +73,7 @@ struct areaChangeEnabled {
               .fontSize(16)
               .textAlign(TextAlign.Center)
               .margin({ top: 10 })
-          }, (item:number) => (item.toString()))
+          }, (item: number) => (item.toString()))
 
         }.width('100%')
       }
@@ -80,6 +82,9 @@ struct areaChangeEnabled {
       .scrollBar(BarState.On)
       .scrollBarColor(Color.Gray)
       .scrollBarWidth(10)
-    }.width('100%').height('100%').backgroundColor(0xDCDCDC)
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
   }
 }

@@ -17,86 +17,83 @@
 @Entry
 @Component
 struct gestureEnabled1 {
-  @State value: string = 'Gesture enabled false'
-  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right })
+  @State value: string = 'Gesture enabled false';
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right });
 
   build() {
     Column() {
       Text('初始值').key("value")
         .onClick(() => {
-          this.value = 'Gesture enabled false'
+          this.value = 'Gesture enabled false';
         })
       // 触发反馈
       Text(this.value).margin(30).key('gestureText')
-      List({space:20, initialIndex:0}){
-        ListItem(){
+      List({ space: 20, initialIndex: 0 }) {
+        ListItem() {
           Text('TapGesture enabled_true').fontSize(25).key('gestureOnce')
             .gesture(
               TapGesture()
                 .onAction((event: GestureEvent) => {
-                  this.value = 'TapGesture单击 已触发'
+                  this.value = 'TapGesture单击 已触发';
                 })
             ).enabled(true)
         }
 
-        ListItem(){
+        ListItem() {
           Text('TapGesture once').fontSize(25).key('gesture1')
             .gesture(
               TapGesture()
                 .onAction((event: GestureEvent) => {
-                  this.value = 'TapGesture单击 已触发'
+                  this.value = 'TapGesture单击 已触发';
                 })
             ).enabled(false)
         }
 
-        ListItem(){
+        ListItem() {
           Text('TapGesture twice').fontSize(25).key('gesture2')
             .gesture(
               TapGesture({ count: 2 })
                 .onAction((event: GestureEvent) => {
-                  this.value = 'TapGesture双击 已触发'
+                  this.value = 'TapGesture双击 已触发';
                 })
             ).enabled(false)
         }
 
-        ListItem(){
-          Text('LongPress').fontSize(25).key('gesture3')
-            // 长按文本触发该手势事件
+        ListItem() {
+          Text('LongPress').fontSize(25).key('gesture3')// 长按文本触发该手势事件
             .gesture(
-              LongPressGesture({ repeat: true })
-                // 由于repeat设置为true，长按动作存在时会连续触发，触发间隔为duration（默认值500ms）
+              LongPressGesture({ repeat: true })// 由于repeat设置为true，长按动作存在时会连续触发，触发间隔为duration（默认值500ms）
                 .onAction((event: GestureEvent) => {
                   if (event.repeat) {
-                    this.value = 'LongPress onAction 已触发'
+                    this.value = 'LongPress onAction 已触发';
                   }
                 })
                 .onActionEnd(() => {
-                  this.value = 'LongPress onActionEnd 已触发'
+                  this.value = 'LongPress onActionEnd 已触发';
                 })
                 .onActionCancel(() => {
-                  this.value = 'LongPress onActionCancel 已触发'
+                  this.value = 'LongPress onActionCancel 已触发';
                 })
             ).enabled(false)
         }
 
-        ListItem(){
-          Text('PanGesture').fontSize(25).id('gesture4')
-            // 拖动文本触发该手势事件
+        ListItem() {
+          Text('PanGesture').fontSize(25).id('gesture4')// 拖动文本触发该手势事件
             .gesture(
               PanGesture(this.panOption)
                 .onActionStart((event: GestureEvent) => {
-                  this.value = '拖动onActionStart 已触发'
+                  this.value = '拖动onActionStart 已触发';
                   console.info('Pan start')
                 })
                 .onActionUpdate((event: GestureEvent) => {
-                  this.value = '拖动onActionUpdate 已触发'
+                  this.value = '拖动onActionUpdate 已触发';
                 })
                 .onActionEnd(() => {
-                  this.value = '拖动onActionEnd 已触发'
+                  this.value = '拖动onActionEnd 已触发';
                   console.info('Pan end')
                 })
                 .onActionCancel(() => {
-                  this.value = '拖动onActionCancel 已触发'
+                  this.value = '拖动onActionCancel 已触发';
                 })
             ).enabled(false)
         }

@@ -12,20 +12,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-AppStorage.clear()
+AppStorage.clear();
 Environment.envProp('Prop20', 10);
+
 @Entry
 @Component
 struct StorageProp20 {
-  @StorageProp('Prop20') storProp1: number = 1
-  @StorageProp('PropB') storProp2: number = 4
-  @StorageProp('PropC') storProp3: string = 'gg'
-  @State num: number = 0
-  @State vae: string = ''
+  @StorageProp('Prop20') storProp1: number = 1;
+  @StorageProp('PropB') storProp2: number = 4;
 
-  build(){
-    Column({space:15}){
-      CompStorageProp20({storProp1:this.storProp1,storProp2:$storProp1,storProp3:this.storProp1,num:this.storProp1})
+  @StorageProp('PropC') storProp3: string = 'gg';
+  @State num: number = 0;
+  @State vae: string = '';
+
+  build() {
+    Column({ space: 15 }) {
+      CompStorageProp20({
+        storProp1: this.storProp1,
+        storProp2: $storProp1,
+        storProp3: this.storProp1,
+        num: this.storProp1
+      })
 
     }
   }
@@ -33,12 +40,13 @@ struct StorageProp20 {
 
 @Component
 struct CompStorageProp20 {
-  @State storProp1 : number = 0
-  @Link storProp2 : number
-  @Prop storProp3 : number
-  @Provide num : number = 0
+  @State storProp1: number = 0
+  @Link storProp2: number
+  @Prop storProp3: number
+  @Provide num: number = 0
+
   build() {
-    Column(){
+    Column() {
       Text(`State:${this.storProp1}`)
         .key('text_state')
       Text(`Link:${this.storProp2}`)

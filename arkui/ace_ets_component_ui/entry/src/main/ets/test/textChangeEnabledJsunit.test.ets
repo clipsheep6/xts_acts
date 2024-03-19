@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function textChangeEnabledJsunit() {
-  describe('textChangeEnabledJsunit', function () {
-    beforeEach(async function (done) {
+  describe('textChangeEnabledJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("textChangeEnabledJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/textChangeEnabled',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/textChangeEnabled',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function textChangeEnabledJsunit() {
         console.info("get textChangeEnabledJsunit state pages: " + JSON.stringify(pages));
         if (!("textChangeEnabled" == pages.name)) {
           console.info("get textChangeEnabledJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push textChangeEnabledJsunit success: " + JSON.stringify(result));
         }
@@ -43,30 +56,29 @@ export default function textChangeEnabledJsunit() {
       done();
     });
 
-    it('textChangeEnabledJsunit_0100', 0, async function (done) {
+    it('textChangeEnabledJsunit_0100', 0, async (done: Function) => {
 
       console.info('textChangeEnabledJsunit_0100 START');
-      let strJson = getInspectorByKey('aCanEnable');
-      let obj = JSON.parse(strJson);
-      console.info("[textChangeEnabledJsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[textChangeEnabledJsunit_0100] enabled: " + JSON.stringify(obj.$attrs.enabled));
-      expect(obj.$attrs.enabled).assertEqual(false);
+      let strJson: string = getInspectorByKey('aCanEnable');
+
+      console.info("[textChangeEnabledJsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[textChangeEnabledJsunit_0100] enabled: " + JSON.stringify(JSON.parse(strJson).$attrs.enabled));
+      expect(JSON.parse(strJson).$attrs.enabled).assertEqual(false);
       console.info('[textChangeEnabledJsunit_0100] END');
       done();
     });
 
-    it('textChangeEnabledJsunit_0200', 0, async function (done) {
+    it('textChangeEnabledJsunit_0200', 0, async (done: Function) => {
 
       console.info('textChangeEnabledJsunit_0200 START');
-      let strJson = getInspectorByKey('vCanEnable');
-      let obj = JSON.parse(strJson);
-      console.info("[textChangeEnabledJsunit_0200] component obj is: " + JSON.stringify(obj));
-      console.info("[textChangeEnabledJsunit_0200] enabled: " + JSON.stringify(obj.$attrs.enabled));
-      expect(obj.$attrs.enabled).assertEqual(false);
+      let strJson: string = getInspectorByKey('vCanEnable');
+
+      console.info("[textChangeEnabledJsunit_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[textChangeEnabledJsunit_0200] enabled: " + JSON.stringify(JSON.parse(strJson).$attrs.enabled));
+      expect(JSON.parse(strJson).$attrs.enabled).assertEqual(false);
       console.info('[textChangeEnabledJsunit_0200] END');
       done();
     });
-
   })
 }
 

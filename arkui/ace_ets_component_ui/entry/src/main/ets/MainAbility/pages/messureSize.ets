@@ -13,15 +13,17 @@
  * limitations under the License.
  */
 import measure from '@ohos.measure'
+
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
-  textSize : SizeOptions = measure.measureTextSize({
+  @State message: string = 'Hello World';
+  textSize: SizeOptions = measure.measureTextSize({
     textContent: "Hello word",
     fontSize: '50px',
-    constraintWidth:'0vp'
+    constraintWidth: '0vp'
   })
+
   build() {
     Row() {
       Column() {

@@ -15,19 +15,23 @@
 @Entry
 @Component
 struct ListExampleAdd {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   build() {
     Column() {
       List({ space: 20, initialIndex: 0 }) {
-        ForEach(this.arr, (item) => {
-          ListItem({style:ListItemStyle.CARD}) {
+        ForEach(this.arr, (item: string) => {
+          ListItem({ style: ListItemStyle.CARD }) {
             Text('' + item)
-              .width('100%').height(100).fontSize(16)
-              .key(''+item)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .key('' + item)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
           }
-        }, item => item)
+        }, (item: string) => item)
       }
       .listDirection(Axis.Vertical) // 排列方向
       .scrollBar(BarState.Off)
@@ -42,8 +46,8 @@ struct ListExampleAdd {
       .enableScrollInteraction(true)
       .key('listadd')
       .nestedScroll({
-        scrollForward:NestedScrollMode.PARENT_FIRST,
-        scrollBackward:NestedScrollMode.SELF_FIRST
+        scrollForward: NestedScrollMode.PARENT_FIRST,
+        scrollBackward: NestedScrollMode.SELF_FIRST
       })
       .onScroll((scrollOffset: number, scrollState: ScrollState) => {
         console.info(`onScroll scrollState = ${ScrollState[scrollState]}, scrollOffset = ${[scrollOffset]}`)

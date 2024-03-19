@@ -13,19 +13,20 @@
  * limitations under the License.
  */
 @Component
-struct  CompB{
-  @Consume color1: Color | undefined | null
-  @Consume color2: Color | undefined | null
-  @Consume number1: number | undefined | null
-  @Consume number2: number | undefined | null
-  build(){
-    Row({ space: 5 }){
+struct CompB {
+  @Consume color1: Color | undefined | null;
+  @Consume color2: Color | undefined | null;
+  @Consume number1: number | undefined | null;
+  @Consume number2: number | undefined | null;
+
+  build() {
+    Row({ space: 5 }) {
       Column({ space: 20 }) {
         Text("Consume子组件颜色Red-->undefined")
         Button('button')
           .backgroundColor(this.color1)
           .onClick(() => {
-            this.color1 = undefined
+            this.color1 = undefined;
           })
           .key('coBtn1')
 
@@ -33,7 +34,7 @@ struct  CompB{
         Button('button')
           .backgroundColor(this.color2)
           .onClick(() => {
-            this.color2 = null
+            this.color2 = null;
           })
           .key('coBtn2')
 
@@ -41,7 +42,7 @@ struct  CompB{
         Button('button')
           .fontSize(this.number1)
           .onClick(() => {
-            this.number1 = undefined
+            this.number1 = undefined;
           })
           .key('coBtn3')
 
@@ -49,30 +50,24 @@ struct  CompB{
         Button('button')
           .fontSize(this.number2)
           .onClick(() => {
-            this.number2 = null
+            this.number2 = null;
           })
           .key('coBtn4')
-
-
-
-      }.width('100%').margin({top:10})
+      }
+      .width('100%')
+      .margin({ top: 10 })
     }
   }
-
 }
-
-
-
-
 
 
 @Entry
 @Component
 struct provide2 {
-  @Provide color1: Color | undefined | null = Color.Red
-  @Provide color2: Color | undefined | null = Color.Red
-  @Provide number1: number | undefined | null = 100
-  @Provide number2: number | undefined | null = 100
+  @Provide color1: Color | undefined | null = Color.Red;
+  @Provide color2: Color | undefined | null = Color.Red;
+  @Provide number1: number | undefined | null = 100;
+  @Provide number2: number | undefined | null = 100;
 
   build() {
     Row() {
@@ -84,7 +79,7 @@ struct provide2 {
             Button('button')
               .backgroundColor(this.color1)
               .onClick(() => {
-                this.color1 = undefined
+                this.color1 = undefined;
               })
               .key('prBtn1')
 
@@ -92,7 +87,7 @@ struct provide2 {
             Button('button')
               .backgroundColor(this.color2)
               .onClick(() => {
-                this.color2 = null
+                this.color2 = null;
               })
               .key('prBtn2')
 
@@ -100,7 +95,7 @@ struct provide2 {
             Button('button')
               .fontSize(this.number1)
               .onClick(() => {
-                this.number1 = undefined
+                this.number1 = undefined;
               })
               .key('prBtn3')
 
@@ -108,13 +103,15 @@ struct provide2 {
             Button('button')
               .fontSize(this.number2)
               .onClick(() => {
-                this.number2 = null
+                this.number2 = null;
               })
               .key('prBtn4')
 
             CompB()
 
-          }.width('100%').margin({top:10})
+          }
+          .width('100%')
+          .margin({ top: 10 })
         }
       }
     }

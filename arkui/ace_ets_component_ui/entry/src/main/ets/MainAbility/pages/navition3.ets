@@ -15,19 +15,19 @@
 @Entry
 @Component
 struct navigationType {
-  @State strokeWidthStr: string = '10px'
-  @State dividerColorStr: string  = '#000000'
-  @State startMarginStr: string = '5px'
-  @State endMarginStr: string = '5px'
+  @State strokeWidthStr: string = '10px';
+  @State dividerColorStr: string  = '#000000';
+  @State startMarginStr: string = '5px';
+  @State endMarginStr: string = '5px';
 
-  @State nullFlag: boolean = false
+  @State nullFlag: boolean = false;
 
-  @State dividerColor: Color = Color.Red
+  @State dividerColor: Color = Color.Red;
 
 
   private arr: number[] = [1, 2, 3];
-  normalIcon : Resource = $r("app.media.icon")
-  selectedIcon: Resource = $r("app.media.icon")
+  normalIcon : Resource = $r("app.media.icon");
+  selectedIcon: Resource = $r("app.media.icon");
 
   build() {
     Column() {
@@ -38,7 +38,7 @@ struct navigationType {
           .backgroundColor('#FFFFFF')
 
         List({ space: 12 }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item:string) => {
             ListItem() {
               NavRouter() {
                 Text("NavRouter" + item)
@@ -56,7 +56,7 @@ struct navigationType {
               }
 
             }
-          }, item => item)
+          }, (item:string) => item)
         }
         .width("90%")
         .margin({ top: 12 })

@@ -12,33 +12,33 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-AppStorage.clear()
-let storage111 = new LocalStorage()
+AppStorage.clear();
+let storage111 = new LocalStorage();
 
 
 @Entry(storage111)
 @Component
 struct LocalStoagePropFour {
-  @LocalStorageProp('PropA') storProp1: number = 1
-  @State vae: string = storage111.get('PropA') + ""
+  @LocalStorageProp('PropA') storProp1: number = 1;
+  @State vae: string = storage111.get('PropA') + "";
 
-  build(){
-    Column({space:15}){
+  build() {
+    Column({ space: 15 }) {
 
       Text(`localstorage:${this.vae},storProp1:${this.storProp1}`)
         .key('text_getValue3')
 
-      Button(`点击动态更改本地初始值`).onClick(()=>{
+      Button(`点击动态更改本地初始值`).onClick(() => {
         this.storProp1 += 10
         this.vae = storage111.get('PropA') + ""
       }).key('button_changeInitialValue')
 
-      Button(`点击更改localstorage值`).onClick(()=>{
+      Button(`点击更改localstorage值`).onClick(() => {
         storage111.set('PropA', 666)
         this.vae = storage111.get('PropA') + ""
       }).key('button_changeLocalStorageValue')
 
-      ChildComp({storProp1:this.storProp1,storProp2:$storProp1,storProp3:this.storProp1,num:this.storProp1})
+      ChildComp({ storProp1: this.storProp1, storProp2: $storProp1, storProp3: this.storProp1, num: this.storProp1 })
 
     }
   }
@@ -46,12 +46,13 @@ struct LocalStoagePropFour {
 
 @Component
 struct ChildComp {
-  @State storProp1 : number = 0
-  @Link storProp2 : number
-  @Prop storProp3 : number = 0
-  @Provide num : number = 0
+  @State storProp1: number = 0;
+  @Link storProp2: number;
+  @Prop storProp3: number = 0;
+  @Provide num: number = 0;
+
   build() {
-    Column(){
+    Column() {
       Text(`State:${this.storProp1},Link:${this.storProp2},Prop:${this.storProp3},Provide:${this.num}`)
         .key('text_state')
     }
