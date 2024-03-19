@@ -18,10 +18,11 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import { Component, Driver, UiWindow, ON } from '@ohos.UiTest';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import commonEventManager from '@ohos.commonEventManager';
+import { BusinessError } from '@ohos.base';
 
 let driver = Driver.create();
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-let SubscribeList = {
+let SubscribeList: commonEventManager.CommonEventSubscribeInfo = {
   events: [
     'AutoFillExtensionTest0100',
     'AutoFillExtensionTest0200',
@@ -30,21 +31,23 @@ let SubscribeList = {
   ]
 };
 
-function sleep(ms): Promise<any> {
+function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function startRelyAbility() : Promise<void> {
-  await abilityDelegator.executeShellCommand('aa start -b com.ohos.passwordbox -a EntryAbility').then(data => {
-    hilog.info(0x0000, 'ActsAutoFillExtensionTest', '%{public}s', 'beforeEach aa start data is: ' + data.stdResult);
-  }).catch(err => {
-    hilog.info(0x0000, 'ActsAutoFillExtensionTest', '%{public}s', 'beforeEach err is: ' + JSON.stringify(err));
-  });
+async function startRelyAbility(): Promise<void> {
+  await abilityDelegator.executeShellCommand('aa start -b com.ohos.passwordbox -a EntryAbility')
+    .then(data => {
+      hilog.info(0x0000, 'ActsAutoFillExtensionTest', '%{public}s', 'beforeEach aa start data is: ' + data.stdResult);
+    })
+    .catch((err: BusinessError) => {
+      hilog.info(0x0000, 'ActsAutoFillExtensionTest', '%{public}s', 'beforeEach err is: ' + JSON.stringify(err));
+    });
 }
 
 export default function abilityTest() {
-  describe('ActsAutoFillExtensionTest', function () {
-    afterEach(async function (done) {
+  describe('ActsAutoFillExtensionTest', () => {
+    afterEach(async (done: Function) => {
       await abilityDelegator.executeShellCommand('aa force-stop com.ohos.passwordbox');
       done();
     })
@@ -56,45 +59,44 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoFillExtension_0100', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoFillExtension_0100', 0, async (done: Function) => {
       const TAG = 'SUB_Ability_AbilityRuntime_AutoFillExtension_0100_TAG';
       console.info(TAG, 'start.');
       await sleep(2000);
-      let subscriber;
+      let subscriber: commonEventManager.CommonEventSubscriber;
 
-      function subscribeCallBack(err, data) {
-        console.info(TAG, 'enter subscribe callback' + JSON.stringify(data));
-        if (data.event == 'AutoFillExtensionTest0100') {
-          expect(data.parameters.onCreate).assertEqual(1);
-          expect(data.parameters.onFillRequest).assertEqual(1);
-          expect(data.parameters.onForeground).assertEqual(1);
-          commonEventManager.unsubscribe(subscriber, () => {
-            console.info(TAG, 'enter subscribe callback oncreate' + data.parameters.onCreate);
-            done();
-        });
-        }
-      }
-
-      commonEventManager.createSubscriber(SubscribeList).then(async (data) => {
-        console.info(TAG, 'create subscribee');
-        subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallBack);
-        await sleep(2000);
-        await startRelyAbility();
-        await sleep(1000);
-        let pwdTextInput = await driver.waitForComponent(ON.id('password_input'), 2500);
-        await sleep(500);
-        expect(pwdTextInput != null).assertTrue();
-        let userTextInput = await driver.waitForComponent(ON.id('username_input'), 1000);
-        await sleep(500);
-        expect(userTextInput != null).assertTrue();
-        let setPwdTextInput = await driver.waitForComponent(ON.id('new_password_input'), 1000);
-        await sleep(500);
-        expect(setPwdTextInput != null).assertTrue();
-        await pwdTextInput.click();
-        await sleep(2500);
-        console.info(TAG, 'end.');
-      })
+      commonEventManager.createSubscriber(SubscribeList)
+        .then(async (data) => {
+          console.info(TAG, 'create subscribee');
+          subscriber = data;
+          commonEventManager.subscribe(subscriber, (err, data) => {
+            console.info(TAG, 'enter subscribe callback' + JSON.stringify(data));
+            if (data.event == 'AutoFillExtensionTest0100') {
+              expect(data.parameters.onCreate).assertEqual(1);
+              expect(data.parameters.onFillRequest).assertEqual(1);
+              expect(data.parameters.onForeground).assertEqual(1);
+              commonEventManager.unsubscribe(subscriber, () => {
+                console.info(TAG, 'enter subscribe callback oncreate' + data.parameters.onCreate);
+                done();
+              });
+            }
+          });
+          await sleep(2000);
+          await startRelyAbility();
+          await sleep(1000);
+          let pwdTextInput = await driver.waitForComponent(ON.id('password_input'), 2500);
+          await sleep(500);
+          expect(pwdTextInput != null).assertTrue();
+          let userTextInput = await driver.waitForComponent(ON.id('username_input'), 1000);
+          await sleep(500);
+          expect(userTextInput != null).assertTrue();
+          let setPwdTextInput = await driver.waitForComponent(ON.id('new_password_input'), 1000);
+          await sleep(500);
+          expect(setPwdTextInput != null).assertTrue();
+          await pwdTextInput.click();
+          await sleep(2500);
+          console.info(TAG, 'end.');
+        })
       console.info(TAG, 'end.');
     })
 
@@ -105,28 +107,26 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoFillExtension_0200', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoFillExtension_0200', 0, async (done: Function) => {
       const TAG = 'SUB_Ability_AbilityRuntime_AutoFillExtension_0200_TAG';
       console.info(TAG, 'start.');
       await sleep(2000);
-      let subscriber;
-
-      function subscribeCallBack(err, data) {
-        console.info(TAG, 'enter subscribe callback' + JSON.stringify(data));
-        if (data.event == 'AutoFillExtensionTest0200' && data.parameters.onSaveRequest == 1) {
-          expect(data.parameters.onSessionDestroy).assertEqual(1);
-          expect(data.parameters.onDestroy).assertEqual(1);
-          commonEventManager.unsubscribe(subscriber, () => {
-            console.info(TAG, 'enter subscribe callback onSaveRequest, onSessionDestroy and onDestroy');
-            done();
-          });
-        }
-      }
+      let subscriber: commonEventManager.CommonEventSubscriber;
 
       commonEventManager.createSubscriber(SubscribeList).then(async (data) => {
         console.info(TAG, 'create subscriber.');
         subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallBack);
+        commonEventManager.subscribe(subscriber, (err, data) => {
+          console.info(TAG, 'enter subscribe callback' + JSON.stringify(data));
+          if (data.event == 'AutoFillExtensionTest0200' && data.parameters.onSaveRequest == 1) {
+            expect(data.parameters.onSessionDestroy).assertEqual(1);
+            expect(data.parameters.onDestroy).assertEqual(1);
+            commonEventManager.unsubscribe(subscriber, () => {
+              console.info(TAG, 'enter subscribe callback onSaveRequest, onSessionDestroy and onDestroy');
+              done();
+            });
+          }
+        });
         await sleep(1000);
         await startRelyAbility();
         await sleep(1000);
@@ -167,26 +167,24 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoFillExtension_0300', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoFillExtension_0300', 0, async (done: Function) => {
       const TAG = 'SUB_Ability_AbilityRuntime_AutoFillExtension_0300_TAG';
       console.info(TAG, 'start.');
       await sleep(2000);
-      let subscriber;
-
-      function subscribeCallBack(err, data) {
-        if (data.event == 'AutoFillExtensionTest0300') {
-          expect(data.parameters.onBackground).assertEqual(1);
-          commonEventManager.unsubscribe(subscriber, () => {
-            console.info(TAG, 'enter subscribe callback onBackground' + data.parameters.onBackground);
-            done();
-          });
-        }
-      }
+      let subscriber: commonEventManager.CommonEventSubscriber;
 
       commonEventManager.createSubscriber(SubscribeList).then(async (data) => {
         console.info(TAG, 'create subscriber');
         subscriber = data;
-        commonEventManager.subscribe(subscriber, subscribeCallBack);
+        commonEventManager.subscribe(subscriber, (err, data) => {
+          if (data.event == 'AutoFillExtensionTest0300') {
+            expect(data.parameters.onBackground).assertEqual(1);
+            commonEventManager.unsubscribe(subscriber, () => {
+              console.info(TAG, 'enter subscribe callback onBackground' + data.parameters.onBackground);
+              done();
+            });
+          }
+        });
         await sleep(2000);
         await startRelyAbility();
         await sleep(1000);
@@ -195,14 +193,14 @@ export default function abilityTest() {
         expect(pwdTextInput != null).assertTrue();
         await pwdTextInput.click();
         await sleep(1000);
-	      let successButton = await driver.waitForComponent(ON.id('success_btn'), 2500);
+        let successButton = await driver.waitForComponent(ON.id('success_btn'), 2500);
         await sleep(100);
         expect(successButton != null).assertTrue();
         await driver.pressHome();
         await sleep(2000);
         console.info(TAG, 'Wait For End.');
-	      await sleep(2000);
-	      console.info(TAG, 'end.');
+        await sleep(2000);
+        console.info(TAG, 'end.');
       })
     })
 
@@ -213,25 +211,51 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoFillExtension_0400', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoFillExtension_0400', 0, async (done: Function) => {
       const TAG = 'SUB_Ability_AbilityRuntime_AutoFillExtension_0400_TAG';
       console.info(TAG, 'start.');
       await sleep(2000);
-      let subscriber;
-
-      function SubscribeCallback(err, data) {
-        console.info(TAG, 'SubScribeCallback err: ' + JSON.stringify(err));
-        console.info(TAG, 'SubscribeCallback data: ' + JSON.stringify(data));
-        if (data.event == 'AutoFillExtensionTest0400') {
-          console.info('enter verify');
-          VerifyContext(data.parameters);
-        }
-      }
+      let subscriber: commonEventManager.CommonEventSubscriber;
 
       commonEventManager.createSubscriber(SubscribeList).then(async (data) => {
         console.debug(TAG, 'Create Subscriber');
         subscriber = data;
-        commonEventManager.subscribe(subscriber, SubscribeCallback);
+        commonEventManager.subscribe(subscriber, (err, data) => {
+          console.info(TAG, 'SubScribeCallback err: ' + JSON.stringify(err));
+          console.info(TAG, 'SubscribeCallback data: ' + JSON.stringify(data));
+          if (data.event == 'AutoFillExtensionTest0400') {
+            console.info('enter verify');
+            let context = data.parameters;
+            try {
+              expect(context != null).assertTrue();
+              console.info('out verify begin');
+              expect(context.currentHapModuleInfoName == 'entry').assertTrue();
+              expect(context.configLanguage == 'zh-Hans').assertTrue();
+              expect(context.extensionAbilityInfoBundleName == 'com.ohos.passwordbox').assertTrue();
+              expect(context.applicationInfoName == 'com.ohos.passwordbox').assertTrue();
+              console.info('out verify middle1');
+              expect(context.applicationContextCacheDir.indexOf('/cache') != -1).assertTrue();
+              expect(context.applicationContextTempDir.indexOf('/temp') != -1).assertTrue();
+              expect(context.applicationContextFilesDir.indexOf('/files') != -1).assertTrue();
+              expect(context.applicationContextDatabaseDir.indexOf('/database') != -1).assertTrue();
+              expect(context.applicationContextPreferencesDir.indexOf('/preferences') != -1).assertTrue();
+              expect(context.applicationContextBundleCodeDir.indexOf('/bundle') != -1).assertTrue();
+              expect(context.applicationContextDistributedFilesDir.indexOf('/distributedfiles') != -1).assertTrue();
+              expect(context.applicationContextArea == 1).assertTrue();
+              expect(context.eventHubEventMessage == '').assertFalse();
+              console.info('out verify middle2');
+              expect(context.bundleContextApplicationInfo == '').assertFalse();
+              expect(context.moduleContextApplicationInfoSecond == '').assertFalse();
+              expect(context.moduleContextApplicationInfoFirst == '').assertFalse();
+              console.info('out verify middle3');
+              expect(context.stageMode == true).assertTrue();
+              console.info('out verify end');
+            } catch (err) {
+              hilog.error(0x0000, 'testTAG', 'context verification caught an error: %{public}s', JSON.stringify(err));
+            }
+            done();
+          }
+        });
         await sleep(2000);
         await startRelyAbility();
         await sleep(1000);
@@ -249,38 +273,7 @@ export default function abilityTest() {
         console.log("waitForEnd.");
         await sleep(2000);
         console.info(TAG, 'end.');
-      })
-
-      function VerifyContext(context) {
-        try {
-          expect(context != null).assertTrue();
-          console.info('out verify begin');
-          expect(context.currentHapModuleInfoName == 'entry').assertTrue();
-          expect(context.configLanguage == 'zh-Hans').assertTrue();
-          expect(context.extensionAbilityInfoBundleName == 'com.ohos.passwordbox').assertTrue();
-          expect(context.applicationInfoName == 'com.ohos.passwordbox').assertTrue();
-          console.info('out verify middle1');
-          expect(context.applicationContextCacheDir.indexOf('/cache') != -1).assertTrue();
-          expect(context.applicationContextTempDir.indexOf('/temp') != -1).assertTrue();
-          expect(context.applicationContextFilesDir.indexOf('/files') != -1).assertTrue();
-          expect(context.applicationContextDatabaseDir.indexOf('/database') != -1).assertTrue();
-          expect(context.applicationContextPreferencesDir.indexOf('/preferences') != -1).assertTrue();
-          expect(context.applicationContextBundleCodeDir.indexOf('/bundle') != -1).assertTrue();
-          expect(context.applicationContextDistributedFilesDir.indexOf('/distributedfiles') != -1).assertTrue();
-          expect(context.applicationContextArea == 1).assertTrue();
-          expect(context.eventHubEventMessage == '').assertFalse();
-          console.info('out verify middle2');
-          expect(context.bundleContextApplicationInfo == '').assertFalse();
-          expect(context.moduleContextApplicationInfoSecond == '').assertFalse();
-          expect(context.moduleContextApplicationInfoFirst == '').assertFalse();
-          console.info('out verify middle3');
-          expect(context.stageMode == true).assertTrue();
-          console.info('out verify end');
-        } catch (err) {
-          hilog.error(0x0000, 'testTAG', 'context verification caught an error: %{public}s', JSON.stringify(err));
-        }
-        done();
-      }
+      });
     })
   })
 }

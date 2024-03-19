@@ -16,28 +16,31 @@
 import hilog from '@ohos.hilog';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { Component, Driver, UiWindow, ON } from '@ohos.UiTest';
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import autoFillManager from '@ohos.app.ability.autoFillManager';
 import commonEventManager from '@ohos.commonEventManager';
+import { BusinessError } from '@ohos.base';
 
 let driver = Driver.create();
 let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
-function sleep(ms): Promise<any> {
+function sleep(ms: number): Promise<void> {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function startRelyAbility() : Promise<void> {
-  await abilityDelegator.executeShellCommand('aa start -b com.ohos.passwordbox -a EntryAbility').then(data => {
-    hilog.info(0x0000, 'ActsAutoSaveTest', '%{public}s', 'beforeEach aa start data is: ' + data.stdResult);
-  }).catch(err => {
-    hilog.info(0x0000, 'ActsAutoSaveTest', '%{public}s', 'beforeEach err is: ' + JSON.stringify(err));
-  });
+async function startRelyAbility(): Promise<void> {
+  await abilityDelegator.executeShellCommand('aa start -b com.ohos.passwordbox -a EntryAbility')
+    .then(data => {
+      hilog.info(0x0000, 'ActsAutoSaveTest', '%{public}s', 'beforeEach aa start data is: ' + data.stdResult);
+    })
+    .catch((err: BusinessError) => {
+      hilog.info(0x0000, 'ActsAutoSaveTest', '%{public}s', 'beforeEach err is: ' + JSON.stringify(err));
+    });
 }
 
 export default function abilityTest() {
-  describe('ActsAutoSaveTest', function () {
-    afterEach(async function (done) {
+  describe('ActsAutoSaveTest', () => {
+    afterEach(async (done: Function) => {
       await abilityDelegator.executeShellCommand('aa force-stop com.ohos.passwordbox');
       done();
     })
@@ -49,7 +52,7 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoSave_0100', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoSave_0100', 0, async (done: Function) => {
       const TAG = 'SUB_Ability_AbilityRuntime_AutoSave_0100_TAG';
       await sleep(2000);
       await startRelyAbility();
@@ -71,7 +74,7 @@ export default function abilityTest() {
       expect(pwd_input != null).assertTrue();
       await pwd_input.inputText('n');
       await sleep(1000);
-      
+
       let uiContext: UIContext;
       console.info("uiContext: ", uiContext);
       let callback: autoFillManager.AutoSaveCallback = {
@@ -81,7 +84,7 @@ export default function abilityTest() {
         onFailure: () => {
           console.log("save request on failure");
         }
-      }
+      };
       console.log("callback: ", JSON.stringify(callback));
       try {
         autoFillManager.requestAutoSave(uiContext, callback);
@@ -114,7 +117,7 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoSave_0200', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoSave_0200', 0, async (done: Function) => {
       const TAG = 'SUB_Ability_AbilityRuntime_AutoSave_0100_TAG';
       await sleep(2000);
       await startRelyAbility();
@@ -151,7 +154,7 @@ export default function abilityTest() {
       let username_input = await driver.waitForComponent(ON.id('username_input'), 3000);
       await sleep(100);
       expect(username_input != null).assertTrue();
-      
+
       done();
     })
 
@@ -162,7 +165,7 @@ export default function abilityTest() {
      * @tc.size      : MediumTest
      * @tc.type      : Function
      */
-    it('SUB_Ability_AbilityRuntime_AutoSave_0300', 0, async function (done) {
+    it('SUB_Ability_AbilityRuntime_AutoSave_0300', 0, async (done: Function) => {
       await sleep(2000);
       await startRelyAbility();
       await sleep(1000);

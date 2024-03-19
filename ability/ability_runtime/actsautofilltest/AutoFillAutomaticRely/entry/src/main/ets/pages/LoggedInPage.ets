@@ -18,12 +18,12 @@ import hilog from '@ohos.hilog';
 
 let options: router.RouterOptions = {
   url: 'pages/Index'
-}
+};
 
 @Entry
 @Component
 struct LoggedInPage {
-  @State message: string = 'You\'ve Logged In'
+  @State message: string = 'You\'ve Logged In';
 
   build() {
     Row() {
