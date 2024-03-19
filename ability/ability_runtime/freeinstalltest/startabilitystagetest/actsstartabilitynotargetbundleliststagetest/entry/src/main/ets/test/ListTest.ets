@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-import startAbilityTest from './StartAbilityTest'
+import startAbilityTest from './StartAbilityTest';
+import common from '@ohos.app.ability.common';
 
-export default function testsuite(context) {
-  startAbilityTest(context)
+export default function testsuite(context: common.UIAbilityContext) {
+  startAbilityTest(context);
 }
