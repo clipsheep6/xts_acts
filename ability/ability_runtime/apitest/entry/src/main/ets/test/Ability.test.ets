@@ -603,16 +603,23 @@ export default function abilityTest() {
                 console.log("====>ACTS_DoAbilityForeground_0300 Subscribe CallBack globalThis.ability3:====>" + JSON.stringify(AppStorage.get<UIAbility>("ability3")!));
                 console.log("====>ACTS_DoAbilityForeground_0300 ability3 name:====>" + JSON.stringify(AppStorage.get<UIAbility>("ability3")!.context.abilityInfo.name));
                 setTimeout(() => {
-                  AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityForeground(AppStorage.get<UIAbility>("ability3")!, (err) => {
-                    console.log("====>ACTS_DoAbilityForeground_0300 doAbilityForeground successfully");
-                  })
-                  commonEvent.unsubscribe(Subscriber, () => {
-                    console.log("====> ACTS_DoAbilityForeground_0300 UnSubscribeCallback====>");
-                    flag = false;
-                    setTimeout(() => {
-                      done();
-                    }, START_ABILITY_TIMEOUT_TWO_THOUSAND)
-                  });
+                  try {
+                    console.log("====>ACTS_DoAbilityForeground_0300 Subscribe timeout start:====>");
+                    console.log("====>ACTS_DoAbilityForeground_0300 Subscribe timeout globalThis.ability3:====>" + JSON.stringify(AppStorage.get<UIAbility>("ability3")!));
+                    AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityForeground(AppStorage.get<UIAbility>("ability3")!, (err) => {
+                      console.log("====>ACTS_DoAbilityForeground_0300 doAbilityForeground successfully");
+                    })
+                    commonEvent.unsubscribe(Subscriber, () => {
+                      console.log("====> ACTS_DoAbilityForeground_0300 UnSubscribeCallback====>");
+                      flag = false;
+                      setTimeout(() => {
+                        done();
+                      }, START_ABILITY_TIMEOUT_TWO_THOUSAND)
+                    });
+                    console.log("====>ACTS_DoAbilityForeground_0300 Subscribe timeout end:====>");
+                  } catch (e) {
+                    console.log("====>ACTS_DoAbilityForeground_0300 Subscribe timeout failed:====>" + JSON.stringify(e));
+                  }
                 }, START_ABILITY_TIMEOUT_THOUSAND)
               });
               console.log("====> ACTS_DoAbilityForeground_0300 start startAbility====>");
