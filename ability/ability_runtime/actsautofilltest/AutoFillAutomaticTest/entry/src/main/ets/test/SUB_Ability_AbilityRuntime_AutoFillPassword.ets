@@ -27,7 +27,7 @@ function sleep(ms): Promise<any> {
 }
 
 async function startRelyAbility() : Promise<void> {
-  await abilityDelegator.executeShellCommand('aa start -b com.ohos.passwordbox -a EntryAbility').then(data => {
+  await abilityDelegator.executeShellCommand('aa start -b com.huawei.hmos.passwordvault -a EntryAbility').then(data => {
     hilog.info(0x0000, 'ActsAutoFillTest', '%{public}s', 'beforeEach aa start data is: ' + data.stdResult);
   }).catch(err => {
     hilog.info(0x0000, 'ActsAutoFillTest', '%{public}s', 'beforeEach err is: ' + JSON.stringify(err));
@@ -37,7 +37,7 @@ async function startRelyAbility() : Promise<void> {
 export default function abilityTest() {
   describe('ActsAutoFillPasswordTest', function () {
     afterEach(async function (done) {
-      await abilityDelegator.executeShellCommand('aa force-stop com.ohos.passwordbox');
+      await abilityDelegator.executeShellCommand('aa force-stop com.huawei.hmos.passwordvault');
       done();
     })
 
