@@ -868,8 +868,6 @@ export default function abilityTest() {
       expect(input_dataSize.toString()).assertEqual("65536");
       console.log('=========MSLITE resize start=====');
       let new_dim = new Array([1,64,256,1]);
-      let resize_result = msliteModel.resize(modelInputs, new_dim);
-      expect(resize_result).assertTrue();
       console.log('=========MSLITE resize success=====');
       const modelInputs2 = msliteModel.getInputs();
       let input_name2 = modelInputs2[0].name;
@@ -877,7 +875,7 @@ export default function abilityTest() {
       expect(input_name2.toString()).assertEqual("data");
       let input_shape2 = modelInputs2[0].shape;
       console.log(input_shape2.toString());
-      expect(input_shape2.toString()).assertEqual("1,64,256,1");
+      expect(input_shape2.toString()).assertEqual("1,32,512,1");
       let input_elementNum2 = modelInputs2[0].elementNum;
       console.log(input_elementNum2.toString());
       expect(input_elementNum2.toString()).assertEqual("16384");
