@@ -36,7 +36,7 @@ describe('file_uri_test', function () {
         expect(true).assertTrue();
       }else{
         expect(false).assertTrue();
-      }；
+      }
     });
 
     /**
