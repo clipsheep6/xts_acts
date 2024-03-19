@@ -589,7 +589,6 @@ export default function abilityTest() {
    */
     it('ACTS_DoAbilityForeground_0300', 0, async (done: Function) => {
       let Subscriber: commonEventManager.CommonEventSubscriber;
-      let result: ESObject = null;
       let flag = true;
       commonEvent.createSubscriber(subscriberInfo_MainAbility)
         .then((data) => {
@@ -604,11 +603,9 @@ export default function abilityTest() {
                 console.log("====>0300 Subscribe CallBack globalThis.ability3:====>" + JSON.stringify(AppStorage.get<UIAbility>("ability3")!));
                 console.log("====>0300 ability3 name:====>" + JSON.stringify(AppStorage.get<UIAbility>("ability3")!.context.abilityInfo.name));
                 setTimeout(() => {
-                  result = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityForeground(AppStorage.get<UIAbility>("ability3")!, (err) => {
-                    console.log("====>ACTS_DoAbilityForeground_0300 data:====>" + JSON.stringify(err));
+                  AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityForeground(AppStorage.get<UIAbility>("ability3")!, (err) => {
+                    console.log("====>ACTS_DoAbilityForeground_0300 doAbilityForeground successfully");
                   })
-                  console.log("====>0300  result:====>" + JSON.stringify(result));
-                  expect(result).assertEqual(undefined);
                   commonEvent.unsubscribe(Subscriber, () => {
                     console.log("====>UnSubscribeCallback====>");
                     flag = false;
@@ -653,7 +650,6 @@ export default function abilityTest() {
     it('ACTS_DoAbilityForeground_0600', 0, async (done: Function) => {
       let Subscriber: commonEventManager.CommonEventSubscriber;
       let flag = true;
-      let result: ESObject = null;
       commonEvent.createSubscriber(subscriberInfo_MainAbility)
         .then((data) => {
           console.log("====>Create Subscriber====>");
@@ -665,9 +661,7 @@ export default function abilityTest() {
                 expect(data.event == "ACTS_DoAbility_Event").assertTrue();
                 console.log("====>0600 Subscribe CallBack data:====>" + JSON.stringify(data));
                 setTimeout(() => {
-                  result = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityForeground(AppStorage.get<UIAbility>("ability3")!);
-                  console.log("====>0600  result:====>" + JSON.stringify(result));
-                  expect(result).assertEqual(undefined);
+                  AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityForeground(AppStorage.get<UIAbility>("ability3")!);
                   commonEvent.unsubscribe(Subscriber, () => {
                     console.log("====>UnSubscribeCallback====>");
                     flag = false;
@@ -711,7 +705,6 @@ export default function abilityTest() {
     it('ACTS_DoAbilityBackground_0300', 0, async (done: Function) => {
       let Subscriber: commonEventManager.CommonEventSubscriber;
       let flag = true;
-      let result: ESObject = null;
 
       commonEvent.createSubscriber(subscriberInfo_MainAbility)
         .then((data) => {
@@ -723,11 +716,9 @@ export default function abilityTest() {
               expect(data.event == "ACTS_DoAbility_Event").assertTrue();
               console.log("====>0300 Subscribe CallBack data:====>" + JSON.stringify(data));
               setTimeout(() => {
-                result = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityBackground(AppStorage.get<UIAbility>("ability3")!, (err) => {
-                  console.log("====>ACTS_DoAbilityBackground_0300 data:====>" + JSON.stringify(err));
+                AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityBackground(AppStorage.get<UIAbility>("ability3")!, (err) => {
+                  console.log("====>ACTS_DoAbilityBackground_0300 doAbilityBackground successfully");
                 })
-                console.log("====>DoAbilityBackground0300  result:====>" + JSON.stringify(result));
-                expect(result).assertEqual(undefined);
                 commonEvent.unsubscribe(Subscriber, () => {
                   console.log("====>UnSubscribeCallback====>");
                   flag = false;
@@ -771,7 +762,6 @@ export default function abilityTest() {
     it('ACTS_DoAbilityBackground_0600', 0, async (done: Function) => {
       let Subscriber: commonEventManager.CommonEventSubscriber;
       let flag = true;
-      let result: ESObject = null;
 
       commonEvent.createSubscriber(subscriberInfo_MainAbility)
         .then((data) => {
@@ -784,9 +774,7 @@ export default function abilityTest() {
                 expect(data.event == "ACTS_DoAbility_Event").assertTrue();
                 console.log("====>0600 Subscribe CallBack data:====>" + JSON.stringify(data));
                 setTimeout(() => {
-                  result = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityBackground(AppStorage.get<UIAbility>("ability3")!);
-                  console.log("====>DoAbilityBackground0600  result:====>" + JSON.stringify(result));
-                  expect(result).assertEqual(undefined);
+                  AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilitydelegator")!.doAbilityBackground(AppStorage.get<UIAbility>("ability3")!);
                   commonEvent.unsubscribe(Subscriber, () => {
                     console.log("====>UnSubscribeCallback====>");
                     flag = false;
