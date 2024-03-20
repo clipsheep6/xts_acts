@@ -12,8 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
-import errorManager from "@ohos.app.ability.errorManager"
+
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import errorManager from "@ohos.app.ability.errorManager";
 import worker, { MessageEvents } from '@ohos.worker';
 
 let sleep = (time: number) => {
@@ -21,7 +22,7 @@ let sleep = (time: number) => {
 }
 
 export default function unhandledRejectionTest() {
-  describe('ActsUnhandledRejectionTest', function () {
+  describe('ActsUnhandledRejectionTest', () => {
     beforeEach(async () => {
       errorManager.off("unhandledRejection");
       await sleep(1000);
@@ -29,14 +30,14 @@ export default function unhandledRejectionTest() {
     afterEach(async () => {
       errorManager.off("unhandledRejection");
       await sleep(1000);
-    })    
+    })
 
     /*
      * @tc.number: ACTS_Register_JsErrorCallback_UnhandledRejection_0100
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: When an error is thrown during the resolve process the error would be caught as an unhandled rejection.
      */
-    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0100', 0, async (done) => {
+    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0100', 0, async (done: Function) => {
       let flag = false;
       let observer: errorManager.UnhandledRejectionObserver = (reason: Error) => {
         console.log("=====>ACTS_Register_JsErrorCallback_UnhandledRejection_0100<=====");
@@ -47,9 +48,10 @@ export default function unhandledRejectionTest() {
       errorManager.on('unhandledRejection', observer);
       new Promise<string>((res) => {
         res("resolved");
-      }).then(() => {
-        throw new Error("ACTS_Register_JsErrorCallback_UnhandledRejection_0100_error")
-      });
+      })
+        .then(() => {
+          throw new Error("ACTS_Register_JsErrorCallback_UnhandledRejection_0100_error");
+        });
 
       setTimeout(() => {
         if (!flag) {
@@ -65,7 +67,7 @@ export default function unhandledRejectionTest() {
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: When a promise is rejected but does not get caught the promise would be caught as an unhandled rejection.
      */
-    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0200', 0, async (done) => {
+    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0200', 0, async (done: Function) => {
       let flag = false;
       let observer: errorManager.UnhandledRejectionObserver = (reason: string) => {
         console.log("=====>ACTS_Register_JsErrorCallback_UnhandledRejection_0200<=====");
@@ -76,9 +78,10 @@ export default function unhandledRejectionTest() {
       errorManager.on('unhandledRejection', observer);
       new Promise<string>((res, rej) => {
         rej("ACTS_Register_JsErrorCallback_UnhandledRejection_0200_rejection");
-      }).then(() => {
-        throw new Error("ACTS_Register_JsErrorCallback_UnhandledRejection_0200_error")
-      });
+      })
+        .then(() => {
+          throw new Error("ACTS_Register_JsErrorCallback_UnhandledRejection_0200_error");
+        });
 
       setTimeout(() => {
         if (!flag) {
@@ -94,7 +97,7 @@ export default function unhandledRejectionTest() {
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: When an error is thrown during the catch process the error would be caught as an unhandled rejection.
      */
-    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0300', 0, async (done) => {
+    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0300', 0, async (done: Function) => {
       let flag = false;
       let observer: errorManager.UnhandledRejectionObserver = (reason: Error) => {
         console.log("=====>ACTS_Register_JsErrorCallback_UnhandledRejection_0300<=====");
@@ -105,13 +108,15 @@ export default function unhandledRejectionTest() {
       errorManager.on('unhandledRejection', observer);
       new Promise<string>((res, rej) => {
         res("ACTS_Register_JsErrorCallback_UnhandledRejection_0300_resolved");
-      }).then((s: string) => {
-        expect(s).assertEqual("ACTS_Register_JsErrorCallback_UnhandledRejection_0300_resolved");
-        throw new Error("ACTS_Register_JsErrorCallback_UnhandledRejection_0300_error")
-      }).catch((e: Error) => {
-        expect(e.message).assertContain("ACTS_Register_JsErrorCallback_UnhandledRejection_0300_error");
-        throw new Error("ACTS_Register_JsErrorCallback_UnhandledRejection_0300_unhandled_error");
-      });
+      })
+        .then((s: string) => {
+          expect(s).assertEqual("ACTS_Register_JsErrorCallback_UnhandledRejection_0300_resolved");
+          throw new Error("ACTS_Register_JsErrorCallback_UnhandledRejection_0300_error");
+        })
+        .catch((e: Error) => {
+          expect(e.message).assertContain("ACTS_Register_JsErrorCallback_UnhandledRejection_0300_error");
+          throw new Error("ACTS_Register_JsErrorCallback_UnhandledRejection_0300_unhandled_error");
+        });
 
       setTimeout(() => {
         if (!flag) {
@@ -127,7 +132,7 @@ export default function unhandledRejectionTest() {
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: When an error is thrown during the catch process the error would be caught as an unhandled rejection.
      */
-    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0400', 0, async (done) => {
+    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0400', 0, async (done: Function) => {
       let flag = false;
       let observer: errorManager.UnhandledRejectionObserver = (reason: Error) => {
         console.log("=====>ACTS_Register_JsErrorCallback_UnhandledRejection_0400<=====");
@@ -138,12 +143,14 @@ export default function unhandledRejectionTest() {
       errorManager.on('unhandledRejection', observer);
       new Promise<string>((res, rej) => {
         rej("ACTS_Register_JsErrorCallback_UnhandledRejection_0400_rejected");
-      }).then((s: string) => {
-        throw new Error("ACTS_Register_JsErrorCallback_UnhandledRejection_0400_error")
-      }).catch((s: string) => {
-        expect(s).assertContain("ACTS_Register_JsErrorCallback_UnhandledRejection_0400_rejected");
-        throw new Error("ACTS_Register_JsErrorCallback_UnhandledRejection_0400_unhandled_error");
-      });
+      })
+        .then((s: string) => {
+          throw new Error("ACTS_Register_JsErrorCallback_UnhandledRejection_0400_error");
+        })
+        .catch((s: string) => {
+          expect(s).assertContain("ACTS_Register_JsErrorCallback_UnhandledRejection_0400_rejected");
+          throw new Error("ACTS_Register_JsErrorCallback_UnhandledRejection_0400_unhandled_error");
+        });
 
       setTimeout(() => {
         if (!flag) {
@@ -159,7 +166,7 @@ export default function unhandledRejectionTest() {
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: When a promise is unresolved it would be caught as an unhandled rejection.
      */
-    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0500', 0, async (done) => {
+    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0500', 0, async (done: Function) => {
       let flag = false;
       let observer: errorManager.UnhandledRejectionObserver = (reason: Error) => {
         console.log("=====>ACTS_Register_JsErrorCallback_UnhandledRejection_0500<=====");
@@ -177,8 +184,8 @@ export default function unhandledRejectionTest() {
           expect().assertFail();
         }
         done();
-     }, 1000);
-     await sleep(1000);
+      }, 1000);
+      await sleep(1000);
     })
 
     /*
@@ -186,7 +193,7 @@ export default function unhandledRejectionTest() {
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: When trying to register UnhandledRejectionObserver in worker thread a 16200001 will occur.
      */
-    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0600', 0, async (done) => {
+    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0600', 0, async (done: Function) => {
       let flag = false;
       console.log("=====>ACTS_Register_JsErrorCallback_UnhandledRejection_0600<=====");
       let threadWorker: worker.ThreadWorker;
@@ -212,9 +219,8 @@ export default function unhandledRejectionTest() {
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: Trying to register a null UnhandledRejectionObserver will end up with a 401 error.
      */
-    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0800', 0, async (done) => {
+    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0800', 0, async (done: Function) => {
       console.log("=====>ACTS_Register_JsErrorCallback_UnhandledRejection_0800<=====");
-
       try {
         errorManager.on('unhandledRejection', null);
         expect().assertFail();
@@ -231,7 +237,7 @@ export default function unhandledRejectionTest() {
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: Trying to unregister a registered UnhandledRejectionObserver will succeed.
      */
-    it('ACTS_Unregister_JsErrorCallback_UnhandledRejection_0100', 0, async (done) => {
+    it('ACTS_Unregister_JsErrorCallback_UnhandledRejection_0100', 0, async (done: Function) => {
       let oldObserver: errorManager.UnhandledRejectionObserver = () => {
         expect().assertFail();
       };
@@ -253,10 +259,11 @@ export default function unhandledRejectionTest() {
       errorManager.on("unhandledRejection", newObserver);
       new Promise<string>((res, rej) => {
         res("ACTS_Unregister_JsErrorCallback_UnhandledRejection_0100_resolved");
-      }).then((s: string) => {
-        expect(s).assertContain("ACTS_Unregister_JsErrorCallback_UnhandledRejection_0100_resolved")
-        throw new Error("ACTS_Unregister_JsErrorCallback_UnhandledRejection_0100_error")
-      });
+      })
+        .then((s: string) => {
+          expect(s).assertContain("ACTS_Unregister_JsErrorCallback_UnhandledRejection_0100_resolved");
+          throw new Error("ACTS_Unregister_JsErrorCallback_UnhandledRejection_0100_error");
+        });
 
       setTimeout(() => {
         if (!flag) {
@@ -272,7 +279,7 @@ export default function unhandledRejectionTest() {
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: Trying to unregister all registered UnhandledRejectionObservers will succeed.
      */
-    it('ACTS_Unregister_JsErrorCallback_UnhandledRejection_0200', 0, async (done) => {
+    it('ACTS_Unregister_JsErrorCallback_UnhandledRejection_0200', 0, async (done: Function) => {
       let observer1: errorManager.UnhandledRejectionObserver = () => {
         expect().assertFail();
       };
@@ -288,7 +295,7 @@ export default function unhandledRejectionTest() {
       errorManager.on('unhandledRejection', observer3);
 
       setTimeout(() => {
-        errorManager.off("unhandledRejection")
+        errorManager.off("unhandledRejection");
       }, 1000);
       await sleep(1000);
 
@@ -302,10 +309,11 @@ export default function unhandledRejectionTest() {
       errorManager.on("unhandledRejection", newObserver);
       new Promise<string>((res, rej) => {
         res("ACTS_Unregister_JsErrorCallback_UnhandledRejection_0200_resolved");
-      }).then((s: string) => {
-        expect(s).assertContain("ACTS_Unregister_JsErrorCallback_UnhandledRejection_0200_resolved")
-        throw new Error("ACTS_Unregister_JsErrorCallback_UnhandledRejection_0200_error")
-      });
+      })
+        .then((s: string) => {
+          expect(s).assertContain("ACTS_Unregister_JsErrorCallback_UnhandledRejection_0200_resolved");
+          throw new Error("ACTS_Unregister_JsErrorCallback_UnhandledRejection_0200_error");
+        });
 
       setTimeout(() => {
         if (!flag) {
@@ -321,8 +329,8 @@ export default function unhandledRejectionTest() {
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: Trying to unregister an unregistered UnhandledRejectionObserver will end up with a 16300004 error.
      */
-    it('ACTS_Unregister_JsErrorCallback_UnhandledRejection_0300', 0, async (done) => {
-      let unregisteredObserver : errorManager.UnhandledRejectionObserver = () => {
+    it('ACTS_Unregister_JsErrorCallback_UnhandledRejection_0300', 0, async (done: Function) => {
+      let unregisteredObserver: errorManager.UnhandledRejectionObserver = () => {
         console.log("THIS SHOULD NEVER SHOW UP");
       }
       try {
@@ -343,7 +351,7 @@ export default function unhandledRejectionTest() {
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: Trying to unregister a null UnhandledRejectionObserver will end up with a 401 error.
      */
-    it('ACTS_Unregister_JsErrorCallback_UnhandledRejection_0400', 0, async (done) => {
+    it('ACTS_Unregister_JsErrorCallback_UnhandledRejection_0400', 0, async (done: Function) => {
       console.log("=====>ACTS_Unregister_JsErrorCallback_UnhandledRejection_0400<=====");
       try {
         errorManager.off('unhandledRejection', null);
@@ -366,7 +374,7 @@ export default function unhandledRejectionTest() {
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: Trying to unregister UnhandledRejectionObserver in worker will end up with a 16200001 error.
      */
-    it('ACTS_Unregister_JsErrorCallback_UnhandledRejection_0500', 0, async (done) => {
+    it('ACTS_Unregister_JsErrorCallback_UnhandledRejection_0500', 0, async (done: Function) => {
       let flag = false;
       console.log("=====>ACTS_Unregister_JsErrorCallback_UnhandledRejection_0500<=====");
 
@@ -392,7 +400,6 @@ export default function unhandledRejectionTest() {
         }
         done();
       }, 2000);
-
       await sleep(1000);
     })
   })

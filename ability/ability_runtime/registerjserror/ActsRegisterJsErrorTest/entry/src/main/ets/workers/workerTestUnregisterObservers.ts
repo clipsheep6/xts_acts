@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import worker, { ThreadWorkerGlobalScope, MessageEvents, ErrorEvent } from '@ohos.worker';
 import errorManager from '@ohos.app.ability.errorManager';
 
@@ -25,11 +26,11 @@ const TAG = "WorkerTestUnregisterObservers";
  *
  * @param e message data
  */
-workerPort.onmessage = function (e: MessageEvents) {
+workerPort.onmessage = (e: MessageEvents) => {
   console.log(TAG, "received from main thread: ", e.data);
   try {
-    console.log(TAG, 'trying to unregister UnhandledRejectionObserver in worker')
-    errorManager.off("unhandledRejection")
+    console.log(TAG, 'trying to unregister UnhandledRejectionObserver in worker');
+    errorManager.off("unhandledRejection");
   } catch (e) {
     console.log(TAG, "catch unregister exception: ", JSON.stringify(e));
     workerPort.postMessage(Number(e.code));
@@ -42,7 +43,7 @@ workerPort.onmessage = function (e: MessageEvents) {
  *
  * @param e message data
  */
-workerPort.onmessageerror = function (e: MessageEvents) {
+workerPort.onmessageerror = (e: MessageEvents) => {
 }
 
 /**
@@ -51,6 +52,6 @@ workerPort.onmessageerror = function (e: MessageEvents) {
  *
  * @param e error message
  */
-workerPort.onerror = function (e: ErrorEvent) {
-  console.log(TAG, "worker error: ", e.message, e.filename, e.lineno, e.colno, e.type)
+workerPort.onerror = (e: ErrorEvent) => {
+  console.log(TAG, "worker error: ", e.message, e.filename, e.lineno, e.colno, e.type);
 }
