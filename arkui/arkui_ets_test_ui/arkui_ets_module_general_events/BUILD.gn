@@ -11,10 +11,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-group("ArkUIEtsTestUI") {
+group("ArkUIEtsModuleGeneralEvents") {
   testonly = true
   deps = [
-    "arkui_ets_module_general_events:ArkUIEtsModuleGeneralEvents",
-    "arkui_ets_module_layout:ArkUIEtsModuleLayout",
+    "arkui_ets_module_onAppear_api11:ArkUIEtsModuleOnAppearTest",
+    "arkui_ets_module_onAreaChange_api11:ArkUIEtsModuleOnAreaChangeTest",
   ]
 }
