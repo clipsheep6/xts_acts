@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
 import commonEventManager from '@ohos.commonEventManager';
 
@@ -35,14 +36,14 @@ export default class ActsShareExtensionAbility extends ShareExtensionAbility {
         'count': count
       }
     };
-    commonEventManager.publish('ACTS_TEST_FOREGROUND', options, function () {
+    commonEventManager.publish('ACTS_TEST_FOREGROUND', options, () => {
     });
   }
 
   onBackground() {
     console.log('====>ActsShareExtensionAbility onBackground called');
     count++;
-    commonEventManager.publish('ACTS_TEST_BACKGROUND', function () {
+    commonEventManager.publish('ACTS_TEST_BACKGROUND', () => {
     });
     setTimeout(() => {
       globalThis.session.terminateSelf();
@@ -70,7 +71,7 @@ export default class ActsShareExtensionAbility extends ShareExtensionAbility {
         'count': count
       }
     };
-    commonEventManager.publish('ACTS_TEST_DESTROY', options, function () {
+    commonEventManager.publish('ACTS_TEST_DESTROY', options, () => {
     });
   }
 

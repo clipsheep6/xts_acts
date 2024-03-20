@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
 import commonEvent from '@ohos.commonEventManager';
@@ -92,21 +93,23 @@ export default class UiExtAbility extends ShareExtensionAbility {
         parameters: {
           [wantConstant.Params.ABILITY_BACK_TO_OTHER_MISSION_STACK]: true
         }
-      }).then((data) => {
-        console.info('=======>Promise_0200  first from another data.resultCode ======>' + data.resultCode);
-        console.info('=======>Promise_0200  first from another data.action ======>' + data.want.parameters.action);
-        let commonEventData = {
-          parameters: {
-            str: data.want.parameters.action,
-            result: data.resultCode
-          }
-        };
-        commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
-          console.debug('====>Promise_0200 first publish err:' + JSON.stringify(err));
+      })
+        .then((data) => {
+          console.info('=======>Promise_0200  first from another data.resultCode ======>' + data.resultCode);
+          console.info('=======>Promise_0200  first from another data.action ======>' + data.want.parameters.action);
+          let commonEventData = {
+            parameters: {
+              str: data.want.parameters.action,
+              result: data.resultCode
+            }
+          };
+          commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
+            console.debug('====>Promise_0200 first publish err:' + JSON.stringify(err));
+          });
+        })
+        .catch((error) => {
+          console.info('=======>Promise_0200  first from another error.code ======>' + error.code);
         });
-      }).catch((error) => {
-        console.info('=======>Promise_0200  first from another error.code ======>' + error.code);
-      });
     }
 
     if (want.action === 'Promise_0300') {
@@ -118,21 +121,23 @@ export default class UiExtAbility extends ShareExtensionAbility {
         parameters: {
           [wantConstant.Params.ABILITY_BACK_TO_OTHER_MISSION_STACK]: true
         }
-      }).then((data) => {
-        console.info('=======>Promise_0300  first from another data.resultCode ======>' + data.resultCode);
-        console.info('=======>Promise_0300  first from another data.action ======>' + data.want.parameters.action);
-        let commonEventData = {
-          parameters: {
-            str: data.want.parameters.action,
-            result: data.resultCode
-          }
-        };
-        commonEvent.publish('ACTS_CALL_EVENT_ANOTHER', commonEventData, (err) => {
-          console.debug('====>Promise_0300 first publish err:' + JSON.stringify(err));
+      })
+        .then((data) => {
+          console.info('=======>Promise_0300  first from another data.resultCode ======>' + data.resultCode);
+          console.info('=======>Promise_0300  first from another data.action ======>' + data.want.parameters.action);
+          let commonEventData = {
+            parameters: {
+              str: data.want.parameters.action,
+              result: data.resultCode
+            }
+          };
+          commonEvent.publish('ACTS_CALL_EVENT_ANOTHER', commonEventData, (err) => {
+            console.debug('====>Promise_0300 first publish err:' + JSON.stringify(err));
+          });
+        })
+        .catch((error) => {
+          console.info('=======>Promise_0300  first from another error.code ======>' + error.code);
         });
-      }).catch((error) => {
-        console.info('=======>Promise_0300  first from another error.code ======>' + error.code);
-      });
     }
   }
 
@@ -148,4 +153,4 @@ export default class UiExtAbility extends ShareExtensionAbility {
     // Ability has brought to foreground
     console.log('=====> UIExtAbility onForeground =====> ');
   }
-};
+}
