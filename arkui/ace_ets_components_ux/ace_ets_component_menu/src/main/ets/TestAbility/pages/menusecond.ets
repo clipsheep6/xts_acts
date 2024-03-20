@@ -124,7 +124,7 @@ struct Index {
         .fontSize(30)
         .padding({ top: 20 })
         .bindContextMenu(this.MyMenu, ResponseType.LongPress,
-          { enableArrow: true, arrowOffset: this.arrowOffset, preview: { builder: this.MyPreview() } })
+          { enableArrow: true, arrowOffset: this.arrowOffset, preview: { builder: this.MyPreview.bind(this) } })
     }.height('100%')
     .width('100%')
     .backgroundColor('#f0f0f0')
