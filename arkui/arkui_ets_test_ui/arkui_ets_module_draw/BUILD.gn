@@ -11,10 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-group("ArkUIEtsTestUI") {
+group("ArkUIEtsModuleDraw") {
   testonly = true
-  deps = [
-    "arkui_ets_module_draw:ArkUIEtsModuleDraw",
-    "arkui_ets_module_layout:ArkUIEtsModuleLayout",
-  ]
+  deps = [ "arkui_ets_module_Ellipse_api11:ArkUIEtsModuleEllipseTest" ]
 }
