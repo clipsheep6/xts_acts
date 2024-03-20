@@ -56,7 +56,6 @@ ohos_moduletest_suite("ActsGraphicNapiDrawingTest") {
 
   external_deps = [
     "c_utils:utils",
-    "graphic_2d:native_drawing_ndk",
     "graphic_2d:2d_graphics",
     "graphic_2d:native_drawing_ndk",
     "hilog:libhilog",
