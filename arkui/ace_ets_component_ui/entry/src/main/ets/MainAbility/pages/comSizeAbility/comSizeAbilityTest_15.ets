@@ -12,16 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import matrix4 from '@ohos.matrix4'
-let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0])
+import matrix4 from '@ohos.matrix4';
+
+let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]);
+
 @Entry
 @Component
 struct comSizeAbilityTest_15 {
-  @State fontColor: string = '#182431'
-  @State selectedFontColor: string = '#007DFF'
-  @State currentIndex: number = 0
-  private controller: TabsController = new TabsController()
-  @Builder TabBuilder(index: number) {
+  @State fontColor: string = '#182431';
+  @State selectedFontColor: string = '#007DFF';
+  @State currentIndex: number = 0;
+  private controller: TabsController = new TabsController();
+
+  @Builder
+  TabBuilder(index: number) {
     Column() {
       Text(`Tab${index + 1}`)
         .fontColor(this.currentIndex === index ? this.selectedFontColor : this.fontColor)
@@ -30,8 +34,9 @@ struct comSizeAbilityTest_15 {
         .lineHeight(14)
     }.width('100%')
   }
-build() {
-    Scroll(){
+
+  build() {
+    Scroll() {
       Column({ space: 20 }) {
         Column() {
           Tabs({ barPosition: BarPosition.End, controller: this.controller }) {
@@ -47,8 +52,21 @@ build() {
             }
             .key("TabContent_Size")
             .translate({ x: 1, y: 1, z: 1 })
-            .scale({ x: 1, y: 1, z: 1, centerX: 1, centerY: 1 })
-            .rotate({ x: 1, y: 1, z: 1, angle: 0, centerX: 1, centerY: 1 })
+            .scale({
+              x: 1,
+              y: 1,
+              z: 1,
+              centerX: 1,
+              centerY: 1
+            })
+            .rotate({
+              x: 1,
+              y: 1,
+              z: 1,
+              angle: 0,
+              centerX: 1,
+              centerY: 1
+            })
             .transform(matrix)
             .tabBar(this.TabBuilder(0))
             .backgroundColor(0XBDDB69)

@@ -15,8 +15,8 @@
 @Entry
 @Component
 struct TextPickerDialogExampleA {
-  private select: number | number[] = 2
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  private select: number | number[] = 2;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5'];
 
   build() {
     Row() {

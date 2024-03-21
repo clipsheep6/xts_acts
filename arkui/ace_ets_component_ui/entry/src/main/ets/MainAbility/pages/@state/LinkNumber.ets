@@ -13,10 +13,7 @@
  * limitations under the License.
  */
 class Num4 {
-  public pages:number;
-  constructor(pages: number) {
-    this.pages = pages;
-  }
+  pages: number;
 }
 
 @Component
@@ -62,7 +59,9 @@ struct Child_CP {
         })
         .key('state5')
 
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }
 
@@ -74,8 +73,10 @@ struct Index_CP {
   build() {
     Column() {
       Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.count)) + " number is " + JSON.stringify(this.count))
-        .fontSize(20).margin(30).key('LinkNumber')
-      Child_CP({count: this.count})
+        .fontSize(20)
+        .margin(30)
+        .key('LinkNumber')
+      Child_CP({ count: this.count })
 
     }
   }
