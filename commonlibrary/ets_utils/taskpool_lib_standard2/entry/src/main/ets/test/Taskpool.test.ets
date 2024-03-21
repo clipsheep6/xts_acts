@@ -287,7 +287,7 @@ function stringToNumber(str: string|number): number {
 }
 
 export default function TaskpoolTest() {
-  describe('ActsTaskpoolTest', () => {
+  describe('ActsTaskPoolTest', () => {
     afterEach(async () => {
       await   asyncSleep(1000);
     })
