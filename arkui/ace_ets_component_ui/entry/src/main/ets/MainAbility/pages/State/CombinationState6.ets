@@ -29,7 +29,7 @@ struct PropObjectLinkFather {
   build() {
     Column() {
       Text('@ObjectLink支持被@ObjectLink修饰的数据初始化')
-      PropObjectLink6({class_A: this.class_A})
+      PropObjectLink6({ class_A: this.class_A })
     }
   }
 }
@@ -41,7 +41,7 @@ struct ObjectLinkConsume {
   build() {
     Column() {
       // @ObjectLink支持被@Consume修饰的数据初始化
-      PropObjectLink6({class_A: this.class_C})
+      PropObjectLink6({ class_A: this.class_C })
     }.margin(5)
   }
 }
@@ -53,7 +53,7 @@ struct LinkObjectLink {
   build() {
     Column() {
       // @ObjectLink支持被@Link修饰的数据初始化
-      PropObjectLink6({class_A: this.class_A})
+      PropObjectLink6({ class_A: this.class_A })
     }.margin(5)
   }
 }
@@ -85,19 +85,19 @@ struct CombinationState6 {
     Row() {
       Column({ space: 20 }) {
         Text('@ObjectLink支持被@State修饰的数据初始化')
-        PropObjectLink6({class_A: this.class_A})
+        PropObjectLink6({ class_A: this.class_A })
 
         Text('@ObjectLink支持被@Link修饰的数据初始化')
-        LinkObjectLink({class_A: $class_B})
+        LinkObjectLink({ class_A: $class_B })
 
         Text('@ObjectLink支持被@Provide修饰的数据初始化')
-        PropObjectLink6({class_A: this.class_C})
+        PropObjectLink6({ class_A: this.class_C })
 
         Text('@ObjectLink支持被@Consume修饰的数据初始化')
         ObjectLinkConsume()
 
         Text('@ObjectLink支持被@ObjectLink修饰的数据初始化')
-        PropObjectLinkFather({class_A: this.class_E})
+        PropObjectLinkFather({ class_A: this.class_E })
       }
     }
   }

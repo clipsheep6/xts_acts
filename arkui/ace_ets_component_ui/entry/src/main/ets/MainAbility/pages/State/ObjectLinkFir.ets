@@ -16,9 +16,9 @@
 // 引入FirClassA,第一层
 @Observed
 class FirClassA {
-  public b:number
+  public b: number;
 
-  constructor(b:number) {
+  constructor(b: number) {
     this.b = b;
   }
 }
@@ -27,12 +27,13 @@ class FirClassA {
 @Component
 struct ViewFir {
   @ObjectLink classB: FirClassA;
+
   build() {
     Row() {
       // 将ClassB的成员变量b在UI呈现出来
       Text(`${this.classB.b}`)
     }
-    .margin({top:10})
+    .margin({ top: 10 })
   }
 }
 
@@ -45,14 +46,14 @@ struct ViewAFir {
   @Provide("indexCount") class_B: FirClassA = new FirClassA(5);
 
   build() {
-    Column({space:5}) {
-      Column(){
+    Column({ space: 5 }) {
+      Column() {
         Text('@State接收第一层')
-        Row(){
+        Row() {
           // 点击按钮，第一层变量发生变化
           Button('第一层变量+1')
             .key(("btn_state1"))
-            .margin({right:20})
+            .margin({ right: 20 })
             .backgroundColor('#E8A027')
             .onClick(() => {
               // class_A的成员变量a加1，class_A发生变化
@@ -63,13 +64,13 @@ struct ViewAFir {
         }
       }.margin(20)
 
-      Column(){
+      Column() {
         Text('@Provide接收第一层')
-        Row(){
+        Row() {
           // 点击按钮，第一层变量发生变化
           Button('第一层变量+1')
             .key(("btn_provide1"))
-            .margin({right:20})
+            .margin({ right: 20 })
             .backgroundColor('#E8A027')
             .onClick(() => {
               // class_B的成员变量a加1，class_B发生变化

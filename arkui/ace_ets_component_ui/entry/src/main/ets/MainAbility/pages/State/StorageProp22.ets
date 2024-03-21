@@ -12,23 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-AppStorage.clear()
-AppStorage.setOrCreate('PropA',47)
-let storage22 = new LocalStorage({"PropA":47})
-let s = new LocalStorage({"PropB":32})
+AppStorage.clear();
+AppStorage.setOrCreate('PropA', 47);
+let storage22 = new LocalStorage({ "PropA": 47 });
+let s = new LocalStorage({ "PropB": 32 });
 
 @Entry(storage22)
 @Component
 struct StorageProp22 {
   @LocalStorageProp('PropA') storProp: number = 12;
-  @State ku: number = storage22.get('PropA')
-
+  @State ku: number = storage22.get('PropA');
   @LocalStorageProp('PropB') storPropB: number = 4;
-  @State kuB: number = storage22.get('PropB')
-
+  @State kuB: number = storage22.get('PropB');
 
   build() {
-    Column({space: 20}) {
+    Column({ space: 20 }) {
       Text(`LocalStorage值为${this.ku}`).key('lse1')
       // 测试localstorage单向数据绑定
       Text(`当前值为${this.storProp}`).margin(10)

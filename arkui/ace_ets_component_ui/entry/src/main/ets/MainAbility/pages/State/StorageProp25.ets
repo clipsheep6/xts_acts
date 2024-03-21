@@ -12,22 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-AppStorage.clear()
-let storage25 = new LocalStorage({"PropA":47})
-storage25.setOrCreate('PropB',9)
+AppStorage.clear();
+let storage25 = new LocalStorage({ "PropA": 47 });
+storage25.setOrCreate('PropB', 9);
 
 @Entry(storage25)
 @Component
 struct StorageProp25 {
   @LocalStorageProp('PropA') storPropA: number = 1;
   @LocalStorageProp('PropB') storPropB: number = 1;
-
-  @State kuA: number = storage25.get('PropA')
-  @State kuB: number = storage25.get('PropB')
-
+  @State kuA: number = storage25.get('PropA');
+  @State kuB: number = storage25.get('PropB');
 
   build() {
-    Column({space: 10}) {
+    Column({ space: 10 }) {
       Text(`LocalStorage值为${this.kuA}`).key("lseA")
       Text(`当前PropA值为${this.storPropA}`).margin(10)
         .key("sPropA")
@@ -56,8 +54,9 @@ struct StorageProp25 {
 struct Child1 {
   @LocalStorageProp('PropC') c1: number = 11;
   @State kuC: number = 0;
+
   build() {
-    Column({space: 20}) {
+    Column({ space: 20 }) {
       Text(`LocalStorage值PropB为${this.kuC}`).key("lsePropB")
       Text(`子组件当前PropB值为${this.c1}`).margin(10)
         .key("sonPropB")
@@ -70,7 +69,7 @@ struct Child1 {
       Button(`点击LocalStorage能修改未被@Entry修饰的属性`).margin(10).width("100%")
         .key('Child1_btn2')
         .onClick(() => {
-          storage25.set('PropC',123)
+          storage25.set('PropC', 123)
           this.kuC = storage25.get('PropC');
         })
       // Text(`兄弟组件PropD${storage.get('PropD')}`).fontColor(Color.Red)
@@ -83,8 +82,9 @@ struct Child1 {
 struct Child2 {
   @LocalStorageProp('PropD') d1: number = 22;
   @State kuD: number = storage25.get('PropD');
+
   build() {
-    Column({space: 20}) {
+    Column({ space: 20 }) {
       Text(`子组件PropC: ${storage25.get('PropC')}`).fontColor(Color.Red)
         .key("sonPropC")
 

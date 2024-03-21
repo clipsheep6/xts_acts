@@ -12,13 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-AppStorage.clear()
-enum KFC{D = 1,H,Y}
+AppStorage.clear();
+
+enum KFC {D = 1, H, Y};
 Environment.envProps([
-  { key: 'stringCode', defaultValue: 'en'},
-  { key: 'numberCode', defaultValue: 2},
-  { key: 'booleanCode', defaultValue: true},
-  { key: 'enumCode', defaultValue: KFC.D},
+  { key: 'stringCode', defaultValue: 'en' },
+  { key: 'numberCode', defaultValue: 2 },
+  { key: 'booleanCode', defaultValue: true },
+  { key: 'enumCode', defaultValue: KFC.D },
 ])
 
 
@@ -30,28 +31,35 @@ struct StorageProp21 {
   @StorageProp('booleanCode') booleanCode: boolean = false;
   @StorageProp('enumCode') enumCode: KFC = KFC.H;
 
-
   build() {
     Column({ space: 20 }) {
-      Button(`button1: ${this.stringCode}`).margin(10).width("100%")
+      Button(`button1: ${this.stringCode}`)
+        .margin(10)
+        .width("100%")
         .key("button1")
         .onClick(() => {
           this.stringCode = 'cd';
         })
 
-      Button(`button2: ${this.numberCode}`).margin(10).width("100%")
+      Button(`button2: ${this.numberCode}`)
+        .margin(10)
+        .width("100%")
         .key("button2")
         .onClick(() => {
           this.numberCode = 3
         })
 
-      Button(`button3: ${this.booleanCode}`).margin(10).width("100%")
+      Button(`button3: ${this.booleanCode}`)
+        .margin(10)
+        .width("100%")
         .key("button3")
         .onClick(() => {
           this.booleanCode = false
         })
 
-      Button(`button4: ${this.enumCode}`).margin(10).width("100%")
+      Button(`button4: ${this.enumCode}`)
+        .margin(10)
+        .width("100%")
         .key("button4")
         .onClick(() => {
           this.enumCode = KFC.Y

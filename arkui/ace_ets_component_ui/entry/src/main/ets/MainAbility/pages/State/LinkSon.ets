@@ -16,31 +16,35 @@
 @Entry
 @Component
 struct ParentLink {
-  @State str: string = "before"
-  @State num: number = 0
+  @State str: string = "before";
+  @State num: number = 0;
 
   build() {
     Column({ space: 10 }) {
       Button("Reset").id("ParentLink_reset")
         .onClick(() => {
-          this.str = "before"
-          this.num = 0
+          this.str = "before";
+          this.num = 0;
         })
-      Text('父组件').fontSize(24).margin({ top: 20 })
-      Text('Parent str: ' + this.str).key("str_parText")
+      Text('父组件')
+        .fontSize(24)
+        .margin({ top: 20 })
+      Text('Parent str: ' + this.str)
+        .key("str_parText")
       Button(`change parStr`)
         .key("str_parLink")
         .onClick(() => {
           this.str = 'Link Parent';
         })
-      Text('Parent num: ' + this.num).key("num_parText")
+      Text('Parent num: ' + this.num)
+        .key("num_parText")
       Button(`change parNum1`)
         .key("num_parLink")
         .onClick(() => {
           this.num += 3;
         })
 
-      SonLink1({str1: $str, num1: $num})
+      SonLink1({ str1: $str, num1: $num })
 
 
     }.width('100%')
@@ -54,21 +58,25 @@ struct SonLink1 {
 
   build() {
     Column({ space: 10 }) {
-      Text('子组件Son1').fontSize(24).margin({ top: 20 })
-      Text('@Link str1: ' + this.str1).key("str1_tSon1")
+      Text('子组件Son1')
+        .fontSize(24)
+        .margin({ top: 20 })
+      Text('@Link str1: ' + this.str1)
+        .key("str1_tSon1")
       Button(`change sonStr1`)
         .key("str_son1")
         .onClick(() => {
           this.str1 = 'Link Son1';
         })
-      Text('@Link num1: ' + this.num1).key("num1_tSon1")
+      Text('@Link num1: ' + this.num1)
+        .key("num1_tSon1")
       Button(`change sonNum1`)
         .key("num_son1")
         .onClick(() => {
           this.num1 += 2;
         })
 
-      SonLink2({str2: $str1, num2: $num1})
+      SonLink2({ str2: $str1, num2: $num1 })
 
     }.margin({ top: 10 })
   }
@@ -81,15 +89,19 @@ struct SonLink2 {
 
   build() {
     Column({ space: 10 }) {
-      Text('子组件Son2').fontSize(24).margin({ top: 20 })
+      Text('子组件Son2')
+        .fontSize(24)
+        .margin({ top: 20 })
 
-      Text('@Link str2: ' + this.str2).key("str2_tSon2")
+      Text('@Link str2: ' + this.str2)
+        .key("str2_tSon2")
       Button(`change sonStr2`)
         .key("str_son2")
         .onClick(() => {
           this.str2 = 'Link Son2';
         })
-      Text('@Link num2: ' + this.num2).key("num2_tSon2")
+      Text('@Link num2: ' + this.num2)
+        .key("num2_tSon2")
       Button(`change sonNum2`)
         .key("num_son2")
         .onClick(() => {

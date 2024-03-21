@@ -106,7 +106,7 @@ struct RouterPushThree {
                 data2: [1, 2, 3, 4, 5]
               }
             })
-          })        
+          })
 
         Button("turn_RouterPushUrlOne_string_number_push")
           .type(ButtonType.Capsule)
