@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import flagstartwithouttipstest from './FlagsSartWithoutTips.test'
+import flagstartwithouttipstest from './FlagsSartWithoutTips.test';
 
 export default function testsuite() {
-  flagstartwithouttipstest()
+  flagstartwithouttipstest();
 }

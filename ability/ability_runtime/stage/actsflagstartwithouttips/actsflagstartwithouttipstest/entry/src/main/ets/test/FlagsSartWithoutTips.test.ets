@@ -14,7 +14,7 @@
  */
 
 import hilog from '@ohos.hilog';
-import { describe, it, expect, beforeAll, beforeEach } from '@ohos/hypium'
+import { describe, it, expect, beforeAll, beforeEach } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import wantConstant from '@ohos.app.ability.wantConstant';
 import Want from '@ohos.app.ability.Want';
@@ -37,7 +37,7 @@ export default function flagstartwithouttipstest() {
   describe('FlagsSartWithoutTipsTest', () => {
     beforeAll(async () => {
       context = AppStorage.get<common.UIAbilityContext>('TestAbilityContext') as common.UIAbilityContext;
-      console.log('ishave ishave driver', !!driver);
+      console.log('ishave ishave driver',!!driver);
     })
     beforeEach(async () => {
       await sleep(5000);
@@ -68,30 +68,34 @@ export default function flagstartwithouttipstest() {
       await sleep(20000);
       try {
         try {
-          await driver.assertComponentExist(ON.text('暂无支持此类文件的应用')).then((data) => {
-            hilog.info(0x0000, TAG, 'text at this success %{public}s', JSON.stringify(data));
-            popupCorrect = true;
-          })
+          await driver.assertComponentExist(ON.text('暂无支持此类文件的应用'))
+            .then((data) => {
+              hilog.info(0x0000, TAG, 'text at this success %{public}s', JSON.stringify(data));
+              popupCorrect = true;
+            })
         } catch (error) {
           hilog.info(0x0000, TAG, 'text at this failed %{public}s', error?.message);
         }
         if (!popupCorrect) {
           try {
-            await driver.assertComponentExist(ON.text('无法打开此文件')).then((data) => {
-              hilog.info(0x0000, TAG, 'text at it success %{public}s', JSON.stringify(data));
-              popupCorrect = true;
-            })
+            await driver.assertComponentExist(ON.text('无法打开此文件'))
+              .then((data) => {
+                hilog.info(0x0000, TAG, 'text at it success %{public}s', JSON.stringify(data));
+                popupCorrect = true;
+              })
           } catch (error) {
             hilog.info(0x0000, TAG, 'text at it failed %{public}s', error?.message);
           }
         }
-        await driver.findComponent(ON.text('知道了')).then(async (data) => {
-          hilog.info(0x0000, TAG, ' %{public}s', 'findComponent success');
-          await data.click();
-          getCloseBtn = true;
-        }).catch(() => {
-          hilog.info(0x0000, TAG, '%{public}s', 'findComponent failed');
-        })
+        await driver.findComponent(ON.text('知道了'))
+          .then(async (data) => {
+            hilog.info(0x0000, TAG, ' %{public}s', 'findComponent success');
+            await data.click();
+            getCloseBtn = true;
+          })
+          .catch(() => {
+            hilog.info(0x0000, TAG, '%{public}s', 'findComponent failed');
+          })
       } catch (error) {
         hilog.info(0x0000, TAG, '%{public}s get popup info error', JSON.stringify(error));
         expect().assertFail();
@@ -151,7 +155,7 @@ export default function flagstartwithouttipstest() {
      * @tc.size: MediumTest
      * @tc.type: Function
      * @tc.level 3
-    */
+     */
     it('SUB_Ability_AbilityRuntime_startAbility_FLAG_0500', 0, async (done: Function) => {
       let TAG = 'SUB_Ability_AbilityRuntime_startAbility_FLAG_0500';
       hilog.info(0x0000, TAG, '%{public}s', '--start');
@@ -169,30 +173,34 @@ export default function flagstartwithouttipstest() {
       await sleep(20000);
       try {
         try {
-          await driver.assertComponentExist(ON.text('选择打开方式')).then((data) => {
-            hilog.info(0x0000, TAG, 'text at this success %{public}s', JSON.stringify(data));
-            popupCorrect = true;
-          })
-          await driver.findComponent(ON.id('close_button')).then(async (data) => {
-            await data.click();
-            hilog.info(0x0000, TAG, '%{public}s', 'findComponent failed');
-            getCloseBtn = true;
-            done();
-          })
+          await driver.assertComponentExist(ON.text('选择打开方式'))
+            .then((data) => {
+              hilog.info(0x0000, TAG, 'text at this success %{public}s', JSON.stringify(data));
+              popupCorrect = true;
+            })
+          await driver.findComponent(ON.id('close_button'))
+            .then(async (data) => {
+              await data.click();
+              hilog.info(0x0000, TAG, '%{public}s', 'findComponent failed');
+              getCloseBtn = true;
+              done();
+            })
         } catch (error) {
           hilog.info(0x0000, TAG, 'text at this failed %{public}s', error?.message);
         }
         if (!popupCorrect) {
           try {
-            await driver.assertComponentExist(ON.text('使用以下方式打开')).then((data) => {
-              hilog.info(0x0000, TAG, '%{public}s text at it', JSON.stringify(data));
-              popupCorrect = true;
-            })
-            await driver.findComponent(ON.text('取消')).then(async (data) => {
-              await data.click();
-              getCloseBtn = true;
-              done();
-            })
+            await driver.assertComponentExist(ON.text('使用以下方式打开'))
+              .then((data) => {
+                hilog.info(0x0000, TAG, '%{public}s text at it', JSON.stringify(data));
+                popupCorrect = true;
+              })
+            await driver.findComponent(ON.text('取消'))
+              .then(async (data) => {
+                await data.click();
+                getCloseBtn = true;
+                done();
+              })
           } catch (error) {
             hilog.info(0x0000, TAG, '%{public}s text at it', JSON.stringify(error));
           }
@@ -233,30 +241,34 @@ export default function flagstartwithouttipstest() {
       await sleep(20000);
       try {
         try {
-          await driver.assertComponentExist(ON.text('选择打开方式')).then((data) => {
-            hilog.info(0x0000, TAG, 'text at this success %{public}s', JSON.stringify(data));
-            popupCorrect = true;
-          })
-          await driver.findComponent(ON.id('close_button')).then(async (data) => {
-            await data.click();
-            hilog.info(0x0000, TAG, '%{public}s', 'findComponent failed');
-            getCloseBtn = true;
-            done();
-          })
+          await driver.assertComponentExist(ON.text('选择打开方式'))
+            .then((data) => {
+              hilog.info(0x0000, TAG, 'text at this success %{public}s', JSON.stringify(data));
+              popupCorrect = true;
+            })
+          await driver.findComponent(ON.id('close_button'))
+            .then(async (data) => {
+              await data.click();
+              hilog.info(0x0000, TAG, '%{public}s', 'findComponent failed');
+              getCloseBtn = true;
+              done();
+            })
         } catch (error) {
           hilog.info(0x0000, TAG, 'text at this failed %{public}s', error?.message);
         }
         if (!popupCorrect) {
           try {
-            await driver.assertComponentExist(ON.text('使用以下方式打开')).then((data) => {
-              hilog.info(0x0000, TAG, '%{public}s text at it', JSON.stringify(data));
-              popupCorrect = true;
-            })
-            await driver.findComponent(ON.text('取消')).then(async (data) => {
-              await data.click();
-              getCloseBtn = true;
-              done();
-            })
+            await driver.assertComponentExist(ON.text('使用以下方式打开'))
+              .then((data) => {
+                hilog.info(0x0000, TAG, '%{public}s text at it', JSON.stringify(data));
+                popupCorrect = true;
+              })
+            await driver.findComponent(ON.text('取消'))
+              .then(async (data) => {
+                await data.click();
+                getCloseBtn = true;
+                done();
+              })
           } catch (error) {
             hilog.info(0x0000, TAG, '%{public}s text at it', JSON.stringify(error));
           }
@@ -302,10 +314,11 @@ export default function flagstartwithouttipstest() {
       await sleep(20000);
       let openViewData = false;
       try {
-        await driver.assertComponentExist(ON.text('ohos.want.action.viewData ability')).then((data) => {
-          hilog.info(0x0000, TAG, 'text at this success %{public}s ', JSON.stringify(data));
-          openViewData = true;
-        })
+        await driver.assertComponentExist(ON.text('ohos.want.action.viewData ability'))
+          .then((data) => {
+            hilog.info(0x0000, TAG, 'text at this success %{public}s ', JSON.stringify(data));
+            openViewData = true;
+          })
       } catch (error) {
         hilog.info(0x0000, TAG, 'text at it failed %{public}s', error?.message);
         expect().assertFail();
@@ -347,10 +360,11 @@ export default function flagstartwithouttipstest() {
       await sleep(20000);
       let openViewData = false;
       try {
-        await driver.assertComponentExist(ON.text('ohos.want.action.viewData ability')).then((data) => {
-          hilog.info(0x0000, TAG, 'text at this success %{public}s ', JSON.stringify(data));
-          openViewData = true;
-        })
+        await driver.assertComponentExist(ON.text('ohos.want.action.viewData ability'))
+          .then((data) => {
+            hilog.info(0x0000, TAG, 'text at this success %{public}s ', JSON.stringify(data));
+            openViewData = true;
+          })
       } catch (error) {
         hilog.info(0x0000, TAG, 'text at it failed %{public}s', error?.message);
         expect().assertFail();
