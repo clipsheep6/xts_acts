@@ -16,15 +16,16 @@
 @Entry
 @Component
 struct SearchExample {
-  @State changeValue: string = ''
-  @State submitValue: string = ''
-  controller: SearchController = new SearchController()
-  @State isHidden:boolean = false
-  @State value1: string = ''
-  @State value2: string = ''
+  @State changeValue: string = '';
+  @State submitValue: string = '';
+  controller: SearchController = new SearchController();
+  @State isHidden: boolean = false;
+  @State value1: string = '';
+  @State value2: string = '';
 
   // 自定义键盘组件
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
       Grid() {
         ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
@@ -54,12 +55,12 @@ struct SearchExample {
         .selectionMenuHidden(this.isHidden)
         .placeholderFont({ size: 14, weight: 400 })
         .customKeyboard(this.CustomKeyboardBuilder())
-        .onContentScroll((totalOffsetX: number, totalOffsetY: number) =>{
+        .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
         })
-        .onTextSelectionChange((selectionStart: number, selectionEnd: number)=>{
-              this.value1 = selectionStart + "";
-              this.value2  = selectionEnd + "";
-              this.controller.getTextContentLineCount();
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.value1 = selectionStart + "";
+          this.value2 = selectionEnd + "";
+          this.controller.getTextContentLineCount();
         })
         .textFont({ size: 14, weight: 400 })
         .onSubmit((value: string) => {
@@ -78,7 +79,7 @@ struct SearchExample {
       Button('stopEditing')
         .onClick(() => {
           this.controller.stopEditing();
-        }).margin({top:20})
+        }).margin({ top: 20 })
     }.width('100%')
   }
 }

@@ -12,27 +12,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
+
+class Tn {
+  text: string;
+  num: number
+}
 
 @Entry
 @Component
 struct NavigationPage {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @State mainTitleName: string = 'mainTitle'
-  @State subTitleName: string = 'subTitle'
-  @State titleMode: NavigationTitleMode = NavigationTitleMode.Free
-  @State hideToolBar: boolean = false
-  @State hideTitleBar: boolean = false
-  @State hideBackButton: boolean = false
-  @State navBarWidth: number = 700
-  @State navBarPosition: NavBarPosition = NavBarPosition.Start
-  @State mode: NavigationMode = NavigationMode.Split
-  @State backButtonIcon: string = 'resources/base/media/icon.png'
-  @State hideNavBar: boolean = false
-  @State titleModeChange: string = ''
-  @State navBarStateChange: string = ''
-  @State currentIndex: number = 0
-  @State Build: Array<Object> = [
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  @State mainTitleName: string = 'mainTitle';
+  @State subTitleName: string = 'subTitle';
+  @State titleMode: NavigationTitleMode = NavigationTitleMode.Free;
+  @State hideToolBar: boolean = false;
+  @State hideTitleBar: boolean = false;
+  @State hideBackButton: boolean = false;
+  @State navBarWidth: number = 700;
+  @State navBarPosition: NavBarPosition = NavBarPosition.Start;
+  @State mode: NavigationMode = NavigationMode.Split;
+  @State backButtonIcon: string = 'resources/base/media/icon.png';
+  @State hideNavBar: boolean = false;
+  @State titleModeChange: string = '';
+  @State navBarStateChange: string = '';
+  @State currentIndex: number = 0;
+  @State Build: Array<Tn> = [
     {
       text: 'add',
       num: 0
@@ -46,14 +51,14 @@ struct NavigationPage {
       num: 2
     }
   ]
-  messageManager:MessageManager = new MessageManager()
+  messageManager: MessageManager<ESObject> = new MessageManager()
 
   onPageShow() {
     console.info('NavDestination onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'mainTitleName') {
         this.mainTitleName = message.value
@@ -92,7 +97,8 @@ struct NavigationPage {
     this.messageManager.registerCallback(callback)
   }
 
-  @Builder NavigationTitle() {
+  @Builder
+  NavigationTitle() {
     Column() {
       Text(this.mainTitleName)
         .fontColor('#182431')
@@ -110,7 +116,8 @@ struct NavigationPage {
     }.alignItems(HorizontalAlign.Start)
   }
 
-  @Builder NavigationMenus() {
+  @Builder
+  NavigationMenus() {
     Row() {
       Image('resources/base/media/ic_pad.svg')
         .width(24)
@@ -122,9 +129,10 @@ struct NavigationPage {
     }
   }
 
-  @Builder NavigationToolbar() {
+  @Builder
+  NavigationToolbar() {
     Row() {
-      ForEach(this.Build, item => {
+      ForEach(this.Build, (item: Tn) => {
         Column() {
           Image(this.currentIndex == item.num ? 'resources/base/media/icon_selected.svg' : 'resources/base/media/icon_tv.svg')
             .width(24)
@@ -153,7 +161,7 @@ struct NavigationPage {
           .margin({ top: 8, left: 12 })
 
         List({ space: 12, initialIndex: 0 }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item: string) => {
             ListItem() {
               Text('' + item)
                 .width('90%')
@@ -164,15 +172,21 @@ struct NavigationPage {
                 .fontWeight(500)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+          }, (item: string) => item)
         }
         .height(324)
         .width('100%')
         .margin({ top: 12, left: 12 })
         .key('list')
 
-        Text('TitleModeChange:' + this.titleModeChange).fontSize(10).margin(10).key('titleModeChange')
-        Text('NavBarStateChange:' + this.navBarStateChange).fontSize(10).margin(10).key('navBarStateChange')
+        Text('TitleModeChange:' + this.titleModeChange)
+          .fontSize(10)
+          .margin(10)
+          .key('titleModeChange')
+        Text('NavBarStateChange:' + this.navBarStateChange)
+          .fontSize(10)
+          .margin(10)
+          .key('navBarStateChange')
       }
       .title(this.NavigationTitle)
       .menus(this.NavigationMenus)
@@ -195,6 +209,9 @@ struct NavigationPage {
         console.info('isVisible: ' + isVisible)
         this.navBarStateChange = "succ"
       })
-    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F1F3F5')
   }
 }

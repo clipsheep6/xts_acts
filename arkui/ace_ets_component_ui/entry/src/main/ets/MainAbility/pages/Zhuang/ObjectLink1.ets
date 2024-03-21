@@ -14,70 +14,72 @@
  */
 @Observed
 class classB {
-  public color1: Color | undefined | null
-  public color2: Color | undefined | null
-  public number1: number | undefined | null
-  public number2: number | undefined | null
+  public color1: Color | undefined | null;
+  public color2: Color | undefined | null;
+  public number1: number | undefined | null;
+  public number2: number | undefined | null;
 
-  constructor(color1:Color | undefined | null, color2: Color | undefined | null, number1: number | undefined | null, number2: number | undefined | null) {
-    this.color1=color1
-    this.color2=color2
-    this.number1=number1
-    this.number2=number2
-
+  constructor(color1: Color | undefined | null, color2: Color | undefined | null, number1: number | undefined | null, number2: number | undefined | null) {
+    this.color1 = color1;
+    this.color2 = color2;
+    this.number1 = number1;
+    this.number2 = number2;
   }
 }
 
 
 @Component
 struct ViewC {
-  @ObjectLink a:classB
+  @ObjectLink a: classB;
+
   build() {
     Row() {
-        Row({ space: 5 }) {
+      Row({ space: 5 }) {
 
-          Column({ space: 20 }) {
-            Text("@ObjectLink颜色子组件undefined-->Pink")
-            Button('button')
-              .backgroundColor(this.a.color1)
-              .onClick(() => {
-                this.a.color1 = Color.Pink
-              })
-              .key('zioBtn1')
+        Column({ space: 20 }) {
+          Text("@ObjectLink颜色子组件undefined-->Pink")
+          Button('button')
+            .backgroundColor(this.a.color1)
+            .onClick(() => {
+              this.a.color1 = Color.Pink;
+            })
+            .key('zioBtn1')
 
-            Text("@ObjectLink子组件颜色null-->Pink")
-            Button('button')
-              .backgroundColor(this.a.color2)
-              .onClick(() => {
-                this.a.color2 = Color.Pink
-              })
-              .key('zioBtn2')
+          Text("@ObjectLink子组件颜色null-->Pink")
+          Button('button')
+            .backgroundColor(this.a.color2)
+            .onClick(() => {
+              this.a.color2 = Color.Pink;
+            })
+            .key('zioBtn2')
 
-            Text("@ObjectLink子组件文本undefined-->100")
-            Button('button')
-              .fontSize(this.a.number1)
-              .onClick(() => {
-                this.a.number1 = 100
-              })
-              .key('zioBtn3')
+          Text("@ObjectLink子组件文本undefined-->100")
+          Button('button')
+            .fontSize(this.a.number1)
+            .onClick(() => {
+              this.a.number1 = 100;
+            })
+            .key('zioBtn3')
 
-            Text("@ObjectLink子组件文本null-->100")
-            Button('button')
-              .fontSize(this.a.number2)
-              .onClick(() => {
-                this.a.number2 = 100
-              })
-              .key('zioBtn4')
+          Text("@ObjectLink子组件文本null-->100")
+          Button('button')
+            .fontSize(this.a.number2)
+            .onClick(() => {
+              this.a.number2 = 100;
+            })
+            .key('zioBtn4')
 
-          }.width('100%').margin({ top: 10 })
-        }
+        }.width('100%').margin({ top: 10 })
       }
     }
+  }
 }
+
 @Entry
 @Component
 struct ViewD {
-@State b:classB = new classB(undefined,null,undefined,null)
+  @State b: classB = new classB(undefined, null, undefined, null);
+
   build() {
     Row() {
       Scroll() {
@@ -116,9 +118,11 @@ struct ViewD {
               })
               .key('oBtn4')
 
-            ViewC({a:this.b})
+            ViewC({ a: this.b })
 
-          }.width('100%').margin({ top: 10 })
+          }
+          .width('100%')
+          .margin({ top: 10 })
         }
       }
     }

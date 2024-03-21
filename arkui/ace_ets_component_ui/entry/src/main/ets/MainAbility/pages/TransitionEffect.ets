@@ -21,7 +21,10 @@ struct TransitionEffectExample1 {
 
   build() {
     Column() {
-      Button(this.show).width(80).height(30).margin(30)
+      Button(this.show)
+        .width(80)
+        .height(30)
+        .margin(30)
         .onClick(() => {
           // 点击Button控制Image的显示和消失
           if (this.flag) {
@@ -38,20 +41,20 @@ struct TransitionEffectExample1 {
         Image($r('app.media.icon')).width(200).height(200)
           .transition(TransitionEffect.OPACITY
             .animation({ duration: 2000, curve: Curve.Ease }).combine(
-          TransitionEffect.rotate({ z: 1, centerZ: 1, angle: 180 })
-          ))
-      }else{
+              TransitionEffect.rotate({ z: 1, centerZ: 1, angle: 180 })
+            ))
+      } else {
         Image($r('app.media.icon')).width(200).height(200)
           .transition(TransitionEffect.IDENTITY
             .animation({ duration: 2000, curve: Curve.Ease }).combine(
-            TransitionEffect.rotate({ z: 1, centerZ: 1, angle: 180 })
+              TransitionEffect.rotate({ z: 1, centerZ: 1, angle: 180 })
             ))
       }
       Image($r('app.media.icon')).width(200).height(200)
         .transition(
-        TransitionEffect.asymmetric(
-          TransitionEffect.rotate({ z: 1, centerZ: 1, angle: 180 }),
-          TransitionEffect.rotate({ z: 1, centerZ: 1, angle: 90 })
+          TransitionEffect.asymmetric(
+            TransitionEffect.rotate({ z: 1, centerZ: 1, angle: 180 }),
+            TransitionEffect.rotate({ z: 1, centerZ: 1, angle: 90 })
           )
         )
       Image($r('app.media.icon')).width(200).height(200)

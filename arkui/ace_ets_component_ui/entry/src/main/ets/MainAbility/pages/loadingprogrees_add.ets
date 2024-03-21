@@ -18,11 +18,17 @@
 struct LoadingProgressExampleAdd {
   build() {
     Column({ space: 5 }) {
-      Text('Orbital LoadingProgress ').fontSize(9).fontColor(0xCCCCCC).width('90%')
-      LoadingProgress().key('loadingAdd')
+      Text('Orbital LoadingProgress ')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .width('90%')
+      LoadingProgress()
+        .key('loadingAdd')
         .color(Color.Blue)
         .enableLoading(false)
         .borderRadius(4)
-    }.width('100%').margin({ top: 5 })
+    }
+    .width('100%')
+    .margin({ top: 5 })
   }
 }

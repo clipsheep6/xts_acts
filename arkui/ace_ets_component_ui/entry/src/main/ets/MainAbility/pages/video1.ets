@@ -15,21 +15,20 @@
 @Entry
 @Component
 struct VideoComponentBC1 {
-  @State videoSrc: Resource = $rawfile('sucai1.mp4')
-  @State previewUri: Resource = $r('app.media.img2')
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-  @State isAutoPlay: boolean = false
-  @State showControls: boolean = true
-  controller: VideoController = new VideoController()
-  @State onStart: string = 'onStart'
-  @State onPause: string = 'onPause'
-  @State onFinish: string = 'onFinish'
-  @State onError: string = 'onError'
-  @State onPrepared: string = 'onPrepared'
-  @State onSeeking: string = 'onSeeking'
-  @State onSeeked: string = 'onSeeked'
-  @State onUpdate: string = 'onUpdate'
-
+  @State videoSrc: Resource = $rawfile('sucai1.mp4');
+  @State previewUri: Resource = $r('app.media.img2');
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
+  @State isAutoPlay: boolean = false;
+  @State showControls: boolean = true;
+  controller: VideoController = new VideoController();
+  @State onStart: string = 'onStart';
+  @State onPause: string = 'onPause';
+  @State onFinish: string = 'onFinish';
+  @State onError: string = 'onError';
+  @State onPrepared: string = 'onPrepared';
+  @State onSeeking: string = 'onSeeking';
+  @State onSeeked: string = 'onSeeked';
+  @State onUpdate: string = 'onUpdate';
 
   build() {
     Column() {
@@ -51,30 +50,25 @@ struct VideoComponentBC1 {
         })
         .onFinish(() => {
           this.onFinish = 'onFinish_Doing'
-        })
-          // 播放失败不好整
+        })// 播放失败不好整
         .onError(() => {
           this.onError = 'onError_Doing'
-        })
-          // 视频准备完成时触发该事件，通过duration可以获取视频时长
+        })// 视频准备完成时触发该事件，通过duration可以获取视频时长
         .onPrepared((e?: DurationObject) => {
           if (e != undefined) {
             this.onPrepared = `onPrepared_Doing`
           }
-        })
-          // 操作进度条过程时上报时间信息
+        })// 操作进度条过程时上报时间信息
         .onSeeking((e?: TimeObject) => {
           if (e != undefined) {
             this.onSeeking = `onSeeking_Doing`
           }
-        })
-          // 操作进度条完成后，上报播放时间信息
+        })// 操作进度条完成后，上报播放时间信息
         .onSeeked((e?: TimeObject) => {
           if (e != undefined) {
             this.onSeeked = `onSeeked_Doing`
           }
-        })
-          // 播放进度变化时触发该事件
+        })// 播放进度变化时触发该事件
         .onUpdate((e?: TimeObject) => {
           if (e != undefined) {
             this.onUpdate = `onUpdate_Doing`
@@ -82,14 +76,38 @@ struct VideoComponentBC1 {
         })
 
 
-      Column(){Text(this.onStart).fontSize(16).key('onStart')}
-      Column(){Text(this.onPause).fontSize(16).key('onPause')}
-      Column(){Text(this.onFinish).fontSize(16).key('onFinish')}
-      Column(){Text(this.onError).fontSize(16)}
-      Column(){Text(this.onPrepared).fontSize(16).key('onPrepared')}
-      Column(){Text(this.onSeeking).fontSize(16)}
-      Column(){Text(this.onSeeked).fontSize(16)}
-      Column(){Text(this.onUpdate).fontSize(16).key('onUpdate')}
+      Column() {
+        Text(this.onStart).fontSize(16).key('onStart')
+      }
+
+      Column() {
+        Text(this.onPause).fontSize(16).key('onPause')
+      }
+
+      Column() {
+        Text(this.onFinish).fontSize(16).key('onFinish')
+      }
+
+      Column() {
+        Text(this.onError).fontSize(16)
+      }
+
+      Column() {
+        Text(this.onPrepared).fontSize(16).key('onPrepared')
+      }
+
+      Column() {
+        Text(this.onSeeking).fontSize(16)
+      }
+
+      Column() {
+        Text(this.onSeeked).fontSize(16)
+      }
+
+      Column() {
+        Text(this.onUpdate).fontSize(16).key('onUpdate')
+      }
+
       Row() {
         Button('src').onClick(() => {
           this.videoSrc = $rawfile('sucai2.mp4') // 切换视频源

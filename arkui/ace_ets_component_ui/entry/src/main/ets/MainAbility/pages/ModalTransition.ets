@@ -16,8 +16,8 @@
 @Entry
 @Component
 struct ModalTransition111 {
-  @State isShow:boolean = false
-  @State isShow2:boolean = false
+  @State isShow:boolean = false;
+  @State isShow2:boolean = false;
 
   @Builder myBuilder2() {
     Column() {

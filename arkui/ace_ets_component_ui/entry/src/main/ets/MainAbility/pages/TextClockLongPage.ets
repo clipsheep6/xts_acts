@@ -16,21 +16,19 @@
 @Entry
 @Component
 struct TextClockLongPage {
-  @State accumulateTime: number = 0
-
-  @State textShadow:string = '';
-  @State fontFeature:string = '';
-
-  @State visible: Visibility = Visibility.Visible
-
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+  @State accumulateTime: number = 0;
+  @State textShadow: string = '';
+  @State fontFeature: string = '';
+  @State visible: Visibility = Visibility.Visible;
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   // 导入对象
-  controller: TextClockController = new TextClockController()
-  scroller: Scroller = new Scroller()
+  controller: TextClockController = new TextClockController();
+  scroller: Scroller = new Scroller();
+
   build() {
-    Column(){
-      List({scroller:this.scroller}){
-        ListItem(){
+    Column() {
+      List({ scroller: this.scroller }) {
+        ListItem() {
           Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
             // 以12小时制显示东八区的系统时间，精确到秒。
             TextClock({ timeZoneOffset: -8, controller: this.controller })
@@ -48,7 +46,8 @@ struct TextClockLongPage {
           .width('100%')
           .height(50)
         }
-        ListItem(){
+
+        ListItem() {
           Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceBetween }) {
             // 以12小时制显示东八区的系统时间，精确到秒。
             TextClock({ timeZoneOffset: -8, controller: this.controller })
@@ -63,13 +62,14 @@ struct TextClockLongPage {
           .width('100%')
           .height(50)
         }
-        ListItem(){
-          Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }){
+
+        ListItem() {
+          Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
             Button("start")
               .onClick(() => {
                 // 启动文本时钟
                 let strJson = getInspectorByKey('textClock');
-                this.textShadow = JSON.parse(strJson).$attrs.textShadow.slice(0,5)
+                this.textShadow = JSON.parse(strJson).$attrs.textShadow.slice(0, 5)
                 this.fontFeature = JSON.parse(strJson).$attrs.fontFeature
                 this.controller.start()
               }).height(28).fontSize(10).id('start')
@@ -91,29 +91,33 @@ struct TextClockLongPage {
           }
           .width('100%')
         }
-        ListItem(){
-          Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }){
-            Button('滚动到底部').onClick(()=>{
-                this.scroller.scrollEdge(Edge.Bottom)
-              }).height(28).fontSize(10).id('TextClockLongBottom')
+
+        ListItem() {
+          Flex({ alignItems: ItemAlign.Center, justifyContent: FlexAlign.SpaceAround }) {
+            Button('滚动到底部').onClick(() => {
+              this.scroller.scrollEdge(Edge.Bottom)
+            }).height(28).fontSize(10).id('TextClockLongBottom')
           }.padding({
-            top:10
+            top: 10
           })
         }
-        ListItem(){
-          Text('监控onDateChange事件：'+this.accumulateTime)
+
+        ListItem() {
+          Text('监控onDateChange事件：' + this.accumulateTime)
             .width("100%").textAlign(TextAlign.Center).id('accumulateTime1')
         }.height(100)
-        ListItem(){
-          Text(this.textShadow+":"+this.fontFeature).width("100%").textAlign(TextAlign.Center)
+
+        ListItem() {
+          Text(this.textShadow + ":" + this.fontFeature).width("100%").textAlign(TextAlign.Center)
         }.height(100).id('textShadowOrFontFeature')
-        ForEach(this.arr,(item:number) => {
-          ListItem(){
-            Text('ListItem'+item).width("100%").textAlign(TextAlign.Center)
+
+        ForEach(this.arr, (item: number) => {
+          ListItem() {
+            Text('ListItem' + item).width("100%").textAlign(TextAlign.Center)
           }.height(100)
-        },(item: string) => item)
-        ListItem(){
-          Text('监控onDateChange事件：'+this.accumulateTime)
+        }, (item: string) => item)
+        ListItem() {
+          Text('监控onDateChange事件：' + this.accumulateTime)
             .width("100%").textAlign(TextAlign.Center).id('accumulateTime2')
         }.height(100)
       }

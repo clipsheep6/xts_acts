@@ -15,6 +15,7 @@
 import udmf from '@ohos.data.unifiedDataChannel';
 import udmfType from '@ohos.data.uniformTypeDescriptor';
 import promptAction from '@ohos.promptAction';
+
 @Entry
 @Component
 struct Index {
@@ -29,14 +30,13 @@ struct Index {
   @State abstractContent: string = "abstract";
   @State textContent: string = "";
 
-  getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent)=>void)
-  {
+  getDataFromUdmfRetry(event: DragEvent, callback: (data: DragEvent) => void) {
     let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
     if (records.length !== 0) {
       callback(event);
       return;
     }
-    setTimeout(()=>{
+    setTimeout(() => {
       this.getDataFromUdmfRetry(event, callback);
     }, 1500);
   }
@@ -55,48 +55,49 @@ struct Index {
           .width(100)
           .height(100)
           .draggable(true)
-          .margin({left: 15})
+          .margin({ left: 15 })
           .visibility(this.imgState)
-          .onDragEnd((event)=>{
+          .onDragEnd((event) => {
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              promptAction.showToast({duration: 100, message: 'Drag Success'});
+              promptAction.showToast({ duration: 100, message: 'Drag Success' });
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              promptAction.showToast({duration: 100, message: 'Drag failed'});
+              promptAction.showToast({ duration: 100, message: 'Drag failed' });
             }
           })
         Text('test drag event')
           .width('100%')
           .height(100)
           .draggable(true)
-          .margin({left: 15})
+          .margin({ left: 15 })
           .copyOption(CopyOptions.InApp)
-        TextArea({placeholder: 'please input words'})
+        TextArea({ placeholder: 'please input words' })
           .copyOption(CopyOptions.InApp)
           .width('100%')
           .height(50)
           .draggable(true)
-        Search({placeholder: 'please input you word'})
+        Search({ placeholder: 'please input you word' })
           .searchButton('Search')
           .width('100%')
           .height(80)
-          .textFont({size: 20})
+          .textFont({ size: 20 })
         Column() {
           Text('change video source')
         }.draggable(true)
-        .onDragStart((event)=>{
+        .onDragStart((event) => {
           let video: udmf.Video = new udmf.Video();
           video.videoUri = 'resource://RAWFILE/01.mp4';
           let data: udmf.UnifiedData = new udmf.UnifiedData(video);
           event.setData(data);
         })
+
         Column() {
           Text('this is abstract')
             .fontSize(20)
             .width('100%')
-        }.margin({left: 40, top: 20})
+        }.margin({ left: 40, top: 20 })
         .width('100%')
         .height(100)
-        .onDragStart((event)=>{
+        .onDragStart((event) => {
           let data: udmf.PlainText = new udmf.PlainText();
           data.abstract = 'this is abstract';
           data.textContent = 'this is content this is content';
@@ -104,6 +105,7 @@ struct Index {
         })
       }.width('45%')
       .height('100%')
+
       Column() {
         Text('Drag Target Area')
           .fontSize(20)
@@ -115,18 +117,18 @@ struct Index {
           .width(this.imageWidth)
           .height(this.imageHeight)
           .draggable(true)
-          .margin({left: 15})
-          .border({color: Color.Black, width: 1})
+          .margin({ left: 15 })
+          .border({ color: Color.Black, width: 1 })
           .allowDrop([udmfType.UniformDataType.IMAGE])
-          .onDrop((dragEvent: DragEvent)=> {
-            this.getDataFromUdmfRetry(dragEvent, (event)=>{
+          .onDrop((dragEvent: DragEvent) => {
+            this.getDataFromUdmfRetry(dragEvent, (event) => {
               let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
               let rect: Rectangle = event.getPreviewRect();
               this.imageWidth = Number(rect.width);
               this.imageHeight = Number(rect.height);
-              this.targetImage = (<udmf.Image>(records[0])).imageUri;
+              this.targetImage = (<udmf.Image> (records[0])).imageUri;
               event.useCustomDropAnimation = false;
-              animateTo({duration: 1000}, ()=>{
+              animateTo({ duration: 1000 }, () => {
                 this.imageWidth = 100;
                 this.imageHeight = 100;
                 this.imgState = Visibility.None;
@@ -138,10 +140,10 @@ struct Index {
         Text(this.targetText)
           .width('100%')
           .height(100)
-          .border({color: Color.Black, width: 1})
+          .border({ color: Color.Black, width: 1 })
           .margin(15)
           .allowDrop([udmfType.UniformDataType.TEXT])
-          .onDrop((dragEvent: DragEvent)=>{
+          .onDrop((dragEvent: DragEvent) => {
             console.info("the getDisplayX " + dragEvent.getDisplayX());
             console.info("the getDisplayY " + dragEvent.getDisplayY());
             console.info("the getWindowX " + dragEvent.getWindowX());
@@ -151,12 +153,12 @@ struct Index {
             console.info("the getVelocityY " + dragEvent.getVelocityY());
             console.info("the getVelocity " + dragEvent.getVelocity());
             this.getDataFromUdmfRetry(dragEvent, event => {
-              let records:Array<udmf.UnifiedRecord> = event.getData().getRecords();
-              this.targetText = (<udmf.Text>(records[0])).details['value'];
+              let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
+              this.targetText = (<udmf.Text> (records[0])).details['value'];
             })
           })
 
-        Video({src: this.videoSrc, previewUri: $r('app.media.icon')})
+        Video({ src: this.videoSrc, previewUri: $r('app.media.icon') })
           .width('100%')
           .height(200)
           .controls(true)
@@ -165,19 +167,23 @@ struct Index {
         Column() {
           Text(this.abstractContent).fontSize(20).width('100%')
           Text(this.textContent).fontSize(15).width('100%')
-        }.width('100%').height(100).margin(20).border({color: Color.Black, width: 1})
+        }
+        .width('100%')
+        .height(100)
+        .margin(20)
+        .border({ color: Color.Black, width: 1 })
         .allowDrop([udmfType.UniformDataType.PLAIN_TEXT])
-        .onDrop((dragEvent)=>{
-          this.getDataFromUdmfRetry(dragEvent, event=>{
+        .onDrop((dragEvent) => {
+          this.getDataFromUdmfRetry(dragEvent, event => {
             let records: Array<udmf.UnifiedRecord> = event.getData().getRecords();
-            let plainText: udmf.PlainText = <udmf.PlainText>(records[0]);
+            let plainText: udmf.PlainText = <udmf.PlainText> (records[0]);
             this.abstractContent = plainText.abstract;
             this.textContent = plainText.textContent;
           })
         })
       }.width('45%')
       .height('100%')
-      .margin({left: '5%'})
+      .margin({ left: '5%' })
     }
     .height('100%')
   }

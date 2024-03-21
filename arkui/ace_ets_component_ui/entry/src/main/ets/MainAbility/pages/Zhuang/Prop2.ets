@@ -13,20 +13,20 @@
  * limitations under the License.
  */
 @Component
-struct CountDownComponent1{
-  @Prop color1: Color | undefined | null
-  @Prop color2: Color | undefined | null
-  @Prop number1: number | undefined | null
-  @Prop number2: number | undefined | null
+struct CountDownComponent1 {
+  @Prop color1: Color | undefined | null;
+  @Prop color2: Color | undefined | null;
+  @Prop number1: number | undefined | null;
+  @Prop number2: number | undefined | null;
 
   build() {
-    Row({ space: 5 }){
+    Row({ space: 5 }) {
       Column({ space: 20 }) {
         Text("Prop子组件颜色颜色Red-->undefined")
         Button('button')
           .backgroundColor(this.color1)
           .onClick(() => {
-            this.color1 = undefined
+            this.color1 = undefined;
           })
           .key('ziProp2Btn1')
 
@@ -42,7 +42,7 @@ struct CountDownComponent1{
         Button('button')
           .fontSize(this.number1)
           .onClick(() => {
-            this.number1 = undefined
+            this.number1 = undefined;
           })
           .key('ziProp2Btn3')
 
@@ -50,7 +50,7 @@ struct CountDownComponent1{
         Button('button')
           .fontSize(this.number2)
           .onClick(() => {
-            this.number2 = null
+            this.number2 = null;
           })
           .key('ziProp2Btn4')
 
@@ -63,10 +63,10 @@ struct CountDownComponent1{
 @Entry
 @Component
 struct ParentComponent1 {
-  @State color1: Color | undefined | null = Color.Red
-  @State color2: Color | undefined | null = Color.Red
-  @State number1: number | undefined | null = 100
-  @State number2: number | undefined | null = 100
+  @State color1: Color | undefined | null = Color.Red;
+  @State color2: Color | undefined | null = Color.Red;
+  @State number1: number | undefined | null = 100;
+  @State number2: number | undefined | null = 100;
 
   build() {
 
@@ -79,7 +79,7 @@ struct ParentComponent1 {
             Button('button')
               .backgroundColor(this.color1)
               .onClick(() => {
-                this.color1 = undefined
+                this.color1 = undefined;
               })
 
               .key('prop2Btn1')
@@ -88,7 +88,7 @@ struct ParentComponent1 {
             Button('button')
               .backgroundColor(this.color2)
               .onClick(() => {
-                this.color2 = null
+                this.color2 = null;
               })
               .key('prop2Btn2')
 
@@ -96,7 +96,7 @@ struct ParentComponent1 {
             Button('button')
               .fontSize(this.number1)
               .onClick(() => {
-                this.number1 = undefined
+                this.number1 = undefined;
               })
               .key('prop2Btn3')
 
@@ -104,8 +104,7 @@ struct ParentComponent1 {
             Button('button')
               .fontSize(this.number2)
               .onClick(() => {
-                 this.number2 = null
-                // this.number2 = 300
+                this.number2 = null;
               })
               .key('prop2Btn4')
 
@@ -115,13 +114,11 @@ struct ParentComponent1 {
               number1: this.number1,
               number2: this.number2
             })
-
-
-          }.width('100%').margin({ top: 10 })
+          }
+          .width('100%')
+          .margin({ top: 10 })
         }
       }
-
     }
-
   }
 }

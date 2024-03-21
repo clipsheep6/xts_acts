@@ -33,7 +33,8 @@ struct DragEvent {
   @State useCustomDropAnimation1: string = "useCustomDropAnimation";
   @State imgState: Visibility = Visibility.Visible;
 
-  @Builder DraggingBuilder() {
+  @Builder
+  DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
     }
@@ -49,34 +50,35 @@ struct DragEvent {
         Text(this.dragResult).id("dragResult").margin(5)
         Text(this.useCustomDropAnimation1).id("useCustomDropAnimation").margin(5)
 
-        Image($r('app.media.icon')).margin(5)
+        Image($r('app.media.icon'))
+          .margin(5)
           .width(100)
           .height(100)
           .draggable(true)
-          .margin({left: 15})
+          .margin({ left: 15 })
           .visibility(this.imgState)
-          .onDragStart((event)=>{
+          .onDragStart((event) => {
             event.dragBehavior = DragBehavior.COPY
             event.setResult(DragResult.DRAG_SUCCESSFUL);
           })
-          .onDragEnd((event)=>{
+          .onDragEnd((event) => {
             event.dragBehavior = DragBehavior.MOVE
             this.dragBehavior = event.dragBehavior.toString()
             event.useCustomDropAnimation === true
-            if(event.useCustomDropAnimation === true){
+            if (event.useCustomDropAnimation === true) {
               this.useCustomDropAnimation1 = "true"
-              promptAction.showToast({duration: 100, message: 'useCustomDropAnimation==true'});
+              promptAction.showToast({ duration: 100, message: 'useCustomDropAnimation==true' });
             }
             if (event.getResult() === DragResult.DRAG_SUCCESSFUL) {
-              promptAction.showToast({duration: 100, message: 'Drag DRAG_SUCCESSFUL'});
+              promptAction.showToast({ duration: 100, message: 'Drag DRAG_SUCCESSFUL' });
             } else if (event.getResult() === DragResult.DRAG_FAILED) {
-              promptAction.showToast({duration: 100, message: 'Drag Failed'});
+              promptAction.showToast({ duration: 100, message: 'Drag Failed' });
             } else if (event.getResult() === DragResult.DRAG_CANCELED) {
-              promptAction.showToast({duration: 100, message: 'Drag Canceled'});
+              promptAction.showToast({ duration: 100, message: 'Drag Canceled' });
             } else if (event.getResult() === DragResult.DROP_DISABLED) {
-              promptAction.showToast({duration: 100, message: 'Drop Disabled'});
-            }else if (event.getResult() === DragResult.DROP_ENABLED) {
-              promptAction.showToast({duration: 100, message: 'Drop Enabled'});
+              promptAction.showToast({ duration: 100, message: 'Drop Disabled' });
+            } else if (event.getResult() === DragResult.DROP_ENABLED) {
+              promptAction.showToast({ duration: 100, message: 'Drop Enabled' });
             }
             this.dragResult = event.getResult().toString()
           })
@@ -102,7 +104,7 @@ struct DragEvent {
           })
       }.width('90%')
       .height('100%')
-      .margin({left: '5%'})
+      .margin({ left: '5%' })
     }
     .height('100%')
   }

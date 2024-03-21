@@ -12,24 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct TogglePage {
-  @State type: ToggleType = ToggleType.Checkbox
-  @State isOn: boolean = true
-  @State selectedColor: string = '#FFFF0000'
-  @State switchPointColor: string = '#FF008000'
-  @State text: string = 'no change'
-  messageManager:MessageManager = new MessageManager()
+  @State type: ToggleType = ToggleType.Checkbox;
+  @State isOn: boolean = true;
+  @State selectedColor: string = '#FFFF0000';
+  @State switchPointColor: string = '#FF008000';
+  @State text: string = 'no change';
+  messageManager: MessageManager<ESObject> = new MessageManager();
 
   onPageShow() {
     console.info('Toggle onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'type') {
         this.type = message.value
@@ -51,7 +51,7 @@ struct TogglePage {
     Column({ space: 10 }) {
       Text('type: Switch').fontSize(12).fontColor(0xcccccc).width('90%')
       Flex({ justifyContent: FlexAlign.SpaceEvenly, alignItems: ItemAlign.Center }) {
-        Toggle({ type: ToggleType.Switch})
+        Toggle({ type: ToggleType.Switch })
           .key('toggleSwitch')
           .selectedColor('#007DFF')
           .switchPointColor(this.switchPointColor)
@@ -107,7 +107,13 @@ struct TogglePage {
           console.info('Component status:' + isOn)
         })
       }
-      Text(this.text).fontSize(20).margin(10).key('text')
-    }.width('100%').padding(24)
+
+      Text(this.text)
+        .fontSize(20)
+        .margin(10)
+        .key('text')
+    }
+    .width('100%')
+    .padding(24)
   }
 }

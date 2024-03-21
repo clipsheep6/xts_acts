@@ -1,4 +1,3 @@
-
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -63,7 +62,7 @@ struct CustomLayout {
     children.forEach((child) => {
       let result: MeasureResult = child.measure({ minHeight: size, minWidth: size, maxWidth: size, maxHeight: size })
       size += result.width / 2
-      ;
+
     })
     this.result.width = 100;
     this.result.height = 400;

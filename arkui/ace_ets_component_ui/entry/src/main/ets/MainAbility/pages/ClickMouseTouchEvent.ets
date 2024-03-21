@@ -12,18 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-function Rect1(x, y, z){
-  return {width: x, height: y, radios: z}
+class RectObj {
+  width: number;
+  height: number;
+  radios: number
+}
+
+function Rect1(x: number, y: number, z: number) {
+  let rect: RectObj = { width: x, height: y, radios: z }
+  return rect
 }
 
 @Entry
 @Component
 struct ClickExample {
-  @State displayX: string = 'displayX'
-  @State displayY: string = 'displayY'
-  @State windowX: string = 'windowX'
-  @State windowY: string = 'windowY'
-  @State intentionCode: string = 'intentionCode'
+  @State displayX: string = 'displayX';
+  @State displayY: string = 'displayY';
+  @State windowX: string = 'windowX';
+  @State windowY: string = 'windowY';
+  @State intentionCode: string = 'intentionCode';
 
   build() {
     Column() {
@@ -36,7 +43,10 @@ struct ClickExample {
       Text(this.intentionCode).id("intentionCode")
 
       Row({ space: 20 }) {
-        Button('Click').width(100).height(40).id("Button_click")
+        Button('Click')
+          .width(100)
+          .height(40)
+          .id("Button_click")
           .onClick((event: ClickEvent) => {
             this.displayX = "onClick: " + event.displayX
             this.displayY = "onClick: " + event.displayY
