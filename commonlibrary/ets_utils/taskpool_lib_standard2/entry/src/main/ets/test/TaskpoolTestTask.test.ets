@@ -45,7 +45,7 @@ function printLang(args: number): number {
 }
 
 export default function TaskpoolTestTask() {
-  describe('ActsTaskPoolTest', () => {
+  describe('ActsTaskPoolTaskTest', () => {
     afterEach(async () => {
       await   asyncSleep(1000);
     })
