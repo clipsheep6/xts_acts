@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
 import wantConstant from '@ohos.app.ability.wantConstant';
 import commonEvent from '@ohos.commonEventManager';
@@ -62,19 +63,21 @@ export default class UiExtAbility extends ShareExtensionAbility {
         parameters: {
           [wantConstant.Params.ABILITY_BACK_TO_OTHER_MISSION_STACK]: true
         }
-      }).then(() => {
-        console.info('=======>Acts_ShareExtensionAbility_1100 UIExtAbility startAbility success ======>');
-        let commonEventData = {
-          parameters: {
-            str: 'success'
-          }
-        };
-        commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
-          console.debug('====>Acts_ShareExtensionAbility_1100 publish err:' + JSON.stringify(err));
+      })
+        .then(() => {
+          console.info('=======>Acts_ShareExtensionAbility_1100 UIExtAbility startAbility success ======>');
+          let commonEventData = {
+            parameters: {
+              str: 'success'
+            }
+          };
+          commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
+            console.debug('====>Acts_ShareExtensionAbility_1100 publish err:' + JSON.stringify(err));
+          });
+        })
+        .catch((err) => {
+          console.debug('====>Acts_ShareExtensionAbility_1100 UIExtAbility startAbility err:' + JSON.stringify(err));
         });
-      }).catch((err) => {
-        console.debug('====>Acts_ShareExtensionAbility_1100 UIExtAbility startAbility err:' + JSON.stringify(err));
-      });
     }
 
     if (want.action === 'Acts_ShareExtensionAbility_1200') {
@@ -134,21 +137,23 @@ export default class UiExtAbility extends ShareExtensionAbility {
         parameters: {
           [wantConstant.Params.ABILITY_BACK_TO_OTHER_MISSION_STACK]: true
         }
-      }).then((data) => {
-        console.info('=======>Acts_ShareExtensionAbility_1400 data.resultCode ======>' + data.resultCode);
-        console.info('=======>Acts_ShareExtensionAbility_1400 data.action ======>' + data.want.parameters.action);
-        let commonEventData = {
-          parameters: {
-            str: data.want.parameters.action,
-            result: data.resultCode
-          }
-        };
-        commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
-          console.debug('====>Acts_ShareExtensionAbility_1400 publish err:' + JSON.stringify(err));
+      })
+        .then((data) => {
+          console.info('=======>Acts_ShareExtensionAbility_1400 data.resultCode ======>' + data.resultCode);
+          console.info('=======>Acts_ShareExtensionAbility_1400 data.action ======>' + data.want.parameters.action);
+          let commonEventData = {
+            parameters: {
+              str: data.want.parameters.action,
+              result: data.resultCode
+            }
+          };
+          commonEvent.publish('ACTS_CALL_EVENT', commonEventData, (err) => {
+            console.debug('====>Acts_ShareExtensionAbility_1400 publish err:' + JSON.stringify(err));
+          });
+        })
+        .catch((error) => {
+          console.info('=======>Acts_ShareExtensionAbility_1400 error.code ======>' + error.code);
         });
-      }).catch((error) => {
-        console.info('=======>Acts_ShareExtensionAbility_1400 error.code ======>' + error.code);
-      });
     }
 
     if (want.action === 'Acts_ShareExtensionAbility_1500') {
@@ -433,4 +438,4 @@ export default class UiExtAbility extends ShareExtensionAbility {
   onForeground() {
     console.log('=====> UIExtAbility onForeground =====> ');
   }
-};
+}

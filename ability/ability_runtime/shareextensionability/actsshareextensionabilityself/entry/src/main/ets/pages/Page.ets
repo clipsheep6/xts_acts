@@ -12,9 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import Want from '@ohos.app.ability.Want';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
 import commonEventManager from '@ohos.commonEventManager';
+import { BusinessError } from '@ohos.base';
 
 const sleepTimeOne = 1000;
 let storage = LocalStorage.GetShared();
@@ -38,40 +40,42 @@ struct Page {
     let terminateSelfWithResultEvent = 'ACTS_UIExtension_TerminateSelfWithResult';
     let sendDataEvent = 'ACTS_UIExtension_SendData';
 
-    let subscriber;
-    let subscribeInfo = {
+    let subscriber: commonEventManager.CommonEventSubscriber;
+    let subscribeInfo: commonEventManager.CommonEventSubscribeInfo = {
       events: [terminateSelfWithResultEvent, sendDataEvent]
     };
-    commonEventManager.createSubscriber(subscribeInfo).then(async (data) => {
-      console.log('createSubscriber data : ' + JSON.stringify(data));
-      subscriber = data;
+    commonEventManager.createSubscriber(subscribeInfo)
+      .then(async (data) => {
+        console.log('createSubscriber data : ' + JSON.stringify(data));
+        subscriber = data;
 
-      commonEventManager.subscribe(subscriber, async (err, data) => {
-        console.log('SubscribeInfoCallback : ' + JSON.stringify(data));
-        if (data.event === terminateSelfWithResultEvent) {
-          this.session.terminateSelfWithResult({
-            'resultCode': 1,
-            'want': {
-              'action': 'SHARE'
-            }
-          });
-          commonEventManager.unsubscribe(subscriber, async (err, data) => {
-            console.log('UnSubscribeInfoCallback : ' + JSON.stringify(data));
-          });
-        } else if (data.event === sendDataEvent) {
-          this.session.sendData({
-            name: {
-              test: 'shareExtensionTest'
-            }
-          });
-          commonEventManager.unsubscribe(subscriber, async (err, data) => {
-            console.log('UnSubscribeInfoCallback : ' + JSON.stringify(data));
-          });
-        }
-      });
-    }).catch((error) => {
-      console.log('createSubscriber error : ' + JSON.stringify(error));
-    })
+        commonEventManager.subscribe(subscriber, async (err, data) => {
+          console.log('SubscribeInfoCallback : ' + JSON.stringify(data));
+          if (data.event === terminateSelfWithResultEvent) {
+            this.session.terminateSelfWithResult({
+              'resultCode': 1,
+              'want': {
+                'action': 'SHARE'
+              }
+            });
+            commonEventManager.unsubscribe(subscriber, async (err, data) => {
+              console.log('UnSubscribeInfoCallback : ' + JSON.stringify(data));
+            });
+          } else if (data.event === sendDataEvent) {
+            this.session.sendData({
+              name: {
+                test: 'shareExtensionTest'
+              }
+            });
+            commonEventManager.unsubscribe(subscriber, async (err, data) => {
+              console.log('UnSubscribeInfoCallback : ' + JSON.stringify(data));
+            });
+          }
+        });
+      })
+      .catch((error: BusinessError) => {
+        console.log('createSubscriber error : ' + JSON.stringify(error));
+      })
     setTimeout(async () => {
       commonEventManager.publish(appearEvent, (err) => {
         if (err) {
