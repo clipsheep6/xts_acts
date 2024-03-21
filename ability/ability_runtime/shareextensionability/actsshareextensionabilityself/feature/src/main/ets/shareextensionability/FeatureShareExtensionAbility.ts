@@ -12,6 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import ShareExtensionAbility from '@ohos.app.ability.ShareExtensionAbility';
 import commonEventManager from '@ohos.commonEventManager';
 
@@ -32,7 +33,7 @@ export default class FeatureShareExtensionAbility extends ShareExtensionAbility 
 
   onSessionCreate(want, session) {
     console.log('====>FeatureShareExtensionAbility onSessionCreate called');
-    commonEventManager.publish('ACTS_FEATURE_CREATE', function () {
+    commonEventManager.publish('ACTS_FEATURE_CREATE', () => {
     });
     if (want.action === 'Acts_ShareExtensionAbility_0400') {
       this.context.startAbility({
