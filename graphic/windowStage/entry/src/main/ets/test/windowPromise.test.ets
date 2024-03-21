@@ -1811,7 +1811,8 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         console.log(msgStr + " try begin")
         let options:ohosWindow.SubWindowOptions = {
           title: 'title',
-          decorEnabled: true
+          decorEnabled: true,
+          isModal: false
         };
         let promise = windowStage.createSubWindowWithOptions('mySubWindow', options);
         promise.then((data) => {
