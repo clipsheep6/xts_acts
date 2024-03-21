@@ -70,7 +70,7 @@ describe('ActsAbilityTest', function () {
               }
             }
             catch (e) {
-              console.info("taskpoolXTS061 catch error: " + e);
+              console.info("taskpoolXTS001 catch error: " + e);
             }
         }
         function promiseCase() {
@@ -1806,6 +1806,49 @@ describe('ActsAbilityTest', function () {
         });
         let name = taskGroup.name;
         expect(name).assertEqual("groupName");
+        done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0110
+     * @tc.name      : TaskPoolTestClass110
+     * @tc.desc      : add name of task for taskpool
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass110', 0, async function (done) {
+        function Sum(value1, value2) {
+            "use concurrent"
+            return value1 + value2;
+        }
+
+        let task = new taskpool.Task("taskName", Sum, 10, 20);
+        try {
+            task.name = "taskName1";
+        } catch (e) {
+            expect(e.toString()).assertEqual("TypeError: Cannot set property when setter is undefined");
+        }
+        done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0111
+     * @tc.name      : TaskPoolTestClass111
+     * @tc.desc      : add name of task for taskpool
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass111', 0, async function (done) {
+        function Sum(value1, value2) {
+            "use concurrent"
+            return value1 + value2;
+        }
+
+        let task = new taskpool.Task(Sum, 10, 20);
+        let name = task.name;
+        expect(name).assertEqual("Sum");
         done();
     })
 
