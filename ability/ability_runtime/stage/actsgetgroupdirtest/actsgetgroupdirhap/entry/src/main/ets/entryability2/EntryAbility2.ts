@@ -12,36 +12,43 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import Ability from '@ohos.app.ability.UIAbility';
 import commonEvent from '@ohos.commonEvent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
-function sleep(time) {
-  return new Promise((resolve) => setTimeout(resolve, time));
+function sleep(time: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, time));
 }
+
 export default class EntryAbility2 extends Ability {
-  onCreate(want, launchParam) {
-    this.context.getGroupDir('context_hap2').then(data => {
-      let commonEventData = {
-        parameters:{
-          res: data,
-        }
-      };
-      console.error('getgroupdirhap2 getGroupDir ====> result data' + data);
-      commonEvent.publish('ACTS_GETGROUP2_EVENT', commonEventData, (err) => {
-        console.log('getgroupdirhap2 getGroupDir publish err:' + JSON.stringify(err));
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    this.context.getGroupDir('context_hap2')
+      .then(data => {
+        let commonEventData = {
+          parameters: {
+            res: data,
+          }
+        };
+        console.error('getgroupdirhap2 getGroupDir ====> result data' + data);
+        commonEvent.publish('ACTS_GETGROUP2_EVENT', commonEventData, (err) => {
+          console.log('getgroupdirhap2 getGroupDir publish err:' + JSON.stringify(err));
+        });
+      })
+      .catch((error) => {
+        console.error('getgroupdirhap2 getGroupDir ====> result err' + JSON.stringify(error));
       });
-    }).catch((error) => {
-      console.error('getgroupdirhap2 getGroupDir ====> result err' + JSON.stringify(error));
-    });
   }
 
   onDestroy() {
     console.log('[Demo] EntryAbility2 onDestroy');
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('[Demo] EntryAbility2 onWindowStageCreate');
-    windowStage.setUIContent(this.context, 'pages/Index', null);
+    windowStage.loadContent('pages/Index', null);
   }
 
   onWindowStageDestroy() {
