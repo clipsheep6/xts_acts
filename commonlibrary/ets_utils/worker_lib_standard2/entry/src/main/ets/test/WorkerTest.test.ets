@@ -80,7 +80,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerConstructor001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -93,7 +93,7 @@ export default function workerTest() {
           expectAssertEqual(e.data, 'workerInstance');
           workerInstance_2.postMessage(e.data);
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_002.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_002.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -135,7 +135,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerConstructor002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_003.ts', {
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_003.ts', {
           name: 'workerInstance_1'
         });
         let isTerminate_1: boolean = false;
@@ -149,7 +149,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data, 'workerInstance_1');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_003.ts', {
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_003.ts', {
           name: 'workerInstance_2'
         });
         let isTerminate_2: boolean = false;
@@ -208,6 +208,7 @@ export default function workerTest() {
         done();
       } catch (error) {
         console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expect().assertFail();
         done();
       }
       console.info(`${caseName} test end`);
@@ -225,7 +226,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -237,7 +238,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data, 'string message');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_002.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_002.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -280,7 +281,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -293,7 +294,7 @@ export default function workerTest() {
           expectAssertEqual(e.data, 'string message');
           workerInstance_2.postMessage('string message');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_002.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_002.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -335,7 +336,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage003';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -347,7 +348,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data, 100001);
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -390,7 +391,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage004';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -403,7 +404,7 @@ export default function workerTest() {
           expectAssertEqual(e.data, 100001);
           workerInstance_2.postMessage(100002);
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -445,7 +446,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage005';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -457,7 +458,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertInstanceOf(e.data, 'Date');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -502,7 +503,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage006';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -516,7 +517,7 @@ export default function workerTest() {
           const date2: Date = new Date();
           workerInstance_2.postMessage(date2);
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -559,7 +560,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage007';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -571,7 +572,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertInstanceOf(e.data, 'RegExp');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -616,7 +617,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage008';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -630,7 +631,7 @@ export default function workerTest() {
           const re2: RegExp = new RegExp('worker2');
           workerInstance_2.postMessage(re2);
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -673,7 +674,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage009';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -685,7 +686,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertInstanceOf(e.data, 'Array');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -730,7 +731,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage010';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -744,7 +745,7 @@ export default function workerTest() {
           const arr2: Array<number> = Array(4, 5, 6);
           workerInstance_2.postMessage(arr2);
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -787,7 +788,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage011';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -799,7 +800,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertInstanceOf(e.data, 'Map');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -844,7 +845,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage012';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -858,7 +859,7 @@ export default function workerTest() {
           const map2: Map<string, string> = new Map([['name', 'worker2']]);
           workerInstance_2.postMessage(map2);
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -901,7 +902,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage013';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -913,7 +914,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertInstanceOf(e.data, 'Set');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -958,7 +959,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage014';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -972,7 +973,7 @@ export default function workerTest() {
           const set2: Set<number> = new Set([4, 5, 6]);
           workerInstance_2.postMessage(set2);
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1015,7 +1016,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage015';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1027,7 +1028,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data.name, 'workerInstance_1');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1076,7 +1077,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage016';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1092,7 +1093,7 @@ export default function workerTest() {
             type: 'worker.ThreadWorker'
           });
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1137,7 +1138,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage017';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1149,7 +1150,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertInstanceOf(e.data, 'ArrayBuffer');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1194,7 +1195,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage018';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1208,7 +1209,7 @@ export default function workerTest() {
           const buff2: ArrayBuffer = new ArrayBuffer(16);
           workerInstance_2.postMessage(buff2);
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1251,7 +1252,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage019';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1263,7 +1264,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertInstanceOf(e.data, 'Int8Array');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1308,7 +1309,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage020';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1322,7 +1323,7 @@ export default function workerTest() {
           const intArr2: Int8Array = new Int8Array([4, 5, 6]);
           workerInstance_2.postMessage(intArr2);
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1365,7 +1366,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerPostMessage021';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1376,7 +1377,7 @@ export default function workerTest() {
           console.info(`${caseName}: workerInstance_1.onmessage: ${JSON.stringify(e)}`);
           flag_1 = true;
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1433,7 +1434,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1445,7 +1446,7 @@ export default function workerTest() {
           flag_1 = true;
           count++;
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1496,7 +1497,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1510,7 +1511,7 @@ export default function workerTest() {
             type: 'workerInstance_2_on', timeStamp: 0
           });
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1559,7 +1560,7 @@ export default function workerTest() {
       try {
         let count_1: number = 0;
         let count_2: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1571,7 +1572,7 @@ export default function workerTest() {
           flag_1 = true;
           count_1++;
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1623,7 +1624,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1637,7 +1638,7 @@ export default function workerTest() {
             type: 'workerInstance_2_once', timeStamp: 0
           });
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1690,7 +1691,7 @@ export default function workerTest() {
       try {
         let count_1: number = 0;
         let count_2: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1702,7 +1703,7 @@ export default function workerTest() {
           flag_1 = true;
           count_1++;
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1763,7 +1764,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1776,7 +1777,7 @@ export default function workerTest() {
           count++;
           workerInstance_2.off('workerInstance_2_on');
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -1828,7 +1829,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerRegisterGlobalCallObject001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_004.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1840,7 +1841,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data, 'this is a message from TestObj');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_004.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1887,7 +1888,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerRegisterGlobalCallObject002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_004.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -1902,7 +1903,7 @@ export default function workerTest() {
           workerInstance_2.registerGlobalCallObject('myObj', registerObj_2);
           workerInstance_2.postMessage('withParameters');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_004.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -1946,7 +1947,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerUnregisterGlobalCallObject001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_004.ts');
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
           console.info(`${caseName}: workerInstance_1.onexit`);
@@ -1956,7 +1957,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(err.message, 'BusinessError: The globalCallObject is not registered');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_004.ts');
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -1998,7 +1999,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerUnregisterGlobalCallObject002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_004.ts');
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
           console.info(`${caseName}: workerInstance_1.onexit`);
@@ -2010,7 +2011,7 @@ export default function workerTest() {
           workerInstance_2.unregisterGlobalCallObject('myObj');
           workerInstance_2.postMessage('withParameters');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_004.ts');
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -2050,13 +2051,13 @@ export default function workerTest() {
       const caseName: string = 'testWorkerTerminateAndOnexit001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         workerInstance_1.onexit = (): void => {
           console.info(`${caseName}: workerInstance_1.onexit`);
           isTerminate_1 = true;
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_002.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_002.ts');
         let isTerminate_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -2090,14 +2091,14 @@ export default function workerTest() {
       const caseName: string = 'testWorkerTerminateAndOnexit002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         workerInstance_1.onexit = (): void => {
           console.info(`${caseName}: workerInstance_1.onexit`);
           isTerminate_1 = true;
           workerInstance_2.terminate();
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_002.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_002.ts');
         let isTerminate_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -2130,7 +2131,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerTerminateAndOnexit003';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         workerInstance.onexit = (code: number) => {
           console.info(`${caseName}: workerInstance.onexit`);
           expectAssertEqual(code, 0);
@@ -2139,6 +2140,7 @@ export default function workerTest() {
         workerInstance.terminate();
       } catch (error) {
         console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expect().assertFail();
         done();
       }
       console.info(`${caseName} test end`);
@@ -2156,7 +2158,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerTerminateAndOnexit004';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_005.ts');
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_005.ts');
         workerInstance.onexit = (code: number) => {
           console.info(`${caseName}: workerInstance.onexit`);
           expectAssertEqual(code, 1);
@@ -2186,7 +2188,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerOnerror001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_005.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_005.ts');
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
           console.info(`${caseName}: workerInstance_1.onexit`);
@@ -2196,7 +2198,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(err.message, 'Error: worker throw error');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_005.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_005.ts');
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -2232,7 +2234,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerOnerror002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_005.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_005.ts');
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
           console.info(`${caseName}: workerInstance_1.onexit`);
@@ -2243,7 +2245,7 @@ export default function workerTest() {
           expectAssertEqual(err.message, 'Error: worker throw error');
           workerInstance_2.postMessage('error');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_005.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_005.ts');
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -2278,7 +2280,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerOnmessage001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -2290,7 +2292,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data, 'string message');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_002.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_002.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -2333,7 +2335,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerOnmessage002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -2345,7 +2347,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data.name, 'workerInstance_1');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -2394,7 +2396,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerOnmessageerror001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -2405,7 +2407,7 @@ export default function workerTest() {
           console.info(`${caseName}: workerInstance_1.onmessageerror: ${JSON.stringify(err)}`);
           flag_1 = true;
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_002.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_002.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -2467,7 +2469,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerOnmessageerror002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -2485,7 +2487,7 @@ export default function workerTest() {
             expectAssertContain(error.message, 'An exception occurred during serialization');
           }
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_002.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_002.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -2541,7 +2543,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -2553,7 +2555,7 @@ export default function workerTest() {
           flag_1 = true;
           count++;
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -2604,7 +2606,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -2618,7 +2620,7 @@ export default function workerTest() {
             type: 'workerInstance_2_addEventListener', timeStamp: 0
           });
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -2667,7 +2669,7 @@ export default function workerTest() {
       try {
         let count_1: number = 0;
         let count_2: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -2679,7 +2681,7 @@ export default function workerTest() {
           flag_1 = true;
           count_1++;
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -2740,7 +2742,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -2753,7 +2755,7 @@ export default function workerTest() {
           count++;
           workerInstance_2.removeEventListener('workerInstance_2_addEventListener');
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -2809,7 +2811,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -2821,7 +2823,7 @@ export default function workerTest() {
           flag_1 = true;
           count++;
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -2876,7 +2878,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -2892,7 +2894,7 @@ export default function workerTest() {
           console.info(`${caseName}: dispatchEventSuccess_2 = ${dispatchEventSuccess_2}`);
           expectAssertTrue(dispatchEventSuccess_2);
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -2942,7 +2944,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -2954,7 +2956,7 @@ export default function workerTest() {
           flag_1 = true;
           count++;
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -3009,7 +3011,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -3025,7 +3027,7 @@ export default function workerTest() {
           console.info(`${caseName}: dispatchEventSuccess_2 = ${dispatchEventSuccess_2}`);
           expectAssertTrue(dispatchEventSuccess_2);
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -3076,7 +3078,7 @@ export default function workerTest() {
       try {
         let count_1: number = 0;
         let count_2: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         let flag_1_2: boolean = false;
@@ -3094,7 +3096,7 @@ export default function workerTest() {
           flag_1_2 = true;
           count_1++;
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         let flag_2_2: boolean = false;
@@ -3173,7 +3175,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         let flag_1_2: boolean = false;
@@ -3192,7 +3194,7 @@ export default function workerTest() {
           count++;
           workerInstance_2.removeAllListener();
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -3259,7 +3261,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -3271,7 +3273,7 @@ export default function workerTest() {
           flag_1 = true;
           count++;
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -3322,7 +3324,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -3336,7 +3338,7 @@ export default function workerTest() {
             type: 'workerInstance_2_addEventListener', timeStamp: 0
           });
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -3385,7 +3387,7 @@ export default function workerTest() {
       try {
         let count_1: number = 0;
         let count_2: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -3397,7 +3399,7 @@ export default function workerTest() {
           flag_1 = true;
           count_1++;
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -3458,7 +3460,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -3471,7 +3473,7 @@ export default function workerTest() {
           count++;
           workerInstance_2.removeEventListener('workerInstance_2_addEventListener');
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -3524,7 +3526,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -3536,7 +3538,7 @@ export default function workerTest() {
           flag_1 = true;
           count++;
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -3591,7 +3593,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -3607,7 +3609,7 @@ export default function workerTest() {
           console.info(`${caseName}: dispatchEventSuccess_2 = ${dispatchEventSuccess_2}`);
           expectAssertTrue(dispatchEventSuccess_2);
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -3657,7 +3659,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -3669,7 +3671,7 @@ export default function workerTest() {
           flag_1 = true;
           count++;
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -3724,7 +3726,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -3740,7 +3742,7 @@ export default function workerTest() {
           console.info(`${caseName}: dispatchEventSuccess_2 = ${dispatchEventSuccess_2}`);
           expectAssertTrue(dispatchEventSuccess_2);
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -3791,7 +3793,7 @@ export default function workerTest() {
       try {
         let count_1: number = 0;
         let count_2: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         let flag_1_2: boolean = false;
@@ -3809,7 +3811,7 @@ export default function workerTest() {
           flag_1_2 = true;
           count_1++;
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         let flag_2_2: boolean = false;
@@ -3888,7 +3890,7 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         let count: number = 0;
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         let flag_1_2: boolean = false;
@@ -3907,7 +3909,7 @@ export default function workerTest() {
           count++;
           workerInstance_2.removeAllListener();
         });
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
         let isTerminate_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -3972,7 +3974,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_029.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_029.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -3984,7 +3986,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data, 100001);
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_029.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_029.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4027,7 +4029,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_029.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_029.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4040,7 +4042,7 @@ export default function workerTest() {
           expectAssertEqual(e.data, 100001);
           workerInstance_2.postMessage('start');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_029.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_029.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4082,7 +4084,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage003';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_030.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_030.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4094,7 +4096,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertInstanceOf(e.data, 'Date');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_030.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_030.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4137,7 +4139,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage004';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_030.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_030.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4150,7 +4152,7 @@ export default function workerTest() {
           expectAssertInstanceOf(e.data, 'Date');
           workerInstance_2.postMessage('start');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_030.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_030.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4192,7 +4194,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage005';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_006.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_006.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4204,7 +4206,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data, 'receive data from worker_006');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_006.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_006.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4247,7 +4249,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage006';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_006.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_006.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4260,7 +4262,7 @@ export default function workerTest() {
           expectAssertEqual(e.data, 'receive data from worker_006');
           workerInstance_2.postMessage('message');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_006.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_006.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4302,7 +4304,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage007';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_031.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_028.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4314,7 +4316,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertInstanceOf(e.data, 'RegExp');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_031.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_028.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4357,7 +4359,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage008';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_031.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_028.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4370,7 +4372,7 @@ export default function workerTest() {
           expectAssertInstanceOf(e.data, 'RegExp');
           workerInstance_2.postMessage('start');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_031.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_028.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4412,7 +4414,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage009';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_032.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_027.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4424,7 +4426,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertInstanceOf(e.data, 'Array');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_032.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_027.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4467,7 +4469,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage010';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_032.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_027.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4480,7 +4482,7 @@ export default function workerTest() {
           expectAssertInstanceOf(e.data, 'Array');
           workerInstance_2.postMessage('start');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_032.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_027.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4522,7 +4524,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage011';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_033.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_025.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4534,7 +4536,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertInstanceOf(e.data, 'Map');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_033.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_025.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4577,7 +4579,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage012';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_033.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_025.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4590,7 +4592,7 @@ export default function workerTest() {
           expectAssertInstanceOf(e.data, 'Map');
           workerInstance_2.postMessage('start');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_033.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_025.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4632,7 +4634,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage013';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_034.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_017.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4644,7 +4646,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertInstanceOf(e.data, 'Set');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_034.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_017.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4687,7 +4689,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage014';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_034.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_017.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4700,7 +4702,7 @@ export default function workerTest() {
           expectAssertInstanceOf(e.data, 'Set');
           workerInstance_2.postMessage('start');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_034.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_017.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4742,7 +4744,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage015';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_007.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_007.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4754,7 +4756,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data.type, 'workerPort');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_007.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_007.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4803,7 +4805,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage016';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_007.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_007.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4819,7 +4821,7 @@ export default function workerTest() {
             type: 'worker.ThreadWorker'
           });
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_007.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_007.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4864,7 +4866,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage017';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_035.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_011.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4876,7 +4878,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertInstanceOf(e.data, 'ArrayBuffer');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_035.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_011.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4919,7 +4921,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage018';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_035.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_011.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4932,7 +4934,7 @@ export default function workerTest() {
           expectAssertInstanceOf(e.data, 'ArrayBuffer');
           workerInstance_2.postMessage('start');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_035.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_011.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -4974,7 +4976,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage019';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_036.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_009.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -4986,7 +4988,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertInstanceOf(e.data, 'Int8Array');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_036.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_009.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -5029,7 +5031,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage020';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_036.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_009.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -5042,7 +5044,7 @@ export default function workerTest() {
           expectAssertInstanceOf(e.data, 'Int8Array');
           workerInstance_2.postMessage('start');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_036.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_009.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -5084,7 +5086,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopePostMessage021';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_008.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_008.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -5098,7 +5100,7 @@ export default function workerTest() {
             expectAssertEqual(e.data.message, 'IsDetachedBuffer');
           }
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_008.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_008.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -5143,7 +5145,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerCallGlobalCallObjectMethod001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_004.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -5155,7 +5157,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data, 'this is a message from TestObj');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_004.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -5202,7 +5204,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerCallGlobalCallObjectMethod002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_004.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -5215,7 +5217,7 @@ export default function workerTest() {
           expectAssertEqual(e.data, 'this is a message from TestObj');
           workerInstance_2.postMessage('withParameters');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_004.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -5261,13 +5263,13 @@ export default function workerTest() {
       const caseName: string = 'testWorkerClose001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_016.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_016.ts');
         let isTerminate_1: boolean = false;
         workerInstance_1.onexit = (): void => {
           console.info(`${caseName}: workerInstance_1.onexit`);
           isTerminate_1 = true;
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_016.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_016.ts');
         let isTerminate_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -5301,14 +5303,14 @@ export default function workerTest() {
       const caseName: string = 'testWorkerClose002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_016.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_016.ts');
         let isTerminate_1: boolean = false;
         workerInstance_1.onexit = (): void => {
           console.info(`${caseName}: workerInstance_1.onexit`);
           isTerminate_1 = true;
           workerInstance_2.postMessage('close');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_016.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_016.ts');
         let isTerminate_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -5341,7 +5343,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopeOnmessage001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_018.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_018.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -5353,7 +5355,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data, 'Successfully received string message sent by the main thread');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_018.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_018.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -5396,7 +5398,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopeOnmessage002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_019.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_019.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -5408,7 +5410,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data, 'Successfully received object message sent by the main thread');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_019.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_019.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -5457,7 +5459,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopeOnmessageerror001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_020.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_020.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -5469,7 +5471,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data, 'Worker thread successfully processed error');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_020.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_020.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -5512,7 +5514,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerThreadWorkerGlobalScopeOnmessageerror002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_020.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_020.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -5525,7 +5527,7 @@ export default function workerTest() {
           expectAssertEqual(e.data, 'Worker thread successfully processed error');
           workerInstance_2.postMessage('start');
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_020.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_020.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -5567,7 +5569,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerGlobalScopeOnerror001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_021.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_021.ts');
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
           console.info(`${caseName}: workerInstance_1.onexit`);
@@ -5580,7 +5582,7 @@ export default function workerTest() {
         workerInstance_1.onerror = (err: ErrorEvent): void => {
           console.info(`${caseName}: workerInstance_1.onerror: ${JSON.stringify(err)}`);
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_021.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_021.ts');
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -5619,7 +5621,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerGlobalScopeOnerror002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_021.ts');
+        const workerInstance_1: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_021.ts');
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
           console.info(`${caseName}: workerInstance_1.onexit`);
@@ -5633,7 +5635,7 @@ export default function workerTest() {
         workerInstance_1.onerror = (err: ErrorEvent): void => {
           console.info(`${caseName}: workerInstance_1.onerror: ${JSON.stringify(err)}`);
         }
-        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_021.ts');
+        const workerInstance_2: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_021.ts');
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
           console.info(`${caseName}: workerInstance_2.onexit`);
@@ -5671,7 +5673,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerRestrictedWorkerConstructor001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.RestrictedWorker = new worker.RestrictedWorker('../workers/worker_022.ts');
+        const workerInstance_1: worker.RestrictedWorker = new worker.RestrictedWorker('entry/ets/workers/worker_022.ts');
         let isTerminate_1: boolean = false;
         let flag_1: boolean = false;
         workerInstance_1.onexit = (): void => {
@@ -5684,7 +5686,7 @@ export default function workerTest() {
           expectAssertEqual(e.data, 'workerInstance');
           workerInstance_2.postMessage(e.data);
         }
-        const workerInstance_2: worker.RestrictedWorker = new worker.RestrictedWorker('../workers/worker_022.ts');
+        const workerInstance_2: worker.RestrictedWorker = new worker.RestrictedWorker('entry/ets/workers/worker_022.ts');
         let isTerminate_2: boolean = false;
         let flag_2: boolean = false;
         workerInstance_2.onexit = (): void => {
@@ -5726,7 +5728,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerRestrictedWorkerConstructor002';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance_1: worker.RestrictedWorker = new worker.RestrictedWorker('../workers/worker_023.ts', {
+        const workerInstance_1: worker.RestrictedWorker = new worker.RestrictedWorker('entry/ets/workers/worker_023.ts', {
           name: 'workerInstance_1'
         });
         let isTerminate_1: boolean = false;
@@ -5740,7 +5742,7 @@ export default function workerTest() {
           flag_1 = true;
           expectAssertEqual(e.data, 'workerInstance_1');
         }
-        const workerInstance_2: worker.RestrictedWorker = new worker.RestrictedWorker('../workers/worker_023.ts', {
+        const workerInstance_2: worker.RestrictedWorker = new worker.RestrictedWorker('entry/ets/workers/worker_023.ts', {
           name: 'workerInstance_2'
         });
         let isTerminate_2: boolean = false;
@@ -5785,7 +5787,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerRestrictedWorkerConstructor003';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance: worker.RestrictedWorker = new worker.RestrictedWorker('../workers/worker_024.ts');
+        const workerInstance: worker.RestrictedWorker = new worker.RestrictedWorker('entry/ets/workers/worker_024.ts');
         let isTerminate: boolean = false;
         let flag: boolean = false;
         workerInstance.onexit = (): void => {
@@ -5840,6 +5842,7 @@ export default function workerTest() {
         done();
       } catch (error) {
         console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
+        expect().assertFail();
         done();
       }
       console.info(`${caseName} test end`);
@@ -5857,7 +5860,7 @@ export default function workerTest() {
       const caseName: string = 'testWorkerGlobalScopeAndErrorEvent001';
       console.info(`${caseName} test start`);
       try {
-        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_026.ts', {
+        const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_026.ts', {
           name: 'workerInstance'
         });
         let isTerminate: boolean = false;
@@ -5915,10 +5918,10 @@ export default function workerTest() {
           let flag: boolean = false;
           const workerInstances: worker.ThreadWorker[] = [];
           for (let i: number = 0; i < 8; i++) {
-            workerInstances.push(new worker.ThreadWorker('../workers/worker.ts'));
+            workerInstances.push(new worker.ThreadWorker('entry/ets/workers/worker.ts'));
           }
           try {
-            const workerInstance_9: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+            const workerInstance_9: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
             workerInstance_9.terminate();
           } catch (error) {
             console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
@@ -5942,7 +5945,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_022.ts', {
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_022.ts', {
             type: 'module', name: 'first worker in Stage model', shared: false
           });
         } catch (error) {
@@ -5952,7 +5955,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
           let isTerminate: boolean = false;
           workerInstance.onexit = (): void => {
             console.info(`${caseName}: workerInstance.onexit`);
@@ -5973,7 +5976,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
           let isTerminate: boolean = false;
           workerInstance.onexit = (): void => {
             console.info(`${caseName}: workerInstance.onexit`);
@@ -6000,7 +6003,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
           let isTerminate: boolean = false;
           workerInstance.onexit = (): void => {
             console.info(`${caseName}: workerInstance.onexit`);
@@ -6020,7 +6023,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
           let isTerminate: boolean = false;
           workerInstance.onexit = (): void => {
             console.info(`${caseName}: workerInstance.onexit`);
@@ -6040,7 +6043,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
           let isTerminate: boolean = false;
           workerInstance.onexit = (): void => {
             console.info(`${caseName}: workerInstance.onexit`);
@@ -6061,7 +6064,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_004.ts');
           let isTerminate: boolean = false;
           workerInstance.onexit = (): void => {
             console.info(`${caseName}: workerInstance.onexit`);
@@ -6080,7 +6083,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_004.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_004.ts');
           let isTerminate: boolean = false;
           workerInstance.onexit = (): void => {
             console.info(`${caseName}: workerInstance.onexit`);
@@ -6100,7 +6103,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
           let isTerminate: boolean = false;
           workerInstance.onexit = (): void => {
             console.info(`${caseName}: workerInstance.onexit`);
@@ -6118,7 +6121,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
           let isTerminate: boolean = false;
           workerInstance.onexit = (): void => {
             console.info(`${caseName}: workerInstance.onexit`);
@@ -6138,7 +6141,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
           let isTerminate: boolean = false;
           workerInstance.onexit = (): void => {
             console.info(`${caseName}: workerInstance.onexit`);
@@ -6159,7 +6162,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
           let isTerminate: boolean = false;
           workerInstance.onexit = (): void => {
             console.info(`${caseName}: workerInstance.onexit`);
@@ -6179,7 +6182,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker.ts');
           let isTerminate: boolean = false;
           workerInstance.onexit = (): void => {
             console.info(`${caseName}: workerInstance.onexit`);
@@ -6203,7 +6206,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_010.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_010.ts');
           let isTerminate: boolean = false;
           let flag: boolean = false;
           workerInstance.onexit = (): void => {
@@ -6231,7 +6234,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_012.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_012.ts');
           let isTerminate: boolean = false;
           let flag: boolean = false;
           workerInstance.onexit = (): void => {
@@ -6271,7 +6274,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_013.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_013.ts');
           let isTerminate: boolean = false;
           let flag: boolean = false;
           workerInstance.onexit = (): void => {
@@ -6302,7 +6305,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_014.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_014.ts');
           let isTerminate: boolean = false;
           let flag: boolean = false;
           workerInstance.onexit = (): void => {
@@ -6340,7 +6343,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../workers/worker_015.ts');
+          const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('entry/ets/workers/worker_015.ts');
           let isTerminate: boolean = false;
           let flag: boolean = false;
           workerInstance.onexit = (): void => {
@@ -6385,10 +6388,10 @@ export default function workerTest() {
           let flag: boolean = false;
           const workerInstances: worker.RestrictedWorker[] = [];
           for (let i: number = 0; i < 16; i++) {
-            workerInstances.push(new worker.RestrictedWorker('../workers/worker_022.ts'));
+            workerInstances.push(new worker.RestrictedWorker('entry/ets/workers/worker_022.ts'));
           }
           try {
-            const workerInstance_17: worker.RestrictedWorker = new worker.RestrictedWorker('../workers/worker_022.ts');
+            const workerInstance_17: worker.RestrictedWorker = new worker.RestrictedWorker('entry/ets/workers/worker_022.ts');
             workerInstance_17.terminate();
           } catch (error) {
             console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
@@ -6412,7 +6415,7 @@ export default function workerTest() {
         }
 
         try {
-          const workerInstance: worker.RestrictedWorker = new worker.RestrictedWorker('../workers/worker_022.ts', {
+          const workerInstance: worker.RestrictedWorker = new worker.RestrictedWorker('entry/ets/workers/worker_022.ts', {
             type: 'module', name: 'first worker in Stage model', shared: false
           });
         } catch (error) {
