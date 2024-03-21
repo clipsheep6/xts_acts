@@ -47,6 +47,76 @@ async function getFd(fileName: string) {
   })
 }
 
+async function recordingFun(audioCap: audio.AudioCapturer) {
+  try {
+    let audioParamsGet = await audioCap.getStreamInfo();
+    if (audioParamsGet != undefined && audioParamsGet != null) {
+      console.info(`${Tag} Capturer getStreamInfo:${JSON.stringify(audioParamsGet)}`);
+    } else {
+      console.info(`${Tag} audioParamsGet are incorrect,is :  ${JSON.stringify(audioParamsGet)}`);
+      expect(false).assertTrue();
+    }
+  } catch (err) {
+    console.log(`${Tag} getStreamInfo  :ERROR:  ${JSON.stringify(err.message)} ${JSON.stringify(err.code)}`);
+    expect(false).assertTrue();
+  }
+  try {
+    let audioParamsGet = await audioCap.getCapturerInfo();
+    if (audioParamsGet != undefined) {
+      console.info(`${Tag} Capturer CapturerInfo: ${JSON.stringify(audioParamsGet)}`);
+    } else {
+      console.info(`${Tag} audioParamsGet are incorrect , is :  ${JSON.stringify(audioParamsGet)}`);
+      expect(false).assertTrue();
+    }
+  } catch (err) {
+    console.log(`${Tag} CapturerInfo :ERROR:  ${JSON.stringify(err.message)} ${JSON.stringify(err.code)}`);
+    expect(false).assertTrue();
+  }
+  try {
+    await audioCap.start();
+    console.log(`${Tag} start ok`);
+    let bufferSize = await audioCap.getBufferSize();
+    console.log(`${Tag} bufferSize: ${JSON.stringify(bufferSize)} , dirPath: ${JSON.stringify(dirPath)}`);
+    let fd = fileio.openSync(dirPath, 0o102, 0o777);
+    console.log(`${Tag} fd: ${JSON.stringify(fd)}`);
+    if (fd !== null) {
+      console.info(`${Tag} file fd created`);
+    } else {
+      console.info(`${Tag} Capturer start : ERROR `);
+      expect(false).assertTrue();
+    }
+    fd = fileio.openSync(dirPath, 0o2002, 0o666);
+    console.log(`${Tag} fd-re: ${JSON.stringify(fd)}`);
+    if (fd !== null) {
+      console.info(`${Tag} file fd opened : Append Mode :PASS`);
+    }
+    else {
+      console.info(`${Tag} file fd Open: Append Mode : FAILED`);
+      expect(false).assertTrue();
+    }
+    let numBuffersToCapture = 45;
+    while (numBuffersToCapture) {
+      if (numBuffersToCapture % 5 == 0) {
+        console.info(`${Tag} ---------READ BUFFER---------`);
+      }
+      let buffer = await audioCap.read(bufferSize, true);
+      if (numBuffersToCapture % 5 == 0) {
+        console.info(`${Tag} ---------WRITE BUFFER---------`);
+      }
+      let number = fileio.writeSync(fd, buffer);
+      if (numBuffersToCapture % 5 == 0) {
+        console.info(`${Tag} BufferRecLog: data written:  ${JSON.stringify(number)}`);
+        console.info(`${Tag} numBuffersToCapture: ${numBuffersToCapture}`)
+      }
+      numBuffersToCapture--;
+    }
+    console.log(`${Tag} read ok`);
+  } catch (err) {
+    console.log(`${Tag} start-read err: ${JSON.stringify(err)}`);
+    expect(false).assertTrue();
+  }
+}
+
 async function releaseFun(audioCap: audio.AudioCapturer) {
   try {
     await audioCap.release();
@@ -54,6 +124,21 @@ async function releaseFun(audioCap: audio.AudioCapturer) {
   } catch (err) {
     console.log(`${Tag} release fail,err : ${JSON.stringify(err)}`);
   }
+}
+
+function getCapturerInfo(CapturerChangeInfo) {
+  let str = ``;
+  let Info = CapturerChangeInfo[0];
+  str += `nStreamId:${Info.streamId}, ClientUid:${Info.clientUid}, State:${Info.capturerState}, muted:${Info.muted},
+              Source:${Info.capturerInfo.source}, Flag:${Info.capturerInfo.capturerFlags},\n`;
+  for (let j = 0; j < Info.deviceDescriptors.length; j++) {
+    let descriptor = Info.deviceDescriptors[j];
+    str += `__deviceDescriptors_${j}\n`;
+    str += `Id:${descriptor.id}, Type:${descriptor.deviceType}, Role:${descriptor.deviceRole},
+                Name:${descriptor.name}, Address:${descriptor.address}, SampleRates:${descriptor.sampleRates[0]},
+                ChannelCounts:${descriptor.channelCounts[0]}, ChannelMask:${descriptor.channelMasks}, encodingTypes:${descriptor.encodingTypes[0]}\n`;
+  }
+  return str;
 }
 
 export default function audioCapturerEnhanceTest() {
