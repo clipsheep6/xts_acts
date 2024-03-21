@@ -16,7 +16,7 @@
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World ActsContextDirFeature'
+  @State message: string = 'Hello World ActsContextDirFeature';
 
   build() {
     Row() {
