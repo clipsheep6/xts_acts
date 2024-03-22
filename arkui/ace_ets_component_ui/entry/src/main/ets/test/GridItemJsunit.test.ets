@@ -66,18 +66,17 @@ export default function GridItemJsunit() {
       console.info('[GridItemJsunit_0100] START');
       await CommonFunc.sleep(2000);
       let strJson1 = getInspectorByKey('gridItem1');
-      console.info("[GridItemJsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(JSON.parse(strJson1))));
-      //expect(JSON.parse(strJson).$attrs.rowStart).assertEqual('1');
-      //expect(JSON.parse(strJson).$attrs.rowEnd).assertEqual('4');
-      expect(JSON.parse(JSON.parse(strJson1)).$attrs.selectable).assertEqual('false');
+      console.info("[GridItemJsunit_0100] component obj is: " + JSON.stringify(JSON.parse(strJson1)));
+      //expect(obj.$attrs.rowStart).assertEqual('1');
+      //expect(obj.$attrs.rowEnd).assertEqual('4');
+      expect(JSON.parse(strJson1).$attrs.selectable).assertEqual('false');
       // Verify the default value of forceRebuild
-      expect(JSON.parse(JSON.parse(strJson1)).$attrs.forceRebuild).assertEqual('false');
+      expect(JSON.parse(strJson1).$attrs.forceRebuild).assertEqual('false');
       await CommonFunc.sleep(1000);
       let strJson2 = getInspectorByKey('gridItem2');
-
-      console.info("[GridItemJsunit_0100] component JSON.parse(strJson2) is: " + JSON.stringify(JSON.parse(strJson2)));
-      //expect(JSON.parse(strJson2).$attrs.columnStart).assertEqual('1');
-      //expect(JSON.parse(strJson2).$attrs.columnEnd).assertEqual('5');
+      console.info("[GridItemJsunit_0100] component obj2 is: " + JSON.stringify(JSON.parse(strJson2)));
+      //expect(obj2.$attrs.columnStart).assertEqual('1');
+      //expect(obj2.$attrs.columnEnd).assertEqual('5');
       expect(JSON.parse(strJson2).$attrs.forceRebuild).assertEqual('true');
       // Verify the default value of selectable
       expect(JSON.parse(strJson2).$attrs.selectable).assertEqual('true');

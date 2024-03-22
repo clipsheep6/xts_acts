@@ -150,7 +150,7 @@ export default function StorageLinkJsunit1() {
       let strJson6 = getInspectorByKey('button_son6');
       console.info("[StorageLinkJsunit1_0600] son6 JSON.parse(strJson)6 is: " + JSON.stringify(JSON.parse(strJson6)));
       await CommonFunc.sleep(1000);
-      expect(JSON.parse(strJson6).$attrs.label).assertEqual('JSON.parse(strJson): {"name":"ls","age":13}');
+      expect(JSON.parse(strJson6).$attrs.label).assertEqual('obj: {"name":"ls","age":13}');
       console.info('[StorageLinkJsunit1_0600] END');
       done();
     });
@@ -231,7 +231,7 @@ export default function StorageLinkJsunit1() {
       let strJson11 = getInspectorByKey('button_son11');
       console.info("[StorageLinkJsunit1_1100] son11 JSON.parse(strJson1)1 is: " + JSON.stringify(JSON.parse(strJson11)));
       await CommonFunc.sleep(1000);
-      expect(JSON.parse(strJson11).$attrs.label).assertEqual('JSON.parse(strJson)Array: [{"name":"ls"},{"name":"zs"}]');
+      expect(JSON.parse(strJson11).$attrs.label).assertEqual('objArray: [{"name":"ls"},{"name":"zs"}]');
       console.info('[StorageLinkJsunit1_1100] END');
       done();
     });
