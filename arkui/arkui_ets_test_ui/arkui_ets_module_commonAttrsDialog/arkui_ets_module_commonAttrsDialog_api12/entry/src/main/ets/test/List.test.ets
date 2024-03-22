@@ -21,6 +21,7 @@ import CloseMask from './menuControlTest/bindContextMenuTest/CloseMask.test.ets'
 import CloseMenu from './menuControlTest/bindContextMenuTest/CloseMenu.test.ets'
 import IsShowFalse from './menuControlTest/bindContextMenuTest/IsShowFalse.test.ets'
 import preview from './menuControlTest/bindContextMenuTest/preview.test.ets'
+import BindMenuTest from './menuControlTest/BindMenu.test'
 
 export default function testsuite() {
   aboutToAppearFalse();
@@ -32,4 +33,5 @@ export default function testsuite() {
   CloseMenu();
   IsShowFalse();
   preview();
+  BindMenuTest();
 }

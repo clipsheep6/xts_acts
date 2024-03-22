@@ -2,6 +2,8 @@
     "src": [
         "MainAbility/pages/index/index",
         "MainAbility/pages/text/textStyle",
-        "MainAbility/pages/marquee/marquee"
+        "MainAbility/pages/marquee/marquee",
+        "MainAbility/pages/text/ImageText",
+        "MainAbility/pages/TextArea/TextAreaCallback"
     ]
 }
