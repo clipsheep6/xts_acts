@@ -17,14 +17,14 @@ import bundle from '@ohos.bundle.bundleManager';
 import { describe, beforeAll, it, expect } from '@ohos/hypium'
 
 export default function GetSecondModuleTest() {
-  describe('getSecondModuleTest', function () {
+  describe('getSecondModuleTest', () => {
 
     /**
      * @tc.number SUB_BMS_APPINFO_QUERY_0138
      * @tc.name GetSecondModuleTest
      * @tc.desc Test the bundleManager secondary module
      */
-    it('GetSecondModuleTest', 0, async function (done) {
+    it('GetSecondModuleTest', 0, async (done: Function) => {
       let bundleInfo = await bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION |
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO |
@@ -56,10 +56,10 @@ export default function GetSecondModuleTest() {
       let elementNameExample = {
         deviceId: "123456789",
         bundleName: "bundleName",
-        moduleName:"moduleName",
+        moduleName: "moduleName",
         abilityName: "abilityName",
-        uri:"uri",
-        shortName:"shortName"
+        uri: "uri",
+        shortName: "shortName"
       }
       let elementNameTest: bundle.ElementName = elementNameExample;
       expect(elementNameTest.deviceId).assertEqual("123456789");

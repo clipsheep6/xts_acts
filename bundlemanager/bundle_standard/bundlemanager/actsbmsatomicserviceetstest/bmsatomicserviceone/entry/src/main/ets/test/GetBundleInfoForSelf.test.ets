@@ -24,18 +24,118 @@ const SOURCE_DIR = "/data/app/el1/bundle/public/ohos.acts.bundle.stage.test/test
 const ABILITY_NAME = "ohos.acts.bundle.stage.test.MainAbility";
 const ABILITY_NAME1 = "ohos.acts.bundle.stage.test.MainAbility1";
 const APPID = "ohos.acts.bundle.stage.test_BNtg4JBClbl92Rgc3jm/RfcAdrHXaM8F0QO" +
-"iwVEhnV5ebE5jNIYnAx+weFRT3QTyUjRNdhmc2aAzWyi+5t5CoBM=";
+  "iwVEhnV5ebE5jNIYnAx+weFRT3QTyUjRNdhmc2aAzWyi+5t5CoBM=";
 const FINGERPRINT = "8E93863FC32EE238060BF69A9B37E2608FFFB21F93C862DD511CBAC9F30024B5";
 const PARAM_ERROR_CODE = 401;
 
+function checkCommonBundleInfo(data) {
+  expect(data.name).assertEqual(BUNDLE_NAME);
+  expect(data.vendor).assertEqual(VENDOR);
+  expect(data.versionCode).assertEqual(1000000);
+  expect(data.versionName).assertEqual("1.0.0");
+  expect(data.minCompatibleVersionCode).assertEqual(1000000);
+  expect(data.targetVersion).assertEqual(8);
+  expect(data.installTime).assertLarger(0);
+  expect(data.updateTime).assertLarger(0);
+  console.info("checkCommonBundleInfo end");
+}
+
+function checkCommonApplicationInfo(data) {
+  expect(data.appInfo.name).assertEqual(BUNDLE_NAME);
+  expect(data.appInfo.description).assertEqual("$string:description_application");
+  expect(data.appInfo.descriptionId).assertLarger(0);
+  expect(data.appInfo.enabled).assertTrue();
+  expect(data.appInfo.label).assertEqual("$string:app_name");
+  expect(data.appInfo.labelId).assertLarger(0);
+  expect(data.appInfo.icon).assertEqual("$media:icon");
+  expect(data.appInfo.iconId).assertLarger(0);
+  expect(data.appInfo.process).assertEqual(BUNDLE_NAME);
+  expect(data.appInfo.codePath).assertEqual("/data/app/el1/bundle/public/ohos.acts.bundle.stage.test");
+  expect(data.appInfo.removable).assertTrue(0);
+  expect(data.appInfo.accessTokenId).assertLarger(0);
+  expect(data.appInfo.uid).assertLarger(0);
+  expect(data.appInfo.iconResource.bundleName).assertEqual(BUNDLE_NAME);
+  expect(data.appInfo.iconResource.moduleName).assertEqual("testModule");
+  expect(data.appInfo.iconResource.id).assertEqual(data.appInfo.iconId);
+  expect(data.appInfo.labelResource.bundleName).assertEqual(BUNDLE_NAME);
+  expect(data.appInfo.labelResource.moduleName).assertEqual("testModule");
+  expect(data.appInfo.labelResource.id).assertEqual(data.appInfo.labelId);
+  expect(data.appInfo.descriptionResource.bundleName).assertEqual(BUNDLE_NAME);
+  expect(data.appInfo.descriptionResource.moduleName).assertEqual("testModule");
+  expect(data.appInfo.descriptionResource.id).assertEqual(data.appInfo.descriptionId);
+  expect(data.appInfo.appDistributionType).assertEqual("os_integration");
+  expect(data.appInfo.appProvisionType).assertEqual("release");
+  expect(data.appInfo.systemApp).assertFalse();
+  expect(JSON.stringify(data.appInfo.metadata)).assertEqual("{}");
+  expect(data.appInfo.metadataArray.length).assertEqual(0);
+  console.info("checkCommonApplicationInfo end");
+}
+
+function checkCommonHapModuleInfo(data) {
+  expect(data.hapModulesInfo.length).assertEqual(1);
+  expect(data.hapModulesInfo[0].name).assertEqual("testModule");
+  expect(data.hapModulesInfo[0].icon).assertEqual("$media:icon");
+  expect(data.hapModulesInfo[0].iconId).assertLarger(0);
+  expect(data.hapModulesInfo[0].label).assertEqual("$string:entry_label");
+  expect(data.hapModulesInfo[0].labelId).assertLarger(0);
+  expect(data.hapModulesInfo[0].description).assertEqual("$string:testModule_entry_dsc");
+  expect(data.hapModulesInfo[0].descriptionId).assertLarger(0);
+  expect(data.hapModulesInfo[0].mainElementName).assertEqual(ABILITY_NAME);
+  expect(data.hapModulesInfo[0].deviceTypes.length).assertEqual(3);
+  console.info("checkComm" + JSON.stringify(data.hapModulesInfo[0].deviceTypes[0]));
+  console.info("checkComm" + JSON.stringify(data.hapModulesInfo[0].deviceTypes[1]));
+  expect(data.hapModulesInfo[0].deviceTypes[0]).assertEqual("default");
+  expect(data.hapModulesInfo[0].deviceTypes[1]).assertEqual("tablet");
+  expect(data.hapModulesInfo[0].installationFree).assertFalse();
+  expect(data.hapModulesInfo[0].hashValue).assertEqual("");
+  console.info("checkCommonHapModuleInfo end");
+}
+
+function checkCommonAbilityInfo(data) {
+  expect(data.bundleName).assertEqual(BUNDLE_NAME);
+  expect(data.moduleName).assertEqual("testModule");
+  expect(data.label).assertEqual("$string:entry_label");
+  expect(data.labelId).assertLarger(0);
+  expect(data.description).assertEqual("$string:testModule_entry_main");
+  expect(data.descriptionId).assertLarger(0);
+  expect(data.icon).assertEqual("$media:icon");
+  expect(data.iconId).assertLarger(0);
+  expect(data.process).assertEqual("");
+  expect(data.exported).assertTrue();
+  expect(data.type).assertEqual(1);
+  expect(data.permissions.length).assertEqual(0);
+  expect(data.readPermission).assertEqual("");
+  expect(data.writePermission).assertEqual("");
+  expect(data.uri).assertEqual("");
+  expect(data.deviceTypes.length).assertEqual(3);
+  console.info("checkComm" + JSON.stringify(data.deviceTypes[0]));
+  console.info("checkComm" + JSON.stringify(data.deviceTypes[1]));
+  expect(data.deviceTypes[0]).assertEqual("default");
+  expect(data.deviceTypes[1]).assertEqual("tablet");
+  expect(data.applicationInfo).assertEqual(null);
+  expect(data.metadata.length).assertEqual(0);
+  expect(data.enabled).assertTrue();
+  expect(data.supportWindowModes.length).assertEqual(3);
+  expect(data.supportWindowModes[0]).assertEqual(bundle.SupportWindowMode.FULL_SCREEN);
+  expect(data.supportWindowModes[1]).assertEqual(bundle.SupportWindowMode.SPLIT);
+  expect(data.supportWindowModes[2]).assertEqual(bundle.SupportWindowMode.FLOATING);
+  expect(data.windowSize.maxWindowRatio).assertEqual(0);
+  expect(data.windowSize.minWindowRatio).assertEqual(0);
+  expect(data.windowSize.maxWindowWidth).assertEqual(0);
+  expect(data.windowSize.minWindowWidth).assertEqual(0);
+  expect(data.windowSize.maxWindowHeight).assertEqual(0);
+  expect(data.windowSize.minWindowHeight).assertEqual(0);
+  console.info("checkCommonAbilityInfo end");
+}
+
 export default function getBundleInfoForSelf() {
-  describe('getBundleInfoForSelf', function () {
+  describe('getBundleInfoForSelf',  () => {
     /*
      * @tc.number: SUB_BMS_APPINFO_QUERY_0118
      * @tc.name: getBundleInfoForSelfPro
      * @tc.desc: Test getBundleInfoForSelf with default flag(by promise).
      */
-    it('getBundleInfoForSelfPro', 0, async function (done) {
+    it('getBundleInfoForSelfPro', 0, async (done: Function) => {
       await bundle.getBundleInfoForSelf(bundle.BundleFlag.GET_BUNDLE_INFO_DEFAULT).then(data => {
         console.info("getBundleInfoForSelfPro" + JSON.stringify(data));
         expect(data.name).assertEqual(BUNDLE_NAME);
@@ -64,7 +164,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfCal
      * @tc.desc: Test getBundleInfoForSelf with default flag(by callback).
      */
-    it('getBundleInfoForSelfCal', 0, async function (done) {
+    it('getBundleInfoForSelfCal', 0, async (done: Function) => {
       bundle.getBundleInfoForSelf(bundle.BundleFlag.GET_BUNDLE_INFO_DEFAULT, (err, data) => {
         console.info("getBundleInfoForSelfCal" + JSON.stringify(data));
         expect(data.name).assertEqual(BUNDLE_NAME);
@@ -90,7 +190,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfApplicationPro
      * @tc.desc: Test getBundleInfoForSelf with application flag(by promise).
      */
-    it('getBundleInfoForSelfApplicationPro', 0, async function (done) {
+    it('getBundleInfoForSelfApplicationPro', 0, async (done: Function) => {
       await bundle.getBundleInfoForSelf(bundle.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION).then(data => {
         console.info("getBundleInfoForSelfApplicationPro" + JSON.stringify(data.appInfo));
         checkCommonBundleInfo(data);
@@ -140,7 +240,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfApplicationCal
      * @tc.desc: Test getBundleInfoForSelf with application flag(by callback).
      */
-    it('getBundleInfoForSelfApplicationCal', 0, async function (done) {
+    it('getBundleInfoForSelfApplicationCal', 0, async (done: Function) => {
       bundle.getBundleInfoForSelf(bundle.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION, (err, data) => {
         console.info("ApplicationCal" + JSON.stringify(data.appInfo));
         for (let i in data.appInfo) {
@@ -190,7 +290,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfModulePro
      * @tc.desc: Test getBundleInfoForSelf with hapModuleInfo flag(by promise).
      */
-    it('getBundleInfoForSelfModulePro', 0, async function (done) {
+    it('getBundleInfoForSelfModulePro', 0, async (done: Function) => {
       await bundle.getBundleInfoForSelf(bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE).then(data => {
         console.info("ModulePro" + JSON.stringify(data.hapModulesInfo[0]));
         checkCommonBundleInfo(data);
@@ -229,7 +329,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfModuleCal
      * @tc.desc: Test getBundleInfoForSelf with hapModuleInfo flag(by callback).
      */
-    it('getBundleInfoForSelfModuleCal', 0, async function (done) {
+    it('getBundleInfoForSelfModuleCal', 0, async (done: Function) => {
       bundle.getBundleInfoForSelf(bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE, (err, data) => {
         console.info("getBundleInfoForSelfPro" + JSON.stringify(data.hapModulesInfo));
         checkCommonBundleInfo(data);
@@ -264,7 +364,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfAbilityPro
      * @tc.desc: Test getBundleInfoForSelf with ability flag(by promise).
      */
-    it('getBundleInfoForSelfAbilityPro', 0, async function (done) {
+    it('getBundleInfoForSelfAbilityPro', 0, async (done: Function) => {
       await bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundle.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY
       ).then(data => {
@@ -372,7 +472,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfAbilityCal
      * @tc.desc: Test getBundleInfoForSelf with ability flag(by callback).
      */
-    it('getBundleInfoForSelfAbilityCal', 0, async function (done) {
+    it('getBundleInfoForSelfAbilityCal', 0, async (done: Function) => {
       bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundle.BundleFlag.GET_BUNDLE_INFO_WITH_ABILITY,
         (err, data) => {
@@ -475,7 +575,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfExtensionPro
      * @tc.desc: Test getBundleInfoForSelf with extensionAbility flag(by promise).
      */
-    it('getBundleInfoForSelfExtensionPro', 0, async function (done) {
+    it('getBundleInfoForSelfExtensionPro', 0, async (done: Function) => {
       await bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundle.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY
       ).then(data => {
@@ -487,7 +587,7 @@ export default function getBundleInfoForSelf() {
         let extensionList = data.hapModulesInfo[0].extensionAbilitiesInfo
         expect(extensionList.length).assertEqual(14);
         let count = 0;
-        for (let i = 0;i < 14; i++) {
+        for (let i = 0; i < 14; i++) {
           switch (extensionList[i].name) {
             case "Form":
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
@@ -606,7 +706,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfExtensionCal
      * @tc.desc: Test getBundleInfoForSelf with extensionAbility flag(by callback).
      */
-    it('getBundleInfoForSelfExtensionCal', 0, async function (done) {
+    it('getBundleInfoForSelfExtensionCal', 0, async (done: Function) => {
       bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundle.BundleFlag.GET_BUNDLE_INFO_WITH_EXTENSION_ABILITY,
         (err, data) => {
@@ -617,7 +717,7 @@ export default function getBundleInfoForSelf() {
           expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(0);
           let extensionList = data.hapModulesInfo[0].extensionAbilitiesInfo
           let count = 0;
-          for (let i = 0;i < 14; i++) {
+          for (let i = 0; i < 14; i++) {
             switch (extensionList[i].name) {
               case "Form":
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
@@ -736,7 +836,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfPermissionPro
      * @tc.desc: Test getBundleInfoForSelf with permission flag(by promise).
      */
-    it('getBundleInfoForSelfPermissionPro', 0, async function (done) {
+    it('getBundleInfoForSelfPermissionPro', 0, async (done: Function) => {
       await bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION).then(data => {
         console.info("PermissionPro" + JSON.stringify(data.reqPermissionDetails));
@@ -775,7 +875,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfPermissionCal
      * @tc.desc: Test getBundleInfoForSelf with permission flag(by callback).
      */
-    it('getBundleInfoForSelfPermissionCal', 0, async function (done) {
+    it('getBundleInfoForSelfPermissionCal', 0, async (done: Function) => {
       bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_REQUESTED_PERMISSION, (err, data) => {
         console.info("PermissionPro" + JSON.stringify(data.reqPermissionDetails));
@@ -810,7 +910,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfMetaPro
      * @tc.desc: Test getBundleInfoForSelf with metadata flag(by promise).
      */
-    it('getBundleInfoForSelfMetaPro', 0, async function (done) {
+    it('getBundleInfoForSelfMetaPro', 0, async (done: Function) => {
       await bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundle.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA)
         .then(data => {
@@ -841,7 +941,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfMetaCal
      * @tc.desc: Test getBundleInfoForSelf with metadata flag(by callback).
      */
-    it('getBundleInfoForSelfMetaCal', 0, async function (done) {
+    it('getBundleInfoForSelfMetaCal', 0, async (done: Function) => {
       bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_HAP_MODULE | bundle.BundleFlag.GET_BUNDLE_INFO_WITH_METADATA,
         (err, data) => {
@@ -868,7 +968,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfSigPro
      * @tc.desc: Test getBundleInfoForSelf with signatureInfo flag(by promise).
      */
-    it('getBundleInfoForSelfSigPro', 0, async function (done) {
+    it('getBundleInfoForSelfSigPro', 0, async (done: Function) => {
       await bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO).then(data => {
         console.info("SigPro" + JSON.stringify(data.signatureInfo));
@@ -892,7 +992,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfSigCal
      * @tc.desc: Test getBundleInfoForSelf with signatureInfo flag(by callback).
      */
-    it('getBundleInfoForSelfSigCal', 0, async function (done) {
+    it('getBundleInfoForSelfSigCal', 0, async (done: Function) => {
       bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_SIGNATURE_INFO, (err, data) => {
         console.info("SigCal" + JSON.stringify(data.signatureInfo));
@@ -913,7 +1013,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfDisPro
      * @tc.desc: Test getBundleInfoForSelf with disable flag(by promise).
      */
-    it('getBundleInfoForSelfDisPro', 0, async function (done) {
+    it('getBundleInfoForSelfDisPro', 0, async (done: Function) => {
       await bundle.getBundleInfoForSelf(bundle.BundleFlag.GET_BUNDLE_INFO_WITH_DISABLE).then(data => {
         console.info("DisPro" + JSON.stringify(data));
         checkCommonBundleInfo(data);
@@ -935,7 +1035,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfDisCal
      * @tc.desc: Test getBundleInfoForSelf with disable flag(by callback).
      */
-    it('getBundleInfoForSelfDisCal', 0, async function (done) {
+    it('getBundleInfoForSelfDisCal', 0, async (done: Function) => {
       bundle.getBundleInfoForSelf(
         bundle.BundleFlag.GET_BUNDLE_INFO_WITH_DISABLE, (err, data) => {
         console.info("DisCal" + JSON.stringify(data));
@@ -955,7 +1055,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfParamErrPro
      * @tc.desc: Test getBundleInfoForSelf with error param(by promise).
      */
-    it('getBundleInfoForSelfParamErrPro', 0, async function (done) {
+    it('getBundleInfoForSelfParamErrPro', 0, async (done: Function) => {
       try {
         await bundle.getBundleInfoForSelf(null).then(data => {
           console.info("ParamErrPro null success " + JSON.stringify(data));
@@ -988,7 +1088,7 @@ export default function getBundleInfoForSelf() {
      * @tc.name: getBundleInfoForSelfParamErrCal
      * @tc.desc: Test getBundleInfoForSelf with error param(by callback).
      */
-    it('getBundleInfoForSelfParamErrCal', 0, async function (done) {
+    it('getBundleInfoForSelfParamErrCal', 0, async (done: Function) => {
       try {
         bundle.getBundleInfoForSelf(null, (err, data) => {
           console.info("ParamErrCal null success " + JSON.stringify(data));
@@ -1013,104 +1113,6 @@ export default function getBundleInfoForSelf() {
       }
     })
 
-    function checkCommonBundleInfo(data) {
-      expect(data.name).assertEqual(BUNDLE_NAME);
-      expect(data.vendor).assertEqual(VENDOR);
-      expect(data.versionCode).assertEqual(1000000);
-      expect(data.versionName).assertEqual("1.0.0");
-      expect(data.minCompatibleVersionCode).assertEqual(1000000);
-      expect(data.targetVersion).assertEqual(8);
-      expect(data.installTime).assertLarger(0);
-      expect(data.updateTime).assertLarger(0);
-      console.info("checkCommonBundleInfo end");
-    }
 
-    function checkCommonApplicationInfo(data) {
-      expect(data.appInfo.name).assertEqual(BUNDLE_NAME);
-      expect(data.appInfo.description).assertEqual("$string:description_application");
-      expect(data.appInfo.descriptionId).assertLarger(0);
-      expect(data.appInfo.enabled).assertTrue();
-      expect(data.appInfo.label).assertEqual("$string:app_name");
-      expect(data.appInfo.labelId).assertLarger(0);
-      expect(data.appInfo.icon).assertEqual("$media:icon");
-      expect(data.appInfo.iconId).assertLarger(0);
-      expect(data.appInfo.process).assertEqual(BUNDLE_NAME);
-      expect(data.appInfo.codePath).assertEqual("/data/app/el1/bundle/public/ohos.acts.bundle.stage.test");
-      expect(data.appInfo.removable).assertTrue(0);
-      expect(data.appInfo.accessTokenId).assertLarger(0);
-      expect(data.appInfo.uid).assertLarger(0);
-      expect(data.appInfo.iconResource.bundleName).assertEqual(BUNDLE_NAME);
-      expect(data.appInfo.iconResource.moduleName).assertEqual("testModule");
-      expect(data.appInfo.iconResource.id).assertEqual(data.appInfo.iconId);
-      expect(data.appInfo.labelResource.bundleName).assertEqual(BUNDLE_NAME);
-      expect(data.appInfo.labelResource.moduleName).assertEqual("testModule");
-      expect(data.appInfo.labelResource.id).assertEqual(data.appInfo.labelId);
-      expect(data.appInfo.descriptionResource.bundleName).assertEqual(BUNDLE_NAME);
-      expect(data.appInfo.descriptionResource.moduleName).assertEqual("testModule");
-      expect(data.appInfo.descriptionResource.id).assertEqual(data.appInfo.descriptionId);
-      expect(data.appInfo.appDistributionType).assertEqual("os_integration");
-      expect(data.appInfo.appProvisionType).assertEqual("release");
-      expect(data.appInfo.systemApp).assertFalse();
-      expect(JSON.stringify(data.appInfo.metadata)).assertEqual("{}");
-      expect(data.appInfo.metadataArray.length).assertEqual(0);
-      console.info("checkCommonApplicationInfo end");
-    }
-
-    function checkCommonHapModuleInfo(data) {
-      expect(data.hapModulesInfo.length).assertEqual(1);
-      expect(data.hapModulesInfo[0].name).assertEqual("testModule");
-      expect(data.hapModulesInfo[0].icon).assertEqual("$media:icon");
-      expect(data.hapModulesInfo[0].iconId).assertLarger(0);
-      expect(data.hapModulesInfo[0].label).assertEqual("$string:entry_label");
-      expect(data.hapModulesInfo[0].labelId).assertLarger(0);
-      expect(data.hapModulesInfo[0].description).assertEqual("$string:testModule_entry_dsc");
-      expect(data.hapModulesInfo[0].descriptionId).assertLarger(0);
-      expect(data.hapModulesInfo[0].mainElementName).assertEqual(ABILITY_NAME);
-      expect(data.hapModulesInfo[0].deviceTypes.length).assertEqual(3);
-      console.info("checkComm" + JSON.stringify(data.hapModulesInfo[0].deviceTypes[0]));
-      console.info("checkComm" + JSON.stringify(data.hapModulesInfo[0].deviceTypes[1]));
-      expect(data.hapModulesInfo[0].deviceTypes[0]).assertEqual("default");
-      expect(data.hapModulesInfo[0].deviceTypes[1]).assertEqual("tablet");
-      expect(data.hapModulesInfo[0].installationFree).assertFalse();
-      expect(data.hapModulesInfo[0].hashValue).assertEqual("");
-      console.info("checkCommonHapModuleInfo end");
-    }
-
-    function checkCommonAbilityInfo(data) {
-      expect(data.bundleName).assertEqual(BUNDLE_NAME);
-      expect(data.moduleName).assertEqual("testModule");
-      expect(data.label).assertEqual("$string:entry_label");
-      expect(data.labelId).assertLarger(0);
-      expect(data.description).assertEqual("$string:testModule_entry_main");
-      expect(data.descriptionId).assertLarger(0);
-      expect(data.icon).assertEqual("$media:icon");
-      expect(data.iconId).assertLarger(0);
-      expect(data.process).assertEqual("");
-      expect(data.exported).assertTrue();
-      expect(data.type).assertEqual(1);
-      expect(data.permissions.length).assertEqual(0);
-      expect(data.readPermission).assertEqual("");
-      expect(data.writePermission).assertEqual("");
-      expect(data.uri).assertEqual("");
-      expect(data.deviceTypes.length).assertEqual(3);
-      console.info("checkComm" + JSON.stringify(data.deviceTypes[0]));
-      console.info("checkComm" + JSON.stringify(data.deviceTypes[1]));
-      expect(data.deviceTypes[0]).assertEqual("default");
-      expect(data.deviceTypes[1]).assertEqual("tablet");
-      expect(data.applicationInfo).assertEqual(null);
-      expect(data.metadata.length).assertEqual(0);
-      expect(data.enabled).assertTrue();
-      expect(data.supportWindowModes.length).assertEqual(3);
-      expect(data.supportWindowModes[0]).assertEqual(bundle.SupportWindowMode.FULL_SCREEN);
-      expect(data.supportWindowModes[1]).assertEqual(bundle.SupportWindowMode.SPLIT);
-      expect(data.supportWindowModes[2]).assertEqual(bundle.SupportWindowMode.FLOATING);
-      expect(data.windowSize.maxWindowRatio).assertEqual(0);
-      expect(data.windowSize.minWindowRatio).assertEqual(0);
-      expect(data.windowSize.maxWindowWidth).assertEqual(0);
-      expect(data.windowSize.minWindowWidth).assertEqual(0);
-      expect(data.windowSize.maxWindowHeight).assertEqual(0);
-      expect(data.windowSize.minWindowHeight).assertEqual(0);
-      console.info("checkCommonAbilityInfo end");
-    }
   })
 }
