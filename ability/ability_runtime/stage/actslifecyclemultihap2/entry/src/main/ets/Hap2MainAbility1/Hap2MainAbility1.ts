@@ -12,38 +12,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
 export default class Hap2MainAbility1 extends Ability {
-    onCreate(want, launchParam) {
-        console.log("[Demo] Hap2MainAbility1 onCreate")
-        globalThis.abilityWant = want;
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("[Demo] Hap2MainAbility1 onCreate");
+    globalThis.abilityWant = want;
+  }
 
-    }
+  onDestroy() {
+    console.log("[Demo] Hap2MainAbility1 onDestroy");
+  }
 
-    onDestroy() {
-        console.log("[Demo] Hap2MainAbility1 onDestroy")
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("[Demo] Hap2MainAbility1 onWindowStageCreate")
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("[Demo] Hap2MainAbility1 onWindowStageCreate")
+    windowStage.loadContent("pages/Hap2MainAbility1_pages", null);
+  }
 
-        windowStage.setUIContent(this.context, "pages/Hap2MainAbility1_pages", null)
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("[Demo] Hap2MainAbility1 onWindowStageDestroy");
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("[Demo] Hap2MainAbility1 onWindowStageDestroy")
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("[Demo] Hap2MainAbility1 onForeground");
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("[Demo] Hap2MainAbility1 onForeground")
-    }
-
-    onBackground() {
-        // Ability has back to background
-        console.log("[Demo] Hap2MainAbility1 onBackground")
-    }
+  onBackground() {
+    // Ability has back to background
+    console.log("[Demo] Hap2MainAbility1 onBackground");
+  }
 };
