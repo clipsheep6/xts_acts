@@ -15,7 +15,9 @@
 import audio from '@ohos.multimedia.audio';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium'
 import featureAbility from '@ohos.ability.featureAbility';
+import fileio from '@ohos.fileio';
 import * as env from './Const';
+import uitest from "@ohos.UiTest";
 import { BusinessError } from '@ohos.base';
 
 let Tag = 'AudioCpaturerEnhanceTest: ';
