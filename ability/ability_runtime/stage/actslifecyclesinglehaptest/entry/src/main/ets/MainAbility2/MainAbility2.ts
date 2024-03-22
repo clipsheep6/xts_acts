@@ -12,45 +12,52 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
+
 
 export default class MainAbility2 extends Ability {
-    onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility2 onCreate")
-        globalThis.abilityWant2 = want;
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("[Demo] MainAbility2 onCreate")
+    globalThis.abilityWant2 = want;
+  }
 
-    onDestroy() {
-        console.log("[Demo] MainAbility2 onDestroy")
-    }
+  onDestroy() {
+    console.log("[Demo] MainAbility2 onDestroy");
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility2 onWindowStageCreate")
-        globalThis.ability2 = this.context;
-        windowStage.setUIContent(this.context, "MainAbility/pages/index2", null)
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("[Demo] MainAbility2 onWindowStageCreate");
+    AppStorage.setOrCreate<common.UIAbilityContext>("ability2", this.context);
+    windowStage.loadContent("MainAbility/pages/index2", null);
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("[Demo] MainAbility2 onWindowStageDestroy")
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("[Demo] MainAbility2 onWindowStageDestroy");
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("[Demo] MainAbility2 onForeground")
-        setTimeout(function () {
-            globalThis.ability2.terminateSelf()
-                .then((data) => {
-                    console.info('[Demo] MainAbility2 terminateself succeeded: ' + data);
-                }).catch((error) => {
-                console.error('[Demo] MainAbility2 terminateself failed. Cause: ' + error);
-            })
-        }, 500);
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("[Demo] MainAbility2 onForeground");
+    setTimeout(function () {
+      AppStorage.get<common.UIAbilityContext>("ability2")!.terminateSelf()
+        .then((data) => {
+          console.info('[Demo] MainAbility2 terminateself succeeded: ' + data);
+        })
+        .catch((error) => {
+          console.error('[Demo] MainAbility2 terminateself failed. Cause: ' + error);
+        })
+    }, 500);
+  }
 
-    onBackground() {
-        // Ability has back to background
-        console.log("[Demo] MainAbility2 onBackground")
-    }
+  onBackground() {
+    // Ability has back to background
+    console.log("[Demo] MainAbility2 onBackground");
+  }
 };
