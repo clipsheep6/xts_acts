@@ -14,6 +14,8 @@
 */
 import Ability from '@ohos.app.ability.UIAbility';
 import commonEvent from '@ohos.commonEvent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 let EVENT_TIME = 500;
 
@@ -22,7 +24,7 @@ function publishCallBack(): void {
 }
 
 export default class MainAbility5 extends Ability {
-  onCreate(want, launchParam): void {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     console.log('[Demo] MainAbility5 onCreate');
     globalThis.abilityWant = want;
     globalThis.abilityContext = this.context;

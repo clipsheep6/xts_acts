@@ -14,14 +14,15 @@
 */
 import router from '@system.router';
 import file from '@system.file';
+
 @Entry
 @Component
 struct Index {
   aboutToAppear() {
-    console.info('MainAbility index aboutToAppear')
+    console.info('MainAbility index aboutToAppear');
   }
 
-  @State message: string = 'MainAbility'
+  @State message: string = 'MainAbility';
 
   build() {
     Row() {
@@ -33,14 +34,15 @@ struct Index {
           Text('next page')
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
-        }.type(ButtonType.Capsule)
+        }
+        .type(ButtonType.Capsule)
         .margin({
           top: 20
         })
         .backgroundColor('#0D9FFB')
         .width('35%')
         .height('5%')
-        .onClick(()=>{
+        .onClick(() => {
         })
       }
       .width('100%')
