@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct MainAbility5_pages {
-  @State message: string = 'MainAbility5'
+  @State message: string = 'MainAbility5';
 
   build() {
     Row() {
