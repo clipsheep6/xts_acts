@@ -12,49 +12,56 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
+
+import Ability from '@ohos.app.ability.UIAbility';
 import commonEvent from '@ohos.commonEvent';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+
 
 export default class Hap3MainAbility2 extends Ability {
-    onCreate(want, launchParam) {
-        console.log("[Demo] Hap3MainAbility2 onCreate")
-        globalThis.abilityWant = want;
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("[Demo] Hap3MainAbility2 onCreate");
+    globalThis.abilityWant = want;
 
-        setTimeout(() => {
-            this.context.terminateSelf().then((data) => {
-                console.log("Hap3MainAbility2 EventTest terminateSelf data: " + JSON.stringify(data));
-            }).catch((error) => {
-                console.log("Hap3MainAbility2 EventTest terminateSelf error: " + JSON.stringify(error));
-            })
-        }, 2000)
-    }
-
-    onDestroy() {
-        console.log("[Demo] Hap3MainAbility2 onDestroy")
-        commonEvent.publish('Hap3MainAbility2onDestroy', (err) => {
-            console.log('Hap3MainAbility2onDestroy');
+    setTimeout(() => {
+      this.context.terminateSelf()
+        .then((data) => {
+          console.log("Hap3MainAbility2 EventTest terminateSelf data: " + JSON.stringify(data));
         })
-    }
+        .catch((error) => {
+          console.log("Hap3MainAbility2 EventTest terminateSelf error: " + JSON.stringify(error));
+        })
+    }, 2000)
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("[Demo] Hap3MainAbility2 onWindowStageCreate")
+  onDestroy() {
+    console.log("[Demo] Hap3MainAbility2 onDestroy");
+    commonEvent.publish('Hap3MainAbility2onDestroy', (err) => {
+      console.log('Hap3MainAbility2onDestroy');
+    })
+  }
 
-        windowStage.setUIContent(this.context, "pages/Hap3MainAbility2_pages", null)
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("[Demo] Hap3MainAbility2 onWindowStageCreate");
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("[Demo] Hap3MainAbility2 onWindowStageDestroy")
-    }
+    windowStage.loadContent("pages/Hap3MainAbility2_pages", null);
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("[Demo] Hap3MainAbility2 onForeground")
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("[Demo] Hap3MainAbility2 onWindowStageDestroy");
+  }
 
-    onBackground() {
-        // Ability has back to background
-        console.log("[Demo] Hap3MainAbility2 onBackground")
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("[Demo] Hap3MainAbility2 onForeground");
+  }
+
+  onBackground() {
+    // Ability has back to background
+    console.log("[Demo] Hap3MainAbility2 onBackground");
+  }
 };
