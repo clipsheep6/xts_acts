@@ -2177,4 +2177,87 @@ describe('XmlSerializerXmlPullParserTest', function () {
             expect(e.toString()).assertEqual("BusinessError: Parameter error.The type of 111 must be object")
         }
     })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_09200
+     * @tc.name: testXmlBusinessError016
+     * @tc.desc: parsing the XML file.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testXmlBusinessError016', 0, function () {
+        try {
+          var strXml = '<?xml version="1.0" encoding="utf-8"?>';
+          let textEncoder = new util.TextEncoder();
+          let arrbuffer = textEncoder.encodeInto(strXml);
+          let that = new xml.XmlPullParser(arrbuffer.buffer, 'UTF-8');
+          var str = '';
+          function func(name, value) {
+            str += name+':'+value;
+            return true;
+          }
+          var options = {supportDoctype:true, ignoreNameSpace:true, attributeValueCallbackFunction:func}
+          that.parse(options);
+        } catch (e) {
+            expect(e.toString()).assertEqual("Error: The parameter does not comply with the XML standard.");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_09300
+     * @tc.name: testXmlBusinessError017
+     * @tc.desc: parsing the XML file.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testXmlBusinessError017', 0, function () {
+        try {
+          var strXml = '<!DOCTYPE note [\n<!ENTITY foo "baa">]>';
+          let textEncoder = new util.TextEncoder();
+          let arrbuffer = textEncoder.encodeInto(strXml);
+          let that = new xml.XmlPullParser(arrbuffer.buffer, 'UTF-8');
+          var str = '';
+          function func(name, value) {
+            str += name+':'+value;
+            return true;
+          }
+          var options = {supportDoctype:true, ignoreNameSpace:true, attributeValueCallbackFunction:func}
+          that.parse(options);
+        } catch (e) {
+          expect(e.toString()).assertEqual("Error: The parameter does not comply with the XML standard.");
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_XML_09400
+     * @tc.name: testXmlBusinessError018
+     * @tc.desc: parsing the XML file.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testXmlBusinessError018', 0, function () {
+        try {
+          var strXml =
+          '<?xml version="1.0" encoding="utf-8"?>' +
+          '<note importance="hi&amp;gh" logged="true">' +
+          '<title>Hello;World</title>' +
+          '<todo>Work'+
+          '</note>';
+          let textEncoder = new util.TextEncoder();
+          let arrbuffer = textEncoder.encodeInto(strXml);
+          let that = new xml.XmlPullParser(arrbuffer.buffer, 'UTF-8');
+          var str = '';
+          function func(name, value) {
+            str += name+':'+value;
+            return true;
+          }
+          var options = {supportDoctype:true, ignoreNameSpace:true, attributeValueCallbackFunction:func}
+          that.parse(options);
+        } catch (e) {
+            expect(e.toString()).assertEqual("Error: The parameter does not comply with the XML standard.");
+        }
+    })
 })}
