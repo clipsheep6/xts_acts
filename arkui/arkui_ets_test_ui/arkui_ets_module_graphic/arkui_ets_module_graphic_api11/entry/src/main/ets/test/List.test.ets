@@ -14,7 +14,11 @@
  */
 import marqueeJsunit from './marqueeTest/MarqueeJsunit.test';
 import textStyleJsunit from './testTest/TextStyleJsunit.test';
+import ImageTextTest from './testTest/ImageText.test';
+import TextAreaCallbackTest from './TextAreaTest/TextAreaCallback.test';
 export default function testsuite() {
   textStyleJsunit();
   marqueeJsunit();
+  ImageTextTest();
+  TextAreaCallbackTest()
 }
