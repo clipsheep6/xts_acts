@@ -21,15 +21,51 @@
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_label",
-        "visible": true,
         "launchType": "singleton",
+        "exported": true,
         "skills": [
           {
             "entities": [
-              "entity.system.home"
+              "entity.system.home",
+              "entity.aacommandimplicitstarttest.home"
             ],
             "actions": [
-              "action.system.home"
+              "action.system.home",
+              "action.aacommandimplicitstarttest.home"
+            ]
+          },
+          {
+            "entities": [
+              "entity.system.home",
+              "entity.aacommandimplicitstarttest.home"
+            ],
+            "actions": [
+              "action.system.home",
+              "action.aacommandimplicitstarttest.home"
+            ],
+            "uris": [{
+              "host": "uri.aacommandimplicitstarttest.com",
+              "scheme": "https",
+              "type": "uri-type"
+            }]
+          }
+        ]
+      },
+      {
+        "name": "UnexportedAbility",
+        "srcEntry": "./ets/unexportedability/UnexportedAbility.ts",
+        "description": "$string:UnexportedAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:UnexportedAbility_label",
+        "startWindowIcon": "$media:startIcon",
+        "exported": false,
+        "skills": [
+          {
+            "entities": [
+              "entity.system.unexportedability"
+            ],
+            "actions": [
+              "action.system.unexportedability"
             ]
           }
         ]

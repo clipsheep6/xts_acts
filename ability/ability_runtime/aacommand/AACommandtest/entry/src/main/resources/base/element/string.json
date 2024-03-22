@@ -19,6 +19,14 @@
     {
       "name": "description_application",
       "value": "demo for test"
-   }
+    },
+    {
+      "name": "UnexportedAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "UnexportedAbility_label",
+      "value": "label"
+    }
   ]
 }
