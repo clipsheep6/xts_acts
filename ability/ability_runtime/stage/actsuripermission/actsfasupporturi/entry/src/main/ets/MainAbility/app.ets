@@ -12,48 +12,52 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import featureAbility from '@ohos.ability.featureAbility';
 import fileUri from '@ohos.file.fileuri';
 import fs from '@ohos.file.fs';
 import wantConstant from '@ohos.ability.wantConstant';
 
-let printLog1 : string = '[demo] FaMainAbility'
+let printLog1: string = '[demo] FaMainAbility'
 
 export default {
   onCreate() {
     console.info(printLog1 + 'onCreate');
-    let context = featureAbility.getContext()
+    let context = featureAbility.getContext();
     console.info(printLog1 + ' onCreate get context');
-    context.getFilesDir().then((path) => {
-      console.info(printLog1 + ' onCreate get path');
-      let filePath : string = path + "/test_A.txt";
-      fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err, file) => {
-        if (err) {
-          console.info(printLog1 + " mkdir failed with error message: " + err.message + ", error code: " + err.code);
-        } else {
-          console.info(printLog1 + " file created, fd: " + file.fd);
-          let uri : string = fileUri.getUriFromPath(filePath);
-          console.info(printLog1 + ' onCreate uri: ' + JSON.stringify(uri));
-          let want = {
-            flags : wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
-            bundleName : "com.acts.authorizeduriapplication",
-            abilityName : "Hap2MainAbility1",
-            uri : uri,
-            parameters : {
-              number : 19
+    context.getFilesDir()
+      .then((path) => {
+        console.info(printLog1 + ' onCreate get path');
+        let filePath: string = path + "/test_A.txt";
+        fs.open(filePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE, (err, file) => {
+          if (err) {
+            console.info(printLog1 + " mkdir failed with error message: " + err.message + ", error code: " + err.code);
+          } else {
+            console.info(printLog1 + " file created, fd: " + file.fd);
+            let uri: string = fileUri.getUriFromPath(filePath);
+            console.info(printLog1 + ' onCreate uri: ' + JSON.stringify(uri));
+            let want = {
+              flags: wantConstant.Flags.FLAG_AUTH_READ_URI_PERMISSION,
+              bundleName: "com.acts.authorizeduriapplication",
+              abilityName: "Hap2MainAbility1",
+              uri: uri,
+              parameters: {
+                number: 19
+              }
             }
+            let param = {
+              want: want
+            }
+            featureAbility.startAbility(param)
+              .then(() => {
+                console.log('startAbility succeed');
+              })
+              .catch((error) => {
+                console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) + ' error.message: ' + JSON.stringify(error.message));
+              });
           }
-          let param = {
-            want: want
-          }
-          featureAbility.startAbility(param).then(() => {
-            console.log('startAbility succeed');
-          }).catch((error) => {
-            console.log('startAbility failed, error.code: ' + JSON.stringify(error.code) + ' error.message: ' + JSON.stringify(error.message));
-          });
-        }
-      });
-    })
+        });
+      })
   },
 
   onDestroy() {
