@@ -12,8 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import uriPermissionTest from './UriPermissionTest'
+
+import uriPermissionTest from './UriPermissionTest';
 
 export default function List() {
-  uriPermissionTest()
+  uriPermissionTest();
 }
