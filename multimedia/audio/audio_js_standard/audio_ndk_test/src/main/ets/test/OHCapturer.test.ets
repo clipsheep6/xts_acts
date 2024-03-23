@@ -276,7 +276,7 @@ export default function OhCapturerTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it('testOHAudioStreamBuilderCreate001', 0, async (done: Function) => {
+    it('testOHAudioStreamBuilderCreate0100', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderCreate0100 test start `);
       let re: number | null = await testStreamBuilder.OHAudioStreamBuilderCreate(1);
       expect(re).assertEqual(0);
@@ -292,7 +292,7 @@ export default function OhCapturerTest() {
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it("testOHAudioStreamBuilderCreate0200", 0, async (done: Function) => {
+    it('testOHAudioStreamBuilderCreate0200', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderCreate0200 test start `);
       let re: number | null = testStreamBuilder.OHAudioStreamBuilderCreate(0);
       expect(re).assertEqual(0);
