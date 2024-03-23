@@ -1,0 +1,40 @@
+{
+  "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:\\Users\\lenovo\\.ohos\\config\\openharmony\\auto_ohos_default_OhAudioNdk_com.example.ohaudiondk.cer",
+          "storePassword": "0000001B6A84F86BD3236B40C508AB3EA1AF073A72CBA4BF8E502B5BE3E0F5836914971D28F6C45C4AC678",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001BD6405B2A6ACE0BB7B4E1412412CFE0D80B72BC269911CA0C5CC3160FA4C686767CB84071B578A4",
+          "profile": "C:\\Users\\lenovo\\.ohos\\config\\openharmony\\auto_ohos_default_OhAudioNdk_com.example.ohaudiondk.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:\\Users\\lenovo\\.ohos\\config\\openharmony\\auto_ohos_default_OhAudioNdk_com.example.ohaudiondk.p12"
+        }
+      }
+    ],
+    "compileSdkVersion": 12,
+    "compatibleSdkVersion": 12,
+    "products": [
+      {
+        "name": "default",
+        "signingConfig": "default",
+      }
+    ]
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }
+  ]
+}
