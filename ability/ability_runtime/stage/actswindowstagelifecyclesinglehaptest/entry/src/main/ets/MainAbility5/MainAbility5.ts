@@ -12,56 +12,63 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
-import commonEvent from '@ohos.commonEvent'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import commonEvent from '@ohos.commonEvent';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
 
 export default class MainAbility5 extends Ability {
-    onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility5 onCreate")
-        globalThis.abilityWant = want;
-        setTimeout(()=>{
-            commonEvent.publish("com.example.windowstagelifecycle_xts.MainAbility5.onCreate", ()=>{
-                console.log("[Demo] MainAbility5 onCreate")
-            });
-        }, 1500)
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("[Demo] MainAbility5 onCreate");
+    globalThis.abilityWant = want;
+    setTimeout(() => {
+      commonEvent.publish("com.example.windowstagelifecycle_xts.MainAbility5.onCreate", () => {
+        console.log("[Demo] MainAbility5 onCreate");
+      });
+    }, 1500)
+  }
 
-    onDestroy() {
-        console.log("[Demo] MainAbility5 onDestroy")
-        setTimeout(()=>{
-            commonEvent.publish("com.example.windowstagelifecycle_xts.MainAbility5.onDestroy", ()=>{
-                console.log("[Demo] MainAbility5 onDestroy")
-            });
-        }, 1500)
-    }
+  onDestroy() {
+    console.log("[Demo] MainAbility5 onDestroy");
+    setTimeout(() => {
+      commonEvent.publish("com.example.windowstagelifecycle_xts.MainAbility5.onDestroy", () => {
+        console.log("[Demo] MainAbility5 onDestroy");
+      });
+    }, 1500)
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility5 onWindowStageCreate")
-        globalThis.ability5 = this.context;
-        windowStage.setUIContent(this.context, "MainAbility/pages/index5", null)
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("[Demo] MainAbility5 onWindowStageCreate");
+    AppStorage.setOrCreate<common.UIAbilityContext>("ability5", this.context);
+    windowStage.loadContent("MainAbility/pages/index5", null);
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("[Demo] MainAbility5 onWindowStageDestroy")
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("[Demo] MainAbility5 onWindowStageDestroy");
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("[Demo] MainAbility5 onForeground")
-        setTimeout(function () {
-            globalThis.ability5.terminateSelf()
-                .then((data) => {
-                    console.info('[Demo] MainAbility5 terminateself succeeded: ' + data);
-                }).catch((error) => {
-                console.error('[Demo] MainAbility5 terminateself failed. Cause: ' + error);
-            })
-        }, 2000);
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("[Demo] MainAbility5 onForeground");
+    setTimeout(() => {
+      AppStorage.get<common.UIAbilityContext>("ability5")!.terminateSelf()
+        .then((data) => {
+          console.info('[Demo] MainAbility5 terminateself succeeded: ' + data);
+        })
+        .catch((error: BusinessError) => {
+          console.error('[Demo] MainAbility5 terminateself failed. Cause: ' + error);
+        })
+    }, 2000);
+  }
 
-    onBackground() {
-        // Ability has back to background
-        console.log("[Demo] MainAbility5 onBackground")
-    }
+  onBackground() {
+    // Ability has back to background
+    console.log("[Demo] MainAbility5 onBackground");
+  }
 };
