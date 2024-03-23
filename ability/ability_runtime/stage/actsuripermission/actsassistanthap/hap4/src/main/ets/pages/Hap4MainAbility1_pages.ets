@@ -16,7 +16,7 @@
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hap4MainAbility1'
+  @State message: string = 'Hap4MainAbility1';
 
   build() {
     Row() {
