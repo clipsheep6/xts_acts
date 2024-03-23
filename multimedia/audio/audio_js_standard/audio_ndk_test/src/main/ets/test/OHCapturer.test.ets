@@ -270,7 +270,7 @@ export default function OhCapturerTest() {
     });
     /**
      * @tc.number : SUB_MULTIMEDIA_AUDIO_OHAUDIOSTREAMBUILDERCREATE_0100
-     * @tc.name   ：testOHAudioStreamBuilderCreate001
+     * @tc.name   ：TestOHAudioStreamBuilderCreate0100
      * @tc.desc   ：Create an audio stream constructor of input or output type.
      * @tc.size   : MediumTest
      * @tc.type   : Function
@@ -286,13 +286,13 @@ export default function OhCapturerTest() {
 
     /**
      * @tc.number : SUB_MULTIMEDIA_AUDIO_OHAUDIOSTREAMBUILDERCREATE_0200
-     * @tc.name   ：testOHAudioStreamBuilderCreate002
+     * @tc.name   ：TestOHAudioStreamBuilderCreate0200
      * @tc.desc   ：Create an audio stream constructor of input or output type.
      * @tc.size   : MediumTest
      * @tc.type   : Function
      * @tc.level  : Level 1
      */
-    it("testOHAudioStreamBuilderCreate002", 0, async (done: Function) => {
+    it("testOHAudioStreamBuilderCreate0200", 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderCreate0200 test start `);
       let re: number | null = testStreamBuilder.OHAudioStreamBuilderCreate(0);
       expect(re).assertEqual(0);
