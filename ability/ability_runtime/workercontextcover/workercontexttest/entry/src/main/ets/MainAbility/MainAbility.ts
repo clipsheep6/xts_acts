@@ -12,44 +12,50 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import Ability from '@ohos.app.ability.UIAbility';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
 
-var printLog1 = 'Worker:MainAbility:'
-var listPush1 = 'Worker_MainAbility_'
+let printLog1 = 'Worker:MainAbility:';
+let listPush1 = 'Worker_MainAbility_';
+
 export default class MainAbility extends Ability {
-    onCreate(want, launchParam) {
-        console.info(printLog1 + 'onCreate')
-        globalThis.abilityWant = want
-        globalThis.applicationContext = this.context.getApplicationContext()
-        globalThis.abilityContext = this.context
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.info(printLog1 + 'onCreate');
+    globalThis.abilityWant = want;
+    globalThis.applicationContext = this.context.getApplicationContext();
+    AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", this.context);
+  }
 
-    onDestroy() {
-        console.info(printLog1 + 'onDestroy')
-    }
+  onDestroy() {
+    console.info(printLog1 + 'onDestroy');
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.info(printLog1 + 'onWindowStageCreate')
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.info(printLog1 + 'onWindowStageCreate');
 
-        windowStage.loadContent("MainAbility/pages/index", (err, data) => {
-            if (err.code) {
-                console.error('Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data))
-        });
-    }
+    windowStage.loadContent("MainAbility/pages/index", (err, data) => {
+      if (err.code) {
+        console.error('Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.info('Succeeded in loading the content. Data: ' + JSON.stringify(data));
+    });
+  }
 
-    onWindowStageDestroy() {
-        console.info(printLog1 + 'onWindowStageDestroy')
-    }
+  onWindowStageDestroy() {
+    console.info(printLog1 + 'onWindowStageDestroy');
+  }
 
-    onForeground() {
-        console.info(printLog1 + 'onForeground')
-    }
+  onForeground() {
+    console.info(printLog1 + 'onForeground');
+  }
 
-    onBackground() {
-        console.info(printLog1 + 'onBackground')
-    }
+  onBackground() {
+    console.info(printLog1 + 'onBackground');
+  }
 };
