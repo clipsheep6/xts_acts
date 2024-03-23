@@ -16,13 +16,16 @@
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import window from '@ohos.window';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+import common from '@ohos.app.ability.common';
 
-const TEST_TAG = "TAG_MainAbilitySingle1"
+
+const TEST_TAG = "TAG_MainAbilitySingle1";
 
 export default class MainAbilitySingle1 extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, TEST_TAG, `onCreate`);
-    globalThis.abilityWant = want;
   }
 
   onDestroy() {
@@ -32,7 +35,7 @@ export default class MainAbilitySingle1 extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
-    globalThis.abilitySingle1Context = this.context;
+    AppStorage.setOrCreate<common.UIAbilityContext>("abilitySingle1Context", this.context);
     windowStage.loadContent('MainAbilitySingle1/pages/Index', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
