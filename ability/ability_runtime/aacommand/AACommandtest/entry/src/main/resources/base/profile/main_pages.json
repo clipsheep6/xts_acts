@@ -1,6 +1,7 @@
 {
     "src": [
         "pages/index",
+        "pages/IndexEntry",
         "pages/IndexUnexported"
     ]
 }

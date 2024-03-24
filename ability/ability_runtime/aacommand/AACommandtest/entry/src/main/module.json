@@ -21,26 +21,41 @@
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_label",
+        "visible": true,
         "launchType": "singleton",
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "EntryAbility",
+        "srcEntry": "./ets/entryability/EntryAbility.ts",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:startIcon",
         "exported": true,
         "skills": [
           {
             "entities": [
-              "entity.system.home",
               "entity.aacommandimplicitstarttest.home"
             ],
             "actions": [
-              "action.system.home",
               "action.aacommandimplicitstarttest.home"
             ]
           },
           {
             "entities": [
-              "entity.system.home",
               "entity.aacommandimplicitstarttest.home"
             ],
             "actions": [
-              "action.system.home",
               "action.aacommandimplicitstarttest.home"
             ],
             "uris": [{
