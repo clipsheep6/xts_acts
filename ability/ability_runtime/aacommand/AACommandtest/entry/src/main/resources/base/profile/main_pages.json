@@ -1,5 +1,7 @@
 {
     "src": [
-        "pages/index"
+        "pages/index",
+        "pages/IndexEntry",
+        "pages/IndexUnexported"
     ]
 }
