@@ -14,7 +14,9 @@
 */
 
 import abilityTest from './Ability.test';
+import aaImplicitStartTest from './AAImplicitStart.test';
 
 export default function testsuite() {
   abilityTest();
+  aaImplicitStartTest();
 }
