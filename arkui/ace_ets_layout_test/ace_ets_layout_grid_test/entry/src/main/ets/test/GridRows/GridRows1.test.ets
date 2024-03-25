@@ -72,7 +72,7 @@ export default function GridRows1() {
      * @tc.type
      */
 
-    it('GridRows1_002', 0, async function (done: Function) {
+    it('GridRows1_002', 0, async function (done: Function)  {
       console.info('[GridRows1_002] START');
 
       await CommonFunc.sleep(1000);
