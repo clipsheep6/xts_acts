@@ -36,7 +36,7 @@ export default function OnlyColumnsTemplate1() {
           await CommonFunc.sleep(2000);
           console.info("push OnlyColumnsTemplate1 page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push OnlyColumnsTemplate1 page error:" + err);
       }
       console.info("OnlyColumnsTemplate1 beforeEach end");

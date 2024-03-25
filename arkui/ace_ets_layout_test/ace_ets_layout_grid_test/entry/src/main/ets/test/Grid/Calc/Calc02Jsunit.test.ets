@@ -35,7 +35,7 @@ export default function CalcJsunit02() {
           await CommonFunc.sleep(2000);
           console.info("push CalcJsunit02 page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push CalcJsunit02 page error:" + err);
       }
       console.info("CalcJsunit02 beforeEach end");

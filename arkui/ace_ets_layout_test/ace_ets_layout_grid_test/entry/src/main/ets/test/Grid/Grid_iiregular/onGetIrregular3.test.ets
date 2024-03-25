@@ -50,7 +50,7 @@ export default function onGetIrregular3Jsunit() {
           await CommonFunc.sleep(2000);
           console.info("push onGetIrregular3Jsunit page result: " + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push onGetIrregular3Jsunit page error: " + err);
         expect().assertFail();
       }

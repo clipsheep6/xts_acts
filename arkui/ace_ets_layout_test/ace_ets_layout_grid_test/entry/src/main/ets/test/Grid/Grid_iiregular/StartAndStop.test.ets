@@ -36,7 +36,7 @@ export default function StartAndStop() {
           await CommonFunc.sleep(2000);
           console.info("push StartAndStop page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push StartAndStop page error:" + err);
       }
       console.info("StartAndStop beforeEach end");

@@ -34,7 +34,7 @@ export default function Grid_RowCol_PadMar() {
           await CommonFunc.sleep(2000);
           console.info("push Grid_RowCol_PadMar page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push Grid_RowCol_PadMar page error " + JSON.stringify(err));
         expect().assertFail();
       }

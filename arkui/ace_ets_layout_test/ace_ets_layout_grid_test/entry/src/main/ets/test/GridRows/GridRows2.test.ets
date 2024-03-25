@@ -19,7 +19,7 @@ import {UiComponent, UiDriver, Component, Driver, MouseButton, UiWindow, ON, BY,
 
 export default function GridRows2() {
   describe('GridRows2', function () {
-    beforeEach(async function (done) {
+    beforeEach(async function (done: Function) {
       console.info("GridRows2 beforeEach start");
       try {
         router.clear();
@@ -31,7 +31,7 @@ export default function GridRows2() {
           await CommonFunc.sleep(2000);
           console.info("push GridRows2 page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push GridRows2 page error:" + err);
       }
       console.info("GridRows2 foreEach end");
@@ -49,7 +49,7 @@ export default function GridRows2() {
      * @tc.type
      */
 
-    it('GridRows2_001', 0, async function (done) {
+    it('GridRows2_001', 0, async function (done: Function) {
       console.info('[GridRows2_001] START');
 
       await CommonFunc.sleep(1000);
@@ -79,7 +79,7 @@ export default function GridRows2() {
      * @tc.type
      */
 
-    it('GridRows2_002', 0, async function (done) {
+    it('GridRows2_002', 0, async function (done: Function) {
       console.info('[GridRows2_001] START');
 
       await CommonFunc.sleep(1000);
