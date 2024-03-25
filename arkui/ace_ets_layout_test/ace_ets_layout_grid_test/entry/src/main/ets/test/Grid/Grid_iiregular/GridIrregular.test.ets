@@ -49,7 +49,7 @@ export default function GridIrregularJsunit() {
           console.info("push GridIrregularJsunit page result: " + JSON.stringify(result));
         }
 
-      } catch (err) {
+      } catch (err: any) {
         console.error("push GridIrregularJsunit page error: " + err);
         expect().assertFail();
       }

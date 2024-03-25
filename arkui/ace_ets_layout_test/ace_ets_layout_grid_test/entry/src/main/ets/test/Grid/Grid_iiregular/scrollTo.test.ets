@@ -48,7 +48,7 @@ export default function scrollByJsunit() {
           await CommonFunc.sleep(2000);
           console.info("push scrollToJsunit page result: " + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push scrollToJsunit page error: " + err);
         expect().assertFail();
       }

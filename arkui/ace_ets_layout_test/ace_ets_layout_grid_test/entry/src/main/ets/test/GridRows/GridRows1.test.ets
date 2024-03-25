@@ -19,7 +19,7 @@ import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern
 
 export default function GridRows1() {
   describe('GridRows1', function () {
-    beforeEach(async function (done) {
+    beforeEach(async function (done: Function) {
       console.info("GridRows1 beforeEach start");
       try {
         router.clear();
@@ -31,7 +31,7 @@ export default function GridRows1() {
           await CommonFunc.sleep(2000);
           console.info("push GridRows1 page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push GridRows1 page error:" + err);
       }
       console.info("GridRows1 foreEach end");
@@ -50,7 +50,7 @@ export default function GridRows1() {
     * @tc.size
      */
 
-    it('GridRows1_001', 0, async function (done) {
+    it('GridRows1_001', 0, async function (done: Function) {
       console.info('[GridRows1_001] START');
 
       await CommonFunc.sleep(1000);
@@ -72,7 +72,7 @@ export default function GridRows1() {
      * @tc.type
      */
 
-    it('GridRows1_002', 0, async function (done) {
+    it('GridRows1_002', 0, async function (done: Function) {
       console.info('[GridRows1_002] START');
 
       await CommonFunc.sleep(1000);
@@ -101,7 +101,7 @@ export default function GridRows1() {
      * @tc.type
      */
 
-    it('GridRows1_003', 0, async function (done) {
+    it('GridRows1_003', 0, async function (done: Function) {
       console.info('[GridRows1_003] START');
 
       await CommonFunc.sleep(1000);
@@ -130,7 +130,7 @@ export default function GridRows1() {
      * @tc.type
      */
 
-    it('GridRows1_004', 0, async function (done) {
+    it('GridRows1_004', 0, async function (done: Function) {
       console.info('[GridRows1_004] START');
 
       await CommonFunc.sleep(1000);

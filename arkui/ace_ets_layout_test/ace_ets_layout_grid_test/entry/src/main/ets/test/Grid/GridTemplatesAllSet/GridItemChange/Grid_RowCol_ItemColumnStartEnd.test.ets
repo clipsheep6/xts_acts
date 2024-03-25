@@ -34,7 +34,7 @@ export default function grid_RowCol_ItemColumnStartEndTest() {
           await CommonFunc.sleep(2000);
           console.info("push Grid_RowCol_ItemColumnStartEnd page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push Grid_RowCol_ItemColumnStartEnd page error:" + err);
       }
       console.info("Grid_RowCol_ItemColumnStartEndTest beforeEach end");

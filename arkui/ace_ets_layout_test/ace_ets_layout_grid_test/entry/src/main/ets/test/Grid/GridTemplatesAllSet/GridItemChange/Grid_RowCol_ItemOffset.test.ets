@@ -34,7 +34,7 @@ export default function grid_RowCol_ItemOffsetTest() {
           await CommonFunc.sleep(2000);
           console.info("push Grid_RowCol_ItemOffset page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push Grid_RowCol_ItemOffset page error:" + err);
       }
       console.info("Grid_RowCol_ItemOffsetTest beforeEach end");

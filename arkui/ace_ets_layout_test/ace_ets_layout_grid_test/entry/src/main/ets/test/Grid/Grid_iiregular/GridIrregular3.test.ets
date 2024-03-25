@@ -49,7 +49,7 @@ export default function scrollByJsunit() {
           await CommonFunc.sleep(2000);
           console.info("push GridIrregular3Jsunit page result: " + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push GridIrregular3Jsunit page error: " + err);
         expect().assertFail();
       }

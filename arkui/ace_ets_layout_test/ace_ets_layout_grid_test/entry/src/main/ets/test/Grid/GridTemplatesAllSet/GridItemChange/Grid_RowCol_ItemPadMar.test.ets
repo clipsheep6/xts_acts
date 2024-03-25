@@ -34,7 +34,7 @@ export default function grid_RowCol_ItemPadMarTest() {
           await CommonFunc.sleep(2000);
           console.info("push Grid_RowCol_ItemPadMar page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push Grid_RowCol_ItemPadMar page error:" + err);
       }
       console.info("Grid_RowCol_ItemPadMarTest beforeEach end");
