@@ -24,11 +24,11 @@ let sleep = (time: number) => {
 export default function unhandledRejectionTest() {
   describe('ActsUnhandledRejectionTest', () => {
     beforeEach(async () => {
-      errorManager.off("unhandledRejection", null);
+      errorManager.off("error", null);
       await sleep(1000);
     })
     afterEach(async () => {
-      errorManager.off("unhandledRejection", null);
+      errorManager.off("error", null);
       await sleep(1000);
     })
 
