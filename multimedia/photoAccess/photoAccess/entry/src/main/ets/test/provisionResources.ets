@@ -202,7 +202,8 @@ export default function provisionResourcesTest() {
         it('sub_media_photoAccess_provision_check_assets_008', 0, async function (done) {
             const testNum = 'SUB_MEDIA_PHOTOACCESS_PROVISION_CHECK_ASSETS_0800';
             const fileNames = [
-                "01.mp4", "albumImageVideoCount01.mp4", "albumGetAssetsCb01.mp4", "albumGetAssetsPro01.mp4"
+                "01.mp4", "albumImageVideoCount01.mp4", "albumGetAssetsCb01.mp4", "albumGetAssetsPro01.mp4",
+                "request_video.mp4"
             ];
             await pushCreateAsset(fileNames);
             await checkResourceAsset(done, testNum, fileNames);
