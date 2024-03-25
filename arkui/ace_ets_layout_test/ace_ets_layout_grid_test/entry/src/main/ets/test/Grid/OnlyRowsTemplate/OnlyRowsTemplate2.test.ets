@@ -35,7 +35,7 @@ export default function OnlyRowsTemplate2() {
           await CommonFunc.sleep(2000);
           console.info("push OnlyRowsTemplate2 page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push OnlyRowsTemplate2 page error:" + err);
       }
       console.info("OnlyRowsTemplate2 beforeEach end");

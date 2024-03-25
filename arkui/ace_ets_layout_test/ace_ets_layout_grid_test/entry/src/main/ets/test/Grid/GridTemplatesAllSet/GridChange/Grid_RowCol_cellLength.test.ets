@@ -34,7 +34,7 @@ export default function Grid_RowCol_cellLength() {
           await CommonFunc.sleep(2000);
           console.info("push Grid_RowCol_cellLength page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push Grid_RowCol_cellLength page error " + JSON.stringify(err));
         expect().assertFail();
       }

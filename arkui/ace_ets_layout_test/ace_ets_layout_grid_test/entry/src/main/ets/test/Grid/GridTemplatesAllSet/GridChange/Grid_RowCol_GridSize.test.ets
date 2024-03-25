@@ -34,7 +34,7 @@ export default function Grid_RowCol_GridSize() {
           await CommonFunc.sleep(2000);
           console.info("push Grid_RowCol_GridSize page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push Grid_RowCol_GridSize page error " + JSON.stringify(err));
         expect().assertFail();
       }
