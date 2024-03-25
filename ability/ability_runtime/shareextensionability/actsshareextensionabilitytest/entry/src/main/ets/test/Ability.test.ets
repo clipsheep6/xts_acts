@@ -83,6 +83,7 @@ export default function abilityTest() {
                       .assertContain("root host bundle name [com.example.actsshareextensionabilitytest]");
                     expect(result[0]).assertContain("root host module name [entry]");
                     expect(result[0]).assertContain("root host ability name [EntryAbility]");
+                    console.info('====>Acts_ShareExtensionAbility_0100 expect assertContain successfully');
                   } catch {
                     expect().assertFail();
                   }
@@ -93,6 +94,7 @@ export default function abilityTest() {
                   bundleName: 'com.example.actsshareextensionabilitytest',
                   abilityName: 'CalledAbility'
                 }, (err) => {
+                  console.info('====>Acts_ShareExtensionAbility_0100 startAbility successfully');
                   expect(err.code).assertEqual(0);
                 })
               }, 500);
@@ -104,8 +106,10 @@ export default function abilityTest() {
               expect(data.parameters.count).assertEqual(6);
               setTimeout(() => {
                 commonEvent.unsubscribe(subscriber, async () => {
+                  console.info('====>Acts_ShareExtensionAbility_0100 globalThis before');
                   await globalThis.terminate('Acts_ShareExtensionAbility_0100');
                   await globalThis.terminateCalledAbility('Acts_ShareExtensionAbility_0100');
+                  console.info('====>Acts_ShareExtensionAbility_0100 globalThis after');
                   setTimeout(() => {
                     console.info('====>Acts_ShareExtensionAbility_0100 unSubscribeCallback');
                     done();
