@@ -50,6 +50,8 @@ import getReadOnlyFdTest from './PhotoAsset/getReadOnlyFd'
 import getThumbnailTest from './PhotoAsset/getThumbnail'
 import photoPickerTest from './PhotoAccessHelper/photoPicker'
 import PhotoAccessHelperTest from  './PhotoAccessHelperCases/PhotoAccessHelperTest.test.ets'
+import PhotoAccessHelperStabilityTest from  './PhotoAccessHelperCases/PhotoAccessHelperStabilityTest.test.ets'
+import performanceTest from './PhotoAccessHelperCases/performanceTest.test'
 import setAlbumNameChangeRequestTest from './MediaAlbumChangeRequest/setAlbumName'
 import getAlbumChangeRequestTest from './MediaAlbumChangeRequest/getAlbum'
 import addRemoveAssetsChangeRequestTest from './MediaAlbumChangeRequest/addRemoveAssets'
@@ -67,6 +69,7 @@ import requestImageDataTest from './MediaAssetManager/requestImageData'
 export default function testsuite () {
   provisionResourcesTest()
   getPhotoAccessHelperTest()
+  PhotoAccessHelperStabilityTest()
   checkAlbumAttrTest()
   albumGetAssetsTest()
   addAssetsTest()
@@ -103,6 +106,7 @@ export default function testsuite () {
   getThumbnailTest()
   photoPickerTest()
   PhotoAccessHelperTest()
+  performanceTest()
   setAlbumNameChangeRequestTest()
   getAlbumChangeRequestTest()
   addRemoveAssetsChangeRequestTest()
