@@ -62,8 +62,8 @@ export default function abilityTest() {
                 console.info("====>Acts_StopServiceExtension_0100 stopServiceExtensionAbility err: " + JSON.stringify(err));
                 expect(err.code).assertEqual(0);
                 commonEvent.unsubscribe(subscriber, () => {
-                  console.info("====>Acts_StopServiceExtension_0100 startAbility err: " + JSON.stringify(err));
-                  expect(err.code).assertEqual(0);
+                  console.info("====>Acts_StopServiceExtension_0100 unSubscribeCallback");
+                  done();
                 });
               })
             }
