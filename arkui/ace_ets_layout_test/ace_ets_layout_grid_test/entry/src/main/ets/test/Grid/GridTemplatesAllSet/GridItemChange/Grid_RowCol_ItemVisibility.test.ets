@@ -34,7 +34,7 @@ export default function grid_RowCol_ItemVisibilityTest() {
           await CommonFunc.sleep(2000);
           console.info("push Grid_RowCol_ItemVisibility page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push Grid_RowCol_ItemVisibility page error:" + err);
       }
       console.info("Grid_RowCol_ItemVisibilityTest beforeEach end");

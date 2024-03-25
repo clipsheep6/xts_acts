@@ -50,7 +50,7 @@ export default function scrollByJsunit() {
           console.info("push scrollByJsunit page result: " + JSON.stringify(result));
         }
 
-      } catch (err) {
+      } catch (err: any) {
         console.error("push scrollByJsunit page error: " + err);
         expect().assertFail();
       }

@@ -35,7 +35,7 @@ export default function grid_GridFrictionTest() {
           await CommonFunc.sleep(2000);
           console.info("push GridFrictionPage page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push GridFrictionPage page error:" + err);
       }
       console.info("GridFrictionPage beforeEach end");

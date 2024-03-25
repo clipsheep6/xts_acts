@@ -36,7 +36,7 @@ export default function Grid_ReachStartAndEnd4() {
           await CommonFunc.sleep(2000);
           console.info("push Grid_ReachStartAndEnd4 page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push Grid_ReachStartAndEnd4 page error:" + err);
       }
       console.info("Grid_ReachStartAndEnd4 beforeEach end");

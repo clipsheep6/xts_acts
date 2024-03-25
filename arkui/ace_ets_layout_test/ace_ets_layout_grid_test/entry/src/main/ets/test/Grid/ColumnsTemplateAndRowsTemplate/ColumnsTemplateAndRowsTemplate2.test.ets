@@ -35,7 +35,7 @@ export default function ColumnsTemplateAndRowsTemplate2() {
           await CommonFunc.sleep(2000);
           console.info("push ColumnsTemplateAndRowsTemplate2 page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push ColumnsTemplateAndRowsTemplate2 page error:" + err);
       }
       console.info("ColumnsTemplateAndRowsTemplate2 beforeEach end");
