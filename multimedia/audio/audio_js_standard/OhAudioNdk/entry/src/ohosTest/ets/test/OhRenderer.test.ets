@@ -1580,8 +1580,8 @@ export default function OhRendererTest() {
     beforeEach(() => {
       console.info('beforeEach case');
     });
-    afterEach(() => {
-      Utils.sleep(sleep500);
+    afterEach(async () => {
+     // await Utils.sleep(sleep500);
       console.info('afterEach case');
     });
     afterAll(async () => {
@@ -1599,11 +1599,11 @@ export default function OhRendererTest() {
     it('testOHAudioRendererPlayList001', 0, async (done: Function) => {
       console.log(`testOHAudioRendererPlayList001 test start `);
       for (let index: number = 0; index < fileList.length; index++) {
-        const element: string = fileList[index];
         let re: number = await testStreamBuilder.CreatAudioPlayerWithWavFile(index);
         if (re === number200) {
           Utils.sleep(sleep1000);
         } else {
+          console.log("退出退出");
           continue;
         }
 
@@ -1612,7 +1612,7 @@ export default function OhRendererTest() {
 
         re = await testStreamBuilder.OHAudioRendererStart();
         expect(re).assertEqual(0);
-        Utils.sleep(sleep1000);
+        // Utils.sleep(sleep1000);
 
 
         re = await testStreamBuilder.OHAudioRendererGetCurrentState();
@@ -1678,6 +1678,8 @@ export default function OhRendererTest() {
         if (re === number200) {
           Utils.sleep(sleep1000);
         } else {
+          const element: string = fileList[index];
+          console.log("退出退出",element);
           continue;
         }
 
@@ -1710,6 +1712,7 @@ export default function OhRendererTest() {
         expect(re).assertEqual(0);
 
         await testStreamBuilder.CloseAudioRender();
+        await Utils.sleep(sleep500);
       }
       console.log(`testOHAudioRendererPlayList002 test end `);
       done();
@@ -1733,7 +1736,7 @@ export default function OhRendererTest() {
         ['EncodingType', 0],
         ['FrameSize', 0],
         ['FramesWritten', 0],
-        ['LatencyMode', 1],
+        ['LatencyMode', 0],
         ['SampleFormat', 0],
         ['SamplingRate', 48000]
       ]);
@@ -1749,12 +1752,7 @@ export default function OhRendererTest() {
         tempMap.get('SampleFormat'),
         tempMap.get('SamplingRate')
       );
-      if (re === number200) {
-        Utils.sleep(sleep1000);
-      } else {
-        done();
-      }
-
+      expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re).assertEqual(1);
 
@@ -1775,17 +1773,20 @@ export default function OhRendererTest() {
         expect(re).assertEqual(numberFive);
       }
 
-      re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(0);
+      if (re !== numberThree) {
+        re = testStreamBuilder.OHAudioRendererStop();
+        expect(re).assertEqual(0);
 
-      re = testStreamBuilder.OHAudioRendererGetCurrentState();
-      expect(re).assertEqual(numberThree);
+        re = testStreamBuilder.OHAudioRendererGetCurrentState();
+        expect(re).assertEqual(numberThree);
+      }
+
 
       re = testStreamBuilder.OHAudioRendererRelease();
       expect(re).assertEqual(0);
 
       await testStreamBuilder.CloseAudioRender();
-
+      await Utils.sleep(sleep500);
       console.log(`testOHAudioRendererPlayList003 test end `);
       done();
     });

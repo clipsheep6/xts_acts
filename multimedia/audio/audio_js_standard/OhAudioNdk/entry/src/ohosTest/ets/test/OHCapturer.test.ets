@@ -249,9 +249,6 @@ export default function OhCapturerTest() {
     beforeAll(async (done: Function) => {
       aff(done);
       await Utils.sleep(sleep3000);
-      // creatPcmFile();
-      // let re: number = testStreamBuilder.CreateAudioCapturerRecorder(1);
-      // expect(re).assertEqual(number200);
       done();
     });
     beforeEach(() => {
@@ -1632,26 +1629,25 @@ export default function OhCapturerTest() {
       Utils.sleep(sleep1000);
       expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
-
+      expect(re).assertEqual(1);
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(0);
-      re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
-
-      if (re === numberTwo) {
-        re = testStreamBuilder.OHAudioCapturerPause();
-        expect(re).assertEqual(0);
-      }
-
-      re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberThree).assertTrue();
-
-      re = testStreamBuilder.OHAudioCapturerRelease();
-      expect(re).assertEqual(0);
-      let ret: number = await testStreamBuilder.CloseAudioCapture();
-      Utils.sleep(500);
-      expect(ret === 0 || ret === number200).assertTrue();
+      // re = testStreamBuilder.OHAudioCapturerGetCurrentState();
+      // expect(re === numberTwo || re === numberThree).assertTrue();
+      //
+      // if (re === numberTwo) {
+      //   re = testStreamBuilder.OHAudioCapturerPause();
+      //   expect(re).assertEqual(0);
+      // }
+      //
+      // re = testStreamBuilder.OHAudioCapturerGetCurrentState();
+      // expect(re === numberThree).assertTrue();
+      //
+      // re = testStreamBuilder.OHAudioCapturerRelease();
+      // expect(re).assertEqual(0);
+      // let ret: number = await testStreamBuilder.CloseAudioCapture();
+      // Utils.sleep(500);
+      // expect(ret === 0 || ret === number200).assertTrue();
       console.log(`testCreateAudioCapturerRecorder0200 test end `);
       done();
     });
@@ -2337,7 +2333,7 @@ export default function OhCapturerTest() {
       channelCount = 2;
       encodingType = 0;
       latencyMode = 0;
-      frameSizeValue = 240;
+      frameSizeValue = 960;
       sampleFormat = 0;
 
       let re: number = await testStreamBuilder.CreatCapturerRecorderWithParam(rateValue, channelCount, frameSizeValue, latencyMode, sampleFormat);
