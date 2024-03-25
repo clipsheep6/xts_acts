@@ -30,7 +30,7 @@ function sleep(ms: number) {
 
 export default function abilityTest() {
   describe('ACTS_AACommand_Test', () => {
-    let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AppStorage.get<AbilityDelegatorRegistry.AbilityDelegator>("abilityDelegator");
+    let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     beforeAll(async (done: Function) => {
       // abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
       await done();
