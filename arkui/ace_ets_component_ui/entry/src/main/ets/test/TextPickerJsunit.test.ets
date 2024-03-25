@@ -128,7 +128,7 @@ export default function TextPickerJsunit() {
     it('TextPickerJsunit_0300', 0, async (done: Function) => {
       // Verify the functions of TextPicker component
       console.info('[TextPickerJsunit_0300] START');
-      let component = CommonFunc.getComponentRect('textPicker');
+      let component = CommonFunc.getComponentRectOnScreen('textPicker');
       let bottom = component.bottom
       let right = component.right
       console.info("[TextPickerJsunit_0300] bottom: " + JSON.stringify(bottom));

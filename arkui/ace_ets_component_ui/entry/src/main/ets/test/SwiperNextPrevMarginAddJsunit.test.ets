@@ -131,8 +131,8 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_0300'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect((right - left) * 0.9).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round(((right - left) * 0.9)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -165,8 +165,8 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight1 = swiperMargin.right;
       let swiperLeft1 = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_0400'] component value is: " + right1 + "," + left1 + ","
-        + swiperRight1 + "," + swiperLeft1);
-      expect(right1 - left1).assertEqual(swiperRight1 - swiperLeft1);
+      + swiperRight1 + "," + swiperLeft1);
+      expect(Math.abs(Math.round((right1 - left1)- (swiperRight1 - swiperLeft1))) <= 1).assertTrue();
       done();
     });
 
@@ -199,12 +199,12 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight1 = swiperMargin.right;
       let swiperLeft1 = swiperMargin.left;
       console.info("[SwiperNextPrevMarginAddJsunit_022'] component value is: " + right1 + "," + left1 + ","
-        + swiperRight1 + "," + swiperLeft1);
-      expect((right1 - left1) * 0.9).assertEqual(swiperRight1 - swiperLeft1);
+      + swiperRight1 + "," + swiperLeft1);
+      expect(Math.abs(Math.round(((right1 - left1)*0.9)- (swiperRight1 - swiperLeft1))) <= 1).assertTrue();
       done();
     });
 
-    it('SwiperNextPrevMarginAddJsunit_0500', 0, async (done: Function) => {
+    it('SwiperNextPrevMarginAddJsunit_0500', 0, async function (done) {
       console.info('SwiperNextPrevMarginAddJsunit_0500 START');
       await CommonFunc.sleep(1000);
       // dymanic chage the value
@@ -227,12 +227,12 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight2 = swiperMargin.right;
       let swiperLeft2 = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_0500'] component value is: " + right2 + "," + left2 + ","
-        + swiperRight2 + "," + swiperLeft2);
-      expect((right2 - left2) * 0.9).assertEqual(swiperRight2 - swiperLeft2);
+      + swiperRight2 + "," + swiperLeft2);
+      expect(Math.abs(Math.round(((right2 - left2)*0.9)- (swiperRight2 - swiperLeft2))) <= 1).assertTrue();
       done();
     });
 
-    it('SwiperNextPrevMarginAddJsunit_0600', 0, async (done: Function) => {
+    it('SwiperNextPrevMarginAddJsunit_0600', 0, async function (done) {
       console.info('SwiperNextPrevMarginAddJsunit_0600 START');
       await CommonFunc.sleep(1000);
       // dymanic chage the value
@@ -255,12 +255,12 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_0600'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect(right - left).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round((right - left)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
-    it('SwiperNextPrevMarginAddJsunit_0700', 0, async (done: Function) => {
+    it('SwiperNextPrevMarginAddJsunit_0700', 0, async function (done) {
       console.info('SwiperNextPrevMarginAddJsunit_0700 START');
       await CommonFunc.sleep(1000);
       // dymanic chage the value
@@ -305,12 +305,12 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_0800'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect((right - left) * 0.9).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round(((right - left) * 0.9)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
-    it('SwiperNextPrevMarginAddJsunit_0900', 0, async (done: Function) => {
+    it('SwiperNextPrevMarginAddJsunit_0900', 0, async function (done) {
       console.info('SwiperNextPrevMarginAddJsunit_0900 START');
       await CommonFunc.sleep(1000);
       // dymanic chage the value
@@ -333,12 +333,12 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_0400'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect(right - left).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round((right - left)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
-    it('SwiperNextPrevMarginAddJsunit_1000', 0, async (done: Function) => {
+    it('SwiperNextPrevMarginAddJsunit_1000', 0, async function (done) {
       console.info('SwiperNextPrevMarginAddJsunit_1000 START');
       await CommonFunc.sleep(1000);
       // dymanic chage the value
@@ -361,12 +361,12 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_1000'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect((right - left) * 0.9).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round(((right - left)*0.9)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
-    it('SwiperNextPrevMarginAddJsunit_1100', 0, async (done: Function) => {
+    it('SwiperNextPrevMarginAddJsunit_1100', 0, async function (done) {
       console.info('SwiperNextPrevMarginAddJsunit_1100 START');
       await CommonFunc.sleep(1000);
       // dymanic chage the value
@@ -393,8 +393,8 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_1100'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect(right - left).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round((right - left)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -425,8 +425,8 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_1100'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect(right - left).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round((right - left)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -457,8 +457,8 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_1300'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect((right - left) * 0.9).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round(((right - left) * 0.9)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -489,12 +489,12 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_1400'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect(right - left).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round((right - left)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
-    it('SwiperNextPrevMarginAddJsunit_1500', 0, async (done: Function) => {
+    it('SwiperNextPrevMarginAddJsunit_1500', 0, async function (done) {
       console.info('SwiperNextPrevMarginAddJsunit_1500 START');
       await CommonFunc.sleep(1000);
       // dymanic chage the value
@@ -529,12 +529,12 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_1500'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect(right - left).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round((right - left)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
-    it('SwiperNextPrevMarginAddJsunit_1600', 0, async (done: Function) => {
+    it('SwiperNextPrevMarginAddJsunit_1600', 0, async function (done) {
       console.info('SwiperNextPrevMarginAddJsunit_1600 START');
       await CommonFunc.sleep(1000);
       // dymanic chage the value
@@ -569,8 +569,8 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_1600'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect((right - left) * 0.9).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round(((right - left)*0.9)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -617,12 +617,12 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_1700'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect((right - left) * 0.9).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round(((right - left)*0.9)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
-    it('SwiperNextPrevMarginAddJsunit_1800', 0, async (done: Function) => {
+    it('SwiperNextPrevMarginAddJsunit_1800', 0, async function (done) {
       console.info('SwiperNextPrevMarginAddJsunit_1800 START');
       await CommonFunc.sleep(1000);
       // dymanic chage the value
@@ -643,9 +643,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         })
       await CommonFunc.sleep(1000);
       // dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'nextMargin', value: '20%'
-      });
+      globalThis.value.message.notify({name:'nextMargin',value: '20%'});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'prevMargin', value: '20%'
@@ -666,8 +664,8 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_1800'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect((right - left) * 0.9).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round(((right - left)*0.9)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -692,9 +690,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         })
       await CommonFunc.sleep(1000);
       // dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'nextMargin', value: 'abc'
-      });
+      globalThis.value.message.notify({name:'nextMargin',value: 'abc'});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'prevMargin', value: 'abc'
@@ -715,8 +711,8 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_1900'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect((right - left) * 0.9).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round(((right - left)*0.9)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -741,9 +737,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         })
       await CommonFunc.sleep(1000);
       // dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'nextMargin', value: '30px'
-      });
+      globalThis.value.message.notify({name:'nextMargin',value: '30px'});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'prevMargin', value: '30px'
@@ -764,8 +758,8 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_2000'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect(right - left).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round((right - left)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -790,9 +784,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         })
       await CommonFunc.sleep(1000);
       // dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'nextMargin', value: '30fp'
-      });
+      globalThis.value.message.notify({name:'nextMargin',value: '30fp'});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'prevMargin', value: '30fp'
@@ -813,8 +805,8 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_2100'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect(right - left).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round((right - left)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -839,9 +831,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         })
       await CommonFunc.sleep(1000);
       // dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'nextMargin', value: '30lpx'
-      });
+      globalThis.value.message.notify({name:'nextMargin',value: '30lpx'});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'prevMargin', value: '30lpx'
@@ -862,8 +852,8 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_2200'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect(right - left).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round((right - left)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -888,9 +878,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         })
       await CommonFunc.sleep(1000);
       // dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'nextMargin', value: $r("app.string.nextMarginString")
-      });
+      globalThis.value.message.notify({name:'nextMargin',value: $r("app.string.nextMarginString")});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'prevMargin', value: $r("app.string.prevMarginString")
@@ -911,8 +899,8 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_2300'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect(right - left).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round((right - left)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -922,7 +910,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
      * @tc.desc  : test swiper width = padding + subcomponentwidth
      * @tc.level : Level 2
      */
-    it('SwiperNextPrevMarginAddJsunit_020', 0, async (done: Function) => {
+    it('SwiperNextPrevMarginAddJsunit_020', 0, async function (done) {
       console.info('SwiperNextPrevMarginAddJsunit_2400 START');
       await CommonFunc.sleep(1000);
       // dymanic chage the value
@@ -958,12 +946,12 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_2400'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect((right - left) * 0.9).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round(((right - left)*0.9)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
-    it('SwiperNextPrevMarginAddJsunit_2500', 0, async (done: Function) => {
+    it('SwiperNextPrevMarginAddJsunit_2500', 0, async function (done) {
       console.info('SwiperNextPrevMarginAddJsunit_2500 START');
       await CommonFunc.sleep(1000);
       // dymanic chage the value
@@ -984,9 +972,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         })
       await CommonFunc.sleep(1000);
       // dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'nextMargin', value: $r("app.float.nextMargin")
-      });
+      globalThis.value.message.notify({name:'nextMargin',value: $r("app.float.nextMargin")});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'prevMargin', value: $r("app.float.prevMargin")
@@ -1007,8 +993,8 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
       console.info("[apiCommponentAddJsunit_2300'] component value is: " + right + "," + left + ","
-        + swiperRight + "," + swiperLeft);
-      expect(right - left).assertEqual(swiperRight - swiperLeft);
+      + swiperRight + "," + swiperLeft);
+      expect(Math.abs(Math.round((right - left)- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -1038,7 +1024,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
           console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
         })
       await CommonFunc.sleep(1000);
-      // calculate 
+      // calculate
       let swiperMargin = CommonFunc.getComponentRect('swiperNextPrevMargin76');
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
@@ -1058,7 +1044,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let right = subcomponment.right;
       let left = subcomponment.left;
 
-      expect(swiperRight - swiperLeft).assertEqual(right - left + vp2px(4 + 2 + 2 * 10));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (right-left + vp2px(4 + 2 + 2*10)))) <= 1).assertTrue();
       done();
     });
 
@@ -1088,7 +1074,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
           console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
         })
       await CommonFunc.sleep(1000);
-      // calculate 
+      // calculate
       let swiperMargin = CommonFunc.getComponentRect('swiperNextPrevMargin78');
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
@@ -1109,7 +1095,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let right = subcomponment.right;
       let left = subcomponment.left;
 
-      expect(right - left + vp2px(4 + 2 + 2 * 10)).assertEqual(swiperRight - swiperLeft);
+      expect(Math.abs(Math.round((right - left + vp2px(4 + 2 + 2*10))- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -1144,7 +1130,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         name: 'displayCount', value: 2
       });
       await CommonFunc.sleep(500);
-      // calculate 
+      // calculate
       let swiperMargin = CommonFunc.getComponentRect('swiperNextPrevMargin78');
       let swiperRight = swiperMargin.right;
       let swiperLeft = swiperMargin.left;
@@ -1162,10 +1148,10 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       // calculate the gap
       let subcomponment = CommonFunc.getComponentRect('1');
-      let right = subcomponment.right;
-      let left = subcomponment.left;
+      let right =  subcomponment.right;
+      let left  =  subcomponment.left;
 
-      expect(2 * (right - left) + vp2px(4 + 2 + 2 * 10)).assertEqual(swiperRight - swiperLeft);
+      expect(Math.abs(Math.round((2*(right - left) + vp2px(4 + 2 + 2*10))- (swiperRight - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -1196,15 +1182,13 @@ export default function SwiperNextPrevMarginAddJsunit() {
         })
       await CommonFunc.sleep(1000);
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin81');
-
-      console.info("[wiperNextPrevMarginAddJsunit_0081] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
-      expect(JSON.parse(strJson).$attrs.padding).assertEqual('10.00vp');
-      let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
-      let prevMargin = JSON.parse(strJson).$attrs.prevMargin;
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin81');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0081] component obj is: " + obj.$attrs.padding);
+      expect(obj.$attrs.padding).assertEqual('10.00vp');
+      let nextMargin =  obj.$attrs.nextMargin;
+      let prevMargin =   obj.$attrs.prevMargin;
       expect(nextMargin).assertEqual("4.00vp");
       expect(prevMargin).assertEqual("2.00vp");
 
@@ -1213,10 +1197,10 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperLeft = swiperMargin.left;
       // calculate the gap
       let subcomponment = CommonFunc.getComponentRect('1');
-      let right = subcomponment.right;
-      let left = subcomponment.left;
+      let right =  subcomponment.right;
+      let left  =  subcomponment.left;
 
-      expect(right - left + vp2px(4 + 2 + 2 * 10)).assertEqual(swiperRight - swiperLeft);
+      expect(Math.abs(Math.round((right - left + vp2px(4 + 2 + 2*10))- (swiperRight -swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -1247,24 +1231,20 @@ export default function SwiperNextPrevMarginAddJsunit() {
         })
       await CommonFunc.sleep(1000);
       // dymnaic change the value
-      globalThis.value.message.notify({
-        name: 'displayCount', value: 2
-      });
+      globalThis.value.message.notify({name:'displayCount',value: 2 });
       await CommonFunc.sleep(500);
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin81');
-
-      console.info("[wiperNextPrevMarginAddJsunit_0081] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
-      expect(JSON.parse(strJson).$attrs.padding).assertEqual('10.00vp');
-      let swiperWidth = JSON.parse(strJson).$attrs.width;
-      let padding = JSON.parse(strJson).$attrs.padding;
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin81');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0081] component obj is: " + obj.$attrs.padding);
+      expect(obj.$attrs.padding).assertEqual('10.00vp');
+      let swiperWidth = obj.$attrs.width;
+      let padding = obj.$attrs.padding;
 
       // calculate the gap
       let subcomponment = CommonFunc.getComponentRect('1');
-      let right = subcomponment.right;
-      let left = subcomponment.left;
+      let right =  subcomponment.right;
+      let left  =  subcomponment.left;
 
       let swiperMargin = CommonFunc.getComponentRect('swiperNextPrevMargin81');
       let swiperRight = swiperMargin.right;
@@ -1274,7 +1254,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       expect(nextMargin).assertEqual("4.00vp");
       expect(prevMargin).assertEqual("2.00vp");
 
-      expect(2 * (right - left) + vp2px(4 + 2 + 2 * 10)).assertEqual(swiperRight - swiperLeft);
+      expect(Math.abs(Math.round((2 *(right - left) + vp2px(4 + 2 + 2*10))- (swiperRight  - swiperLeft))) <= 1).assertTrue();
       done();
     });
 
@@ -1305,15 +1285,13 @@ export default function SwiperNextPrevMarginAddJsunit() {
         })
       await CommonFunc.sleep(1000);
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin79');
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin79');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0079] component obj is: " + obj.$attrs.padding);
 
-      console.info("[wiperNextPrevMarginAddJsunit_0079] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
-
-      let swiperWidth = JSON.parse(strJson).$attrs.width;
-      expect(JSON.parse(strJson).$attrs.padding).assertEqual('10.00vp');
+      let swiperWidth = obj.$attrs.width;
+      expect(obj.$attrs.padding).assertEqual('10.00vp');
 
       // calculate the gap
       let swiperMargin = CommonFunc.getComponentRect('swiperNextPrevMargin79');
@@ -1328,7 +1306,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       expect(nextMargin).assertEqual("4.00vp");
       expect(prevMargin).assertEqual("2.00vp");
 
-      expect(right - left).assertEqual(swiperRight - swiperLeft - vp2px(2 * 10 + 2 + 4));
+      expect(Math.abs(Math.round((right - left)- (swiperRight -  swiperLeft - vp2px(2 * 10 + 2 + 4)))) <= 1).assertTrue();
       done();
     });
 
@@ -1364,23 +1342,22 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let swiperLeft = swiperMargin.left;
 
 
+
       // calculate the gap
       let subcomponment = CommonFunc.getComponentRect('1');
       let right = subcomponment.right;
       let left = subcomponment.left;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('1');
+      // calculate
+      let strJson = getInspectorByKey('1');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0082] component obj is: " + obj.$attrs.padding);
 
-      console.info("[wiperNextPrevMarginAddJsunit_0082] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
-
-      let padding = JSON.parse(strJson).$attrs.padding;
+      let padding = obj.$attrs.padding;
 
 
       expect(padding).assertEqual('100.00vp');
-      expect(swiperRight - swiperLeft).assertEqual(right - left + vp2px(20 + 40));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (right - left + vp2px(20 + 40)))) <= 1).assertTrue();
       done();
     });
 
@@ -1420,20 +1397,18 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let right = subcomponment.right;
       let left = subcomponment.left;
 
-      // calculate 
+      // calculate
 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin83');
-
-      console.info("[wiperNextPrevMarginAddJsunit_0083] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
-      expect(JSON.parse(strJson).$attrs.padding).assertEqual('3.00vp');
-      let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
-      let prevMargin = JSON.parse(strJson).$attrs.prevMargin;
+      let strJson = getInspectorByKey('swiperNextPrevMargin83');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0083] component obj is: " + obj.$attrs.padding);
+      expect(obj.$attrs.padding).assertEqual('3.00vp');
+      let nextMargin =  obj.$attrs.nextMargin;
+      let prevMargin =   obj.$attrs.prevMargin;
       expect(nextMargin).assertEqual("100.00vp");
       expect(prevMargin).assertEqual("100.00vp");
 
-      expect(swiperRight - swiperLeft).assertEqual(right - left + vp2px(2 * 3 + 2 * 100));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (right - left + vp2px(2*3 + 2 *100)))) <= 1).assertTrue();
       done();
     });
 
@@ -1444,7 +1419,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
    * @tc.level : Level 2
    */
 
-    it('SwiperNextPrevMarginAddJsunit_0084', 0, async (done: Function) => {
+    it('SwiperNextPrevMarginAddJsunit_0084', 0, async function (done) {
       console.info('SwiperNextPrevMarginAddJsunit_0084 START');
       await CommonFunc.sleep(1000);
       ohosrouter.clear();
@@ -1474,16 +1449,14 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let right = subcomponment.right;
       let left = subcomponment.left;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('1');
-
-      console.info("[wiperNextPrevMarginAddJsunit_0084] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
+      // calculate
+      let strJson = getInspectorByKey('1');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0084] component obj is: " + obj.$attrs.padding);
 
       let padding = JSON.parse(strJson).$attrs.padding;
 
-      expect(swiperRight - swiperLeft).assertEqual(right - left);
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (right - left))) <= 1).assertTrue();
       done();
     });
 
@@ -1523,16 +1496,16 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let right = subcomponment.right;
       let left = subcomponment.left;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('1');
+      // calculate
+      let strJson = getInspectorByKey('1');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0085] component obj is: " + obj.$attrs.padding);
 
       console.info("[wiperNextPrevMarginAddJsunit_0085] component JSON.parse(strJson) is: " + JSON.parse(strJson)
         .$attrs
         .padding);
 
-      let padding = JSON.parse(strJson).$attrs.padding;
-
-      expect(swiperRight - swiperLeft).assertEqual(right - left);
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (right - left))) <= 1).assertTrue();
       done();
     });
 
@@ -1542,7 +1515,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
      * @tc.desc  : test swiper width = padding + subcomponentwidth
      * @tc.level : Level 2
      */
-    it('SwiperNextPrevMarginAddJsunit_0063', 0, async (done: Function) => {
+    it('SwiperNextPrevMarginAddJsunit_0063', 0, async function (done) {
       console.info('SwiperNextPrevMarginAddJsunit_0063 START');
       await CommonFunc.sleep(1000);
       ohosrouter.clear();
@@ -1572,7 +1545,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let right = subcomponment.right;
       let left = subcomponment.left;
 
-      // calculate 
+      // calculate
 
       let strJson: string = getInspectorByKey('swiperNextPrevMargin63');
 
@@ -1581,7 +1554,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       expect(nextMargin).assertEqual("15.00vp");
       expect(prevMargin).assertEqual("6.00vp");
-      expect(swiperRight - swiperLeft).assertEqual(right - left + vp2px(15 + 6));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (right - left + vp2px(15 + 6)))) <= 1).assertTrue();
       done();
     });
 
@@ -1620,19 +1593,18 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let top = subcomponment.top;
       let bottom = subcomponment.bottom;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin62');
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin62');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0062] component obj is: " + obj.$attrs.padding);
 
-      console.info("[wiperNextPrevMarginAddJsunit_0062] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
 
 
       let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
       let prevMargin = JSON.parse(strJson).$attrs.prevMargin;
       expect(nextMargin).assertEqual("15.00vp");
       expect(prevMargin).assertEqual("6.00vp");
-      expect(swiperTop - swiperbottom).assertEqual(top - bottom - vp2px(15 + 6));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (top - bottom -vp2px(15 + 6)))) <= 1).assertTrue();
       done();
     });
 
@@ -1672,15 +1644,15 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let right = subcomponment.right;
       let left = subcomponment.left;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin61');
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin61');
+      let obj = JSON.parse(strJson);
 
-
-      let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
-      let prevMargin = JSON.parse(strJson).$attrs.prevMargin;
+      let nextMargin =  obj.$attrs.nextMargin;
+      let prevMargin =   obj.$attrs.prevMargin;
       expect(nextMargin).assertEqual("15.00vp");
       expect(prevMargin).assertEqual("6.00vp");
-      expect(swiperRight - swiperLeft).assertEqual(3 * (right - left) + vp2px(15 + 6));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (3 *(right - left) + vp2px(15 + 6)))) <= 1).assertTrue();
       done();
     });
 
@@ -1710,11 +1682,11 @@ export default function SwiperNextPrevMarginAddJsunit() {
         })
       await CommonFunc.sleep(1000);
       // calculate
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin60');
+      let strJson = getInspectorByKey('swiperNextPrevMargin60');
+      let obj = JSON.parse(strJson);
 
-
-      let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
-      let prevMargin = JSON.parse(strJson).$attrs.prevMargin;
+      let nextMargin =  obj.$attrs.nextMargin;
+      let prevMargin =   obj.$attrs.prevMargin;
       expect(nextMargin).assertEqual("15.00vp");
       expect(prevMargin).assertEqual("6.00vp");
 
@@ -1724,9 +1696,9 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       // calculate the gap
       let subcomponment = CommonFunc.getComponentRect('1');
-      let top = subcomponment.top;
-      let bottom = subcomponment.bottom;
-      expect(swiperTop - swiperbottom).assertEqual(3 * (top - bottom) - vp2px(15 + 6));
+      let top =  subcomponment.top;
+      let bottom  =  subcomponment.bottom;
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (3*(top - bottom) -vp2px( 15 + 6)))) <= 1).assertTrue();
       done();
     });
 
@@ -1766,12 +1738,10 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let right = subcomponment.right;
       let left = subcomponment.left;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin67');
-
-      console.info("[wiperNextPrevMarginAddJsunit_0067] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin67');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0067] component obj is: " + obj.$attrs.padding);
 
       let padding = JSON.parse(strJson).$attrs.padding;
       let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
@@ -1782,7 +1752,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       expect(prevMargin).assertEqual("6.00vp");
       expect(itemspace).assertEqual("10.00vp");
 
-      expect(swiperRight - swiperLeft).assertEqual(right - left + vp2px(15 + 6 + 2 * 10));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (right - left + vp2px(15 + 6 + 2*10)))) <= 1).assertTrue();
       done();
     });
 
@@ -1821,8 +1791,10 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let top = subcomponment.top;
       let bottom = subcomponment.bottom;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin66');
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin66');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0066] component obj is: " + obj.$attrs.padding);
 
       console.info("[wiperNextPrevMarginAddJsunit_0066] component JSON.parse(strJson) is: " + JSON.parse(strJson)
         .$attrs
@@ -1837,7 +1809,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       expect(prevMargin).assertEqual("6.00vp");
       expect(itemspace).assertEqual("10.00vp");
 
-      expect(swiperTop - swiperbottom).assertEqual(top - bottom - vp2px(2 * 10 + 15 + 6));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (top - bottom - vp2px(2*10 + 15 + 6)))) <= 1).assertTrue();
       done();
     });
 
@@ -1877,8 +1849,10 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let right = subcomponment.right;
       let left = subcomponment.left;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin65');
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin65');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0065] component obj is: " + obj.$attrs.padding);
 
       console.info("[wiperNextPrevMarginAddJsunit_0065] component JSON.parse(strJson) is: " + JSON.parse(strJson)
         .$attrs
@@ -1893,7 +1867,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       expect(prevMargin).assertEqual("6.00vp");
       expect(itemspace).assertEqual("10.00vp");
 
-      expect(swiperRight - swiperLeft).assertEqual(3 * (right - left) + vp2px(15 + 6 + 4 * 10));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (3 *(right - left) + vp2px(15 + 6 + 4 * 10)))) <= 1).assertTrue();
       done();
     });
 
@@ -1932,12 +1906,10 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let top = subcomponment.top;
       let bottom = subcomponment.bottom;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin64');
-
-      console.info("[wiperNextPrevMarginAddJsunit_0064] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin64');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0064] component obj is: " + obj.$attrs.padding);
 
       let padding = JSON.parse(strJson).$attrs.padding;
       let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
@@ -1948,7 +1920,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       expect(prevMargin).assertEqual("6.00vp");
       expect(itemspace).assertEqual("10.00vp");
 
-      expect(swiperTop - swiperbottom).assertEqual(3 * (top - bottom) - vp2px(4 * 10 + 15 + 6));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (3*(top - bottom) - vp2px(4*10 + 15 + 6)))) <= 1).assertTrue();
       done();
     });
 
@@ -1987,12 +1959,10 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let left = subcomponment.left;
       let right = subcomponment.right;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin55');
-
-      console.info("[wiperNextPrevMarginAddJsunit_0055] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin55');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0055] component obj is: " + obj.$attrs.padding);
 
       let padding = JSON.parse(strJson).$attrs.padding;
       let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
@@ -2003,7 +1973,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       expect(prevMargin).assertEqual("6.00vp");
       expect(itemspace).assertEqual("0.00vp");
 
-      expect(swiperRight - swiperLeft).assertEqual(right - left + vp2px(15 + 6));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (right - left + vp2px(15 + 6)))) <= 1).assertTrue();
       done();
     });
 
@@ -2042,12 +2012,10 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let top = subcomponment.top;
       let bottom = subcomponment.bottom;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin54');
-
-      console.info("[wiperNextPrevMarginAddJsunit_0054] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin54');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0054] component obj is: " + obj.$attrs.padding);
 
       let padding = JSON.parse(strJson).$attrs.padding;
       let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
@@ -2056,7 +2024,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       expect(nextMargin).assertEqual("15.00vp");
       expect(prevMargin).assertEqual("6.00vp");
 
-      expect(swiperTop - swiperbottom).assertEqual(top - bottom - vp2px(15 + 6));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (top - bottom - vp2px(15 + 6)))) <= 1).assertTrue();
       done();
     });
 
@@ -2095,21 +2063,19 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let left = subcomponment.left;
       let right = subcomponment.right;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin53');
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin53');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0053] component obj is: " + obj.$attrs.padding);
 
-      console.info("[wiperNextPrevMarginAddJsunit_0053] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
-
-      let padding = JSON.parse(strJson).$attrs.padding;
-      let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
-      let prevMargin = JSON.parse(strJson).$attrs.prevMargin;
+      let padding = obj.$attrs.padding;
+      let nextMargin = obj.$attrs.nextMargin;
+      let prevMargin = obj.$attrs.prevMargin;
 
       expect(nextMargin).assertEqual("15.00vp");
       expect(prevMargin).assertEqual("6.00vp");
 
-      expect(swiperRight - swiperLeft).assertEqual(3 * (right - left) + vp2px(15 + 6));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (3*(right - left) + vp2px(15 + 6)))) <= 1).assertTrue();
       done();
     });
 
@@ -2148,12 +2114,10 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let top = subcomponment.top;
       let bottom = subcomponment.bottom;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin52');
-
-      console.info("[wiperNextPrevMarginAddJsunit_0052] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin52');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0052] component obj is: " + obj.$attrs.padding);
 
       let padding = JSON.parse(strJson).$attrs.padding;
       let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
@@ -2161,7 +2125,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       expect(nextMargin).assertEqual("15.00vp");
       expect(prevMargin).assertEqual("6.00vp");
 
-      expect(swiperTop - swiperbottom).assertEqual(3 * (top - bottom) - vp2px(15 + 6));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (3*(top - bottom) -vp2px(15 + 6)))) <= 1).assertTrue();
       done();
     });
 
@@ -2201,8 +2165,10 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let right = subcomponment.right;
       let left = subcomponment.left;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin59');
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin59');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0059] component obj is: " + obj.$attrs.padding);
 
       console.info("[wiperNextPrevMarginAddJsunit_0059] component JSON.parse(strJson) is: " + JSON.parse(strJson)
         .$attrs
@@ -2217,7 +2183,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       expect(prevMargin).assertEqual("6.00vp");
       expect(itemspace).assertEqual("10.00vp");
 
-      expect(swiperRight - swiperLeft).assertEqual(right - left + vp2px(15 + 6 + 2 * 10));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (right - left + vp2px(15 + 6 + 2 * 10)))) <= 1).assertTrue();
       done();
     });
 
@@ -2256,12 +2222,10 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let top = subcomponment.top;
       let bottom = subcomponment.bottom;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin58');
-
-      console.info("[wiperNextPrevMarginAddJsunit_0058] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin58');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0058] component obj is: " + obj.$attrs.padding);
 
       let padding = JSON.parse(strJson).$attrs.padding;
       let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
@@ -2272,7 +2236,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       expect(prevMargin).assertEqual("6.00vp");
       expect(itemspace).assertEqual("10.00vp");
 
-      expect(swiperTop - swiperbottom).assertEqual(top - bottom - vp2px(15 + 6 + 2 * 10));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (top - bottom - vp2px(15  + 6 + 2 * 10)))) <= 1).assertTrue();
       done();
     });
 
@@ -2312,8 +2276,10 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let right = subcomponment.right;
       let left = subcomponment.left;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin57');
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin57');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0057] component obj is: " + obj.$attrs.padding);
 
       console.info("[wiperNextPrevMarginAddJsunit_0057] component JSON.parse(strJson) is: " + JSON.parse(strJson)
         .$attrs
@@ -2328,7 +2294,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       expect(prevMargin).assertEqual("6.00vp");
       expect(itemspace).assertEqual("10.00vp");
 
-      expect(swiperRight - swiperLeft).assertEqual(3 * (right - left) + vp2px(15 + 6 + 4 * 10));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (3*(right - left)+ vp2px(15 + 6 + 4 * 10)))) <= 1).assertTrue();
       done();
     });
 
@@ -2367,8 +2333,10 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let top = subcomponment.top;
       let bottom = subcomponment.bottom;
 
-      // calculate 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin56');
+      // calculate
+      let strJson = getInspectorByKey('swiperNextPrevMargin56');
+      let obj = JSON.parse(strJson);
+      console.info("[wiperNextPrevMarginAddJsunit_0056] component obj is: " + obj.$attrs.padding);
 
       console.info("[wiperNextPrevMarginAddJsunit_0056] component JSON.parse(strJson) is: " + JSON.parse(strJson)
         .$attrs
@@ -2384,7 +2352,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       expect(itemspace).assertEqual("10.00vp");
 
 
-      expect(swiperTop - swiperbottom).assertEqual(3 * (top - bottom) - vp2px(15 + 6 + 4 * 10));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (3*(top - bottom) - vp2px(15 + 6 + 4 * 10)))) <= 1).assertTrue();
       done();
     });
 
@@ -2415,9 +2383,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       await CommonFunc.sleep(1000);
 
       // dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'prevMargin', value: 450
-      });
+      globalThis.value.message.notify({name:'prevMargin',value:450});
       await CommonFunc.sleep(500);
       let swiperMargin = CommonFunc.getComponentRect('swiperNextPrevMargin50');
 
@@ -2431,14 +2397,10 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       let strJson: string = getInspectorByKey('swiperNextPrevMargin50');
 
-      console.info("[wiperNextPrevMarginAddJsunit_0050] component JSON.parse(strJson) is: " + JSON.parse(strJson)
-        .$attrs
-        .padding);
-
-      let borderWidth = JSON.parse(strJson).$attrs.borderWidth;
+      let borderWidth = obj.$attrs.borderWidth;
       expect(borderWidth).assertEqual('0.00vp');
 
-      expect(swiperRight - swiperLeft).assertEqual(right - left);
+      expect(Math.abs(Math.round((swiperRight- swiperLeft)- (right - left))) <= 1).assertTrue();
       done();
     });
 
@@ -2493,7 +2455,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let borderWidth = JSON.parse(strJson).$attrs.borderWidth;
       expect(borderWidth).assertEqual('0.00vp');
 
-      expect(swiperTop - swiperbottom).assertEqual(top - bottom);
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (top - bottom))) <= 1).assertTrue();
       done();
     });
 
@@ -2548,15 +2510,15 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       // calculate the gap
       let subcomponment = CommonFunc.getComponentRect('1');
-      let right = subcomponment.right;
-      let left = subcomponment.left;
+      let right =  subcomponment.right;
+      let left  =  subcomponment.left;
 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin50');
-
-      let borderWidth = JSON.parse(strJson).$attrs.borderWidth;
+      let strJson = getInspectorByKey('swiperNextPrevMargin50');
+      let obj = JSON.parse(strJson);
+      let borderWidth = obj.$attrs.borderWidth;
       expect(borderWidth).assertEqual('0.00vp');
 
-      expect(swiperRight - swiperLeft).assertEqual(right - left);
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (right - left))) <= 1).assertTrue();
       done();
     });
 
@@ -2616,10 +2578,12 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       let strJson: string = getInspectorByKey('swiperNextPrevMargin50');
 
-      let borderWidth = JSON.parse(strJson).$attrs.borderWidth;
+      let strJson = getInspectorByKey('swiperNextPrevMargin50');
+      let obj = JSON.parse(strJson);
+      let borderWidth = obj.$attrs.borderWidth;
       expect(borderWidth).assertEqual('0.00vp');
 
-      expect(swiperTop - swiperbottom).assertEqual(top - bottom);
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (top - bottom))) <= 1).assertTrue();
       done();
     });
 
@@ -2682,7 +2646,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let borderWidth = JSON.parse(strJson).$attrs.borderWidth;
       expect(borderWidth).assertEqual('0.00vp');
 
-      expect(swiperRight - swiperLeft).assertEqual(right - left);
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (right - left))) <= 1).assertTrue();
       done();
     });
 
@@ -2745,7 +2709,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let borderWidth = JSON.parse(strJson).$attrs.borderWidth;
       expect(borderWidth).assertEqual('0.00vp');
 
-      expect(swiperTop - swiperbottom).assertEqual(top - bottom);
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (top - bottom))) <= 1).assertTrue();
       done();
     });
 
@@ -2812,7 +2776,12 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let borderWidth = JSON.parse(strJson).$attrs.borderWidth;
       expect(borderWidth).assertEqual('0.00vp');
 
-      expect(swiperRight - swiperLeft).assertEqual(3 * (right - left));
+      let strJson = getInspectorByKey('swiperNextPrevMargin50');
+      let obj = JSON.parse(strJson);
+      let borderWidth = obj.$attrs.borderWidth;
+      expect(borderWidth).assertEqual('0.00vp');
+
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (3*(right - left)))) <= 1).assertTrue();
       done();
     });
 
@@ -2843,9 +2812,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       await CommonFunc.sleep(1000);
 
       //dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'prevMargin', value: 0
-      });
+      globalThis.value.message.notify({name:'prevMargin',value:0});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'vertical', value: true
@@ -2871,15 +2838,15 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       // calculate the gap
       let subcomponment = CommonFunc.getComponentRect('1');
-      let top = subcomponment.top;
-      let bottom = subcomponment.bottom;
+      let top =  subcomponment.top;
+      let bottom  =  subcomponment.bottom;
 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin50');
-
-      let borderWidth = JSON.parse(strJson).$attrs.borderWidth;
+      let strJson = getInspectorByKey('swiperNextPrevMargin50');
+      let obj = JSON.parse(strJson);
+      let borderWidth = obj.$attrs.borderWidth;
       expect(borderWidth).assertEqual('0.00vp');
 
-      expect(swiperTop - swiperbottom).assertEqual(3 * (top - bottom));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (3*(top - bottom)))) <= 1).assertTrue();
       done();
     });
 
@@ -2946,7 +2913,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let itemspace = JSON.parse(strJson).$attrs.itemSpace;
       expect(itemspace).assertEqual('10.00vp');
 
-      expect(swiperRight - swiperLeft).assertEqual(3 * (right - left) + vp2px(2 * 10));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (3*(right - left) + vp2px(2 * 10)))) <= 1).assertTrue();
       done();
     });
 
@@ -2978,9 +2945,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       await CommonFunc.sleep(1000);
 
       //dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'prevMargin', value: 0
-      });
+      globalThis.value.message.notify({name:'prevMargin',value:0});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'vertical', value: true
@@ -3006,15 +2971,15 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       // calculate the gap
       let subcomponment = CommonFunc.getComponentRect('1');
-      let top = subcomponment.top;
-      let bottom = subcomponment.bottom;
+      let top =  subcomponment.top;
+      let bottom  =  subcomponment.bottom;
 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin50');
-
-      let itemspace = JSON.parse(strJson).$attrs.itemSpace;
+      let strJson = getInspectorByKey('swiperNextPrevMargin50');
+      let obj = JSON.parse(strJson);
+      let itemspace =  obj.$attrs.itemSpace;
       expect(itemspace).assertEqual('0.00vp');
 
-      expect(swiperTop - swiperbottom).assertEqual(3 * (top - bottom));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (3*(top - bottom)))) <= 1).assertTrue();
       done();
     });
 
@@ -3045,9 +3010,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       await CommonFunc.sleep(1000);
 
       //dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'prevMargin', value: 0
-      });
+      globalThis.value.message.notify({name:'prevMargin',value:0});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'vertical', value: false
@@ -3065,9 +3028,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         name: 'displayCount', value: 1
       });
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({
-        name: 'loop', value: false
-      });
+      globalThis.value.message.notify({name:'loop',value: false});
       await CommonFunc.sleep(500);
 
 
@@ -3085,7 +3046,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
       expect(nextMargin).assertEqual('5.00vp');
 
-      expect(swiperRight - swiperLeft).assertEqual(right - left + vp2px(5));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (right - left + vp2px(5)))) <= 1).assertTrue();
       done();
     });
 
@@ -3116,9 +3077,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       await CommonFunc.sleep(1000);
 
       //dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'prevMargin', value: 0
-      });
+      globalThis.value.message.notify({name:'prevMargin',value:0});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'vertical', value: true
@@ -3136,9 +3095,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         name: 'displayCount', value: 1
       });
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({
-        name: 'loop', value: false
-      });
+      globalThis.value.message.notify({name:'loop',value: false});
       await CommonFunc.sleep(500);
 
 
@@ -3148,14 +3105,14 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       // calculate the gap
       let subcomponment = CommonFunc.getComponentRect('1');
-      let top = subcomponment.top;
-      let bottom = subcomponment.bottom;
+      let top =  subcomponment.top;
+      let bottom  =  subcomponment.bottom;
 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin50');
-
-      let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
+      let strJson = getInspectorByKey('swiperNextPrevMargin50');
+      let obj = JSON.parse(strJson);
+      let nextMargin =  obj.$attrs.nextMargin;
       expect(nextMargin).assertEqual('5.00vp');
-      expect(swiperTop - swiperbottom).assertEqual(top - bottom - vp2px(5));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (top - bottom -vp2px(5)))) <= 1).assertTrue();
       done();
     });
 
@@ -3186,9 +3143,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       await CommonFunc.sleep(1000);
 
       //dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'prevMargin', value: 0
-      });
+      globalThis.value.message.notify({name:'prevMargin',value:0});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'vertical', value: false
@@ -3206,9 +3161,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         name: 'displayCount', value: 1
       });
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({
-        name: 'loop', value: true
-      });
+      globalThis.value.message.notify({name:'loop',value: true});
       await CommonFunc.sleep(500);
 
 
@@ -3225,7 +3178,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
       expect(nextMargin).assertEqual('5.00vp');
-      expect(swiperRight - swiperLeft).assertEqual(right - left + vp2px(5));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (right - left + vp2px(5)))) <= 1).assertTrue();
       done();
     });
 
@@ -3256,9 +3209,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       await CommonFunc.sleep(1000);
 
       //dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'prevMargin', value: 0
-      });
+      globalThis.value.message.notify({name:'prevMargin',value:0});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'vertical', value: true
@@ -3276,9 +3227,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         name: 'displayCount', value: 1
       });
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({
-        name: 'loop', value: true
-      });
+      globalThis.value.message.notify({name:'loop',value: true});
       await CommonFunc.sleep(500);
 
 
@@ -3288,15 +3237,15 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       // calculate the gap
       let subcomponment = CommonFunc.getComponentRect('1');
-      let top = subcomponment.top;
-      let bottom = subcomponment.bottom;
+      let top =  subcomponment.top;
+      let bottom  =  subcomponment.bottom;
 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin50');
-
-      let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
+      let strJson = getInspectorByKey('swiperNextPrevMargin50');
+      let obj = JSON.parse(strJson);
+      let nextMargin =  obj.$attrs.nextMargin;
       expect(nextMargin).assertEqual('5.00vp');
 
-      expect(swiperTop - swiperbottom).assertEqual(top - bottom - vp2px(5));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (top - bottom - vp2px(5)))) <= 1).assertTrue();
       done();
     });
 
@@ -3327,9 +3276,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       await CommonFunc.sleep(1000);
 
       //dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'prevMargin', value: 0
-      });
+      globalThis.value.message.notify({name:'prevMargin',value:0});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'vertical', value: false
@@ -3367,7 +3314,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
       expect(nextMargin).assertEqual('5.00vp');
 
-      expect(swiperRight - swiperLeft).assertEqual(3 * (right - left) + vp2px(5));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (3*(right - left) + vp2px(5)))) <= 1).assertTrue();
       done();
     });
 
@@ -3398,9 +3345,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       await CommonFunc.sleep(1000);
 
       //dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'prevMargin', value: 0
-      });
+      globalThis.value.message.notify({name:'prevMargin',value:0});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'vertical', value: true
@@ -3418,9 +3363,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         name: 'displayCount', value: 3
       });
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({
-        name: 'loop', value: false
-      });
+      globalThis.value.message.notify({name:'loop',value: false});
       await CommonFunc.sleep(500);
 
 
@@ -3430,15 +3373,15 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       // calculate the gap
       let subcomponment = CommonFunc.getComponentRect('1');
-      let top = subcomponment.top;
-      let bottom = subcomponment.bottom;
+      let top =  subcomponment.top;
+      let bottom  =  subcomponment.bottom;
 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin50');
-
-      let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
+      let strJson = getInspectorByKey('swiperNextPrevMargin50');
+      let obj = JSON.parse(strJson);
+      let nextMargin =  obj.$attrs.nextMargin;
       expect(nextMargin).assertEqual('5.00vp');
 
-      expect(swiperTop - swiperbottom).assertEqual(3 * (top - bottom) - vp2px(5));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (3*(top - bottom) -vp2px(5)))) <= 1).assertTrue();
       done();
     });
 
@@ -3469,9 +3412,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       await CommonFunc.sleep(1000);
 
       //dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'prevMargin', value: 0
-      });
+      globalThis.value.message.notify({name:'prevMargin',value:0});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'vertical', value: false
@@ -3489,9 +3430,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         name: 'displayCount', value: 3
       });
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({
-        name: 'loop', value: true
-      });
+      globalThis.value.message.notify({name:'loop',value: true});
       await CommonFunc.sleep(500);
 
 
@@ -3506,10 +3445,12 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       let strJson: string = getInspectorByKey('swiperNextPrevMargin50');
 
-      let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
+      let strJson = getInspectorByKey('swiperNextPrevMargin50');
+      let obj = JSON.parse(strJson);
+      let nextMargin =  obj.$attrs.nextMargin;
       expect(nextMargin).assertEqual('5.00vp');
 
-      expect(swiperRight - swiperLeft).assertEqual(3 * (right - left) + vp2px(5));
+      expect(Math.abs(Math.round((swiperRight - swiperLeft)- (3*(right - left) + vp2px(5)))) <= 1).assertTrue();
       done();
     });
 
@@ -3540,9 +3481,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       await CommonFunc.sleep(1000);
 
       //dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'prevMargin', value: 0
-      });
+      globalThis.value.message.notify({name:'prevMargin',value:0});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'vertical', value: true
@@ -3560,9 +3499,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         name: 'displayCount', value: 3
       });
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({
-        name: 'loop', value: true
-      });
+      globalThis.value.message.notify({name:'loop',value: true});
       await CommonFunc.sleep(500);
 
 
@@ -3572,15 +3509,15 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       // calculate the gap
       let subcomponment = CommonFunc.getComponentRect('1');
-      let top = subcomponment.top;
-      let bottom = subcomponment.bottom;
+      let top =  subcomponment.top;
+      let bottom  =  subcomponment.bottom;
 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin50');
-
-      let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
+      let strJson = getInspectorByKey('swiperNextPrevMargin50');
+      let obj = JSON.parse(strJson);
+      let nextMargin =  obj.$attrs.nextMargin;
       expect(nextMargin).assertEqual('5.00vp');
 
-      expect(swiperTop - swiperbottom).assertEqual(3 * (top - bottom) - vp2px(5));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (3*(top - bottom) - vp2px(5)))) <= 1).assertTrue();
       done();
     });
 
@@ -3611,9 +3548,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       await CommonFunc.sleep(1000);
 
       //dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'prevMargin', value: 0
-      });
+      globalThis.value.message.notify({name:'prevMargin',value:0});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'vertical', value: true
@@ -3631,9 +3566,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         name: 'displayCount', value: 3
       });
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({
-        name: 'loop', value: true
-      });
+      globalThis.value.message.notify({name:'loop',value: true});
       await CommonFunc.sleep(500);
 
 
@@ -3643,18 +3576,18 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       // calculate the gap
       let subcomponment = CommonFunc.getComponentRect('1');
-      let top = subcomponment.top;
-      let bottom = subcomponment.bottom;
+      let top =  subcomponment.top;
+      let bottom  =  subcomponment.bottom;
 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin50');
-
-      let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
+      let strJson = getInspectorByKey('swiperNextPrevMargin50');
+      let obj = JSON.parse(strJson);
+      let nextMargin =  obj.$attrs.nextMargin;
       expect(nextMargin).assertEqual('5.00vp');
-      expect(swiperTop - swiperbottom).assertEqual(3 * (top - bottom) - vp2px(5));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (3*(top - bottom) -vp2px(5)))) <= 1).assertTrue();
 
       CommonFunc.setScreenOrientation(1);
       await CommonFunc.sleep(3000);
-      expect(swiperTop - swiperbottom).assertEqual(3 * (top - bottom) - vp2px(5));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (3*(top - bottom) -vp2px(5)))) <= 1).assertTrue();
       await CommonFunc.sleep(3000);
       done();
     });
@@ -3686,9 +3619,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
       await CommonFunc.sleep(1000);
 
       //dymanic chage the value
-      globalThis.value.message.notify({
-        name: 'prevMargin', value: 0
-      });
+      globalThis.value.message.notify({name:'prevMargin',value:0});
       await CommonFunc.sleep(500);
       globalThis.value.message.notify({
         name: 'vertical', value: true
@@ -3706,9 +3637,7 @@ export default function SwiperNextPrevMarginAddJsunit() {
         name: 'displayCount', value: 3
       });
       await CommonFunc.sleep(500);
-      globalThis.value.message.notify({
-        name: 'loop', value: true
-      });
+      globalThis.value.message.notify({name:'loop',value: true});
       await CommonFunc.sleep(500);
 
 
@@ -3718,20 +3647,26 @@ export default function SwiperNextPrevMarginAddJsunit() {
 
       // calculate the gap
       let subcomponment = CommonFunc.getComponentRect('1');
-      let top = subcomponment.top;
-      let bottom = subcomponment.bottom;
+      let top =  subcomponment.top;
+      let bottom  =  subcomponment.bottom;
 
-      let strJson: string = getInspectorByKey('swiperNextPrevMargin50');
-
-      let nextMargin = JSON.parse(strJson).$attrs.nextMargin;
+      let strJson = getInspectorByKey('swiperNextPrevMargin50');
+      let obj = JSON.parse(strJson);
+      let nextMargin =  obj.$attrs.nextMargin;
       expect(nextMargin).assertEqual('5.00vp');
-      expect(swiperTop - swiperbottom).assertEqual(3 * (top - bottom) - vp2px(5));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (3*(top - bottom) -vp2px(5)))) <= 1).assertTrue();
 
       CommonFunc.setScreenOrientation(2);
       await CommonFunc.sleep(3000);
-      expect(swiperTop - swiperbottom).assertEqual(3 * (top - bottom) - vp2px(5));
+      expect(Math.abs(Math.round((swiperTop - swiperbottom)- (3*(top - bottom) - vp2px(5)))) <= 1).assertTrue();
       await CommonFunc.sleep(3000);
       done();
+
+
     });
+
+
+
   })
+
 }
