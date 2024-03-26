@@ -13,4 +13,4 @@
  * limitations under the License.
  */
 
-export const add: (a: number, b: number) => number;
+export const setCanvasRotation_01: () => number;
