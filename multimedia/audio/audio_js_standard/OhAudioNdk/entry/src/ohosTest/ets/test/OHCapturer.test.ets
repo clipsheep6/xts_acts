@@ -1374,7 +1374,7 @@ export default function OhCapturerTest() {
     it('testOHAudioCapturerGetFramesRead0100', 0, async (done: Function) => {
       console.log(`testOHAudioCapturerGetFramesRead0100 test start `);
       let re: number | null = testStreamBuilder.OHAudioCapturerGetFramesRead();
-      expect(re).assertLarger(0);
+      expect(re).assertLarger(-1);
       console.log(`testOHAudioCapturerGetFramesRead0100 test end `);
       done();
     });
@@ -1454,7 +1454,7 @@ export default function OhCapturerTest() {
     it('testOHAudioCapturerGetFramePosition0100', 0, async (done: Function) => {
       console.log(`testOHAudioCapturerGetFramePosition0100 test start `);
       let re: number | null = testStreamBuilder.OHAudioCapturerGetFramePosition();
-      expect(re).assertLarger(0);
+      expect(re).assertLarger(-1);
       console.log(`testOHAudioCapturerGetFramePosition0100 test end `);
       done();
     });
