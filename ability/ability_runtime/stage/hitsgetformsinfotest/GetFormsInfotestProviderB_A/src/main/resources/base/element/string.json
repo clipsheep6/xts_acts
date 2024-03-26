@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "AAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "AFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "AFormAbility_label",
+      "value": "form_label"
+    }
+  ]
+}

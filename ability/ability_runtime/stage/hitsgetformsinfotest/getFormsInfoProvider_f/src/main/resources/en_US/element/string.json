@@ -1,0 +1,16 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "GetFormsInfoProvider_fAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetFormsInfoProvider_fAbility_label",
+      "value": "label"
+    }
+  ]
+}
