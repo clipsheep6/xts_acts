@@ -18,7 +18,6 @@ import taskpoolTestState from './TaskpoolTestState.test'
 import taskpoolTestTask from './TaskpoolTestTask.test'
 export default function testsuite() {
   taskpoolTestState();
-  taskpoolTest();
   taskpoolTestTask();
-
+  taskpoolTest();
 }
