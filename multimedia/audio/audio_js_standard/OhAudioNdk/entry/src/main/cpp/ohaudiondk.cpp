@@ -40,7 +40,7 @@
 #define BUILD_FAIL 300         // 输入流和构造器初始化失败
 #define CALLBACK_FAIL 400      // 回调方法设置失败
 #define INFO_FAIL 500          // 工作场景初始化失败
-#define CHANN_El_FAIL 600       // 通道设置失败
+#define CHANN_EL_FAIL 600       // 通道设置失败
 #define ENCODING_FAIL 700      // 编码格式设置失败
 #define FRAMESIZE_FAIL 800     // 帧长设置失败
 #define LATENCYMODE_FAIL 900   // 延时模式设置失败
@@ -352,7 +352,7 @@ static napi_value CreatCapturerRecorderWithParam(napi_env env, napi_callback_inf
     ;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, channelCount); // 设置通道数
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = CHANN_El_FAIL;
+        backParam = CHANN_EL_FAIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -438,7 +438,7 @@ static napi_value CreateAudioCapturerRecorder(napi_env env, napi_callback_info i
     int channelCount = 2;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, channelCount); // 设置通道数
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = CHANN_El_FAIL;
+        backParam = CHANN_EL_FAIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -568,7 +568,7 @@ static napi_value CreatRendererAudioPlayer(napi_env env, napi_callback_info info
     int channelCount = 2;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, channelCount); // 设置通道数
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = CHANN_El_FAIL;
+        backParam = CHANN_EL_FAIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -665,7 +665,7 @@ static napi_value CreatAudioPlayerWithWavFile(napi_env env, napi_callback_info i
     int channelCount = 2;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, channelCount); // 设置通道数
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = CHANN_El_FAIL;
+        backParam = CHANN_EL_FAIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -763,7 +763,7 @@ static napi_value CreatAudioPlayerWithFileAndParam(napi_env env, napi_callback_i
     int channelCount = getParamAtIndex(2, env, info);
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, channelCount); // 设置通道数
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = CHANN_El_FAIL;
+        backParam = CHANN_EL_FAIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -865,7 +865,7 @@ static napi_value TestRendererAudioStreamUsage(napi_env env, napi_callback_info 
     int channelCount = 2;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, channelCount); // 设置通道数
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = CHANN_El_FAIL;
+        backParam = CHANN_EL_FAIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
