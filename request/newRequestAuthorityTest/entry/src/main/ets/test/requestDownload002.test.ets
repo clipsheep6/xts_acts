@@ -979,10 +979,11 @@ export default function requestDownloadTwoUnitTest() {
         let filter ={
           action: request.agent.Action.DOWNLOAD,
         };
-        request.agent.search(filter).then((data) => {
+        request.agent.search(filter).then(async (data) => {
           let a = data.includes(task.tid);
           console.info(`${task.tid} ${a} Succeeded in searching a download task. data: ${data}`);
           expect(a).assertEqual(true);
+          await request.agent.remove(task.tid);
           done();
         }).catch((err) => {
           console.info('====>SUB_Misc_REQUEST_Search_Promise_0070 search throw_err:' + JSON.stringify(err));
@@ -1028,7 +1029,7 @@ export default function requestDownloadTwoUnitTest() {
         let filter ={
           mode:request.agent.Mode.FOREGROUND,
         }
-        request.agent.search(filter, (err, data)=>{
+        request.agent.search(filter, async (err, data)=>{
           try{
             if(err){
               console.info('====>SUB_Misc_REQUEST_Search_Callback_0080 err:' + JSON.stringify(err));
@@ -1036,6 +1037,7 @@ export default function requestDownloadTwoUnitTest() {
               done();
             };
             expect(data.includes(task.tid)).assertEqual(true);
+            await request.agent.remove(task.tid);
             done();
           }catch(err){
             console.info('====>SUB_Misc_REQUEST_Search_Callback_0080 search throw_err:' + JSON.stringify(err));
@@ -1083,8 +1085,9 @@ export default function requestDownloadTwoUnitTest() {
           action: request.agent.Action.DOWNLOAD,
           mode: request.agent.Mode.FOREGROUND,
         }
-        request.agent.search(filter).then((data) => {
+        request.agent.search(filter).then(async (data) => {
           expect(data.includes(task.tid)).assertEqual(true);
+          await request.agent.remove(task.tid);
           done();
         }).catch((err) => {
           console.info('====>SUB_Misc_REQUEST_Search_Promise_0080 search throw_err:' + JSON.stringify(err));
@@ -1131,7 +1134,7 @@ export default function requestDownloadTwoUnitTest() {
           mode: request.agent.Mode.FOREGROUND,
           state:request.agent.State.FAILED,
         };
-        request.agent.search(filter, (err, data)=>{
+        request.agent.search(filter, async (err, data)=>{
           try{
             if(err){
               console.info('====>SUB_Misc_REQUEST_Search_Callback_0090 err:' + JSON.stringify(err));
@@ -1139,6 +1142,7 @@ export default function requestDownloadTwoUnitTest() {
               done();
             };
             expect(data.includes(task.tid)).assertEqual(true);
+            await request.agent.remove(task.tid);
             done();
           }catch(err){
             console.info('====>SUB_Misc_REQUEST_Search_Callback_0090 search throw_err:' + JSON.stringify(err));
@@ -1187,8 +1191,9 @@ export default function requestDownloadTwoUnitTest() {
           mode: request.agent.Mode.FOREGROUND,
           state:request.agent.State.COMPLETED,
         };
-        request.agent.search(filter).then((data) => {
+        request.agent.search(filter).then(async (data) => {
           expect(data.includes(task.tid)).assertEqual(true);
+          await request.agent.remove(task.tid);
           done();
         }).catch((err) => {
           console.info('====>SUB_Misc_REQUEST_Search_Promise_0090 search throw_err:' + JSON.stringify(err));
@@ -1232,7 +1237,7 @@ export default function requestDownloadTwoUnitTest() {
       function onCompletedCallback(progress){
         task.off('completed', onCompletedCallback);
         console.info('====>SUB_Misc_REQUEST_Show_Callback_0010 onCompletedCallback start');
-        request.agent.show(task.tid, (err, taskInfo)=>{
+        request.agent.show(task.tid, async (err, taskInfo)=>{
           try{
             if(err){
               console.info('====>SUB_Misc_REQUEST_Show_Callback_0010 err:' + JSON.stringify(err));
@@ -1263,6 +1268,7 @@ export default function requestDownloadTwoUnitTest() {
             expect(typeof(taskInfo.mtime) === 'number').assertTrue();
             expect(typeof(taskInfo.extras) === 'object').assertTrue();
             expect(typeof(taskInfo.priority) === 'number').assertTrue();
+            await request.agent.remove(task.tid);
             done();
           }catch(err){
             console.info('====>SUB_Misc_REQUEST_Show_Callback_0010 show throw_err:' + JSON.stringify(err));
@@ -1326,6 +1332,7 @@ export default function requestDownloadTwoUnitTest() {
           expect(taskInfo.faults).assertEqual(null);
           expect(taskInfo.reason).assertContain('Task successful');
           expect(typeof(taskInfo.retry) === 'boolean').assertTrue();
+          await request.agent.remove(task.tid);
           done();
         }catch(err){
           console.info('====>SUB_Misc_REQUEST_Show_Promise_0010 show throw_err:' + JSON.stringify(err));
@@ -1366,7 +1373,7 @@ export default function requestDownloadTwoUnitTest() {
       };
       let task:request.agent.Task;
 
-      function onCompletedCallback(progress){
+      async function onCompletedCallback(progress){
         task.off('completed', onCompletedCallback);
         console.info('====>SUB_Misc_REQUEST_Show_Callback_0020 onCompletedCallback start');
         try{
@@ -1378,6 +1385,7 @@ export default function requestDownloadTwoUnitTest() {
         }catch(err){
           console.info('====>SUB_Misc_REQUEST_Show_Callback_0020 show throw_err:' + JSON.stringify(err));
           expect(err.code).assertEqual(401);
+          await request.agent.remove(task.tid);
           done();
         };
       };
@@ -1426,6 +1434,7 @@ export default function requestDownloadTwoUnitTest() {
         }catch(err){
           console.info('====>SUB_Misc_REQUEST_Show_Promise_0020 show throw_err:' + JSON.stringify(err));
           expect(err.code).assertEqual(401);
+          await request.agent.remove(task.tid);
           done();
         };
       };
@@ -1467,7 +1476,7 @@ export default function requestDownloadTwoUnitTest() {
         task.off('completed', onCompletedCallback);
         console.info('====>SUB_Misc_REQUEST_Search_Callback_0010 onCompletedCallback start');
         let filter ={ };
-        request.agent.search(filter, (err, data)=>{
+        request.agent.search(filter, async (err, data)=>{
           try{
             if(err){
               console.info('====>SUB_Misc_REQUEST_Search_Callback_0010 err:' + JSON.stringify(err));
@@ -1475,6 +1484,7 @@ export default function requestDownloadTwoUnitTest() {
               done();
             }
             expect(data.includes(task.tid)).assertEqual(true);
+            await request.agent.remove(task.tid);
             done();
           }catch(err){
             console.info('====>SUB_Misc_REQUEST_Search_Callback_0010 search throw_err:' + JSON.stringify(err));
@@ -1526,8 +1536,9 @@ export default function requestDownloadTwoUnitTest() {
           action: undefined,
           mode: undefined,
         };
-        request.agent.search(filter).then((data) => {
+        request.agent.search(filter).then(async (data) => {
           expect(data.includes(task.tid)).assertEqual(true);
+          await request.agent.remove(task.tid);
           done();
         }).catch((err) => {
           console.info('====>SUB_Misc_REQUEST_Search_Promise_0020 search throw_err:' + JSON.stringify(err));
@@ -1573,7 +1584,7 @@ export default function requestDownloadTwoUnitTest() {
         let filter ={
           bundle:"com.acts.newRequestAuthority.test",
         }
-        request.agent.search(filter, (err, data)=>{
+        request.agent.search(filter, async (err, data)=>{
           try{
             if(err){
               console.info('====>SUB_Misc_REQUEST_Search_Callback_0030 err:' + JSON.stringify(err));
@@ -1581,6 +1592,7 @@ export default function requestDownloadTwoUnitTest() {
               done();
             };
             expect(data.includes(task.tid)).assertEqual(true);
+            await request.agent.remove(task.tid);
             done();
           }catch(err){
             console.info('====>SUB_Misc_REQUEST_Search_Callback_0030 search throw_err:' + JSON.stringify(err));
@@ -1628,7 +1640,7 @@ export default function requestDownloadTwoUnitTest() {
         let filter ={
           after:time-60000,
         };
-        request.agent.search(filter, (err, data)=>{
+        request.agent.search(filter, async (err, data)=>{
           try{
             if(err){
               console.info('====>SUB_Misc_REQUEST_Search_Callback_0060 err:' + JSON.stringify(err));
@@ -1636,6 +1648,7 @@ export default function requestDownloadTwoUnitTest() {
               done();
             }
             expect(data.includes(task.tid)).assertEqual(true);
+            await request.agent.remove(task.tid);
             done();
           }catch(err){
             console.info('====>SUB_Misc_REQUEST_Search_Callback_0060 search throw_err:' + JSON.stringify(err));
@@ -1683,7 +1696,7 @@ export default function requestDownloadTwoUnitTest() {
         let filter ={
           before:time-4000,
         };
-        request.agent.search(filter, (err, data)=>{
+        request.agent.search(filter, async (err, data)=>{
           try{
             if(err){
               console.info('====>SUB_Misc_REQUEST_Search_Promise_0060 err:' + JSON.stringify(err));
@@ -1691,6 +1704,7 @@ export default function requestDownloadTwoUnitTest() {
               done();
             }
             expect(data.includes(task.tid)).assertEqual(true);
+            await request.agent.remove(task.tid);
             done();
           }catch(err){
             console.info('====>SUB_Misc_REQUEST_Search_Promise_0060 search throw_err:' + JSON.stringify(err));
@@ -1738,7 +1752,7 @@ export default function requestDownloadTwoUnitTest() {
         let filter ={
           state:request.agent.State.RUNNING
         };
-        request.agent.search(filter, (err, data)=>{
+        request.agent.search(filter, async (err, data)=>{
           try{
             if(err){
               console.info('====>SUB_Misc_REQUEST_Search_Callback_0070 err:' + JSON.stringify(err));
@@ -1746,6 +1760,7 @@ export default function requestDownloadTwoUnitTest() {
               done();
             };
             expect(data.includes(task.tid)).assertEqual(true);
+            await request.agent.remove(task.tid);
             done();
           }catch(err){
             console.info('====>SUB_Misc_REQUEST_Search_Callback_0070 search throw_err:' + JSON.stringify(err));
@@ -1795,7 +1810,7 @@ export default function requestDownloadTwoUnitTest() {
           before:time-1000,
           after:time-16000
         };
-        request.agent.search(filter, (err, data)=>{
+        request.agent.search(filter, async (err, data)=>{
           try{
             if(err){
               console.info('====>SUB_Misc_REQUEST_Search_Callback_0100 err:' + JSON.stringify(err));
@@ -1803,6 +1818,7 @@ export default function requestDownloadTwoUnitTest() {
               done();
             };
             expect(data.includes(task.tid)).assertEqual(true);
+            await request.agent.remove(task.tid);
             done();
           }catch(err){
             console.info('====>SUB_Misc_REQUEST_Search_Callback_0100 search throw_err:' + JSON.stringify(err));
@@ -1851,7 +1867,7 @@ export default function requestDownloadTwoUnitTest() {
           let filter ={
             state:request.agent.State.PAUSED,
           };
-          request.agent.search(filter, (err, data)=>{
+          request.agent.search(filter, async (err, data)=>{
             try{
               if(err){
                 console.info('====>SUB_Misc_REQUEST_Search_Promise_0110 err:' + JSON.stringify(err));
@@ -1860,6 +1876,7 @@ export default function requestDownloadTwoUnitTest() {
               }
               console.info(`Succeeded in searching a download task. data: ${data}`);
               expect(data.includes(task.tid)).assertEqual(true);
+              await request.agent.remove(task.tid);
               done();
             }catch(err){
               console.info('====>SUB_Misc_REQUEST_Search_Promise_0110 search throw_err:' + JSON.stringify(err));
@@ -1909,7 +1926,7 @@ export default function requestDownloadTwoUnitTest() {
           let filter ={
             state:request.agent.State.REMOVED
           };
-          request.agent.search(filter, (err, data) => {
+          request.agent.search(filter, async (err, data) => {
             try {
               if (err) {
                 console.error(`Failed to search a download task, Code: ${err.code}, message: ${err.message}`);
@@ -1917,6 +1934,7 @@ export default function requestDownloadTwoUnitTest() {
               };
               console.info(`Succeeded in searching a download task. data: ${data}`);
               expect(data.includes(task.tid)).assertEqual(true);
+              await request.agent.remove(task.tid);
               done();
             } catch (err) {
               console.error(`Failed to search a remove task, Code: ${err.code}, message: ${err.message}`);
@@ -1956,7 +1974,7 @@ export default function requestDownloadTwoUnitTest() {
       function onCompletedCallback(progress){
         task.off('completed');
         console.info('====>SUB_Misc_REQUEST_Touch_Callback_0010 onCompletedCallback start');
-        request.agent.touch(task.tid, config.token,(err, taskInfo)=>{
+        request.agent.touch(task.tid, config.token, async (err, taskInfo)=>{
           try{
             if(err){
               console.info('====>SUB_Misc_REQUEST_Touch_Callback_0010 err:' + JSON.stringify(err));
@@ -1966,6 +1984,7 @@ export default function requestDownloadTwoUnitTest() {
             expect(taskInfo.url).assertEqual(config.url);
             expect(taskInfo.data).assertEqual("");
             expect(taskInfo.title).assertEqual(config.title);
+            await request.agent.remove(task.tid);
             done();
           }catch(err){
             console.info('====>SUB_Misc_REQUEST_Touch_Callback_0010 touch throw_err:' + JSON.stringify(err));
@@ -2014,6 +2033,7 @@ export default function requestDownloadTwoUnitTest() {
         try{
           let taskInfo = await request.agent.touch(task.tid, config.token);
           expect(taskInfo.title).assertEqual(config.title);
+          await request.agent.remove(task.tid);
           done();
         }catch(err){
           console.info('====>SUB_Misc_REQUEST_Touch_Promise_0010 touch throw_err:' + JSON.stringify(err));
@@ -2055,7 +2075,7 @@ export default function requestDownloadTwoUnitTest() {
       };
       let task:request.agent.Task
 
-      function onCompletedCallback(progress){
+      async function onCompletedCallback(progress){
         task.off('completed');
         console.info('====>SUB_Misc_REQUEST_Touch_Callback_0020 onCompletedCallback start');
         try{
@@ -2067,6 +2087,7 @@ export default function requestDownloadTwoUnitTest() {
         }catch(err){
           console.info('====>SUB_Misc_REQUEST_Touch_Callback_0020 touch throw_err:' + JSON.stringify(err));
           expect(err.code).assertEqual(401);
+          await request.agent.remove(task.tid);
           done();
         }
       }
@@ -2116,6 +2137,7 @@ export default function requestDownloadTwoUnitTest() {
         }catch(err){
           console.info('====>SUB_Misc_REQUEST_Touch_Promise_0030 touch throw_err:' + JSON.stringify(err));
           expect(err.code).assertEqual(401);
+          await request.agent.remove(task.tid);
           done();
         }
       }
@@ -2154,13 +2176,14 @@ export default function requestDownloadTwoUnitTest() {
       };
       let task:request.agent.Task
 
-      function onCompletedCallback(progress){
+      async function onCompletedCallback(progress){
         task.off('completed');
         console.info('====>SUB_Misc_REQUEST_Touch_Callback_0040 onCompletedCallback start');
         try{
-          request.agent.touch(task.tid, config.token+'1',(err, taskInfo)=>{
+          request.agent.touch(task.tid, config.token+'1',async (err, taskInfo)=>{
             console.info('====>SUB_Misc_REQUEST_Touch_Callback_0040 touch err:' + JSON.stringify(err));
             expect(err.code).assertEqual(21900006);
+            await request.agent.remove(task.tid);
             done();
           })
         }catch(err){
@@ -2710,6 +2733,7 @@ export default function requestDownloadTwoUnitTest() {
               arr.push(2);
               console.info("====>SUB_REQUEST_Off_Download_Completed_0600 task3 completed on arr: " + JSON.stringify(arr));
               expect(arr[0]).assertEqual(2);
+              await request.agent.remove(task.tid);
               done();
             } catch (err) {
               console.info("====>SUB_REQUEST_Off_Download_Completed_0600 catch err: " + JSON.stringify(err));
@@ -3057,7 +3081,7 @@ export default function requestDownloadTwoUnitTest() {
         }
       }
 
-      function subscriberCallback (err, data){
+      async function subscriberCallback (err, data){
         try {
           console.info("====>SUB_REQUEST_Download_broadcastEvent_0100 subscriberCallback data:"
           + JSON.stringify(data));
@@ -3131,7 +3155,7 @@ export default function requestDownloadTwoUnitTest() {
         }
       }
 
-      function subscriberCallback (err, data){
+      async function subscriberCallback (err, data){
         try {
           console.info("====>SUB_REQUEST_Download_broadcastEvent_0200 subscriberCallback data:"
           + JSON.stringify(data));

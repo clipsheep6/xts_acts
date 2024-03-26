@@ -231,6 +231,7 @@ export default function requestUploadJSUnit() {
           }
           console.info("-----------------------SUB_Misc_REQUEST_Start_Upload_Callback_0010 end-----------------------");
           await sleep(100);
+          await request.agent.remove(task.tid);
           done();
         });
       });
@@ -256,6 +257,7 @@ export default function requestUploadJSUnit() {
       }
       console.info("-----------------------SUB_Misc_REQUEST_Start_Upload_Promise_0010 end-----------------------");
       await sleep(100);
+      await request.agent.remove(task.tid);
       done();
     });
 
@@ -279,6 +281,7 @@ export default function requestUploadJSUnit() {
                 expect().assertFail();
               }
               expect(true).assertEqual(true);
+              await request.agent.remove(task.tid);
               console.info("====>SUB_Misc_REQUEST_Pause_Upload_Callback_0010 upload pause success: " + task);
             }catch(err){
               console.info("====>SUB_Misc_REQUEST_Pause_Upload_Callback_0010 catch err: " + JSON.stringify(err));
@@ -316,6 +319,7 @@ export default function requestUploadJSUnit() {
       });
       console.info("-----------------------SUB_Misc_REQUEST_Pause_Upload_Promise_0010 end-----------------------");
       await sleep(100);
+      await request.agent.remove(task.tid);
       done();
     });
 
@@ -350,6 +354,7 @@ export default function requestUploadJSUnit() {
         });
         console.info("-----------------------SUB_Misc_REQUEST_Resume_Upload_Callback_0010 end-----------------------");
         await sleep(100);
+        await request.agent.remove(task.tid);
         done();
       });
     });
@@ -382,6 +387,7 @@ export default function requestUploadJSUnit() {
       });
       console.info("-----------------------SUB_Misc_REQUEST_Resume_Upload_Promise_0010 end-----------------------");
       await sleep(100);
+      await request.agent.remove(task.tid);
       done();
     });
 
@@ -413,6 +419,7 @@ export default function requestUploadJSUnit() {
         });
         console.info("-----------------------SUB_Misc_REQUEST_Stop_Upload_Callback_0010 end-----------------------");
         await sleep(100);
+        await request.agent.remove(task.tid);
         done();
       });
     });
@@ -434,6 +441,7 @@ export default function requestUploadJSUnit() {
           await task.stop();
           expect(true).assertEqual(true);
           console.info("====>SUB_Misc_REQUEST_Stop_Upload_Promise_0010 upload stop success: " + task);
+          await request.agent.remove(task.tid);
           done();
         } catch (err) {
           console.info("====>SUB_Misc_REQUEST_Stop_Upload_Promise_0010 upload stop err: " + JSON.stringify(err));

@@ -564,6 +564,7 @@ export default function requestDownloadJSUnit() {
         try {
           await task.stop();
           expect(true).assertEqual(true);
+          await request.agent.remove(task.tid);
           console.info("====>SUB_Misc_REQUEST_Stop_Download_Promise_0010 download stop success: " + task);
           done();
         } catch (err) {
