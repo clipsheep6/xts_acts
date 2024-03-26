@@ -1,4 +1,17 @@
-import media from '@ohos.multimedia.media';
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 export const CreateAudioCapturerRecorder: (fileIndex: number) => number; // 输入流媒体初始化方法 返回值为 200 - 1200 200表示成功，其他的表示失败 如果是0 表示创建路径错误
 export const CreatRendererAudioPlayer: ()=>number;  // 输出流初始化
