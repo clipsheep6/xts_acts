@@ -110,7 +110,8 @@ static OH_AudioRenderer *audiorenderer;
 
 #pragma mark - 公用方法
 // 获取index下标的属性值
-static int getParamAtIndex(int index, napi_env env, napi_callback_info info) {
+static int getParamAtIndex(int index, napi_env env, napi_callback_info info) 
+{
     size_t argc = 9;
     napi_value args[9] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -122,7 +123,8 @@ static int getParamAtIndex(int index, napi_env env, napi_callback_info info) {
 }
 
 // 根据value值获取采样格式
-static OH_AudioStream_SampleFormat getSampleFormatValue(int sampleFormatValue) {
+static OH_AudioStream_SampleFormat getSampleFormatValue(int sampleFormatValue) 
+{
     OH_AudioStream_SampleFormat oH_AudioStream_SampleFormat = AUDIOSTREAM_SAMPLE_U8;
     switch (sampleFormatValue) {
     case KNUMBER0:
@@ -144,7 +146,8 @@ static OH_AudioStream_SampleFormat getSampleFormatValue(int sampleFormatValue) {
 }
 
 // 根据value值获取播放流场景类型
-static OH_AudioStream_Usage getRendererInfoWithValue(int usageValue) {
+static OH_AudioStream_Usage getRendererInfoWithValue(int usageValue) 
+{
     OH_AudioStream_Usage oH_AudioStream_Usage = AUDIOSTREAM_USAGE_UNKNOWN;
     switch (usageValue) {
     case KNUMBER0:
@@ -192,7 +195,8 @@ static OH_AudioStream_Usage getRendererInfoWithValue(int usageValue) {
     return oH_AudioStream_Usage;
 }
 // 创建一个输入或者输出类型的音频流构造器
-static napi_value OHAudioStreamBuilderCreate(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderCreate(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
 
     size_t argc = PARAM_1;
@@ -223,7 +227,8 @@ static napi_value OHAudioStreamBuilderCreate(napi_env env, napi_callback_info in
     return result;
 }
 
-static OH_AudioStreamBuilder *GetAudioStreamBuilder(OH_AudioStream_Type type) {
+static OH_AudioStreamBuilder *GetAudioStreamBuilder(OH_AudioStream_Type type) 
+{
     OH_AudioStreamBuilder *builder;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioStreamBuilder_Create(&builder, type);
     if (oH_AudioStream_Result == AUDIOSTREAM_SUCCESS) {
@@ -233,7 +238,8 @@ static OH_AudioStreamBuilder *GetAudioStreamBuilder(OH_AudioStream_Type type) {
     }
 }
 
-static OH_AudioCapturer *GetOH_AudioCapturer() {
+static OH_AudioCapturer *GetOH_AudioCapturer() 
+{
     OH_AudioCapturer *oH_AudioCapturer;
     OH_AudioStream_Result oH_AudioStream_Result1 =
         OH_AudioStreamBuilder_GenerateCapturer(capturerbuilder, &oH_AudioCapturer);
@@ -246,7 +252,8 @@ static OH_AudioCapturer *GetOH_AudioCapturer() {
 }
 
 #pragma mark - 输入音频流回调方法
-int32_t onReadData(OH_AudioCapturer *capturer, void *userData, void *buffer, int32_t length) {
+int32_t onReadData(OH_AudioCapturer *capturer, void *userData, void *buffer, int32_t length) 
+{
     printf("Get callback buffer, bufferLen:%d  \n", length);
     size_t count = 1;
     if (fwrite(buffer, length, count, g_file) != count) {
@@ -257,29 +264,33 @@ int32_t onReadData(OH_AudioCapturer *capturer, void *userData, void *buffer, int
 }
 
 // Define callback function for handling stream events
-int32_t onStreamEvent(OH_AudioCapturer *capturer, void *userData, OH_AudioStream_Event event) {
+int32_t onStreamEvent(OH_AudioCapturer *capturer, void *userData, OH_AudioStream_Event event) 
+{
     return 0;
 }
 
 // Define callback function for handling interrupt events
 int32_t onInterruptEvent(OH_AudioCapturer *capturer, void *userData, OH_AudioInterrupt_ForceType type,
-                         OH_AudioInterrupt_Hint hint) {
+                         OH_AudioInterrupt_Hint hint) 
+{
     return 0;
 }
 
 // Define callback function for handling errors
-int32_t onError(OH_AudioCapturer *capturer, void *userData, OH_AudioStream_Result error) {
+int32_t onError(OH_AudioCapturer *capturer, void *userData, OH_AudioStream_Result error) 
+{
     return 0;
 }
 #pragma mark - 停止方法
-void SleepWaitRecoder(bool *stop) {
+void SleepWaitRecoder(bool *stop) 
+{
     std::this_thread::sleep_for(std::chrono::milliseconds(g_recorderTime));
     *stop = true;
 }
 #pragma mark - 文件初始化
-static napi_value OpenFileName(napi_env env, napi_callback_info info) {
+static napi_value OpenFileName(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
-
     size_t argc = PARAM_1;
     napi_value args[PARAM_1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -310,7 +321,8 @@ static napi_value OpenFileName(napi_env env, napi_callback_info info) {
 }
 
 #pragma mark - 音频捕获器初始化
-static napi_value CreatCapturerRecorderWithParam(napi_env env, napi_callback_info info) {
+static napi_value CreatCapturerRecorderWithParam(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int backParam = FAIL;
 
@@ -390,7 +402,8 @@ static napi_value CreatCapturerRecorderWithParam(napi_env env, napi_callback_inf
     return result;
 }
 
-static napi_value CreateAudioCapturerRecorder(napi_env env, napi_callback_info info) {
+static napi_value CreateAudioCapturerRecorder(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int backParam = FAIL;
     size_t argc = PARAM_1;
@@ -463,7 +476,8 @@ static napi_value CreateAudioCapturerRecorder(napi_env env, napi_callback_info i
 
 #pragma mark - 音频捕获器销毁方法
 
-static napi_value CloseAudioCapture(napi_env env, napi_callback_info info) {
+static napi_value CloseAudioCapture(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     if (capturerbuilder) {
         OH_AudioStream_Result oH_AudioStream_Result = OH_AudioStreamBuilder_Destroy(capturerbuilder);
@@ -475,7 +489,8 @@ static napi_value CloseAudioCapture(napi_env env, napi_callback_info info) {
     return result;
 }
 
-static napi_value CloseCapturerPCMFile(napi_env env, napi_callback_info info) {
+static napi_value CloseCapturerPCMFile(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int ret = fclose(g_file);
     if (ret == 0) {
@@ -486,7 +501,8 @@ static napi_value CloseCapturerPCMFile(napi_env env, napi_callback_info info) {
 }
 
 // 输出音频流回调方法
-int32_t onRendererWriteData(OH_AudioRenderer *renderer, void *userData, void *buffer, int32_t length) {
+int32_t onRendererWriteData(OH_AudioRenderer *renderer, void *userData, void *buffer, int32_t length) 
+{
     size_t readCount = fread(buffer, length, 1, g_file);
     if (!readCount) {
         if (ferror(g_file)) {
@@ -505,25 +521,29 @@ int32_t onRendererWriteData(OH_AudioRenderer *renderer, void *userData, void *bu
 }
 
 // Define callback function for handling stream events
-int32_t onRendererStreamEvent(OH_AudioRenderer *renderer, void *userData, OH_AudioStream_Event event) {
+int32_t onRendererStreamEvent(OH_AudioRenderer *renderer, void *userData, OH_AudioStream_Event event) 
+{
     return 0;
 }
 
 // Define callback function for handling interrupt events
 int32_t onRendererInterruptEvent(OH_AudioRenderer *renderer, void *userData, OH_AudioInterrupt_ForceType type,
-                                 OH_AudioInterrupt_Hint hint) {
+                                 OH_AudioInterrupt_Hint hint) 
+{
     return 0;
 }
 
 // Define callback function for handling errors
-int32_t onRendererError(OH_AudioRenderer *renderer, void *userData, OH_AudioStream_Result error) {
+int32_t onRendererError(OH_AudioRenderer *renderer, void *userData, OH_AudioStream_Result error) 
+{
     return 0;
 }
 
 #pragma mark - 音频播放器初始化方法
 
 // 输出流音频初始化
-static napi_value CreatRendererAudioPlayer(napi_env env, napi_callback_info info) {
+static napi_value CreatRendererAudioPlayer(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int backParam = FAIL;
     g_file = fopen(g_filePath2.c_str(), "wr");
@@ -613,7 +633,8 @@ static napi_value CreatRendererAudioPlayer(napi_env env, napi_callback_info info
     return result;
 }
 
-static napi_value CreatAudioPlayerWithWavFile(napi_env env, napi_callback_info info) {
+static napi_value CreatAudioPlayerWithWavFile(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int backParam = FAIL;
     size_t argc = PARAM_1;
@@ -709,7 +730,8 @@ static napi_value CreatAudioPlayerWithWavFile(napi_env env, napi_callback_info i
     return result;
 }
 
-static napi_value CreatAudioPlayerWithFileAndParam(napi_env env, napi_callback_info info) {
+static napi_value CreatAudioPlayerWithFileAndParam(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int backParam = FAIL;
 
@@ -811,7 +833,8 @@ static napi_value CreatAudioPlayerWithFileAndParam(napi_env env, napi_callback_i
     return result;
 }
 
-static napi_value TestRendererAudioStreamUsage(napi_env env, napi_callback_info info) {
+static napi_value TestRendererAudioStreamUsage(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int backParam = FAIL;
     g_file = fopen(g_filePath2.c_str(), "wr");
@@ -908,7 +931,8 @@ static napi_value TestRendererAudioStreamUsage(napi_env env, napi_callback_info 
 }
 
 #pragma mark - 音频播放器器销毁方法
-static napi_value CloseAudioRender(napi_env env, napi_callback_info info) {
+static napi_value CloseAudioRender(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     if (rendererbuilder) {
         OH_AudioStream_Result oH_AudioStream_Result = OH_AudioStreamBuilder_Destroy(rendererbuilder);
@@ -926,7 +950,8 @@ static napi_value CloseAudioRender(napi_env env, napi_callback_info info) {
 }
 
 // 暂停输入音频流
-static napi_value OHAudioCapturerPause(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerPause(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioCapturer_Pause(audioCapturer);
     napi_create_int32(env, oH_AudioStream_Result, &result);
@@ -934,7 +959,8 @@ static napi_value OHAudioCapturerPause(napi_env env, napi_callback_info info) {
 }
 
 // 释放输入音频流
-static napi_value OHAudioCapturerRelease(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerRelease(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     if (audioCapturer != nullptr) {
         OH_AudioStream_Result oH_AudioStream_Result = OH_AudioCapturer_Release(audioCapturer);
@@ -948,7 +974,8 @@ static napi_value OHAudioCapturerRelease(napi_env env, napi_callback_info info) 
 }
 
 // 开始获取音频数据
-static napi_value OHAudioCapturerStart(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerStart(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioCapturer_Start(audioCapturer);
 
@@ -965,7 +992,8 @@ static napi_value OHAudioCapturerStart(napi_env env, napi_callback_info info) {
 }
 
 // 停止输入音频流
-static napi_value OHAudioCapturerStop(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerStop(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioCapturer_Stop(audioCapturer);
     napi_create_int32(env, oH_AudioStream_Result, &result);
@@ -973,7 +1001,8 @@ static napi_value OHAudioCapturerStop(napi_env env, napi_callback_info info) {
 }
 
 // 丢弃已经写入的音频数据
-static napi_value OHAudioRendererFlush(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererFlush(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_Flush(audiorenderer);
     napi_create_int32(env, oH_AudioStream_Result, &result);
@@ -981,7 +1010,8 @@ static napi_value OHAudioRendererFlush(napi_env env, napi_callback_info info) {
 }
 
 // 查询当前输出音频流通道数
-static napi_value OHAudioRendererGetChannelCount(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererGetChannelCount(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int32_t channelCount;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_GetChannelCount(audiorenderer, &channelCount);
@@ -994,7 +1024,8 @@ static napi_value OHAudioRendererGetChannelCount(napi_env env, napi_callback_inf
 }
 
 // 查询当前输出音频流状态
-static napi_value OHAudioRendererGetCurrentState(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererGetCurrentState(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_State state;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_GetCurrentState(audiorenderer, &state);
@@ -1007,7 +1038,8 @@ static napi_value OHAudioRendererGetCurrentState(napi_env env, napi_callback_inf
 }
 
 // 查询当前输出音频流编码类型
-static napi_value OHAudioRendererGetEncodingType(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererGetEncodingType(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_EncodingType encodingType;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_GetEncodingType(audiorenderer, &encodingType);
@@ -1020,7 +1052,8 @@ static napi_value OHAudioRendererGetEncodingType(napi_env env, napi_callback_inf
 }
 
 // 在回调中查询帧大小，它是一个固定的长度，每次回调都要填充流
-static napi_value OHAudioRendererGetFrameSizeInCallback(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererGetFrameSizeInCallback(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int frameSizeValue;
     OH_AudioStream_Result oH_AudioStream_Result =
@@ -1034,7 +1067,8 @@ static napi_value OHAudioRendererGetFrameSizeInCallback(napi_env env, napi_callb
 }
 
 // 查询自创建流以来已写入的帧数
-static napi_value OHAudioRendererGetFramesWritten(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererGetFramesWritten(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int64_t frames;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_GetFramesWritten(audiorenderer, &frames);
@@ -1047,7 +1081,8 @@ static napi_value OHAudioRendererGetFramesWritten(napi_env env, napi_callback_in
 }
 
 // 查询当前输出音频流时延模式
-static napi_value OHAudioRendererGetLatencyMode(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererGetLatencyMode(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_LatencyMode latencyMode;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_GetLatencyMode(audiorenderer, &latencyMode);
@@ -1060,7 +1095,8 @@ static napi_value OHAudioRendererGetLatencyMode(napi_env env, napi_callback_info
 }
 
 // 查询当前输出音频流工作场景类型
-static napi_value OHAudioRendererGetRendererInfo(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererGetRendererInfo(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_Usage usage;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_GetRendererInfo(audiorenderer, &usage);
@@ -1073,7 +1109,8 @@ static napi_value OHAudioRendererGetRendererInfo(napi_env env, napi_callback_inf
 }
 
 // 丢弃获取的音频流数据
-static napi_value OHAudioCapturerFlush(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerFlush(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioCapturer_Flush(audioCapturer);
     napi_create_int32(env, oH_AudioStream_Result, &result);
@@ -1081,7 +1118,8 @@ static napi_value OHAudioCapturerFlush(napi_env env, napi_callback_info info) {
 }
 
 // 查询当前音频流工作场景类型
-static napi_value OHAudioCapturerGetCapturerInfo(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerGetCapturerInfo(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_SourceType sourceType;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioCapturer_GetCapturerInfo(audioCapturer, &sourceType);
@@ -1094,7 +1132,8 @@ static napi_value OHAudioCapturerGetCapturerInfo(napi_env env, napi_callback_inf
 }
 
 // 查询当前音频流通道数
-static napi_value OHAudioCapturerGetChannelCount(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerGetChannelCount(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int channelCount;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioCapturer_GetChannelCount(audioCapturer, &channelCount);
@@ -1107,7 +1146,8 @@ static napi_value OHAudioCapturerGetChannelCount(napi_env env, napi_callback_inf
 }
 
 // 查询当前音频流状态
-static napi_value OHAudioCapturerGetCurrentState(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerGetCurrentState(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_State state;
     OH_AudioStream_Result oH_AudioStream_Result1 = OH_AudioCapturer_GetCurrentState(audioCapturer, &state);
@@ -1116,7 +1156,8 @@ static napi_value OHAudioCapturerGetCurrentState(napi_env env, napi_callback_inf
 }
 
 // 查询当前音频流编码类型
-static napi_value OHAudioCapturerGetEncodingType(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerGetEncodingType(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_EncodingType encodingType = AUDIOSTREAM_ENCODING_TYPE_RAW;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioCapturer_GetEncodingType(audioCapturer, &encodingType);
@@ -1129,7 +1170,8 @@ static napi_value OHAudioCapturerGetEncodingType(napi_env env, napi_callback_inf
 }
 
 // 在回调中查询帧大小，它是每次回调返回的缓冲区的固定长度。
-static napi_value OHAudioCapturerGetFrameSizeInCallback(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerGetFrameSizeInCallback(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int frameSizeValue;
     OH_AudioStream_Result oH_AudioStream_Result =
@@ -1143,7 +1185,8 @@ static napi_value OHAudioCapturerGetFrameSizeInCallback(napi_env env, napi_callb
 }
 
 // 查询自创建流以来已读取的帧数。
-static napi_value OHAudioCapturerGetFramesRead(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerGetFramesRead(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int64_t framesRead;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioCapturer_GetFramesRead(audioCapturer, &framesRead);
@@ -1156,7 +1199,8 @@ static napi_value OHAudioCapturerGetFramesRead(napi_env env, napi_callback_info 
 }
 
 // 查询当前音频流时延模式。
-static napi_value OHAudioCapturerGetLatencyMode(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerGetLatencyMode(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_LatencyMode latencyMode;
     OH_AudioStream_Result oH_AudioStream_Result1 = OH_AudioCapturer_GetLatencyMode(audioCapturer, &latencyMode);
@@ -1169,7 +1213,8 @@ static napi_value OHAudioCapturerGetLatencyMode(napi_env env, napi_callback_info
 }
 
 // 在回调中查询帧大小
-static napi_value OHAudioCapturerGetSampleFormat(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerGetSampleFormat(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_SampleFormat sampleFormat;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioCapturer_GetSampleFormat(audioCapturer, &sampleFormat);
@@ -1182,7 +1227,8 @@ static napi_value OHAudioCapturerGetSampleFormat(napi_env env, napi_callback_inf
 }
 
 // 查询当前输入音频流采样率
-static napi_value OHAudioCapturerGetSamplingRate(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerGetSamplingRate(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int rateValue;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioCapturer_GetSamplingRate(audioCapturer, &rateValue);
@@ -1195,7 +1241,8 @@ static napi_value OHAudioCapturerGetSamplingRate(napi_env env, napi_callback_inf
 }
 
 // 查询当前输入音频流ID。
-static napi_value OHAudioCapturerGetStreamId(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerGetStreamId(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     uint32_t streamId;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioCapturer_GetStreamId(audioCapturer, &streamId);
@@ -1208,7 +1255,8 @@ static napi_value OHAudioCapturerGetStreamId(napi_env env, napi_callback_info in
 }
 
 // 获取输入音频流时间戳
-static napi_value OHAudioCapturerGetFramePosition(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerGetFramePosition(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     clockid_t clockId = CLOCK_MONOTONIC;
     int64_t framePosition;
@@ -1224,7 +1272,8 @@ static napi_value OHAudioCapturerGetFramePosition(napi_env env, napi_callback_in
 }
 
 // 获取输入音频流位置信息。
-static napi_value OHAudioCapturerGetTimestamp(napi_env env, napi_callback_info info) {
+static napi_value OHAudioCapturerGetTimestamp(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     clockid_t clockId = CLOCK_MONOTONIC;
     int64_t framePosition;
@@ -1240,7 +1289,8 @@ static napi_value OHAudioCapturerGetTimestamp(napi_env env, napi_callback_info i
 }
 
 // 销毁一个音频流构造器
-static napi_value OHAudioStreamBuilderDestroy(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderDestroy(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     size_t argc = PARAM_1;
     napi_value args[PARAM_1] = {nullptr};
@@ -1261,7 +1311,8 @@ static napi_value OHAudioStreamBuilderDestroy(napi_env env, napi_callback_info i
 }
 
 // 创建输入音频流实例
-static napi_value OHAudioStreamBuilderGenerateCapturer(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderGenerateCapturer(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStreamBuilder *builder = GetAudioStreamBuilder(AUDIOSTREAM_TYPE_CAPTURER);
     if (builder == nullptr) {
@@ -1301,7 +1352,8 @@ static napi_value OHAudioStreamBuilderGenerateCapturer(napi_env env, napi_callba
 }
 
 // 创建输出音频流实例
-static napi_value OHAudioStreamBuilderGenerateRenderer(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderGenerateRenderer(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStreamBuilder *builder = GetAudioStreamBuilder(AUDIOSTREAM_TYPE_RENDERER);
     OH_AudioRenderer *oH_AudioRenderer;
@@ -1311,7 +1363,8 @@ static napi_value OHAudioStreamBuilderGenerateRenderer(napi_env env, napi_callba
 }
 
 // 设置输入音频流的回调
-static napi_value OHAudioStreamBuilderSetCapturerCallback(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderSetCapturerCallback(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioCapturer_Callbacks callbacks;
     callbacks.OH_AudioCapturer_OnReadData = onReadData;
@@ -1326,7 +1379,8 @@ static napi_value OHAudioStreamBuilderSetCapturerCallback(napi_env env, napi_cal
 }
 
 // 设置输入音频流的工作场景
-static napi_value OHAudioStreamBuilderSetCapturerInfo(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderSetCapturerInfo(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
 
     size_t argc = PARAM_1;
@@ -1363,7 +1417,8 @@ static napi_value OHAudioStreamBuilderSetCapturerInfo(napi_env env, napi_callbac
 }
 
 // 设置音频流的通道数属性。
-static napi_value OHAudioStreamBuilderSetChannelCount(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderSetChannelCount(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     size_t argc = PARAM_2;
     napi_value args[PARAM_2] = {nullptr};
@@ -1387,7 +1442,8 @@ static napi_value OHAudioStreamBuilderSetChannelCount(napi_env env, napi_callbac
 }
 
 // 设置音频流的编码类型属性。
-static napi_value OHAudioStreamBuilderSetEncodingType(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderSetEncodingType(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     size_t argc = PARAM_2;
     napi_value args[PARAM_2] = {nullptr};
@@ -1406,7 +1462,8 @@ static napi_value OHAudioStreamBuilderSetEncodingType(napi_env env, napi_callbac
 }
 
 // 设置每次回调的帧长，帧长至少为音频硬件一次处理的数据大小，并且小于内部缓冲容量的一半。
-static napi_value OHAudioStreamBuilderSetFrameSizeInCallback(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderSetFrameSizeInCallback(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     size_t argc = PARAM_2;
     napi_value args[PARAM_2] = {nullptr};
@@ -1424,7 +1481,8 @@ static napi_value OHAudioStreamBuilderSetFrameSizeInCallback(napi_env env, napi_
 }
 
 // 设置音频流的时延模式
-static napi_value OHAudioStreamBuilderSetLatencyMode(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderSetLatencyMode(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     size_t argc = PARAM_2;
     napi_value args[PARAM_2] = {nullptr};
@@ -1443,7 +1501,8 @@ static napi_value OHAudioStreamBuilderSetLatencyMode(napi_env env, napi_callback
 }
 
 // 设置输出音频流的回调。
-static napi_value OHAudioStreamBuilderSetRendererCallback(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderSetRendererCallback(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioRenderer_Callbacks callbacks;
     callbacks.OH_AudioRenderer_OnWriteData = onRendererWriteData;
@@ -1460,7 +1519,8 @@ static napi_value OHAudioStreamBuilderSetRendererCallback(napi_env env, napi_cal
 }
 
 // 设置输出音频流的工作场景
-static napi_value OHAudioStreamBuilderSetRendererInfo(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderSetRendererInfo(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
 
     size_t argc = PARAM_1;
@@ -1522,7 +1582,8 @@ static napi_value OHAudioStreamBuilderSetRendererInfo(napi_env env, napi_callbac
 }
 
 // 设置音频流的采样格式属性。
-static napi_value OHAudioStreamBuilderSetSampleFormat(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderSetSampleFormat(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     size_t argc = PARAM_2;
     napi_value args[PARAM_2] = {nullptr};
@@ -1557,7 +1618,8 @@ static napi_value OHAudioStreamBuilderSetSampleFormat(napi_env env, napi_callbac
 }
 
 // 设置音频流的采样率属性
-static napi_value OHAudioStreamBuilderSetSamplingRate(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderSetSamplingRate(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     size_t argc = PARAM_2;
     napi_value args[PARAM_2] = {nullptr};
@@ -1575,7 +1637,8 @@ static napi_value OHAudioStreamBuilderSetSamplingRate(napi_env env, napi_callbac
 }
 
 // 查询当前输出音频流采样格式
-static napi_value OHAudioRendererGetSampleFormat(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererGetSampleFormat(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_SampleFormat sampleFormat;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_GetSampleFormat(audiorenderer, &sampleFormat);
@@ -1588,7 +1651,8 @@ static napi_value OHAudioRendererGetSampleFormat(napi_env env, napi_callback_inf
 }
 
 // 查询当前输出音频流采样率
-static napi_value OHAudioRendererGetSamplingRate(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererGetSamplingRate(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int32_t rate;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_GetSamplingRate(audiorenderer, &rate);
@@ -1601,7 +1665,8 @@ static napi_value OHAudioRendererGetSamplingRate(napi_env env, napi_callback_inf
 }
 
 // 查询当前输出音频流ID
-static napi_value OHAudioRendererGetStreamId(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererGetStreamId(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     uint32_t streamId;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_GetStreamId(audiorenderer, &streamId);
@@ -1614,7 +1679,8 @@ static napi_value OHAudioRendererGetStreamId(napi_env env, napi_callback_info in
 }
 
 // 获取输出音频流时间戳
-static napi_value OHAudioRendererGetTimestamp(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererGetTimestamp(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     clockid_t clockId = CLOCK_MONOTONIC;
     int64_t framePosition;
@@ -1627,7 +1693,8 @@ static napi_value OHAudioRendererGetTimestamp(napi_env env, napi_callback_info i
 }
 
 // 暂停输出音频流
-static napi_value OHAudioRendererPause(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererPause(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_Pause(audiorenderer);
     napi_create_int32(env, oH_AudioStream_Result, &result);
@@ -1635,7 +1702,8 @@ static napi_value OHAudioRendererPause(napi_env env, napi_callback_info info) {
 }
 
 // 释放输出音频流
-static napi_value OHAudioRendererRelease(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererRelease(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_Release(audiorenderer);
     napi_create_int32(env, oH_AudioStream_Result, &result);
@@ -1643,7 +1711,8 @@ static napi_value OHAudioRendererRelease(napi_env env, napi_callback_info info) 
 }
 
 // 开始输出音频数据。
-static napi_value OHAudioRendererStart(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererStart(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_Start(audiorenderer);
     int frameSizeValue = 240;
@@ -1664,7 +1733,8 @@ static napi_value OHAudioRendererStart(napi_env env, napi_callback_info info) {
 }
 
 // 停止输出音频流
-static napi_value OHAudioRendererStop(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererStop(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_Stop(audiorenderer);
     napi_create_int32(env, oH_AudioStream_Result, &result);
@@ -1672,7 +1742,8 @@ static napi_value OHAudioRendererStop(napi_env env, napi_callback_info info) {
 }
 
 // 设置播放速度
-static napi_value OHAudioRendererSetSpeed(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererSetSpeed(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     size_t argc = PARAM_1;
     napi_value args[PARAM_1] = {nullptr};
@@ -1686,7 +1757,8 @@ static napi_value OHAudioRendererSetSpeed(napi_env env, napi_callback_info info)
 }
 
 // 获取播放倍速
-static napi_value OHAudioRendererGetSpeed(napi_env env, napi_callback_info info) {
+static napi_value OHAudioRendererGetSpeed(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     float speed;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_GetSpeed(audiorenderer, &speed);
@@ -1698,10 +1770,12 @@ static napi_value OHAudioRendererGetSpeed(napi_env env, napi_callback_info info)
     return result;
 }
 
-void onOutputDeviceChange(OH_AudioRenderer *renderer, void *userData, OH_AudioStream_DeviceChangeReason reason) {
+void onOutputDeviceChange(OH_AudioRenderer *renderer, void *userData, OH_AudioStream_DeviceChangeReason reason) 
+{
 }
 // 设置输入流设备回调函数
-static napi_value OHAudioStreamBuilderSetRendererOutputDeviceChangeCallback(napi_env env, napi_callback_info info) {
+static napi_value OHAudioStreamBuilderSetRendererOutputDeviceChangeCallback(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     OH_AudioStreamBuilder *builder = GetAudioStreamBuilder(AUDIOSTREAM_TYPE_RENDERER);
     void *userData;
@@ -1713,7 +1787,8 @@ static napi_value OHAudioStreamBuilderSetRendererOutputDeviceChangeCallback(napi
 }
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports) 
+{
     napi_property_descriptor desc[] = {
         {"CreateAudioCapturerRecorder", nullptr, CreateAudioCapturerRecorder,
          nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -1854,6 +1929,7 @@ static napi_module demoModule = {
     .reserved = {0},
 };
 
-extern "C" __attribute__((constructor)) void RegisterEntryModule(void) {
+extern "C" __attribute__((constructor)) void RegisterEntryModule(void) 
+{
     napi_module_register(&demoModule);
 }
