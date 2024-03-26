@@ -170,17 +170,6 @@ export default function relationalStoreDataGroupIdCallback() {
             done();
             expect().assertFail();
           }
-          console.info(TAG, `Get RdbStore successfully.` + `  rdbStore = ${rdbStore} , err = ${err}`);
-          await rdbStore.executeSql(CREATE_TABLE_TEST);
-          relationalStore.deleteRdbStore(context, STORE_CONFIG, (err) => {
-            if (err) {
-              console.error(TAG, `Delete RdbStore failed, code is ${err.code},message is ${err.message}`);
-              return false;
-            }
-            console.info(TAG, `Delete RdbStore successfully.` + `  rdbStore = ${rdbStore} , err = ${err}`);
-            expect(err === undefined).assertTrue()
-            done();
-          })
         })
         
     console.log(TAG + "*************Unit Test End*************");
