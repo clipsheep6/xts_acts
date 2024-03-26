@@ -1,0 +1,42 @@
+{
+  "module": {
+    "name": "getFormsInfoProvider_b",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "GetFormsInfoProvider_bAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "GetFormsInfoProvider_bAbility",
+        "srcEntry": "./ets/getformsinfoprovider_bability/GetFormsInfoProvider_bAbility.ets",
+        "description": "$string:GetFormsInfoProvider_bAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:GetFormsInfoProvider_bAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "GetFormsInfoProvider_bFormAbility",
+        "srcEntry": "./ets/getformsinfoprovider_bformability/GetFormsInfoProvider_bFormAbility.ets",
+        "label": "$string:GetFormsInfoProvider_bFormAbility_label",
+        "description": "$string:GetFormsInfoProvider_bFormAbility_desc",
+        "type": "form",
+        "metadata": [
+          {
+            "name": "ohos.extension.form",
+            "resource": "$profile:form_config"
+          }
+        ]
+      }
+    ]
+  }
+}

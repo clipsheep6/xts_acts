@@ -1,0 +1,42 @@
+{
+  "module": {
+    "name": "a",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "AAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "AAbility",
+        "srcEntry": "./ets/aability/AAbility.ets",
+        "description": "$string:AAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:AAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "AFormAbility",
+        "srcEntry": "./ets/aformability/AFormAbility.ets",
+        "label": "$string:AFormAbility_label",
+        "description": "$string:AFormAbility_desc",
+        "type": "form",
+        "metadata": [
+          {
+            "name": "ohos.extension.form",
+            "resource": "$profile:form_config"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "module": {
+    "name": "cardAbnormalNameTestaaaaaaaaaaa",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "CardAbnormalNameTestaaaaaaaaaaaAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "CardAbnormalNameTestaaaaaaaaaaaAbility",
+        "srcEntry": "./ets/cardabnormalnametestaaaaaaaaaaaability/CardAbnormalNameTestaaaaaaaaaaaAbility.ets",
+        "description": "$string:CardAbnormalNameTestaaaaaaaaaaaAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:CardAbnormalNameTestaaaaaaaaaaaAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "CardAbnormalNameTestaaaaaaaaaaaFormAbility",
+        "srcEntry": "./ets/cardabnormalnametestaaaaaaaaaaaformability/CardAbnormalNameTestaaaaaaaaaaaFormAbility.ets",
+        "label": "$string:CardAbnormalNameTestaaaaaaaaaaaFormAbility_label",
+        "description": "$string:CardAbnormalNameTestaaaaaaaaaaaFormAbility_desc",
+        "type": "form",
+        "metadata": [
+          {
+            "name": "ohos.extension.form",
+            "resource": "$profile:form_config"
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "GetFormsInfoProvider_dAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "GetFormsInfoProvider_dAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "GetFormsInfoProvider_dFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "GetFormsInfoProvider_dFormAbility_label",
+      "value": "form_label"
+    }
+  ]
+}

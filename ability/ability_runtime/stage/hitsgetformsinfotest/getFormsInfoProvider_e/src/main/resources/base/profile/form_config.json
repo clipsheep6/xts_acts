@@ -1,0 +1,23 @@
+{
+  "forms": [
+    {
+      "name": "getFormsInfoProvider6",
+      "description": "This is a service widget.",
+      "src": "./ets/getformsinfoprovider6/pages/Getformsinfoprovider6Card.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "1*2",
+      "supportDimensions": [
+        "1*2", "2*2"
+      ]
+    }
+  ]
+}
