@@ -39,8 +39,8 @@
 #define CODE_SUCCESS 200       // 播放器创建成功
 #define BUILD_FAIL 300         // 输入流和构造器初始化失败
 #define CALLBACK_FAIL 400      // 回调方法设置失败
-#define INFO_FAIL 500          // 工作场景初始化失败
-#define CHANN_El_FAIL 600       // 通道设置失败
+#define INFOF_AIL 500          // 工作场景初始化失败
+#define CHANNEl_FAIL 600       // 通道设置失败
 #define ENCODING_FAIL 700      // 编码格式设置失败
 #define FRAMESIZE_FAIL 800     // 帧长设置失败
 #define LATENCYMODE_FAIL 900   // 延时模式设置失败
@@ -99,7 +99,7 @@ std::string pcmFileList[] = {"S16LE.pcm", "S16LE_1_8000.pcm",
                              "S16LE_1_24000.pcm", "S32LE.pcm", "S32LE_2.pcm"};
 
 static bool g_readEnd = false;
-int32_t g_recorderTime = 10000;
+int32_t g_recorder_time = 10000;
 static int g_playerTime;
 
 static OH_AudioStreamBuilder *capturerbuilder;
@@ -222,7 +222,6 @@ static napi_value OHAudioStreamBuilderCreate(napi_env env, napi_callback_info in
     } else {
         rendererbuilder = builder;
     }
-    
     napi_create_int32(env, oH_AudioStream_Result, &result);
     return result;
 }
@@ -284,7 +283,7 @@ int32_t onError(OH_AudioCapturer *capturer, void *userData, OH_AudioStream_Resul
 #pragma mark - 停止方法
 void SleepWaitRecoder(bool *stop)
 {
-    std::this_thread::sleep_for(std::chrono::milliseconds(g_recorderTime));
+    std::this_thread::sleep_for(std::chrono::milliseconds(g_recorder_time));
     *stop = true;
 }
 #pragma mark - 文件初始化
@@ -352,7 +351,7 @@ static napi_value CreatCapturerRecorderWithParam(napi_env env, napi_callback_inf
     ;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, channelCount); // 设置通道数
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = CHANN_El_FAIL;
+        backParam = CHANNEl_FAIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -381,8 +380,7 @@ static napi_value CreatCapturerRecorderWithParam(napi_env env, napi_callback_inf
         getParamAtIndex(KNUMBER3, env, info) == 0 ? AUDIOSTREAM_LATENCY_MODE_NORMAL : AUDIOSTREAM_LATENCY_MODE_FAST;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode); // 设置延时模式
 
-    OH_AudioStream_SampleFormat oH_AudioStream_SampleFormat = getSampleFormatValue(
-    getParamAtIndex(KNUMBER4, env, info));
+    OH_AudioStream_SampleFormat oH_AudioStream_SampleFormat = getSampleFormatValue(getParamAtIndex(KNUMBER4, env, info));
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetSampleFormat(builder, oH_AudioStream_SampleFormat); // 设置采样格式
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
         backParam = SAMPLEFORMAT_FAIL;
@@ -438,7 +436,7 @@ static napi_value CreateAudioCapturerRecorder(napi_env env, napi_callback_info i
     int channelCount = 2;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, channelCount); // 设置通道数
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = CHANN_El_FAIL;
+        backParam = CHANNEl_FAIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -560,7 +558,7 @@ static napi_value CreatRendererAudioPlayer(napi_env env, napi_callback_info info
 
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioStreamBuilder_SetRendererInfo(builder, usage); // 设置工作场景
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = INFO_FAIL;
+        backParam = INFOF_AIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -568,7 +566,7 @@ static napi_value CreatRendererAudioPlayer(napi_env env, napi_callback_info info
     int channelCount = 2;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, channelCount); // 设置通道数
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = CHANN_El_FAIL;
+        backParam = CHANNEl_FAIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -657,7 +655,7 @@ static napi_value CreatAudioPlayerWithWavFile(napi_env env, napi_callback_info i
 
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioStreamBuilder_SetRendererInfo(builder, usage); // 设置工作场景
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = INFO_FAIL;
+        backParam = INFOF_AIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -665,7 +663,7 @@ static napi_value CreatAudioPlayerWithWavFile(napi_env env, napi_callback_info i
     int channelCount = 2;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, channelCount); // 设置通道数
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = CHANN_El_FAIL;
+        backParam = CHANNEl_FAIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -755,7 +753,7 @@ static napi_value CreatAudioPlayerWithFileAndParam(napi_env env, napi_callback_i
 
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioStreamBuilder_SetRendererInfo(builder, usage); // 设置工作场景
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = INFO_FAIL;
+        backParam = INFOF_AIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -763,7 +761,7 @@ static napi_value CreatAudioPlayerWithFileAndParam(napi_env env, napi_callback_i
     int channelCount = getParamAtIndex(2, env, info);
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, channelCount); // 设置通道数
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = CHANN_El_FAIL;
+        backParam = CHANNEl_FAIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -857,7 +855,7 @@ static napi_value TestRendererAudioStreamUsage(napi_env env, napi_callback_info 
 
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioStreamBuilder_SetRendererInfo(builder, usage); // 设置工作场景
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = INFO_FAIL;
+        backParam = INFOF_AIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -865,7 +863,7 @@ static napi_value TestRendererAudioStreamUsage(napi_env env, napi_callback_info 
     int channelCount = 2;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, channelCount); // 设置通道数
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
-        backParam = CHANN_El_FAIL;
+        backParam = CHANNEl_FAIL;
         napi_create_int32(env, backParam, &result);
         return result;
     }
@@ -1531,53 +1529,53 @@ static napi_value OHAudioStreamBuilderSetRendererInfo(napi_env env, napi_callbac
     napi_typeof(env, args[PARAM_0], &valuetype);
     int value;
     napi_get_value_int32(env, args[0], &value);
-    OH_AudioStream_Usage oh_AudioStream_Usage = AUDIOSTREAM_USAGE_UNKNOWN;
+    OH_AudioStream_Usage OH_AudioStream_Usage = AUDIOSTREAM_USAGE_UNKNOWN;
     switch (value) {
         case KNUMBER0:
-            oh_AudioStream_Usage = AUDIOSTREAM_USAGE_UNKNOWN;
+            OH_AudioStream_Usage = AUDIOSTREAM_USAGE_UNKNOWN;
             break;
         case KNUMBER1:
-            oh_AudioStream_Usage = AUDIOSTREAM_USAGE_MUSIC;
+            OH_AudioStream_Usage = AUDIOSTREAM_USAGE_MUSIC;
             break;
         case KNUMBER2:
-            oh_AudioStream_Usage = AUDIOSTREAM_USAGE_VOICE_COMMUNICATION;
+            OH_AudioStream_Usage = AUDIOSTREAM_USAGE_VOICE_COMMUNICATION;
             break;
         case KNUMBER3:
-            oh_AudioStream_Usage = AUDIOSTREAM_USAGE_VOICE_ASSISTANT;
+            OH_AudioStream_Usage = AUDIOSTREAM_USAGE_VOICE_ASSISTANT;
             break;
         case KNUMBER4:
-            oh_AudioStream_Usage = AUDIOSTREAM_USAGE_ALARM;
+            OH_AudioStream_Usage = AUDIOSTREAM_USAGE_ALARM;
             break;
         case KNUMBER5:
-            oh_AudioStream_Usage = AUDIOSTREAM_USAGE_VOICE_MESSAGE;
+            OH_AudioStream_Usage = AUDIOSTREAM_USAGE_VOICE_MESSAGE;
             break;
         case KNUMBER6:
-            oh_AudioStream_Usage = AUDIOSTREAM_USAGE_RINGTONE;
+            OH_AudioStream_Usage = AUDIOSTREAM_USAGE_RINGTONE;
             break;
         case KNUMBER7:
-            oh_AudioStream_Usage = AUDIOSTREAM_USAGE_NOTIFICATION;
+            OH_AudioStream_Usage = AUDIOSTREAM_USAGE_NOTIFICATION;
             break;
         case KNUMBER8:
-            oh_AudioStream_Usage = AUDIOSTREAM_USAGE_ACCESSIBILITY;
+            OH_AudioStream_Usage = AUDIOSTREAM_USAGE_ACCESSIBILITY;
             break;
         case KNUMBER10:
-            oh_AudioStream_Usage = AUDIOSTREAM_USAGE_MOVIE;
+            OH_AudioStream_Usage = AUDIOSTREAM_USAGE_MOVIE;
             break;
         case KNUMBER11:
-            oh_AudioStream_Usage = AUDIOSTREAM_USAGE_GAME;
+            OH_AudioStream_Usage = AUDIOSTREAM_USAGE_GAME;
             break;
         case KNUMBER12:
-            oh_AudioStream_Usage = AUDIOSTREAM_USAGE_AUDIOBOOK;
+            OH_AudioStream_Usage = AUDIOSTREAM_USAGE_AUDIOBOOK;
             break;
         case KNUMBER13:
-            oh_AudioStream_Usage = AUDIOSTREAM_USAGE_NAVIGATION;
+            OH_AudioStream_Usage = AUDIOSTREAM_USAGE_NAVIGATION;
             break;
         default:
             break;
     }
     OH_AudioStreamBuilder *builder = GetAudioStreamBuilder(AUDIOSTREAM_TYPE_RENDERER);
 
-    OH_AudioStream_Result oH_AudioStream_Result = OH_AudioStreamBuilder_SetRendererInfo(builder, oh_AudioStream_Usage);
+    OH_AudioStream_Result oH_AudioStream_Result = OH_AudioStreamBuilder_SetRendererInfo(builder, OH_AudioStream_Usage);
     napi_create_int32(env, oH_AudioStream_Result, &result);
     return result;
 }
