@@ -14,19 +14,21 @@
  */
 //@ts-nocheck
 import events_emitter from '@ohos.events.emitter';
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Hypium } from '@ohos/hypium';
 import hilog from '@ohos.hilog';
 import testsuite from '../../test/List.test'
+
 @Entry
 @Component
 struct progressTest {
   @State progress: ProgressMask = new ProgressMask(10.0, 100.0, 0x01006CDE);
   @State progress_default: ProgressMask = new ProgressMask(10.0, 100.0, $r('sys.color.ohos_id_color_mask_regular'));
-  aboutToAppear(){
-    var abilityDelegator: any
+
+  aboutToAppear() {
+    let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator
     abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
-    var abilityDelegatorArguments: any
+    let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs
     abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
@@ -42,15 +44,19 @@ struct progressTest {
               .key("ArkUX_Stage_Progress_updateColor")
               .mask(this.progress)
               .backgroundColor(Color.Pink)
-              .width('500px').height('280px')
+              .width('500px')
+              .height('280px')
           }
+
           ListItem() {
             Image($r('app.media.icon'))
               .key("ArkUX_Stage_Progress_updateColor_default")
               .mask(this.progress_default)
               .backgroundColor(Color.Pink)
-              .width('500px').height('280px')
+              .width('500px')
+              .height('280px')
           }
+
           ListItem() {
             Button("updateColor_restore")
               .key("ArkUX_Stage_Progress_updateColor_restore")
@@ -60,6 +66,7 @@ struct progressTest {
               })
               .fontSize(10)
           }
+
           ListItem() {
             Row() {
               Button("updateColor_0100")
@@ -85,6 +92,7 @@ struct progressTest {
                 .fontSize(10)
             }
           }
+
           ListItem() {
             Row() {
               Button("updateColor_0400")
@@ -110,6 +118,7 @@ struct progressTest {
                 .fontSize(10)
             }
           }
+
           ListItem() {
             Row() {
               Button("updateColor_0700")
@@ -135,6 +144,7 @@ struct progressTest {
                 .fontSize(10)
             }
           }
+
           ListItem() {
             Row() {
               Button("updateColor_1000")
@@ -160,6 +170,7 @@ struct progressTest {
                 .fontSize(10)
             }
           }
+
           ListItem() {
             Row() {
               Button("updateColor_1300")
@@ -187,6 +198,7 @@ struct progressTest {
                 .fontSize(10)
             }
           }
+
           ListItem() {
             Row() {
               Button("updateColor_1600")
@@ -212,6 +224,7 @@ struct progressTest {
                 .fontSize(10)
             }
           }
+
           ListItem() {
             Row() {
               Button("updateProgress_0300")
@@ -237,6 +250,7 @@ struct progressTest {
                 .fontSize(10)
             }
           }
+
           ListItem() {
             Row() {
               Button("updateProgress_0600")
@@ -262,6 +276,7 @@ struct progressTest {
                 .fontSize(10)
             }
           }
+
           ListItem() {
             Row() {
               Button("updateProgress_0900")
