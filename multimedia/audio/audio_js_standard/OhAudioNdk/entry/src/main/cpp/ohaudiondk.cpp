@@ -381,8 +381,8 @@ static napi_value CreatCapturerRecorderWithParam(napi_env env, napi_callback_inf
         getParamAtIndex(KNUMBER3, env, info) == 0 ? AUDIOSTREAM_LATENCY_MODE_NORMAL : AUDIOSTREAM_LATENCY_MODE_FAST;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode); // 设置延时模式
 
-    OH_AudioStream_SampleFormat oH_AudioStream_SampleFormat = getSampleFormatValue(
-    getParamAtIndex(KNUMBER4, env, info));
+    OH_AudioStream_SampleFormat oH_AudioStream_SampleFormat = 
+    getSampleFormatValue(getParamAtIndex(KNUMBER4, env, info));
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetSampleFormat(builder, oH_AudioStream_SampleFormat); // 设置采样格式
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
         backParam = SAMPLEFORMAT_FAIL;
@@ -509,7 +509,6 @@ int32_t onRendererWriteData(OH_AudioRenderer *renderer, void *userData, void *bu
         if (ferror(g_file)) {
             printf("Error reading myfile");
             g_readEnd = true;
-
         } else if (feof(g_file)) {
             printf("EOF found");
             g_readEnd = true;
@@ -785,7 +784,8 @@ static napi_value CreatAudioPlayerWithFileAndParam(napi_env env, napi_callback_i
         return result;
     }
 
-    OH_AudioStream_SampleFormat oH_AudioStream_SampleFormat = getSampleFormatValue(getParamAtIndex(KNUMBER7, env, info));
+    OH_AudioStream_SampleFormat oH_AudioStream_SampleFormat = 
+    getSampleFormatValue(getParamAtIndex(KNUMBER7, env, info));
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetSampleFormat(builder, oH_AudioStream_SampleFormat); // 设置采样格式
     if (oH_AudioStream_Result != AUDIOSTREAM_SUCCESS) {
         backParam = SAMPLEFORMAT_FAIL;
