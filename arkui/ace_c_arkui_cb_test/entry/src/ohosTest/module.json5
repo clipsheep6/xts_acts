@@ -1,0 +1,44 @@
+{
+  "module": {
+    "name": "entry_test",
+    "type": "feature",
+    "srcEntry": "./ets/Application/AbilityStage.ts",
+    "description": "$string:module_desc",
+    "mainElement": "MainAbility",
+    "deviceTypes": [
+      "tablet",
+      "default"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "MainAbility",
+        "srcEntry": "./ets/MainAbility/MainAbility.ts",
+        "description": "$string:EntryAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:EntryAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "orientation": "portrait",
+        "skills": [
+          {
+            "actions": [
+              "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
+            ]
+          }
+        ]
+      }
+    ],
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.SYSTEM_FLOAT_WINDOW"
+      }
+    ]
+  }
+}

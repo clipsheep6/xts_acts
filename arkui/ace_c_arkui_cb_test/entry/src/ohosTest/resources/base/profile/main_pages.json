@@ -1,0 +1,8 @@
+{
+  "src": [
+    "MainAbility/pages/Index",
+    "MainAbility/pages/commonevent/CommonEventOnFocusTest",
+    "MainAbility/pages/commonevent/CommonEventOnClickTest"
+  ]
+}
+
