@@ -318,11 +318,11 @@ export default function abilityTest() {
       AppStorage.get<common.ApplicationContext>("ApplicationContextA")!
         .off("abilityLifecycle", AppStorage.get<number>("mainAbilityACallBackId")!, (error, data) => {
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} unregisterAbilityLifecycleCallback success, err:  ${JSON.stringify(error)} ",data: ${JSON.stringify(data)}`);
-          expect(error.code).assertEqual(0);
+          expect(error).assertNull();
           AppStorage.get<common.ApplicationContext>("ApplicationContextA")!
             .off("abilityLifecycle", AppStorage.get<number>("mainAbilityACallBackId")!, (error, data) => {
               hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} unregisterAbilityLifecycleCallback success, err:  ${JSON.stringify(error)} ",data: ${JSON.stringify(data)}`);
-              expect(error.code).assertEqual(1);
+              expect(error.code).assertEqual(401);
               done();
             });
         });
@@ -373,7 +373,7 @@ export default function abilityTest() {
       AppStorage.get<common.ApplicationContext>("ApplicationContextA")!
         .off("abilityLifecycle", AppStorage.get<number>("mainAbilityACallBackId")!, (error, data) => {
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} unregisterAbilityLifecycleCallback success, err:  ${JSON.stringify(error)} ",data: ${JSON.stringify(data)}`);
-          expect(error.code).assertEqual(0);
+          expect(error).assertNull();
           done();
         });
     })
@@ -422,7 +422,7 @@ export default function abilityTest() {
       AppStorage.get<common.ApplicationContext>("ApplicationContextA")!
         .off("abilityLifecycle", AppStorage.get<number>("mainAbilityACallBackId")!, (error, data) => {
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} unregisterAbilityLifecycleCallback success, err:  ${JSON.stringify(error)} ",data: ${JSON.stringify(data)}`);
-          expect(error.code).assertEqual(0);
+          expect(error).assertNull();
           AppStorage.get<common.ApplicationContext>("ApplicationContextA")!
             .off("abilityLifecycle", AppStorage.get<number>("mainAbilityACallBackId")!, (error, data) => {
               hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} unregisterAbilityLifecycleCallback success, err:  ${JSON.stringify(error)} ",data: ${JSON.stringify(data)}`);
@@ -461,7 +461,7 @@ export default function abilityTest() {
       AppStorage.get<common.ApplicationContext>("ApplicationContextStage")!
         .off("abilityLifecycle", AppStorage.get<number>("mainAbilityStageCallBackId")!, (error, data) => {
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} unregisterAbilityLifecycleCallback success, err:  ${JSON.stringify(error)} ",data: ${JSON.stringify(data)}`);
-          expect(error.code).assertEqual(0);
+          expect(error).assertNull();
           done();
         });
     })
@@ -858,7 +858,7 @@ export default function abilityTest() {
       AppStorage.get<common.UIAbilityContext>("abilityCContext")!.getApplicationContext()
         .off("abilityLifecycle", 100, (error, data) => {
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} unregisterAbilityLifecycleCallback success, err:  ${JSON.stringify(error)} ",data: ${JSON.stringify(data)}`);
-          expect(error.code).assertEqual(1);
+          expect(error.code).assertEqual(401);
           done();
         });
     })
@@ -879,10 +879,9 @@ export default function abilityTest() {
       isTerminateSelfMainAbilityC = true;
       AppStorage.get<common.UIAbilityContext>("abilityCContext")!.getApplicationContext()
         .off("abilityLifecycle", "", (error, data) => {
-          hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} unregisterAbilityLifecycleCallback success,
-            err:  ${JSON.stringify(error)} ",data: ${JSON.stringify(data)}`);
-          expect(error.code).assertEqual(1);
-          done()
+          hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} unregisterAbilityLifecycleCallback success, err:  ${JSON.stringify(error)} ",data: ${JSON.stringify(data)}`);
+          expect(error.code).assertEqual(401);
+          done();
         });
     })
 
@@ -903,7 +902,7 @@ export default function abilityTest() {
       AppStorage.get<common.UIAbilityContext>("abilityCContext")!.getApplicationContext()
         .off("abilityLifecycle", -1, (error, data) => {
           hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} unregisterAbilityLifecycleCallback success, err:  ${JSON.stringify(error)} ",data: ${JSON.stringify(data)}`);
-          expect(error.code).assertEqual(1);
+          expect(error.code).assertEqual(401);
           done();
         });
     })
@@ -924,9 +923,8 @@ export default function abilityTest() {
       isTerminateSelfMainAbilityC = true;
       AppStorage.get<common.UIAbilityContext>("abilityCContext")!.getApplicationContext()
         .off("abilityLifecycle", "test", (error, data) => {
-          hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} unregisterAbilityLifecycleCallback success, err:
-            ${JSON.stringify(error)} ",data: ${JSON.stringify(data)}`);
-          expect(error.code).assertEqual(1);
+          hilog.info(0x000, `${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} unregisterAbilityLifecycleCallback success, err: ${JSON.stringify(error)} ",data: ${JSON.stringify(data)}`);
+          expect(error.code).assertEqual(401);
           done()
         });
     })
