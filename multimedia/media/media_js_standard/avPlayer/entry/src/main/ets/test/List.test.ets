@@ -22,6 +22,8 @@ import AvPlayerEnumTest from './AvPlayerEnumTest.test.js'
 import AVPlayerMultiTrackTest from './AVPlayerMultiTrackTest.test.js'
 import AVMetadata from './AVPlayerAVMetadata.test.ets'
 import AVPlayerAmr from './AVPlayerAmrTest.test.js'
+import AVPlayerDataSrcNoSeekCompatibilityTest from './AVPlayerDataSrcNoSeekCompatibilityTest.test.js'
+import AVPlayerDataSrcSeekCompatibilityTest from './AVPlayerDataSrcSeekCompatibilityTest.test.js'
 
 
 export default function testsuite() {
@@ -35,4 +37,6 @@ export default function testsuite() {
   // AVPlayerStabilityTest();
   AVMetadata();
   AVPlayerAmr();
+  AVPlayerDataSrcSeekCompatibilityTest();
+  AVPlayerDataSrcNoSeekCompatibilityTest();
 }

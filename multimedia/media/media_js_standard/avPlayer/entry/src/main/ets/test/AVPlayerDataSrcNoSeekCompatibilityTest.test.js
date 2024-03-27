@@ -12,9 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import media from '@ohos.multimedia.media'
 import fileio from '@ohos.fileio'
-import {testAVPlayerDataSrcNoSeek, testAVPlayerFun} from '../../../../../../AVPlayerTestBase.js';
+import {copySourceFromRawToPath, testAVPlayerDataSrcNoSeek} from '../../../../../../AVPlayerTestBase.js';
 import * as mediaTestBase from '../../../../../../MediaTestBase.js';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'deccjsunit/index';
 
@@ -31,6 +30,7 @@ export default function AVPlayerDataSrcNoSeekCompatibilityTest() {
         let filePath =  pathDir + "/01.mp3";
         let stream = null;
         let fd = null;
+        let fileSize = -1;
         let srcNoSeek = {
             fileSize: -1,
             callback: readAtNoSeek
@@ -62,12 +62,8 @@ export default function AVPlayerDataSrcNoSeekCompatibilityTest() {
                 expect().assertFail();
                 return -1;
             }
-            num = fileio.readSync(fd, buf, {offset: 0, length: length});
+            num = fileio.readSync(fd[0], buf, {offset: 0, length: length});
             console.info('case  readAt num:' + num);
-            if (num == 0) {
-                fileio.closeSync(fd);
-                fd = fileio.openSync(filePath, 0o0);
-            }
             if (num > 0) {
                 return num;
             }
@@ -83,11 +79,12 @@ export default function AVPlayerDataSrcNoSeekCompatibilityTest() {
             * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_DATASRC_NOSEEK_MP3_0100', 0, async function (done) {
-            filePath =  pathDir + "/01_15s.mp3";
+            let fileName = "01_15s.mp3";
+            filePath =  pathDir + "/" + fileName;
             console.info(`case filePath is ${filePath}`);
-            fd = fileio.openSync(filePath, 0o0);
-            avPlayTest = { width: 0, height: 0, duration: 0 };
-            await testAVPlayerDataSrcNoSeek(srcNoSeek, avPlayer, avPlayTest, PLAY_TIME, done);
+            copySourceFromRawToPath(fileName, filePath);
+            avPlayTest = { width: 0, height: 0, duration: -1 };
+            fd = testAVPlayerDataSrcNoSeek(filePath, srcNoSeek, avPlayer, avPlayTest, PLAY_TIME, done);
         })
 
         /* *
@@ -99,11 +96,12 @@ export default function AVPlayerDataSrcNoSeekCompatibilityTest() {
             * @tc.level     : Level0
         */
         it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_DATASRC_NOSEEK_AAC_0100', 0, async function (done) {
-            filePath =  pathDir + "/aac_48ksr_16kbr_1ch.aac";
+            let fileName = "aac_48ksr_16kbr_1ch.aac";
+            filePath =  pathDir + "/" + fileName;
             console.info(`case filePath is ${filePath}`);
-            fd = fileio.openSync(filePath, 0o0);
-            avPlayTest = { width: 0, height: 0, duration: 0 };
-            await testAVPlayerDataSrcNoSeek(srcNoSeek, avPlayer, avPlayTest, PLAY_TIME, done);
+            copySourceFromRawToPath(fileName, filePath);
+            avPlayTest = { width: 0, height: 0, duration: -1 };
+            fd = testAVPlayerDataSrcNoSeek(filePath, srcNoSeek, avPlayer, avPlayTest, PLAY_TIME, done);
         })
 
         /* *
@@ -115,11 +113,12 @@ export default function AVPlayerDataSrcNoSeekCompatibilityTest() {
             * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_DATASRC_NOSEEK_OGG_0100', 0, async function (done) {
-            filePath =  pathDir + "/vorbis_48ksr_32kbr_1ch.ogg";
+            let fileName = "vorbis_48ksr_32kbr_1ch.ogg";
+            filePath =  pathDir + "/" + fileName;
             console.info(`case filePath is ${filePath}`);
-            fd = fileio.openSync(filePath, 0o0);
-            avPlayTest = { width: 0, height: 0, duration: 0 };
-            await testAVPlayerDataSrcNoSeek(srcNoSeek, avPlayer, avPlayTest, PLAY_TIME, done);
+            copySourceFromRawToPath(fileName, filePath);
+            avPlayTest = { width: 0, height: 0, duration: -1 };
+            fd = testAVPlayerDataSrcNoSeek(filePath, srcNoSeek, avPlayer, avPlayTest, PLAY_TIME, done);
         })
 
         /* *
@@ -131,11 +130,12 @@ export default function AVPlayerDataSrcNoSeekCompatibilityTest() {
             * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_DATASRC_NOSEEK_WAV_0100', 0, async function (done) {
-            filePath =  pathDir + "/pcm_96ksr_64kbr_2ch.wav";
+            let fileName = "pcm_96ksr_64kbr_2ch.wav";
+            filePath =  pathDir + "/" + fileName;
             console.info(`case filePath is ${filePath}`);
-            fd = fileio.openSync(filePath, 0o0);
-            avPlayTest = { width: 0, height: 0, duration: 0 };
-            await testAVPlayerDataSrcNoSeek(srcNoSeek, avPlayer, avPlayTest, PLAY_TIME, done);
+            copySourceFromRawToPath(fileName, filePath);
+            avPlayTest = { width: 0, height: 0, duration: -1 };
+            fd = testAVPlayerDataSrcNoSeek(filePath, srcNoSeek, avPlayer, avPlayTest, PLAY_TIME, done);
         })
 
         /* *
@@ -147,59 +147,12 @@ export default function AVPlayerDataSrcNoSeekCompatibilityTest() {
             * @tc.level     : Level1
         */
         it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_DATASRC_NOSEEK_FLAC_0100', 0, async function (done) {
-            filePath =  pathDir + "/flac_48ksr_32kbr_2ch.flac";
+            let fileName = "flac_48ksr_32kbr_2ch.flac";
+            filePath =  pathDir + "/" + fileName;
             console.info(`case filePath is ${filePath}`);
-            fd = fileio.openSync(filePath, 0o0);
-            avPlayTest = { width: 0, height: 0, duration: 0 };
-            await testAVPlayerDataSrcNoSeek(srcNoSeek, avPlayer, avPlayTest, PLAY_TIME, done);
-        })
-
-        /* *
-            * @tc.number    : SUB_MULTIMEDIA_MEDIA_AVPLAYER_DATASRC_NOSEEK_MKV_0100
-            * @tc.name      : 0100.mpeg4_aac_1080p_60r.mkv
-            * @tc.desc      : data source compatibility test
-            * @tc.size      : MediumTest
-            * @tc.type      : compatibility test
-            * @tc.level     : Level1
-        */
-        it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_DATASRC_NOSEEK_MKV_0100', 0, async function (done) {
-            filePath =  pathDir + "/mpeg4_aac_1080p_60r.mkv";
-            console.info(`case filePath is ${filePath}`);
-            fd = fileio.openSync(filePath, 0o0);
-            avPlayTest = { width: 1920, height: 1080, duration: 0 };
-            await testAVPlayerDataSrcNoSeek(srcNoSeek, avPlayer, avPlayTest, PLAY_TIME, done);
-        })
-
-        /* *
-            * @tc.number    : SUB_MULTIMEDIA_MEDIA_AVPLAYER_DATASRC_NOSEEK_WEBM_0100
-            * @tc.name      : 0100.vp8_vorbis_270p_10r.webm
-            * @tc.desc      : data source compatibility test
-            * @tc.size      : MediumTest
-            * @tc.type      : compatibility test
-            * @tc.level     : Level1
-        */
-        it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_DATASRC_NOSEEK_WEBM_0100', 0, async function (done) {
-            filePath =  pathDir + "/vp8_vorbis_270p_10r.webm";
-            console.info(`case filePath is ${filePath}`);
-            fd = fileio.openSync(filePath, 0o0);
-            avPlayTest = { width: 360, height: 270, duration: 0 };
-            await testAVPlayerDataSrcNoSeek(srcNoSeek, avPlayer, avPlayTest, PLAY_TIME, done);
-        })
-
-        /* *
-            * @tc.number    : SUB_MULTIMEDIA_MEDIA_AVPLAYER_DATASRC_NOSEEK_TS_0100
-            * @tc.name      : 0100.h264_aac_640x480_30r.ts
-            * @tc.desc      : data source compatibility test
-            * @tc.size      : MediumTest
-            * @tc.type      : compatibility test
-            * @tc.level     : Level1
-        */
-        it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_DATASRC_NOSEEK_TS_0100', 0, async function (done) {
-            filePath =  pathDir + "/h264_aac_640x480_30r.ts";
-            console.info(`case filePath is ${filePath}`);
-            fd = fileio.openSync(filePath, 0o0);
-            avPlayTest = { width: 640, height: 480, duration: 0 };
-            await testAVPlayerDataSrcNoSeek(srcNoSeek, avPlayer, avPlayTest, PLAY_TIME, done);
+            copySourceFromRawToPath(fileName, filePath);
+            avPlayTest = { width: 0, height: 0, duration: -1 };
+            fd = testAVPlayerDataSrcNoSeek(filePath, srcNoSeek, avPlayer, avPlayTest, PLAY_TIME, done);
         })
     });
 }

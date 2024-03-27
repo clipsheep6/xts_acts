@@ -153,7 +153,7 @@ export default function AVPlayerDataSrcNoSeekAPITest() {
                         fd = fileio.openSync(filePath, 0o0);
                     }
                 } else {
-                    num = stream.readSync(buf, {offset: 0, length: length, position: pos});
+                    num = fileio.readSync(fd, buf, {offset: 0, length: length});
                 }
                 console.info(' readAt num:' + num);
                 if (num > 0) {
