@@ -48,34 +48,38 @@ export default function abilityTest() {
       let subscriber: commonEventManager.CommonEventSubscriber;
       let flag = false;
       console.info("====>Acts_RegisterJsErrorCallback_0100 start");
-      commonEvent.createSubscriber(ACTS_Register)
-        .then(async (data) => {
-          console.debug("====>Acts_RegisterJsErrorCallback_0100 Create Subscribe");
-          subscriber = data;
-          commonEvent.subscribe(subscriber, (err, data) => {
-            console.debug("====>Acts_RegisterJsErrorCallback_0100 subscribeCallBack data: " + JSON.stringify(data));
-            if (data.event == "ACTS_RegisterEvent_First") {
-              flag = true;
-              expect(data.parameters.message).assertContain("Error message:Cannot read property terminateSelf");
-              commonEvent.unsubscribe(subscriber, () => {
-                console.debug("====>Acts_RegisterJsErrorCallback_0100 unSubscribeCallback");
-                setTimeout(() => {
-                  done();
-                }, 800);
-              });
-            }
-          });
-          AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
-            {
-              bundleName: "com.example.actsregisterjserrorrely",
-              abilityName: "EntryAbility",
-              action: "Acts_RegisterJsErrorCallback_0100"
-            }, (err) => {
-            console.debug("====>Acts_RegisterJsErrorCallback_0100 startAbility err: " + JSON.stringify(err));
-            expect(err.code).assertEqual(0);
+      try {
+        console.info("====>Acts_RegisterJsErrorCallback_0100 createSubscriber start");
+        await commonEvent.createSubscriber(ACTS_Register)
+          .then(async (data) => {
+            console.debug("====>Acts_RegisterJsErrorCallback_0100 Create Subscribe");
+            subscriber = data;
+            commonEvent.subscribe(subscriber, (err, data) => {
+              console.debug("====>Acts_RegisterJsErrorCallback_0100 subscribeCallBack data: " + JSON.stringify(data));
+              if (data.event == "ACTS_RegisterEvent_First") {
+                flag = true;
+                expect(data.parameters.message).assertContain("Error message:Cannot read property terminateSelf");
+                commonEvent.unsubscribe(subscriber, () => {
+                  console.debug("====>Acts_RegisterJsErrorCallback_0100 unSubscribeCallback");
+                  setTimeout(() => {
+                    done();
+                  }, 800);
+                });
+              }
+            });
+            AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
+              {
+                bundleName: "com.example.actsregisterjserrorrely",
+                abilityName: "EntryAbility",
+                action: "Acts_RegisterJsErrorCallback_0100"
+              }, (err) => {
+              console.debug("====>Acts_RegisterJsErrorCallback_0100 startAbility err: " + JSON.stringify(err));
+              expect(err.code).assertEqual(0);
+            })
           })
-        })
-
+      } catch (err) {
+        console.info("====>Acts_RegisterJsErrorCallback_0100 createSubscriber failed: " + JSON.stringify(err));
+      }
       setTimeout(() => {
         if (flag == false) {
           expect().assertFail();
