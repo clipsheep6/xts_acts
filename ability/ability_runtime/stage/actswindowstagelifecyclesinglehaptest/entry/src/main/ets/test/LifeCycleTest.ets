@@ -174,7 +174,7 @@ export default function lifecycleTest() {
               AppStorage.get<common.ApplicationContext>("applicationContext")!
                 .off("abilityLifecycle", tempCallbackId, (error, data) => {
                   console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-                  expect(error.code).assertEqual(0);
+                  expect(error).assertNull();
                   console.log("------------Singlehap_WindowStageLifeCycleTest_0100 END-------------");
                   done();
                 });
@@ -247,7 +247,7 @@ export default function lifecycleTest() {
               AppStorage.get<common.ApplicationContext>("applicationContext1")!
                 .off("abilityLifecycle", AppStorage.get<number>("callbackid1")!, (error, data) => {
                   console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-                  expect(error.code).assertEqual(0);
+                  expect(error).assertNull();
                   done();
                 })
             }
