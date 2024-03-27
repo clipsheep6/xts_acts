@@ -197,7 +197,7 @@ export default function abilityTest() {
           AppStorage.get<common.ApplicationContext>("ApplicationContext4")!
             .off("abilityLifecycle", AppStorage.get<number>('mainAbility4CallBackId')!, (error, data) => {
               console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-              expect(error.code).assertEqual(0);
+              expect(error).assertNull();
             });
           done();
         }
@@ -251,7 +251,7 @@ export default function abilityTest() {
           AppStorage.get<common.ApplicationContext>("ApplicationContext4")!
             .off("abilityLifecycle", AppStorage.get<number>('mainAbility4CallBackId')!, (error, data) => {
               console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-              expect(error.code).assertEqual(0);
+              expect(error).assertNull();
             });
           done();
         }
@@ -310,7 +310,7 @@ export default function abilityTest() {
           AppStorage.get<common.ApplicationContext>("ApplicationContext4")!
             .off("abilityLifecycle", AppStorage.get<number>('mainAbility4CallBackId')!, (error, data) => {
               console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-              expect(error.code).assertEqual(0);
+              expect(error).assertNull();
             });
           clearInterval(intervalId);
           done();
@@ -377,9 +377,8 @@ export default function abilityTest() {
           expect(listTemp.indexOf("Hap3MainAbility2 onAbilityDestroy") !== -1).assertTrue();
           AppStorage.get<common.ApplicationContext>("ApplicationContext4")!
             .off("abilityLifecycle", AppStorage.get<number>('mainAbility4CallBackId')!, (error, data) => {
-              console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
-                ",data: " + JSON.stringify(data));
-              expect(error.code).assertEqual(0);
+              console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
+              expect(error).assertNull();
             });
           done();
         }
@@ -445,10 +444,8 @@ export default function abilityTest() {
           expect(listTemp.indexOf("Hap2MainAbility7 onAbilityDestroy") !== -1).assertTrue();
           AppStorage.get<common.ApplicationContext>("ApplicationContext4")!
             .off("abilityLifecycle", AppStorage.get<number>('mainAbility4CallBackId')!, (error, data) => {
-              console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
-                ",data: " + JSON.stringify(data));
-              expect(error.code).assertEqual(0);
-
+              console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
+              expect(error).assertNull();
             });
           clearInterval(intervalId);
           done();
@@ -582,8 +579,8 @@ export default function abilityTest() {
             AppStorage.get<common.ApplicationContext>("ApplicationContext6")!
               .off("abilityLifecycle", callBackId1, (error, data) => {
                 console.log(TAG + ": first unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-                expect(error.code).assertEqual(0);
-                if (error.code == 0) {
+                expect(error).assertNull();
+                if (error == null) {
                   AppStorage.get<common.UIAbilityContext>("abilityContext6")!.terminateSelf();
                 } else {
                   clearInterval(intervalId);
@@ -607,7 +604,7 @@ export default function abilityTest() {
             AppStorage.get<common.ApplicationContext>("ApplicationContext6")!
               .off("abilityLifecycle", callBackId2, (error, data) => {
                 console.log(TAG + ": second unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-                expect(error.code).assertEqual(0);
+                expect(error).assertNull();
                 AppStorage.get<common.UIAbilityContext>("abilityContext6")!.terminateSelf();
                 done();
               });
@@ -655,11 +652,11 @@ export default function abilityTest() {
             AppStorage.get<common.ApplicationContext>("ApplicationContext4")!
               .off("abilityLifecycle", AppStorage.get<number>('mainAbility4CallBackId')!, (error, data) => {
                 console.log(TAG + ": first unregisterAbilityLifecycleCallback, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-                expect(error.code).assertEqual(0);
+                expect(error).assertNull();
                 AppStorage.get<common.ApplicationContext>("ApplicationContext4")!
                   .off("abilityLifecycle", AppStorage.get<number>('mainAbility4CallBackId')!, (error, data) => {
                     console.log(TAG + ": second unregisterAbilityLifecycleCallback, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-                    expect(error.code).assertEqual(1);
+                    expect(error.code).assertEqual(401);
                     done();
                   });
               });
@@ -726,7 +723,7 @@ export default function abilityTest() {
             AppStorage.get<common.ApplicationContext>("ApplicationContext4")!
               .off("abilityLifecycle", AppStorage.get<number>('mainAbility4CallBackId')!, (error, data) => {
                 console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-                expect(error.code).assertEqual(0);
+                expect(error).assertNull();
                 AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
                   bundleName: "com.example.lifecycletest",
                   abilityName: "com.example.lifecycletest.MainAbility",
@@ -791,7 +788,7 @@ export default function abilityTest() {
           AppStorage.get<common.ApplicationContext>("ApplicationContext2")!
             .off("abilityLifecycle", AppStorage.get<number>("mainAbility2CallBackId")!, (error, data) => {
               console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-              expect(error.code).assertEqual(0);
+              expect(error).assertNull();
               done();
             });
         }
