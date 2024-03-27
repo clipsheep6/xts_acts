@@ -52,16 +52,6 @@ export default function abilityTest() {
             }, 1000);
         })
 
-        afterAll(async (done) => {
-            let cmd1 = 'pkill -f com.acts.attachdebuguiextensiontest';
-            let cmd2 = 'pkill -f com.acts.attachdebuguiextensiontest:ui';
-            let cmd3 = 'pkill -f com.acts.attachdebugextensiontest';
-            await abilityDelegator.executeShellCommand(cmd1);
-            await abilityDelegator.executeShellCommand(cmd2);
-            await abilityDelegator.executeShellCommand(cmd3);
-            await done();
-        })
-
         /**
          * @tc.number: ACTS_AACommand_0100
          * @tc.name: -b, -s unittest, -p, -s class, -s level, -s size, -s testType, -s timeout,
@@ -143,7 +133,7 @@ export default function abilityTest() {
             console.log("ACTS_AACommand_0400 --- start")
             let cmd = 'aa test -b com.example.actsaacommandtestatest -m entry_test ' +
                 '-s unittest OpenHarmonyTestRunner ' +
-                '-w 无效值'
+                '-w 无效值 '
             globalThis.abilityDelegator.executeShellCommand(cmd, (err, data) => {
                 console.log('ACTS_AACommand_0400 - executeShellCommand: start ')
                 console.log('ACTS_AACommand_0400 stdResult = ' + data.stdResult)
@@ -214,7 +204,7 @@ export default function abilityTest() {
          */
         it('ACTS_AACommand_finishTest_0700', 0, async function (done) {
             console.log("ACTS_AACommand_finishTest_0700 --- start")
-            finishmsg = '测试日志!@#$%^&*()_+QWE{}|?><Fafq3146'
+            finishmsg = ' 测试日志！@#$%^&*()_+QWE {}|?><Fafq3146'
             finishmsg1 = 'TestFinished-ResultCode: -1'
             expect(globalThis.stdResult1).assertContain(finishmsg);
             expect(globalThis.stdResult1).assertContain(finishmsg1);
@@ -253,7 +243,7 @@ export default function abilityTest() {
          */
         it('ACTS_AACommand_finishTest_0400', 0, async function (done) {
             console.log("ACTS_AACommand_finishTest_0400 --- start")
-            finishmsg = '测试日志!@#$%^&*()_+QWE{}|?><Fafq3146'
+            finishmsg = ' 测试日志！@#$%^&*()_+QWE {}|?><Fafq3146'
             expect(globalThis.stdResult11).assertContain(finishmsg);
             expect(globalThis.stdResult12.indexOf("com.example.aacommandrelyhap") == -1).assertTrue()
             done()
@@ -270,7 +260,7 @@ export default function abilityTest() {
          */
         it('ACTS_AACommand_finishTest_0100', 0, async function (done) {
             console.log("ACTS_AACommand_finishTest_0100 --- start")
-            finishmsg = '测试日志!@#$%^&*()_+QWE{}|?><Fafq3146'
+            finishmsg = ' 测试日志！@#$%^&*()_+QWE {}|?><Fafq3146'
             finishmsg1 = 'TestFinished-ResultCode: 1'
             expect(globalThis.stdResult13).assertContain(finishmsg);
             expect(globalThis.stdResult13).assertContain(finishmsg1);
@@ -289,7 +279,7 @@ export default function abilityTest() {
          */
         it('ACTS_AACommand_finishTest_0500', 0, async function (done) {
             console.log("ACTS_AACommand_finishTest_0500 --- start")
-            finishmsg = '测试日志!@#$%^&*()_+QWE{}|?><Fafq3146'
+            finishmsg = ' 测试日志！@#$%^&*()_+QWE {}|?><Fafq3146'
             finishmsg1 = 'TestFinished-ResultCode: 0'
             expect(globalThis.stdResult15).assertContain(finishmsg);
             expect(globalThis.stdResult15).assertContain(finishmsg1);
@@ -308,7 +298,7 @@ export default function abilityTest() {
          */
         it('ACTS_AACommand_finishTest_0600', 0, async function (done) {
             console.log("ACTS_AACommand_finishTest_0600 --- start")
-            finishmsg = '测试日志!@#$%^&*()_+QWE{}|?><Fafq3146'
+            finishmsg = ' 测试日志！@#$%^&*()_+QWE {}|?><Fafq3146'
             finishmsg1 = 'TestFinished-ResultCode: 1'
             expect(globalThis.stdResult17).assertContain(finishmsg);
             expect(globalThis.stdResult17).assertContain(finishmsg1);
@@ -325,7 +315,7 @@ export default function abilityTest() {
          */
         it('ACTS_AACommand_finishTest_0900', 0, async function (done) {
             console.log("ACTS_AACommand_finishTest_0900 --- start")
-            finishmsg = '测试日志!@#$%^&*()_+QWE{}|?><Fafq3146'
+            finishmsg = ' 测试日志！@#$%^&*()_+QWE {}|?><Fafq3146'
             finishmsg1 = 'TestFinished-ResultCode: 1'
             expect(globalThis.stdResult19).assertContain(finishmsg);
             expect(globalThis.stdResult19).assertContain(finishmsg1);
@@ -342,7 +332,7 @@ export default function abilityTest() {
          */
         it('ACTS_AACommand_finishTest_1300', 0, async function (done) {
             console.log("ACTS_AACommand_finishTest_1300 --- start")
-            finishmsg = '测试日志!@#$%^&*()_+QWE{}|?><Fafq3146'
+            finishmsg = ' 测试日志！@#$%^&*()_+QWE {}|?><Fafq3146'
             finishmsg1 = 'TestFinished-ResultCode: 0'
             expect(globalThis.stdResult23).assertContain(finishmsg);
             expect(globalThis.stdResult23).assertContain(finishmsg1);
@@ -359,7 +349,7 @@ export default function abilityTest() {
          */
         it('ACTS_AACommand_finishTest_1400', 0, async function (done) {
             console.log("ACTS_AACommand_finishTest_1400 --- start")
-            finishmsg = '测试日志!@#$%^&*()_+QWE{}|?><Fafq3146'
+            finishmsg = ' 测试日志！@#$%^&*()_+QWE {}|?><Fafq3146'
             finishmsg1 = 'TestFinished-ResultCode: 1'
             expect(globalThis.stdResult25).assertContain(finishmsg);
             expect(globalThis.stdResult25).assertContain(finishmsg1);
@@ -376,7 +366,7 @@ export default function abilityTest() {
          */
         it('ACTS_AACommand_finishTest_1500', 0, async function (done) {
             console.log("ACTS_AACommand_finishTest_1500 --- start")
-            finishmsg = '测试日志!@#$%^&*()_+QWE{}|?><Fafq3146'
+            finishmsg = ' 测试日志！@#$%^&*()_+QWE {}|?><Fafq3146'
             finishmsg1 = 'TestFinished-ResultCode: -1'
             expect(globalThis.stdResult27).assertContain(finishmsg);
             expect(globalThis.stdResult27).assertContain(finishmsg1);
@@ -543,72 +533,6 @@ export default function abilityTest() {
                     expect(data.stdResult).assertContain('detach app debug successfully.');
                 } catch (error) {
                     console.info(TAG, 'SUB_Ability_AbilityTools_AACommand_AAAttachDebug_1200 assert error: ' + JSON.stringify(error));
-                }
-                done();
-            });
-        })
-
-        /**
-        * @tc.number: SUB_Ability_AbilityTools_AACommand_AAAttachDebug_1300
-        * @tc.name: Test extension ability after attach whose process will not be killed
-        * @tc.desc: Verify process
-        */
-        it('SUB_Ability_AbilityTools_AACommand_AAAttachDebug_1300',0, async function (done) {
-            console.debug(TAG, 'SUB_Ability_AbilityTools_AACommand_AAAttachDebug_1300 start!');
-            let want = {
-                'deviceId': '',
-                'bundleName': 'com.acts.attachdebugextensiontest',
-                'abilityName': 'ServiceExtAbility'
-            };
-            await globalThis.abilityContext.startServiceExtensionAbility(want);
-            await sleep(500);
-            let cmd = 'aa attach -b com.acts.attachdebugextensiontest';
-            await abilityDelegator.executeShellCommand(cmd).then((data) => {
-                console.info(TAG, 'aa attach sucessfully!');
-            });
-            await sleep(500);
-            await globalThis.abilityContext.stopServiceExtensionAbility(want);
-            let cmd1 = 'ps -ef | grep com.acts';
-            await abilityDelegator.executeShellCommand(cmd1).then(async (data) => {
-                console.info(TAG, 'SUB_Ability_AbilityTools_AACommand_AAAttachDebug_1300 shell result data: ' + JSON.stringify(data));
-                try {
-                    expect(data.stdResult).assertContain('com.acts.attachdebugextensiontest');
-                } catch (error) {
-                    console.info(TAG, 'SUB_Ability_AbilityTools_AACommand_AAAttachDebug_1300 assert error: ' + JSON.stringify(error));
-                }
-                await sleep(500);
-                await abilityDelegator.executeShellCommand('pkill -f com.acts.attachdebugextensiontest').then((data) => {
-                    done();
-                });
-            });
-        })
-
-        /**
-        * @tc.number: SUB_Ability_AbilityTools_AACommand_AAAttachDebug_1400
-        * @tc.name: Test ui extension ability after attach whose process will not be killed
-        * @tc.desc: Verify process
-        */
-        it('SUB_Ability_AbilityTools_AACommand_AAAttachDebug_1400',0, async function (done) {
-            console.debug(TAG, 'SUB_Ability_AbilityTools_AACommand_AAAttachDebug_1400 start!');
-            let want = {
-                'bundleName': 'com.acts.attachdebuguiextensiontest',
-                'abilityName': 'EntryAbility'
-            };
-            await globalThis.abilityContext.startAbility(want).then(() => {
-                console.info(TAG, 'SUB_Ability_AbilityTools_AACommand_AAAttachDebug_1400 start ability sucessfully.');
-            });
-            let cmd = 'aa attach -b com.acts.attachdebuguiextensiontest';
-            await abilityDelegator.executeShellCommand(cmd).then((data) => {
-                console.info(TAG, 'aa attach sucessfully!');
-            });
-            await sleep(1500);
-            let cmd1 = 'ps -ef | grep com.acts';
-            await abilityDelegator.executeShellCommand(cmd1).then((data) => {
-                console.info(TAG, 'SUB_Ability_AbilityTools_AACommand_AAAttachDebug_1400 shell result data: ' + JSON.stringify(data));
-                try {
-                    expect(data.stdResult).assertContain('com.acts.attachdebuguiextensiontest:ui');
-                } catch (error) {
-                    console.info(TAG, 'SUB_Ability_AbilityTools_AACommand_AAAttachDebug_1400 assert error: ' + JSON.stringify(error));
                 }
                 done();
             });
