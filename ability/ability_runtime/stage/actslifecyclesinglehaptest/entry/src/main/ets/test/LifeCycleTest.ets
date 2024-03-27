@@ -1,4 +1,3 @@
-// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -86,7 +85,7 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_0100", 0, async (done: Function) => {
       console.log("------------Singlehap_LifeCycleTest_0100 START-------------");
       TAG = "Singlehap_LifeCycleTest_0100";
-      let code: number;
+      let code: number = -1;
       let str: Want = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility2",
@@ -115,7 +114,9 @@ export default function lifecycleTest() {
         AppStorage.get<common.ApplicationContext>("applicationContext")!
           .off("abilityLifecycle", tempCallbackId, (error, data) => {
             console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-            code = error.code;
+            if (error == null) {
+              code = 0;
+            }
           });
         setTimeout(() => {
           expect(settemp.has("MainAbility2 onAbilityCreate")).assertTrue();
@@ -140,7 +141,7 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_0200", 0, async (done: Function) => {
       console.log("------------Singlehap_LifeCycleTest_0200 START-------------");
       TAG = "Singlehap_LifeCycleTest_0200";
-      let code: number;
+      let code: number = -1;
       let str: Want = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility1",
@@ -189,7 +190,9 @@ export default function lifecycleTest() {
         AppStorage.get<common.ApplicationContext>("applicationContext1")!
           .off("abilityLifecycle", AppStorage.get<number>("callbackid1")!, (error, data) => {
             console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-            code = error.code;
+            if (error == null) {
+              code = 0;
+            }
           })
         setTimeout(() => {
           expect(maptemp.has("MainAbility1 onWindowStageCreate")).assertTrue();
@@ -218,7 +221,7 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_0300", 0, async (done: Function) => {
       console.log("------------Singlehap_LifeCycleTest_0300 START-------------");
       TAG = "Singlehap_LifeCycleTest_0300";
-      let code: number;
+      let code: number = -1;
       let str: Want = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility1",
@@ -274,7 +277,7 @@ export default function lifecycleTest() {
           expect(listTemp.indexOf("MainAbility2 onAbilityBackground") !== -1).assertTrue();
           expect(listTemp.indexOf("MainAbility2 onWindowStageDestroy") !== -1).assertTrue();
           expect(listTemp.indexOf("MainAbility2 onAbilityDestroy") !== -1).assertTrue();
-          expect(code).assertEqual(1);
+          expect(code).assertEqual(401);
           console.log("------------Singlehap_LifeCycleTest_0300 END-------------");
           done();
         }, 2000);
@@ -290,7 +293,7 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_0400", 0, async (done: Function) => {
       console.log("------------Singlehap_LifeCycleTest_0400 START-------------");
       TAG = "Singlehap_LifeCycleTest_0400";
-      let code: number;
+      let code: number = -1;
       let str: Want = {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility3",
@@ -339,7 +342,9 @@ export default function lifecycleTest() {
           AppStorage.get<common.ApplicationContext>("applicationContext3")!
             .off("abilityLifecycle", AppStorage.get<number>("callbackid3")!, (error, data) => {
               console.log(TAG + ": unregisterAbilityLifecycleCallback3 success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-              code = error.code;
+              if (error == null) {
+                code = 0;
+              }
             })
         }, 500);
         setTimeout(() => {
@@ -531,9 +536,9 @@ export default function lifecycleTest() {
     it("Singlehap_LifeCycleTest_0700", 0, async (done: Function) => {
       console.log("------------Singlehap_LifeCycleTest_0700 START-------------");
       TAG = "Singlehap_LifeCycleTest_0700";
-      let code1: number;
-      let code2: number;
-      let code3: number;
+      let code1: number = -1;
+      let code2: number = -1;
+      let code3: number = -1;
       let id1: number;
       let id2: number;
       let id3: number;
@@ -602,14 +607,18 @@ export default function lifecycleTest() {
       console.log(TAG + " registerAbilityLifecycleCallback1 number: " + JSON.stringify(id1));
       applicationContext.off("abilityLifecycle", id1, (error, data) => {
         console.log(TAG + ": unregisterAbilityLifecycleCallback1 success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-        code1 = error.code;
+        if (error == null) {
+          code1 = 0;
+        }
       })
       setTimeout(() => {
         id2 = applicationContext.on("abilityLifecycle", AbilityLifecycleCallback);
         console.log(TAG + " registerAbilityLifecycleCallback2 number: " + JSON.stringify(id2));
         applicationContext.off("abilityLifecycle", id2, (error, data) => {
           console.log(TAG + ": unregisterAbilityLifecycleCallback2 success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-          code2 = error.code;
+          if (error == null) {
+            code2 = 0;
+          }
         })
       }, 1000);
       setTimeout(() => {
@@ -617,7 +626,9 @@ export default function lifecycleTest() {
         console.log(TAG + " registerAbilityLifecycleCallback3 number: " + JSON.stringify(id3));
         applicationContext.off("abilityLifecycle", id3, (error, data) => {
           console.log(TAG + ": unregisterAbilityLifecycleCallback3 success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-          code3 = error.code;
+          if (error == null) {
+            code3 = 0;
+          }
           expect(id1 > 0).assertTrue();
           expect(id2).assertEqual(id1 + 1);
           expect(id3).assertEqual(id2 + 1);
@@ -1150,8 +1161,7 @@ export default function lifecycleTest() {
         expect(id1 + 1).assertEqual(id2);
         AppStorage.get<common.ApplicationContext>("applicationContext11")!
           .off("abilityLifecycle", AppStorage.get<number>("callbackid11")!, (error, data) => {
-            console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
-              ",data: " + JSON.stringify(data));
+            console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
             console.log("------------Singlehap_LifeCycleTest_1500 END-------------");
             done();
           });
@@ -1176,7 +1186,7 @@ export default function lifecycleTest() {
           console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
           code = error.code;
           sleep(1000);
-          expect(code).assertEqual(1);
+          expect(code).assertEqual(401);
           done();
         });
     });
@@ -1196,7 +1206,7 @@ export default function lifecycleTest() {
           console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
           code = error.code;
           sleep(1000);
-          expect(code).assertEqual(1);
+          expect(code).assertEqual(401);
           done();
         });
     });
@@ -1217,7 +1227,7 @@ export default function lifecycleTest() {
             ",data: " + JSON.stringify(data));
           code = error.code;
           sleep(1000);
-          expect(code).assertEqual(1);
+          expect(code).assertEqual(401);
           done();
         });
     });
@@ -1237,7 +1247,7 @@ export default function lifecycleTest() {
           console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
           code = error.code;
           sleep(1000);
-          expect(code).assertEqual(1);
+          expect(code).assertEqual(401);
           done();
         });
     });

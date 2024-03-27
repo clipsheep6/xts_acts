@@ -28,7 +28,7 @@ export default function lifecycleTest(abilityContext: common.UIAbilityContext) {
     beforeEach(async (done: Function) => {
       console.info('LifeCycleOneTest before each called');
       await sleep(1000);
-      done()
+      done();
     });
 
     afterEach(async (done: Function) => {
@@ -83,9 +83,9 @@ export default function lifecycleTest(abilityContext: common.UIAbilityContext) {
     it("Singlehap_LifeCycleTest_0700", 0, async (done: Function) => {
       console.log("------------Singlehap_LifeCycleTest_0700 START-------------");
       TAG = "Singlehap_LifeCycleTest_0700";
-      let code1: number;
-      let code2: number;
-      let code3: number;
+      let code1: number = 1;
+      let code2: number = 1;
+      let code3: number = 1;
       let id1: number;
       let id2: number;
       let id3: number;
@@ -154,14 +154,18 @@ export default function lifecycleTest(abilityContext: common.UIAbilityContext) {
       console.log(TAG + " registerAbilityLifecycleCallback1 number: " + JSON.stringify(id1));
       applicationContext.off("abilityLifecycle", id1, (error, data) => {
         console.log(TAG + ": unregisterAbilityLifecycleCallback1 success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-        code1 = error.code;
+        if (error == null) {
+          code1 = 0;
+        }
       })
       setTimeout(() => {
         id2 = applicationContext.on("abilityLifecycle", AbilityLifecycleCallback);
         console.log(TAG + " registerAbilityLifecycleCallback2 number: " + JSON.stringify(id2));
         applicationContext.off("abilityLifecycle", id2, (error, data) => {
           console.log(TAG + ": unregisterAbilityLifecycleCallback2 success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-          code2 = error.code;
+          if (error == null) {
+            code2 = 0;
+          }
         })
       }, 1000);
       setTimeout(() => {
@@ -169,7 +173,9 @@ export default function lifecycleTest(abilityContext: common.UIAbilityContext) {
         console.log(TAG + " registerAbilityLifecycleCallback3 number: " + JSON.stringify(id3));
         applicationContext.off("abilityLifecycle", id3, (error, data) => {
           console.log(TAG + ": unregisterAbilityLifecycleCallback3 success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-          code3 = error.code;
+          if (error == null) {
+            code3 = 0;
+          }
           expect(id1 > 0).assertTrue();
           expect(id2).assertEqual(id1 + 1);
           expect(id3).assertEqual(id2 + 1);
