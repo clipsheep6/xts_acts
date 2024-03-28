@@ -40,6 +40,9 @@ let number48000: number = 48000;
 
 let numberFloute: number = 2.0;
 
+let AUDIOSTREAM_SUCCESS: number = 0;
+let AUDIOSTREAM_ERROR_ILLEGAL_STATE: number = 2;
+
 let fileList: string[] = [
   'Believer.wav',
   'Believer60s.wav',
@@ -392,7 +395,7 @@ export default function OhRendererTest() {
     it('testOHAudioRendererGetFrameSizeInCallback0100', 0, async (done: Function) => {
       console.log(`testOHAudioRendererGetFrameSizeInCallback0100 test start `);
       let re: number | null = testStreamBuilder.OHAudioRendererGetFrameSizeInCallback();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioRendererGetFrameSizeInCallback0100 test end `);
       done();
     });
@@ -408,7 +411,7 @@ export default function OhRendererTest() {
     it('testOHAudioRendererGetFramesWritten0100', 0, async (done: Function) => {
       console.log(`testOHAudioRendererGetFramesWritten0100 test start `);
       let re: number | null = testStreamBuilder.OHAudioRendererGetFramesWritten();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioRendererGetFramesWritten0100 test end `);
       done();
     });
@@ -457,7 +460,7 @@ export default function OhRendererTest() {
       console.log(`testOHAudioRendererStart0100 test start `);
       let re: number | null = testStreamBuilder.OHAudioRendererStart();
       let state: number | null = testStreamBuilder.OHAudioRendererGetCurrentState();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       expect(state).assertEqual(numberTwo);
       console.log(`testOHAudioRendererStart0100 test end `);
       done();
@@ -476,7 +479,7 @@ export default function OhRendererTest() {
       let state: number = testStreamBuilder.OHAudioRendererGetCurrentState();
       if (state > 1) {
         let re: number | null = testStreamBuilder.OHAudioRendererGetTimestamp();
-        expect(re).assertEqual(0);
+        expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       }
       console.log(`testOHAudioRendererGetTimestamp0100 test end `);
       done();
@@ -496,7 +499,7 @@ export default function OhRendererTest() {
       if (state === numberTwo) {
         let re: number | null = testStreamBuilder.OHAudioRendererPause();
         state = testStreamBuilder.OHAudioRendererGetCurrentState();
-        expect(re).assertEqual(0);
+        expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
         expect(state).assertEqual(numberFive);
       }
       console.log(`testOHAudioRendererPause0100 test end `);
@@ -517,7 +520,7 @@ export default function OhRendererTest() {
       if (state === numberThree || state === numberTwo) {
         let re: number | null = testStreamBuilder.OHAudioRendererStop();
         state = testStreamBuilder.OHAudioRendererGetCurrentState();
-        expect(re).assertEqual(0);
+        expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
         expect(state).assertEqual(numberThree);
       }
       console.log(`testOHAudioRendererStop0100 test end `);
@@ -535,8 +538,7 @@ export default function OhRendererTest() {
     it('testOHAudioRendererFlush0100', 0, async (done: Function) => {
       console.log(`testOHAudioRendererFlush0100 test start `);
       let re: number | null = testStreamBuilder.OHAudioRendererFlush();
-      let state: number | null = testStreamBuilder.OHAudioRendererGetCurrentState();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioRendererFlush0100 test end `);
       done();
     });
@@ -553,7 +555,7 @@ export default function OhRendererTest() {
       console.log(`testOHAudioRendererSetSpeed0100 test start `);
       let re: number | null = testStreamBuilder.OHAudioRendererSetSpeed(numberFloute);
       let speed: number | null = testStreamBuilder.OHAudioRendererGetSpeed();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       expect(speed).assertEqual(numberTwo);
       console.log(`testOHAudioRendererSetSpeed0100 test end `);
       done();
@@ -671,17 +673,17 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberFive).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer0100 test end `);
       done();
@@ -706,22 +708,22 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberFive).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer0200 test end `);
       done();
@@ -746,27 +748,27 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberFive).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer0300 test end `);
       done();
@@ -791,32 +793,32 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberFive).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberFive).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer0400 test end `);
       done();
@@ -841,32 +843,32 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberFive).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer0500 test end `);
       done();
@@ -891,22 +893,22 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberFive).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer0600 test end `);
       done();
@@ -931,27 +933,27 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberFive).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberFive).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer0700 test end `);
       done();
@@ -976,27 +978,27 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberFive).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer0800 test end `);
       done();
@@ -1021,17 +1023,17 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer0900 test end `);
       done();
@@ -1056,22 +1058,22 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer1000 test end `);
       done();
@@ -1096,27 +1098,27 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re).assertEqual(numberThree);
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re).assertEqual(numberTwo);
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberFive).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer1100 test end `);
       done();
@@ -1141,27 +1143,27 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer1200 test end `);
       done();
@@ -1186,12 +1188,12 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer1300 test end `);
       done();
@@ -1216,7 +1218,7 @@ export default function OhRendererTest() {
       expect(re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer1400 test end `);
       done();
@@ -1241,22 +1243,22 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberTwo || re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(numberTwo);
+      expect(re).assertEqual(AUDIOSTREAM_ERROR_ILLEGAL_STATE);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberFive).assertFalse();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer1500 test end `);
       done();
@@ -1281,12 +1283,12 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(numberTwo);
+      expect(re).assertEqual(AUDIOSTREAM_ERROR_ILLEGAL_STATE);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberFive).assertFalse();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer1600 test end `);
       done();
@@ -1311,14 +1313,109 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(numberTwo);
+      expect(re).assertEqual(AUDIOSTREAM_ERROR_ILLEGAL_STATE);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
       expect(re === numberThree).assertFalse();
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       console.log(`testCreatRendererAudioPlayer1700 test end `);
+      done();
+    });
+
+    /**
+     * start -> start
+     * @tc.number : SUB_MULTIMEDIA_AUDIO_CREATRENDERERAUDIOPLAYER_1800
+     * @tc.name   ：TestCreatRendererAudioPlayer1700
+     * @tc.desc   ：The state change of the state machine.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 1
+     */
+    it('testCreatRendererAudioPlayer1800', 0, async (done: Function) => {
+      console.log(`testCreatRendererAudioPlayer1800 test start `);
+
+      let re: number = await testStreamBuilder.CreatRendererAudioPlayer();
+      Utils.sleep(sleep1000);
+      expect(re).assertEqual(number200);
+      re = testStreamBuilder.OHAudioRendererGetCurrentState();
+      expect(re === 0 || re === 1).assertTrue();
+      re = testStreamBuilder.OHAudioRendererStart();
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
+      re = testStreamBuilder.OHAudioRendererStart();
+      expect(re).assertEqual(AUDIOSTREAM_ERROR_ILLEGAL_STATE);
+      re = testStreamBuilder.OHAudioRendererGetCurrentState();
+      expect(re === numberTwo).assertTrue();
+
+      re = testStreamBuilder.OHAudioRendererRelease();
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
+
+      console.log(`testCreatRendererAudioPlayer1800 test end `);
+      done();
+    });
+    /**
+     * pause -> pause
+     * @tc.number : SUB_MULTIMEDIA_AUDIO_CREATRENDERERAUDIOPLAYER_1900
+     * @tc.name   ：TestCreatRendererAudioPlayer1700
+     * @tc.desc   ：The state change of the state machine.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 1
+     */
+    it('testCreatRendererAudioPlayer1900', 0, async (done: Function) => {
+      console.log(`testCreatRendererAudioPlayer1900 test start `);
+
+      let re: number = await testStreamBuilder.CreatRendererAudioPlayer();
+      Utils.sleep(sleep1000);
+      expect(re).assertEqual(number200);
+      re = testStreamBuilder.OHAudioRendererGetCurrentState();
+      expect(re === 0 || re === 1).assertTrue();
+      re = testStreamBuilder.OHAudioRendererStart();
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
+      re = testStreamBuilder.OHAudioRendererPause();
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
+      re = testStreamBuilder.OHAudioRendererPause();
+      expect(re).assertEqual(AUDIOSTREAM_ERROR_ILLEGAL_STATE);
+      re = testStreamBuilder.OHAudioRendererGetCurrentState();
+      expect(re === numberFive).assertTrue();
+
+      re = testStreamBuilder.OHAudioRendererRelease();
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
+
+      console.log(`testCreatRendererAudioPlayer1900 test end `);
+      done();
+    });
+
+    /**
+     * stop -> stop
+     * @tc.number : SUB_MULTIMEDIA_AUDIO_CREATRENDERERAUDIOPLAYER_2000
+     * @tc.name   ：TestCreatRendererAudioPlayer1700
+     * @tc.desc   ：The state change of the state machine.
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : Level 1
+     */
+    it('testCreatRendererAudioPlayer2000', 0, async (done: Function) => {
+      console.log(`testCreatRendererAudioPlayer2000 test start `);
+
+      let re: number = await testStreamBuilder.CreatRendererAudioPlayer();
+      Utils.sleep(sleep1000);
+      expect(re).assertEqual(number200);
+      re = testStreamBuilder.OHAudioRendererGetCurrentState();
+      expect(re === 0 || re === 1).assertTrue();
+      re = testStreamBuilder.OHAudioRendererStart();
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
+      re = testStreamBuilder.OHAudioRendererStop();
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
+      re = testStreamBuilder.OHAudioRendererStop();
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
+      re = testStreamBuilder.OHAudioRendererGetCurrentState();
+      expect(re === numberThree).assertTrue();
+      re = testStreamBuilder.OHAudioRendererRelease();
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
+
+      console.log(`testCreatRendererAudioPlayer2000 test end `);
       done();
     });
 
@@ -1335,9 +1432,9 @@ export default function OhRendererTest() {
       let re: number = await testStreamBuilder.TestRendererAudioStreamUsage(0);
       expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetRendererInfo0100 test end `);
       done();
     });
@@ -1355,9 +1452,9 @@ export default function OhRendererTest() {
       let re: number | null = testStreamBuilder.TestRendererAudioStreamUsage(numberTwo);
       expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetRendererInfo0200 test end `);
       done();
     });
@@ -1375,9 +1472,9 @@ export default function OhRendererTest() {
       let re: number | null = testStreamBuilder.TestRendererAudioStreamUsage(numberThree);
       expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetRendererInfo0300 test end `);
       done();
     });
@@ -1395,9 +1492,9 @@ export default function OhRendererTest() {
       let re: number | null = testStreamBuilder.TestRendererAudioStreamUsage(numberFour);
       expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetRendererInfo0400 test end `);
       done();
     });
@@ -1415,9 +1512,9 @@ export default function OhRendererTest() {
       let re: number | null = testStreamBuilder.TestRendererAudioStreamUsage(numberTen);
       expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetRendererInfo0500 test end `);
       done();
     });
@@ -1435,9 +1532,9 @@ export default function OhRendererTest() {
       let re: number | null = testStreamBuilder.TestRendererAudioStreamUsage(numberEleven);
       expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetRendererInfo0600 test end `);
       done();
     });
@@ -1455,9 +1552,9 @@ export default function OhRendererTest() {
       let re: number | null = testStreamBuilder.TestRendererAudioStreamUsage(numberTwelve);
       expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetRendererInfo0700 test end `);
       done();
     });
@@ -1475,9 +1572,9 @@ export default function OhRendererTest() {
       let re: number | null = testStreamBuilder.TestRendererAudioStreamUsage(numberThirteen);
       expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetRendererInfo0800 test end `);
       done();
     });
@@ -1495,9 +1592,9 @@ export default function OhRendererTest() {
       let re: number | null = testStreamBuilder.TestRendererAudioStreamUsage(numberFive);
       expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetRendererInfo0900 test end `);
       done();
     });
@@ -1515,9 +1612,9 @@ export default function OhRendererTest() {
       let re: number | null = testStreamBuilder.TestRendererAudioStreamUsage(numberSix);
       expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetRendererInfo1000 test end `);
       done();
     });
@@ -1535,9 +1632,9 @@ export default function OhRendererTest() {
       let re: number | null = testStreamBuilder.TestRendererAudioStreamUsage(numberSeven);
       expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetRendererInfo1100 test end `);
       done();
     });
@@ -1555,9 +1652,9 @@ export default function OhRendererTest() {
       let re: number | null = testStreamBuilder.TestRendererAudioStreamUsage(numberEight);
       expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetRendererInfo1200 test end `);
       done();
     });
@@ -1575,9 +1672,9 @@ export default function OhRendererTest() {
       let re: number | null = testStreamBuilder.TestRendererAudioStreamUsage(1);
       expect(re).assertEqual(number200);
       re = testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetRendererInfo1300 test end `);
       done();
     });
@@ -1623,9 +1720,7 @@ export default function OhRendererTest() {
         expect(re).assertEqual(1);
 
         re = await testStreamBuilder.OHAudioRendererStart();
-        expect(re).assertEqual(0);
-        // Utils.sleep(sleep1000);
-
+        expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
         re = await testStreamBuilder.OHAudioRendererGetCurrentState();
         expect(re).assertEqual(numberTwo);
@@ -1634,19 +1729,19 @@ export default function OhRendererTest() {
 
         if (re === numberTwo) {
           re = await testStreamBuilder.OHAudioRendererPause();
-          expect(re).assertEqual(0);
+          expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
           re = await testStreamBuilder.OHAudioRendererGetCurrentState();
           expect(re).assertEqual(numberFive);
         }
 
         re = await testStreamBuilder.OHAudioRendererStop();
-        expect(re).assertEqual(0);
+        expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
         re = await testStreamBuilder.OHAudioRendererGetCurrentState();
         expect(re).assertEqual(numberThree);
         re = await testStreamBuilder.OHAudioRendererRelease();
-        expect(re).assertEqual(0);
+        expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
         await testStreamBuilder.CloseAudioRender();
         await Utils.sleep(sleep500);
       }
@@ -1699,7 +1794,7 @@ export default function OhRendererTest() {
         expect(re === 0 || re === 1).assertTrue();
 
         re = testStreamBuilder.OHAudioRendererStart();
-        expect(re).assertEqual(0);
+        expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
         await Utils.sleep(sleep1000);
 
@@ -1708,20 +1803,20 @@ export default function OhRendererTest() {
 
         if (re === numberTwo) {
           re = testStreamBuilder.OHAudioRendererPause();
-          expect(re).assertEqual(0);
+          expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
           re = testStreamBuilder.OHAudioRendererGetCurrentState();
           expect(re).assertEqual(numberFive);
         }
 
         re = testStreamBuilder.OHAudioRendererStop();
-        expect(re).assertEqual(0);
+        expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
         re = testStreamBuilder.OHAudioRendererGetCurrentState();
         expect(re).assertEqual(numberThree);
 
         re = testStreamBuilder.OHAudioRendererRelease();
-        expect(re).assertEqual(0);
+        expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
         await testStreamBuilder.CloseAudioRender();
         await Utils.sleep(sleep500);
@@ -1769,7 +1864,7 @@ export default function OhRendererTest() {
       expect(re).assertEqual(1);
 
       re = await testStreamBuilder.OHAudioRendererStart();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       await Utils.sleep(sleep1000);
       let verify = verifyRendererProperties(tempMap);
@@ -1779,7 +1874,7 @@ export default function OhRendererTest() {
 
       if (re === numberTwo) {
         re = testStreamBuilder.OHAudioRendererPause();
-        expect(re).assertEqual(0);
+        expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
         re = testStreamBuilder.OHAudioRendererGetCurrentState();
         expect(re).assertEqual(numberFive);
@@ -1787,7 +1882,7 @@ export default function OhRendererTest() {
 
       if (re !== numberThree) {
         re = testStreamBuilder.OHAudioRendererStop();
-        expect(re).assertEqual(0);
+        expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
         re = testStreamBuilder.OHAudioRendererGetCurrentState();
         expect(re).assertEqual(numberThree);
@@ -1795,7 +1890,7 @@ export default function OhRendererTest() {
 
 
       re = testStreamBuilder.OHAudioRendererRelease();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       await testStreamBuilder.CloseAudioRender();
       await Utils.sleep(sleep500);

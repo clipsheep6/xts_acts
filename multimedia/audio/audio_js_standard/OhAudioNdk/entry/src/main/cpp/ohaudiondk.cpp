@@ -493,7 +493,8 @@ int32_t onRendererError(OH_AudioRenderer *renderer, void *userData, OH_AudioStre
 #pragma mark - 音频播放器初始化方法
 void SetRendererNormalParam(OH_AudioStreamBuilder *builder)
 {
-    OH_AudioStream_Result oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, KCHANNELCOUNT); // 设置通道数
+    OH_AudioStream_Result oH_AudioStream_Result = 
+        OH_AudioStreamBuilder_SetChannelCount(builder, KCHANNELCOUNT); // 设置通道数
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetSamplingRate(builder, KRATE); // 设置采样率
 }
 // 输出流音频初始化
@@ -898,7 +899,13 @@ static napi_value OHAudioCapturerGetCurrentState(napi_env env, napi_callback_inf
 {
     napi_value result = nullptr;
     OH_AudioStream_State state;
-    OH_AudioStream_Result oH_AudioStream_Result1 = OH_AudioCapturer_GetCurrentState(audioCapturer, &state);
+    OH_AudioStream_Result oH_AudioStream_Result1 = 
+        OH_AudioCapturer_GetCurrentState(audioCapturer, &state);
+    if (oH_AudioStream_Result1 == AUDIOSTREAM_SUCCESS) {
+        napi_create_int32(env, state, &result);
+    } else {
+        napi_create_int32(env, -1, &result);
+    }
     napi_create_int32(env, state, &result);
     return result;
 }
@@ -1159,7 +1166,8 @@ static napi_value OHAudioStreamBuilderSetCapturerInfo(napi_env env, napi_callbac
         napi_create_int32(env, -1, &result);
         return result;
     }
-    OH_AudioStream_Result oH_AudioStream_Result = OH_AudioStreamBuilder_SetCapturerInfo(capturerbuilder, sourceType);
+    OH_AudioStream_Result oH_AudioStream_Result = 
+        OH_AudioStreamBuilder_SetCapturerInfo(capturerbuilder, sourceType);
     napi_create_int32(env, oH_AudioStream_Result, &result); 
     return result;
 }
@@ -1623,18 +1631,17 @@ napi_property_descriptor desc3[] = {
     {"TestRendererAudioStreamUsage", nullptr, TestRendererAudioStreamUsage,
      nullptr, nullptr, nullptr, napi_default, nullptr}};
 
-static napi_value Init(napi_env env, napi_value exports) {
-
-    size_t mergedLength = sizeof(desc1) / sizeof(desc1[0]) + sizeof(desc2) / sizeof(desc2[0]) + sizeof(desc3) / sizeof(desc3[0]);
+static napi_value Init(napi_env env, napi_value exports) 
+{
+    size_t mergedLength = sizeof(desc1) / sizeof(desc1[0]) + 
+        sizeof(desc2) / sizeof(desc2[0]) + sizeof(desc3) / sizeof(desc3[0]);
     napi_property_descriptor mergedArray[mergedLength];
     for (size_t i = 0; i < sizeof(desc1) / sizeof(desc1[0]); ++i) {
         mergedArray[i] = desc1[i];
     }
-
     for (size_t i = 0; i < sizeof(desc2) / sizeof(desc2[0]); ++i) {
         mergedArray[sizeof(desc1) / sizeof(desc1[0]) + i] = desc2[i];
     }
-
     for (size_t i = 0; i < sizeof(desc3) / sizeof(desc3[0]); ++i) {
         mergedArray[sizeof(desc1) / sizeof(desc1[0]) + sizeof(desc2) / sizeof(desc2[0]) + i] = desc3[i];
     }
