@@ -42,7 +42,7 @@ export default function WorkerTransmitTest() {
     it('SUB_AA_AMS_Stage_StageContextSupportsWorker_0100', 0, async (done: Function) => {
       TAG = 'SUB_AA_AMS_Stage_StageContextSupportsWorker_0100 == ';
       console.info(TAG + "start");
-      let trans = new worker.Worker('entry/ets/workers/worker_SUB_AA_AMS_Stage_StageContextSupportsWorker_0100.js');
+      let trans = new worker.ThreadWorker('entry/ets/workers/worker_SUB_AA_AMS_Stage_StageContextSupportsWorker_0100.js');
       let isTerminate = false;
       let flag = false;
       let expectValue: ESObject = undefined;
@@ -94,7 +94,7 @@ export default function WorkerTransmitTest() {
     it('SUB_AA_AMS_Stage_StageContextSupportsWorker_0300', 0, async (done: Function) => {
       TAG = 'SUB_AA_AMS_Stage_StageContextSupportsWorker_0300 == ';
       console.info(TAG + "start");
-      let trans = new worker.Worker('entry/ets/workers/worker_SUB_AA_AMS_Stage_StageContextSupportsWorker_0300.js');
+      let trans = new worker.ThreadWorker('entry/ets/workers/worker_SUB_AA_AMS_Stage_StageContextSupportsWorker_0300.js');
       let isTerminate = false;
       let flag = false;
       let expectValue: ESObject = undefined;
@@ -146,7 +146,7 @@ export default function WorkerTransmitTest() {
     it('SUB_AA_AMS_Stage_StageContextSupportsWorker_0400', 0, async (done: Function) => {
       TAG = 'SUB_AA_AMS_Stage_StageContextSupportsWorker_0400 == ';
       console.info(TAG + "start");
-      let trans = new worker.Worker('entry/ets/workers/worker_SUB_AA_AMS_Stage_StageContextSupportsWorker_0400.js');
+      let trans = new worker.ThreadWorker('entry/ets/workers/worker_SUB_AA_AMS_Stage_StageContextSupportsWorker_0400.js');
       let isTerminate = false;
       let flag = false;
       let expectValue: ESObject = undefined;
@@ -198,7 +198,7 @@ export default function WorkerTransmitTest() {
     it('SUB_AA_AMS_Stage_StageContextSupportsWorker_0800', 0, async (done: Function) => {
       TAG = 'SUB_AA_AMS_Stage_StageContextSupportsWorker_0800 == ';
       console.info(TAG + "start");
-      let trans = new worker.Worker('entry/ets/workers/worker_SUB_AA_AMS_Stage_StageContextSupportsWorker_0800.js');
+      let trans = new worker.ThreadWorker('entry/ets/workers/worker_SUB_AA_AMS_Stage_StageContextSupportsWorker_0800.js');
       let isTerminate = false;
       let flag = false;
       let expectValue: ESObject = undefined;
