@@ -170,7 +170,7 @@ export default function threadWorkerTest() {
                 })
             } catch (error) {
                 expect(error.name == "BusinessError").assertTrue()
-                expect(error.message == "the type must be classic, unsupport others now.").assertTrue()
+                expect(error.message == "The input parameters are invalid, the type must be classic, unsupport others now.").assertTrue()
                 done()
             }
         })
@@ -187,7 +187,7 @@ export default function threadWorkerTest() {
                     })
             } catch (error) {
                 expect(error.name == "BusinessError").assertTrue()
-                expect(error.message == "the type of type must be string.").assertTrue()
+                expect(error.message == "The input parameters are invalid, the type of type must be string.").assertTrue()
                 done()
             }
         })
@@ -203,7 +203,7 @@ export default function threadWorkerTest() {
                 })
             } catch (error) {
                 expect(error.name == "BusinessError").assertTrue()
-                expect(error.message == "the type of name in worker must be string.").assertTrue()
+                expect(error.message == "The input parameters are invalid, the type of name in worker must be string.").assertTrue()
                 done()
             }
         })
@@ -217,7 +217,7 @@ export default function threadWorkerTest() {
                 let ss = new worker.ThreadWorker()
             } catch (error) {
                 expect(error.name == "BusinessError").assertTrue()
-                expect(error.message == "the number of create worker param must be more than 1 with new").assertTrue()
+                expect(error.message == "The input parameters are invalid, the number of create worker param must be more than 1 with new").assertTrue()
                 done()
             }
         })
@@ -494,7 +494,7 @@ export default function threadWorkerTest() {
                     await promiseCase();
                 }
                 expect(error.name).assertEqual("BusinessError");
-                expect(error.message).assertEqual("Worker messageObject must be not null with postMessage");
+                expect(error.message).assertEqual("The input parameters are invalid, Worker messageObject must be not null with postMessage");
             }
             done();
         })
@@ -518,7 +518,7 @@ export default function threadWorkerTest() {
                     await promiseCase();
                 }
                 expect(error.name).assertEqual("BusinessError");
-                expect(error.message).assertEqual("transfer list must be an Array");
+                expect(error.message).assertEqual("The input parameters are invalid, transfer list must be an Array");
             }
             done();
         })
@@ -749,7 +749,7 @@ export default function threadWorkerTest() {
                 })
             } catch (error) {
                 expect(error.name).assertEqual("BusinessError")
-                expect(error.message).assertEqual("Worker add listener 1st param must be string")
+                expect(error.message).assertEqual("The input parameters are invalid, Worker add listener 1st param must be string")
                 ss.onexit = function () {
                     isTerminate = true
                 }
@@ -774,7 +774,7 @@ export default function threadWorkerTest() {
                 ss.on("zhangSan", "error")
             } catch (error) {
                 expect(error.name).assertEqual("BusinessError")
-                expect(error.message).assertEqual("Worker add listener 2st param must be callable")
+                expect(error.message).assertEqual("The input parameters are invalid, Worker add listener 2st param must be callable")
                 ss.onexit = function () {
                     isTerminate = true
                 }
@@ -799,7 +799,7 @@ export default function threadWorkerTest() {
                 ss.on()
             } catch (error) {
                 expect(error.name).assertEqual("BusinessError")
-                expect(error.message).assertEqual("worker add listener param count must be not less than 2.")
+                expect(error.message).assertEqual("The input parameters are invalid, worker add listener param count must be not less than 2.")
                 ss.onexit = function () {
                     isTerminate = true
                 }
@@ -967,7 +967,7 @@ export default function threadWorkerTest() {
                 })
             } catch (error) {
                 expect(error.name).assertEqual("BusinessError")
-                expect(error.message).assertEqual("Worker add listener 1st param must be string")
+                expect(error.message).assertEqual("The input parameters are invalid, Worker add listener 1st param must be string")
                 ss.onexit = function () {
                     isTerminate = true
                 }
@@ -993,7 +993,7 @@ export default function threadWorkerTest() {
                 ss.once("zhangsan", "error")
             } catch (error) {
                 expect(error.name).assertEqual("BusinessError")
-                expect(error.message).assertEqual("Worker add listener 2st param must be callable")
+                expect(error.message).assertEqual("The input parameters are invalid, Worker add listener 2st param must be callable")
                 ss.onexit = function () {
                     isTerminate = true
                 }
@@ -1019,7 +1019,7 @@ export default function threadWorkerTest() {
                 ss.once()
             } catch (error) {
                 expect(error.name).assertEqual("BusinessError")
-                expect(error.message).assertEqual("worker add listener param count must be not less than 2.")
+                expect(error.message).assertEqual("The input parameters are invalid, worker add listener param count must be not less than 2.")
                 ss.onexit = function () {
                     isTerminate = true
                 }
@@ -1188,7 +1188,7 @@ export default function threadWorkerTest() {
                 })
             } catch (error) {
                 expect(error.name).assertEqual("BusinessError")
-                expect(error.message).assertEqual("Worker add listener 1st param must be string")
+                expect(error.message).assertEqual("The input parameters are invalid, Worker add listener 1st param must be string")
                 ss.onexit = function () {
                     isTerminate = true
                 }
@@ -1215,7 +1215,7 @@ export default function threadWorkerTest() {
                 ss.addEventListener("zhangsan", "error")
             } catch (error) {
                 expect(error.name).assertEqual("BusinessError")
-                expect(error.message).assertEqual("Worker add listener 2st param must be callable")
+                expect(error.message).assertEqual("The input parameters are invalid, Worker add listener 2st param must be callable")
                 ss.onexit = function () {
                     isTerminate = true
                 }
@@ -1242,7 +1242,7 @@ export default function threadWorkerTest() {
                 ss.addEventListener()
             } catch (error) {
                 expect(error.name).assertEqual("BusinessError")
-                expect(error.message).assertEqual("worker add listener param count must be not less than 2.")
+                expect(error.message).assertEqual("The input parameters are invalid, worker add listener param count must be not less than 2.")
                 ss.onexit = function () {
                     isTerminate = true
                 }
@@ -1466,7 +1466,7 @@ export default function threadWorkerTest() {
                 ss.off()
             } catch (error) {
                 expect(error.name).assertEqual("BusinessError")
-                expect(error.message).assertEqual("the remove listener param must be not less than 1")
+                expect(error.message).assertEqual("The input parameters are invalid, the remove listener param must be not less than 1")
                 ss.terminate()
                 while (!isTerminate) {
                     await promiseCase()
@@ -1496,7 +1496,7 @@ export default function threadWorkerTest() {
                 ss.off(1)
             } catch (error) {
                 expect(error.name).assertEqual("BusinessError")
-                expect(error.message).assertEqual("the type of remove listener 1st param must be string")
+                expect(error.message).assertEqual("The input parameters are invalid, the type of remove listener 1st param must be string")
                 ss.terminate()
                 while (!isTerminate) {
                     await promiseCase()
@@ -1734,7 +1734,7 @@ export default function threadWorkerTest() {
                 ss.removeEventListener()
             } catch (error) {
                 expect(error.name).assertEqual("BusinessError")
-                expect(error.message).assertEqual("the remove listener param must be not less than 1")
+                expect(error.message).assertEqual("The input parameters are invalid, the remove listener param must be not less than 1")
                 ss.terminate()
                 while (!isTerminate) {
                     await promiseCase()
@@ -1764,7 +1764,7 @@ export default function threadWorkerTest() {
                 ss.removeEventListener(1)
             } catch (error) {
                 expect(error.name).assertEqual("BusinessError")
-                expect(error.message).assertEqual("the type of remove listener 1st param must be string")
+                expect(error.message).assertEqual("The input parameters are invalid, the type of remove listener 1st param must be string")
                 ss.terminate()
                 while (!isTerminate) {
                     await promiseCase()
@@ -2602,7 +2602,7 @@ export default function threadWorkerTest() {
             while (!isTerminate) {
                 await promiseCase();
             }
-            expect(res).assertEqual("Worker param count must be more than 1 with new");
+            expect(res).assertEqual("The input parameters are invalid, Worker param count must be more than 1 with new");
             done();
         })
 
@@ -2632,7 +2632,7 @@ export default function threadWorkerTest() {
             while (!isTerminate) {
                 await promiseCase();
             }
-            expect(res).assertEqual("Transfer list must be an Array");
+            expect(res).assertEqual("The input parameters are invalid, Transfer list must be an Array");
             done();
         })
 
