@@ -229,10 +229,6 @@ function testFunc(arrayBuffer: ArrayBuffer) {
   return view;
 }
 
-function noConcurrent(num: number): number {
-  return num;
-}
-
 function concurrentF(num: number): number {
   "use concurrent"
   let res: number = num * 10;
@@ -296,6 +292,11 @@ function stringToNumber(str: string|number): number {
 }
 
 export default function TaskpoolTest() {
+
+  let noConcurrent: Function = (num: number): number => {
+    return num;
+  }
+
   describe('ActsTaskPoolTest', () => {
     afterEach(async () => {
       await   asyncSleep(1000);
