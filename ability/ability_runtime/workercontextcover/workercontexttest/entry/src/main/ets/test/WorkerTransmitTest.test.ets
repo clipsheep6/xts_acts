@@ -68,7 +68,7 @@ export default function WorkerTransmitTest() {
         flag = true;
       }
 
-      trans.postMessage(AppStorage.get<common.AbilityStageContext>("abilityStageContext")!)
+      trans.postMessage(AppStorage.get<common.AbilityStageContext>("abilityStageContext")!.currentHapModuleInfo.name)
       while (!flag) {
         console.info(TAG + "await onmessage");
         await sleep(100);
@@ -120,7 +120,8 @@ export default function WorkerTransmitTest() {
         flag = true;
       }
 
-      trans.postMessage(AppStorage.get<common.UIAbilityContext>("abilityContext")!);
+      let context = AppStorage.get<common.UIAbilityContext>("abilityContext")!;
+      trans.postMessage(context);
       while (!flag) {
         console.info(TAG + "await onmessage");
         await sleep(100);
