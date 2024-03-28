@@ -1,0 +1,14 @@
+{
+  "data": {
+    "title": "js form"
+  },
+  "actions": {
+    "routerEvent": {
+      "action": "router",
+      "abilityName": "EntryAbility",
+      "params": {
+        "message": "add detail"
+      }
+    }
+  }
+}

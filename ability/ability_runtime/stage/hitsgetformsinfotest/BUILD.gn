@@ -17,18 +17,18 @@ group("HitsGetFormsInfoTest") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "getFormsInfotest:GetFormsInfoTest",
-      "getFormsInfotestproviderA:GetFormsInfotestProviderA",
       "getFormsInfoProvider_a:GetFormsInfotestProviderA_A",
       "getFormsInfoProvider_b:GetFormsInfotestProviderA_B",
       "getFormsInfoProvider_c:GetFormsInfotestProviderA_C",
       "getFormsInfoProvider_d:GetFormsInfotestProviderA_D",
       "getFormsInfoProvider_e:GetFormsInfotestProviderA_E",
       "getFormsInfoProvider_f:GetFormsInfotestProviderA_F",
-      "getFormsInfotestproviderB:GetFormsInfotestProviderB",
       "getFormsInfoProviderB_a:GetFormsInfotestProviderB_A",
       "getFormsInfoProviderB_b:GetFormsInfotestProviderB_B",
       "getFormsInfoProviderB_e:GetFormsInfotestProviderB_E",
+      "getFormsInfotest:GetFormsInfoTest",
+      "getFormsInfotestproviderA:GetFormsInfotestProviderA",
+      "getFormsInfotestproviderB:GetFormsInfotestProviderB",
       "getFormsInfotestproviderC:GetFormsInfotestProviderC",
       "getFormsInfotestproviderD:GetFormsInfotestProviderD",
     ]
