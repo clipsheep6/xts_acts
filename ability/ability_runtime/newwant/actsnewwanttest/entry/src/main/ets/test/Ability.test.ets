@@ -82,7 +82,7 @@ export default function abilityTest() {
         .then(async (data) => {
           console.debug("ACTS_NewWant_Test_0100====>Create Subscriber====>");
           Subscriber = data;
-          commonEvent.subscribe(Subscriber, (err, data) => {
+          await commonEvent.subscribe(Subscriber, (err, data) => {
             console.debug("ACTS_NewWant_Test_0100====>Subscribe CallBack data:====>" + JSON.stringify(data));
             console.debug("ACTS_NewWant_Test_0100====>Subscribe CallBack data.event:====>" + JSON.stringify(data.event));
             switch (data.event) {
@@ -139,7 +139,7 @@ export default function abilityTest() {
         .then(async (data) => {
           console.debug("ACTS_NewWant_Test_0200====>Create Subscriber====>");
           Subscriber = data;
-          commonEvent.subscribe(Subscriber, (err, data) => {
+          await commonEvent.subscribe(Subscriber, (err, data) => {
             console.debug("ACTS_NewWant_Test_0200====>Subscribe CallBack data:====>" + JSON.stringify(data));
             console.debug("ACTS_NewWant_Test_0200====>Subscribe CallBack data.event:====>" + JSON.stringify(data.event));
             switch (data.event) {
@@ -197,7 +197,7 @@ export default function abilityTest() {
         .then(async (data) => {
           console.debug("ACTS_NewWant_Test_0300====>Create Subscriber====>");
           Subscriber = data;
-          commonEvent.subscribe(Subscriber, (err, data) => {
+          await commonEvent.subscribe(Subscriber, (err, data) => {
             console.debug("ACTS_NewWant_Test_0300====>Subscribe CallBack data:====>" + JSON.stringify(data));
             console.debug("ACTS_NewWant_Test_0300====>Subscribe CallBack data.event:====>" + JSON.stringify(data.event));
             switch (data.event) {
@@ -255,7 +255,7 @@ export default function abilityTest() {
         .then(async (data) => {
           console.debug("ACTS_NewWant_Test_0400====>Create Subscriber====>");
           Subscriber = data;
-          commonEvent.subscribe(Subscriber, (err, data) => {
+          await commonEvent.subscribe(Subscriber, (err, data) => {
             console.debug("ACTS_NewWant_Test_0400====>Subscribe CallBack data:====>" + JSON.stringify(data));
             console.debug("ACTS_NewWant_Test_0400====>Subscribe CallBack data.event:====>" + JSON.stringify(data.event));
             switch (data.event) {
@@ -314,7 +314,7 @@ export default function abilityTest() {
         .then(async (data) => {
           console.debug("ACTS_NewWant_Test_0500====>Create Subscriber====>");
           Subscriber = data;
-          commonEvent.subscribe(Subscriber, (err, data) => {
+          await commonEvent.subscribe(Subscriber, (err, data) => {
             console.debug("ACTS_NewWant_Test_0500====>Subscribe CallBack data:====>" + JSON.stringify(data));
             console.debug("ACTS_NewWant_Test_0500====>Subscribe CallBack data.event:====>" + JSON.stringify(data.event));
             switch (data.event) {
@@ -374,7 +374,7 @@ export default function abilityTest() {
         .then(async (data) => {
           console.debug("ACTS_NewWant_Test_0600====>Create Subscriber====>");
           Subscriber = data;
-          commonEvent.subscribe(Subscriber, (err, data) => {
+          await commonEvent.subscribe(Subscriber, (err, data) => {
             console.debug("ACTS_NewWant_Test_0600====>Subscribe CallBack data:====>" + JSON.stringify(data));
             console.debug("ACTS_NewWant_Test_0600====>Subscribe CallBack data.event:====>" + JSON.stringify(data.event));
             switch (data.event) {
@@ -433,7 +433,7 @@ export default function abilityTest() {
         .then(async (data) => {
           console.debug("ACTS_NewWant_Test_0700====>Create Subscriber====>");
           Subscriber = data;
-          commonEvent.subscribe(Subscriber, (err, data) => {
+          await commonEvent.subscribe(Subscriber, (err, data) => {
             console.debug("ACTS_NewWant_Test_0700====>Subscribe CallBack data:====>" + JSON.stringify(data));
             console.debug("ACTS_NewWant_Test_0700====>Subscribe CallBack data.event:====>" + JSON.stringify(data.event));
             switch (data.event) {
@@ -493,7 +493,7 @@ export default function abilityTest() {
         .then(async (data) => {
           console.debug("ACTS_NewWant_Test_0800====>Create Subscriber====>");
           Subscriber = data;
-          commonEvent.subscribe(Subscriber, (err, data) => {
+          await commonEvent.subscribe(Subscriber, (err, data) => {
             console.debug("ACTS_NewWant_Test_0800====>Subscribe CallBack data:====>" + JSON.stringify(data));
             console.debug("ACTS_NewWant_Test_0800====>Subscribe CallBack data.event:====>" + JSON.stringify(data.event));
             switch (data.event) {
