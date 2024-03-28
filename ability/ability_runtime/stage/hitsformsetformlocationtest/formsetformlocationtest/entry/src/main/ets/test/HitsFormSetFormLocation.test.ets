@@ -51,7 +51,7 @@ export default function hitsFormSetFormLocationTest() {
     /**
      * @tc.number   : SUB_AA_Form_FormLocation_Want_RunningFormInfo_0100
      * @tc.name     : Add card Set host value 0
-     * @tc.desc     : The provider onAddForm the host value inside to be the passed value 0
+     * @tc.desc     : The form want the host value inside to be the passed value 0
      * The RunningFormInfo information host value is set to 0
      */
     it('SUB_AA_Form_FormLocation_Want_RunningFormInfo_0100', 0, async (done: Function) => {
@@ -110,7 +110,7 @@ export default function hitsFormSetFormLocationTest() {
     /**
      * @tc.number   : SUB_AA_Form_FormLocation_Want_RunningFormInfo_0200
      * @tc.name     : Add card Set host value 1
-     * @tc.desc     : The provider onAddForm the host value inside to be the passed value 1
+     * @tc.desc     : The form want the host value inside to be the passed value 1
      * The RunningFormInfo information host value is set to 1
      */
     it('SUB_AA_Form_FormLocation_Want_RunningFormInfo_0200', 0, async (done: Function) => {
@@ -159,7 +159,7 @@ export default function hitsFormSetFormLocationTest() {
     /**
      * @tc.number   : SUB_AA_Form_FormLocation_Want_RunningFormInfo_0300
      * @tc.name     : Add card Set host value 2
-     * @tc.desc     : The provider onAddForm the host value inside to be the passed value 2
+     * @tc.desc     : The form want the host value inside to be the passed value 2
      * The RunningFormInfo information host value is set to 2
      */
     it('SUB_AA_Form_FormLocation_Want_RunningFormInfo_0300', 0, async (done: Function) => {
@@ -218,7 +218,7 @@ export default function hitsFormSetFormLocationTest() {
     /**
      * @tc.number   : SUB_AA_Form_FormLocation_Want_RunningFormInfo_0400
      * @tc.name     : Add card Set host value 3
-     * @tc.desc     : The provider onAddForm the host value inside to be the passed value 3
+     * @tc.desc     : The form want the host value inside to be the passed value 3
      * The RunningFormInfo information host value is set to 3
      */
     it('SUB_AA_Form_FormLocation_Want_RunningFormInfo_0400', 0, async (done: Function) => {
@@ -267,7 +267,7 @@ export default function hitsFormSetFormLocationTest() {
     /**
      * @tc.number   : SUB_AA_Form_FormLocation_Want_RunningFormInfo_0500
      * @tc.name     : Add card Set host value 4
-     * @tc.desc     : The provider onAddForm the host value inside to be the passed value 4
+     * @tc.desc     : The form want the host value inside to be the passed value 4
      * The RunningFormInfo information host value is set to 4
      */
     it('SUB_AA_Form_FormLocation_Want_RunningFormInfo_0500', 0, async (done: Function) => {
@@ -326,7 +326,7 @@ export default function hitsFormSetFormLocationTest() {
     /**
      * @tc.number   : SUB_AA_Form_FormLocation_Want_RunningFormInfo_0600
      * @tc.name     : Add card Set host value 5
-     * @tc.desc     : The provider onAddForm the host value inside to be the passed value 5
+     * @tc.desc     : The form want the host value inside to be the passed value 5
      * The RunningFormInfo information host value is set to 5
      */
     it('SUB_AA_Form_FormLocation_Want_RunningFormInfo_0600', 0, async (done: Function) => {
@@ -375,7 +375,7 @@ export default function hitsFormSetFormLocationTest() {
     /**
      * @tc.number   : SUB_AA_Form_FormLocation_Want_RunningFormInfo_0700
      * @tc.name     : Add card Set host value 6
-     * @tc.desc     : The provider onAddForm the host value inside to be the passed value 6
+     * @tc.desc     : The form want the host value inside to be the passed value 6
      * The RunningFormInfo information host value is set to 6
      */
     it('SUB_AA_Form_FormLocation_Want_RunningFormInfo_0700', 0, async (done: Function) => {
@@ -434,7 +434,7 @@ export default function hitsFormSetFormLocationTest() {
     /**
      * @tc.number   : SUB_AA_Form_FormLocation_Want_RunningFormInfo_0800
      * @tc.name     : Add card Set host value 7
-     * @tc.desc     : The provider onAddForm the host value inside to be the passed value 7
+     * @tc.desc     : The form want the host value inside to be the passed value 7
      * The RunningFormInfo information host value is set to 7
      */
     it('SUB_AA_Form_FormLocation_Want_RunningFormInfo_0800', 0, async (done: Function) => {
@@ -493,7 +493,7 @@ export default function hitsFormSetFormLocationTest() {
     /**
      * @tc.number   : SUB_AA_Form_FormLocation_Want_RunningFormInfo_0900
      * @tc.name     : Add card Set host value -1
-     * @tc.desc     : The provider onAddForm the host value inside to be the passed value -1
+     * @tc.desc     : The form want the host value inside to be the passed value -1
      * The RunningFormInfo information host value is set to -1
      */
     it('SUB_AA_Form_FormLocation_Want_RunningFormInfo_0900', 0, async (done: Function) => {
@@ -552,7 +552,7 @@ export default function hitsFormSetFormLocationTest() {
     /**
      * @tc.number   : SUB_AA_Form_FormLocation_Want_RunningFormInfo_1000
      * @tc.name     : Add cards without setting a host value
-     * @tc.desc     : The provider onAddForm no host value
+     * @tc.desc     : The form want no host value
      * The RunningFormInfo information host value is set to -1
      */
     it('SUB_AA_Form_FormLocation_Want_RunningFormInfo_1000', 0, async (done: Function) => {
@@ -609,7 +609,7 @@ export default function hitsFormSetFormLocationTest() {
     /**
      * @tc.number   : SUB_AA_Form_FormLocation_Want_RunningFormInfo_1100
      * @tc.name     : Add card does not set host value, updated to 4
-     * @tc.desc     : The provider onAddForm no host value
+     * @tc.desc     : The form want no host value
      * The RunningFormInfo information host value is set to -1
      * The host value is updated successfully, and the host value of RunningFormInfo information is set to 4 after the update
      */
@@ -676,7 +676,7 @@ export default function hitsFormSetFormLocationTest() {
     /**
      * @tc.number   : SUB_AA_Form_FormLocation_Want_RunningFormInfo_1200
      * @tc.name     : Add card Set host value 0, updated to 4
-     * @tc.desc     : The provider onAddForm the host value inside to be the passed value 0
+     * @tc.desc     : The form want the host value inside to be the passed value 0
      * The RunningFormInfo information host value is set to 0
      * The host value is updated successfully, and the host value of RunningFormInfo information is set to 4 after the update
      */
@@ -747,7 +747,7 @@ export default function hitsFormSetFormLocationTest() {
     /**
      * @tc.number   : SUB_AA_Form_FormLocation_Want_RunningFormInfo_1300
      * @tc.name     : Add card does not set host value, Update error value 9
-     * @tc.desc     : The provider onAddForm no host value
+     * @tc.desc     : The form want no host value
      * The RunningFormInfo information host value is set to -1
      * Error Host value update failed to obtain RunningFormInfo information Host value set to the original value -1
      */
@@ -816,7 +816,7 @@ export default function hitsFormSetFormLocationTest() {
     /**
      * @tc.number   : SUB_AA_Form_FormLocation_Want_RunningFormInfo_1400
      * @tc.name     : Add card Set host value 0, Update error value 9
-     * @tc.desc     : The provider onAddForm the host value inside to be the passed value 0
+     * @tc.desc     : The form want the host value inside to be the passed value 0
      * The RunningFormInfo information host value is set to 0
      * Error Host value update failed to obtain RunningFormInfo information Host value set to the original value 0
      */
