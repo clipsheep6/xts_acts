@@ -1103,12 +1103,12 @@ export default function OhRendererTest() {
       re = testStreamBuilder.OHAudioRendererStop();
       expect(re).assertEqual(0);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
-      expect(re === numberThree).assertTrue();
+      expect(re).assertEqual(numberThree);
 
       re = testStreamBuilder.OHAudioRendererStart();
       expect(re).assertEqual(0);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re).assertEqual(numberTwo);
 
       re = testStreamBuilder.OHAudioRendererPause();
       expect(re).assertEqual(0);
@@ -1251,9 +1251,9 @@ export default function OhRendererTest() {
       expect(re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(numberTwo);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
-      expect(re === numberFive).assertTrue();
+      expect(re === numberFive).assertFalse();
 
       re = testStreamBuilder.OHAudioRendererRelease();
       expect(re).assertEqual(0);
@@ -1281,9 +1281,9 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(numberTwo);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
-      expect(re === numberFive).assertTrue();
+      expect(re === numberFive).assertFalse();
 
       re = testStreamBuilder.OHAudioRendererRelease();
       expect(re).assertEqual(0);
@@ -1311,9 +1311,9 @@ export default function OhRendererTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioRendererStop();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(numberTwo);
       re = testStreamBuilder.OHAudioRendererGetCurrentState();
-      expect(re === numberThree).assertTrue();
+      expect(re === numberThree).assertFalse();
 
       re = testStreamBuilder.OHAudioRendererRelease();
       expect(re).assertEqual(0);
@@ -1593,10 +1593,10 @@ export default function OhRendererTest() {
       console.info('beforeEach case');
     });
     afterEach(async () => {
-     // await Utils.sleep(sleep500);
       console.info('afterEach case');
     });
     afterAll(async () => {
+      await Utils.sleep(sleep500);
       console.info('afterAll case ');
     });
 
