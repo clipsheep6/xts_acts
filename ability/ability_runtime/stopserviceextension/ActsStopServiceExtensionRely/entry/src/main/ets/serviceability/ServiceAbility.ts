@@ -121,7 +121,11 @@ export default class ServiceAbility extends ServiceExtensionAbility {
             console.info("====>" + strAction + " stop ServiceAbilitySec err: " +
             JSON.stringify(err));
             commonEventData.parameters.message = err.code;
-            commonEvent.publish("ACTS_StopEvent_First", commonEventData, (err) => {
+            commonEvent.publish("ACTS_StopEvent_First", {
+              parameters: {
+                message: err.code,
+              }
+            }, (err) => {
               console.info("====>" + strAction + " First publish err: " + JSON.stringify(err));
               setTimeout(() => {
                 commonEventData.parameters.message = disConnect;

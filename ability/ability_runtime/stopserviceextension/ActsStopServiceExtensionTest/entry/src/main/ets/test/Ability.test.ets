@@ -364,6 +364,7 @@ export default function abilityTest() {
             if (data.event == "ACTS_StopEvent_First") {
               console.info("====>Acts_StopServiceExtension_0600 subscribeCallBack First data: " + JSON.stringify(data));
               expect(data.parameters.message).assertEqual(0);
+              console.info("====>Acts_StopServiceExtension_0600 subscribeCallBack First data assert successfully");
               count++;
             } else if (data.event == "ACTS_StopEvent_Second") {
               console.info("====>Acts_StopServiceExtension_0600 subscribeCallBack Second data: " + JSON.stringify(data));
