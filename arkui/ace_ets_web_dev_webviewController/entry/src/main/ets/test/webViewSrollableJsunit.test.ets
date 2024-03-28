@@ -137,7 +137,7 @@ export default function webViewSrollableJsunit() {
       * parameter is a positive number, both of which are greater than the page width and height
     */
     it('testScrollableSeven', 0, async (done: Function) => {
-      emitKey = "emitScrollableSeven";
+      emitKey = "emitScrollableEight";
       Utils.registerEvent("testScrollableSeven", false, 226, done);
       sendEventByKey('webcomponentScrollable', 10, '');
     })
