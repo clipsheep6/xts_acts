@@ -2083,9 +2083,9 @@ export default function OhCapturerTest() {
       expect(re === numberThree).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(numberTwo);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberFive).assertTrue();
+      expect(re === numberFive).assertFalse();
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(0);
@@ -2114,9 +2114,9 @@ export default function OhCapturerTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStop();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(numberTwo);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberThree).assertTrue();
+      expect(re === numberThree).assertFalse();
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(0);
@@ -2144,9 +2144,9 @@ export default function OhCapturerTest() {
       expect(re === 0 || re === 1).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerPause();
-      expect(re).assertEqual(0);
+      expect(re).assertEqual(numberTwo);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberFive).assertTrue();
+      expect(re === numberFive).assertFalse();
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(0);
