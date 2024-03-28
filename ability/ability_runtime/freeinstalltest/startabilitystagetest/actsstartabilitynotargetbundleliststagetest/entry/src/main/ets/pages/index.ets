@@ -16,6 +16,7 @@
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import { Hypium } from '@ohos/hypium';
 import testsuite from '../test/ListTest';
+import file from '@system.file';
 
 @Entry
 @Component
