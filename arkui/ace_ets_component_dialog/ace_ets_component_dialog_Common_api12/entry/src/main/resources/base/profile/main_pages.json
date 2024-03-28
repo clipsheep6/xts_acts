@@ -1,0 +1,17 @@
+{
+    "src": [
+        "MainAbility/pages/index/index",
+        "MainAbility/pages/onWillDismiss/ActionSheet1",
+        "MainAbility/pages/onWillDismiss/ActionSheet2",
+        "MainAbility/pages/onWillDismiss/ActionSheet3",
+        "MainAbility/pages/onWillDismiss/AlertDialog1",
+        "MainAbility/pages/onWillDismiss/AlertDialog2",
+        "MainAbility/pages/onWillDismiss/AlertDialog3",
+        "MainAbility/pages/onWillDismiss/CustomDialog1",
+        "MainAbility/pages/onWillDismiss/CustomDialog2",
+        "MainAbility/pages/onWillDismiss/CustomDialog3",
+        "MainAbility/pages/onWillDismiss/openCustomDialog1",
+        "MainAbility/pages/onWillDismiss/openCustomDialog2",
+        "MainAbility/pages/onWillDismiss/openCustomDialog3"
+    ]
+}
