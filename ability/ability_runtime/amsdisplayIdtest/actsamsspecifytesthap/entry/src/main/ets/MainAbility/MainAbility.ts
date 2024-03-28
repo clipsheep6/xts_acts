@@ -54,11 +54,12 @@ async function onShowProcess() {
         parameters: {
             displayId: globalThis.abilityWant.parameters['ohos.aafwk.param.displayId'],
             windowMode: globalThis.abilityWant.parameters['ohos.aafwk.param.windowMode'],
-}
+        }
     };
 
     console.log("AbilityMultiInstanceAppA abilityWant = " + JSON.stringify(abilityWant));
     if (abilityWant.parameters.nextStep >= abilityWant.parameters.stepNum) {
+        console.log('====> gaolang111 commonEventPublishData:' + JSON.stringify(commonEventPublishData));
         commonEvent.publish("MultiInstanceStartFinish", commonEventPublishData, () => {
             console.log('============>querytestsecond success==========>>')
             callBackSeq = "";
@@ -78,6 +79,7 @@ export default class MainAbility extends Ability {
         console.log("actsspecifytesthap onCreate")
         callBackSeq += "onCreate";
         globalThis.abilityWant = want;
+        console.log('====> gaolang want is :' + JSON.stringify(want));
     }
 
     onDestroy() {
