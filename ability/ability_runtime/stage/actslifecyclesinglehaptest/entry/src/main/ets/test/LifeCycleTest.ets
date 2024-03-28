@@ -1,3 +1,4 @@
+// @ts-nocheck
 /*
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -1223,8 +1224,7 @@ export default function lifecycleTest() {
       let code: number;
       AppStorage.get<common.UIAbilityContext>("abilityContext")!.getApplicationContext()
         .off("abilityLifecycle", callbackid_errorType, (error, data) => {
-          console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) +
-            ",data: " + JSON.stringify(data));
+          console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
           code = error.code;
           sleep(1000);
           expect(code).assertEqual(401);
