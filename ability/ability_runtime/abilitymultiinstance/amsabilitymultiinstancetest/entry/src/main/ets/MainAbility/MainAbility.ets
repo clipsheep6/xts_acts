@@ -26,7 +26,7 @@ export default class MainAbility extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // Ability is creating, initialize resources for this ability
     console.log("AbilityMultiInstanceTest onCreate");
-    // globalThis.abilityWant = want;
+    globalThis.abilityWant = want;
     AppStorage.setOrCreate<common.UIAbilityContext>("abilityContext", this.context);
     let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
     let abilityDelegatorArguments: AbilityDelegatorRegistry.AbilityDelegatorArgs = AbilityDelegatorRegistry.getArguments();
