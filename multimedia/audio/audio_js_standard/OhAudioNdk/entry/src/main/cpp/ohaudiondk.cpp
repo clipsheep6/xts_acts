@@ -78,6 +78,10 @@
 #define KNUMBER13 13
 #define KNUMBER1000 1000
 
+#define KCHANNELCOUNT 2
+#define KRATE 48000
+#define KFRAMESIZE 240
+
 FILE *g_file = nullptr;
 std::string g_filePath = "/data/storage/el2/base/files/S16LE.pcm";
 std::string g_filePath1 = "/resources/rawfile/Believer.wav";
@@ -234,7 +238,9 @@ static OH_AudioStreamBuilder *GetAudioStreamBuilder(OH_AudioStream_Type type)
             return rendererbuilder;
         }
     } else {
-        
+        if (capturerbuilder) {
+            return capturerbuilder;
+        }
     }
     
     OH_AudioStreamBuilder *builder;
@@ -400,15 +406,15 @@ static napi_value CreateAudioCapturerRecorder(napi_env env, napi_callback_info i
     }
 
     OH_AudioStream_Result oH_AudioStream_Result =
-        OH_AudioStreamBuilder_SetSamplingRate(builder, 48000); // 设置采样率
-    oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, 2); // 设置通道数
+        OH_AudioStreamBuilder_SetSamplingRate(builder, KRATE); // 设置采样率
+    oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, KCHANNELCOUNT); // 设置通道数
     OH_AudioCapturer_Callbacks callbacks = OH_AudioCapturer_Callbacks();
     callbacks.OH_AudioCapturer_OnReadData = onReadData;
     callbacks.OH_AudioCapturer_OnStreamEvent = onStreamEvent;
     callbacks.OH_AudioCapturer_OnInterruptEvent = onInterruptEvent;
     callbacks.OH_AudioCapturer_OnError = onError;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetCapturerCallback(builder, callbacks, nullptr); // 设置回调
-    oH_AudioStream_Result = OH_AudioStreamBuilder_SetFrameSizeInCallback(builder, 240); // 设置每次回调的帧长
+    oH_AudioStream_Result = OH_AudioStreamBuilder_SetFrameSizeInCallback(builder, KFRAMESIZE); // 设置每次回调的帧长
 
     capturerbuilder = builder;
     audioCapturer = GetOH_AudioCapturer(); // 创建输入音频流实例
@@ -487,8 +493,8 @@ int32_t onRendererError(OH_AudioRenderer *renderer, void *userData, OH_AudioStre
 #pragma mark - 音频播放器初始化方法
 void SetRendererNormalParam(OH_AudioStreamBuilder *builder)
 {
-    OH_AudioStream_Result oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, 2); // 设置通道数
-    oH_AudioStream_Result = OH_AudioStreamBuilder_SetSamplingRate(builder, 48000); // 设置采样率
+    OH_AudioStream_Result oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, KCHANNELCOUNT); // 设置通道数
+    oH_AudioStream_Result = OH_AudioStreamBuilder_SetSamplingRate(builder, KRATE); // 设置采样率
 }
 // 输出流音频初始化
 static napi_value CreatRendererAudioPlayer(napi_env env, napi_callback_info info)
@@ -544,14 +550,15 @@ static napi_value CreatAudioPlayerWithWavFile(napi_env env, napi_callback_info i
     }
 
     OH_AudioStreamBuilder *builder = GetAudioStreamBuilder(AUDIOSTREAM_TYPE_RENDERER); // 初始化输出构造器
-    OH_AudioStream_Result oH_AudioStream_Result = OH_AudioStreamBuilder_SetRendererInfo(builder, AUDIOSTREAM_USAGE_MUSIC); // 设置工作场景
-    oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, 2); // 设置通道数
+    OH_AudioStream_Result oH_AudioStream_Result = 
+        OH_AudioStreamBuilder_SetRendererInfo(builder, AUDIOSTREAM_USAGE_MUSIC); // 设置工作场景
+    oH_AudioStream_Result = OH_AudioStreamBuilder_SetChannelCount(builder, KCHANNELCOUNT); // 设置通道数
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_RAW); // 设置编码类型
     OH_AudioStream_LatencyMode latencyMode = AUDIOSTREAM_LATENCY_MODE_NORMAL;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetLatencyMode(builder, latencyMode); // 设置延时模式
     OH_AudioStream_SampleFormat oH_AudioStream_SampleFormat = AUDIOSTREAM_SAMPLE_U8;
     oH_AudioStream_Result = OH_AudioStreamBuilder_SetSampleFormat(builder, oH_AudioStream_SampleFormat); // 设置采格式
-    oH_AudioStream_Result = OH_AudioStreamBuilder_SetSamplingRate(builder, 48000); // 设置采样率
+    oH_AudioStream_Result = OH_AudioStreamBuilder_SetSamplingRate(builder, KRATE); // 设置采样率
 
     OH_AudioRenderer_Callbacks callbacks;
     callbacks.OH_AudioRenderer_OnWriteData = onRendererWriteData;
