@@ -56,7 +56,7 @@ export default function FaShowOnLockTest() {
 
     beforeEach(async (done: Function) => {
       console.log(TAG1 + "beforeEach called");
-      let status: boolean;
+      let status: boolean = false;
       await power.isScreenOn()
         .then((data) => {
           console.log(TAG1 + "isScreenOn data = " + JSON.stringify(data));
