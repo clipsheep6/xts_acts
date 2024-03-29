@@ -22,6 +22,7 @@ export default class MainAbility extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     // Ability is creating, initialize resources for this ability
     console.log("MainAbility onCreate");
+    globalThis.abilityWant = want;
   }
 
   onDestroy() {
@@ -32,6 +33,7 @@ export default class MainAbility extends Ability {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     console.log("MainAbility onWindowStageCreate");
+    globalThis.abilityContext = this.context;
     windowStage.loadContent("pages/index/index", null);
   }
 

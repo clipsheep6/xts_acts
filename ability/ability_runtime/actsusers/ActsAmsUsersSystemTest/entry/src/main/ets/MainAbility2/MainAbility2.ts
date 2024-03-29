@@ -19,6 +19,14 @@ import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import window from '@ohos.window';
 import common from '@ohos.app.ability.common';
 
+function PublishCallBackOne() {
+  console.debug("====>Publish CallBack ACTS_StartAbility_0100_CommonEvent====>");
+  globalThis.abilityContext2.terminateSelf().then(()=>{
+    commonEvent.publish("ACTS_TerminateSelf_CommonEvent", PublishCallBackTwo);
+    console.debug("====>publish ACTS_TerminateSelf_CommonEvent finish====>");
+  });
+  console.debug("====>terminateSelf succese====>");
+}
 
 function PublishCallBackTwo() {
   console.debug("====>Publish CallBack ACTS_TerminateSelf_CommonEvent====>");
@@ -38,6 +46,7 @@ export default class MainAbility2 extends Ability {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     console.log("MainAbility2 onWindowStageCreate");
+    globalThis.abilityContext2 = this.context;
     windowStage.loadContent("MainAbility/pages/index/second", null);
     commonEvent.publish("ACTS_InterfaceMultiUsers_0100_Start_CommonEvent", () => {
       console.debug("====>Publish CallBack ACTS_StartAbility_0100_CommonEvent====>");

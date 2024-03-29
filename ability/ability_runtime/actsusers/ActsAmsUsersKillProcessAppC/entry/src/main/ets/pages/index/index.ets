@@ -13,6 +13,8 @@
 * limitations under the License.
 */
 
+import file from '@system.file';
+
 @Entry
 @Component
 struct Index {
