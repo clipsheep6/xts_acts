@@ -53,7 +53,7 @@ export default function abilityTest() {
         .then(async (data) => {
           console.debug("ACTS_GetCurrentTopAbility_0200====>Create Subscriber====>");
           Subscriber = data;
-          commonEvent.subscribe(Subscriber, async (err, data) => {
+          await commonEvent.subscribe(Subscriber, async (err, data) => {
             console.debug("ACTS_GetCurrentTopAbility_0200====>Subscribe CallBack data:====>" + JSON.stringify(data));
             expect(data.event == 'GetCurrentTopAbility').assertTrue();
             if (data.event == 'GetCurrentTopAbility') {
@@ -95,7 +95,7 @@ export default function abilityTest() {
         .then(async (data) => {
           console.debug("ACTS_GetCurrentTopAbility_0500====>Create Subscriber====>");
           Subscriber = data;
-          commonEvent.subscribe(Subscriber, (err, data) => {
+          await commonEvent.subscribe(Subscriber, (err, data) => {
             console.debug("ACTS_GetCurrentTopAbility_0500====>Subscribe CallBack data:====>" + JSON.stringify(data));
             expect(data.event == 'GetCurrentTopAbility').assertTrue();
             if (data.event == 'GetCurrentTopAbility') {
