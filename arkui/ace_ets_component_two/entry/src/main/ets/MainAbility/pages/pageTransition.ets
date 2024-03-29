@@ -45,7 +45,7 @@ struct PageTransitionExample1 {
           }
           let backEvent: events_emitter.InnerEvent = {
             eventId: 144,
-            priority: events_emitter.EventPriority.HIGH
+            priority: events_emitter.EventPriority.LOW
           }
           console.info("pageTransition start to emit action state");
           events_emitter.emit(backEvent, backData);

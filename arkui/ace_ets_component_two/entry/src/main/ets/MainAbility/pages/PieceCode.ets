@@ -39,22 +39,22 @@ struct PieceCode {
   private stateChangCallBack = (eventData: events_emitter.EventData) => {
     if (eventData != null) {
       console.info("piece page state change called:" + JSON.stringify(eventData));
-      let pieceObj: ESObject = JSON.parse(eventData.data!.pieceObj);
+      let pieceObj: ESObject = JSON.parse(eventData.data.pieceObj);
       if (pieceObj) {
-        this.content = pieceObj!.content;
-        this.icon = pieceObj!.icon;
+        this.content = pieceObj.content;
+        this.icon = pieceObj.icon;
       }
-      if (eventData.data!.iconPosition != null) {
-        this.iconPosition = eventData.data!.iconPosition;
+      if (eventData.data.iconPosition != null) {
+        this.iconPosition = eventData.data.iconPosition;
       }
-      if (eventData.data!.fontStyle != null) {
-        this.fontStyle = eventData.data!.fontStyle;
+      if (eventData.data.fontStyle != null) {
+        this.fontStyle = eventData.data.fontStyle;
       }
-      if (eventData.data!.Color != null) {
-        this.fontColor = eventData.data!.Color;
+      if (eventData.data.Color != null) {
+        this.fontColor = eventData.data.Color;
       }
-      if (eventData.data!.showDelete != null) {
-        this.showDelete = eventData.data!.showDelete;
+      if (eventData.data.showDelete != null) {
+        this.showDelete = eventData.data.showDelete;
       }
     }
   }

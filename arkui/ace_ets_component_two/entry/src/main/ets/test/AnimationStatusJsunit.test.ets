@@ -52,7 +52,7 @@ export default function animationStatusJsunit() {
       let strJson = getInspectorByKey('ImageAnimator');
       let obj: ESObject = JSON.parse(strJson);
       console.info("[animationStatus01] obj is: " + JSON.stringify(obj));
-      expect(obj!.$type).assertEqual('ImageAnimator');
+      expect(obj.$type).assertEqual('ImageAnimator');
       console.info('[animationStatus01] END');
       done();
     });
@@ -63,7 +63,7 @@ export default function animationStatusJsunit() {
       let strJson = getInspectorByKey('ImageAnimator');
       let obj: ESObject = JSON.parse(strJson);
       console.info("[animationStatus02] obj is: " + JSON.stringify(obj));
-      expect(obj!.$attrs.state).assertEqual('AnimationStatus.Initial');
+      expect(obj.$attrs.state).assertEqual('AnimationStatus.Initial');
       console.info('[animationStatus02] END');
       done();
     });
@@ -73,7 +73,7 @@ export default function animationStatusJsunit() {
       await Utils.sleep(1500);
       let callback = (indexEvent: events_emitter.EventData) => {
         console.info("animationStatus03 get state result is: " + JSON.stringify(indexEvent));
-        expect(indexEvent!.data!.animationStatus).assertEqual(AnimationStatus.Paused);
+        expect(indexEvent.data.animationStatus).assertEqual(AnimationStatus.Paused);
         done();
       }
       let indexEvent: events_emitter.InnerEvent = {
@@ -95,7 +95,7 @@ export default function animationStatusJsunit() {
       await Utils.sleep(1500);
       let callback = (indexEvent: events_emitter.EventData) => {
         console.info("animationStatus04 get state result is: " + JSON.stringify(indexEvent));
-        expect(indexEvent!.data!.animationStatus).assertEqual(AnimationStatus.Stopped);
+        expect(indexEvent.data.animationStatus).assertEqual(AnimationStatus.Stopped);
         done();
       }
       let indexEvent: events_emitter.InnerEvent = {
