@@ -176,14 +176,10 @@ export default function abilityTest() {
         }
         done();
       }, 3000)
-      try {
-        code = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilityDelegator")!.executeShellCommand(cmd, null, () => {
-          console.log('ACTS_ExecuteShellCommand_Callback_0700 fail:');
-          expect().assertFail();
-        })
-      } catch (e) {
-        console.log('ACTS_ExecuteShellCommand_Callback_0700 executeShellCommand failed:' + JSON.stringify(e));
-      }
+      code = AppStorage.get<abilityDelegatorRegistry.AbilityDelegator>("abilityDelegator")!.executeShellCommand(cmd, null, () => {
+        console.log('ACTS_ExecuteShellCommand_Callback_0700 fail:');
+        expect().assertFail();
+      })
     })
 
     /**
