@@ -81,13 +81,18 @@ export default function abilityTest() {
               expect(data.parameters.files).assertEqual(0);
               msg.ACTS_RegisterEvent_Fourth = true;
             }
-            if (msg.ACTS_RegisterEvent_First == true && msg.ACTS_RegisterEvent_Second == true &&
-              msg.ACTS_RegisterEvent_Third == true && msg.ACTS_RegisterEvent_Fourth == true) {
-              commonEvent.unsubscribe(subscriber, async () => {
-                console.log('Acts_CleanTempFiles_0100 unSubscribeCallback');
-                await sleep(500);
-                done();
-              });
+          }, (err) => {
+          console.log('Acts_CleanTempFiles_0101 startAbility err: ' + JSON.stringify(err));
+          expect(err.code).assertEqual(0);
+        })
+        await sleep(4000);
+        console.info('Acts_CleanTempFiles_0100 startAbility two');
+        getContext().startAbility(
+          {
+            bundleName: 'com.acts.cleancachefilesreply',
+            abilityName: 'EntryAbility',
+            parameters: {
+              key: 'Acts_CleanTempFiles_0102'
             }
           });
           await sleep(200);
@@ -162,13 +167,18 @@ export default function abilityTest() {
               expect(data.parameters.message).assertEqual('Try to write feature str.');
               msg.ACTS_RegisterEvent_Fourth = true;
             }
-            if (msg.ACTS_RegisterEvent_First == true && msg.ACTS_RegisterEvent_Second == true &&
-              msg.ACTS_RegisterEvent_Third == true && msg.ACTS_RegisterEvent_Fourth == true) {
-              commonEvent.unsubscribe(subscriber, async () => {
-                console.log('Acts_CleanTempFiles_0200 unSubscribeCallback');
-                await sleep(500);
-                done();
-              });
+          }, (err) => {
+          console.log('Acts_CleanTempFiles_0201 startAbility err: ' + JSON.stringify(err));
+          expect(err.code).assertEqual(0);
+        })
+        await sleep(4000);
+        console.info('Acts_CleanTempFiles_0200 startAbility two');
+        getContext().startAbility(
+          {
+            bundleName: 'com.acts.cleancachefilesreply',
+            abilityName: 'EntryAbility',
+            parameters: {
+              key: 'Acts_CleanTempFiles_0202'
             }
           });
           await sleep(200);
@@ -228,12 +238,18 @@ export default function abilityTest() {
               expect(data.parameters.message).assertEqual('Try to write Acts_CleanTempFiles_0301 str.');
               msg.ACTS_RegisterEvent_Second = true;
             }
-            if (msg.ACTS_RegisterEvent_First == true && msg.ACTS_RegisterEvent_Second == true) {
-              commonEvent.unsubscribe(subscriber, async () => {
-                console.log('Acts_CleanTempFiles_0300 unSubscribeCallback');
-                await sleep(500);
-                done();
-              });
+          }, (err) => {
+          console.log('Acts_CleanTempFiles_0301 startAbility err: ' + JSON.stringify(err));
+          expect(err.code).assertEqual(0);
+        })
+        await sleep(2000);
+        console.info('Acts_CleanTempFiles_0300 startAbility two');
+        getContext().startAbility(
+          {
+            bundleName: 'com.acts.cleancachefilesreply',
+            abilityName: 'EntryAbility',
+            parameters: {
+              key: 'Acts_CleanTempFiles_0302'
             }
           });
           await sleep(200);
@@ -308,12 +324,15 @@ export default function abilityTest() {
               expect(data.parameters.message).assertEqual(0);
               msg.ACTS_RegisterEvent_Second = true;
             }
-            if (msg.ACTS_RegisterEvent_First == true && msg.ACTS_RegisterEvent_Second == true) {
-              commonEvent.unsubscribe(subscriber, async () => {
-                console.log('Acts_CleanTempFiles_0400 unSubscribeCallback');
-                await sleep(500);
-                done();
-              });
+          }, options)
+        await sleep(2000);
+        console.info('Acts_CleanTempFiles_0400 startAbility two');
+        getContext().connectServiceExtensionAbility(
+          {
+            bundleName: 'com.acts.cleancachefilesreply',
+            abilityName: 'ServiceAbility',
+            parameters: {
+              key: 'Acts_CleanTempFiles_0402'
             }
           });
           await sleep(200);
