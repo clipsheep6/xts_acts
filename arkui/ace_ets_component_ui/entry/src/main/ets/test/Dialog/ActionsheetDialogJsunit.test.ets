@@ -13,17 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 
 export default function ActionsheetDialogAJsunit() {
-  describe('ActionsheetDialogAJsunit', function () {
-    beforeEach(async function (done) {
+  describe('ActionsheetDialogAJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("ActionsheetDialogAJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/Dialog/ActionsheetDialog',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/Dialog/ActionsheetDialog',
       }
       try {
         router.clear();
@@ -31,7 +44,7 @@ export default function ActionsheetDialogAJsunit() {
         console.info("get ActionsheetDialogAJsunit state pages: " + JSON.stringify(pages));
         if (!("ActionsheetDialog" == pages.name)) {
           console.info("get ActionsheetDialogAJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push ActionsheetDialogAJsunit page success " + JSON.stringify(result));
         }
@@ -43,17 +56,17 @@ export default function ActionsheetDialogAJsunit() {
     });
 
 
-    it('ActionsheetDialogAJsunit_0100', 0, async function (done) {
+    it('ActionsheetDialogAJsunit_0100', 0, async (done: Function) => {
 
       console.info('ActionsheetDialogAJsunit_0100 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('Actionsheet_dialog_A'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('Actionsheet_dialog_A');
-      let obj = JSON.parse(strJson);
-      console.info("[ActionsheetDialogAJsunit_0100] component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.label).assertEqual("ActionSheet按esc弹窗逐层退出");
+      let strJson: string = getInspectorByKey('Actionsheet_dialog_A');
+
+      console.info("[ActionsheetDialogAJsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.label).assertEqual("ActionSheet按esc弹窗逐层退出");
       console.info('[ActionsheetDialogAJsunit_0100] END');
       await driver.triggerKey(2070)
       await CommonFunc.sleep(1000);
