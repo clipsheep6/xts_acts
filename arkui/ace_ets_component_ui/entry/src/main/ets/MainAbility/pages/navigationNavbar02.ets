@@ -12,29 +12,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct navigationNavbar02 {
-  private arr: number[] = [0, 1, 2, 3]
-  @State isActive: boolean = false
-  @State dex: number = 0
-  @State navBarWidth: number = 240
-  messageManager:MessageManager = new MessageManager()
-  @State navMode: NavigationMode[] = [NavigationMode.Split, NavigationMode.Stack, NavigationMode.Auto]
-  @State navModeIndex: number = 0
-  @State hideNavBar: boolean = false
-  @State minContentWidth: number = 360
-  @State navBarPosition: NavBarPosition[] = [NavBarPosition.Start, NavBarPosition.End]
-  @State navBarPositionIndex: number = 0
+  private arr: number[] = [0, 1, 2, 3];
+  @State isActive: boolean = false;
+  @State dex: number = 0;
+  @State navBarWidth: number = 240;
+  messageManager: MessageManager<ESObject> = new MessageManager();
+  @State navMode: NavigationMode[] = [NavigationMode.Split, NavigationMode.Stack, NavigationMode.Auto];
+  @State navModeIndex: number = 0;
+  @State hideNavBar: boolean = false;
+  @State minContentWidth: number = 360;
+  @State navBarPosition: NavBarPosition[] = [NavBarPosition.Start, NavBarPosition.End];
+  @State navBarPositionIndex: number = 0;
 
   onPageShow() {
     console.info('navigationNavbar02  onPageShow');
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'navBarWidth') {
         this.navBarWidth = message.value;
@@ -63,7 +63,11 @@ struct navigationNavbar02 {
             ListItem() {
               NavRouter() {
                 Row() {
-                  Image($r('app.media.icon')).width(30).height(30).borderRadius(30).margin({ left: 3, right: 10 })
+                  Image($r('app.media.icon'))
+                    .width(30)
+                    .height(30)
+                    .borderRadius(30)
+                    .margin({ left: 3, right: 10 })
                   Text(`NavRouter${item + 1}`)
                     .fontSize(22)
                     .fontWeight(500)
@@ -78,8 +82,13 @@ struct navigationNavbar02 {
                   Text(`我是NavDestination第${item + 1}页内容`).fontSize(50)
                   Flex({ direction: FlexDirection.Row }) {
                     Row() {
-                      Image($r('app.media.icon')).width(40).height(40).borderRadius(40).margin({ right: 15 })
-                      Text('今天共有七节课').fontSize(30)
+                      Image($r('app.media.icon'))
+                        .width(40)
+                        .height(40)
+                        .borderRadius(40)
+                        .margin({ right: 15 })
+                      Text('今天共有七节课')
+                        .fontSize(30)
                     }.padding({ left: 15 })
                   }
                 }.backgroundColor('#ccc')
@@ -88,7 +97,7 @@ struct navigationNavbar02 {
                 this.dex = index
               })
             }
-          }, (item:number) => item.toString())
+          }, (item: number) => item.toString())
         }
         .height('100%')
         .margin({ top: 12, left: 12 })

@@ -1,4 +1,3 @@
-
 /**
  * Copyright (c) 2022 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -20,46 +19,49 @@ import font from '@ohos.font';
 struct FontExample {
   fontList: Array<string>;
   fontInfo: font.FontInfo;
-  @State value:string=''
-  @State value1:string=''
+  @State value: string = '';
+  @State value1: string = '';
 
-  aboutToAppear(){
+  aboutToAppear() {
   }
 
   build() {
     Column() {
       Text(this.value).key('fontList').key('fontlist')
       Text(this.value1).key('fontName').key('fontName')
-      
+
       Button("getSystemFontList")
         .width('60%')
         .height('6%')
-        .onClick(()=>{
+        .onClick(() => {
           this.fontList = font.getSystemFontList()
           this.value = this.fontList.toString()
-        }).margin({top:20}).key("getSystemFontList")
+        })
+        .margin({ top: 20 })
+        .key("getSystemFontList")
 
       Button("getgetFontByName")
         .width('60%')
         .height('6%')
         .key("getgetFontByName")
-        .onClick(()=>{
+        .onClick(() => {
           this.fontInfo = font.getFontByName('HarmonyOS Sans Italic')
-          if(this.fontInfo ! =null) {
-             this.value1 = this.fontInfo.fullName
-             console.log("getFontByName(): path = " + this.fontInfo.path)
-             console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
-             console.log("getFontByName(): fullName = " + this.fontInfo.fullName)
-             console.log("getFontByName(): Family = " + this.fontInfo.family)
-             console.log("getFontByName(): Subfamily = " + this.fontInfo.subfamily)
-             console.log("getFontByName(): weight = " + this.fontInfo.weight)
-             console.log("getFontByName(): width = " + this.fontInfo.width)
-             console.log("getFontByName(): italic = " + this.fontInfo.italic)
-             console.log("getFontByName(): monoSpace = " + this.fontInfo.monoSpace)
-             console.log("getFontByName(): symbolic = " + this.fontInfo.symbolic)
-          } 
-          
-        }).margin({top:20})
+          if (this.fontInfo! = null) {
+            this.value1 = this.fontInfo.fullName
+            console.log("getFontByName(): path = " + this.fontInfo.path)
+            console.log("getFontByName(): postScriptName = " + this.fontInfo.postScriptName)
+            console.log("getFontByName(): fullName = " + this.fontInfo.fullName)
+            console.log("getFontByName(): Family = " + this.fontInfo.family)
+            console.log("getFontByName(): Subfamily = " + this.fontInfo.subfamily)
+            console.log("getFontByName(): weight = " + this.fontInfo.weight)
+            console.log("getFontByName(): width = " + this.fontInfo.width)
+            console.log("getFontByName(): italic = " + this.fontInfo.italic)
+            console.log("getFontByName(): monoSpace = " + this.fontInfo.monoSpace)
+            console.log("getFontByName(): symbolic = " + this.fontInfo.symbolic)
+          }
+
+        })
+        .margin({ top: 20 })
     }.width('100%').height('100%')
   }
 }

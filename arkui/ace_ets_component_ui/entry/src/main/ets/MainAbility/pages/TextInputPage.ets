@@ -12,37 +12,37 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct TextInputPage {
-  @State placeholder: string = 'input your word...'
-  @State type: InputType = InputType.Email
-  @State placeholderColor : Color = Color.Grey
-  @State placeholderFont : Font = { size: 14, weight: 400 }
-  @State enterKeyType: EnterKeyType = EnterKeyType.Search
-  @State caretColor: Color = Color.Blue
-  @State maxLength: number = 10
-  @State copyOption: CopyOptions = CopyOptions.InApp
-  @State showPasswordIcon: boolean = false
-  @State style: TextInputStyle = TextInputStyle.Default
-  @State textAlign: TextAlign = TextAlign.Center
-  @State text: string = 'onChange'
-  @State onSubmit: string = ''
-  @State onEditChange: string = ''
-  @State onCopy: string = ''
-  @State onCut: string = ''
-  @State onPaste: string = ''
-  controller: TextInputController = new TextInputController()
-  messageManager:MessageManager = new MessageManager()
+  @State placeholder: string = 'input your word...';
+  @State type: InputType = InputType.Email;
+  @State placeholderColor: Color = Color.Grey;
+  @State placeholderFont: Font = { size: 14, weight: 400 };
+  @State enterKeyType: EnterKeyType = EnterKeyType.Search;
+  @State caretColor: Color = Color.Blue;
+  @State maxLength: number = 10;
+  @State copyOption: CopyOptions = CopyOptions.InApp;
+  @State showPasswordIcon: boolean = false;
+  @State style: TextInputStyle = TextInputStyle.Default;
+  @State textAlign: TextAlign = TextAlign.Center;
+  @State text: string = 'onChange';
+  @State onSubmit: string = '';
+  @State onEditChange: string = '';
+  @State onCopy: string = '';
+  @State onCut: string = '';
+  @State onPaste: string = '';
+  controller: TextInputController = new TextInputController();
+  messageManager: MessageManager<ESObject> = new MessageManager();
 
   onPageShow() {
     console.info('TextInput onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'placeholder') {
         this.placeholder = message.value

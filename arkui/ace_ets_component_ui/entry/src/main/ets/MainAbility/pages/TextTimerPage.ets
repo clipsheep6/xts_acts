@@ -12,28 +12,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct TextTimerPage {
-  @State isCountDown: boolean = true
-  @State count: number = 50000
-  @State format: string = 'mm:ss.SS'
-  @State start: string = ''
-  @State pause: string = ''
-  @State reset: string = ''
-  @State utc: number = 0
-  @State elapsedTime: number = 0
-  textTimerController: TextTimerController = new TextTimerController()
-  messageManager:MessageManager = new MessageManager()
+  @State isCountDown: boolean = true;
+  @State count: number = 50000;
+  @State format: string = 'mm:ss.SS';
+  @State start: string = '';
+  @State pause: string = '';
+  @State reset: string = '';
+  @State utc: number = 0;
+  @State elapsedTime: number = 0;
+  textTimerController: TextTimerController = new TextTimerController();
+  messageManager: MessageManager<ESObject> = new MessageManager();
 
   onPageShow() {
     console.info('TextTimer onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'isCountDown') {
         this.isCountDown = message.value
@@ -43,7 +43,7 @@ struct TextTimerPage {
       }
       if (message.name == 'format') {
         this.format = message.value
-      }      
+      }
       if (message.name == 'start') {
         this.start = message.value
       }

@@ -12,33 +12,40 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct LoadingProgressExample {
-  @State color:Color = Color.Blue
-  messageManager:MessageManager = new MessageManager()
+  @State color: Color = Color.Blue;
+  messageManager: MessageManager<ESObject> = new MessageManager();
+
   onPageShow() {
     console.info('Gauge onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'color') {
-          this.color = message.value
+        this.color = message.value
       }
-     
+
     }
     this.messageManager.registerCallback(callback)
-
   }
+
   build() {
     Column({ space: 5 }) {
-      Text('Orbital LoadingProgress ').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('Orbital LoadingProgress ')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       LoadingProgress()
-        .color(this.color).key('loadingProgress')
-    }.width('100%').margin({ top: 5 })
+        .color(this.color)
+        .key('loadingProgress')
+    }
+    .width('100%')
+    .margin({ top: 5 })
   }
 }

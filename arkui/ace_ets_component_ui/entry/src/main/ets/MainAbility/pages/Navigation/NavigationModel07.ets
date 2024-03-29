@@ -15,11 +15,11 @@
 @Entry
 @Component
 struct NavigationModel07 {
-  private arr: number[] = [1,2,3,4,5,6,7,8,9]
-  @State text: string = 'start'
-  @State minWidthBar:[Dimension, Dimension] = [50,300]
-  @State currentIndex: number = 0
-  @State strText: string = 'doing'
+  private arr: number[] = [1,2,3,4,5,6,7,8,9];
+  @State text: string = 'start';
+  @State minWidthBar:[Dimension, Dimension] = [50,300];
+  @State currentIndex: number = 0;
+  @State strText: string = 'doing';
   build() {
     Column(){
       Navigation() {

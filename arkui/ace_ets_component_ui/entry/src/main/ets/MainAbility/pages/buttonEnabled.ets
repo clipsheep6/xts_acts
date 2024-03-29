@@ -17,64 +17,61 @@
 @Entry
 @Component
 struct buttonEnabledDemo {
-  @State but: string = 'enabled_true'
-  @State but1: string = 'onClick-禁用'
-  @State but2: string = 'onTouch-禁用'
-  @State but3: string = 'onKeyEvent-禁用'
-
-  @State but4: string = '鼠标事件onHover-禁用'
-  @State but5: string = '鼠标事件onMouse-禁用'
-  @State action: string = ''
-  @State mouseBtn: string = ''
-
-  @State but6: string = '焦点事件-禁用'
-  @State enable: boolean = true
-
+  @State but: string = 'enabled_true';
+  @State but1: string = 'onClick-禁用';
+  @State but2: string = 'onTouch-禁用';
+  @State but3: string = 'onKeyEvent-禁用';
+  @State but4: string = '鼠标事件onHover-禁用';
+  @State but5: string = '鼠标事件onMouse-禁用';
+  @State action: string = '';
+  @State mouseBtn: string = '';
+  @State but6: string = '焦点事件-禁用';
+  @State enable: boolean = true;
 
   build() {
     Column({ space: 10 }) {
       Button(this.but)
         .key("btnEnd")
         .onClick(() => {
-          this.but = '点击事件已触发'
+          this.but = '点击事件已触发';
         })
         .enabled(true)
 
       Button(this.but1)
         .key("btnEnd1")
         .onClick(() => {
-          this.but1 = '点击事件已触发'
+          this.but1 = '点击事件已触发';
         })
         .enabled(false)
 
       Button(this.but2)
         .key("btnEnd2")
         .onTouch(() => {
-          this.but2 = '触摸事件已触发'
+          this.but2 = '触摸事件已触发';
         })
         .enabled(false)
 
       Button(this.but3)
         .key("btnEnd3")
         .onKeyEvent(() => {
-          this.but3 = '按键事件已触发'
+          this.but3 = '按键事件已触发';
         })
         .enabled(false)
 
       Button(this.but4)
         .key("btnEnd4")
         .onHover(() => {
-          this.but4 = '鼠标事件onHover 已触发'
+          this.but4 = '鼠标事件onHover 已触发';
         })
         .enabled(false)
 
       Button(this.but5)
         .key("btnEnd5")
         .onClick((event: MouseEvent) => {
-          switch (event.button){
+          switch (event.button) {
             case MouseButton.None:
-             this.mouseBtn = 'None';
-             break;
+              this.mouseBtn = 'None';
+              break;
             case MouseButton.Left:
               this.mouseBtn = 'Left';
               break;
@@ -91,7 +88,7 @@ struct buttonEnabledDemo {
               this.mouseBtn = 'Middle';
               break;
           }
-          switch (event.action){
+          switch (event.action) {
             case MouseAction.Hover:
               this.action = 'Hover';
               break;

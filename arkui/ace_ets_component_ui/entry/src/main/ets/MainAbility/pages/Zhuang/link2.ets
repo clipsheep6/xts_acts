@@ -13,19 +13,20 @@
  * limitations under the License.
  */
 @Component
-struct  CompE{
-  @Link color1: Color | undefined | null
-  @Link color2: Color | undefined | null
-  @Link number1: number | undefined | null
-  @Link number2: number | undefined | null
-  build(){
-    Row({ space: 5 }){
+struct CompE {
+  @Link color1: Color | undefined | null;
+  @Link color2: Color | undefined | null;
+  @Link number1: number | undefined | null;
+  @Link number2: number | undefined | null;
+
+  build() {
+    Row({ space: 5 }) {
       Column({ space: 20 }) {
         Text("Link子组件颜色Red-->undefined")
         Button('button')
           .backgroundColor(this.color1)
           .onClick(() => {
-            this.color1 = undefined
+            this.color1 = undefined;
           })
           .key('linkBtn1')
 
@@ -33,7 +34,7 @@ struct  CompE{
         Button('button')
           .backgroundColor(this.color2)
           .onClick(() => {
-            this.color2 = null
+            this.color2 = null;
           })
           .key('linkBtn2')
 
@@ -41,7 +42,7 @@ struct  CompE{
         Button('button')
           .fontSize(this.number1)
           .onClick(() => {
-            this.number1 = undefined
+            this.number1 = undefined;
           })
           .key('linkBtn3')
 
@@ -49,30 +50,24 @@ struct  CompE{
         Button('button')
           .fontSize(this.number2)
           .onClick(() => {
-            this.number2 = null
+            this.number2 = null;
           })
           .key('linkBtn4')
 
 
-
-      }.width('100%').margin({top:10})
+      }.width('100%').margin({ top: 10 })
     }
   }
-
 }
-
-
-
-
 
 
 @Entry
 @Component
 struct Link1 {
-  @State color1: Color | undefined | null = Color.Red
-  @State color2: Color | undefined | null = Color.Red
-  @State number1: number | undefined | null = 100
-  @State number2: number | undefined | null = 100
+  @State color1: Color | undefined | null = Color.Red;
+  @State color2: Color | undefined | null = Color.Red;
+  @State number1: number | undefined | null = 100;
+  @State number2: number | undefined | null = 100;
 
   build() {
     Row() {
@@ -84,7 +79,7 @@ struct Link1 {
             Button('button')
               .backgroundColor(this.color1)
               .onClick(() => {
-                this.color1 = undefined
+                this.color1 = undefined;
               })
               .key('liBtn1')
 
@@ -92,7 +87,7 @@ struct Link1 {
             Button('button')
               .backgroundColor(this.color2)
               .onClick(() => {
-                this.color2 = null
+                this.color2 = null;
               })
               .key('liBtn2')
 
@@ -100,7 +95,7 @@ struct Link1 {
             Button('button')
               .fontSize(this.number1)
               .onClick(() => {
-                this.number1 = undefined
+                this.number1 = undefined;
               })
               .key('liBtn3')
 
@@ -108,13 +103,15 @@ struct Link1 {
             Button('button')
               .fontSize(this.number2)
               .onClick(() => {
-                this.number2 = null
+                this.number2 = null;
               })
               .key('liBtn4')
 
-            CompE({ color1:this.color1,color2:this.color2,number1:this.number1,number2:this.number2})
+            CompE({ color1: this.color1, color2: this.color2, number1: this.number1, number2: this.number2 })
 
-          }.width('100%').margin({top:10})
+          }
+          .width('100%')
+          .margin({ top: 10 })
         }
       }
     }

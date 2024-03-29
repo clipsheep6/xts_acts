@@ -12,24 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct NavRouterPage {
-  private arr: number[] = [0, 1, 2, 3]
-  @State isActive: boolean = false
-  @State dex: number = 0
-  @State stateChange: string = ''
-  @State routerState: string = ''
-  messageManager: MessageManager = new MessageManager()
+  private arr: number[] = [0, 1, 2, 3];
+  @State isActive: boolean = false;
+  @State dex: number = 0;
+  @State stateChange: string = '';
+  @State routerState: string = '';
+  messageManager: MessageManager<ESObject> = new MessageManager();
 
   onPageShow() {
     console.info('NavRouter onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback = (message: any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'arr') {
         this.arr = message.value
@@ -55,7 +55,11 @@ struct NavRouterPage {
             ListItem() {
               NavRouter() {
                 Row() {
-                  Image($r('app.media.icon')).width(30).height(30).borderRadius(30).margin({ left: 3, right: 10 })
+                  Image($r('app.media.icon'))
+                    .width(30)
+                    .height(30)
+                    .borderRadius(30)
+                    .margin({ left: 3, right: 10 })
                   Text(`NavRouter${item + 1}`)
                     .fontSize(22)
                     .fontWeight(500)
@@ -70,8 +74,14 @@ struct NavRouterPage {
                   Text(`我是NavDestination第${item + 1}页内容`).fontSize(50)
                   Flex({ direction: FlexDirection.Row }) {
                     Row() {
-                      Image($r('app.media.icon')).width(40).height(40).borderRadius(40).margin({ right: 15 })
-                      Text('Hello').fontSize(30).key('textContent')
+                      Image($r('app.media.icon'))
+                        .width(40)
+                        .height(40)
+                        .borderRadius(40)
+                        .margin({ right: 15 })
+                      Text('Hello')
+                        .fontSize(30)
+                        .key('textContent')
                     }.padding({ left: 15 })
                   }
                 }.backgroundColor('#ccc')
@@ -89,7 +99,7 @@ struct NavRouterPage {
                 }
               })
             }
-          }, item => item)
+          }, (item: string) => item)
         }
         .height('100%')
         .margin({ top: 12, left: 12 })
@@ -98,8 +108,9 @@ struct NavRouterPage {
       .hideTitleBar(true)
       .hideToolBar(true)
       .height('80%')
-    Text(this.stateChange).fontSize(20).margin(10).key('testT')
-    Text(this.routerState).fontSize(20).margin(10).key('TestRouter')
+
+      Text(this.stateChange).fontSize(20).margin(10).key('testT')
+      Text(this.routerState).fontSize(20).margin(10).key('TestRouter')
     }.height('100%')
   }
 }

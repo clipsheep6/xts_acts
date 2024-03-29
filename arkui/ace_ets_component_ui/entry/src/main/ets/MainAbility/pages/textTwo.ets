@@ -12,39 +12,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct TextExample2 {
-  @State type: TextDecorationType = TextDecorationType.LineThrough
-  @State color: string = '#FFEEAF'
-  @State baselineOffset: number = 0
-  @State letterSpacing: number = 0
-  @State textCase: TextCase = TextCase.Normal
-  messageManager:MessageManager = new MessageManager()
+  @State type: TextDecorationType = TextDecorationType.LineThrough;
+  @State color: string = '#FFEEAF';
+  @State baselineOffset: number = 0;
+  @State letterSpacing: number = 0;
+  @State textCase: TextCase = TextCase.Normal;
+  messageManager: MessageManager<ESObject> = new MessageManager();
 
   onPageShow() {
     console.info('text onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'type') {
-          this.type = message.value
+        this.type = message.value
       }
       if (message.name == 'color') {
-          this.color = message.value
+        this.color = message.value
       }
       if (message.name == 'baselineOffset') {
-          this.baselineOffset = message.value
+        this.baselineOffset = message.value
       }
       if (message.name == 'letterSpacing') {
-          this.letterSpacing = message.value
+        this.letterSpacing = message.value
       }
       if (message.name == 'textCase') {
-          this.textCase = message.value
+        this.textCase = message.value
       }
     }
     this.messageManager.registerCallback(callback)
@@ -61,7 +61,8 @@ struct TextExample2 {
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
-        .width('100%').key("text1")
+        .width('100%')
+        .key("text1")
 
 
       Text('This is the text content with the decoration set to Overline and the color set to Red.')
@@ -92,7 +93,8 @@ struct TextExample2 {
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
-        .width('100%').key('text2')
+        .width('100%')
+        .key('text2')
       Text('This is the text content with baselineOffset 30.')
         .baselineOffset(30)
         .fontSize(12)
@@ -113,7 +115,8 @@ struct TextExample2 {
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
-        .width('100%').key('text3')
+        .width('100%')
+        .key('text3')
       Text('This is the text content with letterSpacing 3.')
         .letterSpacing(3)
         .fontSize(12)
@@ -133,7 +136,8 @@ struct TextExample2 {
         .fontSize(12)
         .border({ width: 1 })
         .padding(10)
-        .width('100%').key("text5")
+        .width('100%')
+        .key("text5")
       // 文本全小写展示
       Text('This is the text content with textCase set to LowerCase.')
         .textCase(TextCase.LowerCase)

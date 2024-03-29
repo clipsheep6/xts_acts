@@ -13,14 +13,20 @@
  * limitations under the License.
  */
 import promptA from '@ohos.promptAction';
+
+class TN {
+  text: string;
+  num: number
+}
+
 @Entry
 @Component
 struct NavigationExample2 {
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @State currentIndex: number = 0
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  @State currentIndex: number = 0;
   navPathStack = new NavPathStack();
-  private value:unknown = [1,24,5,6]
-  @State Build: Array<Object> = [
+  private value: number[] = [1, 24, 5, 6];
+  @State Build: Array<TN> = [
     {
       text: 'add',
       num: 0
@@ -35,8 +41,8 @@ struct NavigationExample2 {
     }
   ]
 
-
-  @Builder NavigationTitle() {
+  @Builder
+  NavigationTitle() {
     Column() {
       Text('Title')
         .fontColor('#182431')
@@ -52,7 +58,8 @@ struct NavigationExample2 {
     }.alignItems(HorizontalAlign.Start)
   }
 
-  @Builder NavigationMenus() {
+  @Builder
+  NavigationMenus() {
     Row() {
       Text("1")
         .width(24)
@@ -64,7 +71,6 @@ struct NavigationExample2 {
     }
   }
 
-
   build() {
     Stack({ alignContent: Alignment.TopStart }) {
       Navigation(this.navPathStack) {
@@ -75,7 +81,7 @@ struct NavigationExample2 {
           .backgroundColor('#FFFFFF')
           .margin({ top: 8 })
         List({ space: 12, initialIndex: 0 }) {
-          ForEach(this.arr, (item) => {
+          ForEach(this.arr, (item: string) => {
             ListItem() {
               Text('' + item)
                 .width('90%')
@@ -86,7 +92,7 @@ struct NavigationExample2 {
                 .fontWeight(500)
                 .textAlign(TextAlign.Center)
             }.editable(true)
-          }, item => item)
+          }, (item: string) => item)
         }
         .height(324)
         .width('100%')
@@ -98,9 +104,9 @@ struct NavigationExample2 {
       .hideTitleBar(false)
       .key('navigationAdd')
       .hideToolBar(false)
-      .navDestination((name,parm)=> {
-          this.navPathStack.pushPathByName(name,parm)
-          promptA.showToast({message:name})
+      .navDestination((name, parm) => {
+        this.navPathStack.pushPathByName(name, parm)
+        promptA.showToast({ message: name })
 
       })
       .onTitleModeChange((titleModel: NavigationTitleMode) => {
@@ -110,7 +116,7 @@ struct NavigationExample2 {
       Button('pushPathByName')
         .height('5%')
         .onClick(() => { // 点击后下滑指定距离150.0vp
-          this.navPathStack.pushPathByName('navidesnation_add',this.value)
+          this.navPathStack.pushPathByName('navidesnation_add', this.value)
         })
         .margin({ top: 10, left: 20 })
       Button('popToName')
@@ -128,13 +134,13 @@ struct NavigationExample2 {
       Button('movetoTop')
         .height('5%')
         .onClick(() => { // 点击后回到顶部
-            this.navPathStack.moveToTop("navidesnation_add")
+          this.navPathStack.moveToTop("navidesnation_add")
         })
         .margin({ top: 150, left: 20 })
       Button('moveIndexToTop')
         .height('5%')
         .onClick(() => { // 点击后滑到下一页
-            this.navPathStack.moveIndexToTop(0)
+          this.navPathStack.moveIndexToTop(0)
         }).margin({ top: 200, left: 20 })
       Button('getAllPathName')
         .height('5%')
@@ -160,12 +166,11 @@ struct NavigationExample2 {
       Button('pushPaht')
         .height('5%')
         .onClick(() => { // 点击后滑到下一页
-          this.navPathStack.pushPath(new NavPathInfo("",""))
+          this.navPathStack.pushPath(new NavPathInfo("", ""))
         }).margin({ top: 400, left: 20 })
 
 
     }.width('100%').height('100%').backgroundColor(0xDCDCDC)
-
 
   }
 }

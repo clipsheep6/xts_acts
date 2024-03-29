@@ -14,29 +14,36 @@
  */
 
 class LinkModel {
-  value: string
+  value: string;
 
   constructor(value: string) {
-    this.value = value
+    this.value = value;
   }
 }
 
-enum KFC{A=1,B,C}
+enum KFC {A = 1, B, C};
+
 @Entry
 @Component
 struct parData_Link {
-  @State numA:number = 0
-  @State text:string = 'hello'
-  @State flag:boolean = true
+  @State numA: number = 0
+  @State text: string = 'hello'
+  @State flag: boolean = true
   @State enum: KFC = KFC.A
   @State class: LinkModel = { value: 'Hello World' }
-  @State strArray : Array<string> = ['First','Second','Third']
-
+  @State strArray: Array<string> = ['First', 'Second', 'Third']
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
 
-      sonData_Link({message: $text, numB: $numA, boolean: $flag, enu: $enum, class: $class, strArray: $strArray})
+      sonData_Link({
+        message: $text,
+        numB: $numA,
+        boolean: $flag,
+        enu: $enum,
+        class: $class,
+        strArray: $strArray
+      })
     }
     .width('100%')
     .height('100%')
@@ -44,17 +51,16 @@ struct parData_Link {
 }
 
 @Component
-struct sonData_Link{
+struct sonData_Link {
   @Link numB: number
   @Link message: string
   @Link boolean: boolean
   @Link enu: KFC
   @Link class: LinkModel
-  @Link strArray : Array<string>
+  @Link strArray: Array<string>
 
-
-  build(){
-    Column({space:10}){
+  build() {
+    Column({ space: 10 }) {
       Text('string: ' + this.message).key("link_str")
         .fontSize(30)
       Button('Click to change str')
@@ -67,7 +73,7 @@ struct sonData_Link{
         .fontSize(30)
       Button('Click to change num')
         .key(("numBtn_link"))
-        .onClick(()=>{
+        .onClick(() => {
           this.numB++;
         })
 
@@ -83,7 +89,7 @@ struct sonData_Link{
         .fontSize(30)
       Button('Click to change enum')
         .key(("enumBtn_link"))
-        .onClick(()=>{
+        .onClick(() => {
           this.enu = KFC.B
         })
 
@@ -91,7 +97,7 @@ struct sonData_Link{
         .fontSize(30)
       Button('Click to change class')
         .key(("claBtn_link"))
-        .onClick(()=>{
+        .onClick(() => {
           this.class.value = 'Hi ArkUI'
         })
 
@@ -99,8 +105,8 @@ struct sonData_Link{
         .fontSize(30)
       Button('Click to change strArray')
         .key(("sArrBtn_link"))
-        .onClick(()=>{
-          this.strArray = ['A','B','C']
+        .onClick(() => {
+          this.strArray = ['A', 'B', 'C']
         })
     }
   }

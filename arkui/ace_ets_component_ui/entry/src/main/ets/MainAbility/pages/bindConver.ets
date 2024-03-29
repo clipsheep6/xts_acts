@@ -1,4 +1,3 @@
-
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,16 +15,18 @@
 @Entry
 @Component
 struct ModalTransitionExample {
-  @State isShow:boolean = false
-  @State isShow2:boolean = false
-  @State sheetHeight:number = 300;
-  @State showDragBar:boolean = true;
-  @Builder myBuilder2() {
+  @State isShow: boolean = false;
+  @State isShow2: boolean = false;
+  @State sheetHeight: number = 300;
+  @State showDragBar: boolean = true;
+
+  @Builder
+  myBuilder2() {
     Column() {
       Button("close modal 2")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow2 = false;
         })
     }
@@ -33,32 +34,71 @@ struct ModalTransitionExample {
     .height('100%')
   }
 
-  @Builder myBuilder() {
+  @Builder
+  myBuilder() {
     Column() {
       Button("sheetSize")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow2 = true;
-        }).bindSheet($$this.isShow, this.myBuilder(), {height: SheetSize.MEDIUM, dragBar: this.showDragBar, backgroundColor: Color.Green, onAppear: () => {console.log("BindSheet onAppear.")}, onDisappear: () => {console.log("BindSheet onDisappear.")}})
-          .bindSheet($$this.isShow, this.myBuilder(), {height: SheetSize.LARGE, dragBar: this.showDragBar, backgroundColor: Color.Green, onAppear: () => {console.log("BindSheet onAppear.")}, onDisappear: () => {console.log("BindSheet onDisappear.")}})
+        })
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          height: SheetSize.MEDIUM,
+          dragBar: this.showDragBar,
+          backgroundColor: Color.Green,
+          onAppear: () => {
+            console.log("BindSheet onAppear.")
+          },
+          onDisappear: () => {
+            console.log("BindSheet onDisappear.")
+          }
+        })
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          height: SheetSize.LARGE,
+          dragBar: this.showDragBar,
+          backgroundColor: Color.Green,
+          onAppear: () => {
+            console.log("BindSheet onAppear.")
+          },
+          onDisappear: () => {
+            console.log("BindSheet onDisappear.")
+          }
+        })
       Button("transition modal 2")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow2 = true;
-        }).bindContentCover($$this.isShow2, this.myBuilder2(), {modalTransition: ModalTransition.NONE, backgroundColor: Color.Orange, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        })
+        .bindContentCover($$this.isShow2, this.myBuilder2(), {
+          modalTransition: ModalTransition.NONE,
+          backgroundColor: Color.Orange,
+          onAppear: () => {
+            console.log("BindContentCover onAppear.")
+          },
+          onDisappear: () => {
+            console.log("BindContentCover onDisappear.")
+          }
+        })
 
       Button("close modal 1")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow = false;
         })
-      Progress({ value: 100, total: 100,type: ProgressType.Capsule }).width(100).height(50)
-        .style({borderColor: Color.Blue, borderWidth: 1, content: 'Installing...',enableSmoothEffect:false,
-          font: {size: 13, style: FontStyle.Normal}, fontColor: Color.Gray,
-          enableScanEffect: false, showDefaultPercentage: false})
+      Progress({ value: 100, total: 100, type: ProgressType.Capsule }).width(100).height(50)
+        .style({
+          borderColor: Color.Blue,
+          borderWidth: 1,
+          content: 'Installing...',
+          enableSmoothEffect: false,
+          font: { size: 13, style: FontStyle.Normal },
+          fontColor: Color.Gray,
+          enableScanEffect: false,
+          showDefaultPercentage: false
+        })
     }
     .width('100%')
     .height('100%')
@@ -74,15 +114,34 @@ struct ModalTransitionExample {
         .key('buttonAdd')
         .fontSize(20)
         .margin(10)
-        .bindContentCover($$this.isShow,this.myBuilder(),{modalTransition:ModalTransition.NONE})
-        .bindContentCover($$this.isShow, this.myBuilder(), {modalTransition: ModalTransition.NONE, backgroundColor: Color.Pink, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        .bindContentCover($$this.isShow, this.myBuilder(), { modalTransition: ModalTransition.NONE })
+        .bindContentCover($$this.isShow, this.myBuilder(), {
+          modalTransition: ModalTransition.NONE,
+          backgroundColor: Color.Pink,
+          onAppear: () => {
+            console.log("BindContentCover onAppear.")
+          },
+          onDisappear: () => {
+            console.log("BindContentCover onDisappear.")
+          }
+        })
       Button("transition modal 2")
         .onClick(() => {
           this.isShow = true
         })
         .fontSize(20)
         .margin(10)
-        .bindSheet($$this.isShow, this.myBuilder(), {height: this.sheetHeight, dragBar: this.showDragBar, backgroundColor: Color.Green, onAppear: () => {console.log("BindSheet onAppear.")}, onDisappear: () => {console.log("BindSheet onDisappear.")}})
+        .bindSheet($$this.isShow, this.myBuilder(), {
+          height: this.sheetHeight,
+          dragBar: this.showDragBar,
+          backgroundColor: Color.Green,
+          onAppear: () => {
+            console.log("BindSheet onAppear.")
+          },
+          onDisappear: () => {
+            console.log("BindSheet onDisappear.")
+          }
+        })
 
 
     }

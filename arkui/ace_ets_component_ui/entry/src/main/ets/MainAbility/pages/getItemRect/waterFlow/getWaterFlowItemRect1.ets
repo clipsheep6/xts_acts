@@ -19,31 +19,31 @@ import { WaterFlowDataSource } from './WaterFlowDataSource'
 @Entry
 @Component
 struct getWaterFlowItemRect1 {
-  @State minSize: number = 80
-  @State maxSize: number = 180
-  @State fontSize: number = 24
-  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  scroller: Scroller = new Scroller()
-  datasource: WaterFlowDataSource = new WaterFlowDataSource()
-  private itemWidthArray: number[] = []
-  private itemHeightArray: number[] = []
+  @State minSize: number = 80;
+  @State maxSize: number = 180;
+  @State fontSize: number = 24;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  scroller: Scroller = new Scroller();
+  datasource: WaterFlowDataSource = new WaterFlowDataSource();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
 
-  @State padding1: number = 0
-  @State margin1: number = 0
+  @State padding1: number = 0;
+  @State margin1: number = 0;
 
-  @State index: number = 0
-  @State x: number = 0
-  @State y: number = 0
-  @State width1: number = 0
-  @State height1: number = 0
+  @State index: number = 0;
+  @State x: number = 0;
+  @State y: number = 0;
+  @State width1: number = 0;;
+  @State height1: number = 0;
 
-  messageManager:MessageManager = new MessageManager()
+  messageManager:MessageManager<ESObject> = new MessageManager()
   onPageShow() {
     console.info('getWaterFlowItemRect1 onPageShow');
     globalThis.value = {
       name:'messageManager',message:this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback:Callback<ESObject> = (message:ESObject) => {
       console.error('message = ' + message.name + "--" + message.value);
       if(message.name == 'index') {
         this.index = message.value;

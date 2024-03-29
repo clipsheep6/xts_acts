@@ -51,13 +51,13 @@ struct PropObject {
         Text('@Prop 支持多数据类型Object、Class').fontSize(18).margin(5)
         Text('Click to change Class or Object: ' + this.title.value).margin(5)
           .id("prop_Object_AA")
-        Button('Click to change Class or Object: ' ).margin(5)
+        Button('Click to change Class or Object: ').margin(5)
           .id("prop_Object_A")
           .onClick(() => {
             // 动态修改Class类型赋值
             this.title = new ClassA2('Hi');
           })
-        ChildPropObjectS({subClass: this.title})
+        ChildPropObjectS({ subClass: this.title })
       }
     }
   }

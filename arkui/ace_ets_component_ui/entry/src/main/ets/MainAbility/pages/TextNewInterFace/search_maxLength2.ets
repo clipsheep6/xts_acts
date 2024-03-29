@@ -15,9 +15,10 @@
 @Entry
 @Component
 struct SearchMaxLength2 {
-  @State submitValue: string = ''
-  @State text: string = ''
-  @State maxLength: number = 6
+  @State submitValue: string = '';
+  @State text: string = '';
+  @State maxLength: number = 6;
+
   build() {
     Column() {
       Search({ value: this.text, placeholder: 'Type to search...' })
@@ -30,7 +31,7 @@ struct SearchMaxLength2 {
         .onChange((value: string) => {
           this.text = value
         })
-      Row(){
+      Row() {
         Button('maxLength:9').key('SearchMaxLength9')
           .onClick(() => {
             this.maxLength = 9
@@ -41,7 +42,8 @@ struct SearchMaxLength2 {
             this.maxLength -= 1
           })
       }
-      Row(){
+
+      Row() {
         Button('123456789').key('setText')
           .onClick(() => {
             this.text = '123456789'

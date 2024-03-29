@@ -15,27 +15,38 @@
 @Entry
 @Component
 struct NavRouterExample {
-  private arr: number[] = [0, 1, 2, 3]
-  @State isActive: boolean = false
-  @State dex: number = 0
-  @State value:boolean = false;
+  private arr: number[] = [0, 1, 2, 3];
+  @State isActive: boolean = false;
+  @State dex: number = 0;
+  @State value: boolean = false;
+
   build() {
     Column() {
       NavDestination() {
-        Text(`我是NavDestination1页内容`).fontSize(50)
+        Text(`我是NavDestination1页内容`)
+          .fontSize(50)
         Flex({ direction: FlexDirection.Row }) {
           Row() {
-            Image($r('app.media.icon')).width(40).height(40).borderRadius(40).margin({ right: 15 })
-            Text('今天共有七节课').fontSize(30)
+            Image($r('app.media.icon'))
+              .width(40)
+              .height(40)
+              .borderRadius(40)
+              .margin({ right: 15 })
+            Text('今天共有七节课')
+              .fontSize(30)
           }.padding({ left: 15 })
         }
-      }.backgroundColor('#ccc')
-      .title(`NavDestination1`).onShown(()=>{
+      }
+      .backgroundColor('#ccc')
+      .title(`NavDestination1`)
+      .onShown(() => {
 
-      }).onHidden(()=>{
+      })
+      .onHidden(() => {
 
-      }).onBackPressed(()=> {
-          return this.value
+      })
+      .onBackPressed(() => {
+        return this.value
       })
     }.height('100%')
   }

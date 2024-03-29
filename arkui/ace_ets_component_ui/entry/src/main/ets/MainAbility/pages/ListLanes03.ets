@@ -15,11 +15,11 @@
 @Entry
 @Component
 struct ListLanes03 {
-  private arr: number[] = [0, 1]
-  @State listDirection: Axis = Axis.Vertical
-  @State listSpace: string = '20'
-  @State alignListItem: ListItemAlign = ListItemAlign.Start
-  @State initialIndex: number = 0
+  private arr: number[] = [0, 1];
+  @State listDirection: Axis = Axis.Vertical;
+  @State listSpace: string = '20';
+  @State alignListItem: ListItemAlign = ListItemAlign.Start;
+  @State initialIndex: number = 0;
 
   build() {
     Column() {
@@ -27,8 +27,12 @@ struct ListLanes03 {
         ForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
-              .width('100%').height(100).fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
           }.key('ListLanes31_' + item)
         }, (item: string) => item)
       }
@@ -44,8 +48,12 @@ struct ListLanes03 {
         ForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
-              .width('100%').height(100).fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
           }.key('ListLanes32_' + item)
         }, (item: string) => item)
       }
@@ -61,8 +69,12 @@ struct ListLanes03 {
         ForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
-              .width('100%').height(100).fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
           }.key('ListLanes33_' + item)
         }, (item: string) => item)
       }
@@ -78,8 +90,12 @@ struct ListLanes03 {
         ForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
-              .width('100%').height(100).fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+              .width('100%')
+              .height(100)
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
           }.key('ListLanes34_' + item)
         }, (item: string) => item)
       }

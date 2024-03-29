@@ -12,28 +12,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct search_center {
-  private arr:number[] = [0,1,2,3]
+  private arr: number[] = [0, 1, 2, 3]
   scroll: Scroller = new Scroller()
-  messageManager:MessageManager = new MessageManager()
+  messageManager: MessageManager<ESObject> = new MessageManager()
 
   onPageShow() {
     console.info('search_center onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
   }
 
-  build(){
-    Row(){
-      Column(){
-        Scroll(this.scroll){
-          Column(){
-            ForEach(this.arr,(item:number) => {
+  build() {
+    Row() {
+      Column() {
+        Scroll(this.scroll) {
+          Column() {
+            ForEach(this.arr, (item: number) => {
               Text(item.toString())
                 .width('90%')
                 .height(150)
@@ -41,17 +41,17 @@ struct search_center {
                 .borderRadius(15)
                 .fontSize(16)
                 .textAlign(TextAlign.Center)
-                .margin({top:10})
+                .margin({ top: 10 })
                 .key('search_center_text_1' + item)
             })
 
-            Search({placeholder:'search位于滚动容器中部'})
+            Search({ placeholder: 'search位于滚动容器中部' })
               .searchButton('SEARCH')
               .searchIcon({
                 src: $r('app.media.icon')
               })
               .cancelButton({
-                style:CancelButtonStyle.CONSTANT,
+                style: CancelButtonStyle.CONSTANT,
                 icon: {
                   src: $r('app.media.icon')
                 }
@@ -59,9 +59,9 @@ struct search_center {
               .width('90%')
               .height(40)
               .placeholderColor(Color.Grey)
-              .placeholderFont({size:14,weight:400})
-              .caretStyle({width:2,color:Color.Orange})
-              .textFont({size:14,weight:400})
+              .placeholderFont({ size: 14, weight: 400 })
+              .caretStyle({ width: 2, color: Color.Orange })
+              .textFont({ size: 14, weight: 400 })
               .selectionMenuHidden(false)
               .backgroundColor("#7ebfe76e")
               .cancelButton({
@@ -72,13 +72,13 @@ struct search_center {
               })
               .caretStyle({
                 width: 10,
-                color:'#007DFF'
+                color: '#007DFF'
               })
-              .margin({top:10})
+              .margin({ top: 10 })
               .enableKeyboardOnFocus(false)
               .key('search_center_search_01')
 
-            ForEach(this.arr,(item:number) => {
+            ForEach(this.arr, (item: number) => {
               Text(item.toString())
                 .width('90%')
                 .height(150)
@@ -86,13 +86,14 @@ struct search_center {
                 .borderRadius(15)
                 .fontSize(16)
                 .textAlign(TextAlign.Center)
-                .margin({top:10})
+                .margin({ top: 10 })
                 .key('search_center_text_2' + item)
 
             })
 
           }.width('100%').key('search_center_Column_1')
-        }.expandSafeArea([SafeAreaType.KEYBOARD])
+        }
+        .expandSafeArea([SafeAreaType.KEYBOARD])
         .scrollable(ScrollDirection.Vertical)
         .scrollBar(BarState.On)
         .scrollBarColor(Color.Gray)
@@ -106,5 +107,4 @@ struct search_center {
     .height('100%')
     .alignItems(VerticalAlign.Top)
   }
-
 }

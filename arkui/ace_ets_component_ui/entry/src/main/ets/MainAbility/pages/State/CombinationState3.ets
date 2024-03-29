@@ -24,6 +24,7 @@ class SubClass4 {
 class ClassA3 {
   public value: number;
   public sum: SubClass4;
+
   constructor(value: number, sum: SubClass4) {
     this.value = value;
     this.sum = sum;
@@ -37,10 +38,16 @@ struct ChildPropState33 {
 
   build() {
     Column() {
-      Text(`子组件ChildPropState1: ${this.counterVal.value}`).fontSize(18).margin(2)
-        .key("ChildPropState1").height(30)
-      Text(`子组件ChildPropState2: ${this.counterVal.sum.value}`).fontSize(18).margin(2)
-        .key("ChildPropState2").height(30)
+      Text(`子组件ChildPropState1: ${this.counterVal.value}`)
+        .fontSize(18)
+        .margin(2)
+        .key("ChildPropState1")
+        .height(30)
+      Text(`子组件ChildPropState2: ${this.counterVal.sum.value}`)
+        .fontSize(18)
+        .margin(2)
+        .key("ChildPropState2")
+        .height(30)
     }.width('100%')
   }
 }
@@ -52,10 +59,16 @@ struct ChildProvide {
 
   build() {
     Column() {
-      Text(`子组件ChildProvide1: ${this.counterVal.value}`).fontSize(18).margin(2)
-        .key("ChildProvide1").height(20)
-      Text(`子组件ChildProvide2: ${this.counterVal.sum.value}`).fontSize(18).margin(2)
-        .key("ChildProvide2").height(20)
+      Text(`子组件ChildProvide1: ${this.counterVal.value}`)
+        .fontSize(18)
+        .margin(2)
+        .key("ChildProvide1")
+        .height(20)
+      Text(`子组件ChildProvide2: ${this.counterVal.sum.value}`)
+        .fontSize(18)
+        .margin(2)
+        .key("ChildProvide2")
+        .height(20)
     }.width('100%')
   }
 }
@@ -67,10 +80,16 @@ struct ChildLink3 {
 
   build() {
     Column() {
-      Text(`子组件ChildLink1: ${this.counterVal.value}`).fontSize(18).margin(5)
-        .key("ChildLink1").height(20)
-      Text(`子组件ChildLink2: ${this.counterVal.sum.value}`).fontSize(18).margin(5)
-        .key("ChildLink2").height(20)
+      Text(`子组件ChildLink1: ${this.counterVal.value}`)
+        .fontSize(18)
+        .margin(5)
+        .key("ChildLink1")
+        .height(20)
+      Text(`子组件ChildLink2: ${this.counterVal.sum.value}`)
+        .fontSize(18)
+        .margin(5)
+        .key("ChildLink2")
+        .height(20)
     }.width('100%')
   }
 }
@@ -82,10 +101,16 @@ struct ChildProp {
 
   build() {
     Column() {
-      Text(`子组件ChildProp1: ${this.counterVal.value}`).fontSize(18).margin(5)
-        .key("ChildProp1").height(20)
-      Text(`子组件ChildProp2: ${this.counterVal.sum.value}`).fontSize(18).margin(5)
-        .key("ChildProp2").height(20)
+      Text(`子组件ChildProp1: ${this.counterVal.value}`)
+        .fontSize(18)
+        .margin(5)
+        .key("ChildProp1")
+        .height(20)
+      Text(`子组件ChildProp2: ${this.counterVal.sum.value}`)
+        .fontSize(18)
+        .margin(5)
+        .key("ChildProp2")
+        .height(20)
     }.width('100%')
   }
 }
@@ -99,12 +124,12 @@ struct PropObjectLink3 {
       Text('@ObjectLink支持初始化@State修饰的数据')
       Text("@State能接收来自@ObjectLink的一层属性值")
       Text("@State不能接收来自@ObjectLink的二层属性值")
-      ChildPropState33({counterVal: this.class_A})
+      ChildPropState33({ counterVal: this.class_A })
 
       Text('@ObjectLink支持初始化@Provide修饰的数据')
       Text("@Provide能接收来自@ObjectLink的一层属性值")
       Text("@Provide不能接收来自@ObjectLink的二层属性值")
-      ChildProvide({counterVal: this.class_A})
+      ChildProvide({ counterVal: this.class_A })
     }
   }
 }
@@ -117,7 +142,7 @@ struct ObjectLinkLink {
     Column() {
       Text("@Link能接收来自@ObjectLink的一层属性值")
       Text("@Link能接收来自@ObjectLink的二层属性值")
-      ChildLink3({counterVal: this.class_A})
+      ChildLink3({ counterVal: this.class_A })
     }
   }
 }
@@ -130,7 +155,7 @@ struct PropObjectLinkProp {
     Column() {
       Text("@Prop能接收来自@ObjectLink的一层属性值")
       Text("@Prop能接收来自@ObjectLink的二层属性值")
-      ChildProp({counterVal: this.class_A})
+      ChildProp({ counterVal: this.class_A })
     }
   }
 }
@@ -148,13 +173,13 @@ struct CombinationState4 {
           this.class_A = new ClassA3(2, new SubClass4(6))
         })
 
-      PropObjectLink3({class_A: this.class_A})
+      PropObjectLink3({ class_A: this.class_A })
 
       Text('@ObjectLink支持初始化@Link修饰的数据')
-      ObjectLinkLink({class_A: this.class_A})
+      ObjectLinkLink({ class_A: this.class_A })
 
       Text('@ObjectLink支持初始化@Prop修饰的数据')
-      PropObjectLinkProp({class_A: this.class_A})
+      PropObjectLinkProp({ class_A: this.class_A })
     }
   }
 }
