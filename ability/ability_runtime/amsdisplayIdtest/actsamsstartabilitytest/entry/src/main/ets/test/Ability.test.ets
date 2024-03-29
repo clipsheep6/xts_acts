@@ -81,33 +81,40 @@ export default function abilityTest(abilityContext) {
       let id;
 
       function subscribeCallBack(err, data) {
-        console.debug("====>ACTS_StartAbility_2100 Subscribe CallBack data:====>" + JSON.stringify(data));
+        console.info("====>ACTS_StartAbility_2100 Subscribe CallBack data:====>" + JSON.stringify(data));
 
         async function processInfoCheck(data) {
           console.info('====> ACTS_StartAbility_2100=====>');
+          console.log('====> ACTS_StartAbility_2100 ==== data:' + JSON.stringify(data));
           expect(data.parameters['displayId']).assertEqual(15);
+          console.log('====> gaolang 444444444====>');
           expect(data.parameters['windowMode']).assertEqual(0);
+          console.log('====> ACTS_StartAbility_2100 ===== done =====>');
           done();
+          console.log('====> ACTS_StartAbility_2100 ==== end done ====>');
         }
 
         if (data.event == "MultiInstanceStartFinish") {
           console.info('====> ACTS_StartAbility_2100 start success=====>');
           clearTimeout(id);
+          console.log('====> gaolang 111111111====>');
           processInfoCheck(data);
+          console.log('====> gaolang 222222222====>');
           commonEvent.unsubscribe(subscriber, unSubscribeCallback)
+          console.log('====> gaolang 333333333====>');
         } else if (data.event == "MultiInstanceStartNext") {
           console.log('ACTS_StartAbility_2100 callBackSeq = ' + data.data);
         }
       }
 
       commonEvent.createSubscriber(subscriberInfoMultiInstance).then(async (data) => {
-        console.debug("====>Create0100 Subscriber====>");
+        console.info("====>Create0100 Subscriber====>");
         subscriber = data;
         commonEvent.subscribe(subscriber, subscribeCallBack);
       })
 
       function unSubscribeCallback() {
-        console.debug("====>UnSubscribe0100 CallBack====>");
+        console.info("====>UnSubscribe0100 CallBack====>");
       }
 
       function timeout() {
