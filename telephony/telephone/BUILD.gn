@@ -11,10 +11,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-group("telephony") {
+group("telephone") {
   testonly = true
-  deps = [
-    "telephone:telephone",
-    "telephonyjstest:telephonyjstest",
-  ]
+  deps = [ "hasCard:hasCard" ]
 }
