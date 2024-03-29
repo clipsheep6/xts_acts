@@ -65,7 +65,7 @@ export default function abilityTest() {
 
           console.log("ACTS_GetCurrentTopAbility_0100 start");
 
-          AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
+          await AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(
             {
               bundleName: 'com.example.actsgetcurrenttopabilitystageatest',
               abilityName: 'Ability1'
