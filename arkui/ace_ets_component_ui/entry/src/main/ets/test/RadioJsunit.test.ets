@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function RadioJsunit() {
-  describe('RadioJsunit', function () {
-    beforeEach(async function (done) {
+  describe('RadioJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("RadioJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/RadioPage',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/RadioPage',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function RadioJsunit() {
         console.info("get RadioJsunit state pages: " + JSON.stringify(pages));
         if (!("RadioPage" == pages.name)) {
           console.info("get RadioJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push RadioJsunit page result: " + JSON.stringify(result));
         }
@@ -43,20 +56,20 @@ export default function RadioJsunit() {
       done();
     });
 
-    it('RadioJsunit_0100', 0, async function (done) {
+    it('RadioJsunit_0100', 0, async (done: Function) => {
       // Get the information of the Radio component
       console.info('[RadioJsunit_0100] START');
       let strJson1 = getInspectorByKey('r1');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[RadioJsunit_0100] component obj1 is: " + JSON.stringify(obj1));
-      expect(obj1.$attrs.value).assertEqual('radio1');
-      expect(obj1.$attrs.checked).assertEqual('true');
+
+      console.info("[RadioJsunit_0100] component JSON.parse(strJson1) is: " + JSON.stringify(JSON.parse(strJson1)));
+      expect(JSON.parse(strJson1).$attrs.value).assertEqual('radio1');
+      expect(JSON.parse(strJson1).$attrs.checked).assertEqual('true');
       await CommonFunc.sleep(1000);
       let strJson2 = getInspectorByKey('r2');
-      let obj2 = JSON.parse(strJson2);
-      console.info("[RadioJsunit_0100] component obj2 is: " + JSON.stringify(obj2));
-      expect(obj2.$attrs.value).assertEqual('Radio2');
-      expect(obj2.$attrs.checked).assertEqual('false');
+
+      console.info("[RadioJsunit_0100] component JSON.parse(strJson2) is: " + JSON.stringify(JSON.parse(strJson2)));
+      expect(JSON.parse(strJson2).$attrs.value).assertEqual('Radio2');
+      expect(JSON.parse(strJson2).$attrs.checked).assertEqual('false');
       // Get the text of the Text component
       let driver = await UiDriver.create()
       let textComponent = await driver.findComponent(BY.key('t1'));
@@ -66,7 +79,7 @@ export default function RadioJsunit() {
       done();
     });
 
-    it('RadioJsunit_0200', 0, async function (done) {
+    it('RadioJsunit_0200', 0, async (done: Function) => {
       // Verify Radio Components Click to select
       console.info('[RadioJsunit_0200] START');
       // Get the component Radio1 and click
@@ -75,16 +88,16 @@ export default function RadioJsunit() {
       await textComponent.click();
       await CommonFunc.sleep(1000);
       // Verify that the component Radio is selected
-      let strJson = getInspectorByKey('r3');
-      let obj = JSON.parse(strJson);
-      console.info("[RadioJsunit_0200] component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.checked).assertEqual('true');
+      let strJson: string = getInspectorByKey('r3');
+
+      console.info("[RadioJsunit_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.checked).assertEqual('true');
       await CommonFunc.sleep(1000);
       console.info('[RadioJsunit_0200] END');
       done();
     });
 
-    it('RadioJsunit_0300', 0, async function (done) {
+    it('RadioJsunit_0300', 0, async (done: Function) => {
       // Verify that the radio components are in the same group Click to select only one of the three
       console.info('[RadioJsunit_0300] START');
 
@@ -95,29 +108,29 @@ export default function RadioJsunit() {
       await CommonFunc.sleep(1000);
 
       // Verify the selected state of component Radio2
-      let strJson = getInspectorByKey('r2');
-      let obj = JSON.parse(strJson);
-      console.info("[RadioJsunit_0300] component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.checked).assertEqual('true');
+      let strJson: string = getInspectorByKey('r2');
+
+      console.info("[RadioJsunit_0300] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.checked).assertEqual('true');
       await CommonFunc.sleep(1000);
 
       // Verify the selected state of component Radio1
       let strJson1 = getInspectorByKey('r1');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[RadioJsunit_0300] component obj is: " + JSON.stringify(obj1));
-      expect(obj1.$attrs.checked).assertEqual('false');
+
+      console.info("[RadioJsunit_0300] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson1)));
+      expect(JSON.parse(strJson1).$attrs.checked).assertEqual('false');
       await CommonFunc.sleep(1000);
 
       // Verify the selected state of component Radio3
       let strJson2 = getInspectorByKey('r3');
-      let obj2 = JSON.parse(strJson2);
-      console.info("[RadioJsunit_0300] component obj is: " + JSON.stringify(obj2));
-      expect(obj2.$attrs.checked).assertEqual('false');
+
+      console.info("[RadioJsunit_0300] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson2)));
+      expect(JSON.parse(strJson2).$attrs.checked).assertEqual('false');
       console.info('[RadioJsunit_0300] END');
       done();
     });
 
-    it('RadioJsunit_0400', 0, async function (done) {
+    it('RadioJsunit_0400', 0, async (done: Function) => {
       // Verify onChange event of of component Radio
       console.info('[RadioJsunit_0400] START');
       let driver = await UiDriver.create()

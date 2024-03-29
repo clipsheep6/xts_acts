@@ -13,18 +13,32 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
+
 const waitUiReadyMs = 1000;
 
 export default function textOneJsunit() {
-  describe('textOneJsunit', function () {
-    beforeEach(async function (done) {
+  describe('textOneJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("textOneJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/textOne',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/textOne',
       }
       try {
         router.clear();
@@ -32,109 +46,131 @@ export default function textOneJsunit() {
         console.info("get textOneJsunit state pages:" + JSON.stringify(pages));
         if (!("textOne" == pages.name)) {
           console.info("get textOneJsunit state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           console.info("push textOneJsunit success " + JSON.stringify(result));
         }
       } catch (err) {
-          console.error("push textOneJsunit page error:" + err);
-	        expect().assertFail();
+        console.error("push textOneJsunit page error:" + err);
+        expect().assertFail();
       }
       done();
     });
 
-    it('textOneJsunit_0100', 0, async function (done) {
-       console.info('textOneJsunit_0100 START');
-       await CommonFunc.sleep(1000);
-       // get the text part component and test attribute
-       let strJson = getInspectorByKey('text1');
-       let obj = JSON.parse(strJson);
-       console.info('textOneJsunit_0100 component obj is: ' + obj.$attrs.textAlign + "---" + obj.$attrs.content + "--" + obj.$attrs.fontSize);
-       expect(obj.$attrs.textAlign).assertEqual('TextAlign.Center');
-       expect(obj.$attrs.content).assertEqual('TextAlign set to Center.');
-       expect(obj.$attrs.fontSize).assertEqual('12.00fp');
-       done();
+    it('textOneJsunit_0100', 0, async (done: Function) => {
+      console.info('textOneJsunit_0100 START');
+      await CommonFunc.sleep(1000);
+      // get the text part component and test attribute
+      let strJson: string = getInspectorByKey('text1');
+
+      console.info('textOneJsunit_0100 component JSON.parse(strJson) is: ' + JSON.parse(strJson)
+        .$attrs
+        .textAlign + "---" + JSON.parse(strJson).$attrs.content + "--" + JSON.parse(strJson).$attrs.fontSize);
+      expect(JSON.parse(strJson).$attrs.textAlign).assertEqual('TextAlign.Center');
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('TextAlign set to Center.');
+      expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('12.00fp');
+      done();
     });
 
-   it('textOneJsunit_0200', 0, async function (done) {
+    it('textOneJsunit_0200', 0, async (done: Function) => {
       console.info('textOneJsunit_0200 START');
       // test the enum value of textAlign 
-      globalThis.value.message.notify({name:'textAlign',value:TextAlign.Start})
+      globalThis.value.message.notify({
+        name: 'textAlign', value: TextAlign.Start
+      })
       await CommonFunc.sleep(200);
-      let strJson = getInspectorByKey('text1');
-      let obj = JSON.parse(strJson);
-      console.info('textOneJsunit_0200 component obj is: ' + obj.$attrs.textAlign);
-      expect(obj.$attrs.textAlign).assertEqual('TextAlign.Start');
-      globalThis.value.message.notify({name:'textAlign',value:TextAlign.End})
+      let strJson: string = getInspectorByKey('text1');
+
+      console.info('textOneJsunit_0200 component JSON.parse(strJson) is: ' + JSON.parse(strJson).$attrs.textAlign);
+      expect(JSON.parse(strJson).$attrs.textAlign).assertEqual('TextAlign.Start');
+      globalThis.value.message.notify({
+        name: 'textAlign', value: TextAlign.End
+      })
       await CommonFunc.sleep(200);
       let strJson2 = getInspectorByKey('text1');
-      let obj2 = JSON.parse(strJson2);
-      console.info('textOneJsunit_0200 component obj2 is: ' + obj.$attrs.textAlign);
-      expect(obj2.$attrs.textAlign).assertEqual('TextAlign.End');
+
+      console.info('textOneJsunit_0200 component JSON.parse(strJson2) is: ' + JSON.parse(strJson).$attrs.textAlign);
+      expect(JSON.parse(strJson2).$attrs.textAlign).assertEqual('TextAlign.End');
       done();
     });
 
-    it('textOneJsunit_0300', 0, async function (done) {
+    it('textOneJsunit_0300', 0, async (done: Function) => {
       console.info('textOneJsunit_0300 START');
       // test the illegal enum value of textAlign 
-      globalThis.value.message.notify({name:'textAlign',value:4})
+      globalThis.value.message.notify({
+        name: 'textAlign', value: 4
+      })
       await CommonFunc.sleep(200);
-      let strJson = getInspectorByKey('text1');
-      let obj = JSON.parse(strJson);
-      console.info('textOneJsunit_0300 component obj is: ' + obj.$attrs.textAlign);
-      expect(obj.$attrs.textAlign).assertEqual('TextAlign.Left');
+      let strJson: string = getInspectorByKey('text1');
+
+      console.info('textOneJsunit_0300 component JSON.parse(strJson) is: ' + JSON.parse(strJson).$attrs.textAlign);
+      expect(JSON.parse(strJson).$attrs.textAlign).assertEqual('TextAlign.Left');
       done();
     });
 
-    it('textOneJsunit_0400', 0, async function (done) {
+    it('textOneJsunit_0400', 0, async (done: Function) => {
       console.info('textOneJsunit_0400 START');
       // test the  enum value of textOverflow
-      globalThis.value.message.notify({name:'textOverflow',value:TextOverflow.Clip})
+      globalThis.value.message.notify({
+        name: 'textOverflow', value: TextOverflow.Clip
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'maxLines',value:1})
+      globalThis.value.message.notify({
+        name: 'maxLines', value: 1
+      })
       await CommonFunc.sleep(2000);
-      let strJson = getInspectorByKey('text4');
-      let obj = JSON.parse(strJson);
-      console.info('textOneJsunit_0400 component obj is: ' + obj.$attrs.textOverflow);
-      expect(obj.$attrs.textOverflow).assertEqual('TextOverflow.Clip');
+      let strJson: string = getInspectorByKey('text4');
 
-      globalThis.value.message.notify({name:'textOverflow',value:TextOverflow.Ellipsis})
+      console.info('textOneJsunit_0400 component JSON.parse(strJson) is: ' + JSON.parse(strJson).$attrs.textOverflow);
+      expect(JSON.parse(strJson).$attrs.textOverflow).assertEqual('TextOverflow.Clip');
+
+      globalThis.value.message.notify({
+        name: 'textOverflow', value: TextOverflow.Ellipsis
+      })
       await CommonFunc.sleep(2000);
       let strJson2 = getInspectorByKey('text4');
-      let obj2 = JSON.parse(strJson2);
-      console.info('textOneJsunit_0400 component obj2 is: ' + obj2.$attrs.textOverflow);
-      expect(obj2.$attrs.textOverflow).assertEqual('TextOverflow.Ellipsis');
+
+      console.info('textOneJsunit_0400 component JSON.parse(strJson2) is: ' + JSON.parse(strJson2).$attrs.textOverflow);
+      expect(JSON.parse(strJson2).$attrs.textOverflow).assertEqual('TextOverflow.Ellipsis');
       done();
     });
 
-    it('textOneJsunit_0500', 0, async function (done) {
+    it('textOneJsunit_0500', 0, async (done: Function) => {
       console.info('textOneJsunit_0500 START');
       // test the illegal enum value of textOverflow
-      globalThis.value.message.notify({name:'textOverflow',value:4})
+      globalThis.value.message.notify({
+        name: 'textOverflow', value: 4
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'maxLines',value:1})
+      globalThis.value.message.notify({
+        name: 'maxLines', value: 1
+      })
       await CommonFunc.sleep(2000);
-      let strJson = getInspectorByKey('text4');
-      let obj = JSON.parse(strJson);
-      console.info('textOneJsunit_0400 component obj is: ' + obj.$attrs.textOverflow);
-      expect(obj.$attrs.textOverflow).assertEqual('TextOverflow.Ellipsis');
+      let strJson: string = getInspectorByKey('text4');
+
+      console.info('textOneJsunit_0400 component JSON.parse(strJson) is: ' + JSON.parse(strJson).$attrs.textOverflow);
+      expect(JSON.parse(strJson).$attrs.textOverflow).assertEqual('TextOverflow.Ellipsis');
       done();
     });
 
-    it('textOneJsunit_0600', 0, async function (done) {
+    it('textOneJsunit_0600', 0, async (done: Function) => {
       console.info('textOneJsunit_0600 START');
       // test the value of lineHeight 
-      globalThis.value.message.notify({name:'lineHeight',value:20})
+      globalThis.value.message.notify({
+        name: 'lineHeight', value: 20
+      })
       await CommonFunc.sleep(200);
-      let strJson = getInspectorByKey('text5');
-      let obj = JSON.parse(strJson);
-      console.info('textOneJsunit_0600 component obj is: ' + obj.$attrs.lineHeight);
-      expect(obj.$attrs.lineHeight).assertEqual('20.00fp');
-      globalThis.value.message.notify({name:'lineHeight',value:"30fp"})
+      let strJson: string = getInspectorByKey('text5');
+
+      console.info('textOneJsunit_0600 component JSON.parse(strJson) is: ' + JSON.parse(strJson).$attrs.lineHeight);
+      expect(JSON.parse(strJson).$attrs.lineHeight).assertEqual('20.00fp');
+      globalThis.value.message.notify({
+        name: 'lineHeight', value: "30fp"
+      })
       await CommonFunc.sleep(200);
       let strJson2 = getInspectorByKey('text5');
-      let obj2 = JSON.parse(strJson2);
-      console.info('textOneJsunit_0600 component obj is: ' + obj2.$attrs.lineHeight);
-      expect(obj2.$attrs.lineHeight).assertEqual('30.00fp');
+
+      console.info('textOneJsunit_0600 component JSON.parse(strJson) is: ' + JSON.parse(strJson2).$attrs.lineHeight);
+      expect(JSON.parse(strJson2).$attrs.lineHeight).assertEqual('30.00fp');
       done();
     });
   })
