@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function TimePickerJsunit() {
-  describe('TimePickerJsunit', function () {
-    beforeEach(async function (done) {
+  describe('TimePickerJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("TimePicker beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/TimePickerPage',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/TimePickerPage',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function TimePickerJsunit() {
         console.info("get TimePicker state pages: " + JSON.stringify(pages));
         if (!("TimePickerPage" == pages.name)) {
           console.info("get TimePicker state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           console.info("push TimePicker page result: " + JSON.stringify(result));
           await CommonFunc.sleep(2000);
         }
@@ -43,7 +56,7 @@ export default function TimePickerJsunit() {
       done();
     });
 
-    it('TimePickerJsunit_0100', 0, async function (done) {
+    it('TimePickerJsunit_0100', 0, async (done: Function) => {
       // Verify 12-hour function of TimePicker component
       console.info('[TimePickerJsunit_0100] START');
 
@@ -93,7 +106,7 @@ export default function TimePickerJsunit() {
       done();
     });
 
-    it('TimePickerJsunit_0200', 0, async function (done) {
+    it('TimePickerJsunit_0200', 0, async (done: Function) => {
       // Verify switch 12-hour/24-hour system of TimePicker component
       console.info('[TimePickerJsunit_0200] START');
 
@@ -102,23 +115,23 @@ export default function TimePickerJsunit() {
       let switchButton = await driver.findComponent(BY.key('button'));
       await switchButton.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('mode');
-      let obj = JSON.parse(strJson);
-      console.info("[TimePickerJsunit_0200] component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.content).assertEqual('24hour:true');
+      let strJson: string = getInspectorByKey('mode');
+
+      console.info("[TimePickerJsunit_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('24hour:true');
 
       // Verify switch 12-hour
       await switchButton.click();
       await CommonFunc.sleep(1000);
       let strJson1 = getInspectorByKey('mode');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[TimePickerJsunit_0200] component obj1 is: " + JSON.stringify(obj1));
-      expect(obj1.$attrs.content).assertEqual('24hour:false');
+
+      console.info("[TimePickerJsunit_0200] component JSON.parse(strJson1) is: " + JSON.stringify(JSON.parse(strJson1)));
+      expect(JSON.parse(strJson1).$attrs.content).assertEqual('24hour:false');
       console.info('[TimePickerJsunit_0200] END');
       done();
     });
 
-    it('TimePickerJsunit_0300', 0, async function (done) {
+    it('TimePickerJsunit_0300', 0, async (done: Function) => {
       // Verify 24-hour function of TimePicker component
       console.info('[TimePickerJsunit_0300] START');
       let driver = await UiDriver.create()

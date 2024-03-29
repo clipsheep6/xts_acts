@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function StateDate1Jsunit() {
-  describe('StateDate1Jsunit', function () {
-    beforeEach(async function (done) {
+  describe('StateDate1Jsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("StateDate1Jsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/State/StateDate1',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/State/StateDate1',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function StateDate1Jsunit() {
         console.info("get StateDate1Jsunit state pages: " + JSON.stringify(pages));
         if (!("StateDate1" == pages.name)) {
           console.info("get StateDate1Jsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push StateDate1Jsunit success: " + JSON.stringify(result));
         }
@@ -42,151 +55,151 @@ export default function StateDate1Jsunit() {
       }
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       let driver = Driver.create();
-      await CommonFunc.sleep(500);      
+      await CommonFunc.sleep(500);
       let button = await driver.findComponent(ON.id('StateDatePicker1_reset'));
       await button.click();
       console.log('reset button click succ')
       await CommonFunc.sleep(1000);
     });
 
-    it('StateDate1Jsunit_0100', 0, async function (done) {
+    it('StateDate1Jsunit_0100', 0, async (done: Function) => {
 
       console.info('StateDate1Jsunit_0100 START');
-      let strJson = getInspectorByKey('date1');
-      let obj = JSON.parse(strJson);
-      console.info("[StateDate1Jsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[StateDate1Jsunit_0100] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("\"2021-08-08T00:00:00.000Z\"");
+      let strJson: string = getInspectorByKey('date1');
+
+      console.info("[StateDate1Jsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateDate1Jsunit_0100] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("\"2021-08-08T00:00:00.000Z\"");
       console.info('[StateDate1Jsunit_0100] END');
       done();
     });
 
-    it('StateDate1Jsunit_0200', 0, async function (done) {
+    it('StateDate1Jsunit_0200', 0, async (done: Function) => {
 
       console.info('StateDate1Jsunit_0200 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('change_date'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('date1');
-      let obj = JSON.parse(strJson);
-      console.info("[StateDate1Jsunit_0200] component obj is: " + JSON.stringify(obj));
-      console.info("[StateDate1Jsunit_0200] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("\"2023-09-09T00:00:00.000Z\"");
+      let strJson: string = getInspectorByKey('date1');
+
+      console.info("[StateDate1Jsunit_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateDate1Jsunit_0200] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("\"2023-09-09T00:00:00.000Z\"");
       console.info('[StateDate1Jsunit_0200] END');
       done();
     });
 
-    it('StateDate1Jsunit_0300', 0, async function (done) {
+    it('StateDate1Jsunit_0300', 0, async (done: Function) => {
 
       console.info('StateDate1Jsunit_0300 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('setFullYear'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('date1');
-      let obj = JSON.parse(strJson);
-      console.info("[StateDate1Jsunit_0300] component obj is: " + JSON.stringify(obj));
-      console.info("[StateDate1Jsunit_0300] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("\"2022-08-08T00:00:00.000Z\"");
+      let strJson: string = getInspectorByKey('date1');
+
+      console.info("[StateDate1Jsunit_0300] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateDate1Jsunit_0300] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("\"2022-08-08T00:00:00.000Z\"");
       console.info('[StateDate1Jsunit_0300] END');
       done();
     });
 
-    it('StateDate1Jsunit_0400', 0, async function (done) {
+    it('StateDate1Jsunit_0400', 0, async (done: Function) => {
 
       console.info('StateDate1Jsunit_0400 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('setMonth'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('date1');
-      let obj = JSON.parse(strJson);
-      console.info("[StateDate1Jsunit_0400] component obj is: " + JSON.stringify(obj));
-      console.info("[StateDate1Jsunit_0400] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("\"2021-09-08T00:00:00.000Z\"");
+      let strJson: string = getInspectorByKey('date1');
+
+      console.info("[StateDate1Jsunit_0400] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateDate1Jsunit_0400] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("\"2021-09-08T00:00:00.000Z\"");
       console.info('[StateDate1Jsunit_0400] END');
       done();
     });
 
-    it('StateDate1Jsunit_0500', 0, async function (done) {
+    it('StateDate1Jsunit_0500', 0, async (done: Function) => {
 
       console.info('StateDate1Jsunit_0500 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('setDate'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('date1');
-      let obj = JSON.parse(strJson);
-      console.info("[StateDate1Jsunit_0500] component obj is: " + JSON.stringify(obj));
-      console.info("[StateDate1Jsunit_0500] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("\"2021-08-09T00:00:00.000Z\"");
+      let strJson: string = getInspectorByKey('date1');
+
+      console.info("[StateDate1Jsunit_0500] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateDate1Jsunit_0500] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("\"2021-08-09T00:00:00.000Z\"");
       console.info('[StateDate1Jsunit_0500] END');
       done();
     });
 
-    it('StateDate1Jsunit_0600', 0, async function (done) {
+    it('StateDate1Jsunit_0600', 0, async (done: Function) => {
 
       console.info('StateDate1Jsunit_0600 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('setHours'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('date1');
-      let obj = JSON.parse(strJson);
-      console.info("[StateDate1Jsunit_0600] component obj is: " + JSON.stringify(obj));
-      console.info("[StateDate1Jsunit_0600] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("\"2021-08-08T01:00:00.000Z\"");
+      let strJson: string = getInspectorByKey('date1');
+
+      console.info("[StateDate1Jsunit_0600] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateDate1Jsunit_0600] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("\"2021-08-08T01:00:00.000Z\"");
       console.info('[StateDate1Jsunit_0600] END');
       done();
     });
 
-    it('StateDate1Jsunit_0700', 0, async function (done) {
+    it('StateDate1Jsunit_0700', 0, async (done: Function) => {
 
       console.info('StateDate1Jsunit_0700 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('setMinutes'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('date1');
-      let obj = JSON.parse(strJson);
-      console.info("[StateDate1Jsunit_0700] component obj is: " + JSON.stringify(obj));
-      console.info("[StateDate1Jsunit_0700] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("\"2021-08-08T00:01:00.000Z\"");
+      let strJson: string = getInspectorByKey('date1');
+
+      console.info("[StateDate1Jsunit_0700] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateDate1Jsunit_0700] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("\"2021-08-08T00:01:00.000Z\"");
       console.info('[StateDate1Jsunit_0700] END');
       done();
     });
 
-    it('StateDate1Jsunit_0800', 0, async function (done) {
+    it('StateDate1Jsunit_0800', 0, async (done: Function) => {
 
       console.info('StateDate1Jsunit_0800 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('setSeconds'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('date1');
-      let obj = JSON.parse(strJson);
-      console.info("[StateDate1Jsunit_0800] component obj is: " + JSON.stringify(obj));
-      console.info("[StateDate1Jsunit_0800] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("\"2021-08-08T00:00:01.000Z\"");
+      let strJson: string = getInspectorByKey('date1');
+
+      console.info("[StateDate1Jsunit_0800] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateDate1Jsunit_0800] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("\"2021-08-08T00:00:01.000Z\"");
       console.info('[StateDate1Jsunit_0800] END');
       done();
     });
 
-    it('StateDate1Jsunit_0900', 0, async function (done) {
+    it('StateDate1Jsunit_0900', 0, async (done: Function) => {
 
       console.info('StateDate1Jsunit_0900 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('setMilliseconds'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('date1');
-      let obj = JSON.parse(strJson);
-      console.info("[StateDate1Jsunit_0900] component obj is: " + JSON.stringify(obj));
-      console.info("[StateDate1Jsunit_0900] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("\"2021-08-08T00:00:00.001Z\"");
+      let strJson: string = getInspectorByKey('date1');
+
+      console.info("[StateDate1Jsunit_0900] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateDate1Jsunit_0900] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("\"2021-08-08T00:00:00.001Z\"");
       console.info('[StateDate1Jsunit_0900] END');
       done();
     });
