@@ -28,19 +28,9 @@ let promiseCase: Function = () => {
   return p;
 }
 
-function printArgs(args: number): number {
+let printArgs: Function = (args: number): number =>{
   "use concurrent"
   console.info(`printArgs: ${args}`);
-  return args;
-}
-
-function printLang(args: number): number {
-  "use concurrent"
-  let start: number = new Date().getTime();
-  while (new Date().getTime() - start < 1000) {
-    continue;
-  }
-  console.info(`printLang: ${JSON.stringify(taskpool.getTaskPoolInfo().taskInfos[0].state)}`);
   return args;
 }
 
@@ -50,7 +40,7 @@ export default function TaskpoolTestTask() {
       await   asyncSleep(1000);
     })
     /**
-     * @tc.number    : SUB_Runtime_Language_Backend_TaskpoolConcurrency_4300
+     * @tc.number    : SUB_Runtime_Language_Backend_TaskpoolConcurrency_4600
      * @tc.name      : testTaskpoolTask001
      * @tc.desc      : Perform serial tasks
      * @tc.size      : MediumTest
@@ -80,7 +70,6 @@ export default function TaskpoolTestTask() {
         }
         console.info(`${caseName}: ${JSON.stringify(typeof (testTask1.function))}`);
         expect(typeof (testTask1.function) == 'function').assertTrue();
-        // console.info(`${caseName}: ${JSON.stringify(typeof (testTask1.arguments))}`);
         expect(testTask1.arguments).assertDeepEquals([100]);
         expect(typeof (testTask1.name) == 'string').assertTrue();
         expect(typeof (testTask1.totalDuration) == 'number').assertTrue();
@@ -117,7 +106,7 @@ export default function TaskpoolTestTask() {
           await promiseCase();
         }
         console.info(`${caseName}: result1 taskId: ${JSON.stringify(typeof (taskpool.getTaskPoolInfo().taskInfos[0].taskId))}`);
-        expect(typeof (taskpool.getTaskPoolInfo().taskInfos[0].taskId) == 'bigint').assertTrue();
+        expect(typeof (taskpool.getTaskPoolInfo().taskInfos[0].taskId) == 'number').assertTrue();
         console.info(`${caseName}: result1 state: ${JSON.stringify(typeof (taskpool.getTaskPoolInfo().taskInfos[0].state))}`);
         expect(typeof (taskpool.getTaskPoolInfo().taskInfos[0].state) == 'number').assertTrue();
         expect(typeof (taskpool.getTaskPoolInfo().taskInfos[0].duration) == 'number').assertTrue();

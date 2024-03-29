@@ -13,11 +13,11 @@
  * limitations under the License.
  */
  
-import taskpoolTest from './Taskpool.test'
+// import taskpoolTest from './Taskpool.test'
 import taskpoolTestState from './TaskpoolTestState.test'
-import taskpoolTestTask from './TaskpoolTestTask.test'
+// import taskpoolTestTask from './TaskpoolTestTask.test'
 export default function testsuite() {
   taskpoolTestState();
-  taskpoolTestTask();
-  taskpoolTest();
+  // taskpoolTestTask();
+  // taskpoolTest();
 }

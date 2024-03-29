@@ -27,8 +27,7 @@ let promiseCase: Function = () => {
   });
   return p;
 }
-
-function printLang(args: number): number {
+let printLang: Function = (args: number): number => {
   "use concurrent"
   let start: number = new Date().getTime();
   while (new Date().getTime() - start < 1000) {
@@ -44,7 +43,7 @@ export default function TaskpoolTestState() {
       await   asyncSleep(1000);
     })
     /**
-     * @tc.number    : SUB_Runtime_Language_Backend_TaskpoolConcurrency_100
+     * @tc.number    : SUB_Runtime_Language_Backend_TaskpoolConcurrency_4500
      * @tc.name      : testTaskpoolState001
      * @tc.desc      : Perform serial tasks
      * @tc.size      : MediumTest

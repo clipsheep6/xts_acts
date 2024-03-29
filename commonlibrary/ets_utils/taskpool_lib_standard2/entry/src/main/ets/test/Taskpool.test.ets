@@ -2887,8 +2887,8 @@ export default function TaskpoolTest() {
         }
       } catch (error) {
         console.info(`${caseName}: catch error: code => ${error.code} message => ${JSON.stringify(error.message)}`);
-        expect(error.code).assertEqual(401);
-        expect(error.message).assertContain("taskpool:: task has no dependency");
+        expect(error.code).assertEqual(10200027);
+        expect(error.message).assertContain("The dependency does not exist");
       }
       try {
         let result1: number|string = 0;

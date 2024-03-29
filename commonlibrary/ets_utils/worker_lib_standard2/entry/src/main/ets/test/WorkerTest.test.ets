@@ -195,20 +195,13 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         const workerInstance: worker.ThreadWorker = new worker.ThreadWorker('../xxx/worker.ts');
-        let isTerminate: boolean = false;
-        workerInstance.onexit = (): void => {
-          console.info(`${caseName}: workerInstance.onexit`);
-          isTerminate = true;
-        }
-        expectAssertTrue(workerInstance !== null);
+        expect().assertFail();
         workerInstance.terminate();
-        while (!isTerminate) {
-          await asyncSleep(100);
-        }
         done();
       } catch (error) {
         console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-        expect().assertFail();
+        expectAssertEqual(error.code, 10200007);
+        expectAssertContain(error.message, 'The worker file patch is invalid path');
         done();
       }
       console.info(`${caseName} test end`);
@@ -5829,20 +5822,13 @@ export default function workerTest() {
       console.info(`${caseName} test start`);
       try {
         const workerInstance: worker.RestrictedWorker = new worker.RestrictedWorker('../xxx/worker_022.ts');
-        let isTerminate: boolean = false;
-        workerInstance.onexit = (): void => {
-          console.info(`${caseName}: workerInstance_1.onexit`);
-          isTerminate = true;
-        }
-        expectAssertTrue(workerInstance !== null);
+        expect().assertFail();
         workerInstance.terminate();
-        while (!isTerminate) {
-          await asyncSleep(100);
-        }
         done();
       } catch (error) {
         console.info(`${caseName}: catch error: code => ${error.code} message => ${error.message}`);
-        expect().assertFail();
+        expectAssertEqual(error.code, 10200007);
+        expectAssertContain(error.message, 'The worker file patch is invalid path');
         done();
       }
       console.info(`${caseName} test end`);
