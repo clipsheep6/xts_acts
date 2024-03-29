@@ -75,5 +75,38 @@ export default function abilityTest() {
         done();
       });
     })
+
+    /*
+     * @tc.number: Acts_GetAllPreinstalledApplicationInfos_0500
+     * @tc.name: Support get all preinstall appinfo
+     * @tc.desc: Call interface without permission
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level1
+     */
+    it('Acts_GetAllPreinstalledApplicationInfos_0500', 0, async function (done) {
+      console.info("Acts_GetAllPreinstalledApplicationInfos_0500 start.")
+      let want = {
+        bundleName: 'com.example.hitsbmsgetallpreinstalledappinfowithsignrely',
+        abilityName: 'EntryAbility'
+      }
+      globalThis.abilityContext.startAbilityForResult(want).then((data: common.AbilityResult) => {
+        console.info('Acts_GetAllPreinstalledApplicationInfos_0500 startAbilityForResult successful');
+        setTimeout(() => {
+          console.info('Acts_GetAllPreinstalledApplicationInfos_0500 data is: ' + JSON.stringify(data));
+          expect(data.want.parameters.ErrCode).assertEqual(0);
+          expect(data.want.parameters.TypeBundleName == "string").assertTrue();
+          expect(data.want.parameters.TypeModuleName == "string").assertTrue();
+          expect(data.want.parameters.TypeIconId == "number").assertTrue();
+          expect(data.want.parameters.TypeLabelId == "number").assertTrue();
+          done();
+        }, 3000);
+      }).catch((err: Base.BusinessError) => {
+        console.info('Acts_GetAllPreinstalledApplicationInfos_0500 startAbilityForResult error is' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+      })
+      await sleep(500);
+    })
   })
 }

@@ -12,7 +12,8 @@
       {
         "test-file-name": [
           "ActsBmsGetAllPreinstalledAppinfoRely.hap",
-          "ActsBmsGetAllPreinstalledAppinfoTest.hap"
+          "ActsBmsGetAllPreinstalledAppinfoTest.hap",
+          "ActsBmsGetAllPreinstalledAppinfoWithSignRely.hap"
         ],
         "type": "AppInstallKit",
         "cleanup-apps": true
