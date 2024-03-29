@@ -16,6 +16,7 @@ import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
 import router from '@ohos.router'
 import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 import { BusinessError } from '@ohos.base';
+import Utils from '../TestAbility/common/MyUtils';
 
 export default function SwiperMarginTest() {
 
@@ -36,6 +37,7 @@ export default function SwiperMarginTest() {
           }).catch((error: BusinessError) => {
             console.error(`${SUITE} router.pushUrl failed, code is ${error.code}, message is ${error.message}`);
           })
+          await MyUtils.sleep(2500);
         }
       } catch (err) {
         console.error(`${SUITE} beforeEach error:` + JSON.stringify(err));
