@@ -17,6 +17,7 @@ import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from
 import commonEvent from '@ohos.commonEvent';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import power from '@ohos.power';
+import { Driver, ON } from '@ohos.UiTest';
 import backgroundTaskManager from '@ohos.backgroundTaskManager';
 import common from '@ohos.app.ability.common';
 import { BusinessError } from '@ohos.base';
@@ -24,6 +25,8 @@ import commonEventManager from '@ohos.commonEventManager';
 import Want from '@ohos.app.ability.Want';
 
 let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator;
+
+let driver = Driver.create();
 
 function sleep(ms: number) {
   return new Promise<void>(resolve => setTimeout(resolve, ms));
@@ -194,6 +197,15 @@ export default function OnAndOffScreenTest() {
           expect().assertFail();
           done();
         })
+      await driver.delayMs(2000);
+      let allowed = await driver.findComponent(ON.text("打开"));
+      if (allowed) {
+        console.log("find button");
+        let point = await allowed.getBoundsCenter();
+        console.log('point.x : ' + point.x + 'point.y : ' + point.y);
+
+        await driver.click(point.x, point.y);
+      }
     })
 
     /*
@@ -271,6 +283,15 @@ export default function OnAndOffScreenTest() {
           expect().assertFail();
           done();
         })
+      await driver.delayMs(2000);
+      let allowed = await driver.findComponent(ON.text("打开"));
+      if (allowed) {
+        console.log("find button");
+        let point = await allowed.getBoundsCenter();
+        console.log('point.x : ' + point.x + 'point.y : ' + point.y);
+
+        await driver.click(point.x, point.y);
+      }
     })
 
     /*
@@ -354,6 +375,15 @@ export default function OnAndOffScreenTest() {
           expect().assertFail();
           done();
         })
+      await driver.delayMs(2000);
+      let allowed = await driver.findComponent(ON.text("打开"));
+      if (allowed) {
+        console.log("find button");
+        let point = await allowed.getBoundsCenter();
+        console.log('point.x : ' + point.x + 'point.y : ' + point.y);
+
+        await driver.click(point.x, point.y);
+      }
     })
 
     /*
@@ -460,6 +490,15 @@ export default function OnAndOffScreenTest() {
           expect().assertFail();
           done();
         })
+      await driver.delayMs(2000);
+      let allowed = await driver.findComponent(ON.text("打开"));
+      if (allowed) {
+        console.log("find button");
+        let point = await allowed.getBoundsCenter();
+        console.log('point.x : ' + point.x + 'point.y : ' + point.y);
+
+        await driver.click(point.x, point.y);
+      }
     })
 
     /*
@@ -577,6 +616,15 @@ export default function OnAndOffScreenTest() {
           expect().assertFail();
           done();
         })
+      await driver.delayMs(2000);
+      let allowed = await driver.findComponent(ON.text("打开"));
+      if (allowed) {
+        console.log("find button");
+        let point = await allowed.getBoundsCenter();
+        console.log('point.x : ' + point.x + 'point.y : ' + point.y);
+
+        await driver.click(point.x, point.y);
+      }
     })
 
     /*
