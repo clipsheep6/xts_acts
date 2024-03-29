@@ -220,11 +220,13 @@ LITE_TEST_CASE(BusCenterTestSuite, testLeaveLNN001, Function | MediumTest | Leve
 
     BusCenterClientInit();
 
-    int32_t ret = LeaveLNN(NULL, OnLeaveLNNDone);
+    int32_t ret = LeaveLNN(TEST_PKG_NAME, NULL, OnLeaveLNNDone);
     TEST_ASSERT_TRUE(ret == SOFTBUS_INVALID_PARAM);
-    ret = LeaveLNN(networkId, NULL);
+    ret = LeaveLNN(TEST_PKG_NAME, networkId, NULL);
     TEST_ASSERT_TRUE(ret == SOFTBUS_INVALID_PARAM);
-    ret = LeaveLNN(errNetIdLenMore, OnLeaveLNNDone);
+    ret = LeaveLNN(TEST_PKG_NAME, errNetIdLenMore, OnLeaveLNNDone);
+    TEST_ASSERT_TRUE(ret != SOFTBUS_OK);
+    ret = LeaveLNN(NULL, errNetIdLenMore, OnLeaveLNNDone);
     TEST_ASSERT_TRUE(ret != SOFTBUS_OK);
     printf("------end testLeaveLNN001------\n");
 }
@@ -369,7 +371,7 @@ LITE_TEST_CASE(BusCenterTestSuite, testPublishLNN001, Function | MediumTest | Le
     ret = PublishLNN(TEST_PKG_NAME, &g_pInfo, NULL);
     TEST_ASSERT_TRUE(ret != 0);
 
-    g_pInfo.medium = (ExchanageMedium)(COAP + 1);
+    g_pInfo.medium = (ExchangeMedium)(COAP + 1);
     ret = PublishLNN(TEST_PKG_NAME, &g_pInfo, &g_publishCb);
     TEST_ASSERT_TRUE(ret != 0);
     g_pInfo.medium = COAP;
@@ -414,7 +416,7 @@ LITE_TEST_CASE(BusCenterTestSuite, testRefreshLNN001, Function | MediumTest | Le
     ret = RefreshLNN(TEST_PKG_NAME, &g_sInfo, NULL);
     TEST_ASSERT_TRUE(ret != 0);
 
-    g_sInfo.medium = (ExchanageMedium)(COAP + 1);
+    g_sInfo.medium = (ExchangeMedium)(COAP + 1);
     ret = RefreshLNN(TEST_PKG_NAME, &g_sInfo, &g_refreshCb);
     TEST_ASSERT_TRUE(ret != 0);
     g_sInfo.medium = COAP;
