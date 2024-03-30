@@ -1855,5 +1855,16 @@ export default function nativeApiStringJsunit() {
       expect(value).assertEqual(0)
       done();
     });
+
+    /**
+     * @tc.number    SUB_ACE_BASIC_ETS_NAPI_0124
+     * @tc.name      aceNapiTest0124
+     * @tc.desc      aceNapiEtsTest
+     */
+    it('aceNapiTest0124', 0, async function (done) {
+      console.info('aceNapiTest0124 START');
+      napitest.createArkTsRuntime()
+      done();
+    });
   })
 }

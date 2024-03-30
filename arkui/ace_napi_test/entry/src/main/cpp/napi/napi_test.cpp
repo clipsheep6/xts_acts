@@ -23,6 +23,7 @@
 #include <vector>
 #include <malloc.h>
 #include <ctime>
+#include <pthread.h>
 #include <thread>
 #include <uv.h>
 
@@ -3558,6 +3559,24 @@ static napi_value MakeCallbackOne(napi_env env, napi_callback_info info)
     return result;
 }
 
+void* NewThread(void *args)
+{
+    napi_env env;
+    napi_status status = napi_create_ark_runtime(&env);
+    NAPI_ASSERT(env, status == napi_ok, "napi_create_ark_runtime ok");
+    status = napi_destroy_ark_runtime(&env);
+    NAPI_ASSERT(env, status == napi_ok, "napi_destroy_ark_runtime ok");
+    return nullptr;
+}
+
+static napi_value CreateArkTsRuntime(napi_env env, napi_callback_info info)
+{
+    pthread_t tid;
+    pthread_create(&tid, nullptr, NewThread, nullptr);
+    pthread_join(tid, nullptr);
+    return nullptr;
+}
+
 static napi_value RunEventLoop(napi_env env, napi_callback_info info)
 {
     size_t argc = 1;
@@ -3728,6 +3747,7 @@ static napi_value Init(napi_env env, napi_value exports)
         DECLARE_NAPI_FUNCTION("createObjectWithNamedProperties", CreateObjectWithNamedProperties),
         DECLARE_NAPI_FUNCTION("makeCallback", MakeCallback),
         DECLARE_NAPI_FUNCTION("makeCallbackOne", MakeCallbackOne),
+        DECLARE_NAPI_FUNCTION("createArkTsRuntime", CreateArkTsRuntime),
         DECLARE_NAPI_FUNCTION("runEventLoop", RunEventLoop),
         DECLARE_NAPI_FUNCTION("stopEventLoop", StopEventLoop),
     };
