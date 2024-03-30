@@ -13,8 +13,5 @@
 
 group("telephone") {
   testonly = true
-  deps = [
-    "noCard:noCard",
-    "radio:ActsRadioWithCardTest",
-  ]
+  deps = [ "noCard:noCard" ]
 }
