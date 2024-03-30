@@ -13,12 +13,27 @@
  * limitations under the License.
  */
 
+#include <string>
+#include <stdio.h>
 #include "napi/native_api.h"
 #include "native_audiocapturer.h"
 #include "native_audiorenderer.h"
 #include "native_audiostream_base.h"
 #include "native_audiostreambuilder.h"
 #include "unistd.h"
+
+#define LOG(cond, fmt, ...)           \
+    if (!(cond)) {                                  \
+        (void)printf(fmt, ##__VA_ARGS__);           \
+    }
+
+const int32_t g_samplingRate = 48000; // 48000:g_samplingRate value
+const int32_t g_channelCount = 2; // 2:g_channelCount value
+const int32_t g_latencyMode = 0;
+const int32_t g_sampleFormat = 1;
+const int32_t g_frameSize = 240; // 240:g_frameSize value
+bool g_flag = false;
+bool g_mark = false;
 
 static napi_value CreateAudioStreamBuilder(napi_env env, napi_callback_info info)
 {
@@ -943,6 +958,595 @@ static napi_value AudioStreamBuilderSetFrameSizeInCallback(napi_env env, napi_ca
     return res;
 }
 
+// OH_Audio_Render_GetVolume_001: result AUDIOSTREAM_ERROR_INVALID_PARAM(1).
+static napi_value AudioRendererGetVolume_01(napi_env env, napi_callback_info info)
+{
+    OH_AudioRenderer* audioRenderer = nullptr;
+    float volume;
+    OH_AudioStream_Result result = OH_AudioRenderer_GetVolume(audioRenderer, &volume);
+    LOG(false, "OH_AudioRenderer_GetVolume, volumeGet is %f, result %d", volume, result);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Render_GetVolume_002: Test OH_Audio_Render_GetVolume interface .
+static napi_value AudioRendererGetVolume_02(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    float volumeGet;
+    result = OH_AudioRenderer_GetVolume(audioRenderer, &volumeGet);
+    LOG(false, "OH_AudioRenderer_GetVolume, volumeGet is %f, result %d", volumeGet, result);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_double(env, volumeGet, &res);
+    return res;
+}
+
+// OH_AudioRenderer_SetVolume_001: Test OH_AudioRenderer_SetVolume interface for maximum volumes.
+static napi_value AudioRendererSetVolume_01(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    float volumeSet = 1.0;
+    result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_SetVolume 1.0, result is %d", result);
+    float volumeGet;
+    result = OH_AudioRenderer_GetVolume(audioRenderer, &volumeGet);
+    LOG(false, "OH_AudioRenderer_GetVolume, volumeGet is %f, %d", volumeGet, result);
+    OH_AudioStreamBuilder_Destroy(builder);
+
+    napi_value res;
+    napi_create_double(env, volumeGet, &res);
+    return res;
+}
+
+// OH_AudioRenderer_SetVolume_002: Test OH_AudioRenderer_SetVolume interface for minimum volumes.
+static napi_value AudioRendererSetVolume_02(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    float volumeSet = 0.0;
+    result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_SetVolume 0.0, result is %d", result);
+    float volumeGet;
+    result = OH_AudioRenderer_GetVolume(audioRenderer, &volumeGet);
+    LOG(false, "OH_AudioRenderer_GetVolume, volumeGet is %f, %d", volumeGet, result);
+    OH_AudioStreamBuilder_Destroy(builder);
+
+    napi_value res;
+    napi_create_double(env, volumeGet, &res);
+    return res;
+}
+
+// OH_AudioRenderer_SetVolume_003: Test OH_AudioRenderer_SetVolume interface for twice with different volumes.
+static napi_value AudioRendererSetVolume_03(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    float volumeSet = 0.3;
+    result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_SetVolume 0.3, result is %d", result);
+    volumeSet = 0.8;
+    result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_SetVolume 0.8, result is %d", result);
+    float volumeGet;
+    result = OH_AudioRenderer_GetVolume(audioRenderer, &volumeGet);
+    LOG(false, "OH_AudioRenderer_GetVolume, volumeGet is %f, %d", volumeGet, result);
+    OH_AudioStreamBuilder_Destroy(builder);
+
+    napi_value res;
+    napi_create_double(env, volumeGet, &res);
+    return res;
+}
+
+// OH_AudioRenderer_SetVolume_004: Test OH_AudioRenderer_SetVolume interface with out of range values.
+static napi_value AudioRendererSetVolume_04(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    float volumeSet = -1.0;
+    result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_SetVolume -1.0 result is %f, %d", volumeSet, result);
+    OH_AudioStreamBuilder_Destroy(builder);
+
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_AudioRenderer_SetVolume_005: Test OH_AudioRenderer_SetVolume interface with out of range values.
+static napi_value AudioRendererSetVolume_05(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    float volumeSet = 1.5;
+    result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_SetVolume 1.5 result is %f, %d", volumeSet, result);
+    OH_AudioStreamBuilder_Destroy(builder);
+
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_AudioRenderer_SetVolume_006: result is AUDIOSTREAM_ERROR_INVALID_PARAM(1).
+static napi_value AudioRendererSetVolume_06(napi_env env, napi_callback_info info)
+{
+    OH_AudioRenderer* audioRenderer = nullptr;
+    float volumeSet = 0.5;
+    OH_AudioStream_Result result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_GetVolume, volumeGet is %f, %d", volumeSet, result);
+
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Render_SetVolumeWithRamp_001: Test OH_Audio_Render_SetVolumeWithRamp interface.
+static napi_value AudioRendererSetVolumeWithRamp_01(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    float volumeSet = 0.0;
+    result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_SetVolume 0.0 result is %d", result);
+    int32_t durationMs = 1000;
+    volumeSet = 1.0;
+    result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
+    LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 0.0->1.0 1000 result is %d", result);
+    OH_AudioStreamBuilder_Destroy(builder);
+
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Render_SetVolumeWithRamp_002: Test OH_Audio_Render_SetVolumeWithRamp interface.
+static napi_value AudioRendererSetVolumeWithRamp_02(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    float volumeSet = 1.0;
+    result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_SetVolume 1.0 result is %d", result);
+    int32_t durationMs = 100;
+    volumeSet = 0.0;
+    result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
+    LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 1.0->0.0 100 result is %f, %d", volumeSet, result);
+    OH_AudioStreamBuilder_Destroy(builder);
+
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Render_SetVolumeWithRamp_003: Test OH_Audio_Render_SetVolumeWithRamp interface.
+static napi_value AudioRendererSetVolumeWithRamp_03(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    float volumeSet = 0.0;
+    result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_SetVolume 0.0 result is %d", result);
+    int32_t durationMs = 10;
+    volumeSet = 0.5;
+    result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
+    LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 0.0->0.5 10 result is %d", result);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Render_SetVolumeWithRamp_004: Test OH_Audio_Render_SetVolumeWithRamp interface.
+static napi_value AudioRendererSetVolumeWithRamp_04(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    float volumeSet = 1.0;
+    result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_SetVolume 1.0 result is %d", result);
+    int32_t durationMs = 10;
+    volumeSet = 0.5;
+    result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
+    LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 1.0->0.5 10 result is %d", result);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Render_SetVolumeWithRamp_005: Test OH_Audio_Render_SetVolumeWithRamp interface.
+static napi_value AudioRendererSetVolumeWithRamp_05(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    float volumeSet = 0.0;
+    result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_SetVolume 0.0 result is %d", result);
+    int32_t durationMs = 10;
+    volumeSet = 0.0;
+    result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
+    LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 0.0->0.0 10 result is %d", result);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Render_SetVolumeWithRamp_006: Test OH_Audio_Render_SetVolumeWithRamp interface.
+static napi_value AudioRendererSetVolumeWithRamp_06(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    float volumeSet = 1.0;
+    result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_SetVolume 1.0 result is %d", result);
+    int32_t durationMs = 10;
+    volumeSet = 1.0;
+    result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
+    LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 1.0->1.0 10 result is %d", result);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Render_SetVolumeWithRamp_007: Test OH_Audio_Render_SetVolumeWithRamp interface Err.
+static napi_value AudioRendererSetVolumeWithRamp_07(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    float volumeSet = 1.0;
+    result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_SetVolume 1.0 result is %d", result);
+    int32_t durationMs = 100;
+    volumeSet = 1.2;
+    result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
+    LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 1.0->1.2 100 result is %d", result);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Render_SetVolumeWithRamp_008: Test OH_Audio_Render_SetVolumeWithRamp interface Err.
+static napi_value AudioRendererSetVolumeWithRamp_08(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    float volumeSet = 0.0;
+    result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
+    LOG(false, "OH_AudioRenderer_SetVolume 0.0 result is %d", result);
+    int32_t durationMs = 100;
+    volumeSet = -0.2;
+    result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
+    LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 0.0->-0.2 100 result is %d", result);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Render_SetVolumeWithRamp_009: result is AUDIOSTREAM_ERROR_INVALID_PARAM(1).
+static napi_value AudioRendererSetVolumeWithRamp_09(napi_env env, napi_callback_info info)
+{
+    OH_AudioRenderer* audioRenderer = nullptr;
+    float volumeSet = 0.5;
+    int32_t durationMs = 10;
+    OH_AudioStream_Result result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+static void AudioRendererOnMarkReachedCb(OH_AudioRenderer* renderer, uint32_t samplePos, void* userData)
+{
+    g_flag = true;
+    printf("AudioRendererOnMarkReachedCb samplePos: %d \n", samplePos);
+}
+
+// OH_Audio_Renderer_SetMarkPosition_001: result is AUDIOSTREAM_SUCCESS(0).(0)
+static napi_value AudioRendererSetOnMarkReached_01(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder *builder = CreateRenderBuilder();
+
+    OH_AudioRenderer *audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    uint32_t samplePos = 1;
+    OH_AudioRenderer_OnMarkReachedCallback callback = AudioRendererOnMarkReachedCb;
+    result = OH_AudioRenderer_SetMarkPosition(audioRenderer, samplePos, callback, nullptr);
+    LOG(false, "OH_Audio_Renderer_SetOnMarkReached_01 result is: %d", result);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Renderer_SetMarkPosition_002: result is AUDIOSTREAM_ERROR_INVALID_PARAM(1)
+static napi_value AudioRendererSetOnMarkReached_02(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder *builder = CreateRenderBuilder();
+
+    OH_AudioRenderer *audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    uint32_t samplePos = 0;
+    OH_AudioRenderer_OnMarkReachedCallback callback = AudioRendererOnMarkReachedCb;
+    result = OH_AudioRenderer_SetMarkPosition(audioRenderer, samplePos, callback, nullptr);
+    LOG(false, "OH_Audio_Renderer_SetOnMarkReached_02 result is: %d", result);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Render_SetMarkPosition_003: result is AUDIOSTREAM_SUCCESS(0).
+static napi_value AudioRendererSetOnMarkReached_03(napi_env env, napi_callback_info info)
+{
+    g_flag = false;
+    OH_AudioStreamBuilder *builder = CreateRenderBuilder();
+
+    OH_AudioStreamBuilder_SetSamplingRate(builder, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder, g_channelCount);
+    OH_AudioStreamBuilder_SetLatencyMode(builder, (OH_AudioStream_LatencyMode)g_latencyMode);
+    OH_AudioStreamBuilder_SetSampleFormat(builder, (OH_AudioStream_SampleFormat)g_sampleFormat);
+    OH_AudioRenderer_Callbacks callbacks;
+    callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
+    // set buffer size to g_frameSize
+    OH_AudioStreamBuilder_SetFrameSizeInCallback(builder, g_frameSize);
+
+    OH_AudioRenderer *audioRenderer;
+    OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    uint32_t samplePos = 1;
+    OH_AudioRenderer_OnMarkReachedCallback callback = AudioRendererOnMarkReachedCb;
+    result = OH_AudioRenderer_SetMarkPosition(audioRenderer, samplePos, callback, nullptr);
+    LOG(false, "OH_Audio_Renderer_SetOnMarkReached_03 result is: %d", result);
+    OH_AudioRenderer_Start(audioRenderer);
+    sleep(2);
+    OH_AudioRenderer_Stop(audioRenderer);
+    if (!g_flag) {
+        result = AUDIOSTREAM_ERROR_SYSTEM;
+    }
+    OH_AudioRenderer_Release(audioRenderer);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Renderer_SetMarkPosition_004: result is AUDIOSTREAM_ERROR_INVALID_PARAM(1)
+static napi_value AudioRendererSetOnMarkReached_04(napi_env env, napi_callback_info info)
+{
+    OH_AudioRenderer* audioRenderer = nullptr;
+    uint32_t samplePos = 1;
+    OH_AudioRenderer_OnMarkReachedCallback callback = AudioRendererOnMarkReachedCb;
+    OH_AudioStream_Result result = OH_AudioRenderer_SetMarkPosition(audioRenderer, samplePos, callback, nullptr);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+//OH_AudioRenderer_CancelMark_001: result is AUDIOSTREAM_SUCCESS(0).
+static napi_value AudioRendererCancelMark_01(napi_env env, napi_callback_info info)
+{
+    g_flag = false;
+    OH_AudioStreamBuilder *builder = CreateRenderBuilder();
+
+    OH_AudioStreamBuilder_SetSamplingRate(builder, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder, g_channelCount);
+    OH_AudioStreamBuilder_SetLatencyMode(builder, (OH_AudioStream_LatencyMode)g_latencyMode);
+    OH_AudioStreamBuilder_SetSampleFormat(builder, (OH_AudioStream_SampleFormat)g_sampleFormat);
+    OH_AudioRenderer_Callbacks callbacks;
+    callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
+    // set buffer size to g_frameSize
+    result = OH_AudioStreamBuilder_SetFrameSizeInCallback(builder, g_frameSize);
+
+    OH_AudioRenderer *audioRenderer;
+    OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    uint32_t samplePos = 1;
+    OH_AudioRenderer_OnMarkReachedCallback callback = AudioRendererOnMarkReachedCb;
+    result = OH_AudioRenderer_SetMarkPosition(audioRenderer, samplePos, callback, nullptr);
+    LOG(false, "OH_Audio_Renderer_SetOnMarkReached_03 result is: %d", result);
+    result = OH_AudioRenderer_Start(audioRenderer);
+    sleep(2);
+    // CancelMark
+    result = OH_AudioRenderer_CancelMark(audioRenderer);
+    LOG(false, "OH_AudioRenderer_CancelMark result is %d", result);
+    OH_AudioRenderer_Stop(audioRenderer);
+    if (!g_flag) {
+        result = AUDIOSTREAM_ERROR_SYSTEM;
+    }
+    OH_AudioRenderer_Release(audioRenderer);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+//OH_AudioRenderer_CancelMark_002: result is AUDIOSTREAM_SUCCESS(0).
+static napi_value AudioRendererCancelMark_02(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = CreateRenderBuilder();
+    OH_AudioRenderer* audioRenderer;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
+    result = OH_AudioRenderer_CancelMark(audioRenderer);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+//OH_AudioRenderer_CancelMark_003: result is AUDIOSTREAM_ERROR_INVALID_PARAM(1).
+static napi_value AudioRendererCancelMark_03(napi_env env, napi_callback_info info)
+{
+    OH_AudioRenderer* audioRenderer = nullptr;
+    OH_AudioStream_Result result = OH_AudioRenderer_CancelMark(audioRenderer);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+static int32_t AudioRendererInterruptEvent(OH_AudioRenderer* renderer,
+            void* userData,
+            OH_AudioInterrupt_ForceType type,
+            OH_AudioInterrupt_Hint hint)
+{
+    g_mark = true;
+    printf("AudioRendererInterruptEvent type = %d, hint = %d\n", type, hint);
+    return 0;
+}
+
+// OH_Audio_Render_SetInterruptMode_001: result is AUDIOSTREAM_SUCCESS(0).
+static napi_value AudioRendererSetInterruptMode_01(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder1;
+    OH_AudioStream_Type type = AUDIOSTREAM_TYPE_RENDERER;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_Create(&builder1, type);
+
+    OH_AudioStreamBuilder* builder2;
+    result = OH_AudioStreamBuilder_Create(&builder2, type);
+
+    // 2. set builder1 builder2 params
+    OH_AudioStreamBuilder_SetSamplingRate(builder1, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder1, g_channelCount);
+    OH_AudioStreamBuilder_SetLatencyMode(builder1, (OH_AudioStream_LatencyMode)g_latencyMode);
+    OH_AudioStreamBuilder_SetSampleFormat(builder1, (OH_AudioStream_SampleFormat)g_sampleFormat);
+    OH_AudioRenderer_Callbacks callbacks;
+    callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    callbacks.OH_AudioRenderer_OnInterruptEvent = AudioRendererInterruptEvent;
+    result = OH_AudioStreamBuilder_SetRendererCallback(builder1, callbacks, nullptr);
+    result = OH_AudioStreamBuilder_SetFrameSizeInCallback(builder1, g_frameSize);
+
+    OH_AudioStreamBuilder_SetSamplingRate(builder2, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder2, g_channelCount);
+    OH_AudioStreamBuilder_SetLatencyMode(builder2, (OH_AudioStream_LatencyMode)g_latencyMode);
+    OH_AudioStreamBuilder_SetSampleFormat(builder2, (OH_AudioStream_SampleFormat)g_sampleFormat);
+    result = OH_AudioStreamBuilder_SetRendererCallback(builder2, callbacks, nullptr);
+    result = OH_AudioStreamBuilder_SetFrameSizeInCallback(builder2, g_frameSize);
+
+    OH_AudioInterrupt_Mode mode = AUDIOSTREAM_INTERRUPT_MODE_SHARE;
+    result = OH_AudioStreamBuilder_SetRendererInterruptMode(builder1, mode);
+    result = OH_AudioStreamBuilder_SetRendererInterruptMode(builder2, mode);
+
+    // 3. create audioRenderer1 audioRenderer2
+    OH_AudioRenderer* audioRenderer1;
+    result = OH_AudioStreamBuilder_GenerateRenderer(builder1, &audioRenderer1);
+
+    OH_AudioRenderer* audioRenderer2;
+    result = OH_AudioStreamBuilder_GenerateRenderer(builder2, &audioRenderer2);
+
+    // 4. start
+    result = OH_AudioRenderer_Start(audioRenderer1);
+    sleep(1);
+    result = OH_AudioRenderer_Start(audioRenderer2);
+
+    // 5. stop and release client
+    OH_AudioRenderer_Stop(audioRenderer2);
+    OH_AudioRenderer_Release(audioRenderer2);
+
+    OH_AudioRenderer_Stop(audioRenderer1);
+    OH_AudioRenderer_Release(audioRenderer1);
+
+    result = OH_AudioStreamBuilder_Destroy(builder2);
+    result = OH_AudioStreamBuilder_Destroy(builder1);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Render_SetInterruptMode_002: result is AUDIOSTREAM_SUCCESS(0).
+static napi_value AudioRendererSetInterruptMode_02(napi_env env, napi_callback_info info)
+{
+    g_mark = false;
+    // 1. create builder1 builder2
+    OH_AudioStreamBuilder* builder1;
+    OH_AudioStream_Type type = AUDIOSTREAM_TYPE_RENDERER;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_Create(&builder1, type);
+
+    // 2. set builder1 builder2 params
+    OH_AudioStreamBuilder_SetSamplingRate(builder1, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder1, g_channelCount);
+    OH_AudioStreamBuilder_SetLatencyMode(builder1, (OH_AudioStream_LatencyMode)g_latencyMode);
+    OH_AudioStreamBuilder_SetSampleFormat(builder1, (OH_AudioStream_SampleFormat)g_sampleFormat);
+
+    OH_AudioRenderer_Callbacks callbacks;
+    callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
+    callbacks.OH_AudioRenderer_OnInterruptEvent = AudioRendererInterruptEvent;
+    result = OH_AudioStreamBuilder_SetRendererCallback(builder1, callbacks, nullptr);
+    result = OH_AudioStreamBuilder_SetFrameSizeInCallback(builder1, g_frameSize);
+
+    OH_AudioStreamBuilder_SetSamplingRate(builder1, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder1, g_channelCount);
+    OH_AudioStreamBuilder_SetLatencyMode(builder1, (OH_AudioStream_LatencyMode)g_latencyMode);
+    OH_AudioStreamBuilder_SetSampleFormat(builder1, (OH_AudioStream_SampleFormat)g_sampleFormat);
+    result = OH_AudioStreamBuilder_SetRendererCallback(builder1, callbacks, nullptr);
+    result = OH_AudioStreamBuilder_SetFrameSizeInCallback(builder1, g_frameSize);
+
+    OH_AudioInterrupt_Mode mode = AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
+    result = OH_AudioStreamBuilder_SetRendererInterruptMode(builder1, mode);
+    result = OH_AudioStreamBuilder_SetRendererInterruptMode(builder1, mode);
+
+    // 3. create audioRenderer1 audioRenderer2
+    OH_AudioRenderer* audioRenderer1;
+    result = OH_AudioStreamBuilder_GenerateRenderer(builder1, &audioRenderer1);
+
+    OH_AudioRenderer* audioRenderer2;
+    result = OH_AudioStreamBuilder_GenerateRenderer(builder1, &audioRenderer2);
+
+    // 4. start
+    result = OH_AudioRenderer_Start(audioRenderer1);
+    sleep(1);
+    result = OH_AudioRenderer_Start(audioRenderer2);
+    sleep(2);
+
+    if (!g_mark) {
+        result = AUDIOSTREAM_ERROR_SYSTEM;
+    }
+
+    // 5. stop and release client
+    OH_AudioRenderer_Stop(audioRenderer2);
+    OH_AudioRenderer_Release(audioRenderer2);
+
+    OH_AudioRenderer_Stop(audioRenderer1);
+    OH_AudioRenderer_Release(audioRenderer1);
+
+    result = OH_AudioStreamBuilder_Destroy(builder1);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Render_SetInterruptMode_003: result is AUDIOSTREAM_ERROR_INVALID_PARAM(1).
+static napi_value AudioRendererSetInterruptMode_03(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder = nullptr;
+    OH_AudioInterrupt_Mode mode = AUDIOSTREAM_INTERRUPT_MODE_SHARE;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_SetRendererInterruptMode(builder, mode);
+    LOG(false, "OH_AudioRenderer_SetInterruptMode_01, result is: %d", result);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
@@ -1009,6 +1613,33 @@ static napi_value Init(napi_env env, napi_value exports)
         {"audioRenderGetChannelCount", nullptr, AudioRenderGetChannelCount, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioStreamBuilderSetFrameSizeInCallback", nullptr, AudioStreamBuilderSetFrameSizeInCallback,
             nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererGetVolume_01", nullptr, AudioRendererGetVolume_01, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererGetVolume_02", nullptr, AudioRendererGetVolume_02, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolume_01", nullptr, AudioRendererSetVolume_01, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolume_02", nullptr, AudioRendererSetVolume_02, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolume_03", nullptr, AudioRendererSetVolume_03, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolume_04", nullptr, AudioRendererSetVolume_04, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolume_05", nullptr, AudioRendererSetVolume_05, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolume_06", nullptr, AudioRendererSetVolume_06, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_01", nullptr, AudioRendererSetVolumeWithRamp_01, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_02", nullptr, AudioRendererSetVolumeWithRamp_02, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_03", nullptr, AudioRendererSetVolumeWithRamp_03, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_04", nullptr, AudioRendererSetVolumeWithRamp_04, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_05", nullptr, AudioRendererSetVolumeWithRamp_05, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_06", nullptr, AudioRendererSetVolumeWithRamp_06, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_07", nullptr, AudioRendererSetVolumeWithRamp_07, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_08", nullptr, AudioRendererSetVolumeWithRamp_08, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_09", nullptr, AudioRendererSetVolumeWithRamp_09, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetOnMarkReached_01", nullptr, AudioRendererSetOnMarkReached_01, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetOnMarkReached_02", nullptr, AudioRendererSetOnMarkReached_02, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetOnMarkReached_03", nullptr, AudioRendererSetOnMarkReached_03, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetOnMarkReached_04", nullptr, AudioRendererSetOnMarkReached_04, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererCancelMark_01", nullptr, AudioRendererCancelMark_01, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererCancelMark_02", nullptr, AudioRendererCancelMark_02, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererCancelMark_03", nullptr, AudioRendererCancelMark_03, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetInterruptMode_01", nullptr, AudioRendererSetInterruptMode_01, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetInterruptMode_02", nullptr, AudioRendererSetInterruptMode_02, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetInterruptMode_03", nullptr, AudioRendererSetInterruptMode_03, nullptr, nullptr, nullptr, napi_default, nullptr},
 
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);

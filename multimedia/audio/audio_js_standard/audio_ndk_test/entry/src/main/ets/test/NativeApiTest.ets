@@ -17,7 +17,10 @@ import featureAbility from '@ohos.ability.featureAbility';
 import { UiDriver, BY } from '@ohos.UiTest'
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from 'hypium/index'
+import fileio from '@ohos.fileio';
+import resourceManager from '@ohos.resourceManager';
 import myaudioNdk from "libaudioNdkTest.so"
+
 const Tag = 'audio_ndk_test:'
 export default function audioNDK() {
     describe('audioNDKTest', function () {
@@ -927,6 +930,411 @@ export default function audioNDK() {
             let a = myaudioNdk.audioStreamBuilderSetFrameSizeInCallback();
 			console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_STREAM_BUILDER_SET_FRAME_SIZE_IN_CALLBACK_0100 audioStreamBuilderSetFrameSizeInCallback: ${a}`);
             expect(a).assertEqual(0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_GETVOLUME_0100
+            * @tc.name      : getVolume with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_GetVolume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_GETVOLUME_0100', 0, async function (done) {
+            let a = myaudioNdk.audioRendererGetVolume_01();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_GETVOLUME_0100 audioRendererGetVolume: ${a}`);
+            expect(a).assertEqual(1.0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_GETVOLUME_0200
+            * @tc.name      : getVolume with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_GetVolume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_GETVOLUME_0200', 0, async function (done) {
+            let a = myaudioNdk.audioRendererGetVolume_02();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_GETVOLUME_0200 audioRendererGetVolume: ${a}`);
+            expect(a).assertEqual(1.0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0100
+            * @tc.name      : setVolume with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0100', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolume_01();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0100 audioRendererSetVolume: ${a}`);
+            expect(a).assertEqual(1.0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0200
+            * @tc.name      : setVolume with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0200', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolume_02();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0200 audioRendererSetVolume: ${a}`);
+            expect(a).assertEqual(0.0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0300
+            * @tc.name      : setVolume with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0300', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolume_03();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0300 audioRendererSetVolume: ${a}`);
+            expect(a).assertEqual(0.800000011920929)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0400
+            * @tc.name      : setVolume with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0400', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolume_04();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0400 audioRendererSetVolume fail: ${a}`);
+            expect(a).assertEqual(1)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0500
+            * @tc.name      : setVolume with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0500', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolume_05();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0500 audioRendererSetVolume fail: ${a}`);
+            expect(a).assertEqual(1)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0600
+            * @tc.name      : setVolume with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolume
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0600', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolume_06();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUME_0600 audioRendererSetVolume fail: ${a}`);
+            expect(a).assertEqual(1)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0100
+            * @tc.name      : setVolumeWithRamp with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolumeWithRamp
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0100', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolumeWithRamp_01();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0100 audioRendererSetVolumeWithRamp: ${a}`);
+            expect(a).assertEqual(0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0200
+            * @tc.name      : setVolumeWithRamp with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolumeWithRamp
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0200', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolumeWithRamp_02();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0200 audioRendererSetVolumeWithRamp: ${a}`);
+            expect(a).assertEqual(0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0300
+            * @tc.name      : setVolumeWithRamp with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolumeWithRamp
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0300', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolumeWithRamp_03();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0300 audioRendererSetVolumeWithRamp: ${a}`);
+            expect(a).assertEqual(0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0400
+            * @tc.name      : setVolumeWithRamp with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolumeWithRamp
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0400', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolumeWithRamp_04();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0400 audioRendererSetVolumeWithRamp: ${a}`);
+            expect(a).assertEqual(0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0500
+            * @tc.name      : setVolumeWithRamp with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolumeWithRamp
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0500', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolumeWithRamp_05();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0500 audioRendererSetVolumeWithRamp: ${a}`);
+            expect(a).assertEqual(0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0600
+            * @tc.name      : setVolumeWithRamp with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolumeWithRamp
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0600', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolumeWithRamp_06();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0600 audioRendererSetVolumeWithRamp: ${a}`);
+            expect(a).assertEqual(0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0700
+            * @tc.name      : setVolumeWithRamp with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolumeWithRamp
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0700', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolumeWithRamp_07();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0700 audioRendererSetVolumeWithRamp fail: ${a}`);
+            expect(a).assertEqual(1)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0800
+            * @tc.name      : setVolumeWithRamp with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolumeWithRamp
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0800', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolumeWithRamp_08();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0800 audioRendererSetVolumeWithRamp fail: ${a}`);
+            expect(a).assertEqual(1)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0900
+            * @tc.name      : setVolumeWithRamp with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetVolumeWithRamp
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0900', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetVolumeWithRamp_09();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETVOLUMEWITHRAMP_0900 audioRendererSetVolumeWithRamp fail: ${a}`);
+            expect(a).assertEqual(1)
+            done()
+        })
+
+        /*
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0100
+            * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0100', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetOnMarkReached_01();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0100 audioRendererSetOnMarkReached: ${a}`);
+            expect(a).assertEqual(0)
+            done()
+        })
+
+        /*
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0200
+            * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0200', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetOnMarkReached_02();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0200 audioRendererSetOnMarkReached: ${a}`);
+            expect(a).assertEqual(1)
+            done()
+        })
+
+        /*
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0300
+            * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0300', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetOnMarkReached_03();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0300 audioRendererSetOnMarkReached: ${a}`);
+            expect(a).assertEqual(0)
+            done()
+        })
+
+        /*
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0400
+            * @tc.name      : set markPosition with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetMarkPosition
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0400', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetOnMarkReached_04();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETONMARKREACHED_0400 audioRendererSetOnMarkReached: ${a}`);
+            expect(a).assertEqual(1)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_MARKCANCAL_0100
+            * @tc.name      : cancel mark with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_CancelMark
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_MARKCANCAL_0100', 0, async function (done) {
+            let a = myaudioNdk.audioRendererCancelMark_01();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_MARKCANCAL_0100 audioRendererCancelMark: ${a}`);
+            expect(a).assertEqual(0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_MARKCANCAL_0200
+            * @tc.name      : cancel mark with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_CancelMark
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_MARKCANCAL_0200', 0, async function (done) {
+            let a = myaudioNdk.audioRendererCancelMark_02();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_MARKCANCAL_0200 audioRendererCancelMark: ${a}`);
+            expect(a).assertEqual(0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_MARKCANCAL_0300
+            * @tc.name      : cancel mark with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_CancelMark
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_MARKCANCAL_0300', 0, async function (done) {
+            let a = myaudioNdk.audioRendererCancelMark_03();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_MARKCANCAL_0300 audioRendererCancelMark: ${a}`);
+            expect(a).assertEqual(1)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETINTERRUPTMODE_0100
+            * @tc.name      : set interruptMode with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetInterruptMode
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETINTERRUPTMODE_0100', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetInterruptMode_01();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETINTERRUPTMODE_0100 audioRendererSetInterruptMode: ${a}`);
+            expect(a).assertEqual(0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETINTERRUPTMODE_0200
+            * @tc.name      : set interruptMode with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetInterruptMode
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETINTERRUPTMODE_0200', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetInterruptMode_02();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETINTERRUPTMODE_0200 audioRendererSetInterruptMode: ${a}`);
+            expect(a).assertEqual(0)
+            done()
+        })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETINTERRUPTMODE_0300
+            * @tc.name      : set interruptMode with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetInterruptMode
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETINTERRUPTMODE_0300', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetInterruptMode_03();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETINTERRUPTMODE_0300 audioRendererSetInterruptMode: ${a}`);
+            expect(a).assertEqual(1)
             done()
         })
     })
