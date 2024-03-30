@@ -13,18 +13,32 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
+
 const waitUiReadyMs = 1000;
 
 export default function spanJsunit() {
-  describe('spanJsunit', function () {
-    beforeEach(async function (done) {
+  describe('spanJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("spanJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/span',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/span',
       }
       try {
         router.clear();
@@ -32,164 +46,205 @@ export default function spanJsunit() {
         console.info("get spanJsunit state pages:" + JSON.stringify(pages));
         if (!("span" == pages.name)) {
           console.info("get spanJsunit state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           console.info("push spanJsunit success" + JSON.stringify(result));
         }
       } catch (err) {
-          console.error("push spanJsunit page error:" + err);
-	        expect().assertFail();
+        console.error("push spanJsunit page error:" + err);
+        expect().assertFail();
       }
       done();
     });
 
-    it('spanJsunit_0100', 0, async function (done) {
+    it('spanJsunit_0100', 0, async (done: Function) => {
       console.info('spanJsunit_0100 START');
       await CommonFunc.sleep(1000);
       // get the sapn component and test attribute
-      let strJson = getInspectorByKey('testSpan');
-      let obj = JSON.parse(strJson);
-      console.info('spanJsunit_0100 component obj is:' + obj.$attrs.content + "--" + obj.$attrs.textCase + "---" + obj.$attrs.letterSpacing + "--" + obj.$attrs.fontSize + "--" + obj.$attrs.decoration);
-      expect(obj.$attrs.content).assertEqual('I am Underline-span');
-      expect(obj.$attrs.textCase).assertEqual('TextCase.Normal');
-      expect(obj.$attrs.letterSpacing).assertEqual('10.00fp');
-      expect(obj.$attrs.fontSize).assertEqual('12.00fp');
-      expect(obj.$attrs.decoration).assertEqual('{"type":"TextDecorationType.Underline","color":"#FFFFCCEE",' +
-      '"style":"TextDecorationStyle.SOLID"}');
+      let strJson: string = getInspectorByKey('testSpan');
+
+      console.info('spanJsunit_0100 component JSON.parse(strJson) is:' + JSON.parse(strJson)
+        .$attrs
+        .content + "--" + JSON.parse(strJson).$attrs.textCase + "---" + JSON.parse(strJson)
+        .$attrs
+        .letterSpacing + "--" + JSON.parse(strJson).$attrs.fontSize + "--" + JSON.parse(strJson).$attrs.decoration);
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('I am Underline-span');
+      expect(JSON.parse(strJson).$attrs.textCase).assertEqual('TextCase.Normal');
+      expect(JSON.parse(strJson).$attrs.letterSpacing).assertEqual('10.00fp');
+      expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('12.00fp');
+      expect(JSON.parse(strJson).$attrs.decoration)
+        .assertEqual('{"type":"TextDecorationType.Underline","color":"#FFFFCCEE",' +
+          '"style":"TextDecorationStyle.SOLID"}');
       console.info('spanJsunit_0100 END');
       done();
     });
 
-    it('spanJsunit_0200', 0, async function (done) {
+    it('spanJsunit_0200', 0, async (done: Function) => {
       console.info('spanJsunit_0200 START');
       await CommonFunc.sleep(1000);
       // modify the content and textCase attribute normal value  dynamically
-      globalThis.value.message.notify({name:'content',value:'I am test'})
+      globalThis.value.message.notify({
+        name: 'content', value: 'I am test'
+      })
       await CommonFunc.sleep(300);
-      globalThis.value.message.notify({name:'textCase',value:TextCase.LowerCase})
+      globalThis.value.message.notify({
+        name: 'textCase', value: TextCase.LowerCase
+      })
       await CommonFunc.sleep(300);
       // check the value of changed attribute
-      let strJson = getInspectorByKey('testSpan');
-      let obj = JSON.parse(strJson);
-      console.info('spanJsunit_0200 component obj is: ' + JSON.stringify(obj));
-      expect(obj.$attrs.content).assertEqual('I am test');
-      expect(obj.$attrs.textCase).assertEqual('TextCase.LowerCase');
+      let strJson: string = getInspectorByKey('testSpan');
+
+      console.info('spanJsunit_0200 component JSON.parse(strJson) is: ' + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('I am test');
+      expect(JSON.parse(strJson).$attrs.textCase).assertEqual('TextCase.LowerCase');
       done();
     });
 
-    it('spanJsunit_0300', 0, async function (done) {
+    it('spanJsunit_0300', 0, async (done: Function) => {
       console.info('spanJsunit_0300 START');
       await CommonFunc.sleep(1000);
       // modify the values attribute enum textCase value of span dynamically
-      globalThis.value.message.notify({name:'textCase',value:TextCase.UpperCase})
+      globalThis.value.message.notify({
+        name: 'textCase', value: TextCase.UpperCase
+      })
       await CommonFunc.sleep(2000);
-      let strJson = getInspectorByKey('testSpan');
-      let obj = JSON.parse(strJson);
-      console.info('spanJsunit_0300 component obj is: ' + obj.$attrs.textCase);
-      expect(obj.$attrs.textCase).assertEqual('TextCase.UpperCase');
+      let strJson: string = getInspectorByKey('testSpan');
+
+      console.info('spanJsunit_0300 component JSON.parse(strJson) is: ' + JSON.parse(strJson).$attrs.textCase);
+      expect(JSON.parse(strJson).$attrs.textCase).assertEqual('TextCase.UpperCase');
       done();
     });
-    
-    it('spanJsunit_0400', 0, async function (done) {
+
+    it('spanJsunit_0400', 0, async (done: Function) => {
       console.info('spanJsunit_0400 START');
       await CommonFunc.sleep(1000);
       // modify the values illegal attribute enum textCase value of span dynamically
-      globalThis.value.message.notify({name:'textCase',value:5})
+      globalThis.value.message.notify({
+        name: 'textCase', value: 5
+      })
       await CommonFunc.sleep(2000);
-      let strJson = getInspectorByKey('testSpan');
-      let obj = JSON.parse(strJson);
-      console.info('spanJsunit_0400 component obj is: ' + obj.$attrs.textCase);
-      expect(obj.$attrs.textCase).assertEqual('TextCase.UpperCase');
-      done();
-    }); 
+      let strJson: string = getInspectorByKey('testSpan');
 
-    it('spanJsunit_0500', 0, async function (done) {
+      console.info('spanJsunit_0400 component JSON.parse(strJson) is: ' + JSON.parse(strJson).$attrs.textCase);
+      expect(JSON.parse(strJson).$attrs.textCase).assertEqual('TextCase.UpperCase');
+      done();
+    });
+
+    it('spanJsunit_0500', 0, async (done: Function) => {
       console.info('spanJsunit_0500 START');
       await CommonFunc.sleep(1000);
       // modify the normal values letter space and fontSize of span dynamically
-      globalThis.value.message.notify({name:'fontSize',value:20})
+      globalThis.value.message.notify({
+        name: 'fontSize', value: 20
+      })
       await CommonFunc.sleep(300);
-      globalThis.value.message.notify({name:'letterSpacing',value:25})
+      globalThis.value.message.notify({
+        name: 'letterSpacing', value: 25
+      })
       await CommonFunc.sleep(300);
-      let strJson = getInspectorByKey('testSpan');
-      let obj = JSON.parse(strJson);
-      console.info('spanJsunit_0500 component obj is: ' + obj.$attrs.letterSpacing + "----" + obj.$attrs.fontSize);
-      expect(obj.$attrs.letterSpacing).assertEqual('25.00fp');
-      expect(obj.$attrs.fontSize).assertEqual('20.00fp');
-      done();
-    }); 
+      let strJson: string = getInspectorByKey('testSpan');
 
-    it('spanJsunit_0600', 0, async function (done) {
+      console.info('spanJsunit_0500 component JSON.parse(strJson) is: ' + JSON.parse(strJson)
+        .$attrs
+        .letterSpacing + "----" + JSON.parse(strJson).$attrs.fontSize);
+      expect(JSON.parse(strJson).$attrs.letterSpacing).assertEqual('25.00fp');
+      expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('20.00fp');
+      done();
+    });
+
+    it('spanJsunit_0600', 0, async (done: Function) => {
       console.info('spanJsunit_0600 START');
       await CommonFunc.sleep(1000);
       // modify the values decoration attribute  of span dynamically
-      globalThis.value.message.notify({name:'type',value:TextDecorationType.None})
+      globalThis.value.message.notify({
+        name: 'type', value: TextDecorationType.None
+      })
       await CommonFunc.sleep(300);
-      globalThis.value.message.notify({name:'color',value:'#FFAACC'})
+      globalThis.value.message.notify({
+        name: 'color', value: '#FFAACC'
+      })
       await CommonFunc.sleep(300);
-      let strJson = getInspectorByKey('testSpan');
-      let obj = JSON.parse(strJson);
-      console.info('spanJsunit_0600 component obj is: ' + obj.$attrs.decoration);
-      expect(obj.$attrs.decoration).assertEqual('{"type":"TextDecorationType.None","color":"#FFFFAACC",' +
-      '"style":"TextDecorationStyle.SOLID"}');
-      done();
-    }); 
+      let strJson: string = getInspectorByKey('testSpan');
 
-    it('spanJsunit_0700', 0, async function (done) {
+      console.info('spanJsunit_0600 component JSON.parse(strJson) is: ' + JSON.parse(strJson).$attrs.decoration);
+      expect(JSON.parse(strJson).$attrs.decoration)
+        .assertEqual('{"type":"TextDecorationType.None","color":"#FFFFAACC",' +
+          '"style":"TextDecorationStyle.SOLID"}');
+      done();
+    });
+
+    it('spanJsunit_0700', 0, async (done: Function) => {
       console.info('spanJsunit_0700 START');
       await CommonFunc.sleep(1000);
       // modify the values decoration attribute  of span dynamically
-      globalThis.value.message.notify({name:'type',value:TextDecorationType.Overline})
+      globalThis.value.message.notify({
+        name: 'type', value: TextDecorationType.Overline
+      })
       await CommonFunc.sleep(300);
-      let strJson = getInspectorByKey('testSpan');
-      let obj = JSON.parse(strJson);
-      console.info('spanJsunit_0700 component obj is: ' + obj.$attrs.decoration);
-      expect(obj.$attrs.decoration).assertEqual('{"type":"TextDecorationType.Overline","color":"#FFFFAACC",' +
-      '"style":"TextDecorationStyle.SOLID"}');
-      globalThis.value.message.notify({name:'type',value:TextDecorationType.LineThrough})
+      let strJson: string = getInspectorByKey('testSpan');
+
+      console.info('spanJsunit_0700 component JSON.parse(strJson) is: ' + JSON.parse(strJson).$attrs.decoration);
+      expect(JSON.parse(strJson).$attrs.decoration)
+        .assertEqual('{"type":"TextDecorationType.Overline","color":"#FFFFAACC",' +
+          '"style":"TextDecorationStyle.SOLID"}');
+      globalThis.value.message.notify({
+        name: 'type', value: TextDecorationType.LineThrough
+      })
       await CommonFunc.sleep(300);
       let strJson2 = getInspectorByKey('testSpan');
-      let obj2 = JSON.parse(strJson2);
-      console.info('spanJsunit_0700 component obj2 is: ' + obj2.$attrs.decoration);
-      expect(obj2.$attrs.decoration).assertEqual('{"type":"TextDecorationType.LineThrough","color":"#FFFFAACC",' +
-      '"style":"TextDecorationStyle.SOLID"}');
+
+      console.info('spanJsunit_0700 component JSON.parse(strJson2) is: ' + JSON.parse(strJson2).$attrs.decoration);
+      expect(JSON.parse(strJson2).$attrs.decoration)
+        .assertEqual('{"type":"TextDecorationType.LineThrough","color":"#FFFFAACC",' +
+          '"style":"TextDecorationStyle.SOLID"}');
       done();
-    }); 
-    
-    it('spanJsunit_0800', 0, async function (done) {
+    });
+
+    it('spanJsunit_0800', 0, async (done: Function) => {
       console.info('spanJsunit_0800 START');
       await CommonFunc.sleep(1000);
       // modify the values decoration attribute  of span dynamically
-      globalThis.value.message.notify({name:'color',value: Color.Green})
+      globalThis.value.message.notify({
+        name: 'color', value: Color.Green
+      })
       await CommonFunc.sleep(300);
-      let strJson = getInspectorByKey('testSpan');
-      let obj = JSON.parse(strJson);
-      console.info('spanJsunit_0800 component obj is: ' + obj.$attrs.decoration);
-      expect(obj.$attrs.decoration).assertEqual('{"type":"TextDecorationType.LineThrough","color":"#FF008000",' +
-      '"style":"TextDecorationStyle.SOLID"}');
-      globalThis.value.message.notify({name:'color',value:'rgb(238, 130, 238)'})
+      let strJson: string = getInspectorByKey('testSpan');
+
+      console.info('spanJsunit_0800 component JSON.parse(strJson) is: ' + JSON.parse(strJson).$attrs.decoration);
+      expect(JSON.parse(strJson).$attrs.decoration)
+        .assertEqual('{"type":"TextDecorationType.LineThrough","color":"#FF008000",' +
+          '"style":"TextDecorationStyle.SOLID"}');
+      globalThis.value.message.notify({
+        name: 'color', value: 'rgb(238, 130, 238)'
+      })
       await CommonFunc.sleep(300);
       let strJson2 = getInspectorByKey('testSpan');
-      let obj2 = JSON.parse(strJson2);
-      console.info('spanJsunit_0800 component obj2 is: ' + obj2.$attrs.decoration);
-      expect(obj2.$attrs.decoration).assertEqual('{"type":"TextDecorationType.LineThrough","color":"#FFEE82EE",' +
-      '"style":"TextDecorationStyle.SOLID"}');
+
+      console.info('spanJsunit_0800 component JSON.parse(strJson2) is: ' + JSON.parse(strJson2).$attrs.decoration);
+      expect(JSON.parse(strJson2).$attrs.decoration)
+        .assertEqual('{"type":"TextDecorationType.LineThrough","color":"#FFEE82EE",' +
+          '"style":"TextDecorationStyle.SOLID"}');
       done();
-    }); 
-     
-    it('spanJsunit_0900', 0, async function (done) {
+    });
+
+    it('spanJsunit_0900', 0, async (done: Function) => {
       console.info('spanJsunit_0900 START');
       await CommonFunc.sleep(1000);
       // modify the values decoration attribute  of span illegal dynamically
-      globalThis.value.message.notify({name:'type',value:8})
+      globalThis.value.message.notify({
+        name: 'type', value: 8
+      })
       await CommonFunc.sleep(300);
-      globalThis.value.message.notify({name:'color',value:'#FCC'})
+      globalThis.value.message.notify({
+        name: 'color', value: '#FCC'
+      })
       await CommonFunc.sleep(300);
-      let strJson = getInspectorByKey('testSpan');
-      let obj = JSON.parse(strJson);
-      console.info('spanJsunit_0900 component obj is: ' + obj.$attrs.decoration);
-      expect(obj.$attrs.decoration).assertEqual('{"type":"TextDecorationType.None","color":"#FFFFCCCC",' +
-      '"style":"TextDecorationStyle.SOLID"}');
+      let strJson: string = getInspectorByKey('testSpan');
+
+      console.info('spanJsunit_0900 component JSON.parse(strJson) is: ' + JSON.parse(strJson).$attrs.decoration);
+      expect(JSON.parse(strJson).$attrs.decoration)
+        .assertEqual('{"type":"TextDecorationType.None","color":"#FFFFCCCC",' +
+          '"style":"TextDecorationStyle.SOLID"}');
       done();
-    }); 
+    });
   })
 }

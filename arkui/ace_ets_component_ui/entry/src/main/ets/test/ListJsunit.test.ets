@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function ListJsunit() {
-  describe('ListJsunit', function () {
-    beforeEach(async function (done) {
+  describe('ListJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("ListJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/ListPage',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/ListPage',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function ListJsunit() {
         console.info("get ListJsunit state pages: " + JSON.stringify(pages));
         if (!("ListPage" == pages.name)) {
           console.info("get ListJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push ListJsunit success: " + JSON.stringify(result));
         }
@@ -43,53 +56,53 @@ export default function ListJsunit() {
       done();
     });
 
-    it('ListJsunit_0100', 0, async function (done) {
+    it('ListJsunit_0100', 0, async (done: Function) => {
       // Get the information of the List component
       console.info('[ListJsunit_0100] START');
       await CommonFunc.sleep(5000);
-      let strJson = getInspectorByKey('list');
-      let obj = JSON.parse(strJson);
-      console.info("[ListJsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[ListJsunit_0100] space: " + JSON.stringify(obj.$attrs.space));
-      console.info("[ListJsunit_0100] initialIndex: " + JSON.stringify(obj.$attrs.initialIndex));
-      console.info("[ListJsunit_0100] listDirection: " + JSON.stringify(obj.$attrs.listDirection));
-      console.info("[ListJsunit_0100] strokeWidth: " + JSON.stringify(obj.$attrs.divider.strokeWidth));
-      console.info("[ListJsunit_0100] color: " + JSON.stringify(obj.$attrs.divider.color));
-      console.info("[ListJsunit_0100] startMargin: " + JSON.stringify(obj.$attrs.divider.startMargin));
-      console.info("[ListJsunit_0100] endMargin: " + JSON.stringify(obj.$attrs.divider.endMargin));
-      console.info("[ListJsunit_0100] scrollBar: " + JSON.stringify(obj.$attrs.scrollBar));
-      console.info("[ListJsunit_0100] cachedCount: " + JSON.stringify(obj.$attrs.cachedCount));
-      console.info("[ListJsunit_0100] edgeEffect: " + JSON.stringify(obj.$attrs.edgeEffect));
-      console.info("[ListJsunit_0100] lanes: " + JSON.stringify(obj.$attrs.lanes));
-      console.info("[ListJsunit_0100] chainAnimation: " + JSON.stringify(obj.$attrs.chainAnimation));
-      console.info("[ListJsunit_0100] multiSelectable: " + JSON.stringify(obj.$attrs.multiSelectable));
-      console.info("[ListJsunit_0100] alignListItem: " + JSON.stringify(obj.$attrs.alignListItem));
-      console.info("[ListJsunit_0100] sticky: " + JSON.stringify(obj.$attrs.sticky));
-      console.info("[ListJsunit_0100] lanes: " + JSON.stringify(obj.$attrs.lanes));
-      expect(obj.$attrs.space).assertEqual('20.00vp');
-      expect(obj.$attrs.initialIndex).assertEqual('0');
-      expect(obj.$attrs.listDirection).assertEqual('Axis.Vertical');
-      expect(obj.$attrs.divider.strokeWidth).assertEqual('2.00vp');
-      expect(obj.$attrs.divider.color).assertEqual('#FF0000FF');
-      expect(obj.$attrs.divider.startMargin).assertEqual('3.00vp');
-      expect(obj.$attrs.divider.endMargin).assertEqual('2.00vp');
-      expect(obj.$attrs.scrollBar).assertEqual('BarState.Off');
+      let strJson: string = getInspectorByKey('list');
+
+      console.info("[ListJsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[ListJsunit_0100] space: " + JSON.stringify(JSON.parse(strJson).$attrs.space));
+      console.info("[ListJsunit_0100] initialIndex: " + JSON.stringify(JSON.parse(strJson).$attrs.initialIndex));
+      console.info("[ListJsunit_0100] listDirection: " + JSON.stringify(JSON.parse(strJson).$attrs.listDirection));
+      console.info("[ListJsunit_0100] strokeWidth: " + JSON.stringify(JSON.parse(strJson).$attrs.divider.strokeWidth));
+      console.info("[ListJsunit_0100] color: " + JSON.stringify(JSON.parse(strJson).$attrs.divider.color));
+      console.info("[ListJsunit_0100] startMargin: " + JSON.stringify(JSON.parse(strJson).$attrs.divider.startMargin));
+      console.info("[ListJsunit_0100] endMargin: " + JSON.stringify(JSON.parse(strJson).$attrs.divider.endMargin));
+      console.info("[ListJsunit_0100] scrollBar: " + JSON.stringify(JSON.parse(strJson).$attrs.scrollBar));
+      console.info("[ListJsunit_0100] cachedCount: " + JSON.stringify(JSON.parse(strJson).$attrs.cachedCount));
+      console.info("[ListJsunit_0100] edgeEffect: " + JSON.stringify(JSON.parse(strJson).$attrs.edgeEffect));
+      console.info("[ListJsunit_0100] lanes: " + JSON.stringify(JSON.parse(strJson).$attrs.lanes));
+      console.info("[ListJsunit_0100] chainAnimation: " + JSON.stringify(JSON.parse(strJson).$attrs.chainAnimation));
+      console.info("[ListJsunit_0100] multiSelectable: " + JSON.stringify(JSON.parse(strJson).$attrs.multiSelectable));
+      console.info("[ListJsunit_0100] alignListItem: " + JSON.stringify(JSON.parse(strJson).$attrs.alignListItem));
+      console.info("[ListJsunit_0100] sticky: " + JSON.stringify(JSON.parse(strJson).$attrs.sticky));
+      console.info("[ListJsunit_0100] lanes: " + JSON.stringify(JSON.parse(strJson).$attrs.lanes));
+      expect(JSON.parse(strJson).$attrs.space).assertEqual('20.00vp');
+      expect(JSON.parse(strJson).$attrs.initialIndex).assertEqual('0');
+      expect(JSON.parse(strJson).$attrs.listDirection).assertEqual('Axis.Vertical');
+      expect(JSON.parse(strJson).$attrs.divider.strokeWidth).assertEqual('2.00vp');
+      expect(JSON.parse(strJson).$attrs.divider.color).assertEqual('#FF0000FF');
+      expect(JSON.parse(strJson).$attrs.divider.startMargin).assertEqual('3.00vp');
+      expect(JSON.parse(strJson).$attrs.divider.endMargin).assertEqual('2.00vp');
+      expect(JSON.parse(strJson).$attrs.scrollBar).assertEqual('BarState.Off');
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.cachedCount).assertEqual('1');
-      expect(obj.$attrs.edgeEffect).assertEqual('EdgeEffect.Spring');
-      expect(obj.$attrs.lanes).assertEqual('1');
-      expect(obj.$attrs.chainAnimation).assertEqual(false);
-      expect(obj.$attrs.multiSelectable).assertEqual(false);
-      expect(obj.$attrs.sticky).assertEqual('StickyStyle.None');
-      expect(obj.$attrs.alignListItem).assertEqual('ListItemAlign.End');      
+      expect(JSON.parse(strJson).$attrs.cachedCount).assertEqual('1');
+      expect(JSON.parse(strJson).$attrs.edgeEffect).assertEqual('EdgeEffect.Spring');
+      expect(JSON.parse(strJson).$attrs.lanes).assertEqual('1');
+      expect(JSON.parse(strJson).$attrs.chainAnimation).assertEqual(false);
+      expect(JSON.parse(strJson).$attrs.multiSelectable).assertEqual(false);
+      expect(JSON.parse(strJson).$attrs.sticky).assertEqual('StickyStyle.None');
+      expect(JSON.parse(strJson).$attrs.alignListItem).assertEqual('ListItemAlign.End');
       console.info('[ListJsunit_0100] END');
       done();
     });
 
-    it('ListJsunit_0200', 0, async function (done) {
+    it('ListJsunit_0200', 0, async (done: Function) => {
       // Verify the functions of the List component
       console.info('[ListJsunit_0200] START');
-      
+
       // Verify onScroll function of List component
       let gridTop = CommonFunc.getComponentRect('list');
       let top = gridTop.top
@@ -102,7 +115,7 @@ export default function ListJsunit() {
       console.info("windowRect Left: " + globalThis.winLeft + ',' + "windowRect Top: " + globalThis.winTop);
       await driver.swipe(Math.round(globalThis.winLeft + left + (right - left)/2), Math.round(globalThis.winTop + top + (bottom - top)/2), Math.round(globalThis.winLeft + left + (right - left)/2 - vp2px(4)), Math.round(globalThis.winTop + top + (bottom - top)/2));
       await CommonFunc.sleep(1000);
-      
+
       let onScrollText = await driver.findComponent(BY.key('onScrollText'));
       let text1 = await onScrollText.getText();
       console.info("[ListJsunit_0200] onScrollText: " + text1);
@@ -145,174 +158,228 @@ export default function ListJsunit() {
       await driver.swipe(Math.round(globalThis.winLeft + left + (right - left)/2), Math.round(globalThis.winTop + top + (bottom - top)/2), Math.round(globalThis.winLeft + left + (right - left)/2 - vp2px(4)), Math.round(globalThis.winTop + top + (bottom - top)/2));
       await CommonFunc.sleep(1000);
       let onReachEndText = await driver.findComponent(BY.key('onReachEndText'));
-      let text= await onReachEndText.getText();
+      let text = await onReachEndText.getText();
       console.info("[ListJsunit_0200] onReachEndText: " + text);
       expect(text).assertEqual('onReachEnd');
       console.info('[ListJsunit_0200] END');
       done();
     });
 
-    it('ListJsunit_0300', 0, async function (done) {
+    it('ListJsunit_0300', 0, async (done: Function) => {
       // Modify the properties of component List
       console.info('[ListJsunit_0300] START');
-      globalThis.value.message.notify({name:'space',value:25})
+      globalThis.value.message.notify({
+        name: 'space', value: 25
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'initialIndex',value:1})
+      globalThis.value.message.notify({
+        name: 'initialIndex', value: 1
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'listDirection',value:Axis.Horizontal})
+      globalThis.value.message.notify({
+        name: 'listDirection', value: Axis.Horizontal
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'strokeWidth',value:3})
+      globalThis.value.message.notify({
+        name: 'strokeWidth', value: 3
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'dividerColor',value:Color.Black})
+      globalThis.value.message.notify({
+        name: 'dividerColor', value: Color.Black
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'startMargin',value:5})
+      globalThis.value.message.notify({
+        name: 'startMargin', value: 5
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'endMargin',value:4})
+      globalThis.value.message.notify({
+        name: 'endMargin', value: 4
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'scrollBar',value:BarState.On})
+      globalThis.value.message.notify({
+        name: 'scrollBar', value: BarState.On
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'cachedCount',value:2})
+      globalThis.value.message.notify({
+        name: 'cachedCount', value: 2
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'edgeEffect',value:EdgeEffect.Fade})
+      globalThis.value.message.notify({
+        name: 'edgeEffect', value: EdgeEffect.Fade
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'chainAnimation',value:true})
+      globalThis.value.message.notify({
+        name: 'chainAnimation', value: true
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'lanes',value:5})
+      globalThis.value.message.notify({
+        name: 'lanes', value: 5
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'multiSelectable',value:true})
+      globalThis.value.message.notify({
+        name: 'multiSelectable', value: true
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'alignListItem',value:ListItemAlign.Start})
+      globalThis.value.message.notify({
+        name: 'alignListItem', value: ListItemAlign.Start
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'sticky',value:StickyStyle.None})
+      globalThis.value.message.notify({
+        name: 'sticky', value: StickyStyle.None
+      })
       await CommonFunc.sleep(2000);
 
       // Get the propoties value of the List component
-      let strJson = getInspectorByKey('list');
-      let obj = JSON.parse(strJson);
-      console.info("[ListJsunit_0300] component obj is: " + JSON.stringify(obj));
-      console.info("[ListJsunit_0300] space: " + JSON.stringify(obj.$attrs.space));
-      console.info("[ListJsunit_0300] initialIndex: " + JSON.stringify(obj.$attrs.initialIndex));
-      console.info("[ListJsunit_0300] listDirection: " + JSON.stringify(obj.$attrs.listDirection));
-      console.info("[ListJsunit_0300] strokeWidth: " + JSON.stringify(obj.$attrs.divider.strokeWidth));
-      console.info("[ListJsunit_0300] color: " + JSON.stringify(obj.$attrs.divider.color));
-      console.info("[ListJsunit_0300] startMargin: " + JSON.stringify(obj.$attrs.divider.startMargin));
-      console.info("[ListJsunit_0300] endMargin: " + JSON.stringify(obj.$attrs.divider.endMargin));
-      console.info("[ListJsunit_0300] scrollBar: " + JSON.stringify(obj.$attrs.scrollBar));
-      console.info("[ListJsunit_0300] cachedCount: " + JSON.stringify(obj.$attrs.cachedCount));
-      console.info("[ListJsunit_0300] edgeEffect: " + JSON.stringify(obj.$attrs.edgeEffect));
-      console.info("[ListJsunit_0300] lanes: " + JSON.stringify(obj.$attrs.lanes));
-      console.info("[ListJsunit_0300] chainAnimation: " + JSON.stringify(obj.$attrs.chainAnimation));
-      console.info("[ListJsunit_0300] multiSelectable: " + JSON.stringify(obj.$attrs.multiSelectable));
-      console.info("[ListJsunit_0300] alignListItem: " + JSON.stringify(obj.$attrs.alignListItem));
-      console.info("[ListJsunit_0300] sticky: " + JSON.stringify(obj.$attrs.sticky));
-      expect(obj.$attrs.space).assertEqual('25.00vp');
-      expect(obj.$attrs.initialIndex).assertEqual('1');
-      expect(obj.$attrs.listDirection).assertEqual('Axis.Horizontal');
-      expect(obj.$attrs.divider.strokeWidth).assertEqual('3.00vp');
-      expect(obj.$attrs.divider.color).assertEqual('#FF000000');
-      expect(obj.$attrs.divider.startMargin).assertEqual('5.00vp');
-      expect(obj.$attrs.divider.endMargin).assertEqual('4.00vp');
-      expect(obj.$attrs.scrollBar).assertEqual('BarState.On');
+      let strJson: string = getInspectorByKey('list');
+
+      console.info("[ListJsunit_0300] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[ListJsunit_0300] space: " + JSON.stringify(JSON.parse(strJson).$attrs.space));
+      console.info("[ListJsunit_0300] initialIndex: " + JSON.stringify(JSON.parse(strJson).$attrs.initialIndex));
+      console.info("[ListJsunit_0300] listDirection: " + JSON.stringify(JSON.parse(strJson).$attrs.listDirection));
+      console.info("[ListJsunit_0300] strokeWidth: " + JSON.stringify(JSON.parse(strJson).$attrs.divider.strokeWidth));
+      console.info("[ListJsunit_0300] color: " + JSON.stringify(JSON.parse(strJson).$attrs.divider.color));
+      console.info("[ListJsunit_0300] startMargin: " + JSON.stringify(JSON.parse(strJson).$attrs.divider.startMargin));
+      console.info("[ListJsunit_0300] endMargin: " + JSON.stringify(JSON.parse(strJson).$attrs.divider.endMargin));
+      console.info("[ListJsunit_0300] scrollBar: " + JSON.stringify(JSON.parse(strJson).$attrs.scrollBar));
+      console.info("[ListJsunit_0300] cachedCount: " + JSON.stringify(JSON.parse(strJson).$attrs.cachedCount));
+      console.info("[ListJsunit_0300] edgeEffect: " + JSON.stringify(JSON.parse(strJson).$attrs.edgeEffect));
+      console.info("[ListJsunit_0300] lanes: " + JSON.stringify(JSON.parse(strJson).$attrs.lanes));
+      console.info("[ListJsunit_0300] chainAnimation: " + JSON.stringify(JSON.parse(strJson).$attrs.chainAnimation));
+      console.info("[ListJsunit_0300] multiSelectable: " + JSON.stringify(JSON.parse(strJson).$attrs.multiSelectable));
+      console.info("[ListJsunit_0300] alignListItem: " + JSON.stringify(JSON.parse(strJson).$attrs.alignListItem));
+      console.info("[ListJsunit_0300] sticky: " + JSON.stringify(JSON.parse(strJson).$attrs.sticky));
+      expect(JSON.parse(strJson).$attrs.space).assertEqual('25.00vp');
+      expect(JSON.parse(strJson).$attrs.initialIndex).assertEqual('1');
+      expect(JSON.parse(strJson).$attrs.listDirection).assertEqual('Axis.Horizontal');
+      expect(JSON.parse(strJson).$attrs.divider.strokeWidth).assertEqual('3.00vp');
+      expect(JSON.parse(strJson).$attrs.divider.color).assertEqual('#FF000000');
+      expect(JSON.parse(strJson).$attrs.divider.startMargin).assertEqual('5.00vp');
+      expect(JSON.parse(strJson).$attrs.divider.endMargin).assertEqual('4.00vp');
+      expect(JSON.parse(strJson).$attrs.scrollBar).assertEqual('BarState.On');
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.cachedCount).assertEqual('2');
-      expect(obj.$attrs.edgeEffect).assertEqual('EdgeEffect.Fade');
-      expect(obj.$attrs.lanes).assertEqual('5');
-      expect(obj.$attrs.chainAnimation).assertEqual(true);
-      expect(obj.$attrs.multiSelectable).assertEqual(true);
-      expect(obj.$attrs.alignListItem).assertEqual('ListItemAlign.Start');
-      expect(obj.$attrs.sticky).assertEqual('StickyStyle.None');
+      expect(JSON.parse(strJson).$attrs.cachedCount).assertEqual('2');
+      expect(JSON.parse(strJson).$attrs.edgeEffect).assertEqual('EdgeEffect.Fade');
+      expect(JSON.parse(strJson).$attrs.lanes).assertEqual('5');
+      expect(JSON.parse(strJson).$attrs.chainAnimation).assertEqual(true);
+      expect(JSON.parse(strJson).$attrs.multiSelectable).assertEqual(true);
+      expect(JSON.parse(strJson).$attrs.alignListItem).assertEqual('ListItemAlign.Start');
+      expect(JSON.parse(strJson).$attrs.sticky).assertEqual('StickyStyle.None');
       console.info('[ListJsunit_0300] END');
       done();
     });
 
-    it('ListJsunit_0400', 0, async function (done) {
+    it('ListJsunit_0400', 0, async (done: Function) => {
       // Illegal modification of properties of component List
       console.info('[ListJsunit_0400] START');
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'space',value:'-10'})
+      globalThis.value.message.notify({
+        name: 'space', value: '-10'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'initialIndex',value:'30'})
+      globalThis.value.message.notify({
+        name: 'initialIndex', value: '30'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'listDirection',value:'10'})
+      globalThis.value.message.notify({
+        name: 'listDirection', value: '10'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'strokeWidth',value:'abc'})
+      globalThis.value.message.notify({
+        name: 'strokeWidth', value: 'abc'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'dividerColor',value:'10'})
+      globalThis.value.message.notify({
+        name: 'dividerColor', value: '10'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'startMargin',value:'#aaa'})
+      globalThis.value.message.notify({
+        name: 'startMargin', value: '#aaa'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'endMargin',value:'-10'})
+      globalThis.value.message.notify({
+        name: 'endMargin', value: '-10'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'scrollBar',value:'abc'})
+      globalThis.value.message.notify({
+        name: 'scrollBar', value: 'abc'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'cachedCount',value:'-10'})
+      globalThis.value.message.notify({
+        name: 'cachedCount', value: '-10'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'edgeEffect',value:'111'})
+      globalThis.value.message.notify({
+        name: 'edgeEffect', value: '111'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'lanesMinLength',value:'$a'})
+      globalThis.value.message.notify({
+        name: 'lanesMinLength', value: '$a'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'lanesMaxLength',value:'-10'})
+      globalThis.value.message.notify({
+        name: 'lanesMaxLength', value: '-10'
+      })
       await CommonFunc.sleep(2000);
 
       // Get the propoties value of the List component
-      let strJson = getInspectorByKey('list');
-      let obj = JSON.parse(strJson);
-      console.info("[ListJsunit_0400] component obj is: " + JSON.stringify(obj));
-      console.info("[ListJsunit_0400] space: " + JSON.stringify(obj.$attrs.space));
-      console.info("[ListJsunit_0400] initialIndex: " + JSON.stringify(obj.$attrs.initialIndex));
-      console.info("[ListJsunit_0400] listDirection: " + JSON.stringify(obj.$attrs.listDirection));
-      console.info("[ListJsunit_0400] strokeWidth: " + JSON.stringify(obj.$attrs.divider.strokeWidth));
-      console.info("[ListJsunit_0400] color: " + JSON.stringify(obj.$attrs.divider.color));
-      console.info("[ListJsunit_0400] startMargin: " + JSON.stringify(obj.$attrs.divider.startMargin));
-      console.info("[ListJsunit_0400] endMargin: " + JSON.stringify(obj.$attrs.divider.endMargin));
-      console.info("[ListJsunit_0400] scrollBar: " + JSON.stringify(obj.$attrs.scrollBar));
-      console.info("[ListJsunit_0400] cachedCount: " + JSON.stringify(obj.$attrs.cachedCount));
-      console.info("[ListJsunit_0400] edgeEffect: " + JSON.stringify(obj.$attrs.edgeEffect));
-      console.info("[ListJsunit_0400] lanes: " + JSON.stringify(obj.$attrs.lanes));
-      console.info("[ListJsunit_0400] chainAnimation: " + JSON.stringify(obj.$attrs.chainAnimation));
-      console.info("[ListJsunit_0400] multiSelectable: " + JSON.stringify(obj.$attrs.multiSelectable));
-      console.info("[ListJsunit_0400] alignListItem: " + JSON.stringify(obj.$attrs.alignListItem));
-      console.info("[ListJsunit_0400] sticky: " + JSON.stringify(obj.$attrs.sticky));
-      expect(obj.$attrs.space).assertEqual('-10.00vp');
-      expect(obj.$attrs.initialIndex).assertEqual('30');
-      expect(obj.$attrs.listDirection).assertEqual('Axis.Horizontal');
-      expect(obj.$attrs.divider.strokeWidth).assertEqual('0.00vp');
-      expect(obj.$attrs.divider.color).assertEqual('#FF00000A');
-      expect(obj.$attrs.divider.startMargin).assertEqual('0.00vp');
-      expect(obj.$attrs.divider.endMargin).assertEqual('-10.00vp');
-      expect(obj.$attrs.scrollBar).assertEqual('BarState.Auto');
+      let strJson: string = getInspectorByKey('list');
+
+      console.info("[ListJsunit_0400] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[ListJsunit_0400] space: " + JSON.stringify(JSON.parse(strJson).$attrs.space));
+      console.info("[ListJsunit_0400] initialIndex: " + JSON.stringify(JSON.parse(strJson).$attrs.initialIndex));
+      console.info("[ListJsunit_0400] listDirection: " + JSON.stringify(JSON.parse(strJson).$attrs.listDirection));
+      console.info("[ListJsunit_0400] strokeWidth: " + JSON.stringify(JSON.parse(strJson).$attrs.divider.strokeWidth));
+      console.info("[ListJsunit_0400] color: " + JSON.stringify(JSON.parse(strJson).$attrs.divider.color));
+      console.info("[ListJsunit_0400] startMargin: " + JSON.stringify(JSON.parse(strJson).$attrs.divider.startMargin));
+      console.info("[ListJsunit_0400] endMargin: " + JSON.stringify(JSON.parse(strJson).$attrs.divider.endMargin));
+      console.info("[ListJsunit_0400] scrollBar: " + JSON.stringify(JSON.parse(strJson).$attrs.scrollBar));
+      console.info("[ListJsunit_0400] cachedCount: " + JSON.stringify(JSON.parse(strJson).$attrs.cachedCount));
+      console.info("[ListJsunit_0400] edgeEffect: " + JSON.stringify(JSON.parse(strJson).$attrs.edgeEffect));
+      console.info("[ListJsunit_0400] lanes: " + JSON.stringify(JSON.parse(strJson).$attrs.lanes));
+      console.info("[ListJsunit_0400] chainAnimation: " + JSON.stringify(JSON.parse(strJson).$attrs.chainAnimation));
+      console.info("[ListJsunit_0400] multiSelectable: " + JSON.stringify(JSON.parse(strJson).$attrs.multiSelectable));
+      console.info("[ListJsunit_0400] alignListItem: " + JSON.stringify(JSON.parse(strJson).$attrs.alignListItem));
+      console.info("[ListJsunit_0400] sticky: " + JSON.stringify(JSON.parse(strJson).$attrs.sticky));
+      expect(JSON.parse(strJson).$attrs.space).assertEqual('-10.00vp');
+      expect(JSON.parse(strJson).$attrs.initialIndex).assertEqual('30');
+      expect(JSON.parse(strJson).$attrs.listDirection).assertEqual('Axis.Horizontal');
+      expect(JSON.parse(strJson).$attrs.divider.strokeWidth).assertEqual('0.00vp');
+      expect(JSON.parse(strJson).$attrs.divider.color).assertEqual('#FF00000A');
+      expect(JSON.parse(strJson).$attrs.divider.startMargin).assertEqual('0.00vp');
+      expect(JSON.parse(strJson).$attrs.divider.endMargin).assertEqual('-10.00vp');
+      expect(JSON.parse(strJson).$attrs.scrollBar).assertEqual('BarState.Auto');
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.cachedCount).assertEqual('1');
-      expect(obj.$attrs.edgeEffect).assertEqual('EdgeEffect.Spring');
-      expect(obj.$attrs.lanes).assertEqual('5');
-      expect(obj.$attrs.chainAnimation).assertEqual(true);
-      expect(obj.$attrs.multiSelectable).assertEqual(true);
-      expect(obj.$attrs.alignListItem).assertEqual('ListItemAlign.Start');
-      expect(obj.$attrs.sticky).assertEqual('StickyStyle.None');
+      expect(JSON.parse(strJson).$attrs.cachedCount).assertEqual('1');
+      expect(JSON.parse(strJson).$attrs.edgeEffect).assertEqual('EdgeEffect.Spring');
+      expect(JSON.parse(strJson).$attrs.lanes).assertEqual('5');
+      expect(JSON.parse(strJson).$attrs.chainAnimation).assertEqual(true);
+      expect(JSON.parse(strJson).$attrs.multiSelectable).assertEqual(true);
+      expect(JSON.parse(strJson).$attrs.alignListItem).assertEqual('ListItemAlign.Start');
+      expect(JSON.parse(strJson).$attrs.sticky).assertEqual('StickyStyle.None');
       console.info('[ListJsunit_0400] END');
       done();
     });
 
-    it('ListJsunit_0500', 0, async function (done) {
+    it('ListJsunit_0500', 0, async (done: Function) => {
       // Verify default value of the List component
       console.info('[ListJsunit_0500] START');
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('list_default');
-      let obj = JSON.parse(strJson);
-      console.info("[ListJsunit_0500] component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.space).assertEqual('0.00vp');
-      expect(obj.$attrs.initialIndex).assertEqual('0');
-      expect(obj.$attrs.listDirection).assertEqual('Axis.Vertical');
-      expect(obj.$attrs.scrollBar).assertEqual('BarState.Auto');
+      let strJson: string = getInspectorByKey('list_default');
+
+      console.info("[ListJsunit_0500] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.space).assertEqual('0.00vp');
+      expect(JSON.parse(strJson).$attrs.initialIndex).assertEqual('0');
+      expect(JSON.parse(strJson).$attrs.listDirection).assertEqual('Axis.Vertical');
+      expect(JSON.parse(strJson).$attrs.scrollBar).assertEqual('BarState.Auto');
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.cachedCount).assertEqual('0');
-      expect(obj.$attrs.edgeEffect).assertEqual('EdgeEffect.Spring');
-      expect(obj.$attrs.lanes).assertEqual('0');
+      expect(JSON.parse(strJson).$attrs.cachedCount).assertEqual('0');
+      expect(JSON.parse(strJson).$attrs.edgeEffect).assertEqual('EdgeEffect.Spring');
+      expect(JSON.parse(strJson).$attrs.lanes).assertEqual('0');
       console.info('[ListJsunit_0500] END');
       done();
     });
 
-    it('ListJsunit_0600', 0, async function (done) {
+    it('ListJsunit_0600', 0, async (done: Function) => {
       // Verify the Vertical layout of List components
       console.info('[ListJsunit_0600] START');
       let listItem1 = CommonFunc.getComponentRect('0');
@@ -325,10 +392,12 @@ export default function ListJsunit() {
       done();
     });
 
-    it('ListJsunit_0700', 0, async function (done) {
+    it('ListJsunit_0700', 0, async (done: Function) => {
       // Verify the Vertical layout of List components
       console.info('[ListJsunit_0700] START');
-      globalThis.value.message.notify({name:'listDirection',value:Axis.Vertical})
+      globalThis.value.message.notify({
+        name: 'listDirection', value: Axis.Vertical
+      })
       await CommonFunc.sleep(1000);
       let listItem1 = CommonFunc.getComponentRect('0');
       let top1 = listItem1.top

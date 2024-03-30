@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function RichEditor01() {
-  describe('RichEditor01', function () {
-    beforeEach(async function (done) {
+  describe('RichEditor01', () => {
+    beforeEach(async (done: Function) => {
       console.info("RichEditor01 beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/RichEditor01',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/RichEditor01',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function RichEditor01() {
         console.info("get RichEditor01 state pages: " + JSON.stringify(pages));
         if (!("RichEditor01" == pages.name)) {
           console.info("get RichEditor01 state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push RichEditor01 page result: " + JSON.stringify(result));
         }
@@ -45,24 +58,24 @@ export default function RichEditor01() {
 
 
     //onReady 事件测试
-    it('RichEditor01_001', 0, async function (done) {
+    it('RichEditor01_001', 0, async (done: Function) => {
 
       await CommonFunc.sleep(1000);
       console.info('[RichEditor01_001] START');
 
-      let strJson = getInspectorByKey('RichEditor01Text');
-      let obj = JSON.parse(strJson);
-      console.info("[RichEditor01_001] component obj is: " + JSON.stringify(obj));
+      let strJson: string = getInspectorByKey('RichEditor01Text');
+
+      console.info("[RichEditor01_001] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
       await CommonFunc.sleep(1000);
-      console.info("[obj.$attrs.content] : " + obj.$attrs.content);
-      expect(obj.$attrs.content).assertEqual('012345678');
+      console.info("[JSON.parse(strJson).$attrs.content] : " + JSON.parse(strJson).$attrs.content);
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('012345678');
 
       console.info('[RichEditor01_001] END');
       done();
     });
 
     //aboutToIMEInput 事件测试
-    it('RichEditor01_002', 0, async function (done) {
+    it('RichEditor01_002', 0, async (done: Function) => {
 
       console.info('[RichEditor01_002] START');
       let driver = Driver.create();
@@ -70,21 +83,21 @@ export default function RichEditor01() {
       await text.inputText('9');
       await CommonFunc.sleep(1000);
       let strJson1 = getInspectorByKey('RichEditor02Text');
-      let obj1 = JSON.parse(strJson1);
+
       let strJson2 = getInspectorByKey('RichEditor03Text');
-      let obj2 = JSON.parse(strJson2);
-      console.info("[RichEditor01_002] component obj is: " + JSON.stringify(obj1));
-      console.info("[RichEditor01_002] component obj is: " + JSON.stringify(obj2));
+
+      console.info("[RichEditor01_002] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson1)));
+      console.info("[RichEditor01_002] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson2)));
       await CommonFunc.sleep(1000);
-      expect(obj1.$attrs.content).assertEqual('0');
-      expect(obj2.$attrs.content).assertEqual('9');
+      expect(JSON.parse(strJson1).$attrs.content).assertEqual('0');
+      expect(JSON.parse(strJson2).$attrs.content).assertEqual('9');
 
       console.info('[RichEditor01_002] END');
       done();
     });
 
     //onIMEInputComplete 事件测试
-    it('RichEditor01_003', 0, async function (done) {
+    it('RichEditor01_003', 0, async (done: Function) => {
 
       console.info('[RichEditor01_003] START');
       let driver = Driver.create();
@@ -92,18 +105,18 @@ export default function RichEditor01() {
       await text.inputText('9');
       await CommonFunc.sleep(1000);
 
-      let strJson = getInspectorByKey('RichEditor01Text');
-      let obj = JSON.parse(strJson);
-      console.info("[RichEditor01_003] component obj is: " + JSON.stringify(obj));
+      let strJson: string = getInspectorByKey('RichEditor01Text');
+
+      console.info("[RichEditor01_003] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.content).assertEqual('0,9,0,1,0,1,16');
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('0,9,0,1,0,1,16');
 
       console.info('[RichEditor01_003] END');
       done();
     });
 
     //set setCaretOffset to 6
-    it('RichEditor01_004', 0, async function (done) {
+    it('RichEditor01_004', 0, async (done: Function) => {
 
       console.info('[RichEditor01_004] START');
       let driver = Driver.create();
@@ -111,18 +124,18 @@ export default function RichEditor01() {
       await button.click();
       await CommonFunc.sleep(1000);
 
-      let strJson = getInspectorByKey('RichEditor01Text');
-      let obj = JSON.parse(strJson);
-      console.info("[RichEditor01_004] component obj is: " + JSON.stringify(obj));
+      let strJson: string = getInspectorByKey('RichEditor01Text');
+
+      console.info("[RichEditor01_004] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.content).assertEqual('true');
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('true');
 
       console.info('[RichEditor01_004] END');
       done();
     });
 
     //set setCaretOffset to 100
-    it('RichEditor01_005', 0, async function (done) {
+    it('RichEditor01_005', 0, async (done: Function) => {
 
       console.info('[RichEditor01_005] START');
       let driver = Driver.create();
@@ -130,18 +143,18 @@ export default function RichEditor01() {
       await button.click();
       await CommonFunc.sleep(1000);
 
-      let strJson = getInspectorByKey('RichEditor01Text');
-      let obj = JSON.parse(strJson);
-      console.info("[RichEditor01_005] component obj is: " + JSON.stringify(obj));
+      let strJson: string = getInspectorByKey('RichEditor01Text');
+
+      console.info("[RichEditor01_005] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.content).assertEqual('false');
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('false');
 
       console.info('[RichEditor01_005] END');
       done();
     });
 
     //set setCaretOffset to 100
-    it('RichEditor01_006', 0, async function (done) {
+    it('RichEditor01_006', 0, async (done: Function) => {
 
       console.info('[RichEditor01_006] START');
       let driver = Driver.create();
@@ -152,11 +165,11 @@ export default function RichEditor01() {
       await button2.click();
       await CommonFunc.sleep(1000);
 
-      let strJson = getInspectorByKey('RichEditor01Text');
-      let obj = JSON.parse(strJson);
-      console.info("[RichEditor01_006] component obj is: " + JSON.stringify(obj));
+      let strJson: string = getInspectorByKey('RichEditor01Text');
+
+      console.info("[RichEditor01_006] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.content).assertEqual('1');
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('1');
 
       console.info('[RichEditor01_006] END');
       done();
@@ -164,7 +177,7 @@ export default function RichEditor01() {
 
 
     //deleteSpans
-    // it('RichEditor01_007', 0, async function (done) {
+    // it('RichEditor01_007', 0, async (done:Function) =>{
     //
     //   console.info('[RichEditor01_007] START');
     //   await CommonFunc.sleep(1000);
@@ -176,23 +189,15 @@ export default function RichEditor01() {
     //   await button2.click();
     //   await CommonFunc.sleep(1000);
     //
-    //   let strJson = getInspectorByKey('RichEditor01Text');
-    //   let obj = JSON.parse(strJson);
-    //   console.info("[RichEditor01_007] component obj is: " + JSON.stringify(obj));
-    //   console.info("[obj.$attrs.content] : " + obj.$attrs.content);
+    //   let strJson: string = getInspectorByKey('RichEditor01Text');
+    //
+    //   console.info("[RichEditor01_007] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+    //   console.info("[JSON.parse(strJson).$attrs.content] : " + JSON.parse(strJson).$attrs.content);
     //   await CommonFunc.sleep(1000);
-    //   expect(obj.$attrs.content).assertEqual('');
+    //   expect(JSON.parse(strJson).$attrs.content).assertEqual('');
     //
     //   console.info('[RichEditor01_007] END');
     //   done();
     // });
-
-
-
-
-
-
-
-
   })
 }

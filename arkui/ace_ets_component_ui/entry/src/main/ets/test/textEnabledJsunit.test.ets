@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function textEnabledJsunit() {
-  describe('textEnabledJsunit', function () {
-    beforeEach(async function (done) {
+  describe('textEnabledJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("textEnabledJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/textEnabled',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/textEnabled',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function textEnabledJsunit() {
         console.info("get textEnabledJsunit state pages: " + JSON.stringify(pages));
         if (!("textEnabled" == pages.name)) {
           console.info("get textEnabledJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push textEnabledJsunit success: " + JSON.stringify(result));
         }
@@ -43,98 +56,98 @@ export default function textEnabledJsunit() {
       done();
     });
 
-    it('textEnabledJsunit_0100', 0, async function (done) {
+    it('textEnabledJsunit_0100', 0, async (done: Function) => {
 
       console.info('textEnabledJsunit_0100 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('texEnd1'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('texEnd1');
-      let obj = JSON.parse(strJson);
-      console.info("[textEnabledJsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[textEnabledJsunit_0100] text1: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("onClick-禁用");
+      let strJson: string = getInspectorByKey('texEnd1');
+
+      console.info("[textEnabledJsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[textEnabledJsunit_0100] text1: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("onClick-禁用");
       console.info('[textEnabledJsunit_0100] END');
       done();
     });
 
-    it('textEnabledJsunit_0200', 0, async function (done) {
+    it('textEnabledJsunit_0200', 0, async (done: Function) => {
 
       console.info('textEnabledJsunit_0200 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('texEnd2'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('texEnd2');
-      let obj = JSON.parse(strJson);
-      console.info("[textEnabledJsunit_0200] component obj is: " + JSON.stringify(obj));
-      console.info("[textEnabledJsunit_0200] text2: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("onTouch-禁用");
+      let strJson: string = getInspectorByKey('texEnd2');
+
+      console.info("[textEnabledJsunit_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[textEnabledJsunit_0200] text2: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("onTouch-禁用");
       console.info('[textEnabledJsunit_0200] END');
       done();
     });
 
-    it('textEnabledJsunit_0300', 0, async function (done) {
+    it('textEnabledJsunit_0300', 0, async (done: Function) => {
 
       console.info('textEnabledJsunit_0300 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('texEnd3'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('texEnd3');
-      let obj = JSON.parse(strJson);
-      console.info("[textEnabledJsunit_0300] component obj is: " + JSON.stringify(obj));
-      console.info("[textEnabledJsunit_0300] text3: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("onKeyEvent-禁用");
+      let strJson: string = getInspectorByKey('texEnd3');
+
+      console.info("[textEnabledJsunit_0300] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[textEnabledJsunit_0300] text3: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("onKeyEvent-禁用");
       console.info('[textEnabledJsunit_0300] END');
       done();
     });
 
-    it('textEnabledJsunit_0400', 0, async function (done) {
+    it('textEnabledJsunit_0400', 0, async (done: Function) => {
 
       console.info('textEnabledJsunit_0400 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('texEnd4'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('texEnd4');
-      let obj = JSON.parse(strJson);
-      console.info("[textEnabledJsunit_0400] component obj is: " + JSON.stringify(obj));
-      console.info("[textEnabledJsunit_0400] text4: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("鼠标事件onHover-禁用");
+      let strJson: string = getInspectorByKey('texEnd4');
+
+      console.info("[textEnabledJsunit_0400] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[textEnabledJsunit_0400] text4: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("鼠标事件onHover-禁用");
       console.info('[textEnabledJsunit_0400] END');
       done();
     });
 
-    it('textEnabledJsunit_0500', 0, async function (done) {
+    it('textEnabledJsunit_0500', 0, async (done: Function) => {
 
       console.info('textEnabledJsunit_0500 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('texEnd5'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('texEnd5');
-      let obj = JSON.parse(strJson);
-      console.info("[textEnabledJsunit_0500] component obj is: " + JSON.stringify(obj));
-      console.info("[textEnabledJsunit_0500] text5: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("鼠标事件onMouse-禁用");
+      let strJson: string = getInspectorByKey('texEnd5');
+
+      console.info("[textEnabledJsunit_0500] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[textEnabledJsunit_0500] text5: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("鼠标事件onMouse-禁用");
       console.info('[textEnabledJsunit_0500] END');
       done();
     });
 
-    it('textEnabledJsunit_0600', 0, async function (done) {
+    it('textEnabledJsunit_0600', 0, async (done: Function) => {
 
       console.info('textEnabledJsunit_0600 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('texEnd6'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('texEnd6');
-      let obj = JSON.parse(strJson);
-      console.info("[textEnabledJsunit_0600] component obj is: " + JSON.stringify(obj));
-      console.info("[textEnabledJsunit_0600] text6: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("焦点事件-禁用");
+      let strJson: string = getInspectorByKey('texEnd6');
+
+      console.info("[textEnabledJsunit_0600] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[textEnabledJsunit_0600] text6: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("焦点事件-禁用");
       console.info('[textEnabledJsunit_0600] END');
       done();
     });

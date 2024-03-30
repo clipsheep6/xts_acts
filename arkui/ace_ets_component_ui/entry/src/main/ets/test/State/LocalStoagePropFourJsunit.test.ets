@@ -12,19 +12,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 import events_emitter from '@ohos.events.emitter'
 
 
 export default function LocalStoagePropFourJsunit() {
-  describe('LocalStoagePropFourJsunit', function () {
-    beforeEach(async function (done) {
+  describe('LocalStoagePropFourJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("LocalStoagePropFourJsunit beforeEach start");
-      let options = {
-        uri: "MainAbility/pages/State/LocalStoagePropFour",
+      let options: router.RouterOptions = {
+        url: "MainAbility/pages/State/LocalStoagePropFour",
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function LocalStoagePropFourJsunit() {
         console.info("get LocalStoagePropFourJsunit state pages: " + JSON.stringify(pages));
         if (!("LocalStoagePropFour" == pages.name)) {
           console.info("get LocalStoagePropFourJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push LocalStoagePropFourJsunit page result: " + JSON.stringify(result));
         }
@@ -43,13 +56,13 @@ export default function LocalStoagePropFourJsunit() {
       done();
     });
 
-    it('LocalStoagePropFourJsunit_0100', 0, async function (done) {
+    it('LocalStoagePropFourJsunit_0100', 0, async (done: Function) => {
 
       console.info('[LocalStoagePropFourJsunit_0200] START');
       let strJson1 = getInspectorByKey('text_state');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[LocalStoagePropFourJsunit_0200] obj1 is: " + JSON.stringify(obj1));
-      expect(obj1.$attrs.content).assertEqual('State:1,Link:1,Prop:1,Provide:1');
+
+      console.info("[LocalStoagePropFourJsunit_0200] JSON.parse(strJson1) is: " + JSON.stringify(JSON.parse(strJson1)));
+      expect(JSON.parse(strJson1).$attrs.content).assertEqual('State:1,Link:1,Prop:1,Provide:1');
 
       console.info('[LocalStoagePropFourJsunit_0200] END');
       done();
@@ -57,12 +70,12 @@ export default function LocalStoagePropFourJsunit() {
     });
 
 
-    it('LocalStoagePropFourJsunit_0200', 0, async function (done) {
+    it('LocalStoagePropFourJsunit_0200', 0, async (done: Function) => {
       console.info('[LocalStoagePropFourJsunit_0200] START');
       let strJson1 = getInspectorByKey('text_getValue3');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[LocalStoagePropFourJsunit_0200] obj1 is: " + JSON.stringify(obj1));
-      expect(obj1.$attrs.content).assertEqual('localstorage:1,storProp1:1');
+
+      console.info("[LocalStoagePropFourJsunit_0200] JSON.parse(strJson1) is: " + JSON.stringify(JSON.parse(strJson1)));
+      expect(JSON.parse(strJson1).$attrs.content).assertEqual('localstorage:1,storProp1:1');
 
       let driver = await UiDriver.create()
       let button_changeInitialValue = await driver.findComponent(BY.key('button_changeInitialValue'));
@@ -70,9 +83,9 @@ export default function LocalStoagePropFourJsunit() {
       await CommonFunc.sleep(1000);
 
       let strJson2 = getInspectorByKey('text_getValue3');
-      let obj2 = JSON.parse(strJson2);
-      console.info("[LocalStoagePropFourJsunit_0200] obj2 is: " + JSON.stringify(obj2));
-      expect(obj2.$attrs.content).assertEqual('localstorage:1,storProp1:11');
+
+      console.info("[LocalStoagePropFourJsunit_0200] JSON.parse(strJson2) is: " + JSON.stringify(JSON.parse(strJson2)));
+      expect(JSON.parse(strJson2).$attrs.content).assertEqual('localstorage:1,storProp1:11');
 
 
       let button_changeLocalStorageValue = await driver.findComponent(BY.key('button_changeLocalStorageValue'));
@@ -80,9 +93,9 @@ export default function LocalStoagePropFourJsunit() {
       await CommonFunc.sleep(1000);
 
       let strJson3 = getInspectorByKey('text_getValue3');
-      let obj3 = JSON.parse(strJson3);
-      console.info("[LocalStoagePropFourJsunit_0100] obj3 is: " + JSON.stringify(obj3));
-      expect(obj3.$attrs.content).assertEqual('localstorage:666,storProp1:666');
+
+      console.info("[LocalStoagePropFourJsunit_0100] JSON.parse(strJson3) is: " + JSON.stringify(JSON.parse(strJson3)));
+      expect(JSON.parse(strJson3).$attrs.content).assertEqual('localstorage:666,storProp1:666');
 
       console.info('[LocalStoagePropFourJsunit_0100] END');
       done();
