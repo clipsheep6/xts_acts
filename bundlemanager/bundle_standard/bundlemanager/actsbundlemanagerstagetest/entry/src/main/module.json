@@ -422,6 +422,17 @@
                 "srcEntrance": "./ets/FormAbility/FormAbility.ts",
                 "type": "embeddedUI",
                 "visible": true
+            },
+            {
+                "description": "$string:form_description",
+                "descriptionId": 16777219,
+                "icon": "$media:icon",
+                "iconId": 16777225,
+                "label": "$string:entry_label",
+                "name": "insightIntentUI",
+                "srcEntrance": "./ets/FormAbility/FormAbility.ts",
+                "type": "insightIntentUI",
+                "visible": true
             }
         ],
         "requestPermissions": [
