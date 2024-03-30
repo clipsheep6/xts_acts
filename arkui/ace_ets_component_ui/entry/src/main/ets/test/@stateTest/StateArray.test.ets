@@ -13,18 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function StateArray() {
-  describe('StateArray', function () {
-    beforeEach(async function (done) {
+  describe('StateArray', () => {
+    beforeEach(async (done: Function) => {
       console.info("StateArray beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/@state/StateArray',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/@state/StateArray',
       }
       try {
         router.clear();
@@ -32,7 +44,7 @@ export default function StateArray() {
         console.info("get StateArray state pages: " + JSON.stringify(pages));
         if (!("StateArray" == pages.name)) {
           console.info("get StateArray state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push StateArray success: " + JSON.stringify(result));
         }
@@ -48,18 +60,19 @@ export default function StateArray() {
     * @tc.desc  : To test that the State decorator supports union types.
     * @tc.level : Level 2
     */
-    it('StateArray_0100', 0, async function (done) {
+    it('StateArray_0100', 0, async (done: Function) => {
       console.info('StateArray_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('state1'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('StateArray');
-      let obj = JSON.parse(strJson);
-      console.info("[StateArray_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[StateArray_0100] title: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual('count type of "[object Array]" number is [10]');
+      let strJson: string = getInspectorByKey('StateArray');
+
+      console.info("[StateArray_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateArray_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content)
+        .assertEqual('count type of "[JSON.parse(strJson)ect Array]" number is [10]');
       console.info('[StateArray_0100] END');
       done();
     });
@@ -69,18 +82,19 @@ export default function StateArray() {
     * @tc.desc  : To test that the State decorator supports union types.
     * @tc.level : Level 2
     */
-    it('StateArray_0200', 0, async function (done) {
+    it('StateArray_0200', 0, async (done: Function) => {
       console.info('StateArray_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('state2'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('StateArray');
-      let obj = JSON.parse(strJson);
-      console.info("[StateArray_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[StateArray_0100] title: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual('count type of "[object Array]" number is [true]');
+      let strJson: string = getInspectorByKey('StateArray');
+
+      console.info("[StateArray_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateArray_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content)
+        .assertEqual('count type of "[JSON.parse(strJson)ect Array]" number is [true]');
       console.info('[StateArray_0100] END');
       done();
     });
@@ -90,18 +104,19 @@ export default function StateArray() {
     * @tc.desc  : To test that the State decorator supports union types.
     * @tc.level : Level 2
     */
-    it('StateArray_0300', 0, async function (done) {
+    it('StateArray_0300', 0, async (done: Function) => {
       console.info('StateArray_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('state3'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('StateArray');
-      let obj = JSON.parse(strJson);
-      console.info("[StateArray_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[StateArray_0100] title: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual('count type of "[object Boolean]" number is true');
+      let strJson: string = getInspectorByKey('StateArray');
+
+      console.info("[StateArray_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateArray_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content)
+        .assertEqual('count type of "[JSON.parse(strJson)ect Boolean]" number is true');
       console.info('[StateArray_0100] END');
       done();
     });
@@ -111,24 +126,22 @@ export default function StateArray() {
     * @tc.desc  : To test that the State decorator supports union types.
     * @tc.level : Level 2
     */
-    it('StateArray_0400', 0, async function (done) {
+    it('StateArray_0400', 0, async (done: Function) => {
       console.info('StateArray_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('state4'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('StateArrayNew');
-      let obj = JSON.parse(strJson);
-      console.info("[StateArray_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[StateArray_0100] title: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual('count type of "[object Array]" number is 200');
+      let strJson: string = getInspectorByKey('StateArrayNew');
+
+      console.info("[StateArray_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[StateArray_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content)
+        .assertEqual('count type of "[JSON.parse(strJson)ect Array]" number is 200');
       console.info('[StateArray_0100] END');
       done();
     });
-
-
-
   })
 }
 
