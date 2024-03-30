@@ -2211,7 +2211,10 @@ export default function OhCapturerTest() {
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerPause();
-      expect(re).assertEqual(2);
+      expect(re).assertEqual(AUDIOSTREAM_ERROR_ILLEGAL_STATE);
+
+      re = testStreamBuilder.OHAudioCapturerRelease();
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       let ret: number = await testStreamBuilder.CloseAudioCapture();
       expect(ret === 0 || ret === number200).assertTrue();
@@ -2242,6 +2245,9 @@ export default function OhCapturerTest() {
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_ERROR_ILLEGAL_STATE);
+
+      re = testStreamBuilder.OHAudioCapturerRelease();
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       let ret: number = await testStreamBuilder.CloseAudioCapture();
       expect(ret === 0 || ret === number200).assertTrue();
@@ -2276,8 +2282,14 @@ export default function OhCapturerTest() {
       re = testStreamBuilder.OHAudioCapturerStop();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
+      re = testStreamBuilder.OHAudioCapturerRelease();
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
+
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
       expect(re).assertEqual(numberThree);
+
+      re = testStreamBuilder.OHAudioCapturerRelease();
+      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       let ret: number = await testStreamBuilder.CloseAudioCapture();
       expect(ret === 0 || ret === number200).assertTrue();
