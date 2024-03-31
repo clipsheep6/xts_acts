@@ -2355,5 +2355,44 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
       }
     })
 
+    /**
+     * @tc.number SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_3970
+     * @tc.name test_SetExpectedFrameRateRange
+     * @tc.desc Test the function of SetExpectedFrameRateRange Promise
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('test_SetExpectedFrameRateRange', 0, async (done: Function) => {
+
+      let msg = "test_SetExpectedFrameRateRange"
+      console.log(msg + ' begin')
+      try {
+        let animatorResult: AnimatorResult | undefined = animator.create({
+          duration: 2000,
+          easing: "ease",
+          delay: 0,
+          fill: "forwards",
+          direction: "normal",
+          iterations: 1,
+          begin: 100,
+          end: 200
+        })
+        let expectedFrameRate: ExpectedFrameRateRange = {
+          min: 0,
+          max: 120,
+          expected: 30
+        }
+        animatorResult.setExpectedFrameRateRange(expectedFrameRate);
+        console.info(msg + 'Succeeded in loading the content.');
+        expect(true).assertTrue()
+        done()        
+      } catch (exception) {
+        console.error(msg + 'Failed to load the content. Cause:' + JSON.stringify(exception));
+        expect().assertFail()
+        done()
+      }
+    })
+
   })
 }
