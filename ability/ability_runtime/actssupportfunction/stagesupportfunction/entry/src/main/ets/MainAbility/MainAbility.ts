@@ -101,4 +101,9 @@ export default class MainAbility extends Ability {
   onBackground() {
     console.log(TAG1 + 'onBackground');
   }
-}
+
+  onBackPressed(): boolean {
+    console.log(TAG1 + 'onBackPressed');
+    return false;
+  }
+};
