@@ -33,6 +33,8 @@ export default class TestAbility extends UIAbility {
         abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments();
         hilog.info(0x0000, 'testTag', '%{public}s', 'start run testcase!!!');
         Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite);
+        AppStorage.setOrCreate('context', this.context);
+        AppStorage.setOrCreate('applicationContext',this.context.getApplicationContext());
     }
 
     onDestroy() {
