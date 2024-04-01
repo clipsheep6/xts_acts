@@ -40,14 +40,14 @@ describe('ActsSetBadgeNumberByBundleTwoTest', function () {
     /*
      * @tc.number: ActsSetBadgeNumberByBundleTwoTest_0100
      * @tc.name: setBadgeNumberByBundle without relationship
-     * @tc.desc: The test application has neither AGENT permission nor delegate relationship with the rely application.
-     *           Expect error code 201.
+     * @tc.desc: The test application has neither AGENT permission nor delegate relationship with the specified bundle.
+     *           Expect error code 1600017.
      * @tc.size: MediumTest
      * @tc.type: Function
      * @tc.level: Level1
      */
     it('ActsSetBadgeNumberByBundleTwoTest_0100', 0, async function (done) {
-        function onBadgeChangedCallback(data) {
+        let onBadgeChangedCallback = (data) => {
             hilog.info(domain, TAG, 'onbadge changed: %{public}s', JSON.stringify(data));
             expect(false).assertTrue();
             done();
@@ -66,7 +66,7 @@ describe('ActsSetBadgeNumberByBundleTwoTest', function () {
           })
           .catch((err) => {
             hilog.error(domain, TAG, 'setBadgeNumberByBundle failed, error : %{public}s', JSON.stringify(err));
-            expect(err.code == 201).assertTrue();
+            expect(err.code == 1600017).assertTrue();
             notificationSubscribe.unsubscribe(subscriber);
             done();
           })

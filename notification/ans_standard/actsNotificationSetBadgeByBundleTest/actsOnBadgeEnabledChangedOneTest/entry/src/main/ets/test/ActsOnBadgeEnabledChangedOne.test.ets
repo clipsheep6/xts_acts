@@ -52,18 +52,17 @@ describe('ActsOnBadgeEnabledChangedOneTest', function () {
         let badgeShow = true;
         TAG = 'onBadgeEnabledChangedOne====';
 
-        let subscriber: notificationSubscribe.NotificationSubscriber = {
-            onBadgeEnabledChanged: onBadgeEnabledChangedCallback,
-        };
-        notificationSubscribe.subscribe(subscriber, subscribeCallback);
-
-        function onBadgeEnabledChangedCallback(data) {
+        let onBadgeEnabledChangedCallback = (data) => {
             hilog.info(domain, TAG, 'onbadge changed: %{public}s', JSON.stringify(data));
             expect(data.bundle == bundle_valid.bundle).assertTrue();
             expect(data.enable = badgeShow).assertTrue();
             notificationSubscribe.unsubscribe(subscriber);
             done();
         }
+        let subscriber: notificationSubscribe.NotificationSubscriber = {
+            onBadgeEnabledChanged: onBadgeEnabledChangedCallback,
+        };
+        notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
         await notificationManager.displayBadge(bundle_valid, badgeShow)
           .then(() => {
@@ -89,18 +88,17 @@ describe('ActsOnBadgeEnabledChangedOneTest', function () {
         let badgeShow = false;
         let TAG = 'onBadgeEnabledChangedTwo====';
 
-        let subscriber: notificationSubscribe.NotificationSubscriber = {
-            onBadgeEnabledChanged: onBadgeEnabledChangedCallback
-        };
-        notificationSubscribe.subscribe(subscriber, subscribeCallback);
-
-        function onBadgeEnabledChangedCallback(data) {
+        let onBadgeEnabledChangedCallback = (data) => {
             hilog.info(domain, TAG, 'onbadge changed: %{public}s', JSON.stringify(data));
             expect(data.bundle == bundle_valid.bundle).assertTrue();
             expect(data.enable == badgeShow).assertTrue();
             notificationSubscribe.unsubscribe(subscriber);
             done();
         }
+        let subscriber: notificationSubscribe.NotificationSubscriber = {
+            onBadgeEnabledChanged: onBadgeEnabledChangedCallback
+        };
+        notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
         await notificationManager.displayBadge(bundle_valid, badgeShow)
           .then(() => {

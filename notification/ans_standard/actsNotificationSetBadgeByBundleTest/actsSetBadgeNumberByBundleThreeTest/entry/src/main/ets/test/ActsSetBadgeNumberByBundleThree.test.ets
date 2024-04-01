@@ -47,7 +47,7 @@ describe('ActsSetBadgeNumberByBundleThreeTest', function () {
      * @tc.level: Level1
      */
     it('ActsSetBadgeNumberByBundleThreeTest_0100', 0, async function (done) {
-        function onBadgeChangedCallback(data) {
+        let onBadgeChangedCallback = (data) => {
             hilog.info(domain, TAG, 'onbadge changed: %{public}s', JSON.stringify(data));
             expect(false).assertTrue();
             done();

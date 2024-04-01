@@ -57,16 +57,16 @@ describe('ActsSetBadgeNumberByBundleOneTest', function () {
      * @tc.level: Level1
      */
     it('ActsSetBadgeNumberByBundleOneTest_0100', 0, async function (done) {
-        let subscriber: notificationSubscribe.NotificationSubscriber = {
-            onBadgeChanged: onBadgeChangedCallback,
-        };
-        notificationSubscribe.subscribe(subscriber, subscribeCallback);
-        function onBadgeChangedCallback(data) {
+        let onBadgeChangedCallback = (data) => {
             hilog.info(domain, TAG, 'onbadge changed: %{public}s', JSON.stringify(data));
             expect(data.bundle == bundle_valid.bundle).assertTrue();
             notificationSubscribe.unsubscribe(subscriber);
             done();
         }
+        let subscriber: notificationSubscribe.NotificationSubscriber = {
+            onBadgeChanged: onBadgeChangedCallback,
+        };
+        notificationSubscribe.subscribe(subscriber, subscribeCallback);
 
         await notificationManager.setBadgeNumberByBundle(bundle_valid, badgeNumber)
           .then(() => {
@@ -88,7 +88,7 @@ describe('ActsSetBadgeNumberByBundleOneTest', function () {
      * @tc.level: Level1
      */
     it('ActsSetBadgeNumberByBundleOneTest_0200', 0, async function (done) {
-        function onBadgeChangedCallback(data) {
+        let onBadgeChangedCallback = (data) => {
             hilog.info(domain, TAG, 'onbadge changed: %{public}s', JSON.stringify(data));
             expect(false).assertTrue();
             notificationSubscribe.unsubscribe(subscriber);
@@ -120,7 +120,7 @@ describe('ActsSetBadgeNumberByBundleOneTest', function () {
      * @tc.level: Level1
      */
     it('ActsSetBadgeNumberByBundleOneTest_0300', 0, async function (done) {
-        function onBadgeChangedCallback(data) {
+        let onBadgeChangedCallback = (data) => {
             hilog.info(domain, TAG, 'onbadge changed: %{public}s', JSON.stringify(data));
             expect(false).assertTrue();
             notificationSubscribe.unsubscribe(subscriber);
@@ -151,7 +151,7 @@ describe('ActsSetBadgeNumberByBundleOneTest', function () {
      * @tc.level: Level1
      */
     it('ActsSetBadgeNumberByBundleOneTest_0400', 0, async function (done) {
-        function onBadgeChangedCallback(data) {
+        let onBadgeChangedCallback = (data) => {
             hilog.info(domain, TAG, 'onbadge changed: %{public}s', JSON.stringify(data));
             expect(false).assertTrue();
             notificationSubscribe.unsubscribe(subscriber);
