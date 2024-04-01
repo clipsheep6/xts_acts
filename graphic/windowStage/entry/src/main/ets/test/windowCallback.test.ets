@@ -19,6 +19,7 @@ import display from '@ohos.display';
 import { BusinessError } from '@ohos.base';
 import { Context } from '@ohos.abilityAccessCtrl';
 import common from '@ohos.app.ability.common';
+import animator, { AnimatorResult } from '@ohos.animator';
 
 
 function expectedError(TRUE_FLAG: boolean, error: BusinessError, caseName: string, apiName: string, done: Function, code: number) {
