@@ -14,7 +14,7 @@
  */
 
 #include <string>
-#include <stdio.h>
+#include <cstdio>
 #include "napi/native_api.h"
 #include "native_audiocapturer.h"
 #include "native_audiorenderer.h"
@@ -1029,10 +1029,10 @@ static napi_value AudioRendererSetVolume_03(napi_env env, napi_callback_info inf
     OH_AudioStreamBuilder* builder = CreateRenderBuilder();
     OH_AudioRenderer* audioRenderer;
     OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
-    float volumeSet = 0.3;
+    float volumeSet = 0.3; // 0.3:value of volume
     result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
     LOG(false, "OH_AudioRenderer_SetVolume 0.3, result is %d", result);
-    volumeSet = 0.8;
+    volumeSet = 0.8; // 0.8:value of volume
     result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
     LOG(false, "OH_AudioRenderer_SetVolume 0.8, result is %d", result);
     float volumeGet;
@@ -1067,7 +1067,7 @@ static napi_value AudioRendererSetVolume_05(napi_env env, napi_callback_info inf
     OH_AudioStreamBuilder* builder = CreateRenderBuilder();
     OH_AudioRenderer* audioRenderer;
     OH_AudioStream_Result result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer);
-    float volumeSet = 1.5;
+    float volumeSet = 1.5; // 1.5:value of volume
     result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
     LOG(false, "OH_AudioRenderer_SetVolume 1.5 result is %f, %d", volumeSet, result);
     OH_AudioStreamBuilder_Destroy(builder);
@@ -1081,7 +1081,7 @@ static napi_value AudioRendererSetVolume_05(napi_env env, napi_callback_info inf
 static napi_value AudioRendererSetVolume_06(napi_env env, napi_callback_info info)
 {
     OH_AudioRenderer* audioRenderer = nullptr;
-    float volumeSet = 0.5;
+    float volumeSet = 0.5; // 0.5:value of volume
     OH_AudioStream_Result result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
     LOG(false, "OH_AudioRenderer_GetVolume, volumeGet is %f, %d", volumeSet, result);
 
@@ -1099,7 +1099,7 @@ static napi_value AudioRendererSetVolumeWithRamp_01(napi_env env, napi_callback_
     float volumeSet = 0.0;
     result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
     LOG(false, "OH_AudioRenderer_SetVolume 0.0 result is %d", result);
-    int32_t durationMs = 1000;
+    int32_t durationMs = 1000; // 1000:value of durationMs
     volumeSet = 1.0;
     result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
     LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 0.0->1.0 1000 result is %d", result);
@@ -1119,7 +1119,7 @@ static napi_value AudioRendererSetVolumeWithRamp_02(napi_env env, napi_callback_
     float volumeSet = 1.0;
     result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
     LOG(false, "OH_AudioRenderer_SetVolume 1.0 result is %d", result);
-    int32_t durationMs = 100;
+    int32_t durationMs = 100; // 100:value of durationMs
     volumeSet = 0.0;
     result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
     LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 1.0->0.0 100 result is %f, %d", volumeSet, result);
@@ -1139,8 +1139,8 @@ static napi_value AudioRendererSetVolumeWithRamp_03(napi_env env, napi_callback_
     float volumeSet = 0.0;
     result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
     LOG(false, "OH_AudioRenderer_SetVolume 0.0 result is %d", result);
-    int32_t durationMs = 10;
-    volumeSet = 0.5;
+    int32_t durationMs = 10; // 10:value of durationMs
+    volumeSet = 0.5; // 0.5:value of volume
     result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
     LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 0.0->0.5 10 result is %d", result);
     OH_AudioStreamBuilder_Destroy(builder);
@@ -1158,8 +1158,8 @@ static napi_value AudioRendererSetVolumeWithRamp_04(napi_env env, napi_callback_
     float volumeSet = 1.0;
     result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
     LOG(false, "OH_AudioRenderer_SetVolume 1.0 result is %d", result);
-    int32_t durationMs = 10;
-    volumeSet = 0.5;
+    int32_t durationMs = 10; // 10:value of durationMs
+    volumeSet = 0.5; // 0.5:value of volume
     result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
     LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 1.0->0.5 10 result is %d", result);
     OH_AudioStreamBuilder_Destroy(builder);
@@ -1177,7 +1177,7 @@ static napi_value AudioRendererSetVolumeWithRamp_05(napi_env env, napi_callback_
     float volumeSet = 0.0;
     result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
     LOG(false, "OH_AudioRenderer_SetVolume 0.0 result is %d", result);
-    int32_t durationMs = 10;
+    int32_t durationMs = 10; // 10:value of durationMs
     volumeSet = 0.0;
     result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
     LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 0.0->0.0 10 result is %d", result);
@@ -1196,7 +1196,7 @@ static napi_value AudioRendererSetVolumeWithRamp_06(napi_env env, napi_callback_
     float volumeSet = 1.0;
     result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
     LOG(false, "OH_AudioRenderer_SetVolume 1.0 result is %d", result);
-    int32_t durationMs = 10;
+    int32_t durationMs = 10; // 10:value of durationMs
     volumeSet = 1.0;
     result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
     LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 1.0->1.0 10 result is %d", result);
@@ -1215,8 +1215,8 @@ static napi_value AudioRendererSetVolumeWithRamp_07(napi_env env, napi_callback_
     float volumeSet = 1.0;
     result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
     LOG(false, "OH_AudioRenderer_SetVolume 1.0 result is %d", result);
-    int32_t durationMs = 100;
-    volumeSet = 1.2;
+    int32_t durationMs = 100; // 100:value of durationMs
+    volumeSet = 1.2; // 1.2:value of volume
     result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
     LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 1.0->1.2 100 result is %d", result);
     OH_AudioStreamBuilder_Destroy(builder);
@@ -1234,8 +1234,8 @@ static napi_value AudioRendererSetVolumeWithRamp_08(napi_env env, napi_callback_
     float volumeSet = 0.0;
     result = OH_AudioRenderer_SetVolume(audioRenderer, volumeSet);
     LOG(false, "OH_AudioRenderer_SetVolume 0.0 result is %d", result);
-    int32_t durationMs = 100;
-    volumeSet = -0.2;
+    int32_t durationMs = 100; // 100:value of durationMs
+    volumeSet = -0.2; // -0.2:value of volume
     result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
     LOG(false, "OH_AudioRenderer_SetVolumeWithRamp 0.0->-0.2 100 result is %d", result);
     OH_AudioStreamBuilder_Destroy(builder);
@@ -1248,8 +1248,8 @@ static napi_value AudioRendererSetVolumeWithRamp_08(napi_env env, napi_callback_
 static napi_value AudioRendererSetVolumeWithRamp_09(napi_env env, napi_callback_info info)
 {
     OH_AudioRenderer* audioRenderer = nullptr;
-    float volumeSet = 0.5;
-    int32_t durationMs = 10;
+    float volumeSet = 0.5; // 0.5:value of volume
+    int32_t durationMs = 10; // 10:value of durationMs
     OH_AudioStream_Result result = OH_AudioRenderer_SetVolumeWithRamp(audioRenderer, volumeSet, durationMs);
     napi_value res;
     napi_create_int32(env, result, &res);
@@ -1319,7 +1319,7 @@ static napi_value AudioRendererSetOnMarkReached_03(napi_env env, napi_callback_i
     result = OH_AudioRenderer_SetMarkPosition(audioRenderer, samplePos, callback, nullptr);
     LOG(false, "OH_Audio_Renderer_SetOnMarkReached_03 result is: %d", result);
     OH_AudioRenderer_Start(audioRenderer);
-    sleep(2);
+    sleep(2); // 2:sleep 2 second
     OH_AudioRenderer_Stop(audioRenderer);
     if (!g_flag) {
         result = AUDIOSTREAM_ERROR_SYSTEM;
@@ -1366,7 +1366,7 @@ static napi_value AudioRendererCancelMark_01(napi_env env, napi_callback_info in
     result = OH_AudioRenderer_SetMarkPosition(audioRenderer, samplePos, callback, nullptr);
     LOG(false, "OH_Audio_Renderer_SetOnMarkReached_03 result is: %d", result);
     result = OH_AudioRenderer_Start(audioRenderer);
-    sleep(2);
+    sleep(2); // 2:sleep 2 second
     // CancelMark
     result = OH_AudioRenderer_CancelMark(audioRenderer);
     LOG(false, "OH_AudioRenderer_CancelMark result is %d", result);
@@ -1405,9 +1405,9 @@ static napi_value AudioRendererCancelMark_03(napi_env env, napi_callback_info in
 }
 
 static int32_t AudioRendererInterruptEvent(OH_AudioRenderer* renderer,
-            void* userData,
-            OH_AudioInterrupt_ForceType type,
-            OH_AudioInterrupt_Hint hint)
+                                           void* userData,
+                                           OH_AudioInterrupt_ForceType type,
+                                           OH_AudioInterrupt_Hint hint)
 {
     g_mark = true;
     printf("AudioRendererInterruptEvent type = %d, hint = %d\n", type, hint);
@@ -1528,7 +1528,7 @@ static napi_value AudioRendererSetInterruptMode_02(napi_env env, napi_callback_i
     result = OH_AudioRenderer_Start(audioRenderer1);
     sleep(1);
     result = OH_AudioRenderer_Start(audioRenderer2);
-    sleep(2);
+    sleep(2); // 2:sleep 2 second
 
     if (!g_mark) {
         result = AUDIOSTREAM_ERROR_SYSTEM;
@@ -1566,7 +1566,7 @@ static napi_value AudioRendererSetInterruptMode_04(napi_env env, napi_callback_i
 {
     OH_AudioStreamBuilder* builder;
     OH_AudioStream_Type type = AUDIOSTREAM_TYPE_RENDERER;
-    int32_t invalidMode = -2;
+    int32_t invalidMode = -2; // -2:invalid value
     OH_AudioStreamBuilder_Create(&builder, type);
     OH_AudioInterrupt_Mode mode = static_cast<OH_AudioInterrupt_Mode>(invalidMode);
     OH_AudioStream_Result result = OH_AudioStreamBuilder_SetRendererInterruptMode(builder, mode);
@@ -1581,9 +1581,11 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        {"createAudioStreamBuilder", nullptr, CreateAudioStreamBuilder, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"createAudioStreamBuilder", nullptr, CreateAudioStreamBuilder,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioCaptureGenerate", nullptr, AudioCaptureGenerate, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioCaptureGenerateErr", nullptr, AudioCaptureGenerateErr, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioCaptureGenerateErr", nullptr, AudioCaptureGenerateErr,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioCaptureStart", nullptr, AudioCaptureStart, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioCaptureStartErr", nullptr, AudioCaptureStartErr, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioCapturePause", nullptr, AudioCapturePause, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -1594,23 +1596,38 @@ static napi_value Init(napi_env env, napi_value exports)
         {"audioCaptureFlushErr", nullptr, AudioCaptureFlushErr, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioCaptureRelease", nullptr, AudioCaptureRelease, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioCaptureReleaseErr", nullptr, AudioCaptureReleaseErr, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioCaptureGetParameter", nullptr, AudioCaptureGetParameter, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioCaptureGetCurrentState", nullptr, AudioCaptureGetCurrentState, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioCaptureGetStreamId", nullptr, AudioCaptureGetStreamId, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioCaptureGetSamplingRate", nullptr, AudioCaptureGetSamplingRate, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioCaptureGetSampleFormat", nullptr, AudioCaptureGetSampleFormat, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioCaptureGetEncodingType", nullptr, AudioCaptureGetEncodingType, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioCaptureGetCapturerInfo", nullptr, AudioCaptureGetCapturerInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioCaptureGetTimestamp", nullptr, AudioCaptureGetTimestamp, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioCaptureGetFramesRead", nullptr, AudioCaptureGetFramesRead, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioCaptureGetFrameSizeInCallback", nullptr, AudioCaptureGetFrameSizeInCallback, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioCaptureGetParameter", nullptr, AudioCaptureGetParameter,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioCaptureGetCurrentState", nullptr, AudioCaptureGetCurrentState,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioCaptureGetStreamId", nullptr, AudioCaptureGetStreamId,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioCaptureGetSamplingRate", nullptr, AudioCaptureGetSamplingRate,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioCaptureGetSampleFormat", nullptr, AudioCaptureGetSampleFormat,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioCaptureGetEncodingType", nullptr, AudioCaptureGetEncodingType,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioCaptureGetCapturerInfo", nullptr, AudioCaptureGetCapturerInfo,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioCaptureGetTimestamp", nullptr, AudioCaptureGetTimestamp,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioCaptureGetFramesRead", nullptr, AudioCaptureGetFramesRead,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioCaptureGetFrameSizeInCallback", nullptr, AudioCaptureGetFrameSizeInCallback,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioRendererSetSpeed", nullptr, AudioRendererSetSpeed, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioRendererGetSpeed", nullptr, AudioRendererGetSpeed, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetGetSpeed", nullptr, AudioRendererSetGetSpeed, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioSetRendererOutputDeviceChangeCallback", nullptr, AudioSetRendererOutputDeviceChangeCallback, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRenderGetFramesWritten", nullptr, AudioRenderGetFramesWritten, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRenderGetTimestamp", nullptr, AudioRenderGetTimestamp, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRenderGetFrameSizeInCallback", nullptr, AudioRenderGetFrameSizeInCallback, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetGetSpeed", nullptr, AudioRendererSetGetSpeed,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioSetRendererOutputDeviceChangeCallback", nullptr, AudioSetRendererOutputDeviceChangeCallback,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRenderGetFramesWritten", nullptr, AudioRenderGetFramesWritten,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRenderGetTimestamp", nullptr, AudioRenderGetTimestamp,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRenderGetFrameSizeInCallback", nullptr, AudioRenderGetFrameSizeInCallback,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioRenderGenerate", nullptr, AudioRenderGenerate, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioRenderGenerateErr", nullptr, AudioRenderGenerateErr, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioRenderStart", nullptr, AudioRenderStart, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -1623,54 +1640,99 @@ static napi_value Init(napi_env env, napi_value exports)
         {"audioRenderFlushErr", nullptr, AudioRenderFlushErr, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioRenderRelease", nullptr, AudioRenderRelease, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioRenderReleaseErr", nullptr, AudioRenderReleaseErr, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRenderGetCurrentState", nullptr, AudioRenderGetCurrentState, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRenderGetParameter", nullptr, AudioRenderGetParameter, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRenderGetCurrentState", nullptr, AudioRenderGetCurrentState,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRenderGetParameter", nullptr, AudioRenderGetParameter,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioRenderGetStreamId", nullptr, AudioRenderGetStreamId, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRenderGetSamplingRate", nullptr, AudioRenderGetSamplingRate, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRenderGetSampleFormat", nullptr, AudioRenderGetSampleFormat, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRenderGetEncodingType", nullptr, AudioRenderGetEncodingType, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRenderGetRendererInfo", nullptr, AudioRenderGetRendererInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioStreamBuilderSetSamplingRate", nullptr, AudioStreamBuilderSetSamplingRate, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioStreamBuilderSetChannelCount", nullptr, AudioStreamBuilderSetChannelCount, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioStreamBuilderSetSampleFormat", nullptr, AudioStreamBuilderSetSampleFormat, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioStreamBuilderSetEncodingType", nullptr, AudioStreamBuilderSetEncodingType, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioStreamBuilderSetLatencyMode", nullptr, AudioStreamBuilderSetLatencyMode, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioStreamBuilderSetRendererInfo", nullptr, AudioStreamBuilderSetRendererInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioStreamBuilderSetCapturerInfo", nullptr, AudioStreamBuilderSetCapturerInfo, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioStreamBuilderSetRendererCallback", nullptr, AudioStreamBuilderSetRendererCallback, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioStreamBuilderSetCapturerCallback", nullptr, AudioStreamBuilderSetCapturerCallback, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioCaptureGetChannelCount", nullptr, AudioCaptureGetChannelCount, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRenderGetChannelCount", nullptr, AudioRenderGetChannelCount, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRenderGetSamplingRate", nullptr, AudioRenderGetSamplingRate,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRenderGetSampleFormat", nullptr, AudioRenderGetSampleFormat,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRenderGetEncodingType", nullptr, AudioRenderGetEncodingType,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRenderGetRendererInfo", nullptr, AudioRenderGetRendererInfo,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioStreamBuilderSetSamplingRate", nullptr, AudioStreamBuilderSetSamplingRate,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioStreamBuilderSetChannelCount", nullptr, AudioStreamBuilderSetChannelCount,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioStreamBuilderSetSampleFormat", nullptr, AudioStreamBuilderSetSampleFormat,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioStreamBuilderSetEncodingType", nullptr, AudioStreamBuilderSetEncodingType,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioStreamBuilderSetLatencyMode", nullptr, AudioStreamBuilderSetLatencyMode,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioStreamBuilderSetRendererInfo", nullptr, AudioStreamBuilderSetRendererInfo,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioStreamBuilderSetCapturerInfo", nullptr, AudioStreamBuilderSetCapturerInfo,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioStreamBuilderSetRendererCallback", nullptr, AudioStreamBuilderSetRendererCallback,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioStreamBuilderSetCapturerCallback", nullptr, AudioStreamBuilderSetCapturerCallback,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioCaptureGetChannelCount", nullptr, AudioCaptureGetChannelCount,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRenderGetChannelCount", nullptr, AudioRenderGetChannelCount,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioStreamBuilderSetFrameSizeInCallback", nullptr, AudioStreamBuilderSetFrameSizeInCallback,
             nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererGetVolume_01", nullptr, AudioRendererGetVolume_01, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererGetVolume_02", nullptr, AudioRendererGetVolume_02, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolume_01", nullptr, AudioRendererSetVolume_01, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolume_02", nullptr, AudioRendererSetVolume_02, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolume_03", nullptr, AudioRendererSetVolume_03, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolume_04", nullptr, AudioRendererSetVolume_04, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolume_05", nullptr, AudioRendererSetVolume_05, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolume_06", nullptr, AudioRendererSetVolume_06, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolumeWithRamp_01", nullptr, AudioRendererSetVolumeWithRamp_01, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolumeWithRamp_02", nullptr, AudioRendererSetVolumeWithRamp_02, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolumeWithRamp_03", nullptr, AudioRendererSetVolumeWithRamp_03, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolumeWithRamp_04", nullptr, AudioRendererSetVolumeWithRamp_04, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolumeWithRamp_05", nullptr, AudioRendererSetVolumeWithRamp_05, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolumeWithRamp_06", nullptr, AudioRendererSetVolumeWithRamp_06, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolumeWithRamp_07", nullptr, AudioRendererSetVolumeWithRamp_07, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolumeWithRamp_08", nullptr, AudioRendererSetVolumeWithRamp_08, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetVolumeWithRamp_09", nullptr, AudioRendererSetVolumeWithRamp_09, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetOnMarkReached_01", nullptr, AudioRendererSetOnMarkReached_01, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetOnMarkReached_02", nullptr, AudioRendererSetOnMarkReached_02, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetOnMarkReached_03", nullptr, AudioRendererSetOnMarkReached_03, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetOnMarkReached_04", nullptr, AudioRendererSetOnMarkReached_04, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererCancelMark_01", nullptr, AudioRendererCancelMark_01, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererCancelMark_02", nullptr, AudioRendererCancelMark_02, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererCancelMark_03", nullptr, AudioRendererCancelMark_03, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetInterruptMode_01", nullptr, AudioRendererSetInterruptMode_01, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetInterruptMode_02", nullptr, AudioRendererSetInterruptMode_02, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetInterruptMode_03", nullptr, AudioRendererSetInterruptMode_03, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"audioRendererSetInterruptMode_04", nullptr, AudioRendererSetInterruptMode_04, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererGetVolume_01", nullptr, AudioRendererGetVolume_01,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererGetVolume_02", nullptr, AudioRendererGetVolume_02,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolume_01", nullptr, AudioRendererSetVolume_01,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolume_02", nullptr, AudioRendererSetVolume_02,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolume_03", nullptr, AudioRendererSetVolume_03,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolume_04", nullptr, AudioRendererSetVolume_04,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolume_05", nullptr, AudioRendererSetVolume_05,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolume_06", nullptr, AudioRendererSetVolume_06,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_01", nullptr, AudioRendererSetVolumeWithRamp_01,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_02", nullptr, AudioRendererSetVolumeWithRamp_02,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_03", nullptr, AudioRendererSetVolumeWithRamp_03,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_04", nullptr, AudioRendererSetVolumeWithRamp_04,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_05", nullptr, AudioRendererSetVolumeWithRamp_05,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_06", nullptr, AudioRendererSetVolumeWithRamp_06,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_07", nullptr, AudioRendererSetVolumeWithRamp_07,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_08", nullptr, AudioRendererSetVolumeWithRamp_08,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetVolumeWithRamp_09", nullptr, AudioRendererSetVolumeWithRamp_09,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetOnMarkReached_01", nullptr, AudioRendererSetOnMarkReached_01,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetOnMarkReached_02", nullptr, AudioRendererSetOnMarkReached_02,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetOnMarkReached_03", nullptr, AudioRendererSetOnMarkReached_03,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetOnMarkReached_04", nullptr, AudioRendererSetOnMarkReached_04,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererCancelMark_01", nullptr, AudioRendererCancelMark_01,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererCancelMark_02", nullptr, AudioRendererCancelMark_02,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererCancelMark_03", nullptr, AudioRendererCancelMark_03,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetInterruptMode_01", nullptr, AudioRendererSetInterruptMode_01,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetInterruptMode_02", nullptr, AudioRendererSetInterruptMode_02,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetInterruptMode_03", nullptr, AudioRendererSetInterruptMode_03,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"audioRendererSetInterruptMode_04", nullptr, AudioRendererSetInterruptMode_04,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
