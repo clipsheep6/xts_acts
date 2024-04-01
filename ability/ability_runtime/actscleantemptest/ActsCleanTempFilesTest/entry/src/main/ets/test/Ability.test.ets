@@ -81,20 +81,17 @@ export default function abilityTest() {
               expect(data.parameters.files).assertEqual(0);
               msg.ACTS_RegisterEvent_Fourth = true;
             }
-          }, (err) => {
-          console.log('Acts_CleanTempFiles_0101 startAbility err: ' + JSON.stringify(err));
-          expect(err.code).assertEqual(0);
-        })
-        await sleep(4000);
-        console.info('Acts_CleanTempFiles_0100 startAbility two');
-        getContext().startAbility(
-          {
-            bundleName: 'com.acts.cleancachefilesreply',
-            abilityName: 'EntryAbility',
-            parameters: {
-              key: 'Acts_CleanTempFiles_0102'
-            }
-          });
+          })
+          await sleep(4000);
+          console.info('Acts_CleanTempFiles_0100 startAbility two');
+          getContext().startAbility(
+            {
+              bundleName: 'com.acts.cleancachefilesreply',
+              abilityName: 'EntryAbility',
+              parameters: {
+                key: 'Acts_CleanTempFiles_0102'
+              }
+            });
           await sleep(200);
           console.info('Acts_CleanTempFiles_0100 startAbility one');
           console.info('context is ' + JSON.stringify(getContext));
@@ -167,20 +164,17 @@ export default function abilityTest() {
               expect(data.parameters.message).assertEqual('Try to write feature str.');
               msg.ACTS_RegisterEvent_Fourth = true;
             }
-          }, (err) => {
-          console.log('Acts_CleanTempFiles_0201 startAbility err: ' + JSON.stringify(err));
-          expect(err.code).assertEqual(0);
-        })
-        await sleep(4000);
-        console.info('Acts_CleanTempFiles_0200 startAbility two');
-        getContext().startAbility(
-          {
-            bundleName: 'com.acts.cleancachefilesreply',
-            abilityName: 'EntryAbility',
-            parameters: {
-              key: 'Acts_CleanTempFiles_0202'
-            }
-          });
+          })
+          await sleep(4000);
+          console.info('Acts_CleanTempFiles_0200 startAbility two');
+          getContext().startAbility(
+            {
+              bundleName: 'com.acts.cleancachefilesreply',
+              abilityName: 'EntryAbility',
+              parameters: {
+                key: 'Acts_CleanTempFiles_0202'
+              }
+            });
           await sleep(200);
           console.info('Acts_CleanTempFiles_0200 startAbility one');
           console.info('context is ' + JSON.stringify(getContext));
@@ -238,20 +232,17 @@ export default function abilityTest() {
               expect(data.parameters.message).assertEqual('Try to write Acts_CleanTempFiles_0301 str.');
               msg.ACTS_RegisterEvent_Second = true;
             }
-          }, (err) => {
-          console.log('Acts_CleanTempFiles_0301 startAbility err: ' + JSON.stringify(err));
-          expect(err.code).assertEqual(0);
-        })
-        await sleep(2000);
-        console.info('Acts_CleanTempFiles_0300 startAbility two');
-        getContext().startAbility(
-          {
-            bundleName: 'com.acts.cleancachefilesreply',
-            abilityName: 'EntryAbility',
-            parameters: {
-              key: 'Acts_CleanTempFiles_0302'
-            }
-          });
+          })
+          await sleep(2000);
+          console.info('Acts_CleanTempFiles_0300 startAbility two');
+          getContext().startAbility(
+            {
+              bundleName: 'com.acts.cleancachefilesreply',
+              abilityName: 'EntryAbility',
+              parameters: {
+                key: 'Acts_CleanTempFiles_0302'
+              }
+            });
           await sleep(200);
           console.info('Acts_CleanTempFiles_0300 startAbility one');
           getContext().startAbility(
@@ -324,17 +315,17 @@ export default function abilityTest() {
               expect(data.parameters.message).assertEqual(0);
               msg.ACTS_RegisterEvent_Second = true;
             }
-          }, options)
-        await sleep(2000);
-        console.info('Acts_CleanTempFiles_0400 startAbility two');
-        getContext().connectServiceExtensionAbility(
-          {
-            bundleName: 'com.acts.cleancachefilesreply',
-            abilityName: 'ServiceAbility',
-            parameters: {
-              key: 'Acts_CleanTempFiles_0402'
-            }
-          });
+          })
+          await sleep(2000);
+          console.info('Acts_CleanTempFiles_0400 startAbility two');
+          getContext().connectServiceExtensionAbility(
+            {
+              bundleName: 'com.acts.cleancachefilesreply',
+              abilityName: 'ServiceAbility',
+              parameters: {
+                key: 'Acts_CleanTempFiles_0402'
+              }
+            }, options);
           await sleep(200);
           console.info('Acts_CleanTempFiles_0400 startAbility one');
           connectionId = getContext().connectServiceExtensionAbility(
