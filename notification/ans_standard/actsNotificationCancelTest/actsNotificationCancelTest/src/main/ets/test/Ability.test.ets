@@ -121,11 +121,11 @@ export default function abilityTest() {
           done();
         }).catch((err: Base.BusinessError) => {
           console.info('Acts_NotificationCancel_0100 cancel4 errorcode is' + JSON.stringify(err.code));
-          expect(err.code).assertEqual(401);
+          expect(err.code).assertEqual(1600017);
         })
       } catch (errCode) {
         console.info('Acts_NotificationCancel_0100 cancel4 err is : ' + JSON.stringify(errCode));
-        expect(errCode.code).assertEqual(401);
+        expect(errCode.code).assertEqual(1600017);
       }
 
       // Cancel when the bundle in representativeBundle isn't exist, return 401.
@@ -139,11 +139,11 @@ export default function abilityTest() {
           done();
         }).catch((err: Base.BusinessError) => {
           console.info('Acts_NotificationCancel_0100 cancel5 errorcode is' + JSON.stringify(err.code));
-          expect(err.code).assertEqual(401);
+          expect(err.code).assertEqual(1600017);
         })
       } catch (errCode) {
         console.info('Acts_NotificationCancel_0100 cancel5 err is : ' + JSON.stringify(errCode));
-        expect(errCode.code).assertEqual(401);
+        expect(errCode.code).assertEqual(1600017);
       }
 
       // Cancel when the id is null, return 401.
@@ -266,12 +266,12 @@ export default function abilityTest() {
           done();
         }).catch((err: Base.BusinessError) => {
           console.info('Acts_NotificationCancel_0200 cancel errorcode is' + JSON.stringify(err.code));
-          expect(err.code).assertEqual(1600007);
+          expect(err.code).assertEqual(1600017);
           done();
         })
       } catch (errCode) {
         console.info('Acts_NotificationCancel_0200 cancel err is : ' + JSON.stringify(errCode));
-        expect(errCode.code).assertEqual(1600007);
+        expect(errCode.code).assertEqual(1600017);
         done();
       }
     })

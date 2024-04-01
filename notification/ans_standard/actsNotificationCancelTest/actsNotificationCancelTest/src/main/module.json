@@ -35,9 +35,6 @@
     "requestPermissions": [
       {
         "name":"ohos.permission.NOTIFICATION_CONTROLLER"
-      },
-      {
-        "name":"ohos.permission.NOTIFICATION_AGENT_CONTROLLER"
       }
     ]
   }
