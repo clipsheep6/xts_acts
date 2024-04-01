@@ -37,7 +37,6 @@ group("arkui") {
     "ace_ets_components_ux:componentUxTest",
     "ace_ets_dev:ActsAceDevTest",
     "ace_ets_layout_test:ActsAceEtsLayoutTest",
-    "ace_ets_module_commonAttrsPosition_api12:ActsAceEtsCommonAttrsPositionApi12Test",
     "ace_ets_standard:ActsAceEtsStTest",
     "ace_ets_test:ActsAceEtsTest",
     "ace_ets_third_test:ActsAceEtsThirdTest",
