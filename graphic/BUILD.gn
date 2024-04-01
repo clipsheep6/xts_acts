@@ -31,9 +31,8 @@ group("graphic") {
       "nativevsync:ActsNativeVsyncTest",
       "webGL:webGL_hap_test",
       "windowPermission:ActsWindowPermissionTest",
-      "windowStage:ActsWindowStageTest",
-      
       "windowstandard:window_hap_test",
+      "windowStage:ActsWindowStageTest",
     ]
     if (!(product_name == "ohcore")) {
       deps += [
