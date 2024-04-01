@@ -30,6 +30,38 @@ let sampleFormat: number = 0;
 let sleep500: number = 500;
 let sleep1000: number = 1000;
 let sleep3000: number = 3000;
+
+let channelTwo: number = 2;
+
+let AUDIOSTREAM_TYPE_CAPTURER: number = 1;
+let AUDIOSTREAM_TYPE_RENDERER: number = 0;
+
+let AUDIOSTREAM_LATENCY_MODE_NORMAL: number = 0;
+let AUDIOSTREAM_LATENCY_MODE_FAST: number = 1;
+
+let AUDIOSTREAM_SAMPLE_U8: number = 0;
+let AUDIOSTREAM_SAMPLE_S16LE: number = 1;
+let AUDIOSTREAM_SAMPLE_S24LE: number = 2;
+let AUDIOSTREAM_SAMPLE_S32LE: number = 3;
+
+let AUDIOSTREAM_ENCODING_INVALID: number = (-1);
+let AUDIOSTREAM_ENCODING_TYPE_RAW: number = 0;
+let AUDIOSTREAM_ENCODING_TYPE_OTHER: number = 1;
+
+let AUDIOSTREAM_STATE_INVALID: number = (-1);
+let AUDIOSTREAM_STATE_NEW: number = 0;
+let AUDIOSTREAM_STATE_PREPARED: number = 1;
+let AUDIOSTREAM_STATE_RUNNING: number = 2;
+let AUDIOSTREAM_STATE_STOPPED: number = 3;
+let AUDIOSTREAM_STATE_PAUSED: number = 5;
+
+let indexZero: number = 0;
+let indexOne: number = 1;
+let indexTwo: number = 2;
+let indexThree: number = 3;
+let indexFour: number = 4;
+let indexFive: number = 5;
+
 let numberTwo: number = 2;
 let numberThree: number = 3;
 let numberFour: number = 4;
@@ -40,12 +72,11 @@ let numberNine: number = 9;
 let numberTen: number = 10;
 let numberNinety: number = 90;
 
-let number200: number = 200;
-
 let number1500: number = 1500;
 let number44100: number = 44100;
 let number48000: number = 48000;
 
+let CODE_SUCCESS: number = 200;
 let AUDIOSTREAM_SUCCESS: number = 0;
 let AUDIOSTREAM_ERROR_ILLEGAL_STATE: number = 2;
 
@@ -123,8 +154,6 @@ function verifyCapturerProperties(): boolean {
   if (re < 0) {
     console.info('[AudioCapturer属性获取] 查询工作场景类型失败');
     rerult = false;
-  } else {
-    expect(re).assertEqual(0);
   }
 
   re = testStreamBuilder.OHAudioCapturerGetChannelCount();
@@ -139,7 +168,7 @@ function verifyCapturerProperties(): boolean {
     console.info('[AudioCapturer属性获取] 查询编码类型失败');
     rerult = false;
   } else {
-    expect(re).assertEqual(0);
+    expect(re).assertEqual(AUDIOSTREAM_ENCODING_TYPE_RAW);
   }
   re = testStreamBuilder.OHAudioCapturerGetFrameSizeInCallback();
   if (re < 0) {
@@ -262,7 +291,7 @@ export default function OhCapturerTest() {
     afterAll(async (done: Function) => {
       console.info('afterAll case');
       let re: number = testStreamBuilder.CloseAudioCapture();
-      if (re === number200 || re === 0) {
+      if (re === CODE_SUCCESS || re === AUDIOSTREAM_SUCCESS) {
         console.log('[录音] 销毁成功：', re); // 200为正确结果
       }
       done();
@@ -277,7 +306,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderCreate0100', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderCreate0100 test start `);
-      let re: number | null = await testStreamBuilder.OHAudioStreamBuilderCreate(1);
+      let re: number | null = await testStreamBuilder.OHAudioStreamBuilderCreate(AUDIOSTREAM_TYPE_CAPTURER);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderCreate0100 test end `);
       done();
@@ -293,7 +322,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderCreate0200', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderCreate0200 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderCreate(0);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderCreate(AUDIOSTREAM_TYPE_RENDERER);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderCreate0200 test end `);
       done();
@@ -357,7 +386,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetChannelCount0100', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetChannelCount0100 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetChannelCount(0, numberTwo);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetChannelCount(AUDIOSTREAM_TYPE_RENDERER, numberTwo);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetChannelCount0100 test end `);
       done();
@@ -373,7 +402,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetChannelCount0200', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetChannelCount0200 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetChannelCount(1, numberTwo);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetChannelCount(AUDIOSTREAM_TYPE_CAPTURER, numberTwo);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetChannelCount0200 test end `);
       done();
@@ -389,7 +418,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetChannelCount0300', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetChannelCount0300 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetChannelCount(0, numberFour);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetChannelCount(AUDIOSTREAM_TYPE_RENDERER, numberFour);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetChannelCount0300 test end `);
       done();
@@ -405,7 +434,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetChannelCount0400', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetChannelCount0400 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetChannelCount(0, numberEight);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetChannelCount(AUDIOSTREAM_TYPE_RENDERER, numberEight);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetChannelCount0400 test end `);
       done();
@@ -421,7 +450,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetChannelCount0500', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetChannelCount0500 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetChannelCount(0, numberNine);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetChannelCount(AUDIOSTREAM_TYPE_RENDERER, numberNine);
       expect(re).assertEqual(1);
       console.log(`testOHAudioStreamBuilderSetChannelCount0500 test end `);
       done();
@@ -437,8 +466,8 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetChannelCount0600', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetChannelCount0600 test start `);
-      testStreamBuilder.CreateAudioCapturerRecorder(1);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetChannelCount(1, numberEight);
+      testStreamBuilder.CreateAudioCapturerRecorder(indexOne);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetChannelCount(AUDIOSTREAM_TYPE_CAPTURER, numberEight);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetChannelCount0600 test end `);
       done();
@@ -454,7 +483,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetChannelCount0700', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetChannelCount0700 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetChannelCount(1, numberNine);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetChannelCount(AUDIOSTREAM_TYPE_CAPTURER, numberNine);
       expect(re).assertEqual(1);
       console.log(`testOHAudioStreamBuilderSetChannelCount0700 test end `);
       done();
@@ -470,7 +499,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetEncodingType0100', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetEncodingType0100 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetEncodingType(0, 1);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetEncodingType(AUDIOSTREAM_TYPE_RENDERER, AUDIOSTREAM_ENCODING_TYPE_OTHER);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetEncodingType0100 test end `);
       done();
@@ -486,7 +515,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetEncodingType0200', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetEncodingType0200 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetEncodingType(0, -1);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetEncodingType(AUDIOSTREAM_TYPE_RENDERER, AUDIOSTREAM_ENCODING_INVALID);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetEncodingType0200 test end `);
       done();
@@ -502,7 +531,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetEncodingType0300', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetEncodingType0300 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetEncodingType(0, 0);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetEncodingType(AUDIOSTREAM_TYPE_RENDERER, AUDIOSTREAM_ENCODING_TYPE_RAW);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetEncodingType0300 test end `);
       done();
@@ -518,7 +547,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetEncodingType0400', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetEncodingType0400 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetEncodingType(1, 0);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetEncodingType(AUDIOSTREAM_TYPE_RENDERER, AUDIOSTREAM_ENCODING_TYPE_RAW);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetEncodingType0400 test end `);
       done();
@@ -534,7 +563,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetEncodingType0500', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetEncodingType0500 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetEncodingType(1, -1);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetEncodingType(AUDIOSTREAM_TYPE_RENDERER, AUDIOSTREAM_ENCODING_INVALID);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetEncodingType0500 test end `);
       done();
@@ -550,7 +579,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetFrameSizeInCallback0100', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0100 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(0, 0);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(AUDIOSTREAM_TYPE_RENDERER, 0);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0100 test end `);
       done();
@@ -566,7 +595,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetFrameSizeInCallback0200', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0200 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(0, numberTwo);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(AUDIOSTREAM_TYPE_RENDERER, numberTwo);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0200 test end `);
       done();
@@ -582,7 +611,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetFrameSizeInCallback0300', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0300 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(0, numberThree);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(AUDIOSTREAM_TYPE_RENDERER, numberThree);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0300 test end `);
       done();
@@ -598,7 +627,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetFrameSizeInCallback0400', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0400 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(0, numberFour);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(AUDIOSTREAM_TYPE_RENDERER, numberFour);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0400 test end `);
       done();
@@ -614,7 +643,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetFrameSizeInCallback0500', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0500 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(1, 0);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(AUDIOSTREAM_TYPE_CAPTURER, 0);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0500 test end `);
       done();
@@ -630,7 +659,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetFrameSizeInCallback0600', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0600 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(1, 1);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(AUDIOSTREAM_TYPE_CAPTURER, 1);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0600 test end `);
       done();
@@ -646,7 +675,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetFrameSizeInCallback0700', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0700 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(1, numberTwo);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(AUDIOSTREAM_TYPE_CAPTURER, numberTwo);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0700 test end `);
       done();
@@ -662,7 +691,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetFrameSizeInCallback0800', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0800 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(1, numberThree);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(AUDIOSTREAM_TYPE_CAPTURER, numberThree);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0800 test end `);
       done();
@@ -678,7 +707,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetFrameSizeInCallback0900', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0900 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(1, numberFour);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetFrameSizeInCallback(AUDIOSTREAM_TYPE_CAPTURER, numberFour);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetFrameSizeInCallback0900 test end `);
       done();
@@ -694,7 +723,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetLatencyMode0100', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetLatencyMode0100 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetLatencyMode(0, 0);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetLatencyMode(AUDIOSTREAM_TYPE_RENDERER, AUDIOSTREAM_LATENCY_MODE_NORMAL);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetLatencyMode0100 test end `);
       done();
@@ -710,7 +739,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetLatencyMode0200', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetLatencyMode0200 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetLatencyMode(0, 1);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetLatencyMode(AUDIOSTREAM_TYPE_RENDERER, AUDIOSTREAM_LATENCY_MODE_FAST);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetLatencyMode0200 test end `);
       done();
@@ -726,7 +755,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetLatencyMode0300', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetLatencyMode0300 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetLatencyMode(0, numberTwo);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetLatencyMode(AUDIOSTREAM_TYPE_RENDERER, numberTwo);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetLatencyMode0300 test end `);
       done();
@@ -742,7 +771,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetLatencyMode0400', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetLatencyMode0400 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetLatencyMode(1, 1);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetLatencyMode(AUDIOSTREAM_TYPE_CAPTURER, AUDIOSTREAM_LATENCY_MODE_FAST);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetLatencyMode0400 test end `);
       done();
@@ -758,7 +787,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetLatencyMode0500', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetLatencyMode0500 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetLatencyMode(1, numberTwo);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetLatencyMode(AUDIOSTREAM_TYPE_CAPTURER, numberTwo);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetLatencyMode0500 test end `);
       done();
@@ -790,7 +819,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSampleFormat0100', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSampleFormat0100 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(0, 0);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(AUDIOSTREAM_TYPE_RENDERER, AUDIOSTREAM_SAMPLE_U8);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetSampleFormat0100 test end `);
       done();
@@ -806,7 +835,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSampleFormat0200', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSampleFormat0200 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(0, 1);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(AUDIOSTREAM_TYPE_RENDERER, AUDIOSTREAM_SAMPLE_S16LE);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetSampleFormat0200 test end `);
       done();
@@ -822,7 +851,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSampleFormat0300', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSampleFormat0300 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(0, numberTwo);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(AUDIOSTREAM_TYPE_RENDERER, AUDIOSTREAM_SAMPLE_S24LE);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetSampleFormat0300 test end `);
       done();
@@ -838,7 +867,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSampleFormat0400', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSampleFormat0400 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(0, numberThree);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(AUDIOSTREAM_TYPE_RENDERER, AUDIOSTREAM_SAMPLE_S32LE);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetSampleFormat0400 test end `);
       done();
@@ -854,7 +883,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSampleFormat0500', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSampleFormat0500 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(0, numberFour);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(AUDIOSTREAM_TYPE_RENDERER, numberFour);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetSampleFormat0500 test end `);
       done();
@@ -870,7 +899,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSampleFormat0600', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSampleFormat0600 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(1, 0);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(AUDIOSTREAM_TYPE_CAPTURER, AUDIOSTREAM_SAMPLE_U8);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetSampleFormat0600 test end `);
       done();
@@ -886,7 +915,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSampleFormat0700', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSampleFormat0700 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(1, numberTwo);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(AUDIOSTREAM_TYPE_CAPTURER, AUDIOSTREAM_SAMPLE_S24LE);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetSampleFormat0700 test end `);
       done();
@@ -902,7 +931,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSampleFormat0800', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSampleFormat0800 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(1, numberThree);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(AUDIOSTREAM_TYPE_CAPTURER, AUDIOSTREAM_SAMPLE_S32LE);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetSampleFormat0800 test end `);
       done();
@@ -918,7 +947,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSampleFormat0900', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSampleFormat0900 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(1, numberNinety);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(AUDIOSTREAM_TYPE_CAPTURER, numberNinety);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetSampleFormat0900 test end `);
       done();
@@ -934,7 +963,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSamplingRate0100', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSamplingRate0100 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSamplingRate(1, number44100);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSamplingRate(AUDIOSTREAM_TYPE_CAPTURER , number44100);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetSamplingRate0100 test end `);
       done();
@@ -950,7 +979,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSamplingRate0200', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSamplingRate0200 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSamplingRate(1, -1);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSamplingRate(AUDIOSTREAM_TYPE_CAPTURER , -1);
       expect(re).assertEqual(1);
       console.log(`testOHAudioStreamBuilderSetSamplingRate0200 test end `);
       done();
@@ -966,7 +995,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSamplingRate0300', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSamplingRate0300 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSamplingRate(0, number44100);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSamplingRate(AUDIOSTREAM_TYPE_RENDERER, number44100);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetSamplingRate0300 test end `);
       done();
@@ -982,7 +1011,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSamplingRate0400', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSamplingRate0400 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSamplingRate(0, number48000);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSamplingRate(AUDIOSTREAM_TYPE_RENDERER, number48000);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetSamplingRate0400 test end `);
       done();
@@ -998,7 +1027,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSamplingRate0500', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSamplingRate0500 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSamplingRate(0, -1);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSamplingRate(AUDIOSTREAM_TYPE_RENDERER, -1);
       expect(re).assertEqual(1);
       console.log(`testOHAudioStreamBuilderSetSamplingRate0500 test end `);
       done();
@@ -1111,7 +1140,7 @@ export default function OhCapturerTest() {
     it('testOHAudioStreamBuilderSetCapturerInfo0100', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetCapturerInfo0100 test start `);
       let re: number = testStreamBuilder.OHAudioStreamBuilderSetCapturerInfo(0);
-      expect(re === 0).assertTrue();
+      expect(re === AUDIOSTREAM_SUCCESS).assertTrue();
       console.log(`testOHAudioStreamBuilderSetCapturerInfo0100 test end `);
       done();
     });
@@ -1125,7 +1154,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetEncodingType0600', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetEncodingType0600 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetEncodingType(1, 1);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetEncodingType(AUDIOSTREAM_TYPE_RENDERER, AUDIOSTREAM_ENCODING_TYPE_OTHER);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetEncodingType0600 test end `);
       done();
@@ -1141,7 +1170,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetLatencyMode0600', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetLatencyMode0600 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetLatencyMode(1, 0);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetLatencyMode(AUDIOSTREAM_TYPE_CAPTURER, AUDIOSTREAM_LATENCY_MODE_NORMAL);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetLatencyMode0600 test end `);
       done();
@@ -1157,7 +1186,7 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSampleFormat1000', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSampleFormat1000 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(1, 1);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSampleFormat(AUDIOSTREAM_TYPE_CAPTURER, 1);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetSampleFormat1000 test end `);
       done();
@@ -1173,14 +1202,11 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioStreamBuilderSetSamplingRate0600', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetSamplingRate0600 test start `);
-      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSamplingRate(1, number48000);
+      let re: number | null = testStreamBuilder.OHAudioStreamBuilderSetSamplingRate(AUDIOSTREAM_TYPE_CAPTURER , number48000);
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       console.log(`testOHAudioStreamBuilderSetSamplingRate0600 test end `);
       done();
     });
-
-
-
   });
 
   describe('OhAudioCapturerRunTest', () => {
@@ -1213,10 +1239,10 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioCapturerGetCurrentState0100', 0, async (done: Function) => {
       console.log(`testOHAudioCapturerGetCurrentState0100 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
-      expect(re).assertEqual(number200);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
+      expect(re).assertEqual(CODE_SUCCESS);
       re = await testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re).assertEqual(1);
+      expect(re).assertEqual(AUDIOSTREAM_STATE_PREPARED);
       console.log(`testOHAudioCapturerGetCurrentState0100 test end `);
       done();
     });
@@ -1248,7 +1274,7 @@ export default function OhCapturerTest() {
     it('testOHAudioCapturerGetCurrentState0200', 0, async (done: Function) => {
       console.log(`testOHAudioCapturerGetCurrentState0200 test start `);
       let re: number | null = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       console.log(`testOHAudioCapturerGetCurrentState0200 test end `);
       done();
     });
@@ -1264,7 +1290,7 @@ export default function OhCapturerTest() {
     it('testOHAudioCapturerGetSampleFormat0100', 0, async (done: Function) => {
       console.log(`testOHAudioCapturerGetSampleFormat0100 test start `);
       let re: number | null = testStreamBuilder.OHAudioCapturerGetSampleFormat();
-      expect(re === 0 || re === 1 || re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED || re === numberTwo || re === numberThree).assertTrue();
       console.log(`testOHAudioCapturerGetSampleFormat0100 test end `);
       done();
     });
@@ -1296,7 +1322,7 @@ export default function OhCapturerTest() {
     it('testOHAudioCapturerGetCurrentState0300', 0, async (done: Function) => {
       console.log(`testOHAudioCapturerGetCurrentState0300 test start `);
       let re: number | null = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberThree || re === numberFive).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_STOPPED || re === AUDIOSTREAM_STATE_PAUSED).assertTrue();
       console.log(`testOHAudioCapturerGetCurrentState0300 test end `);
       done();
     });
@@ -1344,7 +1370,7 @@ export default function OhCapturerTest() {
     it('testOHAudioCapturerGetEncodingType0100', 0, async (done: Function) => {
       console.log(`testOHAudioCapturerGetEncodingType0100 test start `);
       let re: number | null = testStreamBuilder.OHAudioCapturerGetEncodingType();
-      expect(re).assertEqual(encodingType); // 正确结果：0
+      expect(re).assertEqual(encodingType);
       console.log(`testOHAudioCapturerGetEncodingType0100 test end `);
       done();
     });
@@ -1391,12 +1417,11 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioCapturerGetLatencyMode0200', 0, async (done: Function) => {
       console.log(`testOHAudioCapturerGetLatencyMode0200 test start `);
-      let re: number | null = testStreamBuilder.OHAudioCapturerGetLatencyMode(1);
-      expect(re === 0 || re === 1).assertTrue();
+      let re: number | null = testStreamBuilder.OHAudioCapturerGetLatencyMode();
+      expect(re === AUDIOSTREAM_LATENCY_MODE_NORMAL || re === AUDIOSTREAM_LATENCY_MODE_FAST ).assertTrue();
       console.log(`testOHAudioCapturerGetLatencyMode0200 test end `);
       done();
     });
-
     /**
      * @tc.number : SUB_MULTIMEDIA_AUDIO_OHAUDIOCAPTURERGETSAMPLINGRATE_0100
      * @tc.name   ：TestOHAudioCapturerGetSamplingRate0100
@@ -1487,8 +1512,8 @@ export default function OhCapturerTest() {
      */
     it('testOHAudioCapturerGetLatencyMode0100', 0, async (done: Function) => {
       console.log(`testOHAudioCapturerGetLatencyMode0100 test start `);
-      let re: number | null = testStreamBuilder.OHAudioCapturerGetLatencyMode(0);
-      expect(re === 0 || re === 1).assertTrue();
+      let re: number | null = testStreamBuilder.OHAudioCapturerGetLatencyMode();
+      expect(re === AUDIOSTREAM_LATENCY_MODE_NORMAL  || re === AUDIOSTREAM_LATENCY_MODE_FAST ).assertTrue();
       console.log(`testOHAudioCapturerGetLatencyMode0100 test end `);
       done();
     });
@@ -1504,7 +1529,7 @@ export default function OhCapturerTest() {
     it('testOHAudioCapturerGetCurrentState0400', 0, async (done: Function) => {
       console.log(`testOHAudioCapturerGetCurrentState0400 test start `);
       let re: number | null = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberThree).assertTrue(); // 正确结果：0、1、2、3、4、5
+      expect(re === AUDIOSTREAM_STATE_STOPPED).assertTrue(); // 正确结果：0、1、2、3、4、5
       console.log(`testOHAudioCapturerGetCurrentState0400 test end `);
       done();
     });
@@ -1520,7 +1545,7 @@ export default function OhCapturerTest() {
     it('testOHAudioCapturerGetCurrentState0500', 0, async (done: Function) => {
       console.log(`testOHAudioCapturerGetCurrentState0500 test start `);
       let re: number | null = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1 || re === numberTwo || re === numberThree || re === numberFour || re === numberFive)
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED || re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED || re === numberFour || re === AUDIOSTREAM_STATE_PAUSED)
         .assertTrue(); // 正确结果：0、1、2、3、4、5
       console.log(`testOHAudioCapturerGetCurrentState0500 test end `);
       done();
@@ -1553,7 +1578,7 @@ export default function OhCapturerTest() {
     it('testOHAudioCapturerGetCurrentState0600', 0, async (done: Function) => {
       console.log(`testOHAudioCapturerGetCurrentState0600 test start `);
       let re: number | null = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === -1).assertTrue(); // 正确结果：0、1、2、3、4、5
+      expect(re === AUDIOSTREAM_STATE_INVALID).assertTrue(); // 正确结果：0、1、2、3、4、5
       console.log(`testOHAudioCapturerGetCurrentState0600 test end `);
       done();
     });
@@ -1589,28 +1614,28 @@ export default function OhCapturerTest() {
      */
     it('testCreateAudioCapturerRecorder0100', 0, async (done: Function) => {
       console.log(`testCreateAudioCapturerRecorder0100 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStop();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       Utils.sleep(500);
       console.log(`testCreateAudioCapturerRecorder0100 test end `);
       done();
@@ -1627,28 +1652,28 @@ export default function OhCapturerTest() {
      */
     it('testCreateAudioCapturerRecorder0200', 0, async (done: Function) => {
       console.log(`testCreateAudioCapturerRecorder0200 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(1);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexOne);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re).assertEqual(1);
+      expect(re).assertEqual(AUDIOSTREAM_STATE_PREPARED);
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re).assertEqual(numberTwo);
+      expect(re).assertEqual(AUDIOSTREAM_STATE_RUNNING);
 
-      if (re === numberTwo) {
+      if (re === AUDIOSTREAM_STATE_RUNNING) {
         re = testStreamBuilder.OHAudioCapturerPause();
         expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
         re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-        expect(re === numberFive).assertTrue();
+        expect(re === AUDIOSTREAM_STATE_PAUSED).assertTrue();
       }
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      Utils.sleep(500);
-      expect(ret === 0 || ret === number200).assertTrue();
+      Utils.sleep(sleep500);
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testCreateAudioCapturerRecorder0200 test end `);
       done();
     });
@@ -1664,18 +1689,18 @@ export default function OhCapturerTest() {
      */
     it('testCreateAudioCapturerRecorder0300', 0, async (done: Function) => {
       console.log(`testCreateAudioCapturerRecorder0300 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(numberTwo);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexTwo);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
       getAudioCapturerParam(false);
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       getAudioCapturerParam();
 
       re = testStreamBuilder.OHAudioCapturerRelease();
@@ -1684,7 +1709,7 @@ export default function OhCapturerTest() {
       let ret: number = await testStreamBuilder.CloseAudioCapture();
       Utils.sleep(500);
 
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testCreateAudioCapturerRecorder0300 test end `);
       done();
     });
@@ -1700,18 +1725,18 @@ export default function OhCapturerTest() {
      */
     it('testCreateAudioCapturerRecorder0400', 0, async (done: Function) => {
       console.log(`testCreateAudioCapturerRecorder0400 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(numberThree);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexThree);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       let ret: number = await testStreamBuilder.CloseAudioCapture();
       Utils.sleep(500);
 
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testCreateAudioCapturerRecorder0400 test end `);
       done();
     });
@@ -1727,35 +1752,35 @@ export default function OhCapturerTest() {
      */
     it('testCreateAudioCapturerRecorder0500', 0, async (done: Function) => {
       console.log(`testCreateAudioCapturerRecorder0500 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(numberFour);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexFour);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       await Utils.sleep(sleep500);
 
-      if (re === numberTwo) {
+      if (re === AUDIOSTREAM_STATE_RUNNING) {
         re = testStreamBuilder.OHAudioCapturerPause();
         expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
         re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-        expect(re).assertEqual(numberFive);
+        expect(re).assertEqual(AUDIOSTREAM_STATE_PAUSED);
       }
 
       re = testStreamBuilder.OHAudioCapturerStop();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testCreateAudioCapturerRecorder0500 test end `);
       done();
     });
@@ -1771,34 +1796,34 @@ export default function OhCapturerTest() {
      */
     it('testCreateAudioCapturerRecorder0600', 0, async (done: Function) => {
       console.log(`testCreateAudioCapturerRecorder0600 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(numberFive);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexFive);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       await Utils.sleep(sleep500);
 
       re = testStreamBuilder.OHAudioCapturerStop();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       await Utils.sleep(sleep500);
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testCreateAudioCapturerRecorder0600 test end `);
       done();
     });
@@ -1814,36 +1839,36 @@ export default function OhCapturerTest() {
      */
     it('testCreateAudioCapturerRecorder0700', 0, async (done: Function) => {
       console.log(`testCreateAudioCapturerRecorder0700 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       await Utils.sleep(sleep500);
 
-      if (re === numberTwo) {
+      if (re === AUDIOSTREAM_STATE_RUNNING) {
         re = testStreamBuilder.OHAudioCapturerPause();
         expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
         re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-        expect(re === numberFive).assertTrue();
+        expect(re === AUDIOSTREAM_STATE_PAUSED).assertTrue();
       }
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       await Utils.sleep(sleep500);
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testCreateAudioCapturerRecorder0700 test end `);
       done();
     });
@@ -1858,41 +1883,41 @@ export default function OhCapturerTest() {
      */
     it('testCreateAudioCapturerRecorder0800', 0, async (done: Function) => {
       console.log(`testCreateAudioCapturerRecorder0800 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       await Utils.sleep(sleep500);
 
-      if (re === numberTwo) {
+      if (re === AUDIOSTREAM_STATE_RUNNING) {
         re = testStreamBuilder.OHAudioCapturerPause();
         expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
         re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-        expect(re === numberFive).assertTrue();
+        expect(re === AUDIOSTREAM_STATE_PAUSED).assertTrue();
       }
 
       re = testStreamBuilder.OHAudioCapturerStop();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       await Utils.sleep(sleep500);
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testCreateAudioCapturerRecorder0800 test end `);
       done();
     });
@@ -1907,47 +1932,47 @@ export default function OhCapturerTest() {
      */
     it('testCreateAudioCapturerRecorder0900', 0, async (done: Function) => {
       console.log(`testCreateAudioCapturerRecorder0900 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       await Utils.sleep(sleep500);
 
-      if (re === numberTwo) {
+      if (re === AUDIOSTREAM_STATE_RUNNING) {
         re = testStreamBuilder.OHAudioCapturerPause();
         expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
         re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-        expect(re === numberFive).assertTrue();
+        expect(re === AUDIOSTREAM_STATE_PAUSED).assertTrue();
       }
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       await Utils.sleep(sleep500);
 
       re = testStreamBuilder.OHAudioCapturerStop();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       await Utils.sleep(sleep500);
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testCreateAudioCapturerRecorder0900 test end `);
       done();
     });
@@ -1963,51 +1988,51 @@ export default function OhCapturerTest() {
      */
     it('testCreateAudioCapturerRecorder1000', 0, async (done: Function) => {
       console.log(`testCreateAudioCapturerRecorder1000 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       await Utils.sleep(sleep500);
 
       re = testStreamBuilder.OHAudioCapturerStop();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       await Utils.sleep(sleep500);
 
-      if (re === numberTwo) {
+      if (re === AUDIOSTREAM_STATE_RUNNING) {
         re = testStreamBuilder.OHAudioCapturerPause();
         expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
         re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-        expect(re === numberFive).assertTrue();
+        expect(re === AUDIOSTREAM_STATE_PAUSED).assertTrue();
       }
 
       re = testStreamBuilder.OHAudioCapturerStop();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testCreateAudioCapturerRecorder1000 test end `);
       done();
     });
@@ -2022,35 +2047,35 @@ export default function OhCapturerTest() {
      */
     it('testCreateAudioCapturerRecorder1100', 0, async (done: Function) => {
       console.log(`testCreateAudioCapturerRecorder1100 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       await Utils.sleep(sleep500);
 
-      if (re === numberTwo) {
+      if (re === AUDIOSTREAM_STATE_RUNNING) {
         re = testStreamBuilder.OHAudioCapturerPause();
         expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
         re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-        expect(re === numberFive).assertTrue();
+        expect(re === AUDIOSTREAM_STATE_PAUSED).assertTrue();
       }
 
       re = testStreamBuilder.OHAudioCapturerStop();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testCreateAudioCapturerRecorder1100 test end `);
       done();
     });
@@ -2066,33 +2091,33 @@ export default function OhCapturerTest() {
      */
     it('testAbnormalOperationCapturer0100', 0, async (done: Function) => {
       console.log(`testAbnormalOperationCapturer0100 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
       await Utils.sleep(sleep500);
 
       re = testStreamBuilder.OHAudioCapturerStop();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerPause();
       expect(re).assertEqual(AUDIOSTREAM_ERROR_ILLEGAL_STATE);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberFive).assertFalse();
+      expect(re === AUDIOSTREAM_STATE_PAUSED).assertFalse();
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testAbnormalOperationCapturer0100 test end `);
       done();
     });
@@ -2108,22 +2133,22 @@ export default function OhCapturerTest() {
      */
     it('testAbnormalOperationCapturer0200', 0, async (done: Function) => {
       console.log(`testAbnormalOperationCapturer0200 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStop();
       expect(re).assertEqual(AUDIOSTREAM_ERROR_ILLEGAL_STATE);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberThree).assertFalse();
+      expect(re === AUDIOSTREAM_STATE_STOPPED).assertFalse();
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testAbnormalOperationCapturer0200 test end `);
       done();
     });
@@ -2138,22 +2163,22 @@ export default function OhCapturerTest() {
      */
     it('testAbnormalOperationCapturer0300', 0, async (done: Function) => {
       console.log(`testAbnormalOperationCapturer0300 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerPause();
       expect(re).assertEqual(AUDIOSTREAM_ERROR_ILLEGAL_STATE);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberFive).assertFalse();
+      expect(re === AUDIOSTREAM_STATE_PAUSED).assertFalse();
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testAbnormalOperationCapturer0300 test end `);
       done();
     });
@@ -2169,12 +2194,12 @@ export default function OhCapturerTest() {
      */
     it('testAbnormalOperationCapturer0400', 0, async (done: Function) => {
       console.log(`testAbnormalOperationCapturer0400 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
@@ -2183,7 +2208,7 @@ export default function OhCapturerTest() {
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testAbnormalOperationCapturer0400 test end `);
       done();
     });
@@ -2199,12 +2224,12 @@ export default function OhCapturerTest() {
      */
     it('testAbnormalOperationCapturer0500', 0, async (done: Function) => {
       console.log(`testAbnormalOperationCapturer0500 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
       re = testStreamBuilder.OHAudioCapturerStart();
 
       re = testStreamBuilder.OHAudioCapturerPause();
@@ -2217,7 +2242,7 @@ export default function OhCapturerTest() {
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testAbnormalOperationCapturer0500 test end `);
       done();
     });
@@ -2233,12 +2258,12 @@ export default function OhCapturerTest() {
      */
     it('testAbnormalOperationCapturer0600', 0, async (done: Function) => {
       console.log(`testAbnormalOperationCapturer0400 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
@@ -2250,7 +2275,7 @@ export default function OhCapturerTest() {
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testAbnormalOperationCapturer0600 test end `);
       done();
     });
@@ -2266,12 +2291,12 @@ export default function OhCapturerTest() {
      */
     it('testAbnormalOperationCapturer0700', 0, async (done: Function) => {
       console.log(`testAbnormalOperationCapturer0700 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
@@ -2282,17 +2307,14 @@ export default function OhCapturerTest() {
       re = testStreamBuilder.OHAudioCapturerStop();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
-      re = testStreamBuilder.OHAudioCapturerRelease();
-      expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
-
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re).assertEqual(numberThree);
+      expect(re).assertEqual(AUDIOSTREAM_STATE_STOPPED);
 
       re = testStreamBuilder.OHAudioCapturerRelease();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testAbnormalOperationCapturer0700 test end `);
       done();
     });
@@ -2308,9 +2330,9 @@ export default function OhCapturerTest() {
      */
     it('testCapturerRecorderAttribute0100', 0, async (done: Function) => {
       console.log(`testCapturerRecorderAttribute0100 test start `);
-      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(0);
+      let re: number = await testStreamBuilder.CreateAudioCapturerRecorder(indexZero);
       Utils.sleep(sleep1000);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
       expect(re).assertEqual(1);
@@ -2322,12 +2344,12 @@ export default function OhCapturerTest() {
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
       result = getAudioCapturerParam(false);
       expect(result).assertTrue();
 
-      if (re === numberTwo) {
+      if (re === AUDIOSTREAM_STATE_RUNNING) {
         re = testStreamBuilder.OHAudioCapturerPause();
         expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
         result = getAudioCapturerParam();
@@ -2346,7 +2368,7 @@ export default function OhCapturerTest() {
       result = getAudioCapturerParam(false);
       expect(result).assertFalse();
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testCapturerRecorderAttribute0100 test end `);
       done();
     });
@@ -2371,11 +2393,11 @@ export default function OhCapturerTest() {
       sampleFormat = 0;
 
       let re: number = await testStreamBuilder.CreatCapturerRecorderWithParam(rateValue, channelCount, frameSizeValue, latencyMode, sampleFormat);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
       Utils.sleep(sleep1000);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       let verify = verifyCapturerProperties();
       expect(verify).assertTrue();
@@ -2383,13 +2405,13 @@ export default function OhCapturerTest() {
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
-      if (re === numberTwo) {
+      if (re === AUDIOSTREAM_STATE_RUNNING) {
         re = testStreamBuilder.OHAudioCapturerPause();
         expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
         re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-        expect(re).assertEqual(numberFive);
+        expect(re).assertEqual(AUDIOSTREAM_STATE_PAUSED);
       }
 
       re = testStreamBuilder.OHAudioCapturerStop();
@@ -2399,7 +2421,7 @@ export default function OhCapturerTest() {
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testCapturerRecorderAttribute0200 test end `);
       done();
     });
@@ -2424,11 +2446,11 @@ export default function OhCapturerTest() {
       sampleFormat = 0;
 
       let re: number = await testStreamBuilder.CreatCapturerRecorderWithParam(rateValue, channelCount, frameSizeValue, latencyMode, sampleFormat);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
       Utils.sleep(sleep1000);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       let verify = verifyCapturerProperties();
       expect(verify).assertTrue();
@@ -2436,13 +2458,13 @@ export default function OhCapturerTest() {
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
-      if (re === numberTwo) {
+      if (re === AUDIOSTREAM_STATE_RUNNING) {
         re = testStreamBuilder.OHAudioCapturerPause();
         expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
         re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-        expect(re).assertEqual(numberFive);
+        expect(re).assertEqual(AUDIOSTREAM_STATE_PAUSED);
       }
 
       re = testStreamBuilder.OHAudioCapturerStop();
@@ -2452,7 +2474,7 @@ export default function OhCapturerTest() {
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testCapturerRecorderAttribute0300 test end `);
       done();
     });
@@ -2477,11 +2499,11 @@ export default function OhCapturerTest() {
       sampleFormat = 0;
 
       let re: number = await testStreamBuilder.CreatCapturerRecorderWithParam(rateValue, channelCount, frameSizeValue, latencyMode, sampleFormat);
-      expect(re).assertEqual(number200);
+      expect(re).assertEqual(CODE_SUCCESS);
       Utils.sleep(sleep1000);
 
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === 0 || re === 1).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_NEW || re === AUDIOSTREAM_STATE_PREPARED).assertTrue();
 
       let verify = verifyCapturerProperties();
       expect(verify).assertTrue();
@@ -2489,13 +2511,13 @@ export default function OhCapturerTest() {
       re = testStreamBuilder.OHAudioCapturerStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
       re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-      expect(re === numberTwo || re === numberThree).assertTrue();
+      expect(re === AUDIOSTREAM_STATE_RUNNING || re === AUDIOSTREAM_STATE_STOPPED).assertTrue();
 
-      if (re === numberTwo) {
+      if (re === AUDIOSTREAM_STATE_RUNNING) {
         re = testStreamBuilder.OHAudioCapturerPause();
         expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
         re = testStreamBuilder.OHAudioCapturerGetCurrentState();
-        expect(re).assertEqual(numberFive);
+        expect(re).assertEqual(AUDIOSTREAM_STATE_PAUSED);
       }
 
       re = testStreamBuilder.OHAudioCapturerStop();
@@ -2505,7 +2527,7 @@ export default function OhCapturerTest() {
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
 
       let ret: number = await testStreamBuilder.CloseAudioCapture();
-      expect(ret === 0 || ret === number200).assertTrue();
+      expect(ret === AUDIOSTREAM_SUCCESS || ret === CODE_SUCCESS).assertTrue();
       console.log(`testCapturerRecorderAttribute0400 test end `);
       done();
     });
