@@ -1337,5 +1337,20 @@ export default function audioNDK() {
             expect(a).assertEqual(1)
             done()
         })
+
+        /**
+            * @tc.number    : SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETINTERRUPTMODE_0400
+            * @tc.name      : set interruptMode with AUDIOSTREAM_TYPE_RENDERER
+            * @tc.desc      : test OH_AudioRenderer_SetInterruptMode
+            * @tc.size      : MediumTest
+            * @tc.type      : Function
+            * @tc.level     : Level0
+        */
+        it('SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETINTERRUPTMODE_0400', 0, async function (done) {
+            let a = myaudioNdk.audioRendererSetInterruptMode_04();
+            console.info(`Tag: SUB_MULTIMEDIA_AUDIO_NDK_RENDERER_SETINTERRUPTMODE_0400 audioRendererSetInterruptMode: ${a}`);
+            expect(a).assertEqual(1)
+            done()
+        })
     })
 }

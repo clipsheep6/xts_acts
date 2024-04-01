@@ -1417,8 +1417,11 @@ static int32_t AudioRendererInterruptEvent(OH_AudioRenderer* renderer,
 // OH_Audio_Render_SetInterruptMode_001: result is AUDIOSTREAM_SUCCESS(0).
 static napi_value AudioRendererSetInterruptMode_01(napi_env env, napi_callback_info info)
 {
+    g_mark = false;
+    // 1. create builder
     OH_AudioStreamBuilder* builder1;
     OH_AudioStream_Type type = AUDIOSTREAM_TYPE_RENDERER;
+    OH_AudioStream_Usage usage = AUDIOSTREAM_USAGE_VOICE_COMMUNICATION;
     OH_AudioStream_Result result = OH_AudioStreamBuilder_Create(&builder1, type);
 
     OH_AudioStreamBuilder* builder2;
@@ -1429,6 +1432,7 @@ static napi_value AudioRendererSetInterruptMode_01(napi_env env, napi_callback_i
     OH_AudioStreamBuilder_SetChannelCount(builder1, g_channelCount);
     OH_AudioStreamBuilder_SetLatencyMode(builder1, (OH_AudioStream_LatencyMode)g_latencyMode);
     OH_AudioStreamBuilder_SetSampleFormat(builder1, (OH_AudioStream_SampleFormat)g_sampleFormat);
+    OH_AudioStreamBuilder_SetRendererInfo(builder1, usage);
     OH_AudioRenderer_Callbacks callbacks;
     callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
     callbacks.OH_AudioRenderer_OnInterruptEvent = AudioRendererInterruptEvent;
@@ -1439,6 +1443,8 @@ static napi_value AudioRendererSetInterruptMode_01(napi_env env, napi_callback_i
     OH_AudioStreamBuilder_SetChannelCount(builder2, g_channelCount);
     OH_AudioStreamBuilder_SetLatencyMode(builder2, (OH_AudioStream_LatencyMode)g_latencyMode);
     OH_AudioStreamBuilder_SetSampleFormat(builder2, (OH_AudioStream_SampleFormat)g_sampleFormat);
+    usage = AUDIOSTREAM_USAGE_VOICE_ASSISTANT;
+    OH_AudioStreamBuilder_SetRendererInfo(builder2, usage);
     result = OH_AudioStreamBuilder_SetRendererCallback(builder2, callbacks, nullptr);
     result = OH_AudioStreamBuilder_SetFrameSizeInCallback(builder2, g_frameSize);
 
@@ -1476,40 +1482,47 @@ static napi_value AudioRendererSetInterruptMode_01(napi_env env, napi_callback_i
 static napi_value AudioRendererSetInterruptMode_02(napi_env env, napi_callback_info info)
 {
     g_mark = false;
-    // 1. create builder1 builder2
-    OH_AudioStreamBuilder* builder1;
+    // 1. create builder
+    OH_AudioStreamBuilder* builder;
     OH_AudioStream_Type type = AUDIOSTREAM_TYPE_RENDERER;
-    OH_AudioStream_Result result = OH_AudioStreamBuilder_Create(&builder1, type);
+    OH_AudioStream_Usage usage = AUDIOSTREAM_USAGE_MUSIC;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_Create(&builder, type);
 
-    // 2. set builder1 builder2 params
-    OH_AudioStreamBuilder_SetSamplingRate(builder1, g_samplingRate);
-    OH_AudioStreamBuilder_SetChannelCount(builder1, g_channelCount);
-    OH_AudioStreamBuilder_SetLatencyMode(builder1, (OH_AudioStream_LatencyMode)g_latencyMode);
-    OH_AudioStreamBuilder_SetSampleFormat(builder1, (OH_AudioStream_SampleFormat)g_sampleFormat);
+    OH_AudioStreamBuilder* builder2;
+    result = OH_AudioStreamBuilder_Create(&builder2, type);
+
+    // 2. set builder params
+    OH_AudioStreamBuilder_SetSamplingRate(builder, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder, g_channelCount);
+    OH_AudioStreamBuilder_SetLatencyMode(builder, (OH_AudioStream_LatencyMode)g_latencyMode);
+    OH_AudioStreamBuilder_SetSampleFormat(builder, (OH_AudioStream_SampleFormat)g_sampleFormat);
+    OH_AudioStreamBuilder_SetRendererInfo(builder, usage);
 
     OH_AudioRenderer_Callbacks callbacks;
     callbacks.OH_AudioRenderer_OnWriteData = AudioRendererOnWriteData;
     callbacks.OH_AudioRenderer_OnInterruptEvent = AudioRendererInterruptEvent;
-    result = OH_AudioStreamBuilder_SetRendererCallback(builder1, callbacks, nullptr);
-    result = OH_AudioStreamBuilder_SetFrameSizeInCallback(builder1, g_frameSize);
+    result = OH_AudioStreamBuilder_SetRendererCallback(builder, callbacks, nullptr);
+    result = OH_AudioStreamBuilder_SetFrameSizeInCallback(builder, g_frameSize);
 
-    OH_AudioStreamBuilder_SetSamplingRate(builder1, g_samplingRate);
-    OH_AudioStreamBuilder_SetChannelCount(builder1, g_channelCount);
-    OH_AudioStreamBuilder_SetLatencyMode(builder1, (OH_AudioStream_LatencyMode)g_latencyMode);
-    OH_AudioStreamBuilder_SetSampleFormat(builder1, (OH_AudioStream_SampleFormat)g_sampleFormat);
-    result = OH_AudioStreamBuilder_SetRendererCallback(builder1, callbacks, nullptr);
-    result = OH_AudioStreamBuilder_SetFrameSizeInCallback(builder1, g_frameSize);
+    OH_AudioStreamBuilder_SetSamplingRate(builder2, g_samplingRate);
+    OH_AudioStreamBuilder_SetChannelCount(builder2, g_channelCount);
+    OH_AudioStreamBuilder_SetLatencyMode(builder2, (OH_AudioStream_LatencyMode)g_latencyMode);
+    OH_AudioStreamBuilder_SetSampleFormat(builder2, (OH_AudioStream_SampleFormat)g_sampleFormat);
+    usage = AUDIOSTREAM_USAGE_MOVIE;
+    OH_AudioStreamBuilder_SetRendererInfo(builder2, usage);
+    result = OH_AudioStreamBuilder_SetRendererCallback(builder2, callbacks, nullptr);
+    result = OH_AudioStreamBuilder_SetFrameSizeInCallback(builder2, g_frameSize);
 
     OH_AudioInterrupt_Mode mode = AUDIOSTREAM_INTERRUPT_MODE_INDEPENDENT;
-    result = OH_AudioStreamBuilder_SetRendererInterruptMode(builder1, mode);
-    result = OH_AudioStreamBuilder_SetRendererInterruptMode(builder1, mode);
+    result = OH_AudioStreamBuilder_SetRendererInterruptMode(builder, mode);
+    result = OH_AudioStreamBuilder_SetRendererInterruptMode(builder2, mode);
 
     // 3. create audioRenderer1 audioRenderer2
     OH_AudioRenderer* audioRenderer1;
-    result = OH_AudioStreamBuilder_GenerateRenderer(builder1, &audioRenderer1);
+    result = OH_AudioStreamBuilder_GenerateRenderer(builder, &audioRenderer1);
 
     OH_AudioRenderer* audioRenderer2;
-    result = OH_AudioStreamBuilder_GenerateRenderer(builder1, &audioRenderer2);
+    result = OH_AudioStreamBuilder_GenerateRenderer(builder2, &audioRenderer2);
 
     // 4. start
     result = OH_AudioRenderer_Start(audioRenderer1);
@@ -1528,7 +1541,8 @@ static napi_value AudioRendererSetInterruptMode_02(napi_env env, napi_callback_i
     OH_AudioRenderer_Stop(audioRenderer1);
     OH_AudioRenderer_Release(audioRenderer1);
 
-    result = OH_AudioStreamBuilder_Destroy(builder1);
+    result = OH_AudioStreamBuilder_Destroy(builder);
+    result = OH_AudioStreamBuilder_Destroy(builder2);
     napi_value res;
     napi_create_int32(env, result, &res);
     return res;
@@ -1539,6 +1553,22 @@ static napi_value AudioRendererSetInterruptMode_03(napi_env env, napi_callback_i
 {
     OH_AudioStreamBuilder* builder = nullptr;
     OH_AudioInterrupt_Mode mode = AUDIOSTREAM_INTERRUPT_MODE_SHARE;
+    OH_AudioStream_Result result = OH_AudioStreamBuilder_SetRendererInterruptMode(builder, mode);
+    LOG(false, "OH_AudioRenderer_SetInterruptMode_01, result is: %d", result);
+    OH_AudioStreamBuilder_Destroy(builder);
+    napi_value res;
+    napi_create_int32(env, result, &res);
+    return res;
+}
+
+// OH_Audio_Render_SetInterruptMode_004: result is AUDIOSTREAM_ERROR_INVALID_PARAM(1).
+static napi_value AudioRendererSetInterruptMode_04(napi_env env, napi_callback_info info)
+{
+    OH_AudioStreamBuilder* builder;
+    OH_AudioStream_Type type = AUDIOSTREAM_TYPE_RENDERER;
+    int32_t invalidMode = -2;
+    OH_AudioStreamBuilder_Create(&builder, type);
+    OH_AudioInterrupt_Mode mode = static_cast<OH_AudioInterrupt_Mode>(invalidMode);
     OH_AudioStream_Result result = OH_AudioStreamBuilder_SetRendererInterruptMode(builder, mode);
     LOG(false, "OH_AudioRenderer_SetInterruptMode_01, result is: %d", result);
     OH_AudioStreamBuilder_Destroy(builder);
@@ -1640,7 +1670,7 @@ static napi_value Init(napi_env env, napi_value exports)
         {"audioRendererSetInterruptMode_01", nullptr, AudioRendererSetInterruptMode_01, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioRendererSetInterruptMode_02", nullptr, AudioRendererSetInterruptMode_02, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"audioRendererSetInterruptMode_03", nullptr, AudioRendererSetInterruptMode_03, nullptr, nullptr, nullptr, napi_default, nullptr},
-
+        {"audioRendererSetInterruptMode_04", nullptr, AudioRendererSetInterruptMode_04, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
