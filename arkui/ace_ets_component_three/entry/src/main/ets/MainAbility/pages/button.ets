@@ -105,7 +105,7 @@ struct ButtonExample {
                 "fontColorValue": this.fontColorValue,
               }
             }
-            var backEvent = {
+            var backEvent =  {
               eventId: 72,
               priority: events_emitter.EventPriority.LOW
             }
