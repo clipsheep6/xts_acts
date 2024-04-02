@@ -96,58 +96,47 @@ function getAudioCapturerParam(hasTimestamp: boolean = true): boolean {
   let rerult = true;
   let re: number = testStreamBuilder.OHAudioCapturerGetCapturerInfo();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询工作场景类型失败');
     rerult = false;
   }
   re = testStreamBuilder.OHAudioCapturerGetChannelCount();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询通道数失败');
     rerult = false;
   }
   re = testStreamBuilder.OHAudioCapturerGetEncodingType();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询编码类型失败');
     rerult = false;
   }
   re = testStreamBuilder.OHAudioCapturerGetFrameSizeInCallback();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询帧大小失败');
     rerult = false;
   }
   re = testStreamBuilder.OHAudioCapturerGetFramesRead();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询已读帧数失败');
     rerult = false;
   }
   re = testStreamBuilder.OHAudioCapturerGetLatencyMode();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询时延模式失败');
     rerult = false;
   }
   re = testStreamBuilder.OHAudioCapturerGetSampleFormat();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询采样格式失败');
     rerult = false;
   }
   re = testStreamBuilder.OHAudioCapturerGetSamplingRate();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询流采样率失败');
     rerult = false;
   }
   re = testStreamBuilder.OHAudioCapturerGetStreamId();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询流ID失败');
     rerult = false;
   }
   if (hasTimestamp) {
     re = testStreamBuilder.OHAudioCapturerGetFramePosition();
     if (re < 0) {
-      console.info('[AudioCapturer属性获取] 查询时间戳和位置信息失败');
       rerult = false;
     }
     re = testStreamBuilder.OHAudioCapturerGetTimestamp();
     if (re < 0) {
-      console.info('[AudioCapturer属性获取] 查询时间戳和位置信息失败');
       rerult = false;
     }
   }
@@ -158,27 +147,23 @@ function verifyCapturerProperties(): boolean {
   let rerult = true;
   let re: number = testStreamBuilder.OHAudioCapturerGetCapturerInfo();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询工作场景类型失败');
     rerult = false;
   }
 
   re = testStreamBuilder.OHAudioCapturerGetChannelCount();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询通道数失败');
     rerult = false;
   } else {
     expect(re).assertEqual(channelCount);
   }
   re = testStreamBuilder.OHAudioCapturerGetEncodingType();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询编码类型失败');
     rerult = false;
   } else {
     expect(re).assertEqual(AUDIOSTREAM_ENCODING_TYPE_RAW);
   }
   re = testStreamBuilder.OHAudioCapturerGetFrameSizeInCallback();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询每次回调的帧大小失败');
     rerult = false;
   } else {
     expect(re).assertEqual(frameSizeValue);
@@ -186,27 +171,23 @@ function verifyCapturerProperties(): boolean {
 
   re = testStreamBuilder.OHAudioCapturerGetFramesRead();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询已读帧数失败');
     rerult = false;
   }
 
   re = testStreamBuilder.OHAudioCapturerGetLatencyMode();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询时延模式失败');
     rerult = false;
   } else {
     expect(re).assertEqual(latencyMode);
   }
   re = testStreamBuilder.OHAudioCapturerGetSampleFormat();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询采样格式失败');
     rerult = false;
   } else {
     expect(re).assertEqual(sampleFormat);
   }
   re = testStreamBuilder.OHAudioCapturerGetSamplingRate();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询流采样率失败');
     rerult = false;
   } else {
     expect(re).assertEqual(rateValue);
@@ -214,17 +195,14 @@ function verifyCapturerProperties(): boolean {
 
   re = testStreamBuilder.OHAudioCapturerGetStreamId();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询流ID失败');
     rerult = false;
   }
   re = testStreamBuilder.OHAudioCapturerGetFramePosition();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询时间戳和位置信息失败');
     rerult = false;
   }
   re = testStreamBuilder.OHAudioCapturerGetTimestamp();
   if (re < 0) {
-    console.info('[AudioCapturer属性获取] 查询时间戳和位置信息失败');
     rerult = false;
   }
   return rerult;
@@ -298,7 +276,7 @@ export default function OhCapturerTest() {
       console.info('afterAll case');
       let re: number = testStreamBuilder.CloseAudioCapture();
       if (re === CODE_SUCCESS || re === AUDIOSTREAM_SUCCESS) {
-        console.log('[录音] 销毁成功：', re); // 200为正确结果
+        console.log('[capturer] Close：', re);
       }
       done();
     });

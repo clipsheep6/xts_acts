@@ -1767,7 +1767,6 @@ export default function OhRendererTest() {
         if (re === CODE_SUCCESS) {
           Utils.sleep(sleep1000);
         } else {
-          console.log("退出退出");
           continue;
         }
 
@@ -1833,7 +1832,7 @@ export default function OhRendererTest() {
           tempMap.get('SamplingRate')
         );
         console.info(
-          `${element}属性详情:${tempMap.get('RendererInfo')},${tempMap.get('ChannelCount')},${tempMap.get('EncodingType')},${tempMap.get(
+          `${element}paramDetail:${tempMap.get('RendererInfo')},${tempMap.get('ChannelCount')},${tempMap.get('EncodingType')},${tempMap.get(
             'FrameSize'
           )},${tempMap.get('FramesWritten')},${tempMap.get('LatencyMode')},${tempMap.get('SampleFormat')},${tempMap.get('SamplingRate')}`
         );
@@ -1841,7 +1840,7 @@ export default function OhRendererTest() {
           Utils.sleep(sleep1000);
         } else {
           const element: string = fileList[index];
-          console.log("退出退出",element);
+          console.log("fail file",element);
           continue;
         }
 
