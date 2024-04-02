@@ -1574,7 +1574,7 @@ export default function Window() {
           done();
         }).catch(async (err) => {
           console.error('Failed to setUIContent3 . Cause:' + JSON.stringify(err));
-          expect(err.code).assertFail(401);
+          expect(err.code).assertEqual(401);
           await win.destroyWindow();
           done();
         });
