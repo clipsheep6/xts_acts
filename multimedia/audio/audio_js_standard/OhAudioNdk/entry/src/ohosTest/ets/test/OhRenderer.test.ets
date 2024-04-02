@@ -71,83 +71,31 @@ let CODE_SUCCESS: number = 200;
 let AUDIOSTREAM_SUCCESS: number = 0;
 let AUDIOSTREAM_ERROR_ILLEGAL_STATE: number = 2;
 
-  /**
-   * Unknown usage.
-   *
-   * @since 10
-   */
+
 let AUDIOSTREAM_USAGE_UNKNOWN: number = 0;
-  /**
-   * Music usage.
-   *
-   * @since 10
-   */
+
 let AUDIOSTREAM_USAGE_MUSIC: number = 1;
-  /**
-   * Voice communication usage.
-   *
-   * @since 10
-   */
+
 let AUDIOSTREAM_USAGE_VOICE_COMMUNICATION: number = 2;
-  /**
-   * Voice assistant usage.
-   *
-   * @since 10
-   */
+
 let AUDIOSTREAM_USAGE_VOICE_ASSISTANT: number = 3;
-  /**
-   * Alarm usage.
-   *
-   * @since 10
-   */
+
 let AUDIOSTREAM_USAGE_ALARM: number = 4;
-  /**
-   * Voice message usage.
-   *
-   * @since 10
-   */
+
 let AUDIOSTREAM_USAGE_VOICE_MESSAGE: number = 5;
-  /**
-   * Ringtone usage.
-   *
-   * @since 10
-   */
+
 let AUDIOSTREAM_USAGE_RINGTONE: number = 6;
-  /**
-   * Notification usage.
-   *
-   * @since 10
-   */
+
 let AUDIOSTREAM_USAGE_NOTIFICATION: number = 7;
-  /**
-   * Accessibility usage, such as screen reader.
-   *
-   * @since 10
-   */
-let AUDIOSTREAM_USAGE_ACCESSIBILITY: number = 8;
-  /**
-   * Movie or video usage.
-   *
-   * @since 10
-   */
+
+let AUDIOSTREAM_USAGE_ACE: number = 8;
+
 let AUDIOSTREAM_USAGE_MOVIE: number = 10;
-  /**
-   * Game sound effect usage.
-   *
-   * @since 10
-   */
+
 let AUDIOSTREAM_USAGE_GAME: number = 11;
-  /**
-   * Audiobook usage.
-   *
-   * @since 10
-   */
+
 let AUDIOSTREAM_USAGE_AUDIOBOOK: number = 12;
-  /**
-   * Navigation usage.
-   *
-   * @since 10
-   */
+
 let AUDIOSTREAM_USAGE_NAVIGATION: number = 13;
 
 let fileList: string[] = [
@@ -1756,7 +1704,7 @@ export default function OhRendererTest() {
      */
     it('testOHAudioStreamBuilderSetRendererInfo1200', 0, async (done: Function) => {
       console.log(`testOHAudioStreamBuilderSetRendererInfo1200 test start `);
-      let re: number | null = testStreamBuilder.TestRendererAudioStreamUsage(AUDIOSTREAM_USAGE_ACCESSIBILITY);
+      let re: number | null = testStreamBuilder.TestRendererAudioStreamUsage(AUDIOSTREAM_USAGE_ACE);
       expect(re).assertEqual(CODE_SUCCESS);
       re = testStreamBuilder.OHAudioRendererStart();
       expect(re).assertEqual(AUDIOSTREAM_SUCCESS);
