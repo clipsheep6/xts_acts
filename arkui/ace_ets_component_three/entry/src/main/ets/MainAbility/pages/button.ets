@@ -63,7 +63,7 @@ struct ButtonExample {
   }
 
   build() {
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
+    Column(){
       Button('Ok', { type: this.buttonTypeValue, stateEffect: true })
         .borderRadius(8).backgroundColor(0x317aff).width(90).key('button')
       Button('ok').type(this.buttonTypeValue).key('button1')
@@ -105,7 +105,7 @@ struct ButtonExample {
                 "fontColorValue": this.fontColorValue,
               }
             }
-            var backEvent = {
+            var backEvent =  {
               eventId: 72,
               priority: events_emitter.EventPriority.LOW
             }
@@ -168,6 +168,6 @@ struct ButtonExample {
           }
         })
         .key('buttonClick')
-    }.height(400).padding({ left: 35, right: 35, top: 35 })
+    }.height(1000).padding({ left: 35, right: 35, top: 35 })
   }
 }
