@@ -4,14 +4,15 @@
         "type": "OHJSUnitTest",
         "test-timeout": "600000",
         "shell-timeout": "600000",
-        "bundle-name": "com.ohaudio.napitest",
-        "module-name": "com.ohaudio.napitest"
+        "bundle-name": "com.example.ohaudiondk",
+        "module-name": "com.example.ohaudiondk"
     },
     "kits": [
         {
             "test-file-name": [
-                "OhAudioNdkTest.hap",
-                "OhAudioNdkMainTest.hap"
+                "OhAudioNdkMainTest.hap",
+                "OhCapturerTest.hap",
+                "OhRendererTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
