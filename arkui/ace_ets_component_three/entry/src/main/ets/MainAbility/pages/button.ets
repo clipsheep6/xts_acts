@@ -63,7 +63,6 @@ struct ButtonExample {
   }
 
   build() {
-    // Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Start, justifyContent: FlexAlign.SpaceBetween }) {
     Column(){
       Button('Ok', { type: this.buttonTypeValue, stateEffect: true })
         .borderRadius(8).backgroundColor(0x317aff).width(90).key('button')
