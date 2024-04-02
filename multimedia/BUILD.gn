@@ -90,7 +90,6 @@ group("multimedia") {
       "medialibrary/mediaLibrary_trash:mediaLibrary_trash_js_hap",
       "photoAccess/photoAccess:photoAccess_js_hap",
       "audio/audio_js_standard/OhAudioNdk:OhRendererTest",
-      "audio/audio_js_standard/OhAudioNdk:OhCapturerTest",
     ]
   } else {
     deps = [
