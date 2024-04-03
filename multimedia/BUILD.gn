@@ -18,6 +18,7 @@ group("multimedia") {
   if (is_standard_system) {
     deps = [
       "audio/audio_cpp_standard:ActsOpenslesNdkTest",
+      "audio/audio_js_standard/OhAudioNdk:OhRendererTest",
       "audio/audio_js_standard/AudioCapturer:audio_capturer_js_hap",
       "audio/audio_js_standard/AudioCapturerChangeInfo:audio_capturerchangeInfo_js_hap",
       "audio/audio_js_standard/AudioCapturereEnhance:audio_capturer_enhance_ets_hap",
