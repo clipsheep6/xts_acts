@@ -52,7 +52,7 @@ export default function onGetIrregular8Jsunit() {
           await CommonFunc.sleep(2000);
           console.info("push onGetIrregular8Jsunit page result: " + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push onGetIrregular8Jsunit page error: " + err);
         expect().assertFail();
       }

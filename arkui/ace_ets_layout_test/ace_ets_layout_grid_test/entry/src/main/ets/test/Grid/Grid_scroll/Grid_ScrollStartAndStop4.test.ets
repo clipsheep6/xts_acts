@@ -36,7 +36,7 @@ export default function Grid_ScrollStartandStop4() {
           await CommonFunc.sleep(2000);
           console.info("push Grid_ScrollStartandStop4 page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push Grid_ScrollStartandStop4 page error:" + err);
       }
       console.info("Grid_ScrollStartandStop4 beforeEach end");

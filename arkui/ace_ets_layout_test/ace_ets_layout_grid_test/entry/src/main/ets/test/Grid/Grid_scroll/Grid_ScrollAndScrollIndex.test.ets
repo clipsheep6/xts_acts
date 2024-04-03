@@ -36,7 +36,7 @@ export default function Grid_ScrollAndScrollIndex() {
           await CommonFunc.sleep(2000);
           console.info("push Grid_ScrollAndScrollIndex page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push Grid_ScrollAndScrollIndex page error:" + err);
       }
       console.info("Grid_ScrollAndScrollIndex beforeEach end");

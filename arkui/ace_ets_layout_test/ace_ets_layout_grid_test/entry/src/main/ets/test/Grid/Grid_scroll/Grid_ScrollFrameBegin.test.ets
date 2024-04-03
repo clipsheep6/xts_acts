@@ -36,7 +36,7 @@ export default function Grid_ScrollFrameBegin() {
           await CommonFunc.sleep(2000);
           console.info("push Grid_ScrollFrameBegin page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push Grid_ScrollFrameBegin page error:" + err);
       }
       console.info("Grid_ScrollFrameBegin beforeEach end");

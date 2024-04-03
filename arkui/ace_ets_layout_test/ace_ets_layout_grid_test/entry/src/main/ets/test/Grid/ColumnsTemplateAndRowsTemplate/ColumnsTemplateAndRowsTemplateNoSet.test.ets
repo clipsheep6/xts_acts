@@ -35,7 +35,7 @@ export default function ColumnsTemplateAndRowsTemplateNoSet() {
           await CommonFunc.sleep(2000);
           console.info("push ColumnsTemplateAndRowsTemplateNoSet page result:" + JSON.stringify(result));
         }
-      } catch (err) {
+      } catch (err: any) {
         console.error("push ColumnsTemplateAndRowsTemplateNoSet page error:" + err);
       }
       console.info("ColumnsTemplateAndRowsTemplateNoSet beforeEach end");
