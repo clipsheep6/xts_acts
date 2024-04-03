@@ -16,6 +16,7 @@ group("commonlibrary") {
   testonly = true
   if (is_standard_system) {
     deps = [
+      "c_utils:c_utils",
       "ets_utils:ets_utils",
       "memory_utils:memory_utils",
       "thirdparty:thirdparty",
