@@ -18,7 +18,6 @@ group("multimedia") {
   if (is_standard_system) {
     deps = [
       "audio/audio_cpp_standard:ActsOpenslesNdkTest",
-      "audio/audio_js_standard/OhAudioNdk:OhRendererTest",
       "audio/audio_js_standard/AudioCapturer:audio_capturer_js_hap",
       "audio/audio_js_standard/AudioCapturerChangeInfo:audio_capturerchangeInfo_js_hap",
       "audio/audio_js_standard/AudioCapturereEnhance:audio_capturer_enhance_ets_hap",
@@ -27,6 +26,7 @@ group("multimedia") {
       "audio/audio_js_standard/AudioManagerEnhance:audio_manager_enhance_ets_hap",
       "audio/audio_js_standard/AudioRendererChangeInfo:audio_rendererchangeInfo_js_hap",
       "audio/audio_js_standard/AudioRendererEnhance:audio_render_enhance_ets_hap",
+      "audio/audio_js_standard/OhAudioNdk:OhRendererTest",
       "audio/audio_js_standard/audioInterrupt:audio_interrupt_js_hap",
       "audio/audio_js_standard/audioInterruptRender:audioRenderInterrupt",
       "audio/audio_js_standard/audioManager:audio_manager_js_hap",
