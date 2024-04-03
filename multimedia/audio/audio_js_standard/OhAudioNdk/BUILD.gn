@@ -31,3 +31,13 @@ ohos_js_app_suite("OhRendererTest") {
   part_name = "audio_framework"
   deps = [ ":OhAudio_ndk_main" ]
 }
+
+ohos_js_app_suite("OhCapturerTest") {
+  test_hap = true
+  testonly = true
+  certificate_profile = "./signature/openharmony_sx.p7b"
+  hap_name = "OhCapturerTest"
+  subsystem_name = "multimedia"
+  part_name = "audio_framework"
+  deps = [ ":OhAudio_ndk_main" ]
+}
