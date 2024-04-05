@@ -13,29 +13,10 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-ohos_app_assist_suite("ActsAceEtsLayoutRowRunerTest") {
-  test_hap = true
-  testonly = true
-  certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "ActsAceEtsLayoutRowRunerTest"
-  part_name = "ace_engine"
-  subsystem_name = "arkui"
-}
-
 ohos_js_app_suite("ActsAceEtsLayoutRowTest") {
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "ActsAceEtsLayoutRowTest"
   part_name = "ace_engine"
   subsystem_name = "arkui"
-  deps = [ ":ActsAceEtsLayoutRowRunerTest" ]
-}
-
-ohos_app("ActsAceEtsLayoutRowMainTest") {
-  testonly = true
-  certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "ActsAceEtsLayoutRowMainTest"
-  part_name = "ace_engine"
-  subsystem_name = "arkui"
-  deps = [ ":ActsAceEtsLayoutRowTest" ]
 }
