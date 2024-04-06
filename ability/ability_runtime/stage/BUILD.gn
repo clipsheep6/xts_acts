@@ -29,6 +29,8 @@ group("stage") {
       "actsuripermission:ActsUriPermission",
       "actswindowstagelifecyclemultihaptest:ActsWindowStageLifecycleMultiHapTest",
       "actswindowstagelifecyclesinglehaptest:ActsWindowStageLifecycleSingleHapTest",
+      "hitsformsetformlocationtest:HitsFormSetFormLocationTest",
+      "hitsgetformsinfotest:HitsGetFormsInfoTest",
     ]
   }
 }

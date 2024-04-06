@@ -1,0 +1,27 @@
+{
+  "module": {
+    "name": "getFormsInfoProvider_f",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "GetFormsInfoProvider_fAbility",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "GetFormsInfoProvider_fAbility",
+        "srcEntry": "./ets/getformsinfoprovider_fability/GetFormsInfoProvider_fAbility.ets",
+        "description": "$string:GetFormsInfoProvider_fAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:GetFormsInfoProvider_fAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      }
+    ]
+  }
+}
