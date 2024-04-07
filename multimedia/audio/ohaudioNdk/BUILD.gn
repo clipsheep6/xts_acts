@@ -13,25 +13,17 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-pulseaudio_dir = "//third_party/pulseaudio"
-opensles_dir = "//third_party/openSLES"
-opensles_version = "1.0.1"
 AUDIO_ROOT_DIR = "//foundation/multimedia/audio_framework/"
-ohos_moduletest_suite("ActsOpenslesNdkTest") {
-  module_out_path = "acts/ActsOpenslesNdkTest"
-  sources = [
-    "openslesPlayerNdk/ActsOpenslesPlayerNdkTest.cpp",
-    "openslesRecorderNdk/ActsOpenslesRecoderNdkTest.cpp",
-  ]
+
+ohos_moduletest_suite("ActsOhaudioNdkTest") {
+  module_out_path = "acts/ActsOhaudioNdkTest"
+  sources = [ "ActsOhaudioNdkTest.cpp" ]
 
   include_dirs = [
-    "opensles/include",
-    "$opensles_dir/api/$opensles_version",
-    "$pulseaudio_dir/src",
-    "$pulseaudio_dir/confgure/src",
-    "$AUDIO_ROOT_DIR/frameworks/native/opensles",
-    "$AUDIO_ROOT_DIR/interfaces/inner_api/native/audiocommon/include",
-    "//third_party/openSLES/api/1.0.1",
+    "$AUDIO_ROOT_DIR/interfaces/kits/c/",
+    "$AUDIO_ROOT_DIR/interfaces/kits/c/common/",
+    "$AUDIO_ROOT_DIR/interfaces/kits/c/audio_renderer/",
+    "$AUDIO_ROOT_DIR/interfaces/kits/c/audio_capturer/",
   ]
 
   cflags = [
@@ -52,10 +44,7 @@ ohos_moduletest_suite("ActsOpenslesNdkTest") {
     "",
   ]
 
-  deps = [
-    "$AUDIO_ROOT_DIR/frameworks/native/opensles",
-    "//third_party/openSLES:libSLES",
-  ]
+  deps = [ "$AUDIO_ROOT_DIR/frameworks/native/ohaudio:ohaudio" ]
   external_deps = [
     "c_utils:utils",
     "hilog:libhilog",
