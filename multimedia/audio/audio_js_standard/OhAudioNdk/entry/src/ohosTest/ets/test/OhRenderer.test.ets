@@ -51,18 +51,7 @@ let indexFour: number = 4;
 let indexFive: number = 5;
 
 let numberThree: number = 3;
-let numberFour: number = 4;
 let numberFive: number = 5;
-let numberSix: number = 6;
-let numberSeven: number = 7;
-let numberEight: number = 8;
-let numberTen: number = 10;
-let numberEleven: number = 11;
-let numberTwelve: number = 12;
-let numberThirteen: number = 13;
-
-let number200: number = 200;
-let number500: number = 500;
 let number48000: number = 48000;
 
 let numberFloute: number = 2.0;
