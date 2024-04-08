@@ -43,13 +43,6 @@ let AUDIOSTREAM_STATE_RUNNING: number = 2;
 let AUDIOSTREAM_STATE_STOPPED: number = 3;
 let AUDIOSTREAM_STATE_PAUSED: number = 5;
 
-let indexZero: number = 0;
-let indexOne: number = 1;
-let indexTwo: number = 2;
-let indexThree: number = 3;
-let indexFour: number = 4;
-let indexFive: number = 5;
-
 let numberThree: number = 3;
 let numberFive: number = 5;
 let number48000: number = 48000;
