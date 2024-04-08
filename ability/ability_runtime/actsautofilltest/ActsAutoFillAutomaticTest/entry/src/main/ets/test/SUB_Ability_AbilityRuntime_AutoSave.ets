@@ -51,7 +51,6 @@ export default function abilityTest() {
         expect(error.code == 401).assertTrue();
         done();
       }
-      console.log("du.yuan end");
       done();
     })
   })

@@ -8,7 +8,7 @@ import Want from '@ohos.app.ability.Want';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'HelloWorld'
+  @State message: string = 'Hello World'
   build() {
     Column() {
       Text(this.message)

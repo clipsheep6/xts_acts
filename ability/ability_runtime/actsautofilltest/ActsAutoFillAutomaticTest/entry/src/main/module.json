@@ -33,6 +33,10 @@
         ]
       }
     ],
-    "requestPermissions": []
+    "requestPermissions": [
+      {
+        "name": "ohos.permission.START_INVISIBLE_ABILITY"
+      }
+    ]
   }
 }
