@@ -603,5 +603,229 @@ export default function nativeApiScreenCaptureJsunit() {
             expect(a).assertEqual(0)
             done()
         })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0100
+            * @tc.name      : Test OH_AVSCREEN_CAPTURE_SetDataCallback OH_AVSCREEN_CAPTURE_SetErrorCallback OH_AVSCREEN_CAPTURE_SetStateCallback
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0100', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCallbackBaseFunction_01();
+            console.info(Tag + "SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0100-------------" +
+                "setCallbackBaseFunction_01:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0200
+            * @tc.name      : Test OH_AVSCREEN_CAPTURE_SetDataCallback OH_AVSCREEN_CAPTURE_SetErrorCallback OH_AVSCREEN_CAPTURE_SetStateCallback
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0200', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCallbackBaseFunction_02();
+            console.info(Tag + "SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0200-------------" +
+            "setCallbackBaseFunction_02:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0300
+            * @tc.name      : Test OH_AVSCREEN_CAPTURE_SetDataCallback OH_AVSCREEN_CAPTURE_SetErrorCallback OH_AVSCREEN_CAPTURE_SetStateCallback
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0300', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCallbackBaseFunction_03();
+            console.info(Tag + "SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0300-------------" +
+            "setCallbackBaseFunction_03:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0400
+            * @tc.name      : Test OH_AVSCREEN_CAPTURE_SetDataCallback OH_AVSCREEN_CAPTURE_SetErrorCallback OH_AVSCREEN_CAPTURE_SetStateCallback
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0400', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCallbackBaseFunction_04();
+            console.info(Tag + "SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0400-------------" +
+            "setCallbackBaseFunction_04:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0500
+            * @tc.name      : Test OH_AVSCREEN_CAPTURE_SetDataCallback OH_AVSCREEN_CAPTURE_SetErrorCallback OH_AVSCREEN_CAPTURE_SetStateCallback
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0500', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCallbackBaseFunctionError_01();
+            console.info(Tag + "SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0500-------------" +
+            "setCallbackBaseFunctionError_01:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0600
+            * @tc.name      : Test OH_AVSCREEN_CAPTURE_SetDataCallback OH_AVSCREEN_CAPTURE_SetErrorCallback OH_AVSCREEN_CAPTURE_SetStateCallback
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0600', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCallbackInitError_01();
+            console.info(Tag + "SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0600-------------" +
+            "setCallbackInitError_01:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+           * @tc.number    : SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0700
+           * @tc.name      : Test OH_AVSCREEN_CAPTURE_SetDataCallback OH_AVSCREEN_CAPTURE_SetErrorCallback OH_AVSCREEN_CAPTURE_SetStateCallback
+           * @tc.desc      :
+           * @tc.size      :
+           * @tc.type      : Functional
+           * @tc.level     : FWK Layer
+       */
+        it('SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0700', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCallbackInitError_02();
+            console.info(Tag + "SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_PROVIDNDKINTERFACES_0700-------------" +
+            "setCallbackInitError_02:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0100
+            * @tc.name      : Test OH_AVScreenCapture_StartScreenCaptureWithWindow
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0100', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCallbackWithSurfaceBaseFunction_01();
+            console.info(Tag + "SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0100-------------" +
+            "setCallbackWithSurfaceBaseFunction_01:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0200
+            * @tc.name      : Test OH_AVScreenCapture_StartScreenCaptureWithWindow
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0200', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCallbackWithSurfaceBaseFunction_02();
+            console.info(Tag + "SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0200-------------" +
+            "setCallbackWithSurfaceBaseFunction_02:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0300
+            * @tc.name      : Test OH_AVScreenCapture_StartScreenCaptureWithWindow
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0300', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCallbackWithSurfaceBaseFunction_03();
+            console.info(Tag + "SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0300-------------" +
+            "setCallbackWithSurfaceBaseFunction_03:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0400
+            * @tc.name      : Test OH_AVScreenCapture_StartScreenCaptureWithWindow
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0400', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCallbackWithSurfaceBaseFunction_04();
+            console.info(Tag + "SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0400-------------" +
+            "setCallbackWithSurfaceBaseFunction_04:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0500
+            * @tc.name      : Test OH_AVScreenCapture_StartScreenCaptureWithWindow
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0500', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCallbackWithSurfaceBaseFunctionError_01();
+            console.info(Tag + "SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0500-------------" +
+            "setCallbackWithSurfaceBaseFunctionError_01:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0600
+            * @tc.name      : Test OH_AVScreenCapture_StartScreenCaptureWithWindow
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0600', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCallbackWithSurfaceInitError_01();
+            console.info(Tag + "SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0600-------------" +
+            "setCallbackWithSurfaceInitError_01:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0700
+            * @tc.name      : Test OH_AVScreenCapture_StartScreenCaptureWithWindow
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0700', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCallbackWithSurfaceInitError_02();
+            console.info(Tag + "SUB_MULTIMEDIA_MEDIA_INTEGRATION_INTERFACE_SUPPORTSURFACE_0700-------------" +
+            "setCallbackWithSurfaceInitError_02:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
+        /* *
+            * @tc.number    : SUB_MULTIMEDIA_SCREEN_CAPTURE_CANVASROTATION_0001
+            * @tc.name      : Test OH_AVScreenCapture_SetCanvasRotation
+            * @tc.desc      :
+            * @tc.size      :
+            * @tc.type      : Functional
+            * @tc.level     : FWK Layer
+        */
+        it('SUB_MULTIMEDIA_SCREEN_CAPTURE_CANVASROTATION_0001', 0, async function (done) {
+            let a = myScreenCaptureNdk.setCanvasRotation_01();
+            console.info(Tag + "SUB_MULTIMEDIA_SCREEN_CAPTURE_CANVASROTATION_0001-------------setCanvasRotation_01:" + a);
+            expect(a).assertEqual(0)
+            done()
+        })
     })
 }
