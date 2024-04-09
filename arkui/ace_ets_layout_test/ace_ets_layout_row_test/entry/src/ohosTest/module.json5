@@ -15,11 +15,10 @@
 
 {
   "module": {
-    "name": "entry",
-    "type": "entry",
-    "srcEntry": "./ets/Application/AbilityStage.ts",
-    "description": "$string:module_desc",
-    "mainElement": "MainAbility",
+    "name": "entry_test",
+    "type": "feature",
+    "description": "$string:module_test_desc",
+    "mainElement": "TestAbility",
     "deviceTypes": [
       "default",
       "tablet"
@@ -29,49 +28,25 @@
     "pages": "$profile:main_pages",
     "abilities": [
       {
-        "name": "com.acts.arkui.layout.test.MainAbility",
-        "srcEntry": "./ets/MainAbility/MainAbility.ts",
-        "description": "$string:description_application",
+        "name": "TestAbility",
+        "srcEntry": "./ets/testability/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
         "icon": "$media:icon",
-        "label": "$string:entry_label",
+        "label": "$string:TestAbility_label",
+        "exported": true,
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
-        "exported": true,
         "skills": [
           {
-            "entities": [
-              "entity.system.home"
-            ],
             "actions": [
               "action.system.home"
+            ],
+            "entities": [
+              "entity.system.home"
             ]
           }
         ]
       }
-    ],
-    "metadata": [{
-        "name": "ArkTSPartialUpdate",
-        "value": "true"
-    }],
-    "requestPermissions": [
-        {
-            "name": "ohos.permission.CAPTURE_SCREEN"
-        },
-        {
-            "name": "ohos.permission.WRITE_MEDIA"
-        },
-        {
-            "name": "ohos.permission.READ_MEDIA"
-        },
-        {
-            "name": "ohos.permission.INTERNET"
-        },
-        {
-            "name": "ohos.permission.MEDIA_LOCATION"
-        },
-        {
-            "name": "ohos.permission.CAMERA"
-        }
     ]
-}
+  }
 }
