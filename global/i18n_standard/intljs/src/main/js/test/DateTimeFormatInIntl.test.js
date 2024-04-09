@@ -279,7 +279,12 @@ describe('DateTimeFormatInIntlTest', function () {
         let enddate = new Date(2020, 11, 21, 14, 23, 16);
         let datefmt = new Intl.DateTimeFormat('en-GB');
         console.log('dateTimeFormat_test_1300 ' + datefmt.formatRange(startdate, enddate));
-        expect(datefmt.formatRange(startdate, enddate)).assertEqual('20/12/2020 – 21/12/2020');
+        let devType = deviceInfo.devicType;
+        if (devType == '2in1'){
+            expect(datefmt.formatRange(startdate, enddate)).assertEqual('20-21 Dec 2020');
+        }else if (devType == 'phone'){
+            expect(datefmt.formatRange(startdate, enddate)).assertEqual('20/12/2020 – 21/12/2020');
+        }
     })
 
     /* *
@@ -292,7 +297,12 @@ describe('DateTimeFormatInIntlTest', function () {
         let enddate = new Date(2020, 11, 20, 14, 23, 16);
         let datefmt = new Intl.DateTimeFormat('en-GB');
         console.log('dateTimeFormat_test_1400 ' + datefmt.formatRange(startdate, enddate));
-        expect(datefmt.formatRange(startdate, enddate)).assertEqual('20/12/2020');
+        let devType = deviceInfo.devicType;
+        if (devType == '2in1'){
+            expect(datefmt.formatRange(startdate, enddate)).assertEqual('20 Dec 2020');
+        }else if (devType == 'phone'){
+            expect(datefmt.formatRange(startdate, enddate)).assertEqual('20/12/2020');
+        }
     })
 
     /* *
