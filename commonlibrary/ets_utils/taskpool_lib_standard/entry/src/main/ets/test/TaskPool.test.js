@@ -3015,7 +3015,7 @@ describe('ActsAbilityTest', function () {
 
     /**
      * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0109
-     * @tc.name      : TaskPoolTestClass108
+     * @tc.name      : TaskPoolTestClass109
      * @tc.desc      : executedTask with dependency cannot executeDelayed again
      * @tc.size      : MediumTest
      * @tc.type      : Function
@@ -3043,6 +3043,88 @@ describe('ActsAbilityTest', function () {
             taskpool.execute(task1)
         } catch (e) {
             expect(e.toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: executedTask with dependency cannot execute again");
+        }
+        done();
+    })
+    
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0110
+     * @tc.name      : TaskPoolTestClass110
+     * @tc.desc      : execute long task in the taskpool
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass110', 0, async function (done) {
+        function Sum(value1, value2, delay) {
+            "use concurrent"
+            let start = new Date().getTime();
+            while (new Date().getTime() - start < delay) {
+                continue;
+            }
+            return value1 + value2;
+        }
+        let task = new taskpool.LongTask(Sum, 10, 20, 100)
+        taskpool.execute(task).then((res) => {
+            taskpool.terminate(task);
+            expect(res).assertEqual(30);
+        })
+        done();
+    })
+        
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0111
+     * @tc.name      : TaskPoolTestClass111
+     * @tc.desc      : the long task can only be executed once
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass111', 0, async function (done) {
+        function Sum(value1, value2, delay) {
+            "use concurrent"
+            let start = new Date().getTime();
+            while (new Date().getTime() - start < delay) {
+                continue;
+            }
+            return value1 + value2;
+        }
+        let task = new taskpool.LongTask(Sum, 10, 20, 100)
+        taskpool.execute(task).then((res)=>{
+            console.info("task1 success");
+            taskpool.terminate(task)
+        })
+        try {
+            taskpool.execute(task)
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: The long task can only be executed once");
+        }
+        done();
+    })
+    
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0112
+     * @tc.name      : TaskPoolTestClass112
+     * @tc.desc      : taskGroup does not support the long task
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass112', 0, async function (done) {
+        function Sum(value1, value2, delay) {
+            "use concurrent"
+            let start = new Date().getTime();
+            while (new Date().getTime() - start < delay) {
+                continue;
+            }
+            return value1 + value2;
+        }
+        let task = new taskpool.LongTask(Sum, 10, 20, 100);
+        let group = new taskpool.TaskGroup();
+        try {
+            group.addTask(task)
+        } catch (e) {
+            expect(e.toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: The interface does not support the long task");
         }
         done();
     })
