@@ -32,13 +32,10 @@
 #include <js_native_api.h>
 #include "multimedia/player_framework/avplayer.h"
 #include "multimedia/player_framework/avplayer_base.h"
-#include "multimedia/player_framework/native_averrors.h"
 #include "native_window/external_window.h"
 #include "native_image/native_image.h"
 #include "GLES3/gl32.h"
-#include "EGL/egl.h"
 #include <sys/stat.h>
-#include <fstream>
 #include <unistd.h>
 
 using namespace std;
@@ -678,7 +675,7 @@ static napi_value InitDataType_03(napi_env env, napi_callback_info info)
     OH_AVScreenCaptureConfig config_;
     SetConfig(config_);
     config_.videoInfo.videoCapInfo.videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA;
-    config_.dataType = OH_INVAILD;
+    config_.dataType = OH_INVALID;
 
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
@@ -1557,7 +1554,7 @@ static napi_value ScreenCaptureInnerAudio(napi_env env, napi_callback_info info)
 }
 
 //todo
-static void OnError(Oh_AVScreenCapture * capture, int32_t errorCode, void *userData)
+static void OnError(Oh_AVScreenCapture *capture, int32_t errorCode, void *userData)
 {
     LOG(false, "OnError, %{public}d", errorCode);
 }
@@ -1582,9 +1579,9 @@ static napi_value ScreenCaptureSetCallbackBaseFunction_01(napi_env env, napi_cal
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     
-    OH_AVSCREEN_CAPTURE_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
-    OH_AVSCREEN_CAPTURE_SetErrorCallback(screenCapture, OnError, nullptr);
-    OH_AVSCREEN_CAPTURE_SetStateCallback(screenCapture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
+    OH_AVScreenCapture_SetErrorCallback(screenCapture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(screenCapture, OnStateChange, nullptr);
     
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCapture(screenCapture);
@@ -1611,9 +1608,9 @@ static napi_value ScreenCaptureSetCallbackBaseFunction_02(napi_env env, napi_cal
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     
-    OH_AVSCREEN_CAPTURE_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
-    OH_AVSCREEN_CAPTURE_SetErrorCallback(screenCapture, OnError, nullptr);
-    OH_AVSCREEN_CAPTURE_SetStateCallback(screenCapture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
+    OH_AVScreenCapture_SetErrorCallback(screenCapture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(screenCapture, OnStateChange, nullptr);
     
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCapture(screenCapture);
@@ -1641,9 +1638,9 @@ static napi_value ScreenCaptureSetCallbackBaseFunction_03(napi_env env, napi_cal
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     
-    OH_AVSCREEN_CAPTURE_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
-    OH_AVSCREEN_CAPTURE_SetErrorCallback(screenCapture, OnError, nullptr);
-    OH_AVSCREEN_CAPTURE_SetStateCallback(screenCapture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
+    OH_AVScreenCapture_SetErrorCallback(screenCapture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(screenCapture, OnStateChange, nullptr);
     
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCapture(screenCapture);
@@ -1664,15 +1661,15 @@ static napi_value ScreenCaptureSetCallbackBaseFunction_03(napi_env env, napi_cal
     return res;
 }
 
-static napi_value ScreenCaptureSetCallbackBaseFunction(OH_AVScreenCaptureConfig config_)
+static OH_AVSCREEN_CAPTURE_ErrCode ScreenCaptureSetCallbackBaseFunction(OH_AVScreenCaptureConfig config_)
 {
     OH_AVScreenCapture* screenCapture = CreateScreenCapture();
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     
-    OH_AVSCREEN_CAPTURE_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
-    OH_AVSCREEN_CAPTURE_SetErrorCallback(screenCapture, OnError, nullptr);
-    OH_AVSCREEN_CAPTURE_SetStateCallback(screenCapture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
+    OH_AVScreenCapture_SetErrorCallback(screenCapture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(screenCapture, OnStateChange, nullptr);
     
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCapture(screenCapture);
@@ -1682,19 +1679,16 @@ static napi_value ScreenCaptureSetCallbackBaseFunction(OH_AVScreenCaptureConfig 
     OH_AVSCREEN_CAPTURE_ErrCode result;
     if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK
         && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
-        result = AV_SCREEN_CAPTURE_ERR_OK;
+        return = AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         LOG(false, "init/start/stop failed, init: %d, start: %d, stop: %d", result1, result2, result3);
-        result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
+        return = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
     }
-    napi_create_int32(env, result, &res);
-    return res;
 }
 
 //OH_Media_Screen_Capture_Set_Callback_BasicFunction_04
 static napi_value ScreenCaptureSetCallbackBaseFunction_04(napi_env env, napi_callback_info info)
 {
-    OH_AVScreenCapture* screenCapture = CreateScreenCapture();
     OH_AVScreenCaptureConfig config_;
     napi_value res;
     OH_AVSCREEN_CAPTURE_ErrCode result;
@@ -1702,9 +1696,9 @@ static napi_value ScreenCaptureSetCallbackBaseFunction_04(napi_env env, napi_cal
     
     SetConfig(config_);
     enum OH_AudioCaptureSourceType micAudioSources[] = {OH_SOURCE_DEFAULT, OH_MIC, OH_ALL_PLAYBACK, OH_APP_PLAYBACK};
-    for(int i = 0; i< sizeof(micAudioSources) / sizeof(micAudioSources[0]; i++)) {
+    for(int i = 0; i< sizeof(micAudioSources) / sizeof(micAudioSources[0]); i++) {
         config_.audioInfo.micCapInfo.audioSource = micAudioSources[i];
-        result = ScreenCaptureSetCallbackBaseFunction(config_)
+        result = ScreenCaptureSetCallbackBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, micCapInfo.audioSource : %d", micAudioSources[i]);
@@ -1721,9 +1715,9 @@ static napi_value ScreenCaptureSetCallbackBaseFunction_04(napi_env env, napi_cal
     config_.audioInfo.innerCapInfo.audioChannels = STEREO;
     config_.videoInfo.videoCapInfo.videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA;
     enum OH_AudioCaptureSourceType innerAudioSources[] = {OH_SOURCE_DEFAULT, OH_MIC, OH_APP_PLAYBACK};
-    for(int i = 0; i< sizeof(innerAudioSources) / sizeof(innerAudioSources[0]; i++)) {
+    for(int i = 0; i< sizeof(innerAudioSources) / sizeof(innerAudioSources[0]); i++) {
         config_.audioInfo.innerCapInfo.audioSource = innerAudioSources[i];
-        result = ScreenCaptureSetCallbackBaseFunction(config_)
+        result = ScreenCaptureSetCallbackBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, innerCapInfo.audioSource : %d", innerAudioSources[i]);
@@ -1737,9 +1731,9 @@ static napi_value ScreenCaptureSetCallbackBaseFunction_04(napi_env env, napi_cal
     
     SetConfig(config_);
     enum OH_CaptureMode captureModes[]  = {OH_CAPTURE_HOME_SCREEN, OH_CAPTURE_SPECIFIED_WINDOW};
-    for(int i = 0; i< sizeof(captureModes) / sizeof(captureModes[0]; i++)) {
+    for(int i = 0; i< sizeof(captureModes) / sizeof(captureModes[0]); i++) {
         config_.captureMode = captureModes[i];
-        result = ScreenCaptureSetCallbackBaseFunction(config_)
+        result = ScreenCaptureSetCallbackBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, captureMode : %d", captureModes[i]);
@@ -1753,9 +1747,9 @@ static napi_value ScreenCaptureSetCallbackBaseFunction_04(napi_env env, napi_cal
     
     SetConfig(config_);
     enum OH_DataType dataTypes[]  = {OH_ORIGINAL_STREAM};
-    for(int i = 0; i< sizeof(dataTypes) / sizeof(dataTypes[0]; i++)) {
+    for(int i = 0; i< sizeof(dataTypes) / sizeof(dataTypes[0]); i++) {
         config_.dataType = dataTypes[i];
-        result = ScreenCaptureSetCallbackBaseFunction(config_)
+        result = ScreenCaptureSetCallbackBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, dataType : %d", dataTypes[i]);
@@ -1770,7 +1764,6 @@ static napi_value ScreenCaptureSetCallbackBaseFunction_04(napi_env env, napi_cal
 //OH_Media_Screen_Capture_Set_Callback_BasicFunctionError_01
 static napi_value ScreenCaptureSetCallbackBaseFunctionError_01(napi_env env, napi_callback_info info)
 {
-    OH_AVScreenCapture* screenCapture = CreateScreenCapture();
     OH_AVScreenCaptureConfig config_;
     napi_value res;
     OH_AVSCREEN_CAPTURE_ErrCode result;
@@ -1778,9 +1771,9 @@ static napi_value ScreenCaptureSetCallbackBaseFunctionError_01(napi_env env, nap
     
     SetConfig(config_);
     enum OH_AudioCaptureSourceType micAudioSources[] = {OH_SOURCE_INVALID};
-    for(int i = 0; i< sizeof(micAudioSources) / sizeof(micAudioSources[0]; i++)) {
+    for(int i = 0; i< sizeof(micAudioSources) / sizeof(micAudioSources[0]); i++) {
         config_.audioInfo.micCapInfo.audioSource = micAudioSources[i];
-        result = ScreenCaptureSetCallbackBaseFunction(config_)
+        result = ScreenCaptureSetCallbackBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, micCapInfo.audioSource : %d", micAudioSources[i]);
@@ -1797,9 +1790,9 @@ static napi_value ScreenCaptureSetCallbackBaseFunctionError_01(napi_env env, nap
     config_.audioInfo.innerCapInfo.audioChannels = STEREO;
     config_.videoInfo.videoCapInfo.videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA;
     enum OH_AudioCaptureSourceType innerAudioSources[] = {OH_SOURCE_INVALID, OH_ALL_PLAYBACK};
-    for(int i = 0; i< sizeof(innerAudioSources) / sizeof(innerAudioSources[0]; i++)) {
+    for(int i = 0; i< sizeof(innerAudioSources) / sizeof(innerAudioSources[0]); i++) {
         config_.audioInfo.innerCapInfo.audioSource = innerAudioSources[i];
-        result = ScreenCaptureSetCallbackBaseFunction(config_)
+        result = ScreenCaptureSetCallbackBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, innerCapInfo.audioSource : %d", innerAudioSources[i]);
@@ -1813,9 +1806,9 @@ static napi_value ScreenCaptureSetCallbackBaseFunctionError_01(napi_env env, nap
     
     SetConfig(config_);
     enum OH_CaptureMode captureModes[]  = {OH_CAPTURE_INVALID, OH_CAPTURE_SPECIFIED_SCREEN};
-    for(int i = 0; i< sizeof(captureModes) / sizeof(captureModes[0]; i++)) {
+    for(int i = 0; i< sizeof(captureModes) / sizeof(captureModes[0]); i++) {
         config_.captureMode = captureModes[i];
-        result = ScreenCaptureSetCallbackBaseFunction(config_)
+        result = ScreenCaptureSetCallbackBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, captureMode : %d", captureModes[i]);
@@ -1829,9 +1822,9 @@ static napi_value ScreenCaptureSetCallbackBaseFunctionError_01(napi_env env, nap
     
     SetConfig(config_);
     enum OH_DataType dataTypes[]  = {OH_INVALID, OH_ENCODED_STREAM, OH_CAPTURE_FILE};
-    for(int i = 0; i< sizeof(dataTypes) / sizeof(dataTypes[0]; i++)) {
+    for(int i = 0; i< sizeof(dataTypes) / sizeof(dataTypes[0]); i++) {
         config_.dataType = dataTypes[i];
-        result = ScreenCaptureSetCallbackBaseFunction(config_)
+        result = ScreenCaptureSetCallbackBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, dataType : %d", dataTypes[i]);
@@ -1852,9 +1845,9 @@ static napi_value ScreenCaptureSetCallbackInitError_01(napi_env env, napi_callba
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     
-    OH_AVSCREEN_CAPTURE_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
-    OH_AVSCREEN_CAPTURE_SetErrorCallback(screenCapture, OnError, nullptr);
-    OH_AVSCREEN_CAPTURE_SetStateCallback(screenCapture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
+    OH_AVScreenCapture_SetErrorCallback(screenCapture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(screenCapture, OnStateChange, nullptr);
     
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCapture(screenCapture);
@@ -1882,9 +1875,9 @@ static napi_value ScreenCaptureSetCallbackInitError_02(napi_env env, napi_callba
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     
-    OH_AVSCREEN_CAPTURE_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
-    OH_AVSCREEN_CAPTURE_SetErrorCallback(screenCapture, OnError, nullptr);
-    OH_AVSCREEN_CAPTURE_SetStateCallback(screenCapture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
+    OH_AVScreenCapture_SetErrorCallback(screenCapture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(screenCapture, OnStateChange, nullptr);
     
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCapture(screenCapture);
@@ -1911,17 +1904,20 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_01(napi_env en
     OH_AVScreenCapture* screenCapture = CreateScreenCapture();
     OH_AVScreenCaptureConfig config_;
     SetConfig(config_);
+    napi_value res;
+    OH_AVSCREEN_CAPTURE_ErrCode result;
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     
-    OH_AVSCREEN_CAPTURE_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
-    OH_AVSCREEN_CAPTURE_SetErrorCallback(screenCapture, OnError, nullptr);
-    OH_AVSCREEN_CAPTURE_SetStateCallback(screenCapture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
+    OH_AVScreenCapture_SetErrorCallback(screenCapture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(screenCapture, OnStateChange, nullptr);
     
     GLuint textureId = PARAM_0;
     glGenTextures(ONEVAL, &textureId);
     OH_NativeImage *image = OH_NativeImage_Create(textureId, GL_TEXTURE_2D);
     OHNativeWindow *window = OH_NativeImage_AcquireNativeWindow(image);
+    
     if (window == nullptr) {
         LOG(false, "acquire nativeWindow failed, window is null");
         result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
@@ -1932,8 +1928,6 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_01(napi_env en
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCaptureWithSurface(screenCapture, window);
     OH_AVScreenCapture_Release(screenCapture);
-    napi_value res;
-    OH_AVSCREEN_CAPTURE_ErrCode result;
     if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK
         && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
@@ -1951,12 +1945,14 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_02(napi_env en
     OH_AVScreenCapture* screenCapture = CreateScreenCapture();
     OH_AVScreenCaptureConfig config_;
     SetConfig(config_);
+    napi_value res;
+    OH_AVSCREEN_CAPTURE_ErrCode result;
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     
-    OH_AVSCREEN_CAPTURE_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
-    OH_AVSCREEN_CAPTURE_SetErrorCallback(screenCapture, OnError, nullptr);
-    OH_AVSCREEN_CAPTURE_SetStateCallback(screenCapture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
+    OH_AVScreenCapture_SetErrorCallback(screenCapture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(screenCapture, OnStateChange, nullptr);
     
     GLuint textureId = PARAM_0;
     glGenTextures(ONEVAL, &textureId);
@@ -1973,8 +1969,6 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_02(napi_env en
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCaptureWithSurface(screenCapture, window);
     OH_AVSCREEN_CAPTURE_ErrCode result3 = OH_AVScreenCapture_StopScreenCapture(screenCapture);
     OH_AVScreenCapture_Release(screenCapture);
-    napi_value res;
-    OH_AVSCREEN_CAPTURE_ErrCode result;
     if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK
         && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
@@ -1992,12 +1986,14 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_03(napi_env en
     OH_AVScreenCapture* screenCapture = CreateScreenCapture();
     OH_AVScreenCaptureConfig config_;
     SetConfig(config_);
+    napi_value res;
+    OH_AVSCREEN_CAPTURE_ErrCode result;
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     
-    OH_AVSCREEN_CAPTURE_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
-    OH_AVSCREEN_CAPTURE_SetErrorCallback(screenCapture, OnError, nullptr);
-    OH_AVSCREEN_CAPTURE_SetStateCallback(screenCapture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
+    OH_AVScreenCapture_SetErrorCallback(screenCapture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(screenCapture, OnStateChange, nullptr);
     
     GLuint textureId = PARAM_0;
     glGenTextures(ONEVAL, &textureId);
@@ -2015,8 +2011,6 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_03(napi_env en
     OH_AVSCREEN_CAPTURE_ErrCode result3 = OH_AVScreenCapture_StopScreenCapture(screenCapture);
     OH_AVSCREEN_CAPTURE_ErrCode result4 = OH_AVScreenCapture_StartScreenCaptureWithSurface(screenCapture, window);
     OH_AVScreenCapture_Release(screenCapture);
-    napi_value res;
-    OH_AVSCREEN_CAPTURE_ErrCode result;
     if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK
         && result3 == AV_SCREEN_CAPTURE_ERR_OK && result4 == AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
@@ -2035,9 +2029,9 @@ static OH_AVSCREEN_CAPTURE_ErrCode ScreenCaptureSetCallbackWithSurfaceBaseFuncti
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     
-    OH_AVSCREEN_CAPTURE_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
-    OH_AVSCREEN_CAPTURE_SetErrorCallback(screenCapture, OnError, nullptr);
-    OH_AVSCREEN_CAPTURE_SetStateCallback(screenCapture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
+    OH_AVScreenCapture_SetErrorCallback(screenCapture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(screenCapture, OnStateChange, nullptr);
     
     GLuint textureId = PARAM_0;
     glGenTextures(ONEVAL, &textureId);
@@ -2055,17 +2049,16 @@ static OH_AVSCREEN_CAPTURE_ErrCode ScreenCaptureSetCallbackWithSurfaceBaseFuncti
     OH_AVSCREEN_CAPTURE_ErrCode result;
     if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK
         && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
-        result = AV_SCREEN_CAPTURE_ERR_OK;
+        return = AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         LOG(false, "init/start/stop failed, init: %d, start: %d, stop: %d", result1, result2, result3);
-        result = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
+        return = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
     }
 }
 
 //OH_Media_Screen_Capture_Set_Callback_With_Surface_BasicFunction_04
 static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_04(napi_env env, napi_callback_info info)
 {
-    OH_AVScreenCapture* screenCapture = CreateScreenCapture();
     OH_AVScreenCaptureConfig config_;
     napi_value res;
     OH_AVSCREEN_CAPTURE_ErrCode result;
@@ -2073,7 +2066,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_04(napi_env en
     
     SetConfig(config_);
     enum OH_AudioCaptureSourceType micAudioSources[] = {OH_SOURCE_DEFAULT, OH_MIC, OH_ALL_PLAYBACK, OH_APP_PLAYBACK};
-    for(int i = 0; i< sizeof(micAudioSources) / sizeof(micAudioSources[0]; i++)) {
+    for(int i = 0; i< sizeof(micAudioSources) / sizeof(micAudioSources[0]); i++) {
         config_.audioInfo.micCapInfo.audioSource = micAudioSources[i];
         result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
@@ -2092,7 +2085,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_04(napi_env en
     config_.audioInfo.innerCapInfo.audioChannels = STEREO;
     config_.videoInfo.videoCapInfo.videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA;
     enum OH_AudioCaptureSourceType innerAudioSources[] = {OH_SOURCE_DEFAULT, OH_MIC, OH_APP_PLAYBACK};
-    for(int i = 0; i< sizeof(innerAudioSources) / sizeof(innerAudioSources[0]; i++)) {
+    for(int i = 0; i< sizeof(innerAudioSources) / sizeof(innerAudioSources[0]); i++) {
         config_.audioInfo.innerCapInfo.audioSource = innerAudioSources[i];
         result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
@@ -2108,7 +2101,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_04(napi_env en
     
     SetConfig(config_);
     enum OH_CaptureMode captureModes[]  = {OH_CAPTURE_HOME_SCREEN, OH_CAPTURE_SPECIFIED_WINDOW};
-    for(int i = 0; i< sizeof(captureModes) / sizeof(captureModes[0]; i++)) {
+    for(int i = 0; i< sizeof(captureModes) / sizeof(captureModes[0]); i++) {
         config_.captureMode = captureModes[i];
         result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
@@ -2124,7 +2117,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_04(napi_env en
     
     SetConfig(config_);
     enum OH_DataType dataTypes[]  = {OH_ORIGINAL_STREAM};
-    for(int i = 0; i< sizeof(dataTypes) / sizeof(dataTypes[0]; i++)) {
+    for(int i = 0; i< sizeof(dataTypes) / sizeof(dataTypes[0]); i++) {
         config_.dataType = dataTypes[i];
         result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
@@ -2141,7 +2134,6 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_04(napi_env en
 //OH_Media_Screen_Capture_Set_Callback_With_Surface_BasicFunctionError_01
 static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunctionError_01(napi_env env, napi_callback_info info)
 {
-    OH_AVScreenCapture* screenCapture = CreateScreenCapture();
     OH_AVScreenCaptureConfig config_;
     napi_value res;
     OH_AVSCREEN_CAPTURE_ErrCode result;
@@ -2149,7 +2141,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunctionError_01(napi_e
     
     SetConfig(config_);
     enum OH_AudioCaptureSourceType micAudioSources[] = {OH_SOURCE_INVALID};
-    for(int i = 0; i< sizeof(micAudioSources) / sizeof(micAudioSources[0]; i++)) {
+    for(int i = 0; i< sizeof(micAudioSources) / sizeof(micAudioSources[0]); i++) {
         config_.audioInfo.micCapInfo.audioSource = micAudioSources[i];
         result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
@@ -2168,7 +2160,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunctionError_01(napi_e
     config_.audioInfo.innerCapInfo.audioChannels = STEREO;
     config_.videoInfo.videoCapInfo.videoSource = OH_VIDEO_SOURCE_SURFACE_RGBA;
     enum OH_AudioCaptureSourceType innerAudioSources[] = {OH_SOURCE_INVALID, OH_ALL_PLAYBACK};
-    for(int i = 0; i< sizeof(innerAudioSources) / sizeof(innerAudioSources[0]; i++)) {
+    for(int i = 0; i< sizeof(innerAudioSources) / sizeof(innerAudioSources[0]); i++) {
         config_.audioInfo.innerCapInfo.audioSource = innerAudioSources[i];
         result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
@@ -2184,7 +2176,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunctionError_01(napi_e
     
     SetConfig(config_);
     enum OH_CaptureMode captureModes[]  = {OH_CAPTURE_INVALID, OH_CAPTURE_SPECIFIED_SCREEN};
-    for(int i = 0; i< sizeof(captureModes) / sizeof(captureModes[0]; i++)) {
+    for(int i = 0; i< sizeof(captureModes) / sizeof(captureModes[0]); i++) {
         config_.captureMode = captureModes[i];
         result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
@@ -2200,7 +2192,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunctionError_01(napi_e
     
     SetConfig(config_);
     enum OH_DataType dataTypes[]  = {OH_INVALID, OH_ENCODED_STREAM, OH_CAPTURE_FILE};
-    for(int i = 0; i< sizeof(dataTypes) / sizeof(dataTypes[0]; i++)) {
+    for(int i = 0; i< sizeof(dataTypes) / sizeof(dataTypes[0]); i++) {
         config_.dataType = dataTypes[i];
         result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
@@ -2223,9 +2215,9 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceInitError_01(napi_env env, 
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     
-    OH_AVSCREEN_CAPTURE_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
-    OH_AVSCREEN_CAPTURE_SetErrorCallback(screenCapture, OnError, nullptr);
-    OH_AVSCREEN_CAPTURE_SetStateCallback(screenCapture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
+    OH_AVScreenCapture_SetErrorCallback(screenCapture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(screenCapture, OnStateChange, nullptr);
     
     GLuint textureId = PARAM_0;
     glGenTextures(ONEVAL, &textureId);
@@ -2264,9 +2256,9 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceInitError_02(napi_env env, 
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     
-    OH_AVSCREEN_CAPTURE_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
-    OH_AVSCREEN_CAPTURE_SetErrorCallback(screenCapture, OnError, nullptr);
-    OH_AVSCREEN_CAPTURE_SetStateCallback(screenCapture, OnStateChange, nullptr);
+    OH_AVScreenCapture_SetDataCallback(screenCapture, OnBufferAvailable, nullptr);
+    OH_AVScreenCapture_SetErrorCallback(screenCapture, OnError, nullptr);
+    OH_AVScreenCapture_SetStateCallback(screenCapture, OnStateChange, nullptr);
     
     GLuint textureId = PARAM_0;
     glGenTextures(ONEVAL, &textureId);
