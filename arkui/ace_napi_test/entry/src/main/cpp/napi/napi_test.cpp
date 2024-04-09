@@ -25,6 +25,8 @@
 #include <ctime>
 #include <thread>
 #include <uv.h>
+#include <pthread.h>
+#include <unistd.h>
 
 static napi_ref test_reference = NULL;
 const int TAG_NUMBER = 666;
@@ -33,6 +35,7 @@ static int g_delCount = 0;
 static int g_cleanupHookCount = 0;
 static napi_env g_sharedEnv = nullptr;
 static napi_deferred g_deferred = nullptr;
+static bool isTaskFinished = false;
 
 struct InstanceData {
     size_t value;
@@ -60,6 +63,36 @@ struct AddonData {
     double args = 0;
     double result = 0;
 };
+
+struct AsyncContext {
+    napi_env env;
+    napi_async_work asyncWork = nullptr;
+    napi_deferred deferred = nullptr;
+    napi_ref callback = nullptr;
+    int num1 = 0;
+    int num2 = 0;
+    int sum = 0;
+};
+
+static napi_value ResolvedCallback(napi_env env, napi_callback_info info)
+{
+    void *toStopTheLoop;
+    size_t argc = 0;
+    if (napi_get_cb_info(env, info, &argc, nullptr, nullptr, &toStopTheLoop) != napi_ok) {
+        return nullptr;
+    }
+    auto flag = reinterpret_cast<int *>(toStopTheLoop);
+    if (*flag == 1) {
+        napi_stop_event_loop(env);
+    }
+    return nullptr;
+}
+
+static napi_value RejectedCallback(napi_env env, napi_callback_info info)
+{
+    napi_stop_event_loop(env);
+    return nullptr;
+}
 
 static void add_returned_status(napi_env env,
                                 const char* key,
@@ -3681,6 +3714,394 @@ static napi_value NapiDeleteSerializationData(napi_env env, napi_callback_info i
     return number;
 }
 
+static void execCb(napi_env env, void *data) {
+    AsyncContext *callbackData = reinterpret_cast<AsyncContext *>(data);
+    callbackData->sum = callbackData->num1 + callbackData->num2;
+}
+
+static void completeCb(napi_env env, napi_status status, void *data) {
+    isTaskFinished = true;
+    AsyncContext *callbackData = reinterpret_cast<AsyncContext *>(data);
+    napi_value callBackArgs = nullptr;
+    napi_create_int32(env, callbackData->sum, &callBackArgs);
+    napi_value callback = nullptr;
+    napi_get_reference_value(env, callbackData->callback, &callback);
+    
+    napi_value result = nullptr;
+    napi_call_function(env, nullptr, callback, 1, &callBackArgs, &result);
+    napi_delete_reference(env, callbackData->callback);
+    napi_delete_async_work(env, callbackData->asyncWork);
+}
+
+static napi_value Add(napi_env env, napi_callback_info info) {
+    size_t argc = 3;
+    napi_value args[3] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    AsyncContext *context = new AsyncContext();
+    context->env = env;
+    napi_get_value_int32(env, args[0], &(context->num1));
+    napi_get_value_int32(env, args[1], &(context->num2));
+    napi_create_reference(env, args[2], 1, &context->callback);
+
+    napi_value resource = nullptr;
+    napi_create_string_utf8(env, "add async task", NAPI_AUTO_LENGTH, &resource);
+    napi_create_async_work(env, nullptr, resource, execCb, completeCb, context, &context->asyncWork);
+    napi_queue_async_work(env, context->asyncWork);
+    return nullptr;
+}
+
+static void execCb1(napi_env env, void *data) {
+    AsyncContext *callbackData = reinterpret_cast<AsyncContext *>(data);
+    callbackData->sum = callbackData->num1 + callbackData->num2;
+}
+
+static void completeCb1(napi_env env, napi_status status, void *data) {
+    AsyncContext *callbackData = reinterpret_cast<AsyncContext *>(data);
+    napi_value callBackArgs[1] = {nullptr};
+    napi_create_int32(env, callbackData->sum, &callBackArgs[0]);
+    napi_value callback = nullptr;
+    napi_get_reference_value(env, callbackData->callback, &callback);
+    napi_value result = nullptr;
+    napi_call_function(env, nullptr, callback, 1, callBackArgs, &result);
+
+    napi_delete_reference(env, callbackData->callback);
+    napi_delete_async_work(env, callbackData->asyncWork);
+    napi_status res = napi_stop_event_loop(env);
+    if (res == napi_ok) {
+        isTaskFinished = true;
+    }
+    // isTaskFinished = true;
+}
+
+static napi_value Add1(napi_env env, napi_callback_info info) {
+    size_t argc = 3;
+    napi_value args[3] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    AsyncContext *context = new AsyncContext();
+    context->env = env;
+    napi_get_value_int32(env, args[0], &context->num1);
+    napi_get_value_int32(env, args[1], &context->num2);
+    napi_create_reference(env, args[2], 1, &context->callback);
+
+    napi_value resource = nullptr;
+    napi_create_string_utf8(env, "add async task", NAPI_AUTO_LENGTH, &resource);
+    napi_create_async_work(env, nullptr, resource, execCb1, completeCb1, reinterpret_cast<void *>(context),
+                           &context->asyncWork);
+    napi_queue_async_work(env, context->asyncWork);
+    return nullptr;
+}
+
+static napi_value runEventLoopTest002(napi_env env, napi_callback_info info) {
+    napi_status res = napi_run_event_loop(nullptr, napi_event_mode_default);
+    if (res == napi_invalid_arg) {
+        char16_t resStr[] = u"napi_invalid_arg";
+        napi_value resultValue = nullptr;
+        napi_create_string_utf16(env, resStr, NAPI_AUTO_LENGTH, &resultValue);
+        return resultValue;
+    }
+    return nullptr;
+}
+
+static napi_value runEventLoopTest003(napi_env env, napi_callback_info info) {
+    napi_value result = nullptr;
+    napi_create_object(env, &result);
+    napi_status res = napi_run_event_loop(env, napi_event_mode_nowait);
+    if (res == napi_generic_failure) {
+        char16_t resStr[] = u"napi_generic_failure";
+        napi_value resultValue = nullptr;
+        napi_create_string_utf16(env, resStr, NAPI_AUTO_LENGTH, &resultValue);
+        return resultValue;
+    }
+     return nullptr;
+}
+
+static napi_value runEventLoopTest004(napi_env env, napi_callback_info info) {
+    napi_value result = nullptr;
+    napi_create_object(env, &result);
+    napi_status res = napi_run_event_loop(env, napi_event_mode_default);
+    if (res == napi_generic_failure) {
+        char16_t resStr[] = u"napi_generic_failure";
+        napi_value resultValue = nullptr;
+        napi_create_string_utf16(env, resStr, NAPI_AUTO_LENGTH, &resultValue);
+        return resultValue;
+    }
+     return nullptr;
+}
+
+static napi_value runEventLoopTest005(napi_env env, napi_callback_info info) {
+    napi_value result = nullptr;
+    napi_create_object(env, &result);
+    napi_status res = napi_run_event_loop(env, napi_event_mode_nowait);
+    if (res == napi_generic_failure) {
+        char16_t resStr[] = u"napi_generic_failure";
+        napi_value resultValue = nullptr;
+        napi_create_string_utf16(env, resStr, NAPI_AUTO_LENGTH, &resultValue);
+        return resultValue;
+    }
+     return nullptr;
+}
+
+static napi_value runEventLoopTest006(napi_env env, napi_callback_info info) {
+    napi_value result = nullptr;
+    napi_create_object(env, &result);
+    napi_status res = napi_run_event_loop(env, napi_event_mode_default);
+    if (res == napi_generic_failure) {
+        char16_t resStr[] = u"napi_generic_failure";
+        napi_value resultValue = nullptr;
+        napi_create_string_utf16(env, resStr, NAPI_AUTO_LENGTH, &resultValue);
+        return resultValue;
+    }
+    return nullptr;
+}
+
+static void *NewThreadFunc(void *arg) {
+    napi_env env;
+    int ret = napi_create_ark_runtime(&env);
+    if (ret != 0) {
+        return nullptr;
+    }
+    
+    napi_value objectUtils;
+    napi_status status =
+        napi_load_module_with_info(env, "ets/pages/ObjectUtils", "com.example.uv_loop_run_and_stop_test/entry", &objectUtils);
+    
+    NAPI_ASSERT(env, status == napi_ok, "napi_load_module_with_info successfully");
+     auto str = reinterpret_cast<char *>(arg);
+    if (strcmp(str, "NewThread1") == 0) {
+        bool isTaskFinished = false;
+        // Add
+        napi_value add;
+        napi_value args[2] = {nullptr};
+
+        napi_create_int32(env, 50, &args[0]);
+        napi_create_int32(env, 100, &args[1]);
+
+        napi_get_named_property(env, objectUtils, "Add", &add);
+        napi_call_function(env, objectUtils, add, 2, args, nullptr);
+        while (!isTaskFinished) {
+            napi_run_event_loop(env, napi_event_mode_nowait);
+        }
+    } else if (strcmp(str, "NewThread2") == 0) {
+        // timer
+        napi_value SetTimeout;
+        napi_value promise;
+        napi_get_named_property(env, objectUtils, "SetTimeout", &SetTimeout);
+        napi_call_function(env, objectUtils, SetTimeout, 0, nullptr, &promise);
+
+        napi_value thenFunc = nullptr;
+        if (napi_get_named_property(env, promise, "then", &thenFunc) != napi_ok) {
+            return objectUtils;
+        }
+        napi_value resolvedCallback;
+        napi_value rejectedCallback;
+        int32_t toStopTheLoop = 1;
+        napi_create_function(env, "resolvedCallback", NAPI_AUTO_LENGTH, ResolvedCallback, &toStopTheLoop, &resolvedCallback);
+        napi_create_function(env, "rejectedCallback", NAPI_AUTO_LENGTH, RejectedCallback, nullptr, &rejectedCallback);
+        napi_value argv[2] = {resolvedCallback, rejectedCallback};
+        napi_call_function(env, promise, thenFunc, 2, argv, nullptr);
+
+        napi_run_event_loop(env, napi_event_mode_default);
+
+    } else if (strcmp(str, "NewThread3") == 0) {
+        // timer
+        napi_value SetTimeout;
+        napi_value promise;
+        napi_get_named_property(env, objectUtils, "SetTimeout", &SetTimeout);
+        napi_call_function(env, objectUtils, SetTimeout, 0, nullptr, &promise);
+
+        napi_value thenFunc = nullptr;
+        if (napi_get_named_property(env, promise, "then", &thenFunc) != napi_ok) {
+            return objectUtils;
+        }
+        napi_value resolvedCallback;
+        napi_value rejectedCallback;
+        int32_t toStopTheLoop = 0;
+        napi_create_function(env, "resolvedCallback", NAPI_AUTO_LENGTH, ResolvedCallback, &toStopTheLoop, &resolvedCallback);
+        napi_create_function(env, "rejectedCallback", NAPI_AUTO_LENGTH, RejectedCallback, nullptr, &rejectedCallback);
+        napi_value argv[2] = {resolvedCallback, rejectedCallback};
+        napi_call_function(env, promise, thenFunc, 2, argv, nullptr);
+
+        napi_run_event_loop(env, napi_event_mode_default);
+
+    } else if (strcmp(str, "NewThread4") == 0) {
+        isTaskFinished = false;
+        // Add
+        napi_value add;
+        napi_value args[2] = {nullptr};
+
+        napi_create_int32(env, 50, &args[0]);
+        napi_create_int32(env, 100, &args[1]);
+
+        napi_get_named_property(env, objectUtils, "Add", &add);
+        napi_call_function(env, objectUtils, add, 2, args, nullptr);
+        while (!isTaskFinished) {
+            napi_run_event_loop(env, napi_event_mode_nowait);
+        }
+        napi_run_event_loop(env, napi_event_mode_nowait);
+    } else if (strcmp(str, "NewThread5") == 0) {
+        // Add
+        napi_value add;
+        napi_value args[2] = {nullptr};
+
+        napi_create_int32(env, 50, &args[0]);
+        napi_create_int32(env, 100, &args[1]);
+
+        napi_get_named_property(env, objectUtils, "Add", &add);
+        napi_call_function(env, objectUtils, add, 2, args, nullptr);
+    }
+    free(str);
+    return objectUtils;
+}
+
+static napi_value runEventLoopTest007(napi_env env, napi_callback_info info) {
+    pthread_t tid;
+    char *testCaseName = (char *)malloc(sizeof(char) * 20);
+    memset(testCaseName, 0, 20);
+    strcpy(testCaseName, "NewThread1");
+    pthread_create(&tid, nullptr, NewThreadFunc, testCaseName);
+    pthread_join(tid, nullptr);
+
+    napi_value _value;
+    napi_create_int32(env, 0, &_value);
+    return _value;
+}
+
+static napi_value runEventLoopTest008(napi_env env, napi_callback_info info) {
+    pthread_t tid;
+    char *testCaseName = (char *)malloc(sizeof(char) * 20);
+    memset(testCaseName, 0, 20);
+    strcpy(testCaseName, "NewThread2");
+    pthread_create(&tid, nullptr, NewThreadFunc, testCaseName);
+    pthread_join(tid, nullptr);
+    napi_value _value;
+    napi_create_int32(env, 0, &_value);
+    return _value;
+}
+
+static napi_value runEventLoopTest009(napi_env env, napi_callback_info info) {
+    pthread_t tid;
+    char *testCaseName = (char *)malloc(sizeof(char) * 20);
+    memset(testCaseName, 0, 20);
+    strcpy(testCaseName, "NewThread4");
+    pthread_create(&tid, nullptr, NewThreadFunc, testCaseName);
+    pthread_join(tid, nullptr);
+    napi_value _value;
+    napi_create_int32(env, 0, &_value);
+    return _value;
+}
+
+static napi_value runEventLoopTest010(napi_env env, napi_callback_info info) {
+    pthread_t tid;
+    char *testCaseName = (char *)malloc(sizeof(char) * 20);
+    memset(testCaseName, 0, 20);
+    strcpy(testCaseName, "NewThread5");
+    pthread_create(&tid, nullptr, NewThreadFunc, testCaseName);
+    pthread_join(tid, nullptr);
+    napi_value _value;
+    napi_create_int32(env, 0, &_value);
+    return _value;
+}
+
+static napi_value stopEventLoopTest002(napi_env env, napi_callback_info info) {
+    napi_status res = napi_stop_event_loop(nullptr);
+    if (res == napi_invalid_arg) {
+        char16_t resStr[] = u"napi_invalid_arg";
+        napi_value resultValue = nullptr;
+        napi_create_string_utf16(env, resStr, NAPI_AUTO_LENGTH, &resultValue);
+        return resultValue;
+    }
+    return nullptr;
+}
+
+static napi_value stopEventLoopTest003(napi_env env, napi_callback_info info) {
+    napi_status res = napi_stop_event_loop(env);
+    if (res == napi_generic_failure) {
+        char16_t resStr[] = u"napi_generic_failure";
+        napi_value resultValue = nullptr;
+        napi_create_string_utf16(env, resStr, NAPI_AUTO_LENGTH, &resultValue);
+        return resultValue;
+    }
+    return nullptr;
+}
+
+static napi_value stopEventLoopTest004(napi_env env, napi_callback_info info) {
+    napi_status res = napi_stop_event_loop(env);
+    if (res == napi_generic_failure) {
+        char16_t resStr[] = u"napi_generic_failure";
+        napi_value resultValue = nullptr;
+        napi_create_string_utf16(env, resStr, NAPI_AUTO_LENGTH, &resultValue);
+        return resultValue;
+    }
+    return nullptr;
+}
+
+static void *CallBeforeRunningFunc(void *arg) {
+    napi_env env;
+    int ret = napi_create_ark_runtime(&env);
+    if (ret != 0) {
+        return nullptr;
+    }
+    napi_status res = napi_stop_event_loop(env);
+    if (res == napi_ok) {
+        return nullptr;
+    }
+    napi_destroy_ark_runtime(&env);
+    return nullptr;
+}
+
+static napi_value stopEventLoopTest005(napi_env env, napi_callback_info info) {
+    pthread_t tid;
+    napi_value result;
+    pthread_create(&tid, nullptr, CallBeforeRunningFunc, &result);
+    pthread_join(tid, nullptr);
+    napi_value _value;
+    napi_create_int32(env, 0, &_value);
+    return _value;
+}
+
+static void *CallAfterRunFunc(void *arg) {
+    napi_env env;
+    int ret = napi_create_ark_runtime(&env);
+    if (ret != 0) {
+        return nullptr;
+    }
+
+    napi_value objectUtils;
+    napi_status status = napi_load_module_with_info(env, "ets/pages/ObjectUtils",
+                                                    "com.example.uv_loop_run_and_stop_test/entry", &objectUtils);
+    NAPI_ASSERT(env, status == napi_ok, "napi_load_module_with_info successfully");
+    isTaskFinished = false;
+    // Add
+    napi_value add;
+    napi_value args[2] = {nullptr};
+
+    napi_create_int32(env, 50, &args[0]);
+    napi_create_int32(env, 100, &args[1]);
+
+    napi_get_named_property(env, objectUtils, "Add1", &add);
+    napi_call_function(env, objectUtils, add, 2, args, nullptr);
+    while (!isTaskFinished) {
+        napi_run_event_loop(env, napi_event_mode_nowait);
+    }
+
+    napi_status res = napi_stop_event_loop(env);
+    if (res == napi_ok) {
+        return nullptr;
+    }
+    napi_destroy_ark_runtime(&env);
+    return objectUtils;
+}
+
+static napi_value stopEventLoopTest006(napi_env env, napi_callback_info info) {
+    pthread_t tid;
+    napi_value result;
+    pthread_create(&tid, nullptr, CallAfterRunFunc, &result);
+    pthread_join(tid, nullptr);
+    napi_value _value;
+    napi_create_int32(env, 0, &_value);
+    return _value;
+}
+
 EXTERN_C_START
 
 static napi_value Init(napi_env env, napi_value exports)
@@ -3830,6 +4251,22 @@ static napi_value Init(napi_env env, napi_value exports)
         DECLARE_NAPI_FUNCTION("napiSerialize", NapiSerialize),
         DECLARE_NAPI_FUNCTION("napiDeSerialize", NapiDeSerialize),
         DECLARE_NAPI_FUNCTION("napiDeleteSerializationData", NapiDeleteSerializationData),
+        DECLARE_NAPI_FUNCTION("runEventLoopTest002", runEventLoopTest002),
+        DECLARE_NAPI_FUNCTION("runEventLoopTest003", runEventLoopTest003),
+        DECLARE_NAPI_FUNCTION("runEventLoopTest004", runEventLoopTest004),
+        DECLARE_NAPI_FUNCTION("runEventLoopTest005", runEventLoopTest005),
+        DECLARE_NAPI_FUNCTION("runEventLoopTest006", runEventLoopTest006),
+        DECLARE_NAPI_FUNCTION("runEventLoopTest007", runEventLoopTest007),
+        DECLARE_NAPI_FUNCTION("runEventLoopTest008", runEventLoopTest008),
+        DECLARE_NAPI_FUNCTION("runEventLoopTest009", runEventLoopTest009),
+        DECLARE_NAPI_FUNCTION("runEventLoopTest010", runEventLoopTest010),
+        DECLARE_NAPI_FUNCTION("stopEventLoopTest002", stopEventLoopTest002),
+        DECLARE_NAPI_FUNCTION("stopEventLoopTest003", stopEventLoopTest003),
+        DECLARE_NAPI_FUNCTION("stopEventLoopTest004", stopEventLoopTest004),
+        DECLARE_NAPI_FUNCTION("stopEventLoopTest005", stopEventLoopTest005),
+        DECLARE_NAPI_FUNCTION("stopEventLoopTest006", stopEventLoopTest006),
+        DECLARE_NAPI_FUNCTION("add", Add),
+        DECLARE_NAPI_FUNCTION("add1", Add1),
     };
     NAPI_CALL(env, napi_define_properties(env, exports, sizeof(properties) / sizeof(properties[0]), properties));
 
