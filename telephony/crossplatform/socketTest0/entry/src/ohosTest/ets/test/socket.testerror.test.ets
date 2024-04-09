@@ -99,7 +99,7 @@ export default function socketTest() {
         },(err,data)=>{
             if(err){
               console.log('test_Socket_setExtraOptions_Udp_Error_001' + JSON.stringify(err));
-              expect(err.code == 2301088).assertTrue();
+              expect(err.code == 2301009).assertTrue();
               done();
             }else{
                 console.log('test_Socket_setExtraOptions_Udp_Error_001 success' + JSON.stringify(data));
@@ -355,7 +355,7 @@ export default function socketTest() {
       }, err => {
         if (err) {
           console.log('test_Socket_Send_Tcp_Error_001 err' + JSON.stringify(err))
-          expect(err.code == 2301060).assertTrue();
+          expect(err.code == 2301009).assertTrue();
           done();
         } else {
           console.log('test_Socket_Send_Tcp_Error_001 success');
@@ -384,7 +384,7 @@ export default function socketTest() {
         done();
       }).catch((err) => {
         console.log('test_Socket_Send_Tcp_Error_002 send fail' + JSON.stringify(err));
-       // expect(err.code == 2301060).assertTrue();
+        expect(err.code == 2301009).assertTrue();
         done();
       });
     });
@@ -501,7 +501,7 @@ export default function socketTest() {
       }, (err) => {
         if (err) {
           console.log('test_Socket_setExtraOptions_Tcp_Error_001 error err :' + JSON.stringify(err));
-          expect(err.code == 2301088).assertTrue();
+          expect(err.code == 2301009).assertTrue();
           tcp.close();
           done();
         } else {
@@ -808,7 +808,7 @@ export default function socketTest() {
           done();
         }).catch(err => {
           console.log('test_Socket_setExtraOptions_Udp_Error_002 err :' + JSON.stringify(err));
-          expect(err.code == 2301088).assertTrue();
+          expect(err.code == 2301009).assertTrue();
           done();
         })
       } catch (err) {
