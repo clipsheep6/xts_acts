@@ -1588,8 +1588,7 @@ static napi_value ScreenCaptureSetCallbackBaseFunction_01(napi_env env, napi_cal
     OH_AVScreenCapture_Release(screenCapture);
     napi_value res;
     OH_AVSCREEN_CAPTURE_ErrCode result;
-    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK
-        && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
+    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         LOG(false, "init/start/stop failed, init: %d, start: %d", result1, result2);
@@ -1679,10 +1678,10 @@ static OH_AVSCREEN_CAPTURE_ErrCode ScreenCaptureSetCallbackBaseFunction(OH_AVScr
     OH_AVSCREEN_CAPTURE_ErrCode result;
     if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK
         && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
-        return = AV_SCREEN_CAPTURE_ERR_OK;
+        return AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         LOG(false, "init/start/stop failed, init: %d, start: %d, stop: %d", result1, result2, result3);
-        return = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
+        return AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
     }
 }
 
@@ -1821,7 +1820,7 @@ static napi_value ScreenCaptureSetCallbackBaseFunctionError_01(napi_env env, nap
     }
     
     SetConfig(config_);
-    enum OH_DataType dataTypes[]  = {OH_INVALID, OH_ENCODED_STREAM, OH_CAPTURE_FILE};
+    enum OH_DataType dataTypes[]  = {OH_INVAILD, OH_ENCODED_STREAM, OH_CAPTURE_FILE};
     for(int i = 0; i< sizeof(dataTypes) / sizeof(dataTypes[0]); i++) {
         config_.dataType = dataTypes[i];
         result = ScreenCaptureSetCallbackBaseFunction(config_);
@@ -2039,20 +2038,20 @@ static OH_AVSCREEN_CAPTURE_ErrCode ScreenCaptureSetCallbackWithSurfaceBaseFuncti
     OHNativeWindow *window = OH_NativeImage_AcquireNativeWindow(image);
     if (window == nullptr) {
         LOG(false, "acquire nativeWindow failed, window is null");
-        return = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
+        return AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
     }
     
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
-    OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCaptureWithWindow(screenCapture);
+    OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCaptureWithSurface(screenCapture, window);
     OH_AVSCREEN_CAPTURE_ErrCode result3 = OH_AVScreenCapture_StopScreenCapture(screenCapture);
     OH_AVScreenCapture_Release(screenCapture);
     OH_AVSCREEN_CAPTURE_ErrCode result;
     if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK
         && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
-        return = AV_SCREEN_CAPTURE_ERR_OK;
+        return AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         LOG(false, "init/start/stop failed, init: %d, start: %d, stop: %d", result1, result2, result3);
-        return = AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
+        return AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT;
     }
 }
 
@@ -2068,7 +2067,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_04(napi_env en
     enum OH_AudioCaptureSourceType micAudioSources[] = {OH_SOURCE_DEFAULT, OH_MIC, OH_ALL_PLAYBACK, OH_APP_PLAYBACK};
     for(int i = 0; i< sizeof(micAudioSources) / sizeof(micAudioSources[0]); i++) {
         config_.audioInfo.micCapInfo.audioSource = micAudioSources[i];
-        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
+        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, micCapInfo.audioSource : %d", micAudioSources[i]);
@@ -2087,7 +2086,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_04(napi_env en
     enum OH_AudioCaptureSourceType innerAudioSources[] = {OH_SOURCE_DEFAULT, OH_MIC, OH_APP_PLAYBACK};
     for(int i = 0; i< sizeof(innerAudioSources) / sizeof(innerAudioSources[0]); i++) {
         config_.audioInfo.innerCapInfo.audioSource = innerAudioSources[i];
-        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
+        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, innerCapInfo.audioSource : %d", innerAudioSources[i]);
@@ -2103,7 +2102,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_04(napi_env en
     enum OH_CaptureMode captureModes[]  = {OH_CAPTURE_HOME_SCREEN, OH_CAPTURE_SPECIFIED_WINDOW};
     for(int i = 0; i< sizeof(captureModes) / sizeof(captureModes[0]); i++) {
         config_.captureMode = captureModes[i];
-        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
+        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, captureMode : %d", captureModes[i]);
@@ -2119,7 +2118,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_04(napi_env en
     enum OH_DataType dataTypes[]  = {OH_ORIGINAL_STREAM};
     for(int i = 0; i< sizeof(dataTypes) / sizeof(dataTypes[0]); i++) {
         config_.dataType = dataTypes[i];
-        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
+        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, dataType : %d", dataTypes[i]);
@@ -2143,7 +2142,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunctionError_01(napi_e
     enum OH_AudioCaptureSourceType micAudioSources[] = {OH_SOURCE_INVALID};
     for(int i = 0; i< sizeof(micAudioSources) / sizeof(micAudioSources[0]); i++) {
         config_.audioInfo.micCapInfo.audioSource = micAudioSources[i];
-        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
+        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, micCapInfo.audioSource : %d", micAudioSources[i]);
@@ -2162,7 +2161,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunctionError_01(napi_e
     enum OH_AudioCaptureSourceType innerAudioSources[] = {OH_SOURCE_INVALID, OH_ALL_PLAYBACK};
     for(int i = 0; i< sizeof(innerAudioSources) / sizeof(innerAudioSources[0]); i++) {
         config_.audioInfo.innerCapInfo.audioSource = innerAudioSources[i];
-        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
+        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, innerCapInfo.audioSource : %d", innerAudioSources[i]);
@@ -2178,7 +2177,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunctionError_01(napi_e
     enum OH_CaptureMode captureModes[]  = {OH_CAPTURE_INVALID, OH_CAPTURE_SPECIFIED_SCREEN};
     for(int i = 0; i< sizeof(captureModes) / sizeof(captureModes[0]); i++) {
         config_.captureMode = captureModes[i];
-        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
+        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, captureMode : %d", captureModes[i]);
@@ -2191,10 +2190,10 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunctionError_01(napi_e
     }
     
     SetConfig(config_);
-    enum OH_DataType dataTypes[]  = {OH_INVALID, OH_ENCODED_STREAM, OH_CAPTURE_FILE};
+    enum OH_DataType dataTypes[]  = {OH_INVAILD, OH_ENCODED_STREAM, OH_CAPTURE_FILE};
     for(int i = 0; i< sizeof(dataTypes) / sizeof(dataTypes[0]); i++) {
         config_.dataType = dataTypes[i];
-        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_)
+        result = ScreenCaptureSetCallbackWithSurfaceBaseFunction(config_);
         if (result == AV_SCREEN_CAPTURE_ERR_OPERATE_NOT_PERMIT) {
             loopFlag = 0;
             LOG(false, "init/start/stop failed, dataType : %d", dataTypes[i]);
