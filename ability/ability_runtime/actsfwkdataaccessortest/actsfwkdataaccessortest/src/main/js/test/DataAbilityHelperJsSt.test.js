@@ -30,24 +30,24 @@ describe('ActsDataAbilityHelperTest', function () {
     }
 
     beforeAll(async (done) => {
-        console.debug('= ACTS_beforeAll ====<begin');
+        console.log('= ACTS_beforeAll ====<begin');
         try {
             DAHelper = featureAbility.acquireDataAbilityHelper(dataAbilityUri);
-            console.debug('ACTS_beforeAll DAHelper ====>: ' + DAHelper + " ,JSON. " + JSON.stringify(DAHelper));
+            console.log('ACTS_beforeAll DAHelper ====>: ' + DAHelper + " ,JSON. " + JSON.stringify(DAHelper));
             if(DAHelper == null){
-                console.debug('ACTS_beforeAll DAHelper ====>: DAHelper == null');
+                console.log('ACTS_beforeAll DAHelper ====>: DAHelper == null');
                 return;
             }
         } catch (err) {
             console.error('=ACTS_beforeAll acquireDataAbilityHelper catch(err)====>:' + err);
         }
         sleep(300);
-        console.debug('= ACTS_beforeAll ====<end');
+        console.log('= ACTS_beforeAll ====<end');
         done();
     })
     afterAll((done) => {
-        console.debug('= ACTS_afterAll ====<begin');
-        console.debug('= ACTS_afterAll ====<end');
+        console.log('= ACTS_afterAll ====<begin');
+        console.log('= ACTS_afterAll ====<end');
         done();
     })
 
@@ -67,7 +67,7 @@ describe('ActsDataAbilityHelperTest', function () {
     */
     it('ACTS_AcquireDataAbilityHelper_0100', 0, async function (done) {
         console.log('ACTS_AcquireDataAbilityHelper_0100====<begin');
-        console.debug("=ACTS_AcquireDataAbilityHelper_0100 dataAbilityUri====>" + dataAbilityUri)
+        console.log("=ACTS_AcquireDataAbilityHelper_0100 dataAbilityUri====>" + dataAbilityUri)
         try {
             if(DAHelper == null){
                 var abilityHelper = featureAbility.acquireDataAbilityHelper(dataAbilityUri)
@@ -177,13 +177,13 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             DAHelper.insert(dataAbilityUri, valueBucketM)
                 .then(function (data) {
-                    console.debug("=ACTS_Insert_0100 then data====>"
+                    console.log("=ACTS_Insert_0100 then data====>"
                         + ("json data 【") + JSON.stringify(data) + (" 】"));
                     expect(data).assertEqual(-2);
                     console.log('ACTS_Insert_0100====<end');
                     done();
                 }).catch(function (err) {
-                    console.debug("=ACTS_Insert_0100 catch err ====>"
+                    console.log("=ACTS_Insert_0100 catch err ====>"
                         + ("json err 【") + JSON.stringify(err) + (" 】 "));
                     expect(false).assertTrue();
                     console.log('ACTS_Insert_0100====<end .catch');
@@ -210,7 +210,7 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             await DAHelper.insert(dataAbilityUri, valueBucketM,
                 (err, data) => {
-                    console.debug("=ACTS_Insert_0200 err,data=======>"
+                    console.log("=ACTS_Insert_0200 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】data【") + data + (" 】;"));
                     expect(data).assertEqual(-2);
                     console.log('ACTS_Insert_0200====<end');
@@ -237,13 +237,13 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             DAHelper.insert(dataAbilityUri, valueBucket)
                 .then((data) => {
-                    console.debug("=ACTS_Insert_0300 then data====>"
+                    console.log("=ACTS_Insert_0300 then data====>"
                         + ("json data 【") + JSON.stringify(data) + (" 】"));
                     expect(data).assertEqual(1);
                     console.log('ACTS_Insert_0300====<end');
                     done();
                 }).catch((err) => {
-                    console.debug("=ACTS_Insert_0300 catch err ====>"
+                    console.log("=ACTS_Insert_0300 catch err ====>"
                         + ("json err 【") + JSON.stringify(err) + (" 】 "));
                     console.log('ACTS_Insert_0300====<end .catch');
                     expect(false).assertTrue();
@@ -269,7 +269,7 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             await DAHelper.insert(dataAbilityUri, valueBucket,
                 (err, data) => {
-                    console.debug("=ACTS_Insert_0400 err,data=======>"
+                    console.log("=ACTS_Insert_0400 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(1);
                     console.log('ACTS_Insert_0400====<end');
@@ -296,13 +296,13 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             DAHelper.insert(undefined, valueBucket)
                 .then((data) => {
-                    console.debug("=ACTS_Insert_0500 then data====>"
+                    console.log("=ACTS_Insert_0500 then data====>"
                         + ("json data 【") + JSON.stringify(data) + (" 】"));
                     expect(data).assertEqual(0);
                     console.log('ACTS_Insert_0500====<end');
                     done();
                 }).catch((err) => {
-                    console.debug("=ACTS_Insert_0500 catch err ====>"
+                    console.log("=ACTS_Insert_0500 catch err ====>"
                         + ("json err 【") + JSON.stringify(err) + (" 】 "));
                     console.log('ACTS_Insert_0500====<end .catch');
                     expect(false).assertTrue();
@@ -328,7 +328,7 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             await DAHelper.insert(undefined, valueBucket,
                 (err, data) => {
-                    console.debug("=ACTS_Insert_0600 err,data=======>"
+                    console.log("=ACTS_Insert_0600 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(err.code).assertEqual(-1);
                     expect(data).assertEqual(0);
@@ -357,7 +357,7 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             DAHelper.insert(dataAbilityUri, valueBucket)
                 .then((data) => {
-                    console.debug("=ACTS_Insert_0700 then data====>"
+                    console.log("=ACTS_Insert_0700 then data====>"
                         + ("json data 【") + JSON.stringify(data) + (" 】"));
                     expect(data).assertEqual(1);
 
@@ -366,7 +366,7 @@ describe('ActsDataAbilityHelperTest', function () {
                         done();
                     }, gSetTimeout);
                 }).catch((err) => {
-                    console.debug("=ACTS_Insert_0700 catch err ====>"
+                    console.log("=ACTS_Insert_0700 catch err ====>"
                         + ("json err 【") + JSON.stringify(err) + (" 】 "));
                     console.log('ACTS_Insert_0700====<end .catch');
                     expect(false).assertTrue();
@@ -393,7 +393,7 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             await DAHelper.insert(dataAbilityUri, valueBucket,
                 (err, data) => {
-                    console.debug("=ACTS_Insert_0800 err,data=======>"
+                    console.log("=ACTS_Insert_0800 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(1);
 
@@ -423,13 +423,13 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             DAHelper.insert(123456, valueBucket)
                 .then((data) => {
-                    console.debug("=ACTS_Insert_0900 then data====>"
+                    console.log("=ACTS_Insert_0900 then data====>"
                         + ("json data 【") + JSON.stringify(data) + (" 】"));
                     expect(data).assertEqual(0);
                     console.log('ACTS_Insert_0900====<end');
                     done();
                 }).catch((err) => {
-                    console.debug("=ACTS_Insert_0900 catch err ====>"
+                    console.log("=ACTS_Insert_0900 catch err ====>"
                         + ("json err 【") + JSON.stringify(err) + (" 】 "));
                     console.log('ACTS_Insert_0900====<end .catch');
                     expect(false).assertTrue();
@@ -455,7 +455,7 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             await DAHelper.insert(123456, valueBucket,
                 (err, data) => {
-                    console.debug("=ACTS_Insert_1000 err,data=======>"
+                    console.log("=ACTS_Insert_1000 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(err.code).assertEqual(-1);
                     expect(data).assertEqual(0);
@@ -483,13 +483,13 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             DAHelper.insert(dataAbilityUri2, valueBucket)
                 .then((data) => {
-                    console.debug("=ACTS_Insert_1100 then data====>"
+                    console.log("=ACTS_Insert_1100 then data====>"
                         + ("json data 【") + JSON.stringify(data) + (" 】"));
                     expect(data).assertEqual(-1);
                     console.log('ACTS_Insert_1100====<end');
                     done();
                 }).catch((err) => {
-                    console.debug("=ACTS_Insert_1100 catch err ====>"
+                    console.log("=ACTS_Insert_1100 catch err ====>"
                         + ("json err 【") + JSON.stringify(err) + (" 】 "));
                     console.log('ACTS_Insert_1100====<end .catch');
                     expect(false).assertTrue();
@@ -515,7 +515,7 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             await DAHelper.insert(dataAbilityUri2, valueBucket,
                 (err, data) => {
-                    console.debug("=ACTS_Insert_1200 err,data=======>"
+                    console.log("=ACTS_Insert_1200 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(-1);
                     console.log('ACTS_Insert_1200====<end');
@@ -542,13 +542,13 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             DAHelper.insert("errorUri", valueBucket)
                 .then((data) => {
-                    console.debug("=ACTS_Insert_1300 then data====>"
+                    console.log("=ACTS_Insert_1300 then data====>"
                         + ("json data 【") + JSON.stringify(data) + (" 】"));
                     expect(data).assertEqual(-1);
                     console.log('ACTS_Insert_1300====<end');
                     done();
                 }).catch((err) => {
-                    console.debug("=ACTS_Insert_1300 catch err ====>"
+                    console.log("=ACTS_Insert_1300 catch err ====>"
                         + ("json err 【") + JSON.stringify(err) + (" 】 "));
                     console.log('ACTS_Insert_1300====<end .catch');
                     expect(false).assertTrue();
@@ -574,7 +574,7 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             await DAHelper.insert("errorUri", valueBucket,
                 (err, data) => {
-                    console.debug("=ACTS_Insert_1400 err,data=======>"
+                    console.log("=ACTS_Insert_1400 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(-1);
                     console.log('ACTS_Insert_1400====<end');
@@ -602,13 +602,13 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             DAHelper.insert(dataAbilityUri, valueBucketK)
                 .then((data) => {
-                    console.debug("=ACTS_Insert_1500 then data====>"
+                    console.log("=ACTS_Insert_1500 then data====>"
                         + ("json data 【") + JSON.stringify(data) + (" 】"));
                     expect(data).assertEqual(-2);
                     console.log('ACTS_Insert_1500====<end');
                     done();
                 }).catch((err) => {
-                    console.debug("=ACTS_Insert_1500 catch err ====>"
+                    console.log("=ACTS_Insert_1500 catch err ====>"
                         + ("json err 【") + JSON.stringify(err) + (" 】 "));
                     console.log('ACTS_Insert_1500====<end .catch');
                     expect(false).assertTrue();
@@ -635,7 +635,7 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             await DAHelper.insert(dataAbilityUri, valueBucketK,
                 (err, data) => {
-                    console.debug("=ACTS_Insert_1600 err,data=======>"
+                    console.log("=ACTS_Insert_1600 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(-2);
                     console.log('ACTS_Insert_1600====<end');
@@ -665,13 +665,13 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 valueBucketM
             ).then((data) => {
-                console.debug("=ACTS_BatchInsert_0100 then data====>"
+                console.log("=ACTS_BatchInsert_0100 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】; ====>"));
                 expect(data).assertEqual(0);
                 console.log('ACTS_BatchInsert_0100====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_BatchInsert_0100 catch err ====>"
+                console.log("=ACTS_BatchInsert_0100 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_BatchInsert_0100====<end .catch');
                 expect(false).assertTrue();
@@ -700,7 +700,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 valueBucketM,
                 (err, data) => {
-                    console.debug("=ACTS_BatchInsert_0200 err,data=======>"
+                    console.log("=ACTS_BatchInsert_0200 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(0);
                     console.log('ACTS_BatchInsert_0200====<end');
@@ -730,13 +730,13 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 valueBucketArray,
             ).then((data) => {
-                console.debug("=ACTS_BatchInsert_0300 then data====>"
+                console.log("=ACTS_BatchInsert_0300 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】; ====>"));
                 expect(data).assertEqual(3);
                 console.log('ACTS_BatchInsert_0300====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_BatchInsert_0300 catch err ====>"
+                console.log("=ACTS_BatchInsert_0300 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_BatchInsert_0300====<end .catch');
                 expect(false).assertTrue();
@@ -765,7 +765,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 valueBucketArray,
                 (err, data) => {
-                    console.debug("=ACTS_BatchInsert_0400 err,data=======>"
+                    console.log("=ACTS_BatchInsert_0400 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(3);
                     console.log('ACTS_BatchInsert_0400====<end');
@@ -798,13 +798,13 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 valueBucketArray,
             ).then((data) => {
-                console.debug("=ACTS_BatchInsert_0500 BatchInsert Promise then data====>"
+                console.log("=ACTS_BatchInsert_0500 BatchInsert Promise then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(3);
                 console.log('ACTS_BatchInsert_0500====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_BatchInsert_0500 BatchInsert Promise catch err ====>"
+                console.log("=ACTS_BatchInsert_0500 BatchInsert Promise catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_BatchInsert_0500====<end .catch');
                 expect(false).assertTrue();
@@ -835,7 +835,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 valueBucketArray,
                 (err, data) => {
-                    console.debug("=ACTS_BatchInsert_0600 err,data=======>"
+                    console.log("=ACTS_BatchInsert_0600 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(3);
                     console.log('ACTS_BatchInsert_0600====<end');
@@ -868,13 +868,13 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri2,
                 valueBucketArray,
             ).then((data) => {
-                console.debug("=ACTS_BatchInsert_0700 BatchInsert Promise then data====>"
+                console.log("=ACTS_BatchInsert_0700 BatchInsert Promise then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(-1);
                 console.log('ACTS_BatchInsert_0700====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_BatchInsert_0700 BatchInsert Promise catch err ====>"
+                console.log("=ACTS_BatchInsert_0700 BatchInsert Promise catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_BatchInsert_0700====<end .catch');
                 expect(false).assertTrue();
@@ -905,7 +905,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri2,
                 valueBucketArray,
                 (err, data) => {
-                    console.debug("=ACTS_BatchInsert_0800 err,data=======>"
+                    console.log("=ACTS_BatchInsert_0800 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(-1);
                     console.log('ACTS_BatchInsert_0800====<end');
@@ -938,13 +938,13 @@ describe('ActsDataAbilityHelperTest', function () {
                 undefined,
                 valueBucketArray,
             ).then((data) => {
-                console.debug("=ACTS_BatchInsert_0900 BatchInsert Promise then data====>"
+                console.log("=ACTS_BatchInsert_0900 BatchInsert Promise then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(0);
                 console.log('ACTS_BatchInsert_0900====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_BatchInsert_0900 BatchInsert Promise catch err ====>"
+                console.log("=ACTS_BatchInsert_0900 BatchInsert Promise catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_BatchInsert_0900====<end .catch');
                 expect(false).assertTrue();
@@ -975,7 +975,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 undefined,
                 valueBucketArray,
                 (err, data) => {
-                    console.debug("=ACTS_BatchInsert_1000 err,data=======>"
+                    console.log("=ACTS_BatchInsert_1000 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(err.code).assertEqual(-1);
                     console.log('ACTS_BatchInsert_1000====<end');
@@ -1008,13 +1008,13 @@ describe('ActsDataAbilityHelperTest', function () {
                 "error",
                 valueBucketArray,
             ).then((data) => {
-                console.debug("=ACTS_BatchInsert_1100 BatchInsert Promise then data====>"
+                console.log("=ACTS_BatchInsert_1100 BatchInsert Promise then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(-1);
                 console.log('ACTS_BatchInsert_1100====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_BatchInsert_1100 BatchInsert Promise catch err ====>"
+                console.log("=ACTS_BatchInsert_1100 BatchInsert Promise catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_BatchInsert_1100====<end .catch');
                 expect(false).assertTrue();
@@ -1045,7 +1045,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 "error",
                 valueBucketArray,
                 (err, data) => {
-                    console.debug("=ACTS_BatchInsert_1200 err,data=======>"
+                    console.log("=ACTS_BatchInsert_1200 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(-1);
                     console.log('ACTS_BatchInsert_1200====<end');
@@ -1078,13 +1078,13 @@ describe('ActsDataAbilityHelperTest', function () {
                 123456,
                 valueBucketArray,
             ).then((data) => {
-                console.debug("=ACTS_BatchInsert_1300 BatchInsert Promise then data====>"
+                console.log("=ACTS_BatchInsert_1300 BatchInsert Promise then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(0);
                 console.log('ACTS_BatchInsert_1300====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_BatchInsert_1300 BatchInsert Promise catch err ====>"
+                console.log("=ACTS_BatchInsert_1300 BatchInsert Promise catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_BatchInsert_1300====<end .catch');
                 expect(false).assertTrue();
@@ -1115,7 +1115,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 123456,
                 valueBucketArray,
                 (err, data) => {
-                    console.debug("=ACTS_BatchInsert_1400 err,data=======>"
+                    console.log("=ACTS_BatchInsert_1400 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(err.code).assertEqual(-1);
                     console.log('ACTS_BatchInsert_1400====<end');
@@ -1144,13 +1144,13 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 valueBucket,
             ).then((data) => {
-                console.debug("=ACTS_BatchInsert_1500 BatchInsert Promise then data====>"
+                console.log("=ACTS_BatchInsert_1500 BatchInsert Promise then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(0);
                 console.log('ACTS_BatchInsert_1500====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_BatchInsert_1500 BatchInsert Promise catch err ====>"
+                console.log("=ACTS_BatchInsert_1500 BatchInsert Promise catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_BatchInsert_1500====<end .catch');
                 expect(false).assertTrue();
@@ -1178,7 +1178,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 valueBucket,
                 (err, data) => {
-                    console.debug("=ACTS_BatchInsert_1600 err,data=======>"
+                    console.log("=ACTS_BatchInsert_1600 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(0);
                     console.log('ACTS_BatchInsert_1600====<end');
@@ -1209,7 +1209,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 columnsArray,
                 predicates
             );
-            console.debug("=ACTS_Query_0100 queryPromise ====>"
+            console.log("=ACTS_Query_0100 queryPromise ====>"
                 + ("json queryPromise 【") + JSON.stringify(queryPromise) + (" 】 ") + " , " + queryPromise);
             expect(typeof (queryPromise)).assertEqual("object");
             console.log('ACTS_Query_0100====<end');
@@ -1238,7 +1238,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 columnsArray,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Query_0200 query err,data=======>"
+                    console.log("=ACTS_Query_0200 query err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【")
                         + JSON.stringify(data) + (" 】;") + " , " + data);
                     expect(typeof (data)).assertEqual("object");
@@ -1273,7 +1273,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 columnsArray,
                 predicates
             );
-            console.debug("=ACTS_Query_0300 queryPromise ====>"
+            console.log("=ACTS_Query_0300 queryPromise ====>"
                 + ("json queryPromise 【") + JSON.stringify(queryPromise) + (" 】 ") + " , " + queryPromise);
             expect(typeof (queryPromise)).assertEqual("object");
             console.log('ACTS_Query_0300====<end');
@@ -1306,7 +1306,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 columnsArray,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Query_0400 query err,data=======>"
+                    console.log("=ACTS_Query_0400 query err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【")
                         + JSON.stringify(data) + (" 】;") + " , " + data);
                     expect(typeof (data)).assertEqual("object");
@@ -1341,7 +1341,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 columnsArray,
                 predicates
             );
-            console.debug("=ACTS_Query_0500 queryPromise ====>"
+            console.log("=ACTS_Query_0500 queryPromise ====>"
                 + ("json queryPromise 【") + JSON.stringify(queryPromise) + (" 】 ") + " , " + queryPromise);
             expect(typeof (queryPromise)).assertEqual("object");
             console.log('ACTS_Query_0500====<end');
@@ -1374,7 +1374,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 columnsArray,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Query_0600 query err,data=======>"
+                    console.log("=ACTS_Query_0600 query err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【")
                         + JSON.stringify(data) + (" 】;") + " , " + data);
                     expect(typeof (data)).assertEqual("object");
@@ -1409,7 +1409,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 columnsArray,
                 predicates
             );
-            console.debug("=ACTS_Query_0700 queryPromise ====>"
+            console.log("=ACTS_Query_0700 queryPromise ====>"
                 + ("json queryPromise 【") + JSON.stringify(queryPromise) + (" 】 ") + " , " + queryPromise);
             expect(typeof (queryPromise)).assertEqual("object");
             console.log('ACTS_Query_0700====<end');
@@ -1442,7 +1442,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 columnsArray,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Query_0800 query err,data=======>"
+                    console.log("=ACTS_Query_0800 query err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【")
                         + JSON.stringify(data) + (" 】;") + " , " + data);
                     expect(typeof (data)).assertEqual("object");
@@ -1477,7 +1477,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 columnsArray,
                 predicates
             );
-            console.debug("=ACTS_Query_0900 queryPromise ====>"
+            console.log("=ACTS_Query_0900 queryPromise ====>"
                 + ("json queryPromise 【") + JSON.stringify(queryPromise) + (" 】 ") + " , " + queryPromise);
             expect(typeof (queryPromise)).assertEqual("object");
             console.log('ACTS_Query_0900====<end');
@@ -1510,7 +1510,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 columnsArray,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Query_1000 query err,data=======>"
+                    console.log("=ACTS_Query_1000 query err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【")
                         + JSON.stringify(data) + (" 】;") + " , " + data);
                     expect(typeof (data)).assertEqual("object");
@@ -1545,7 +1545,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 columnsArray,
                 predicates
             );
-            console.debug("=ACTS_Query_1100 queryPromise ====>"
+            console.log("=ACTS_Query_1100 queryPromise ====>"
                 + ("json queryPromise 【") + JSON.stringify(queryPromise) + (" 】 ") + " , " + queryPromise);
             expect(typeof (queryPromise)).assertEqual("object");
             console.log('ACTS_Query_1100====<end');
@@ -1578,7 +1578,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 columnsArray,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Query_1200 query err,data=======>"
+                    console.log("=ACTS_Query_1200 query err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【")
                         + JSON.stringify(data) + (" 】;") + " , " + data);
                     expect(typeof (data)).assertEqual("object");
@@ -1613,7 +1613,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 columnsArray,
                 predicates
             );
-            console.debug("=ACTS_Query_1300 queryPromise ====>"
+            console.log("=ACTS_Query_1300 queryPromise ====>"
                 + ("json queryPromise 【") + JSON.stringify(queryPromise) + (" 】 ") + " , " + queryPromise);
             expect(typeof (queryPromise)).assertEqual("object");
             console.log('ACTS_Query_1300====<end');
@@ -1646,7 +1646,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 columnsArray,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Query_1400 query err,data=======>"
+                    console.log("=ACTS_Query_1400 query err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【")
                         + JSON.stringify(data) + (" 】;") + " , " + data);
                     expect(typeof (data)).assertEqual("object");
@@ -1673,20 +1673,20 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             let valueBucketNull = {};
             let predicates = new ohosDataAbility.DataAbilityPredicates();
-            console.debug("=ACTS_Update_0100 predicates====>"
+            console.log("=ACTS_Update_0100 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             DAHelper.update(
                 dataAbilityUri,
                 valueBucketNull,
                 predicates
             ).then((data) => {
-                console.debug("=ACTS_Update_0100 then data====>"
+                console.log("=ACTS_Update_0100 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(-2);
                 console.log('ACTS_Update_0100====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_Update_0100 catch err ====>"
+                console.log("=ACTS_Update_0100 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
                 console.log('ACTS_Update_0100====<end .catch');
@@ -1711,14 +1711,14 @@ describe('ActsDataAbilityHelperTest', function () {
         try {
             let valueBucketNull = {};
             let predicates = new ohosDataAbility.DataAbilityPredicates();
-            console.debug("=ACTS_Update_0200 predicates====>"
+            console.log("=ACTS_Update_0200 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             await DAHelper.update(
                 dataAbilityUri,
                 valueBucketNull,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Update_0200 err,data=======>"
+                    console.log("=ACTS_Update_0200 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(-2);
                     console.log('ACTS_Update_0200====<end');
@@ -1748,20 +1748,20 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Update_0300 predicates====>"
+            console.log("=ACTS_Update_0300 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             DAHelper.update(
                 dataAbilityUri,
                 valueBucket,
                 predicates
             ).then((data) => {
-                console.debug("=ACTS_Update_0300 then data====>"
+                console.log("=ACTS_Update_0300 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(1);
                 console.log('ACTS_Update_0300====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_Update_0300 catch err ====>"
+                console.log("=ACTS_Update_0300 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_Update_0300====<end .catch');
                 expect(false).assertTrue();
@@ -1790,14 +1790,14 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Update_0400 predicates====>"
+            console.log("=ACTS_Update_0400 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             await DAHelper.update(
                 dataAbilityUri,
                 valueBucket,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Update_0400 err,data=======>"
+                    console.log("=ACTS_Update_0400 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(1);
                     console.log('ACTS_Update_0400====<end');
@@ -1827,20 +1827,20 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Update_0500 predicates====>"
+            console.log("=ACTS_Update_0500 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             DAHelper.update(
                 undefined,
                 valueBucket,
                 predicates
             ).then((data) => {
-                console.debug("=ACTS_Update_0500 then data====>"
+                console.log("=ACTS_Update_0500 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(0);
                 console.log('ACTS_Update_0500====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_Update_0500 catch err ====>"
+                console.log("=ACTS_Update_0500 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_Update_0500====<end .catch');
                 expect(false).assertTrue();
@@ -1869,14 +1869,14 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Update_0600 predicates====>"
+            console.log("=ACTS_Update_0600 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             await DAHelper.update(
                 undefined,
                 valueBucket,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Update_0600 err,data=======>"
+                    console.log("=ACTS_Update_0600 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(err.code).assertEqual(-1);
                     expect(data).assertEqual(0);
@@ -1908,14 +1908,14 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Update_0700 predicates====>"
+            console.log("=ACTS_Update_0700 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             DAHelper.update(
                 dataAbilityUri,
                 valueBucket,
                 predicates
             ).then((data) => {
-                console.debug("=ACTS_Update_0700 then data====>"
+                console.log("=ACTS_Update_0700 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(1);
                 currentAlertTimeout = setTimeout(() => {
@@ -1923,7 +1923,7 @@ describe('ActsDataAbilityHelperTest', function () {
                     done();
                 }, gSetTimeout);
             }).catch((err) => {
-                console.debug("=ACTS_Update_0700 catch err ====>"
+                console.log("=ACTS_Update_0700 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 ") + err);
                 console.log('ACTS_Update_0700====<end .catch');
                 expect(".catch").assertEqual(err);
@@ -1953,14 +1953,14 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Update_0800 predicates====>"
+            console.log("=ACTS_Update_0800 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             await DAHelper.update(
                 dataAbilityUri,
                 valueBucket,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Update_0800 err,data=======>"
+                    console.log("=ACTS_Update_0800 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(1);
                     currentAlertTimeout = setTimeout(() => {
@@ -1992,20 +1992,20 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Update_0900 predicates====>"
+            console.log("=ACTS_Update_0900 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             DAHelper.update(
                 123456,
                 valueBucket,
                 predicates
             ).then((data) => {
-                console.debug("=ACTS_Update_0900 then data====>"
+                console.log("=ACTS_Update_0900 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(0);
                 console.log('ACTS_Update_0900====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_Update_0900 catch err ====>"
+                console.log("=ACTS_Update_0900 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_Update_0900====<end .catch');
                 expect(false).assertTrue();
@@ -2034,14 +2034,14 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Update_1000 predicates====>"
+            console.log("=ACTS_Update_1000 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             await DAHelper.update(
                 123456,
                 valueBucket,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Update_1000 err,data=======>"
+                    console.log("=ACTS_Update_1000 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(err.code).assertEqual(-1);
                     expect(data).assertEqual(0);
@@ -2072,20 +2072,20 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Update_1100 predicates====>"
+            console.log("=ACTS_Update_1100 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             DAHelper.update(
                 dataAbilityUri2,
                 valueBucket,
                 predicates
             ).then((data) => {
-                console.debug("=ACTS_Update_1100 then data====>"
+                console.log("=ACTS_Update_1100 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(-1);
                 console.log('ACTS_Update_1100====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_Update_1100 catch err ====>"
+                console.log("=ACTS_Update_1100 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_Update_1100====<end .catch');
                 expect(false).assertTrue();
@@ -2114,14 +2114,14 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Update_1200 predicates====>"
+            console.log("=ACTS_Update_1200 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             await DAHelper.update(
                 dataAbilityUri2,
                 valueBucket,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Update_1200 err,data=======>"
+                    console.log("=ACTS_Update_1200 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(-1);
                     console.log('ACTS_Update_1200====<end');
@@ -2151,20 +2151,20 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Update_1300 predicates====>"
+            console.log("=ACTS_Update_1300 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             DAHelper.update(
                 "error_uri",
                 valueBucket,
                 predicates
             ).then((data) => {
-                console.debug("=ACTS_Update_1300 then data====>"
+                console.log("=ACTS_Update_1300 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(-1);
                 console.log('ACTS_Update_1300====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_Update_1300 catch err ====>"
+                console.log("=ACTS_Update_1300 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_Update_1300====<end .catch');
                 expect(false).assertTrue();
@@ -2193,14 +2193,14 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Update_1400 predicates====>"
+            console.log("=ACTS_Update_1400 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             await DAHelper.update(
                 "error_uri",
                 valueBucket,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Update_1400 err,data=======>"
+                    console.log("=ACTS_Update_1400 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(-1);
                     console.log('ACTS_Update_1400====<end');
@@ -2226,19 +2226,19 @@ describe('ActsDataAbilityHelperTest', function () {
         console.log('featureAbility getDataAbilityHelper ====>: ' + DAHelper)
         try {
             let predicates = new ohosDataAbility.DataAbilityPredicates();
-            console.debug("=ACTS_Delete_0100 predicates====>"
+            console.log("=ACTS_Delete_0100 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             DAHelper.delete(
                 dataAbilityUri,
                 predicates
             ).then((data) => {
-                console.debug("=ACTS_Delete_0100 then data====>"
+                console.log("=ACTS_Delete_0100 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(1);
                 console.log('ACTS_Delete_0100====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_Delete_0100 catch err ====>"
+                console.log("=ACTS_Delete_0100 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
                 console.log('ACTS_Delete_0100====<end .catch');
@@ -2263,13 +2263,13 @@ describe('ActsDataAbilityHelperTest', function () {
         console.log('featureAbility getDataAbilityHelper ====>: ' + DAHelper)
         try {
             let predicates = new ohosDataAbility.DataAbilityPredicates();
-            console.debug("=ACTS_Delete_0200 predicates====>"
+            console.log("=ACTS_Delete_0200 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             await DAHelper.delete(
                 dataAbilityUri,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Delete_0200 err,data=======>"
+                    console.log("=ACTS_Delete_0200 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(1);
                     console.log('ACTS_Delete_0200====<end');
@@ -2297,19 +2297,19 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Delete_0300 predicates====>"
+            console.log("=ACTS_Delete_0300 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             DAHelper.delete(
                 dataAbilityUri,
                 predicates
             ).then((data) => {
-                console.debug("=ACTS_Delete_0300 then data====>"
+                console.log("=ACTS_Delete_0300 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(1);
                 console.log('ACTS_Delete_0300====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_Delete_0300 catch err ====>"
+                console.log("=ACTS_Delete_0300 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_Delete_0300====<end .catch');
                 expect(false).assertTrue();
@@ -2338,13 +2338,13 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Delete_0400 predicates====>"
+            console.log("=ACTS_Delete_0400 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             await DAHelper.delete(
                 dataAbilityUri,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Delete_0400 err,data=======>"
+                    console.log("=ACTS_Delete_0400 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(1);
                     console.log('ACTS_Delete_0400====<end');
@@ -2371,19 +2371,19 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Delete_0500 predicates====>"
+            console.log("=ACTS_Delete_0500 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             DAHelper.delete(
                 undefined,
                 predicates
             ).then((data) => {
-                console.debug("=ACTS_Delete_0500 then data====>"
+                console.log("=ACTS_Delete_0500 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(0);
                 console.log('ACTS_Delete_0500====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_Delete_0500 catch err ====>"
+                console.log("=ACTS_Delete_0500 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_Delete_0500====<end .catch');
                 expect(false).assertTrue();
@@ -2412,13 +2412,13 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Delete_0600 predicates====>"
+            console.log("=ACTS_Delete_0600 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             await DAHelper.delete(
                 undefined,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Delete_0600 err,data=======>"
+                    console.log("=ACTS_Delete_0600 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(err.code).assertEqual(-1);
                     expect(data).assertEqual(0);
@@ -2447,13 +2447,13 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Delete_0700 predicates====>"
+            console.log("=ACTS_Delete_0700 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             DAHelper.delete(
                 dataAbilityUri,
                 predicates
             ).then((data) => {
-                console.debug("=ACTS_Delete_0700 then data====>"
+                console.log("=ACTS_Delete_0700 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(1);
                 currentAlertTimeout = setTimeout(() => {
@@ -2461,7 +2461,7 @@ describe('ActsDataAbilityHelperTest', function () {
                     done();
                 }, gSetTimeout);
             }).catch((err) => {
-                console.debug("=ACTS_Delete_0700 catch err ====>"
+                console.log("=ACTS_Delete_0700 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_Delete_0700====<end .catch');
                 expect(false).assertTrue();
@@ -2491,13 +2491,13 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Delete_0800 predicates====>"
+            console.log("=ACTS_Delete_0800 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             await DAHelper.delete(
                 dataAbilityUri,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Delete_0800 err,data=======>"
+                    console.log("=ACTS_Delete_0800 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(1);
                     currentAlertTimeout = setTimeout(() => {
@@ -2526,19 +2526,19 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Delete_0900 predicates====>"
+            console.log("=ACTS_Delete_0900 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             DAHelper.delete(
                 dataAbilityUri2,
                 predicates
             ).then((data) => {
-                console.debug("=ACTS_Delete_0900 then data====>"
+                console.log("=ACTS_Delete_0900 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(-1);
                 console.log('ACTS_Delete_0900====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_Delete_0900 catch err ====>"
+                console.log("=ACTS_Delete_0900 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_Delete_0900====<end .catch');
                 expect(false).assertTrue();
@@ -2567,13 +2567,13 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Delete_1000 predicates====>"
+            console.log("=ACTS_Delete_1000 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             await DAHelper.delete(
                 dataAbilityUri2,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Delete_1000 err,data=======>"
+                    console.log("=ACTS_Delete_1000 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(-1);
                     console.log('ACTS_Delete_1000====<end');
@@ -2600,19 +2600,19 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Delete_1100 predicates====>"
+            console.log("=ACTS_Delete_1100 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             DAHelper.delete(
                 "error",
                 predicates
             ).then((data) => {
-                console.debug("=ACTS_Delete_1100 then data====>"
+                console.log("=ACTS_Delete_1100 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(-1);
                 console.log('ACTS_Delete_1100====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_Delete_1100 catch err ====>"
+                console.log("=ACTS_Delete_1100 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_Delete_1100====<end .catch');
                 expect(false).assertTrue();
@@ -2641,13 +2641,13 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Delete_1200 predicates====>"
+            console.log("=ACTS_Delete_1200 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             await DAHelper.delete(
                 "error",
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Delete_1200 err,data=======>"
+                    console.log("=ACTS_Delete_1200 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(-1);
                     console.log('ACTS_Delete_1200====<end');
@@ -2674,19 +2674,19 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Delete_1300 predicates====>"
+            console.log("=ACTS_Delete_1300 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             DAHelper.delete(
                 123456,
                 predicates
             ).then((data) => {
-                console.debug("=ACTS_Delete_1300 then data====>"
+                console.log("=ACTS_Delete_1300 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(0);
                 console.log('ACTS_Delete_1300====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_Delete_1300 catch err ====>"
+                console.log("=ACTS_Delete_1300 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_Delete_1300====<end .catch');
                 expect(false).assertTrue();
@@ -2715,13 +2715,13 @@ describe('ActsDataAbilityHelperTest', function () {
             predicates.limitAs(10);
             predicates.orderByAsc("order_by_class");
             predicates.offsetAs(1);
-            console.debug("=ACTS_Delete_1400 predicates====>"
+            console.log("=ACTS_Delete_1400 predicates====>"
                 + ("json predicates 【") + JSON.stringify(predicates) + (" 】") + " , " + predicates);
             await DAHelper.delete(
                 123456,
                 predicates,
                 (err, data) => {
-                    console.debug("=ACTS_Delete_1400 err,data=======>"
+                    console.log("=ACTS_Delete_1400 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(err.code).assertEqual(-1);
                     console.log('ACTS_Delete_1400====<end');
@@ -2748,7 +2748,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mimeTypeFilter,
             ).then((data) => {
-                console.debug("=ACTS_GetFileTypes_0100 getFileTypes then data====>"
+                console.log("=ACTS_GetFileTypes_0100 getFileTypes then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 console.log('DataAbilityHelper getFileTypes data.length ====>: ' + data.length);
                 expect(data.length).assertEqual(3);
@@ -2766,7 +2766,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 console.log('ACTS_GetFileTypes_0100====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_GetFileTypes_0100 getFileTypes catch err ====>"
+                console.log("=ACTS_GetFileTypes_0100 getFileTypes catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_GetFileTypes_0100====<end .catch');
                 expect(false).assertTrue();
@@ -2796,7 +2796,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mimeTypeFilter,
                 (err, data) => {
-                    console.debug("=ACTS_GetFileTypes_0200 getFileTypes err,data=======>"
+                    console.log("=ACTS_GetFileTypes_0200 getFileTypes err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     console.log('=ACTS_GetFileTypes_0200 data.length ====>: ' + data.length);
                     expect(data.length).assertEqual(3);
@@ -2837,7 +2837,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mimeTypeFilter,
             ).then((data) => {
-                console.debug("=ACTS_GetFileTypes_0300  then data====>"
+                console.log("=ACTS_GetFileTypes_0300  then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 console.log('DataAbilityHelper getFileTypes data.length ====>: ' + data.length);
                 expect(data.length).assertEqual(1);
@@ -2851,7 +2851,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 console.log('ACTS_GetFileTypes_0300====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_GetFileTypes_0300 catch err ====>"
+                console.log("=ACTS_GetFileTypes_0300 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('DataAbilityHelper getFileTypes error ====>: ' + err)
                 console.log('ACTS_GetFileTypes_0300====<end .catch');
@@ -2882,7 +2882,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mimeTypeFilter,
                 (err, data) => {
-                    console.debug("=ACTS_GetFileTypes_0400 err,data=======>"
+                    console.log("=ACTS_GetFileTypes_0400 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     console.log('DataAbilityHelper  getFileTypes data.length ====>: ' + data.length);
                     expect(data.length).assertEqual(1);
@@ -2919,7 +2919,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mimeTypeFilter,
             ).then((data) => {
-                console.debug("=ACTS_GetFileTypes_0500 then data====>"
+                console.log("=ACTS_GetFileTypes_0500 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 console.log('DataAbilityHelper getFileTypes data.length ====>: ' + data.length);
                 expect(data.length).assertEqual(1);
@@ -2933,7 +2933,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 console.log('ACTS_GetFileTypes_0500====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_GetFileTypes_0500  catch err ====>"
+                console.log("=ACTS_GetFileTypes_0500  catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('DataAbilityHelper getFileTypes error ====>: ' + err)
                 console.log('ACTS_GetFileTypes_0500====<end .catch');
@@ -2964,7 +2964,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mimeTypeFilter,
                 (err, data) => {
-                    console.debug("=ACTS_GetFileTypes_0600 err,data=======>"
+                    console.log("=ACTS_GetFileTypes_0600 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     console.log('=ACTS_GetFileTypes_0600 data.length ====>: ' + data.length);
                     expect(data.length).assertEqual(1);
@@ -2999,14 +2999,14 @@ describe('ActsDataAbilityHelperTest', function () {
                 undefined,
                 mimeTypeFilter,
             ).then((data) => {
-                console.debug("=ACTS_GetFileTypes_0700 getFileTypes then data====>"
+                console.log("=ACTS_GetFileTypes_0700 getFileTypes then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 console.log('DataAbilityHelper getFileTypes data.length ====>: ' + data.length);
                 expect(data.length).assertEqual(0);
                 console.log('ACTS_GetFileTypes_0700====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_GetFileTypes_0700 getFileTypes catch err ====>"
+                console.log("=ACTS_GetFileTypes_0700 getFileTypes catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_GetFileTypes_0700====<end .catch');
                 expect(false).assertTrue();
@@ -3036,7 +3036,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 undefined,
                 mimeTypeFilter,
                 (err, data) => {
-                    console.debug("=ACTS_GetFileTypes_0800 getFileTypes err,data=======>"
+                    console.log("=ACTS_GetFileTypes_0800 getFileTypes err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     console.log('=ACTS_GetFileTypes_0800 data.length ====>: ' + data.length);
                     expect(data.length).assertEqual(0);
@@ -3064,7 +3064,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 undefined,
             ).then((data) => {
-                console.debug("=ACTS_GetFileTypes_0900 getFileTypes then data====>"
+                console.log("=ACTS_GetFileTypes_0900 getFileTypes then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 console.log('DataAbilityHelper getFileTypes data.length ====>: ' + data.length);
                 for (var i = 0; i < data.length; i++) {
@@ -3077,7 +3077,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 console.log('ACTS_GetFileTypes_0900====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_GetFileTypes_0900 getFileTypes catch err ====>"
+                console.log("=ACTS_GetFileTypes_0900 getFileTypes catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_GetFileTypes_0900====<end .catch');
                 expect(false).assertTrue();
@@ -3106,7 +3106,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 undefined,
                 (err, data) => {
-                    console.debug("=ACTS_GetFileTypes_1000 getFileTypes err,data=======>"
+                    console.log("=ACTS_GetFileTypes_1000 getFileTypes err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     console.log('=ACTS_GetFileTypes_1000 data.length ====>: ' + data.length);
                     for (var i = 0; i < data.length; i++) {
@@ -3142,14 +3142,14 @@ describe('ActsDataAbilityHelperTest', function () {
                 "error_uri",
                 mimeTypeFilter,
             ).then((data) => {
-                console.debug("=ACTS_GetFileTypes_1100 getFileTypes then data====>"
+                console.log("=ACTS_GetFileTypes_1100 getFileTypes then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 console.log('DataAbilityHelper getFileTypes data.length ====>: ' + data.length);
                 expect(data.length).assertEqual(0);
                 console.log('ACTS_GetFileTypes_1100====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_GetFileTypes_1100 getFileTypes catch err ====>"
+                console.log("=ACTS_GetFileTypes_1100 getFileTypes catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_GetFileTypes_1100====<end .catch');
                 expect(false).assertTrue();
@@ -3179,7 +3179,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 "error_uri",
                 mimeTypeFilter,
                 (err, data) => {
-                    console.debug("=ACTS_GetFileTypes_1200 getFileTypes err,data=======>"
+                    console.log("=ACTS_GetFileTypes_1200 getFileTypes err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     console.log('=ACTS_GetFileTypes_1200 data.length ====>: ' + data.length);
                     expect(data.length).assertEqual(0);
@@ -3208,14 +3208,14 @@ describe('ActsDataAbilityHelperTest', function () {
                 123456,
                 mimeTypeFilter,
             ).then((data) => {
-                console.debug("=ACTS_GetFileTypes_1300 getFileTypes then data====>"
+                console.log("=ACTS_GetFileTypes_1300 getFileTypes then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 console.log('DataAbilityHelper getFileTypes data.length ====>: ' + data.length);
                 expect(data.length).assertEqual(0);
                 console.log('ACTS_GetFileTypes_1300====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_GetFileTypes_1300 getFileTypes catch err ====>"
+                console.log("=ACTS_GetFileTypes_1300 getFileTypes catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_GetFileTypes_1300====<end .catch');
                 expect(false).assertTrue();
@@ -3245,7 +3245,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 123456,
                 mimeTypeFilter,
                 (err, data) => {
-                    console.debug("=ACTS_GetFileTypes_1400 getFileTypes err,data=======>"
+                    console.log("=ACTS_GetFileTypes_1400 getFileTypes err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     console.log('=ACTS_GetFileTypes_1400 data.length ====>: ' + data.length);
                     expect(data.length).assertEqual(0);
@@ -3274,14 +3274,14 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mimeTypeFilter,
             ).then((data) => {
-                console.debug("=ACTS_GetFileTypes_1500 getFileTypes then data====>"
+                console.log("=ACTS_GetFileTypes_1500 getFileTypes then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 console.log('DataAbilityHelper getFileTypes data.length ====>: ' + data.length);
                 expect(data.length).assertEqual(0);
                 console.log('ACTS_GetFileTypes_1500====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_GetFileTypes_1500 getFileTypes catch err ====>"
+                console.log("=ACTS_GetFileTypes_1500 getFileTypes catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_GetFileTypes_1500====<end .catch');
                 expect(false).assertTrue();
@@ -3311,7 +3311,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mimeTypeFilter,
                 (err, data) => {
-                    console.debug("=ACTS_GetFileTypes_1600 getFileTypes err,data=======>"
+                    console.log("=ACTS_GetFileTypes_1600 getFileTypes err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     console.log('=ACTS_GetFileTypes_1600 data.length ====>: ' + data.length);
                     expect(data.length).assertEqual(0);
@@ -3340,14 +3340,14 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mimeTypeFilter,
             ).then((data) => {
-                console.debug("=ACTS_GetFileTypes_1700 getFileTypes then data====>"
+                console.log("=ACTS_GetFileTypes_1700 getFileTypes then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 console.log('DataAbilityHelper getFileTypes data.length ====>: ' + data.length);
                 expect(data.length).assertEqual(0);
                 console.log('ACTS_GetFileTypes_1700====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_GetFileTypes_1700 getFileTypes catch err ====>"
+                console.log("=ACTS_GetFileTypes_1700 getFileTypes catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_GetFileTypes_1700====<end .catch');
                 expect(false).assertTrue();
@@ -3377,7 +3377,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mimeTypeFilter,
                 (err, data) => {
-                    console.debug("=ACTS_GetFileTypes_1800 getFileTypes err,data=======>"
+                    console.log("=ACTS_GetFileTypes_1800 getFileTypes err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     console.log('=ACTS_GetFileTypes_1800 data.length ====>: ' + data.length);
                     expect(data.length).assertEqual(0);
@@ -3404,13 +3404,13 @@ describe('ActsDataAbilityHelperTest', function () {
             var promise = DAHelper.getType(
                 dataAbilityUri,
             ).then(data => {
-                console.debug("=ACTS_GetType_0100 then data====>"
+                console.log("=ACTS_GetType_0100 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(dataAbilityUri);
                 console.log('ACTS_GetType_0100====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_GetType_0100 catch err ====>"
+                console.log("=ACTS_GetType_0100 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_GetType_0100====<end .catch');
                 expect(false).assertTrue();
@@ -3438,7 +3438,7 @@ describe('ActsDataAbilityHelperTest', function () {
             await DAHelper.getType(
                 dataAbilityUri,
                 (err, data) => {
-                    console.debug("=ACTS_GetType_0200 err,data=======>"
+                    console.log("=ACTS_GetType_0200 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(dataAbilityUri);
                     console.log('ACTS_GetType_0200====<end');
@@ -3464,13 +3464,13 @@ describe('ActsDataAbilityHelperTest', function () {
             var promise = DAHelper.getType(
                 undefined,
             ).then(data => {
-                console.debug("=ACTS_GetType_0300 then data====>"
+                console.log("=ACTS_GetType_0300 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual("");
                 console.log('ACTS_GetType_0300====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_GetType_0300 catch err ====>"
+                console.log("=ACTS_GetType_0300 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_GetType_0300====<end .catch');
                 expect(false).assertTrue();
@@ -3498,7 +3498,7 @@ describe('ActsDataAbilityHelperTest', function () {
             await DAHelper.getType(
                 undefined,
                 (err, data) => {
-                    console.debug("=ACTS_GetType_0400 err,data=======>"
+                    console.log("=ACTS_GetType_0400 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual("");
                     console.log('ACTS_GetType_0400====<end');
@@ -3524,13 +3524,13 @@ describe('ActsDataAbilityHelperTest', function () {
             var promise = DAHelper.getType(
                 123456,
             ).then(data => {
-                console.debug("=ACTS_GetType_0500 then data====>"
+                console.log("=ACTS_GetType_0500 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual("");
                 console.log('ACTS_GetType_0500====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_GetType_0500 catch err ====>"
+                console.log("=ACTS_GetType_0500 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_GetType_0500====<end .catch');
                 expect(false).assertTrue();
@@ -3558,7 +3558,7 @@ describe('ActsDataAbilityHelperTest', function () {
             await DAHelper.getType(
                 123456,
                 (err, data) => {
-                    console.debug("=ACTS_GetType_0600 err,data=======>"
+                    console.log("=ACTS_GetType_0600 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual("");
                     console.log('ACTS_GetType_0600====<end');
@@ -3584,13 +3584,13 @@ describe('ActsDataAbilityHelperTest', function () {
             var promise = DAHelper.getType(
                 "error_uri",
             ).then(data => {
-                console.debug("=ACTS_GetType_0700 then data====>"
+                console.log("=ACTS_GetType_0700 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual("");
                 console.log('ACTS_GetType_0700====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_GetType_0700 catch err ====>"
+                console.log("=ACTS_GetType_0700 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_GetType_0700====<end .catch');
                 expect(false).assertTrue();
@@ -3618,7 +3618,7 @@ describe('ActsDataAbilityHelperTest', function () {
             await DAHelper.getType(
                 "error_uri",
                 (err, data) => {
-                    console.debug("=ACTS_GetType_0800 err,data=======>"
+                    console.log("=ACTS_GetType_0800 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual("");
                     console.log('ACTS_GetType_0800====<end');
@@ -3644,13 +3644,13 @@ describe('ActsDataAbilityHelperTest', function () {
             var promise = DAHelper.getType(
                 dataAbilityUri3,
             ).then(data => {
-                console.debug("=ACTS_GetType_0900 then data====>"
+                console.log("=ACTS_GetType_0900 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual("");
                 console.log('ACTS_GetType_0900====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_GetType_0900 catch err ====>"
+                console.log("=ACTS_GetType_0900 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_GetType_0900====<end .catch');
                 expect(false).assertTrue();
@@ -3678,7 +3678,7 @@ describe('ActsDataAbilityHelperTest', function () {
             await DAHelper.getType(
                 dataAbilityUri3,
                 (err, data) => {
-                    console.debug("=ACTS_GetType_1000 err,data=======>"
+                    console.log("=ACTS_GetType_1000 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual("");
                     console.log('ACTS_GetType_1000====<end');
@@ -3707,13 +3707,13 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mode,
             ).then((data) => {
-                console.debug("=ACTS_OpenFile_0100 then data====>"
+                console.log("=ACTS_OpenFile_0100 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(typeof (data)).assertEqual("number")
                 ret = true
                 done();
             }).catch(err => {
-                console.debug("=ACTS_OpenFile_0100 catch err ====>"
+                console.log("=ACTS_OpenFile_0100 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 ret = false
                 expect(false).assertTrue();
@@ -3745,14 +3745,14 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mode,
             ).then((data) => {
-                console.debug("=ACTS_OpenFile_0200 then data====>"
+                console.log("=ACTS_OpenFile_0200 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(typeof (data)).assertEqual("number")
                 console.log('DataAbilityHelper ACTS_OpenFile_0200 OpenFile promise ====>: ' + data)
                 ret = true
                 done();
             }).catch(err => {
-                console.debug("=ACTS_OpenFile_0200 catch err ====>"
+                console.log("=ACTS_OpenFile_0200 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 ret = false
                 done();
@@ -3783,14 +3783,14 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mode,
             ).then((data) => {
-                console.debug("=ACTS_OpenFile_0300 then data====>"
+                console.log("=ACTS_OpenFile_0300 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(typeof (data)).assertEqual("number")
                 console.log('DataAbilityHelper ACTS_OpenFile_0300 OpenFile promise ====>: ' + data)
                 ret = true
                 done();
             }).catch(err => {
-                console.debug("=ACTS_OpenFile_0300 catch err ====>"
+                console.log("=ACTS_OpenFile_0300 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 ret = false
                 expect(false).assertTrue();
@@ -3822,14 +3822,14 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mode,
             ).then((data) => {
-                console.debug("=ACTS_OpenFile_0400 then data====>"
+                console.log("=ACTS_OpenFile_0400 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(typeof (data)).assertEqual("number")
                 console.log('DataAbilityHelper ACTS_OpenFile_0400 OpenFile promise ====>: ' + data)
                 ret = true
                 done();
             }).catch(err => {
-                console.debug("=ACTS_OpenFile_0400 catch err ====>"
+                console.log("=ACTS_OpenFile_0400 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 ret = false
                 expect(false).assertTrue();
@@ -3861,14 +3861,14 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mode,
             ).then((data) => {
-                console.debug("=ACTS_OpenFile_0500 then data====>"
+                console.log("=ACTS_OpenFile_0500 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(typeof (data)).assertEqual("number")
                 console.log('DataAbilityHelper ACTS_OpenFile_0500 OpenFile promise ====>: ' + data)
                 ret = true
                 done();
             }).catch(err => {
-                console.debug("=ACTS_OpenFile_0500 catch err ====>"
+                console.log("=ACTS_OpenFile_0500 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 ret = false
                 expect(false).assertTrue();
@@ -3900,14 +3900,14 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mode,
             ).then((data) => {
-                console.debug("=ACTS_OpenFile_0600 then data====>"
+                console.log("=ACTS_OpenFile_0600 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(typeof (data)).assertEqual("number")
                 console.log('DataAbilityHelper ACTS_OpenFile_0600 OpenFile promise ====>: ' + data)
                 ret = true
                 done();
             }).catch(err => {
-                console.debug("=ACTS_OpenFile_0600 catch err ====>"
+                console.log("=ACTS_OpenFile_0600 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 ret = false
                 expect(false).assertTrue();
@@ -3941,7 +3941,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mode,
                 (err, data) => {
-                    console.debug("=ACTS_OpenFile_0700 err,data=======>"
+                    console.log("=ACTS_OpenFile_0700 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(typeof (data)).assertEqual("number");
                     console.log('DataAbilityHelper ACTS_OpenFile_0700 OpenFile asyncCallback errCode ====>: '
@@ -3978,7 +3978,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mode,
                 (err, data) => {
-                    console.debug("=ACTS_OpenFile_0800 err,data=======>"
+                    console.log("=ACTS_OpenFile_0800 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(typeof (data)).assertEqual("number");
                     console.log('DataAbilityHelper ACTS_OpenFile_0800 OpenFile asyncCallback errCode ====>: '
@@ -4015,7 +4015,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mode,
                 (err, data) => {
-                    console.debug("=ACTS_OpenFile_0900 err,data=======>"
+                    console.log("=ACTS_OpenFile_0900 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(typeof (data)).assertEqual("number");
                     console.log('DataAbilityHelper ACTS_OpenFile_0900 OpenFile asyncCallback errCode ====>: '
@@ -4052,7 +4052,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mode,
                 (err, data) => {
-                    console.debug("=ACTS_OpenFile_1000 err,data====>"
+                    console.log("=ACTS_OpenFile_1000 err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(typeof (data)).assertEqual("number");
                     console.log('DataAbilityHelper ACTS_OpenFile_1000 OpenFile asyncCallback errCode ====>: '
@@ -4089,7 +4089,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mode,
                 (err, data) => {
-                    console.debug("=ACTS_OpenFile_1100 err,data=======>"
+                    console.log("=ACTS_OpenFile_1100 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(typeof (data)).assertEqual("number");
                     ret = true
@@ -4124,7 +4124,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mode,
                 (err, data) => {
-                    console.debug("=ACTS_OpenFile_1200 err,data=======>"
+                    console.log("=ACTS_OpenFile_1200 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(typeof (data)).assertEqual("number");
                     ret = true
@@ -4157,13 +4157,13 @@ describe('ActsDataAbilityHelperTest', function () {
                 undefined,
                 mode,
             ).then((data) => {
-                console.debug("=ACTS_OpenFile_1300 then data====>"
+                console.log("=ACTS_OpenFile_1300 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(0)
                 ret = true
                 done();
             }).catch(err => {
-                console.debug("=ACTS_OpenFile_1300 catch err ====>"
+                console.log("=ACTS_OpenFile_1300 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 ret = false
                 expect(false).assertTrue();
@@ -4197,7 +4197,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 undefined,
                 mode,
                 (err, data) => {
-                    console.debug("=ACTS_OpenFile_1400 err,data=======>"
+                    console.log("=ACTS_OpenFile_1400 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(err.code).assertEqual(-1);
                     ret = true
@@ -4228,13 +4228,13 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 undefined,
             ).then((data) => {
-                console.debug("=ACTS_OpenFile_1500 then data val is====>"
+                console.log("=ACTS_OpenFile_1500 then data val is====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(-3)
                 console.log('ACTS_OpenFile_1500====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_OpenFile_1500 catch err ====>"
+                console.log("=ACTS_OpenFile_1500 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_OpenFile_1500====<end .catch');
                 expect(false).assertTrue();
@@ -4262,7 +4262,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 undefined,
                 (err, data) => {
-                    console.debug("=ACTS_OpenFile_1600 err,data=======>"
+                    console.log("=ACTS_OpenFile_1600 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(-3);
                     console.log('ACTS_OpenFile_1600====<end');
@@ -4290,13 +4290,13 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mode,
             ).then((data) => {
-                console.debug("=ACTS_OpenFile_1700 then data====>"
+                console.log("=ACTS_OpenFile_1700 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(-2)
                 console.log('ACTS_OpenFile_1700====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_OpenFile_1700 catch err ====>"
+                console.log("=ACTS_OpenFile_1700 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_OpenFile_1700====<end .catch');
                 expect(false).assertTrue();
@@ -4325,7 +4325,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri,
                 mode,
                 (err, data) => {
-                    console.debug("=ACTS_OpenFile_1800 err,data=======>"
+                    console.log("=ACTS_OpenFile_1800 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(-2);
                     console.log('ACTS_OpenFile_1800====<end');
@@ -4353,13 +4353,13 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri2,
                 mode,
             ).then((data) => {
-                console.debug("=ACTS_OpenFile_1900 then data====>"
+                console.log("=ACTS_OpenFile_1900 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(-1)
                 console.log('ACTS_OpenFile_1900====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_OpenFile_1900 catch err ====>"
+                console.log("=ACTS_OpenFile_1900 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_OpenFile_1900====<end .catch');
                 expect(false).assertTrue();
@@ -4388,7 +4388,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 dataAbilityUri2,
                 mode,
                 (err, data) => {
-                    console.debug("=ACTS_OpenFile_2000 err,data=======>"
+                    console.log("=ACTS_OpenFile_2000 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(-1);
                     console.log('ACTS_OpenFile_2000====<end');
@@ -4417,13 +4417,13 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.normalizeUri(
                 dataAbilityUri,
             ).then((data) => {
-                console.debug("=ACTS_NormalizeUri_0100 then data====>"
+                console.log("=ACTS_NormalizeUri_0100 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(dataAbilityUri);
                 console.log('ACTS_NormalizeUri_0100====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_NormalizeUri_0100 catch err ====>"
+                console.log("=ACTS_NormalizeUri_0100 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_NormalizeUri_0100====<end .catch');
                 expect(false).assertTrue();
@@ -4452,7 +4452,7 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.normalizeUri(
                 dataAbilityUri,
                 (err, data) => {
-                    console.debug("=ACTS_NormalizeUri_0200 err,data=======>"
+                    console.log("=ACTS_NormalizeUri_0200 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(typeof (data)).assertEqual("string");
                     expect(data).assertEqual(dataAbilityUri);
@@ -4482,13 +4482,13 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.normalizeUri(
                 undefined,
             ).then((data) => {
-                console.debug("=ACTS_NormalizeUri_0300 then data====>"
+                console.log("=ACTS_NormalizeUri_0300 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual("");
                 console.log('ACTS_NormalizeUri_0300====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_NormalizeUri_0300 catch err ====>"
+                console.log("=ACTS_NormalizeUri_0300 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_NormalizeUri_0300====<end .catch');
                 expect(false).assertTrue();
@@ -4516,7 +4516,7 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.normalizeUri(
                 undefined,
                 (err, data) => {
-                    console.debug("=ACTS_NormalizeUri_0400 err,data=======>"
+                    console.log("=ACTS_NormalizeUri_0400 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(err.code).assertEqual(-1);
                     console.log('ACTS_NormalizeUri_0400====<end');
@@ -4545,13 +4545,13 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.normalizeUri(
                 123456,
             ).then((data) => {
-                console.debug("=ACTS_NormalizeUri_0500 then data====>"
+                console.log("=ACTS_NormalizeUri_0500 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual("");
                 console.log('ACTS_NormalizeUri_0500====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_NormalizeUri_0500 catch err ====>"
+                console.log("=ACTS_NormalizeUri_0500 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_NormalizeUri_0500====<end .catch');
                 expect(false).assertTrue();
@@ -4579,7 +4579,7 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.normalizeUri(
                 123456,
                 (err, data) => {
-                    console.debug("=ACTS_NormalizeUri_0600 err,data=======>"
+                    console.log("=ACTS_NormalizeUri_0600 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(err.code).assertEqual(-1);
                     console.log('ACTS_NormalizeUri_0600====<end');
@@ -4608,13 +4608,13 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.normalizeUri(
                 "errorUri",
             ).then((data) => {
-                console.debug("=ACTS_NormalizeUri_0700 then data====>"
+                console.log("=ACTS_NormalizeUri_0700 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual("");
                 console.log('ACTS_NormalizeUri_0700====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_NormalizeUri_0700 catch err ====>"
+                console.log("=ACTS_NormalizeUri_0700 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_NormalizeUri_0700====<end .catch');
                 expect(false).assertTrue();
@@ -4641,7 +4641,7 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.normalizeUri(
                 "errorUri",
                 (err, data) => {
-                    console.debug("=ACTS_NormalizeUri_0800 err,data=======>"
+                    console.log("=ACTS_NormalizeUri_0800 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual("");
                     console.log('ACTS_NormalizeUri_0800====<end');
@@ -4670,13 +4670,13 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.normalizeUri(
                 dataAbilityUri3,
             ).then((data) => {
-                console.debug("=ACTS_NormalizeUri_0900 then data====>"
+                console.log("=ACTS_NormalizeUri_0900 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual("");
                 console.log('ACTS_NormalizeUri_0900====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_NormalizeUri_0900 catch err ====>"
+                console.log("=ACTS_NormalizeUri_0900 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_NormalizeUri_0900====<end .catch');
                 expect(false).assertTrue();
@@ -4703,7 +4703,7 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.normalizeUri(
                 dataAbilityUri3,
                 (err, data) => {
-                    console.debug("=ACTS_NormalizeUri_1000 err,data=======>"
+                    console.log("=ACTS_NormalizeUri_1000 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual("");
                     console.log('ACTS_NormalizeUri_1000====<end');
@@ -4732,13 +4732,13 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.denormalizeUri(
                 dataAbilityUri,
             ).then((data) => {
-                console.debug("=ACTS_DenormalizeUri_0100 then data====>"
+                console.log("=ACTS_DenormalizeUri_0100 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual(dataAbilityUri);
                 console.log('ACTS_DenormalizeUri_0100====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_DenormalizeUri_0100 catch err ====>"
+                console.log("=ACTS_DenormalizeUri_0100 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_DenormalizeUri_0100====<end .catch');
                 expect(false).assertTrue();
@@ -4766,7 +4766,7 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.denormalizeUri(
                 dataAbilityUri,
                 (err, data) => {
-                    console.debug("=ACTS_DenormalizeUri_0200 err,data=======>"
+                    console.log("=ACTS_DenormalizeUri_0200 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual(dataAbilityUri);
                     console.log('ACTS_DenormalizeUri_0200====<end');
@@ -4794,13 +4794,13 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.denormalizeUri(
                 undefined,
             ).then((data) => {
-                console.debug("=ACTS_DenormalizeUri_0300 then data====>"
+                console.log("=ACTS_DenormalizeUri_0300 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual("");
                 console.log('ACTS_DenormalizeUri_0300====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_DenormalizeUri_0300 catch err ====>"
+                console.log("=ACTS_DenormalizeUri_0300 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_DenormalizeUri_0300====<end .catch');
                 expect(false).assertTrue();
@@ -4827,7 +4827,7 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.denormalizeUri(
                 undefined,
                 (err, data) => {
-                    console.debug("=ACTS_DenormalizeUri_0400 err,data=======>"
+                    console.log("=ACTS_DenormalizeUri_0400 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual("");
                     console.log('ACTS_DenormalizeUri_0400====<end');
@@ -4855,13 +4855,13 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.denormalizeUri(
                 "error",
             ).then((data) => {
-                console.debug("=ACTS_DenormalizeUri_0500 then data====>"
+                console.log("=ACTS_DenormalizeUri_0500 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual("");
                 console.log('ACTS_DenormalizeUri_0500====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_DenormalizeUri_0500 catch err ====>"
+                console.log("=ACTS_DenormalizeUri_0500 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_DenormalizeUri_0500====<end .catch');
                 expect(false).assertTrue();
@@ -4888,7 +4888,7 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.denormalizeUri(
                 "error",
                 (err, data) => {
-                    console.debug("=ACTS_DenormalizeUri_0600 err,data=======>"
+                    console.log("=ACTS_DenormalizeUri_0600 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual("");
                     console.log('ACTS_DenormalizeUri_0600====<end');
@@ -4916,13 +4916,13 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.denormalizeUri(
                 123456,
             ).then((data) => {
-                console.debug("=ACTS_DenormalizeUri_0700 then data====>"
+                console.log("=ACTS_DenormalizeUri_0700 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual("");
                 console.log('ACTS_DenormalizeUri_0700====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_DenormalizeUri_0700 catch err ====>"
+                console.log("=ACTS_DenormalizeUri_0700 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_DenormalizeUri_0700====<end .catch');
                 expect(false).assertTrue();
@@ -4949,7 +4949,7 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.denormalizeUri(
                 123456,
                 (err, data) => {
-                    console.debug("=ACTS_DenormalizeUri_0800 err,data=======>"
+                    console.log("=ACTS_DenormalizeUri_0800 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual("");
                     console.log('ACTS_DenormalizeUri_0800====<end');
@@ -4978,13 +4978,13 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.denormalizeUri(
                 dataAbilityUri3,
             ).then((data) => {
-                console.debug("=ACTS_DenormalizeUri_0900 then data====>"
+                console.log("=ACTS_DenormalizeUri_0900 then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】"));
                 expect(data).assertEqual("");
                 console.log('ACTS_DenormalizeUri_0900====<end');
                 done();
             }).catch(err => {
-                console.debug("=ACTS_DenormalizeUri_0900 catch err ====>"
+                console.log("=ACTS_DenormalizeUri_0900 catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 console.log('ACTS_DenormalizeUri_0900====<end .catch');
                 expect(false).assertTrue();
@@ -5012,7 +5012,7 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper.denormalizeUri(
                 dataAbilityUri3,
                 (err, data) => {
-                    console.debug("=ACTS_DenormalizeUri_1000 err,data=======>"
+                    console.log("=ACTS_DenormalizeUri_1000 err,data=======>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data) + (" 】;"));
                     expect(data).assertEqual("");
                     console.log('ACTS_DenormalizeUri_1000====<end');
@@ -5050,11 +5050,11 @@ describe('ActsDataAbilityHelperTest', function () {
 
             setTimeout(mySetTimeout, gSetTimeout);
             function mySetTimeout() {
-                console.debug('ACTS_OnOff_0100====< mySetTimeout');
+                console.log('ACTS_OnOff_0100====< mySetTimeout');
                 DAHelper.notifyChange(
                     dataAbilityUri,
                     (err) => {
-                        console.debug("=ACTS_OnOff_0100 err=======>"
+                        console.log("=ACTS_OnOff_0100 err=======>"
                             + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                         expect(err.code).assertEqual(0);
                     }
@@ -5081,7 +5081,7 @@ describe('ActsDataAbilityHelperTest', function () {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
             function onAsyncCallback0200(err) {
-                console.debug("=ACTS_OnOff_0200 onAsyncCallback0200=======>");
+                console.log("=ACTS_OnOff_0200 onAsyncCallback0200=======>");
                 expect(false).assertTrue();
                 clearTimeout(currentAlertTimeout);
                 console.log('ACTS_OnOff_0200====<end callback_0200');
@@ -5097,7 +5097,7 @@ describe('ActsDataAbilityHelperTest', function () {
                     dataAbilityUri,
                     (err) => {
                         if (err.code != 0) {
-                            console.debug("=ACTS_OnOff_0200 err=======>"
+                            console.log("=ACTS_OnOff_0200 err=======>"
                                 + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                             expect(false).assertTrue();
                             console.log('ACTS_OnOff_0200====<end err.code');
@@ -5147,7 +5147,7 @@ describe('ActsDataAbilityHelperTest', function () {
             waitDone("onAsyncCallback0303");
         }
         function waitDone(caller) {
-            console.debug("=ACTS_OnOff_0300 caller ====>" + caller);
+            console.log("=ACTS_OnOff_0300 caller ====>" + caller);
             if (flagCallback01 == 1 && flagCallback02 == 1 && flagCallback03 == 1) {
                 clearTimeout(currentAlertTimeout);
                 DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback0301);
@@ -5157,13 +5157,13 @@ describe('ActsDataAbilityHelperTest', function () {
                 done();
             } else if (caller == "notifyChange") {
                 currentAlertTimeout = setTimeout(() => {
-                    console.debug('ACTS_OnOff_0300====<setTimeout false done()');
+                    console.log('ACTS_OnOff_0300====<setTimeout false done()');
                     expect(false).assertTrue();
                     console.log('ACTS_OnOff_0300====<end setTimeout');
                     done();
                 }, gSetTimeout);
             } else {
-                console.debug("=ACTS_OnOff_0300 flagCallback010203 ====>"
+                console.log("=ACTS_OnOff_0300 flagCallback010203 ====>"
                     + flagCallback01 + flagCallback02 + flagCallback03);
             }
         }
@@ -5211,7 +5211,7 @@ describe('ActsDataAbilityHelperTest', function () {
         }
         function onAsyncCallback0402(err) {
             flagCallback02++;
-            console.debug("=ACTS_OnOff_0400 flagCallback02 ====>"
+            console.log("=ACTS_OnOff_0400 flagCallback02 ====>"
                 + ("json flagCallback02【") + JSON.stringify(flagCallback02) + (" 】") + " , " + flagCallback02);
             expect(false).assertTrue();
             clearTimeout(currentAlertTimeout);
@@ -5225,7 +5225,7 @@ describe('ActsDataAbilityHelperTest', function () {
             done()
         }
         function waitDone(caller) {
-            console.debug("=ACTS_OnOff_0400 caller ====>" + caller);
+            console.log("=ACTS_OnOff_0400 caller ====>" + caller);
             if (flagCallback01 == 0 && flagCallback02 == 0 && flagCallback03 == 0) {
                 expect("notifyChange").assertEqual(caller);
                 done()
@@ -5267,7 +5267,7 @@ describe('ActsDataAbilityHelperTest', function () {
         console.log('ACTS_OnOff_0500====<begin');
         var currentAlertTimeout;
         function onAsyncCallback0501(err) {
-            console.debug("=ACTS_OnOff_0500 err ====>"
+            console.log("=ACTS_OnOff_0500 err ====>"
                 + ("json err【") + JSON.stringify(err) + (" 】") + " , " + err);
             expect(false).assertTrue();
             clearTimeout(currentAlertTimeout);
@@ -5275,7 +5275,7 @@ describe('ActsDataAbilityHelperTest', function () {
             done();
         }
         function onAsyncCallback0502(err) {
-            console.debug("=ACTS_OnOff_0500 err ====>"
+            console.log("=ACTS_OnOff_0500 err ====>"
                 + ("json err【") + JSON.stringify(err) + (" 】") + " , " + err);
             expect(false).assertTrue();
             clearTimeout(currentAlertTimeout);
@@ -5283,7 +5283,7 @@ describe('ActsDataAbilityHelperTest', function () {
             done();
         }
         function onAsyncCallback0503(err) {
-            console.debug("=ACTS_OnOff_0500 err ====>"
+            console.log("=ACTS_OnOff_0500 err ====>"
                 + ("json err") + JSON.stringify(err) + (" 】") + " , " + err);
             expect(false).assertTrue();
             clearTimeout(currentAlertTimeout);
@@ -5313,7 +5313,7 @@ describe('ActsDataAbilityHelperTest', function () {
                         dataAbilityUri,
                         (err) => {
                             if (err.code != 0) {
-                                console.debug("=ACTS_OnOff_0500 err=======>"
+                                console.log("=ACTS_OnOff_0500 err=======>"
                                     + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                                 expect(false).assertTrue();
                                 clearTimeout(currentAlertTimeout);
@@ -5324,7 +5324,7 @@ describe('ActsDataAbilityHelperTest', function () {
                                 done();
                             } else {
                                 currentAlertTimeout = setTimeout(() => {
-                                    console.debug('ACTS_OnOff_0500====<setTimeout done()');
+                                    console.log('ACTS_OnOff_0500====<setTimeout done()');
                                     console.log('ACTS_OnOff_0500====<end');
                                     done();
                                 }, gSetTimeout);
@@ -5364,14 +5364,14 @@ describe('ActsDataAbilityHelperTest', function () {
             DAHelper2.on("dataChange", dataAbilityUri2, onAsyncCallback0600);
 
             function waitDone(caller) {
-                console.debug("=ACTS_OnOff_0600 caller ====>" + caller);
+                console.log("=ACTS_OnOff_0600 caller ====>" + caller);
                 if (flagCallback01 == 2) {
                     DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback0600);
                     DAHelper2.off("dataChange", dataAbilityUri2, onAsyncCallback0600);
                     console.log('ACTS_OnOff_0600====<end');
                     done();
                 } else {
-                    console.debug("=ACTS_OnOff_0600 flagCallback01 ====>" + flagCallback01);
+                    console.log("=ACTS_OnOff_0600 flagCallback01 ====>" + flagCallback01);
                 }
             }
 
@@ -5381,7 +5381,7 @@ describe('ActsDataAbilityHelperTest', function () {
                     dataAbilityUri,
                     (err) => {
                         if (err.code != 0) {
-                            console.debug("=ACTS_OnOff_0600 err=======>"
+                            console.log("=ACTS_OnOff_0600 err=======>"
                                 + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                             expect(false).assertTrue();
                             DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback0600);
@@ -5393,7 +5393,7 @@ describe('ActsDataAbilityHelperTest', function () {
                                 dataAbilityUri2,
                                 (err) => {
                                     if (err.code != 0) {
-                                        console.debug("=ACTS_OnOff_0600 err=======>"
+                                        console.log("=ACTS_OnOff_0600 err=======>"
                                             + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                                         expect(false).assertTrue();
                                         DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback0600);
@@ -5447,7 +5447,7 @@ describe('ActsDataAbilityHelperTest', function () {
                     dataAbilityUri,
                     (err) => {
                         if (err.code != 0) {
-                            console.debug("=ACTS_OnOff_0700 err=======>"
+                            console.log("=ACTS_OnOff_0700 err=======>"
                                 + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                             expect(false).assertTrue();
                             DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback0700);
@@ -5458,7 +5458,7 @@ describe('ActsDataAbilityHelperTest', function () {
                             DAHelper2.notifyChange(
                                 dataAbilityUri2,
                                 (err) => {
-                                    console.debug("=ACTS_OnOff_0700 err=======>"
+                                    console.log("=ACTS_OnOff_0700 err=======>"
                                         + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                                     expect(err.code).assertEqual(0);
                                     done();
@@ -5540,14 +5540,14 @@ describe('ActsDataAbilityHelperTest', function () {
                     dataAbilityUri,
                     (err) => {
                         if (err.code != 0) {
-                            console.debug("=ACTS_OnOff_0900 err=======>"
+                            console.log("=ACTS_OnOff_0900 err=======>"
                                 + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                             expect(false).assertTrue();
                             console.log('ACTS_OnOff_0900====<end err.code != 0');
                             done();
                         } else {
                             currentAlertTimeout = setTimeout(() => {
-                                console.debug('ACTS_OnOff_0900====< else true');
+                                console.log('ACTS_OnOff_0900====< else true');
                                 expect(false).assertTrue();
                                 console.log('ACTS_OnOff_0900====<end steTimeout');
                                 done();
@@ -5615,7 +5615,7 @@ describe('ActsDataAbilityHelperTest', function () {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
             function onAsyncCallback1100(err) {
-                console.debug("=ACTS_OnOff_1100 onAsyncCallback1100=======>");
+                console.log("=ACTS_OnOff_1100 onAsyncCallback1100=======>");
                 expect(err.code).assertEqual(0);
                 clearTimeout(currentAlertTimeout);
                 DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1100);
@@ -5632,14 +5632,14 @@ describe('ActsDataAbilityHelperTest', function () {
                     dataAbilityUri,
                     (err) => {
                         if (err.code != 0) {
-                            console.debug("=ACTS_OnOff_1100 err=======>"
+                            console.log("=ACTS_OnOff_1100 err=======>"
                                 + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                             expect(false).assertTrue();
                             console.log('ACTS_OnOff_1100====<end err.code');
                             done();
                         } else {
                             currentAlertTimeout = setTimeout(() => {
-                                console.debug('ACTS_OnOff_1100====<setTimeout done()');
+                                console.log('ACTS_OnOff_1100====<setTimeout done()');
                                 expect(false).assertTrue();
                                 console.log('ACTS_OnOff_1100====<end setTimeout');
                                 done();
@@ -5667,7 +5667,7 @@ describe('ActsDataAbilityHelperTest', function () {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
             function onAsyncCallback1200(err) {
-                console.debug("=ACTS_OnOff_1200 onAsyncCallback1200=======>");
+                console.log("=ACTS_OnOff_1200 onAsyncCallback1200=======>");
                 expect(false).assertTrue();
                 clearTimeout(currentAlertTimeout);
                 console.log('ACTS_OnOff_1200====<end');
@@ -5682,14 +5682,14 @@ describe('ActsDataAbilityHelperTest', function () {
                     undefined,
                     (err) => {
                         if (err.code != 0) {
-                            console.debug("=ACTS_OnOff_1200 err=======>"
+                            console.log("=ACTS_OnOff_1200 err=======>"
                                 + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                             DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1200);
                             console.log('ACTS_OnOff_1200====<end err.code');
                             done();
                         } else {
                             currentAlertTimeout = setTimeout(() => {
-                                console.debug('ACTS_OnOff_1200====<setTimeout done()');
+                                console.log('ACTS_OnOff_1200====<setTimeout done()');
                                 expect(false).assertTrue();
                                 console.log('ACTS_OnOff_1200====<end setTimeout');
                                 done();
@@ -5748,7 +5748,7 @@ describe('ActsDataAbilityHelperTest', function () {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
             function onAsyncCallback1400(err) {
-                console.debug("=ACTS_OnOff_1400 onAsyncCallback1400=======>");
+                console.log("=ACTS_OnOff_1400 onAsyncCallback1400=======>");
                 expect(err.code).assertEqual(0);
                 DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1400);
                 console.log('ACTS_OnOff_1400====<end');
@@ -5763,7 +5763,7 @@ describe('ActsDataAbilityHelperTest', function () {
                 DAHelper.notifyChange(
                     dataAbilityUri,
                     (err) => {
-                        console.debug("=ACTS_OnOff_1400 err=======>"
+                        console.log("=ACTS_OnOff_1400 err=======>"
                             + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                     }
                 );
@@ -5787,7 +5787,7 @@ describe('ActsDataAbilityHelperTest', function () {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
             function onAsyncCallback1500(err) {
-                console.debug("=ACTS_OnOff_1500 onAsyncCallback1500=======>");
+                console.log("=ACTS_OnOff_1500 onAsyncCallback1500=======>");
                 expect(false).assertTrue();
             }
             DAHelper.on(undefined, dataAbilityUri, onAsyncCallback1500);
@@ -5799,7 +5799,7 @@ describe('ActsDataAbilityHelperTest', function () {
                     (err) => {
                         expect(err.code).assertEqual(0);
                         currentAlertTimeout = setTimeout(() => {
-                            console.debug('ACTS_OnOff_1500====<setTimeout done()');
+                            console.log('ACTS_OnOff_1500====<setTimeout done()');
                             console.log('ACTS_OnOff_1500====<end');
                             done();
                         }, gSetTimeout);
@@ -5825,7 +5825,7 @@ describe('ActsDataAbilityHelperTest', function () {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
             function onAsyncCallback1600(err) {
-                console.debug("=ACTS_OnOff_1600 onAsyncCallback1600=======>");
+                console.log("=ACTS_OnOff_1600 onAsyncCallback1600=======>");
                 expect(err.code).assertEqual(0);
                 clearTimeout(currentAlertTimeout);
                 DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1600);
@@ -5842,14 +5842,14 @@ describe('ActsDataAbilityHelperTest', function () {
                     dataAbilityUri,
                     (err) => {
                         if (err.code != 0) {
-                            console.debug("=ACTS_OnOff_1600 err=======>"
+                            console.log("=ACTS_OnOff_1600 err=======>"
                                 + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                             expect(false).assertTrue();
                             console.log('ACTS_OnOff_1600====<end err.code');
                             done();
                         } else {
                             currentAlertTimeout = setTimeout(() => {
-                                console.debug('ACTS_OnOff_1600====<setTimeout done()');
+                                console.log('ACTS_OnOff_1600====<setTimeout done()');
                                 expect(false).assertTrue();
                                 console.log('ACTS_OnOff_1600====<end setTimeout');
                                 done();
@@ -5889,12 +5889,12 @@ describe('ActsDataAbilityHelperTest', function () {
 
             setTimeout(mySetTimeout, gSetTimeout);
             function mySetTimeout() {
-                console.debug('ACTS_OnOff_1700====< mySetTimeout');
+                console.log('ACTS_OnOff_1700====< mySetTimeout');
                 DAHelper.notifyChange(
                     dataAbilityUri,
                     (err) => {
                         if (err.code != 0) {
-                            console.debug("=ACTS_OnOff_1700 err=======>"
+                            console.log("=ACTS_OnOff_1700 err=======>"
                                 + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                             expect(false).assertTrue();
                             DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1700);
@@ -5933,7 +5933,7 @@ describe('ActsDataAbilityHelperTest', function () {
             var currentAlertTimeout;
             expect(typeof (DAHelper)).assertEqual("object");
             function onAsyncCallback1800(err) {
-                console.debug("=ACTS_OnOff_1800 onAsyncCallback1800=======>");
+                console.log("=ACTS_OnOff_1800 onAsyncCallback1800=======>");
                 expect(err.code).assertEqual(0);
                 clearTimeout(currentAlertTimeout);
                 DAHelper.off("dataChange", dataAbilityUri, onAsyncCallback1800);
@@ -5950,14 +5950,14 @@ describe('ActsDataAbilityHelperTest', function () {
                     dataAbilityUri,
                     (err) => {
                         if (err.code != 0) {
-                            console.debug("=ACTS_OnOff_1800 err=======>"
+                            console.log("=ACTS_OnOff_1800 err=======>"
                                 + ("err【") + JSON.stringify(err) + (" 】") + " , " + err);
                             expect(false).assertTrue();
                             console.log('ACTS_OnOff_1800====<end err.code');
                             done();
                         } else {
                             currentAlertTimeout = setTimeout(() => {
-                                console.debug('ACTS_OnOff_1800====<setTimeout done()');
+                                console.log('ACTS_OnOff_1800====<setTimeout done()');
                                 console.log('ACTS_OnOff_1800====<end (err)');
                                 done();
                             }, gSetTimeout);
@@ -5979,7 +5979,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_Insert_0100', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Insert_0100====<begin');
+        console.log('ACTS_ExecuteBatch_Insert_0100====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             DAHelper.executeBatch(dataAbilityUri,
@@ -5995,23 +5995,23 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((data) => {
-                console.debug("=ACTS_ExecuteBatch_Insert_0100 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_Insert_0100 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】") + " , " + data.length);
                 expect(data.length).assertEqual(0);
-                console.debug('ACTS_ExecuteBatch_Insert_0100====<end');
+                console.log('ACTS_ExecuteBatch_Insert_0100====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_Insert_0100 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_Insert_0100 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 ") + " , " + err);
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_Insert_0100====<end .catch');
+                console.log('ACTS_ExecuteBatch_Insert_0100====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_Insert_0100 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Insert_0100====<end catch');
+            console.log('ACTS_ExecuteBatch_Insert_0100====<end catch');
             done();
         }
     })
@@ -6022,7 +6022,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_Insert_0200', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Insert_0200====<begin');
+        console.log('ACTS_ExecuteBatch_Insert_0200====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             DAHelper.executeBatch(dataAbilityUri,
@@ -6047,23 +6047,23 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((data) => {
-                console.debug("=ACTS_ExecuteBatch_Insert_0200 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_Insert_0200 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】") + " , " + data.length);
                 expect(data.length).assertEqual(0);
-                console.debug('ACTS_ExecuteBatch_Insert_0200====<end');
+                console.log('ACTS_ExecuteBatch_Insert_0200====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_Insert_0200 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_Insert_0200 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 ") + " , " + err);
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_Insert_0200====<end .catch');
+                console.log('ACTS_ExecuteBatch_Insert_0200====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_Insert_0200 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Insert_0200====<end catch');
+            console.log('ACTS_ExecuteBatch_Insert_0200====<end catch');
             done();
         }
     })
@@ -6074,7 +6074,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_Insert_0300', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Insert_0300====<begin');
+        console.log('ACTS_ExecuteBatch_Insert_0300====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             DAHelper.executeBatch(dataAbilityUri,
@@ -6099,23 +6099,23 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((data) => {
-                console.debug("=ACTS_ExecuteBatch_Insert_0300 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_Insert_0300 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】") + " , " + data.length);
                 expect(data.length).assertEqual(0);
-                console.debug('ACTS_ExecuteBatch_Insert_0300====<end');
+                console.log('ACTS_ExecuteBatch_Insert_0300====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_Insert_0300 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_Insert_0300 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 ") + " , " + err);
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_Insert_0300====<end .catch');
+                console.log('ACTS_ExecuteBatch_Insert_0300====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_Insert_0300 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Insert_0300====<end catch');
+            console.log('ACTS_ExecuteBatch_Insert_0300====<end catch');
             done();
         }
     })
@@ -6126,7 +6126,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_Insert_0400', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Insert_0400====<begin');
+        console.log('ACTS_ExecuteBatch_Insert_0400====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             DAHelper.executeBatch(dataAbilityUri,
@@ -6143,12 +6143,12 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, data) => {
-                    console.debug("=ACTS_ExecuteBatch_Insert_0400 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_Insert_0400 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data)
                         + (" 】;") + data.length);
                     expect(err.code).assertEqual(0);
                     expect(data.length).assertEqual(0);
-                    console.debug('ACTS_ExecuteBatch_Insert_0400====<end');
+                    console.log('ACTS_ExecuteBatch_Insert_0400====<end');
                     done();
                 }
             );
@@ -6156,7 +6156,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_Insert_0400 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Insert_0400====<end catch');
+            console.log('ACTS_ExecuteBatch_Insert_0400====<end catch');
             done();
         }
     })
@@ -6167,7 +6167,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_Insert_0500', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Insert_0500====<begin');
+        console.log('ACTS_ExecuteBatch_Insert_0500====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             DAHelper.executeBatch(dataAbilityUri,
@@ -6192,12 +6192,12 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, data) => {
-                    console.debug("=ACTS_ExecuteBatch_Insert_0500 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_Insert_0500 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data)
                         + (" 】;") + data.length);
                     expect(err.code).assertEqual(0);
                     expect(data.length).assertEqual(0);
-                    console.debug('ACTS_ExecuteBatch_Insert_0500====<end');
+                    console.log('ACTS_ExecuteBatch_Insert_0500====<end');
                     done();
                 }
             );
@@ -6205,7 +6205,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_Insert_0500 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Insert_0500====<end catch');
+            console.log('ACTS_ExecuteBatch_Insert_0500====<end catch');
             done();
         }
     })
@@ -6216,7 +6216,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_Insert_0600', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Insert_0600====<begin');
+        console.log('ACTS_ExecuteBatch_Insert_0600====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             DAHelper.executeBatch(dataAbilityUri,
@@ -6241,11 +6241,11 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, data) => {
-                    console.debug("=ACTS_ExecuteBatch_Insert_0600 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_Insert_0600 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data)
                         + (" 】;") + data.length);
                     expect(data.length).assertEqual(0);
-                    console.debug('ACTS_ExecuteBatch_Insert_0600====<end');
+                    console.log('ACTS_ExecuteBatch_Insert_0600====<end');
                     done();
                 }
             );
@@ -6253,7 +6253,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_Insert_0600 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Insert_0600====<end catch');
+            console.log('ACTS_ExecuteBatch_Insert_0600====<end catch');
             done();
         }
     })
@@ -6264,7 +6264,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_Update_0100', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Update_0100====<begin');
+        console.log('ACTS_ExecuteBatch_Update_0100====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -6286,32 +6286,32 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((DataAbilityResult) => {
-                console.debug("=ACTS_ExecuteBatch_Update_0100 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_Update_0100 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(DataAbilityResult)
                     + (" 】") + DataAbilityResult.length);
                 expect(DataAbilityResult.length).assertEqual(1);
                 for (var i = 0; i < DataAbilityResult.length; i++) {
-                    console.debug('=ACTS_ExecuteBatch_Update_0100 for data[' + i + '].uri ====>: '
+                    console.log('=ACTS_ExecuteBatch_Update_0100 for data[' + i + '].uri ====>: '
                         + DataAbilityResult[i].uri)
                     expect(DataAbilityResult[i].uri).assertEqual(dataAbilityUri);
-                    console.debug('=ACTS_ExecuteBatch_Update_0100 for data[' + i + '].count ====>: '
+                    console.log('=ACTS_ExecuteBatch_Update_0100 for data[' + i + '].count ====>: '
                         + DataAbilityResult[i].count)
                     expect(DataAbilityResult[i].count).assertEqual(1);
                 }
-                console.debug('ACTS_ExecuteBatch_Update_0100====<end');
+                console.log('ACTS_ExecuteBatch_Update_0100====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_Update_0100 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_Update_0100 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_Update_0100====<end .catch');
+                console.log('ACTS_ExecuteBatch_Update_0100====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_Update_0100 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Update_0100====<end catch');
+            console.log('ACTS_ExecuteBatch_Update_0100====<end catch');
             done();
         }
     })
@@ -6322,7 +6322,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_Update_0200', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Update_0200====<begin');
+        console.log('ACTS_ExecuteBatch_Update_0200====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -6353,31 +6353,31 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((DataAbilityResult) => {
-                console.debug("=ACTS_ExecuteBatch_Update_0200 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_Update_0200 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(DataAbilityResult) + (" 】") + DataAbilityResult.length);
                 expect(DataAbilityResult.length).assertEqual(2);
                 for (var i = 0; i < DataAbilityResult.length; i++) {
-                    console.debug('=ACTS_ExecuteBatch_Update_0200 for data[' + i + '].uri ====>: '
+                    console.log('=ACTS_ExecuteBatch_Update_0200 for data[' + i + '].uri ====>: '
                         + DataAbilityResult[i].uri)
                     expect(DataAbilityResult[i].uri).assertEqual(dataAbilityUri);
-                    console.debug('=ACTS_ExecuteBatch_Update_0200 for data[' + i + '].count ====>: '
+                    console.log('=ACTS_ExecuteBatch_Update_0200 for data[' + i + '].count ====>: '
                         + DataAbilityResult[i].count)
                     expect(DataAbilityResult[i].count).assertEqual(1);
                 }
-                console.debug('ACTS_ExecuteBatch_Update_0200====<end');
+                console.log('ACTS_ExecuteBatch_Update_0200====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_Update_0200 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_Update_0200 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_Update_0200====<end .catch');
+                console.log('ACTS_ExecuteBatch_Update_0200====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_Update_0200 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Update_0200====<end catch');
+            console.log('ACTS_ExecuteBatch_Update_0200====<end catch');
             done();
         }
     })
@@ -6388,7 +6388,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_Update_0300', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Update_0300====<begin');
+        console.log('ACTS_ExecuteBatch_Update_0300====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -6419,32 +6419,32 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((DataAbilityResult) => {
-                console.debug("=ACTS_ExecuteBatch_Update_0300 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_Update_0300 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(DataAbilityResult) + (" 】")
                     + DataAbilityResult.length);
                 expect(DataAbilityResult.length).assertEqual(1);
                 for (var i = 0; i < DataAbilityResult.length; i++) {
-                    console.debug('=ACTS_ExecuteBatch_Update_0300 for data[' + i + '].uri ====>: '
+                    console.log('=ACTS_ExecuteBatch_Update_0300 for data[' + i + '].uri ====>: '
                         + DataAbilityResult[i].uri)
                     expect(DataAbilityResult[i].uri).assertEqual(dataAbilityUri);
-                    console.debug('=ACTS_ExecuteBatch_Update_0300 for data[' + i + '].count ====>: '
+                    console.log('=ACTS_ExecuteBatch_Update_0300 for data[' + i + '].count ====>: '
                         + DataAbilityResult[i].count)
                     expect(DataAbilityResult[i].count).assertEqual(1);
                 }
-                console.debug('ACTS_ExecuteBatch_Update_0300====<end');
+                console.log('ACTS_ExecuteBatch_Update_0300====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_Update_0300 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_Update_0300 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_Update_0300====<end .catch');
+                console.log('ACTS_ExecuteBatch_Update_0300====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_Update_0300 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Update_0300====<end catch');
+            console.log('ACTS_ExecuteBatch_Update_0300====<end catch');
             done();
         }
     })
@@ -6455,7 +6455,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_Update_0400', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Update_0400====<begin');
+        console.log('ACTS_ExecuteBatch_Update_0400====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -6478,19 +6478,19 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, DataAbilityResult) => {
-                    console.debug("=ACTS_ExecuteBatch_Update_0400 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_Update_0400 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【")
                         + JSON.stringify(DataAbilityResult) + (" 】;") + DataAbilityResult.length);
                     expect(DataAbilityResult.length).assertEqual(1);
                     for (var i = 0; i < DataAbilityResult.length; i++) {
-                        console.debug('=ACTS_ExecuteBatch_Update_0400 for data[' + i + '].uri ====>: '
+                        console.log('=ACTS_ExecuteBatch_Update_0400 for data[' + i + '].uri ====>: '
                             + DataAbilityResult[i].uri)
                         expect(DataAbilityResult[i].uri).assertEqual(dataAbilityUri);
-                        console.debug('=ACTS_ExecuteBatch_Update_0400 for data[' + i + '].count ====>: '
+                        console.log('=ACTS_ExecuteBatch_Update_0400 for data[' + i + '].count ====>: '
                             + DataAbilityResult[i].count)
                         expect(DataAbilityResult[i].count).assertEqual(1);
                     }
-                    console.debug('ACTS_ExecuteBatch_Update_0400====<end');
+                    console.log('ACTS_ExecuteBatch_Update_0400====<end');
                     done();
                 }
             );
@@ -6498,7 +6498,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_Update_0400 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Update_0400====<end catch');
+            console.log('ACTS_ExecuteBatch_Update_0400====<end catch');
             done();
         }
     })
@@ -6509,7 +6509,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_Update_0500', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Update_0500====<begin');
+        console.log('ACTS_ExecuteBatch_Update_0500====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -6540,19 +6540,19 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, DataAbilityResult) => {
-                    console.debug("=ACTS_ExecuteBatch_Update_0500 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_Update_0500 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(DataAbilityResult)
                         + (" 】;") + DataAbilityResult.length);
                     expect(DataAbilityResult.length).assertEqual(2);
                     for (var i = 0; i < DataAbilityResult.length; i++) {
-                        console.debug('=ACTS_ExecuteBatch_Update_0500 for data[' + i + '].uri ====>: '
+                        console.log('=ACTS_ExecuteBatch_Update_0500 for data[' + i + '].uri ====>: '
                             + DataAbilityResult[i].uri)
                         expect(DataAbilityResult[i].uri).assertEqual(dataAbilityUri);
-                        console.debug('=ACTS_ExecuteBatch_Update_0500 for data[' + i + '].count ====>: '
+                        console.log('=ACTS_ExecuteBatch_Update_0500 for data[' + i + '].count ====>: '
                             + DataAbilityResult[i].count)
                         expect(DataAbilityResult[i].count).assertEqual(1);
                     }
-                    console.debug('ACTS_ExecuteBatch_Update_0500====<end');
+                    console.log('ACTS_ExecuteBatch_Update_0500====<end');
                     done();
                 }
             );
@@ -6560,7 +6560,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_Update_0500 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Update_0500====<end catch');
+            console.log('ACTS_ExecuteBatch_Update_0500====<end catch');
             done();
         }
     })
@@ -6571,7 +6571,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_Update_0600', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Update_0600====<begin');
+        console.log('ACTS_ExecuteBatch_Update_0600====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -6602,19 +6602,19 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, DataAbilityResult) => {
-                    console.debug("=ACTS_ExecuteBatch_Update_0600 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_Update_0600 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(DataAbilityResult)
                         + (" 】;") + DataAbilityResult.length);
                     expect(DataAbilityResult.length).assertEqual(1);
                     for (var i = 0; i < DataAbilityResult.length; i++) {
-                        console.debug('=ACTS_ExecuteBatch_Update_0600 for data[' + i + '].uri ====>: '
+                        console.log('=ACTS_ExecuteBatch_Update_0600 for data[' + i + '].uri ====>: '
                             + DataAbilityResult[i].uri)
                         expect(DataAbilityResult[i].uri).assertEqual(dataAbilityUri);
-                        console.debug('=ACTS_ExecuteBatch_Update_0600 for data[' + i + '].count ====>: '
+                        console.log('=ACTS_ExecuteBatch_Update_0600 for data[' + i + '].count ====>: '
                             + DataAbilityResult[i].count)
                         expect(DataAbilityResult[i].count).assertEqual(1);
                     }
-                    console.debug('ACTS_ExecuteBatch_Update_0600====<end');
+                    console.log('ACTS_ExecuteBatch_Update_0600====<end');
                     done();
                 }
             );
@@ -6622,7 +6622,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_Update_0600 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Update_0600====<end catch');
+            console.log('ACTS_ExecuteBatch_Update_0600====<end catch');
             done();
         }
     })
@@ -6633,7 +6633,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_Assert_0100', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Assert_0100====<begin');
+        console.log('ACTS_ExecuteBatch_Assert_0100====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -6655,23 +6655,23 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((data) => {
-                console.debug("=ACTS_ExecuteBatch_Assert_0100 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_Assert_0100 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】") + data.length);
                 expect(data.length).assertEqual(0);
-                console.debug('ACTS_ExecuteBatch_Assert_0100====<end');
+                console.log('ACTS_ExecuteBatch_Assert_0100====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_Assert_0100 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_Assert_0100 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_Assert_0100====<end .catch');
+                console.log('ACTS_ExecuteBatch_Assert_0100====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_Assert_0100 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Assert_0100====<end catch');
+            console.log('ACTS_ExecuteBatch_Assert_0100====<end catch');
             done();
         }
     })
@@ -6682,7 +6682,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_Assert_0200', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Assert_0200====<begin');
+        console.log('ACTS_ExecuteBatch_Assert_0200====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -6713,23 +6713,23 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((data) => {
-                console.debug("=ACTS_ExecuteBatch_Assert_0200 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_Assert_0200 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】") + data.length);
                 expect(data.length).assertEqual(0);
-                console.debug('ACTS_ExecuteBatch_Assert_0200====<end');
+                console.log('ACTS_ExecuteBatch_Assert_0200====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_Assert_0200 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_Assert_0200 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_Assert_0200====<end .catch');
+                console.log('ACTS_ExecuteBatch_Assert_0200====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_Assert_0200 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Assert_0200====<end catch');
+            console.log('ACTS_ExecuteBatch_Assert_0200====<end catch');
             done();
         }
     })
@@ -6740,7 +6740,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_Assert_0300', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Assert_0300====<begin');
+        console.log('ACTS_ExecuteBatch_Assert_0300====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -6771,32 +6771,32 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((DataAbilityResult) => {
-                console.debug("=ACTS_ExecuteBatch_Assert_0300 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_Assert_0300 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(DataAbilityResult) + (" 】")
                     + DataAbilityResult.length);
                 expect(DataAbilityResult.length).assertEqual(1);
                 for (var i = 0; i < DataAbilityResult.length; i++) {
-                    console.debug('=ACTS_ExecuteBatch_Assert_0300 for data[' + i + '].uri ====>: '
+                    console.log('=ACTS_ExecuteBatch_Assert_0300 for data[' + i + '].uri ====>: '
                         + DataAbilityResult[i].uri)
                     expect(DataAbilityResult[i].uri).assertEqual("");
-                    console.debug('=ACTS_ExecuteBatch_Assert_0300 for data[' + i + '].count ====>: '
+                    console.log('=ACTS_ExecuteBatch_Assert_0300 for data[' + i + '].count ====>: '
                         + DataAbilityResult[i].count)
                     expect(DataAbilityResult[i].count).assertEqual(0);
                 }
-                console.debug('ACTS_ExecuteBatch_Assert_0300====<end');
+                console.log('ACTS_ExecuteBatch_Assert_0300====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_Assert_0300 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_Assert_0300 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_Assert_0300====<end .catch');
+                console.log('ACTS_ExecuteBatch_Assert_0300====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_Assert_0300 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Assert_0300====<end catch');
+            console.log('ACTS_ExecuteBatch_Assert_0300====<end catch');
             done();
         }
     })
@@ -6807,7 +6807,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_Assert_0400', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Assert_0400====<begin');
+        console.log('ACTS_ExecuteBatch_Assert_0400====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -6830,11 +6830,11 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, data) => {
-                    console.debug("=ACTS_ExecuteBatch_Assert_0400 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_Assert_0400 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data)
                         + (" 】;") + data.length);
                     expect(data.length).assertEqual(0);
-                    console.debug('ACTS_ExecuteBatch_Assert_0400====<end');
+                    console.log('ACTS_ExecuteBatch_Assert_0400====<end');
                     done();
                 }
             );
@@ -6842,7 +6842,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_Assert_0400 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Assert_0400====<end catch');
+            console.log('ACTS_ExecuteBatch_Assert_0400====<end catch');
             done();
         }
     })
@@ -6853,7 +6853,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_Assert_0500', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Assert_0500====<begin');
+        console.log('ACTS_ExecuteBatch_Assert_0500====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -6884,11 +6884,11 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, data) => {
-                    console.debug("=ACTS_ExecuteBatch_Assert_0500 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_Assert_0500 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data)
                         + (" 】;") + data.length);
                     expect(data.length).assertEqual(0);
-                    console.debug('ACTS_ExecuteBatch_Assert_0500====<end');
+                    console.log('ACTS_ExecuteBatch_Assert_0500====<end');
                     done();
                 }
             );
@@ -6896,7 +6896,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_Assert_0500 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Assert_0500====<end catch');
+            console.log('ACTS_ExecuteBatch_Assert_0500====<end catch');
             done();
         }
     })
@@ -6907,7 +6907,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_Assert_0600', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Assert_0600====<begin');
+        console.log('ACTS_ExecuteBatch_Assert_0600====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -6938,19 +6938,19 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, data) => {
-                    console.debug("=ACTS_ExecuteBatch_Assert_0600 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_Assert_0600 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data)
                         + (" 】;") + data.length);
                     expect(data.length).assertEqual(1);
                     for (var i = 0; i < data.length; i++) {
-                        console.debug('=ACTS_ExecuteBatch_Assert_0600 for data[' + i + '].uri ====>: '
+                        console.log('=ACTS_ExecuteBatch_Assert_0600 for data[' + i + '].uri ====>: '
                             + data[i].uri)
                         expect(data[i].uri).assertEqual("");
-                        console.debug('=ACTS_ExecuteBatch_Assert_0600 for data[' + i + '].count ====>: '
+                        console.log('=ACTS_ExecuteBatch_Assert_0600 for data[' + i + '].count ====>: '
                             + data[i].count)
                         expect(data[i].count).assertEqual(0);
                     }
-                    console.debug('ACTS_ExecuteBatch_Assert_0600====<end');
+                    console.log('ACTS_ExecuteBatch_Assert_0600====<end');
                     done();
                 }
             );
@@ -6958,7 +6958,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_Assert_0600 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Assert_0600====<end catch');
+            console.log('ACTS_ExecuteBatch_Assert_0600====<end catch');
             done();
         }
     })
@@ -6969,7 +6969,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_Delete_0100', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Delete_0100====<begin');
+        console.log('ACTS_ExecuteBatch_Delete_0100====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -6991,31 +6991,31 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((DataAbilityResult) => {
-                console.debug("=ACTS_ExecuteBatch_Delete_0100 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_Delete_0100 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(DataAbilityResult) + (" 】") + DataAbilityResult.length);
                 expect(DataAbilityResult.length).assertEqual(1);
                 for (var i = 0; i < DataAbilityResult.length; i++) {
-                    console.debug('=ACTS_ExecuteBatch_Delete_0100 for data[' + i + '].uri ====>: '
+                    console.log('=ACTS_ExecuteBatch_Delete_0100 for data[' + i + '].uri ====>: '
                         + DataAbilityResult[i].uri)
                     expect(DataAbilityResult[i].uri).assertEqual(dataAbilityUri);
-                    console.debug('=ACTS_ExecuteBatch_Delete_0100 for data[' + i + '].count ====>: '
+                    console.log('=ACTS_ExecuteBatch_Delete_0100 for data[' + i + '].count ====>: '
                         + DataAbilityResult[i].count)
                     expect(DataAbilityResult[i].count).assertEqual(1);
                 }
-                console.debug('ACTS_ExecuteBatch_Delete_0100====<end');
+                console.log('ACTS_ExecuteBatch_Delete_0100====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_Delete_0100 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_Delete_0100 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_Delete_0100====<end .catch');
+                console.log('ACTS_ExecuteBatch_Delete_0100====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_Delete_0100 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Delete_0100====<end catch');
+            console.log('ACTS_ExecuteBatch_Delete_0100====<end catch');
             done();
         }
     })
@@ -7026,7 +7026,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_Delete_0200', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Delete_0200====<begin');
+        console.log('ACTS_ExecuteBatch_Delete_0200====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -7057,31 +7057,31 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((DataAbilityResult) => {
-                console.debug("=ACTS_ExecuteBatch_Delete_0200 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_Delete_0200 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(DataAbilityResult) + (" 】") + DataAbilityResult.length);
                 expect(DataAbilityResult.length).assertEqual(2);
                 for (var i = 0; i < DataAbilityResult.length; i++) {
-                    console.debug('=ACTS_ExecuteBatch_Delete_0200 for data[' + i + '].uri ====>: '
+                    console.log('=ACTS_ExecuteBatch_Delete_0200 for data[' + i + '].uri ====>: '
                         + DataAbilityResult[i].uri)
                     expect(DataAbilityResult[i].uri).assertEqual(dataAbilityUri);
-                    console.debug('=ACTS_ExecuteBatch_Delete_0200 for data[' + i + '].count ====>: '
+                    console.log('=ACTS_ExecuteBatch_Delete_0200 for data[' + i + '].count ====>: '
                         + DataAbilityResult[i].count)
                     expect(DataAbilityResult[i].count).assertEqual(1);
                 }
-                console.debug('ACTS_ExecuteBatch_Delete_0200====<end');
+                console.log('ACTS_ExecuteBatch_Delete_0200====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_Delete_0200 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_Delete_0200 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_Delete_0200====<end .catch');
+                console.log('ACTS_ExecuteBatch_Delete_0200====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_Delete_0200 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Delete_0200====<end catch');
+            console.log('ACTS_ExecuteBatch_Delete_0200====<end catch');
             done();
         }
     })
@@ -7092,7 +7092,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_Delete_0300', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Delete_0300====<begin');
+        console.log('ACTS_ExecuteBatch_Delete_0300====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -7123,31 +7123,31 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((DataAbilityResult) => {
-                console.debug("=ACTS_ExecuteBatch_Delete_0300 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_Delete_0300 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(DataAbilityResult) + (" 】") + DataAbilityResult.length);
                 expect(DataAbilityResult.length).assertEqual(1);
                 for (var i = 0; i < DataAbilityResult.length; i++) {
-                    console.debug('=ACTS_ExecuteBatch_Delete_0300 for data[' + i + '].uri ====>: '
+                    console.log('=ACTS_ExecuteBatch_Delete_0300 for data[' + i + '].uri ====>: '
                         + DataAbilityResult[i].uri)
                     expect(DataAbilityResult[i].uri).assertEqual(dataAbilityUri);
-                    console.debug('=ACTS_ExecuteBatch_Delete_0300 for data[' + i + '].count ====>: '
+                    console.log('=ACTS_ExecuteBatch_Delete_0300 for data[' + i + '].count ====>: '
                         + DataAbilityResult[i].count)
                     expect(DataAbilityResult[i].count).assertEqual(1);
                 }
-                console.debug('ACTS_ExecuteBatch_Delete_0300====<end');
+                console.log('ACTS_ExecuteBatch_Delete_0300====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_Delete_0300 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_Delete_0300 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_Delete_0300====<end .catch');
+                console.log('ACTS_ExecuteBatch_Delete_0300====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_Delete_0300 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Delete_0300====<end catch');
+            console.log('ACTS_ExecuteBatch_Delete_0300====<end catch');
             done();
         }
     })
@@ -7158,7 +7158,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_Delete_0400', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Delete_0400====<begin');
+        console.log('ACTS_ExecuteBatch_Delete_0400====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -7181,19 +7181,19 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, DataAbilityResult) => {
-                    console.debug("=ACTS_ExecuteBatch_Delete_0400 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_Delete_0400 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(DataAbilityResult)
                         + (" 】;") + DataAbilityResult.length);
                     expect(DataAbilityResult.length).assertEqual(1);
                     for (var i = 0; i < DataAbilityResult.length; i++) {
-                        console.debug('=ACTS_ExecuteBatch_Delete_0400 for data[' + i + '].uri ====>: '
+                        console.log('=ACTS_ExecuteBatch_Delete_0400 for data[' + i + '].uri ====>: '
                             + DataAbilityResult[i].uri)
                         expect(DataAbilityResult[i].uri).assertEqual(dataAbilityUri);
-                        console.debug('=ACTS_ExecuteBatch_Delete_0400 for data[' + i + '].count ====>: '
+                        console.log('=ACTS_ExecuteBatch_Delete_0400 for data[' + i + '].count ====>: '
                             + DataAbilityResult[i].count)
                         expect(DataAbilityResult[i].count).assertEqual(1);
                     }
-                    console.debug('ACTS_ExecuteBatch_Delete_0400====<end');
+                    console.log('ACTS_ExecuteBatch_Delete_0400====<end');
                     done();
                 }
             );
@@ -7201,7 +7201,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_Delete_0400 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Delete_0400====<end catch');
+            console.log('ACTS_ExecuteBatch_Delete_0400====<end catch');
             done();
         }
     })
@@ -7212,7 +7212,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_Delete_0500', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Delete_0500====<begin');
+        console.log('ACTS_ExecuteBatch_Delete_0500====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -7243,19 +7243,19 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, DataAbilityResult) => {
-                    console.debug("=ACTS_ExecuteBatch_Delete_0500 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_Delete_0500 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(DataAbilityResult)
                         + (" 】;") + DataAbilityResult.length);
                     expect(DataAbilityResult.length).assertEqual(2);
                     for (var i = 0; i < DataAbilityResult.length; i++) {
-                        console.debug('=ACTS_ExecuteBatch_Delete_0500 for data[' + i + '].uri ====>: '
+                        console.log('=ACTS_ExecuteBatch_Delete_0500 for data[' + i + '].uri ====>: '
                             + DataAbilityResult[i].uri)
                         expect(DataAbilityResult[i].uri).assertEqual(dataAbilityUri);
-                        console.debug('=ACTS_ExecuteBatch_Delete_0500 for data[' + i + '].count ====>: '
+                        console.log('=ACTS_ExecuteBatch_Delete_0500 for data[' + i + '].count ====>: '
                             + DataAbilityResult[i].count)
                         expect(DataAbilityResult[i].count).assertEqual(1);
                     }
-                    console.debug('ACTS_ExecuteBatch_Delete_0500====<end');
+                    console.log('ACTS_ExecuteBatch_Delete_0500====<end');
                     done();
                 }
             );
@@ -7263,7 +7263,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_Delete_0500 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Delete_0500====<end catch');
+            console.log('ACTS_ExecuteBatch_Delete_0500====<end catch');
             done();
         }
     })
@@ -7274,7 +7274,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_Delete_0600', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_Delete_0600====<begin');
+        console.log('ACTS_ExecuteBatch_Delete_0600====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -7305,19 +7305,19 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, DataAbilityResult) => {
-                    console.debug("=ACTS_ExecuteBatch_Delete_0600 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_Delete_0600 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(DataAbilityResult)
                         + (" 】;") + DataAbilityResult.length);
                     expect(DataAbilityResult.length).assertEqual(1);
                     for (var i = 0; i < DataAbilityResult.length; i++) {
-                        console.debug('=ACTS_ExecuteBatch_Delete_0600 for data[' + i + '].uri ====>: '
+                        console.log('=ACTS_ExecuteBatch_Delete_0600 for data[' + i + '].uri ====>: '
                             + DataAbilityResult[i].uri)
                         expect(DataAbilityResult[i].uri).assertEqual(dataAbilityUri);
-                        console.debug('=ACTS_ExecuteBatch_Delete_0600 for data[' + i + '].count ====>: '
+                        console.log('=ACTS_ExecuteBatch_Delete_0600 for data[' + i + '].count ====>: '
                             + DataAbilityResult[i].count)
                         expect(DataAbilityResult[i].count).assertEqual(1);
                     }
-                    console.debug('ACTS_ExecuteBatch_Delete_0600====<end');
+                    console.log('ACTS_ExecuteBatch_Delete_0600====<end');
                     done();
                 }
             );
@@ -7325,7 +7325,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_Delete_0600 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_Delete_0600====<end catch');
+            console.log('ACTS_ExecuteBatch_Delete_0600====<end catch');
             done();
         }
     })
@@ -7336,7 +7336,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_0100', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_0100====<begin');
+        console.log('ACTS_ExecuteBatch_0100====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -7385,30 +7385,30 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((DataAbilityResult) => {
-                console.debug("=ACTS_ExecuteBatch_0100 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_0100 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(DataAbilityResult) + (" 】") + DataAbilityResult.length);
                 for (var i = 0; i < DataAbilityResult.length; i++) {
-                    console.debug('=ACTS_ExecuteBatch_0100 for data[' + i + '].uri ====>: '
+                    console.log('=ACTS_ExecuteBatch_0100 for data[' + i + '].uri ====>: '
                         + DataAbilityResult[i].uri)
                     expect(DataAbilityResult[i].uri).assertEqual(dataAbilityUri);
-                    console.debug('=ACTS_ExecuteBatch_0100 for data[' + i + '].count ====>: '
+                    console.log('=ACTS_ExecuteBatch_0100 for data[' + i + '].count ====>: '
                         + DataAbilityResult[i].count)
                     expect(DataAbilityResult[i].count).assertEqual(1);
                 }
-                console.debug('ACTS_ExecuteBatch_0100====<end');
+                console.log('ACTS_ExecuteBatch_0100====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_0100 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_0100 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_0100====<end .catch');
+                console.log('ACTS_ExecuteBatch_0100====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_0100 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_0100====<end catch');
+            console.log('ACTS_ExecuteBatch_0100====<end catch');
             done();
         }
     })
@@ -7419,7 +7419,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_0200', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_0200====<begin');
+        console.log('ACTS_ExecuteBatch_0200====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -7468,18 +7468,18 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, DataAbilityResult) => {
-                    console.debug("=ACTS_ExecuteBatch_0200 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_0200 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(DataAbilityResult)
                         + (" 】;") + DataAbilityResult.length);
                     for (var i = 0; i < DataAbilityResult.length; i++) {
-                        console.debug('=ACTS_ExecuteBatch_0200 for data[' + i + '].uri ====>: '
+                        console.log('=ACTS_ExecuteBatch_0200 for data[' + i + '].uri ====>: '
                             + DataAbilityResult[i].uri)
                         expect(DataAbilityResult[i].uri).assertEqual(dataAbilityUri);
-                        console.debug('=ACTS_ExecuteBatch_0200 for data[' + i + '].count ====>: '
+                        console.log('=ACTS_ExecuteBatch_0200 for data[' + i + '].count ====>: '
                             + DataAbilityResult[i].count)
                         expect(DataAbilityResult[i].count).assertEqual(1);
                     }
-                    console.debug('ACTS_ExecuteBatch_0200====<end');
+                    console.log('ACTS_ExecuteBatch_0200====<end');
                     done();
                 }
             );
@@ -7487,7 +7487,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_0200 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_0200====<end catch');
+            console.log('ACTS_ExecuteBatch_0200====<end catch');
             done();
         }
     })
@@ -7498,7 +7498,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_0300', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_0300====<begin');
+        console.log('ACTS_ExecuteBatch_0300====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -7583,12 +7583,12 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((DataAbilityResult) => {
-                console.debug("=ACTS_ExecuteBatch_0300 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_0300 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(DataAbilityResult) + (" 】") + DataAbilityResult.length);
                 for (var i = 0; i < DataAbilityResult.length; i++) {
-                    console.debug('=ACTS_ExecuteBatch_0300 for data[' + i + '].uri ====>: '
+                    console.log('=ACTS_ExecuteBatch_0300 for data[' + i + '].uri ====>: '
                         + DataAbilityResult[i].uri)
-                    console.debug('=ACTS_ExecuteBatch_0300 for data[' + i + '].count ====>: '
+                    console.log('=ACTS_ExecuteBatch_0300 for data[' + i + '].count ====>: '
                         + DataAbilityResult[i].count)
                     if (i == 2) {
                         expect(DataAbilityResult[i].uri).assertEqual("");
@@ -7598,20 +7598,20 @@ describe('ActsDataAbilityHelperTest', function () {
                         expect(DataAbilityResult[i].count).assertEqual(1);
                     }
                 }
-                console.debug('ACTS_ExecuteBatch_0300====<end');
+                console.log('ACTS_ExecuteBatch_0300====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_0300 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_0300 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_0300====<end .catch');
+                console.log('ACTS_ExecuteBatch_0300====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_0300 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_0300====<end catch');
+            console.log('ACTS_ExecuteBatch_0300====<end catch');
             done();
         }
     })
@@ -7622,7 +7622,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_0400', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_0400====<begin');
+        console.log('ACTS_ExecuteBatch_0400====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -7707,13 +7707,13 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, DataAbilityResult) => {
-                    console.debug("=ACTS_ExecuteBatch_0400 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_0400 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(DataAbilityResult)
                         + (" 】;") + DataAbilityResult.length);
                     for (var i = 0; i < DataAbilityResult.length; i++) {
-                        console.debug('=ACTS_ExecuteBatch_0400 for data[' + i + '].uri ====>: '
+                        console.log('=ACTS_ExecuteBatch_0400 for data[' + i + '].uri ====>: '
                             + DataAbilityResult[i].uri)
-                        console.debug('=ACTS_ExecuteBatch_0400 for data[' + i + '].count ====>: '
+                        console.log('=ACTS_ExecuteBatch_0400 for data[' + i + '].count ====>: '
                             + DataAbilityResult[i].count)
                         if (i == 2) {
                             expect(DataAbilityResult[i].uri).assertEqual("");
@@ -7723,7 +7723,7 @@ describe('ActsDataAbilityHelperTest', function () {
                             expect(DataAbilityResult[i].count).assertEqual(1);
                         }
                     }
-                    console.debug('ACTS_ExecuteBatch_0400====<end');
+                    console.log('ACTS_ExecuteBatch_0400====<end');
                     done();
                 }
             );
@@ -7731,7 +7731,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_0400 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_0400====<end catch');
+            console.log('ACTS_ExecuteBatch_0400====<end catch');
             done();
         }
     })
@@ -7742,7 +7742,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_0500', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_0500====<begin');
+        console.log('ACTS_ExecuteBatch_0500====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -7791,23 +7791,23 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((data) => {
-                console.debug("=ACTS_ExecuteBatch_0500 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_0500 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】") + data.length);
                 expect(data.length).assertEqual(0);
-                console.debug('ACTS_ExecuteBatch_0500====<end');
+                console.log('ACTS_ExecuteBatch_0500====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_0500 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_0500 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_0500====<end .catch');
+                console.log('ACTS_ExecuteBatch_0500====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_0500 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_0500====<end catch');
+            console.log('ACTS_ExecuteBatch_0500====<end catch');
             done();
         }
     })
@@ -7818,7 +7818,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_0600', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_0600====<begin');
+        console.log('ACTS_ExecuteBatch_0600====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -7867,11 +7867,11 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, data) => {
-                    console.debug("=ACTS_ExecuteBatch_0600 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_0600 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data)
                         + (" 】;") + data.length);
                     expect(data.length).assertEqual(0);
-                    console.debug('ACTS_ExecuteBatch_0600====<end');
+                    console.log('ACTS_ExecuteBatch_0600====<end');
                     done();
                 }
             );
@@ -7879,7 +7879,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_0600 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_0600====<end catch');
+            console.log('ACTS_ExecuteBatch_0600====<end catch');
             done();
         }
     })
@@ -7890,7 +7890,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_0700', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_0700====<begin');
+        console.log('ACTS_ExecuteBatch_0700====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -7939,23 +7939,23 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((data) => {
-                console.debug("=ACTS_ExecuteBatch_0700 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_0700 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】") + data.length);
                 expect(data.length).assertEqual(0);
-                console.debug('ACTS_ExecuteBatch_0700====<end');
+                console.log('ACTS_ExecuteBatch_0700====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_0700 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_0700 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_0700====<end .catch');
+                console.log('ACTS_ExecuteBatch_0700====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_0700 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_0700====<end catch');
+            console.log('ACTS_ExecuteBatch_0700====<end catch');
             done();
         }
     })
@@ -7966,7 +7966,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_0800', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_0800====<begin');
+        console.log('ACTS_ExecuteBatch_0800====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -8015,11 +8015,11 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, data) => {
-                    console.debug("=ACTS_ExecuteBatch_0800 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_0800 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data)
                         + (" 】;") + data.length);
                     expect(data.length).assertEqual(0);
-                    console.debug('ACTS_ExecuteBatch_0800====<end');
+                    console.log('ACTS_ExecuteBatch_0800====<end');
                     done();
                 }
             );
@@ -8027,7 +8027,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_0800 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_0800====<end catch');
+            console.log('ACTS_ExecuteBatch_0800====<end catch');
             done();
         }
     })
@@ -8038,7 +8038,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_0900', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_0900====<begin');
+        console.log('ACTS_ExecuteBatch_0900====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -8087,23 +8087,23 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((data) => {
-                console.debug("=ACTS_ExecuteBatch_0900 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_0900 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】") + data.length);
                 expect(data.length).assertEqual(0);
-                console.debug('ACTS_ExecuteBatch_0900====<end');
+                console.log('ACTS_ExecuteBatch_0900====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_0900 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_0900 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_0900====<end .catch');
+                console.log('ACTS_ExecuteBatch_0900====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_0900 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_0900====<end catch');
+            console.log('ACTS_ExecuteBatch_0900====<end catch');
             done();
         }
     })
@@ -8114,7 +8114,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_1000', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_1000====<begin');
+        console.log('ACTS_ExecuteBatch_1000====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -8163,11 +8163,11 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, data) => {
-                    console.debug("=ACTS_ExecuteBatch_1000 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_1000 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data)
                         + (" 】;") + data.length);
                     expect(data.length).assertEqual(0);
-                    console.debug('ACTS_ExecuteBatch_1000====<end');
+                    console.log('ACTS_ExecuteBatch_1000====<end');
                     done();
                 }
             );
@@ -8175,7 +8175,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_1000 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_1000====<end catch');
+            console.log('ACTS_ExecuteBatch_1000====<end catch');
             done();
         }
     })
@@ -8186,7 +8186,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by Promise)
     */
     it('ACTS_ExecuteBatch_1100', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_1100====<begin');
+        console.log('ACTS_ExecuteBatch_1100====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -8235,23 +8235,23 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
             ).then((data) => {
-                console.debug("=ACTS_ExecuteBatch_1100 executeBatch then data====>"
+                console.log("=ACTS_ExecuteBatch_1100 executeBatch then data====>"
                     + ("json data 【") + JSON.stringify(data) + (" 】") + data.length);
                 expect(data.length).assertEqual(0);
-                console.debug('ACTS_ExecuteBatch_1100====<end');
+                console.log('ACTS_ExecuteBatch_1100====<end');
                 done();
             }).catch((err) => {
-                console.debug("=ACTS_ExecuteBatch_1100 executeBatch catch err ====>"
+                console.log("=ACTS_ExecuteBatch_1100 executeBatch catch err ====>"
                     + ("json err 【") + JSON.stringify(err) + (" 】 "));
                 expect(false).assertTrue();
-                console.debug('ACTS_ExecuteBatch_1100====<end .catch');
+                console.log('ACTS_ExecuteBatch_1100====<end .catch');
                 done();
             });
         } catch (err) {
             console.error('=ACTS_ExecuteBatch_1100 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_1100====<end catch');
+            console.log('ACTS_ExecuteBatch_1100====<end catch');
             done();
         }
     })
@@ -8262,7 +8262,7 @@ describe('ActsDataAbilityHelperTest', function () {
     * @tc.desc: Check the return value of the interface (by AsyncCallback)
     */
     it('ACTS_ExecuteBatch_1200', 0, async function (done) {
-        console.debug('ACTS_ExecuteBatch_1200====<begin');
+        console.log('ACTS_ExecuteBatch_1200====<begin');
         try {
             expect(typeof (DAHelper)).assertEqual("object");
             let predicates = new ohosDataAbility.DataAbilityPredicates();
@@ -8311,11 +8311,11 @@ describe('ActsDataAbilityHelperTest', function () {
                     }
                 ],
                 (err, data) => {
-                    console.debug("=ACTS_ExecuteBatch_1200 executeBatch err,data====>"
+                    console.log("=ACTS_ExecuteBatch_1200 executeBatch err,data====>"
                         + ("json err【") + JSON.stringify(err) + (" 】json data【") + JSON.stringify(data)
                         + (" 】;") + data.length);
                     expect(data.length).assertEqual(0);
-                    console.debug('ACTS_ExecuteBatch_1200====<end');
+                    console.log('ACTS_ExecuteBatch_1200====<end');
                     done();
                 }
             );
@@ -8323,7 +8323,7 @@ describe('ActsDataAbilityHelperTest', function () {
             console.error('=ACTS_ExecuteBatch_1200 catch(err)====>:'
                 + ("json err 【") + JSON.stringify(err) + (" 】 ,") + err);
             expect(false).assertTrue();
-            console.debug('ACTS_ExecuteBatch_1200====<end catch');
+            console.log('ACTS_ExecuteBatch_1200====<end catch');
             done();
         }
     })

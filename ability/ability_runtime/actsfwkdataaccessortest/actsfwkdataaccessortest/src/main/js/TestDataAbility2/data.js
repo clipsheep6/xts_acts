@@ -35,27 +35,27 @@ let dataAbilityUri = ("dataability:///com.example.myapplication.TestDataAbility2
 export default {
 
     onInitialized(abilityInfo) {
-        console.debug('ACTS_ DataAbility onInitialized,abilityInfo=' + abilityInfo.bundleName)
+        console.log('ACTS_ DataAbility onInitialized,abilityInfo=' + abilityInfo.bundleName)
         dataRdb.getRdbStore(context, STORE_CONFIG, 1, (err, store) => {
-            console.debug('ACTS_ [data]getRdbStoreThen')
+            console.log('ACTS_ [data]getRdbStoreThen')
             store.executeSql(SQL_CREATE_TABLE, [])
             rdbStore = store
         });
     },
 
     insert(uri, valueBucket, callback) {
-        console.debug(TAG + ' insert start 1121')
-        console.debug(TAG + ' valueBucket json=>' + JSON.stringify(valueBucket))
+        console.log(TAG + ' insert start 1121')
+        console.log(TAG + ' valueBucket json=>' + JSON.stringify(valueBucket))
 
         let err = "Error Uri"
         if (uri != dataAbilityUri) {
-            console.debug(TAG + ' uri != dataAbilityUri')
+            console.log(TAG + ' uri != dataAbilityUri')
             callback(err, returnError1);
         }
 
-        console.debug(TAG + ' valueBucket.age =>' + valueBucket.age)
-        console.debug(TAG + ' valueBucket.name =>' + valueBucket.name)
-        console.debug(TAG + ' valueBucket.salary =>' + valueBucket.salary)
+        console.log(TAG + ' valueBucket.age =>' + valueBucket.age)
+        console.log(TAG + ' valueBucket.name =>' + valueBucket.name)
+        console.log(TAG + ' valueBucket.salary =>' + valueBucket.salary)
         if (valueBucket.age != 24) {
             err = "Error age"
             callback(err, returnError2);
@@ -70,7 +70,7 @@ export default {
         }
 
         err = "Error insert"
-        console.debug(TAG + ' rdbStore.insert ')
+        console.log(TAG + ' rdbStore.insert ')
         rdbStore.insert(TABLE_NAME, valueBucket, function (err, resultSet) {
             console.log(TAG + "insert callback resultSet:" + resultSet
                 + " ,json=" + JSON.stringify(resultSet) + ' ,err' + err)
@@ -79,11 +79,11 @@ export default {
     },
 
     query(uri, columns, predicates, callback) {
-        console.debug(TAG + ' query start')
+        console.log(TAG + ' query start')
 
         let err = "Error Uri"
         if (uri != dataAbilityUri) {
-            console.debug(TAG + ' uri != dataAbilityUri')
+            console.log(TAG + ' uri != dataAbilityUri')
             callback(err, returnError1);
         }
 
@@ -92,17 +92,17 @@ export default {
     },
 
     update(uri, valueBucket, predicates, callback) {
-        console.debug(TAG + 'update start')
+        console.log(TAG + 'update start')
 
         let err = "Error Uri"
         if (uri != dataAbilityUri) {
-            console.debug(TAG + ' uri != dataAbilityUri')
+            console.log(TAG + ' uri != dataAbilityUri')
             callback(err, returnError1);
         }
 
-        console.debug(TAG + ' valueBucket.age =>' + valueBucket.age)
-        console.debug(TAG + ' valueBucket.name =>' + valueBucket.name)
-        console.debug(TAG + ' valueBucket.salary =>' + valueBucket.salary)
+        console.log(TAG + ' valueBucket.age =>' + valueBucket.age)
+        console.log(TAG + ' valueBucket.name =>' + valueBucket.name)
+        console.log(TAG + ' valueBucket.salary =>' + valueBucket.salary)
         if (valueBucket.age != 24) {
             err = "Error age"
             callback(err, returnError2);
@@ -126,11 +126,11 @@ export default {
     },
 
     delete(uri, predicates, callback) {
-        console.debug(TAG + 'delete start')
+        console.log(TAG + 'delete start')
 
         let err = "Error Uri"
         if (uri != dataAbilityUri) {
-            console.debug(TAG + ' uri != dataAbilityUri')
+            console.log(TAG + ' uri != dataAbilityUri')
             callback(err, returnError1);
         }
 
@@ -142,15 +142,15 @@ export default {
         })
     },
     call(uri, method, arg, extras, callback) {
-        console.debug(TAG + 'call start')
-        console.debug(TAG + 'uri---->' + uri)
-        console.debug(TAG + 'method---->' + uri)
+        console.log(TAG + 'call start')
+        console.log(TAG + 'uri---->' + uri)
+        console.log(TAG + 'method---->' + uri)
     },
 
     batchInsert(uri, values, callback) {
         let err = "Error Uri"
         if (uri != dataAbilityUri) {
-            console.debug(TAG + ' uri != dataAbilityUri')
+            console.log(TAG + ' uri != dataAbilityUri')
             callback(err, returnError1);
         }
 
@@ -167,7 +167,7 @@ export default {
         console.info(TAG + '==================== DataAbility test interface by getType ================');
         let err = "Error Uri"
         if (uri != dataAbilityUri) {
-            console.debug(TAG + ' uri != dataAbilityUri')
+            console.log(TAG + ' uri != dataAbilityUri')
             callback(err, returnError1);
         }
         callback("success", uri);
@@ -177,7 +177,7 @@ export default {
         console.info(TAG + '==================== DataAbility test interface by GetFileTypes ================');
         let err = "Error Uri"
         if (uri != dataAbilityUri) {
-            console.debug(TAG + ' uri != dataAbilityUri')
+            console.log(TAG + ' uri != dataAbilityUri')
             callback(err, returnError1);
         }
         let type1 = " ";
@@ -208,7 +208,7 @@ export default {
 
         let err = "Error Uri"
         if (uri != dataAbilityUri) {
-            console.debug(TAG + ' uri != dataAbilityUri')
+            console.log(TAG + ' uri != dataAbilityUri')
             callback(err, returnError1);
         }
         if (!(mode == ("r") || mode == ("w") || mode == ("wt") || mode == ("wa") ||
@@ -234,7 +234,7 @@ export default {
         console.info(TAG + '==================== DataAbility test interface by normalizeUri ================');
         let err = "Error Uri"
         if (uri != dataAbilityUri) {
-            console.debug(TAG + ' uri != dataAbilityUri')
+            console.log(TAG + ' uri != dataAbilityUri')
             callback(err, "");
         }
         callback("success", uri);
@@ -246,7 +246,7 @@ export default {
 
         let err = "Error Uri"
         if (uri != dataAbilityUri) {
-            console.debug(TAG + ' uri != dataAbilityUri')
+            console.log(TAG + ' uri != dataAbilityUri')
             callback(err, "");
         }
         callback("success", uri);
