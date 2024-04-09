@@ -30,13 +30,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_HiDebug_Mem_Js_0100
-     * @tc.name getSystemMemInfo
+     * @tc.name testHiDebugJs01
      * @tc.desc 验证获取系统内存MemTotal、MemFree、MemAvaiable内存大小能力-ts接口-getSystemMemInfo
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_HiDebug_Mem_Js_0100', 1, async function (done) {
+    it('testHiDebugJs01', 1, async function (done) {
         // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
         try {
             let sysMemInfo = hidebug.getSystemMemInfo();
@@ -56,13 +56,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_HiDebug_Mem_Js_0200
-     * @tc.name getAppNativeMemInfo-pss vss rss privateDirty sharedDirty
+     * @tc.name testHiDebugJs02
      * @tc.desc 验证获取应用的RSS、PSS、VSS内存、共享脏内存、私有脏内存的能力-ts接口-getAppNativeMemInfo
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_HiDebug_Mem_Js_0200', 1, async function (done) {
+    it('testHiDebugJs02', 1, async function (done) {
         try {
             let nativeMemInfo = hidebug.getAppNativeMemInfo();
             hilog.info(0x0000, 'HIDEBUGTEST', 'SUB_DFX_DFT_HiDebug_Mem_Js_0200 pss=%{public}d', nativeMemInfo.pss);
@@ -82,13 +82,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_HiDebug_Mem_Js_0300
-     * @tc.name getAppMemoryLimit
+     * @tc.name testHiDebugJs03
      * @tc.desc 验证获取应用的virtual memory、resident set size限制阈值的能力-ts接口-getAppMemoryLimit
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_HiDebug_Mem_Js_0300', 1, async function (done) {
+    it('testHiDebugJs03', 1, async function (done) {
         try {
             let memoryLimit = hidebug.getAppMemoryLimit();
             hilog.info(0x0000, 'HIDEBUGTEST', 'SUB_DFX_DFT_HiDebug_Mem_Js_0300 rssLimit=%{public}d', memoryLimit.rssLimit);
@@ -105,13 +105,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_HiDebug_Mem_Js_0400
-     * @tc.name getAppVMMemoryInfo
+     * @tc.name testHiDebugJs04
      * @tc.desc 验证获取应用的获取应用的JS VM的Heap Size、Heap Used Size、Heap Size大小的限制阈值的能力-ts接口-getAppVMMemoryInfo
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_HiDebug_Mem_Js_0400', 1, async function (done) {
+    it('testHiDebugJs04', 1, async function (done) {
         try {
             let vmMemory = hidebug.getAppVMMemoryInfo();
             hilog.info(0x0000, 'HIDEBUGTEST', 'SUB_DFX_DFT_HiDebug_Mem_Js_0400 heapTotal=%{public}d', vmMemory.totalHeap);
@@ -128,13 +128,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_HiDebug_Mem_Js_0500
-     * @tc.name getAppNativeMemInfo-sharedClean privateClean
+     * @tc.name testHiDebugJs05
      * @tc.desc 验证获取应用的Shared Clean、Private Clean的能力-ts接口-getAppNativeMemInfo
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_HiDebug_Mem_Js_0500', 1, async function (done) {
+    it('testHiDebugJs05', 1, async function (done) {
         try {
             let nativeMemInfo = hidebug.getAppNativeMemInfo();
             hilog.info(0x0000, 'HIDEBUGTEST', 'SUB_DFX_DFT_HiDebug_Mem_Js_0500 sharedClean=%{public}d', nativeMemInfo.sharedClean);
@@ -150,13 +150,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_HiDebug_CPU_Js_0100
-     * @tc.name getSystemCpuUsage
+     * @tc.name testHiDebugJs06
      * @tc.desc 验证获取系统CPU使用率的能力-ts接口-getSystemCpuUsage
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_HiDebug_CPU_Js_0100', 1, async function (done) {
+    it('testHiDebugJs06', 1, async function (done) {
         try {
             let sysCpuUsage = hidebug.getSystemCpuUsage();
             console.info(`SUB_DFX_DFT_HiDebug_CPU_Js_0100 > sysCpuUsage =: ${sysCpuUsage}`)
@@ -171,13 +171,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_HiDebug_CPU_Js_0200
-     * @tc.name getAppThreadCpuUsage
+     * @tc.name testHiDebugJs07
      * @tc.desc 验证提供应用线程CPU使用率的能力-ts接口-getAppThreadCpuUsage
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_HiDebug_CPU_Js_0200', 1, async function (done) {
+    it('testHiDebugJs07', 1, async function (done) {
         try {
             let appThreadCpuUsage = hidebug.getAppThreadCpuUsage();
             console.info(`SUB_DFX_DFT_HiDebug_CPU_Js_0200 > length =: ${appThreadCpuUsage.length}`)
@@ -197,13 +197,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_Trace_Collect_Js_0100
-     * @tc.name startAppTraceCapture、stopAppTraceCapture TraceFlag = MAIN_THREAD
+     * @tc.name testHiDebugJs08
      * @tc.desc 验证应用内动态启停采集应用trace-ts接口-startAppTraceCapture、stopAppTraceCapture-MAIN_THREAD
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_Trace_Collect_Js_0100', 1, async function (done) {
+    it('testHiDebugJs08', 1, async function (done) {
         try {
             let flag = hidebug.TraceFlag.MAIN_THREAD;
             let tag = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI, hidebug.tags.ARK, hidebug.tags.BLUETOOTH,
@@ -233,13 +233,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_Trace_Collect_Js_0200
-     * @tc.name startAppTraceCapture、stopAppTraceCapture TraceFlag = ALL_THREADS
+     * @tc.name testHiDebugJs09
      * @tc.desc 验证应用内动态启停采集应用trace-ts接口-startAppTraceCapture、stopAppTraceCapture-ALL_THREADS
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_Trace_Collect_Js_0200', 1, async function (done) {
+    it('testHiDebugJs09', 1, async function (done) {
         try {
             let flag = hidebug.TraceFlag.ALL_THREADS;
             let tag = [hidebug.tags.ABILITY_MANAGER, hidebug.tags.ARKUI, hidebug.tags.ARK, hidebug.tags.BLUETOOTH,
@@ -267,13 +267,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_Trace_Collect_Js_0300
-     * @tc.name startAppTraceCapture invalid tag
+     * @tc.name testHiDebugJs10
      * @tc.desc 验证应用内动态启停采集应用trace-tag无效，返回错误码401
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_Trace_Collect_Js_0300', 1, async function (done) {
+    it('testHiDebugJs10', 1, async function (done) {
         try {
             let flag = hidebug.TraceFlag.ALL_THREADS;
             let tag = [123];
@@ -291,13 +291,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_Trace_Collect_Js_0400
-     * @tc.name startAppTraceCapture limitSize < 1
+     * @tc.name testHiDebugJs11
      * @tc.desc 验证应用内动态启停采集应用trace-limitSize小于1bytes，返回错误码401
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_Trace_Collect_Js_0400', 1, async function (done) {
+    it('testHiDebugJs11', 1, async function (done) {
         try {
             let flag = hidebug.TraceFlag.ALL_THREADS;
             let tag = [hidebug.tags.ABILITY_MANAGER];
@@ -315,13 +315,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_Trace_Collect_Js_0500
-     * @tc.name startAppTraceCapture invalid flag
+     * @tc.name testHiDebugJs12
      * @tc.desc 验证应用内动态启停采集应用trace-flag无效，返回错误码401
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_Trace_Collect_Js_0500', 1, async function (done) {
+    it('testHiDebugJs12', 1, async function (done) {
         try {
             let flag = 3;
             let tag = [hidebug.tags.ABILITY_MANAGER];
@@ -339,13 +339,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_Trace_Collect_Js_0600
-     * @tc.name startAppTraceCapture invalid tag
+     * @tc.name testHiDebugJs13
      * @tc.desc 验证应用内动态启停采集应用trace-tag为undefined，返回错误码401
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_Trace_Collect_Js_0600', 1, async function (done) {
+    it('testHiDebugJs13', 1, async function (done) {
         try {
             let flag = hidebug.TraceFlag.ALL_THREADS;
             let tag = undefined;
@@ -363,13 +363,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_Trace_Collect_Js_0700
-     * @tc.name startAppTraceCapture invalid limitSize
+     * @tc.name testHiDebugJs14
      * @tc.desc 验证应用内动态启停采集应用trace-limitSize为undefined，返回错误码401
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_Trace_Collect_Js_0700', 1, async function (done) {
+    it('testHiDebugJs14', 1, async function (done) {
         try {
             let flag = hidebug.TraceFlag.ALL_THREADS;
             let tag = [hidebug.tags.ABILITY_MANAGER];
@@ -387,13 +387,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_Trace_Collect_Js_0800
-     * @tc.name startAppTraceCapture invalid flag
+     * @tc.name testHiDebugJs15
      * @tc.desc 验证应用内动态启停采集应用trace-flag为undefined，返回错误码401
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_Trace_Collect_Js_0800', 1, async function (done) {
+    it('testHiDebugJs15', 1, async function (done) {
         try {
             let flag = undefined;
             let tag = [hidebug.tags.ABILITY_MANAGER];
@@ -411,13 +411,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_Trace_Collect_Js_0900
-     * @tc.name startAppTraceCapture Have already capture trace
+     * @tc.name testHiDebugJs16
      * @tc.desc 验证应用内重复开始采集应用trace，返回错误码11400102
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_Trace_Collect_Js_0900', 1, async function (done) {
+    it('testHiDebugJs16', 1, async function (done) {
         try {
             let flag = 1;
             let tag = [hidebug.tags.ABILITY_MANAGER];
@@ -438,13 +438,13 @@ describe('HidebugToDevJsTest', function () {
 
     /**
      * @tc.number SUB_DFX_DFT_Trace_Collect_Js_0900
-     * @tc.name stopAppTraceCapture No capture trace running
+     * @tc.name testHiDebugJs17
      * @tc.desc 验证应用在没有采集任务的情况下停止采集应用trace，返回错误码11400105
      * @tc.size MediumTest
      * @tc.type Function
      * @tc.level Level3
      */
-    it('SUB_DFX_DFT_Trace_Collect_Js_1000', 1, async function (done) {
+    it('testHiDebugJs17', 1, async function (done) {
         try {
             hidebug.stopAppTraceCapture();
             hidebug.stopAppTraceCapture();

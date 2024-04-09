@@ -23,7 +23,7 @@ static napi_value GetTotalMem(napi_env env, napi_callback_info info)
     napi_value totalMem;
     HiDebug_SystemMemInfo sysMemInfo;
     OH_HiDebug_GetSystemMemInfo(&sysMemInfo);
-    OH_LOG_DEBUG(LOG_APP, "NDK totalMem = %{public}u", sysMemInfo.totalMem);
+    OH_LOG_DEBUG(LOG_APP, "totalMem = %{public}u", sysMemInfo.totalMem);
     napi_create_uint32(env, sysMemInfo.totalMem, &totalMem);
     return totalMem;
 }
@@ -33,7 +33,7 @@ static napi_value GetFreeMem(napi_env env, napi_callback_info info)
     napi_value freeMem;
     HiDebug_SystemMemInfo sysMemInfo;
     OH_HiDebug_GetSystemMemInfo(&sysMemInfo);
-    OH_LOG_DEBUG(LOG_APP, "NDK freeMem = %{public}u", sysMemInfo.freeMem);
+    OH_LOG_DEBUG(LOG_APP, "freeMem = %{public}u", sysMemInfo.freeMem);
     napi_create_uint32(env, sysMemInfo.freeMem, &freeMem);
     return freeMem;
 }
@@ -43,7 +43,7 @@ static napi_value GetAvailableMem(napi_env env, napi_callback_info info)
     napi_value availableMem;
     HiDebug_SystemMemInfo sysMemInfo;
     OH_HiDebug_GetSystemMemInfo(&sysMemInfo);
-    OH_LOG_DEBUG(LOG_APP, "NDK availableMem = %{public}u", sysMemInfo.availableMem);
+    OH_LOG_DEBUG(LOG_APP, "availableMem = %{public}u", sysMemInfo.availableMem);
     napi_create_uint32(env, sysMemInfo.availableMem, &availableMem);
     return availableMem;
 }
@@ -53,7 +53,7 @@ static napi_value GetPss(napi_env env, napi_callback_info info)
     napi_value pss;
     HiDebug_NativeMemInfo nativeMemInfo;
     OH_HiDebug_GetAppNativeMemInfo(&nativeMemInfo);
-    OH_LOG_DEBUG(LOG_APP, "NDK pss = %{public}u", nativeMemInfo.pss);
+    OH_LOG_DEBUG(LOG_APP, "pss = %{public}u", nativeMemInfo.pss);
     napi_create_uint32(env, nativeMemInfo.pss, &pss);
     return pss;
 }
@@ -63,16 +63,17 @@ static napi_value GetVss(napi_env env, napi_callback_info info)
     napi_value vss;
     HiDebug_NativeMemInfo nativeMemInfo;
     OH_HiDebug_GetAppNativeMemInfo(&nativeMemInfo);
-    OH_LOG_DEBUG(LOG_APP, "NDK vss = %{public}u", nativeMemInfo.vss);
+    OH_LOG_DEBUG(LOG_APP, "vss = %{public}u", nativeMemInfo.vss);
     napi_create_uint32(env, nativeMemInfo.vss, &vss);
     return vss;
 }
 
-static napi_value GetRss(napi_env env, napi_callback_info info) {
+static napi_value GetRss(napi_env env, napi_callback_info info)
+{
     napi_value rss;
     HiDebug_NativeMemInfo nativeMemInfo;
     OH_HiDebug_GetAppNativeMemInfo(&nativeMemInfo);
-    OH_LOG_DEBUG(LOG_APP, "NDK rss = %{public}u", nativeMemInfo.rss);
+    OH_LOG_DEBUG(LOG_APP, "rss = %{public}u", nativeMemInfo.rss);
     napi_create_uint32(env, nativeMemInfo.rss, &rss);
     return rss;
 }
@@ -82,7 +83,7 @@ static napi_value GetSharedDirty(napi_env env, napi_callback_info info)
     napi_value sharedDirty;
     HiDebug_NativeMemInfo nativeMemInfo;
     OH_HiDebug_GetAppNativeMemInfo(&nativeMemInfo);
-    OH_LOG_DEBUG(LOG_APP, "NDK sharedDirty = %{public}u", nativeMemInfo.sharedDirty);
+    OH_LOG_DEBUG(LOG_APP, "sharedDirty = %{public}u", nativeMemInfo.sharedDirty);
     napi_create_uint32(env, nativeMemInfo.sharedDirty, &sharedDirty);
     return sharedDirty;
 }
@@ -92,7 +93,7 @@ static napi_value GetPrivateDirty(napi_env env, napi_callback_info info)
     napi_value privateDirty;
     HiDebug_NativeMemInfo nativeMemInfo;
     OH_HiDebug_GetAppNativeMemInfo(&nativeMemInfo);
-    OH_LOG_DEBUG(LOG_APP, "NDK privateDirty = %{public}u", nativeMemInfo.privateDirty);
+    OH_LOG_DEBUG(LOG_APP, "privateDirty = %{public}u", nativeMemInfo.privateDirty);
     napi_create_uint32(env, nativeMemInfo.privateDirty, &privateDirty);
     return privateDirty;
 }
@@ -102,7 +103,7 @@ static napi_value GetSharedClean(napi_env env, napi_callback_info info)
     napi_value sharedClean;
     HiDebug_NativeMemInfo nativeMemInfo;
     OH_HiDebug_GetAppNativeMemInfo(&nativeMemInfo);
-    OH_LOG_DEBUG(LOG_APP, "NDK sharedClean = %{public}u", nativeMemInfo.sharedClean);
+    OH_LOG_DEBUG(LOG_APP, "sharedClean = %{public}u", nativeMemInfo.sharedClean);
     napi_create_uint32(env, nativeMemInfo.sharedClean, &sharedClean);
     return sharedClean;
 }
@@ -112,7 +113,7 @@ static napi_value GetPrivateClean(napi_env env, napi_callback_info info)
     napi_value privateClean;
     HiDebug_NativeMemInfo nativeMemInfo;
     OH_HiDebug_GetAppNativeMemInfo(&nativeMemInfo);
-    OH_LOG_DEBUG(LOG_APP, "NDK privateClean = %{public}u", nativeMemInfo.privateClean);
+    OH_LOG_DEBUG(LOG_APP, "privateClean = %{public}u", nativeMemInfo.privateClean);
     napi_create_uint32(env, nativeMemInfo.privateClean, &privateClean);
     return privateClean;
 }
@@ -122,7 +123,7 @@ static napi_value GetRssLimit(napi_env env, napi_callback_info info)
     napi_value rssLimit;
     HiDebug_MemoryLimit memoryLimit;
     OH_HiDebug_GetAppMemoryLimit(&memoryLimit);
-    OH_LOG_DEBUG(LOG_APP, "NDK rssLimit = %{public}lu", memoryLimit.rssLimit);
+    OH_LOG_DEBUG(LOG_APP, "rssLimit = %{public}lu", memoryLimit.rssLimit);
     napi_create_bigint_uint64(env, memoryLimit.rssLimit, &rssLimit);
     return rssLimit;
 }
@@ -132,7 +133,7 @@ static napi_value GetVssLimit(napi_env env, napi_callback_info info)
     napi_value vssLimit;
     HiDebug_MemoryLimit memoryLimit;
     OH_HiDebug_GetAppMemoryLimit(&memoryLimit);
-    OH_LOG_DEBUG(LOG_APP, "NDK vssLimit = %{public}lu", memoryLimit.vssLimit);
+    OH_LOG_DEBUG(LOG_APP, "vssLimit = %{public}lu", memoryLimit.vssLimit);
     napi_create_bigint_uint64(env, memoryLimit.vssLimit, &vssLimit);
     return vssLimit;
 }
@@ -141,7 +142,7 @@ static napi_value GetSysCpuUsage(napi_env env, napi_callback_info info)
 {
     napi_value sysCpuUsage;
     double cpuUsage = OH_HiDebug_GetSystemCpuUsage();
-    OH_LOG_DEBUG(LOG_APP, "NDK cpuUsage = %{public}f", cpuUsage);
+    OH_LOG_DEBUG(LOG_APP, "cpuUsage = %{public}f", cpuUsage);
     napi_create_double(env, cpuUsage, &sysCpuUsage);
     return sysCpuUsage;
 }
@@ -179,7 +180,7 @@ static napi_value GetAppCpuUsage(napi_env env, napi_callback_info info)
 {
     napi_value appCpuUsage;
     double cpuUsage = OH_HiDebug_GetAppCpuUsage();
-    OH_LOG_DEBUG(LOG_APP, "NDK cpuUsage = %{public}f", cpuUsage);
+    OH_LOG_DEBUG(LOG_APP, "cpuUsage = %{public}f", cpuUsage);
     napi_create_double(env, cpuUsage, &appCpuUsage);
     return appCpuUsage;
 }
@@ -187,8 +188,8 @@ static napi_value GetAppCpuUsage(napi_env env, napi_callback_info info)
 static napi_value StartAppTraceCapture(napi_env env, napi_callback_info info)
 {
     napi_value ret;
-    size_t argc = 5;
-    napi_value args[5] = {nullptr};
+    size_t argc = 3; // arg total：3
+    napi_value args[3] = {nullptr}; // arg total：3
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
 
@@ -197,9 +198,7 @@ static napi_value StartAppTraceCapture(napi_env env, napi_callback_info info)
     napi_valuetype valuetype1;
     napi_typeof(env, args[1], &valuetype1);
     napi_valuetype valuetype2;
-    napi_typeof(env, args[2], &valuetype2);
-    napi_valuetype valuetype3;
-    napi_typeof(env, args[3], &valuetype3);
+    napi_typeof(env, args[2], &valuetype2); // arg number：2
     
     uint32_t flag;
     napi_get_value_uint32(env, args[0], &flag);
@@ -207,13 +206,13 @@ static napi_value StartAppTraceCapture(napi_env env, napi_callback_info info)
     uint32_t limitSize;
     napi_get_value_uint32(env, args[1], &limitSize);
     uint32_t length;
-    napi_get_value_uint32(env, args[2], &length);
+    napi_get_value_uint32(env, args[2], &length); // arg number：2
     char fileName[length];
 
     HiDebug_ErrorCode errorCode = OH_HiDebug_StartAppTraceCapture(HiDebug_TraceFlag(flag),
                                                                   tags, limitSize, fileName, length);
-    OH_LOG_DEBUG(LOG_APP, "Start NDK errorCode = %{public}u", errorCode);
-    OH_LOG_DEBUG(LOG_APP, "Start NDK fileName = %{public}s", fileName);
+    OH_LOG_DEBUG(LOG_APP, "Start errorCode = %{public}u", errorCode);
+    OH_LOG_DEBUG(LOG_APP, "Start fileName = %{public}s", fileName);
     napi_create_int32(env, errorCode, &ret);
     return ret;
 }
@@ -230,8 +229,8 @@ static napi_value StartAppTraceCaptureTag(napi_env env, napi_callback_info info)
     char fileName[length];
 
     HiDebug_ErrorCode errorCode = OH_HiDebug_StartAppTraceCapture(flag, tags, limitSize, fileName, length);
-    OH_LOG_DEBUG(LOG_APP, "Start NDK errorCode = %{public}u", errorCode);
-    OH_LOG_DEBUG(LOG_APP, "Start NDK fileName = %{public}s", fileName);
+    OH_LOG_DEBUG(LOG_APP, "Start errorCode = %{public}u", errorCode);
+    OH_LOG_DEBUG(LOG_APP, "Start fileName = %{public}s", fileName);
     napi_create_int32(env, errorCode, &ret);
     return ret;
 }
@@ -240,7 +239,7 @@ static napi_value StopAppTraceCapture(napi_env env, napi_callback_info info)
 {
     napi_value ret;
     HiDebug_ErrorCode errorCode = OH_HiDebug_StopAppTraceCapture();
-    OH_LOG_DEBUG(LOG_APP, "Stop NDK errorCode = %{public}u", errorCode);
+    OH_LOG_DEBUG(LOG_APP, "Stop errorCode = %{public}u", errorCode);
     napi_create_int32(env, errorCode, &ret);
     return ret;
 }
