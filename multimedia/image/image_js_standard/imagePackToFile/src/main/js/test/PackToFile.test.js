@@ -153,6 +153,41 @@ export default function imagePackToFile() {
             }
         }
 
+        function packToFileMultiFramePromise(done, testNum, source, fd, fPath, ops, checkSize) {
+            try {
+                globalPacker = image.createImagePacker();
+                expect(globalPacker != undefined).assertTrue();
+                if (globalPacker == undefined) {
+                    done();
+                    return;
+                }
+                globalPacker.packToFileMultiFrames(source, fd, ops).then(async () => {
+                    try {
+                        fileio.closeSync(fd)
+                        console.info(`${testNum} file size ${fileio.statSync(fPath).size}`);
+                        let imgSource = image.createImageSource(fPath);
+                        let info = await imgSource.getImageInfo();
+                        console.log(`${testNum} file size ${info.size.width}`);
+                        console.log(`${testNum} file size ${info.size.height}`);
+                        checkSize(info.size.width, info.size.height)
+                        done();
+                    } catch (e1) {
+                        console.log("packToFilePromise e1: " + e1);
+                        expect().assertFail();
+                        done();
+                    }
+                }).catch((error) => {
+                    console.log(`${testNum} error: ` + error);
+                    expect().assertFail();
+                    done();
+                });
+            } catch (error) {
+                console.log("packToFilePromise error: " + error);
+                expect().assertFail();
+                done();
+            }
+        }
+
         function packToFileCallback(done, testNum, source, fd, fPath, ops, checkSize) {
             try {
                 globalPacker = image.createImagePacker();
@@ -244,6 +279,35 @@ export default function imagePackToFile() {
                 done();
             }
         }
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACK_TO_FILE_PROMISE_IMAGE_SOURCE_0100
+         * @tc.name      : sub_multimedia_image_packToFile_promise_imagesource_001
+         * @tc.desc      : 1.create imagesource
+         *               : 2.get writefd
+         *               : 3.create ImagePacker
+         *               : 4.packToFile with imagesource-jpg
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_PACK_TO_FILE_MULTI_FRAMES_PROMISE_PIXEL_MAP_0100", 0, async function (done) {
+            await getPixelMapData();
+            expect(globalpixelmap != undefined).assertTrue();
+            let writeFd = undefined;
+            let fpath = undefined;
+            [fpath, writeFd] = await getWriteFd("promise_pixel_map.gif")
+            expect(writeFd != undefined).assertTrue();
+            expect(fpath != undefined).assertTrue();
+            let ops = { format: "image/gif", quality: 100, loop: 0, delayTimes: [100]};
+
+            function checkSize(width, height) {
+                expect(width == picSize.pixelWidth).assertTrue();
+                expect(height == picSize.pixelHeight).assertTrue();
+            }
+            packToFileMultiFramePromise(done, "SUB_MULTIMEDIA_IMAGE_PACK_TO_FILE_MULTI_FRAMES_PROMISE_PIXEL_MAP_0100",
+                globalpixelmap, writeFd, fpath, ops, checkSize)
+        });
 
         /**
          * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACK_TO_FILE_PROMISE_IMAGE_SOURCE_0100
