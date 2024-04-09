@@ -1927,8 +1927,7 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceBaseFunction_01(napi_env en
     OH_AVSCREEN_CAPTURE_ErrCode result1 = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCaptureWithSurface(screenCapture, window);
     OH_AVScreenCapture_Release(screenCapture);
-    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK
-        && result3 == AV_SCREEN_CAPTURE_ERR_OK) {
+    if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
     } else {
         LOG(false, "init/start/stop failed, init: %d, start: %d", result1, result2);
@@ -2211,6 +2210,8 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceInitError_01(napi_env env, 
     OH_AVScreenCapture* screenCapture = CreateScreenCapture();
     OH_AVScreenCaptureConfig config_;
     SetConfig(config_);
+    napi_value res;
+    OH_AVSCREEN_CAPTURE_ErrCode result;
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     
@@ -2233,8 +2234,6 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceInitError_01(napi_env env, 
     OH_AVSCREEN_CAPTURE_ErrCode result2 = OH_AVScreenCapture_StartScreenCaptureWithSurface(screenCapture, window);
     OH_AVSCREEN_CAPTURE_ErrCode result3 = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVScreenCapture_Release(screenCapture);
-    napi_value res;
-    OH_AVSCREEN_CAPTURE_ErrCode result;
     if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK
         && result3 != AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
@@ -2252,6 +2251,8 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceInitError_02(napi_env env, 
     OH_AVScreenCapture* screenCapture = CreateScreenCapture();
     OH_AVScreenCaptureConfig config_;
     SetConfig(config_);
+    napi_value res;
+    OH_AVSCREEN_CAPTURE_ErrCode result;
     bool isMicrophone = true;
     OH_AVScreenCapture_SetMicrophoneEnabled(screenCapture, isMicrophone);
     
@@ -2275,8 +2276,6 @@ static napi_value ScreenCaptureSetCallbackWithSurfaceInitError_02(napi_env env, 
     OH_AVSCREEN_CAPTURE_ErrCode result3 = OH_AVScreenCapture_StopScreenCapture(screenCapture);
     OH_AVSCREEN_CAPTURE_ErrCode result4 = OH_AVScreenCapture_Init(screenCapture, config_);
     OH_AVScreenCapture_Release(screenCapture);
-    napi_value res;
-    OH_AVSCREEN_CAPTURE_ErrCode result;
     if (result1 == AV_SCREEN_CAPTURE_ERR_OK && result2 == AV_SCREEN_CAPTURE_ERR_OK
         && result3 == AV_SCREEN_CAPTURE_ERR_OK && result4 != AV_SCREEN_CAPTURE_ERR_OK) {
         result = AV_SCREEN_CAPTURE_ERR_OK;
@@ -2377,7 +2376,7 @@ static napi_value Init(napi_env env, napi_value exports)
             napi_default, nullptr}, 
         {"setCallbackInitError_01", nullptr, ScreenCaptureSetCallbackInitError_01, nullptr, nullptr, nullptr, 
             napi_default, nullptr}, 
-        {"setCallbackInitError_02", nullptr, ScreenCaptureSetCallbackInitError_02 nullptr, nullptr, nullptr, 
+        {"setCallbackInitError_02", nullptr, ScreenCaptureSetCallbackInitError_02, nullptr, nullptr, nullptr, 
             napi_default, nullptr}, 
         {"setCallbackWithSurfaceBaseFunction_01", nullptr, ScreenCaptureSetCallbackWithSurfaceBaseFunction_01, nullptr,
             nullptr, nullptr,napi_default, nullptr}, 
@@ -2391,9 +2390,9 @@ static napi_value Init(napi_env env, napi_value exports)
             nullptr, nullptr, nullptr, napi_default, nullptr}, 
         {"setCallbackWithSurfaceInitError_01", nullptr, ScreenCaptureSetCallbackWithSurfaceInitError_01, nullptr, 
             nullptr, nullptr, napi_default, nullptr}, 
-        {"setCallbackWithSurfaceInitError_02", nullptr, ScreenCaptureSetCallbackWithSurfaceInitError_02 nullptr, 
+        {"setCallbackWithSurfaceInitError_02", nullptr, ScreenCaptureSetCallbackWithSurfaceInitError_02, nullptr, 
             nullptr, nullptr, napi_default, nullptr}, 
-        {"setCanvasRotation_01", nullptr, ScreenCaptureSetCanvasRotation_01 nullptr, nullptr, nullptr, napi_default, 
+        {"setCanvasRotation_01", nullptr, ScreenCaptureSetCanvasRotation_01, nullptr, nullptr, nullptr, napi_default, 
             nullptr}, 
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
