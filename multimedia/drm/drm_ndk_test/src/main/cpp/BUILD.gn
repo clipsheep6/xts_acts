@@ -40,6 +40,7 @@ ohos_shared_library("entry") {
   ]
   external_deps = [
     "hilog:hilog_ndk",
+    "hilog:libhilog",
     "napi:ace_napi",
   ]
   deps = [
