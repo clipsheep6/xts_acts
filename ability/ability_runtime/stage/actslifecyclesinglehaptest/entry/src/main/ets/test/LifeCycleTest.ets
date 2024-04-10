@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+let Delegator = AbilityDelegatorRegistry.getAbilityDelegator();
 export default function lifecycleTest() {
   describe('LifeCycleTest', function () {
 
@@ -57,6 +59,7 @@ export default function lifecycleTest() {
             console.log("LifeCycleTest terminateSelfwithresult error: " + JSON.stringify(error));
           });
       }
+      await abilityDelegator.executeShellCommand('aa start -b com.example.lifecycle_xts -a MainAbility');
       done();
     });
 
@@ -81,7 +84,7 @@ export default function lifecycleTest() {
         "bundleName": "com.example.lifecycle_xts",
         "abilityName": "MainAbility2",
       }
-      globalThis.abilityContext.startAbility(str)
+      await globalThis.abilityContext.startAbility(str)
         .then((data) => {
           console.info(TAG + ' start successful. Data: ' + data);
         }).catch((error) => {

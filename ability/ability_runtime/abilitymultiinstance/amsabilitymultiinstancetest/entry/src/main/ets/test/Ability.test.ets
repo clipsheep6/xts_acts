@@ -35,7 +35,7 @@ const ONACCEPTWANT_KEY_NOTSET_ID = -1;
 const ONACCEPTWANT_KEY_UNDEFINED_ID = -2;
 const UNSUBSCRIBE_TIMEOUT = 5000;
 
-async function startAbilityProcess(abilityContext: common.UIAbilityContext, parameters: Params) {
+async function startAbilityProcess(testAbilityContext: common.UIAbilityContext, parameters: Params) {
   let bundleName = "com.acts.abilitymultiinstancea";
   let abilityName = "com.acts.abilitymultiinstancea.MainAbility";
 
@@ -90,7 +90,7 @@ async function startAbilityProcess(abilityContext: common.UIAbilityContext, para
       break;
   }
   parameters.nextStep = ++idx;
-  abilityContext.startAbility({
+  testAbilityContext.startAbility({
     bundleName: bundleName,
     abilityName: abilityName,
     parameters: {
@@ -104,7 +104,7 @@ async function startAbilityProcess(abilityContext: common.UIAbilityContext, para
   })
 }
 
-export default function abilityTest(abilityContext: common.UIAbilityContext) {
+export default function abilityTest(testAbilityContext: common.UIAbilityContext) {
   describe('ActsAbilityTest', () => {
     let TAG1 = "ACTS_AbilityMultiInstance_Single == ";
     afterEach(async (done: Function) => {
@@ -113,7 +113,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
         bundleName: "com.example.abilitymultiinstance",
         abilityName: "com.example.abilitymultiinstance.MainAbility"
       }
-      await abilityContext.startAbility(wantInfo).then((data) => {
+      await testAbilityContext.startAbility(wantInfo).then((data) => {
         console.log(TAG1 + "startAbility data : " + JSON.stringify(data));
       }).catch((err: BusinessError) => {
         console.log(TAG1 + "startAbility err : " + JSON.stringify(err));
@@ -172,7 +172,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0100 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 3,
         nextStep: 0,
@@ -228,7 +228,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0200 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 3,
         nextStep: 0,
@@ -283,7 +283,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0300 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 3,
         nextStep: 0,
@@ -338,7 +338,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0400 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 3,
         nextStep: 0,
@@ -393,7 +393,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT)
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0600 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 2,
         nextStep: 0,
@@ -448,7 +448,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0700 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 4,
         nextStep: 0,
@@ -503,7 +503,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0800 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 4,
         nextStep: 0,
@@ -559,7 +559,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0900 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 4,
         nextStep: 0,
@@ -615,7 +615,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1000 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 4,
         nextStep: 0,
@@ -670,7 +670,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1100 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 4,
         nextStep: 0,
@@ -725,7 +725,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1200 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 4,
         nextStep: 0,
@@ -779,7 +779,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1300 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 2,
         nextStep: 0,
@@ -834,7 +834,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1400 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 2,
         nextStep: 0,
@@ -888,7 +888,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1500 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 2,
         nextStep: 0,
@@ -940,7 +940,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1600 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 1,
         nextStep: 0,
@@ -994,7 +994,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1700 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 1,
         nextStep: 0,

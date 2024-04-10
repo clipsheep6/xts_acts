@@ -24,7 +24,7 @@ function publishCallBack() {
   console.debug("====>AbilityMultiInstanceAppB Publish CallBack ====>");
 }
 
-async function startAbilityProcess(abilityContext, parameters) {
+async function startAbilityProcess(AppBAbilityContext, parameters) {
   let bundleName = "com.acts.abilitymultiinstancea";
   let abilityName = "com.acts.abilitymultiinstancea.MainAbility";
 
@@ -70,7 +70,7 @@ async function startAbilityProcess(abilityContext, parameters) {
       break;
   }
   parameters.nextStep = ++idx;
-  abilityContext.startAbility({
+  AppBAbilityContext.startAbility({
     bundleName: bundleName,
     abilityName: abilityName,
     parameters: parameters
@@ -95,7 +95,7 @@ async function onShowProcess() {
   } else {
     commonEvent.publish("MultiInstanceStartNext", commonEventPublishData, () => {
       callBackSeq = "";
-      startAbilityProcess(AppStorage.get("abilityContext")!, abilityWant.parameters);
+      startAbilityProcess(AppStorage.get("AppBAbilityContext")!, abilityWant.parameters);
     })
   }
 }
@@ -116,7 +116,7 @@ export default class MainAbility extends Ability {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     console.log("AbilityMultiInstanceAppB MainAbility onWindowStageCreate");
-    AppStorage.setOrCreate("abilityContext", this.context);
+    AppStorage.setOrCreate("AppBAbilityContext", this.context);
     windowStage.loadContent("pages/index/index", null);
   }
 

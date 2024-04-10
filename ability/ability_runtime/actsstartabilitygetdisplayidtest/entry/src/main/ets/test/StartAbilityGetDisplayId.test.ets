@@ -22,6 +22,7 @@ import { BusinessError } from '@ohos.base';
 import common from '@ohos.app.ability.common';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import commonEventManager from '@ohos.commonEventManager';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 
 const displayId = 'displayId';
 const TAG: string = 'StartAbilityGetDisplayIdTest';
@@ -65,6 +66,10 @@ async function startAbility(want: Want, display: ESObject = undefined) {
 
 export default function StartAbilityGetDisplayIdTest() {
   describe('ActsAbilityTest', () => {
+    afterEach(async function (done) {
+      await abilityDelegator.executeShellCommand('aa start -b com.ohos.startabilitygetdisplayidtest -a TestAbility');
+      done();
+    });
     /**
      * @tc.number    : SUB_Ability_AbilityRuntime_ABILITY_StartAbility_getDisplayIdTest_0500
      * @tc.name      : The device has only one physical screen, call the startAbilityForResult parameter to start the application,

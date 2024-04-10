@@ -299,6 +299,7 @@ export default function flagstartwithouttipstest() {
       } catch (error) {
         hilog.info(0x0000, TAG, '%{public}s startAbility error', JSON.stringify(error));
       }
+      await abilityDelegator.executeShellCommand('aa start -b com.acts.flagstartwithouttipstest -a EntryAbility');
       await sleep(20000);
       let openViewData = false;
       try {
@@ -334,6 +335,7 @@ export default function flagstartwithouttipstest() {
       } catch (error) {
         hilog.info(0x0000, TAG, '%{public}s EntryAbility error', JSON.stringify(error));
       }
+      await abilityDelegator.executeShellCommand('aa start -b com.acts.flagstartwithouttipstest -a EntryAbility');
       await sleep(3000);
       try {
         let wantInfo: Want = {

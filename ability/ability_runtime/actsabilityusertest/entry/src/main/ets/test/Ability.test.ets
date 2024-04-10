@@ -22,6 +22,11 @@ const START_ABILITY_TIMEOUT = 4000;
 export default function abilityTest() {
     describe('ACTS_StartAbility_Test', function () {
 
+        afterEach(async function (done) {
+            await abilityDelegator.executeShellCommand('aa start -b com.example.actsabilityusertest -a MainAbility');
+            done();
+        });
+
         /*
        * @tc.number    : ACTS_StartAbility_Callback_Successfully_0100
        * @tc.name      : start new ability
