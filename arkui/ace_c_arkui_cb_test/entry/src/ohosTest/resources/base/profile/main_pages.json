@@ -1,0 +1,19 @@
+{
+  "src": [
+    "MainAbility/pages/Index",
+    "MainAbility/pages/toggle/ToggleOnChangeTest",
+    "MainAbility/pages/toggle/ToggleEnabledTest",
+    "MainAbility/pages/scroll/ScrollOnScrollTest",
+    "MainAbility/pages/scroll/ScrollOnScrollFrameBeginTest",
+    "MainAbility/pages/scroll/ScrollOnScrollStartTest",
+    "MainAbility/pages/scroll/ScrollOnScrollStopTest",
+    "MainAbility/pages/scroll/ScrollOnAppearTest",
+    "MainAbility/pages/scroll/ScrollNestedScrollTest",
+    "MainAbility/pages/scroll/ScrollOnScrollEdgeTest",
+    "MainAbility/pages/scroll/ScrollScrollEdgeEndTest",
+    "MainAbility/pages/scroll/ScrollScrollEdgeTest",
+    "MainAbility/pages/scroll/ScrollScrollEdgeStartTest",
+    "MainAbility/pages/scroll/ScrollScrollEdgeBottomTest",
+    "MainAbility/pages/scroll/ScrollHitTestBehaviorTest"
+  ]
+}
