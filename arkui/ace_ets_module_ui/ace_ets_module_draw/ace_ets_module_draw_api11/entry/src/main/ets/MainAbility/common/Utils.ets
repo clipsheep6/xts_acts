@@ -1,5 +1,7 @@
+import RectValue from './Rect';
+
 /**
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,7 +14,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import RectValue from './Rect';
 
 export default class Utils {
   static rect_left: number;
@@ -20,19 +21,6 @@ export default class Utils {
   static rect_right: number;
   static rect_bottom: number;
   static rect_value: RectValue;
-
-  static getComponentRect(key: string) {
-    let strJson: string = getInspectorByKey(key);
-    console.info("[getInspectorByKey] current component obj is: " + JSON.stringify(JSON.parse(strJson)));
-    console.info("[getInspectorByKey] rectInfo is: " + JSON.parse('[' + JSON.parse(strJson).$rect + ']'));
-    Utils.rect_left = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[0]
-    Utils.rect_top = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[0] + ']')[1]
-    Utils.rect_right = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[1] + ']')[0]
-    Utils.rect_bottom = JSON.parse('[' + JSON.parse('[' + JSON.parse(strJson).$rect + ']')[1] + ']')[1]
-    return Utils.rect_value = {
-      left: Utils.rect_left, top: Utils.rect_top, right: Utils.rect_right, bottom: Utils.rect_bottom
-    }
-  }
 
   static sleep(time: number) {
     return new Promise((resolve: (value: string) => void) => {
@@ -42,6 +30,20 @@ export default class Utils {
     }).then(() => {
       console.info(`sleep ${time} over...`)
     })
+  }
+
+  //获取组件所占矩形区域坐标
+  static getComponentRect(key: string) {
+    let strJson = getInspectorByKey(key);
+    let obj: Record<string, Object> = JSON.parse(strJson);
+    let rectInfo: Array<string> = JSON.parse('[' + obj.$rect + ']');
+    Utils.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0];
+    Utils.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1];
+    Utils.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0];
+    Utils.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1];
+    return Utils.rect_value = {
+      left: Utils.rect_left, top: Utils.rect_top, right: Utils.rect_right, bottom: Utils.rect_bottom
+    }
   }
 
 

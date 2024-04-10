@@ -28,7 +28,7 @@ export default function symbolSpanApi2Test() {
         router.clear();
         let pages = router.getState();
         console.info("get symbolSpanApi2  state pages:" + JSON.stringify(pages));
-        if (!("symbolSpanApi2 " == pages.name)) {
+        if (!("symbolspan " == pages.name)) {
           console.info("get symbolSpanApi2 pages.name:" + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);

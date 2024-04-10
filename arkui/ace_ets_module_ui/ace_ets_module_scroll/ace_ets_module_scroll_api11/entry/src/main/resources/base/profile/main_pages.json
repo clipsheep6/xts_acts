@@ -29,6 +29,16 @@
         "MainAbility/pages/Swiper/swiper2/siwpe_leftEdge",
         "MainAbility/pages/Swiper/swiper2/siwpe_leftscroll",
         "MainAbility/pages/Swiper/swiper2/siwpe_rightscroll",
-        "MainAbility/pages/Tabs/tabs/tabsApi1"
+        "MainAbility/pages/Tabs/tabs/tabsApi1",
+        "MainAbility/pages/AlphabetIndexer/alphabetIndexer",
+        "MainAbility/pages/grid/grid",
+        "MainAbility/pages/gridItem/gridItem",
+        "MainAbility/pages/List/list1",
+        "MainAbility/pages/List/list_item",
+        "MainAbility/pages/Scroll/scroll1",
+        "MainAbility/pages/SideBarContainer/sideBar",
+        "MainAbility/pages/Stack/stack",
+        "MainAbility/pages/Swiper/swiper1",
+        "MainAbility/pages/Tabs/tabs"
     ]
 }

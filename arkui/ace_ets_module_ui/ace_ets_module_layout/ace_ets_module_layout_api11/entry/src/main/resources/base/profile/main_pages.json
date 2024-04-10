@@ -2,6 +2,9 @@
     "src": [
         "MainAbility/pages/index/index",
         "MainAbility/pages/FolderStack/FolderStack3Api",
-        "MainAbility/pages/FolderStack/folder_stack"
+        "MainAbility/pages/FolderStack/folder_stack",
+        "MainAbility/pages/GridCol/grid_col",
+        "MainAbility/pages/GridRow/grid_row",
+        "MainAbility/pages/inspector/inspector"
     ]
 }

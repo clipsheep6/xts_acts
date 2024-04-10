@@ -14,7 +14,7 @@
  */
 import marqueeJsunit from './marqueeTest/MarqueeJsunit.test';
 import textStyleJsunit from './textTest/TextStyleJsunit.test';
-import ImageTextTest from './textTest/ImageText.test';
+import ImagetextTest from './textTest/ImageText.test';
 import TextAreaCallbackTest from './TextAreaTest/TextAreaCallback.test';
 import TextAreaSelectTest from './TextAreaTest/TextAreaSelect.test';
 import arkuiNodeTest from "./NodeContainerTest/arkuinode/arkuinode.test";
@@ -73,7 +73,7 @@ import relativeCTest from "./RelativeContainerTest/relative/relative.test"
 import getClipToFrameJsunit from './RenderNodeTest/RenderNodeTest_001/getClipToFrameJsunit.test'
 import getOpacityJsunit from './RenderNodeTest/RenderNodeTest_001/getOpacityJsunit.test'
 import getSizeJsunit from './RenderNodeTest/RenderNodeTest_001/getSizeJsunit.test'
-import SetSizeJsunit from './RenderNodeTest/RenderNodeTest_001/SetSizeJsunit.test.ets'
+import SetSizeJsunit from './RenderNodeTest/RenderNodeTest_001/SetSizeJsunit.test'
 import SetClipToFrameJsunit from './RenderNodeTest/RenderNodeTest_001/SetClipToFrameJsunit.test'
 import SetOpacityJsunit from './RenderNodeTest/RenderNodeTest_001/SetOpacityJsunit.test'
 import SetPositionJsunit from './RenderNodeTest/RenderNodeTest_001/SetPositionJsunit.test'
@@ -115,16 +115,16 @@ import TextSelectionMenu from './textTest/TextApi/TextSelectionMenu.test';
 import textInputApi1 from './TextInputTest/textInputApi/textInputApi1.test'
 import textInputApiTest from './TextInputTest/textInputApi/textinputkeyNewLine.test'
 import UIfont from './fontTest/UIfont/UIfont.test';
-import ImageAttr from './imageTest/ImageAttr.test';
-import TextfieldMultiTest from './textTest/TextfieldMulti.test';
-import TextfieldOtherTest from './textTest/TextfieldOther.test';
-import TextfieldSingleTest from './textTest/TextfieldSingle.test';
+import ImageAttr from './imageTest/ImageAttr.test'
+import textMinFontSizeJsunit from './textTest/text.test';
+import textAreaOnCutJsunit from './textTest/textArea.test';
+import textInputOnEditChangeJsunit from './TextInputTest/textInput.test';
 
 
 export default function testsuite() {
   textStyleJsunit();
   marqueeJsunit();
-  ImageTextTest();
+  ImagetextTest();
   TextAreaCallbackTest();
   TextAreaSelectTest();
   RenderNodeShadowElevationJsSuit();
@@ -220,7 +220,7 @@ export default function testsuite() {
   drawContextGetSizeTest()
   keyframeTest()
   pixelRoundTest()
-  TextfieldOtherTest()
-  TextfieldSingleTest()
-  TextfieldMultiTest()
+  textMinFontSizeJsunit()
+  textAreaOnCutJsunit()
+  textInputOnEditChangeJsunit()
 }

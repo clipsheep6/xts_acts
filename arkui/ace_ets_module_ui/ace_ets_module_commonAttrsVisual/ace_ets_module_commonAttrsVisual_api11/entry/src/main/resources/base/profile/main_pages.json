@@ -8,6 +8,9 @@
         "MainAbility/pages/imageEffects/blendMode1",
         "MainAbility/pages/imageEffects/InvertOptions",
         "MainAbility/pages/imageEffects/ForegroundColor",
-        "MainAbility/pages/imageEffects/sheetSize"
+        "MainAbility/pages/imageEffects/sheetSize",
+        "MainAbility/pages/imageEffects/common",
+        "MainAbility/pages/imageEffects/common_ts_ets_api",
+        "MainAbility/pages/createElement/dom"
     ]
 }

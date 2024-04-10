@@ -20,6 +20,8 @@ import backgroundEffectJsSuit from './imageEffectsTest/backgroundEffectJsSuit.te
 import InvertOptionsJsSuit from './imageEffectsTest/InvertOptionsJsSuit.test';
 import ForegroundColorJsSuit from './imageEffectsTest/ForegroundColorJsSuit.test';
 import sheetSize1Jsunit from './imageEffectsTest/sheetSize1.test'
+import commonBackgroundBlurStyleJsunit from './imageEffectsTest/common.test';
+import common_ts_ets_apiStaticClearJsunit from './imageEffectsTest/common_ts_ets_api.test';
 
 export default function testsuite() {
   imageEffectsJsunit();
@@ -30,4 +32,6 @@ export default function testsuite() {
   InvertOptionsJsSuit();
   ForegroundColorJsSuit();
   sheetSize1Jsunit()
+  commonBackgroundBlurStyleJsunit()
+  common_ts_ets_apiStaticClearJsunit()
 }

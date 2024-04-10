@@ -8,6 +8,16 @@
         "MainAbility/pages/Canvas/CanvasAPI",
         "MainAbility/pages/Canvas/CanvasShader",
         "MainAbility/pages/Canvas/CanvasColor",
-        "MainAbility/pages/OffScreenCanvas/OffScreenCanvas"
+        "MainAbility/pages/OffScreenCanvas/OffScreenCanvas",
+        "MainAbility/pages/Circle/circle",
+        "MainAbility/pages/Canvas/curves",
+        "MainAbility/pages/Ellipse/ellipse1",
+        "MainAbility/pages/line/line",
+        "MainAbility/pages/panel/panel",
+        "MainAbility/pages/Path/path",
+        "MainAbility/pages/Polygon/polygon",
+        "MainAbility/pages/PolyLine/polyLine",
+        "MainAbility/pages/Rect/rect",
+        "MainAbility/pages/Shape/shape"
     ]
 }

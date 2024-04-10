@@ -16,6 +16,9 @@
         "MainAbility/pages/DragController/dragPreview",
         "MainAbility/pages/DragController/dragPreviewOptions",
         "MainAbility/pages/freeze/freezeInactive",
-        "MainAbility/pages/TapGesture/GestureTag"
+        "MainAbility/pages/TapGesture/GestureTag",
+        "MainAbility/pages/lazyForeach/lazyForEach",
+        "MainAbility/pages/PanGesture/gesture",
+        "MainAbility/pages/onVisibleAreaChange/onVisibleAreaChange"
     ]
 }

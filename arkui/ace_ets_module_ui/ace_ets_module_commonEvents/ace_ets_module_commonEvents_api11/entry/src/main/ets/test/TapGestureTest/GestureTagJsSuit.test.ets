@@ -29,7 +29,7 @@ export default function GestureTagJsSuit() {
         router.clear();
         let pages = router.getState();
         console.info("get GestureTagJsSuit state pages: " + JSON.stringify(pages));
-        if (!("overlay" == pages.name)) {
+        if (!("GestureTag" == pages.name)) {
           console.info("get GestureTagJsSuit state pages.name:" + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);

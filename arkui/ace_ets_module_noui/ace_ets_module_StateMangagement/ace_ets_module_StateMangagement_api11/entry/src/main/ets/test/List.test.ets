@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 import allowOverride from './allowOverrideTest/allowOverride.test';
+import stateManagementGetSharedJsunit from './stateManagementTest/stateManagement.test';
 
 export default function testsuite() {
   allowOverride()
+  stateManagementGetSharedJsunit()
 }

@@ -24,13 +24,13 @@ export default function backgroundEffectJsSuit() {
     beforeEach(async function (done) {
       console.info("backgroundEffectJsSuit beforeEach start");
       let options = {
-        uri: 'MainAbility/pages/imageEffects/backgroundEffect1',
+        uri: 'MainAbility/pages/imageEffects/backgroundEffect',
       }
       try {
         router.clear();
         let pages = router.getState();
         console.info("get backgroundEffectJsSuit state pages: " + JSON.stringify(pages));
-        if (!("overlay" == pages.name)) {
+        if (!("backgroundEffect" == pages.name)) {
           console.info("get backgroundEffectJsSuit state pages.name:" + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);

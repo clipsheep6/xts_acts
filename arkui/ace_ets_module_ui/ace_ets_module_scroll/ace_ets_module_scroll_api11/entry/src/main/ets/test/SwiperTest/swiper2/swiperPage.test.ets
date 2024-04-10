@@ -27,7 +27,7 @@ export default function swiperPageTest() {
         console.info("get swiperPageTest state pages:" + JSON.stringify(pages));
         if (!("siwper_page_test" == pages.name)) {
           console.info("get swiperPageTest pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/Swiper/swiper2/siwper_page_test"})
+          let result = await router.pushUrl({url:"MainAbility/pages/Swiper/Swiper2/siwper_page_test"})
           await CommonFunc.sleep(2000);
           console.info("push swiperPageTest page result:" + JSON.stringify(result));
         }

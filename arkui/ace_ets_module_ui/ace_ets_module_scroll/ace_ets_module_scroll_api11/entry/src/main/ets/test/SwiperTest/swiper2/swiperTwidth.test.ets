@@ -27,7 +27,7 @@ export default function swiperWidthTest() {
         console.info("get swiperWidthTest state pages:" + JSON.stringify(pages));
         if (!("swiper_stretch_test_width" == pages.name)) {
           console.info("get  swiperWidthTest pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/Swiper/swiper2/swiper_stretch_test_width"})
+          let result = await router.pushUrl({url:"MainAbility/pages/Swiper/Swiper2/swiper_stretch_test_width"})
           await CommonFunc.sleep(2000);
           console.info("push swiperWidthTest page result:" + JSON.stringify(result));
         }

@@ -14,8 +14,13 @@
  */
 import FolderStack3ApiJsunit from './FolderStackTest/FolderStack3ApiJsunit.test';
 import enumFolderTest from "./FolderStackTest/enumflodstack.test"
+import grid_colSpanJsunit from './GridColTest/grid_col.test';
+import grid_rowOnBreakpointChangeJsunit from './GridRowTest/grid_row.test';
+import inspectorJsunit from './inspectorTest/inspector.test'
+
 
 export default function testsuite() {
   FolderStack3ApiJsunit()
   enumFolderTest()
+  inspectorJsunit()
 }

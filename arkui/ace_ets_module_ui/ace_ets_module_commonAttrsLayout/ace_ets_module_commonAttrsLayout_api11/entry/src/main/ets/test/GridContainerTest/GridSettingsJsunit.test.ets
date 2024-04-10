@@ -16,7 +16,7 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
-import Utils from '../Utils';
+import Utils from '../../MainAbility/common/Utils'
 
 export default function gridSettingsJsunit() {
   describe('gridSettingsTest', () => {
@@ -28,7 +28,7 @@ export default function gridSettingsJsunit() {
         router.clear();
         let pages = router.getState();
         console.info("get gridSettings state pages:" + JSON.stringify(pages));
-        if (!("textStyle" == pages.name)) {
+        if (!("gridSettings" == pages.name)) {
           console.info("get gridSettings state pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await Utils.sleep(2000);

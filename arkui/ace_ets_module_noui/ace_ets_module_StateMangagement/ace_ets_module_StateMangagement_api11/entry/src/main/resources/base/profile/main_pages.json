@@ -1,6 +1,7 @@
 {
     "src": [
         "MainAbility/pages/index/index",
-        "MainAbility/pages/allowOverride/allowOverride"
+        "MainAbility/pages/allowOverride/allowOverride",
+        "MainAbility/pages/stateManagement/stateManagement"
     ]
 }

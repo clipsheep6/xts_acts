@@ -27,7 +27,7 @@ export default function swiperDelAddTest() {
         console.info("get swiperDelAddTest state pages:" + JSON.stringify(pages));
         if (!("siwper_adddelete_test" == pages.name)) {
           console.info("get swiperDelAddTest pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/Swiper/swiper2/siwper_adddelete_test"})
+          let result = await router.pushUrl({url:"MainAbility/pages/Swiper/Swiper2/siwper_adddelete_test"})
           await CommonFunc.sleep(2000);
           console.info("push swiperDelAddTest page result:" + JSON.stringify(result));
         }

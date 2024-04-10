@@ -27,7 +27,7 @@ export default function swipeleftScrollTest() {
         console.info("get swipeleftScrollTest state pages:" + JSON.stringify(pages));
         if (!("siwpe_leftscroll" == pages.name)) {
           console.info("get swipeleftScrollTest pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/Swiper/swiper2/siwpe_leftscroll"})
+          let result = await router.pushUrl({url:"MainAbility/pages/Swiper/Swiper2/siwpe_leftscroll"})
           await CommonFunc.sleep(2000);
           console.info("push swipeleftScrollTest page result:" + JSON.stringify(result));
         }

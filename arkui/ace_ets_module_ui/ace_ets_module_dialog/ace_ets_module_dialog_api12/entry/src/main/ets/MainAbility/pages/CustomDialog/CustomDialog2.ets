@@ -69,7 +69,7 @@ struct CustomDialogUser2 {
     cancel: this.exitApp,
     showInSubWindow: true,
     autoCancel: true,
-    onWillDismiss:(dismissDialog: DismissDialogAction)=> {
+    onWillDismiss:(dismissDialog: DismissDialog)=> {
       console.info("reason=" + JSON.stringify(dismissDialog.reason))
       this.text = "reason=" + JSON.stringify(dismissDialog.reason)
       console.log("dialog onWillDismiss")

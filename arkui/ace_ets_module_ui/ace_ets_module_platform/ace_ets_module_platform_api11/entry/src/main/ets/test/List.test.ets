@@ -13,7 +13,11 @@
  * limitations under the License.
  */
 import XComponentNodeChageJsSuit from './XComponentTest/XComponentNodeChageJsSuit.test';
+import videoOnFullscreenChangeJsunit from './VideoTest/video.test';
+import xcomponentGetXComponentContextJsunit from './XComponentTest/xcomponent.test';
 
 export default function testsuite() {
   XComponentNodeChageJsSuit()
+  videoOnFullscreenChangeJsunit()
+  xcomponentGetXComponentContextJsunit()
 }

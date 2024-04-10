@@ -14,7 +14,7 @@
  */
 import router from '@system.router';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-import Utils from '../Utils'
+import Utils from '../../../MainAbility/common/Utils'
 import { Driver, ON } from '@ohos.UiTest';
 
 export default function tabsDemo() {

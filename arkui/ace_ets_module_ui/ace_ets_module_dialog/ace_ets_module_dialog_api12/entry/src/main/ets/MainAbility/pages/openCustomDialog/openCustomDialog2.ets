@@ -45,7 +45,7 @@ struct openCustomDialog2 {
               isModal: true,
               showInSubWindow: true,
               builder: customDialogBuilder2.bind(this),
-              onWillDismiss:(dismissDialog: DismissDialogAction)=> {
+              onWillDismiss:(dismissDialog: DismissDialog)=> {
                 console.info("reason=" + JSON.stringify(dismissDialog.reason))
                 this.text = "reason=" + JSON.stringify(dismissDialog.reason)
                 console.log("dialog onWillDismiss")
