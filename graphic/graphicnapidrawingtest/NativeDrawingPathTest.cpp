@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Huawei Device Co., Ltd.
+ * Copyright (c) 2022-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -16,10 +16,10 @@
 #include <cstdio>
 #include "gtest/gtest.h"
 
-#include "c/drawing_path.h"
-#include "c/drawing_matrix.h"
-#include "c/drawing_rect.h"
-#include "c/drawing_round_rect.h"
+#include "drawing_path.h"
+#include "drawing_matrix.h"
+#include "drawing_rect.h"
+#include "drawing_round_rect.h"
 #include "draw/path.h"
 #include "utils/scalar.h"
 
@@ -299,7 +299,29 @@ HWTEST_F(NativeDrawingPathTest, NativeDrawingPathTest_path016, TestSize.Level1)
     EXPECT_TRUE(IsScalarAlmostEqual(reinterpret_cast<Path*>(path7)->GetBounds().GetHeight(), 40.0));
     OH_Drawing_PathDestroy(path7);
 }
-
+/*
+ * @tc.name  : NativeDrawingPathTest_pathAddPath029
+ * @tc.desc  : test for PathAddPath func.
+ * @tc.size  : MediumTest
+ * @tc.type  : Function
+ * @tc.level : Level 1
+ */
+HWTEST_F(NativeDrawingPathTest, NativeDrawingPathTest_pathAddPath029, TestSize.Level1)
+{
+    OH_Drawing_Path* path16 = OH_Drawing_PathCreate();
+    OH_Drawing_PathAddRect(path16, 100, 500, 500, 100, OH_Drawing_PathDirection::PATH_DIRECTION_CW);
+    OH_Drawing_Matrix* matrix = OH_Drawing_MatrixCreate();
+    OH_Drawing_MatrixSetMatrix(
+        matrix,
+        1, 0, 0,
+        0, -1, 0,
+        0, 0, 1);
+    OH_Drawing_PathAddPath(path16, path16, matrix);
+    EXPECT_TRUE(IsScalarAlmostEqual(reinterpret_cast<Path*>(path16)->GetBounds().GetWidth(), 400.0));
+    EXPECT_TRUE(IsScalarAlmostEqual(reinterpret_cast<Path*>(path16)->GetBounds().GetHeight(), 1000.0));
+    OH_Drawing_PathDestroy(path16);
+    OH_Drawing_MatrixDestroy(matrix);
+}
 } // namespace Drawing
 } // namespace Rosen
 } // namespace OHOS

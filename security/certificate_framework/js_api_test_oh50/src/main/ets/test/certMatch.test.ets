@@ -322,8 +322,49 @@ export default function certFrameworkCertMatchJsAPIFunctionTestUnit() {
       const param: cert.X509CertMatchParameters = {
         subjectAlternativeNames: [
           {
+            type: cert.GeneralNameType.GENERAL_NAME_TYPE_OTHER_NAME,
+            name: new Uint8Array([0x82, 0x12, 0x77, 0x77, 0x77, 0x2E, 0x67, 0x6C, 0x6F, 0x62, 0x61, 0x6C, 0x73, 0x69,
+              0x67, 0x6E, 0x2E, 0x63, 0x6F, 0x6D])
+          },
+          {
+            type: cert.GeneralNameType.GENERAL_NAME_TYPE_RFC822_NAME,
+            name: new Uint8Array([0x82, 0x12, 0x77, 0x77, 0x77, 0x2E, 0x67, 0x6C, 0x6F, 0x62, 0x61, 0x6C, 0x73, 0x69,
+              0x67, 0x6E, 0x2E, 0x63, 0x6F, 0x6D])
+          },
+          {
+            type: cert.GeneralNameType.GENERAL_NAME_TYPE_DNS_NAME,
+            name: new Uint8Array([0x82, 0x12, 0x77, 0x77, 0x77, 0x2E, 0x67, 0x6C, 0x6F, 0x62, 0x61, 0x6C, 0x73, 0x69,
+              0x67, 0x6E, 0x2E, 0x63, 0x6F, 0x6D])
+          },
+          {
             type: cert.GeneralNameType.GENERAL_NAME_TYPE_X400_ADDRESS,
-            name: new Uint8Array([0x30, 0x82, 0x01])
+            name: new Uint8Array([0x82, 0x12, 0x77, 0x77, 0x77, 0x2E, 0x67, 0x6C, 0x6F, 0x62, 0x61, 0x6C, 0x73, 0x69,
+              0x67, 0x6E, 0x2E, 0x63, 0x6F, 0x6D])
+          },
+          {
+            type: cert.GeneralNameType.GENERAL_NAME_TYPE_DIRECTORY_NAME,
+            name: new Uint8Array([0x82, 0x12, 0x77, 0x77, 0x77, 0x2E, 0x67, 0x6C, 0x6F, 0x62, 0x61, 0x6C, 0x73, 0x69,
+              0x67, 0x6E, 0x2E, 0x63, 0x6F, 0x6D])
+          },
+          {
+            type: cert.GeneralNameType.GENERAL_NAME_TYPE_EDI_PARTY_NAME,
+            name: new Uint8Array([0x82, 0x12, 0x77, 0x77, 0x77, 0x2E, 0x67, 0x6C, 0x6F, 0x62, 0x61, 0x6C, 0x73, 0x69,
+              0x67, 0x6E, 0x2E, 0x63, 0x6F, 0x6D])
+          },
+          {
+            type: cert.GeneralNameType.GENERAL_NAME_TYPE_UNIFORM_RESOURCE_ID,
+            name: new Uint8Array([0x82, 0x12, 0x77, 0x77, 0x77, 0x2E, 0x67, 0x6C, 0x6F, 0x62, 0x61, 0x6C, 0x73, 0x69,
+              0x67, 0x6E, 0x2E, 0x63, 0x6F, 0x6D])
+          },
+          {
+            type: cert.GeneralNameType.GENERAL_NAME_TYPE_IP_ADDRESS,
+            name: new Uint8Array([0x82, 0x12, 0x77, 0x77, 0x77, 0x2E, 0x67, 0x6C, 0x6F, 0x62, 0x61, 0x6C, 0x73, 0x69,
+              0x67, 0x6E, 0x2E, 0x63, 0x6F, 0x6D])
+          },
+          {
+            type: cert.GeneralNameType.GENERAL_NAME_TYPE_REGISTERED_ID,
+            name: new Uint8Array([0x82, 0x12, 0x77, 0x77, 0x77, 0x2E, 0x67, 0x6C, 0x6F, 0x62, 0x61, 0x6C, 0x73, 0x69,
+              0x67, 0x6E, 0x2E, 0x63, 0x6F, 0x6D])
           }
         ],
         matchAllSubjectAltNames: true
@@ -1033,6 +1074,28 @@ export default function certFrameworkCertMatchJsAPIFunctionTestUnit() {
     });
 
     /**
+     * @tc.number SUB_Security_Cert_Framework_Cert_Match_Func_8000
+     * @tc.name check X509Cert.match for parameter privateKeyValid match
+     * @tc.desc The X509 Cert Format is PEM
+     * @tc.size SmallTest
+     * @tc.level Level1
+     * @tc.type Function
+     */
+    it("SUB_Security_Cert_Framework_Cert_Match_Func_8000", 0, async (done: Function) => {
+      const param: cert.X509CertMatchParameters = {
+        privateKeyValid: '241121-00:00:00Z'
+      };
+      try {
+        const result = await certFunc.checkCertMatchParam(PEM, 1, param);
+        expect(result).assertTrue();
+      }
+      catch (err) {
+        expect(null).assertFail();
+      }
+      done();
+    });
+
+    /**
      * @tc.number SUB_Security_Cert_Framework_Cert_Match_Func_8100
      * @tc.name check X509Cert.match for parameter privateKeyValid mismatch
      * @tc.desc The X509 Cert Format is PEM
@@ -1042,7 +1105,7 @@ export default function certFrameworkCertMatchJsAPIFunctionTestUnit() {
      */
     it("SUB_Security_Cert_Framework_Cert_Match_Func_8100", 0, async (done: Function) => {
       const param: cert.X509CertMatchParameters = {
-        privateKeyValid: '20231012080000Z'
+        privateKeyValid: '291121-00:00:00Z'
       };
       try {
         const result = await certFunc.checkCertMatchParam(PEM, 1, param);
@@ -1064,7 +1127,7 @@ export default function certFrameworkCertMatchJsAPIFunctionTestUnit() {
      */
     it("SUB_Security_Cert_Framework_Cert_Match_Func_8200", 0, async (done: Function) => {
       const param: cert.X509CertMatchParameters = {
-        privateKeyValid: '20231212080000Z'
+        privateKeyValid: '241121-00:00:00Z'
       };
       try {
         const result = await certFunc.checkCertMatchParam(PEM, 5, param);
