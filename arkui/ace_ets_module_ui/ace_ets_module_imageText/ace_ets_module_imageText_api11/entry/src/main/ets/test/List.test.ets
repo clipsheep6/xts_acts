@@ -12,6 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import onSelectionChange1 from './RichEditorTest/onSelectionChange/onSelectionChange1.test'
+import onSelectionChange2 from './RichEditorTest/onSelectionChange/onSelectionChange2.test'
+import onSelectionChange3 from './RichEditorTest/onSelectionChange/onSelectionChange3.test'
+import onSelectionChange4 from './RichEditorTest/onSelectionChange/onSelectionChange4.test'
+import onSelectionChange5 from './RichEditorTest/onSelectionChange/onSelectionChange5.test'
+import onSelectionChange6 from './RichEditorTest/onSelectionChange/onSelectionChange6.test'
+import onSelectionChange7 from './RichEditorTest/onSelectionChange/onSelectionChange7.test'
+import onSelectionChange8 from './RichEditorTest/onSelectionChange/onSelectionChange8.test'
+import onSelectionChange9 from './RichEditorTest/onSelectionChange/onSelectionChange9.test'
+import onSelectionChange10 from './RichEditorTest/onSelectionChange/onSelectionChange10.test'
+import onSelectionChange11 from './RichEditorTest/onSelectionChange/onSelectionChange11.test'
+import onSelectionChange12 from './RichEditorTest/onSelectionChange/onSelectionChange12.test'
+import onSelectionChange13 from './RichEditorTest/onSelectionChange/onSelectionChange13.test'
+import onSelectionChange14 from './RichEditorTest/onSelectionChange/onSelectionChange14.test'
+import onSelectionChange15 from './RichEditorTest/onSelectionChange/onSelectionChange15.test'
+import onSelectionChange16 from './RichEditorTest/onSelectionChange/onSelectionChange16.test'
+import onSelectionChange17 from './RichEditorTest/onSelectionChange/onSelectionChange17.test'
+import onSelectionChange18 from './RichEditorTest/onSelectionChange/onSelectionChange18.test'
+import onSelectionChange19 from './RichEditorTest/onSelectionChange/onSelectionChange19.test'
 import marqueeJsunit from './marqueeTest/MarqueeJsunit.test';
 import textStyleJsunit from './textTest/TextStyleJsunit.test';
 import ImageTextTest from './textTest/ImageText.test';
@@ -122,6 +141,25 @@ import TextfieldSingleTest from './textTest/TextfieldSingle.test';
 
 
 export default function testsuite() {
+  onSelectionChange1();
+  onSelectionChange2();
+  onSelectionChange3();
+  onSelectionChange4();
+  onSelectionChange5();
+  onSelectionChange6();
+  onSelectionChange7();
+  onSelectionChange8();
+  onSelectionChange9();
+  onSelectionChange10();
+  onSelectionChange11();
+  onSelectionChange12();
+  onSelectionChange13();
+  onSelectionChange14();
+  onSelectionChange15();
+  onSelectionChange16();
+  onSelectionChange17();
+  onSelectionChange18();
+  onSelectionChange19();
   textStyleJsunit();
   marqueeJsunit();
   ImageTextTest();
