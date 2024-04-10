@@ -3,6 +3,8 @@
         "MainAbility/pages/index/index",
         "MainAbility/pages/Select/SelectAttr",
         "MainAbility/pages/Select/selectoptionwith",
+        "MainAbility/pages/Select/Index",
+        "MainAbility/pages/Select/SelectMenu",
         "MainAbility/pages/TimePicker/TimePicker"
     ]
 }
