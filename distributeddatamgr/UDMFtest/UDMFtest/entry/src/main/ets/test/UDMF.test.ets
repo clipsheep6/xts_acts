@@ -18,70 +18,70 @@ import unifiedDataChannel from '@ohos.data.unifiedDataChannel';
 import uniformTypeDescriptor from '@ohos.data.uniformTypeDescriptor';
 
 export default function UDMFApiTest() {
-  describe('UDMFApiTest', function () {
+  describe('UDMFApiTest', () => {
     console.info('start UDMFApiTest');
     let text = new unifiedDataChannel.Text();
     text.details = {
-      title:"标题",
-      content:"内容"
+      title: "标题",
+      content: "内容"
     };
 
     let plainText = new unifiedDataChannel.PlainText();
     plainText.details = {
-      title:"标题",
-      content:"内容"
+      title: "标题",
+      content: "内容"
     };
     plainText.textContent = "textContent";
     plainText.abstract = "abstract";
 
     let link = new unifiedDataChannel.Hyperlink();
     link.details = {
-      title:"标题",
-      content:"内容"
+      title: "标题",
+      content: "内容"
     };
     link.url = "url";
     link.description = "description";
 
     let html = new unifiedDataChannel.HTML();
     html.details = {
-      title:"标题",
-      content:"内容"
+      title: "标题",
+      content: "内容"
     };
     html.htmlContent = "htmlContent";
     html.plainContent = "plainContent";
 
     let file = new unifiedDataChannel.File();
     file.details = {
-      title:"标题",
-      content:"内容"
+      title: "标题",
+      content: "内容"
     };
     file.uri = "uri";
 
     let folder = new unifiedDataChannel.Folder();
     folder.details = {
-      title:"标题",
-      content:"内容"
+      title: "标题",
+      content: "内容"
     };
     folder.folderUri = "folderUri";
 
     let image = new unifiedDataChannel.Image();
     image.details = {
-      title:"标题",
-      content:"内容"
+      title: "标题",
+      content: "内容"
     };
     image.imageUri = "imageUri";
 
     let video = new unifiedDataChannel.Video();
     video.details = {
-      title:"标题",
-      content:"内容"
+      title: "标题",
+      content: "内容"
     };
     video.videoUri = "videoUri";
 
     let audio = new unifiedDataChannel.Audio();
     audio.details = {
-      title:"标题",
-      content:"内容"
+      title: "标题",
+      content: "内容"
     };
     audio.audioUri = "audioUri";
 
@@ -90,16 +90,16 @@ export default function UDMFApiTest() {
 
     let systemDefinedRecord = new unifiedDataChannel.SystemDefinedRecord();
     systemDefinedRecord.details = {
-      title:"标题",
-      version:1,
-      content:u8Array
+      title: "标题",
+      version: 1,
+      content: u8Array
     };
 
     let systemDefinedForm = new unifiedDataChannel.SystemDefinedForm();
     systemDefinedForm.details = {
-      title:"标题",
-      version:1,
-      content:u8Array
+      title: "标题",
+      version: 1,
+      content: u8Array
     };
     systemDefinedForm.formId = 123456;
     systemDefinedForm.formName = 'formName';
@@ -109,9 +109,9 @@ export default function UDMFApiTest() {
 
     let systemDefinedAppItem = new unifiedDataChannel.SystemDefinedAppItem();
     systemDefinedAppItem.details = {
-      title:"标题",
-      version:1,
-      content:u8Array
+      title: "标题",
+      version: 1,
+      content: u8Array
     };
     systemDefinedAppItem.appId = 'appId';
     systemDefinedAppItem.appName = 'appName';
@@ -122,9 +122,9 @@ export default function UDMFApiTest() {
 
     let systemDefinedPixelMap = new unifiedDataChannel.SystemDefinedPixelMap();
     systemDefinedPixelMap.details = {
-      title:"标题",
-      version:1,
-      content:u8Array
+      title: "标题",
+      version: 1,
+      content: u8Array
     };
     systemDefinedPixelMap.rawData = u8Array;
 
@@ -145,14 +145,14 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0100',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0100', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0100 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(text);
       let records = unifiedData.getRecords();
-      let record = <unifiedDataChannel.Text>(records[0]);
+      let record = (records[0]) as unifiedDataChannel.Text;
       expect(records.length).assertEqual(1);
-      expect(record.details.title).assertEqual('标题');
-      expect(record.details.content).assertEqual('内容');
+      expect(record.details!.title).assertEqual('标题');
+      expect(record.details!.content).assertEqual('内容');
       console.info("SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0100 end");
       done();
     })
@@ -165,14 +165,14 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0200',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0200', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0200 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(plainText);
       let records = unifiedData.getRecords();
-      let record = <unifiedDataChannel.PlainText>(records[0]);
+      let record = (records[0]) as unifiedDataChannel.PlainText;
       expect(records.length).assertEqual(1);
-      expect(record.details.title).assertEqual('标题');
-      expect(record.details.content).assertEqual('内容');
+      expect(record.details!.title).assertEqual('标题');
+      expect(record.details!.content).assertEqual('内容');
       expect(record.textContent).assertEqual('textContent');
       expect(record.abstract).assertEqual('abstract');
       console.info("SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0200 end");
@@ -187,14 +187,14 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0300',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0300', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0300 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(link);
       let records = unifiedData.getRecords();
-      let record = <unifiedDataChannel.Hyperlink>(records[0]);
+      let record = (records[0]) as unifiedDataChannel.Hyperlink;
       expect(records.length).assertEqual(1);
-      expect(record.details.title).assertEqual('标题');
-      expect(record.details.content).assertEqual('内容');
+      expect(record.details!.title).assertEqual('标题');
+      expect(record.details!.content).assertEqual('内容');
       expect(record.url).assertEqual('url');
       expect(record.description).assertEqual('description');
       console.info("SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0300 end");
@@ -209,14 +209,14 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0400',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0400', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0400 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(html);
       let records = unifiedData.getRecords();
-      let record = <unifiedDataChannel.HTML>(records[0]);
+      let record = (records[0]) as unifiedDataChannel.HTML;
       expect(records.length).assertEqual(1);
-      expect(record.details.title).assertEqual('标题');
-      expect(record.details.content).assertEqual('内容');
+      expect(record.details!.title).assertEqual('标题');
+      expect(record.details!.content).assertEqual('内容');
       expect(record.htmlContent).assertEqual('htmlContent');
       expect(record.plainContent).assertEqual('plainContent');
       console.info("SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0400 end");
@@ -231,14 +231,14 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0500',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0500', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0500 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(file);
       let records = unifiedData.getRecords();
-      let record = <unifiedDataChannel.File>(records[0]);
+      let record = (records[0]) as unifiedDataChannel.File;
       expect(records.length).assertEqual(1);
-      expect(record.details.title).assertEqual('标题');
-      expect(record.details.content).assertEqual('内容');
+      expect(record.details!.title).assertEqual('标题');
+      expect(record.details!.content).assertEqual('内容');
       expect(record.uri).assertEqual('uri');
       console.info("SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0500 end");
       done();
@@ -252,14 +252,14 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0600',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0600', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0600 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(folder);
       let records = unifiedData.getRecords();
-      let record = <unifiedDataChannel.Folder>(records[0]);
+      let record = (records[0]) as unifiedDataChannel.Folder;
       expect(records.length).assertEqual(1);
-      expect(record.details.title).assertEqual('标题');
-      expect(record.details.content).assertEqual('内容');
+      expect(record.details!.title).assertEqual('标题');
+      expect(record.details!.content).assertEqual('内容');
       expect(record.folderUri).assertEqual('folderUri');
       console.info("SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0600 end");
       done();
@@ -273,14 +273,14 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0700',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0700', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0700 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(image);
       let records = unifiedData.getRecords();
-      let record = <unifiedDataChannel.Image>(records[0]);
+      let record = (records[0]) as unifiedDataChannel.Image;
       expect(records.length).assertEqual(1);
-      expect(record.details.title).assertEqual('标题');
-      expect(record.details.content).assertEqual('内容');
+      expect(record.details!.title).assertEqual('标题');
+      expect(record.details!.content).assertEqual('内容');
       expect(record.imageUri).assertEqual('imageUri');
       console.info("SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0700 end");
       done();
@@ -294,14 +294,14 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0800',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0800', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0800 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(video);
       let records = unifiedData.getRecords();
-      let record = <unifiedDataChannel.Video>(records[0]);
+      let record = (records[0]) as unifiedDataChannel.Video;
       expect(records.length).assertEqual(1);
-      expect(record.details.title).assertEqual('标题');
-      expect(record.details.content).assertEqual('内容');
+      expect(record.details!.title).assertEqual('标题');
+      expect(record.details!.content).assertEqual('内容');
       expect(record.videoUri).assertEqual('videoUri');
       console.info("SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0800 end");
       done();
@@ -315,14 +315,14 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0900',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0900', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0900 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(audio);
       let records = unifiedData.getRecords();
-      let record = <unifiedDataChannel.Audio>(records[0]);
+      let record = (records[0]) as unifiedDataChannel.Audio;
       expect(records.length).assertEqual(1);
-      expect(record.details.title).assertEqual('标题');
-      expect(record.details.content).assertEqual('内容');
+      expect(record.details!.title).assertEqual('标题');
+      expect(record.details!.content).assertEqual('内容');
       expect(record.audioUri).assertEqual('audioUri');
       console.info("SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_0900 end");
       done();
@@ -336,16 +336,16 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1000',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1000', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1000 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(systemDefinedRecord);
       let records = unifiedData.getRecords();
-      let record = <unifiedDataChannel.SystemDefinedRecord>(records[0]);
+      let record = (records[0]) as unifiedDataChannel.SystemDefinedRecord;
       expect(records.length).assertEqual(1);
-      expect(record.details.title).assertEqual('标题');
-      expect(record.details.version).assertEqual(1);
-      for(let i = 0; i<u8Array.length; i++){
-        expect(record.details.content[i]).assertEqual(u8Array[i]);
+      expect(record.details!.title).assertEqual('标题');
+      expect(record.details!.version).assertEqual(1);
+      for (let i = 0; i < u8Array.length; i++) {
+        expect((record.details!.content as Uint8Array)[i]).assertEqual(u8Array[i]);
       }
       console.info("SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1000 end");
       done();
@@ -359,16 +359,16 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1100',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1100', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1100 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(systemDefinedForm);
       let records = unifiedData.getRecords();
-      let record = <unifiedDataChannel.SystemDefinedForm>(records[0]);
+      let record = (records[0]) as unifiedDataChannel.SystemDefinedForm;
       expect(records.length).assertEqual(1);
-      expect(record.details.title).assertEqual('标题');
-      expect(record.details.version).assertEqual(1);
-      for(let i = 0; i<u8Array.length; i++){
-        expect(record.details.content[i]).assertEqual(u8Array[i]);
+      expect(record.details!.title).assertEqual('标题');
+      expect(record.details!.version).assertEqual(1);
+      for (let i = 0; i < u8Array.length; i++) {
+        expect((record.details!.content as Uint8Array)[i]).assertEqual(u8Array[i]);
       }
       expect(record.formId).assertEqual(123456);
       expect(record.formName).assertEqual('formName');
@@ -387,16 +387,16 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1200',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1200', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1200 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(systemDefinedAppItem);
       let records = unifiedData.getRecords();
-      let record = <unifiedDataChannel.SystemDefinedAppItem>(records[0]);
+      let record = (records[0]) as unifiedDataChannel.SystemDefinedAppItem;
       expect(records.length).assertEqual(1);
-      expect(record.details.title).assertEqual('标题');
-      expect(record.details.version).assertEqual(1);
-      for(let i = 0; i<u8Array.length; i++){
-        expect(record.details.content[i]).assertEqual(u8Array[i]);
+      expect(record.details!.title).assertEqual('标题');
+      expect(record.details!.version).assertEqual(1);
+      for (let i = 0; i < u8Array.length; i++) {
+        expect((record.details!.content as Uint8Array)[i]).assertEqual(u8Array[i]);
       }
       expect(record.appId).assertEqual('appId');
       expect(record.appName).assertEqual('appName');
@@ -416,18 +416,18 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1300',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1300', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1300 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(systemDefinedPixelMap);
       let records = unifiedData.getRecords();
-      let record = <unifiedDataChannel.SystemDefinedPixelMap>(records[0]);
+      let record = (records[0]) as unifiedDataChannel.SystemDefinedPixelMap;
       expect(records.length).assertEqual(1);
-      expect(record.details.title).assertEqual('标题');
-      expect(record.details.version).assertEqual(1);
-      for(let i = 0; i<u8Array.length; i++){
-        expect(record.details.content[i]).assertEqual(u8Array[i]);
+      expect(record.details!.title).assertEqual('标题');
+      expect(record.details!.version).assertEqual(1);
+      for (let i = 0; i < u8Array.length; i++) {
+        expect((record.details!.content as Uint8Array)[i]).assertEqual(u8Array[i]);
       }
-      for(let i = 0; i<u8Array.length; i++){
+      for (let i = 0; i < u8Array.length; i++) {
         expect(record.rawData[i]).assertEqual(u8Array[i]);
       }
       console.info("SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1300 end");
@@ -442,14 +442,14 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1400',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1400', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1400 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(applicationDefinedRecord);
       let records = unifiedData.getRecords();
-      let record = <unifiedDataChannel.ApplicationDefinedRecord>(records[0]);
+      let record = (records[0]) as unifiedDataChannel.ApplicationDefinedRecord;
       expect(records.length).assertEqual(1);
       expect(record.applicationDefinedType).assertEqual('applicationDefinedType');
-      for(let i = 0; i<u8Array.length; i++){
+      for (let i = 0; i < u8Array.length; i++) {
         expect(record.rawData[i]).assertEqual(u8Array[i]);
       }
       console.info("SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1400 end");
@@ -464,7 +464,7 @@ export default function UDMFApiTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1500',0, async function (done) {
+    it('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1500', 0, async (done: Function) => {
       console.info('SUB_DistributedData_UDMF_SDK_UnifiedDataJsAPITest_1500 start');
       let unifiedData = new unifiedDataChannel.UnifiedData(text);
       unifiedData.addRecord(plainText);
@@ -481,20 +481,20 @@ export default function UDMFApiTest() {
       unifiedData.addRecord(systemDefinedPixelMap);
       unifiedData.addRecord(applicationDefinedRecord);
       let records = unifiedData.getRecords();
-      let record1 = <unifiedDataChannel.Text>(records[0]);
-      let record2 = <unifiedDataChannel.PlainText>(records[1]);
-      let record3 = <unifiedDataChannel.Hyperlink>(records[2]);
-      let record4 = <unifiedDataChannel.HTML>(records[3]);
-      let record5 = <unifiedDataChannel.File>(records[4]);
-      let record6 = <unifiedDataChannel.Folder>(records[5]);
-      let record7 = <unifiedDataChannel.Image>(records[6]);
-      let record8 = <unifiedDataChannel.Video>(records[7]);
-      let record9 = <unifiedDataChannel.Audio>(records[8]);
-      let record10 = <unifiedDataChannel.SystemDefinedRecord>(records[9]);
-      let record11 = <unifiedDataChannel.SystemDefinedForm>(records[10]);
-      let record12 = <unifiedDataChannel.SystemDefinedAppItem>(records[11]);
-      let record13 = <unifiedDataChannel.SystemDefinedPixelMap>(records[12]);
-      let record14 = <unifiedDataChannel.ApplicationDefinedRecord>(records[13]);
+      let record1 = (records[0]) as unifiedDataChannel.Text;
+      let record2 = (records[1]) as unifiedDataChannel.PlainText;
+      let record3 = (records[2]) as unifiedDataChannel.Hyperlink;
+      let record4 = (records[3]) as unifiedDataChannel.HTML;
+      let record5 = (records[4]) as unifiedDataChannel.File;
+      let record6 = (records[5]) as unifiedDataChannel.Folder;
+      let record7 = (records[6]) as unifiedDataChannel.Image;
+      let record8 = (records[7]) as unifiedDataChannel.Video;
+      let record9 = (records[8]) as unifiedDataChannel.Audio;
+      let record10 = (records[9]) as unifiedDataChannel.SystemDefinedRecord;
+      let record11 = (records[10]) as unifiedDataChannel.SystemDefinedForm;
+      let record12 = (records[11]) as unifiedDataChannel.SystemDefinedAppItem;
+      let record13 = (records[12]) as unifiedDataChannel.SystemDefinedPixelMap;
+      let record14 = (records[13]) as unifiedDataChannel.ApplicationDefinedRecord;
       expect(records.length).assertEqual(14);
       expect(record1.getType()).assertEqual(uniformTypeDescriptor.UniformDataType.TEXT);
       expect(record2.getType()).assertEqual(uniformTypeDescriptor.UniformDataType.PLAIN_TEXT);

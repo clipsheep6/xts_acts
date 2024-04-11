@@ -19,7 +19,7 @@ const REFERENCE_URL = "https://gitee.com/openharmony/docs/blob/master/en/applica
 
 
 export default function UDMFApiDescriptorTest() {
-  describe('UDMFApiDescriptorTest',function () {
+  describe('UDMFApiDescriptorTest', () => {
     /**
      * @tc.name      : testSUBDistributedDataUDMFSDKUniformTypeDescriptorJsAPITest0100
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0100
@@ -28,7 +28,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0100', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0100', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0100 start');
       expect(UTD.UniformDataType.TEXT).assertEqual("general.text");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.TEXT);
@@ -52,7 +52,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0125', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0125', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0125 start');
       expect(UTD.UniformDataType.ENTITY).assertEqual("general.entity");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.ENTITY);
@@ -76,7 +76,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0150', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0150', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0150 start');
       expect(UTD.UniformDataType.OBJECT).assertEqual("general.object");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.OBJECT);
@@ -100,7 +100,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0175', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0175', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0175 start');
       expect(UTD.UniformDataType.COMPOSITE_OBJECT).assertEqual("general.composite-object");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.COMPOSITE_OBJECT);
@@ -125,7 +125,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0200', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0200', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0200 start');
       expect(UTD.UniformDataType.PLAIN_TEXT).assertEqual("general.plain-text");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.PLAIN_TEXT);
@@ -149,7 +149,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0300', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0300', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0300 start');
       expect(UTD.UniformDataType.HTML).assertEqual("general.html");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.HTML);
@@ -173,7 +173,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0400', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0400', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0400 start');
       expect(UTD.UniformDataType.HYPERLINK).assertEqual("general.hyperlink");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.HYPERLINK);
@@ -197,7 +197,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0500', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0500', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0500 start');
       expect(UTD.UniformDataType.XML).assertEqual("general.xml");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.XML);
@@ -221,7 +221,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0600', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0600', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0600 start');
       expect(UTD.UniformDataType.SOURCE_CODE).assertEqual("general.source-code");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.SOURCE_CODE);
@@ -245,7 +245,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0700', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0700', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0700 start');
       expect(UTD.UniformDataType.SCRIPT).assertEqual("general.script");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.SCRIPT);
@@ -269,7 +269,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0800', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0800', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0800 start');
       expect(UTD.UniformDataType.SHELL_SCRIPT).assertEqual("general.shell-script");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.SHELL_SCRIPT);
@@ -293,7 +293,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0900', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0900', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_0900 start');
       expect(UTD.UniformDataType.CSH_SCRIPT).assertEqual("general.csh-script");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.CSH_SCRIPT);
@@ -317,7 +317,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1000', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1000', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1000 start');
       expect(UTD.UniformDataType.PERL_SCRIPT).assertEqual("general.perl-script");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.PERL_SCRIPT);
@@ -341,7 +341,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1100', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1100', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1100 start');
       expect(UTD.UniformDataType.PHP_SCRIPT).assertEqual("general.php-script");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.PHP_SCRIPT);
@@ -365,7 +365,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1200', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1200', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1200 start');
       expect(UTD.UniformDataType.PYTHON_SCRIPT).assertEqual("general.python-script");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.PYTHON_SCRIPT);
@@ -385,11 +385,11 @@ export default function UDMFApiDescriptorTest() {
      * @tc.name      : testSUBDistributedDataUDMFSDKUniformTypeDescriptorJsAPITest1300
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1300
      * @tc.desc      : Verify the properties of the Ruby script data type.
-     * @tc.size      : MediumTest    
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1300', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1300', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1300 start');
       expect(UTD.UniformDataType.RUBY_SCRIPT).assertEqual("general.ruby-script");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.RUBY_SCRIPT);
@@ -413,7 +413,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1400', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1400', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1400 start');
       expect(UTD.UniformDataType.TYPE_SCRIPT).assertEqual("general.type-script");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.TYPE_SCRIPT);
@@ -437,7 +437,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1500', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1500', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1500 start');
       expect(UTD.UniformDataType.JAVA_SCRIPT).assertEqual("general.java-script");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.JAVA_SCRIPT);
@@ -460,7 +460,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1600', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1600', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1600 start');
       expect(UTD.UniformDataType.C_HEADER).assertEqual("general.c-header");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.C_HEADER);
@@ -484,7 +484,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1700', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1700', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1700 start');
       expect(UTD.UniformDataType.C_SOURCE).assertEqual("general.c-source");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.C_SOURCE);
@@ -508,7 +508,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1800', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1800', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1800 start');
       expect(UTD.UniformDataType.C_PLUS_PLUS_HEADER).assertEqual("general.c-plus-plus-header");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.C_PLUS_PLUS_HEADER);
@@ -532,7 +532,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1900', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1900', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1900 start');
       expect(UTD.UniformDataType.C_PLUS_PLUS_SOURCE).assertEqual("general.c-plus-plus-source");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.C_PLUS_PLUS_SOURCE);
@@ -556,7 +556,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2000', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2000', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2000 start');
       expect(UTD.UniformDataType.JAVA_SOURCE).assertEqual("general.java-source");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.JAVA_SOURCE);
@@ -580,7 +580,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2100', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2100', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2100 start');
       expect(UTD.UniformDataType.EBOOK).assertEqual("general.ebook");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.EBOOK);
@@ -604,7 +604,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2200', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2200', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2200 start');
       expect(UTD.UniformDataType.EPUB).assertEqual("general.epub");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.EPUB);
@@ -628,7 +628,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2300', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2300', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2300 start');
       expect(UTD.UniformDataType.AZW).assertEqual("com.amazon.azw");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.AZW);
@@ -652,7 +652,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2400', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2400', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2400 start');
       expect(UTD.UniformDataType.AZW3).assertEqual("com.amazon.azw3");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.AZW3);
@@ -676,7 +676,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2500', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2500', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2500 start');
       expect(UTD.UniformDataType.KFX).assertEqual("com.amazon.kfx");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.KFX);
@@ -700,7 +700,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2600', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2600', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2600 start');
       expect(UTD.UniformDataType.MOBI).assertEqual("com.amazon.mobi");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.MOBI);
@@ -724,7 +724,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2700', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2700', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2700 start');
       expect(UTD.UniformDataType.MEDIA).assertEqual("general.media");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.MEDIA);
@@ -748,7 +748,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2800', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2800', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2800 start');
       expect(UTD.UniformDataType.IMAGE).assertEqual("general.image");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.IMAGE);
@@ -772,7 +772,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2900', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2900', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_2900 start');
       expect(UTD.UniformDataType.JPEG).assertEqual("general.jpeg");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.JPEG);
@@ -796,7 +796,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3000', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3000', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3000 start');
       expect(UTD.UniformDataType.PNG).assertEqual("general.png");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.PNG);
@@ -820,7 +820,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3100', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3100', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3100 start');
       expect(UTD.UniformDataType.RAW_IMAGE).assertEqual("general.raw-image");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.RAW_IMAGE);
@@ -844,7 +844,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3200', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3200', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3200 start');
       expect(UTD.UniformDataType.TIFF).assertEqual("general.tiff");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.TIFF);
@@ -868,7 +868,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3300', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3300', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3300 start');
       expect(UTD.UniformDataType.BMP).assertEqual("com.microsoft.bmp");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.BMP);
@@ -892,7 +892,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3400', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3400', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3400 start');
       expect(UTD.UniformDataType.ICO).assertEqual("com.microsoft.ico");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.ICO);
@@ -916,7 +916,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3500', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3500', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3500 start');
       expect(UTD.UniformDataType.PHOTOSHOP_IMAGE).assertEqual("com.adobe.photoshop-image");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.PHOTOSHOP_IMAGE);
@@ -940,7 +940,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3600', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3600', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3600 start');
       expect(UTD.UniformDataType.AI_IMAGE).assertEqual("com.adobe.illustrator.ai-image");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.AI_IMAGE);
@@ -964,7 +964,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3700', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3700', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3700 start');
       expect(UTD.UniformDataType.WORD_DOC).assertEqual("com.microsoft.word.doc");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.WORD_DOC);
@@ -988,7 +988,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3800', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3800', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3800 start');
       expect(UTD.UniformDataType.EXCEL).assertEqual("com.microsoft.excel.xls");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.EXCEL);
@@ -1012,7 +1012,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3900', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3900', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_3900 start');
       expect(UTD.UniformDataType.PPT).assertEqual("com.microsoft.powerpoint.ppt");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.PPT);
@@ -1036,7 +1036,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4000', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4000', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4000 start');
       expect(UTD.UniformDataType.PDF).assertEqual("com.adobe.pdf");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.PDF);
@@ -1056,11 +1056,11 @@ export default function UDMFApiDescriptorTest() {
      * @tc.name      : testSUBDistributedDataUDMFSDKUniformTypeDescriptorJsAPITest4100
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4100
      * @tc.desc      : Verify the properties of the PostScript data type
-     * @tc.size      : MediumTest    
-      * @tc.type      : Function
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4100', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4100', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4100 start');
       expect(UTD.UniformDataType.POSTSCRIPT).assertEqual("com.adobe.postscript");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.POSTSCRIPT);
@@ -1084,7 +1084,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4200', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4200', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4200 start');
       expect(UTD.UniformDataType.ENCAPSULATED_POSTSCRIPT).assertEqual("com.adobe.encapsulated-postscript");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.ENCAPSULATED_POSTSCRIPT);
@@ -1108,7 +1108,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4300', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4300', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4300 start');
       expect(UTD.UniformDataType.VIDEO).assertEqual("general.video");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.VIDEO);
@@ -1132,7 +1132,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4400', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4400', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4400 start');
       expect(UTD.UniformDataType.AVI).assertEqual("general.avi");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.AVI);
@@ -1156,7 +1156,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4500', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4500', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4500 start');
       expect(UTD.UniformDataType.MPEG).assertEqual("general.mpeg");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.MPEG);
@@ -1180,7 +1180,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4600', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4600', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4600 start');
       expect(UTD.UniformDataType.MPEG4).assertEqual("general.mpeg-4");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.MPEG4);
@@ -1204,7 +1204,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4700', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4700', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4700 start');
       expect(UTD.UniformDataType.VIDEO_3GPP).assertEqual("general.3gpp");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.VIDEO_3GPP);
@@ -1228,7 +1228,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4800', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4800', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4800 start');
       expect(UTD.UniformDataType.VIDEO_3GPP2).assertEqual("general.3gpp2");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.VIDEO_3GPP2);
@@ -1252,7 +1252,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4900', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4900', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4900 start');
       expect(UTD.UniformDataType.WINDOWS_MEDIA_WM).assertEqual("com.microsoft.windows-media-wm");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.WINDOWS_MEDIA_WM);
@@ -1276,7 +1276,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5000', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5000', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5000 start');
       expect(UTD.UniformDataType.WINDOWS_MEDIA_WMV).assertEqual("com.microsoft.windows-media-wmv");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.WINDOWS_MEDIA_WMV);
@@ -1300,7 +1300,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5100', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5100', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5100 start');
       expect(UTD.UniformDataType.WINDOWS_MEDIA_WMP).assertEqual("com.microsoft.windows-media-wmp");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.WINDOWS_MEDIA_WMP);
@@ -1324,7 +1324,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5200', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5200', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5200 start');
       expect(UTD.UniformDataType.AUDIO).assertEqual("general.audio");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.AUDIO);
@@ -1348,7 +1348,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5300', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5300', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5300 start');
       expect(UTD.UniformDataType.AAC).assertEqual("general.aac");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.AAC);
@@ -1372,7 +1372,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5400', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5400', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5400 start');
       expect(UTD.UniformDataType.AIFF).assertEqual("general.aiff");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.AIFF);
@@ -1396,7 +1396,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5500', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5500', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5500 start');
       expect(UTD.UniformDataType.ALAC).assertEqual("general.alac");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.ALAC);
@@ -1420,7 +1420,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5600', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5600', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5600 start');
       expect(UTD.UniformDataType.FLAC).assertEqual("general.flac");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.FLAC);
@@ -1444,7 +1444,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5700', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5700', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5700 start');
       expect(UTD.UniformDataType.MP3).assertEqual("general.mp3");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.MP3);
@@ -1468,7 +1468,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5800', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5800', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5800 start');
       expect(UTD.UniformDataType.OGG).assertEqual("general.ogg");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.OGG);
@@ -1492,7 +1492,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5900', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5900', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_5900 start');
       expect(UTD.UniformDataType.PCM).assertEqual("general.pcm");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.PCM);
@@ -1516,7 +1516,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6000', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6000', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6000 start');
       expect(UTD.UniformDataType.WINDOWS_MEDIA_WMA).assertEqual("com.microsoft.windows-media-wma");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.WINDOWS_MEDIA_WMA);
@@ -1540,7 +1540,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6100', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6100', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6100 start');
       expect(UTD.UniformDataType.WAVEFORM_AUDIO).assertEqual("com.microsoft.waveform-audio");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.WAVEFORM_AUDIO);
@@ -1564,7 +1564,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6200', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6200', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6200 start');
       expect(UTD.UniformDataType.WINDOWS_MEDIA_WMX).assertEqual("com.microsoft.windows-media-wmx");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.WINDOWS_MEDIA_WMX);
@@ -1588,7 +1588,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6300', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6300', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6300 start');
       expect(UTD.UniformDataType.WINDOWS_MEDIA_WVX).assertEqual("com.microsoft.windows-media-wvx");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.WINDOWS_MEDIA_WVX);
@@ -1612,7 +1612,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6400', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6400', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6400 start');
       expect(UTD.UniformDataType.WINDOWS_MEDIA_WAX).assertEqual("com.microsoft.windows-media-wax");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.WINDOWS_MEDIA_WAX);
@@ -1636,7 +1636,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6500', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6500', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6500 start');
       expect(UTD.UniformDataType.FILE).assertEqual("general.file");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.FILE);
@@ -1660,7 +1660,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6600', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6600', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6600 start');
       expect(UTD.UniformDataType.DIRECTORY).assertEqual("general.directory");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.DIRECTORY);
@@ -1684,7 +1684,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6700', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6700', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6700 start');
       expect(UTD.UniformDataType.FOLDER).assertEqual("general.folder");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.FOLDER);
@@ -1704,11 +1704,11 @@ export default function UDMFApiDescriptorTest() {
      * @tc.name      : testSUBDistributedDataUDMFSDKUniformTypeDescriptorJsAPITest6800
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6800
      * @tc.desc      : Verify the properties of the Symlink data type
-     * @tc.size      : MediumTest    
-      * @tc.type      : Function
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6800', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6800', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6800 start');
       expect(UTD.UniformDataType.SYMLINK).assertEqual("general.symlink");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.SYMLINK);
@@ -1732,7 +1732,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6900', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6900', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6900 start');
       expect(UTD.UniformDataType.ARCHIVE).assertEqual("general.archive");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.ARCHIVE);
@@ -1756,7 +1756,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7000', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7000', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7000 start');
       expect(UTD.UniformDataType.BZ2_ARCHIVE).assertEqual("general.bz2-archive");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.BZ2_ARCHIVE);
@@ -1780,7 +1780,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7100', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7100', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7100 start');
       expect(UTD.UniformDataType.DISK_IMAGE).assertEqual("general.disk-image");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.DISK_IMAGE);
@@ -1804,7 +1804,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7200', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7200', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7200 start');
       expect(UTD.UniformDataType.TAR_ARCHIVE).assertEqual("general.tar-archive");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.TAR_ARCHIVE);
@@ -1828,7 +1828,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7300', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7300', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7300 start');
       expect(UTD.UniformDataType.ZIP_ARCHIVE).assertEqual("general.zip-archive");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.ZIP_ARCHIVE);
@@ -1852,7 +1852,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7400', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7400', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7400 start');
       expect(UTD.UniformDataType.JAVA_ARCHIVE).assertEqual("com.sun.java-archive");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.JAVA_ARCHIVE);
@@ -1872,11 +1872,11 @@ export default function UDMFApiDescriptorTest() {
      * @tc.name      : testSUBDistributedDataUDMFSDKUniformTypeDescriptorJsAPITest7500
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7500
      * @tc.desc      : Verify the properties of the GNU archive data type
-     * @tc.size      : MediumTest    
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7500', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7500', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7500 start');
       expect(UTD.UniformDataType.GNU_TAR_ARCHIVE).assertEqual("org.gnu.gnu-tar-archive");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.GNU_TAR_ARCHIVE);
@@ -1900,7 +1900,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7600', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7600', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7600 start');
       expect(UTD.UniformDataType.GNU_ZIP_ARCHIVE).assertEqual("org.gnu.gnu-zip-archive");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.GNU_ZIP_ARCHIVE);
@@ -1924,7 +1924,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7700', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7700', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7700 start');
       expect(UTD.UniformDataType.GNU_ZIP_TAR_ARCHIVE).assertEqual("org.gnu.gnu-zip-tar-archive");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.GNU_ZIP_TAR_ARCHIVE);
@@ -1948,7 +1948,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7800', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7800', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7800 start');
       expect(UTD.UniformDataType.CALENDAR).assertEqual("general.calendar");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.CALENDAR);
@@ -1972,7 +1972,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7900', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7900', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_7900 start');
       expect(UTD.UniformDataType.CONTACT).assertEqual("general.contact");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.CONTACT);
@@ -1996,7 +1996,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8000', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8000', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8000 start');
       expect(UTD.UniformDataType.DATABASE).assertEqual("general.database");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.DATABASE);
@@ -2020,7 +2020,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8100', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8100', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8100 start');
       expect(UTD.UniformDataType.MESSAGE).assertEqual("general.message");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.MESSAGE);
@@ -2044,7 +2044,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8200', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8200', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8200 start');
       expect(UTD.UniformDataType.VCARD).assertEqual("general.vcard");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.VCARD);
@@ -2068,7 +2068,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8300', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8300', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8300 start');
       expect(UTD.UniformDataType.NAVIGATION).assertEqual("general.navigation");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
@@ -2092,7 +2092,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8400', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8400', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8400 start');
       expect(UTD.UniformDataType.LOCATION).assertEqual("general.location");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.LOCATION);
@@ -2116,7 +2116,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8500', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8500', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8500 start');
       expect(UTD.UniformDataType.OPENHARMONY_FORM).assertEqual("openharmony.form");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.OPENHARMONY_FORM);
@@ -2140,7 +2140,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8600', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8600', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8600 start');
       expect(UTD.UniformDataType.OPENHARMONY_APP_ITEM).assertEqual("openharmony.app-item");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.OPENHARMONY_APP_ITEM);
@@ -2164,7 +2164,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8700', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8700', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8700 start');
       expect(UTD.UniformDataType.OPENHARMONY_PIXEL_MAP).assertEqual("openharmony.pixel-map");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.OPENHARMONY_PIXEL_MAP);
@@ -2188,7 +2188,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8800', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8800', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8800 start');
       expect(UTD.UniformDataType.OPENHARMONY_ATOMIC_SERVICE).assertEqual("openharmony.atomic-service");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.OPENHARMONY_ATOMIC_SERVICE);
@@ -2212,7 +2212,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8825', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8825', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8825 start');
       expect(UTD.UniformDataType.OPENHARMONY_PACKAGE).assertEqual("openharmony.package");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.OPENHARMONY_PACKAGE);
@@ -2237,7 +2237,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8850', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8850', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8850 start');
       expect(UTD.UniformDataType.OPENHARMONY_HAP).assertEqual("openharmony.hap");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.OPENHARMONY_HAP);
@@ -2261,7 +2261,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8900', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8900', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_8900 start');
       try {
         let typeObj = UTD.getTypeDescriptor(null);
@@ -2278,11 +2278,11 @@ export default function UDMFApiDescriptorTest() {
      * @tc.name      : testSUBDistributedDataUDMFSDKUniformTypeDescriptorJsAPITest9000
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9000
      * @tc.desc      : Illegal parameters undefined
-     * @tc.size      : MediumTest    
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9000', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9000', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9000 start');
       try {
         let typeObj = UTD.getTypeDescriptor(undefined);
@@ -2303,7 +2303,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9100', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9100', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9100 start');
       try {
         let typeObj = UTD.getTypeDescriptor("general.hello");
@@ -2327,7 +2327,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9200', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9200', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9200 start');
       try {
         let typeObj = UTD.getTypeDescriptor("");
@@ -2348,7 +2348,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9300', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9300', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9300 start');
       try {
         let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.MESSAGE);
@@ -2370,7 +2370,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9400', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9400', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9400 start');
       try {
         let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.MESSAGE);
@@ -2392,7 +2392,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9500', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9500', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9500 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       let typeObj2 = null;
@@ -2415,7 +2415,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9600', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9600', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9600 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       let typeObj2 = undefined;
@@ -2438,7 +2438,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9610', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9610', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9610 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -2460,7 +2460,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9615', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9615', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9615 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.OBJECT);
       try {
@@ -2482,7 +2482,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9620', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9620', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9620 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.LOCATION);
       try {
@@ -2504,7 +2504,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9625', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9625', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9625 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.OBJECT);
       try {
@@ -2526,7 +2526,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9630', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9630', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9630 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.CALENDAR);
       try {
@@ -2548,7 +2548,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9635', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9635', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9635 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -2570,7 +2570,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9640', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9640', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9640 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.ENTITY);
       try {
@@ -2592,7 +2592,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9645', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9645', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9645 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.MESSAGE);
       try {
@@ -2614,7 +2614,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9650', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9650', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9650 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.CONTACT);
       try {
@@ -2636,7 +2636,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9655', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9655', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9655 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.IMAGE);
       try {
@@ -2658,7 +2658,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9660', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9660', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9660 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -2680,7 +2680,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9665', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9665', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9665 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -2702,7 +2702,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9670', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9670', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9670 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.OBJECT);
       try {
@@ -2724,7 +2724,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9675', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9675', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9675 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.LOCATION);
       try {
@@ -2746,7 +2746,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9680', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9680', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9680 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.OBJECT);
       try {
@@ -2768,7 +2768,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9685', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9685', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9685 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.COMPOSITE_OBJECT);
       try {
@@ -2790,7 +2790,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9690', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9690', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9690 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.ENTITY);
       try {
@@ -2812,7 +2812,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9695', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9695', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9695 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -2834,7 +2834,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9700', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9700', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9700 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -2856,7 +2856,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9705', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9705', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9705 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -2878,7 +2878,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9710', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9710', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9710 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -2900,7 +2900,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9715', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9715', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9715 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -2922,7 +2922,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9720', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9720', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9720 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.OBJECT);
       try {
@@ -2944,7 +2944,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9725', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9725', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9725 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -2966,7 +2966,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9730', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9730', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9730 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.OBJECT);
       try {
@@ -2988,7 +2988,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9735', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9735', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9735 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.LOCATION);
       try {
@@ -3010,7 +3010,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9740', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9740', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9740 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.C_HEADER);
       try {
@@ -3028,11 +3028,11 @@ export default function UDMFApiDescriptorTest() {
      * @tc.name      : testSUBDistributedDataUDMFSDKUniformTypeDescriptorJsAPITest9745
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9745
      * @tc.desc      : parameter to isHigherLevelType() --The object of a parameter is a high-level relationship with the parameter at the same level
-     * @tc.size      : MediumTest    
+     * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9745', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9745', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9745 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.ENTITY);
       try {
@@ -3054,7 +3054,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9750', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9750', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9750 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.CONTACT);
       try {
@@ -3076,7 +3076,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9755', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9755', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9755 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.PLAIN_TEXT);
       try {
@@ -3098,7 +3098,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9760', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9760', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9760 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.TEXT);
       try {
@@ -3120,7 +3120,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9765', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9765', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9765 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.CONTACT);
       try {
@@ -3142,7 +3142,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9770', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9770', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9770 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.ENTITY);
       try {
@@ -3164,7 +3164,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9775', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9775', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9775 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".xls");
@@ -3185,7 +3185,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9780', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9780', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9780 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(null);
@@ -3206,7 +3206,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9785', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9785', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9785 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".hello");
@@ -3227,7 +3227,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9790', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9790', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9790 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension("");
@@ -3248,7 +3248,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9795', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9795', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9795 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(undefined);
@@ -3269,7 +3269,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9800', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9800', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9800 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".doc", UTD.UniformDataType.WORD_DOC);
@@ -3290,7 +3290,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9805', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9805', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9805 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".doc", UTD.UniformDataType.PPT);
@@ -3311,7 +3311,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9815', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9815', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9815 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".wave", null);
@@ -3332,7 +3332,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9820', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9820', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9820 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".wave", undefined);
@@ -3353,7 +3353,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9825', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9825', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9825 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".hello", UTD.UniformDataType.ICO);
@@ -3374,7 +3374,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9830', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9830', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9825 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".wave", "");
@@ -3395,7 +3395,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9835', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9835', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9835 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("image/tiff");
@@ -3416,7 +3416,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9840', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9840', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9840 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("hello");
@@ -3437,7 +3437,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9845', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9845', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9845 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("");
@@ -3458,7 +3458,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9850', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9850', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9850 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType(null);
@@ -3479,7 +3479,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9855', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9855', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9855 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType(undefined);
@@ -3500,7 +3500,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9860', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9860', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9860 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("audio/x-ms-wma", UTD.UniformDataType.WINDOWS_MEDIA_WMA);
@@ -3521,7 +3521,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9865', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9865', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9865 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("image/tiff", UTD.UniformDataType.TYPE_SCRIPT);
@@ -3542,7 +3542,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9870', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9870', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9870 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("image/tiff", null);
@@ -3563,7 +3563,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9875', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9875', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9875 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("image/tiff", undefined);
@@ -3584,7 +3584,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9880', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9880', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9880 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("hello", UTD.UniformDataType.WINDOWS_MEDIA_WMV);
@@ -3605,7 +3605,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9885', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9885', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9885 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("image/tiff", "general.hello");
@@ -3626,7 +3626,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9890', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9890', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9890 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("image/tiff", "");
@@ -3648,7 +3648,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 3
      */
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9810', 0, function () {
+    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9810', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9810 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".wave", "general.hello");
