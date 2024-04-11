@@ -23,9 +23,6 @@ struct GestureLongPressGesture {
       Row({ space: 20 }) {
         Button('Gesture is ' + this.message).height(200).width(800).fontSize(40).id("GestureLongPressGesture")
           .borderWidth(2)
-          .onDragStart(() => {
-            console.log("Drag start.")
-          })
           .gesture(
             TapGesture()
               .tag("tap1")
@@ -33,11 +30,6 @@ struct GestureLongPressGesture {
           .gesture(
             LongPressGesture({ repeat: true })
               .tag("longPress1")
-              .onAction((event?: GestureEvent) => {
-                if (event && event.repeat) {
-                  this.message = 'LONG_PRESS_GESTURE'
-                }
-              })
           )
           .gesture(
             SwipeGesture()
