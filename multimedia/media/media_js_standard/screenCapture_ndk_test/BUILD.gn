@@ -14,7 +14,7 @@
 import("//build/ohos.gni")
 import("//test/xts/tools/build/suite.gni")
 ohos_js_hap_suite("screenCapture_xts_ndk_hap") {
-  hap_profile = "./entry/src/main/config.json"
+  hap_profile = "./entry/src/main/module.json"
   deps = [
     ":pixelmap_ets_assets",
     ":pixelmap_ets_resources",
@@ -36,5 +36,5 @@ ohos_js_assets("pixelmap_ets_test_assets") {
 }
 ohos_resources("pixelmap_ets_resources") {
   sources = [ "./entry/src/main/resources" ]
-  hap_profile = "./entry/src/main/config.json"
+  hap_profile = "./entry/src/main/module.json"
 }
