@@ -12,6 +12,9 @@
         "MainAbility/pages/DatePicker/DatePicker",
         "MainAbility/pages/CheckBox/CheckBox",
         "MainAbility/pages/CheckBox/Index",
-        "MainAbility/pages/CheckBoxGroup/CheckBoxGroup"
+        "MainAbility/pages/CheckBoxGroup/CheckBoxGroup",
+        "MainAbility/pages/TextPicker/TextPickerSec",
+        "MainAbility/pages/TextPicker/Index",
+        "MainAbility/pages/TextPicker/TextPickerMulti"
     ]
 }

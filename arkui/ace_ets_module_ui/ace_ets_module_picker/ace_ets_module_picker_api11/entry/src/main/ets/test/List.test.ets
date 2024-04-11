@@ -23,6 +23,9 @@ import datepicker from './DatePickerTest/DatePicker';
 import ActsDatePickerTest from './DatePickerTest/DatePicker.test';
 import checkBoxTest from './CheckBoxTest/checkBox';
 import checkBoxGroupTest from './CheckBoxGroupTest/checkBoxGroup';
+import textpicker from './TextPicker/TextPicker';
+import TextPickerSec from './TextPicker/TextPickerSec';
+import textpickermultiTest from './TextPicker/TextPickerMulti';
 
 export default function testsuite() {
   SelectAttr()
@@ -36,4 +39,7 @@ export default function testsuite() {
   datepicker()
   checkBoxTest()
   checkBoxGroupTest()
+  textpicker()
+  TextPickerSec()
+  textpickermultiTest()
 }
