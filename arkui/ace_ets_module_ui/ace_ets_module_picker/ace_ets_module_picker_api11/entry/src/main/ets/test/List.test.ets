@@ -16,10 +16,24 @@ import SelectAttr from './SelectTest/SelectAttr.test'
 import TimePickerTest from './TimePickerTest/TimePicker.test';
 import selectoptionwithJsSuit from './SelectTest/selectoptionwithJsSuit.test';
 import SelectTest from './SelectTest/Select.test';
+import select from './SelectTest/Select';
+import selectmenuTest from './SelectTest/SelectMenu';
+import calendarpicker from './CalendarPickerTest/calendarpicker';
+import datepicker from './DatePickerTest/DatePicker';
+import ActsDatePickerTest from './DatePickerTest/DatePicker.test';
+import checkBoxTest from './CheckBoxTest/checkBox';
+import checkBoxGroupTest from './CheckBoxGroupTest/checkBoxGroup';
 
 export default function testsuite() {
   SelectAttr()
   TimePickerTest()
   selectoptionwithJsSuit()
   SelectTest()
+  select()
+  selectmenuTest()
+  calendarpicker()
+  ActsDatePickerTest()
+  datepicker()
+  checkBoxTest()
+  checkBoxGroupTest()
 }

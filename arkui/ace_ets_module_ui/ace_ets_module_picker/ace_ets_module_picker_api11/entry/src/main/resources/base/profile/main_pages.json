@@ -4,6 +4,14 @@
         "MainAbility/pages/Select/SelectAttr",
         "MainAbility/pages/Select/selectoptionwith",
         "MainAbility/pages/TimePicker/TimePicker",
-        "MainAbility/pages/Select/Select"
+        "MainAbility/pages/Select/Select",
+        "MainAbility/pages/Select/Index",
+        "MainAbility/pages/Select/SelectMenu",
+        "MainAbility/pages/CalendarPicker/Index",
+        "MainAbility/pages/DatePicker/Index",
+        "MainAbility/pages/DatePicker/DatePicker",
+        "MainAbility/pages/CheckBox/CheckBox",
+        "MainAbility/pages/CheckBox/Index",
+        "MainAbility/pages/CheckBoxGroup/CheckBoxGroup"
     ]
 }
