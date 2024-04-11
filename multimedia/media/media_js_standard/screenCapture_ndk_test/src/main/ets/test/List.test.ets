@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import napiTest from './NativeApiTest.test'
+import napiTest from './NativeApiTest.ets'
 
 export default function testsuite() {
   napiTest()

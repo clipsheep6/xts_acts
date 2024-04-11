@@ -1,27 +1,11 @@
-# Copyright (c) 2023 Huawei Device Co., Ltd.
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-
 import("//test/xts/tools/build/suite.gni")
 
 ohos_js_hap_suite("screenCapture_xts_ndk_hap") {
-  //hap_profile: HAP的config.json，Stage模型对应module.json
-  hap_profile = "entry/src/main/module.json"
-  //deps: 当前目标的依赖
+  hap_profile = "src/main/module.json"
   deps = [
     ":hts_demo_ets_resources",
     ":hts_demo_ets_test_resources",
   ]
-  //当前为ets代码，主要用于卡片配置，其他应用可不配
   ets2abc = true
   certificate_profile = "signature/openharmony_sx.p7b"
   hap_name = "ActsScreenCaptureNdkTest"
@@ -38,5 +22,5 @@ ohos_js_assets("hts_demo_ets_resources") {
 ohos_resources("hts_demo_ets_test_resources") {
   sources = [ "src/main/resources" ]
   deps = [ ":hts_demo_ets_app_profile" ]
-  hap_profile = "entry/src/main/module.json"
+  hap_profile = "src/main/module.json"
 }
