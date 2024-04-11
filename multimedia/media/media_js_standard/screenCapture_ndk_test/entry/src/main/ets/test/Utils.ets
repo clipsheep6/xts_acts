@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (c) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,14 +12,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import featureAbility from '@ohos.ability.featureAbility'
+const Tag = 'screen_capture_ndk_test_utils:'
 
-import hilog from '@ohos.hilog';
-
-export default {
-  onCreate() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onCreate');
-  },
-  onDestroy() {
-    hilog.info(0x0000, 'testTag', '%{public}s', 'Application onDestroy');
-  },
+export default class Utils {
+  static sleep(time: number) {
+    return new Promise<string>((resolve, reject) => {
+      setTimeout(() => {
+        resolve("ok")
+      }, time)
+    }).then(() => {
+      console.info(`sleep ${time} over...`)
+    })
+  }
 }
