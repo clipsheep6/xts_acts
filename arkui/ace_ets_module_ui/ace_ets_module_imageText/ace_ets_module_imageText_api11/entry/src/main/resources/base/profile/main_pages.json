@@ -102,6 +102,7 @@
         "MainAbility/pages/image/ImageAttr",
         "MainAbility/pages/text/TextfieldMulti",
         "MainAbility/pages/text/TextfieldOther",
-        "MainAbility/pages/text/TextfieldSingle"
+        "MainAbility/pages/text/TextfieldSingle",
+        "MainAbility/pages/button/Index"
     ]
 }

@@ -119,7 +119,7 @@ import ImageAttr from './imageTest/ImageAttr.test';
 import TextfieldMultiTest from './textTest/TextfieldMulti.test';
 import TextfieldOtherTest from './textTest/TextfieldOther.test';
 import TextfieldSingleTest from './textTest/TextfieldSingle.test';
-
+import buttonTest from './buttonTest/button'
 
 export default function testsuite() {
   textStyleJsunit();
@@ -223,4 +223,5 @@ export default function testsuite() {
   TextfieldOtherTest()
   TextfieldSingleTest()
   TextfieldMultiTest()
+  buttonTest()
 }
