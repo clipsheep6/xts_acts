@@ -14,7 +14,6 @@
  */
 import router from '@system.router';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium"
-// import Utils from '../../utils/Common'
 import CommonFunc from "../../MainAbility/common/Common";
 import { Driver, ON } from '@ohos.UiTest';
 

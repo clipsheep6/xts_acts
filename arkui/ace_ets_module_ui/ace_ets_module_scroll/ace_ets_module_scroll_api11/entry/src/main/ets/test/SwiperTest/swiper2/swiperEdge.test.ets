@@ -27,7 +27,7 @@ export default function swiperEdgeTest() {
         console.info("get swiperEdgeTest state pages:" + JSON.stringify(pages));
         if (!("siwpe_leftEdge" == pages.name)) {
           console.info("get swiperEdgeTest  pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/Swiper/swiper2/siwpe_leftEdge"})
+          let result = await router.pushUrl({url:"MainAbility/pages/Swiper/Swiper2/siwpe_leftEdge"})
           await CommonFunc.sleep(2000);
           console.info("push swiperEdgeTest page result:" + JSON.stringify(result));
         }

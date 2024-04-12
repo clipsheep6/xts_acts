@@ -27,7 +27,7 @@ export default function listSContentTest() {
         console.info("get listSContent state pages:" + JSON.stringify(pages));
         if (!("listTest" == pages.name)) {
           console.info("get listSContent pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/List/listTest"})
+          let result = await router.pushUrl({url:"MainAbility/pages/list/listTest"})
           await CommonFunc.sleep(2000);
           console.info("push listSContent  page result:" + JSON.stringify(result));
         }

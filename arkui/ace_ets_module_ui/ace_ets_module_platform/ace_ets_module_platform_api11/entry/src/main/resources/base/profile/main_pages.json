@@ -1,6 +1,8 @@
 {
     "src": [
         "MainAbility/pages/index/index",
-        "MainAbility/pages/XComponent/XComponentNodeChage"
+        "MainAbility/pages/XComponent/XComponentNodeChage",
+        "MainAbility/pages/Video/video",
+        "MainAbility/pages/XComponent/xcomponent"
     ]
 }

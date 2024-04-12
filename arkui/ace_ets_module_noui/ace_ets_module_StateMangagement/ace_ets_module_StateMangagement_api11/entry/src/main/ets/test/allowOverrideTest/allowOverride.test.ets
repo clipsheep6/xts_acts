@@ -24,7 +24,7 @@ export default function allowOverride() {
     beforeEach(async function (done) {
       console.info("allowOverride beforeEach start");
       let options = {
-        uri: 'MainAbility/pages/allowOverride/allowOverride',
+        uri: 'MainAbility/pages/allowOverride',
       }
       try {
         router.clear();

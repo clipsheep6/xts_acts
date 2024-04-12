@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// PageOne.ets
+// PageOne
 import { BusinessError } from '@ohos.base';
 
 class TmpClass{

@@ -6,6 +6,7 @@
         "MainAbility/pages/GridCol/grid_col",
         "MainAbility/pages/GridRow/grid_row",
         "MainAbility/pages/inspector/inspector",
+        "MainAbility/pages/inspector/inspector",
         "MainAbility/pages/Column/columnNesting/columnNesting_alignItems",
         "MainAbility/pages/Column/columnNesting/columnNesting_justifyContent",
         "MainAbility/pages/Column/columnNesting/columnNesting_Space",

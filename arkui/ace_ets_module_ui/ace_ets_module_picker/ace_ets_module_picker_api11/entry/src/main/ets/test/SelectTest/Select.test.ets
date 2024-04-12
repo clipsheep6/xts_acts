@@ -12,160 +12,71 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@ohos.router';
-import { beforeEach, describe, expect, it } from '@ohos/hypium';
 
-export default function SelectTest() {
-  describe('SelectTest', () => {
-    beforeEach(async (done: Function) => {
+import events_emitter from '@ohos.events.emitter';
+import router from '@system.router';
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import Utils from '../../MainAbility/common/Utils'
+
+export default function selectOnSelectJsunit() {
+  describe('selectOnSelectTest', () => {
+    beforeAll(async () => {
       console.info("flex beforeEach start");
-      let options: router.RouterOptions = {
-        url: 'MainAbility/pages/Select/Select',
-      };
+      let options = {
+        uri: 'MainAbility/pages/Select/select',
+      }
       try {
         router.clear();
         let pages = router.getState();
-        console.info("get Select state success " + JSON.stringify(pages));
-        if (!("Select" == pages.name)) {
-          console.info("get Select state success " + JSON.stringify(pages.name));
-          let result = await router.pushUrl(options);
-          console.info("push Select page success " + JSON.stringify(result));
+        console.info("get select state success " + JSON.stringify(pages));
+        if (!("select" == pages.name)) {
+          console.info("get select state success " + JSON.stringify(pages.name));
+          let result = await router.push(options);
+          await Utils.sleep(2000);
+          console.info("push select page success " + JSON.stringify(result));
         }
       } catch (err) {
-        console.error("push Select page error: " + err);
+        console.error("push select page error: " + err);
       }
-      done();
+    });
+
+    afterEach(async () => {
+      await Utils.sleep(1000);
+      console.info("selectOnSelect after each called");
     });
 
     /*
-     *@tc.number ArkUX_Select_Visual_0030
-     *@tc.name   Support modifying the select optionWidth and optionHeight change of Select component
-     *@tc.desc   Sets the optionWidth and optionHeight property parameter to 200
+     * @tc.number       SUB_ACE_BASIC_ETS_API_0001
+     * @tc.name         testselectOnSelect0001
+     * @tc.desic         aceselectOnSelectEtsTest0001
      */
-    it('ArkUX_Select_Visual_0030', 0, async (done: Function) => {
-      console.info('ArkUX_Select_Visual_0030 START');
-      setTimeout(() => {
-        try {
-          let strJson = getInspectorByKey('ArkUX_Select_Visual_0030');
-          console.info('ArkUX_Select_Visual_0030 START  :' + JSON.stringify(strJson));
-          let obj: ESObject = JSON.parse(strJson);
-          console.info("ArkUX_Select_Visual_0030 obj is: " + JSON.stringify(obj));
-          let optionWidth: ESObject = obj.$attrs.optionWidth;
-          let optionHeight: ESObject = obj.$attrs.optionHeight;
-          expect(optionWidth).assertEqual("300.000000");
-          expect(optionHeight).assertEqual("300.000000");
-          console.info('ArkUX_Select_Visual_0030 END ');
-        } catch (err) {
-          expect().assertFail();
-          console.info('ArkUX_Select_Visual_0030 ERR  ' + JSON.stringify(err));
-        }
-        done();
-      }, 500);
+    it('testselectOnSelect0001', 0, async () => {
+      console.info('selectOnSelect testselectOnSelect0001 START');
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('Select');
+      console.info("[testselectOnSelect0001] component width strJson:" + strJson);
+      let obj: Record<string, Object> = JSON.parse(strJson);
+      expect(obj.$type).assertEqual('Select');
+      expect(JSON.parse(strJson).$attrs.selected).assertEqual("2");
+      console.info("[testselectOnSelect0001] selected value :" + JSON.parse(strJson).$attrs.selected);
+
     });
 
     /*
-     *@tc.number ArkUX_Select_Visual_0040
-     *@tc.name   Support modifying the select optionWidth and optionHeight change of Select component
-     *@tc.desc   Sets the optionWidth and optionHeight property parameter to 400
+     * @tc.number       SUB_ACE_BASIC_ETS_API_0002
+     * @tc.name         testselectOnSelect0002
+     * @tc.desic         aceselectOnSelectEtsTest0002
      */
-    it('ArkUX_Select_Visual_0040', 0, async (done: Function) => {
-      console.info('ArkUX_Select_Visual_0040 START');
-      setTimeout(() => {
-        try {
-          let strJson = getInspectorByKey('ArkUX_Select_Visual_0040');
-          console.info('ArkUX_Select_Visual_0040 START  :' + JSON.stringify(strJson));
-          let obj: ESObject = JSON.parse(strJson);
-          console.info("ArkUX_Select_Visual_0040 obj is: " + JSON.stringify(obj));
-          let optionWidth: ESObject = obj.$attrs.optionWidth;
-          let optionHeight: ESObject = obj.$attrs.optionHeight;
-          expect(optionWidth).assertEqual("600.000000");
-          expect(optionHeight).assertEqual("600.000000");
-          console.info('ArkUX_Select_Visual_0040 END ');
-        } catch (err) {
-          expect().assertFail();
-          console.info('ArkUX_Select_Visual_0040 ERR  ' + JSON.stringify(err));
-        }
-        done();
-      }, 500);
-    });
+    it('testselectOnSelect0002', 0, async () => {
+      console.info('selectOnSelect testselectOnSelect0002 START');
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('Select');
+      console.info("[testselectOnSelect0002] component height strJson:" + strJson);
+      let obj: Record<string, Object> = JSON.parse(strJson);
+      expect(obj.$type).assertEqual('Select');
+      expect(JSON.parse(strJson).$attrs.value).assertEqual("TTT");
+      console.info("[testselectOnSelect0002] height value :" + JSON.parse(strJson).$attrs.height);
 
-    /*
-     *@tc.number ArkUX_Select_Visual_0050
-     *@tc.name   Support modifying the select optionWidth and optionHeight change of Select component
-     *@tc.desc   Sets the optionWidth and optionHeight property parameter to FIT_TRIGGER and 600
-     */
-    it('ArkUX_Select_Visual_0050', 0, async (done: Function) => {
-      console.info('ArkUX_Select_Visual_0050 START');
-      setTimeout(() => {
-        try {
-          let strJson = getInspectorByKey('ArkUX_Select_Visual_0050');
-          console.info('ArkUX_Select_Visual_0050 START  :' + JSON.stringify(strJson));
-          let obj: ESObject = JSON.parse(strJson);
-          console.info("ArkUX_Select_Visual_0050 obj is: " + JSON.stringify(obj));
-          let optionWidth: ESObject = obj.$attrs.optionWidth;
-          let optionHeight: ESObject = obj.$attrs.optionHeight;
-          expect(optionWidth).assertEqual("900.000000");
-          expect(optionHeight).assertEqual("900.000000");
-          console.info('ArkUX_Select_Visual_0050 END ');
-        } catch (err) {
-          expect().assertFail();
-          console.info('ArkUX_Select_Visual_0050 ERR  ' + JSON.stringify(err));
-        }
-        done();
-      }, 500);
     });
-
-    /*
-     *@tc.number ArkUX_Select_Visual_0060
-     *@tc.name   Support modifying the select optionWidth and optionHeight change of Select component
-     *@tc.desc   Sets the optionWidth and optionHeight property parameter to FIT_CONTENT and 600
-     */
-    it('ArkUX_Select_Visual_0060', 0, async (done: Function) => {
-      console.info('ArkUX_Select_Visual_0060 START');
-      setTimeout(() => {
-        try {
-          let strJson = getInspectorByKey('ArkUX_Select_Visual_0060');
-          console.info('ArkUX_Select_Visual_0060 START  :' + JSON.stringify(strJson));
-          let obj: ESObject = JSON.parse(strJson);
-          console.info("ArkUX_Select_Visual_0060 obj is: " + JSON.stringify(obj));
-          let optionWidth: ESObject = obj.$attrs.optionWidth;
-          let optionHeight: ESObject = obj.$attrs.optionHeight;
-          expect(optionWidth).assertEqual("1200.000000");
-          expect(optionHeight).assertEqual("1200.000000");
-          console.info('ArkUX_Select_Visual_0060 END ');
-        } catch (err) {
-          expect().assertFail();
-          console.info('ArkUX_Select_Visual_0060 ERR  ' + JSON.stringify(err));
-        }
-        done();
-      }, 500);
-    });
-
-    /*
-     *@tc.number ArkUX_Select_Visual_0070
-     *@tc.name   Support modifying the select optionWidth and optionHeight change of Select component
-     *@tc.desc   Sets the optionWidth and optionHeight property parameter to default value
-     */
-    it('ArkUX_Select_Visual_0070', 0, async (done: Function) => {
-      console.info('ArkUX_Select_Visual_0070 START');
-      setTimeout(() => {
-        try {
-          let strJson = getInspectorByKey('ArkUX_Select_Visual_0070');
-          console.info('ArkUX_Select_Visual_0070 START  :' + JSON.stringify(strJson));
-          let obj: ESObject = JSON.parse(strJson);
-          console.info("ArkUX_Select_Visual_0070 obj is: " + JSON.stringify(obj));
-          let optionWidth: ESObject = obj.$attrs.optionWidth;
-          let optionHeight: ESObject = obj.$attrs.optionHeight;
-          expect(optionWidth).assertEqual("1500.000000");
-          expect(optionHeight).assertEqual("1500.000000");
-          console.info('ArkUX_Select_Visual_0070 END ');
-        } catch (err) {
-          expect().assertFail();
-          console.info('ArkUX_Select_Visual_0070 ERR  ' + JSON.stringify(err));
-        }
-        done();
-      }, 500);
-    });
-
   })
 }

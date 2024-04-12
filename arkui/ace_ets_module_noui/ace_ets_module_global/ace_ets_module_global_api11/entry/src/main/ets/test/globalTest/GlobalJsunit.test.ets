@@ -15,7 +15,7 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import Utils from '../Utils';
+import Utils from '../../MainAbility/common/Utils'
 
 export default function globalJsunit() {
   describe('globalJsunit', () => {

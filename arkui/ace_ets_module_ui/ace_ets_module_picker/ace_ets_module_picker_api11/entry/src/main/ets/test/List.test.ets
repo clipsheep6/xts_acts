@@ -15,6 +15,9 @@
 import SelectAttr from './SelectTest/SelectAttr.test'
 import TimePickerTest from './TimePickerTest/TimePicker.test';
 import selectoptionwithJsSuit from './SelectTest/selectoptionwithJsSuit.test';
+import checkBoxGroupSelectAllJsunit from './CheckboxGroupTest/checkBoxGroup.test';
+import selectOnSelectJsunit from './SelectTest/select.test';
+import textPickerDefaultPickerItemHeightJsunit from './TextPickerTest/textPicker.test';
 import SelectTest from './SelectTest/Select.test';
 import CheckboxTest from './CheckboxTest/Checkbox.test';
 import textpicker from './TextPicker/TextPicker';
@@ -25,6 +28,9 @@ export default function testsuite() {
   SelectAttr()
   TimePickerTest()
   selectoptionwithJsSuit()
+  checkBoxGroupSelectAllJsunit()
+  textPickerDefaultPickerItemHeightJsunit()
+  selectOnSelectJsunit()
   SelectTest()
   CheckboxTest();
   textpicker()

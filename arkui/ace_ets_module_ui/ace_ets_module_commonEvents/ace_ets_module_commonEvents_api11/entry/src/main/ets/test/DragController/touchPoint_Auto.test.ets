@@ -28,7 +28,7 @@ export default function touchPoint() {
         router.clear();
         let pages = router.getState();
         console.info("get touchPoint state pages: " + JSON.stringify(pages));
-        if (!("touchPoint" == pages.name)) {
+        if (!("touchPoint_Auto" == pages.name)) {
           console.info("get touchPoint state pages.name: " + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);

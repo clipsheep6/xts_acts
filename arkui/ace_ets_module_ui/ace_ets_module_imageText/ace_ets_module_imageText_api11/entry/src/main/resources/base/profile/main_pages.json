@@ -100,8 +100,10 @@
         "MainAbility/pages/font/UIfont/UIfont",
         "MainAbility/pages/font/font",
         "MainAbility/pages/image/ImageAttr",
-        "MainAbility/pages/text/TextfieldMulti",
-        "MainAbility/pages/text/TextfieldOther",
-        "MainAbility/pages/text/TextfieldSingle"
+        "MainAbility/pages/image/image",
+        "MainAbility/pages/uiAppearance/uiAppearance",
+        "MainAbility/pages/TextInput/textInput",
+        "MainAbility/pages/text/textArea",
+        "MainAbility/pages/text/text"
     ]
 }

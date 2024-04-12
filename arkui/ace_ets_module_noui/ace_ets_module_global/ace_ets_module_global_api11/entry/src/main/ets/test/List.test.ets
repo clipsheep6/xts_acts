@@ -12,8 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import globalJsunit from './globalTest/GlobalJsunit.test';
+import globalJsunit1 from './globalTest/global1.test';
+import webGetTitleJsunit from './webTest/web.test';
+
 export default function testsuite() {
   globalJsunit();
+  globalJsunit1()
+  webGetTitleJsunit()
 }

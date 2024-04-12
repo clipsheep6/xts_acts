@@ -15,7 +15,7 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import events_emitter from '@ohos.events.emitter';
-import Utils from './Utils';
+import Utils from '../MainAbility/common/Utils';
 import router from '@ohos.router';
 
 export default function flexJsunit() {

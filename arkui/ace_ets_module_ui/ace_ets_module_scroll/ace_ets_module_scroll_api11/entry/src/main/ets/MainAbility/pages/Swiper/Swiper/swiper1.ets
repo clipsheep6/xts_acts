@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// xxx.ets
+// xxx
 class Swiper111 implements IDataSource {
   private list: number[] = []
 

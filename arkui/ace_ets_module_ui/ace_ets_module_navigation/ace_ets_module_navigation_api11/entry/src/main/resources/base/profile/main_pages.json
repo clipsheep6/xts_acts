@@ -12,6 +12,10 @@
         "MainAbility/pages/NavDestination/NavDestinationInfoState",
         "MainAbility/pages/NavDestination/QueryNavDestinationInfoNavDestination",
         "MainAbility/pages/Navigation/NavigationAttr",
-        "MainAbility/pages/Navigation/navigationApi/navigationApi1"
+        "MainAbility/pages/Navigation/navigationApi/navigationApi1",
+        "MainAbility/pages/Navigation/navigator",
+        "MainAbility/pages/pageRoute/pageRoute",
+        "MainAbility/pages/pageRoute/router",
+        "MainAbility/pages/Search/search"
     ]
 }

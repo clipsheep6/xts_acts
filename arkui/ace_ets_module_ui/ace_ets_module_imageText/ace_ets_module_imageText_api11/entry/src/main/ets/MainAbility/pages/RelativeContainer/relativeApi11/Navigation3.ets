@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-// Index.ets
+// Index
 import { PageOneTmp } from './PageOne'
 import { pageTwoTmp } from './PageTwo'
 import { Pages }  from './PageTwo'

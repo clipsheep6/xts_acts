@@ -28,7 +28,7 @@ export default function previewOptions() {
         router.clear();
         let pages = router.getState();
         console.info("get previewOptions state pages: " + JSON.stringify(pages));
-        if (!("previewOptions" == pages.name)) {
+        if (!("touchPoint_Disable" == pages.name)) {
           console.info("get previewOptions state pages.name: " + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);

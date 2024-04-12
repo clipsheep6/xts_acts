@@ -1,6 +1,8 @@
 {
     "src": [
         "MainAbility/pages/index/index",
-        "MainAbility/pages/global/global"
+        "MainAbility/pages/global/global",
+        "MainAbility/pages/global/global1",
+        "MainAbility/pages/web/web"
     ]
 }

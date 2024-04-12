@@ -27,7 +27,7 @@ export default function swiperGroupTest() {
         console.info("get swiperGroupTest state pages:" + JSON.stringify(pages));
         if (!("siwper_group_test" == pages.name)) {
           console.info("get swiperPageTest pages.name:" + JSON.stringify(pages.name));
-          let result = await router.pushUrl({url:"MainAbility/pages/Swiper/swiper2/siwper_group_test"})
+          let result = await router.pushUrl({url:"MainAbility/pages/Swiper/Swiper2/siwper_group_test"})
           await CommonFunc.sleep(2000);
           console.info("push swiperGroupTest page result:" + JSON.stringify(result));
         }

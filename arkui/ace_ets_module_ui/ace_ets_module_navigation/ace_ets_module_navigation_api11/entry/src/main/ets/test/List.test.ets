@@ -24,6 +24,9 @@ import NavDestinationInfoStateJsunit  from './NavDestinationTest/NavDestinationI
 import QueryNavDestinationInfoNavDestinationJsunit from './NavDestinationTest/QueryNavDestinationInfoNavDestinationJsunit.test';
 import NavigationAttr from './NavigationTest/NavigationAttr.test'
 import navigationApi1 from './NavigationTest/navigationApi/navigationApi1.test'
+import navigatorTargetJsunit from './NavigationTest/navigator.test'
+import pageRouteTest from './pageRouteTest/pageRoute.test'
+import searchOnCutJsunit from './SearchTest/search.test'
 
 export default function testsuite() {
   stepperJsunit();
@@ -38,4 +41,7 @@ export default function testsuite() {
   QueryNavDestinationInfoNavDestinationJsunit()
   NavigationAttr()
   navigationApi1()
+  navigatorTargetJsunit()
+  pageRouteTest()
+  searchOnCutJsunit()
 }

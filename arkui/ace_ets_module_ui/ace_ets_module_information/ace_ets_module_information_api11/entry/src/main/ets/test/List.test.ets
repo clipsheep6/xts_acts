@@ -14,8 +14,12 @@
  */
 import gaugeJsunit from './gaugeTest/GaugeJsunit.test';
 import CounterEnableTest from './CounterTest/CounterEnable.test'
+import gaugeColorsJsunit from './gaugeTest/gauge1.test';
+import progressScaleCountJsunit from './progressTest/progress.test';
 
 export default function testsuite() {
   gaugeJsunit();
   CounterEnableTest();
+  gaugeColorsJsunit()
+  progressScaleCountJsunit()
 }

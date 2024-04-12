@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *     http:www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -41,6 +41,16 @@ import swiperRightScrollTest from './SwiperTest/swiper2/swiperightscroll.test'
 import tabsApi1 from './TabsTest/tabs/tabsApi1.test';
 import TouchTestStrategy from './ScrollTest/TouchTestStrategy.test';
 import ScrollTest from './ScrollTest/Scroll.test'
+import alphabetIndexerOnSelectJsunit from './AlphabetIndexerTest/alphabetIndexer.test';
+import gridMaxCountJsunit from './gridTest/grid1.test';
+import gridItemOnSelectJsunit from './gridItemTest/gridItem.test';
+import listNewJsunit from './ListTest/listTest.test';
+import list_itemOnSelectJsunit from './ListTest/list_item.test';
+import scrollOnScrollBeginJsunit from './ScrollTest/scroll1.test';
+import sideBarShowSideBarJsunit from './SideBarContainerTest/sideBar.test';
+import stackAlignContentJsunit from './StackTest/stack.test';
+import swiperCurveJsunit from './SwiperTest/swiper1.test';
+import tabsBarPositionJsunit from './TabsTest/tabs.test';
 import RefreshTest from './RefreshTest/Refresh.test'
 import ScrollTest2 from './ScrollTest/Scroll2.test'
 
@@ -74,6 +84,16 @@ export default function testsuite() {
   tabsApi1()
   TouchTestStrategy()
   ScrollTest()
+  alphabetIndexerOnSelectJsunit()
+  gridMaxCountJsunit()
+  gridItemOnSelectJsunit()
+  listNewJsunit()
+  list_itemOnSelectJsunit()
+  scrollOnScrollBeginJsunit()
+  sideBarShowSideBarJsunit()
+  stackAlignContentJsunit()
+  swiperCurveJsunit()
+  tabsBarPositionJsunit()
   RefreshTest()
   ScrollTest2()
 }

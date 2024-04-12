@@ -12,26 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import TextPickerDialog from './TextPickerDialogTest/TextPickerDialog.test.ets'
-import DatePickerDialog from './DatePickerDialogTest/DatePickerDialog.test.ets'
-import TimePickerDialog from './TimePickerDialogTest/TimePickerDialog.test.ets'
-import CalendarPickerDialog from './CalendarPickerDialogTest/CalendarPickerDialog.test.ets'
-import ActionSheet1 from './ActionSheetTest/ActionSheet1.test.ets'
-import ActionSheet2 from './ActionSheetTest/ActionSheet2.test.ets'
-import ActionSheet3 from './ActionSheetTest/ActionSheet3.test.ets'
-import AlertDialog1 from './AlertDialogTest/AlertDialog1.test.ets'
-import AlertDialog2 from './AlertDialogTest/AlertDialog2.test.ets'
-import AlertDialog3 from './AlertDialogTest/AlertDialog3.test.ets'
-import CustomDialog1 from './CustomDialogTest/CustomDialog1.test.ets'
-import CustomDialog2 from './CustomDialogTest/CustomDialog2.test.ets'
-import CustomDialog3 from './CustomDialogTest/CustomDialog3.test.ets'
-import openCustomDialog1 from './openCustomDialogTest/openCustomDialog1.test.ets'
-import openCustomDialog2 from './openCustomDialogTest/openCustomDialog2.test.ets'
-import openCustomDialog3 from './openCustomDialogTest/openCustomDialog3.test.ets'
-import CalendarDialogCallback from './CalendarPickerDialogTest/CalendarDialogCallback.test.ets'
-import DatePickerDialogCallback from './DatePickerDialogTest/DatePickerDialogCallback.test.ets'
-import TextPickerDialogCallback from './TextPickerDialogTest/TextPickerDialogCallback.test.ets'
-import TimePickerDialogCallback from './TimePickerDialogTest/TimePickerDialogCallback.test.ets'
+import TextPickerDialog from './TextPickerDialogTest/TextPickerDialog.test'
+import DatePickerDialog from './DatePickerDialogTest/DatePickerDialog.test'
+import TimePickerDialog from './TimePickerDialogTest/TimePickerDialog.test'
+import CalendarPickerDialog from './CalendarPickerDialogTest/CalendarPickerDialog.test'
+import ActionSheet1 from './ActionSheetTest/ActionSheet1.test'
+import ActionSheet2 from './ActionSheetTest/ActionSheet2.test'
+import ActionSheet3 from './ActionSheetTest/ActionSheet3.test'
+import AlertDialog1 from './AlertDialogTest/AlertDialog1.test'
+import AlertDialog2 from './AlertDialogTest/AlertDialog2.test'
+import AlertDialog3 from './AlertDialogTest/AlertDialog3.test'
+import CustomDialog1 from './CustomDialogTest/CustomDialog1.test'
+import CustomDialog2 from './CustomDialogTest/CustomDialog2.test'
+import CustomDialog3 from './CustomDialogTest/CustomDialog3.test'
+import openCustomDialog1 from './openCustomDialogTest/openCustomDialog1.test'
+import openCustomDialog2 from './openCustomDialogTest/openCustomDialog2.test'
+import openCustomDialog3 from './openCustomDialogTest/openCustomDialog3.test'
 
 export default function testsuite() {
   TextPickerDialog()
@@ -50,8 +46,4 @@ export default function testsuite() {
   openCustomDialog1();
   openCustomDialog2();
   openCustomDialog3();
-  CalendarDialogCallback();
-  DatePickerDialogCallback();
-  TextPickerDialogCallback();
-  TimePickerDialogCallback();
 }

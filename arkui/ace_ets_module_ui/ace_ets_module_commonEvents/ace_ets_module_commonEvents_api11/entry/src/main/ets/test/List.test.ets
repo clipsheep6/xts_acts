@@ -28,6 +28,8 @@ import dragPreviewJsSuit from './DragController/dragPreviewJsSuit.test';
 import dragPreviewOptionsJsSuit from './DragController/dragPreviewOptionsJsSuit.test';
 import GestureTagJsSuit from './TapGestureTest/GestureTagJsSuit.test';
 import freezeInactive from './freezeTest/freezeInactive.test'
+import gestureSetDirectionJsunit from './PanGestureTest/gesture.test';
+import lazyForEachOnDataAddJsunit from './lazyForeachTest/lazyForEach.test';
 
 export default function testsuite() {
   touchJsunit();
@@ -46,4 +48,6 @@ export default function testsuite() {
   dragPreviewOptionsJsSuit()
   GestureTagJsSuit()
   freezeInactive()
+  gestureSetDirectionJsunit()
+  lazyForEachOnDataAddJsunit()
 }

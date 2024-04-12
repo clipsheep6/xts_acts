@@ -13,84 +13,58 @@
  * limitations under the License.
  */
 
+import Log from '../../common/Log';
+
+const TAG = 'ets_apiLack_add';
+import events_emitter from '@ohos.events.emitter';
 
 @Entry
 @Component
-struct Index {
-  @State text: string = '';
-  controller: TextInputController = new TextInputController();
+struct SelectOnSelect {
+  @State selectIndex: number = 1
+
+  aboutToAppear() {
+    Log.showInfo(TAG, `aboutToAppear SelectOnSelect start`)
+  }
+
+  aboutToDisappear() {
+    Log.showInfo(TAG, `aboutToDisAppear SelectOnSelect end`)
+  }
+
   build() {
-    Row() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Column() {
-        Select([{ value: 'aaa' },
-          { value: 'bbb' },
-          { value: 'ccc' },
-          { value: 'ddd' },
-          { value: 'eee' },
-          { value: 'fff' },
-          { value: 'ggg' }
-        ])
-          .value('TTTT')
-          .key("ArkUX_Select_Visual_0030")
-          .optionWidth(px2vp(300))
-          .optionHeight(px2vp(300))
-
-        Select([{ value: 'aaa' },
-          { value: 'bbb' },
-          { value: 'ccc' },
-          { value: 'ddd' },
-          { value: 'eee' },
-          { value: 'fff' },
-          { value: 'ggg' }
-        ])
-          .key("ArkUX_Select_Visual_0040")
-          .menuAlign(null)
-          .backgroundColor(Color.Blue)
-          .value('TTTT')
-          .optionBgColor(Color.Blue)
-          .optionWidth(px2vp(600))
-          .optionHeight(px2vp(600))
-
-        Select([{ value: 'aaa' },
-          { value: 'bbb' },
-          { value: 'ccc' },
-          { value: 'ddd' },
-          { value: 'eee' },
-          { value: 'fff' },
-          { value: 'ggg' }
-        ])
-          .key("ArkUX_Select_Visual_0050")
-          .value('TTTT')
-          .optionWidth(px2vp(900))
-          .optionHeight(px2vp(900))
-
-        Select([{ value: 'aaa' },
-          { value: 'bbb' },
-          { value: 'ccc' },
-          { value: 'ddd' },
-          { value: 'eee' },
-          { value: 'fff' },
-          { value: 'ggg' }
-        ])
-          .key("ArkUX_Select_Visual_0060")
-          .value('TTTT')
-          .optionWidth(px2vp(1200))
-          .optionHeight(px2vp(1200))
-
-        Select([{ value: 'aaa' },
-          { value: 'bbb' },
-          { value: 'ccc' },
-          { value: 'ddd' },
-          { value: 'eee' },
-          { value: 'fff' },
-          { value: 'ggg' }
-        ])
-          .key("ArkUX_Select_Visual_0070")
-          .value('TTTT')
-          .optionWidth(px2vp(1500))
-          .optionHeight(px2vp(1500))
-
-      }.width('100%')
-    }.height('100%')
+        Select([{ value: 'aaa', icon: "/common/1.png" },
+          { value: 'bbb', icon: "/common/2.png" },
+          { value: 'ccc', icon: "/common/3.png" },
+          { value: 'ddd', icon: "/common/4.png" }])
+          .key("Select")
+          .selected(2)
+          .value('TTT')
+          .font({ size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
+          .selectedOptionFont({ size: 40, weight: 500, family: 'serif', style: FontStyle.Normal })
+          .optionFont({ size: 30, weight: 400, family: 'serif', style: FontStyle.Normal })
+          .onSelect((index: number) => {
+            console.info("Select:" + index)
+            this.selectIndex = index
+            try {
+              let backData: events_emitter.EventData = {
+                data: {
+                  "selectIndex": this.selectIndex
+                }
+              }
+              let backEvent: events_emitter.InnerEvent = {
+                eventId: 60222,
+                priority: events_emitter.EventPriority.LOW
+              }
+              console.info("SelectOnSelect start to emit action state")
+              events_emitter.emit(backEvent, backData)
+            } catch (err) {
+              console.info("SelectOnSelect emit action state err: " + JSON.stringify(err.message))
+            }
+          })
+      }
+    }.width("100%").height("100%")
   }
 }
+
