@@ -2200,7 +2200,7 @@ export default function SingleKvStoreCallbackTest(){
       console.info('SingleKvStoreGetResultSetCallbackTest003');
       try {
         let resultSet;
-        await kvStore.getResultSet('test_key_string', 123, function (err, result) {
+        await kvStore.getResultSet('test_key_string', 123, async function (err, result) {
           console.info('SingleKvStoreGetResultSetCallbackTest003 getResultSet success: '+err);
           expect(err == undefined).assertTrue();
           await kvStore.closeResultSet(result, function (err, data) {
