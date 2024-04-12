@@ -160,6 +160,14 @@ export default function avRecorderTest() {
             steps.shift();
             avRecorder.prepare(avConfig, (err) => {
                 console.info('case prepare called');
+                console.info('updateRotation: 90');
+                let rotation = 90
+                avRecorder.updateRotation(rotation).then(() => {
+                    console.info('updateRotation success');
+                  }).catch((error) => {
+                    console.error('updateRotation failed and catch error is ' + error.message);
+                  });
+                console.info()
                 if (err == null) {
                     console.error(`case prepare success, state is ${avRecorder.state}`);
                     expect(avRecorder.state).assertEqual(avRecorderTestBase.AV_RECORDER_STATE.PREPARED);
