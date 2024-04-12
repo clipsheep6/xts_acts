@@ -6,6 +6,11 @@
         "MainAbility/pages/TimePicker/TimePicker",
         "MainAbility/pages/CheckboxGroup/checkBoxGroup",
         "MainAbility/pages/Select/select",
-        "MainAbility/pages/TextPicker/textPicker"
+        "MainAbility/pages/TextPicker/textPicker",
+        "MainAbility/pages/Select/Select",
+        "MainAbility/pages/Checkbox/Index",
+        "MainAbility/pages/TextPicker/TextPickerSec",
+        "MainAbility/pages/TextPicker/Index",
+        "MainAbility/pages/TextPicker/TextPickerMulti"
     ]
 }

@@ -51,6 +51,8 @@ import sideBarShowSideBarJsunit from './SideBarContainerTest/sideBar.test';
 import stackAlignContentJsunit from './StackTest/stack.test';
 import swiperCurveJsunit from './SwiperTest/swiper1.test';
 import tabsBarPositionJsunit from './TabsTest/tabs.test';
+import RefreshTest from './RefreshTest/Refresh.test'
+import ScrollTest2 from './ScrollTest/Scroll2.test'
 
 export default function testsuite() {
   listJsunit();
@@ -92,4 +94,6 @@ export default function testsuite() {
   stackAlignContentJsunit()
   swiperCurveJsunit()
   tabsBarPositionJsunit()
+  RefreshTest()
+  ScrollTest2()
 }

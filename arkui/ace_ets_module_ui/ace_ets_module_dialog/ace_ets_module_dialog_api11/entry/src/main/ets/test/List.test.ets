@@ -17,6 +17,7 @@ import menu from './MenuTest/menu.test'
 import ToastShowMode from './promptActionTest/ToastShowMode.test';
 import promptTest from './promptActionTest/promptTest.test';
 import promptShowDialogJsunit from './promptActionTest/prompt.test';
+import DialogTest from './promptActionTest/Dialog.test';
 
 export default function testsuite() {
   CustomDialogMaskTest()
@@ -24,4 +25,5 @@ export default function testsuite() {
   ToastShowMode()
   promptTest()
   promptShowDialogJsunit()
+  DialogTest();
 }

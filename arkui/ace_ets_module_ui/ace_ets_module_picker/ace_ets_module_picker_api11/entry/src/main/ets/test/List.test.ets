@@ -18,6 +18,11 @@ import selectoptionwithJsSuit from './SelectTest/selectoptionwithJsSuit.test';
 import checkBoxGroupSelectAllJsunit from './CheckboxGroupTest/checkBoxGroup.test';
 import selectOnSelectJsunit from './SelectTest/select.test';
 import textPickerDefaultPickerItemHeightJsunit from './TextPickerTest/textPicker.test';
+import SelectTest from './SelectTest/Select.test';
+import CheckboxTest from './CheckboxTest/Checkbox.test';
+import textpicker from './TextPicker/TextPicker';
+import TextPickerSec from './TextPicker/TextPickerSec';
+import textpickermultiTest from './TextPicker/TextPickerMulti';
 
 export default function testsuite() {
   SelectAttr()
@@ -26,4 +31,9 @@ export default function testsuite() {
   checkBoxGroupSelectAllJsunit()
   textPickerDefaultPickerItemHeightJsunit()
   selectOnSelectJsunit()
+  SelectTest()
+  CheckboxTest();
+  textpicker()
+  TextPickerSec()
+  textpickermultiTest()
 }

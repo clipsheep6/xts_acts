@@ -39,6 +39,8 @@
         "MainAbility/pages/SideBarContainer/sideBar",
         "MainAbility/pages/Stack/stack",
         "MainAbility/pages/Swiper/swiper1",
-        "MainAbility/pages/Tabs/tabs"
+        "MainAbility/pages/Tabs/tabs",
+        "MainAbility/pages/Refresh/Index",
+        "MainAbility/pages/Scroll/Index2"
     ]
 }
