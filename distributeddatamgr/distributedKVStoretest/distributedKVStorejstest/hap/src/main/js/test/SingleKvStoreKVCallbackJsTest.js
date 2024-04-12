@@ -2200,10 +2200,14 @@ describe('SingleKvStoreCallbackTest', function () {
         console.info('SingleKvStoreGetResultSetCallbackTest003');
         try {
             let resultSet;
-            await kvStore.getResultSet('test_key_string', 123, function (err, result) {
+            await kvStore.getResultSet('test_key_string', 123, async function (err, result) {
                 console.info('SingleKvStoreGetResultSetCallbackTest003 getResultSet success: '+err);
                 expect(err == undefined).assertTrue();
-                done();
+                await kvStore.closeResultSet(result, function (err, data) {
+                    console.info('SingleKvStoreGetResultSetCallbackTest002 closeResultSet success');
+                    expect(err == undefined).assertTrue();
+                    done();
+                })
             });
         }catch(e) {
             console.error('SingleKvStoreGetResultSetCallbackTest003 e ' + `, error code is ${e.code}, message is ${e.message}`);
