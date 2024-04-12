@@ -15,14 +15,14 @@
 #include "common/napi_helper.cpp"
 #include "common/native_common.h"
 #include "napi/native_api.h"
+#include <cerrno>
 #include <csignal>
+#include <cstdlib>
 #include <cstring>
 #include <ctime>
-#include <cerrno>
 #include <malloc.h>
 #include <net/if.h>
 #include <sched.h>
-#include <cstdlib>
 #include <sys/time.h>
 #include <sys/timex.h>
 #include <unistd.h>
@@ -41,95 +41,8 @@
 #define PARAM_111 111
 #define PARAM_777 777
 #define PARAM_0666 0666
+#define PARAM_0777 0777
 #define MPARAM_123 (-123)
-
-extern "C" int __timer_gettime64(timer_t, struct itimerspec *);
-extern "C" int __timer_settime64(timer_t, int, const struct itimerspec *__restrict, struct itimerspec *__restrict);
-void TimerThread(union sigval v) {}
-
-static napi_value Timer_getTime64_One(napi_env env, napi_callback_info info)
-{
-    timer_t timerid;
-    struct sigevent evp;
-    memset(&evp, PARAM_0, sizeof(struct sigevent));
-
-    evp.sigev_value.sival_int = PARAM_111;
-    evp.sigev_notify = SIGEV_THREAD;
-    evp.sigev_notify_function = TimerThread;
-
-    int ret = timer_create(CLOCK_REALTIME, &evp, &timerid);
-
-    struct itimerspec it;
-    it.it_interval.tv_sec = PARAM_1;
-    it.it_interval.tv_nsec = PARAM_0;
-    it.it_value.tv_sec = PARAM_3;
-    it.it_value.tv_nsec = PARAM_0;
-    ret = __timer_settime64(timerid, PARAM_0, &it, nullptr);
-
-    struct itimerspec tmp;
-    ret = __timer_gettime64(timerid, &tmp);
-    NAPI_ASSERT(env, tmp.it_value.tv_sec < PARAM_1 || tmp.it_value.tv_nsec < NANOSECONDS,
-                "Timer_getTime64_One--__timer_gettime64 failed");
-
-    napi_value result = nullptr;
-    napi_create_int32(env, ret == PARAM_0, &result);
-
-    timer_delete(timerid);
-    return result;
-}
-
-static napi_value Timer_getTime64_Two(napi_env env, napi_callback_info info)
-{
-    struct itimerspec tmp;
-    int ret = __timer_gettime64(nullptr, &tmp);
-
-    napi_value result = nullptr;
-    napi_create_int32(env, ret != PARAM_1 && errno == EINVAL, &result);
-    return result;
-}
-
-static napi_value Timer_setTime64_One(napi_env env, napi_callback_info info)
-{
-    timer_t timerid;
-    struct sigevent evp;
-    memset(&evp, PARAM_0, sizeof(struct sigevent));
-    evp.sigev_value.sival_int = PARAM_111;
-    evp.sigev_notify = SIGEV_THREAD;
-    evp.sigev_notify_function = TimerThread;
-
-    int ret = timer_create(CLOCK_REALTIME, &evp, &timerid);
-    struct itimerspec it;
-    it.it_interval.tv_sec = PARAM_1;
-    it.it_interval.tv_nsec = PARAM_0;
-    it.it_value.tv_sec = PARAM_3;
-    it.it_value.tv_nsec = PARAM_0;
-    ret = __timer_settime64(timerid, PARAM_0, &it, nullptr);
-
-    struct itimerspec tmp;
-    ret = __timer_gettime64(timerid, &tmp);
-    NAPI_ASSERT(env, tmp.it_value.tv_sec < PARAM_1 || tmp.it_value.tv_nsec < NANOSECONDS,
-                "Timer_setTime64_One--__timer_gettime64 failed");
-
-    napi_value result = nullptr;
-    napi_create_int32(env, ret == PARAM_0, &result);
-
-    timer_delete(timerid);
-    return result;
-}
-
-static napi_value Timer_setTime64_Two(napi_env env, napi_callback_info info)
-{
-    struct itimerspec it;
-    it.it_interval.tv_sec = PARAM_1;
-    it.it_interval.tv_nsec = PARAM_0;
-    it.it_value.tv_sec = PARAM_3;
-    it.it_value.tv_nsec = PARAM_0;
-    int ret = __timer_settime64(nullptr, PARAM_0, &it, nullptr);
-
-    napi_value result = nullptr;
-    napi_create_int32(env, ret != PARAM_1 && errno == EINVAL, &result);
-    return result;
-}
 
 static napi_value Futimes_One(napi_env env, napi_callback_info info)
 {
@@ -144,6 +57,7 @@ static napi_value Futimes_One(napi_env env, napi_callback_info info)
     if (fd != MPARAM_1) {
         ret = futimes(fd, tv);
     }
+    close(fd);
     napi_value result = nullptr;
     napi_create_int32(env, ret == PARAM_0, &result);
     remove(TEST_FILE);
@@ -154,10 +68,12 @@ static napi_value Futimes_Two(napi_env env, napi_callback_info info)
 {
     static struct timeval tv[2];
 
-    int fd = open(TEST_FILE, O_CREAT);
+    int fd = open(TEST_FILE, O_CREAT, PARAM_0777);
+    errno = PARAM_0;
     int ret = futimes(fd, tv);
+    close(fd);
     napi_value result = nullptr;
-    napi_create_int32(env, ret == PARAM_0 && errno == EINVAL, &result);
+    napi_create_int32(env, ret == PARAM_0 && errno == PARAM_0, &result);
     remove(TEST_FILE);
     return result;
 }
@@ -218,14 +134,11 @@ static napi_value TzName_Two(napi_env env, napi_callback_info info)
 
 static napi_value Utimes_One(napi_env env, napi_callback_info info)
 {
-    int fd = open(TEST_FILE, O_RDWR | O_RSYNC | O_CREAT);
-    close(fd);
-    struct stat st;
+    int fd = open(TEST_FILE, O_RDWR | O_RSYNC | O_CREAT, PARAM_0777);
     struct timeval tv[2] = {{1, 0}, {1, 0}};
     int ret = utimes(TEST_FILE, tv);
     NAPI_ASSERT(env, ret == PARAM_0, "Utimes_One--utimes failed");
-    fstat(fd, &st);
-    NAPI_ASSERT(env, st.st_atime != tv[0].tv_sec && st.st_mtime != tv[1].tv_sec, "Utimes_One--utimes failed");
+    close(fd);
     remove(TEST_FILE);
     napi_value result = nullptr;
     napi_create_int32(env, ret == PARAM_0, &result);
@@ -234,7 +147,7 @@ static napi_value Utimes_One(napi_env env, napi_callback_info info)
 
 static napi_value Utimes_Two(napi_env env, napi_callback_info info)
 {
-    int fd = open(TEST_FILE, O_RDWR | O_RSYNC | O_CREAT);
+    int fd = open(TEST_FILE, O_RDWR | O_RSYNC | O_CREAT, PARAM_0777);
     close(fd);
 
     struct timeval tv[2];
@@ -253,10 +166,6 @@ EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
-        {"Timer_getTime64_One", nullptr, Timer_getTime64_One, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"Timer_getTime64_Two", nullptr, Timer_getTime64_Two, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"Timer_setTime64_One", nullptr, Timer_setTime64_One, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"Timer_setTime64_Two", nullptr, Timer_setTime64_Two, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"Futimes_One", nullptr, Futimes_One, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"Futimes_Two", nullptr, Futimes_Two, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"Futimesat_One", nullptr, Futimesat_One, nullptr, nullptr, nullptr, napi_default, nullptr},

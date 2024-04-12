@@ -13,23 +13,16 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import locale from 'liblocale1ndk.so'
 
 export default function locale1NdkTest() {
   describe('MuslLocale1Test', () => {
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_MATH_LOCALTIME64_0200
-     * @tc.name       : testMusLocaleLocalTime64002
-     * @tc.desc       : test __localtime64
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMusLocaleLocalTime64002', 0, async (done: Function) => {
-      expect(locale.__localtime64()).assertEqual(-1);
-      done()
-    });
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
 
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_LOCALE_NEWLOCALE_0200

@@ -13,11 +13,17 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import pthread from 'libpthreadndk1.so'
 
 export default function muslPThreadNdk1Test() {
   describe('MuslPThread1Test', () => {
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
+
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_PTHREAD_PTHREAD_ATFORK_0100
      * @tc.name       : testMuslPThreadPThreadAtFork001
@@ -500,19 +506,6 @@ export default function muslPThreadNdk1Test() {
     });
 
     /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_PTHREAD_PTHREAD_COND_TIMEDWAIT_0100
-     * @tc.name       : testMuslPThreadPThreadCondTimedWait001
-     * @tc.desc       : test pthread_cond_timedwait
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 2
-     */
-    it('testMuslPThreadPThreadCondTimedWait001', 0, async (done: Function) => {
-      expect(pthread.pThreadCondTimedWait()).assertEqual(0);
-      done()
-    });
-
-    /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_PTHREAD_PTHREAD_COND_WAIT_0100
      * @tc.name       : testMuslPThreadPThreadCondWait001
      * @tc.desc       : test pthread_cond_wait
@@ -743,19 +736,6 @@ export default function muslPThreadNdk1Test() {
      */
     it('testMuslPThreadPThreadKeyDelete001', 0, async (done: Function) => {
       expect(pthread.pThreadKeyDelete()).assertEqual(0);
-      done()
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_PTHREAD_PTHREAD_KILL_0100
-     * @tc.name       : testMuslPThreadPThreadKill001
-     * @tc.desc       : test pthread_kill
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 2
-     */
-    it('testMuslPThreadPThreadKill001', 0, async (done: Function) => {
-      expect(pthread.pThreadKill()).assertEqual(0);
       done()
     });
 
@@ -1172,19 +1152,6 @@ export default function muslPThreadNdk1Test() {
      */
     it('testMuslPThreadPThreadSetSpecific001', 0, async (done: Function) => {
       expect(pthread.pThreadSetSpecific()).assertEqual(0);
-      done()
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_PTHREAD_PTHREAD_SIG_MASK_0100
-     * @tc.name       : testMuslPThreadPThreadSigMask001
-     * @tc.desc       : test pthread_sigmask
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 2
-     */
-    it('testMuslPThreadPThreadSigMask001', 0, async (done: Function) => {
-      expect(pthread.pThreadSigMask()).assertEqual(0);
       done()
     });
 

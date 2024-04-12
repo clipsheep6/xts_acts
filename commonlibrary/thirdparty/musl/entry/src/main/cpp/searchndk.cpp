@@ -184,7 +184,7 @@ static napi_value Hsearch(napi_env env, napi_callback_info info)
 
     for (i = PARAM_0; i < PARAM_24; i++) {
         e.key = data[i];
-        e.data = (void *)i;
+        e.data = (void *)&i;
         ep = hsearch(e, ENTER);
         if (ep == nullptr) {
             napi_create_int32(env, FAIL, &result);
@@ -219,7 +219,7 @@ static napi_value HsearchR(napi_env env, napi_callback_info info)
     for (i = PARAM_0; i < PARAM_3; i++) {
         ENTRY e, *ep;
         e.key = keys[i];
-        e.data = (void *)dataVal[i];
+        e.data = (void *)(&dataVal[i]);
         hsearch_r(e, ENTER, &ep, htab);
     }
     for (i = PARAM_0; i < PARAM_3; i++) {
@@ -267,7 +267,7 @@ static napi_value LSearch(napi_env env, napi_callback_info info)
     size_t n = PARAM_5;
     int key = PARAM_27;
     fc f = Compare;
-    int *ret = static_cast<int*>(lsearch(&key, arr, &n, sizeof(int), f));
+    int *ret = static_cast<int *>(lsearch(&key, arr, &n, sizeof(int), f));
     napi_value result = nullptr;
     if (ret) {
         napi_create_int32(env, NOERR, &result);
@@ -346,7 +346,7 @@ static napi_value Twalk(napi_env env, napi_callback_info info)
     void *rootVal = nullptr;
     srand(time(nullptr));
     for (i = PARAM_0; i < LOOPNUM; i++) {
-        ptr = static_cast<int*>(malloc(sizeof(int)));
+        ptr = static_cast<int *>(malloc(sizeof(int)));
         *ptr = rand() & PARAM_0xff;
         val = tsearch((void *)ptr, &rootVal, Compare);
         if (val == nullptr)

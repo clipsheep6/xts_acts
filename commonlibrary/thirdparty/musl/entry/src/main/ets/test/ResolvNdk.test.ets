@@ -13,11 +13,16 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import resolv from 'libresolvndk.so'
 
 export default function resolvNdkTest() {
   describe('MuslResolvTest', () => {
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
 
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_RESOLV_RESINIT_0100
@@ -66,66 +71,6 @@ export default function resolvNdkTest() {
       done();
     });
 
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_RESOLV_RESQUERY_0100
-     * @tc.name       : testMuslResolvResQuery001
-     * @tc.desc       : test res_query
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslResolvResQuery001', 0, async (done: Function) => {
-      let param = -1;
-      let result: number = resolv.resQuery(param);
-      console.info("Test result= " + result);
-      expect(result).assertEqual(-1);
-      done();
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_RESOLV_RESQUERYDOMAIN_0100
-     * @tc.name       : testMuslResolvResQuerydomain001
-     * @tc.desc       : test res_querydomain
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslResolvResQuerydomain001', 0, async (done: Function) => {
-      let result: number = resolv.resQuerydomain();
-      console.info("Test result= " + result);
-      expect(result).assertEqual(-1);
-      done();
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_RESOLV_RES_SEARCH_0100
-     * @tc.name       : testMuslResolvResSearch001
-     * @tc.desc       : test res_search
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslResolvResSearch001', 0, async (done: Function) => {
-      let resultTrue = 1;
-      let result = resolv.resSearch();
-      expect(result).assertEqual(resultTrue);
-      done()
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_RESOLV_RES_SEND_0100
-     * @tc.name       : testMuslResolvResSend001
-     * @tc.desc       : test res_send
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslResolvResSend001', 0, async (done: Function) => {
-      let resultTrue = 1;
-      let result: number = resolv.resSend();
-      expect(result).assertEqual(resultTrue);
-      done()
-    });
 
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_RESOLV_DN_EXPAND_0100

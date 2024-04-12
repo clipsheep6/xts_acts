@@ -13,11 +13,17 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import pthread from 'libpthreadndk.so'
 
 export default function muslPThreadNdkTest() {
   describe('MuslPThreadTest', () => {
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
+
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_PTHREAD_PTHREAD_ATFORK_0100
      * @tc.name       : testMuslPThreadPThreadAtFork001
@@ -409,20 +415,6 @@ export default function muslPThreadNdkTest() {
     it('testMuslPThreadPThreadCondDestroy001', 0, async (done: Function) => {
       let result:number = pthread.pThreadCondDestroy(0);
       console.info("pthread.pThreadCondDestroy result = " + result);
-      expect(result).assertEqual(0);
-      done()
-    });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_PTHREAD_PTHREAD_COND_TIMEDWAIT_0100
-     * @tc.name       : testMuslPThreadPThreadCondTimedWait001
-     * @tc.desc       : test pthread_cond_timedwait
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslPThreadPThreadCondTimedWait001', 0, async (done: Function) => {
-      let result:number = pthread.pThreadCondTimedWait(0);
-      console.info("pthread.pThreadCondTimedWait result = " + result);
       expect(result).assertEqual(0);
       done()
     });

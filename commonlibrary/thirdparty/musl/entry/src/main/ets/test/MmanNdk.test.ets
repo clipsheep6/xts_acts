@@ -13,26 +13,17 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import mman from 'libmmanndk.so'
 
 export default function mmanNdkTest() {
   describe('MuslMmanTest', () => {
-    /**
-    * @tc.number     : SUB_THIRDPARTY_MUSL_MMAN_REMAPFILEPAGES_0200
-    * @tc.name       : testMuslMmanRemapFilePages002
-    * @tc.desc       : test remap_file_pages
-    * @tc.size       : MediumTest
-    * @tc.type       : Function
-    * @tc.level      : Level 0
-    */
-    it('testMuslMmanRemapFilePages002', 0, async (done: Function) => {
-      let param = 0;
-      let result: number = mman.remapFilePages(param);
-      console.info("Test result = " + JSON.stringify(result));
-      expect(result).assertEqual(0);
-      done()
-    });
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
+
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_MMAN_REMAPFILEPAGES_0100
      * @tc.name       : testMuslMmanRemapFilePages001

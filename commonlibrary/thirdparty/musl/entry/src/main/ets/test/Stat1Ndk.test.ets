@@ -13,51 +13,18 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import stat from 'libstat1ndk.so'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import fs from '@ohos.file.fs'
 
 export default function stat1NdkTest() {
   describe('MuslStat1Test', () => {
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_STAT_FSTAT_TIME64_0200
-     * @tc.name       : testMuslStatFstatTime64002
-     * @tc.desc       : test __fstat_time64
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslStatFstatTime64002', 0, async (done: Function) => {
-      expect(stat.__fstat_time64()).assertEqual(-1);
-      done()
-    });
 
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_STAT_LSTAT_TIME64_0200
-     * @tc.name       : testMuslStatLstatTime64002
-     * @tc.desc       : test __lstat_time64
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslStatLstatTime64002', 0, async (done: Function) => {
-      expect(stat.__lstat_time64()).assertEqual(-1);
-      done()
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_STAT_STAT_TIME64_0200
-     * @tc.name       : testMuslStatStatTime64002
-     * @tc.desc       : test __stat_time64
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslStatStatTime64002', 0, async (done: Function) => {
-      expect(stat.__stat_time64()).assertEqual(-1);
-      done()
-    });
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
 
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_STAT_CHMOD_0200

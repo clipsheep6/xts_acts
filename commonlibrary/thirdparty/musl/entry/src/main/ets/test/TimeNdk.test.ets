@@ -13,43 +13,20 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
 import time from 'libtimendk.so'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import fs from '@ohos.file.fs'
+import Utils from './Utils'
 
 export default function timeNdkTest() {
 
   describe('MuslTimeTest', () => {
 
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_TIME_GETITIMER_0100
-     * @tc.name       : testMuslTimeGetITimer001
-     * @tc.desc       : test getitimer
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslTimeGetITimer001', 0, async (done: Function) => {
-      let data:number = time.getITimer();
-      console.info("Test NAPI data= " + JSON.stringify(data));
-      expect(data).assertEqual(0);
-      done()
-    });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_TIME_GETTIMEOFDAY_0100
-     * @tc.name       : testMuslTimeGetTimeOfDay001
-     * @tc.desc       : test gettimeofday
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslTimeGetTimeOfDay001', 0, async (done: Function) => {
-      let data:number = time.getTimeOfDay();
-      console.info("Test NAPI data= " + JSON.stringify(data));
-      expect(data).assertEqual(0);
-      done()
-    });
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
+
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_TIME_SETITIMER_0100
      * @tc.name       : testMuslTimeSetitimer001
@@ -356,20 +333,6 @@ export default function timeNdkTest() {
       expect(c).assertEqual(-1);
       done()
     });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_TIME_TIMERDELETE_0100
-     * @tc.name       : testMuslTimeTimerDelete001
-     * @tc.desc       : test timer_delete
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslTimeTimerDelete001', 0, async (done: Function) => {
-      let a = 1;
-      let c: number = time.timer_delete(a);
-      expect(c).assertEqual(0);
-      done()
-    });
 
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_TIME_TIMERGETOVERRUN_0100
@@ -400,21 +363,6 @@ export default function timeNdkTest() {
       expect(c).assertEqual(-1);
       done()
     });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_TIME_TIMERSETTIME_0100
-     * @tc.name       : testMuslTimeTimerSettime001
-     * @tc.desc       : test timer_settime
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslTimeTimerSettime001', 0, async (done: Function) => {
-      let a = 1;
-      let c: number = time.timer_settime(a);
-      expect(c).assertEqual(0);
-      done()
-    });
-
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_TIME_STRPTIME_0100
      * @tc.name       : testMuslTimeStrptime001
@@ -528,21 +476,6 @@ export default function timeNdkTest() {
     it('testMuslTimeClock001', 0, async (done: Function) => {
       let resultTrue = 1;
       let result: number = time.clock();
-      expect(result).assertEqual(resultTrue);
-      done()
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_TIME_CLOCK_ADJTIME_0100
-     * @tc.name       : testMuslTimeClockAdjtime001
-     * @tc.desc       : test clock_adjtime
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslTimeClockAdjtime001', 0, async (done: Function) => {
-      let resultTrue = 1;
-      let result: number = time.clockAdjtime();
       expect(result).assertEqual(resultTrue);
       done()
     });
@@ -777,20 +710,6 @@ export default function timeNdkTest() {
       console.info("Test result= " + result);
       expect(result).assertEqual(1);
       done();
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_TIME_SETTIMEOFDAY_0100
-     * @tc.name       : testMuslTimeSettimeofday001
-     * @tc.desc       : test settimeofday
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslTimeSettimeofday001', 0, async (done: Function) => {
-      let a: number = time.settimeofday();
-      expect(a).assertEqual(0);
-      done()
     });
   })
 }

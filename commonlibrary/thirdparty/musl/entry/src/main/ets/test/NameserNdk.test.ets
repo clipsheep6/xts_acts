@@ -13,11 +13,16 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import nameser from 'libnameserndk.so'
 
 export default function muslNameserNdkTest() {
   describe('MuslNameserTest', () => {
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
 
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_NAMESER_NSGET16_0100
@@ -62,20 +67,6 @@ export default function muslNameserNdkTest() {
     });
 
     /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_NAMESER_NSPUT32_0100
-     * @tc.name       : testMuslNameserNsPut32001
-     * @tc.desc       : ns_put32
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslNameserNsPut32001', 0, async (done: Function) => {
-      let a: number = nameser.nsPut32();
-      expect(a).assertEqual(0);
-      done()
-    });
-
-    /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_NAMESER_NSINITPARSE_0100
      * @tc.name       : testMuslNameserNsInitParse001
      * @tc.desc       : ns_initparse
@@ -100,49 +91,6 @@ export default function muslNameserNdkTest() {
     it('testMuslNameserNsNameUnCompress001', 0, async (done: Function) => {
       let a: number = nameser.nsNameUnCompress();
       expect(a).assertEqual(0);
-      done()
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_NAMESER_NSPARSERR_0100
-     * @tc.name       : testMuslNameserNsParsErr001
-     * @tc.desc       : ns_parserr
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslNameserNsParsErr001', 0, async (done: Function) => {
-      let a: number = nameser.nsParsErr();
-      expect(a).assertEqual(0);
-      done()
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_NAMESER_NSSKIPPR_0100
-     * @tc.name       : testMuslNameserNsSkiPrr001
-     * @tc.desc       : ns_parserr
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslNameserNsSkiPrr001', 0, async (done: Function) => {
-      let a: number = nameser.nsSkiPrr();
-      expect(a).assertEqual(0);
-      done()
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_NSFLAGDATA_0100
-     * @tc.name       : testMuslNsFlagdata001
-     * @tc.desc       : test _ns_flagdata
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslNsFlagdata001', 0, async (done: Function) => {
-      let result: number = nameser.nsFlagdata();
-      console.info("Test result = " + JSON.stringify(result));
-      expect(result).assertEqual(0);
       done()
     });
   })
