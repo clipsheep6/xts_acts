@@ -2228,6 +2228,9 @@ export default function SingleKvStoreCallbackTest(){
         let query = new factory.Query();
         await kvStore.getResultSet(query).then((result) => {
           console.log('SingleKvStoreGetResultSetPredicatesCallbackTest001 getResultSet success');
+            await kvStore.closeResultSet(result, async function (err, data) {
+                    console.info('SingleKvStoreGetResultSetPredicatesCallbackTest001 closeResultSet success');
+                })
         }).catch((err) => {
           console.error('SingleKvStoreGetResultSetPredicatesCallbackTest001 getResultSet fail ' + err`, error code is ${err.code}, message is ${err.message}`);
           expect(err == undefined).assertTrue();

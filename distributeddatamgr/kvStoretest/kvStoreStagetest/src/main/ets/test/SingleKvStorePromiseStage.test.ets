@@ -2263,8 +2263,13 @@ export default function singleKvStorePromiseTest(){
       console.info('testSingleKvStoreGetResultSet004');
       try {
         let resultSet;
-        await kvStore.getResultSet('test_key_string', 123).then((result) => {
+        await kvStore.getResultSet('test_key_string', 123).then(async (result) => {
           console.info('testSingleKvStoreGetResultSet004 getResultSet success');
+          await kvStore.closeResultSet(result, function (err, data) {
+              console.info('testSingleKvStoreGetResultSet004 closeResultSet success');
+              expect(err == undefined).assertTrue();
+              done();
+            })
         }).catch((err) => {
           console.info('testSingleKvStoreGetResultSet004 getResultSet fail ' + err);
         });

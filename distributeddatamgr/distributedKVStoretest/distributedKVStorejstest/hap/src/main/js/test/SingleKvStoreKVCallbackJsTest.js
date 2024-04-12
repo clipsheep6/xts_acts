@@ -2226,8 +2226,13 @@ describe('SingleKvStoreCallbackTest', function () {
         console.log('SingleKvStoreGetResultSetPredicatesCallbackTest001');
         try {
             let query = new factory.Query();
-            await kvStore.getResultSet(query).then((result) => {
+            await kvStore.getResultSet(query).then(async (result) => {
                 console.log('SingleKvStoreGetResultSetPredicatesCallbackTest001 getResultSet success');
+                await kvStore.closeResultSet(result, function (err, data) {
+                    console.info('SingleKvStoreGetResultSetPredicatesCallbackTest001 closeResultSet success');
+                    expect(err == undefined).assertTrue();
+                    done();
+                  })
             }).catch((err) => {
                 console.error('SingleKvStoreGetResultSetPredicatesCallbackTest001 getResultSet fail ' + err`, error code is ${err.code}, message is ${err.message}`);
                 expect(err == undefined).assertTrue();
