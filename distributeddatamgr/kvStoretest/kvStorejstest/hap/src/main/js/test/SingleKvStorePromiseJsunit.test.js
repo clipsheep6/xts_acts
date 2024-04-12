@@ -2272,13 +2272,16 @@ describe('singleKvStorePromiseTest', function () {
             await kvStore.getResultSet('test_key_string', 123).then(async (result) => {
                 console.info('testSingleKvStoreGetResultSet004 getResultSet success');
                 expect(null).assertFail();
-                await kvStore.closeResultSet(result, function (err, data) {
-                    console.info('testSingleKvStoreGetResultSet004 closeResultSet success');
-                    expect(err == undefined).assertTrue();
-                    done();
-                })
+                resultSet = result;
             }).catch((err) => {
                 console.info('testSingleKvStoreGetResultSet004 getResultSet fail ' + err);
+            });
+            await kvStore.closeResultSet(resultSet).then((err) => {
+                console.info('testSingleKvStoreGetResultSet004 closeResultSet success');
+                expect(err == undefined).assertTrue();
+            }).catch((err) => {
+                console.info('testSingleKvStoreGetResultSet004 closeResultSet fail ' + err);
+                expect(null).assertFail();
             });
         }catch(e) {
             console.info('testSingleKvStoreGetResultSet004 e ' + e);
