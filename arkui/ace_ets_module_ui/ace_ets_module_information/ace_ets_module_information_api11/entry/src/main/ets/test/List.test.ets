@@ -14,8 +14,12 @@
  */
 import gaugeJsunit from './gaugeTest/GaugeJsunit.test';
 import CounterEnableTest from './CounterTest/CounterEnable.test'
+import badgeTest from './BadgeTest/badge'
+import datapanelTest from './DataPanelTest/datapanel'
 
 export default function testsuite() {
   gaugeJsunit();
   CounterEnableTest();
+  badgeTest();
+  datapanelTest();
 }

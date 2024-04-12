@@ -20,6 +20,13 @@ import CheckboxTest from './CheckboxTest/Checkbox.test';
 import textpicker from './TextPicker/TextPicker';
 import TextPickerSec from './TextPicker/TextPickerSec';
 import textpickermultiTest from './TextPicker/TextPickerMulti';
+import select from './SelectTest/Select';
+import selectmenuTest from './SelectTest/SelectMenu';
+import calendarpicker from './CalendarPickerTest/calendarpicker';
+import datepicker from './DatePickerTest/DatePicker';
+import ActsDatePickerTest from './DatePickerTest/DatePicker.test';
+import checkBoxTest1 from './CheckboxTest/checkBox';
+import checkBoxGroupTest from './CheckBoxGroupTest/checkBoxGroup';
 
 export default function testsuite() {
   SelectAttr()
@@ -30,4 +37,11 @@ export default function testsuite() {
   textpicker()
   TextPickerSec()
   textpickermultiTest()
+  select()
+  selectmenuTest()
+  calendarpicker()
+  ActsDatePickerTest()
+  datepicker()
+  checkBoxTest1()
+  checkBoxGroupTest()
 }
