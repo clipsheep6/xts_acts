@@ -2197,20 +2197,20 @@ describe('SingleKvStoreCallbackTest', function () {
      * @tc.name Test Js Api SingleKvStore.GetResultSet() testcase 003
      */
     it('SUB_DDM_DKV_SINGLEKVSTORE_GETRESULT_CALLBACK_7700', 0, async function (done) {
-        console.info('SingleKvStoreGetResultSetCallbackTest003');
+        console.info('yltestSingleKvStoreGetResultSetCallbackTest003');
         try {
             let resultSet;
             await kvStore.getResultSet('test_key_string', 123, async function (err, result) {
-                console.info('SingleKvStoreGetResultSetCallbackTest003 getResultSet success: '+err);
+                console.info('yltestSingleKvStoreGetResultSetCallbackTest003 getResultSet success: '+err);
                 expect(err == undefined).assertTrue();
                 await kvStore.closeResultSet(result, function (err, data) {
-                    console.info('SingleKvStoreGetResultSetCallbackTest002 closeResultSet success');
+                    console.info('yltestSingleKvStoreGetResultSetCallbackTest003 closeResultSet success');
                     expect(err == undefined).assertTrue();
                     done();
                 })
             });
         }catch(e) {
-            console.error('SingleKvStoreGetResultSetCallbackTest003 e ' + `, error code is ${e.code}, message is ${e.message}`);
+            console.error('yltestSingleKvStoreGetResultSetCallbackTest003 e ' + `, error code is ${e.code}, message is ${e.message}`);
             expect(null).assertFail();
             done();
         }
