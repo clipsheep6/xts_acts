@@ -228,7 +228,7 @@ export default function avVideoRecorderTestOne() {
         const ENCODER_INFO_PROMISE_EVENT = 'availableEncoderPromise';
         const MAX_AMPLITUDE_PROMISE_EVENT = 'maxAmplitudePromise';
 
-        const PREPARE_UPDATE_ROTATION__CALLBACK_EVENT = 'prepareUpdateRotationCallback';
+        const UPDATE_ROTATION_EVENT = 'updateRotationEvent';
 
         let cameraManager;
         let videoOutput;
@@ -527,26 +527,16 @@ export default function avVideoRecorderTestOne() {
             })
         });
 
-        eventEmitter.on(PREPARE_UPDATE_ROTATION__CALLBACK_EVENT, (avRecorder, avConfig, recorderTime, steps, done) => {
+        eventEmitter.on(UPDATE_ROTATION_EVENT, (avRecorder, avConfig, recorderTime, steps, done) => {
             steps.shift();
-            avRecorder.prepare(avConfig, (err) => {
-                console.info('case prepare called');
-                if (err == null) {
-                    console.error(`case prepare success, state is ${avRecorder.state}`);
-                    let rotation = 90
-                    avRecorder.updateRotation(rotation).then(() => {
-                        console.info('updateRotation success');
-                      }).catch((error) => {
-                        console.error('updateRotation failed and catch error is ' + error.message);
-                        expect(false).assertEqual(true)
-                      });
-                    console.info('prepare success');
-                    toNextStep(avRecorder, avConfig, recorderTime, steps, done);
-                }  else {
-                    console.error(`case prepare error, errMessage is ${err.message}`);
-                    toNextStep(avRecorder, avConfig, recorderTime, steps, done);
-                }
-            })
+            let rotation = 90
+            avRecorder.updateRotation(rotation).then(() => {
+                console.info('updateRotation success');
+                toNextStep(avRecorder, avConfig, recorderTime, steps, done);
+            }).catch((error) => {
+                console.error('updateRotation failed and catch error is ' + error.message);
+                expect(false).assertEqual(true)
+            });
         });
 
         eventEmitter.on(PREPARE_PROMISE_EVENT, (avRecorder, avConfig, recorderTime, steps, done) => {
@@ -8669,8 +8659,8 @@ export default function avVideoRecorderTestOne() {
             * @tc.type      : Function test
             * @tc.level     : Level3
         */
-        it('SUM_MULTIMEDIA_AVRECORDER_SET_UPDATE_ROTATION__0100', 0, async function (done) {
-            console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_SET_UPDATE_ROTATION__0100 start')
+        it('SUM_MULTIMEDIA_AVRECORDER_UPDATE_ROTATION__0100', 0, async function (done) {
+            console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_UPDATE_ROTATION__0100 start')
 
             let fileName = avVideoRecorderTestBase.resourceName()
             fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
@@ -8679,25 +8669,19 @@ export default function avVideoRecorderTestOne() {
 
             let mySteps = new Array(
                 // init avRecorder
-                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, PREPARE_UPDATE_ROTATION__CALLBACK_EVENT,
-                // init camera
-                GETINPUTSURFACE_CALLBACK_EVENT, INITCAMERA_EVENT,
-                // start avRecorder
-                STARTCAMERA_EVENT, STARTRECORDER_CALLBACK_EVENT,
-                // pause avRecorder
-                PAUSERECORDER_CALLBACK_EVENT,
-                // resume avRecorder
-                RESUMERECORDER_CALLBACK_EVENT,
-                // stop camera
-                STOPCAMERA_EVENT,
+                CREATE_CALLBACK_EVENT, SETONCALLBACK_EVENT, 
+                //prepare avRecorder
+                PREPARE_CALLBACK_EVENT,
+                //update rotation
+                UPDATE_ROTATION_EVENT,
                 // release avRecorder and camera
-                RELEASECORDER_CALLBACK_EVENT, RELEASECAMERA_EVENT,
+                RELEASECORDER_CALLBACK_EVENT,
                 // end
                 END_EVENT
             );
 
             eventEmitter.emit(mySteps[0], avRecorder, avConfigOnlyAac, recorderTime, mySteps, done);
-            console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_SET_UPDATE_ROTATION__0100 end')
+            console.info(TAG + 'SUM_MULTIMEDIA_AVRECORDER_UPDATE_ROTATION__0100 end')
         })
     })
 }
