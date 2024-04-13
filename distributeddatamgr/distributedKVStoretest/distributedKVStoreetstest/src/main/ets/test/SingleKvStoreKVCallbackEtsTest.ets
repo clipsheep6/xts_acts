@@ -2225,6 +2225,7 @@ export default function SingleKvStoreCallbackTest(){
     it('SUB_DDM_DKV_SINGLEKVSTORE_GETRESULT_CALLBACK_7800', 0, async function (done) {
       console.log('SingleKvStoreGetResultSetPredicatesCallbackTest001');
       try {
+        let resultSet;
         let query = new factory.Query();
         await kvStore.getResultSet(query).then(async(result) => {
           console.log('SingleKvStoreGetResultSetPredicatesCallbackTest001 getResultSet success');
@@ -2232,7 +2233,8 @@ export default function SingleKvStoreCallbackTest(){
           console.error('SingleKvStoreGetResultSetPredicatesCallbackTest001 getResultSet fail ' + err`, error code is ${err.code}, message is ${err.message}`);
           expect(err == undefined).assertTrue();
         });
-        await kvStore.closeResultSet(result, async function (err, data) {
+        resultSet = result;
+        await kvStore.closeResultSet(resultSet, async function (err, data) {
             console.info('SingleKvStoreGetResultSetPredicatesCallbackTest001 closeResultSet success');
         })
       } catch(e) {
