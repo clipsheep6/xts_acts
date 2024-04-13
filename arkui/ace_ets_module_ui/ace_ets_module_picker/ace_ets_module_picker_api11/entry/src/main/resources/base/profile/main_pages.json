@@ -9,6 +9,13 @@
         "MainAbility/pages/Checkbox/Index",
         "MainAbility/pages/TextPicker/TextPickerSec",
         "MainAbility/pages/TextPicker/Index",
-        "MainAbility/pages/TextPicker/TextPickerMulti"
+        "MainAbility/pages/TextPicker/TextPickerMulti",
+
+        "MainAbility/pages/Calendar/Calendar",
+        "MainAbility/pages/Toggle/Toggle",
+        "MainAbility/pages/Checkbox/checkbox",
+        "MainAbility/pages/checkboxGroup/checkboxGroup",
+        "MainAbility/pages/Select/select1",
+        "MainAbility/pages/slider/slider"
     ]
 }
