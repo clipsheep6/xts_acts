@@ -16,9 +16,11 @@
 import ActionExtensionAbility from '@ohos.app.ability.ActionExtensionAbility';
 import commonEventManager from '@ohos.commonEventManager';
 import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
+import systemParameterEnhance from '@ohos.systemParameterEnhance';
 
 let count = 0;
 const TIME_OUT = 500;
+const TIME_OUT1 = 2000;
 
 export default class ActsActionExtensionAbility extends ActionExtensionAbility {
   storage: LocalStorage;
@@ -38,7 +40,20 @@ export default class ActsActionExtensionAbility extends ActionExtensionAbility {
       }
     }
     commonEventManager.publish('ACTS_TEST_FOREGROUND', options,
-      function () {})
+      function () { })
+    try {
+      let deviceType = systemParameterEnhance.getSync('const.product.devicetype');
+      console.log(`====>ActsActionExtensionAbility deviceType: ${deviceType}`);
+      if (deviceType === '2in1') {
+        console.log('====>ActsActionExtensionAbility terminateSelf start');
+        setTimeout(() => {
+          AppStorage.get<UIExtensionContentSession>("session")!.terminateSelf();
+        }, TIME_OUT1)
+      }
+    } catch (error) {
+      let e: BusinessError = error as BusinessError;
+      console.error('====>ActsActionExtensionAbility getSync errCode:' + e.code + ',errMessage:' + e.message);
+    }
   }
 
   onBackground() {
@@ -73,7 +88,7 @@ export default class ActsActionExtensionAbility extends ActionExtensionAbility {
       }
     }
     commonEventManager.publish('ACTS_TEST_DESTROY', options,
-      function () {})
+      function () { })
   }
 
   onSessionDestroy(session) {
