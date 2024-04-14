@@ -510,9 +510,9 @@ export default function getBundleInfoForSelf() {
         expect(data.appInfo).assertEqual(null);
         expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(0);
         let extensionList = data.hapModulesInfo[0].extensionAbilitiesInfo
-        expect(extensionList.length).assertEqual(20);
+        expect(extensionList.length).assertEqual(21);
         let count = 0;
-        for (let i = 0;i < 20; i++) {
+        for (let i = 0;i < 21; i++) {
           switch (extensionList[i].name) {
             case "Form":
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
@@ -636,10 +636,15 @@ export default function getBundleInfoForSelf() {
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.EMBEDDED_UI)
               count = count + 21;
               break;
+            case 'sysPicker/appSelector':
+              console.info("sysPicker/appSelector" + JSON.stringify(extensionList[i].extensionAbilityType));
+              expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.SYSPICKER_APPSELECTOR)
+              count = count + 407;
+              break;
           }
           console.info("count" + JSON.stringify(count));
         }
-        expect(count).assertEqual(196);
+        expect(count).assertEqual(603);
         expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
         expect(data.reqPermissionDetails.length).assertEqual(0);
         expect(data.permissionGrantStates.length).assertEqual(0);
@@ -667,9 +672,9 @@ export default function getBundleInfoForSelf() {
           expect(data.appInfo).assertEqual(null);
           expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(0);
           let extensionList = data.hapModulesInfo[0].extensionAbilitiesInfo
-          expect(extensionList.length).assertEqual(20);
+          expect(extensionList.length).assertEqual(21);
           let count = 0;
-          for (let i = 0;i < 20; i++) {
+          for (let i = 0;i < 21; i++) {
             switch (extensionList[i].name) {
               case "Form":
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
@@ -793,10 +798,15 @@ export default function getBundleInfoForSelf() {
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.EMBEDDED_UI)
                 count = count + 21;
                 break;
+            case 'sysPicker/appSelector':
+                console.info("sysPicker/appSelector" + JSON.stringify(extensionList[i].extensionAbilityType));
+                expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.SYSPICKER_APPSELECTOR)
+                count = count + 407;
+                break;
             }
             console.info("count" + JSON.stringify(count));
           }
-          expect(count).assertEqual(196);
+          expect(count).assertEqual(603);
           expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
           expect(data.reqPermissionDetails.length).assertEqual(0);
           expect(data.permissionGrantStates.length).assertEqual(0);
@@ -805,6 +815,7 @@ export default function getBundleInfoForSelf() {
           expect(bundle.ExtensionAbilityType.SERVICE).assertEqual(3);
           expect(bundle.ExtensionAbilityType.DATA_SHARE).assertEqual(5);
           expect(bundle.ExtensionAbilityType.EMBEDDED_UI).assertEqual(21);
+          expect(bundle.ExtensionAbilityType.SYSPICKER_APPSELECTOR).assertEqual(407);
           expect(bundle.ExtensionAbilityType.UNSPECIFIED).assertEqual(255);
           done();
         })
@@ -1375,9 +1386,9 @@ export default function getBundleInfoForSelf() {
       expect(data.appInfo).assertEqual(null);
       expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(0);
       let extensionList = data.hapModulesInfo[0].extensionAbilitiesInfo
-      expect(extensionList.length).assertEqual(20);
+      expect(extensionList.length).assertEqual(21);
       let count = 0;
-      for (let i = 0;i < 20; i++) {
+      for (let i = 0;i < 21; i++) {
         switch (extensionList[i].name) {
           case "Form":
             console.info("Form" + JSON.stringify(extensionList[i]));
@@ -1501,10 +1512,15 @@ export default function getBundleInfoForSelf() {
             expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.EMBEDDED_UI)
             count = count + 21;
             break;
+          case 'picker/appSelector':
+            console.info("sysPicker/appSelector" + JSON.stringify(extensionList[i].extensionAbilityType));
+            expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.SYSPICKER_APPSELECTOR)
+            count = count + 407;
+            break;
         }
         console.info("count" + JSON.stringify(count));
       }
-      expect(count).assertEqual(196);
+      expect(count).assertEqual(603);
       expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
       expect(data.reqPermissionDetails.length).assertEqual(0);
       expect(data.permissionGrantStates.length).assertEqual(0);
