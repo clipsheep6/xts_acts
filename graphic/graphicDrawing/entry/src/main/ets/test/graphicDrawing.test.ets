@@ -17,6 +17,7 @@ import { RenderNode, DrawContext } from "@ohos.arkui.node"
 import drawing from "@ohos.graphics.drawing"
 import common2D from "@ohos.graphics.common2D"
 import image from "@ohos.multimedia.image"
+import text from "@ohos.graphics.text"
 import { UiDriver, BY, ON, PointerMatrix } from '@ohos.UiTest'
 import { BusinessError } from '@ohos.base';
 import buffer from '@ohos.buffer';
@@ -1680,6 +1681,720 @@ export default function graphicDrawing(context, windowStage, abilityStorage) {
         console.info(msg + 'detachPen successed second');
       } catch (err) {
         console.info(msg + 'second detachPen error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0010
+     * @tc.name      : testEnumRectWidthStyle
+     * @tc.desc      : To test the enum value of RectWidthStyle.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testRectWidthStyle', 0, async function () {
+      let msg = "testRectWidthStyle"
+      console.info(msg + 'begin');
+      try {
+        expect(0).assertEqual(text.RectWidthStyle.TIGHT);
+        expect(1).assertEqual(text.RectWidthStyle.MAX);
+      } catch (err) {
+        console.info(msg + 'test enum value of RectWidthStyle error ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0020
+     * @tc.name      : testEnumRectHeightStyle
+     * @tc.desc      : To test the enum value of RectHeightStyle.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testRectHeightStyle', 0, async function () {
+      let msg = "testRectHeightStyle"
+      console.info(msg + 'begin');
+      try {
+        expect(0).assertEqual(text.RectHeightStyle.TIGHT);
+        expect(1).assertEqual(text.RectHeightStyle.MAX);
+        expect(2).assertEqual(text.RectHeightStyle.INCLUDELINESPACEMIDDLE);
+        expect(3).assertEqual(text.RectHeightStyle.INCLUDELINESPACETOP);
+        expect(4).assertEqual(text.RectHeightStyle.INCLUDELINESPACEBOTTOM);
+        expect(5).assertEqual(text.RectHeightStyle.STRUCT);
+      } catch (err) {
+        console.info(msg + 'test enum value of RectHeightStyle error ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0030
+     * @tc.name      : testEnumAffinity
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testAffinity', 0, async function () {
+      let msg = "testAffinity"
+      console.info(msg + 'begin');
+      try {
+        expect(0).assertEqual(text.Affinity.UPSTREAM);
+        expect(1).assertEqual(text.Affinity.DOWNSTREAM);
+      } catch (err) {
+        console.info(msg + 'test enum value of Affinity error ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0040
+     * @tc.name      : testParagraph_Layout_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testLayout', 0, async function () {
+      let msg = "testLayout"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          paragraph.layout(100);
+        } catch (err) {
+        console.info(msg + 'layout error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0050
+     * @tc.name      : testParagraph_Paint_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testPaint', 0, async function () {
+      let msg = "testPaint"
+      console.info(msg + 'begin');
+      let canvas = new drawing.Canvas(pixel)
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          paragraph.paint(canvas, 10, 10);
+        } catch (err) {
+        console.info(msg + 'paint error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0060
+     * @tc.name      : testParagraph_GetMaxWidth_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetMaxWidth', 0, async function () {
+      let msg = "testGetMaxWidth"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          let width = paragraph.getMaxWidth();
+          expect(width != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'getMaxWidth error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0070
+     * @tc.name      : testParagraph_GetHeight_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetHeight', 0, async function () {
+      let msg = "testGetHeight"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          let height = paragraph.getHeight();
+          expect(height != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'getHeight error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0080
+     * @tc.name      : testParagraph_GetLongestLine_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetLongestLine', 0, async function () {
+      let msg = "testGetLongestLine"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          let line = paragraph.getLongestLine();
+          expect(line != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'getLongestLine error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0090
+     * @tc.name      : testParagraph_GetMinIntrinsicWidth_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetMinIntrinsicWidth', 0, async function () {
+      let msg = "testGetMinIntrinsicWidth"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          let width = paragraph.getMinIntrinsicWidth();
+          expect(width != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'getMinIntrinsicWidth error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0100
+     * @tc.name      : testParagraph_GetMaxIntrinsicWidth_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetMaxIntrinsicWidth', 0, async function () {
+      let msg = "testGetMaxIntrinsicWidth"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          let width = paragraph.getMaxIntrinsicWidth();
+          expect(width != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'getMaxIntrinsicWidth error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0110
+     * @tc.name      : testParagraph_GetAlphabeticBaseline_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetAlphabeticBaseline', 0, async function () {
+      let msg = "testGetAlphabeticBaseline"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          let baseline = paragraph.getAlphabeticBaseline();
+          expect(baseline != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'getAlphabeticBaseline error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0120
+     * @tc.name      : testParagraph_GetIdeographicBaseline_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetIdeographicBaseline', 0, async function () {
+      let msg = "testGetIdeographicBaseline"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          let baseline = paragraph.getIdeographicBaseline();
+          expect(baseline != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'getIdeographicBaseline error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0130
+     * @tc.name      : testParagraph_GetRectsForRange_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetRectsForRange', 0, async function () {
+      let msg = "testGetRectsForRange"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      let range :text.Range = {start : 10,end: 50};
+      let wstyle = text.RectWidthStyle.TIGHT;
+      let hstyle = text.RectHeightStyle.TIGHT;
+      try {
+          let rects : Array<text.TextBox> = paragraph.getRectsForRange(range,wstyle,hstyle);
+          expect(rects != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'getRectsForRange error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0140
+     * @tc.name      : testParagraph_GetRectsForPlaceholders_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetRectsForPlaceholders', 0, async function () {
+      let msg = "testGetRectsForPlaceholders"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          let rects : Array<text.TextBox> = paragraph.getRectsForPlaceholders();
+          expect(rects != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'getRectsForPlaceholders error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0150
+     * @tc.name      : testParagraph_GetGlyphPositionAtCoordinate_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetGlyphPositionAtCoordinate', 0, async function () {
+      let msg = "testGetGlyphPositionAtCoordinate"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          let positionWithAffinity = paragraph.getGlyphPositionAtCoordinate(10,10);
+          expect(positionWithAffinity != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'getGlyphPositionAtCoordinate error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0160
+     * @tc.name      : testParagraph_GetWordBoundary_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetWordBoundary', 0, async function () {
+      let msg = "testGetWordBoundary"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          let range:text.Range = paragraph.getWordBoundary(10);
+          expect(range != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'getWordBoundary error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0170
+     * @tc.name      : testParagraph_GetLineCount_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetLineCount', 0, async function () {
+      let msg = "testGetLineCount"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          let linecount = paragraph.getLineCount();
+          expect(linecount != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'getLineCount error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0180
+     * @tc.name      : testParagraph_GetLineHeight_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetLineHeight', 0, async function () {
+      let msg = "testGetLineHeight"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          let height = paragraph.getLineHeight(1);
+          expect(height != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'getLineHeight error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0190
+     * @tc.name      : testParagraph_GetLineWidth_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testGetLineWidth', 0, async function () {
+      let msg = "testGetLineWidth"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          let width = paragraph.getLineWidth(1);
+          expect(width != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'getLineWidth error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0190
+     * @tc.name      : testParagraph_DidExceedMaxLines_Parameter
+     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testDidExceedMaxLines', 0, async function () {
+      let msg = "testDidExceedMaxLines"
+      console.info(msg + 'begin');
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color : {alpha: 255, red: 255, green: 0, blue: 0}
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle : myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      ParagraphGraphBuilder.addText("123");
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      try {
+          let did = paragraph.didExceedMaxLines();
+          expect(did != null).assertTrue();
+        } catch (err) {
+        console.info(msg + 'didExceedMaxLines error cause: ' + JSON.stringify(err));
         expect().assertFail();
       }
     })
