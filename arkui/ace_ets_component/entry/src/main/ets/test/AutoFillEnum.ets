@@ -174,7 +174,34 @@ declare enum ContentType {
    * @atomicservice
    * @since 12
    */
-  ID_CARD_NUMBER = 17
+  ID_CARD_NUMBER = 17,
+
+  /**
+   * NickName entry mode.
+   *
+   * @syscap SystemCapability.ArkUI.ArkUI.Full
+   * @atomicservice
+   * @since 12
+   */
+  NICKNAME = 23,
+
+  /**
+   * Detail info without street entry mode.
+   *
+   * @syscap SystemCapability.ArkUI.ArkUI.Full
+   * @atomicservice
+   * @since 12
+   */
+  DETAIL_INFO_WITHOUT_STREET = 24,
+ 
+  /**
+   * Format address entry mode.
+   *
+   * @syscap SystemCapability.ArkUI.ArkUI.Full
+   * @atomicservice
+   * @since 12
+   */
+  FORMAT_ADDRESS = 25
 }
 
 export default ContentType;

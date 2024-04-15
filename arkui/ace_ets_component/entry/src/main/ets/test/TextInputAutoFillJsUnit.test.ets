@@ -428,5 +428,143 @@ export default function textInputAutoFillJsUnit() {
         console.info(TAG, 'End');
         done();
       })
+
+    /**
+     * @tc.number: SUB_Ability_AbilityRuntime_TextInputAutoFill_1700
+     * @tc.name: AutoFillContextualizationTest_1700
+     * @tc.desc: Verify that the contentType passed in is equal to the contentType in JSON.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level      : 0
+     */
+    it('AutoFillContextualizationTest_1700',0, async (done: Function) => {
+        const TAG = 'AutoFillContextualizationTest_1700_TAG';
+        console.info(TAG, 'Start');
+        let driver = Driver.create();
+        await driver.delayMs(500);
+        let password19 = await driver.waitForComponent(ON.id('password19'), 2000);
+        expect(password19 != null).assertEqual(true);
+        await sleep(2000);
+        let baseKey = 'password19';
+        let strJson = getInspectorByKey(baseKey);
+        console.info(TAG, 'End');
+        done();
+      })
+
+    /**
+     * @tc.number: SUB_Ability_AbilityRuntime_TextInputAutoFill_1800
+     * @tc.name: AutoFillContextualizationTest_1800
+     * @tc.desc: Verify that the contentType passed in is equal to the contentType in JSON.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level      : 0
+     */
+    it('AutoFillContextualizationTest_1800',0, async (done: Function) => {
+        const TAG = 'AutoFillContextualizationTest_1800_TAG';
+        console.info(TAG, 'Start');
+        let driver = Driver.create();
+        await driver.delayMs(500);
+        let password20 = await driver.waitForComponent(ON.id('password20'), 2000);
+        expect(password20 != null).assertEqual(true);
+        await sleep(2000);
+        let baseKey = 'password20';
+        let strJson = getInspectorByKey(baseKey);
+        console.info(TAG, 'End');
+        done();
+      })
+
+    /**
+     * @tc.number: SUB_Ability_AbilityRuntime_TextInputAutoFill_1900
+     * @tc.name: AutoFillContextualizationTest_1900
+     * @tc.desc: Verify that the contentType passed in is equal to the contentType in JSON.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level      : 0
+     */
+    it('AutoFillContextualizationTest_1900',0, async (done: Function) => {
+        const TAG = 'AutoFillContextualizationTest_1900_TAG';
+        console.info(TAG, 'Start');
+        let driver = Driver.create();
+        await driver.delayMs(500);
+        let password21 = await driver.waitForComponent(ON.id('password21'), 2000);
+        expect(password21 != null).assertEqual(true);
+        await sleep(2000);
+        let baseKey = 'password21';
+        let strJson = getInspectorByKey(baseKey);
+        console.info(TAG, 'End');
+        done();
+      })
+
+    /**
+     * @tc.number: SUB_Ability_AbilityRuntime_TextInputAutoFill_2000
+     * @tc.name: AutoFillContextualizationTest_2000
+     * @tc.desc: Verify that the contentType passed in is equal to the contentType in JSON.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level      : 0
+     */
+    it('AutoFillContextualizationTest_2000',0, async (done: Function) => {
+        const TAG = 'AutoFillContextualizationTest_2000_TAG';
+        console.info(TAG, 'Start');
+        let driver = Driver.create();
+        await driver.delayMs(500);
+        let password19 = await driver.waitForComponent(ON.id('password19'), 2000);
+        expect(password19 != null).assertEqual(true);
+        await sleep(2000);
+        let baseKey = 'password19';
+        let strJson = getInspectorByKey(baseKey);
+        expect(ContentType.NICKNAME).assertEqual(23);
+        expect(JSON.parse(strJson).$attrs.contentType).assertEqual('TextContentType.NICKNAME');
+        console.info(TAG, 'End');
+        done();
+      })
+
+    /**
+     * @tc.number: SUB_Ability_AbilityRuntime_TextInputAutoFill_2100
+     * @tc.name: AutoFillContextualizationTest_2100
+     * @tc.desc: Verify that the contentType passed in is equal to the contentType in JSON.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level      : 0
+     */
+    it('AutoFillContextualizationTest_2100',0, async (done: Function) => {
+        const TAG = 'AutoFillContextualizationTest_2100_TAG';
+        console.info(TAG, 'Start');
+        let driver = Driver.create();
+        await driver.delayMs(500);
+        let password20 = await driver.waitForComponent(ON.id('password20'), 2000);
+        expect(password20 != null).assertEqual(true);
+        await sleep(2000);
+        let baseKey = 'password20';
+        let strJson = getInspectorByKey(baseKey);
+        expect(ContentType.DETAIL_INFO_WITHOUT_STREET).assertEqual(24);
+        expect(JSON.parse(strJson).$attrs.contentType).assertEqual('TextContentType.DETAIL_INFO_WITHOUT_STREET');
+        console.info(TAG, 'End');
+        done();
+      })
+
+    /**
+     * @tc.number: SUB_Ability_AbilityRuntime_TextInputAutoFill_2200
+     * @tc.name: AutoFillContextualizationTest_2200
+     * @tc.desc: Verify that the contentType passed in is equal to the contentType in JSON.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level      : 0
+     */
+    it('AutoFillContextualizationTest_2200',0, async (done: Function) => {
+        const TAG = 'AutoFillContextualizationTest_2200_TAG';
+        console.info(TAG, 'Start');
+        let driver = Driver.create();
+        await driver.delayMs(500);
+        let password21 = await driver.waitForComponent(ON.id('password21'), 2000);
+        expect(password21 != null).assertEqual(true);
+        await sleep(2000);
+        let baseKey = 'password21';
+        let strJson = getInspectorByKey(baseKey);
+        expect(ContentType.FORMAT_ADDRESS).assertEqual(25);
+        expect(JSON.parse(strJson).$attrs.contentType).assertEqual('TextContentType.FORMAT_ADDRESS');
+        console.info(TAG, 'End');
+        done();
+      })
   })
 }

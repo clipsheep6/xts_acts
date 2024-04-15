@@ -372,6 +372,72 @@ struct textInputAutoFill {
           .enableAutoFill(true)
       }
       .margin({ top: 10 })
+
+      Row() {
+        Text('nickname')
+          .margin(10)
+          .fontSize(18)
+          .width('22%')
+          .margin({ left: 50 })
+
+        TextInput({ placeholder: '请填写昵称', text: this.inputTxt})
+          .contentType(ContentType.NICKNAME)
+          .key('password19')
+          .id('password19')
+          .width('60%')
+          .borderWidth({top: 0, bottom: 0, left: 0, right: 0 })
+          .fontWeight(FontWeight.Bold)
+          .placeholderColor('#fff5eeee')
+          .backgroundColor('#ffffffff')
+          .fontSize(16)
+          .borderStyle(BorderStyle.Solid)
+          .enableAutoFill(true)
+      }
+      .margin({ top: '1px' })
+
+      Row() {
+        Text('detail_info_without_street')
+          .margin(10)
+          .fontSize(18)
+          .width('22%')
+          .margin({ left: 50 })
+
+        TextInput({ placeholder: '请填写无街道地址', text: this.inputTxt})
+          .contentType(ContentType.DETAIL_INFO_WITHOUT_STREET)
+          .key('password20')
+          .id('password20')
+          .width('60%')
+          .borderWidth({top: 0, bottom: 0, left: 0, right: 0 })
+          .fontWeight(FontWeight.Bold)
+          .placeholderColor('#fff5eeee')
+          .backgroundColor('#ffffffff')
+          .fontSize(16)
+          .borderStyle(BorderStyle.Solid)
+          .enableAutoFill(true)
+      }
+      .margin({ top: '1px' })
+
+      Row() {
+        Text('format_address')
+          .margin(10)
+          .fontSize(18)
+          .width('22%')
+          .margin({ left: 50 })
+
+        TextInput({ placeholder: '请填写标准地址', text: this.inputTxt})
+          .contentType(ContentType.FORMAT_ADDRESS)
+          .key('password21')
+          .id('password21')
+          .width('60%')
+          .borderWidth({top: 0, bottom: 0, left: 0, right: 0 })
+          .fontWeight(FontWeight.Bold)
+          .placeholderColor('#fff5eeee')
+          .backgroundColor('#ffffffff')
+          .fontSize(16)
+          .borderStyle(BorderStyle.Solid)
+          .enableAutoFill(true)
+      }
+      .margin({ top: '1px' })
     }
   }
 }
