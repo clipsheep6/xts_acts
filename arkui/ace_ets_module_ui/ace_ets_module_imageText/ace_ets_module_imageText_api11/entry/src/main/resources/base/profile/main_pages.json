@@ -111,6 +111,16 @@
         "MainAbility/pages/text/TextfieldSingle",
         "MainAbility/pages/image/Image",
         "MainAbility/pages/span/Span",
-        "MainAbility/pages/text/Text"
+        "MainAbility/pages/text/Text",
+        "MainAbility/pages/text/curve",
+        "MainAbility/pages/text/backgroundAndSizeSetting",
+        "MainAbility/pages/text/border",
+        "MainAbility/pages/ImageAnimator/fillMode",
+        "MainAbility/pages/image/ohosMatrix4",
+        "MainAbility/pages/text/positionSetting",
+        "MainAbility/pages/image/shapeClipping",
+        "MainAbility/pages/TextArea/TextArea",
+        "MainAbility/pages/TextInput/TextInput",
+        "MainAbility/pages/text/Prop"
     ]
 }

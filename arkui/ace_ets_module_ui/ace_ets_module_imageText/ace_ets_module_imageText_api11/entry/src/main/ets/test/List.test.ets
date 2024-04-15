@@ -128,6 +128,17 @@ import search from './SearchTest/SearchTest.test';
 import imageJsunit from './imageTest/ImageJsunit.test';
 import spanJsunit from './spanTest/SpanJsunit.test';
 import textJsunit from './textTest/TextJsunit.test';
+import CurveTest from './textTest/CurveJsunit.test';
+import backgroundAndSizeSettingJsunit from './textTest/BackgroundAndSizeSettingJsunit.test';
+import borderJsunit from './textTest/BorderJsunit.test';
+import fillModeJsunit from './ImageAnimator/FillModeJsunit.test';
+import ohosMatrix4Jsunit from './imageTest/OhosMatrix4Jsunit.test';
+import positionSettingJsunit from './textTest/PositionSettingJsunit.test';
+import ShapeClippingJsunit from './imageTest/ShapeClippingJsunit.test';
+import textAreaJsunit from './TextAreaTest/TextAreaJsunit.test';
+import textInputJsunit from './TextInputTest/TextInputJsunit.test';
+import propJsunit from './textTest/PropJsunit.test';
+
 
 export default function testsuite() {
   richEditorApi4();
@@ -240,4 +251,14 @@ export default function testsuite() {
   imageJsunit()
   spanJsunit()
   textJsunit()
+  CurveTest()
+  backgroundAndSizeSettingJsunit()
+  borderJsunit();
+  fillModeJsunit();
+  ohosMatrix4Jsunit();
+  positionSettingJsunit();
+  ShapeClippingJsunit();
+  textAreaJsunit();
+  textInputJsunit();
+  propJsunit();
 }
