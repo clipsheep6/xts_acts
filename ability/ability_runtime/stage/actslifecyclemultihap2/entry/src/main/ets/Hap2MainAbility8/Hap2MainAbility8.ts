@@ -18,6 +18,7 @@ import commonEvent from '@ohos.commonEvent';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
+import { BusinessError } from '@ohos.base';
 
 export default class Hap2MainAbility8 extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -25,21 +26,23 @@ export default class Hap2MainAbility8 extends Ability {
     globalThis.abilityWant = want;
     commonEvent.createSubscriber({
       events: ['Hap2MainAbility8doTerminateSelf']
-    }).then((data) => {
-      commonEvent.subscribe(data, (err, data2) => {
-        commonEvent.unsubscribe(data);
-        this.context.terminateSelf();
+    })
+      .then((data) => {
+        commonEvent.subscribe(data, (err, data2) => {
+          commonEvent.unsubscribe(data);
+          this.context.terminateSelf();
+        });
       });
-    });
   }
 
   onDestroy() {
-    console.log("[Demo] Hap2MainAbility8 onDestroy")
+    console.log("[Demo] Hap2MainAbility8 onDestroy");
   }
 
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     console.log("[Demo] Hap2MainAbility8 onWindowStageCreate");
+    globalThis.hap2MainAbility8Context = this.context;
 
     windowStage.loadContent("pages/Hap2MainAbility8_pages", null);
   }
@@ -66,7 +69,7 @@ export default class Hap2MainAbility8 extends Ability {
         .then((data) => {
           console.log("Hap2MainAbility8 EventTest terminateSelf data: " + JSON.stringify(data));
         })
-        .catch((error) => {
+        .catch((error: BusinessError) => {
           console.log("Hap2MainAbility8 EventTest terminateSelf error: " + JSON.stringify(error));
         })
     }, 500)

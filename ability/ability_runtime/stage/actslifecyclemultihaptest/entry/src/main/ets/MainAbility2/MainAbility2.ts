@@ -90,7 +90,7 @@ export default class MainAbility2 extends Ability {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     console.log("[Demo] MainAbility2 onWindowStageCreate");
-    globalThis.ability3Context = this.context;
+    globalThis.ability2Context = this.context;
     windowStage.loadContent("MainAbility/pages/MainAbility2_pages", null);
   }
 

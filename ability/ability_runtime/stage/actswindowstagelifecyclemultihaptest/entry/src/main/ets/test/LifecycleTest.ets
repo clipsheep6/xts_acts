@@ -18,7 +18,9 @@ import commonEvent from '@ohos.commonEvent';
 import common from '@ohos.app.ability.common';
 import commonEventManager from '@ohos.commonEventManager';
 import { BusinessError } from '@ohos.base';
+import systemParameterEnhance from '@ohos.systemParameterEnhance';
 
+let deviceType = '';
 let TAG: string;
 let intervalId: number = -1;
 let subscriber: commonEventManager.CommonEventSubscriber;
@@ -59,6 +61,7 @@ function handlerMessageDelayed(event: string, longTime: number): void {
 export default function abilityTest() {
   describe('AbilityTest', () => {
     beforeAll(() => {
+      deviceType = systemParameterEnhance.getSync('const.product.devicetype');
       let actsEvents = [
         'Hap2MainAbility10onForeground',
         'Hap3MainAbility3onForeground',
@@ -113,16 +116,19 @@ export default function abilityTest() {
       }
     })
 
-    console.info("-----------------LifecycleTest is start----------------");
+    console.info("-----------------LifecycleTest is start----------------")
     beforeEach(async (done: Function) => {
       console.info('LifeCycleTest before each called');
       await sleep(1000);
-      done();
+      done()
     });
 
     afterEach(async (done: Function) => {
+      await sleep(1000);
       console.info('LifeCycleTest after each called');
-      if (!("Multihap_WindowStageLifecycleTest_007" == TAG || "Multihap_WindowStageLifecycleTest_010" == TAG || "Multihap_WindowStageLifecycleTest_006" == TAG)) {
+      if (!("Multihap_WindowStageLifecycleTest_007" == TAG ||
+        "Multihap_WindowStageLifecycleTest_010" == TAG || "Multihap_WindowStageLifecycleTest_006" == TAG)) {
+
         handlerMessage((event: string) => {
           console.log(TAG + " eventCallback, event is :" + event);
           if (event === 'MainAbility4onDestroy') {
@@ -130,6 +136,7 @@ export default function abilityTest() {
             done();
           }
         });
+
         let para: common.AbilityResult = {
           resultCode: 2,
           want: {
@@ -245,7 +252,7 @@ export default function abilityTest() {
             });
           done();
         }
-      });
+      })
 
       AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
         bundleName: "com.example.lifecycletest",
@@ -304,7 +311,7 @@ export default function abilityTest() {
           clearInterval(intervalId);
           done();
         }
-      });
+      })
 
       AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
         bundleName: "com.example.lifecycletest",
@@ -430,7 +437,7 @@ export default function abilityTest() {
           clearInterval(intervalId);
           done();
         }
-      });
+      })
       AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
         bundleName: "com.example.lifecycletest",
         abilityName: "MainAbility4"
@@ -450,55 +457,60 @@ export default function abilityTest() {
     it("Multihap_WindowStageLifecycleTest_006", 0, async (done: Function) => {
       console.log("------------Multihap_WindowStageLifecycleTest_006 start-------------");
       TAG = "Multihap_WindowStageLifecycleTest_006";
-      let isOneStartedHap2MainAbility8: boolean = false;
-      let ids: Array<number> = []
+      if (deviceType != '2in1') {
+        let isOneStartedHap2MainAbility8: boolean = false;
+        let ids: Array<number> = []
 
-      handlerMessage((event: string) => {
-        console.log(TAG + " eventCallback, event is :" + event);
-        if (event === 'MainAbility7onForeground') {
-          console.log(TAG + "MainAbility7 is onForeground, callBackId is :" + AppStorage.get<number>("mainAbility7CallBackId")!);
-          ids.push(AppStorage.get<number>("mainAbility7CallBackId")!);
-          if (isOneStartedHap2MainAbility8) {
-            console.log(TAG + " ids is :" + JSON.stringify(ids));
-            clearInterval(intervalId);
-            if (ids.length < 2) {
-              expect().assertFail();
+        handlerMessage((event: string) => {
+          console.log(TAG + " eventCallback, event is :" + event);
+          if (event === 'MainAbility7onForeground') {
+            console.log(TAG + "MainAbility7 is onForeground, callBackId is :" + AppStorage.get<number>("mainAbility7CallBackId")!);
+            ids.push(AppStorage.get<number>("mainAbility7CallBackId")!);
+            if (isOneStartedHap2MainAbility8) {
+              console.log(TAG + " ids is :" + JSON.stringify(ids));
+              clearInterval(intervalId);
+              if (ids.length < 2) {
+                expect().assertFail()
+              } else {
+                expect(ids[1]).assertEqual(ids[0] + 1);
+              }
+              ids.forEach(id => {
+                AppStorage.get<common.ApplicationContext>("ApplicationContext7")!.off("abilityLifecycle", id);
+              })
+              AppStorage.get<common.UIAbilityContext>("ability7context")!.terminateSelf();
+              commonEvent.publish('Hap2MainAbility8doTerminateSelf', (err) => {
+                console.log('Hap2MainAbility8doTerminateSelf');
+              })
+              done();
             } else {
-              expect(ids[1]).assertEqual(ids[0] + 1);
+              isOneStartedHap2MainAbility8 = true;
+              AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
+                bundleName: "com.example.lifecycletest",
+                abilityName: "Hap2MainAbility8"
+              }, (error, data) => {
+                console.log(TAG + ": first Hap2MainAbility8 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
+              });
             }
-            ids.forEach(id => {
-              AppStorage.get<common.ApplicationContext>("ApplicationContext7")!.off("abilityLifecycle", id);
-            })
-            AppStorage.get<common.UIAbilityContext>("ability7context")!.terminateSelf();
-            commonEvent.publish('Hap2MainAbility8doTerminateSelf', (err) => {
-              console.log('Hap2MainAbility8doTerminateSelf');
-            })
-            done();
-          } else {
-            isOneStartedHap2MainAbility8 = true;
+          } else if (event === 'Hap2MainAbility8onForeground') {
             AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
               bundleName: "com.example.lifecycletest",
-              abilityName: "Hap2MainAbility8"
+              abilityName: "MainAbility7"
             }, (error, data) => {
-              console.log(TAG + ": first Hap2MainAbility8 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
+              console.log(TAG + ": second MainAbility7 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
             });
           }
-        } else if (event === 'Hap2MainAbility8onForeground') {
-          AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
-            bundleName: "com.example.lifecycletest",
-            abilityName: "MainAbility7"
-          }, (error, data) => {
-            console.log(TAG + ": second MainAbility7 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-          });
-        }
-      });
+        });
 
-      AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
-        bundleName: "com.example.lifecycletest",
-        abilityName: "MainAbility7"
-      }, (error, data) => {
-        console.log(TAG + ": first MainAbility7 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-      });
+        AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
+          bundleName: "com.example.lifecycletest",
+          abilityName: "MainAbility7"
+        }, (error, data) => {
+          console.log(TAG + ": first MainAbility7 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
+        });
+      } else if (deviceType == '2in1') {
+        done();
+      }
+
       console.log("------------Multihap_WindowStageLifecycleTest_006 end-------------");
     });
 
@@ -552,7 +564,7 @@ export default function abilityTest() {
             expect(listTemp.indexOf("Hap2MainAbility9 onWindowStageInactive") !== -1).assertTrue();
             expect(listTemp.indexOf("Hap2MainAbility9 onWindowStageDestroy") !== -1).assertTrue();
             AppStorage.get<common.ApplicationContext>("ApplicationContext6")!
-              .off("abilityLifecycle",callBackId1, (error, data) => {
+              .off("abilityLifecycle", callBackId1, (error, data) => {
                 console.log(TAG + ": first unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
                 expect(error).assertNull();
                 if (error == null) {
@@ -575,7 +587,7 @@ export default function abilityTest() {
             expect(listTemp1.indexOf("Hap2MainAbility9 onWindowStageInactive") !== -1).assertTrue();
             expect(listTemp1.indexOf("Hap2MainAbility9 onWindowStageDestroy") !== -1).assertTrue();
             AppStorage.get<common.ApplicationContext>("ApplicationContext6")!
-              .off("abilityLifecycle",callBackId2, (error, data) => {
+              .off("abilityLifecycle", callBackId2, (error, data) => {
                 console.log(TAG + ": second unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
                 expect(error).assertNull();
                 AppStorage.get<common.UIAbilityContext>("abilityContext6")!.terminateSelf();
@@ -609,11 +621,11 @@ export default function abilityTest() {
             console.log(TAG + "listTemp is :" + listTemp);
             console.log(TAG + "globalThis.mainAbility4CallBackId is :" + AppStorage.get<number>("mainAbility4CallBackId")!);
             AppStorage.get<common.ApplicationContext>("ApplicationContext4")!
-              .off("abilityLifecycle",AppStorage.get<number>("mainAbility4CallBackId")!, (error, data) => {
+              .off("abilityLifecycle", AppStorage.get<number>("mainAbility4CallBackId")!, (error, data) => {
                 console.log(TAG + ": first unregisterAbilityLifecycleCallback, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
                 expect(error).assertNull();
                 AppStorage.get<common.ApplicationContext>("ApplicationContext4")!
-                  .off("abilityLifecycle",AppStorage.get<number>("mainAbility4CallBackId")!, (error, data) => {
+                  .off("abilityLifecycle", AppStorage.get<number>("mainAbility4CallBackId")!, (error, data) => {
                     console.log(TAG + ": second unregisterAbilityLifecycleCallback, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
                     expect(error.code).assertEqual(401);
                     done();
@@ -647,64 +659,69 @@ export default function abilityTest() {
      * @tc.level   0
      */
     it('Multihap_WindowStageLifecycleTest_009', 0, async (done: Function) => {
-      console.info("---------------Multihap_WindowStageLifecycleTest_009 is start---------------");
+      console.info("---------------Multihap_WindowStageLifecycleTest_009 is start---------------")
       TAG = "Multihap_WindowStageLifecycleTest_009";
-      let hap3MainAbility3onForegroundCount: number = 0;
-      let isFirstMainAbility4onForeground = true;
+      if (deviceType != '2in1') {
+        let hap3MainAbility3onForegroundCount: number = 0;
+        let isFirstMainAbility4onForeground = true;
 
-      handlerMessage((event: string) => {
-        console.log(TAG + " eventCallback, event is :" + event);
-        if (event === 'MainAbility4onForeground' && isFirstMainAbility4onForeground) {
-          isFirstMainAbility4onForeground = false;
-          AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
-            bundleName: "com.example.lifecycletest",
-            abilityName: "Hap2MainAbility10",
-          }, (error, data) => {
-            console.log(TAG + ": first Hap2MainAbility10 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-          })
-        } else if (event === 'Hap2MainAbility10onForeground') {
-          AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
-            bundleName: "com.example.lifecycletest",
-            abilityName: "Hap3MainAbility3",
-          }, (error, data) => {
-            console.log(TAG + ": second Hap3MainAbility3 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-          })
-        } else if (event === 'Hap3MainAbility3onForeground') {
-          hap3MainAbility3onForegroundCount++;
-          if (hap3MainAbility3onForegroundCount == 3) {
-            clearInterval(intervalId);
-            let listTemp = JSON.stringify(AppStorage.get<string[]>("mainAbility4ListKey")!);
-            console.log(TAG + " listTemp is :" + listTemp);
-            console.log(TAG + " globalThis.mainAbility4CallBackId is :" + AppStorage.get<number>("mainAbility4CallBackId")!);
-
-            expect(listTemp.indexOf("Hap2MainAbility10 onWindowStageCreate") !== -1).assertTrue();
-            expect(listTemp.split("Hap2MainAbility10 onWindowStageActive").length - 1).assertEqual(3);
-            expect(listTemp.split("Hap2MainAbility10 onWindowStageInactive").length - 1).assertEqual(3);
-            expect(listTemp.indexOf("Hap3MainAbility3 onWindowStageCreate") != -1).assertTrue();
-            expect(listTemp.split("Hap3MainAbility3 onWindowStageActive").length - 1).assertEqual(3);
-            expect(listTemp.split("Hap3MainAbility3 onWindowStageInactive").length - 1).assertEqual(2);
-            AppStorage.get<common.ApplicationContext>("ApplicationContext4")!
-              .off("abilityLifecycle",AppStorage.get<number>("mainAbility4CallBackId")!, (error, data) => {
-                console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-                expect(error).assertNull();
-                AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
-                  bundleName: "com.example.lifecycletest",
-                  abilityName: "com.example.lifecycletest.MainAbility",
-                }, (error, data) => {
-                  console.log(TAG + ": first Hap2MainAbility10 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
-                })
-                done();
-              });
-          } else {
+        handlerMessage((event: string) => {
+          console.log(TAG + " eventCallback, event is :" + event);
+          if (event === 'MainAbility4onForeground' && isFirstMainAbility4onForeground) {
+            isFirstMainAbility4onForeground = false;
             AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
               bundleName: "com.example.lifecycletest",
               abilityName: "Hap2MainAbility10",
             }, (error, data) => {
               console.log(TAG + ": first Hap2MainAbility10 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
             })
+          } else if (event === 'Hap2MainAbility10onForeground') {
+            AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
+              bundleName: "com.example.lifecycletest",
+              abilityName: "Hap3MainAbility3",
+            }, (error, data) => {
+              console.log(TAG + ": second Hap3MainAbility3 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
+            })
+          } else if (event === 'Hap3MainAbility3onForeground') {
+            hap3MainAbility3onForegroundCount++;
+            if (hap3MainAbility3onForegroundCount == 3) {
+              clearInterval(intervalId);
+              let listTemp = JSON.stringify(AppStorage.get<string[]>("mainAbility4ListKey")!);
+              console.log(TAG + " listTemp is :" + listTemp);
+              console.log(TAG + " globalThis.mainAbility4CallBackId is :" + AppStorage.get<number>("mainAbility4CallBackId")!);
+
+              expect(listTemp.indexOf("Hap2MainAbility10 onWindowStageCreate") !== -1).assertTrue();
+              expect(listTemp.split("Hap2MainAbility10 onWindowStageActive").length - 1).assertEqual(3);
+              expect(listTemp.split("Hap2MainAbility10 onWindowStageInactive").length - 1).assertEqual(3);
+              expect(listTemp.indexOf("Hap3MainAbility3 onWindowStageCreate") != -1).assertTrue();
+              expect(listTemp.split("Hap3MainAbility3 onWindowStageActive").length - 1).assertEqual(3);
+              expect(listTemp.split("Hap3MainAbility3 onWindowStageInactive").length - 1).assertEqual(2);
+              AppStorage.get<common.ApplicationContext>("ApplicationContext4")!
+                .off("abilityLifecycle", AppStorage.get<number>("mainAbility4CallBackId")!, (error, data) => {
+                  console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
+                  expect(error).assertNull();
+                  AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
+                    bundleName: "com.example.lifecycletest",
+                    abilityName: "com.example.lifecycletest.MainAbility",
+                  }, (error, data) => {
+                    console.log(TAG + ": first Hap2MainAbility10 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
+                  })
+                  done();
+                });
+            } else {
+              AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
+                bundleName: "com.example.lifecycletest",
+                abilityName: "Hap2MainAbility10",
+              }, (error, data) => {
+                console.log(TAG + ": first Hap2MainAbility10 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
+              })
+            }
           }
-        }
-      });
+        });
+      } else if (deviceType == '2in1') {
+        done();
+      }
+
 
       AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
         bundleName: "com.example.lifecycletest",
@@ -712,7 +729,7 @@ export default function abilityTest() {
       }, (error, data) => {
         console.log(TAG + ": MainAbility4 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
       })
-      console.info("---------------Multihap_WindowStageLifecycleTest_009 is end---------------");
+      console.info("---------------Multihap_WindowStageLifecycleTest_009 is end---------------")
     })
 
     /*
@@ -749,7 +766,7 @@ export default function abilityTest() {
           expect(listKeyTemp.length).assertEqual(0);
 
           AppStorage.get<common.ApplicationContext>("ApplicationContext2")!
-            .off("abilityLifecycle",AppStorage.get<number>("mainAbility2CallBackId")!, (error, data) => {
+            .off("abilityLifecycle", AppStorage.get<number>("mainAbility2CallBackId")!, (error, data) => {
               console.log(TAG + ": unregisterAbilityLifecycleCallback success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
               expect(error).assertNull();
               done();
@@ -763,7 +780,7 @@ export default function abilityTest() {
       }, (error, data) => {
         console.log(TAG + ": Hap1MainAbility2 startAbility success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
       })
-      console.info("---------------Multihap_WindowStageLifecycleTest_010 is end---------------");
+      console.info("---------------Multihap_WindowStageLifecycleTest_010 is end---------------")
     })
   })
 }

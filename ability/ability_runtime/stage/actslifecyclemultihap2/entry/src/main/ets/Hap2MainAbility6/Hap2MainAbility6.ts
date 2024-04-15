@@ -18,6 +18,11 @@ import commonEvent from '@ohos.commonEvent';
 import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
+import systemParameterEnhance from '@ohos.systemParameterEnhance';
+import { BusinessError } from '@ohos.base';
+
+let deviceType = '';
+deviceType = systemParameterEnhance.getSync('const.product.devicetype');
 
 export default class Hap2MainAbility6 extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
@@ -26,7 +31,7 @@ export default class Hap2MainAbility6 extends Ability {
   }
 
   onDestroy() {
-    console.log("[Demo] Hap2MainAbility6 onDestroy")
+    console.log("[Demo] Hap2MainAbility6 onDestroy");
     commonEvent.publish('Hap2MainAbility6onDestroy', (err) => {
       console.log('Hap2MainAbility6onDestroy');
     });
@@ -52,7 +57,7 @@ export default class Hap2MainAbility6 extends Ability {
         .then((data) => {
           console.log("Hap2MainAbility6 EventTest terminateSelf data: " + JSON.stringify(data));
         })
-        .catch((error) => {
+        .catch((error: BusinessError) => {
           console.log("Hap2MainAbility6 EventTest terminateSelf error: " + JSON.stringify(error));
         })
     }, 2000)
@@ -61,5 +66,10 @@ export default class Hap2MainAbility6 extends Ability {
   onBackground() {
     // Ability has back to background
     console.log("[Demo] Hap2MainAbility6 onBackground");
+    if (deviceType == '2in1') {
+      setTimeout(() => {
+        globalThis.testEvent.push('MainAbility4onForeground');
+      }, 1500);
+    }
   }
 };

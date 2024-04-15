@@ -24,7 +24,6 @@ export default class Hap2MainAbility10 extends Ability {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log("[Demo] Hap2MainAbility10 onCreate");
     globalThis.abilityWant = want;
-
   }
 
   onDestroy() {
@@ -36,6 +35,7 @@ export default class Hap2MainAbility10 extends Ability {
     console.log("[Demo] Hap2MainAbility10 onWindowStageCreate");
 
     windowStage.loadContent("pages/Hap2MainAbility10_pages", null);
+    globalThis.hap2MainAbility10Context = this.context;
   }
 
   onWindowStageDestroy() {

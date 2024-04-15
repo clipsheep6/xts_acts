@@ -32,6 +32,7 @@ export default class Hap3MainAbility3 extends Ability {
   onWindowStageCreate(windowStage: window.WindowStage) {
     // Main window is created, set main page for this ability
     console.log("[Demo] Hap3MainAbility3 onWindowStageCreate");
+    globalThis.hap3MainAbility3Context = this.context;
 
     windowStage.loadContent("pages/Hap3MainAbility3_pages", null);
   }
