@@ -125,7 +125,9 @@ import richEditorApi6 from './RichEditorTest/richEditorApi/richEditorApi6.test';
 import richEditorApi7 from './RichEditorTest/richEditorApi/richEditorApi7.test';
 import richEditorApi8 from './RichEditorTest/richEditorApi/richEditorApi8.test';
 import search from './SearchTest/SearchTest.test';
-
+import imageJsunit from './imageTest/ImageJsunit.test';
+import spanJsunit from './spanTest/SpanJsunit.test';
+import textJsunit from './textTest/TextJsunit.test';
 
 export default function testsuite() {
   richEditorApi4();
@@ -235,4 +237,7 @@ export default function testsuite() {
   TextfieldOtherTest()
   TextfieldSingleTest()
   TextfieldMultiTest()
+  imageJsunit()
+  spanJsunit()
+  textJsunit()
 }

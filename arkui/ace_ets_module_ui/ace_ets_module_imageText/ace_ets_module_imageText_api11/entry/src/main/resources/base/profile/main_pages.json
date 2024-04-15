@@ -108,6 +108,9 @@
         "MainAbility/pages/image/ImageAttr",
         "MainAbility/pages/text/TextfieldMulti",
         "MainAbility/pages/text/TextfieldOther",
-        "MainAbility/pages/text/TextfieldSingle"
+        "MainAbility/pages/text/TextfieldSingle",
+        "MainAbility/pages/image/Image",
+        "MainAbility/pages/span/Span",
+        "MainAbility/pages/text/Text"
     ]
 }
