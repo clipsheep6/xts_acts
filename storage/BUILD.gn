@@ -15,7 +15,7 @@ import("//test/xts/tools/build/suite.gni")
 group("storage") {
   testonly = true
   if (is_standard_system) {
-    deps = [
+    deps = [ 
       "backupextensiontest:backupextension_js_test",
       "crossplatform/storagefsetstest:ActsCrossplatformFsTest",
       "storagedownloadcloudsyncjstest:storagedownloadcloudsync_js_test",
@@ -32,6 +32,7 @@ group("storage") {
       "storagesecuritylabeljstest:storagesecuritylabel_js_test",
       "storagestatfsjstest:storagestatfs_js_test",
       "storagestatisticsjstest:storagestatistics_js_test",
-    ]
+      "storagefileurindktest:storagefileuri_ndk_test",
+      ]
   }
 }
