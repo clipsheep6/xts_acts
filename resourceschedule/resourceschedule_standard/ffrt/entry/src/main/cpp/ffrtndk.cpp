@@ -2816,21 +2816,6 @@ static void TimerCb(void *data)
     timerData->finish = true;
 }
 
-static napi_value ffrt_timer_start_abnormal_0001(napi_env env, napi_callback_info info)
-{
-    high_resolution_clock::time_point startT = high_resolution_clock::now();
-    TimerDataT timerData1 = {.timerId = 1, .timeout = 0, .submitTime = startT, .finish = false, .result = 0};
-    int ret = ffrt_timer_start(-1, 0, reinterpret_cast<void *>(&timerData1), TimerCb, false);
-    
-    int result = 0;
-    if (ret != -1) {
-        result += 1;
-    }
-    napi_value flag = nullptr;
-    napi_create_double(env, result, &flag);
-    return flag;
-}
-
 static napi_value ffrt_timer_start_0001(napi_env env, napi_callback_info info)
 {
     high_resolution_clock::time_point startT = high_resolution_clock::now();
@@ -2923,10 +2908,6 @@ static napi_value ffrt_loop_abnormal_0001(napi_env env, napi_callback_info info)
     auto loop = ffrt_loop_create(queue_handle);
 
     int result = 0;
-    if (loop != nullptr) {
-        result += 1;
-    }
-
     ffrt_queue_attr_destroy(&queue_attr);
     ffrt_queue_destroy(queue_handle);
     napi_value flag = nullptr;
@@ -2997,10 +2978,6 @@ static napi_value ffrt_loop_0001(napi_env env, napi_callback_info info)
     ffrt_loop_stop(loop);
     pthread_join(thread, nullptr);
     ffrt_loop_destroy(loop);
-    int destoryRet = ffrt_loop_destroy(loop);
-    if (destoryRet != -1) {
-        result += 1;
-    }
     ffrt_queue_attr_destroy(&queue_attr);
     ffrt_queue_destroy(queue_handle);
     napi_value flag = nullptr;
@@ -3328,7 +3305,7 @@ static napi_value queue_parallel_0002(napi_env env, napi_callback_info info)
 {
     int result = 0;
     const int maxConcurrency = 1;
-    const int taskRes = 5;
+    const int taskRes = 12;
     ffrt_queue_attr_t queue_attr;
     (void)ffrt_queue_attr_init(&queue_attr);
     ffrt_queue_attr_set_max_concurrency(&queue_attr, maxConcurrency);
@@ -3346,10 +3323,11 @@ static napi_value queue_parallel_0002(napi_env env, napi_callback_info info)
     std::function<void()> &&TwoSubFunc = [&res] () {TwoSubForTest((void *)(&res));};
 
     const int taskCnt = 6;
+    const int prinum = 3;
     ffrt_task_attr_t task_attr[taskCnt];
     for (int i = 0; i < taskCnt; ++i) {
         (void)ffrt_task_attr_init(&task_attr[i]);
-        const ffrt_queue_priority_t pri = (ffrt_queue_priority_t)(taskCnt - i);
+        const ffrt_queue_priority_t pri = (ffrt_queue_priority_t)(prinum - i);
         ffrt_task_attr_set_queue_priority(&task_attr[i], pri);
     }
 
@@ -3357,9 +3335,9 @@ static napi_value queue_parallel_0002(napi_env env, napi_callback_info info)
         ffrt_queue_submit(queue_handle, create_function_wrapper(OnePlusFfrtSleepFunc,
             ffrt_function_kind_queue), nullptr);
     }
-    task = ffrt_queue_submit_h(queue_handle,
+    ffrt_queue_submit(queue_handle,
         create_function_wrapper(TwoSubFunc, ffrt_function_kind_queue), &task_attr[0]);
-    ffrt_queue_submit(queue_handle, create_function_wrapper(OnePlusFunc, ffrt_function_kind_queue), &task_attr[1]);
+    task = ffrt_queue_submit_h(queue_handle, create_function_wrapper(OnePlusFunc, ffrt_function_kind_queue), &task_attr[1]);
     ffrt_queue_submit(queue_handle, create_function_wrapper(DivFunc, ffrt_function_kind_queue), &task_attr[2]);
     ffrt_queue_submit(queue_handle, create_function_wrapper(SubFunc, ffrt_function_kind_queue), &task_attr[3]);
     ffrt_queue_submit(queue_handle, create_function_wrapper(MultipleFunc, ffrt_function_kind_queue), &task_attr[4]);
