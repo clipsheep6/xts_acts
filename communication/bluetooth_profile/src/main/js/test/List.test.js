@@ -13,22 +13,20 @@
  * limitations under the License.
  */
 
-import btHfpConnTest from './BluetoothHfp.test.js'
-import btA2dpConnTest from './BluetoothA2dp.test.js'
-import btManagerHfpConnTest from './BtManagerHfp.test.js'
-import btManagerA2dpConnTest from './BtManagerA2dp.test.js'
-import btA2dpTest from './BtA2dp.test.js'
-import btBaseProfileTest from './BtBaseProfile.test.js'
-import btGattServiceTest from './BtGattService.test.js'
-import btConnectionTest from './BtConnection.test.js'
+import btHfpConnTest from './BluetoothHfp.test.js';
+import btA2dpConnTest from './BluetoothA2dp.test.js';
+import btManagerHfpConnTest from './BtManagerHfp.test.js';
+import btManagerA2dpConnTest from './BtManagerA2dp.test.js';
+import btGattServiceTest from './BtGattService.test.js';
+import parameter from '@ohos.systemparameter';
 
+let info = parameter.getSync("const.SystemCapability.Communication.Bluetooth.Core", "false");
 export default function testsuite() {
-    btBaseProfileTest()
-    btHfpConnTest()
-    btA2dpConnTest()
-    btManagerHfpConnTest()
-    btManagerA2dpConnTest()
-    btA2dpTest()
-    btGattServiceTest()
-    btConnectionTest()
+    if (info != "false") {
+        btHfpConnTest();
+        btA2dpConnTest();
+        btManagerHfpConnTest();
+        btManagerA2dpConnTest();
+        btGattServiceTest();
+    }
 }

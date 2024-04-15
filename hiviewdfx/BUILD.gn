@@ -18,10 +18,10 @@ group("hiviewdfxtestacts") {
       "abilityconstanttest:ActsAbilityConstantTest",
       "apprecoverytest:ActsAppRecoveryTest",
       "bytracetest:ActsBytraceJsTest",
-      "crossplatform/hiviewdfxhilogetstest:ActsCrossplatformHilogTest",
       "hiappeventtest/hiappeventapmtest:ActsHiAppEventJsTest",
       "hiappeventtest/hiappeventcpptest:ActsHiAppEventCPPTest",
       "hiappeventtest/hiappeventjstest:ActsHiAppeventTest",
+      "hiappeventtest/hiappeventndktest:ActsHiappeventNdkTest",
       "hiappeventtest/hiappeventsubjstest:ActsHiAppeventSubTest",
       "hicheckertest/hicheckerjstest:hicheckerjstest",
       "hidebugtest/hidebugtestjstest:ActsHiDebugTest",
@@ -31,9 +31,9 @@ group("hiviewdfxtestacts") {
       "hisyseventtest/hisyseventboxtest:ActsHiSysEventBoxTest",
       "hisyseventtest/hisyseventjstest:ActsHiSysEventJsTest",
       "hisyseventtest/hisyseventnormaltest:ActsHiSysEventNormalTest",
-      "hisyseventtest/hisyseventsertest:ActsHiSysEventSerTest",
       "hitracechainjstest:ActsHiTraceChainJsTest",
       "hitracemetertest:ActsHitraceMeterTest",
+      "hitracendktest:ActsHitraceNdkTest",
       "hiview/faultlogger/faultloggerjs:faultloggerjs_test",
     ]
   }

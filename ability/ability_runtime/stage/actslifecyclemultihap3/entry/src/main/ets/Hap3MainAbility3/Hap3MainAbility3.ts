@@ -30,6 +30,7 @@ export default class Hap3MainAbility3 extends Ability {
         console.log("[Demo] Hap3MainAbility3 onWindowStageCreate")
 
         windowStage.setUIContent(this.context, "pages/Hap3MainAbility3_pages", null)
+        globalThis.hap3MainAbility3Context = this.context;
     }
 
     onWindowStageDestroy() {
@@ -40,6 +41,9 @@ export default class Hap3MainAbility3 extends Ability {
     onForeground() {
         // Ability has brought to foreground
         console.log("[Demo] Hap3MainAbility3 onForeground")
+        commonEvent.publish('Hap3MainAbility3onForeground', (err) => {
+            console.log('Hap3MainAbility3onForeground');
+        });
     }
 
     onBackground() {

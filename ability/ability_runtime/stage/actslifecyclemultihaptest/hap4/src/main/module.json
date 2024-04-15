@@ -7,7 +7,8 @@
         "mainElement": "Hap4MainAbility1",
         "deviceTypes": [
             "default",
-            "tablet"
+            "tablet",
+            "2in1"
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
@@ -36,9 +37,12 @@
             }
         ],
         "requestPermissions": [
-            {
-                "name": "ohos.permission.GET_BUNDLE_INFO"
-            }
+        {
+            "name": "ohos.permission.GET_BUNDLE_INFO"
+        },
+        {
+            "name":"ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+        }
         ]
     }
 }

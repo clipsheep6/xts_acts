@@ -7,7 +7,8 @@
         "mainElement": "MainAbility",
         "deviceTypes": [
             "default",
-            "tablet"
+            "tablet",
+            "2in1"
         ],
         "deliveryWithInstall": true,
         "installationFree": false,
@@ -16,7 +17,7 @@
         "abilities": [
             {
                 "name": "com.example.abilitymultiinstance.MainAbility",
-                "srcEntrance": "./ets/MainAbility/MainAbility.ts",
+                "srcEntrance": "./ets/MainAbility/MainAbility.ets",
                 "description": "$string:phone_entry_main",
                 "icon": "$media:icon",
                 "label": "$string:entry_label",

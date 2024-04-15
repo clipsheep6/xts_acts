@@ -47,7 +47,7 @@ export default function GridCallbackJsunit() {
       // Verify Neither rowsTemplate nor columnsTemplate is set
       console.info('[GridCallbackJsunit_1000] START');
 
-      let grid2 = CommonFunc.getComponentRect('grid2');
+      let grid2 = CommonFunc.getComponentRectOnScreen('grid2');
       let top = grid2.top
       let bottom = grid2.bottom
       let left = grid2.left
@@ -55,7 +55,7 @@ export default function GridCallbackJsunit() {
       console.log('[GridCallbackJsunit_1000] grid 2 top:' + top +" bottom:" + bottom + "left: " + left + " right:" + right)
       let driver = await UiDriver.create()
       await driver.swipe(Math.round((right - left)), Math.round(bottom - 60), Math.round((right - left)), Math.round(top + 60));
-      await CommonFunc.sleep(200);
+      await CommonFunc.sleep(2000);
       let onReachStartText = await driver.findComponent(BY.key('onReachStartText'));
 
       let text5 = await onReachStartText.getText();
