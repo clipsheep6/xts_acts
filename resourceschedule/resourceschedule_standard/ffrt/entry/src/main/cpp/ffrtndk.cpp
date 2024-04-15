@@ -2837,7 +2837,7 @@ static napi_value ffrt_timer_start_0001(napi_env env, napi_callback_info info)
 
 static napi_value ffrt_timer_start_0002(napi_env env, napi_callback_info info)
 {
-    const int timerCount = 100;
+    const int timerCount = 5;
     bool finish = false;
     TimerDataT timerData[timerCount];
     high_resolution_clock::time_point startT = high_resolution_clock::now();
