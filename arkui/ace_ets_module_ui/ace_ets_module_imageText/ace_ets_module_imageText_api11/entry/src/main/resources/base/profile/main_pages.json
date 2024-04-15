@@ -109,7 +109,9 @@
         "MainAbility/pages/text/TextfieldMulti",
         "MainAbility/pages/text/TextfieldOther",
         "MainAbility/pages/text/TextfieldSingle",
-
+        "MainAbility/pages/image/Image",
+        "MainAbility/pages/span/Span",
+        "MainAbility/pages/text/Text",
         "MainAbility/pages/text/curve",
         "MainAbility/pages/text/backgroundAndSizeSetting",
         "MainAbility/pages/text/border",
