@@ -12,11 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
 export default class MainAbility extends Ability {
-
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.log('MainAbility onCreate');
   }
 
@@ -24,9 +27,9 @@ export default class MainAbility extends Ability {
     console.log('MainAbility onDestroy');
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     console.log('MainAbility onWindowStageCreate');
-    windowStage.setUIContent(this.context, 'pages/index', null);
+    windowStage.loadContent('pages/index', null);
   }
 
   onWindowStageDestroy() {
@@ -40,4 +43,4 @@ export default class MainAbility extends Ability {
   onBackground() {
     console.log('MainAbility onBackground');
   }
-};
+}

@@ -14,9 +14,8 @@
  */
 
 import hilog from '@ohos.hilog';
-import commonEventManager from '@ohos.commonEventManager'
 
-const TAG: string = '[P3]'
+const TAG: string = '[P3]';
 
 @Entry
 @Component
@@ -25,13 +24,16 @@ struct P1 {
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility index aboutToAppear');
   }
+
   build() {
     Row() {
       Column() {
         UIExtensionComponent({
           bundleName: 'com.acts.uiextensionprovider3',
           abilityName: 'UIExtAbility'
-        }).width('100%').height('35%')
+        })
+          .width('100%')
+          .height('35%')
       }
       .width('100%')
     }

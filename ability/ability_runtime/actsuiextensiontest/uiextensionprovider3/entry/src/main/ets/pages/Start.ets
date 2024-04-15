@@ -13,12 +13,12 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
 
 @Entry
 @Component
 struct Start {
-  @State message: string = 'Start Page'
+  @State message: string = 'Start Page';
 
   build() {
     Row() {
