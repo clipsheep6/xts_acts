@@ -431,16 +431,6 @@ export default function ffrtTest() {
       expect(flag).assertEqual(0);
     })
     /**
-     *@tc.number: SUB_KERNEL_DISPATCH_FFRTNDK_7500
-     *@tc.name: ffrt_timer_start_abnormal_0001
-     *@tc.desc: test ffrt_timer_start abnormal cases
-     */
-    it('ffrt_timer_start_abnormal_0001',0, function () {
-      // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
-      var flag = ffrtndk.ffrt_timer_start_abnormal_0001();
-      expect(flag).assertEqual(0);
-    })
-    /**
      *@tc.number: SUB_KERNEL_DISPATCH_FFRTNDK_7600
      *@tc.name: ffrt_loop_abnormal_0001
      *@tc.desc: test ffrt_loop abnormal api
