@@ -119,7 +119,12 @@ import ImageAttr from './imageTest/ImageAttr.test';
 import TextfieldMultiTest from './textTest/TextfieldMulti.test';
 import TextfieldOtherTest from './textTest/TextfieldOther.test';
 import TextfieldSingleTest from './textTest/TextfieldSingle.test';
-import search from './SearchTest/SearchTest.test'
+import richEditorApi4 from './RichEditorTest/richEditorApi/richEditorApi4.test';
+import richEditorApi5 from './RichEditorTest/richEditorApi/richEditorApi5.test';
+import richEditorApi6 from './RichEditorTest/richEditorApi/richEditorApi6.test';
+import richEditorApi7 from './RichEditorTest/richEditorApi/richEditorApi7.test';
+import richEditorApi8 from './RichEditorTest/richEditorApi/richEditorApi8.test';
+import search from './SearchTest/SearchTest.test';
 
 import CurveTest from './textTest/CurveJsunit.test';
 import backgroundAndSizeSettingJsunit from './textTest/BackgroundAndSizeSettingJsunit.test';
@@ -134,7 +139,12 @@ import propJsunit from './textTest/PropJsunit.test';
 
 
 export default function testsuite() {
-  search();
+  richEditorApi4();
+  richEditorApi5();
+  richEditorApi6();
+  richEditorApi7();
+  richEditorApi8();
+   search();
   textStyleJsunit();
   marqueeJsunit();
   ImageTextTest();

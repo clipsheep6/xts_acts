@@ -3,6 +3,7 @@
         "MainAbility/pages/index/index",
         "MainAbility/pages/FolderStack/FolderStack3Api",
         "MainAbility/pages/FolderStack/folder_stack",
+        "MainAbility/pages/Stack_Text/Stack_Text",
         "MainAbility/pages/GridCol/grid_col",
         "MainAbility/pages/GridRow/grid_row",
         "MainAbility/pages/inspector/inspector",
@@ -444,6 +445,16 @@
         "MainAbility/pages/Column/enumsHorizontalAlign",
         "MainAbility/pages/Row/transForm",
         "MainAbility/pages/Row/visibility",
-        "MainAbility/pages/Row/Row"
+        "MainAbility/pages/Row/Row",
+        
+        "MainAbility/pages/GridCol/Grid_Col_Span/Grid_Col_Span_Default",
+        "MainAbility/pages/GridCol/Grid_Col_Span/Grid_Col_Span_Number",
+        "MainAbility/pages/GridCol/Grid_Col_Span/Grid_Col_Span_GridColColumnOption",
+        "MainAbility/pages/GridCol/Grid_Col_Order/Grid_Col_Order_Default",
+        "MainAbility/pages/GridCol/Grid_Col_Order/Grid_Col_Order_Number",
+        "MainAbility/pages/GridCol/Grid_Col_Order/Grid_Col_Order_GridColColumnOption",
+        "MainAbility/pages/GridCol/Grid_Col_Offset/Grid_Col_Offset_Default",
+        "MainAbility/pages/GridCol/Grid_Col_Offset/Grid_Col_Offset_Number",
+        "MainAbility/pages/GridCol/Grid_Col_Offset/Grid_Col_Offset_GridColColumnOption"
     ]
 }

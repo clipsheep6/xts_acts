@@ -14,6 +14,7 @@
  */
 import FolderStack3ApiJsunit from './FolderStackTest/FolderStack3ApiJsunit.test';
 import enumFolderTest from "./FolderStackTest/enumflodstack.test"
+import Stack_Text from './Stack_Text/Stack_Text.test';
 import grid_colSpanJsunit from './GridColTest/grid_col.test';
 import grid_rowOnBreakpointChangeJsunit from './GridRowTest/grid_row.test';
 import inspectorJsunit from './inspectorTest/inspector.test'
@@ -550,9 +551,20 @@ import transFormJsunit from './Row/TransFormJsunit.test';
 import VisibilityJsunit from './Row/VisibilityJsunit.test';
 import rowJsunit from './Row/RowJsunit.test';
 
+import Grid_Col_Span_Default from './GridColTest/Grid_Col_Span/Grid_Col_Span_Default.test.ets';
+import Grid_Col_Span_Number from './GridColTest/Grid_Col_Span/Grid_Col_Span_Number.test.ets';
+import Grid_Col_Span_GridColColumnOption from './GridColTest/Grid_Col_Span/Grid_Col_Span_GridColColumnOption.test.ets';
+import Grid_Col_Order_Default from './GridColTest/Grid_Col_Order/Grid_Col_Order_Default.test.ets';
+import Grid_Col_Order_Number from './GridColTest/Grid_Col_Order/Grid_Col_Order_Number.test.ets';
+import Grid_Col_Order_GridColColumnOption from './GridColTest/Grid_Col_Order/Grid_Col_Order_GridColColumnOption.test.ets';
+import Grid_Col_Offset_Default from './GridColTest/Grid_Col_Offset/Grid_Col_Offset_Default.test.ets';
+import Grid_Col_Offset_Number from './GridColTest/Grid_Col_Offset/Grid_Col_Offset_Number.test.ets';
+import Grid_Col_Offset_GridColColumnOption from './GridColTest/Grid_Col_Offset/Grid_Col_Offset_GridColColumnOption.test.ets';
+  
 export default function testsuite() {
   FolderStack3ApiJsunit()
   enumFolderTest()
+  Stack_Text()
   inspectorJsunit()
     
   Column_Space()
@@ -1004,4 +1016,14 @@ export default function testsuite() {
   transFormJsunit()
   VisibilityJsunit()
   rowJsunit()
+  
+  Grid_Col_Span_Default()
+  Grid_Col_Span_Number()
+  Grid_Col_Span_GridColColumnOption()
+  Grid_Col_Order_Default()
+  Grid_Col_Order_Number()
+  Grid_Col_Order_GridColColumnOption()
+  Grid_Col_Offset_Default()
+  Grid_Col_Offset_Number()
+  Grid_Col_Offset_GridColColumnOption()
 }

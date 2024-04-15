@@ -21,6 +21,8 @@ import CheckboxTest from './CheckboxTest/Checkbox.test';
 import textpicker from './TextPicker/TextPicker';
 import TextPickerSec from './TextPicker/TextPickerSec';
 import textpickermultiTest from './TextPicker/TextPickerMulti';
+import sliderTest from './SliderTest/SliderTest';
+import SliderTestSec from './SliderTest/SliderTestSec';
 
 import toggleJsunit from './Toggle/ToggleJsunit.test';
 import checkboxJsunit from './CheckboxTest/CheckboxJsunit.test';
@@ -43,4 +45,7 @@ export default function testsuite() {
   checkboxGroupJsunit()
   selectJsunit()
   sliderJsunit()
+  
+  sliderTest()
+  SliderTestSec()
 }
