@@ -758,6 +758,256 @@ export default function graphicText(context, windowStage, abilityStorage) {
         expect().assertFail();
       }
     })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICDRAWING_JS_API_0200
+     * @tc.name      : testTextLine_GetGlyphCount
+     * @tc.desc      : test TextLine GlyphCount
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testTextLine_GetGlyphCount', 0, async function () {
+      let msg = "testText_GetGlyphCount"
+      console.info(msg + 'begin');
+      let canvas = new drawing.Canvas(pixel)
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color: {
+          alpha: 255, red: 255, green: 0, blue: 0
+        }, fontSize: 30
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle: myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const pen = new drawing.Pen()
+      pen.setColor({
+        alpha: 255, red: 255, green: 0, blue: 0
+      })
 
+      let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      let textTitle = "123";
+      ParagraphGraphBuilder.addText(textTitle);
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+
+      let paragraph = ParagraphGraphBuilder.build();
+      paragraph.layoutSync(200);
+      paragraph.paint(canvas, 0, 0);
+      let textLines: Array<text.TextLine> = paragraph.getTextLines();
+      let length = textLines.length;
+      for (let i = 0; i < length; i++) {
+        let textLine: text.TextLine = textLines[i];
+        try {
+           expect(textLine.getGlyphCount()).assertEqual(textTitle.length);
+           console.info(msg + 'getGlyphCount successed second');
+        } catch (err) {
+          console.info(msg + 'getGlyphCount error cause: ' + JSON.stringify(err));
+          expect().assertFail();
+        }
+      }
+      
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICDRAWING_JS_API_0210
+     * @tc.name      : testTextLine_GetTextRange
+     * @tc.desc      : test TextLine GetTextRange
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testTextLine_GetTextRange', 0, async function () {
+      let msg = "testTextLine_GetTextRange"
+      console.info(msg + 'begin');
+      let canvas = new drawing.Canvas(pixel)
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color: {
+          alpha: 255, red: 255, green: 0, blue: 0
+        }, fontSize: 30
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle: myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const pen = new drawing.Pen()
+      pen.setColor({
+        alpha: 255, red: 255, green: 0, blue: 0
+      })
+
+      let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      let textTitle = "123";
+      ParagraphGraphBuilder.addText(textTitle);
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+
+      let paragraph = ParagraphGraphBuilder.build();
+      paragraph.layoutSync(200);
+      paragraph.paint(canvas, 0, 0);
+      let textLines: Array<text.TextLine> = paragraph.getTextLines();
+      let length = textLines.length;
+      for (let i = 0; i < length; i++) {
+        let textLine: text.TextLine = textLines[i];
+        try {
+           expect(0).assertEqual(textLine.getTextRange().start);
+           console.info(msg + 'getTextRange successed second');
+        } catch (err) {
+          console.info(msg + 'getGlyphCount error cause: ' + JSON.stringify(err));
+          expect().assertFail();
+        }
+      }
+      
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICDRAWING_JS_API_0220
+     * @tc.name      : testTextLine_Paint
+     * @tc.desc      : test TextLine Paint
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testTextLine_Paint', 0, async function () {
+      let msg = "testTextLine_Paint"
+      console.info(msg + 'begin');
+      let canvas = new drawing.Canvas(pixel)
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color: {
+          alpha: 255, red: 255, green: 0, blue: 0
+        }, fontSize: 30
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle: myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+      const pen = new drawing.Pen()
+      pen.setColor({
+        alpha: 255, red: 255, green: 0, blue: 0
+      })
+
+      let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      let textTitle = "123";
+      ParagraphGraphBuilder.addText(textTitle);
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+
+      let paragraph = ParagraphGraphBuilder.build();
+      paragraph.layoutSync(200);
+      paragraph.paint(canvas, 0, 0);
+      let textLines: Array<text.TextLine> = paragraph.getTextLines();
+      let length = textLines.length;
+      for (let i = 0; i < length; i++) {
+        let textLine: text.TextLine = textLines[i];
+        try {
+           textLine.paint(canvas,textLine.getTextRange().start, textLine.getTextRange().end);
+           console.info(msg + 'paint successed second');
+        } catch (err) {
+          console.info(msg + 'paint error cause: ' + JSON.stringify(err));
+          expect().assertFail();
+        }
+      }
+    })
+
+  /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICDRAWING_JS_API_0230
+     * @tc.name      : testParagraphBuilder_AonstructorAndAddText
+     * @tc.desc      : Constructs a ParagraphBuilder object and calls its methods
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 3
+     */
+    it('testParagraphBuilder_AonstructorAndAddText', 0, async function () {
+      let msg = "testParagraphBuilder_AonstructorAndAddText"
+      console.info(msg + 'begin');
+      let myTextStyle: text.TextStyle = {
+      color : {alpha: 255, red: 0, green: 0, blue: 255},
+      fontSize: 66,
+      };
+
+      let myTextStyleTwo: text.TextStyle = {
+      color : {alpha: 255, red: 255, green: 0, blue: 0},
+      fontSize : 33,
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+      textStyle : myTextStyle,
+      align: 3,
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+      width: 22,
+      height: 33,
+      align: text.PlaceholderAlignment.ABOVE_BASELINE,
+      baseline: text.TextBaseline.ALPHABETIC,
+      baselineOffset: 66
+      };
+      let fontCollection = new text.FontCollection();
+      let paragraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      try {
+        paragraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+        console.info(msg + 'addPlaceholder successed');
+      } catch (err) {
+        console.info(msg + 'addPlaceholder error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+      try {
+        paragraphGraphBuilder.pushStyle(myTextStyle);
+        console.info(msg + 'pushStyle successed');
+      } catch (err) {
+        console.info(msg + 'first pushStyle error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+      try {
+        paragraphGraphBuilder.addText("123666");
+        console.info(msg + 'addText successed first');
+      } catch (err) {
+        console.info(msg + 'first addText error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+      try {
+        paragraphGraphBuilder.pushStyle(myTextStyleTwo);
+        console.info(msg + 'pushStyle successed second');
+      } catch (err) {
+        console.info(msg + 'second pushStyle error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+      try {
+        paragraphGraphBuilder.popStyle();
+        console.info(msg + 'popStyle successed');
+      } catch (err) {
+        console.info(msg + 'popStyle error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+      try {
+        paragraphGraphBuilder.addText("1235555");
+        console.info(msg + 'addText successed first');
+      } catch (err) {
+        console.info(msg + 'second addText error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+      try {
+        let paragraph = paragraphGraphBuilder.build();
+        console.info(msg + 'build successed');
+      } catch (err) {
+        console.info(msg + 'build error cause: ' + JSON.stringify(err));
+        expect().assertFail();
+      }
+    })
   })
 }
