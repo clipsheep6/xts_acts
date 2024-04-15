@@ -119,6 +119,8 @@ import ImageAttr from './imageTest/ImageAttr.test';
 import TextfieldMultiTest from './textTest/TextfieldMulti.test';
 import TextfieldOtherTest from './textTest/TextfieldOther.test';
 import TextfieldSingleTest from './textTest/TextfieldSingle.test';
+import buttonTest from './buttonTest/button'
+import search from './SearchTest/SearchTest.test'
 import richEditorApi4 from './RichEditorTest/richEditorApi/richEditorApi4.test';
 import richEditorApi5 from './RichEditorTest/richEditorApi/richEditorApi5.test';
 import richEditorApi6 from './RichEditorTest/richEditorApi/richEditorApi6.test';
@@ -235,4 +237,5 @@ export default function testsuite() {
   TextfieldOtherTest()
   TextfieldSingleTest()
   TextfieldMultiTest()
+  buttonTest();
 }

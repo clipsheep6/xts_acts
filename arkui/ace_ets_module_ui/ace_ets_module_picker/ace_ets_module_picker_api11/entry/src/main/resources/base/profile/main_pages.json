@@ -9,6 +9,14 @@
         "MainAbility/pages/Checkbox/Index",
         "MainAbility/pages/TextPicker/TextPickerSec",
         "MainAbility/pages/TextPicker/Index",
-        "MainAbility/pages/TextPicker/TextPickerMulti"
+        "MainAbility/pages/TextPicker/TextPickerMulti",
+        "MainAbility/pages/Select/Index",
+        "MainAbility/pages/Select/SelectMenu",
+        "MainAbility/pages/CalendarPicker/Index",
+        "MainAbility/pages/DatePicker/Index",
+        "MainAbility/pages/DatePicker/DatePicker",
+        "MainAbility/pages/Checkbox/CheckBox",
+        "MainAbility/pages/Checkbox/Index1",
+        "MainAbility/pages/CheckBoxGroup/CheckBoxGroup"
     ]
 }
