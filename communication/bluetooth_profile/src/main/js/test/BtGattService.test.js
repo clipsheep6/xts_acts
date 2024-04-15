@@ -41,16 +41,16 @@ describe('btGattServiceTest', function() {
     }
 
     async function clickTheWindow() {
-        try{
+        try {
+            console.info('[bluetooth_js] clickRequestPermission start');
             let driver = Driver.create();
-            console.info('[bluetooth_js] bt driver create:'+ driver);            
-            await driver.delayMs(1000);
-            await driver.click(950, 2550);
-            await driver.delayMs(5000);
-            await driver.click(950, 2550);
             await driver.delayMs(3000);
-        } catch (error) {
-            console.info('[bluetooth_js] driver error info:'+ error);
+            let button = await driver.findComponent(ON.text("允许"));
+            await button.click();
+            await driver.delayMs(3000);
+            console.info('[bluetooth_js] clickRequestPermission end');
+        } catch (err) {
+            console.info('[bluetooth_js] clickRequestPermission failed');
         }
     }
 
@@ -83,6 +83,7 @@ describe('btGattServiceTest', function() {
     beforeAll(async function (done) {
         console.info('beforeAll called')
         await openPhone();
+        await tryToEnableBt();
         gattServer = bluetooth.BLE.createGattServer();
         console.info('[bluetooth_js]bgs gattServer create info:' + gattServer);
         gattClient = bluetooth.BLE.createGattClientDevice("00:22:44:66:77:69");

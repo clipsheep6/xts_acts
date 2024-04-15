@@ -38,16 +38,16 @@ describe('btManagerDiscoveryTest', function() {
     }
 
     async function clickTheWindow() {
-        try{
+        try {
+            console.info('[bluetooth_js] clickRequestPermission start');
             let driver = Driver.create();
-            console.info('[bluetooth_js] bt driver create:'+ driver);            
-            await driver.delayMs(1000);
-            await driver.click(950, 2550);
-            await driver.delayMs(5000);
-            await driver.click(950, 2550);
             await driver.delayMs(3000);
-        } catch (error) {
-            console.info('[bluetooth_js] driver error info:'+ error);
+            let button = await driver.findComponent(ON.text("允许"));
+            await button.click();
+            await driver.delayMs(3000);
+            console.info('[bluetooth_js] clickRequestPermission end');
+        } catch (err) {
+            console.info('[bluetooth_js] clickRequestPermission failed');
         }
     }
 
@@ -106,7 +106,7 @@ describe('btManagerDiscoveryTest', function() {
         function onReceiveEvent(data) {
             console.info('[bluetooth_js] Device' + JSON.stringify(data) +
             'length' + data.length);
-            expect(true).assertTrue(data.length > 0);
+            expect(data.length > 0).assertTrue();
         }
     try {
         bluetoothManager.on("bluetoothDeviceFind", onReceiveEvent);
@@ -117,7 +117,7 @@ describe('btManagerDiscoveryTest', function() {
         bluetoothManager.off('bluetoothDeviceFind', onReceiveEvent);
         result = bluetoothManager.stopBluetoothDiscovery();
         console.info('[bluetooth_js] stopDiscovery' + result);
-        expect(true).assertTrue();
+        expect(result).assertTrue();
     } catch (error) {
         console.error(`[bluetooth_js]bluetoothDeviceFin error, code is ${error.code}, 
         message is ${error.message}`);

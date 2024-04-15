@@ -38,16 +38,16 @@ describe('btSwitchTest', function() {
     }
 
     async function clickTheWindow() {
-        try{
+        try {
+            console.info('[bluetooth_js] clickRequestPermission start');
             let driver = Driver.create();
-            console.info('[bluetooth_js] bt driver create:'+ driver);            
-            await driver.delayMs(1000);
-            await driver.click(950, 2550);
-            await driver.delayMs(5000);
-            await driver.click(950, 2550);
             await driver.delayMs(3000);
-        } catch (error) {
-            console.info('[bluetooth_js] driver error info:'+ error);
+            let button = await driver.findComponent(ON.text("允许"));
+            await button.click();
+            await driver.delayMs(3000);
+            console.info('[bluetooth_js] clickRequestPermission end');
+        } catch (err) {
+            console.info('[bluetooth_js] clickRequestPermission failed');
         }
     }
 
@@ -163,25 +163,25 @@ describe('btSwitchTest', function() {
     it('SUB_COMMUNICATION_BLUETOOTH_SwitchOff_0444', 0, async function (done) {
         let STATE_ON = bluetooth.BluetoothState.STATE_ON;
         console.info("[bluetooth_js]STATE_ON : " + JSON.stringify(STATE_ON));
-        expect(true).assertTrue(STATE_ON == 2);
+        expect(STATE_ON == 2).assertTrue();
         let STATE_OFF = bluetooth.BluetoothState.STATE_OFF;
         console.info("[bluetooth_js]STATE_OFF : " + JSON.stringify(STATE_OFF));
-        expect(true).assertTrue(STATE_OFF == 0);
+        expect(STATE_OFF == 0).assertTrue();
         let STATE_TURNING_ON = bluetooth.BluetoothState.STATE_TURNING_ON;
         console.info("[bluetooth_js]STATE_TURNING_ON : " + JSON.stringify(STATE_TURNING_ON));
-        expect(true).assertTrue(STATE_TURNING_ON == 1);
+        expect(STATE_TURNING_ON == 1).assertTrue();
         let STATE_TURNING_OFF = bluetooth.BluetoothState.STATE_TURNING_OFF;
         console.info("[bluetooth_js]STATE_TURNING_OFF : " + JSON.stringify(STATE_TURNING_OFF));
-        expect(true).assertTrue(STATE_TURNING_OFF == 3);
+        expect(STATE_TURNING_OFF == 3).assertTrue();
         let STATE_BLE_TURNING_ON = bluetooth.BluetoothState.STATE_BLE_TURNING_ON;
         console.info("[bluetooth_js]STATE_BLE_TURNING_ON : " + JSON.stringify(STATE_BLE_TURNING_ON));
-        expect(true).assertTrue(STATE_BLE_TURNING_ON == 4);
+        expect(STATE_BLE_TURNING_ON == 4).assertTrue();
         let STATE_BLE_ON = bluetooth.BluetoothState.STATE_BLE_ON;
         console.info("[bluetooth_js]STATE_BLE_ON : " + JSON.stringify(STATE_BLE_ON));
-        expect(true).assertTrue(STATE_BLE_ON == 5);
+        expect(STATE_BLE_ON == 5).assertTrue();
         let STATE_BLE_TURNING_OFF = bluetooth.BluetoothState.STATE_BLE_TURNING_OFF;
         console.info("[bluetooth_js]STATE_BLE_TURNING_OFF : " + JSON.stringify(STATE_BLE_TURNING_OFF));
-        expect(true).assertTrue(STATE_BLE_TURNING_OFF == 6);
+        expect(STATE_BLE_TURNING_OFF == 6).assertTrue();
         done()
     })
 })

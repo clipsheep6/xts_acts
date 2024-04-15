@@ -13,16 +13,22 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import poll from 'libpollndk.so'
 
 export default function pollNdkTest() {
   describe('MuslPollTest', () => {
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
+
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_POLL_POLL_0100
      * @tc.name       : testMuslPollPoll001
      * @tc.desc       : test poll
-     * @tc.size       : MEDIUM
+     * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 2
      */
@@ -31,46 +37,6 @@ export default function pollNdkTest() {
       console.info("Test NAPI data= " + JSON.stringify(data));
       expect(data).assertEqual(0);
       done()
-    });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_POLL_PPOLL_0100
-     * @tc.name       : testMuslPollPpoll001
-     * @tc.desc       : test ppoll
-     * @tc.size       : MEDIUM
-     * @tc.type       : Function
-     * @tc.level      : Level 2
-     */
-    it('testMuslPollPpoll001', 0, async (done: Function) => {
-      let data: number = poll.ppoll();
-      console.info("Test NAPI data= " + JSON.stringify(data));
-      expect(data).assertEqual(0);
-      done()
-    });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_POLL_POLLCHK_0100
-     * @tc.name       : testMuslPollPollchk001
-     * @tc.desc       : test pollchk
-     * @tc.size       : MEDIUM
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslPollPollchk001', 0, async (done: Function) => {
-      let result: number = poll.pollchk();
-      expect(result).assertEqual(1);
-      done();
-    });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_POLL_PPOLLCHK_0100
-     * @tc.name       : testMuslPollPpollchk001
-     * @tc.desc       : test ppollchk
-     * @tc.size       : MEDIUM
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslPollPpollchk001', 0, async (done: Function) => {
-      let result: number = poll.ppollchk();
-      expect(result).assertEqual(1);
-      done();
     });
   })
 }

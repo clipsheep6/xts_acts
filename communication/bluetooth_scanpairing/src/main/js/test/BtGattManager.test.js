@@ -40,16 +40,16 @@ describe('btGattManagerTest', function() {
     }
 
     async function clickTheWindow() {
-        try{
+        try {
+            console.info('[bluetooth_js] clickRequestPermission start');
             let driver = Driver.create();
-            console.info('[bluetooth_js] bt driver create:'+ driver);            
-            await driver.delayMs(1000);
-            await driver.click(950, 2550);
-            await driver.delayMs(5000);
-            await driver.click(950, 2550);
             await driver.delayMs(3000);
-        } catch (error) {
-            console.info('[bluetooth_js] driver error info:'+ error);
+            let button = await driver.findComponent(ON.text("允许"));
+            await button.click();
+            await driver.delayMs(3000);
+            console.info('[bluetooth_js] clickRequestPermission end');
+        } catch (err) {
+            console.info('[bluetooth_js] clickRequestPermission failed');
         }
     }
 
@@ -82,6 +82,7 @@ describe('btGattManagerTest', function() {
     beforeAll(async function (done) {
         console.info('beforeAll called')
         await openPhone();
+        await tryToEnableBt();
         gattServer = await bluetooth.BLE.createGattServer();
         console.info('bluetooth ble create gattserver result:' + gattServer);
         gattClient = await bluetooth.BLE.createGattClientDevice("11:22:33:44:55:66");
@@ -916,7 +917,7 @@ describe('btGattManagerTest', function() {
             expect(ret).assertEqual(true);
             console.info('bluetooth gattClient close 11:22:33:44:55:66 success');
             await sleep(5000);
-        } catch (err) {
+        } catch (error) {
             console.error(`[bluetooth_js]GATTCLOSE_0100 failed, code is ${error.code}, 
             message is ${error.message}`);
             expect(error.code).assertEqual('2900099');

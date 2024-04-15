@@ -39,17 +39,17 @@ describe('btManagerErrorCode202Test', function() {
  }
 
  async function clickTheWindow() {
-     try{
-         let driver = Driver.create();
-         console.info('[bluetooth_js] bt driver create:'+ driver);            
-         await driver.delayMs(1000);
-         await driver.click(950, 2550);
-         await driver.delayMs(5000);
-         await driver.click(950, 2550);
-         await driver.delayMs(3000);
-     } catch (error) {
-         console.info('[bluetooth_js] driver error info:'+ error);
-     }
+    try {
+        console.info('[bluetooth_js] clickRequestPermission start');
+        let driver = Driver.create();
+        await driver.delayMs(3000);
+        let button = await driver.findComponent(ON.text("允许"));
+        await button.click();
+        await driver.delayMs(3000);
+        console.info('[bluetooth_js] clickRequestPermission end');
+    } catch (err) {
+        console.info('[bluetooth_js] clickRequestPermission failed');
+    }
  }
 
     async function tryToEnableBt() {
@@ -112,7 +112,7 @@ describe('btManagerErrorCode202Test', function() {
           done();
      })
 
-     /**
+    /**
      * @tc.number SUB_COMMUNICATION_BTMANAGER_HOSTCONN_ERROR202_0100
      * @tc.name test hid host disconnect
      * @tc.desc Test api 202 - Non-system applications are not allowed to use system APIs.
@@ -129,6 +129,25 @@ describe('btManagerErrorCode202Test', function() {
           }
           done();
      })
+
+    /**
+     * @tc.number SUB_COMMUNICATION_BTMANAGER_HOSTCONN_ERROR202_0200
+     * @tc.name test hid host connect
+     * @tc.desc Test api 202 - Non-system applications are not allowed to use system APIs.
+     * @tc.type Function
+     * @tc.level Level 0
+     */
+     it('SUB_COMMUNICATION_BTMANAGER_HOSTCONN_ERROR202_0200', 0, async function (done) {
+        try {
+             let hidHostProfile = bluetooth.getProfileInstance(bluetooth.ProfileId.PROFILE_HID_HOST);
+             hidHostProfile.connect('22:33:44:55:66:77');
+        } catch (err) {
+             console.info('errCode: ' + err.code + ',errMessage: ' + err.message);
+             expect(err.code).assertEqual('202');
+        }
+        done();
+   })
+
 })
 
 }

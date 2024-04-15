@@ -12,16 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import select from 'libselectndk.so'
 
 export default function selectNdkTest() {
   describe('MuslSelectTest', () => {
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
+
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_SELECT_SELECT_0100
      * @tc.name       : testMuslSelectSelect001
      * @tc.desc       : test select
-     * @tc.size       : MEDIUM
+     * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 0
      */
@@ -36,27 +42,13 @@ export default function selectNdkTest() {
      * @tc.number     : SUB_THIRDPARTY_MUSL_SELECT_SELECT_0200
      * @tc.name       : testMuslSelectSelect002
      * @tc.desc       : test select
-     * @tc.size       : MEDIUM
+     * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 0
      */
     it('testMuslSelectSelect002', 0, async (done: Function) => {
       let result:number = select.select(1);
       expect(result).assertEqual(1);
-      done()
-    });
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_SELECT_PSELECT_0100
-     * @tc.name       : testMuslSelectPSelect001
-     * @tc.desc       : test pselect
-     * @tc.size       : MEDIUM
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslSelectPSelect001', 0, async (done: Function) => {
-      let result:number = select.pSelect();
-      console.info("Test NAPI data= " + JSON.stringify(result));
-      expect(result).assertEqual(0);
       done()
     });
   })

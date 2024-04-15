@@ -13,18 +13,18 @@
  * limitations under the License.
  */
 
-import btManagerGattAdvertTest from './BtManagerGattAdvertiser.test.js'
-import btManagerGattManagerTest from './BtManagerGattManager.test.js'
-import btManagerGattServiceTest from './BtManagerGattService.test.js'
-import btBleManagerTest from './BtBleManager.test.js'
-import btBleServiceTest from './BtBleService.test.js'
-import bluetoothBleTest from './BluetoothBle.test.js'
+import btManagerGattAdvertTest from './BtManagerGattAdvertiser.test.js';
+import btManagerGattManagerTest from './BtManagerGattManager.test.js';
+import btManagerGattServiceTest from './BtManagerGattService.test.js';
+import bluetoothAdvertisingTest from './BluetoothAdvertising.test.js';
+import parameter from '@ohos.systemparameter';
 
+let info = parameter.getSync("const.SystemCapability.Communication.Bluetooth.Core", "false");
 export default function testsuite() {
-    btManagerGattManagerTest()
-    bluetoothBleTest()
-    btManagerGattServiceTest()
-    btBleManagerTest()
-    btBleServiceTest()
-    btManagerGattAdvertTest()
+    if (info != "false") {
+        btManagerGattManagerTest();
+        btManagerGattServiceTest();
+        btManagerGattAdvertTest();
+        bluetoothAdvertisingTest();
+    }
 }

@@ -14,6 +14,10 @@
  */
 
 import fileuri_test from './fileuri.test.js'
+import filegetFullDirectoryUri_test from './getFullDirectoryUri.test.js'
+import filegetpath_test from './getpath.test.js'
 export default function testsuite() {
     fileuri_test()
+    filegetFullDirectoryUri_test()
+    filegetpath_test()
 }

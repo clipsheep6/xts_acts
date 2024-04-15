@@ -38,16 +38,16 @@ describe('btA2dpConnTest', function () {
     }
 
     async function clickTheWindow() {
-        try{
+        try {
+            console.info('[bluetooth_js] clickRequestPermission start');
             let driver = Driver.create();
-            console.info('[bluetooth_js] bt driver create:'+ driver);            
-            await driver.delayMs(1000);
-            await driver.click(950, 2550);
-            await driver.delayMs(5000);
-            await driver.click(950, 2550);
             await driver.delayMs(3000);
-        } catch (error) {
-            console.info('[bluetooth_js] driver error info:'+ error);
+            let button = await driver.findComponent(ON.text("允许"));
+            await button.click();
+            await driver.delayMs(3000);
+            console.info('[bluetooth_js] clickRequestPermission end');
+        } catch (err) {
+            console.info('[bluetooth_js] clickRequestPermission failed');
         }
     }
 
@@ -107,9 +107,9 @@ describe('btA2dpConnTest', function () {
         let connState = bluetooth.getBtConnectionState();
         console.info('[bluetooth_js] get bt connection state result' + JSON.stringify(connState));
         expect(connState).assertEqual(bluetooth.ProfileConnectionState.STATE_DISCONNECTED);
-        expect(true).assertTrue(bluetooth.ProfileConnectionState.STATE_CONNECTING!= connState );
-        expect(true).assertTrue(bluetooth.ProfileConnectionState.STATE_CONNECTED!= connState );
-        expect(true).assertTrue(bluetooth.ProfileConnectionState.STATE_DISCONNECTING!= connState );
+        expect(true).assertEqual(bluetooth.ProfileConnectionState.STATE_CONNECTING != connState);
+        expect(true).assertEqual(bluetooth.ProfileConnectionState.STATE_CONNECTED != connState);
+        expect(true).assertEqual(bluetooth.ProfileConnectionState.STATE_DISCONNECTING != connState);
         done();
     })
 
