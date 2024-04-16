@@ -23,6 +23,8 @@ import TextPickerSec from './TextPicker/TextPickerSec';
 import textpickermultiTest from './TextPicker/TextPickerMulti';
 import sliderTest from './SliderTest/SliderTest';
 import SliderTestSec from './SliderTest/SliderTestSec';
+import ratingJsunit from './RatingTest/RatingJsunit.test';
+import toggleJsunit from './ToggleTest/ToggleJsunit.test';
 
 export default function testsuite() {
   SelectAttr()
@@ -36,4 +38,6 @@ export default function testsuite() {
   textpickermultiTest()
   sliderTest()
   SliderTestSec()
+  ratingJsunit()
+  toggleJsunit()
 }

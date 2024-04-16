@@ -119,6 +119,10 @@
         "MainAbility/pages/image/shapeClipping",
         "MainAbility/pages/TextArea/TextArea",
         "MainAbility/pages/TextInput/TextInput",
-        "MainAbility/pages/text/Prop"
+        "MainAbility/pages/text/Prop",
+        "MainAbility/pages/button/button",
+        "MainAbility/pages/span/span",
+        "MainAbility/pages/text/text",
+        "MainAbility/pages/text/timeStamp"
     ]
 }

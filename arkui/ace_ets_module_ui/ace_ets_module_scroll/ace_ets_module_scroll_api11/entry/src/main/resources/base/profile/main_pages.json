@@ -63,6 +63,8 @@
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperMargin",
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperMarPad",
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperPadding",
-        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperVertical"
+        "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperVertical",
+        "MainAbility/pages/Tabs/tabs",
+        "MainAbility/pages/Scroll/scrollCode"
     ]
 }

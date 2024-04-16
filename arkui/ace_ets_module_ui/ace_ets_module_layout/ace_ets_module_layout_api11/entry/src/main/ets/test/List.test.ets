@@ -551,7 +551,9 @@ import Grid_Col_Order_GridColColumnOption from './GridColTest/Grid_Col_Order/Gri
 import Grid_Col_Offset_Default from './GridColTest/Grid_Col_Offset/Grid_Col_Offset_Default.test.ets';
 import Grid_Col_Offset_Number from './GridColTest/Grid_Col_Offset/Grid_Col_Offset_Number.test.ets';
 import Grid_Col_Offset_GridColColumnOption from './GridColTest/Grid_Col_Offset/Grid_Col_Offset_GridColColumnOption.test.ets';
-  
+import blankJsunit from './BlankTest/BlankJsunit.test';
+import gridJsunit from './GridTest/GridJsunit.test';
+
 export default function testsuite() {
   FolderStack3ApiJsunit()
   enumFolderTest()
@@ -1009,4 +1011,6 @@ export default function testsuite() {
   Grid_Col_Offset_Default()
   Grid_Col_Offset_Number()
   Grid_Col_Offset_GridColColumnOption()
+  blankJsunit();
+  gridJsunit();
 }

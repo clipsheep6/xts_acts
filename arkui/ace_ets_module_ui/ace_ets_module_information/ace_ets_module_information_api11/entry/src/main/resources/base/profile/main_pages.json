@@ -4,6 +4,9 @@
         "MainAbility/pages/gauge/gauge",
         "MainAbility/pages/Counter/CounterEnable",
         "MainAbility/pages/Progress/Progress",
-        "MainAbility/pages/Progress/ProgressSec"
+        "MainAbility/pages/Progress/ProgressSec",
+        "MainAbility/pages/Badge/badge",
+        "MainAbility/pages/Progress/progress1",
+        "MainAbility/pages/QrCode/QrCode"
     ]
 }
