@@ -22,7 +22,7 @@
             }
         ],
         "abilities": [{
-            "name": "com.arkui.ace.imageText.api12.MainAbility",
+            "name": "com.arkui.ace.imageText.MainAbility",
             "srcEntrance": "./ets/MainAbility/MainAbility.ts",
             "description": "$string:phone_entry_main",
             "icon": "$media:icon",
