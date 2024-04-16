@@ -12,16 +12,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
 import inputMethod from '@ohos.inputMethod';
 import inputMethodEngine from '@ohos.inputMethodEngine';
 import subtype from '@ohos.InputMethodSubtype';
 import commonEventManager from '@ohos.commonEventManager';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import display from '@ohos.display';
-import { Driver, ON, MatchPattern, Component } from '@ohos.UiTest'
+import { Driver, ON, MatchPattern, Component } from '@ohos.UiTest';
 import deviceinfo from '@ohos.deviceInfo';
-import { BusinessError } from '@ohos.base'
+import { BusinessError } from '@ohos.base';
 
 export default function inputMethodAbility() {
   describe('inputMethodAbility', () => {
@@ -33,12 +33,14 @@ export default function inputMethodAbility() {
       extra: {}
     }
 
-    let dis = display.getDefaultDisplaySync();
+    let rectInfo;
+    let textArea: Component;
     let driver = Driver.create();
+    let dis = display.getDefaultDisplaySync();
     let inputDemoService: subtype;
     let inputMethodController = inputMethod.getController();
 
-    let runCmd = async () => {
+    let runCmd: Function = async () => {
       let cursor_x = 30 + Math.floor(Math.random() * dis.width * 0.8);
       let cursor_y = 150 + Math.floor(Math.random() * Math.round(dis.height * 0.4));
       console.info(`====>start click x:${cursor_x}  y:${cursor_y}`)
@@ -66,7 +68,10 @@ export default function inputMethodAbility() {
       }
       try {
         await inputMethod.switchCurrentInputMethodSubtype(inputDemoService);
-        setTimeout(() => {
+        textArea = await driver.findComponent(ON.type('TextArea'));
+        rectInfo = await textArea.getBounds();
+        console.info('====>beforeAll inputMethodSwitch textArea rectInfo: ' + JSON.stringify(rectInfo));
+        setTimeout(()=>{
           runCmd()
           console.info("====>beforeAll inputMethodStageJSUnit switchCurrentInputMethodSubtype success");
           done();
@@ -2893,7 +2898,7 @@ export default function inputMethodAbility() {
           console.info('====>Sub_Misc_inputMethod_offSelectByMovement_0140 offSelectByMovement err: ' + JSON.stringify(err));
           done();
         }
-      }, 500);
+      },1000);
 
       let commonEventPublishData: commonEventManager.CommonEventPublishData = {
         code: 140

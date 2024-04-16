@@ -5,7 +5,7 @@
     <title>homework</title>
     <style>
         html{
-            width:2000px;
+            width:15000px;
         }
 		#kuang{
 			height:220px;
@@ -19,7 +19,7 @@
 			display:inline
 		}
 		#centerHeight{
-		    height:3000px;
+		    height:15000px;
 		}
 	</style>
 </head>
@@ -38,9 +38,19 @@
 </body>
 </html>
 <script>
+    function tryPrint(){
+        window.print()
+        let arr = "ok";
+        console.log(arr)
+        return arr;
+    }
+    function tryScroll(){
+        window.scrollBy(200,200);
+        return true;
+    }
     function getScroll(){
-        let x = document.documentElement.scrollLeft;
-        let y = document.documentElement.scrollTop;
+        let x = Math.round(document.documentElement.scrollLeft);
+        let y = Math.round(document.documentElement.scrollTop);
         let z = document.body.scrollHeight;
         let p = document.body.scrollWidth;
         let arr = [x,y];
