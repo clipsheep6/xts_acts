@@ -20,16 +20,26 @@ import inputMethod from '@ohos.inputMethod';
 import display from '@ohos.display';
 import {Driver, ON, MatchPattern, Component, UiWindow, DisplayRotation } from '@ohos.UiTest'
 import deviceinfo from '@ohos.deviceInfo';
-import { BusinessError} from '@ohos.base'
+import { BusinessError } from '@ohos.base'
+
+
+let sleep = (timeout: number) => {
+  return new Promise<void>(resolve => {
+    const st = setTimeout(() => {
+      resolve(null);
+      clearTimeout(st);
+    }, timeout);
+  });
+};
 
 export default function inputMethodEngineJSUnit() {
-  describe('inputMethodEngine', function () {
+  describe('inputMethodEngine', () => {
     let driver = Driver.create();
     let textArea: Component;
     let rectInfo;
 
-    beforeAll(async (done)=>{
-      console.info('====>beforeAll inputMethod_enable start!')
+    beforeAll(async (done: Function)=>{
+      console.info('====>beforeAll inputMethod_enable start!');
       try{
         if(deviceinfo.deviceType != 'default'){
           let displayClass: display.Display;
@@ -58,13 +68,13 @@ export default function inputMethodEngineJSUnit() {
             if (common_text == null){
               console.info(`====>start swipe`);
               if(displayClass.rotation == 0){
-                await driver.swipe(displayClass.width * 0.2, displayClass.height * 0.9, 
-                displayClass.width * 0.2, displayClass.height * 0.5, 10000);
+                await driver.swipe(displayClass.width * 0.2, displayClass.height * 0.9,
+                  displayClass.width * 0.2, displayClass.height * 0.5, 10000);
               }else{
-                await driver.swipe(displayClass.height * 0.2, displayClass.width * 0.9, 
-                displayClass.height * 0.2, displayClass.width
-                 * 0.5, 10000);
-              }              
+                await driver.swipe(displayClass.height * 0.2, displayClass.width * 0.9,
+                  displayClass.height * 0.2, displayClass.width
+                    * 0.5, 10000);
+              }
               common_text = await driver.waitForComponent(ON.text('通用', MatchPattern.CONTAINS), 3000);
               console.info(`====>inputMethod_enable swipe common_text: ${common_text}`);
             }
@@ -154,23 +164,13 @@ export default function inputMethodEngineJSUnit() {
     /**
      * afterEach: Test case-level clearance conditions, which are executed after each test case is executed.
      */
-    afterAll(async (done) => {
-
+    afterAll(async (done: Function) => {
       done();
     })
 
-    let sleep = function (timeout) {
-      return new Promise(resolve => {
-        const st = setTimeout(() => {
-          resolve(null);
-          clearTimeout(st);
-        }, timeout);
-      });
-    };
-
-    async function runCmd(){
-      let cursor_x = rectInfo.left + Math.floor(Math.random() * (rectInfo.right - rectInfo.left) * 0.9);
-      let cursor_y = rectInfo.top + Math.floor(Math.random() * (rectInfo.bottom - rectInfo.top) * 0.9);
+    let runCmd: Function = async () => {
+      let cursor_x: number = rectInfo.left + Math.floor(Math.random() * (rectInfo.right - rectInfo.left) * 0.9);
+      let cursor_y: number = rectInfo.top + Math.floor(Math.random() * (rectInfo.bottom - rectInfo.top) * 0.9);
       console.info(`====>start click x: ${cursor_x}  y: ${cursor_y}`)
       await driver.click(cursor_x, cursor_y)
     }
@@ -183,8 +183,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_getInputMethodEngine_001', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_getInputMethodEngine_001', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_getInputMethodEngine_001 unSubscriberCallback start");
         if (err) {
           console.error("====>inputMethodEngine_test_getInputMethodEngine_001 unSubscriberCallback failed: " + JSON.stringify(err));
@@ -193,7 +194,7 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_getInputMethodEngine_001 subscriberCallback data: " + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
@@ -210,23 +211,23 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      async function publishCallback(err) {
+      let publishCallback = async (err: BusinessError) => {
         if (err) {
           console.info("====>inputMethodEngine_test_getInputMethodEngine_001 end<====" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_getInputMethodEngine_001"]
       }
-      var subscriber;
-      commoneventmanager.createSubscriber(commonEventSubscribeInfo).then(function (data) {
+      let subscriber: ESObject;
+      commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_getInputMethodEngine_001 subscribe data: " + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_getInputMethodEngine_001 subscribe finish====");
 
-        let commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 1
         }
         commoneventmanager.publish("test1", commonEventPublishData, publishCallback);
@@ -241,8 +242,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_getKeyboardDelegate_001', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_getKeyboardDelegate_001', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_getKeyboardDelegate_001 unSubscriberCallback start");
         if (err) {
           console.error("====>inputMethodEngine_test_getKeyboardDelegate_001 unSubscriberCallback failed: " + JSON.stringify(err));
@@ -251,7 +253,7 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_getKeyboardDelegate_001 subscriberCallback data: " + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
@@ -268,23 +270,23 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      async function publishCallback(err) {
+      let publishCallback = async (err: BusinessError) => {
         if (err) {
           console.info("====>inputMethodEngine_test_getKeyboardDelegate_001 end<====" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_getKeyboardDelegate_001"]
       }
-      var subscriber;
-      commoneventmanager.createSubscriber(commonEventSubscribeInfo).then(function (data) {
+      let subscriber: ESObject;
+      commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_getKeyboardDelegate_001 subscribe data: " + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_getKeyboardDelegate_001 subscribe finish====");
 
-        let commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 2
         }
         commoneventmanager.publish("test1", commonEventPublishData, publishCallback);
@@ -299,9 +301,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_028', 0, async function (done) {
+    it('inputMethodEngine_test_028', 0, async (done: Function) => {
 
-      function unSubscriberCallback(err) {
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_028 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_028 unSubscriberCallback failed:" +
@@ -311,9 +313,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_028 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -329,24 +331,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_028 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_028 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_028"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_028 subscriber data:" + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_028 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 28
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -361,9 +363,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_029', 0, async function (done) {
+    it('inputMethodEngine_test_029', 0, async (done: Function) => {
 
-      function unSubscriberCallback(err) {
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_029 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_029 unSubscriberCallback failed:" +
@@ -373,9 +375,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_029 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -391,24 +393,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_029 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_029 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_029"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_029 subscriber data:" + JSON.stringify(data))
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_029 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 29
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -423,9 +425,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_030', 0, async function (done) {
+    it('inputMethodEngine_test_030', 0, async (done: Function) => {
 
-      function unSubscriberCallback(err) {
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_030 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_030 unSubscriberCallback failed:" +
@@ -435,9 +437,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_030 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -453,24 +455,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_030 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_030 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_030"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_030 subscriber data:" + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_030 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 30
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -485,8 +487,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_031', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_031', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_031 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_031 unSubscriberCallback failed:" +
@@ -496,9 +499,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_031 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -514,24 +517,24 @@ export default function inputMethodEngineJSUnit() {
         }, 1000)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_031 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_031 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_031"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_031 subscriber data:" + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_031 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 31
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -546,8 +549,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_032', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_032', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_032 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_032 unSubscriberCallback failed:" +
@@ -557,9 +561,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_032 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -575,24 +579,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_032 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_032 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_032"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_032 subscriber data:" + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_032 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 32
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -607,8 +611,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_033', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_033', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_033 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_033 unSubscriberCallback failed:" +
@@ -618,9 +623,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_033 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -636,24 +641,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_033 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_033 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_033"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_033 subscriber data:" + JSON.stringify(data))
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_033 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 33
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -668,8 +673,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_034', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_034', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_034 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_034 unSubscriberCallback failed:" +
@@ -679,9 +685,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_034 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -697,24 +703,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_034 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_034 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_034"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_034 subscriber data:" + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_034 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 34
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -729,9 +735,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_035', 0, async function (done) {
+    it('inputMethodEngine_test_035', 0, async (done: Function) => {
 
-      function unSubscriberCallback(err) {
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_035 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_035 unSubscriberCallback failed:" +
@@ -741,9 +747,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_035 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -759,24 +765,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_035 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_035 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_035"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_035 subscriber data:" + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_035 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 35
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -791,9 +797,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_036', 0, async function (done) {
+    it('inputMethodEngine_test_036', 0, async (done: Function) => {
 
-      function unSubscriberCallback(err) {
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_036 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_036 unSubscriberCallback failed:" +
@@ -803,9 +809,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_036 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -821,24 +827,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_036 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_036 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_036"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_036 subscriber data:" + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_036 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 36
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -853,9 +859,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_037', 0, async function (done) {
+    it('inputMethodEngine_test_037', 0, async (done: Function) => {
 
-      function unSubscriberCallback(err) {
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_037 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_037 unSubscriberCallback failed:" +
@@ -865,9 +871,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_037 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -883,24 +889,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_037 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_037 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_037"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_037 subscriber data:" + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_037 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 37
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -915,9 +921,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_038', 0, async function (done) {
+    it('inputMethodEngine_test_038', 0, async (done: Function) => {
 
-      function unSubscriberCallback(err) {
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_038 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_038 unSubscriberCallback failed:" +
@@ -927,9 +933,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_038 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -945,24 +951,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_038 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_038 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_038"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_038 subscriber data:" + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_038 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 38
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -977,9 +983,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_039', 0, async function (done) {
+    it('inputMethodEngine_test_039', 0, async (done: Function) => {
 
-      function unSubscriberCallback(err) {
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_039 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_039 unSubscriberCallback failed:" +
@@ -989,9 +995,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_039 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -1007,24 +1013,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_039 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_039 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_039"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_039 subscriber data:" + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_039 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 39
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -1039,9 +1045,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_040', 0, async function (done) {
+    it('inputMethodEngine_test_040', 0, async (done: Function) => {
 
-      function unSubscriberCallback(err) {
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_040 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_040 unSubscriberCallback failed:" +
@@ -1051,9 +1057,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_040 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -1069,24 +1075,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_040 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_040 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_040"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_040 subscriber data:" + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_040 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 40
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -1101,9 +1107,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_041', 0, async function (done) {
+    it('inputMethodEngine_test_041', 0, async (done: Function) => {
 
-      function unSubscriberCallback(err) {
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_041 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_041 unSubscriberCallback failed:" +
@@ -1113,9 +1119,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_041 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -1131,24 +1137,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_041 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_041 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_041"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_041 subscriber data:" + JSON.stringify(data))
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_041 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 41
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -1163,9 +1169,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_042', 0, async function (done) {
+    it('inputMethodEngine_test_042', 0, async (done: Function) => {
 
-      function unSubscriberCallback(err) {
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_042 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_042 unSubscriberCallback failed:" +
@@ -1175,9 +1181,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_042 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -1193,24 +1199,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_042 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_042 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_042"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_042 subscriber data:" + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_042 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 42
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -1225,8 +1231,9 @@ export default function inputMethodEngineJSUnit() {
      * @tc.type    Function
      * @tc.level   Level2
      */
-    it('inputMethodEngine_test_043', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_043', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_043 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_043 unSubscriberCallback failed:" +
@@ -1236,9 +1243,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_043 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -1254,24 +1261,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_043 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_043 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_043"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_043 subscriber data:" + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_043 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 43
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -1286,8 +1293,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_049', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_049', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_049 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_049 unSubscriberCallback failed:" +
@@ -1297,9 +1305,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_049 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -1315,24 +1323,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_049 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_049 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_049"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_049 subscriber data:" + JSON.stringify(data))
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_049 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 49
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -1347,8 +1355,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_050', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_050', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_050 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_050 unSubscriberCallback failed:" +
@@ -1358,9 +1367,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_050 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -1376,24 +1385,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_050 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_050 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_050"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_050 subscriber data:" + JSON.stringify(data));
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_050 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 50
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -1408,8 +1417,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_071', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_071', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_071 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_071 unSubscriberCallback failed:" +
@@ -1419,9 +1429,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_071 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -1437,24 +1447,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_071 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_071 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_071"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_071 subscriber data:" + JSON.stringify(data))
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_071 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 71
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -1469,8 +1479,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_072', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_072', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_072 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_072 unSubscriberCallback failed:" +
@@ -1480,9 +1491,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_072 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -1498,29 +1509,29 @@ export default function inputMethodEngineJSUnit() {
         }, 1000)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_072 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_072 publishCallback failed:" + JSON.stringify(err));
         } else {
-          let t = setTimeout(()=>{
+          let t = setTimeout(() => {
             runCmd();
             clearTimeout(t)
           }, 100)
         }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_072"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_072 subscriber data:" + JSON.stringify(data))
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_072 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 72
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -1535,8 +1546,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_073', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_073', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_073 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_073 unSubscriberCallback failed:" +
@@ -1546,9 +1558,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_073 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -1564,33 +1576,33 @@ export default function inputMethodEngineJSUnit() {
         }, 2000)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_073 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_073 publishCallback failed:" + JSON.stringify(err));
         } else {
-          let t = setTimeout(()=>{
+          let t = setTimeout(() => {
             runCmd();
             clearTimeout(t);
           }, 100)
           let t1 = setTimeout(async () => {
             await driver.triggerKey(2000)
             clearTimeout(t1);
-          },300)
+          }, 300)
         }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_073"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_073 subscriber data:" + JSON.stringify(data))
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_073 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 73
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -1605,8 +1617,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_074', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_074', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_074 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_074 unSubscriberCallback failed:" +
@@ -1616,9 +1629,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_074 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -1634,7 +1647,7 @@ export default function inputMethodEngineJSUnit() {
         }, 1000)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_074 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_074 publishCallback failed:" + JSON.stringify(err));
@@ -1643,17 +1656,17 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_074"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_074 subscriber data:" + JSON.stringify(data))
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_074 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 74
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -1668,8 +1681,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_076', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_076', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_076 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_076 unSubscriberCallback failed:" +
@@ -1679,9 +1693,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_076 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -1697,29 +1711,29 @@ export default function inputMethodEngineJSUnit() {
         }, 1000)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_076 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_076 publishCallback failed:" + JSON.stringify(err));
-        }  else {
-          let t = setTimeout(()=>{
+        } else {
+          let t = setTimeout(() => {
             runCmd();
             clearTimeout(t)
           }, 100)
         }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_076"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_076 subscriber data:" + JSON.stringify(data))
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_076 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 76
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -1734,8 +1748,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('inputMethodEngine_test_077', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('inputMethodEngine_test_077', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_077 unSubscriberCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_077 unSubscriberCallback failed:" +
@@ -1745,9 +1760,9 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>inputMethodEngine_test_077 subscriberCallback data:"
-        + JSON.stringify(data));
+          + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
         let t = setTimeout(() => {
           try {
@@ -1763,24 +1778,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>inputMethodEngine_test_077 publishCallback start");
         if (err) {
           console.info("====>inputMethodEngine_test_077 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["inputMethodEngine_test_077"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>inputMethodEngine_test_077 subscriber data:" + JSON.stringify(data))
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>inputMethodEngine_test_077 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 77
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -1795,8 +1810,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('Sub_InputMethod_IME_VisualInput_0500', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('Sub_InputMethod_IME_VisualInput_0500', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>Sub_InputMethod_IME_VisualInput_0500 unSubscriberCallback start");
         if (err) {
           console.info("====>Sub_InputMethod_IME_VisualInput_0500 unSubscriberCallback failed:" +
@@ -1807,11 +1823,11 @@ export default function inputMethodEngineJSUnit() {
 
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>Sub_InputMethod_IME_VisualInput_0500 subscriberCallback data:"
           + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
-        let t = setTimeout(async() => {
+        let t = setTimeout(async () => {
           try {
             expect(data.data).assertEqual("SUCCESS");
             console.info("====>Sub_InputMethod_IME_VisualInput_0500 end");
@@ -1825,23 +1841,23 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      async function publishCallback(err) {
+      let publishCallback = async (err: BusinessError) => {
         console.info("====>Sub_InputMethod_IME_VisualInput_0500 publishCallback start");
         if (err) {
           console.info("====>Sub_InputMethod_IME_VisualInput_0500 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["Sub_InputMethod_IME_VisualInput_0500"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>Sub_InputMethod_IME_VisualInput_0500 subscriber data:" + JSON.stringify(data))
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>Sub_InputMethod_IME_VisualInput_0500 subscriber finish");
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 78
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
@@ -1856,8 +1872,9 @@ export default function inputMethodEngineJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('Sub_InputMethod_IME_VisualInput_0600', 0, async function (done) {
-      function unSubscriberCallback(err) {
+    it('Sub_InputMethod_IME_VisualInput_0600', 0, async (done: Function) => {
+
+      let unSubscriberCallback = (err: BusinessError) => {
         console.info("====>Sub_InputMethod_IME_VisualInput_0600 unSubscriberCallback start");
         if (err) {
           console.info("====>Sub_InputMethod_IME_VisualInput_0600 unSubscriberCallback failed:" +
@@ -1867,7 +1884,7 @@ export default function inputMethodEngineJSUnit() {
         }
       }
 
-      function subscriberCallback(err, data) {
+      let subscriberCallback = (err: BusinessError, data: commoneventmanager.CommonEventData) => {
         console.info("====>Sub_InputMethod_IME_VisualInput_0600 subscriberCallback data:"
           + JSON.stringify(data));
         commoneventmanager.unsubscribe(subscriber, unSubscriberCallback);
@@ -1885,24 +1902,24 @@ export default function inputMethodEngineJSUnit() {
         }, 500)
       }
 
-      function publishCallback(err) {
+      let publishCallback = (err: BusinessError) => {
         console.info("====>Sub_InputMethod_IME_VisualInput_0600 publishCallback start");
         if (err) {
           console.info("====>Sub_InputMethod_IME_VisualInput_0600 publishCallback failed:" + JSON.stringify(err));
-        } 
+        }
       }
 
-      var commonEventSubscribeInfo = {
+      let commonEventSubscribeInfo: commoneventmanager.CommonEventSubscribeInfo = {
         events: ["Sub_InputMethod_IME_VisualInput_0600"]
       }
-      var subscriber;
+      let subscriber: ESObject;
       commoneventmanager.createSubscriber(commonEventSubscribeInfo).then((data) => {
         subscriber = data;
         console.info("====>Sub_InputMethod_IME_VisualInput_0600 subscriber data:" + JSON.stringify(data))
         commoneventmanager.subscribe(subscriber, subscriberCallback);
         console.info("====>Sub_InputMethod_IME_VisualInput_0600 subscriber finish");
 
-        var commonEventPublishData = {
+        let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
           code: 79
         }
         commoneventmanager.publish('test1', commonEventPublishData, publishCallback);
