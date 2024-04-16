@@ -19,11 +19,11 @@ import subtype from '@ohos.InputMethodSubtype';
 import inputMethod from '@ohos.inputMethod';
 import display from '@ohos.display';
 import deviceinfo from '@ohos.deviceInfo';
-import { Driver, ON, MatchPattern, Component } from '@ohos.UiTest'
+import { Driver, ON, MatchPattern, Component, UiWindow, DisplayRotation } from '@ohos.UiTest'
 import { BusinessError } from '@ohos.base'
 
 function sleep(timeout: number) {
-  return new Promise(resolve => {
+  return new Promise<void>(resolve => {
     const st = setTimeout(() => {
       resolve(null);
       clearTimeout(st);
@@ -33,36 +33,130 @@ function sleep(timeout: number) {
 
 export default function inputMethodDrawnControlJSUnit() {
   describe('inputMethodDrawnControlTest', () => {
+    let driver = Driver.create();
+    let textArea: Component;
+    let rectInfo;
     beforeAll(async (done: Function) => {
-      console.info('====> inputMethod_enable deviceinfo.deviceType:' + JSON.stringify(deviceinfo.deviceType));
-      console.info('====>beforeAll inputMethodSwitch into inputMethod_switch')
+      console.info('====>beforeAll inputMethod_enable start!');
       try {
-        let driver: Driver = Driver.create();
-        await driver.delayMs(500);
+        if (deviceinfo.deviceType != 'default') {
+          let displayClass: display.Display;
+          displayClass = display.getDefaultDisplaySync();
+          console.info('====>displayClass Info: ' + JSON.stringify(displayClass));
+          let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+          let cmd = 'aa start -a com.huawei.hmos.settings.MainAbility -b com.huawei.hmos.settings';
+          abilityDelegator.executeShellCommand(cmd);
+          await sleep(2000)
+          console.info(`====>inputMethod_enable deviceinfo.deviceType: ${deviceinfo.deviceType}`);
+          let settingList = await driver.waitForComponent(ON.type('List').isBefore(ON.text('蓝牙')), 3000);
+          console.info(`====>inputMethod_enable settingList: ${settingList}`);
+          if (deviceinfo.deviceType === '2in1') {
+            console.info('====> 2in1');
+            let systemAndUpdate: Component = await settingList.scrollSearch(ON.text('系统和更新', MatchPattern.CONTAINS));
+            console.info(`====>inputMethod_enable systemAndUpdate: ${systemAndUpdate}`);
+            await systemAndUpdate.click();
+          } else if (deviceinfo.deviceType === 'tablet') {
+            console.info('====> tablet');
+            // 未锁定情况下,旋转为竖屏
+            await driver.setDisplayRotation(DisplayRotation.ROTATION_90);
+            await settingList.scrollToBottom();
+            let common_text: Component = await driver.waitForComponent(ON.text('通用', MatchPattern.CONTAINS), 3000);
+            console.info(`====>inputMethod_enable common_text: ${common_text}`);
+            // 适配横屏下模拟人工滑动
+            if (common_text == null) {
+              console.info(`====>start swipe`);
+              if (displayClass.rotation == 0) {
+                await driver.swipe(displayClass.width * 0.2, displayClass.height * 0.9,
+                  displayClass.width * 0.2, displayClass.height * 0.5, 10000);
+              } else {
+                await driver.swipe(displayClass.height * 0.2, displayClass.width * 0.9,
+                  displayClass.height * 0.2, displayClass.width
+                    * 0.5, 10000);
+              }
+              common_text = await driver.waitForComponent(ON.text('通用', MatchPattern.CONTAINS), 3000);
+              console.info(`====>inputMethod_enable swipe common_text: ${common_text}`);
+            }
+            await common_text.click();
+          } else {
+            console.info('====> other');
+            await driver.swipe(600, 2500, 600, 1000, 15000);
+            let common_text: Component = await driver.waitForComponent(ON.text('通用', MatchPattern.CONTAINS), 3000);
+            console.info(`====>inputMethod_enable common_text: ${common_text}`);
+            await common_text.click();
+          }
+          await driver.delayMs(500);
+          let inputMethod_Setting: Component = await driver.waitForComponent(ON.text('输入法', MatchPattern.CONTAINS), 3000);
+          console.info(`====>inputMethod_enable inputMethod_Setting: ${inputMethod_Setting}`);
+          await inputMethod_Setting.click();
+          await driver.delayMs(500);
+          let checkList: Array<Component> = await driver.findComponents(ON.type('Checkbox'));
+          console.info(`====>inputMethod_enable checkList: ${checkList}`);
+          for (let index = 0; index < checkList.length; index++) {
+            let checkStatus = await checkList[index].isChecked();
+            console.info(`====>inputMethod_enable checkStatus: ${checkStatus}`);
+            if (JSON.stringify(checkStatus) === 'false') {
+              await checkList[index].click();
+              await driver.delayMs(500);
+            }
+          }
+          if (deviceinfo.deviceType === '2in1') {
+            console.info('====> 2in1 start close settings window');
+            let window: UiWindow = await driver.findWindow({
+              bundleName: "com.huawei.hmos.settings"
+            });
+            console.info(`====>inputMethod_enable window: ${window}`);
+            await window.close();
+          } else {
+            console.info('====> other start close settings window and start test window');
+            abilityDelegator.executeShellCommand("aa force-stop com.huawei.hmos.settings");
+            abilityDelegator.executeShellCommand("aa start -d 0 -a com.acts.inputmethoddrawncontrol.test.MainAbility -b com.acts.inputmethoddrawncontrol.test");
+          }
+          await driver.delayMs(5000);
+        }
+
         let inputMethodSetting: inputMethod.InputMethodSetting = inputMethod.getSetting();
         let result: boolean = await inputMethodSetting.showOptionalInputMethods();
-        console.info('====>beforeAll inputMethodSwitch else result: ' + JSON.stringify(result));
-        let list = await driver.waitForComponent(ON.type('List'), 1000);
-        console.info('====>beforeAll inputMethodSwitch else list: ' + JSON.stringify(list));
-        if (JSON.stringify(list) == 'null') {
+        console.info('====>beforeAll inputMethodSwitch showOptionalInputMethods result: ' + JSON.stringify(result));
+        let inputMethodList = await driver.waitForComponent(ON.type('List'), 3000);
+        console.info('====>beforeAll inputMethodSwitch inputMethodList: ' + JSON.stringify(inputMethodList));
+        if (JSON.stringify(inputMethodList) === 'null') {
           await driver.delayMs(200);
-          list = await driver.findComponent(ON.type('List'));
-          console.info('====>beforeAll inputMethodSwitch second list: ' + JSON.stringify(list));
+          inputMethodList = await driver.findComponent(ON.type('List'));
+          console.info('====>beforeAll inputMethodSwitch inputMethodList second: ' + JSON.stringify(inputMethodList));
         }
-        await driver.delayMs(500);
-        let inputMethod_name: Component = await list.scrollSearch(ON.text('drawn', MatchPattern.CONTAINS));
-        console.info('====>beforeAll inputMethodSwitch else waitForComponent: ' + JSON.stringify(inputMethod_name));
-        if (JSON.stringify(inputMethod_name) == 'null') {
-          await driver.delayMs(200);
-          inputMethod_name = await list.scrollSearch(ON.text('drawn', MatchPattern.CONTAINS));
+        await driver.delayMs(1000);
+        if (deviceinfo.deviceType === '2in1') {
+          let inputMethod_name: Component = await driver.waitForComponent(ON.text('drawn', MatchPattern.CONTAINS), 2000);
+          await inputMethod_name.click();
+          await driver.delayMs(500);
+        } else {
+          let inputMethod_name: Component = await inputMethodList.scrollSearch(ON.text('drawn', MatchPattern.CONTAINS));
+          console.info('====>beforeAll inputMethodSwitch inputMethod_name: ' + JSON.stringify(inputMethod_name));
+          if (JSON.stringify(inputMethod_name) === 'null') {
+            await driver.delayMs(200);
+            inputMethod_name = await inputMethodList.scrollSearch(ON.text('drawn', MatchPattern.CONTAINS));
+            console.info('====>beforeAll inputMethodSwitch inputMethod_name second: ' + JSON.stringify(inputMethod_name));
+          }
+          await inputMethod_name.click();
         }
-        await inputMethod_name.click();
-        console.info('====>beforeAll inputMethodSwitch else done')
-        await driver.delayMs(2000);
-        console.info(`====>runCmd else attach`);
+        console.info('====>beforeAll inputMethodSwitch done');
+        await driver.delayMs(1000);
+        if (deviceinfo.deviceType === '2in1') {
+          let testWindow: UiWindow = await driver.findWindow({
+            bundleName: "com.acts.inputmethodengine.test"
+          });
+          console.info('====>beforeAll inputMethodSwitch switch window: ' + JSON.stringify(testWindow));
+          await testWindow.focus();
+          await driver.delayMs(1000);
+        }
+        textArea = await driver.findComponent(ON.type('TextArea'));
+        rectInfo = await textArea.getBounds();
+        await driver.delayMs(1000);
+        await runCmd();
+        await driver.delayMs(1000);
         done();
       } catch (err) {
-        console.info('====>beforeAll inputMethodSwitch else err:' + JSON.stringify(err));
+        console.info('====>beforeAll throw err:' + JSON.stringify(err.message))
         done();
       }
     })
@@ -86,6 +180,13 @@ export default function inputMethodDrawnControlJSUnit() {
     );
 
 
+    let runCmd = async () => {
+      let cursor_x: number = rectInfo.left + Math.floor(Math.random() * (rectInfo.right - rectInfo.left) * 0.9);
+      let cursor_y: number = rectInfo.top + Math.floor(Math.random() * (rectInfo.bottom - rectInfo.top) * 0.9);
+      console.info(`====>start click x: ${cursor_x}  y: ${cursor_y}`);
+      await driver.click(cursor_x, cursor_y);
+    }
+
     /*
     * @tc.number  SUB_Misc_inputMethod_onHandleExtendAction_0010
     * @tc.name   SUB_Misc_inputMethod_onHandleExtendAction_0010
@@ -102,7 +203,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_inputMethod_onHandleExtendAction_0010 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_inputMethod_onHandleExtendAction_0010 publishCallback failed:" + JSON.stringify(err));
@@ -148,7 +249,7 @@ export default function inputMethodDrawnControlJSUnit() {
       let flag = true;
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_inputMethod_offHandleExtendAction_0020 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_inputMethod_offHandleExtendAction_0020 publishCallback failed:" + JSON.stringify(err));
@@ -205,7 +306,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_inputMethod_onSendFunctionKey_0030 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_inputMethod_onSendFunctionKey_0030 publishCallback failed:" + JSON.stringify(err));
@@ -249,7 +350,7 @@ export default function inputMethodDrawnControlJSUnit() {
       let flag = true;
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_inputMethod_offSendFunctionKey_0040 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_inputMethod_offSendFunctionKey_0040 publishCallback failed:" + JSON.stringify(err));
@@ -329,7 +430,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_InputMethod_onGetLeftTextOfCursor_0050 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_InputMethod_onGetLeftTextOfCursor_0050 publishCallback failed:" + JSON.stringify(err));
@@ -433,7 +534,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_InputMethod_offGetLeftTextOfCursor_0070 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_InputMethod_offGetLeftTextOfCursor_0070 publishCallback failed:" + JSON.stringify(err));
@@ -510,7 +611,7 @@ export default function inputMethodDrawnControlJSUnit() {
         if (err) {
           console.info("====>SUB_Misc_InputMethod_onGetRightTextOfCursor_0080 publishCallback failed:" + JSON.stringify(err));
         } else {
-          await sleep(10);
+          await sleep(200);
           const ATTRIBUTE: inputMethod.TextConfig = {
             inputAttribute: {
               textInputType: 0, enterKeyType: 0
@@ -610,7 +711,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_InputMethod_offGetRightTextOfCursor_0100 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_InputMethod_offGetRightTextOfCursor_0100 publishCallback failed:" + JSON.stringify(err));
@@ -683,7 +784,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_InputMethod_onGetTextIndexAtCursor_0110 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_InputMethod_onGetTextIndexAtCursor_0110 publishCallback failed:" + JSON.stringify(err));
@@ -785,7 +886,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_InputMethod_offGetTextIndexAtCursor_0130 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_InputMethod_offGetTextIndexAtCursor_0130 publishCallback failed:" + JSON.stringify(err));
@@ -872,7 +973,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_inputMethod_onEditorAttributeChanged_0140 onEditorAttributeChanged start");
         if (err) {
           console.info("====>SUB_Misc_inputMethod_onEditorAttributeChanged_0140 publishCallback failed:" + JSON.stringify(err));
@@ -880,7 +981,7 @@ export default function inputMethodDrawnControlJSUnit() {
           try {
             await inputMethod.getController().attach(false, textConfig);
             console.info("====>SUB_Misc_inputMethod_onEditorAttributeChanged_0140 onEditorAttributeChanged attach");
-            await sleep(10);
+            await sleep(200);
             await inputMethod.getController().updateAttribute(inputAttribute1);
             console.info("====>SUB_Misc_inputMethod_onEditorAttributeChanged_0140 onEditorAttributeChanged updateAttribute");
           } catch (err) {
@@ -979,7 +1080,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_inputMethod_offEditorAttributeChanged_0160 onEditorAttributeChanged start");
         if (err) {
           console.info("====>SUB_Misc_inputMethod_offEditorAttributeChanged_0160 publishCallback failed:" + JSON.stringify(err));
@@ -1028,7 +1129,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_inputMethod_onInsertText_0170 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_inputMethod_onInsertText_0170 publishCallback failed:" + JSON.stringify(err));
@@ -1078,7 +1179,7 @@ export default function inputMethodDrawnControlJSUnit() {
       let flag = true;
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_inputMethod_offInsertText_0180 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_inputMethod_offInsertText_0180 publishCallback failed:" + JSON.stringify(err));
@@ -1136,7 +1237,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_inputMethod_onDeleteLeft_0190 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_inputMethod_onDeleteLeft_0190 publishCallback failed:" + JSON.stringify(err));
@@ -1185,7 +1286,7 @@ export default function inputMethodDrawnControlJSUnit() {
       let flag = true;
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_inputMethod_offDeleteLeft_0200 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_inputMethod_offDeleteLeft_0200 publishCallback failed:" + JSON.stringify(err));
@@ -1243,7 +1344,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_inputMethod_onDeleteRight_0210 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_inputMethod_onDeleteRight_0210 publishCallback failed:" + JSON.stringify(err));
@@ -1293,7 +1394,7 @@ export default function inputMethodDrawnControlJSUnit() {
       let flag = true;
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_inputMethod_offDeleteRight_0220 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_inputMethod_offDeleteRight_0220 publishCallback failed:" + JSON.stringify(err));
@@ -1431,7 +1532,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_inputMethod_onMoveCursor_0250 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_inputMethod_onMoveCursor_0250 publishCallback failed:" + JSON.stringify(err));
@@ -1481,7 +1582,7 @@ export default function inputMethodDrawnControlJSUnit() {
       let flag = true;
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info("====>SUB_Misc_inputMethod_offMoveCursor_0260 publishCallback start");
         if (err) {
           console.info("====>SUB_Misc_inputMethod_offMoveCursor_0260 publishCallback failed:" + JSON.stringify(err));
@@ -1540,7 +1641,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_insertText_Async_0100 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_insertText_Async_0100 publishCallback failed:' + JSON.stringify(err));
@@ -1591,7 +1692,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_insertText_Async_0200 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_insertText_Async_0200 publishCallback failed:' + JSON.stringify(err));
@@ -1754,7 +1855,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_insertText_Async_0900 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_insertText_Async_0900 publishCallback failed:' + JSON.stringify(err));
@@ -1834,7 +1935,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_deleteLeft_Async_0100 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_deleteLeft_Async_0100 publishCallback failed:' + JSON.stringify(err));
@@ -1885,7 +1986,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_deleteLeft_Async_0200 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_deleteLeft_Async_0200 publishCallback failed:' + JSON.stringify(err));
@@ -1983,7 +2084,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_deleteLeft_Async_0700 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_deleteLeft_Async_0700 publishCallback failed:' + JSON.stringify(err));
@@ -2063,7 +2164,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_deleteRight_Async_0100 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_deleteRight_Async_0100 publishCallback failed:' + JSON.stringify(err));
@@ -2114,7 +2215,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_deleteRight_Async_0200 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_deleteRight_Async_0200 publishCallback failed:' + JSON.stringify(err));
@@ -2212,7 +2313,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_deleteRight_Async_0700 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_deleteRight_Async_0700 publishCallback failed:' + JSON.stringify(err));
@@ -2415,7 +2516,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_sendKeyboardStatus_Async_0700 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_sendKeyboardStatus_Async_0700 publishCallback failed:' + JSON.stringify(err));
@@ -2497,7 +2598,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_sendFunctionKey_Async_0100 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_sendFunctionKey_Async_0100 publishCallback failed:' + JSON.stringify(err));
@@ -2548,7 +2649,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_sendFunctionKey_Async_0200 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_sendFunctionKey_Async_0200 publishCallback failed:' + JSON.stringify(err));
@@ -2646,7 +2747,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_sendFunctionKey_Async_0700 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_sendFunctionKey_Async_0700 publishCallback failed:' + JSON.stringify(err));
@@ -2726,7 +2827,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_moveCursor_Async_0100 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_moveCursor_Async_0100 publishCallback failed:' + JSON.stringify(err));
@@ -2777,7 +2878,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_moveCursor_Async_0200 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_moveCursor_Async_0200 publishCallback failed:' + JSON.stringify(err));
@@ -2875,7 +2976,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_moveCursor_Async_0700 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_moveCursor_Async_0700 publishCallback failed:' + JSON.stringify(err));
@@ -2955,7 +3056,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_handleExtendAction_Async_0100 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_handleExtendAction_Async_0100 publishCallback failed:' + JSON.stringify(err));
@@ -3006,7 +3107,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_handleExtendAction_Async_0200 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_handleExtendAction_Async_0200 publishCallback failed:' + JSON.stringify(err));
@@ -3104,7 +3205,7 @@ export default function inputMethodDrawnControlJSUnit() {
       }
 
       let publishCallback = async (err: BusinessError) => {
-        await sleep(10);
+        await sleep(200);
         console.info('====>SUB_Misc_inputMethod_on_off_handleExtendAction_Async_0700 publishCallback start');
         if (err) {
           console.info('====>SUB_Misc_inputMethod_on_off_handleExtendAction_Async_0700 publishCallback failed:' + JSON.stringify(err));
@@ -3212,18 +3313,25 @@ export default function inputMethodDrawnControlJSUnit() {
     * @tc.type    Function
     * @tc.level   Level2
     */
-    it('SUB_inputMethod_IMF_InputMethodSettings_1000', 0, async function (done) {
-      const ATTRIBUTE:any = {inputAttribute:{textInputType:0,enterKeyType:0}}
-      async function publishCallback(err){
-        await sleep(10);
+    it('SUB_inputMethod_IMF_InputMethodSettings_1000', 0, async (done: Function) => {
+      const ATTRIBUTE: inputMethod.TextConfig = {
+        inputAttribute: {
+          textInputType: 0, enterKeyType: 0
+        }
+      }
+      let commonEventPublishData: commoneventmanager.CommonEventPublishData = {
+        code: 450
+      }
+      commoneventmanager.publish('test', commonEventPublishData, async (err) => {
+        await sleep(200);
         console.info("====>SUB_inputMethod_IMF_InputMethodSettings_1000 publishCallback start");
-        if (err){
+        if (err) {
           console.info("====>SUB_inputMethod_IMF_InputMethodSettings_1000 publishCallback failed:" + JSON.stringify(err));
         } else {
           try {
             await inputMethod.getController().attach(true, ATTRIBUTE);
             console.info("====>SUB_inputMethod_IMF_InputMethodSettings_1000 onDeleteLeft start");
-            inputMethod.getController().on("deleteLeft",async (num) => {
+            inputMethod.getController().on("deleteLeft", async (num) => {
               try {
                 console.info("====>SUB_inputMethod_IMF_InputMethodSettings_1000 onDeleteLeft success: " + num);
                 inputMethod.getController().off("deleteLeft");
@@ -3239,13 +3347,7 @@ export default function inputMethodDrawnControlJSUnit() {
             console.info("====>SUB_inputMethod_IMF_InputMethodSettings_1000 onDeleteLeft catch err: " + JSON.stringify(err));
           }
         }
-      }
-
-      var commonEventPublishData = {
-        code:450
-      }
-      commoneventmanager.publish('test', commonEventPublishData, publishCallback);
+      });
     });
-
   })
 }

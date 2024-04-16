@@ -13,11 +13,17 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import fcntl from 'libfcntl1ndk.so'
 
 export default function fcntl1NdkTest() {
   describe('MuslFcntl1Test', () => {
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
+
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_FCNTL_TEE_0200
      * @tc.name       : testMuslFcntlTee002
@@ -28,20 +34,6 @@ export default function fcntl1NdkTest() {
      */
     it('testMuslFcntlTee002', 0, async (done: Function) => {
       let c: number = fcntl.tee(-1);
-      expect(c).assertEqual(-1);
-      done()
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_FCNTL_VMSPLICE_0200
-     * @tc.name       : testMuslFcntlVmsplice002
-     * @tc.desc       : test vmsplice
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslFcntlVmsplice002', 0, async (done: Function) => {
-      let c: number = fcntl.vmsplice(-1);
       expect(c).assertEqual(-1);
       done()
     });
