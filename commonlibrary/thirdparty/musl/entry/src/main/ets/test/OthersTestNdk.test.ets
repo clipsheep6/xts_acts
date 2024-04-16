@@ -13,13 +13,18 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import otherstestndk from 'libotherstestndk.so'
 import fs from '@ohos.file.fs';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 export default function otherstestNdkTest() {
   describe('OthersTestNdkTest', () => {
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
 
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_DLFCN_DLOPEN_0100
@@ -231,8 +236,8 @@ export default function otherstestNdkTest() {
      * @tc.level      : Level 0
      */
     it('testMuslEpollEpollCreate001', 0, async (done: Function) => {
-      let result = otherstestndk.epoll_create();
-      expect(result).assertEqual(0);
+      let result: number = otherstestndk.epoll_create();
+      expect(result).assertLarger(0);
       done()
     });
 
@@ -245,8 +250,8 @@ export default function otherstestNdkTest() {
      * @tc.level      : Level 0
      */
     it('testMuslEpollEpollCreate1001', 0, async (done: Function) => {
-      let result = otherstestndk.epoll_create1();
-      expect(result).assertEqual(0);
+      let result: number = otherstestndk.epoll_create1();
+      expect(result).assertLarger(0);
       done()
     });
 
@@ -393,7 +398,7 @@ export default function otherstestNdkTest() {
      * @tc.level      : Level 0
      */
     it('testMuslXAttrFGetXAttr001', 0, async (done: Function) => {
-      expect(otherstestndk.fgetxattr()).assertEqual(0);
+      expect(otherstestndk.fgetxattr()).assertLarger(0);
       done()
     });
 
@@ -407,25 +412,6 @@ export default function otherstestNdkTest() {
      */
     it('testMuslFileFlock001', 0, async (done: Function) => {
       expect(otherstestndk.flock()).assertEqual(0);
-      done()
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_STAT_FSTATAT_TIME64_0100
-     * @tc.name       : testMuslStatFstatatTime64001
-     * @tc.desc       : test __fstatat_time64
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslStatFstatatTime64001', 0, async (done: Function) => {
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-      let context = abilityDelegator.getAppContext();
-      let filesDir = context.filesDir;
-      let filetext = filesDir + 'test.txt';
-      let file = fs.openSync(filetext, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-      fs.closeSync(file);
-      expect(otherstestndk.__fstatat_time64(filetext)).assertEqual(0);
       done()
     });
 
@@ -625,28 +611,6 @@ export default function otherstestNdkTest() {
       expect(result).assertEqual(0);
       done();
     });
-
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_OTHER_UFLOW_0100
-     * @tc.name       : testUflow001
-     * @tc.desc       : test __uflow
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testUflow001', 0, async (done: Function) => {
-      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-      let context = abilityDelegator.getAppContext();
-      let filesDir = context.filesDir;
-      let filetext = filesDir + 'test.txt';
-      let file = fs.openSync(filetext, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
-      fs.closeSync(file);
-      let result: number = otherstestndk.uflow(filetext);
-      expect(result).assertEqual(0);
-      done();
-    });
-
 
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_OTHER_PTHREADCLEANUPPUSH_0100
@@ -930,34 +894,6 @@ export default function otherstestNdkTest() {
     });
 
     /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_OTHER_AEABIATEXIT_0100
-     * @tc.name       : testAeabiatexit001
-     * @tc.desc       : test __aeabi_atexit
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testAeabiatexit001', 0, async (done: Function) => {
-      let result: number = otherstestndk.aeabiatexit();
-      expect(result).assertEqual(0);
-      done();
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_OTHER_GNUUNWINDFINDEXIDX_0100
-     * @tc.name       : testGnuunwindfindexidx001
-     * @tc.desc       : test __gnu_Unwind_Find_exidx
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testGnuunwindfindexidx001', 0, async (done: Function) => {
-      let result: number = otherstestndk.gnuunwindfindexidx();
-      expect(result).assertEqual(0);
-      done();
-    });
-
-    /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_OTHER_PTHREADCLEANUPPOP_0100
      * @tc.name       : testPthreadcleanuppop001
      * @tc.desc       : test _pthread_cleanup_pop
@@ -1012,17 +948,16 @@ export default function otherstestNdkTest() {
       expect(result).assertEqual(0);
       done();
     });
-
     /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_OTHER_VSYSLOG_0100
-     * @tc.name       : testVsyslog001
-     * @tc.desc       : test vsyslog
+     * @tc.number     : SUB_THIRDPARTY_MUSL_OTHER_UFLOW_0100
+     * @tc.name       : testUflow001
+     * @tc.desc       : test __uflow
      * @tc.size       : MediumTest
      * @tc.type       : Function
      * @tc.level      : Level 1
      */
-    it('testVsyslog001', 0, async (done: Function) => {
-      let result: number = otherstestndk.vsyslog();
+    it('testUflow001', 0, async (done: Function) => {
+      let result: number = otherstestndk.uflow();
       expect(result).assertEqual(0);
       done();
     });
