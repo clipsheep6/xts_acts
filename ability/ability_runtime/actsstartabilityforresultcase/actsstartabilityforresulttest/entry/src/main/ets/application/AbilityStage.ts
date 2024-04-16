@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2024 Huawei Device Co., Ltd.
+ * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the 'License');
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -29,7 +29,7 @@ export default class MyAbilityStage extends AbilityStage {
     var abilityName = "";
     let AbilityLifecycleCallback = {
       onAbilityCreate(ability) {
-        globalThis.lifeCycle3+="onAbilityCreate"
+        globalThis.lifeCycle3 += "onAbilityCreate"
         abilityName = ability.context.abilityInfo.name;
         listKey.push(abilityName + " onAbilityCreate");
         hilog.info(0x0000, TEST_TAG, `AbilityLifecycleCallback ${abilityName} onAbilityCreate`);

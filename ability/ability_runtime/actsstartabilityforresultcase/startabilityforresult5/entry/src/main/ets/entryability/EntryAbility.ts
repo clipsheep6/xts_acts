@@ -1,5 +1,5 @@
-/*
- * Copyright (C) 2024 Huawei Device Co., Ltd.
+/**
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -43,7 +43,7 @@ export default class EntryAbility extends UIAbility {
       if (!err) {
         console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} "createSubscriber success " ${JSON.stringify(err)}`);
         this.subscriber = commonEventSubscriber;
-        CommonEventManager.subscribe(this.subscriber, (err, data) =>{
+        CommonEventManager.subscribe(this.subscriber, (err, data) => {
           if (err) {
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} "callback failed  " ${JSON.stringify(err)}`);
           } else {
@@ -63,14 +63,14 @@ export default class EntryAbility extends UIAbility {
     if (this.subscriber) {
       CommonEventManager.unsubscribe(this.subscriber);
     }
-    this.optionsData2 +="_onDestroy"
+    this.optionsData2 += "_onDestroy"
     let options = {
       code: 0, //公共事件的初始代码
       data: this.optionsData2, //公共事件的初始数据
       isOrdered: true   //有序公共事件
     }
 
-    CommonEventManager.publish("EVENT_SingletonAbility5_onDestroy",options, (err) => {
+    CommonEventManager.publish("EVENT_SingletonAbility5_onDestroy", options, (err) => {
       console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} publish EVENT_SingletonAbility4_onDestroy err ${JSON.stringify(err)}`);
     });
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
@@ -90,7 +90,7 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageDestroy(): void {
-    this.optionsData2 +="_onWindowStageDestroy"
+    this.optionsData2 += "_onWindowStageDestroy"
 
     // Main window is destroyed, release UI related resources
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageDestroy');
@@ -121,9 +121,9 @@ export default class EntryAbility extends UIAbility {
       console.error('publish failed, catch error' + JSON.stringify(err));
     }
 
-    setTimeout(()=>{
+    setTimeout(() => {
       this.startAbility()
-    },500)
+    }, 500)
 
   }
 
@@ -143,12 +143,12 @@ export default class EntryAbility extends UIAbility {
   }
 
   onBackground(): void {
-    this.optionsData2 +="_onBackground"
+    this.optionsData2 += "_onBackground"
 
     // Ability has back to background
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
-  terminateSelfWithResult(){
+  terminateSelfWithResult() {
     let terwant25: Want = {
       bundleName: 'com.acts.startabilityforresult5',
       abilityName: 'EntryAbility',

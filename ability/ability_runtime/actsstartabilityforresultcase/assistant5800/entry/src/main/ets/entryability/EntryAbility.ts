@@ -1,6 +1,6 @@
 
 /*
- * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Copyright (C) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -21,12 +21,12 @@ import Want from '@ohos.app.ability.Want';
 import window from '@ohos.window';
 import common from '@ohos.app.ability.common';
 import commonEventManager from '@ohos.commonEventManager';
-const TAG="assistant 5800:"
-const TEST_SUITE_NAME="assistant 5800:"
-const TEST_CASE_NAME="assistant 5800:"
+const TAG = "assistant 5800:"
+const TEST_SUITE_NAME = "assistant 5800:"
+const TEST_CASE_NAME = "assistant 5800:"
 
 export default class EntryAbility extends UIAbility {
-   subscriber;
+  subscriber;
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     globalThis.context = this.context
@@ -42,14 +42,14 @@ export default class EntryAbility extends UIAbility {
       if (!err) {
         console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} "createSubscriber success " ${JSON.stringify(err)}`);
         this.subscriber = commonEventSubscriber;
-        commonEventManager.subscribe(this.subscriber, (err, data) =>{
+        commonEventManager.subscribe(this.subscriber, (err, data) => {
           if (err) {
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} "callback failed  " ${JSON.stringify(err)}`);
           } else {
             console.info(`${TAG}`, `${TEST_SUITE_NAME}#${TEST_CASE_NAME} "callback success  " ${JSON.stringify(data)}`);
             if (data.event === "EVENT_TERMINATE_SELF_ABILITY5800") {
               that.terminateSelfWithResult()
-            }else {
+            } else {
               // that.startAbility()
             }
           }
@@ -59,7 +59,7 @@ export default class EntryAbility extends UIAbility {
       }
     });
   }
-  terminateSelfWithResult(){
+  terminateSelfWithResult() {
     let terwant25: Want = {
       bundleName: 'com.example.assistant5800',
       abilityName: 'EntryAbility',
