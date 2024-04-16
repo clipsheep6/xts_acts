@@ -33,7 +33,7 @@ export default class MainAbility extends Ability {
     // Main window is created, set main page for this ability
     console.info("ImExtAbility onWindowStageCreate");
     globalThis.abilityContext = this.context;
-    windowStage.loadContent("pages/index/index", (err, data) => {
+    windowStage.loadContent("MainAbility/pages/index/index", (err, data) => {
       if (err.code) {
         console.error('Failed to load the content. Cause:' + JSON.stringify(err));
         return;
