@@ -15,9 +15,9 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import { RenderNode, DrawContext } from "@ohos.arkui.node"
 import drawing from "@ohos.graphics.drawing"
-import text from "@ohos.graphics.text"
 import common2D from "@ohos.graphics.common2D"
 import image from "@ohos.multimedia.image"
+import text from "@ohos.graphics.text"
 import { UiDriver, BY, ON, PointerMatrix } from '@ohos.UiTest'
 import { BusinessError } from '@ohos.base';
 import buffer from '@ohos.buffer';
@@ -110,14 +110,14 @@ export default function graphicText(context, windowStage, abilityStorage) {
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0040
-     * @tc.name      : testParagraph_Layout_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.name      : testParagraph_layoutSync_Parameter
+     * @tc.desc      : To test Paragraph layoutSyncSync interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
      */
-    it('testLayout', 0, async function () {
-      let msg = "testLayout"
+    it('testlayoutSync', 0, async function () {
+      let msg = "testlayoutSync"
       console.info(msg + 'begin');
       let fontCollection = new text.FontCollection();
       let myTextStyle: text.TextStyle = {
@@ -141,14 +141,14 @@ export default function graphicText(context, windowStage, abilityStorage) {
       try {
           paragraph.layoutSync(100);
         } catch (err) {
-        console.info(msg + 'layout error cause: ' + JSON.stringify(err));
+        console.info(msg + 'layoutSync error cause: ' + JSON.stringify(err));
         expect().assertFail();
       }
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0050
      * @tc.name      : testParagraph_Paint_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph Paint interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -186,7 +186,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0060
      * @tc.name      : testParagraph_GetMaxWidth_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph GetMaxWidth interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -224,7 +224,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0070
      * @tc.name      : testParagraph_GetHeight_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph GetHeight interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -262,7 +262,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0080
      * @tc.name      : testParagraph_GetLongestLine_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph GetLongestLine interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -301,7 +301,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0090
      * @tc.name      : testParagraph_GetMinIntrinsicWidth_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph GetMinIntrinsicWidth interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -339,7 +339,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0100
      * @tc.name      : testParagraph_GetMaxIntrinsicWidth_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph GetMaxIntrinsicWidth interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -377,7 +377,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0110
      * @tc.name      : testParagraph_GetAlphabeticBaseline_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph GetAlphabeticBaseline interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -416,7 +416,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0120
      * @tc.name      : testParagraph_GetIdeographicBaseline_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph GetIdeographicBaseline interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -454,7 +454,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0130
      * @tc.name      : testParagraph_GetRectsForRange_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph GetRectsForRange interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -495,7 +495,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0140
      * @tc.name      : testParagraph_GetRectsForPlaceholders_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph GetRectsForPlaceholders interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -533,7 +533,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0150
      * @tc.name      : testParagraph_GetGlyphPositionAtCoordinate_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To To test Paragraph GetGlyphPositionAtCoordinate interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -571,7 +571,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0160
      * @tc.name      : testParagraph_GetWordBoundary_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph GetWordBoundary interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -609,7 +609,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0170
      * @tc.name      : testParagraph_GetLineCount_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph GetLineCount interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -647,7 +647,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0180
      * @tc.name      : testParagraph_GetLineHeight_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph GetLineHeight interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -685,7 +685,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0190
      * @tc.name      : testParagraph_GetLineWidth_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph GetLineWidth interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -721,9 +721,9 @@ export default function graphicText(context, windowStage, abilityStorage) {
       }
     })
     /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0190
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICTEXT_JS_API_0200
      * @tc.name      : testParagraph_DidExceedMaxLines_Parameter
-     * @tc.desc      : To test the enum value of Affinity.
+     * @tc.desc      : To test Paragraph DidExceedMaxLines interface.
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
@@ -759,7 +759,7 @@ export default function graphicText(context, windowStage, abilityStorage) {
       }
     })
     /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICDRAWING_JS_API_0200
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICDRAWING_JS_API_0210
      * @tc.name      : testTextLine_GetGlyphCount
      * @tc.desc      : test TextLine GlyphCount
      * @tc.size      : MediumTest
@@ -1007,6 +1007,329 @@ export default function graphicText(context, windowStage, abilityStorage) {
       } catch (err) {
         console.info(msg + 'build error cause: ' + JSON.stringify(err));
         expect().assertFail();
+      }
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICDRAWING_JS_API_0240
+     * @tc.name      : Run GetGlyphCount
+     * @tc.desc      : To test Run GetGlyphCount interface.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testTexRun_GetGlyphCount', 0, async function () {
+      let msg = 'testTextRun_GetGlyphCount';
+      console.info(msg + 'begin');
+      let canvas = new drawing.Canvas(pixel)
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color: {
+          alpha: 255, red: 255, green: 0, blue: 0
+        }, fontSize: 30
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle: myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+
+      let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      let textTitle = "123";
+      ParagraphGraphBuilder.addText(textTitle);
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      paragraph.layoutSync(200);
+      let textLines : Array<text.TextLine> = paragraph.getTextLines();
+      let length = textLines.length;
+      for(let i = 0 ; i < length ; i++) {
+        let textLine: text.TextLine = textLines[i];
+        textLine.paint(canvas, 0, (i + 1) * 20);
+        let runs: Array<text.Run> = textLine.getGlyphRuns();
+        let runslength = runs.length;
+        for (let j = 0; j < runslength; j++) {
+          let run: text.Run = runs[j];
+          try {
+            expect(run.getGlyphCount()).assertEqual(3);
+          } catch (err) {
+            console.info(msg + JSON.stringify(err));
+            expect().assertFail();
+          }
+        }
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICDRAWING_JS_API_0250
+     * @tc.name      : Run GetGlyphs
+     * @tc.desc      : To test Run GetGlyphs interface.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testTextRun_GetGlyphs', 0, async function () {
+      let msg = 'testTextRun_GetGlyphs';
+      console.info(msg + 'begin');
+      let canvas = new drawing.Canvas(pixel);
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color: {
+          alpha: 255, red: 255, green: 0, blue: 0
+        }, fontSize: 30
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle: myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+
+      let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      let textTitle = "123";
+      ParagraphGraphBuilder.addText(textTitle);
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      let textLines : Array<text.TextLine> = paragraph.getTextLines();
+      let length = textLines.length;
+      for(let i =0 ; i < length ; i++) {
+        let textLine: text.TextLine = textLines[i];
+        textLine.paint(canvas, 0, (i + 1) * 20);
+        let runs: Array<text.Run> = textLine.getGlyphRuns();
+        let runslength = runs.length;
+        for (let j = 0; j < runslength; j++) {
+          let run: text.Run = runs[j];
+          try {
+            expect(run.getGlyphs()).assertEqual(3);
+          } catch (err) {
+            console.info(msg + JSON.stringify(err));
+            expect().assertFail();
+          }
+        }
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICDRAWING_JS_API_0260
+     * @tc.name      : Run GetPositions
+     * @tc.desc      : To test Run GetPositions interface.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testTextRun_GetPositions', 0, async function () {
+      let msg = 'testTextRun_GetPositions';
+      console.info(msg + 'begin');
+      let canvas = new drawing.Canvas(pixel)
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color: {
+          alpha: 255, red: 255, green: 0, blue: 0
+        }, fontSize: 30
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle: myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+
+      let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      let textTitle = "123";
+      ParagraphGraphBuilder.addText(textTitle);
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      let textLines : Array<text.TextLine> = paragraph.getTextLines();
+      let length = textLines.length;
+      for(let i =0 ; i < length ; i++) {
+        let textLine: text.TextLine = textLines[i];
+        textLine.paint(canvas, 0, (i + 1) * 20);
+        let runs: Array<text.Run> = textLine.getGlyphRuns();
+        let runslength = runs.length;
+        for (let j = 0; j < runslength; j++) {
+          let run: text.Run = runs[j];
+          try {
+            expect(run.getPositions().length).assertEqual(3);
+          } catch (err) {
+            console.info(msg + JSON.stringify(err));
+            expect().assertFail();
+          }
+        }
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICDRAWING_JS_API_0270
+     * @tc.name      : Run GetOffsets
+     * @tc.desc      : To test Run GetOffsets interface.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testTextRun_GetOffsets', 0, async function () {
+      let msg = 'testTextRun_GetOffsets';
+      console.info(msg + 'begin');
+      let canvas = new drawing.Canvas(pixel)
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color: {
+          alpha: 255, red: 255, green: 0, blue: 0
+        }, fontSize: 30
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle: myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+
+      let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      let textTitle = "123";
+      ParagraphGraphBuilder.addText(textTitle);
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      let textLines : Array<text.TextLine> = paragraph.getTextLines();
+      let length = textLines.length;
+      for(let i =0 ; i < length ; i++) {
+        let textLine: text.TextLine = textLines[i];
+        textLine.paint(canvas, 0, (i + 1) * 20);
+        let runs: Array<text.Run> = textLine.getGlyphRuns();
+        let runslength = runs.length;
+        for (let j = 0; j < runslength; j++) {
+          let run: text.Run = runs[j];
+          try {
+            expect(run.getOffsets().length).assertEqual(3);
+          } catch (err) {
+            console.info(msg + JSON.stringify(err));
+            expect().assertFail();
+          }
+        }
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICDRAWING_JS_API_0280
+     * @tc.name      : Run GetFont
+     * @tc.desc      : To test Run GetFont interface.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testTextRun_GetFont', 0, async function () {
+      let msg = 'testTextRun_GetFont';
+      console.info(msg + 'begin');
+      let canvas = new drawing.Canvas(pixel)
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color: {
+          alpha: 255, red: 255, green: 0, blue: 0
+        }, fontSize: 30
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle: myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+
+      let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      let textTitle = "123";
+      ParagraphGraphBuilder.addText(textTitle);
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      let textLines : Array<text.TextLine> = paragraph.getTextLines();
+      let length = textLines.length;
+      for(let i =0 ; i < length ; i++) {
+        let textLine: text.TextLine = textLines[i];
+        textLine.paint(canvas, 0, (i + 1) * 20);
+        let runs: Array<text.Run> = textLine.getGlyphRuns();
+        let runslength = runs.length;
+        for (let j = 0; j < runslength; j++) {
+          let run: text.Run = runs[j];
+          try {
+            run.getFont();
+          } catch (err) {
+            console.info(msg + JSON.stringify(err));
+            expect().assertFail();
+          }
+        }
+      }
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_GRAPHICDRAWING_JS_API_0290
+     * @tc.name      : Run Paint
+     * @tc.desc      : To test Run Paint interface.
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it('testTextRun_Paint', 0, async function () {
+      let msg = 'testTextRun_Paint';
+      console.info(msg + 'begin');
+      let canvas = new drawing.Canvas(pixel)
+      let fontCollection = new text.FontCollection();
+      let myTextStyle: text.TextStyle = {
+        color: {
+          alpha: 255, red: 255, green: 0, blue: 0
+        }, fontSize: 30
+      };
+      let myParagraphStyle: text.ParagraphStyle = {
+        textStyle: myTextStyle
+      };
+      let myPlaceholderSpan: text.PlaceholderSpan = {
+        width: 12,
+        height: 21,
+        align: text.PlaceholderAlignment.ABOVE_BASELINE,
+        baseline: text.TextBaseline.ALPHABETIC,
+        baselineOffset: 66
+      };
+
+      let ParagraphGraphBuilder = new text.ParagraphBuilder(myParagraphStyle, fontCollection);
+      ParagraphGraphBuilder.addPlaceholder(myPlaceholderSpan);
+      let textTitle = "123";
+      ParagraphGraphBuilder.addText(textTitle);
+      ParagraphGraphBuilder.pushStyle(myTextStyle);
+      let paragraph = ParagraphGraphBuilder.build();
+      let textLines : Array<text.TextLine> = paragraph.getTextLines();
+      let length = textLines.length;
+      for(let i =0 ; i < length ; i++) {
+        let textLine: text.TextLine = textLines[i];
+        let runs: Array<text.Run> = textLine.getGlyphRuns();
+        let runslength = runs.length;
+        for (let j = 0; j < runslength; j++) {
+          let run: text.Run = runs[j];
+          try {
+            run.paint(canvas, 0, j * 20);
+          } catch (err) {
+            console.info(msg + JSON.stringify(err));
+            expect().assertFail();
+          }
+        }
       }
     })
   })
