@@ -39,14 +39,7 @@ let subscriberInfo: commonEventManager.CommonEventSubscribeInfo = {
 let flagNewWant = false;
 
 export default function abilityTest() {
-<<<<<<< HEAD
-  describe('ActsNewWantTest', function () {
-||||||| b0a113cc83
-  describe('ActsNewWantTest', function () {
-
-=======
   describe('ActsNewWantTest', () => {
->>>>>>> ActsAmsNewWantTest
     let TAG1 = 'ACTS_NewWant_Test : '
     let id: number = undefined;
     beforeAll(async (done: Function) => {
@@ -121,13 +114,7 @@ export default function abilityTest() {
           });
         })
 
-<<<<<<< HEAD
-      await globalThis.mainAbilityContext.startAbility({
-||||||| b0a113cc83
-      globalThis.abilityContext.startAbility({
-=======
       AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
->>>>>>> ActsAmsNewWantTest
         bundleName: "com.example.newwanthap",
         abilityName: "com.example.newwanthapa.MainAbility"
       }, (error, data) => {
@@ -148,49 +135,7 @@ export default function abilityTest() {
       let flagOnForeground = 0;
       let flagOnNewWant = 0;
 
-<<<<<<< HEAD
-      await globalThis.mainAbilityContext.startAbility({
-||||||| b0a113cc83
-      globalThis.abilityContext.startAbility({
-=======
-      await commonEvent.createSubscriber(subscriberInfo)
-        .then(async (data) => {
-          console.debug("ACTS_NewWant_Test_0200====>Create Subscriber====>");
-          Subscriber = data;
-          await commonEvent.subscribe(Subscriber, (err, data) => {
-            console.debug("ACTS_NewWant_Test_0200====>Subscribe CallBack data:====>" + JSON.stringify(data));
-            console.debug("ACTS_NewWant_Test_0200====>Subscribe CallBack data.event:====>" + JSON.stringify(data.event));
-            switch (data.event) {
-              case 'onCreateSecond_To_Test_CommonEvent':
-                flagOnCreate++;
-                break;
-              case 'onWindowStageCreateSecond_To_Test_CommonEvent':
-                flagOnWindowStageCreate++;
-                break;
-              case 'onForegroundSecond_To_Test_CommonEvent':
-                flagOnForeground++;
-                break;
-              case 'onNewWantSecond_To_Test_CommonEvent':
-                flagOnNewWant++;
-                break;
-            }
-            console.debug("ACTS_NewWant_Test_0200====>flagOnCreate:====>" + flagOnCreate);
-            console.debug("ACTS_NewWant_Test_0200====>flagOnWindowStageCreate:====>" + flagOnWindowStageCreate);
-            console.debug("ACTS_NewWant_Test_0200====>flagOnForeground:====>" + flagOnForeground);
-            console.debug("ACTS_NewWant_Test_0200====>flagOnNewWant:====>" + flagOnNewWant);
-            if (flagOnCreate == 1 && flagOnWindowStageCreate == 1 && flagOnForeground == 1 && flagOnNewWant == 0) {
-              flagNewWant = true;
-              commonEvent.unsubscribe(Subscriber, () => {
-                console.debug("ACTS_NewWant_Test_0200====>UnSubscribe CallBack====>");
-                expect(flagNewWant).assertTrue();
-                done();
-              });
-            }
-          });
-        })
-
       AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
->>>>>>> ActsAmsNewWantTest
         bundleName: "com.example.newwanthap",
         abilityName: "com.example.newwanthapa.SecondAbility"
       }, (error, data) => {
@@ -248,13 +193,7 @@ export default function abilityTest() {
           });
         })
 
-<<<<<<< HEAD
-      await globalThis.mainAbilityContext.startAbility({
-||||||| b0a113cc83
-      globalThis.abilityContext.startAbility({
-=======
       AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
->>>>>>> ActsAmsNewWantTest
         bundleName: "com.example.newwanthap",
         abilityName: "com.example.newwanthapa.MainAbility",
         action: "startStandard0300"
@@ -313,13 +252,7 @@ export default function abilityTest() {
           });
         })
 
-<<<<<<< HEAD
-      await globalThis.mainAbilityContext.startAbility({
-||||||| b0a113cc83
-      globalThis.abilityContext.startAbility({
-=======
       AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
->>>>>>> ActsAmsNewWantTest
         bundleName: "com.example.newwanthap",
         abilityName: "com.example.newwanthapa.SecondAbility",
         action: "startSingleton0400"
@@ -345,52 +278,37 @@ export default function abilityTest() {
         .then(async (data) => {
           console.debug("ACTS_NewWant_Test_0500====>Create Subscriber====>");
           Subscriber = data;
-          await commonEvent.subscribe(Subscriber, (err, data) => {
-            console.debug("ACTS_NewWant_Test_0500====>Subscribe CallBack data:====>" + JSON.stringify(data));
-            console.debug("ACTS_NewWant_Test_0500====>Subscribe CallBack data.event:====>" + JSON.stringify(data.event));
-            switch (data.event) {
-              case 'onCreateMain_To_Test_CommonEvent':
-                flagOnCreate++;
-                break;
-              case 'onWindowStageCreateMain_To_Test_CommonEvent':
-                flagOnWindowStageCreate++;
-                break;
-              case 'onForegroundMain_To_Test_CommonEvent':
-                flagOnForeground++;
-                break;
-              case 'onNewWantMain1_To_Test_CommonEvent':
-                flagOnNewWant++;
-                expect(data.data).assertEqual('restartHapB');
-                break;
-            }
-            console.debug("ACTS_NewWant_Test_0500====>flagOnCreate:====>" + flagOnCreate);
-            console.debug("ACTS_NewWant_Test_0500====>flagOnWindowStageCreate:====>" + flagOnWindowStageCreate);
-            console.debug("ACTS_NewWant_Test_0500====>flagOnForeground:====>" + flagOnForeground);
-            console.debug("ACTS_NewWant_Test_0500====>flagOnNewWant:====>" + flagOnNewWant);
-
-<<<<<<< HEAD
-      await globalThis.mainAbilityContext.startAbility({
-||||||| b0a113cc83
-      globalThis.abilityContext.startAbility({
-=======
-            if (flagOnCreate == 1 && flagOnWindowStageCreate == 1 && flagOnForeground == 2 && flagOnNewWant == 1) {
-              flagNewWant = true;
-              commonEvent.unsubscribe(Subscriber, () => {
-                console.debug("ACTS_NewWant_Test_0500====>UnSubscribe CallBack====>");
-                expect(flagNewWant).assertTrue();
-                done();
-              });
-            }
-          });
         })
+      await commonEvent.subscribe(Subscriber, (err, data) => {
+        console.debug("ACTS_NewWant_Test_0500====>Subscribe CallBack data:====>" + JSON.stringify(data));
+        console.debug("ACTS_NewWant_Test_0500====>Subscribe CallBack data.event:====>" + JSON.stringify(data.event));
+        switch (data.event) {
+          case 'onCreateMain_To_Test_CommonEvent':
+            flagOnCreate++;
+            break;
+          case 'onWindowStageCreateMain_To_Test_CommonEvent':
+            flagOnWindowStageCreate++;
+            break;
+          case 'onForegroundMain_To_Test_CommonEvent':
+            flagOnForeground++;
+            break;
+          case 'onNewWantMain1_To_Test_CommonEvent':
+            flagOnNewWant++;
+            expect(data.data).assertEqual('restartHapB');
+            break;
+        }
+        console.debug("ACTS_NewWant_Test_0500====>flagOnCreate:====>" + flagOnCreate);
+        console.debug("ACTS_NewWant_Test_0500====>flagOnWindowStageCreate:====>" + flagOnWindowStageCreate);
+        console.debug("ACTS_NewWant_Test_0500====>flagOnForeground:====>" + flagOnForeground);
+        console.debug("ACTS_NewWant_Test_0500====>flagOnNewWant:====>" + flagOnNewWant);
 
-      AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
->>>>>>> ActsAmsNewWantTest
-        bundleName: "com.example.newwanthap",
-        abilityName: "com.example.newwanthapb.MainAbility",
-        action: "startHapB"
-      }, (error, data) => {
-        console.log('ACTS_NewWant_Test_0500 - startAbility start HapB: ' + JSON.stringify(error) + ", " + JSON.stringify(data));
+        AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
+          bundleName: "com.example.newwanthap",
+          abilityName: "com.example.newwanthapb.MainAbility",
+          action: "startHapB"
+        }, (error, data) => {
+          console.log('ACTS_NewWant_Test_0500 - startAbility start HapB: ' + JSON.stringify(error) + ", " + JSON.stringify(data));
+        })
       })
     })
 
@@ -444,13 +362,7 @@ export default function abilityTest() {
           });
         })
 
-<<<<<<< HEAD
-      await globalThis.mainAbilityContext.startAbility({
-||||||| b0a113cc83
-      globalThis.abilityContext.startAbility({
-=======
       AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
->>>>>>> ActsAmsNewWantTest
         bundleName: "com.example.newwanthapa",
         abilityName: "com.example.newwanthapc.MainAbility",
         action: "startHapC"
@@ -499,32 +411,17 @@ export default function abilityTest() {
             console.debug("ACTS_NewWant_Test_0700====>flagOnForeground:====>" + flagOnForeground);
             console.debug("ACTS_NewWant_Test_0700====>flagOnNewWant:====>" + flagOnNewWant);
 
-<<<<<<< HEAD
-      await globalThis.mainAbilityContext.startAbility({
-||||||| b0a113cc83
-      globalThis.abilityContext.startAbility({
-=======
-            if (flagOnCreate == 0 && flagOnWindowStageCreate == 0 && flagOnForeground == 2 && flagOnNewWant == 1) {
-              flagNewWant = true;
-              commonEvent.unsubscribe(Subscriber, () => {
-                console.debug("ACTS_NewWant_Test_0700====>UnSubscribe CallBack====>");
-                expect(flagNewWant).assertTrue();
-                done();
-              });
-            }
-          });
+            AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
+              bundleName: "com.example.newwanthap",
+              abilityName: "com.example.newwanthapa.SecondAbility",
+              action: "startSecondAbility0700"
+            }, (error, data) => {
+              console.log('ACTS_NewWant_Test_0700 - startAbility start SecondAbility: ' + JSON.stringify(error) + ", " + JSON.stringify(data));
+            })
+          })
         })
-
-      AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
->>>>>>> ActsAmsNewWantTest
-        bundleName: "com.example.newwanthap",
-        abilityName: "com.example.newwanthapa.SecondAbility",
-        action: "startSecondAbility0700"
-      }, (error, data) => {
-        console.log('ACTS_NewWant_Test_0700 - startAbility start SecondAbility: ' + JSON.stringify(error) + ", " + JSON.stringify(data));
-      })
     })
-
+   
     /**
      * @tc.number: ACTS_NewWant_Test_0800
      * @tc.name: API8 startup API7
@@ -565,30 +462,15 @@ export default function abilityTest() {
             console.debug("ACTS_NewWant_Test_0800====>flagOnForeground:====>" + flagOnForeground);
             console.debug("ACTS_NewWant_Test_0800====>flagOnNewWant:====>" + flagOnNewWant);
 
-<<<<<<< HEAD
-      await globalThis.mainAbilityContext.startAbility({
-||||||| b0a113cc83
-      globalThis.abilityContext.startAbility({
-=======
-            if (flagOnCreate == 0 && flagOnWindowStageCreate == 0 && flagOnForeground == 2 && flagOnNewWant == 1) {
-              flagNewWant = true;
-              commonEvent.unsubscribe(Subscriber, () => {
-                console.debug("ACTS_NewWant_Test_0800====>UnSubscribe CallBack====>");
-                expect(flagNewWant).assertTrue();
-                done();
-              });
-            }
-          });
+            AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
+              bundleName: "com.example.newwanthap",
+              abilityName: "com.example.newwanthapa.MainAbility",
+              action: "startMainAbility0800"
+            }, (error, data) => {
+              console.log('ACTS_NewWant_Test_0800 - startAbility start SecondAbility: ' + JSON.stringify(error) + ", " + JSON.stringify(data));
+            })
+          })
         })
-
-      AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility({
->>>>>>> ActsAmsNewWantTest
-        bundleName: "com.example.newwanthap",
-        abilityName: "com.example.newwanthapa.MainAbility",
-        action: "startMainAbility0800"
-      }, (error, data) => {
-        console.log('ACTS_NewWant_Test_0800 - startAbility start SecondAbility: ' + JSON.stringify(error) + ", " + JSON.stringify(data));
-      })
     })
   })
 }
