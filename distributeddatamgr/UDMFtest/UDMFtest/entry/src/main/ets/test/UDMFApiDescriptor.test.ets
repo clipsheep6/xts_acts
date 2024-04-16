@@ -506,13 +506,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1500', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1500', 0, function () {
-=======
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1500', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_1500 start');
       expect(UTD.UniformDataType.JAVA_SCRIPT).assertEqual("general.java-script");
       let typeObj = UTD.getTypeDescriptor(UTD.UniformDataType.JAVA_SCRIPT);
@@ -1235,19 +1229,9 @@ export default function UDMFApiDescriptorTest() {
      * @tc.name      : testSUBDistributedDataUDMFSDKUniformTypeDescriptorJsAPITest4100
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4100
      * @tc.desc      : Verify the properties of the PostScript data type
-<<<<<<< HEAD
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level 3
-||||||| bfcceb712c
-     * @tc.size      : MediumTest    
-      * @tc.type      : Function
-     * @tc.level     : Level 3
-=======
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 1
->>>>>>> forkOriginMaster
      */
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4100', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_4100 start');
@@ -2001,19 +1985,9 @@ export default function UDMFApiDescriptorTest() {
      * @tc.name      : testSUBDistributedDataUDMFSDKUniformTypeDescriptorJsAPITest6800
      * @tc.number    : SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6800
      * @tc.desc      : Verify the properties of the Symlink data type
-<<<<<<< HEAD
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level 3
-||||||| bfcceb712c
-     * @tc.size      : MediumTest    
-      * @tc.type      : Function
-     * @tc.level     : Level 3
-=======
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level 1
->>>>>>> forkOriginMaster
      */
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6800', 0, () => {
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_6800 start');
@@ -2835,13 +2809,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9610', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9610', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9610', 0,() => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9610 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -3105,13 +3073,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9670', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9670', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9670', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9670 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.OBJECT);
       try {
@@ -3155,13 +3117,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9680', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9680', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9680', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9680 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.OBJECT);
       try {
@@ -3183,13 +3139,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9685', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9685', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9685', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9685 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.COMPOSITE_OBJECT);
       try {
@@ -3211,13 +3161,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9690', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9690', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9690', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9690 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.ENTITY);
       try {
@@ -3239,13 +3183,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9695', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9695', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9695', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9695 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -3267,13 +3205,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9700', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9700', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9700', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9700 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -3295,13 +3227,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9705', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9705', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9705', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9705 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -3367,13 +3293,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9720', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9720', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9720', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9720 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.OBJECT);
       try {
@@ -3395,13 +3315,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9725', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9725', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9725', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9725 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.NAVIGATION);
       try {
@@ -3423,13 +3337,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9730', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9730', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9730', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9730 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.OBJECT);
       try {
@@ -3451,13 +3359,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9735', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9735', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9735', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9735 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.LOCATION);
       try {
@@ -3479,13 +3381,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9740', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9740', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9740', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9740 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.C_HEADER);
       try {
@@ -3529,13 +3425,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9750', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9750', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9750', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9750 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.CONTACT);
       try {
@@ -3557,13 +3447,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9755', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9755', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9755', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9755 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.PLAIN_TEXT);
       try {
@@ -3585,13 +3469,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9760', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9760', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9760', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9760 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.TEXT);
       try {
@@ -3613,13 +3491,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9765', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9765', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9765', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9765 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.CONTACT);
       try {
@@ -3641,13 +3513,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9770', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9770', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9770', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9770 start');
       let typeObj1 = UTD.getTypeDescriptor(UTD.UniformDataType.ENTITY);
       try {
@@ -3669,13 +3535,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9775', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9775', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9775', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9775 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".xls");
@@ -3696,13 +3556,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9780', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9780', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9780', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9780 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(null);
@@ -3723,13 +3577,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9785', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9785', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9785', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9785 start');
       try {
         let dynamicType = UTD.getUniformDataTypeByFilenameExtension(".hello");
@@ -3758,13 +3606,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9790', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9790', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9790', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9790 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension("");
@@ -3785,13 +3627,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9795', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9795', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9795', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9795 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(undefined);
@@ -3812,13 +3648,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9800', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9800', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9800', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9800 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".doc", UTD.UniformDataType.WORD_DOC);
@@ -3839,13 +3669,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9805', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9805', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9805', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9805 start');
       try {
         let dynamicType = UTD.getUniformDataTypeByFilenameExtension(".doc", UTD.UniformDataType.PPT);
@@ -3874,13 +3698,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9815', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9815', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9815', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9815 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".wave", null);
@@ -3901,13 +3719,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9820', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9820', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9820', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9820 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".wave", undefined);
@@ -3928,13 +3740,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9825', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9825', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9825', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9825 start');
       try {
         let dynamicType = UTD.getUniformDataTypeByFilenameExtension(".hello", UTD.UniformDataType.ICO);
@@ -3963,13 +3769,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9830', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9830', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9830', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9825 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".wave", "");
@@ -3990,13 +3790,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9835', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9835', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9835', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9835 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("image/tiff");
@@ -4017,13 +3811,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9840', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9840', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9840', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9840 start');
       try {
         let dynamicType = UTD.getUniformDataTypeByMIMEType("hello");
@@ -4052,13 +3840,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9845', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9845', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9845', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9845 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("");
@@ -4079,13 +3861,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9850', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9850', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9850', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9850 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType(null);
@@ -4106,13 +3882,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9855', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9855', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9855', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9855 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType(undefined);
@@ -4133,13 +3903,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9860', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9860', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9860', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9860 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("audio/x-ms-wma", UTD.UniformDataType.WINDOWS_MEDIA_WMA);
@@ -4160,13 +3924,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9865', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9865', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9865', 0,   () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9865 start');
       try {
         let dynamicType = UTD.getUniformDataTypeByMIMEType("image/tiff", UTD.UniformDataType.TYPE_SCRIPT);
@@ -4195,13 +3953,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9870', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9870', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9870', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9870 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("image/tiff", null);
@@ -4222,13 +3974,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9875', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9875', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9875', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9875 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("image/tiff", undefined);
@@ -4249,13 +3995,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9880', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9880', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9880', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9880 start');
       try {
         let dynamicType = UTD.getUniformDataTypeByMIMEType("hello", UTD.UniformDataType.WINDOWS_MEDIA_WMV);
@@ -4284,13 +4024,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9885', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9885', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9885', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9885 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("image/tiff", "general.hello");
@@ -4311,13 +4045,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9890', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9890', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9890', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9890 start');
       try {
         let result = UTD.getUniformDataTypeByMIMEType("image/tiff", "");
@@ -4338,13 +4066,7 @@ export default function UDMFApiDescriptorTest() {
      * @tc.type      : Function
      * @tc.level     : Level 1
      */
-<<<<<<< HEAD
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9810', 0, () => {
-||||||| bfcceb712c
-    it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9810', 0, function () {
-=======
     it('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9810', 0,  () => {
->>>>>>> forkOriginMaster
       console.log('SUB_DistributedData_UDMF_SDK_UniformTypeDescriptorJsAPITest_9810 start');
       try {
         let result = UTD.getUniformDataTypeByFilenameExtension(".wave", "general.hello");
