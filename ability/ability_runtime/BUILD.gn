@@ -29,6 +29,7 @@ group("ability_runtime") {
       "actsabilitytooltest:actsabilitytooltest",
       "actsabilityusertest:ActsAbilityuserTest",
       "actsautofilltest:actsautofilltest",
+      "hitsautofillviewdatatest:hitsautofillviewdatatest"
       "actscalldataabilitytest:ActsCallDataAbilityTest",
       "actscalltest:actscalltest",
       "actscrosscall:actscrosscall",
