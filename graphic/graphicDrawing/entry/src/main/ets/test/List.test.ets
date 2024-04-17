@@ -13,7 +13,9 @@
  * limitations under the License.
  */
 import graphicDrawing from './graphicDrawing.test'
+import graphicText from './graphicText.test'
 
 export default function testsuite() {
   graphicDrawing(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
+  graphicText(globalThis.abilityContext,globalThis.windowStage,globalThis.abilityStorage)
 }
