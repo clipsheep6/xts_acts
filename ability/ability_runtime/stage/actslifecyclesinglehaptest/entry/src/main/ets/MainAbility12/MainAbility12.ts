@@ -14,10 +14,13 @@
  */
 import Ability from '@ohos.app.ability.UIAbility'
 
+let context12 = undefined;
+
 export default class MainAbility12 extends Ability {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility12 onCreate")
         globalThis.abilityWant12 = want;
+        context12 = this.context;
         var listKey12 = [];
         let AbilityLifecycleCallback = {
             onAbilityCreate(ability) {
@@ -90,6 +93,7 @@ export default class MainAbility12 extends Ability {
 
     onDestroy() {
         console.log("[Demo] MainAbility12 onDestroy")
+        context12 = undefined;
     }
 
     onWindowStageCreate(windowStage) {
@@ -107,6 +111,16 @@ export default class MainAbility12 extends Ability {
     onForeground() {
         // Ability has brought to foreground
         console.log("[Demo] MainAbility12 onForeground")
+        setTimeout(function () {
+            if (context12) {
+                context12.terminateSelf()
+                    .then((data) => {
+                        console.info('[Demo] MainAbility12 terminateself succeeded: ' + data);
+                    }).catch((error) => {
+                    console.error('[Demo] MainAbility12 terminateself failed. Cause: ' + error);
+                })
+            }
+        }, 2000);
     }
 
     onBackground() {

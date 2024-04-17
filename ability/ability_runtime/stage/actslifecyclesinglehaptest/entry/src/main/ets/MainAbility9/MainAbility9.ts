@@ -14,14 +14,18 @@
  */
 import Ability from '@ohos.app.ability.UIAbility'
 
+let context9 = undefined;
+
 export default class MainAbility9 extends Ability {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility9 onCreate")
         globalThis.abilityWant9 = want;
+        context9 = this.context;
     }
 
     onDestroy() {
         console.log("[Demo] MainAbility9 onDestroy")
+        context9 = undefined;
     }
 
     onWindowStageCreate(windowStage) {
@@ -98,6 +102,16 @@ export default class MainAbility9 extends Ability {
             console.log("listKey is :" + listKey9);
             console.log("callBackId is :" + callBackId);
         }, 3000)
+        setTimeout(function () {
+            if (context9) {
+                context9.terminateSelf()
+                    .then((data) => {
+                        console.info('[Demo] MainAbility9 terminateself succeeded: ' + data);
+                    }).catch((error) => {
+                    console.error('[Demo] MainAbility9 terminateself failed. Cause: ' + error);
+                })
+            }
+        }, 4000);
     }
 
     onBackground() {

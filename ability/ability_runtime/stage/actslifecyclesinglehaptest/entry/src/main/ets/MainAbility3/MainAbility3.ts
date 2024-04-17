@@ -129,7 +129,7 @@ export default class MainAbility3 extends Ability {
 
     onForeground() {
         // Ability has brought to foreground
-        console.log("[Demo] MainAbility onForeground")
+        console.log("[Demo] MainAbility3 onForeground")
     }
 
     onBackground() {
