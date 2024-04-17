@@ -18,10 +18,16 @@
 #include <js_native_api_types.h>
 
 #define PARAM_0 0
+#define PARAM_1 1
+#define PARAM_2 2
+#define PARAM_4 4
+#define PARAM_8 8
+#define PARAM_16 16
+#define MPARAM_1 (-1)
 
 static napi_value FeTestExcept(napi_env env, napi_callback_info info)
 {
-    size_t argc = 1;
+    size_t argc = PARAM_1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     int firstParam;
@@ -35,7 +41,7 @@ static napi_value FeTestExcept(napi_env env, napi_callback_info info)
 static napi_value FeUpdateEnv(napi_env env, napi_callback_info info)
 {
     int backParam;
-    const fenv_t *envp = nullptr;
+    const fenv_t *envp;
     backParam = feupdateenv(envp);
     napi_value result = nullptr;
     napi_create_int32(env, backParam, &result);
@@ -44,7 +50,7 @@ static napi_value FeUpdateEnv(napi_env env, napi_callback_info info)
 
 static napi_value FeSetRound(napi_env env, napi_callback_info info)
 {
-    size_t argc = 1;
+    size_t argc = PARAM_1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     int backParam, rounding_mode;
@@ -57,7 +63,7 @@ static napi_value FeSetRound(napi_env env, napi_callback_info info)
 
 static napi_value FeSetExceptFlag(napi_env env, napi_callback_info info)
 {
-    size_t argc = 1;
+    size_t argc = PARAM_1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     int backParam, excepts;
@@ -72,8 +78,9 @@ static napi_value FeSetExceptFlag(napi_env env, napi_callback_info info)
 static napi_value FeSetEnv(napi_env env, napi_callback_info info)
 {
     int backParam;
-    const fenv_t *envp = nullptr;
+    const fenv_t *envp;
     backParam = fesetenv(envp);
+    feupdateenv(envp);
     napi_value result = nullptr;
     napi_create_int32(env, backParam, &result);
     return result;
@@ -81,7 +88,7 @@ static napi_value FeSetEnv(napi_env env, napi_callback_info info)
 
 static napi_value FeRaiseExcept(napi_env env, napi_callback_info info)
 {
-    size_t argc = 1;
+    size_t argc = PARAM_1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     int backParam, excepts;
@@ -95,8 +102,9 @@ static napi_value FeRaiseExcept(napi_env env, napi_callback_info info)
 static napi_value FeHoldExcept(napi_env env, napi_callback_info info)
 {
     int backParam;
-    fenv_t *envp = nullptr;
-    backParam = feholdexcept(envp);
+    fenv_t envp;
+    backParam = feholdexcept(&envp);
+    feupdateenv(&envp);
     napi_value result = nullptr;
     napi_create_int32(env, backParam, &result);
     return result;
@@ -113,7 +121,7 @@ static napi_value FeGetRound(napi_env env, napi_callback_info info)
 
 static napi_value FeGetExceptFlag(napi_env env, napi_callback_info info)
 {
-    size_t argc = 1;
+    size_t argc = PARAM_1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     int backParam, excepts;
@@ -128,8 +136,9 @@ static napi_value FeGetExceptFlag(napi_env env, napi_callback_info info)
 static napi_value FeGetEnv(napi_env env, napi_callback_info info)
 {
     int backParam;
-    fenv_t *fenv = nullptr;
-    backParam = fegetenv(fenv);
+    fenv_t fenv;
+    backParam = fegetenv(&fenv);
+    feupdateenv(&fenv);
     napi_value result = nullptr;
     napi_create_int32(env, backParam, &result);
     return result;
@@ -137,31 +146,31 @@ static napi_value FeGetEnv(napi_env env, napi_callback_info info)
 
 static napi_value FeClearExcept(napi_env env, napi_callback_info info)
 {
-    size_t argc = 1;
+    size_t argc = PARAM_1;
     napi_value args[1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
     int backParam, list;
     napi_get_value_int32(env, args[0], &list);
     switch (list) {
-    case 0:
+    case PARAM_0:
         backParam = feclearexcept(list);
         break;
-    case 1:
+    case PARAM_1:
         backParam = feclearexcept(list);
         break;
-    case 2:
+    case PARAM_2:
         backParam = feclearexcept(list);
         break;
-    case 4:
+    case PARAM_4:
         backParam = feclearexcept(list);
         break;
-    case 8:
+    case PARAM_8:
         backParam = feclearexcept(list);
         break;
-    case 16:
+    case PARAM_16:
         backParam = feclearexcept(list);
         break;
-    case -1:
+    case MPARAM_1:
         backParam = feclearexcept(list);
         break;
     default:

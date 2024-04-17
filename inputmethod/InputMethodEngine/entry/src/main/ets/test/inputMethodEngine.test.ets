@@ -18,50 +18,61 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import subtype from '@ohos.InputMethodSubtype';
 import inputMethod from '@ohos.inputMethod';
 import display from '@ohos.display';
-import {Driver} from '@ohos.UiTest'
-
+import {Driver, ON, MatchPattern, Component, UiWindow, DisplayRotation } from '@ohos.UiTest'
+import deviceinfo from '@ohos.deviceInfo';
+import { BusinessError} from '@ohos.base'
 
 export default function inputMethodEngineJSUnit() {
   describe('inputMethodEngine', function () {
-    var inputSever = {
-      packageName: '',
-      methodId: '',
-      name: '',
-      id: '',
-      extra: {}
-    }
+    let driver = Driver.create();
+    let textArea: Component;
+    let rectInfo;
 
-    /**
-     * beforeEach: Prerequisites at the test case level, which are executed before each test case is executed.
-     */
-    beforeAll(async (done) => {
-      let inputM = inputMethod.getCurrentInputMethod();
-      console.info("====>beforeAll: getCurrentInputMethod inputMethodEngineJSUnit to: " + JSON.stringify(inputM));
-      inputSever.packageName = inputM.packageName;
-      inputSever.methodId = inputM.methodId;
-      inputSever.name = inputM.packageName;
-      inputSever.id = inputM.methodId;
-
-      let inputDemoService: subtype = {
-        id: "InputDemoService",
-        label: "",
-        name: "com.acts.inputmethodengine.test",
-        mode: "lower",
-        locale: "",
-        language: "",
-        icon: "",
-        iconId: 0,
-        extra: {}
-      }
-      try {
-        await inputMethod.switchCurrentInputMethodSubtype(inputDemoService);
-        setTimeout(() => {
-          runCmd()
-          console.info("====>beforeAll: inputMethodEngineJSUnit switchCurrentInputMethodSubtype success");
-          done();
-        }, 3000)
-      } catch (err) {
-        console.info("====>beforeAll: inputMethodEngineJSUnit fail" + JSON.stringify(err));
+    beforeAll(async (done)=>{
+      console.info('====>beforeAll inputMethod_enable start!')
+      try{
+        let inputMethodSetting: inputMethod.InputMethodSetting = inputMethod.getSetting();
+        let result: boolean = await inputMethodSetting.showOptionalInputMethods();
+        console.info('====>beforeAll inputMethodSwitch showOptionalInputMethods result: ' + JSON.stringify(result));
+        let inputMethodList = await driver.waitForComponent(ON.type('List'), 3000);
+        console.info('====>beforeAll inputMethodSwitch inputMethodList: ' + JSON.stringify(inputMethodList));
+        if (JSON.stringify(inputMethodList) === 'null') {
+          await driver.delayMs(200);
+          inputMethodList = await driver.findComponent(ON.type('List'));
+          console.info('====>beforeAll inputMethodSwitch inputMethodList second: ' + JSON.stringify(inputMethodList));
+        }
+        await driver.delayMs(1000);
+        if(deviceinfo.deviceType === '2in1'){
+          let inputMethod_name: Component = await driver.waitForComponent(ON.text('engine', MatchPattern.CONTAINS), 2000);
+          await inputMethod_name.click();
+          await driver.delayMs(500);
+        }else{
+          let inputMethod_name: Component = await inputMethodList.scrollSearch(ON.text('engine', MatchPattern.CONTAINS));
+          console.info('====>beforeAll inputMethodSwitch inputMethod_name: ' + JSON.stringify(inputMethod_name));
+          if (JSON.stringify(inputMethod_name) === 'null') {
+            await driver.delayMs(200);
+            inputMethod_name = await inputMethodList.scrollSearch(ON.text('engine', MatchPattern.CONTAINS));
+            console.info('====>beforeAll inputMethodSwitch inputMethod_name second: ' + JSON.stringify(inputMethod_name));
+          }
+          await inputMethod_name.click();
+        }
+        console.info('====>beforeAll inputMethodSwitch done');
+        await driver.delayMs(1000);
+        let testWindow: UiWindow = await driver.findWindow({bundleName: "com.acts.inputmethodengine.test"});
+        console.info('====>beforeAll inputMethodSwitch switch window: ' + JSON.stringify(testWindow));
+        await testWindow.focus();
+        await driver.delayMs(1000);
+        textArea = await driver.findComponent(ON.type('TextArea'));
+        console.info('====>beforeAll inputMethodSwitch window textArea: ' + JSON.stringify(textArea));
+        rectInfo = await textArea.getBounds();
+        console.info('====>beforeAll inputMethodSwitch textArea rectInfo: ' + JSON.stringify(rectInfo));
+        await driver.delayMs(1000);
+        await runCmd();
+        await driver.delayMs(1000);
+        done();
+      }catch(err){
+        console.info('====>beforeAll throw err:' + JSON.stringify(err.message))
+        done();
       }
     })
 
@@ -69,23 +80,23 @@ export default function inputMethodEngineJSUnit() {
      * afterEach: Test case-level clearance conditions, which are executed after each test case is executed.
      */
     afterAll(async (done) => {
-      try {
-        await inputMethod.switchInputMethod(inputSever);
-        setTimeout(() => {
-          console.info("====>afterAll: inputMethodEngineJSUnit switchInputMethod success");
-          done();
-        }, 2000)
-      } catch (err) {
-        console.info("====>afterAll: inputMethodEngineJSUnit fail" + JSON.stringify(err));
-      }
+
+      done();
     })
 
-    let dis = display.getDefaultDisplaySync();
-    let driver = Driver.create();
-    async function runCmd() {
-      let cursor_x = 30 + Math.floor(Math.random() * dis.width * 0.8);
-      let cursor_y = 150 + Math.floor(Math.random() * Math.round(dis.height * 0.4));
-      console.info(`====>start click x:${cursor_x}  y:${cursor_y}`)
+    let sleep = function (timeout) {
+      return new Promise(resolve => {
+        const st = setTimeout(() => {
+          resolve(null);
+          clearTimeout(st);
+        }, timeout);
+      });
+    };
+
+    async function runCmd(){
+      let cursor_x = rectInfo.left + Math.floor(Math.random() * (rectInfo.right - rectInfo.left) * 0.9);
+      let cursor_y = rectInfo.top + Math.floor(Math.random() * (rectInfo.bottom - rectInfo.top) * 0.9);
+      console.info(`====>start click x: ${cursor_x}  y: ${cursor_y}`)
       await driver.click(cursor_x, cursor_y)
     }
 
@@ -1553,10 +1564,7 @@ export default function inputMethodEngineJSUnit() {
         if (err) {
           console.info("====>inputMethodEngine_test_074 publishCallback failed:" + JSON.stringify(err));
         }  else {
-          let t = setTimeout(()=>{
-            runCmd();
-            clearTimeout(t)
-          }, 100)
+          runCmd();
         }
       }
 

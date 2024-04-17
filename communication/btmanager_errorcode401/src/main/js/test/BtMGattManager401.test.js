@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-//import bluetooth from '@ohos.bluetooth';
 import bluetooth from '@ohos.bluetoothManager';
 import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from '@ohos/hypium'
 import { UiComponent, UiDriver, BY, Component, Driver, UiWindow, ON, MatchPattern, DisplayRotation, ResizeDirection, UiDirection, MouseButton, WindowMode, PointerMatrix, UIElementInfo, UIEventObserver } from '@ohos.UiTest'
@@ -40,16 +39,16 @@ describe('btManagerMError401Test', function() {
     }
 
     async function clickTheWindow() {
-        try{
+        try {
+            console.info('[bluetooth_js] clickRequestPermission start');
             let driver = Driver.create();
-            console.info('[bluetooth_js] bt driver create:'+ driver);            
-            await driver.delayMs(1000);
-            await driver.click(950, 2550);
-            await driver.delayMs(5000);
-            await driver.click(950, 2550);
             await driver.delayMs(3000);
-        } catch (error) {
-            console.info('[bluetooth_js] driver error info:'+ error);
+            let button = await driver.findComponent(ON.text("允许"));
+            await button.click();
+            await driver.delayMs(3000);
+            console.info('[bluetooth_js] clickRequestPermission end');
+        } catch (err) {
+            console.info('[bluetooth_js] clickRequestPermission failed');
         }
     }
 
@@ -82,6 +81,7 @@ describe('btManagerMError401Test', function() {
     beforeAll(async function (done) {
         console.info('beforeAll called')
         await openPhone();
+        await tryToEnableBt();
         gattClient = bluetooth.BLE.createGattClientDevice("11:22:33:44:55:66");
         done();
     })
@@ -725,7 +725,7 @@ describe('btManagerMError401Test', function() {
      * @tc.type Function
      * @tc.level Level 2
      */
-    it('SUB_COMMUNICATION_BTMANAGER_READCHARACTERISTIC_ERROR_', 0, async function(done) {      
+    it('SUB_COMMUNICATION_BTMANAGER_READCHARACTERISTIC_ERROR_1700', 0, async function(done) {      
         try {
             gattClient.readCharacteristicValue();
             expect(true).assertFalse();
@@ -1642,7 +1642,7 @@ describe('btManagerMError401Test', function() {
      * @tc.type Function
      * @tc.level Level 2
      */
-    it('SUB_COMMUNICATION_BTMANAGER_WRITECHARACTERISTIC_ERROR_1600', 0, function () {
+    it('SUB_COMMUNICATION_BTMANAGER_WRITECHARACTERISTIC_ERROR_1700', 0, function () {
         try {
             let descriptors = [];
             let arrayBuffer = new ArrayBuffer(8);
@@ -1650,7 +1650,7 @@ describe('btManagerMError401Test', function() {
                 desValue[0] = 11;
             let descriptor = {serviceUuid:'00001820-0000-1000-8000-00805F9B34FB',
                    characteristicUuid: '00001820-0000-1000-8000-00805F9B34FB',
-                    descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: arrayBuffer};
+                    descriptorUuid: '00001830-0000-1000-8000-00805F9B34FB', descriptorValue: null};
                 descriptors[0] = descriptor;
             let arrayBufferCCC = new ArrayBuffer(8);
             let cccValue = new Uint8Array(arrayBufferCCC);

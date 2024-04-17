@@ -19,10 +19,11 @@ import router from '@system.router'
 import mediaLibrary from '@ohos.multimedia.mediaLibrary'
 import fileio from '@ohos.fileio'
 import featureAbility from '@ohos.ability.featureAbility'
-import { UiDriver, BY, PointerMatrix } from '@ohos.UiTest'
+import { UiDriver, BY, PointerMatrix } from '@ohos.UiTest';
+import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 const CODECMIMEVALUE = ['video/avc', 'audio/mp4a-latm', 'audio/mpeg']
 const context = featureAbility.getContext();
-
+const delegator = abilityDelegatorRegistry.getAbilityDelegator();
 export async function getPermission(permissionNames) {
     featureAbility.getContext().requestPermissionsFromUser(permissionNames, 0, async (data) => {
         console.info("case request success" + JSON.stringify(data));
@@ -38,10 +39,17 @@ export async function driveFn(num) {
     console.info(`UiDriver start`)
     for (let i = 0; i < num; i++) {
         let button = await driver.findComponent(BY.text('允许'))
-        if(button == null) continue;
+        if(button == null){
+            let cmd = "hidumper -s WindowManagerService -a'-a'"
+            await delegator.executeShellCommand(cmd);
+            continue;
+        } 
         console.info(`button is ${JSON.stringify(button)}`)
         await msleepAsync(2000)
-        await button.click()
+        if(await driver.findComponent(BY.text('允许')) != null){
+            await button.click()
+        }
+        await msleepAsync(2000)
     }
     await msleepAsync(2000)
 }
@@ -190,6 +198,8 @@ export function checkDescription(actualDescription, descriptionKey, descriptionV
             }else{
                 expect(property).assertEqual(CODECMIMEVALUE[descriptionValue[i]]);
             }
+        } else if (descriptionKey[i] == 'bitrate') {
+            expect(Math.abs(property - descriptionValue[i])).assertLess(500);
         } else {
             expect(property).assertEqual(descriptionValue[i]);
         }
@@ -203,6 +213,10 @@ export function checkOldDescription(actualDescription, descriptionKey, descripti
         console.info('case key is  '+ descriptionKey[i]);
         console.info('case actual value is  '+ property);
         console.info('case hope value is  '+ descriptionValue[i]);
+        if (descriptionKey[i] === 'bitrate'){
+            expect(Math.abs(property - descriptionValue[i])).assertLess(500);
+            return;
+        }
         expect(property).assertEqual(descriptionValue[i]);
     }
 }

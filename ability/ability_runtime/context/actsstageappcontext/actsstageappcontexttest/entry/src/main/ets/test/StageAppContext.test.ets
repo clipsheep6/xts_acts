@@ -13,11 +13,14 @@
  * limitations under the License.
  */
 
-import { describe, it, expect, beforeAll, afterEach } from '@ohos/hypium'
+import { describe, it, expect, beforeAll, afterEach } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import commonEventManager from '@ohos.commonEventManager';
+import { Driver, ON } from '@ohos.UiTest';
 
-let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator()
+let driver = Driver.create();
+let TestUiAbility;
+let abilityDelegator = abilityDelegatorRegistry.getAbilityDelegator();
 const sleep = async delay => {
     return new Promise((resolve, _) => {
         setTimeout(async () => {
@@ -29,27 +32,13 @@ const sleep = async delay => {
 export default function stageAppContextTest(abilityContext) {
     describe('ActsStageAppContextTest', function () {
 
-        beforeAll(async (done) => {
-            console.log("ActsStageContextPropertiesTest afterAll called");
-            await abilityContext.startAbility({
-                bundleName: "com.example.stageappcontexttest",
-                abilityName: "ServiceAbility",
-            }).then((data) => {
-                console.log('ActsStageContextPropertiesTest - ServiceAbility: ' + JSON.stringify(data));
-            }).catch((err) => {
-                console.log("ActsStageContextPropertiesTest - ServiceAbility failed: "
-                    + JSON.stringify(err));
-                done()
-            })
-
-            setTimeout(function () {
-                console.log("ActsStageContextPropertiesTest afterAll end");
-                done();
-            }, 1000);
+        beforeAll(async () => {
+            TestUiAbility = await abilityDelegator.getCurrentTopAbility();
         })
 
         afterEach(async (done) => {
-            await sleep(2000)
+            console.log("ActsStageContextPropertiesTest run afterEach with await");
+            await sleep(2000);
             done()
         })
 
@@ -58,6 +47,8 @@ export default function stageAppContextTest(abilityContext) {
           * @tc.name: Validating the context obtained by the AbilityContext call 
           * getApplicationContext can be obtained using getApplicationContext
           * @tc.desc: Function test
+          * @tc.size: MediumTest
+          * @tc.type: Function
           * @tc.level   0
           */
         it('SUB_AA_OpenHarmony_ApplicationContext_0200', 0, async function (done) {
@@ -76,6 +67,8 @@ export default function stageAppContextTest(abilityContext) {
           * @tc.name: Verify that the AbilityContext call getApplicationContext 
           * gets the context using resourceManger
           * @tc.desc: Function test
+          * @tc.size: MediumTest
+          * @tc.type: Function
           * @tc.level   3
           */
         it('SUB_AA_OpenHarmony_ApplicationContext_0300', 0, async function (done) {
@@ -93,6 +86,8 @@ export default function stageAppContextTest(abilityContext) {
           * @tc.name: Verify that the AbilityContext call getApplicationContext 
           * gets the context using applicationInfo
           * @tc.desc: Function test
+          * @tc.size: MediumTest
+          * @tc.type: Function
           * @tc.level   3
           */
         it('SUB_AA_OpenHarmony_ApplicationContext_0400', 0, async function (done) {
@@ -111,6 +106,8 @@ export default function stageAppContextTest(abilityContext) {
           * @tc.name: Validating the context obtained by the AbilityStageContext call 
           * getApplicationContext can be obtained using getApplicationContext
           * @tc.desc: Function test
+          * @tc.size: MediumTest
+          * @tc.type: Function
           * @tc.level   3
           */
         it('SUB_AA_OpenHarmony_ApplicationContext_0500', 0, async function (done) {
@@ -129,6 +126,8 @@ export default function stageAppContextTest(abilityContext) {
           * @tc.name: Verify that the AbilityStageContext call getApplicationContext 
           * gets the context using applicationInfo
           * @tc.desc: Function test
+          * @tc.size: MediumTest
+          * @tc.type: Function
           * @tc.level   3
           */
         it('SUB_AA_OpenHarmony_ApplicationContext_0600', 0, async function (done) {
@@ -146,6 +145,8 @@ export default function stageAppContextTest(abilityContext) {
           * @tc.name: Verify that the app-level context calls the interface 
           * getApplicationContext to get the context using getApplicationContext
           * @tc.desc: Function test
+          * @tc.size: MediumTest
+          * @tc.type: Function
           * @tc.level   3
           */
         it('SUB_AA_OpenHarmony_ApplicationContext_1200', 0, async function (done) {
@@ -165,6 +166,8 @@ export default function stageAppContextTest(abilityContext) {
           * @tc.name: Verify that the context obtained by the application-level 
           * context calling interface getApplicationContext can use resourceManger
           * @tc.desc: Function test
+          * @tc.size: MediumTest
+          * @tc.type: Function
           * @tc.level   3
           */
         it('SUB_AA_OpenHarmony_ApplicationContext_1300', 0, async function (done) {
@@ -183,6 +186,8 @@ export default function stageAppContextTest(abilityContext) {
            * @tc.name: Verify that the application-level context calling interface 
            * getApplicationContext gets the context using applicationInfo
            * @tc.desc: Function test
+           * @tc.size: MediumTest
+           * @tc.type: Function
            * @tc.level   3
            */
         it('SUB_AA_OpenHarmony_ApplicationContext_1400', 0, async function (done) {
@@ -201,6 +206,8 @@ export default function stageAppContextTest(abilityContext) {
            * @tc.name: Verify that the context obtained by the app-level context 
            * calling interface getApplicationContext can be obtained using getApplicationContext
            * @tc.desc: Function test
+           * @tc.size: MediumTest
+           * @tc.type: Function
            * @tc.level   3
            */
         it('SUB_AA_OpenHarmony_ApplicationContext_1500', 0, async function (done) {
@@ -224,6 +231,8 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.name: getProcessRunningInformation test 1
          * getProcessRunningInformation test
          * @tc.desc: Function test
+         * @tc.size: MediumTest
+         * @tc.type: Function
          * @tc.level   3
          */
         it('SUB_AA_OpenHarmony_ApplicationContext_1600', 0, async function (done) {
@@ -242,6 +251,8 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.name: getProcessRunningInformation test 2
          * getProcessRunningInformation test
          * @tc.desc: Function test
+         * @tc.size: MediumTest
+         * @tc.type: Function
          * @tc.level   3
          */
         it('SUB_AA_OpenHarmony_ApplicationContext_1700', 0, async function (done) {
@@ -260,18 +271,20 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.name: getProcessRunningInformation test 2
          * getProcessRunningInformation test
          * @tc.desc: Function test
+         * @tc.size: MediumTest
+         * @tc.type: Function
          * @tc.level   3
          */
         it('SUB_AA_OpenHarmony_ApplicationContext_1800', 0, async function (done) {
-          let TAG = "SUB_AA_OpenHarmony_ApplicationContext_1800";
-          console.log(TAG + " --- start");
-          let context = globalThis.abilityStageContext.getApplicationContext();
-          context.getProcessRunningInformation((err, data) => {
-              console.log(TAG + " result = " + JSON.stringify(data));
-              expect(data[0].processName).assertEqual("com.example.stageappcontexttest");
-              expect(typeof data[0].state).assertEqual("number");
-          })
-          done();
+            let TAG = "SUB_AA_OpenHarmony_ApplicationContext_1800";
+            console.log(TAG + " --- start");
+            let context = globalThis.abilityStageContext.getApplicationContext();
+            context.getProcessRunningInformation((err, data) => {
+                console.log(TAG + " result = " + JSON.stringify(data));
+                expect(data[0].processName).assertEqual("com.example.stageappcontexttest");
+                expect(typeof data[0].state).assertEqual("number");
+            })
+            done();
         });
 
         /**
@@ -279,64 +292,69 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 1
          * calling interface clearUpApplicationData can be cleaning application data, run entry applicationData use Promise
          * @tc.desc: Function test
+         * @tc.size: MediumTest
+         * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0100', 0, async function (done) {
-            let TAG = "SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0100";
-            let startType = "Promise";
-            console.log(TAG + " --- start");
-            let createFileFlag = false;
+        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0100', 0, async (done) => {
+            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0100';
+            let startType = 'Promise';
+            console.log(TAG + ' --- start');
+            let createFile = true;
             let Subscriber;
             let subscriberInfo_startdebugapp = {
-                events: ["clearUpApplicationDataEvent"],
+                events: ['clearUpApplicationDataEvent'],
             };
-            function SubscribeCallBack(err, data) {
-                console.log(TAG + "Subscriber data" + JSON.stringify(data));
-                if (data?.parameters?.result !== undefined) {
-                    createFileFlag = data.parameters.result
+            let startAbility = async (notClear = false) => {
+                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await sleep(3000);
+                await abilityContext.startAbility({
+                    bundleName: 'com.example.clearUpApplicationDataHelp',
+                    abilityName: 'MainAbility',
+                    parameters: {
+                        notClear,
+                        startType,
+                        createFile
+                    }
+                }).then(async () => {
+                    await sleep(3000);
+                    let openBtn = await driver.findComponent(ON.text('打开'));
+                    openBtn?.click();
+                }).catch((error) => {
+                    console.log(TAG + 'start clearUpApplicationDataHelp failed:' + JSON.stringify(error));
+                });
+            }
+            let SubscribeCallBack = async (err, data) => {
+                console.log(TAG + 'Subscriber data' + JSON.stringify(data));
+                let haveFileFlg = data.parameters?.result;
+                try {
+                    if (createFile) {
+                        expect(haveFileFlg).assertTrue();
+                        await sleep(2000);
+                        createFile = false;
+                        startAbility(true);
+                    } else {
+                        expect(haveFileFlg).assertFalse();
+                        console.log(TAG + 'Close Subscriber');
+                        commonEventManager.unsubscribe(Subscriber);
+                        done();
+                    }
+                } catch (error) {
+                    console.log(TAG + 'case failed:' + JSON.stringify(error));
+                    done();
                 }
             }
             try {
                 commonEventManager.createSubscriber(subscriberInfo_startdebugapp).then(async (data) => {
-                    console.log(TAG + "Subscriber create");
+                    console.log(TAG + 'Subscriber create');
                     Subscriber = data;
                     await commonEventManager.subscribe(Subscriber, SubscribeCallBack);
                 })
             } catch (error) {
-                console.log(TAG + "Subscriber create fail " + JSON.stringify(error));
+                console.log(TAG + 'Subscriber create fail ' + JSON.stringify(error));
             }
             await sleep(100);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelp",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: true
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "create file status " + createFileFlag);
-            expect(createFileFlag).assertTrue();
-            abilityDelegator.executeShellCommand('aa start -a MainAbility -b com.example.stageappcontexttest')
-                .then((data) => {
-                    console.log(TAG + "stdResult : open" + JSON.stringify(data));
-                })
-            await sleep(2000);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelp",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: false
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "delete file status" + createFileFlag);
-            expect(createFileFlag).assertFalse();
-            console.log(TAG + "Close Subscriber");
-            commonEventManager.unsubscribe(Subscriber);
-            await abilityDelegator.executeShellCommand('aa force-stop com.example.clearUpApplicationDataHelp')
-            done();
+            await startAbility();
         });
 
         /**
@@ -344,64 +362,69 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 2
          * calling interface clearUpApplicationData can be cleaning application data, run entry applicationData use Callback
          * @tc.desc: Function test
+         * @tc.size: MediumTest
+         * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0200', 0, async function (done) {
-            let TAG = "SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0200";
-            let startType = "Callback";
-            console.log(TAG + " --- start");
-            let createFileFlag = false;
+        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0200', 0, async (done) => {
+            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0200';
+            let startType = 'Callback';
+            console.log(TAG + ' --- start');
+            let createFile = true;
             let Subscriber;
             let subscriberInfo_startdebugapp = {
-                events: ["clearUpApplicationDataEvent"],
+                events: ['clearUpApplicationDataEvent'],
             };
-            function SubscribeCallBack(err, data) {
-                console.log(TAG + "Subscriber data" + JSON.stringify(data));
-                if (data?.parameters?.result !== undefined) {
-                    createFileFlag = data.parameters.result
+            let startAbility = async (notClear = false) => {
+                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await sleep(3000);
+                await abilityContext.startAbility({
+                    bundleName: 'com.example.clearUpApplicationDataHelp',
+                    abilityName: 'MainAbility',
+                    parameters: {
+                        notClear,
+                        startType,
+                        createFile
+                    }
+                }).then(async () => {
+                    await sleep(3000);
+                    let openBtn = await driver.findComponent(ON.text('打开'));
+                    openBtn?.click();
+                }).catch((error) => {
+                    console.log(TAG + 'start clearUpApplicationDataHelp failed:' + JSON.stringify(error));
+                });
+            }
+            let SubscribeCallBack = async (err, data) => {
+                console.log(TAG + 'Subscriber data' + JSON.stringify(data));
+                let haveFileFlg = data.parameters?.result;
+                try {
+                    if (createFile) {
+                        expect(haveFileFlg).assertTrue();
+                        await sleep(2000);
+                        createFile = false;
+                        startAbility(true);
+                    } else {
+                        expect(haveFileFlg).assertFalse();
+                        console.log(TAG + 'Close Subscriber');
+                        commonEventManager.unsubscribe(Subscriber);
+                        done();
+                    }
+                } catch (error) {
+                    console.log(TAG + 'case failed:' + JSON.stringify(error));
+                    done();
                 }
             }
             try {
                 commonEventManager.createSubscriber(subscriberInfo_startdebugapp).then(async (data) => {
-                    console.log(TAG + "Subscriber create");
+                    console.log(TAG + 'Subscriber create');
                     Subscriber = data;
                     await commonEventManager.subscribe(Subscriber, SubscribeCallBack);
                 })
             } catch (error) {
-                console.log(TAG + "Subscriber create fail " + JSON.stringify(error));
+                console.log(TAG + 'Subscriber create fail ' + JSON.stringify(error));
             }
             await sleep(100);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelp",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: true
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "create file status " + createFileFlag);
-            expect(createFileFlag).assertTrue();
-            abilityDelegator.executeShellCommand('aa start -a MainAbility -b com.example.stageappcontexttest')
-                .then((data) => {
-                    console.log(TAG + "stdResult : open" + JSON.stringify(data));
-                })
-            await sleep(2000);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelp",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: false
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "delete file status" + createFileFlag);
-            expect(createFileFlag).assertFalse();
-            console.log(TAG + "Close Subscriber");
-            commonEventManager.unsubscribe(Subscriber);
-            await abilityDelegator.executeShellCommand('aa force-stop com.example.clearUpApplicationDataHelp')
-            done();
+            await startAbility();
         });
 
         /**
@@ -409,67 +432,69 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 3
          * calling interface clearUpApplicationData can be cleaning application data, run feature applicationData use Promise
          * @tc.desc: Function test
+         * @tc.size: MediumTest
+         * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0300', 0, async function (done) {
-            let TAG = "SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0300";
-            let startType = "Promise";
-            console.log(TAG + " --- start");
-            let createFileFlag = false;
+        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0300', 0, async (done) => {
+            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0300';
+            let startType = 'Promise';
+            console.log(TAG + ' --- start');
+            let createFile = true;
             let Subscriber;
             let subscriberInfo_startdebugapp = {
-                events: ["clearUpApplicationDataEventFeature"],
+                events: ['clearUpApplicationDataEventFeature'],
             };
-            let runNum = 0;
-            function SubscribeCallBack(err, data) {
-                console.log(TAG + "Subscriber data" + runNum + JSON.stringify(data));
-                if (data?.parameters?.result !== undefined) {
-                    createFileFlag = data.parameters.result
+            let startAbility = async (notClear = false) => {
+                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await sleep(3000);
+                await abilityContext.startAbility({
+                    bundleName: 'com.example.clearUpApplicationDataHelp',
+                    abilityName: 'MainAbilityFeature',
+                    parameters: {
+                        notClear,
+                        startType,
+                        createFile
+                    }
+                }).then(async () => {
+                    await sleep(3000);
+                    let openBtn = await driver.findComponent(ON.text('打开'));
+                    openBtn?.click();
+                }).catch((error) => {
+                    console.log(TAG + 'start clearUpApplicationDataHelpFeature failed:' + JSON.stringify(error));
+                });
+            }
+            let SubscribeCallBack = async (err, data) => {
+                console.log(TAG + 'Subscriber data' + JSON.stringify(data));
+                let haveFileFlg = data.parameters?.result;
+                try {
+                    if (createFile) {
+                        expect(haveFileFlg).assertTrue();
+                        await sleep(2000);
+                        createFile = false;
+                        startAbility(true);
+                    } else {
+                        expect(haveFileFlg).assertFalse();
+                        console.log(TAG + 'Close Subscriber');
+                        commonEventManager.unsubscribe(Subscriber);
+                        done();
+                    }
+                } catch (error) {
+                    console.log(TAG + 'case failed:' + JSON.stringify(error));
+                    done();
                 }
-                runNum += 1;
             }
             try {
                 commonEventManager.createSubscriber(subscriberInfo_startdebugapp).then(async (data) => {
-                    console.log(TAG + "clearUpApplicationDataEventFeature create");
+                    console.log(TAG + 'Subscriber create');
                     Subscriber = data;
                     await commonEventManager.subscribe(Subscriber, SubscribeCallBack);
                 })
             } catch (error) {
-                console.log(TAG + "Subscriber create fail " + JSON.stringify(error));
+                console.log(TAG + 'Subscriber create fail ' + JSON.stringify(error));
             }
             await sleep(100);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelp",
-                abilityName: "MainAbilityFeature",
-                parameters: {
-                    startType,
-                    createFile: true
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "_runNum" + runNum + '||||' + createFileFlag);
-            console.log(TAG + "create file status " + createFileFlag);
-            expect(createFileFlag).assertTrue();
-            abilityDelegator.executeShellCommand('aa start -a MainAbility -b com.example.stageappcontexttest')
-                .then((data) => {
-                    console.log(TAG + "stdResult : open" + JSON.stringify(data));
-                })
-            await sleep(2000);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelp",
-                abilityName: "MainAbilityFeature",
-                parameters: {
-                    startType,
-                    createFile: false
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "delete file status" + createFileFlag);
-            expect(createFileFlag).assertFalse();
-            console.log(TAG + "Close Subscriber");
-            commonEventManager.unsubscribe(Subscriber);
-            await abilityDelegator.executeShellCommand('aa force-stop com.example.clearUpApplicationDataHelp')
-            done();
+            await startAbility();
         });
 
         /**
@@ -477,194 +502,209 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 4
          * calling interface clearUpApplicationData can be cleaning application data, run feature applicationData use Callback
          * @tc.desc: Function test
+         * @tc.size: MediumTest
+         * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0400', 0, async function (done) {
-            let TAG = "SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0400";
-            let startType = "Callback";
-            console.log(TAG + " --- start");
-            let createFileFlag = false;
+        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0400', 0, async (done) => {
+            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0400';
+            let startType = 'Callback';
+            console.log(TAG + ' --- start');
+            let createFile = true;
             let Subscriber;
             let subscriberInfo_startdebugapp = {
-                events: ["clearUpApplicationDataEventFeature"],
+                events: ['clearUpApplicationDataEventFeature'],
             };
-            function SubscribeCallBack(err, data) {
-                console.log(TAG + "Subscriber data" + JSON.stringify(data));
-                if (data?.parameters?.result !== undefined) {
-                    createFileFlag = data.parameters.result
+            let startAbility = async (notClear = false) => {
+                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await sleep(3000);
+                await abilityContext.startAbility({
+                    bundleName: 'com.example.clearUpApplicationDataHelp',
+                    abilityName: 'MainAbilityFeature',
+                    parameters: {
+                        notClear,
+                        startType,
+                        createFile
+                    }
+                }).then(async () => {
+                    await sleep(3000);
+                    let openBtn = await driver.findComponent(ON.text('打开'));
+                    openBtn?.click();
+                }).catch((error) => {
+                    console.log(TAG + 'start clearUpApplicationDataHelpFeature failed:' + JSON.stringify(error));
+                });
+            }
+            let SubscribeCallBack = async (err, data) => {
+                console.log(TAG + 'Subscriber data' + JSON.stringify(data));
+                let haveFileFlg = data.parameters?.result;
+                try {
+                    if (createFile) {
+                        expect(haveFileFlg).assertTrue();
+                        await sleep(2000);
+                        createFile = false;
+                        startAbility(true);
+                    } else {
+                        expect(haveFileFlg).assertFalse();
+                        console.log(TAG + 'Close Subscriber');
+                        commonEventManager.unsubscribe(Subscriber);
+                        done();
+                    }
+                } catch (error) {
+                    console.log(TAG + 'case failed:' + JSON.stringify(error));
+                    done();
                 }
             }
             try {
                 commonEventManager.createSubscriber(subscriberInfo_startdebugapp).then(async (data) => {
-                    console.log(TAG + "clearUpApplicationDataEventFeature  create");
+                    console.log(TAG + 'Subscriber create');
                     Subscriber = data;
                     await commonEventManager.subscribe(Subscriber, SubscribeCallBack);
                 })
             } catch (error) {
-                console.log(TAG + "Subscriber create fail " + JSON.stringify(error));
+                console.log(TAG + 'Subscriber create fail ' + JSON.stringify(error));
             }
             await sleep(100);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelp",
-                abilityName: "MainAbilityFeature",
-                parameters: {
-                    startType,
-                    createFile: true
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "create file status " + createFileFlag);
-            expect(createFileFlag).assertTrue();
-            abilityDelegator.executeShellCommand('aa start -a MainAbility -b com.example.stageappcontexttest')
-                .then((data) => {
-                    console.log(TAG + "stdResult : open" + JSON.stringify(data));
-                })
-            await sleep(2000);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelp",
-                abilityName: "MainAbilityFeature",
-                parameters: {
-                    startType,
-                    createFile: false
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "delete file status" + createFileFlag);
-            expect(createFileFlag).assertFalse();
-            console.log(TAG + "Close Subscriber");
-            commonEventManager.unsubscribe(Subscriber);
-            await abilityDelegator.executeShellCommand('aa force-stop com.example.clearUpApplicationDataHelp')
-            done();
+            await startAbility();
         });
 
         /**
-      * @tc.number: SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0500
-      * @tc.name: Verify that the clearUpApplicationData cleaning application data test 5
-      * calling interface clearUpApplicationData can be cleaning application data, run system applicationData use Promise
-      * @tc.desc: Function test
-      * @tc.level   1
-      */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0500', 0, async function (done) {
-            let TAG = "SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0500";
-            let startType = "Promise";
-            console.log(TAG + " --- start");
-            let createFileFlag = false;
+         * @tc.number: SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0500
+         * @tc.name: Verify that the clearUpApplicationData cleaning application data test 5
+         * calling interface clearUpApplicationData can be cleaning application data, run system applicationData use Promise
+         * @tc.desc: Function test
+         * @tc.size: MediumTest
+         * @tc.type: Function
+         * @tc.level   1
+         */
+        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0500', 0, async (done) => {
+            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0500';
+            let startType = 'Promise';
+            console.log(TAG + ' --- start');
+            let createFile = true;
             let Subscriber;
             let subscriberInfo_startdebugapp = {
-                events: ["clearUpApplicationDataEventSystem"],
+                events: ['clearUpApplicationDataEventSystem'],
             };
-            function SubscribeCallBack(err, data) {
-                console.log(TAG + "Subscriber data" + JSON.stringify(data));
-                if (data?.parameters?.result !== undefined) {
-                    createFileFlag = data.parameters.result
+            let startAbility = async (notClear = false) => {
+                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await sleep(3000);
+                await abilityContext.startAbility({
+                    bundleName: 'com.example.clearUpApplicationDataHelpSystem',
+                    abilityName: 'MainAbility',
+                    parameters: {
+                        notClear,
+                        startType,
+                        createFile
+                    }
+                }).then(async () => {
+                    await sleep(3000);
+                    let openBtn = await driver.findComponent(ON.text('打开'));
+                    openBtn?.click();
+                }).catch((error) => {
+                    console.log(TAG + 'start clearUpApplicationDataHelpSystem failed:' + JSON.stringify(error));
+                });
+            }
+            let SubscribeCallBack = async (err, data) => {
+                console.log(TAG + 'Subscriber data' + JSON.stringify(data));
+                let haveFileFlg = data.parameters?.result;
+                try {
+                    if (createFile) {
+                        expect(haveFileFlg).assertTrue();
+                        await sleep(2000);
+                        createFile = false;
+                        startAbility(true);
+                    } else {
+                        expect(haveFileFlg).assertFalse();
+                        console.log(TAG + 'Close Subscriber');
+                        commonEventManager.unsubscribe(Subscriber);
+                        done();
+                    }
+                } catch (error) {
+                    console.log(TAG + 'case failed:' + JSON.stringify(error));
+                    done();
                 }
             }
             try {
                 commonEventManager.createSubscriber(subscriberInfo_startdebugapp).then(async (data) => {
-                    console.log(TAG + "Subscriber create");
+                    console.log(TAG + 'Subscriber create');
                     Subscriber = data;
                     await commonEventManager.subscribe(Subscriber, SubscribeCallBack);
                 })
             } catch (error) {
-                console.log(TAG + "Subscriber create fail " + JSON.stringify(error));
+                console.log(TAG + 'Subscriber create fail ' + JSON.stringify(error));
             }
             await sleep(100);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelpSystem",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: true
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "create file status " + createFileFlag);
-            expect(createFileFlag).assertTrue();
-            abilityDelegator.executeShellCommand('aa start -a MainAbility -b com.example.stageappcontexttest')
-                .then((data) => {
-                    console.log(TAG + "stdResult : open" + JSON.stringify(data));
-                })
-            await sleep(2000);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelpSystem",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: false
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "delete file status" + createFileFlag);
-            expect(createFileFlag).assertFalse();
-            console.log(TAG + "Close Subscriber");
-            commonEventManager.unsubscribe(Subscriber);
-            await abilityDelegator.executeShellCommand('aa force-stop com.example.clearUpApplicationDataHelpSystem')
-            done();
+            await startAbility();
         });
-        
+
         /**
          * @tc.number: SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0600
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 6
          * calling interface clearUpApplicationData can be cleaning application data, run system applicationData use Callback
          * @tc.desc: Function test
+         * @tc.size: MediumTest
+         * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0600', 0, async function (done) {
-            let TAG = "SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0600";
-            let startType = "Callback";
-            console.log(TAG + " --- start");
-            let createFileFlag = false;
+        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0600', 0, async (done) => {
+            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0600';
+            let startType = 'Callback';
+            console.log(TAG + ' --- start');
+            let createFile = true;
             let Subscriber;
             let subscriberInfo_startdebugapp = {
-                events: ["clearUpApplicationDataEventSystem"],
+                events: ['clearUpApplicationDataEventSystem'],
             };
-            function SubscribeCallBack(err, data) {
-                console.log(TAG + "Subscriber data" + JSON.stringify(data));
-                if (data?.parameters?.result !== undefined) {
-                    createFileFlag = data.parameters.result
+            let startAbility = async (notClear = false) => {
+                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await sleep(3000);
+                await abilityContext.startAbility({
+                    bundleName: 'com.example.clearUpApplicationDataHelpSystem',
+                    abilityName: 'MainAbility',
+                    parameters: {
+                        notClear,
+                        startType,
+                        createFile
+                    }
+                }).then(async () => {
+                    await sleep(3000);
+                    let openBtn = await driver.findComponent(ON.text('打开'));
+                    openBtn?.click();
+                }).catch((error) => {
+                    console.log(TAG + 'start clearUpApplicationDataHelpSystem failed:' + JSON.stringify(error));
+                });
+            }
+            let SubscribeCallBack = async (err, data) => {
+                console.log(TAG + 'Subscriber data' + JSON.stringify(data));
+                let haveFileFlg = data.parameters?.result;
+                try {
+                    if (createFile) {
+                        expect(haveFileFlg).assertTrue();
+                        await sleep(2000);
+                        createFile = false;
+                        startAbility(true);
+                    } else {
+                        expect(haveFileFlg).assertFalse();
+                        console.log(TAG + 'Close Subscriber');
+                        commonEventManager.unsubscribe(Subscriber);
+                        done();
+                    }
+                } catch (error) {
+                    console.log(TAG + 'case failed:' + JSON.stringify(error));
+                    done();
                 }
             }
             try {
                 commonEventManager.createSubscriber(subscriberInfo_startdebugapp).then(async (data) => {
-                    console.log(TAG + "Subscriber create");
+                    console.log(TAG + 'Subscriber create');
                     Subscriber = data;
                     await commonEventManager.subscribe(Subscriber, SubscribeCallBack);
                 })
             } catch (error) {
-                console.log(TAG + "Subscriber create fail " + JSON.stringify(error));
+                console.log(TAG + 'Subscriber create fail ' + JSON.stringify(error));
             }
             await sleep(100);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelpSystem",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: true
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "create file status " + createFileFlag);
-            expect(createFileFlag).assertTrue();
-            abilityDelegator.executeShellCommand('aa start -a MainAbility -b com.example.stageappcontexttest')
-                .then((data) => {
-                    console.log(TAG + "stdResult : open" + JSON.stringify(data));
-                })
-            await sleep(2000);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelpSystem",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: false
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "delete file status" + createFileFlag);
-            expect(createFileFlag).assertFalse();
-            console.log(TAG + "Close Subscriber");
-            commonEventManager.unsubscribe(Subscriber);
-            await abilityDelegator.executeShellCommand('aa force-stop com.example.clearUpApplicationDataHelpSystem')
-            done();
+            await startAbility();
         });
 
         /**
@@ -672,105 +712,126 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 7
          * calling interface clearUpApplicationData can be cleaning application data, run applicationDatas use Promise
          * @tc.desc: Function test
+         * @tc.size: MediumTest
+         * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0700', 0, async function (done) {
-            let TAG = "SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0700";
-            let startType = "Promise";
-            console.log(TAG + " --- start");
-            let createFileFlag = false;
+        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0700', 0, async (done) => {
+            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0700';
+            let startType = 'Promise';
+            console.log(TAG + ' --- start');
+            let createFile = true;
+            let startEntery = async () => {
+                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await sleep(3000);
+                await abilityContext.startAbility({
+                    bundleName: 'com.example.clearUpApplicationDataHelp',
+                    abilityName: 'MainAbility',
+                    parameters: {
+                        notClear: true,
+                        startType,
+                        createFile
+                    }
+                }).then(async () => {
+                    await sleep(3000);
+                    let openBtn = await driver.findComponent(ON.text('打开'));
+                    openBtn?.click();
+                }).catch((error) => {
+                    console.log(TAG + 'start clearUpApplicationDataHelp failed:' + JSON.stringify(error));
+                });
+            }
+            let haveFileFlg = false;
             let Subscriber;
             let subscriberInfo_startdebugapp = {
-                events: ["clearUpApplicationDataEvent"],
+                events: ['clearUpApplicationDataEvent'],
             };
-            function SubscribeCallBack(err, data) {
-                console.log(TAG + "Subscriber data" + JSON.stringify(data));
-                if (data?.parameters?.result !== undefined) {
-                    createFileFlag = data.parameters.result
+            let SubscribeCallBack = async (err, data) => {
+                console.log(TAG + 'Subscriber data entry' + JSON.stringify(data));
+                haveFileFlg = !!data.parameters?.result;
+                try {
+                    if (createFile) {
+                        expect(haveFileFlg).assertTrue();
+                        await sleep(2000);
+                        await startSystem();
+                    } else {
+                        expect(haveFileFlg).assertTrue();
+                        console.log(TAG + 'Close Subscriber');
+                        await sleep(2000);
+                        createFileSys = false;
+                        await startSystem(true);
+                        commonEventManager.unsubscribe(Subscriber);
+                    }
+                } catch (error) {
+                    console.log(TAG + 'case failed:' + JSON.stringify(error));
+                    done();
                 }
             }
+
             try {
                 commonEventManager.createSubscriber(subscriberInfo_startdebugapp).then(async (data) => {
-                    console.log(TAG + "clearUpApplicationDataEvent create");
+                    console.log(TAG + 'clearUpApplicationDataEvent create');
                     Subscriber = data;
                     await commonEventManager.subscribe(Subscriber, SubscribeCallBack);
                 })
             } catch (error) {
-                console.log(TAG + "Subscriber create fail " + JSON.stringify(error));
+                console.log(TAG + 'Subscriber create fail ' + JSON.stringify(error));
             }
-            let createFileFlagSys = false;
+            let createFileSys = true;
+            let startSystem = async (notClear = false) => {
+                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await sleep(3000);
+                await abilityContext.startAbility({
+                    bundleName: 'com.example.clearUpApplicationDataHelpSystem',
+                    abilityName: 'MainAbility',
+                    parameters: {
+                        notClear,
+                        startType,
+                        createFile: createFileSys
+                    }
+                }).then(async () => {
+                    await sleep(3000);
+                    let openBtn = await driver.findComponent(ON.text('打开'));
+                    openBtn?.click();
+                }).catch((error) => {
+                    console.log(TAG + 'start clearUpApplicationDataHelpSystem failed:' + JSON.stringify(error));
+                });
+            }
+            let haveFileFlgSys = false;
             let SubscriberSys;
             let subscriberInfo_startdebugappSys = {
-                events: ["clearUpApplicationDataEventSystem"],
+                events: ['clearUpApplicationDataEventSystem'],
             };
-            function SubscribeCallBackSys(err, data) {
-                console.log(TAG + "Subscriber data" + JSON.stringify(data));
-                if (data?.parameters?.result !== undefined) {
-                    createFileFlagSys = data.parameters.result
+            let SubscribeCallBackSys = async (err, data) => {
+                console.log(TAG + 'Subscriber data sys' + JSON.stringify(data));
+                haveFileFlgSys = !!data.parameters?.result;
+                try {
+                    if (createFileSys) {
+                        expect(haveFileFlgSys).assertTrue();
+                        await sleep(2000);
+                        createFile = false;
+                        await startEntery();
+                    } else {
+                        expect(haveFileFlgSys).assertFalse();
+                        console.log(TAG + 'Close Subscriber');
+                        commonEventManager.unsubscribe(SubscriberSys);
+                        done();
+                    }
+                } catch (error) {
+                    console.log(TAG + 'case failed:' + JSON.stringify(error));
+                    done();
                 }
             }
             try {
                 commonEventManager.createSubscriber(subscriberInfo_startdebugappSys).then(async (data) => {
-                    console.log(TAG + "clearUpApplicationDataEventSystem create");
+                    console.log(TAG + 'clearUpApplicationDataEventSystem create');
                     SubscriberSys = data;
                     await commonEventManager.subscribe(SubscriberSys, SubscribeCallBackSys);
                 })
             } catch (error) {
-                console.log(TAG + "Subscriber create fail " + JSON.stringify(error));
+                console.log(TAG + 'Subscriber create fail ' + JSON.stringify(error));
             }
-            await sleep(100);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelp",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: true,
-                    notClear: true
-                }
-            })
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelpSystem",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: true
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "create file status  createFileFlag" + createFileFlag + "createFileFlagSys" + createFileFlagSys);
-            expect(createFileFlag).assertTrue();
-            expect(createFileFlagSys).assertTrue();
-            abilityDelegator.executeShellCommand('aa start -a MainAbility -b com.example.stageappcontexttest')
-                .then((data) => {
-                    console.log(TAG + "stdResult : open" + JSON.stringify(data));
-                })
-            await sleep(2000);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelp",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: false
-                }
-            })
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelpSystem",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: false
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "delete file status createFileFlag" + createFileFlag + "createFileFlagSys" + createFileFlagSys);
-            expect(createFileFlag).assertTrue();
-            expect(createFileFlagSys).assertFalse();
-            console.log(TAG + "Close Subscriber");
-            commonEventManager.unsubscribe(Subscriber);
-            commonEventManager.unsubscribe(SubscriberSys);
-            await abilityDelegator.executeShellCommand('aa force-stop com.example.clearUpApplicationDataHelp')
-            await abilityDelegator.executeShellCommand('aa force-stop com.example.clearUpApplicationDataHelpSystem')
-            done();
+            await sleep(1000);
+            await startEntery();
         });
 
         /**
@@ -778,105 +839,126 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 7
          * calling interface clearUpApplicationData can be cleaning application data, run applicationDatas use Callback
          * @tc.desc: Function test
+         * @tc.size: MediumTest
+         * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0800', 0, async function (done) {
-            let TAG = "SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0800";
-            let startType = "Callback";
-            console.log(TAG + " --- start");
-            let createFileFlag = false;
+        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0800', 0, async (done: Function) => {
+            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0800';
+            let startType = 'Callback';
+            console.log(TAG + ' --- start');
+            let createFile = true;
+            let startEntery = async () => {
+                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await sleep(3000);
+                await abilityContext.startAbility({
+                    bundleName: 'com.example.clearUpApplicationDataHelp',
+                    abilityName: 'MainAbility',
+                    parameters: {
+                        notClear: true,
+                        startType,
+                        createFile
+                    }
+                }).then(async () => {
+                    await sleep(3000);
+                    let openBtn = await driver.findComponent(ON.text('打开'));
+                    openBtn?.click();
+                }).catch((error) => {
+                    console.log(TAG + 'start clearUpApplicationDataHelp failed:' + JSON.stringify(error));
+                });
+            }
+            let haveFileFlg = false;
             let Subscriber;
             let subscriberInfo_startdebugapp = {
-                events: ["clearUpApplicationDataEvent"],
+                events: ['clearUpApplicationDataEvent'],
             };
-            function SubscribeCallBack(err, data) {
-                console.log(TAG + "Subscriber data" + JSON.stringify(data));
-                if (data?.parameters?.result !== undefined) {
-                    createFileFlag = data.parameters.result
+            let SubscribeCallBack = async (err, data) => {
+                console.log(TAG + 'Subscriber data entry' + JSON.stringify(data));
+                haveFileFlg = !!data.parameters?.result;
+                try {
+                    if (createFile) {
+                        expect(haveFileFlg).assertTrue();
+                        await sleep(2000);
+                        await startSystem();
+                    } else {
+                        expect(haveFileFlg).assertTrue();
+                        console.log(TAG + 'Close Subscriber');
+                        await sleep(2000);
+                        createFileSys = false;
+                        await startSystem(true);
+                        commonEventManager.unsubscribe(Subscriber);
+                    }
+                } catch (error) {
+                    console.log(TAG + 'case failed:' + JSON.stringify(error));
+                    done();
                 }
             }
+
             try {
                 commonEventManager.createSubscriber(subscriberInfo_startdebugapp).then(async (data) => {
-                    console.log(TAG + "clearUpApplicationDataEvent create");
+                    console.log(TAG + 'clearUpApplicationDataEvent create');
                     Subscriber = data;
                     await commonEventManager.subscribe(Subscriber, SubscribeCallBack);
                 })
             } catch (error) {
-                console.log(TAG + "Subscriber create fail " + JSON.stringify(error));
+                console.log(TAG + 'Subscriber create fail ' + JSON.stringify(error));
             }
-            let createFileFlagSys = false;
+            let createFileSys = true;
+            let startSystem = async (notClear = false) => {
+                await abilityDelegator.doAbilityForeground(TestUiAbility);
+                await sleep(3000);
+                await abilityContext.startAbility({
+                    bundleName: 'com.example.clearUpApplicationDataHelpSystem',
+                    abilityName: 'MainAbility',
+                    parameters: {
+                        notClear,
+                        startType,
+                        createFile: createFileSys
+                    }
+                }).then(async () => {
+                    await sleep(3000);
+                    let openBtn = await driver.findComponent(ON.text('打开'));
+                    openBtn?.click();
+                }).catch((error) => {
+                    console.log(TAG + 'start clearUpApplicationDataHelpSystem failed:' + JSON.stringify(error));
+                });
+            }
+            let haveFileFlgSys = false;
             let SubscriberSys;
             let subscriberInfo_startdebugappSys = {
-                events: ["clearUpApplicationDataEventSystem"],
+                events: ['clearUpApplicationDataEventSystem'],
             };
-            function SubscribeCallBackSys(err, data) {
-                console.log(TAG + "Subscriber data" + JSON.stringify(data));
-                if (data?.parameters?.result !== undefined) {
-                    createFileFlagSys = data.parameters.result
+            let SubscribeCallBackSys = async (err, data) => {
+                console.log(TAG + 'Subscriber data sys' + JSON.stringify(data));
+                haveFileFlgSys = !!data.parameters?.result;
+                try {
+                    if (createFileSys) {
+                        expect(haveFileFlgSys).assertTrue();
+                        await sleep(2000);
+                        createFile = false;
+                        await startEntery();
+                    } else {
+                        expect(haveFileFlgSys).assertFalse();
+                        console.log(TAG + 'Close Subscriber');
+                        commonEventManager.unsubscribe(SubscriberSys);
+                        done();
+                    }
+                } catch (error) {
+                    console.log(TAG + 'case failed:' + JSON.stringify(error));
+                    done();
                 }
             }
             try {
                 commonEventManager.createSubscriber(subscriberInfo_startdebugappSys).then(async (data) => {
-                    console.log(TAG + "clearUpApplicationDataEventSystem create");
+                    console.log(TAG + 'clearUpApplicationDataEventSystem create');
                     SubscriberSys = data;
                     await commonEventManager.subscribe(SubscriberSys, SubscribeCallBackSys);
                 })
             } catch (error) {
-                console.log(TAG + "Subscriber create fail " + JSON.stringify(error));
+                console.log(TAG + 'Subscriber create fail ' + JSON.stringify(error));
             }
-            await sleep(100);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelp",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: true,
-                    notClear: true
-                }
-            })
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelpSystem",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: true
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "create file status  createFileFlag" + createFileFlag + "createFileFlagSys" + createFileFlagSys);
-            expect(createFileFlag).assertTrue();
-            expect(createFileFlagSys).assertTrue();
-            abilityDelegator.executeShellCommand('aa start -a MainAbility -b com.example.stageappcontexttest')
-                .then((data) => {
-                    console.log(TAG + "stdResult : open" + JSON.stringify(data));
-                })
-            await sleep(2000);
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelp",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: false
-                }
-            })
-            abilityDelegator.startAbility({
-                bundleName: "com.example.clearUpApplicationDataHelpSystem",
-                abilityName: "MainAbility",
-                parameters: {
-                    startType,
-                    createFile: false
-                }
-            })
-            await sleep(2000);
-            console.log(TAG + "delete file status createFileFlag" + createFileFlag + "createFileFlagSys" + createFileFlagSys);
-            expect(createFileFlag).assertTrue();
-            expect(createFileFlagSys).assertFalse();
-            console.log(TAG + "Close Subscriber");
-            commonEventManager.unsubscribe(Subscriber);
-            commonEventManager.unsubscribe(SubscriberSys);
-            await abilityDelegator.executeShellCommand('aa force-stop com.example.clearUpApplicationDataHelp')
-            await abilityDelegator.executeShellCommand('aa force-stop com.example.clearUpApplicationDataHelpSystem')
-            done();
+            await sleep(1000);
+            await startEntery();
         });
 
     })

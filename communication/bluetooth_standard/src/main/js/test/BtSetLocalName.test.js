@@ -62,16 +62,16 @@ describe('btLocalNameTest', function() {
     }
 
     async function clickTheWindow() {
-        try{
+        try {
+            console.info('[bluetooth_js] clickRequestPermission start');
             let driver = Driver.create();
-            console.info('[bluetooth_js] bt driver create:'+ driver);            
-            await driver.delayMs(1000);
-            await driver.click(950, 2550);
-            await driver.delayMs(5000);
-            await driver.click(950, 2550);
             await driver.delayMs(3000);
-        } catch (error) {
-            console.info('[bluetooth_js] driver error info:'+ error);
+            let button = await driver.findComponent(ON.text("允许"));
+            await button.click();
+            await driver.delayMs(3000);
+            console.info('[bluetooth_js] clickRequestPermission end');
+        } catch (err) {
+            console.info('[bluetooth_js] clickRequestPermission failed');
         }
     }
 
@@ -428,7 +428,7 @@ describe('btLocalNameTest', function() {
         expect(set).assertFalse();
         await sleep(1000);
         let localName = bluetooth.getLocalName();
-        expect(true).assertTrue(localName==name);
+        expect(localName == name).assertTrue();
         console.info('[bluetooth_js] getLocalName1800=' + JSON.stringify(localName));
         done();
     })

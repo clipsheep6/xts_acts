@@ -19,9 +19,16 @@
         {
             "type": "ShellKit",
             "run-command": [
+                "param set persist.ace.testmode.enabled 1",
+                "param set persist.sys.suspend_manager_enbled 0",
+                "reboot",
+                "wait 5",
                 "power-shell wakeup",
-                "power-shell setmode 602",
-                "uinput -T -m 425 1000 425 500 400"
+                "uinput -T -m 300 2700 280 200",
+                "uinput -K -d 2050 -u 2050",
+                "wait 5",
+                "uinput -T -m 300 2700 280 200",
+                "power-shell setmode 602"
             ],
             "teardown-command": [
                 "power-shell setmode 601"
