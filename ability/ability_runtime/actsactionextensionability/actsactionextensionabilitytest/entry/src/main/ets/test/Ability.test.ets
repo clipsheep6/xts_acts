@@ -1691,6 +1691,9 @@ export default function abilityTest() {
      * @tc.number: SUB_Ability_AbilityRuntime_AMS_WantShowMode_0100
      * @tc.name: Test WantConstant ShowMode UIExtensionComponent EMBEDDED_FULL.
      * @tc.desc: Test ShowMode value EMBEDDED_FULL pull failed
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level: Level3
      */
     it('SUB_Ability_AbilityRuntime_AMS_WantShowMode_0100',0, async function (done) {
       var subscriber;
@@ -1722,6 +1725,9 @@ export default function abilityTest() {
      * @tc.number: SUB_Ability_AbilityRuntime_AMS_WantShowMode_0200
      * @tc.name: Test WantConstant ShowMode UIExtensionComponent WINDOW.
      * @tc.desc: Test ShowMode value WINDOW pull failed
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level: Level3
      */
     it('SUB_Ability_AbilityRuntime_AMS_WantShowMode_0200',0, async function (done) {
       var subscriber;
@@ -1753,6 +1759,9 @@ export default function abilityTest() {
      * @tc.number: SUB_Ability_AbilityRuntime_AMS_WantShowMode_0300
      * @tc.name: Test WantConstant ShowMode startAbilityByType.
      * @tc.desc: Test ShowMode value EMBEDDED_FULL pull failed
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level: Level3
      */
     it('SUB_Ability_AbilityRuntime_AMS_WantShowMode_0300',0, async function (done) {
       let wantParam:Record<string, Object> = { };
@@ -1777,6 +1786,9 @@ export default function abilityTest() {
      * @tc.number: SUB_Ability_AbilityRuntime_AMS_WantShowMode_0400
      * @tc.name: Test WantConstant ShowMode startAbilityByType.
      * @tc.desc: Test ShowMode value WINDOW pull failed
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level: Level3
      */
     it('SUB_Ability_AbilityRuntime_AMS_WantShowMode_0400',0, async function (done) {
       let wantParam:Record<string, Object> = { };
@@ -1798,9 +1810,94 @@ export default function abilityTest() {
     })
 
     /**
+     * @tc.number: SUB_Ability_AbilityRuntime_AMS_WantShowMode_0500
+     * @tc.name: Test WantConstant ShowMode startAbility with EMBEDDED_FULL.
+     * @tc.desc: Test ShowMode value EMBEDDED_FULL pull success
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level: Level3
+     */
+    it('SUB_Ability_AbilityRuntime_AMS_WantShowMode_0500',0, async function (done) {
+        let ACTS_START_ABILITY_MODE_EVENT = {
+          events:['ACTS_START_ABILITY']
+        };
+        let subscriber;
+        commonEvent.createSubscriber(ACTS_START_ABILITY_MODE_EVENT).then(async (data) => {
+          console.info(`====>SUB_Ability_AbilityRuntime_AMS_WantShowMode_0500 createSubscriber  ${data}`);
+          subscriber = data;
+          commonEvent.subscribe(data, subscribeCallBack);
+          let want = {
+                bundleName: 'com.example.actsactionextensionabilitytest',
+                abilityName: 'TestWantShowModeOtherFullAbility',
+                action: 'SUB_Ability_AbilityRuntime_AMS_WantShowMode_0500',
+                parameters:{}
+          }
+          want.parameters = {};
+          want.parameters[wantConstant.Params.SHOW_MODE_KEY] = wantConstant.ShowMode.EMBEDDED_FULL;
+          globalThis.context.startAbility(want, (err) => {
+            console.info(`====>SUB_Ability_AbilityRuntime_AMS_WantShowMode_0500 createSubscriber  ` + JSON.stringify(err));
+            expect(err.code).assertEqual(0);
+          });
+
+          function subscribeCallBack(err, data) {
+            console.log('====>SUB_Ability_AbilityRuntime_AMS_WantShowMode_0500 subscribeCallBack :' + JSON.stringify(data));
+            expect(data.event == 'ACTS_START_ABILITY').assertTrue();
+            commonEvent.unsubscribe(subscriber, async (err, data) => {
+                console.info(`====>SUB_Ability_AbilityRuntime_AMS_WantShowMode_0500 unSubscribeCallback`);
+                done();
+            });
+          }
+        });
+    })
+
+    /**
+     * @tc.number: SUB_Ability_AbilityRuntime_AMS_WantShowMode_0600
+     * @tc.name: Test WantConstant ShowMode startAbility with WINDOW.
+     * @tc.desc: Test ShowMode value WINDOW pull success
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level: Level3
+     */
+    it('SUB_Ability_AbilityRuntime_AMS_WantShowMode_0600',0, async function (done) {
+      let ACTS_START_ABILITY_MODE_EVENT = {
+        events:['ACTS_START_ABILITY']
+      };
+      let subscriber;
+      commonEvent.createSubscriber(ACTS_START_ABILITY_MODE_EVENT).then(async (data) => {
+        console.info(`====>SUB_Ability_AbilityRuntime_AMS_WantShowMode_0600 createSubscriber  ${data}`);
+        subscriber = data;
+        commonEvent.subscribe(data, subscribeCallBack);
+        let want = {
+          bundleName: 'com.example.actsactionextensionabilitytest',
+          abilityName: 'TestWantShowModeOtherFullAbility',
+          action: 'SUB_Ability_AbilityRuntime_AMS_WantShowMode_0600',
+          parameters:{}
+        }
+        want.parameters = {};
+        want.parameters[wantConstant.Params.SHOW_MODE_KEY] = wantConstant.ShowMode.WINDOW;
+        globalThis.context.startAbility(want, (err) => {
+          console.info(`====>SUB_Ability_AbilityRuntime_AMS_WantShowMode_0600 createSubscriber  ` + JSON.stringify(err));
+          expect(err.code).assertEqual(0);
+        });
+
+        function subscribeCallBack(err, data) {
+          console.log('====>SUB_Ability_AbilityRuntime_AMS_WantShowMode_0600 subscribeCallBack :' + JSON.stringify(data));
+          expect(data.event == 'ACTS_START_ABILITY').assertTrue();
+          commonEvent.unsubscribe(subscriber, async (err, data) => {
+              console.info(`====>SUB_Ability_AbilityRuntime_AMS_WantShowMode_0600 unSubscribeCallback`);
+              done();
+          });
+        }
+      });
+    })
+
+    /**
      * @tc.number: SUB_Ability_AbilityRuntime_AMS_WantShowMode_0700
      * @tc.name: Test WantConstant ShowMode UIExtensionComponent EMBEDDED_FULL.
      * @tc.desc: Test ShowMode value EMBEDDED_FULL pull failed
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level: Level3
      */
     it('SUB_Ability_AbilityRuntime_AMS_WantShowMode_0700',0, async function (done) {
       var subscriber;
@@ -1832,6 +1929,9 @@ export default function abilityTest() {
      * @tc.number: SUB_Ability_AbilityRuntime_AMS_WantShowMode_0800
      * @tc.name: Test WantConstant ShowMode UIExtensionComponent WINDOW.
      * @tc.desc: Test ShowMode value WINDOW pull failed
+     * @tc.size MediumTest
+     * @tc.type Function
+     * @tc.level: Level3
      */
     it('SUB_Ability_AbilityRuntime_AMS_WantShowMode_0800',0, async function (done) {
       var subscriber;
