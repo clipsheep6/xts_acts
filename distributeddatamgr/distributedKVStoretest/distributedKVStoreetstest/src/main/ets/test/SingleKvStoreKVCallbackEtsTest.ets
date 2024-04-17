@@ -2197,16 +2197,20 @@ export default function SingleKvStoreCallbackTest(){
      * @tc.name Test Js Api SingleKvStore.GetResultSet() testcase 003
      */
     it('SUB_DDM_DKV_SINGLEKVSTORE_GETRESULT_CALLBACK_7700', 0, async function (done) {
-      console.info('SingleKvStoreGetResultSetCallbackTest003');
+      console.info('yltest1SingleKvStoreGetResultSetCallbackTest003');
       try {
         let resultSet;
-        await kvStore.getResultSet('test_key_string', 123, function (err, result) {
-          console.info('SingleKvStoreGetResultSetCallbackTest003 getResultSet success: '+err);
+        await kvStore.getResultSet('test_key_string', 123, async function (err, result) {
+          console.info('yltest1SingleKvStoreGetResultSetCallbackTest003 getResultSet success: '+err);
           expect(err == undefined).assertTrue();
-          done();
+          await kvStore.closeResultSet(result, function (err, data) {
+                console.info('yltest1SingleKvStoreGetResultSetCallbackTest003 closeResultSet success');
+                expect(err == undefined).assertTrue();
+                done();
+            })
         });
       }catch(e) {
-        console.error('SingleKvStoreGetResultSetCallbackTest003 e ' + `, error code is ${e.code}, message is ${e.message}`);
+        console.error('yltest1SingleKvStoreGetResultSetCallbackTest003 e ' + `, error code is ${e.code}, message is ${e.message}`);
         expect(null).assertFail();
         done();
       }
@@ -2221,13 +2225,18 @@ export default function SingleKvStoreCallbackTest(){
     it('SUB_DDM_DKV_SINGLEKVSTORE_GETRESULT_CALLBACK_7800', 0, async function (done) {
       console.log('SingleKvStoreGetResultSetPredicatesCallbackTest001');
       try {
+        let resultSet;
         let query = new factory.Query();
-        await kvStore.getResultSet(query).then((result) => {
+        await kvStore.getResultSet(query).then(async(result) => {
           console.log('SingleKvStoreGetResultSetPredicatesCallbackTest001 getResultSet success');
+          resultSet = result;
         }).catch((err) => {
           console.error('SingleKvStoreGetResultSetPredicatesCallbackTest001 getResultSet fail ' + err`, error code is ${err.code}, message is ${err.message}`);
           expect(err == undefined).assertTrue();
         });
+        await kvStore.closeResultSet(resultSet, async function (err, data) {
+            console.info('SingleKvStoreGetResultSetPredicatesCallbackTest001 closeResultSet success');
+        })
       } catch(e) {
         console.error('SingleKvStoreGetResultSetPredicatesCallbackTest001 e ' + `, error code is ${e.code}, message is ${e.message}`);
         expect(null).assertFail();

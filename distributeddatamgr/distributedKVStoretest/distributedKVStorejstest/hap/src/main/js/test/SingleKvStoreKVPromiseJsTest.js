@@ -257,7 +257,7 @@ describe('SingleKvStorePromiseTest', function () {
         console.info('SUB_DDM_DKV_SINGLEKVSTORE_GETSTRING_PROMISE_0200');
         try {
             await kvStore.get(KEY_TEST_STRING_ELEMENT).then((data) => {
-                console.info('SUB_DDM_DKV_SINGLEKVSTORE_GETSTRING_PROMISE_0200 get success');
+                console.info('SUB_DDM_DKV_SINGLEKVSTORE_GETSTRING_PROMISE_0200 get success2'+data);
                 expect(null).assertFail();
             }).catch((err) => {
                 console.error('SUB_DDM_DKV_SINGLEKVSTORE_GETSTRING_PROMISE_0200 get fail ' + `, error code is ${err.code}, message is ${err.message}`);
