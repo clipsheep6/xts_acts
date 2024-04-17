@@ -1,6 +1,11 @@
 {
     "src": [
         "MainAbility/pages/index/index",
-        "MainAbility/pages/geometryTransition/geometryTransition"
+        "MainAbility/pages/geometryTransition/geometryTransition",
+        "MainAbility/pages/animation/animate",
+        "MainAbility/pages/motionPath/motionPath",
+        "MainAbility/pages/sharedTransition/sharedTransition",
+        "MainAbility/pages/sharedTransition/sharedTransition2",
+        "MainAbility/pages/transition/transition"
     ]
 }

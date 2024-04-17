@@ -71,6 +71,8 @@ import swiperItemPadding from './SwiperTest/Swiper_ItemChange/swiperItemPadding.
 import swiperItemMargin from './SwiperTest/Swiper_ItemChange/swiperItemMargin.test.ets';
 import swiperItemPadMar from './SwiperTest/Swiper_ItemChange/swiperItemPadMar.test.ets';
 import swiperItemVisibility from './SwiperTest/Swiper_ItemChange/swiperItemVisibility.test.ets';
+import tabsJsunit from './TabsTest/TabsJsunit.test';
+import scrollCodeJsunit from './ScrollTest/ScrollCodeJsunit.test';
 
 export default function testsuite() {
   listJsunit();
@@ -132,4 +134,6 @@ export default function testsuite() {
   swiperItemMargin()
   swiperItemPadMar()
   swiperItemVisibility()
+  tabsJsunit();
+  scrollCodeJsunit();
 }

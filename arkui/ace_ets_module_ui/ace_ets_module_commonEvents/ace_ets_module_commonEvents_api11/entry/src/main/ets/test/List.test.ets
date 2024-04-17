@@ -28,6 +28,12 @@ import dragPreviewJsSuit from './DragController/dragPreviewJsSuit.test';
 import dragPreviewOptionsJsSuit from './DragController/dragPreviewOptionsJsSuit.test';
 import GestureTagJsSuit from './TapGestureTest/GestureTagJsSuit.test';
 import freezeInactive from './freezeTest/freezeInactive.test'
+import aboutToDisappearJsunit from './onAppearTest/AboutToDisappearJsunit.test';
+import priorityGestureJsunit from './GestureGroupTest/PriorityGestureJsunit.test';
+import parallelGestureJsunit from './GestureGroupTest/ParallelGestureJsunit.test';
+import tapGesture from './TapGestureTest/TapGesture.test';
+import panGestureJsunit from './PanGestureTest/PanGestureJsunit.test';
+import longPressGestureJsUnit from './LongPressGestureTest/LongPressGesture.test';
 
 export default function testsuite() {
   touchJsunit();
@@ -46,4 +52,10 @@ export default function testsuite() {
   dragPreviewOptionsJsSuit()
   GestureTagJsSuit()
   freezeInactive()
+  aboutToDisappearJsunit()
+  priorityGestureJsunit()
+  parallelGestureJsunit()
+  tapGesture()
+  panGestureJsunit();
+  longPressGestureJsUnit();
 }

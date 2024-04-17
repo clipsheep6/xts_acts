@@ -17,6 +17,8 @@ import touchAbleJsunit from './touchableTest/TouchAbleJsunit.test';
 import onChildTouchTest from './onChildTouchTest/onChildTouchTest.test';
 import setCursorTest from './cursorControlTest/setCursorTest.test';
 import monopolizeTest from './monopolizeEventsTest/monopolizeTest.test';
+import responseRegionJsunit from './responseRegionTest/ResponseRegionJsunit.test';
+import focusControlJsunit from './focusControlTest/FocusControlJsunit.test'
 
 export default function testsuite() {
   enableJsunit();
@@ -24,4 +26,5 @@ export default function testsuite() {
   onChildTouchTest();
   setCursorTest();
   monopolizeTest();
+  responseRegionJsunit()
 }

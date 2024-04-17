@@ -16,11 +16,16 @@ import gaugeJsunit from './gaugeTest/GaugeJsunit.test';
 import CounterEnableTest from './CounterTest/CounterEnable.test'
 import progressTest from './ProgressTest/progress.test'
 import progressSecTest from './ProgressTest/progressSec.test'
+import badgeJsunit from './BadgeTest/BadgeJsunit.test';
+import progressJsunit from './ProgressTest/ProgressJsunit.test';
+import qrCodeJsunit from './QrCodeTest/QrCodeJsunit.test';
 
 export default function testsuite() {
   gaugeJsunit();
   CounterEnableTest();
   progressTest();
   progressSecTest();
-
+  badgeJsunit()
+  progressJsunit()
+  qrCodeJsunit()
 }

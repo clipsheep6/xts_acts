@@ -16,6 +16,12 @@
         "MainAbility/pages/DragController/dragPreview",
         "MainAbility/pages/DragController/dragPreviewOptions",
         "MainAbility/pages/freeze/freezeInactive",
-        "MainAbility/pages/TapGesture/GestureTag"
+        "MainAbility/pages/TapGesture/GestureTag",
+        "MainAbility/pages/onAppear/aboutToDisappear",
+        "MainAbility/pages/GestureGroup/priorityGesture",
+        "MainAbility/pages/GestureGroup/parallelGesture",
+        "MainAbility/pages/TapGesture/tapGesture",
+        "MainAbility/pages/PanGesture/PanGesture",
+        "MainAbility/pages/LongPressGesture/longPressGesture"
     ]
 }
