@@ -51,5 +51,58 @@ export default function selectNdkTest() {
       expect(result).assertEqual(1);
       done()
     });
+    /**
+     * @tc.number     : SUB_THIRDPARTY_MUSL_SELECT_PSELECT_0100
+     * @tc.name       : testMuslSelectPSelect001
+     * @tc.desc       : test pselect
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+    it('testMuslSelectPSelect001', 0, async (done: Function) => {
+      let result:number = select.pSelect();
+      console.info("Test NAPI data= " + JSON.stringify(result));
+      expect(result).assertEqual(0);
+      done()
+    });
+    /**
+     * @tc.number     : SUB_THIRDPARTY_MUSL_SELECT_FD_CHK_0100
+     * @tc.name       : testMuslSelectFdChk001
+     * @tc.desc       : test __fd_chk
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+    it('testMuslSelectFdChk001', 0, async (done: Function) => {
+     let result:number = select.fdChk(-1);
+     expect(result).assertEqual(-1);
+     done()
+    });
+    /**
+     * @tc.number     : SUB_THIRDPARTY_MUSL_SELECT_FD_CHK_0200
+     * @tc.name       : testMuslSelectFdChk002
+     * @tc.desc       : test __fd_chk
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+    it('testMuslSelectFdChk002', 0, async (done: Function) => {
+      let result:number = select.fdChk(0);
+      expect(result).assertEqual(0);
+      done()
+    });
+    /**
+     * @tc.number     : SUB_THIRDPARTY_MUSL_SELECT_FD_CHK_0300
+     * @tc.name       : testMuslSelectFdChk003
+     * @tc.desc       : test __fd_chk
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+    it('testMuslSelectFdChk003', 0, async (done: Function) => {
+      let result:number = select.fdChk(1024);
+      expect(result).assertEqual(-1);
+      done()
+    });
   })
 }

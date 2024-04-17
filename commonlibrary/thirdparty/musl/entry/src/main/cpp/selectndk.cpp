@@ -16,6 +16,7 @@
 #include "common/napi_helper.cpp"
 #include "common/native_common.h"
 #include "napi/native_api.h"
+#include <cerrno>
 #include <cstdio>
 #include <cstring>
 #include <sys/select.h>
@@ -78,13 +79,32 @@ static napi_value PSelect(napi_env env, napi_callback_info info)
     }
     return result;
 }
+
+static napi_value FdChk(napi_env env, napi_callback_info info)
+{
+    size_t argc = PARAM_1;
+    napi_value args[1] = {nullptr};
+    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+    int param;
+    napi_get_value_int32(env, args[0], &param);
+    errno = NO_ERR;
+    napi_value result = nullptr;
+    __fd_chk(param);
+    if (errno == NO_ERRS) {
+        napi_create_int32(env, NO_ERR, &result);
+    } else {
+        napi_create_int32(env, FAIL, &result);
+    }
+    return result;
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
         {"select", nullptr, Select, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"pSelect", nullptr, PSelect, nullptr, nullptr, nullptr, napi_default, nullptr},
-
+        {"fdChk", nullptr, FdChk, nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
