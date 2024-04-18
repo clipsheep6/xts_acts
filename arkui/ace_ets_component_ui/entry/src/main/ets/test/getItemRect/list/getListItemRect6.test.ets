@@ -86,10 +86,10 @@ export default function getListItemRect6() {
 
       console.log('delete')
       await driver.swipe(
-        (listItem_4.right - listItem_4.left) * 0.9 + listItem_4.left,
-        (listItem_4.bottom - listItem_4.top) * 0.5 + listItem_4.top,
-        (listItem_4.right - listItem_4.left) * 0.1 + listItem_4.left,
-        (listItem_4.bottom - listItem_4.top) * 0.5 + listItem_4.top
+        parseInt((listItem_4.right - listItem_4.left) * 0.9 + listItem_4.left),
+        parseInt((listItem_4.bottom - listItem_4.top) * 0.5 + listItem_4.top),
+        parseInt((listItem_4.right - listItem_4.left) * 0.1 + listItem_4.left),
+        parseInt((listItem_4.bottom - listItem_4.top) * 0.5 + listItem_4.top)
       )
       await CommonFunc.sleep(1000);
 
