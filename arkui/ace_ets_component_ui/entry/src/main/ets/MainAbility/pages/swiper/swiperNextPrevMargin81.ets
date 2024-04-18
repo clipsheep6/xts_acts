@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { MessageManager, Callback, Message } from '../../utils/MessageManager';
+import { MessageManager, Callback } from '../../utils/MessageManager';
 
 class MyDataSource81 implements IDataSource {
   private list: number[] = [];
@@ -57,7 +57,7 @@ struct SwiperNextPrevMarginExample81 {
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<number> = (message: Message<number>) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'displayCount') {
         this.displayCount = message.value

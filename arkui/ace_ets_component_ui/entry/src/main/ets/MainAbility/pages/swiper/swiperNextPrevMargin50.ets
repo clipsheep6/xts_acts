@@ -57,14 +57,14 @@ struct SwiperNextPrevMarginExample50 {
     this.data = new MyDataSource50(list)
   }
 
-  messageManager: MessageManager<number> = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('SwiperNextPrevMargin onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<number> = (message: Message<ESObject>) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'prevMargin') {
         this.prevMargin = message.value
