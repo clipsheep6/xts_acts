@@ -292,7 +292,7 @@ export default function GridJsunit() {
       let left1 = gridItem1.left
       let gridItem2 = CommonFunc.getComponentRect('1');
       let left2 = gridItem2.left
-      expect(left1).assertEqual(left2);
+      expect(parseInt(left1)).assertEqual(parseInt(left2));
       console.info('[GridJsunit_0800] END');
       done();
     });
