@@ -41,7 +41,7 @@ class MyDataSource81 implements IDataSource {
 struct SwiperNextPrevMarginExample81 {
   private swiperController: SwiperController = new SwiperController();
   private data: MyDataSource81 = new MyDataSource81([]);
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
   @State displayCount: number = 1;
 
   aboutToAppear(): void {

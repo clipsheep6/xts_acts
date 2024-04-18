@@ -25,14 +25,14 @@ struct RatingPage {
   @State backgroundUri: string = 'resources/base/media/star_1.png';
   @State foregroundUri: string = 'resources/base/media/star_2.png';
   @State secondaryUri: string = 'resources/base/media/star_3.png';
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('RatingPage onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'rating') {
         this.rating = message.value

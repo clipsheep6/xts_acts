@@ -21,7 +21,7 @@ struct navigationNavbar02 {
   @State isActive: boolean = false;
   @State dex: number = 0;
   @State navBarWidth: number = 240;
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
   @State navMode: NavigationMode[] = [NavigationMode.Split, NavigationMode.Stack, NavigationMode.Auto];
   @State navModeIndex: number = 0;
   @State hideNavBar: boolean = false;
@@ -34,7 +34,7 @@ struct navigationNavbar02 {
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'navBarWidth') {
         this.navBarWidth = message.value;

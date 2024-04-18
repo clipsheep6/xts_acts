@@ -24,14 +24,14 @@ struct SpanExample {
   @State letterSpacing: number = 10;
   @State type: TextDecorationType = TextDecorationType.Underline;
   @State color: string = '#FFCCEE';
-  messageManager: MessageManager<ESObject> = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('span onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'click') {
         this.message1 = message.value

@@ -23,14 +23,14 @@ struct GridRowPage {
   @State columns: number = 4;
   @State breakpoints: BreakPoints = { value: ["400vp", "600vp", "800vp"], reference: BreakpointsReference.WindowSize };
   @State grDirection: GridRowDirection = GridRowDirection.Row;
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('GridRowPage onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'currentBp') {
         this.currentBp = message.value

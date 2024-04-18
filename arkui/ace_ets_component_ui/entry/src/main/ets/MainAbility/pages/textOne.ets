@@ -21,14 +21,14 @@ struct TextExample1 {
   @State textOverflow: TextOverflow = TextOverflow.None;
   @State maxLines: number = 2;
   @State lineHeight: number = 30;
-  messageManager: MessageManager<ESObject> = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('text onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'textAlign') {
         this.textAlign = message.value

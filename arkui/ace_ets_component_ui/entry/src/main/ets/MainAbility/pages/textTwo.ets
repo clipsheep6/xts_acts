@@ -22,14 +22,14 @@ struct TextExample2 {
   @State baselineOffset: number = 0;
   @State letterSpacing: number = 0;
   @State textCase: TextCase = TextCase.Normal;
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('text onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'type') {
         this.type = message.value

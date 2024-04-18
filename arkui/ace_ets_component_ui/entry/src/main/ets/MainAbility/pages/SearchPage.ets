@@ -33,14 +33,14 @@ struct SearchPage {
   @State copyOption: CopyOptions = CopyOptions.InApp;
   controller: SearchController = new SearchController();
 
-  messageManager: MessageManager<ESObject> = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('SearchPage onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'changeValue') {
         this.changeValue = message.value

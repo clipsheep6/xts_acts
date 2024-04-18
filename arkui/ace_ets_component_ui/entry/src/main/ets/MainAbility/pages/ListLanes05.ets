@@ -23,7 +23,7 @@ struct ListLanes05 {
   @State listSpace: string = '20';
   @State alignListItem: ListItemAlign = ListItemAlign.Start;
   @State initialIndex: number = 0;
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
 
   build() {
     Column() {

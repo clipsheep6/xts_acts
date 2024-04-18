@@ -29,14 +29,14 @@ struct PatternLockPage {
   @State pathStrokeWidth: number = 18;
   @State autoReset: boolean = true;
   private patternLockController: PatternLockController = new PatternLockController()
-  messageManager: MessageManager<ESObject> = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('PatternLockPage onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'passwords') {
         this.passwords = message.value

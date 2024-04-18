@@ -22,14 +22,14 @@ struct TimePickerPage {
   @State hour: number = 8;
   @State minute: number = 0;
   @State mode: boolean = true;
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('TimePicker onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'isMilitaryTime') {
         this.isMilitaryTime = message.value

@@ -20,7 +20,7 @@ struct GridRowCol02 {
   @State Number: String[] = ['0', '1', '2', '3', '4'];
   scroller: Scroller = new Scroller();
   @State rowsTemplate: string = '1fr 1fr 1fr';
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
   @State layoutDirection: GridDirection = GridDirection.Row;
   @State text: string = '';
 
@@ -29,7 +29,7 @@ struct GridRowCol02 {
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'rowsTemplate') {
         this.rowsTemplate = message.value;

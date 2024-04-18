@@ -21,14 +21,14 @@ struct QRCodePage {
   @State color: Color = Color.Black;
   @State backColor: Color = Color.White;
   @State text: string = 'unclick';
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('QRCodePage onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'QRCodeValue') {
         this.value = message.value

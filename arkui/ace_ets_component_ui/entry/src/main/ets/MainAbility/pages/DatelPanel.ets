@@ -18,7 +18,7 @@ import { MessageManager, Callback } from '../utils/MessageManager';
 @Component
 struct DataPanelExample {
   public valueArr: number[] = [10, 10, 10, 10, 10, 10, 10, 10, 10];
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
   @State maxValue: number = 0;
   @State dataPanelType: DataPanelType = 0;
   @State values: number[] = [25, 1];
@@ -28,7 +28,7 @@ struct DataPanelExample {
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'maxValue') {
         this.maxValue = message.value;

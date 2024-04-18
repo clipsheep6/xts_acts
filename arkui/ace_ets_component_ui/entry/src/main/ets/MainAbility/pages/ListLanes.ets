@@ -23,14 +23,14 @@ struct ListLanes {
   @State listSpace: string = '20';
   @State alignListItem: ListItemAlign = ListItemAlign.Start;
   @State initialIndex: number = 0;
-  messageManager: MessageManager<ESObject> = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('ListLanes  onPageShow');
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'listGutter') {
         this.listGutter = message.value;

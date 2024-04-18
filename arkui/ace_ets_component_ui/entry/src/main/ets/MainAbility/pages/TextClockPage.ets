@@ -24,14 +24,14 @@ struct TextClockPage {
   @State change: string = 'no change';
   // 导入对象
   controller: TextClockController = new TextClockController();
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('NavDestination onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'accumulateTime') {
         this.accumulateTime = message.value

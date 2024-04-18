@@ -27,14 +27,14 @@ struct MarqueeExample {
   @State message2: string = "message2";
   @State message3: string = "message3";
   @State allowScale: boolean = false;
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('Gauge onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'step') {
         this.step = message.value;

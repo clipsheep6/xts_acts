@@ -25,14 +25,14 @@ struct GaugeExample {
   @State min: number = 0;
   @State max: number = 100;
   @State wth: number = 100;
-  messageManager: MessageManager<ESObject> = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('Gauge onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'startAngle') {
         this.startAngle = message.value

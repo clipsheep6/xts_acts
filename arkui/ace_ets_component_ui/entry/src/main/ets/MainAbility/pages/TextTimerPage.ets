@@ -26,14 +26,14 @@ struct TextTimerPage {
   @State utc: number = 0;
   @State elapsedTime: number = 0;
   textTimerController: TextTimerController = new TextTimerController();
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('TextTimer onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'isCountDown') {
         this.isCountDown = message.value

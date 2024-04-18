@@ -43,14 +43,14 @@ struct SwiperNextPrevMarginDuplicate {
   private data: MyDataSource = new MyDataSource([])
   @State prevMargin: number = 0
   @State nextMargin: number = 0
-  messageManager: MessageManager<ESObject> = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('SwiperNextPrevMargin onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'prevMargin') {
         this.prevMargin = message.value

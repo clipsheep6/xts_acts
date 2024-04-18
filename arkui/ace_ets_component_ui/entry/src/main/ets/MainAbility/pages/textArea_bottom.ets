@@ -22,7 +22,7 @@ struct textArea_bottom {
   @State fontSize1: number = 16;
   @State fontWeight1: number = 400;
   scroll: Scroller = new Scroller();
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('textArea_bottom onPageShow')

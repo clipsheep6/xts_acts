@@ -20,7 +20,7 @@ struct ButtonExample {
   @State bttype: ButtonType = ButtonType.Normal;
   @State stateEffect: boolean = true;
   @State str: string = "Disable1";
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
   @State fontColor: Color = Color.Red;
   @State fontFamily: string = "123";
   @State fontStyle: FontStyle = FontStyle.Italic;

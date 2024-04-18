@@ -22,14 +22,14 @@ struct DividerExample {
   @State strokeWidth: number = 20;
   @State lineCapStyle: LineCapStyle = LineCapStyle.Butt;
   @State widthK: number = 0;
-  messageManager: MessageManager<ESObject> = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('divider onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'vertical') {
         this.vertical = message.value;

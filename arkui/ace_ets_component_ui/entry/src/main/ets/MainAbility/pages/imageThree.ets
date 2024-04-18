@@ -34,14 +34,14 @@ struct ImageExample3 {
   @State m3: string = "init";
   @State m4: string = "init";
   @State imageName: string = "img1.png";
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('ImageThree onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'imageName') {
         this.imageName = message.value

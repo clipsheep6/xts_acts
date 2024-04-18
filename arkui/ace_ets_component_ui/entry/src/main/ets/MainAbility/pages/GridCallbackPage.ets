@@ -50,14 +50,14 @@ struct GridCallbackPage {
   @State onScrollBarUpdateText: string = 'onScrollBarUpdate';
   @State myKey: number = 0
   scroller: Scroller = new Scroller()
-  messageManager: MessageManager<ESObject> = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('GridPage onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'columnsTemplate') {
         this.columnsTemplate = message.value

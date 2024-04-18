@@ -35,14 +35,14 @@ struct TextInputPage {
   @State onCut: string = '';
   @State onPaste: string = '';
   controller: TextInputController = new TextInputController();
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('TextInput onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'placeholder') {
         this.placeholder = message.value
