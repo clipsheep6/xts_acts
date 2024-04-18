@@ -15,12 +15,25 @@
 
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 export default function RouterUrlErrorJsunit() {
-  describe('RouterUrlErrorJsunit', function () {
-    beforeEach(async function (done) {
+  describe('RouterUrlErrorJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("RouterUrlErrorJsunit beforeEach start");
       let options = {
         uri: 'MainAbility/pages/State/RouterUrlError',
@@ -42,14 +55,14 @@ export default function RouterUrlErrorJsunit() {
     });
 
     /**
-     * @tc.number    SUB_ACE_BASICABILITY_ROUTERPAGE_009
-     * @tc.name      RouterUrlErrorJsunit_0100
-     * @tc.desc      The route input parameter is abnormally redirected
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASICABILITY_ROUTERPAGE_009
+     * @tc.name RouterUrlErrorJsunit_0100
+     * @tc.desc The route input parameter is abnormally redirected
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('RouterUrlErrorJsunit_0100', 0, async function (done) {
+    it('RouterUrlErrorJsunit_0100', 0, async (done: Function) => {
       console.info('RouterUrlErrorJsunit_0100 START');
       await CommonFunc.sleep(1000);
       let driver = Driver.create();

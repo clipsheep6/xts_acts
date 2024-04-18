@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function textAenEnabledJsunit() {
-  describe('textAenEnabledJsunit', function () {
-    beforeEach(async function (done) {
+  describe('textAenEnabledJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("textAenEnabledJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/textAenEnabled',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/textAenEnabled',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function textAenEnabledJsunit() {
         console.info("get textAenEnabledJsunit state pages: " + JSON.stringify(pages));
         if (!("textAenEnabled" == pages.name)) {
           console.info("get textAenEnabledJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push textAenEnabledJsunit success: " + JSON.stringify(result));
         }
@@ -43,38 +56,37 @@ export default function textAenEnabledJsunit() {
       done();
     });
 
-    it('textAenEnabledJsunit_0100', 0, async function (done) {
+    it('textAenEnabledJsunit_0100', 0, async (done: Function) => {
 
       console.info('textAenEnabledJsunit_0100 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('taText'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('taEnable');
-      let obj = JSON.parse(strJson);
-      console.info("[textAenEnabledJsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[textAenEnabledJsunit_0100] text1: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("TextArea组件事件触发");
+      let strJson: string = getInspectorByKey('taEnable');
+
+      console.info("[textAenEnabledJsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[textAenEnabledJsunit_0100] text1: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("TextArea组件事件触发");
       console.info('[textAenEnabledJsunit_0100] END');
       done();
     });
 
-    it('textAenEnabledJsunit_0100', 0, async function (done) {
+    it('textAenEnabledJsunit_0100', 0, async (done: Function) => {
 
       console.info('textAenEnabledJsunit_0100 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('tiText'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('tiEnable');
-      let obj = JSON.parse(strJson);
-      console.info("[textAenEnabledJsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[textAenEnabledJsunit_0100] text2: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("TextInput组件事件触发");
+      let strJson: string = getInspectorByKey('tiEnable');
+
+      console.info("[textAenEnabledJsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[textAenEnabledJsunit_0100] text2: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("TextInput组件事件触发");
       console.info('[textAenEnabledJsunit_0100] END');
       done();
     });
-
   })
 }
 

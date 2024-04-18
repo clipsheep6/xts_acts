@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function ObjectLinkNusJsunit() {
-  describe('ObjectLinkNusJsunit', function () {
-    beforeEach(async function (done) {
+  describe('ObjectLinkNusJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("ObjectLinkNusJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/State/ObjectLinkNus',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/State/ObjectLinkNus',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function ObjectLinkNusJsunit() {
         console.info("get ObjectLinkNusJsunit state pages: " + JSON.stringify(pages));
         if (!("ObjectLinkNus" == pages.name)) {
           console.info("get ObjectLinkNusJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push ObjectLinkNusJsunit success: " + JSON.stringify(result));
         }
@@ -42,119 +55,121 @@ export default function ObjectLinkNusJsunit() {
       }
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
-      router.back({uri:"MainAbility/pages/index/index"});
+      router.back({
+        url: "MainAbility/pages/index/index"
+      });
     });
 
-    it('ObjectLinkNusJsunit_0100', 0, async function (done) {
+    it('ObjectLinkNusJsunit_0100', 0, async (done: Function) => {
 
       console.info('ObjectLinkNusJsunit_0100 START');
-      let strJson = getInspectorByKey('str_obl');
-      let obj = JSON.parse(strJson);
-      console.info("[ObjectLinkNusJsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[ObjectLinkNusJsunit_0100] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("hello");
+      let strJson: string = getInspectorByKey('str_obl');
+
+      console.info("[ObjectLinkNusJsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[ObjectLinkNusJsunit_0100] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("hello");
       console.info('[ObjectLinkNusJsunit_0100] END');
       done();
     });
 
-    it('ObjectLinkNusJsunit_0200', 0, async function (done) {
+    it('ObjectLinkNusJsunit_0200', 0, async (done: Function) => {
 
       console.info('ObjectLinkNusJsunit_0200 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('strBtn_obl'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('str_obl');
-      let obj = JSON.parse(strJson);
-      console.info("[ObjectLinkNusJsunit_0200] component obj is: " + JSON.stringify(obj));
-      console.info("[ObjectLinkNusJsunit_0200] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("harmony");
+      let strJson: string = getInspectorByKey('str_obl');
+
+      console.info("[ObjectLinkNusJsunit_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[ObjectLinkNusJsunit_0200] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("harmony");
       console.info('[ObjectLinkNusJsunit_0200] END');
       done();
     });
 
-    it('ObjectLinkNusJsunit_0300', 0, async function (done) {
+    it('ObjectLinkNusJsunit_0300', 0, async (done: Function) => {
 
       console.info('ObjectLinkNusJsunit_0300 START');
-      let strJson = getInspectorByKey('num_obl');
-      let obj = JSON.parse(strJson);
-      console.info("[ObjectLinkNusJsunit_0300] component obj is: " + JSON.stringify(obj));
-      console.info("[ObjectLinkNusJsunit_0300] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("0");
+      let strJson: string = getInspectorByKey('num_obl');
+
+      console.info("[ObjectLinkNusJsunit_0300] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[ObjectLinkNusJsunit_0300] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("0");
       console.info('[ObjectLinkNusJsunit_0300] END');
       done();
     });
 
-    it('ObjectLinkNusJsunit_0400', 0, async function (done) {
+    it('ObjectLinkNusJsunit_0400', 0, async (done: Function) => {
 
       console.info('ObjectLinkNusJsunit_0400 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('numBtn_obl'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('num_obl');
-      let obj = JSON.parse(strJson);
-      console.info("[ObjectLinkNusJsunit_0400] component obj is: " + JSON.stringify(obj));
-      console.info("[ObjectLinkNusJsunit_0400] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("3");
+      let strJson: string = getInspectorByKey('num_obl');
+
+      console.info("[ObjectLinkNusJsunit_0400] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[ObjectLinkNusJsunit_0400] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("3");
       console.info('[ObjectLinkNusJsunit_0400] END');
       done();
     });
 
-    it('ObjectLinkNusJsunit_0500', 0, async function (done) {
+    it('ObjectLinkNusJsunit_0500', 0, async (done: Function) => {
 
       console.info('ObjectLinkNusJsunit_0500 START');
-      let strJson = getInspectorByKey('bon_obl');
-      let obj = JSON.parse(strJson);
-      console.info("[ObjectLinkNusJsunit_0500] component obj is: " + JSON.stringify(obj));
-      console.info("[ObjectLinkNusJsunit_0500] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("true");
+      let strJson: string = getInspectorByKey('bon_obl');
+
+      console.info("[ObjectLinkNusJsunit_0500] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[ObjectLinkNusJsunit_0500] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("true");
       console.info('[ObjectLinkNusJsunit_0500] END');
       done();
     });
 
-    it('ObjectLinkNusJsunit_0600', 0, async function (done) {
+    it('ObjectLinkNusJsunit_0600', 0, async (done: Function) => {
 
       console.info('ObjectLinkNusJsunit_0600 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('bonBtn_obl'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('bon_obl');
-      let obj = JSON.parse(strJson);
-      console.info("[ObjectLinkNusJsunit_0600] component obj is: " + JSON.stringify(obj));
-      console.info("[ObjectLinkNusJsunit_0600] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("false");
+      let strJson: string = getInspectorByKey('bon_obl');
+
+      console.info("[ObjectLinkNusJsunit_0600] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[ObjectLinkNusJsunit_0600] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("false");
       console.info('[ObjectLinkNusJsunit_0600] END');
       done();
     });
 
-    it('ObjectLinkNusJsunit_0700', 0, async function (done) {
+    it('ObjectLinkNusJsunit_0700', 0, async (done: Function) => {
 
       console.info('ObjectLinkNusJsunit_0700 START');
-      let strJson = getInspectorByKey('cor_obl');
-      let obj = JSON.parse(strJson);
-      console.info("[ObjectLinkNusJsunit_0700] component obj is: " + JSON.stringify(obj));
-      console.info("[ObjectLinkNusJsunit_0700] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("#ff0000ff");
+      let strJson: string = getInspectorByKey('cor_obl');
+
+      console.info("[ObjectLinkNusJsunit_0700] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[ObjectLinkNusJsunit_0700] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("#ff0000ff");
       console.info('[ObjectLinkNusJsunit_0700] END');
       done();
     });
 
-    it('ObjectLinkNusJsunit_0800', 0, async function (done) {
+    it('ObjectLinkNusJsunit_0800', 0, async (done: Function) => {
 
       console.info('ObjectLinkNusJsunit_0800 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('corBtn_obl'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('cor_obl');
-      let obj = JSON.parse(strJson);
-      console.info("[ObjectLinkNusJsunit_0800] component obj is: " + JSON.stringify(obj));
-      console.info("[ObjectLinkNusJsunit_0800] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("#ffff0000");
+      let strJson: string = getInspectorByKey('cor_obl');
+
+      console.info("[ObjectLinkNusJsunit_0800] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[ObjectLinkNusJsunit_0800] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("#ffff0000");
       console.info('[ObjectLinkNusJsunit_0800] END');
       done();
     });

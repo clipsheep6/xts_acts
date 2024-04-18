@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function TextTimerJsunit() {
-  describe('TextTimerJsunit', function () {
-    beforeEach(async function (done) {
+  describe('TextTimerJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextTimer beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/TextTimerPage',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/TextTimerPage',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function TextTimerJsunit() {
         console.info("get TextTimer state pages: " + JSON.stringify(pages));
         if (!("TextTimerPage" == pages.name)) {
           console.info("get TextTimer state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           console.info("push TextTimer page result: " + JSON.stringify(result));
           await CommonFunc.sleep(2000);
         }
@@ -43,61 +56,67 @@ export default function TextTimerJsunit() {
       done();
     });
 
-    it('TextTimerJsunit_0100', 0, async function (done) {
+    it('TextTimerJsunit_0100', 0, async (done: Function) => {
       // Get the information of TextTimer component
       console.info('[TextTimerJsunit_0100] START');
-      let strJson = getInspectorByKey('textTimer');
-      let obj = JSON.parse(strJson);
-      console.info("[TextTimerJsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[TextTimerJsunit_0100] isCountDown: " + JSON.stringify(obj.$attrs.isCountDown));
-      console.info("[TextTimerJsunit_0100] count: " + JSON.stringify(obj.$attrs.count));
-      console.info("[TextTimerJsunit_0100] format: " + JSON.stringify(obj.$attrs.format));
+      let strJson: string = getInspectorByKey('textTimer');
+
+      console.info("[TextTimerJsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[TextTimerJsunit_0100] isCountDown: " + JSON.stringify(JSON.parse(strJson).$attrs.isCountDown));
+      console.info("[TextTimerJsunit_0100] count: " + JSON.stringify(JSON.parse(strJson).$attrs.count));
+      console.info("[TextTimerJsunit_0100] format: " + JSON.stringify(JSON.parse(strJson).$attrs.format));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.isCountDown).assertEqual('true');
-      expect(obj.$attrs.count).assertEqual('50000.000000');
-      expect(obj.$attrs.format).assertEqual('mm:ss.SS');
+      expect(JSON.parse(strJson).$attrs.isCountDown).assertEqual('true');
+      expect(JSON.parse(strJson).$attrs.count).assertEqual('50000.000000');
+      expect(JSON.parse(strJson).$attrs.format).assertEqual('mm:ss.SS');
 
       // Get default attributes of TextTimer component
       let strJson1 = getInspectorByKey('default');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[TextTimerJsunit_0100] component obj1 is: " + JSON.stringify(obj1));
-      console.info("[TextTimerJsunit_0100] isCountDown1: " + JSON.stringify(obj1.$attrs.isCountDown));
-      console.info("[TextTimerJsunit_0100] count1: " + JSON.stringify(obj1.$attrs.count));
-      console.info("[TextTimerJsunit_0100] format1: " + JSON.stringify(obj1.$attrs.format));
+
+      console.info("[TextTimerJsunit_0100] component JSON.parse(strJson1) is: " + JSON.stringify(JSON.parse(strJson1)));
+      console.info("[TextTimerJsunit_0100] isCountDown1: " + JSON.stringify(JSON.parse(strJson1).$attrs.isCountDown));
+      console.info("[TextTimerJsunit_0100] count1: " + JSON.stringify(JSON.parse(strJson1).$attrs.count));
+      console.info("[TextTimerJsunit_0100] format1: " + JSON.stringify(JSON.parse(strJson1).$attrs.format));
       await CommonFunc.sleep(1000);
-      expect(obj1.$attrs.isCountDown).assertEqual('false');
-      expect(obj1.$attrs.count).assertEqual('60000.000000');
-      expect(obj1.$attrs.format).assertEqual('HH:mm:ss.SS');
+      expect(JSON.parse(strJson1).$attrs.isCountDown).assertEqual('false');
+      expect(JSON.parse(strJson1).$attrs.count).assertEqual('60000.000000');
+      expect(JSON.parse(strJson1).$attrs.format).assertEqual('HH:mm:ss.SS');
       console.info('[TextTimerJsunit_0100] END');
       done();
     });
 
-    it('TextTimerJsunit_0200', 0, async function (done) {
+    it('TextTimerJsunit_0200', 0, async (done: Function) => {
       // Modify the attribute of TextTimer component
       console.info('[TextTimerJsunit_0200] START');
-      globalThis.value.message.notify({name:'isCountDown',value:'false'})
+      globalThis.value.message.notify({
+        name: 'isCountDown', value: 'false'
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'count',value:30000})
+      globalThis.value.message.notify({
+        name: 'count', value: 30000
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'format',value:'HH:mm:ss.SS'})
+      globalThis.value.message.notify({
+        name: 'format', value: 'HH:mm:ss.SS'
+      })
       await CommonFunc.sleep(2000);
 
       // Get the attribute of TextTimer component
-      let strJson = getInspectorByKey('textTimer');
-      let obj = JSON.parse(strJson);
-      console.info("[TextTimerJsunit_0200] component obj is: " + JSON.stringify(obj));
-      console.info("[TextTimerJsunit_0200] isCountDown: " + JSON.stringify(obj.$attrs.isCountDown));
-      console.info("[TextTimerJsunit_0200] count: " + JSON.stringify(obj.$attrs.count));
-      console.info("[TextTimerJsunit_0200] format: " + JSON.stringify(obj.$attrs.format));
+      let strJson: string = getInspectorByKey('textTimer');
+
+      console.info("[TextTimerJsunit_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[TextTimerJsunit_0200] isCountDown: " + JSON.stringify(JSON.parse(strJson).$attrs.isCountDown));
+      console.info("[TextTimerJsunit_0200] count: " + JSON.stringify(JSON.parse(strJson).$attrs.count));
+      console.info("[TextTimerJsunit_0200] format: " + JSON.stringify(JSON.parse(strJson).$attrs.format));
       await CommonFunc.sleep(1000);
-      //expect(obj.$attrs.isCountDown).assertEqual('false');
-      //expect(obj.$attrs.count).assertEqual('30000.000000');
-      expect(obj.$attrs.format).assertEqual('HH:mm:ss.SS');
+      //expect(JSON.parse(strJson).$attrs.isCountDown).assertEqual('false');
+      //expect(JSON.parse(strJson).$attrs.count).assertEqual('30000.000000');
+      expect(JSON.parse(strJson).$attrs.format).assertEqual('HH:mm:ss.SS');
       console.info('[TextTimerJsunit_0200] END');
       done();
     });
 
-    it('TextTimerJsunit_0300', 0, async function (done) {
+    it('TextTimerJsunit_0300', 0, async (done: Function) => {
       // Verify start function of TextTimer component
       console.info('[TextTimerJsunit_0300] START');
       let driver = await UiDriver.create()
@@ -125,7 +144,7 @@ export default function TextTimerJsunit() {
       done();
     });
 
-    it('TextTimerJsunit_0400', 0, async function (done) {
+    it('TextTimerJsunit_0400', 0, async (done: Function) => {
       // Verify pause function of TextTimer component
       console.info('[TextTimerJsunit_0400] START');
       let driver = await UiDriver.create()
@@ -141,7 +160,7 @@ export default function TextTimerJsunit() {
       let time = await elapsedTime.getText();
       console.info("[TextTimerJsunit_0400] time: " + JSON.stringify(time));
       await CommonFunc.sleep(1000);
-      
+
       let utcText1 = await utc.getText();
       console.info("[TextTimerJsunit_0400] utcText1: " + JSON.stringify(utcText1));
       expect(utcText == utcText1).assertTrue();
@@ -153,7 +172,7 @@ export default function TextTimerJsunit() {
       let startButton = await driver.findComponent(BY.text('start'));
       await startButton.click();
       await CommonFunc.sleep(1000);
-      
+
       let utcText2 = await utc.getText();
       console.info("[TextTimerJsunit_0400] utcText2: " + JSON.stringify(utcText2));
       expect(Number(utcText1) < Number(utcText2)).assertTrue();
@@ -166,7 +185,7 @@ export default function TextTimerJsunit() {
       done();
     });
 
-    it('TextTimerJsunit_0500', 0, async function (done) {
+    it('TextTimerJsunit_0500', 0, async (done: Function) => {
       // Verify reset function of TextTimer component
       console.info('[TextTimerJsunit_0500] START');
       let driver = await UiDriver.create()
@@ -202,27 +221,33 @@ export default function TextTimerJsunit() {
       done();
     });
 
-    it('TextTimerJsunit_0600', 0, async function (done) {
+    it('TextTimerJsunit_0600', 0, async (done: Function) => {
       // Illegal modification of properties of TextTimer component
       console.info('[TextTimerJsunit_0600] START');
-      globalThis.value.message.notify({name:'isCountDown',value:123})
+      globalThis.value.message.notify({
+        name: 'isCountDown', value: 123
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'count',value:'abc'})
+      globalThis.value.message.notify({
+        name: 'count', value: 'abc'
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'format',value:123})
+      globalThis.value.message.notify({
+        name: 'format', value: 123
+      })
       await CommonFunc.sleep(2000);
 
       // Get the attribute of TextTimer component
-      let strJson = getInspectorByKey('textTimer');
-      let obj = JSON.parse(strJson);
-      console.info("[TextTimerJsunit_0600] component obj is: " + JSON.stringify(obj));
-      console.info("[TextTimerJsunit_0600] isCountDown: " + JSON.stringify(obj.$attrs.isCountDown));
-      console.info("[TextTimerJsunit_0600] count: " + JSON.stringify(obj.$attrs.count));
-      console.info("[TextTimerJsunit_0600] format: " + JSON.stringify(obj.$attrs.format));
+      let strJson: string = getInspectorByKey('textTimer');
+
+      console.info("[TextTimerJsunit_0600] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[TextTimerJsunit_0600] isCountDown: " + JSON.stringify(JSON.parse(strJson).$attrs.isCountDown));
+      console.info("[TextTimerJsunit_0600] count: " + JSON.stringify(JSON.parse(strJson).$attrs.count));
+      console.info("[TextTimerJsunit_0600] format: " + JSON.stringify(JSON.parse(strJson).$attrs.format));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.isCountDown).assertEqual('true');
-      expect(obj.$attrs.count).assertEqual('50000.000000');
-      expect(obj.$attrs.format).assertEqual('HH:mm:ss.SS');
+      expect(JSON.parse(strJson).$attrs.isCountDown).assertEqual('true');
+      expect(JSON.parse(strJson).$attrs.count).assertEqual('50000.000000');
+      expect(JSON.parse(strJson).$attrs.format).assertEqual('HH:mm:ss.SS');
       console.info('[TextTimerJsunit_0600] END');
       done();
     });

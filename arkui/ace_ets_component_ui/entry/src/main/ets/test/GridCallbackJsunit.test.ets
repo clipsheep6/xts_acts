@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function GridCallbackJsunit() {
-  describe('GridCallbackJsunit', function () {
-    beforeEach(async function (done) {
+  describe('GridCallbackJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("GridCallbackJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/GridCallbackPage',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/GridCallbackPage',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function GridCallbackJsunit() {
         console.info("get GridCallbackJsunit state pages: " + JSON.stringify(pages));
         if (!("GridCallbackPage" == pages.name)) {
           console.info("get GridCallbackJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push GridCallbackJsunit success: " + JSON.stringify(result));
         }
@@ -43,7 +56,7 @@ export default function GridCallbackJsunit() {
       done();
     });
 
-    it('GridCallbackJsunit_1000', 0, async function (done) {
+    it('GridCallbackJsunit_1000', 0, async (done: Function) => {
       // Verify Neither rowsTemplate nor columnsTemplate is set
       console.info('[GridCallbackJsunit_1000] START');
 
@@ -52,7 +65,7 @@ export default function GridCallbackJsunit() {
       let bottom = grid2.bottom
       let left = grid2.left
       let right = grid2.right
-      console.log('[GridCallbackJsunit_1000] grid 2 top:' + top +" bottom:" + bottom + "left: " + left + " right:" + right)
+      console.log('[GridCallbackJsunit_1000] grid 2 top:' + top + " bottom:" + bottom + "left: " + left + " right:" + right)
       let driver = await UiDriver.create()
       await driver.swipe(Math.round((right - left)), Math.round(bottom - 60), Math.round((right - left)), Math.round(top + 60));
       await CommonFunc.sleep(2000);

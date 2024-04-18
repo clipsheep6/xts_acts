@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function VideoJsunit01() {
-  describe('VideoJsunit01', function () {
-    beforeEach(async function (done) {
+  describe('VideoJsunit01', () => {
+    beforeEach(async (done: Function) => {
       console.info("VideoJsunit01 beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/video1',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/video1',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function VideoJsunit01() {
         console.info("get VideoJsunit01 state pages: " + JSON.stringify(pages));
         if (!("video1" == pages.name)) {
           console.info("get VideoJsunit01 state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push VideoJsunit01 page result: " + JSON.stringify(result));
         }
@@ -48,17 +61,17 @@ export default function VideoJsunit01() {
     * @tc.desc  : 测试onPrepared方法
     * @tc.level : Level 3
     */
-    it('VideoJsunit01_0100', 0, async function (done) {
+    it('VideoJsunit01_0100', 0, async (done: Function) => {
       console.info('[VideoJsunit01_0100] START');
       let driver = await UiDriver.create()
       let srcbutton = await driver.findComponent(BY.key('srcbutton'));
       await srcbutton.click();
       await CommonFunc.sleep(1000);
 
-      let strJson = getInspectorByKey('onPrepared');
-      let obj = JSON.parse(strJson);
-      console.info("[VideoJsunit01_0100] component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.content).assertEqual('onPrepared_Doing');
+      let strJson: string = getInspectorByKey('onPrepared');
+
+      console.info("[VideoJsunit01_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('onPrepared_Doing');
       await CommonFunc.sleep(1000);
       console.info('[VideoJsunit01_0100] END');
       done();
@@ -70,7 +83,7 @@ export default function VideoJsunit01() {
     * @tc.desc  : 测试onStart-onPause-onFinish-onUpdate方法
     * @tc.level : Level 3
     */
-    it('VideoJsunit01_0200', 0, async function (done) {
+    it('VideoJsunit01_0200', 0, async (done: Function) => {
       //      点击start按钮，测试onStart是否触发，测试onUpdate方法
       console.info('[VideoJsunit01_0200] START');
       let driver = await UiDriver.create()
@@ -78,16 +91,15 @@ export default function VideoJsunit01() {
       await srcbutton.click();
       await CommonFunc.sleep(1000);
 
-      let strJson = getInspectorByKey('onStart');
-      let obj = JSON.parse(strJson);
-      console.info("[VideoJsunit01_0200] component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.content).assertEqual('onStart_Doing');
+      let strJson: string = getInspectorByKey('onStart');
+
+      console.info("[VideoJsunit01_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('onStart_Doing');
       await CommonFunc.sleep(1000);
 
       let str4 = getInspectorByKey('onUpdate');
-      let obj14 = JSON.parse(str4);
-      console.info("[VideoJsunit01_0200] component obj14 is: " + JSON.stringify(obj14));
-      expect(obj14.$attrs.content).assertEqual('onUpdate_Doing');
+      console.info("[VideoJsunit01_0200] component JSON.parse(strJson1)4 is: " + JSON.stringify(JSON.parse(str4)));
+      expect(JSON.parse(str4).$attrs.content).assertEqual('onUpdate_Doing');
       await CommonFunc.sleep(1000);
 
       //      继续点击暂停Pause按钮，测试onPause是否触发
@@ -96,9 +108,9 @@ export default function VideoJsunit01() {
       await CommonFunc.sleep(1000);
 
       let strJson1 = getInspectorByKey('onPause');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[VideoJsunit01_0200] component obj1 is: " + JSON.stringify(obj1));
-      expect(obj1.$attrs.content).assertEqual('onPause_Doing');
+
+      console.info("[VideoJsunit01_0200] component JSON.parse(strJson1) is: " + JSON.stringify(JSON.parse(strJson1)));
+      expect(JSON.parse(strJson1).$attrs.content).assertEqual('onPause_Doing');
       await CommonFunc.sleep(1000);
       //      再次点击start按钮，让它播放完【视频总长10秒，间隔13秒左右】，测试onFinish方法
       let srcbutton2 = await driver.findComponent(BY.key('start'));
@@ -106,14 +118,13 @@ export default function VideoJsunit01() {
       await CommonFunc.sleep(13000);
 
       let strJson2 = getInspectorByKey('onFinish');
-      let obj2 = JSON.parse(strJson2);
-      console.info("[VideoJsunit01_0200] component obj2 is: " + JSON.stringify(obj2));
-      expect(obj2.$attrs.content).assertEqual('onFinish_Doing');
+
+      console.info("[VideoJsunit01_0200] component JSON.parse(strJson2) is: " + JSON.stringify(JSON.parse(strJson2)));
+      expect(JSON.parse(strJson2).$attrs.content).assertEqual('onFinish_Doing');
       await CommonFunc.sleep(1000);
 
       console.info('[VideoJsunit01_0200] END');
       done();
     });
-
   })
 }

@@ -14,13 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
+
 const waitUiReadyMs = 1000;
 
 export default function RouterWithParamJsunit() {
-  describe('RouterWithParamJsunit', function () {
-    beforeEach(async function (done) {
+  describe('RouterWithParamJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("RouterWithParamJsunit beforeEach start");
       let options = {
         url: 'MainAbility/pages/State/RouterPushThree',
@@ -41,20 +55,20 @@ export default function RouterWithParamJsunit() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       router.clear()
     });
 
     /**
-     * @tc.number    SUB_ACE_BASICABILITY_ROUTERPAGE_021
-     * @tc.name      RouterWithParamJsunit_001
-     * @tc.desc      The route input parameter is abnormally redirected
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASICABILITY_ROUTERPAGE_021
+     * @tc.name RouterWithParamJsunit_001
+     * @tc.desc The route input parameter is abnormally redirected
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('RouterWithParamJsunit_001', 0, async function (done) {
+    it('RouterWithParamJsunit_001', 0, async (done: Function) => {
       console.info('[RouterWithParamJsunit_001] START');
       let driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
@@ -71,14 +85,14 @@ export default function RouterWithParamJsunit() {
     });
 
     /**
-     * @tc.number    SUB_ACE_BASICABILITY_ROUTERPAGE_020
-     * @tc.name      RouterWithParamJsunit_002
-     * @tc.desc      The route input parameter is abnormally redirected
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASICABILITY_ROUTERPAGE_020
+     * @tc.name RouterWithParamJsunit_002
+     * @tc.desc The route input parameter is abnormally redirected
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('RouterWithParamJsunit_002', 0, async function (done) {
+    it('RouterWithParamJsunit_002', 0, async (done: Function) => {
       console.info('[RouterWithParamJsunit_002] START');
       let driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
@@ -95,17 +109,17 @@ export default function RouterWithParamJsunit() {
     });
 
     /**
-     * @tc.number    SUB_ACE_BASICABILITY_ROUTERPAGE_022
-     * @tc.name      RouterWithParamJsunit_003
-     * @tc.desc      The route input parameter is abnormally redirected
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASICABILITY_ROUTERPAGE_022
+     * @tc.name RouterWithParamJsunit_003
+     * @tc.desc The route input parameter is abnormally redirected
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('RouterWithParamJsunit_003', 0, async function (done) {
+    it('RouterWithParamJsunit_003', 0, async (done: Function) => {
       console.info('[RouterWithParamJsunit_003] START');
       let driver = Driver.create();
-      await driver.delayMs(waitUiReadyMs);      
+      await driver.delayMs(waitUiReadyMs);
       let btn1 = await driver.findComponent(ON.id('turn_RouterPushThree_stringArray'));
       await driver.delayMs(waitUiReadyMs);
       await btn1.click();
@@ -119,14 +133,14 @@ export default function RouterWithParamJsunit() {
     });
 
     /**
-     * @tc.number    SUB_ACE_BASICABILITY_ROUTERPAGE_018
-     * @tc.name      RouterWithParamJsunit_004
-     * @tc.desc      The route input parameter is abnormally redirected
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASICABILITY_ROUTERPAGE_018
+     * @tc.name RouterWithParamJsunit_004
+     * @tc.desc The route input parameter is abnormally redirected
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('RouterWithParamJsunit_004', 0, async function (done) {
+    it('RouterWithParamJsunit_004', 0, async (done: Function) => {
       console.info('[RouterWithParamJsunit_004] START');
       let driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
@@ -143,14 +157,14 @@ export default function RouterWithParamJsunit() {
     });
 
     /**
-     * @tc.number    SUB_ACE_BASICABILITY_ROUTERPAGE_019
-     * @tc.name      RouterWithParamJsunit_005
-     * @tc.desc      The route input parameter is abnormally redirected
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASICABILITY_ROUTERPAGE_019
+     * @tc.name RouterWithParamJsunit_005
+     * @tc.desc The route input parameter is abnormally redirected
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('RouterWithParamJsunit_005', 0, async function (done) {
+    it('RouterWithParamJsunit_005', 0, async (done: Function) => {
       console.info('[RouterWithParamJsunit_005] START');
       let driver = Driver.create();
       let btn = await driver.findComponent(ON.id('turn_RouterPushUrlOne_string_numArray'));
@@ -166,14 +180,14 @@ export default function RouterWithParamJsunit() {
     });
 
     /**
-     * @tc.number    SUB_ACE_BASICABILITY_ROUTERPAGE_015
-     * @tc.name      RouterWithParamJsunit_006
-     * @tc.desc      The route input parameter is abnormally redirected
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASICABILITY_ROUTERPAGE_015
+     * @tc.name RouterWithParamJsunit_006
+     * @tc.desc The route input parameter is abnormally redirected
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('RouterWithParamJsunit_006', 0, async function (done) {
+    it('RouterWithParamJsunit_006', 0, async (done: Function) => {
       console.info('[RouterWithParamJsunit_006] START');
       let driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);
@@ -188,16 +202,16 @@ export default function RouterWithParamJsunit() {
       console.info('[RouterWithParamJsunit_006] END');
       done();
     });
-  
+
     /**
-     * @tc.number    SUB_ACE_BASICABILITY_ROUTERPAGE_017
-     * @tc.name      RouterWithParamJsunit_007
-     * @tc.desc      The route input parameter is abnormally redirected
-     * @tc.level:    Level 2
+     * @tc.number SUB_ACE_BASICABILITY_ROUTERPAGE_017
+     * @tc.name RouterWithParamJsunit_007
+     * @tc.desc The route input parameter is abnormally redirected
+     * @tc.level: Level 2
      * @tc.type :
      * @tc.size :
      */
-    it('RouterWithParamJsunit_007', 0, async function (done) {
+    it('RouterWithParamJsunit_007', 0, async (done: Function) => {
       console.info('[RouterWithParamJsunit_007] START');
       let driver = Driver.create();
       await driver.delayMs(waitUiReadyMs);

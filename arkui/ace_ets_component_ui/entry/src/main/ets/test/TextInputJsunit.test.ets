@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function TextInputJsunit() {
-  describe('TextInputJsunit', function () {
-    beforeEach(async function (done) {
+  describe('TextInputJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextInputJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/TextInputPage',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/TextInputPage',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function TextInputJsunit() {
         console.info("get TextInputJsunit state pages: " + JSON.stringify(pages));
         if (!("TextInputPage" == pages.name)) {
           console.info("get TextInputJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push TextInputJsunit success: " + JSON.stringify(result));
         }
@@ -43,114 +56,151 @@ export default function TextInputJsunit() {
       done();
     });
 
-    it('TextInputJsunit_0100', 0, async function (done) {
+    it('TextInputJsunit_0100', 0, async (done: Function) => {
       // Get the information of the TextInput component
       console.info('[TextInputJsunit_0100] START');
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('textInput');
-      let obj = JSON.parse(strJson);
-      console.info("[TextInputJsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[TextInputJsunit_0100] placeholder: " + JSON.stringify(obj.$attrs.placeholder));
-      console.info("[TextInputJsunit_0100] type: " + JSON.stringify(obj.$attrs.type));
-      console.info("[TextInputJsunit_0100] placeholderColor: " + JSON.stringify(obj.$attrs.placeholderColor));
-      console.info("[TextInputJsunit_0100] placeholderFont: " + JSON.stringify(obj.$attrs.placeholderFont));
-      console.info("[TextInputJsunit_0100] enterKeyType: " + JSON.stringify(obj.$attrs.enterKeyType));
-      console.info("[TextInputJsunit_0100] caretColor: " + JSON.stringify(obj.$attrs.caretColor));
-      console.info("[TextInputJsunit_0100] maxLength: " + JSON.stringify(obj.$attrs.maxLength));
-      console.info("[TextInputJsunit_0100] copyOption: " + JSON.stringify(obj.$attrs.copyOption));
-      console.info("[TextInputJsunit_0100] showPasswordIcon: " + JSON.stringify(obj.$attrs.showPasswordIcon));
-      console.info("[TextInputJsunit_0100] style: " + JSON.stringify(obj.$attrs.style));
-      console.info("[TextInputJsunit_0100] textAlign: " + JSON.stringify(obj.$attrs.textAlign));
-      expect(obj.$attrs.placeholder).assertEqual('input your word...');
-      expect(obj.$attrs.type).assertEqual('InputType.Email');
-      expect(obj.$attrs.placeholderColor).assertEqual('#FF808080');
-      expect(obj.$attrs.placeholderFont).assertEqual('{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}');
-      expect(obj.$attrs.enterKeyType).assertEqual('EnterKeyType.Search');
-      expect(obj.$attrs.caretColor).assertEqual('#FF0000FF');
-      expect(obj.$attrs.maxLength).assertEqual('10');
-      expect(obj.$attrs.style).assertEqual('TextInputStyle.Default');
-      expect(obj.$attrs.textAlign).assertEqual('TextAlign.Center');
-      expect(obj.$attrs.copyOption).assertEqual('CopyOptions.InApp');
-      expect(obj.$attrs.showPasswordIcon).assertEqual(false); 
+      let strJson: string = getInspectorByKey('textInput');
+
+      console.info("[TextInputJsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[TextInputJsunit_0100] placeholder: " + JSON.stringify(JSON.parse(strJson).$attrs.placeholder));
+      console.info("[TextInputJsunit_0100] type: " + JSON.stringify(JSON.parse(strJson).$attrs.type));
+      console.info("[TextInputJsunit_0100] placeholderColor: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .placeholderColor));
+      console.info("[TextInputJsunit_0100] placeholderFont: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .placeholderFont));
+      console.info("[TextInputJsunit_0100] enterKeyType: " + JSON.stringify(JSON.parse(strJson).$attrs.enterKeyType));
+      console.info("[TextInputJsunit_0100] caretColor: " + JSON.stringify(JSON.parse(strJson).$attrs.caretColor));
+      console.info("[TextInputJsunit_0100] maxLength: " + JSON.stringify(JSON.parse(strJson).$attrs.maxLength));
+      console.info("[TextInputJsunit_0100] copyOption: " + JSON.stringify(JSON.parse(strJson).$attrs.copyOption));
+      console.info("[TextInputJsunit_0100] showPasswordIcon: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .showPasswordIcon));
+      console.info("[TextInputJsunit_0100] style: " + JSON.stringify(JSON.parse(strJson).$attrs.style));
+      console.info("[TextInputJsunit_0100] textAlign: " + JSON.stringify(JSON.parse(strJson).$attrs.textAlign));
+      expect(JSON.parse(strJson).$attrs.placeholder).assertEqual('input your word...');
+      expect(JSON.parse(strJson).$attrs.type).assertEqual('InputType.Email');
+      expect(JSON.parse(strJson).$attrs.placeholderColor).assertEqual('#FF808080');
+      expect(JSON.parse(strJson).$attrs.placeholderFont)
+        .assertEqual('{"style":"FontStyle.Normal","size":"14.00fp","weight":"400","fontFamily":"sans-serif"}');
+      expect(JSON.parse(strJson).$attrs.enterKeyType).assertEqual('EnterKeyType.Search');
+      expect(JSON.parse(strJson).$attrs.caretColor).assertEqual('#FF0000FF');
+      expect(JSON.parse(strJson).$attrs.maxLength).assertEqual('10');
+      expect(JSON.parse(strJson).$attrs.style).assertEqual('TextInputStyle.Default');
+      expect(JSON.parse(strJson).$attrs.textAlign).assertEqual('TextAlign.Center');
+      expect(JSON.parse(strJson).$attrs.copyOption).assertEqual('CopyOptions.InApp');
+      expect(JSON.parse(strJson).$attrs.showPasswordIcon).assertEqual(false);
       console.info('[TextInputJsunit_0100] END');
       done();
     });
 
-    it('TextInputJsunit_0200', 0, async function (done) {
+    it('TextInputJsunit_0200', 0, async (done: Function) => {
       // Get default attributes of TextInput component
       console.info('[TextInputJsunit_0200] START');
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('input');
-      let obj = JSON.parse(strJson);
-      console.info("[TextInputJsunit_0200] component obj1 is: " + JSON.stringify(obj));
-      console.info("[TextInputJsunit_0200] placeholder: " + JSON.stringify(obj.$attrs.placeholder));
-      console.info("[TextInputJsunit_0200] type: " + JSON.stringify(obj.$attrs.type));
-      console.info("[TextInputJsunit_0200] placeholderColor: " + JSON.stringify(obj.$attrs.placeholderColor));
-      console.info("[TextInputJsunit_0200] placeholderFont: " + JSON.stringify(obj.$attrs.placeholderFont));
-      console.info("[TextInputJsunit_0200] enterKeyType: " + JSON.stringify(obj.$attrs.enterKeyType));
-      console.info("[TextInputJsunit_0200] caretColor: " + JSON.stringify(obj.$attrs.caretColor));
-      console.info("[TextInputJsunit_0200] maxLength: " + JSON.stringify(obj.$attrs.maxLength));
-      console.info("[TextInputJsunit_0200] copyOption: " + JSON.stringify(obj.$attrs.copyOption));
-      console.info("[TextInputJsunit_0200] showPasswordIcon: " + JSON.stringify(obj.$attrs.showPasswordIcon));
-      console.info("[TextInputJsunit_0200] style: " + JSON.stringify(obj.$attrs.style));
-      console.info("[TextInputJsunit_0200] textAlign: " + JSON.stringify(obj.$attrs.textAlign));
-      expect(obj.$attrs.placeholder).assertEqual('inline style');
-      expect(obj.$attrs.type).assertEqual('InputType.Normal');
-      expect(obj.$attrs.placeholderFont).assertEqual('{"style":"FontStyle.Normal","size":"16.00fp","weight":"400","fontFamily":"sans-serif"}');
-      expect(obj.$attrs.enterKeyType).assertEqual('EnterKeyType.Done');
-      expect(obj.$attrs.maxLength).assertEqual('INF');
-      expect(obj.$attrs.textAlign).assertEqual('TextAlign.Start');
-      expect(obj.$attrs.showPasswordIcon).assertEqual(true);
+      let strJson: string = getInspectorByKey('input');
+
+      console.info("[TextInputJsunit_0200] component JSON.parse(strJson1) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[TextInputJsunit_0200] placeholder: " + JSON.stringify(JSON.parse(strJson).$attrs.placeholder));
+      console.info("[TextInputJsunit_0200] type: " + JSON.stringify(JSON.parse(strJson).$attrs.type));
+      console.info("[TextInputJsunit_0200] placeholderColor: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .placeholderColor));
+      console.info("[TextInputJsunit_0200] placeholderFont: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .placeholderFont));
+      console.info("[TextInputJsunit_0200] enterKeyType: " + JSON.stringify(JSON.parse(strJson).$attrs.enterKeyType));
+      console.info("[TextInputJsunit_0200] caretColor: " + JSON.stringify(JSON.parse(strJson).$attrs.caretColor));
+      console.info("[TextInputJsunit_0200] maxLength: " + JSON.stringify(JSON.parse(strJson).$attrs.maxLength));
+      console.info("[TextInputJsunit_0200] copyOption: " + JSON.stringify(JSON.parse(strJson).$attrs.copyOption));
+      console.info("[TextInputJsunit_0200] showPasswordIcon: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .showPasswordIcon));
+      console.info("[TextInputJsunit_0200] style: " + JSON.stringify(JSON.parse(strJson).$attrs.style));
+      console.info("[TextInputJsunit_0200] textAlign: " + JSON.stringify(JSON.parse(strJson).$attrs.textAlign));
+      expect(JSON.parse(strJson).$attrs.placeholder).assertEqual('inline style');
+      expect(JSON.parse(strJson).$attrs.type).assertEqual('InputType.Normal');
+      expect(JSON.parse(strJson).$attrs.placeholderFont)
+        .assertEqual('{"style":"FontStyle.Normal","size":"16.00fp","weight":"400","fontFamily":"sans-serif"}');
+      expect(JSON.parse(strJson).$attrs.enterKeyType).assertEqual('EnterKeyType.Done');
+      expect(JSON.parse(strJson).$attrs.maxLength).assertEqual('INF');
+      expect(JSON.parse(strJson).$attrs.textAlign).assertEqual('TextAlign.Start');
+      expect(JSON.parse(strJson).$attrs.showPasswordIcon).assertEqual(true);
       await CommonFunc.sleep(1000);
       console.info('[TextInputJsunit_0200] END');
       done();
     });
 
-    it('TextInputJsunit_0300', 0, async function (done) {
+    it('TextInputJsunit_0300', 0, async (done: Function) => {
       // Modify the properties of TextInput component 
       console.info('[TextInputJsunit_0300] START');
-      globalThis.value.message.notify({name:'placeholder',value:'place input your word...'})
+      globalThis.value.message.notify({
+        name: 'placeholder', value: 'place input your word...'
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'type',value:InputType.Normal})
+      globalThis.value.message.notify({
+        name: 'type', value: InputType.Normal
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'placeholderColor',value:Color.Green})
+      globalThis.value.message.notify({
+        name: 'placeholderColor', value: Color.Green
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'placeholderFont',value:{ size: 18, weight: 500 }})
+      globalThis.value.message.notify({
+        name: 'placeholderFont', value: {
+          size: 18, weight: 500
+        }
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'enterKeyType',value:EnterKeyType.Done})
+      globalThis.value.message.notify({
+        name: 'enterKeyType', value: EnterKeyType.Done
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'caretColor',value:Color.Red})
+      globalThis.value.message.notify({
+        name: 'caretColor', value: Color.Red
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'maxLength',value:8})
+      globalThis.value.message.notify({
+        name: 'maxLength', value: 8
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'textAlign',value:TextAlign.Start})
+      globalThis.value.message.notify({
+        name: 'textAlign', value: TextAlign.Start
+      })
       await CommonFunc.sleep(1000);
 
       // Get the propoties value of the TextInput component
-      let strJson = getInspectorByKey('textInput');
-      let obj = JSON.parse(strJson);
-      console.info("[TextInputJsunit_0300] component obj is: " + JSON.stringify(obj));
-      console.info("[TextInputJsunit_0300] placeholder: " + JSON.stringify(obj.$attrs.placeholder));
-      console.info("[TextInputJsunit_0300] type: " + JSON.stringify(obj.$attrs.type));
-      console.info("[TextInputJsunit_0300] placeholderColor: " + JSON.stringify(obj.$attrs.placeholderColor));
-      console.info("[TextInputJsunit_0300] placeholderFont: " + JSON.stringify(obj.$attrs.placeholderFont));
-      console.info("[TextInputJsunit_0300] enterKeyType: " + JSON.stringify(obj.$attrs.enterKeyType));
-      console.info("[TextInputJsunit_0300] caretColor: " + JSON.stringify(obj.$attrs.caretColor));
-      console.info("[TextInputJsunit_0300] maxLength: " + JSON.stringify(obj.$attrs.maxLength));
-      console.info("[TextInputJsunit_0300] textAlign: " + JSON.stringify(obj.$attrs.textAlign));
-      expect(obj.$attrs.placeholder).assertEqual('place input your word...');
-      expect(obj.$attrs.type).assertEqual('InputType.Normal');
-      expect(obj.$attrs.placeholderColor).assertEqual('#FF008000');
-      expect(obj.$attrs.placeholderFont).assertEqual('{"style":"FontStyle.Normal","size":"18.00fp","weight":"500","fontFamily":"sans-serif"}');
-      expect(obj.$attrs.enterKeyType).assertEqual('EnterKeyType.Done');
-      expect(obj.$attrs.caretColor).assertEqual('#FFFF0000');
-      expect(obj.$attrs.maxLength).assertEqual('8');
-      expect(obj.$attrs.textAlign).assertEqual('TextAlign.Start');
+      let strJson: string = getInspectorByKey('textInput');
+
+      console.info("[TextInputJsunit_0300] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[TextInputJsunit_0300] placeholder: " + JSON.stringify(JSON.parse(strJson).$attrs.placeholder));
+      console.info("[TextInputJsunit_0300] type: " + JSON.stringify(JSON.parse(strJson).$attrs.type));
+      console.info("[TextInputJsunit_0300] placeholderColor: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .placeholderColor));
+      console.info("[TextInputJsunit_0300] placeholderFont: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .placeholderFont));
+      console.info("[TextInputJsunit_0300] enterKeyType: " + JSON.stringify(JSON.parse(strJson).$attrs.enterKeyType));
+      console.info("[TextInputJsunit_0300] caretColor: " + JSON.stringify(JSON.parse(strJson).$attrs.caretColor));
+      console.info("[TextInputJsunit_0300] maxLength: " + JSON.stringify(JSON.parse(strJson).$attrs.maxLength));
+      console.info("[TextInputJsunit_0300] textAlign: " + JSON.stringify(JSON.parse(strJson).$attrs.textAlign));
+      expect(JSON.parse(strJson).$attrs.placeholder).assertEqual('place input your word...');
+      expect(JSON.parse(strJson).$attrs.type).assertEqual('InputType.Normal');
+      expect(JSON.parse(strJson).$attrs.placeholderColor).assertEqual('#FF008000');
+      expect(JSON.parse(strJson).$attrs.placeholderFont)
+        .assertEqual('{"style":"FontStyle.Normal","size":"18.00fp","weight":"500","fontFamily":"sans-serif"}');
+      expect(JSON.parse(strJson).$attrs.enterKeyType).assertEqual('EnterKeyType.Done');
+      expect(JSON.parse(strJson).$attrs.caretColor).assertEqual('#FFFF0000');
+      expect(JSON.parse(strJson).$attrs.maxLength).assertEqual('8');
+      expect(JSON.parse(strJson).$attrs.textAlign).assertEqual('TextAlign.Start');
       console.info('[TextInputJsunit_0300] END');
       done();
     });
 
-    it('TextInputJsunit_0400', 0, async function (done) {
+    it('TextInputJsunit_0400', 0, async (done: Function) => {
       // Verify functions of TextInput component
       console.info('[TextInputJsunit_0400] START');
 
@@ -182,23 +232,22 @@ export default function TextInputJsunit() {
       let textFalse = await textComponent2.getText();
       expect(textFalse).assertEqual('onEditChange:false');
       console.info("[TextInputJsunit_0400] Verify editChange succ !");
-      
+
       // Verify onCopy function of TextInput component
       await textComponent.click()
       await textComponent.longClick()
-      await CommonFunc.sleep(3000);
+      await CommonFunc.sleep(1000);
       let textComponent3 = await driver.findComponent(BY.text('全选'));
       await textComponent3.click()
-      await CommonFunc.sleep(3000);
+      await CommonFunc.sleep(200);
       let textComponent4 = await driver.findComponent(BY.text('复制'));
       await textComponent4.click()
       await textComponent.click()
       await CommonFunc.sleep(3000);
-      let strJson = getInspectorByKey('copy');
-      await CommonFunc.sleep(3000);
-      let obj = JSON.parse(strJson);
-      console.info("[TextInputJsunit_0400] component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.content).assertEqual('onCopy:hello');
+      let strJson: string = getInspectorByKey('copy');
+
+      console.info("[TextInputJsunit_0400] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('onCopy:hello');
       console.info("[TextInputJsunit_0400] Verify copy succ !");
 
       // Verify onCut function of TextInput component
@@ -206,14 +255,14 @@ export default function TextInputJsunit() {
       await CommonFunc.sleep(1000);
       let textComponent5 = await driver.findComponent(BY.text('全选'));
       await textComponent5.click()
-      await CommonFunc.sleep(3000);
+      await CommonFunc.sleep(200);
       let textComponent6 = await driver.findComponent(BY.text('剪切'));
       await textComponent6.click()
       await CommonFunc.sleep(3000);
       let strJson1 = getInspectorByKey('cut');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[TextInputJsunit_0400] component obj1 is: " + JSON.stringify(obj1));
-      expect(obj1.$attrs.content).assertEqual('onCut:hello');
+
+      console.info("[TextInputJsunit_0400] component JSON.parse(strJson1) is: " + JSON.stringify(JSON.parse(strJson1)));
+      expect(JSON.parse(strJson1).$attrs.content).assertEqual('onCut:hello');
       console.info("[TextInputJsunit_0400] Verify cut succ !");
 
       // Verify onPaste function of TextInput component
@@ -224,9 +273,9 @@ export default function TextInputJsunit() {
       await textComponent7.click()
       await CommonFunc.sleep(3000);
       let strJson2 = getInspectorByKey('paste');
-      let obj2 = JSON.parse(strJson2);
-      console.info("[TextInputJsunit_0400] component obj2 is: " + JSON.stringify(obj2));
-      expect(obj2.$attrs.content).assertEqual('onPaste:hello');
+
+      console.info("[TextInputJsunit_0400] component JSON.parse(strJson2) is: " + JSON.stringify(JSON.parse(strJson2)));
+      expect(JSON.parse(strJson2).$attrs.content).assertEqual('onPaste:hello');
       console.info("[TextInputJsunit_0400] Verify paste succ !");
       console.info('[TextInputJsunit_0400] END');
       done();

@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function menuEnabledJsunit() {
-  describe('menuEnabledJsunit', function () {
-    beforeEach(async function (done) {
+  describe('menuEnabledJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("menuEnabledJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/menuEnabled',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/menuEnabled',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function menuEnabledJsunit() {
         console.info("get menuEnabledJsunit state pages: " + JSON.stringify(pages));
         if (!("menuEnabled" == pages.name)) {
           console.info("get menuEnabledJsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push menuEnabledJsunit success: " + JSON.stringify(result));
         }
@@ -43,34 +56,34 @@ export default function menuEnabledJsunit() {
       done();
     });
 
-    it('menuEnabledJsunit_0100', 0, async function (done) {
+    it('menuEnabledJsunit_0100', 0, async (done: Function) => {
 
       console.info('menuEnabledJsunit_0100 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('bindMenuEnd'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('bindMenuEnd');
-      let obj = JSON.parse(strJson);
-      console.info("[menuEnabledJsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[menuEnabledJsunit_0100] enabled: " + JSON.stringify(obj.$attrs.enabled));
-      expect(obj.$attrs.enabled).assertEqual(false);
+      let strJson: string = getInspectorByKey('bindMenuEnd');
+
+      console.info("[menuEnabledJsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[menuEnabledJsunit_0100] enabled: " + JSON.stringify(JSON.parse(strJson).$attrs.enabled));
+      expect(JSON.parse(strJson).$attrs.enabled).assertEqual(false);
       console.info('[menuEnabledJsunit_0100] END');
       done();
     });
 
-    it('menuEnabledJsunit_0200', 0, async function (done) {
+    it('menuEnabledJsunit_0200', 0, async (done: Function) => {
 
       console.info('menuEnabledJsunit_0200 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('cmEnd'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('menuEnabled');
-      let obj = JSON.parse(strJson);
-      console.info("[menuEnabledJsunit_0200] component obj is: " + JSON.stringify(obj));
-      console.info("[menuEnabledJsunit_0200] enabled: " + JSON.stringify(obj.$attrs.enabled));
-      expect(obj.$attrs.enabled).assertEqual(false);
+      let strJson: string = getInspectorByKey('menuEnabled');
+
+      console.info("[menuEnabledJsunit_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[menuEnabledJsunit_0200] enabled: " + JSON.stringify(JSON.parse(strJson).$attrs.enabled));
+      expect(JSON.parse(strJson).$attrs.enabled).assertEqual(false);
       console.info('[menuEnabledJsunit_0200] END');
       done();
     });

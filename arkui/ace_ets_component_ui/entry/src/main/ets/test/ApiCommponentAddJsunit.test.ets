@@ -14,14 +14,14 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import ohosrouter from '@ohos.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import { Driver, ON } from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
-const waitUiReadyMs = 1000;
+import { BusinessError } from '@ohos.base';
+
 
 export default function ApiCommponentAddJsunit() {
-  describe('ApiCommponentAddJsunit', function () {
-    beforeAll(async function (done) {
+  describe('ApiCommponentAddJsunit', () => {
+    beforeAll(async (done: Function) => {
       console.info("ApiCommponentAddJsunit beforeEach start");
       try {
         ohosrouter.clear();
@@ -38,9 +38,9 @@ export default function ApiCommponentAddJsunit() {
               }
             }
           }).then(() => {
-              // success
-            })
-            .catch(err => {
+            // success
+          })
+            .catch((err: BusinessError) => {
               console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
             })
           await CommonFunc.sleep(2000);
@@ -53,7 +53,7 @@ export default function ApiCommponentAddJsunit() {
 
     });
 
-    it('apiCommponentAddJsunit_0100', 0, async function (done) {
+    it('apiCommponentAddJsunit_0100', 0, async (done: Function) => {
       console.info('apiCommponentAddJsunit_0100 START');
       ohosrouter.pushUrl({
         url: 'MainAbility/pages/loadingprogrees_add',
@@ -66,18 +66,20 @@ export default function ApiCommponentAddJsunit() {
       }).then(() => {
         // success
       })
-        .catch(err => {
+        .catch((err: BusinessError) => {
           console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
         })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('loadingAdd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_0100'] component obj is: " + obj.$attrs.borderRadius);
-      expect(obj.$attrs.borderRadius).assertEqual('4.00vp');
+      let strJson: string = getInspectorByKey('loadingAdd');
+
+      console.info("[apiCommponentAddJsunit_0100'] component JSON.parse(strJson) is: " + JSON.parse(strJson)
+        .$attrs
+        .borderRadius);
+      expect(JSON.parse(strJson).$attrs.borderRadius).assertEqual('4.00vp');
       done();
     });
 
-    it('apiCommponentAddJsunit_0200', 0, async function (done) {
+    it('apiCommponentAddJsunit_0200', 0, async (done: Function) => {
       console.info('apiCommponentAddJsunit_0200 START');
       ohosrouter.clear();
       ohosrouter.pushUrl({
@@ -90,9 +92,9 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
-          console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-        })
+      }).catch((err: BusinessError) => {
+        console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
+      })
       await CommonFunc.sleep(1000);
       let gridTop = CommonFunc.getComponentRect('listadd');
       let top = gridTop.top;
@@ -111,7 +113,7 @@ export default function ApiCommponentAddJsunit() {
       done();
     });
 
-    it('apiCommponentAddJsunit_0300', 0, async function (done) {
+    it('apiCommponentAddJsunit_0300', 0, async (done: Function) => {
       console.info('apiCommponentAddJsunit_0300 START');
       ohosrouter.clear();
       ohosrouter.pushUrl({
@@ -124,7 +126,7 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
@@ -134,13 +136,13 @@ export default function ApiCommponentAddJsunit() {
       await CommonFunc.sleep(100);
       // wether if swipe
       let gridText = await driver.findComponent(ON.id('25'));
-      let  text = await gridText.getText();
+      let text = await gridText.getText();
       console.info("apiCommponentAddJsunit_0300] onScrollText: " + text);
       expect(text).assertEqual('4');
       done();
     });
 
-    it('apiCommponentAddJsunit_0400', 0, async function (done) {
+    it('apiCommponentAddJsunit_0400', 0, async (done: Function) => {
       console.info('apiCommponentAddJsunit_0400 START');
       ohosrouter.clear();
       ohosrouter.pushUrl({
@@ -153,7 +155,7 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
@@ -163,13 +165,13 @@ export default function ApiCommponentAddJsunit() {
       await CommonFunc.sleep(100);
       // wether if swipe
       let gridText = await driver.findComponent(ON.id('9'));
-      let  text = await gridText.getText();
+      let text = await gridText.getText();
       console.info("[apiCommponentAddJsunit_0500] onScrollText: " + text);
       expect(text).assertEqual('9');
       done();
     });
 
-    it('apiCommponentAddJsunit_0500', 0, async function (done) {
+    it('apiCommponentAddJsunit_0500', 0, async (done: Function) => {
       console.info('apiCommponentAddJsunit_0500 START');
       ohosrouter.clear();
       ohosrouter.pushUrl({
@@ -182,18 +184,18 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('searchAdd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_0500'] component obj is: " + obj.$type);
-      expect(obj.$type).assertEqual('Search');
+      let strJson: string = getInspectorByKey('searchAdd');
+
+      console.info("[apiCommponentAddJsunit_0500'] component JSON.parse(strJson) is: " + JSON.parse(strJson).$type);
+      expect(JSON.parse(strJson).$type).assertEqual('Search');
       done();
     });
 
-    it('apiCommponentAddJsunit_0600', 0, async function (done) {
+    it('apiCommponentAddJsunit_0600', 0, async (done: Function) => {
       console.info('apiCommponentAddJsunit_0600 START');
       ohosrouter.clear();
       ohosrouter.pushUrl({
@@ -206,19 +208,21 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
       // whether react
-      let strJson = getInspectorByKey('swiperValue');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_0600'] component obj is: " + obj.$attrs.content);
-      expect(obj.$attrs.content).assertEqual('hello');
+      let strJson: string = getInspectorByKey('swiperValue');
+
+      console.info("[apiCommponentAddJsunit_0600'] component JSON.parse(strJson) is: " + JSON.parse(strJson)
+        .$attrs
+        .content);
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('hello');
       done();
     });
 
-    it('apiCommponentAddJsunit_0700', 0, async function (done) {
+    it('apiCommponentAddJsunit_0700', 0, async (done: Function) => {
       console.info('apiCommponentAddJsunit_0700 START');
       ohosrouter.clear();
       ohosrouter.pushUrl({
@@ -231,18 +235,18 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('textAreaAdd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_0700'] component obj is: " + obj.$type);
-      expect(obj.$type).assertEqual('TextArea');
+      let strJson: string = getInspectorByKey('textAreaAdd');
+
+      console.info("[apiCommponentAddJsunit_0700'] component JSON.parse(strJson) is: " + JSON.parse(strJson).$type);
+      expect(JSON.parse(strJson).$type).assertEqual('TextArea');
       done();
     });
 
-    it('apiCommponentAddJsunit_0800', 0, async function (done) {
+    it('apiCommponentAddJsunit_0800', 0, async (done: Function) => {
       console.info('apiCommponentAddJsunit_0800 START');
       ohosrouter.clear();
       ohosrouter.pushUrl({
@@ -255,18 +259,18 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
-      let strJson = getInspectorByKey('textInputAdd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_0800'] component obj is: " + obj.$type);
-      expect(obj.$type).assertEqual('TextInput');
+      let strJson: string = getInspectorByKey('textInputAdd');
+
+      console.info("[apiCommponentAddJsunit_0800'] component JSON.parse(strJson) is: " + JSON.parse(strJson).$type);
+      expect(JSON.parse(strJson).$type).assertEqual('TextInput');
       done();
-    
+
     });
 
-    it('apiCommponentAddJsunit_0900', 0, async function (done) {
+    it('apiCommponentAddJsunit_0900', 0, async (done: Function) => {
       console.info('apiCommponentAddJsunit_0900 START');
       ohosrouter.clear();
       ohosrouter.pushUrl({
@@ -279,17 +283,19 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
-      let strJson = getInspectorByKey('waterflowAdd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_0900'] component obj is: " + obj.$attrs.enableScrollInteraction);
-      expect(obj.$attrs.enableScrollInteraction ).assertTrue();
+      let strJson: string = getInspectorByKey('waterflowAdd');
+
+      console.info("[apiCommponentAddJsunit_0900'] component JSON.parse(strJson) is: " + JSON.parse(strJson)
+        .$attrs
+        .enableScrollInteraction);
+      expect(JSON.parse(strJson).$attrs.enableScrollInteraction).assertTrue();
       done();
     });
 
-    it('apiCommponentAddJsunit_1000', 0, async function (done) {
+    it('apiCommponentAddJsunit_1000', 0, async (done: Function) => {
       console.info('apiCommponentAddJsunit_1000 START');
       ohosrouter.clear();
       ohosrouter.pushUrl({
@@ -302,17 +308,17 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
-      let strJson = getInspectorByKey('navigationAdd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_1000'] component obj is: " + obj.$type);
-      expect(obj.$type).assertEqual('Navigation');
+      let strJson: string = getInspectorByKey('navigationAdd');
+
+      console.info("[apiCommponentAddJsunit_1000'] component JSON.parse(strJson) is: " + JSON.parse(strJson).$type);
+      expect(JSON.parse(strJson).$type).assertEqual('Navigation');
       done();
     });
 
-    it('apiCommponentAddJsunit_1100', 0, async function (done) {
+    it('apiCommponentAddJsunit_1100', 0, async (done: Function) => {
       console.info('apiCommponentAddJsunit_1100 START');
       ohosrouter.clear();
       ohosrouter.pushUrl({
@@ -325,33 +331,35 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('width11');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_1100'] component obj is: " + obj.$attrs.content);
-      expect(obj.$attrs.content).assertEqual('0');
+      let strJson: string = getInspectorByKey('width11');
+
+      console.info("[apiCommponentAddJsunit_1100'] component JSON.parse(strJson) is: " + JSON.parse(strJson)
+        .$attrs
+        .content);
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('0');
       done();
     });
 
-   it('apiCommponentAddJsunit_1200', 0, async function (done) {
+    it('apiCommponentAddJsunit_1200', 0, async (done: Function) => {
       console.info('apiCommponentAddJsunit_1200 START');
       try {
-         expect(SafeAreaType.SYSTEM).assertEqual(0);
-         expect(SafeAreaType.CUTOUT).assertEqual(1);
-         expect(SafeAreaType.KEYBOARD).assertEqual(2);
-      } catch(err) {
+        expect(SafeAreaType.SYSTEM).assertEqual(0);
+        expect(SafeAreaType.CUTOUT).assertEqual(1);
+        expect(SafeAreaType.KEYBOARD).assertEqual(2);
+      } catch (err) {
         console.error("apiCommponentAddJsunit_1200 error " + JSON.stringify(err));
       }
       done();
     });
 
-    it('apiCommponentAddJsunit_1300', 0, async function (done) {
-       console.info("[apiCommponentAddJsunit_1300] START" );
-       ohosrouter.clear();
-       ohosrouter.pushUrl({
+    it('apiCommponentAddJsunit_1300', 0, async (done: Function) => {
+      console.info("[apiCommponentAddJsunit_1300] START");
+      ohosrouter.clear();
+      ohosrouter.pushUrl({
         url: 'MainAbility/pages/scroll_addattrs',
         params: {
           data1: 'message',
@@ -361,7 +369,7 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
@@ -371,17 +379,17 @@ export default function ApiCommponentAddJsunit() {
       await CommonFunc.sleep(100);
       // wether if swipe
       let gridText = await driver.findComponent(ON.id('9'));
-      let  text = await gridText.getText();
+      let text = await gridText.getText();
       console.info("[apiCommponentAddJsunit_1300] onScrollText: " + text);
       expect(text).assertEqual('9');
       done();
-      
+
     });
 
-     it('apiCommponentAddJsunit_1400', 0, async function (done) {
-       console.info("[apiCommponentAddJsunit_1400] START" );
-       ohosrouter.clear();
-       ohosrouter.pushUrl({
+    it('apiCommponentAddJsunit_1400', 0, async (done: Function) => {
+      console.info("[apiCommponentAddJsunit_1400] START");
+      ohosrouter.clear();
+      ohosrouter.pushUrl({
         url: 'MainAbility/pages/listItemAddgroup',
         params: {
           data1: 'message',
@@ -391,21 +399,21 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('listattrs');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_1400'] component obj is: " + obj.$type);
-      expect(obj.$type).assertEqual('List');
-      done();   
+      let strJson: string = getInspectorByKey('listattrs');
+
+      console.info("[apiCommponentAddJsunit_1400'] component JSON.parse(strJson) is: " + JSON.parse(strJson).$type);
+      expect(JSON.parse(strJson).$type).assertEqual('List');
+      done();
     });
 
-     it('apiCommponentAddJsunit_1500', 0, async function (done) {
-       console.info("[apiCommponentAddJsunit_1500] START" );
-       ohosrouter.clear();
-       ohosrouter.pushUrl({
+    it('apiCommponentAddJsunit_1500', 0, async (done: Function) => {
+      console.info("[apiCommponentAddJsunit_1500] START");
+      ohosrouter.clear();
+      ohosrouter.pushUrl({
         url: 'MainAbility/pages/navrouteradd',
         params: {
           data1: 'message',
@@ -415,19 +423,19 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('addOne');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_1500'] component obj is: " + obj.$type);
-      expect(obj.$type).assertEqual('Navigation');
-      done();   
+      let strJson: string = getInspectorByKey('addOne');
+
+      console.info("[apiCommponentAddJsunit_1500'] component JSON.parse(strJson) is: " + JSON.parse(strJson).$type);
+      expect(JSON.parse(strJson).$type).assertEqual('Navigation');
+      done();
     });
 
-    it('apiCommponentAddJsunit_1600', 0, async function (done) {
-      console.info("[apiCommponentAddJsunit_1600] START" );
+    it('apiCommponentAddJsunit_1600', 0, async (done: Function) => {
+      console.info("[apiCommponentAddJsunit_1600] START");
       ohosrouter.clear();
       ohosrouter.pushUrl({
         url: 'MainAbility/pages/animateAdd',
@@ -439,19 +447,21 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('keyImageAdd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_1600'] component obj is: " + obj.$attrs.width);
-      expect(obj.$attrs.width).assertEqual('200.00vp');
+      let strJson: string = getInspectorByKey('keyImageAdd');
+
+      console.info("[apiCommponentAddJsunit_1600'] component JSON.parse(strJson) is: " + JSON.parse(strJson)
+        .$attrs
+        .width);
+      expect(JSON.parse(strJson).$attrs.width).assertEqual('200.00vp');
       done();
     });
 
-    it('apiCommponentAddJsunit_1700', 0, async function (done) {
-      console.info("[apiCommponentAddJsunit_1700] START" );
+    it('apiCommponentAddJsunit_1700', 0, async (done: Function) => {
+      console.info("[apiCommponentAddJsunit_1700] START");
       ohosrouter.clear();
       ohosrouter.pushUrl({
         url: 'MainAbility/pages/bindConver',
@@ -463,19 +473,21 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('buttonAdd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_1700'] component obj is: " + obj.$attrs.borderWidth);
-      expect(obj.$attrs.borderWidth).assertEqual('0.00vp');
+      let strJson: string = getInspectorByKey('buttonAdd');
+
+      console.info("[apiCommponentAddJsunit_1700'] component JSON.parse(strJson) is: " + JSON.parse(strJson)
+        .$attrs
+        .borderWidth);
+      expect(JSON.parse(strJson).$attrs.borderWidth).assertEqual('0.00vp');
       done();
     });
 
-    it('apiCommponentAddJsunit_1800', 0, async function (done) {
-      console.info("[apiCommponentAddJsunit_1800] START" );
+    it('apiCommponentAddJsunit_1800', 0, async (done: Function) => {
+      console.info("[apiCommponentAddJsunit_1800] START");
       ohosrouter.clear();
       ohosrouter.pushUrl({
         url: 'MainAbility/pages/common_ets_api',
@@ -487,20 +499,22 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('labelAAd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_1800'] component obj is: " + obj.$attrs.width);
-      expect(obj.$attrs.width).assertEqual('320.00vp');
+      let strJson: string = getInspectorByKey('labelAAd');
+
+      console.info("[apiCommponentAddJsunit_1800'] component JSON.parse(strJson) is: " + JSON.parse(strJson)
+        .$attrs
+        .width);
+      expect(JSON.parse(strJson).$attrs.width).assertEqual('320.00vp');
       done();
     });
 
 
-    it('apiCommponentAddJsunit_1900', 0, async function (done) {
-      console.info("[apiCommponentAddJsunit_1900] START" );
+    it('apiCommponentAddJsunit_1900', 0, async (done: Function) => {
+      console.info("[apiCommponentAddJsunit_1900] START");
       ohosrouter.clear();
       ohosrouter.pushUrl({
         url: 'MainAbility/pages/commonAdd',
@@ -512,19 +526,21 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('commonAdd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_1900'] component obj is: " + obj.$attrs.width);
-      expect(obj.$attrs.width).assertEqual('300.00vp');
+      let strJson: string = getInspectorByKey('commonAdd');
+
+      console.info("[apiCommponentAddJsunit_1900'] component JSON.parse(strJson) is: " + JSON.parse(strJson)
+        .$attrs
+        .width);
+      expect(JSON.parse(strJson).$attrs.width).assertEqual('300.00vp');
       done();
     });
 
-    it('apiCommponentAddJsunit_2000', 0, async function (done) {
-      console.info("[apiCommponentAddJsunit_2000] START" );
+    it('apiCommponentAddJsunit_2000', 0, async (done: Function) => {
+      console.info("[apiCommponentAddJsunit_2000] START");
       ohosrouter.clear();
       ohosrouter.pushUrl({
         url: 'MainAbility/pages/createBuilderadd',
@@ -536,18 +552,20 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('crateFrom');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_2000'] component obj is: " + obj.$attrs.borderWidth);
-      expect(obj.$attrs.borderWidth).assertEqual('0.00vp');
+      let strJson: string = getInspectorByKey('crateFrom');
+
+      console.info("[apiCommponentAddJsunit_2000'] component JSON.parse(strJson) is: " + JSON.parse(strJson)
+        .$attrs
+        .borderWidth);
+      expect(JSON.parse(strJson).$attrs.borderWidth).assertEqual('0.00vp');
       done();
     });
-    it('apiCommponentAddJsunit_2100', 0, async function (done) {
-      console.info("[apiCommponentAddJsunit_2100] START" );
+    it('apiCommponentAddJsunit_2100', 0, async (done: Function) => {
+      console.info("[apiCommponentAddJsunit_2100] START");
       ohosrouter.clear();
       ohosrouter.pushUrl({
         url: 'MainAbility/pages/dragAdd',
@@ -559,19 +577,21 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('dragAdd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_2100'] component obj is: " + obj.$attrs.margin);
-      expect(obj.$attrs.margin).assertEqual('10.00vp');
+      let strJson: string = getInspectorByKey('dragAdd');
+
+      console.info("[apiCommponentAddJsunit_2100'] component JSON.parse(strJson) is: " + JSON.parse(strJson)
+        .$attrs
+        .margin);
+      expect(JSON.parse(strJson).$attrs.margin).assertEqual('10.00vp');
       done();
     });
-   
-    it('apiCommponentAddJsunit_2200', 0, async function (done) {
-      console.info("[apiCommponentAddJsunit_2200] START" );
+
+    it('apiCommponentAddJsunit_2200', 0, async (done: Function) => {
+      console.info("[apiCommponentAddJsunit_2200] START");
       ohosrouter.clear();
       ohosrouter.pushUrl({
         url: 'MainAbility/pages/TouchAdd',
@@ -583,19 +603,21 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('touchAdd');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_2200'] component obj is: " + obj.$attrs.margin);
-      expect(obj.$attrs.margin).assertEqual('0.00vp');
+      let strJson: string = getInspectorByKey('touchAdd');
+
+      console.info("[apiCommponentAddJsunit_2200'] component JSON.parse(strJson) is: " + JSON.parse(strJson)
+        .$attrs
+        .margin);
+      expect(JSON.parse(strJson).$attrs.margin).assertEqual('0.00vp');
       done();
     });
 
-    it('apiCommponentAddJsunit_2300', 0, async function (done) {
-      console.info("[apiCommponentAddJsunit_2300] START" );
+    it('apiCommponentAddJsunit_2300', 0, async (done: Function) => {
+      console.info("[apiCommponentAddJsunit_2300] START");
       ohosrouter.clear();
       ohosrouter.pushUrl({
         url: 'MainAbility/pages/navition3',
@@ -607,18 +629,18 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('ArkUX_Navigation_1111');
-      console.info('apiCommponentAddJsunit_2300 START  :'+ JSON.stringify(strJson));
-      let obj = JSON.parse(strJson);
-      console.info("apiCommponentAddJsunit_2300 obj is: " + JSON.stringify(obj));
-      let mode = obj.$attrs.mode
-      let minContentWidth = obj.$attrs.minContentWidth
-      let navBarWidth = obj.$attrs.navBarWidth
-      let navBarWidthRange = obj.$attrs.navBarWidthRange
+      let strJson: string = getInspectorByKey('ArkUX_Navigation_1111');
+      console.info('apiCommponentAddJsunit_2300 START  :' + JSON.stringify(strJson));
+
+      console.info("apiCommponentAddJsunit_2300 JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      let mode = JSON.parse(strJson).$attrs.mode
+      let minContentWidth = JSON.parse(strJson).$attrs.minContentWidth
+      let navBarWidth = JSON.parse(strJson).$attrs.navBarWidth
+      let navBarWidthRange = JSON.parse(strJson).$attrs.navBarWidthRange
       expect(mode).assertEqual("NavigationMode.AUTO");
       expect(minContentWidth).assertEqual("50.00vp");
       expect(navBarWidth).assertEqual("100.00vp");
@@ -627,8 +649,8 @@ export default function ApiCommponentAddJsunit() {
       done();
     });
 
-     it('apiCommponentAddJsunit_2400', 0, async function (done) {
-      console.info("[apiCommponentAddJsunit_2400] START" );
+    it('apiCommponentAddJsunit_2400', 0, async (done: Function) => {
+      console.info("[apiCommponentAddJsunit_2400] START");
       ohosrouter.clear();
       ohosrouter.pushUrl({
         url: 'MainAbility/pages/richEditor',
@@ -640,19 +662,19 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('richEditor');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_2400'] component obj is: " + obj.$type);
-      expect(obj.$type).assertEqual('RichEditor');
+      let strJson: string = getInspectorByKey('richEditor');
+
+      console.info("[apiCommponentAddJsunit_2400'] component JSON.parse(strJson) is: " + JSON.parse(strJson).$type);
+      expect(JSON.parse(strJson).$type).assertEqual('RichEditor');
       done();
     });
 
-     it('apiCommponentAddJsunit_2500', 0, async function (done) {
-      console.info("[apiCommponentAddJsunit_2500] START" );
+    it('apiCommponentAddJsunit_2500', 0, async (done: Function) => {
+      console.info("[apiCommponentAddJsunit_2500] START");
       ohosrouter.clear();
       ohosrouter.pushUrl({
         url: 'MainAbility/pages/richEditorCustomKeyBoard',
@@ -664,29 +686,29 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('richEditor1');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_2500'] component obj is: " + obj.$type);
-      expect(obj.$type).assertEqual('RichEditor');
+      let strJson: string = getInspectorByKey('richEditor1');
+
+      console.info("[apiCommponentAddJsunit_2500'] component JSON.parse(strJson) is: " + JSON.parse(strJson).$type);
+      expect(JSON.parse(strJson).$type).assertEqual('RichEditor');
       done();
     });
 
-    it('apiCommponentAddJsunit_2600', 0, async function (done) {
+    it('apiCommponentAddJsunit_2600', 0, async (done: Function) => {
       console.info('apiCommponentAddJsunit_2600 START');
       try {
-         expect(DialogButtonStyle.HIGHLIGHT).assertEqual(1);
-      } catch(err) {
+        expect(DialogButtonStyle.HIGHLIGHT).assertEqual(1);
+      } catch (err) {
         console.error("apiCommponentAddJsunit_2600 error " + JSON.stringify(err));
       }
       done();
     });
-    
-     it('apiCommponentAddJsunit_2700', 0, async function (done) {
-      console.info("[apiCommponentAddJsunit_2700] START" );
+
+    it('apiCommponentAddJsunit_2700', 0, async (done: Function) => {
+      console.info("[apiCommponentAddJsunit_2700] START");
       ohosrouter.clear();
       ohosrouter.pushUrl({
         url: 'MainAbility/pages/lifecycle',
@@ -698,19 +720,17 @@ export default function ApiCommponentAddJsunit() {
         }
       }).then(() => {
         // success
-      }).catch(err => {
+      }).catch((err: BusinessError) => {
         console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
       })
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('S1');
-      let obj = JSON.parse(strJson);
-      console.info("[apiCommponentAddJsunit_2700] component obj is: " + obj.$attrs.content);
-      expect(obj.$attrs.content).assertEqual('S1');
+      let strJson: string = getInspectorByKey('S1');
+
+      console.info("[apiCommponentAddJsunit_2700] component JSON.parse(strJson) is: " + JSON.parse(strJson)
+        .$attrs
+        .content);
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('S1');
       done();
     });
-
-
   })
-
-
 }

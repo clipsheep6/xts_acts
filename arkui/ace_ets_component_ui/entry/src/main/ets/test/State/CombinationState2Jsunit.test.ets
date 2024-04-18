@@ -13,17 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 
 export default function CombinationState2Jsunit() {
-  describe('CombinationState2Jsunit', function () {
-    beforeEach(async function (done) {
+  describe('CombinationState2Jsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("CombinationState2Jsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/State/CombinationState2',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/State/CombinationState2',
       }
       try {
         router.clear();
@@ -31,7 +44,7 @@ export default function CombinationState2Jsunit() {
         console.info("get CombinationState2Jsunit state pages: " + JSON.stringify(pages));
         if (!("CombinationState2" == pages.name)) {
           console.info("get CombinationState2Jsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push CombinationState2Jsunit page result: " + JSON.stringify(result));
         }
@@ -42,63 +55,63 @@ export default function CombinationState2Jsunit() {
       done();
     });
 
-    it('CombinationState2Jsunit_0100', 0, async function (done) {
+    it('CombinationState2Jsunit_0100', 0, async (done: Function) => {
       // Get the information of the State component
       console.info('[CombinationState2Jsunit_0100] START');
-      let strJson = getInspectorByKey('PropLink1');
-      let obj = JSON.parse(strJson);
-      console.info("[CombinationState2Jsunit_0100] component obj is: " + JSON.stringify(obj));
+      let strJson: string = getInspectorByKey('PropLink1');
+
+      console.info("[CombinationState2Jsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.content).assertEqual('PropLink:1');
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('PropLink:1');
       console.info('[CombinationState2Jsunit_0100] END');
       done();
     });
 
-    it('CombinationState2Jsunit_0200', 0, async function (done) {
+    it('CombinationState2Jsunit_0200', 0, async (done: Function) => {
       // Get the information of the State component
       let strJson1 = getInspectorByKey('PropLink47');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[CombinationState2Jsunit_0200] component obj1 is: " + JSON.stringify(obj1));
+
+      console.info("[CombinationState2Jsunit_0200] component JSON.parse(strJson1) is: " + JSON.stringify(JSON.parse(strJson1)));
       await CommonFunc.sleep(1000);
-      expect(obj1.$attrs.content).assertEqual('PropLink:47');
+      expect(JSON.parse(strJson1).$attrs.content).assertEqual('PropLink:47');
       console.info('[CombinationState2Jsunit_0200] END');
       done();
     });
 
-    it('CombinationState2Jsunit_0300', 0, async function (done) {
+    it('CombinationState2Jsunit_0300', 0, async (done: Function) => {
       // Get the information of the State component
       let strJson2 = getInspectorByKey('ChildLink47');
-      let obj2 = JSON.parse(strJson2);
-      console.info("[CombinationState2Jsunit_0300] component obj2 is: " + JSON.stringify(obj2));
+
+      console.info("[CombinationState2Jsunit_0300] component JSON.parse(strJson2) is: " + JSON.stringify(JSON.parse(strJson2)));
       await CommonFunc.sleep(1000);
-      expect(obj2.$attrs.content).assertEqual('ChildLink: 47');
+      expect(JSON.parse(strJson2).$attrs.content).assertEqual('ChildLink: 47');
       console.info('[CombinationState2Jsunit_0300] END');
       done();
     });
 
-    it('CombinationState2Jsunit_0400', 0, async function (done) {
+    it('CombinationState2Jsunit_0400', 0, async (done: Function) => {
       // Get the information of the State component
       let strJson3 = getInspectorByKey('PropLink7');
-      let obj3 = JSON.parse(strJson3);
-      console.info("[CombinationState2Jsunit_0400] component obj3 is: " + JSON.stringify(obj3));
+
+      console.info("[CombinationState2Jsunit_0400] component JSON.parse(strJson3) is: " + JSON.stringify(JSON.parse(strJson3)));
       await CommonFunc.sleep(1000);
-      expect(obj3.$attrs.content).assertEqual('PropLink:7');
+      expect(JSON.parse(strJson3).$attrs.content).assertEqual('PropLink:7');
       console.info('[CombinationState2Jsunit_0400] END');
       done();
     });
 
-    it('CombinationState2Jsunit_0500', 0, async function (done) {
+    it('CombinationState2Jsunit_0500', 0, async (done: Function) => {
       // Get the information of the State component
       let strJson4 = getInspectorByKey('ChildLink7');
-      let obj4 = JSON.parse(strJson4);
-      console.info("[CombinationState2Jsunit_0500] component obj4 is: " + JSON.stringify(obj4));
+
+      console.info("[CombinationState2Jsunit_0500] component JSON.parse(strJson4) is: " + JSON.stringify(JSON.parse(strJson4)));
       await CommonFunc.sleep(1000);
-      expect(obj4.$attrs.content).assertEqual('ChildLink: 7');
+      expect(JSON.parse(strJson4).$attrs.content).assertEqual('ChildLink: 7');
       console.info('[CombinationState2Jsunit_0500] END');
       done();
     });
 
-    it('CombinationState2Jsunit_0600', 0, async function (done) {
+    it('CombinationState2Jsunit_0600', 0, async (done: Function) => {
       // Click and get the value of State component
       console.info('[CombinationState2Jsunit_0600] START');
       let driver = await UiDriver.create()
@@ -106,16 +119,16 @@ export default function CombinationState2Jsunit() {
       await qrComponent.click();
       await CommonFunc.sleep(1000);
 
-      let strJson = getInspectorByKey('PropLink2');
-      let obj = JSON.parse(strJson);
-      console.info("[CombinationState2Jsunit_0200] component obj is: " + JSON.stringify(obj));
+      let strJson: string = getInspectorByKey('PropLink2');
+
+      console.info("[CombinationState2Jsunit_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.content).assertEqual('PropLink:2');    
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('PropLink:2');
       console.info('[CombinationState2Jsunit_0600] END');
       done();
     });
 
-    it('CombinationState2Jsunit_0700', 0, async function (done) {
+    it('CombinationState2Jsunit_0700', 0, async (done: Function) => {
       // Click and get the value of State component
       console.info('[CombinationState2Jsunit_0700] START');
       let driver = await UiDriver.create()
@@ -123,16 +136,16 @@ export default function CombinationState2Jsunit() {
       await qrComponent.click();
       await CommonFunc.sleep(1000);
 
-      let strJson = getInspectorByKey('PropLink48');
-      let obj = JSON.parse(strJson);
-      console.info("[CombinationState2Jsunit_0700] component obj is: " + JSON.stringify(obj));
+      let strJson: string = getInspectorByKey('PropLink48');
+
+      console.info("[CombinationState2Jsunit_0700] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.content).assertEqual('PropLink:48');    
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('PropLink:48');
       console.info('[CombinationState2Jsunit_0700] END');
       done();
     });
 
-    it('CombinationState2Jsunit_0800', 0, async function (done) {
+    it('CombinationState2Jsunit_0800', 0, async (done: Function) => {
       // Click and get the value of State component
       console.info('[CombinationState2Jsunit_0800] START');
       let driver = await UiDriver.create()
@@ -140,11 +153,11 @@ export default function CombinationState2Jsunit() {
       await qrComponent.click();
       await CommonFunc.sleep(1000);
 
-      let strJson = getInspectorByKey('PropLink8');
-      let obj = JSON.parse(strJson);
-      console.info("[CombinationState2Jsunit_0800] component obj is: " + JSON.stringify(obj));
+      let strJson: string = getInspectorByKey('PropLink8');
+
+      console.info("[CombinationState2Jsunit_0800] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.content).assertEqual('PropLink:8');    
+      expect(JSON.parse(strJson).$attrs.content).assertEqual('PropLink:8');
       console.info('[CombinationState2Jsunit_0800] END');
       done();
     });
