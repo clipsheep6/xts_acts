@@ -67,6 +67,19 @@
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperMarPad",
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperPadding",
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperVertical",
-        "MainAbility/pages/Scroll/ScrollA"
+        "MainAbility/pages/Scroll/ScrollA",
+        "MainAbility/pages/components/Marquee",
+        "MainAbility/pages/components/Path",
+        "MainAbility/pages/components/PatternLock",
+        "MainAbility/pages/components/Polygon",
+        "MainAbility/pages/components/Polyline",
+        "MainAbility/pages/components/Rect",
+        "MainAbility/pages/components/RichText",
+        "MainAbility/pages/components/Select",
+        "MainAbility/pages/components/Shape",
+        "MainAbility/pages/components/Sidebar",
+        "MainAbility/pages/components/FormComponentPage",
+        "MainAbility/pages/components/XComponentPage",
+        "MainAbility/pages/components/WebPage"
     ]
 }
