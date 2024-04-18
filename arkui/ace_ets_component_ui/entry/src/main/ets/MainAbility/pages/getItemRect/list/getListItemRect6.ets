@@ -34,14 +34,14 @@ struct getListItemRect6 {
     }.padding("4vp").justifyContent(FlexAlign.SpaceEvenly).width(0).height(0)
   }
 
-  messageManager: MessageManager<ESObject> = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('getListItemRect6 onPageShow');
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'index') {
         this.index = message.value;

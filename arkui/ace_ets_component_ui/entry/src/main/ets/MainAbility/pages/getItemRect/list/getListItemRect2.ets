@@ -26,14 +26,14 @@ struct getListItemRect2 {
   @State y: number = 0
   @State width1: number = 0
   @State height1: number = 0
-  messageManager: MessageManager<ESObject> = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('getListItemRect2 onPageShow');
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: ESObject) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'index') {
         this.index = message.value;

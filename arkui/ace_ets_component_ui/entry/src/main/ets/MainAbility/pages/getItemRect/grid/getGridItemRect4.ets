@@ -27,7 +27,7 @@ struct getGridItemRect4 {
   @State y: number = 0;
   @State width1: number = 0;
   @State height1: number = 0;
-  messageManager: MessageManager<ESObject> = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('getGridItemRect4 onPageShow');

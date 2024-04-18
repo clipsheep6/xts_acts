@@ -27,7 +27,7 @@ struct getGridItemRect3 {
   @State y: number = 0;
   @State width1: number = 0;
   @State height1: number = 0;
-  messageManager: MessageManager<ESObject> = new MessageManager();
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('getGridItemRect3 onPageShow');
