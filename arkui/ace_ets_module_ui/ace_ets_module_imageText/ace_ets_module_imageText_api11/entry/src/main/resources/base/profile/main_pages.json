@@ -2,6 +2,7 @@
     "src": [
         "MainAbility/pages/index/index",
         "MainAbility/pages/text/textStyle",
+        "MainAbility/pages/text/TextState",
         "MainAbility/pages/marquee/marquee",
         "MainAbility/pages/text/ImageText",
         "MainAbility/pages/text/textDataDataDetectorConfig",
@@ -119,6 +120,9 @@
         "MainAbility/pages/image/shapeClipping",
         "MainAbility/pages/TextArea/TextArea",
         "MainAbility/pages/TextInput/TextInput",
-        "MainAbility/pages/text/Prop"
+        "MainAbility/pages/text/Prop",
+        "MainAbility/pages/image/Image",
+        "MainAbility/pages/span/Span",
+        "MainAbility/pages/text/Text"
     ]
 }
