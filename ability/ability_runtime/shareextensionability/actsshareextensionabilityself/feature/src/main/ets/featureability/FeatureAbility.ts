@@ -12,21 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import UIAbility from '@ohos.app.ability.UIAbility';
 import hilog from '@ohos.hilog';
 import type window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class FeatureAbility extends UIAbility {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     const TIMEOUT = 50;
     globalThis.featureTerminate = (str) => {
       setTimeout(() => {
-        this.context.terminateSelf().then(() => {
-          console.info('====>terminateSelf' + JSON.stringify(str) + ' end');
-        }).catch((err) => {
-          console.info('====>terminateSelf ' + JSON.stringify(str) + ' err:' + JSON.stringify(err));
-        });
+        this.context.terminateSelf()
+          .then(() => {
+            console.info('====>terminateSelf' + JSON.stringify(str) + ' end');
+          })
+          .catch((err) => {
+            console.info('====>terminateSelf ' + JSON.stringify(str) + ' err:' + JSON.stringify(err));
+          });
       }, TIMEOUT);
     };
 

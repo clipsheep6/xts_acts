@@ -12,12 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import Want from '@ohos.app.ability.Want';
 
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World'
+  @State message: string = 'Hello World';
   @StorageLink('want') want: Want = {
     bundleName: 'com.example.actsshareextensionabilitytest',
     abilityName: 'ActsShareExtensionAbility',
@@ -32,7 +33,9 @@ struct Index {
         Text(this.message)
           .fontSize(50)
           .fontWeight(FontWeight.Bold)
-        UIExtensionComponent(this.want).width('100%').height('35%')
+        UIExtensionComponent(this.want)
+          .width('100%')
+          .height('35%')
       }
       .width('100%')
     }

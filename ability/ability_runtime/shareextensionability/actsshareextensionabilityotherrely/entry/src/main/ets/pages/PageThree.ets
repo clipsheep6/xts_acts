@@ -13,9 +13,6 @@
  * limitations under the License.
  */
 
-import commonEvent from '@ohos.commonEventManager';
-import UIExtensionContentSession from '@ohos.app.ability.UIExtensionContentSession';
-
 let storage = LocalStorage.GetShared();
 
 @Entry(storage)
