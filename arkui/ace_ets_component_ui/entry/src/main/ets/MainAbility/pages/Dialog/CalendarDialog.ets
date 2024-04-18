@@ -15,7 +15,8 @@
 @Entry
 @Component
 struct CalendarPickerDialogExampleA {
-  private selectedDate: Date = new Date()
+  private selectedDate: Date = new Date();
+
   build() {
     Column() {
       Button("CalendarPickerDialog按esc弹窗逐层退出").key('Calendar_dialog_A')
@@ -46,6 +47,6 @@ struct CalendarPickerDialogExampleA {
             }
           })
         })
-    }.width('100%').margin({top:200})
+    }.width('100%').margin({ top: 200 })
   }
 }

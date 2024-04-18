@@ -15,11 +15,12 @@
 @Entry
 @Component
 struct TimePickerDialogExampleA {
-  private selectTime: Date = new Date('2020-12-25T08:30:00')
+  private selectTime: Date = new Date('2020-12-25T08:30:00');
 
   build() {
     Column() {
-      Button("TimePickerDialog按esc弹窗逐层退出").key('TimePicker_dialog_A')
+      Button("TimePickerDialog按esc弹窗逐层退出")
+        .key('TimePicker_dialog_A')
         .margin(20)
         .onClick(() => {
           TimePickerDialog.show({

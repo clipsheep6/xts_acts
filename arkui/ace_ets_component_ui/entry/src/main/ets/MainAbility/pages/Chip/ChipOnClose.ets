@@ -17,10 +17,11 @@ import { Chip, ChipSize } from '@ohos.arkui.advanced.Chip';
 @Entry
 @Component
 struct ChipOnClose {
-  @State text: string = ''
+  @State text: string = '';
+
   build() {
     Column() {
-      Column(){
+      Column() {
         Chip({
           prefixIcon: {
             src: $r('app.media.icon'),
@@ -38,12 +39,17 @@ struct ChipOnClose {
           allowClose: true,
           enabled: true,
           backgroundColor: 0x808080,
-          onClose:()=>{
+          onClose: () => {
             this.text = 'onClose'
           }
         })
-      }.width(120).borderWidth(1).key('ChipOnCloseCol')
-      Text(this.text).key('ChipOnClose')
+      }
+      .width(120)
+      .borderWidth(1)
+      .key('ChipOnCloseCol')
+
+      Text(this.text)
+        .key('ChipOnClose')
     }
   }
 }

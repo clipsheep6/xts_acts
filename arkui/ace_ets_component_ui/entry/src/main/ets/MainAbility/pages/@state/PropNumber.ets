@@ -13,11 +13,13 @@
  * limitations under the License.
  */
 class Num3 {
-  public pages:number;
+  public pages: number;
+
   constructor(pages: number) {
     this.pages = pages;
   }
 }
+
 @Component
 struct Child_AO {
   @Prop count: number | Object | String | Date | Boolean;
@@ -74,9 +76,9 @@ struct Library_AO {
 
   build() {
     Column({ space: 20 }) {
-      Child_AO({count: this.count})
-
-
-    }.width('100%').margin({top:10})
+      Child_AO({ count: this.count })
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

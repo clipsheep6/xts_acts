@@ -20,6 +20,7 @@ class ClassAA {
     this.a = a;
   }
 }
+
 @Observed
 class ClassBB {
   public b: number;

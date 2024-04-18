@@ -15,38 +15,52 @@
 @Entry
 @Component
 struct NavigationStack01 {
-  private arr: number[] = [1,2,3]
-  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack()
-  @State isShow:boolean = false
-  @State isShow2:boolean = false
-  @State bool: boolean = false
-  @State text: string = 'start'
-  @State flagBlur: string = 'BlurStart'
-  @State flagFocus: string = 'FocusStart'
-  @Builder myBuilder2() {
+  private arr: number[] = [1, 2, 3];
+  @Provide('pageInfos') pageInfos: NavPathStack = new NavPathStack();
+  @State isShow: boolean = false;
+  @State isShow2: boolean = false;
+  @State bool: boolean = false;
+  @State text: string = 'start';
+  @State flagBlur: string = 'BlurStart';
+  @State flagFocus: string = 'FocusStart';
+
+  @Builder
+  myBuilder2() {
     Column() {
       Button("close modal 2")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow2 = false;
         })
     }
     .width('100%')
     .height('100%')
   }
-  @Builder myBuilder() {
+
+  @Builder
+  myBuilder() {
     Column() {
       Button("transition modal 2")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow2 = true;
-        }).bindContentCover(this.isShow2, this.myBuilder2(), {modalTransition: ModalTransition.DEFAULT, backgroundColor: Color.Pink, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+        })
+        .bindContentCover(this.isShow2, this.myBuilder2(), {
+          modalTransition: ModalTransition.DEFAULT,
+          backgroundColor: Color.Pink,
+          onAppear: () => {
+            console.log("BindContentCover onAppear.")
+          },
+          onDisappear: () => {
+            console.log("BindContentCover onDisappear.")
+          }
+        })
       Button("close modal 1")
         .margin(10)
         .fontSize(20)
-        .onClick(()=>{
+        .onClick(() => {
           this.isShow = false;
         })
     }
@@ -54,15 +68,17 @@ struct NavigationStack01 {
     .height('100%')
     .justifyContent(FlexAlign.Center)
   }
+
   build() {
-    Column(){
+    Column() {
       Navigation(this.pageInfos) {
         Column() {
-          List({space:12}){
-            ForEach(this.arr, (item:number) => {
+          List({ space: 12 }) {
+            ForEach(this.arr, (item: number) => {
               ListItem() {
-                NavRouter(){
-                  Text("NavRouter" + item).key(`NavigationStack01ListItemText${item}`)
+                NavRouter() {
+                  Text("NavRouter" + item)
+                    .key(`NavigationStack01ListItemText${item}`)
                     .width('100%')
                     .height(60)
                     .backgroundColor('#FFFFFF')
@@ -71,24 +87,24 @@ struct NavigationStack01 {
                     .fontWeight(1000)
                     .textAlign(TextAlign.Center)
                   NavDestination() {
-                    Text(`${this.text+item}`).key('NavigationStack01TextCont')
+                    Text(`${this.text + item}`).key('NavigationStack01TextCont')
                     Button('button').key('NavigationStack01ButtonContent')
                       .defaultFocus(true)
                       .onClick(() => {
                         this.text = 'clicked'
                       })
-                      .onFocus(()=>{
+                      .onFocus(() => {
                         this.flagFocus = 'FocusDone'
                       })
                   }
                   .backgroundColor(Color.Orange)
-                  .title("NavDestinationTitle"+ item)
+                  .title("NavDestinationTitle" + item)
                 }
               }.key(`NavigationStack01ListItem${item}`)
-            },(item: number) => item.toString())
+            }, (item: number) => item.toString())
           }
           .width('80%')
-          .margin({top:12})
+          .margin({ top: 12 })
         }
       }
       .height('60%')
@@ -98,12 +114,22 @@ struct NavigationStack01 {
       .hideNavBar(this.bool)
       .navBarWidth(260)
       .minContentWidth(300)
-      .navBarWidthRange([200,400])
-      .border({width: 1})
+      .navBarWidthRange([200, 400])
+      .border({ width: 1 })
       .height('70%')
       .width('100%')
       .backgroundColor(Color.Pink)
-      .bindContentCover(this.isShow, this.myBuilder(), {modalTransition: ModalTransition.NONE, backgroundColor: Color.Pink, onAppear: () => {console.log("BindContentCover onAppear.")}, onDisappear: () => {console.log("BindContentCover onDisappear.")}})
+      .bindContentCover(this.isShow, this.myBuilder(), {
+        modalTransition: ModalTransition.NONE,
+        backgroundColor: Color.Pink,
+        onAppear: () => {
+          console.log("BindContentCover onAppear.")
+        },
+        onDisappear: () => {
+          console.log("BindContentCover onDisappear.")
+        }
+      })
+
       Text(this.flagBlur).key('NavigationStack01Blur').fontWeight(700)
       Text(this.flagFocus).key('NavigationStack01Focus').fontWeight(700)
       Button('YCDHL')
@@ -127,7 +153,7 @@ struct NavigationStack01 {
           this.pageInfos.clear()
         })
     }
-    .border({width:1})
+    .border({ width: 1 })
     .height('100%')
     .width('100%')
   }

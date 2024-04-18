@@ -14,15 +14,16 @@
  */
 @Component
 struct Child_AS {
-
-  @Prop Array1: Date | Array<Length> | Array<Object>
+  @Prop Array1: Date | Array<Length> | Array<Object>;
 
   build() {
     Column() {
       Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array1)) + " number is " + JSON.stringify(this.Array1))
         .fontSize(20).margin(30).key('PropArray1')
 
-      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array1)) + " number is " + getContext().resourceManager.getStringSync($r('app.string.number').id))
+      Text("count type of " + JSON.stringify(Object.prototype.toString.call(this.Array1)) + " number is " + getContext()
+        .resourceManager
+        .getStringSync($r('app.string.number').id))
         .fontSize(20).margin(30).key('PropArray1New')
 
 
@@ -50,7 +51,7 @@ struct Child_AS {
       Text("切换变量Array<Object>类型[1]-->[{number: 30}]")
       Button('change')
         .onClick(() => {
-          this.Array1 = [{number: 30}];
+          this.Array1 = [{ number: 30 }];
         })
         .key('state8')
 
@@ -60,8 +61,6 @@ struct Child_AS {
           this.Array1 = [$r('app.string.number')];
         })
         .key('state9')
-
-
     }.width('100%')
   }
 }
@@ -69,12 +68,13 @@ struct Child_AS {
 @Entry
 @Component
 struct Library_AS {
-
   @State Array1: Date | Array<Length> | Array<Object> = [1];
 
   build() {
     Column({ space: 20 }) {
-      Child_AS({Array1: this.Array1})
-    }.width('100%').margin({top:10})
+      Child_AS({ Array1: this.Array1 })
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

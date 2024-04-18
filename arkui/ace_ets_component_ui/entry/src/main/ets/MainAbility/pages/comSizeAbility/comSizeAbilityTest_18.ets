@@ -12,39 +12,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-// WaterflowDemo.ets
-import { WaterFlowDataSource } from './WaterFlowDataSource'
-import matrix4 from '@ohos.matrix4'
-let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0])
+import { WaterFlowDataSource } from './WaterFlowDataSource';
+import matrix4 from '@ohos.matrix4';
+
+let matrix = matrix4.init([1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 1.0]);
+
 @Entry
 @Component
 struct comSizeAbilityTest_18 {
-  @State previewUri: Resource = $r('app.media.icon')
-  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X
-  @State isAutoPlay: boolean = false
-  @State showControls: boolean = true
-  controller: VideoController = new VideoController()
-  @State minSize: number = 50
-  @State maxSize: number = 100
-  @State fontSize: number = 24
-  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  scroller: Scroller = new Scroller()
-  datasource: WaterFlowDataSource = new WaterFlowDataSource()
-  private itemWidthArray: number[] = []
-  private itemHeightArray: number[] = []
+  @State previewUri: Resource = $r('app.media.icon');
+  @State curRate: PlaybackSpeed = PlaybackSpeed.Speed_Forward_1_00_X;
+  @State isAutoPlay: boolean = false;
+  @State showControls: boolean = true;
+  controller: VideoController = new VideoController();
+  @State minSize: number = 50;
+  @State maxSize: number = 100;
+  @State fontSize: number = 24;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  scroller: Scroller = new Scroller();
+  datasource: WaterFlowDataSource = new WaterFlowDataSource();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
+
   getSize() {
     let ret = Math.floor(Math.random() * this.maxSize)
     return (ret > this.minSize ? ret : this.minSize)
   }
+
   getItemSizeArray() {
     for (let i = 0; i < 100; i++) {
       this.itemWidthArray.push(this.getSize())
       this.itemHeightArray.push(this.getSize())
     }
   }
+
   aboutToAppear() {
     this.getItemSizeArray()
   }
+
   @Builder
   itemFoot() {
     Column() {
@@ -57,21 +62,35 @@ struct comSizeAbilityTest_18 {
         .margin({ top: 2 })
     }
   }
-build() {
-    Scroll(){
+
+  build() {
+    Scroll() {
       Column({ space: 20 }) {
-        Column(){
+        Column() {
           TimePicker()
             .key("TimePicker_Size")
             .backgroundColor(0XBDDB69)
-            .size({ width: 125, height: 110 })
-            // .offset({ x: 1, y: 1 })
+            .size({ width: 125, height: 110 })// .offset({ x: 1, y: 1 })
             .translate({ x: 1, y: 1, z: 1 })
-            .scale({ x: 1, y: 1, z: 1, centerX: 1, centerY: 1 })
-            .rotate({ x: 1, y: 1, z: 1, angle: 0, centerX: 1, centerY: 1 })
+            .scale({
+              x: 1,
+              y: 1,
+              z: 1,
+              centerX: 1,
+              centerY: 1
+            })
+            .rotate({
+              x: 1,
+              y: 1,
+              z: 1,
+              angle: 0,
+              centerX: 1,
+              centerY: 1
+            })
             .transform(matrix)
         }.key('TimePicker_Father')
-        Column(){
+
+        Column() {
           Toggle({ type: ToggleType.Switch, isOn: false })
             .selectedColor('#007DFF')
             .switchPointColor('#FFFFFF')
@@ -82,11 +101,25 @@ build() {
             .backgroundColor(0XBDDB69)
             .size({ width: 120, height: 100 })
             .translate({ x: 1, y: 1, z: 1 })
-            .scale({ x: 1, y: 1, z: 1, centerX: 1, centerY: 1 })
-            .rotate({ x: 1, y: 1, z: 1, angle: 0, centerX: 1, centerY: 1 })
+            .scale({
+              x: 1,
+              y: 1,
+              z: 1,
+              centerX: 1,
+              centerY: 1
+            })
+            .rotate({
+              x: 1,
+              y: 1,
+              z: 1,
+              angle: 0,
+              centerX: 1,
+              centerY: 1
+            })
             .transform(matrix)
         }.key('Toggle_Father')
-        Column(){
+
+        Column() {
           Video({
             previewUri: this.previewUri,
             currentProgressRate: this.curRate,
@@ -96,12 +129,30 @@ build() {
             .backgroundColor(0XBDDB69)
             .size({ width: 100, height: 100 })
             .translate({ x: 1, y: 1, z: 1 })
-            .scale({ x: 1, y: 1, z: 1, centerX: 1, centerY: 1 })
-            .rotate({ x: 1, y: 1, z: 1, angle: 0, centerX: 1, centerY: 1 })
+            .scale({
+              x: 1,
+              y: 1,
+              z: 1,
+              centerX: 1,
+              centerY: 1
+            })
+            .rotate({
+              x: 1,
+              y: 1,
+              z: 1,
+              angle: 0,
+              centerX: 1,
+              centerY: 1
+            })
             .transform(matrix)
         }.key('Video_Father')
-        Column(){
-          WaterFlow({ footer: () => { this.itemFoot() }, scroller: this.scroller }) {
+
+        Column() {
+          WaterFlow({
+            footer: () => {
+              this.itemFoot()
+            }, scroller: this.scroller
+          }) {
             LazyForEach(this.datasource, (item: number) => {
               FlowItem() {
                 Column() {
@@ -132,8 +183,21 @@ build() {
           .backgroundColor(0XBDDB69)
           .size({ width: 220, height: 140 })
           .translate({ x: 1, y: 1, z: 1 })
-          .scale({ x: 1, y: 1, z: 1, centerX: 1, centerY: 1 })
-          .rotate({ x: 1, y: 1, z: 1, angle: 0, centerX: 1, centerY: 1 })
+          .scale({
+            x: 1,
+            y: 1,
+            z: 1,
+            centerX: 1,
+            centerY: 1
+          })
+          .rotate({
+            x: 1,
+            y: 1,
+            z: 1,
+            angle: 0,
+            centerX: 1,
+            centerY: 1
+          })
           .transform(matrix)
         }.key('WaterFlow_Father')
       }.width('100%')

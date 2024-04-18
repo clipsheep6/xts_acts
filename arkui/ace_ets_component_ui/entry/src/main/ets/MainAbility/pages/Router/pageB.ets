@@ -13,6 +13,7 @@
  * limitations under the License.
  */
 import router from '@ohos.router'
+
 @Entry
 @Component
 struct pageB {
@@ -23,18 +24,26 @@ struct pageB {
           .fontSize(20)
           .fontWeight(FontWeight.Bold)
 
-        Button('清空所有栈').onClick(() => {
-          router.clear()
-        }).margin({bottom: 20}).id('clear_B')
+        Button('清空所有栈')
+          .onClick(() => {
+            router.clear()
+          })
+          .margin({ bottom: 20 })
+          .id('clear_B')
 
-        Button('更新到C页面').onClick(() => {
-          router.pushUrl({
-            url: 'MainAbility/pages/Router/pageC',
-          });
-        }).margin({top: 20}).id('page_c')
+        Button('更新到C页面')
+          .onClick(() => {
+            router.pushUrl({
+              url: 'MainAbility/pages/Router/pageC',
+            });
+          })
+          .margin({ top: 20 })
+          .id('page_c')
 
-        Text('' + router.getState()['name']).id('name_B')
-        Text('' + router.getLength()).id('name_length')
+        Text('' + router.getState()['name'])
+          .id('name_B')
+        Text('' + router.getLength())
+          .id('name_length')
 
       }
       .width('100%')
