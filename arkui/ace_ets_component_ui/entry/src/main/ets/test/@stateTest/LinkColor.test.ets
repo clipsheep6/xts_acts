@@ -13,18 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, Driver, Component, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  Driver,
+  Component,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../../MainAbility/utils/MessageManager';
 
 
 export default function LinkColor() {
-  describe('LinkColor', function () {
-    beforeEach(async function (done) {
+  describe('LinkColor', () => {
+    beforeEach(async (done: Function) => {
       console.info("LinkColor beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/@state/LinkColor',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/@state/LinkColor',
       }
       try {
         router.clear();
@@ -32,7 +44,7 @@ export default function LinkColor() {
         console.info("get LinkColor state pages: " + JSON.stringify(pages));
         if (!("LinkColor" == pages.name)) {
           console.info("get LinkColor state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push LinkColor success: " + JSON.stringify(result));
         }
@@ -48,18 +60,18 @@ export default function LinkColor() {
     * @tc.desc  : To test that the Link decorator supports union types.
     * @tc.level : Level 2
     */
-    it('LinkColor_0100', 0, async function (done) {
+    it('LinkColor_0100', 0, async (done: Function) => {
       console.info('LinkColor_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('state1'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('state1');
-      let obj = JSON.parse(strJson);
-      console.info("[LinkColor_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[LinkColor_0100] title: " + JSON.stringify(obj.$attrs.backgroundColor));
-      expect(obj.$attrs.backgroundColor).assertEqual('#FFFFA500');
+      let strJson: string = getInspectorByKey('state1');
+
+      console.info("[LinkColor_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[LinkColor_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.backgroundColor));
+      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FFFFA500');
       console.info('[LinkColor_0100] END');
       done();
     });
@@ -69,18 +81,18 @@ export default function LinkColor() {
     * @tc.desc  : To test that the Link decorator supports union types.
     * @tc.level : Level 2
     */
-    it('LinkColor_0200', 0, async function (done) {
+    it('LinkColor_0200', 0, async (done: Function) => {
       console.info('LinkColor_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('state2'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('state2');
-      let obj = JSON.parse(strJson);
-      console.info("[LinkColor_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[LinkColor_0100] title: " + JSON.stringify(obj.$attrs.backgroundColor));
-      expect(obj.$attrs.backgroundColor).assertEqual('#FF0000FF');
+      let strJson: string = getInspectorByKey('state2');
+
+      console.info("[LinkColor_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[LinkColor_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.backgroundColor));
+      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FF0000FF');
       console.info('[LinkColor_0100] END');
       done();
     });
@@ -90,18 +102,19 @@ export default function LinkColor() {
     * @tc.desc  : To test that the Link decorator supports union types.
     * @tc.level : Level 2
     */
-    it('LinkColor_0300', 0, async function (done) {
+    it('LinkColor_0300', 0, async (done: Function) => {
       console.info('LinkColor_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('state3'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('LinkColor');
-      let obj = JSON.parse(strJson);
-      console.info("[LinkColor_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[LinkColor_0100] title: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual('count type of "[object Undefined]" number is undefined');
+      let strJson: string = getInspectorByKey('LinkColor');
+
+      console.info("[LinkColor_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[LinkColor_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content)
+        .assertEqual('count type of "[JSON.parse(strJson)ect Undefined]" number is undefined');
       console.info('[LinkColor_0100] END');
       done();
     });
@@ -111,18 +124,18 @@ export default function LinkColor() {
     * @tc.desc  : To test that the Link decorator supports union types.
     * @tc.level : Level 2
     */
-    it('LinkColor_0400', 0, async function (done) {
+    it('LinkColor_0400', 0, async (done: Function) => {
       console.info('LinkColor_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('state4'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('state4');
-      let obj = JSON.parse(strJson);
-      console.info("[LinkColor_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[LinkColor_0100] title: " + JSON.stringify(obj.$attrs.backgroundColor));
-      expect(obj.$attrs.backgroundColor).assertEqual('#FFA52A2A');
+      let strJson: string = getInspectorByKey('state4');
+
+      console.info("[LinkColor_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[LinkColor_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.backgroundColor));
+      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FFA52A2A');
       console.info('[LinkColor_0100] END');
       done();
     });
@@ -132,18 +145,19 @@ export default function LinkColor() {
     * @tc.desc  : To test that the Link decorator supports union types.
     * @tc.level : Level 2
     */
-    it('LinkColor_0500', 0, async function (done) {
+    it('LinkColor_0500', 0, async (done: Function) => {
       console.info('LinkColor_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('state5'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('LinkColor');
-      let obj = JSON.parse(strJson);
-      console.info("[LinkColor_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[LinkColor_0100] title: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual('count type of "[object Null]" number is null');
+      let strJson: string = getInspectorByKey('LinkColor');
+
+      console.info("[LinkColor_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[LinkColor_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content)
+        .assertEqual('count type of "[JSON.parse(strJson)ect Null]" number is null');
       console.info('[LinkColor_0100] END');
       done();
     });
@@ -153,18 +167,18 @@ export default function LinkColor() {
     * @tc.desc  : To test that the Link decorator supports union types.
     * @tc.level : Level 2
     */
-    it('LinkColor_0600', 0, async function (done) {
+    it('LinkColor_0600', 0, async (done: Function) => {
       console.info('LinkColor_0100 START');
       let driver = await Driver.create()
       await CommonFunc.sleep(1000);
       let button = await driver.findComponent(ON.id('state6'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('state6');
-      let obj = JSON.parse(strJson);
-      console.info("[LinkColor_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[LinkColor_0100] title: " + JSON.stringify(obj.$attrs.backgroundColor));
-      expect(obj.$attrs.backgroundColor).assertEqual('#FF008000');
+      let strJson: string = getInspectorByKey('state6');
+
+      console.info("[LinkColor_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[LinkColor_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.backgroundColor));
+      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FF008000');
       console.info('[LinkColor_0100] END');
       done();
     });

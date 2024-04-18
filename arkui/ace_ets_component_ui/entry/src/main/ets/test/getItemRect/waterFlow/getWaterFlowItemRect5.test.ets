@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
+import router from '@ohos.router';
 import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
 import CommonFunc from '../../../MainAbility/utils/Common';
 import {MessageManager,Callback} from '../../../MainAbility/utils/MessageManager';
@@ -21,11 +21,11 @@ import ohosrouter from '@ohos.router';
 
 
 export default function getWaterFlowItemRect5() {
-  describe('getWaterFlowItemRect5', function () {
-    beforeEach(async function (done) {
+  describe('getWaterFlowItemRect5', () =>{
+    beforeEach(async (done:Function) =>{
       console.info("getWaterFlowItemRect5 beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/getItemRect/waterFlow/getWaterFlowItemRect5',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/getItemRect/waterFlow/getWaterFlowItemRect5',
       }
       try {
         router.clear();
@@ -33,7 +33,7 @@ export default function getWaterFlowItemRect5() {
         console.info("get getWaterFlowItemRect5 state pages: " + JSON.stringify(pages));
         if (!("getWaterFlowItemRect5" == pages.name)) {
           console.info("get getWaterFlowItemRect5 state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push getWaterFlowItemRect5 page result: " + JSON.stringify(result));
         }
@@ -51,7 +51,7 @@ export default function getWaterFlowItemRect5() {
     * @tc.desc  : set index to 0,set padding of waterFlow to 20
     * @tc.level : Level 2
     */
-    it('getWaterFlowItemRect5_0100', 0, async function (done) {
+    it('getWaterFlowItemRect5_0100', 0, async (done:Function) =>{
 
       console.info('[getWaterFlowItemRect5_0100] START');
       globalThis.value.message.notify({name:'index', value:0});
@@ -74,23 +74,23 @@ export default function getWaterFlowItemRect5() {
 
       console.log('get text message')
       let strJson1 = getInspectorByKey('getWaterFlowItemRect5_text1')
-      let obj1 = JSON.parse(strJson1)
-      let x = Number(obj1.$attrs.content)
+
+      let x = Number(JSON.parse(strJson1).$attrs.content)
       console.log('x' + x)
 
       let strJson2 = getInspectorByKey('getWaterFlowItemRect5_text2')
-      let obj2 = JSON.parse(strJson2)
-      let y = Number(obj2.$attrs.content)
+
+      let y = Number(JSON.parse(strJson2).$attrs.content)
       console.log('y' + y)
 
       let strJson3 = getInspectorByKey('getWaterFlowItemRect5_text3')
-      let obj3 = JSON.parse(strJson3)
-      let width = Number(obj3.$attrs.content)
+
+      let width = Number(JSON.parse(strJson3).$attrs.content)
       console.log('width' + width)
 
       let strJson4 = getInspectorByKey('getWaterFlowItemRect5_text4')
-      let obj4 = JSON.parse(strJson4)
-      let height = Number(obj4.$attrs.content)
+
+      let height = Number(JSON.parse(strJson4).$attrs.content)
       console.log('height' + height)
 
       console.log('assert position')
@@ -110,7 +110,7 @@ export default function getWaterFlowItemRect5() {
     * @tc.desc  : set index to 0,set margin of FlowItem0 to 20
     * @tc.level : Level 2
     */
-    it('getWaterFlowItemRect5_0200', 0, async function (done) {
+    it('getWaterFlowItemRect5_0200', 0, async (done:Function) =>{
 
       console.info('[getWaterFlowItemRect5_0200] START');
 
@@ -163,23 +163,23 @@ export default function getWaterFlowItemRect5() {
 
       console.log('get text message')
       let strJson1 = getInspectorByKey('getWaterFlowItemRect5_text1')
-      let obj1 = JSON.parse(strJson1)
-      let x = Number(obj1.$attrs.content)
+
+      let x = Number(JSON.parse(strJson1).$attrs.content)
       console.log('x' + x)
 
       let strJson2 = getInspectorByKey('getWaterFlowItemRect5_text2')
-      let obj2 = JSON.parse(strJson2)
-      let y = Number(obj2.$attrs.content)
+
+      let y = Number(JSON.parse(strJson2).$attrs.content)
       console.log('y' + y)
 
       let strJson3 = getInspectorByKey('getWaterFlowItemRect5_text3')
-      let obj3 = JSON.parse(strJson3)
-      let width = Number(obj3.$attrs.content)
+
+      let width = Number(JSON.parse(strJson3).$attrs.content)
       console.log('width' + width)
 
       let strJson4 = getInspectorByKey('getWaterFlowItemRect5_text4')
-      let obj4 = JSON.parse(strJson4)
-      let height = Number(obj4.$attrs.content)
+
+      let height = Number(JSON.parse(strJson4).$attrs.content)
       console.log('height' + height)
 
       console.log('assert position')

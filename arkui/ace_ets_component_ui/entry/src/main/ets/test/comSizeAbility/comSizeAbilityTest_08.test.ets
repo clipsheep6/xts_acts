@@ -13,16 +13,30 @@
  * limitations under the License.
  */
 import { expect, it, afterEach, afterAll, beforeEach, beforeAll, describe } from "@ohos/hypium"
-import router from '@system.router';
+import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
 import componentUtils from '@ohos.arkui.componentUtils';
-import { PointerMatrix, WindowMode, ResizeDirection, DisplayRotation, MatchPattern, BY, ON, UiWindow, Driver, Component, UiComponent, UiDriver } from '@ohos.UiTest'
-export default function comSizeAbilityTest_08 () {
-  describe('comSizeAbilityTestJsunit', function () {
-    beforeEach(async function (done) {
+import {
+  PointerMatrix,
+  WindowMode,
+  ResizeDirection,
+  DisplayRotation,
+  MatchPattern,
+  BY,
+  ON,
+  UiWindow,
+  Driver,
+  Component,
+  UiComponent,
+  UiDriver
+} from '@ohos.UiTest'
+
+export default function comSizeAbilityTest_08() {
+  describe('comSizeAbilityTestJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("comSizeAbilityTestJsunit beforeEach start")
-      let options = {
-        uri: 'MainAbility/pages/comSizeAbility/comSizeAbilityTest_08'
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/comSizeAbility/comSizeAbilityTest_08'
       }
       try {
         router.clear()
@@ -30,12 +44,12 @@ export default function comSizeAbilityTest_08 () {
         console.info("get comSizeAbilityTestJsunit state pages: " + JSON.stringify(pages))
         if (!("comSizeAbilityTest" == pages.name)) {
           console.info("get comSizeAbilityTestJsunit state pages.name: " + JSON.stringify(pages.name))
-          let result = await router.push(options)
+          let result = await router.pushUrl(options)
           await CommonFunc.sleep(2000)
           console.info("push comSizeAbilityTestJsunit success: " + JSON.stringify(result))
         }
       } catch (err) {
-        console.error ("push comSizeAbilityTestJsunit page error: " + err)
+        console.error("push comSizeAbilityTestJsunit page error: " + err)
         expect().assertFail()
       }
       done()
@@ -46,11 +60,11 @@ export default function comSizeAbilityTest_08 () {
         * @tc.desc  : test the size of component
         * @tc.level : Level 2
         */
-    it('comSizeAbilityTestJsunit_23', 0, async  function (done) {
+    it('comSizeAbilityTestJsunit_23', 0, async (done: Function) => {
       console.info('comSizeAbilityTestJsunit_23 START')
       await CommonFunc.sleep(1000);
-      let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("Navigation_Size");
-      let modePosition1:componentUtils.ComponentInfo = componentUtils.getRectangleById("Navigation_Father");
+      let modePosition: componentUtils.ComponentInfo = componentUtils.getRectangleById("Navigation_Size");
+      let modePosition1: componentUtils.ComponentInfo = componentUtils.getRectangleById("Navigation_Father");
       let Size = modePosition.size
       let SizeWidth = Size.width
       let SizeHeight = Size.height
@@ -90,11 +104,11 @@ export default function comSizeAbilityTest_08 () {
         * @tc.desc  : test the size of component
         * @tc.level : Level 2
         */
-    it('comSizeAbilityTestJsunit_24', 0, async  function (done) {
+    it('comSizeAbilityTestJsunit_24', 0, async (done: Function) => {
       console.info('comSizeAbilityTestJsunit_24 START')
       await CommonFunc.sleep(1000);
-      let modePosition:componentUtils.ComponentInfo = componentUtils.getRectangleById("NavRouter_Size");
-      let modePosition1:componentUtils.ComponentInfo = componentUtils.getRectangleById("NavRouter_Father");
+      let modePosition: componentUtils.ComponentInfo = componentUtils.getRectangleById("NavRouter_Size");
+      let modePosition1: componentUtils.ComponentInfo = componentUtils.getRectangleById("NavRouter_Father");
       let Size = modePosition.size
       let SizeWidth = Size.width
       let SizeHeight = Size.height

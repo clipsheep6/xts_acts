@@ -15,13 +15,26 @@
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import router from '@ohos.router';
 import CommonFunc from '../../MainAbility/utils/Common';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 
 export default function NavDestination_onBackPressed() {
-  describe('NavDestination_onBackPressed', function () {
-    beforeEach(async function (done) {
+  describe('NavDestination_onBackPressed', () => {
+    beforeEach(async (done: Function) => {
       console.info("NavDestination_onBackPressed beforeEach start");
-      let options = {
+      let options: router.RouterOptions = {
         url: 'MainAbility/pages/NavRouter/NavDestination_onBackPressed',
       }
       try {
@@ -30,7 +43,7 @@ export default function NavDestination_onBackPressed() {
         console.info("get NavDestination_onBackPressed state pages:" + JSON.stringify(pages));
         if (!("NavDestination_onBackPressed" == pages.name)) {
           console.info("get NavDestination_onBackPressed pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push NavDestination_onBackPressed page result:" + JSON.stringify(result));
         }
@@ -40,19 +53,19 @@ export default function NavDestination_onBackPressed() {
       console.info("NavDestination_onBackPressed beforeEach end");
       done();
     });
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
       console.info("NavDestination_onBackPressed after each called");
     });
     /**
-     * @tc.number    SUB_ACE_NavDestination_onBackPressed_0100
-     * @tc.name      testNavRouter
-     * @tc.desc      Determine whether the cursor change triggers onSelectionChange
-     * @tc.level     Level 2
+     * @tc.number SUB_ACE_NavDestination_onBackPressed_0100
+     * @tc.name testNavRouter
+     * @tc.desc Determine whether the cursor change triggers onSelectionChange
+     * @tc.level Level 2
      * @tc.type
-    * @tc.size
+     * @tc.size
      */
-    it('NavDestination_onBackPressed_0100', 0, async function (done) {
+    it('NavDestination_onBackPressed_0100', 0, async (done: Function) => {
       console.info('[NavDestination_onBackPressed_0100] START');
       await CommonFunc.sleep(1000);
 
