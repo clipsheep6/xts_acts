@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 class MyDataSource implements IDataSource {
   private list: number[] = []
@@ -41,29 +41,28 @@ class MyDataSource implements IDataSource {
 struct SwiperNextPrevMarginExampleString {
   private swiperController: SwiperController = new SwiperController()
   private data: MyDataSource = new MyDataSource([])
-  @State prevMargin: string  = "30%"
-  @State  nextMargin: string = "30%"
+  @State prevMargin: string = "30%"
+  @State nextMargin: string = "30%"
+  messageManager: MessageManager<ESObject> = new MessageManager()
 
-  messageManager:MessageManager = new MessageManager()
   onPageShow() {
     console.info('SwiperNextPrevMargin onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'prevMargin') {
-          this.prevMargin = message.value
+        this.prevMargin = message.value
       }
       if (message.name == 'nextMargin') {
-          this.nextMargin = message.value
+        this.nextMargin = message.value
       }
-      
+
     }
     this.messageManager.registerCallback(callback)
 
   }
-
 
   aboutToAppear(): void {
     let list: number[] = []

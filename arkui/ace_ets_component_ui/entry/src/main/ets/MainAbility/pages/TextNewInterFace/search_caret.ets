@@ -15,15 +15,18 @@
 @Entry
 @Component
 struct SearchCaret {
-  @State changeValue: string = '123456789'
-  @State submitValue: string = ''
-  @State text: string = ''
-  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
-  controller: SearchController = new SearchController()
+  @State changeValue: string = '123456789';
+  @State submitValue: string = '';
+  @State text: string = '';
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 };
+  controller: SearchController = new SearchController();
 
   build() {
     Column() {
-      Text(this.text).fontSize(18).margin(15).key('SearchCaretText')
+      Text(this.text)
+        .fontSize(18)
+        .margin(15)
+        .key('SearchCaretText')
       Search({ value: this.changeValue, placeholder: 'Type to search...', controller: this.controller })
         .searchButton('SEARCH')
         .width('95%')
@@ -36,7 +39,7 @@ struct SearchCaret {
           this.changeValue = value
         })
         .margin(20)
-      Row(){
+      Row() {
         Button('Caret:1')
           .key('SearchCaret1')
           .onClick(() => {
@@ -59,7 +62,8 @@ struct SearchCaret {
             this.text = this.positionInfo.index + ''
           })
       }
-      Row(){
+
+      Row() {
         Button('Caret:20')
           .key('SearchCaret20')
           .onClick(() => {

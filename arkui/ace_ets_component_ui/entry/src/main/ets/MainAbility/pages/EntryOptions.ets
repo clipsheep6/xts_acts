@@ -14,7 +14,7 @@
  */
 
 
-@Entry({ routeName : 'ApiRect' })
+@Entry({ routeName: 'ApiRect' })
 @Component
 struct MyComponent {
   @State message: string = 'Hello, World!';

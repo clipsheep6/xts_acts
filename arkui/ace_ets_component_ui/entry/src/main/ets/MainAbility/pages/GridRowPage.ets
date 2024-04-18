@@ -12,25 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct GridRowPage {
-  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown]
-  @State currentBp: string = 'unknown'
-  @State gutter: GutterOption = { x: 5, y: 10 }
-  @State columns: number = 4
-  @State breakpoints: BreakPoints = { value: ["400vp", "600vp", "800vp"], reference: BreakpointsReference.WindowSize }
-  @State grDirection: GridRowDirection = GridRowDirection.Row
-  messageManager:MessageManager = new MessageManager()
+  @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown];
+  @State currentBp: string = 'unknown';
+  @State gutter: GutterOption = { x: 5, y: 10 };
+  @State columns: number = 4;
+  @State breakpoints: BreakPoints = { value: ["400vp", "600vp", "800vp"], reference: BreakpointsReference.WindowSize };
+  @State grDirection: GridRowDirection = GridRowDirection.Row;
+  messageManager: MessageManager<ESObject> = new MessageManager();
 
   onPageShow() {
     console.info('GridRowPage onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'currentBp') {
         this.currentBp = message.value
@@ -60,7 +60,7 @@ struct GridRowPage {
         breakpoints: this.breakpoints,
         direction: this.grDirection
       }) {
-        ForEach(this.bgColors, (color) => {
+        ForEach(this.bgColors, (color:Color) => {
           GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {
             Row().width("100%").height("20vp")
           }.borderColor(color).borderWidth(2)
@@ -69,15 +69,21 @@ struct GridRowPage {
       .onBreakpointChange((breakpoint) => {
         this.currentBp = breakpoint
       })
-      
+
       GridRow() {
-        ForEach(this.bgColors, (color) => {
+        ForEach(this.bgColors, (color:Color) => {
           GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {
             Row().width("100%").height("20vp")
           }.borderColor(color).borderWidth(2)
         })
-      }.width("100%").height("100%").key('gridRow_default')
-    }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
+      }
+      .width("100%")
+      .height("100%")
+      .key('gridRow_default')
+    }
+    .width('80%')
+    .margin({ left: 10, top: 5, bottom: 5 })
+    .height(200)
     .border({ color: '#880606', width: 2 })
   }
 }

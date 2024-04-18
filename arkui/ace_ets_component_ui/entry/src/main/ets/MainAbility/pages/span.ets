@@ -12,47 +12,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
+
 @Entry
 @Component
 struct SpanExample {
-  @State message1:string = "test";
-  @State content:string = "I am Underline-span";
-  @State fontSize:number = 12;
-  @State textCase:TextCase = TextCase.Normal;
-  @State letterSpacing:number = 10;
-  @State type:TextDecorationType = TextDecorationType.Underline;
-  @State color:string  = '#FFCCEE';
-
-  messageManager:MessageManager = new MessageManager()
+  @State message1: string = "test";
+  @State content: string = "I am Underline-span";
+  @State fontSize: number = 12;
+  @State textCase: TextCase = TextCase.Normal;
+  @State letterSpacing: number = 10;
+  @State type: TextDecorationType = TextDecorationType.Underline;
+  @State color: string = '#FFCCEE';
+  messageManager: MessageManager<ESObject> = new MessageManager()
 
   onPageShow() {
     console.info('span onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'click') {
-          this.message1 = message.value
+        this.message1 = message.value
       }
       if (message.name == 'content') {
-          this.content = message.value
+        this.content = message.value
       }
       if (message.name == 'fontSize') {
-          this.fontSize = message.value
+        this.fontSize = message.value
       }
       if (message.name == 'textCase') {
-          this.textCase = message.value
+        this.textCase = message.value
       }
       if (message.name == 'letterSpacing') {
-          this.letterSpacing = message.value
+        this.letterSpacing = message.value
       }
       if (message.name == 'type') {
-          this.type = message.value
+        this.type = message.value
       }
       if (message.name == 'color') {
-          this.color = message.value
+        this.color = message.value
       }
     }
     this.messageManager.registerCallback(callback)
@@ -69,11 +69,16 @@ struct SpanExample {
       // 文本横线添加
       Text('Text Decoration').fontSize(9).fontColor(0xCCCCCC)
       Text() {
-        Span(this.content).decoration({ type: this.type, color: this.color }).fontSize(this.fontSize)
-        .textCase(this.textCase)
-        .letterSpacing(this.letterSpacing).onClick(() => {
-             this.message1 = "clickDone"
-        }).key('testSpan').id('testSpan')
+        Span(this.content)
+          .decoration({ type: this.type, color: this.color })
+          .fontSize(this.fontSize)
+          .textCase(this.textCase)
+          .letterSpacing(this.letterSpacing)
+          .onClick(() => {
+            this.message1 = "clickDone"
+          })
+          .key('testSpan')
+          .id('testSpan')
       }
 
       Text() {
@@ -83,7 +88,10 @@ struct SpanExample {
       }
 
       Text() {
-        Span('I am Overline-span').decoration({ type: TextDecorationType.Overline, color: Color.Red }).fontSize(12).key("testspan")
+        Span('I am Overline-span')
+          .decoration({ type: TextDecorationType.Overline, color: Color.Red })
+          .fontSize(12)
+          .key("testspan")
       }
 
       // 文本字符间距
@@ -121,12 +129,18 @@ struct SpanExample {
           .key('sn')
           .textCase(TextCase.UpperCase)
           .decoration({ type: TextDecorationType.None })
-          .onClick(()=> {
-            this.message1 = "clickDone"              
+          .onClick(() => {
+            this.message1 = "clickDone"
           })
       }
 
-      Text(this.message1).fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500).margin({top:20}).key('clickT')
+      Text(this.message1)
+        .fontSize(14)
+        .lineHeight(20)
+        .fontColor('#182431')
+        .fontWeight(500)
+        .margin({ top: 20 })
+        .key('clickT')
     }.width('100%').height(250).padding({ left: 35, right: 35, top: 35 })
   }
 }

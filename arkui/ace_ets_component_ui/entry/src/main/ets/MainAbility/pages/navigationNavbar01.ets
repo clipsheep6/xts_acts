@@ -12,30 +12,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct navigationNavbar01 {
-  private arr: number[] = [0, 1, 2, 3]
-  @State isActive: boolean = false
-  @State dex: number = 0
-  @State navBarWidth: number = 100
-  messageManager:MessageManager = new MessageManager()
-  @State navMode: NavigationMode[] = [NavigationMode.Split, NavigationMode.Stack, NavigationMode.Auto]
-  @State navModeIndex: number = 0
-  @State hideNavBar: boolean = false
-  @State minContentWidth: number = 360
-  @State navBarPosition: NavBarPosition[] = [NavBarPosition.Start, NavBarPosition.End]
-  @State navBarPositionIndex: number = 0
-  @State NavigationWidth: number = 250
+  private arr: number[] = [0, 1, 2, 3];
+  @State isActive: boolean = false;
+  @State dex: number = 0;
+  @State navBarWidth: number = 100;
+  messageManager: MessageManager<ESObject> = new MessageManager();
+  @State navMode: NavigationMode[] = [NavigationMode.Split, NavigationMode.Stack, NavigationMode.Auto];
+  @State navModeIndex: number = 0;
+  @State hideNavBar: boolean = false;
+  @State minContentWidth: number = 360;
+  @State navBarPosition: NavBarPosition[] = [NavBarPosition.Start, NavBarPosition.End];
+  @State navBarPositionIndex: number = 0;
+  @State NavigationWidth: number = 250;
 
   onPageShow() {
     console.info('navigationNavbar01  onPageShow');
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'navBarWidth') {
         this.navBarWidth = message.value;
@@ -87,7 +87,7 @@ struct navigationNavbar01 {
                 this.dex = index
               })
             }
-          }, (item:number) => item.toString())
+          }, (item: number) => item.toString())
         }
         .height('100%')
         .margin({ top: 12, left: 12 })

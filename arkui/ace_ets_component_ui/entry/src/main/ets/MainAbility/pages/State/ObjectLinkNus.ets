@@ -20,18 +20,20 @@ class StrClassA {
   public flag: Boolean;
   public color: Color;
 
-  constructor(name: string,num: number= 0, flag: Boolean = true, color: Color = Color.Blue) {
+  constructor(name: string, num: number = 0, flag: Boolean = true, color: Color = Color.Blue) {
     this.name = name;
-    this.num = num
-    this.flag = flag
-    this.color = color
+    this.num = num;
+    this.flag = flag;
+    this.color = color;
   }
 }
+
 // 构建子组件ViewB用于承载@ObjectLink修饰的变量
 //@ObjectLink支持多数据类型
 @Component
 struct ViewBOlk {
   @ObjectLink class_B: StrClassA;
+
   build() {
     Row() {
       // 将ClassB的成员变量a在UI呈现出来
@@ -40,7 +42,7 @@ struct ViewBOlk {
       Text(`${this.class_B.flag}`)
       Text(`${this.class_B.color}`)
     }
-    .margin({top:100})
+    .margin({ top: 100 })
   }
 }
 
@@ -51,7 +53,7 @@ struct ViewANus {
   @State class_A: StrClassA = new StrClassA("hello");
 
   build() {
-    Column({space:20}) {
+    Column({ space: 20 }) {
       Text(`${this.class_A.name}`).key(("str_obl"))
       Button('@ObjectLink 支持 string 类型')
         .key(("strBtn_obl"))

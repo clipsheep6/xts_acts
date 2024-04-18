@@ -20,7 +20,10 @@ struct TransitionEffectExample2 {
 
   build() {
     Column() {
-      Button(this.show).width(80).height(30).margin(30)
+      Button(this.show)
+        .width(80)
+        .height(30)
+        .margin(30)
         .onClick(() => {
           // 点击Button控制Image的显示和消失
           if (this.flag) {
@@ -42,38 +45,38 @@ struct TransitionEffectExample2 {
         Image($r('app.media.icon')).width(200).height(200)
           .key('keyImageAdd')
           .transition(
-          TransitionEffect.asymmetric(
-          TransitionEffect.OPACITY.animation({ duration: 1000 }).combine(
-          TransitionEffect.rotate({ z: 1, angle: 180 }).animation({ delay: 1000, duration: 1000 }))
-            ,
-          TransitionEffect.OPACITY.animation({ delay: 1000, duration: 1000 }).combine(
-          TransitionEffect.rotate({ z: 1, angle: 180 }).animation({ duration: 1000 }))
-          )
+            TransitionEffect.asymmetric(
+              TransitionEffect.OPACITY.animation({ duration: 1000 }).combine(
+                TransitionEffect.rotate({ z: 1, angle: 180 }).animation({ delay: 1000, duration: 1000 }))
+              ,
+              TransitionEffect.OPACITY.animation({ delay: 1000, duration: 1000 }).combine(
+                TransitionEffect.rotate({ z: 1, angle: 180 }).animation({ duration: 1000 }))
+            )
           )
         // 出现时做从x方向和y方向scale都为0变为默认的x方向和y方向scale都为1的动画，该动画时长为animateTo中指定的2000ms
         // 消失时无转场效果
         Image($r('app.media.icon')).width(200).height(200).margin({ top: 100 })
           .transition(
-          TransitionEffect.asymmetric(
-          TransitionEffect.scale({ x: 0, y: 0 }),
-          TransitionEffect.IDENTITY
-          )
-          )
-
-        Image($r('app.media.icon')).width(200).height(200).margin({ top: 100 })
-          .transition(
-          TransitionEffect.asymmetric(
-          TransitionEffect.move(TransitionEdge.START),
-          TransitionEffect.IDENTITY
-          )
+            TransitionEffect.asymmetric(
+              TransitionEffect.scale({ x: 0, y: 0 }),
+              TransitionEffect.IDENTITY
+            )
           )
 
         Image($r('app.media.icon')).width(200).height(200).margin({ top: 100 })
           .transition(
-          TransitionEffect.asymmetric(
-          TransitionEffect.move(TransitionEdge.START),
-          TransitionEffect.SLIDE
+            TransitionEffect.asymmetric(
+              TransitionEffect.move(TransitionEdge.START),
+              TransitionEffect.IDENTITY
+            )
           )
+
+        Image($r('app.media.icon')).width(200).height(200).margin({ top: 100 })
+          .transition(
+            TransitionEffect.asymmetric(
+              TransitionEffect.move(TransitionEdge.START),
+              TransitionEffect.SLIDE
+            )
           )
       }
     }.width('100%')

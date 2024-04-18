@@ -14,21 +14,21 @@
  */
 
 class LinkAC {
-  public value: number
+  public value: number;
 
   constructor(value: number) {
-    this.value = value
+    this.value = value;
   }
 }
 
 @Component
 struct SonLinkAC {
-  @Link arrSon: Array<number>
-  @Link classSon: LinkAC
-  @Link classArrSon: Array<LinkAC>
+  @Link arrSon: Array<number>;
+  @Link classSon: LinkAC;
+  @Link classArrSon: Array<LinkAC>;
 
   build() {
-    Column({ space: 10 }) {      
+    Column({ space: 10 }) {
       Text(`arrSon: ${this.arrSon}`).key("arr_SonAC")
       Text(`classSon: ${this.classSon.value}`).key("class_SonAC")
       Text(`classArrSon: ${this.classArrSon[0].value}`).key("classArr_SonAC")
@@ -56,17 +56,17 @@ struct SonLinkAC {
 @Entry
 @Component
 struct ParentLinkAC {
-  @State arr: Array<Number> = [1,2,3]
-  @State class: LinkAC = {value:1}
-  @State classArr: Array<LinkAC> = [{value:1},{value:2}]
+  @State arr: Array<Number> = [1, 2, 3]
+  @State class: LinkAC = { value: 1 }
+  @State classArr: Array<LinkAC> = [{ value: 1 }, { value: 2 }]
 
   build() {
     Column({ space: 10 }) {
       Button("Reset").id("ParentLinkAC_reset")
         .onClick(() => {
-          this.arr = [1,2,3]
-          this.class = {value:1}
-          this.classArr = [{value:1},{value:2}]
+          this.arr = [1, 2, 3]
+          this.class = { value: 1 }
+          this.classArr = [{ value: 1 }, { value: 2 }]
         })
       Text(`arrPar: ${this.arr}`).key("arr_ParentAC")
       Text(`classPar: ${this.class.value}`).key("class_ParentAC")
@@ -88,7 +88,7 @@ struct ParentLinkAC {
           this.classArr[0].value += 2;
         })
 
-      SonLinkAC({arrSon: $arr, classSon: $class, classArrSon: $classArr})
+      SonLinkAC({ arrSon: $arr, classSon: $class, classArrSon: $classArr })
 
     }.width('100%')
   }

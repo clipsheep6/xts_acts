@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
- import {MessageManager,Callback} from '../../utils/MessageManager';
+import { MessageManager, Callback, Message } from '../../utils/MessageManager';
+
 class MyDataSource50 implements IDataSource {
   private list: number[] = []
 
@@ -39,14 +40,15 @@ class MyDataSource50 implements IDataSource {
 @Entry
 @Component
 struct SwiperNextPrevMarginExample50 {
-  private swiperController: SwiperController = new SwiperController()
+  private swiperController: SwiperController = new SwiperController();
   private data: MyDataSource50 = new MyDataSource50([])
   @State prevMargin: number = 0;
-  @State  nextMargin: number = 0;
-  @State  vertical:boolean = false;
-  @State  itemSpace:number = 0;
-  @State  displayCount:number = 0;
-  @State  loop:boolean = false;
+  @State nextMargin: number = 0;
+  @State vertical: boolean = false;
+  @State itemSpace: number = 0;
+  @State displayCount: number = 0;
+  @State loop: boolean = false;
+
   aboutToAppear(): void {
     let list: number[] = []
     for (let i = 1; i <= 10; i++) {
@@ -54,46 +56,43 @@ struct SwiperNextPrevMarginExample50 {
     }
     this.data = new MyDataSource50(list)
   }
-  
- messageManager:MessageManager = new MessageManager()
+
+  messageManager: MessageManager<number> = new MessageManager()
+
   onPageShow() {
     console.info('SwiperNextPrevMargin onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<number> = (message: Message<ESObject>) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'prevMargin') {
-          this.prevMargin = message.value
+        this.prevMargin = message.value
       }
       if (message.name == 'nextMargin') {
-          this.nextMargin = message.value
+        this.nextMargin = message.value
       }
       if (message.name == 'vertical') {
-          this.vertical = message.value
+        this.vertical = message.value
       }
       if (message.name == 'itemSpace') {
-          this.itemSpace = message.value
+        this.itemSpace = message.value
       }
       if (message.name == 'displayCount') {
-          this.displayCount = message.value
+        this.displayCount = message.value
       }
       if (message.name == 'loop') {
-          this.loop = message.value
+        this.loop = message.value
       }
-      
-      
-      
     }
     this.messageManager.registerCallback(callback)
 
   }
 
-
   build() {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
-        LazyForEach(this.data, (item: string,index:number) => {
+        LazyForEach(this.data, (item: string, index: number) => {
           Text(item)
             .width('100%')
             .height(160)
@@ -101,7 +100,8 @@ struct SwiperNextPrevMarginExample50 {
             .textAlign(TextAlign.Center)
             .borderColor(Color.Red)
             .borderWidth(0)
-            .fontSize(30).key(index+"")
+            .fontSize(30)
+            .key(index + "")
         }, (item: string) => item)
       }
       .cachedCount(2)

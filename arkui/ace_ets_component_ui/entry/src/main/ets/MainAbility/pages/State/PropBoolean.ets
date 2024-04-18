@@ -20,9 +20,9 @@ struct PropBoolean {
   @State BooleanA: boolean = true
 
   build() {
-    Column({space:5}) {
+    Column({ space: 5 }) {
       Text('@Prop 支持数据类型：Boolean').fontSize(18)
-      Text('父组件State:' +this.BooleanA).margin(10).width("100%").key('Boolean_Prop')
+      Text('父组件State:' + this.BooleanA).margin(10).width("100%").key('Boolean_Prop')
       Button('父组件State:').margin(10).width("100%")
         .key("PropBoolean")
         .onClick(() => {
@@ -40,10 +40,10 @@ struct ChildPropBoolean {
   @Prop BooleanB: boolean = false;
 
   build() {
-    Column({space:5}) {
+    Column({ space: 5 }) {
       Text('@Prop 单向的 内部修改不会改变父组件').fontSize(18)
 
-      Button('子组件Prop: '+this.BooleanB).margin(10).width("100%")
+      Button('子组件Prop: ' + this.BooleanB).margin(10).width("100%")
         .key("ChildPropBoolean")
         .onClick(() => {
           this.BooleanB = true

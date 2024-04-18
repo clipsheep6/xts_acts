@@ -12,29 +12,29 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct GridItemPage {
   @State numbers: string[] = Array.apply(null, { length: 16 }).map(function (item, i) {
     return i.toString()
-  })
-  @State rowStart: number = 1
-  @State rowEnd: number = 4
-  @State columnStart: number = 1
-  @State columnEnd: number = 5
-  @State forceRebuild: boolean = true
-  @State selectable: boolean = false
-  @State onSelect: string = 'a'
-  messageManager:MessageManager = new MessageManager()
+  });
+  @State rowStart: number = 1;
+  @State rowEnd: number = 4;
+  @State columnStart: number = 1;
+  @State columnEnd: number = 5;
+  @State forceRebuild: boolean = true;
+  @State selectable: boolean = false;
+  @State onSelect: string = 'a';
+  messageManager: MessageManager<ESObject> = new MessageManager();
 
   onPageShow() {
-    console.info('GridItemPage onPageShow')
+    console.info('GridItemPage onPageShow');
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'rowStart') {
         this.rowStart = message.value
@@ -72,16 +72,17 @@ struct GridItemPage {
             .width('100%')
             .height('100%')
             .textAlign(TextAlign.Center)
-        }.rowStart(this.rowStart)
+        }
+        .rowStart(this.rowStart)
         .rowEnd(this.rowEnd)
         .key("gridItem1")
         .selectable(this.selectable)
-        .onSelect((isSelected: boolean) =>{
+        .onSelect((isSelected: boolean) => {
           this.onSelect = 'true'
           console.info('isSelected: ' + isSelected)
         })
 
-        ForEach(this.numbers, (item) => {
+        ForEach(this.numbers, (item:string) => {
           GridItem() {
             Text(item)
               .fontSize(16)
@@ -92,7 +93,7 @@ struct GridItemPage {
               .key(item)
           }.forceRebuild(this.forceRebuild)
           .key("gridItem2")
-        }, item => item)
+        }, (item:string) => item)
 
         GridItem() {
           Text('b')
@@ -109,7 +110,8 @@ struct GridItemPage {
       .multiSelectable(true)
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
-      .width('90%').height(300)
+      .width('90%')
+      .height(300)
     }.width('100%').margin({ top: 5 })
   }
 }

@@ -12,19 +12,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct ListLanes04 {
-  private arr: number[] = [0, 1, 2, 3, 4, 5]
-  listGutter: Dimension = '0vp'
-  @State listDirection: Axis = Axis.Horizontal
-  @State listSpace: string = '20'
-  @State alignListItem: ListItemAlign = ListItemAlign.Start
-  @State initialIndex: number = 0
-  messageManager:MessageManager = new MessageManager()
-
+  private arr: number[] = [0, 1, 2, 3, 4, 5];
+  listGutter: Dimension = '0vp';
+  @State listDirection: Axis = Axis.Horizontal;
+  @State listSpace: string = '20';
+  @State alignListItem: ListItemAlign = ListItemAlign.Start;
+  @State initialIndex: number = 0;
+  messageManager: MessageManager<ESObject> = new MessageManager();
 
   build() {
     Column() {
@@ -32,15 +31,19 @@ struct ListLanes04 {
         ForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
-              .width(100).height('100%').fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+              .width(100)
+              .height('100%')
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
           }.key('ListItem01_' + item)
         }, (item: string) => item)
       }
       .key('ListLanesKey04_1')
       .listDirection(this.listDirection) // 排列方向
       .alignListItem(this.alignListItem)
-      .lanes(2,0)
+      .lanes(2, 0)
       .width('100%')
       .height('30%')
 
@@ -48,15 +51,19 @@ struct ListLanes04 {
         ForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
-              .width(100).height('100%').fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+              .width(100)
+              .height('100%')
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
           }.key('ListItem02_' + item)
         }, (item: string) => item)
       }
       .key('ListLanesKey04_2')
       .listDirection(this.listDirection) // 排列方向
       .alignListItem(this.alignListItem)
-      .lanes(2,-1)
+      .lanes(2, -1)
       .width('100%')
       .height('30%')
 
@@ -64,15 +71,19 @@ struct ListLanes04 {
         ForEach(this.arr, (item: number) => {
           ListItem() {
             Text('' + item)
-              .width(100).height('100%').fontSize(16)
-              .textAlign(TextAlign.Center).borderRadius(10).backgroundColor(0xFFFFFF)
+              .width(100)
+              .height('100%')
+              .fontSize(16)
+              .textAlign(TextAlign.Center)
+              .borderRadius(10)
+              .backgroundColor(0xFFFFFF)
           }.key('ListItem03_' + item)
         }, (item: string) => item)
       }
       .key('ListLanesKey04_3')
       .listDirection(this.listDirection) // 排列方向
       .alignListItem(this.alignListItem)
-      .lanes(2,'10%')
+      .lanes(2, '10%')
       .width('100%')
       .height('30%')
 

@@ -15,18 +15,18 @@
 
 
 class MyDataSource64 implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -39,8 +39,8 @@ class MyDataSource64 implements IDataSource {
 @Entry
 @Component
 struct SwiperNextPrevMarginExample64 {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource64 = new MyDataSource64([])
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource64 = new MyDataSource64([]);
 
   aboutToAppear(): void {
     let list: number[] = []
@@ -53,7 +53,7 @@ struct SwiperNextPrevMarginExample64 {
   build() {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
-        LazyForEach(this.data, (item: string,index:number) => {
+        LazyForEach(this.data, (item: string, index: number) => {
           Text(item)
             .width('100%')
             .height(160)
@@ -61,7 +61,8 @@ struct SwiperNextPrevMarginExample64 {
             .textAlign(TextAlign.Center)
             .borderColor(Color.Red)
             .borderWidth(0)
-            .fontSize(30).key(index+"")
+            .fontSize(30)
+            .key(index + "")
         }, (item: string) => item)
       }
       .cachedCount(2)

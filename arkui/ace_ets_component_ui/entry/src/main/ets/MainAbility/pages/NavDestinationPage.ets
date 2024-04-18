@@ -12,26 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct NavDestinationPage {
-  private arr: number[] = [0, 1, 2, 3]
-  @State isActive: boolean = false
-  @State dex: number = 0
-  @State stateChange: string = ''
-  @State hideTitleBar: boolean = false
-  @State backColor: Color = Color.Grey
-  @State title: string = 'NavDestination'
-  messageManager: MessageManager = new MessageManager()
+  private arr: number[] = [0, 1, 2, 3];
+  @State isActive: boolean = false;
+  @State dex: number = 0;
+  @State stateChange: string = '';
+  @State hideTitleBar: boolean = false;
+  @State backColor: Color = Color.Grey;
+  @State title: string = 'NavDestination';
+  messageManager: MessageManager<ESObject> = new MessageManager();
 
   onPageShow() {
     console.info('NavRouter onPageShow')
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback = (message: any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'arr') {
         this.arr = message.value
@@ -63,7 +63,11 @@ struct NavDestinationPage {
             ListItem() {
               NavRouter() {
                 Row() {
-                  Image($r('app.media.icon')).width(30).height(30).borderRadius(30).margin({ left: 3, right: 10 })
+                  Image($r('app.media.icon'))
+                    .width(30)
+                    .height(30)
+                    .borderRadius(30)
+                    .margin({ left: 3, right: 10 })
                   Text(`NavRouter${item + 1}`)
                     .fontSize(22)
                     .fontWeight(500)
@@ -78,8 +82,15 @@ struct NavDestinationPage {
                   Text(`我是NavDestination第${item + 1}页内容`).fontSize(50)
                   Flex({ direction: FlexDirection.Row }) {
                     Row() {
-                      Image($r('app.media.icon')).width(40).height(40).borderRadius(40).margin({ right: 15 })
-                      Text('Hello').fontSize(30).key('textContent' + (item + 1).toString())
+                      Image($r('app.media.icon'))
+                        .width(40)
+                        .height(40)
+                        .borderRadius(40)
+                        .margin({ right: 15 })
+                      Text('Hello')
+                        .fontSize(30)
+                        .key('textContent' + (item + 1)
+                          .toString())
                     }.padding({ left: 15 })
                   }
                 }.backgroundColor(this.backColor)
@@ -92,7 +103,7 @@ struct NavDestinationPage {
                 this.dex = index
               })
             }
-          }, item => item)
+          }, (item: string) => item)
         }
         .height('100%')
         .margin({ top: 12, left: 12 })
@@ -100,7 +111,11 @@ struct NavDestinationPage {
       .mode(NavigationMode.Split)
       .hideTitleBar(true)
       .hideToolBar(true)
-      Text(this.stateChange).fontSize(20).margin(10).id('12')
+
+      Text(this.stateChange)
+        .fontSize(20)
+        .margin(10)
+        .id('12')
     }.height('100%')
   }
 }

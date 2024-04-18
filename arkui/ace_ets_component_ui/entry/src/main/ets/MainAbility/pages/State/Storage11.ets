@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-AppStorage.clear()
+AppStorage.clear();
 AppStorage.setOrCreate('PropA', 47);
 AppStorage.setOrCreate('LinkA', 47);
 let LocalStorage11 = new LocalStorage();
@@ -23,8 +23,7 @@ LocalStorage11['PropA'] = 48;
 struct Storage11 {
   @StorageLink('PropA') storLink: number = 1;
   @LocalStorageLink('PropA') localStorLink: number = 1;
-  @State text: string = ''
-
+  @State text: string = '';
 
   build() {
     Column({ space: 20 }) {
@@ -42,12 +41,12 @@ struct Storage11 {
 
       //setAndLink给定的键值key存在，返回对应该键值的属性的双向绑定的数据 47
       Button('SetAndLink key存在').onClick(() => {
-        this.text = AppStorage.setAndLink('PropA',5).get() + ''
+        this.text = AppStorage.setAndLink('PropA', 5).get() + ''
       }).key('Storage11Button3')
 
       //setAndLink给定的键值key不存在，初始化新的数据 5
       Button('SetAndLink key不存在').onClick(() => {
-        this.text = AppStorage.setAndLink('PropD',5).get() + ''
+        this.text = AppStorage.setAndLink('PropD', 5).get() + ''
       }).key('Storage11Button4')
 
       //prop给定的键值key存在，返回对应该键值的属性的双向绑定的数据 47
@@ -62,12 +61,12 @@ struct Storage11 {
 
       //setAndProp给定的键值key存在，返回对应该键值的属性的双向绑定的数据 47
       Button('SetAndProp key存在').onClick(() => {
-        this.text = AppStorage.SetAndProp('PropA',5).get() + ''
+        this.text = AppStorage.SetAndProp('PropA', 5).get() + ''
       }).key('Storage11Button7')
 
       //setAndProp给定的键值key不存在，初始化新的数据 5
       Button('setAndProp key不存在').onClick(() => {
-        this.text = AppStorage.SetAndProp('PropG',5).get() + ''
+        this.text = AppStorage.SetAndProp('PropG', 5).get() + ''
       }).key('Storage11Button8')
     }
   }

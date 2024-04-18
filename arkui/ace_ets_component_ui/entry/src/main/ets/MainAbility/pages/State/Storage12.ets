@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-AppStorage.clear()
+
+AppStorage.clear();
 AppStorage.setOrCreate('PropA', 47);
 AppStorage.setOrCreate('LinkA', 47);
 let LocalStorage12 = new LocalStorage();
@@ -26,8 +26,7 @@ LocalStorage12['PropA'] = 48;
 struct Storage12 {
   @StorageLink('PropA') storLink: number = 1;
   @LocalStorageLink('PropA') localStorLink: number = 1;
-  @State text: string = 'Init'
-
+  @State text: string = 'Init';
 
   build() {
     Column({ space: 20 }) {
@@ -38,7 +37,7 @@ struct Storage12 {
       Button('获取键值对的个数')
         .onClick(() => {
           this.text = AppStorage.Size() + ''
-      }).key('Storage12Button111')
+        }).key('Storage12Button111')
 
       Text(`appKeys: ${Object.keys(LocalStorage12)}`).id("Storage12Text1")
 

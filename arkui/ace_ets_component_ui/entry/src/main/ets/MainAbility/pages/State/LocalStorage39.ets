@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-AppStorage.clear()
-let storage1 = new LocalStorage({"PropA":47})
+AppStorage.clear();
+let storage1 = new LocalStorage({ "PropA": 47 });
 let storage39 = new LocalStorage();
 storage39['PropA'] = 47;
 storage39['PropB'] = 1;
@@ -21,13 +21,12 @@ storage39['PropB'] = 1;
 @Entry(storage39)
 @Component
 struct LocalStorage39 {
-  @LocalStorageProp('PropA') storProp1: number = 1
-  @LocalStorageProp('PropB') storProp2: number = 2
+  @LocalStorageProp('PropA') storProp1: number = 1;
+  @LocalStorageProp('PropB') storProp2: number = 2;
   @State sizenum: number = 0;
-  @State value1: string = 'Init'
-  @State value2: string = 'Init'
-  @State keys1: string = 'Init'
-
+  @State value1: string = 'Init';
+  @State value2: string = 'Init';
+  @State keys1: string = 'Init';
 
   build() {
     Column({ space: 20 }) {
@@ -44,14 +43,14 @@ struct LocalStorage39 {
       Button('get PropA')
         .key('button2')
         .onClick(() => {
-          this.value1 = storage39.get("PropA")+""
+          this.value1 = storage39.get("PropA") + ""
         })
 
       Text(`get PropE：${this.value2}`).key('getText2')
       Button('get PropE')
         .key('button3')
         .onClick(() => {
-          this.value2 = storage39.get("PropE")+""
+          this.value2 = storage39.get("PropE") + ""
         })
 
       //Size获取LocalStorage中存在键值对的个数

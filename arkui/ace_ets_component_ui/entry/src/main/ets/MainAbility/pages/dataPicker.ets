@@ -12,33 +12,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
+
 @Entry
 @Component
 struct DatePickerExample {
-  @State isLunar: boolean = false
-  @State message: string = 'touch'
-  private selectedDate: Date = new Date('2021-08-08')
-    @State options:DatePickerOptions = {
-      start: new Date('1970-1-1'),
-      end: new Date('2100-1-1'),
-      selected: this.selectedDate
+  @State isLunar: boolean = false;
+  @State message: string = 'touch';
+  private selectedDate: Date = new Date('2021-08-08');
+  @State options: DatePickerOptions = {
+    start: new Date('1970-1-1'),
+    end: new Date('2100-1-1'),
+    selected: this.selectedDate
   }
-  messageManager:MessageManager = new MessageManager()
-   onPageShow() {
+  messageManager: MessageManager<ESObject> = new MessageManager()
+
+  onPageShow() {
     console.info('Checkbox onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'isLunar') {
-          this.isLunar = message.value
+        this.isLunar = message.value
       }
       if (message.name == 'options') {
-          this.options = message.value
+        this.options = message.value
       }
-      
+
     }
     this.messageManager.registerCallback(callback)
 
@@ -51,7 +53,13 @@ struct DatePickerExample {
         .onClick(() => {
           this.isLunar = !this.isLunar
         })
-      Text(this.message).fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500).margin({top:20}).key('dptouch')  
+      Text(this.message)
+        .fontSize(14)
+        .lineHeight(20)
+        .fontColor('#182431')
+        .fontWeight(500)
+        .margin({ top: 20 })
+        .key('dptouch')
       DatePicker(this.options)
         .lunar(this.isLunar)
         .onChange((value: DatePickerResult) => {

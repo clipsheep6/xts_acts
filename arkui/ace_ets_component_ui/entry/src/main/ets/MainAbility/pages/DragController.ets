@@ -18,13 +18,15 @@ import dragController from "@ohos.arkui.dragController"
 import UDMF from '@ohos.data.unifiedDataChannel';
 import componentSnapshot from '@ohos.arkui.componentSnapshot';
 import image from '@ohos.multimedia.image';
+import { BusinessError } from '@ohos.base';
 
 @Entry
 @Component
 struct DragController1 {
-  @State pixmap: image.PixelMap = null
+  @State pixmap: image.PixelMap = null;
 
-  @Builder DraggingBuilder() {
+  @Builder
+  DraggingBuilder() {
     Column() {
       Text("DraggingBuilder")
     }
@@ -33,7 +35,8 @@ struct DragController1 {
     .backgroundColor(Color.Blue)
   }
 
-  @Builder PixmapBuilder() {
+  @Builder
+  PixmapBuilder() {
     Column() {
       Text("PixmapBuilder")
     }
@@ -70,7 +73,7 @@ struct DragController1 {
                     // ...
                   }
                 })
-                .catch((err) => {
+                .catch((err:BusinessError) => {
                 })
             })
           }

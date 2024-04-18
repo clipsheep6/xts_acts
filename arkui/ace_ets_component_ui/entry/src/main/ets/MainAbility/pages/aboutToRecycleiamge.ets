@@ -14,13 +14,13 @@
  */
 
 class BasicDataSource implements IDataSource {
-  private listeners: DataChangeListener []= [];
+  private listeners: DataChangeListener [] = [];
 
-  public totalCount(): number{
+  public totalCount(): number {
     return 0;
   }
 
-  public getData(index:number): unknown {
+  public getData(index: number): string {
     return undefined;
   }
 
@@ -40,51 +40,52 @@ class BasicDataSource implements IDataSource {
   }
 
   notifyDataReload(): void {
-    this.listeners.forEach(listener =>{
+    this.listeners.forEach(listener => {
       listener.onDataReloaded();
     })
   }
 
   notifyDataAdd(index: number): void {
-    this.listeners.forEach(listener =>{
+    this.listeners.forEach(listener => {
       listener.onDataAdd(index)
     })
   }
 
   notifyDataChange(index: number): void {
-    this.listeners.forEach(listener =>{
+    this.listeners.forEach(listener => {
       listener.onDataChange(index);
     })
   }
 
   notifyDataDelete(index: number): void {
-    this.listeners.forEach(listener =>{
+    this.listeners.forEach(listener => {
       listener.onDataDelete(index);
     })
   }
 
-  notifyDataMove(from: number ,to: number): void {
-    this.listeners.forEach(listener =>{
+  notifyDataMove(from: number, to: number): void {
+    this.listeners.forEach(listener => {
       listener.onDataMove(from, to);
     })
   }
 }
 
-class MyDataSourceImag extends  BasicDataSource {
-  private dataArray: String[] = ['/path/image0','/path/image1','/path/image2','/path/image3'];
+class MyDataSourceImag extends BasicDataSource {
+  private dataArray: string[] = ['/path/image0', '/path/image1', '/path/image2', '/path/image3'];
 
   public totalCount(): number {
     return this.dataArray.length
   }
 
-  public getData(index: number): unknown {
+  public getData(index: number): string {
     return this.dataArray[index];
   }
 
-  public addData(index: number,data: string): void {
+  public addData(index: number, data: string): void {
     this.dataArray.splice(index, 0, data);
     this.notifyDataAdd(index);
   }
+
   public pushData(data: string): void {
     this.dataArray.push(data);
     this.notifyDataAdd(this.dataArray.length - 1);
@@ -92,19 +93,18 @@ class MyDataSourceImag extends  BasicDataSource {
 }
 
 
-
 @Entry
 @Component
-struct MyComponentImag{
+struct MyComponentImag {
   private data: MyDataSourceImag = new MyDataSourceImag();
 
-  build(){
-    List({space: 3}){
+  build() {
+    List({ space: 3 }) {
       LazyForEach(this.data, (item: string) => {
-        ListItem(){
-          ReusableChildComponent({item: item})
+        ListItem() {
+          ReusableChildComponent({ item: item })
         }
-      }, item => item)
+      }, (item: string) => item)
     }
     .width('100%')
     .height('100%')
@@ -114,20 +114,25 @@ struct MyComponentImag{
 @Reusable
 @Component
 struct ReusableChildComponent {
-  @State item: string = ''
+  @State item: string = '';
 
-  aboutToReuse(params) {
+  aboutToReuse(params: ESObject) {
     this.item = params.item;
   }
 
-  aboutToRecycle(){
+  aboutToRecycle() {
     console.log('recycle node');
   }
 
-  build(){
-    Row(){
-      Image(this.item).width('30%').height(50).key('aboutToRecyclImage')
-      Text(this.item).fontSize(20).margin({ left:10 })
-    }.margin({ left: 10, right: 10})
+  build() {
+    Row() {
+      Image(this.item)
+        .width('30%')
+        .height(50)
+        .key('aboutToRecyclImage')
+      Text(this.item)
+        .fontSize(20)
+        .margin({ left: 10 })
+    }.margin({ left: 10, right: 10 })
   }
 }

@@ -12,35 +12,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct search_top {
-  private arr:number[] = [0,1,2,3,4,5]
-  scroll: Scroller = new Scroller()
-  messageManager:MessageManager = new MessageManager()
+  private arr: number[] = [0, 1, 2, 3, 4, 5];
+  scroll: Scroller = new Scroller();
+  messageManager: MessageManager<ESObject> = new MessageManager();
 
   onPageShow() {
     console.info('search_top onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
   }
 
-  build(){
-    Row(){
-      Column(){
-        Scroll(this.scroll){
-          Column(){
-            Search({placeholder:'search位于滚动容器顶部'})
+  build() {
+    Row() {
+      Column() {
+        Scroll(this.scroll) {
+          Column() {
+            Search({ placeholder: 'search位于滚动容器顶部' })
               .searchButton('SEARCH')
               .searchIcon({
                 src: $r('app.media.icon')
               })
               .cancelButton({
-                style:CancelButtonStyle.CONSTANT,
-                icon:{
+                style: CancelButtonStyle.CONSTANT,
+                icon: {
                   src: $r('app.media.icon')
                 }
               })
@@ -48,19 +48,19 @@ struct search_top {
               .height(40)
               .backgroundColor("#7ebfe76e")
               .placeholderColor(Color.Grey)
-              .placeholderFont({size:14,weight:400})
-              .caretStyle({width:2,color:Color.Orange})
-              .textFont({size:14,weight:400})
+              .placeholderFont({ size: 14, weight: 400 })
+              .caretStyle({ width: 2, color: Color.Orange })
+              .textFont({ size: 14, weight: 400 })
               .selectionMenuHidden(false)
               .caretStyle({
                 width: 10,
-                color:'#007DFF'
+                color: '#007DFF'
               })
               .enableKeyboardOnFocus(false)
               .key('search_top_search_01')
               .margin(0)
 
-            ForEach(this.arr,(item:number) => {
+            ForEach(this.arr, (item: number) => {
               Text(item.toString())
                 .width('90%')
                 .height(150)
@@ -68,12 +68,13 @@ struct search_top {
                 .borderRadius(15)
                 .fontSize(16)
                 .textAlign(TextAlign.Center)
-                .margin({top:10})
+                .margin({ top: 10 })
                 .key('search_top_text_0' + item)
             })
 
           }.width('100%').key('search_top_Column_1')
-        }.expandSafeArea([SafeAreaType.KEYBOARD])
+        }
+        .expandSafeArea([SafeAreaType.KEYBOARD])
         .scrollable(ScrollDirection.Vertical)
         .scrollBar(BarState.On)
         .scrollBarColor(Color.Gray)
@@ -87,5 +88,4 @@ struct search_top {
     .height('100%')
     .alignItems(VerticalAlign.Top)
   }
-
 }

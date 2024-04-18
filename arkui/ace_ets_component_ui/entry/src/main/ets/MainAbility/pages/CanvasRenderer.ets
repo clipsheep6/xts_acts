@@ -18,8 +18,8 @@
 struct CanvasRenderer1 {
   private settings: RenderingContextSettings = new RenderingContextSettings(true);
   private context: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.settings);
-  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600)
-  private img:ImageBitmap = new ImageBitmap("resource/media/icon.png");
+  private offCanvas: OffscreenCanvas = new OffscreenCanvas(600, 600);
+  private img: ImageBitmap = new ImageBitmap("resource/media/icon.png");
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -27,45 +27,45 @@ struct CanvasRenderer1 {
         .width('100%')
         .height('100%')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
+        .onReady(() => {
+          let offContext = this.offCanvas.getContext("2d", this.settings)
           let offctx = offContext
-          offctx.imageSmoothingEnabled = true
-          offctx.imageSmoothingQuality = 'high'
-          offctx.drawImage(this.img, 0, 0, 400, 200)
+          offctx.imageSmoothingEnabled = true;
+          offctx.imageSmoothingQuality = 'high';
+          offctx.drawImage(this.img, 0, 0, 400, 200);
 
-          var image = this.offCanvas.transferToImageBitmap()
-          this.context.transferFromImageBitmap(image)
+          let image = this.offCanvas.transferToImageBitmap();
+          this.context.transferFromImageBitmap(image);
         })
 
       Canvas(this.context)
         .width('100%')
         .height('100%')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
-          let offctx = offContext
-          offctx.imageSmoothingEnabled = true
-          offctx.imageSmoothingQuality = 'medium'
-          offctx.drawImage(this.img, 0, 300, 400, 500)
+        .onReady(() => {
+          let offContext = this.offCanvas.getContext("2d", this.settings);
+          let offctx = offContext;
+          offctx.imageSmoothingEnabled = true;
+          offctx.imageSmoothingQuality = 'medium';
+          offctx.drawImage(this.img, 0, 300, 400, 500);
 
-          var image = this.offCanvas.transferToImageBitmap()
-          this.context.transferFromImageBitmap(image)
+          let image = this.offCanvas.transferToImageBitmap();
+          this.context.transferFromImageBitmap(image);
         })
 
       Canvas(this.context)
         .width('100%')
         .height('100%')
         .backgroundColor('#ffff00')
-        .onReady(() =>{
-          var offContext = this.offCanvas.getContext("2d", this.settings)
-          let offctx = offContext
-          offctx.imageSmoothingEnabled = true
-          offctx.imageSmoothingQuality = 'low'
-          offctx.drawImage(this.img, 0, 600, 400, 800)
+        .onReady(() => {
+          let offContext = this.offCanvas.getContext("2d", this.settings);
+          let offctx = offContext;
+          offctx.imageSmoothingEnabled = true;
+          offctx.imageSmoothingQuality = 'low';
+          offctx.drawImage(this.img, 0, 600, 400, 800);
 
-          var image = this.offCanvas.transferToImageBitmap()
-          this.context.transferFromImageBitmap(image)
+          let image = this.offCanvas.transferToImageBitmap();
+          this.context.transferFromImageBitmap(image);
         })
     }
     .width('100%')

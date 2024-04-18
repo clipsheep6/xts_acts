@@ -15,8 +15,8 @@
 
 // 实现IDataSource接口的对象，用于瀑布流组件加载数据
 export class WaterFlowDataSource implements IDataSource {
-  private dataArray: number[] = []
-  private listeners: DataChangeListener[] = []
+  private dataArray: number[] = [];
+  private listeners: DataChangeListener[] = [];
 
   constructor() {
     for (let i = 0; i < 100; i++) {

@@ -12,14 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-AppStorage.clear()
+AppStorage.clear();
 
-enum ABC{A= 1,B=2,C=3}
-class Model{
-  value:string
+enum ABC {A = 1, B = 2, C = 3};
 
-  constructor(value:string) {
-    this.value = value
+class Model {
+  value: string;
+
+  constructor(value: string) {
+    this.value = value;
   }
 }
 
@@ -27,14 +28,14 @@ AppStorage.setOrCreate('Prop1', 47);
 AppStorage.setOrCreate('Prop2', 'aaa');
 AppStorage.setOrCreate('Prop3', false);
 AppStorage.setOrCreate('Prop4', ABC.A);
-AppStorage.setOrCreate('Prop5', {value:'Title:Hello World'});
-AppStorage.setOrCreate('Prop6',  { name: 'zs',age:12,sex:'男'});
-AppStorage.setOrCreate('Prop7', ['zs','ls']);
-AppStorage.setOrCreate('Prop8', [1,2]);
-AppStorage.setOrCreate('Prop9', [true,false]);
-AppStorage.setOrCreate('Prop10', [{value:'hello world'},{value:'hello music'}]);
-AppStorage.setOrCreate('Prop11', [{name:'zs'},{name:'ls'}]);
-AppStorage.setOrCreate('Prop12', [ABC.A,ABC.B]);
+AppStorage.setOrCreate('Prop5', { value: 'Title:Hello World' });
+AppStorage.setOrCreate('Prop6', { name: 'zs', age: 12, sex: '男' });
+AppStorage.setOrCreate('Prop7', ['zs', 'ls']);
+AppStorage.setOrCreate('Prop8', [1, 2]);
+AppStorage.setOrCreate('Prop9', [true, false]);
+AppStorage.setOrCreate('Prop10', [{ value: 'hello world' }, { value: 'hello music' }]);
+AppStorage.setOrCreate('Prop11', [{ name: 'zs' }, { name: 'ls' }]);
+AppStorage.setOrCreate('Prop12', [ABC.A, ABC.B]);
 
 @Entry
 @Component
@@ -43,28 +44,26 @@ struct StorageLink1 {
   @StorageLink('Prop2') son2: string = 'aaa';
   @StorageLink('Prop3') son3: Boolean = false;
   @StorageLink('Prop4') son4: ABC = ABC.A;
-  @StorageLink('Prop5') son5: Model = {value:'Title:Hello World'}
-  @StorageLink('Prop6') son6: Object = { name: 'zs',age:12  }
-  @StorageLink('Prop7') son7: Array<string> = ['zs','ls']
-  @StorageLink('Prop8') son8: Array<number> = [1,2]
-  @StorageLink('Prop9') son9: Array<boolean> = [true,false]
-  @StorageLink('Prop10') son10: Array<Model> = [{value:'hello world'},{value:'hello music'}]
-  @StorageLink('Prop11') son11: Array<Object> = [{name:'zs'},{name:'ls'}]
-  @StorageLink('Prop12') son12: Array<ABC> = [ABC.A,ABC.B]
-
+  @StorageLink('Prop5') son5: Model = { value: 'Title:Hello World' }
+  @StorageLink('Prop6') son6: Object = { name: 'zs', age: 12 }
+  @StorageLink('Prop7') son7: Array<string> = ['zs', 'ls']
+  @StorageLink('Prop8') son8: Array<number> = [1, 2]
+  @StorageLink('Prop9') son9: Array<boolean> = [true, false]
+  @StorageLink('Prop10') son10: Array<Model> = [{ value: 'hello world' }, { value: 'hello music' }]
+  @StorageLink('Prop11') son11: Array<Object> = [{ name: 'zs' }, { name: 'ls' }]
+  @StorageLink('Prop12') son12: Array<ABC> = [ABC.A, ABC.B]
   @State num: number = 0
   @State string: string = 'aaa'
   @State boolean: boolean = false
   @State enu: ABC = ABC.B
   @State class: Model = { value: 'Title:Hello World' }
-  @State obj: Object = { name: 'zs',age:12 }
-  @State strArray: Array<string> = ['zs','ls']
-  @State numArray: Array<number> = [1,2]
-  @State boolArray: Array<boolean> = [true,false]
-  @State classArray: Array<Model> = [{value:'hello world'},{value:'hello music'}]
-  @State objArray: Array<Object> = [{name:'zs'},{name:'ls'}]
-  @State menuArray: Array<ABC> = [ABC.A,ABC.B]
-
+  @State obj: Object = { name: 'zs', age: 12 }
+  @State strArray: Array<string> = ['zs', 'ls']
+  @State numArray: Array<number> = [1, 2]
+  @State boolArray: Array<boolean> = [true, false]
+  @State classArray: Array<Model> = [{ value: 'hello world' }, { value: 'hello music' }]
+  @State objArray: Array<Object> = [{ name: 'zs' }, { name: 'ls' }]
+  @State menuArray: Array<ABC> = [ABC.A, ABC.B]
 
   build() {
     Column({ space: 5 }) {
@@ -100,56 +99,56 @@ struct StorageLink1 {
       Button(`class: ${this.class.value}`).margin(3).width("100%")
         .key("button_son5")
         .onClick(() => {
-          this.son5 = {value:'Title:Hello C'}
+          this.son5 = { value: 'Title:Hello C' }
           this.class = AppStorage.get<Model>('Prop5');
         })
 
       Button(`obj: ${JSON.stringify(this.obj)}`).margin(3).width("100%")
         .key("button_son6")
         .onClick(() => {
-          this.son6 ={name:'ls',age:13}
+          this.son6 = { name: 'ls', age: 13 }
           this.obj = AppStorage.get<Object>('Prop6')
         })
 
       Button(`strArray: ${this.strArray}`).margin(3).width("100%")
         .key("button_son7")
         .onClick(() => {
-          this.son7 = ['ls','zs']
+          this.son7 = ['ls', 'zs']
           this.strArray = AppStorage.get<Array<string>>('Prop7')
         })
 
       Button(`numArray: ${this.numArray}`).margin(3).width("100%")
         .key("button_son8")
         .onClick(() => {
-          this.son8 = [2,3]
+          this.son8 = [2, 3]
           this.numArray = AppStorage.get<Array<number>>('Prop8')
         })
 
       Button(`boolArray: ${this.boolArray}`).margin(3).width("100%")
         .key("button_son9")
         .onClick(() => {
-          this.son9 = [false,true]
+          this.son9 = [false, true]
           this.boolArray = AppStorage.get<Array<boolean>>('Prop9')
         })
 
       Button(`classArray: ${JSON.stringify(this.classArray)}`).margin(3).width("100%")
         .key("button_son10")
         .onClick(() => {
-          this.son10 = [{value:'hello world'},{value:'hello C'}]
+          this.son10 = [{ value: 'hello world' }, { value: 'hello C' }]
           this.classArray = AppStorage.get<Array<Model>>('Prop10')
         })
 
       Button(`objArray: ${JSON.stringify(this.objArray)}`).margin(3).width("100%")
         .key("button_son11")
         .onClick(() => {
-          this.son11 = [{name:'ls'},{name:'zs'}]
+          this.son11 = [{ name: 'ls' }, { name: 'zs' }]
           this.objArray = AppStorage.get<Array<Object>>('Prop11')
         })
 
       Button(`menuArray: ${this.menuArray}`).margin(3).width("100%")
         .key("button_son12")
         .onClick(() => {
-          this.son12 = [ABC.B,ABC.C]
+          this.son12 = [ABC.B, ABC.C]
           this.menuArray = AppStorage.get<Array<ABC>>('Prop12')
         })
 

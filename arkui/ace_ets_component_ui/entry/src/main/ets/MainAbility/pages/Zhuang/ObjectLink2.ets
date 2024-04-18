@@ -14,25 +14,24 @@
  */
 @Observed
 class classA {
-  public color1:Color | undefined | null
-  public color2: Color | undefined | null
-  public number1:number | undefined | null
-  public number2:number | undefined | null
+  public color1: Color | undefined | null;
+  public color2: Color | undefined | null;
+  public number1: number | undefined | null;
+  public number2: number | undefined | null;
 
-  constructor(color1: Color | undefined | null, color2: Color | undefined | null, number1: number | undefined | null, number2:number | undefined | null) {
-    this.color1=color1
-    this.color2=color2
-    this.number1=number1
-    this.number2=number2
-
-
+  constructor(color1: Color | undefined | null, color2: Color | undefined | null, number1: number | undefined | null, number2: number | undefined | null) {
+    this.color1 = color1;
+    this.color2 = color2;
+    this.number1 = number1;
+    this.number2 = number2;
   }
 }
 
 
 @Component
 struct ViewA {
-  @ObjectLink a:classA
+  @ObjectLink a: classA;
+
   build() {
     Row() {
       Row({ space: 5 }) {
@@ -42,7 +41,7 @@ struct ViewA {
           Button('button')
             .backgroundColor(this.a.color1)
             .onClick(() => {
-              this.a.color1 = undefined
+              this.a.color1 = undefined;
             })
             .key('ziobBtn1')
 
@@ -50,7 +49,7 @@ struct ViewA {
           Button('button')
             .backgroundColor(this.a.color2)
             .onClick(() => {
-              this.a.color2 = null
+              this.a.color2 = null;
             })
             .key('ziobBtn2')
 
@@ -58,7 +57,7 @@ struct ViewA {
           Button('button')
             .fontSize(this.a.number1)
             .onClick(() => {
-              this.a.number1 = undefined
+              this.a.number1 = undefined;
             })
             .key('ziobBtn3')
 
@@ -66,19 +65,22 @@ struct ViewA {
           Button('button')
             .fontSize(this.a.number2)
             .onClick(() => {
-              this.a.number2 = null
+              this.a.number2 = null;
             })
             .key('ziobBtn4')
-
-        }.width('100%').margin({ top: 10 })
+        }
+        .width('100%')
+        .margin({ top: 10 })
       }
     }
   }
 }
+
 @Entry
 @Component
 struct ViewB {
-  @State b:classA = new classA(Color.Red,Color.Red,100,100)
+  @State b: classA = new classA(Color.Red, Color.Red, 100, 100);
+
   build() {
     Row() {
       Scroll() {
@@ -89,7 +91,7 @@ struct ViewB {
             Button('button')
               .backgroundColor(this.b.color1)
               .onClick(() => {
-                this.b.color1 = undefined
+                this.b.color1 = undefined;
               })
               .key('obBtn1')
 
@@ -97,7 +99,7 @@ struct ViewB {
             Button('button')
               .backgroundColor(this.b.color2)
               .onClick(() => {
-                this.b.color2 = null
+                this.b.color2 = null;
               })
               .key('obBtn2')
 
@@ -105,7 +107,7 @@ struct ViewB {
             Button('button')
               .fontSize(this.b.number1)
               .onClick(() => {
-                this.b.number1 = undefined
+                this.b.number1 = undefined;
               })
               .key('obBtn3')
 
@@ -113,11 +115,11 @@ struct ViewB {
             Button('button')
               .fontSize(this.b.number2)
               .onClick(() => {
-                this.b.number2 = null
+                this.b.number2 = null;
               })
               .key('obBtn4')
 
-            ViewA({a:this.b})
+            ViewA({ a: this.b })
 
           }.width('100%').margin({ top: 10 })
         }

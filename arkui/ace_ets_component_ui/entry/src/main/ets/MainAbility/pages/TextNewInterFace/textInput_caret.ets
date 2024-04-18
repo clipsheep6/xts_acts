@@ -15,16 +15,16 @@
 @Entry
 @Component
 struct TextInputCaret {
-  @State changeValue: string = '123456789'
-  @State submitValue: string = ''
-  @State text: string = ''
-  @State text1: string = ''
-  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 }
-  controller: TextInputController = new TextInputController()
+  @State changeValue: string = '123456789';
+  @State submitValue: string = '';
+  @State text: string = '';
+  @State text1: string = '';
+  @State positionInfo: CaretOffset = { index: 0, x: 0, y: 0 };
+  controller: TextInputController = new TextInputController();
 
   build() {
     Column() {
-      TextInput({ text:"12345", placeholder: 'input your word...', controller: this.controller })
+      TextInput({ text: "12345", placeholder: 'input your word...', controller: this.controller })
         .height(200)
       Text(this.text).fontSize(18).margin(15).key('inputCaretText')
 

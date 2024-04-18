@@ -19,12 +19,12 @@ struct RichEditor01 {
   options: RichEditorOptions = { controller: this.controller };
   private start: number = -1;
   private end: number = -1;
-  @State message: string = "[-1, -1]"
-  @State content: string = ""
-  @State text: string = ""
-  @State insertOffset: string = ""
-  @State insertValue: string = ""
-  @State addTextSpan: string = ""
+  @State message: string = "[-1, -1]";
+  @State content: string = "";
+  @State text: string = "";
+  @State insertOffset: string = "";
+  @State insertValue: string = "";
+  @State addTextSpan: string = "";
 
   build() {
     Column() {
@@ -33,6 +33,7 @@ struct RichEditor01 {
         Text() {
           Span(this.message)
         }.width("100%")
+
         Text("selection content:").width("100%")
         Text(this.content).width("100%").key('RichEditor01Text')
         Text(this.insertOffset).width("100%").key('RichEditor02Text')
@@ -50,7 +51,7 @@ struct RichEditor01 {
             start: this.start,
             end: this.end
           }).forEach(item => {
-            if(typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined'){
+            if (typeof (item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
               this.content += (item as RichEditorImageSpanResult).valueResourceStr;
               this.content += "\n"
             } else {
@@ -74,13 +75,14 @@ struct RichEditor01 {
       .borderColor(Color.Red)
       .width("100%")
       .height("10%")
+
       Row() {
         Button("获取组件信息").onClick(() => {
           let strJson = getInspectorByKey('RichEditorKey');
           this.text = JSON.stringify(JSON.parse(strJson))
         })
         Button("获取光标位置").onClick(() => {
-          this.content = this.controller.getCaretOffset() +''
+          this.content = this.controller.getCaretOffset() + ''
         }).key('getCaretOffset')
 
       }
@@ -88,6 +90,7 @@ struct RichEditor01 {
       .borderColor(Color.Red)
       .width("100%")
       .height("10%")
+
       Row() {
         Button("设置光标位置1").onClick(() => {
           this.content = this.controller.setCaretOffset(1) + ''
@@ -126,7 +129,7 @@ struct RichEditor01 {
             console.log("spanRange:[" + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + "]")
             console.log("offsetInSpan:[" + value.offsetInSpan[0] + "," + value.offsetInSpan[1] + "]")
             console.log("value:" + value.value)
-            this.content = value.spanPosition.spanIndex + ',' +  value.value + ',' + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + ',' + + value.offsetInSpan[0] + "," + value.offsetInSpan[1] + ',' + value.textStyle.fontSize
+            this.content = value.spanPosition.spanIndex + ',' + value.value + ',' + value.spanPosition.spanRange[0] + "," + value.spanPosition.spanRange[1] + ',' + +value.offsetInSpan[0] + "," + value.offsetInSpan[1] + ',' + value.textStyle.fontSize
           })
           .aboutToDelete((value: RichEditorDeleteValue) => {
             this.content = 'aboutToDelete'
@@ -139,7 +142,7 @@ struct RichEditor01 {
               console.log("spanIndex:" + item.spanPosition.spanIndex)
               console.log("spanRange:[" + item.spanPosition.spanRange[0] + "," + item.spanPosition.spanRange[1] + "]")
               console.log("offsetInSpan:[" + item.offsetInSpan[0] + "," + item.offsetInSpan[1] + "]")
-              if (typeof(item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
+              if (typeof (item as RichEditorImageSpanResult)['imageStyle'] != 'undefined') {
                 console.log("image:" + (item as RichEditorImageSpanResult).valueResourceStr)
               } else {
                 console.log("text:" + (item as RichEditorTextSpanResult).value)

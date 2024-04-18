@@ -14,13 +14,13 @@
  */
 @Component
 struct CountDownComponent {
-  @Prop color1: Color | undefined | null
-  @Prop color2: Color | undefined | null
-  @Prop number1: number | undefined | null
-  @Prop number2: number | undefined | null
+  @Prop color1: Color | undefined | null;
+  @Prop color2: Color | undefined | null;
+  @Prop number1: number | undefined | null;
+  @Prop number2: number | undefined | null;
 
   build() {
-    Row({ space: 5 }){
+    Row({ space: 5 }) {
       Column({ space: 20 }) {
         Text("Prop子组件颜色undefined-->Pink")
         Button('button')
@@ -53,20 +53,20 @@ struct CountDownComponent {
             this.number2 = 100
           })
           .key('ziPropBtn4')
-
-      }.width('100%').margin({ top: 10 })
+      }
+      .width('100%')
+      .margin({ top: 10 })
     }
-
   }
 }
 
 @Entry
 @Component
 struct ParentComponent {
-  @State color1: Color | undefined | null = undefined
-  @State color2: Color | undefined | null = null
-  @State number1: number | undefined | null = undefined
-  @State number2: number | undefined | null = null
+  @State color1: Color | undefined | null = undefined;
+  @State color2: Color | undefined | null = null;
+  @State number1: number | undefined | null = undefined;
+  @State number2: number | undefined | null = null;
 
   build() {
 
@@ -79,7 +79,7 @@ struct ParentComponent {
             Button('button')
               .backgroundColor(this.color1)
               .onClick(() => {
-                this.color1 = Color.Pink
+                this.color1 = Color.Pink;
               })
               .key('propBtn1')
 
@@ -87,7 +87,7 @@ struct ParentComponent {
             Button('button')
               .backgroundColor(this.color2)
               .onClick(() => {
-                this.color2 = Color.Pink
+                this.color2 = Color.Pink;
               })
               .key('propBtn2')
 
@@ -95,7 +95,7 @@ struct ParentComponent {
             Button('button')
               .fontSize(this.number1)
               .onClick(() => {
-                this.number1 = 100
+                this.number1 = 100;
               })
               .key('propBtn3')
 
@@ -103,11 +103,16 @@ struct ParentComponent {
             Button('button')
               .fontSize(this.number2)
               .onClick(() => {
-                this.number2 = 100
+                this.number2 = 100;
               })
               .key('propBtn4')
 
-            CountDownComponent({ color1:this.color1,color2:this.color2,number1:this.number1,number2:this.number2})
+            CountDownComponent({
+              color1: this.color1,
+              color2: this.color2,
+              number1: this.number1,
+              number2: this.number2
+            })
 
           }.width('100%').margin({ top: 10 })
         }

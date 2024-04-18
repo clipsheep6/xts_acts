@@ -19,7 +19,7 @@ import image from '@ohos.multimedia.image'
 @Entry
 @Component
 struct OffscreenSnapshotExample {
-  @State pixmap: image.PixelMap = undefined
+  @State pixmap: image.PixelMap = undefined;
 
   @Builder
   RandomBuilder() {
@@ -50,7 +50,7 @@ struct OffscreenSnapshotExample {
             })
         })
 
-      Button("click to generate offscreen UI snapshot").margin({top:20}).key('crateFrom')
+      Button("click to generate offscreen UI snapshot").margin({ top: 20 }).key('crateFrom')
         .onClick(() => {
           componentSnapshot.createFromBuilder(this.RandomBuilder.bind(this),
             (error: Error, pixmap: image.PixelMap) => {
@@ -60,7 +60,7 @@ struct OffscreenSnapshotExample {
             })
         })
 
-      Button("click to generate UI snapshot").margin({top:20})
+      Button("click to generate UI snapshot").margin({ top: 20 })
         .onClick(() => {
           componentSnapshot.get("root", (error: Error, pixmap: image.PixelMap) => {
             this.pixmap = pixmap
@@ -69,7 +69,7 @@ struct OffscreenSnapshotExample {
           })
         })
 
-      Button("click to generate UI snapshot").margin({top:20})
+      Button("click to generate UI snapshot").margin({ top: 20 })
         .onClick(() => {
           componentSnapshot.get("root")
             .then((pixmap: image.PixelMap) => {
@@ -78,9 +78,10 @@ struct OffscreenSnapshotExample {
               // ....
             })
         })
-
-
-    }.width('80%').margin({ left: 10, top: 5, bottom: 5 }).height(200)
+    }
+    .width('80%')
+    .margin({ left: 10, top: 5, bottom: 5 })
+    .height(200)
     .border({ color: '#880606', width: 2 })
   }
 }

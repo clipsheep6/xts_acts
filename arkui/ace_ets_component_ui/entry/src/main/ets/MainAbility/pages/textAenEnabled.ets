@@ -17,23 +17,24 @@
 @Entry
 @Component
 struct TextAenExample {
-  @State text: string = ''
-  controller: TextAreaController = new TextAreaController()
-  controller1: TextInputController = new TextInputController()
-  @State text1: string = 'TextArea组件事件触发'
-  @State text2: string = 'TextInput组件事件触发'
-  @State text3: string = ''
+  @State text: string = '';
+  controller: TextAreaController = new TextAreaController();
+  controller1: TextInputController = new TextInputController();
+  @State text1: string = 'TextArea组件事件触发';
+  @State text2: string = 'TextInput组件事件触发';
+  @State text3: string = '';
 
   build() {
     Column({ space: 20 }) {
-      Column(){
+      Column() {
         Text(this.text1).key("taEnable")
-          .margin({top: 10})
+          .margin({ top: 10 })
         TextArea({
           text: this.text,
           placeholder: 'The text area can hold an unlimited amount of text. input your word...',
           controller: this.controller
-        }).key("taText")
+        })
+          .key("taText")
           .placeholderFont({ size: 16, weight: 400 })
           .width(336)
           .height(56)
@@ -61,9 +62,9 @@ struct TextAenExample {
       }.width('100%').height('30%').backgroundColor('#F1F3F5')
 
 
-      Column(){
+      Column() {
         Text(this.text2).key("tiEnable")
-          .margin({top: 10})
+          .margin({ top: 10 })
         TextInput({ text: this.text3, placeholder: 'input your word...', controller: this.controller1 })
           .key("tiText")
           .placeholderColor(Color.Grey)

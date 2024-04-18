@@ -12,41 +12,49 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
+
 @Entry
 @Component
 struct GridColOffSetExample {
   @State bgColors: Color[] = [Color.Red, Color.Orange, Color.Yellow, Color.Green, Color.Pink, Color.Grey, Color.Blue, Color.Brown]
   @State currentBp: string = 'unknown'
-  @State  gridColoffsetValue : number = -3;
-  messageManager:MessageManager = new MessageManager()
+  @State gridColoffsetValue: number = -3;
+  messageManager: MessageManager<ESObject> = new MessageManager()
+
   onPageShow() {
     console.info('GridColOffset onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback<ESObject> = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'gridColoffset') {
-          this.gridColoffsetValue = message.value
+        this.gridColoffsetValue = message.value
       }
     }
     this.messageManager.registerCallback(callback)
-
   }
+
   build() {
     Column() {
       GridRow({
         columns: 5,
         gutter: { x: 5, y: 10 },
-        breakpoints: { value: ["400vp", "600vp", "800vp"],
-          reference: BreakpointsReference.WindowSize },
+        breakpoints: {
+          value: ["400vp", "600vp", "800vp"],
+          reference: BreakpointsReference.WindowSize
+        },
         direction: GridRowDirection.Row
       }) {
-        ForEach(this.bgColors, (color,index) => {
+        ForEach(this.bgColors, (color: Color, index: number) => {
           GridCol({ span: { xs: 1, sm: 2, md: 3, lg: 4 } }) {
             Row().width("100%").height("20vp")
-          }.borderColor(color).borderWidth(2).gridColOffset(this.gridColoffsetValue).key('keykey'+index)
+          }
+          .borderColor(color)
+          .borderWidth(2)
+          .gridColOffset(this.gridColoffsetValue)
+          .key('keykey' + index)
         })
       }.width("100%").height("100%")
 

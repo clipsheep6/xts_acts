@@ -21,16 +21,13 @@ struct buttonEnabledDemo {
   @State but1: string = 'onClick-禁用'
   @State but2: string = 'onTouch-禁用'
   @State but3: string = 'onKeyEvent-禁用'
-
   @State but4: string = '鼠标事件onHover-禁用'
   @State but5: string = '鼠标事件onMouse-禁用'
   @State but7: string = '鼠标事件onMouse-禁用'
   @State action: string = ''
   @State mouseBtn: string = ''
-
   @State but6: string = '焦点事件-禁用'
   @State enable: boolean = true
-
 
   build() {
     Column({ space: 10 }) {

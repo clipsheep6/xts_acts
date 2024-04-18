@@ -12,8 +12,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-AppStorage.clear()
-let storage224 = new LocalStorage({"PropA":1,"PropB":2})
+AppStorage.clear();
+let storage224 = new LocalStorage({ "PropA": 1, "PropB": 2 });
 
 
 @Entry(storage224)
@@ -24,36 +24,35 @@ struct LocalStoageLinkOne {
   @State text1: string = ''
   @State text2: string = ''
   @State text3: string = ''
+  @State vae: number = storage224.get('PropB')
 
-  @State vae : number = storage224.get('PropB')
-  build(){
-    Column({space:15}){
-      Button(`Has ${this.text1}`).onClick(()=>{
+  build() {
+    Column({ space: 15 }) {
+      Button(`Has ${this.text1}`).onClick(() => {
         this.text1 = `Has1:${storage224.has('PropA')},Has2:${storage224.has('PropP')}`
       }).key('button_has')
 
-      Button(`Set ${this.text2}`).onClick(()=>{
-        this.text2 = `Set1:${storage224.set('PropA',2)},Set2:${storage224.set('PropP',2)}`
+      Button(`Set ${this.text2}`).onClick(() => {
+        this.text2 = `Set1:${storage224.set('PropA', 2)},Set2:${storage224.set('PropP', 2)}`
       }).key('button_set')
 
-      Button(`setOrCreate ${this.text3}`).onClick(()=>{
-        this.text3 = `setOrCreate1:${storage224.setOrCreate('PropA',50)},setOrCreate2:${storage224.setOrCreate('PropP',50)}`
+      Button(`setOrCreate ${this.text3}`).onClick(() => {
+        this.text3 = `setOrCreate1:${storage224.setOrCreate('PropA', 50)},setOrCreate2:${storage224.setOrCreate('PropP', 50)}`
       }).key('button_setOrCreate')
 
 
       Text(`localstorage:${this.vae},storLink2:${this.storLink2}`)
         .key('text_getValue1')
 
-      Button(`点击动态更改本地初始值`).onClick(()=>{
+      Button(`点击动态更改本地初始值`).onClick(() => {
         this.storLink2 += 10
         this.vae = storage224.get('PropB')
       }).key('button_changeInitialValue')
 
-      Button(`点击更改localstorage值`).onClick(()=>{
+      Button(`点击更改localstorage值`).onClick(() => {
         storage224.set('PropB', 666)
         this.vae = storage224.get('PropB')
       }).key('button_changeLocalStorageValue')
-
 
 
     }

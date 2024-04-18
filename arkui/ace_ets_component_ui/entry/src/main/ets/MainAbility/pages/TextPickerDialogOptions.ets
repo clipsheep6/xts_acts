@@ -16,8 +16,8 @@
 @Entry
 @Component
 struct TextPickerDialogExample {
-  private select: number | number[] = 2
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  private select: number | number[] = 2;
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5'];
 
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
@@ -29,15 +29,15 @@ struct TextPickerDialogExample {
             selected: this.select,
             alignment: DialogAlignment.TopStart,
             offset: { dx: 10, dy: 100 },
-            maskRect: { x: 0, y: 90, width: 1000, height: 250  },
-            onAccept: (value: TextPickerResult)=> {
+            maskRect: { x: 0, y: 90, width: 1000, height: 250 },
+            onAccept: (value: TextPickerResult) => {
               this.select = value.index
               console.info("TextPickerDialog: onAccept()" + JSON.stringify(value))
             },
-            onCancel:()=> {
+            onCancel: () => {
               console.info("TextPickerDialog: onCancel()")
             },
-            onChange: (value: TextPickerResult)=> {
+            onChange: (value: TextPickerResult) => {
               console.info("TextPickerDialog: onChange()" + JSON.stringify(value))
             }
           })

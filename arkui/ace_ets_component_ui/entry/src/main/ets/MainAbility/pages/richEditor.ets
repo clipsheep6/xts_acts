@@ -20,8 +20,8 @@ struct richeditor2 {
   options: RichEditorOptions = { controller: this.controller };
   private start: number = -1;
   private end: number = -1;
-  @State message: string = "[-1, -1]"
-  @State content: string = ""
+  @State message: string = "[-1, -1]";
+  @State content: string = "";
 
   @Builder
   SubMenu() {
@@ -31,7 +31,6 @@ struct richeditor2 {
     }
   }
 
-
   build() {
     Column() {
       Column() {
@@ -39,6 +38,7 @@ struct richeditor2 {
         Text() {
           Span(this.message)
         }.width("100%")
+
         Text("selection content:").width("100%")
         Text() {
           Span(this.content)
@@ -61,7 +61,7 @@ struct richeditor2 {
           })
         })
         Button("closeSelectionMenu").onClick(() => {
-           this.controller.closeSelectionMenu();
+          this.controller.closeSelectionMenu();
         })
 
         Button("获取选择内容").onClick(() => {
@@ -123,9 +123,9 @@ struct richeditor2 {
               })
           })
           .key('richEditor')
-          .bindSelectionMenu(RichEditorSpanType.TEXT,this.SubMenu(),ResponseType.RightClick)
-          .bindSelectionMenu(RichEditorSpanType.IMAGE,this.SubMenu(),ResponseType.RightClick)
-          .bindSelectionMenu(RichEditorSpanType.MIXED,this.SubMenu(),ResponseType.RightClick)
+          .bindSelectionMenu(RichEditorSpanType.TEXT, this.SubMenu(), ResponseType.RightClick)
+          .bindSelectionMenu(RichEditorSpanType.IMAGE, this.SubMenu(), ResponseType.RightClick)
+          .bindSelectionMenu(RichEditorSpanType.MIXED, this.SubMenu(), ResponseType.RightClick)
           .onSelect((value: RichEditorSelection) => {
             [this.start, this.end] = value.selection;
             this.message = "[" + this.start + ", " + this.end + "]"

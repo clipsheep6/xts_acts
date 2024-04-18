@@ -13,103 +13,146 @@
  * limitations under the License.
  */
 
-import router from '@ohos.router'
+import router from '@ohos.router';
+
 @Entry
 @Component
+  /*
+   * Grid嵌套测试
+   * */
 
-/*
- * Grid嵌套测试
- * */
- 
 struct ScrollToIndexForGrid02 {
-  @State numbers: string[] = []
-  private scrollerForGrid: Scroller = new Scroller()
-  private scrollerItemForGrid: Scroller = new Scroller()
-  @State moreItem: boolean = false
-  @State isSmooth: boolean = false
+  @State numbers: string[] = [];
+  private scrollerForGrid: Scroller = new Scroller();
+  private scrollerItemForGrid: Scroller = new Scroller();
+  @State moreItem: boolean = false;
+  @State isSmooth: boolean = false;
 
   aboutToAppear() {
-    for (let i = 0;i <= 199; i++) {
+    for (let i = 0; i <= 199; i++) {
       this.numbers.push(i + '')
     }
   }
+
   build() {
     Flex() {
       Column() {
-        Text('have smooth...').fontSize(16).width('95%').height(20).backgroundColor(Color.Orange).textAlign(TextAlign.Center)
+        Text('have smooth...')
+          .fontSize(16)
+          .width('95%')
+          .height(20)
+          .backgroundColor(Color.Orange)
+          .textAlign(TextAlign.Center)
           .visibility(this.isSmooth ? Visibility.Visible : Visibility.None)
-          .id('isHaveSmooth_Grid02').position({x:12, y:10})
-        Column(){
-          Flex({ direction: FlexDirection.Row, wrap: FlexWrap.Wrap, justifyContent:FlexAlign.SpaceBetween }) { // 子组件在容器主轴上行布局
+          .id('isHaveSmooth_Grid02')
+          .position({ x: 12, y: 10 })
+        Column() {
+          Flex({
+            direction: FlexDirection.Row,
+            wrap: FlexWrap.Wrap,
+            justifyContent: FlexAlign.SpaceBetween
+          }) { // 子组件在容器主轴上行布局
             Button('grid-66-true-center', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(150).height(40)
+              .borderRadius(8)
+              .backgroundColor(0x317aff)
+              .width(150)
+              .height(40)
               .onClick(() => {
                 this.isSmooth = false
                 this.scrollerForGrid.scrollToIndex(66, true, ScrollAlign.CENTER)
-              }).margin(5)
+              })
+              .margin(5)
             Button('item-66-true-start', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(150).height(40)
+              .borderRadius(8)
+              .backgroundColor(0x317aff)
+              .width(150)
+              .height(40)
               .onClick(() => {
                 this.isSmooth = false
                 const yOffsetStart: number = this.scrollerItemForGrid.currentOffset().yOffset;
                 this.scrollerItemForGrid.scrollToIndex(66, true, ScrollAlign.START)
-                setTimeout(()=> {
+                setTimeout(() => {
                   const yOffsetEnd: number = this.scrollerItemForGrid.currentOffset().yOffset;
-                  console.info('yOffsetStart==>' + yOffsetStart + 'yOffsetEnd==>'+ yOffsetEnd)
+                  console.info('yOffsetStart==>' + yOffsetStart + 'yOffsetEnd==>' + yOffsetEnd)
                   this.isSmooth = (yOffsetStart == yOffsetEnd) ? false : true;
                   console.info(this.isSmooth + 'isSmooth')
-                },1000)
-              }).margin(5)
+                }, 1000)
+              })
+              .margin(5)
             Button('item-99-false-start', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(150).height(40)
+              .borderRadius(8)
+              .backgroundColor(0x317aff)
+              .width(150)
+              .height(40)
               .onClick(() => {
                 this.isSmooth = false
                 this.scrollerItemForGrid.scrollToIndex(99, false, ScrollAlign.START)
-              }).margin(5)
+              })
+              .margin(5)
             Button('item-178-true-start', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(150).height(40)
+              .borderRadius(8)
+              .backgroundColor(0x317aff)
+              .width(150)
+              .height(40)
               .onClick(() => {
                 this.isSmooth = false
                 const yOffsetStart: number = this.scrollerItemForGrid.currentOffset().yOffset;
                 this.scrollerItemForGrid.scrollToIndex(178, true, ScrollAlign.START)
-                setTimeout(()=> {
+                setTimeout(() => {
                   const yOffsetEnd: number = this.scrollerItemForGrid.currentOffset().yOffset;
-                  console.info('yOffsetStart==>' + yOffsetStart + 'yOffsetEnd==>'+ yOffsetEnd)
+                  console.info('yOffsetStart==>' + yOffsetStart + 'yOffsetEnd==>' + yOffsetEnd)
                   this.isSmooth = (yOffsetStart == yOffsetEnd) ? false : true;
                   console.info(this.isSmooth + 'isSmooth')
-                },1000)
-              }).margin(5)
+                }, 1000)
+              })
+              .margin(5)
             Button('item-22-true-end', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(150).height(40)
+              .borderRadius(8)
+              .backgroundColor(0x317aff)
+              .width(150)
+              .height(40)
               .onClick(() => {
                 this.isSmooth = false
                 this.scrollerItemForGrid.scrollToIndex(22, true, ScrollAlign.END)
-              }).margin(5)
+              })
+              .margin(5)
             Button('item-108-false-end', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(150).height(40)
+              .borderRadius(8)
+              .backgroundColor(0x317aff)
+              .width(150)
+              .height(40)
               .onClick(() => {
                 this.isSmooth = false
                 this.scrollerItemForGrid.scrollToIndex(108, false, ScrollAlign.END)
-              }).margin(5)
+              })
+              .margin(5)
             Button('item-100-false-center', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(150).height(40)
+              .borderRadius(8)
+              .backgroundColor(0x317aff)
+              .width(150)
+              .height(40)
               .onClick(() => {
                 this.isSmooth = false
                 this.scrollerItemForGrid.scrollToIndex(100, false, ScrollAlign.CENTER)
-              }).margin(5)
+              })
+              .margin(5)
             Button('moreColumns', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(Color.Gray).width(150).height(40)
+              .borderRadius(8)
+              .backgroundColor(Color.Gray)
+              .width(150)
+              .height(40)
               .onClick(() => {
                 this.isSmooth = false
                 this.scrollerItemForGrid.scrollToIndex(0, false)
                 this.moreItem = !this.moreItem
-              }).margin(5)
+              })
+              .margin(5)
           }
         }
 
         Grid(this.scrollerForGrid) {
           ForEach(this.numbers, (day: string) => {
-            if(day == '66'){
+            if (day == '66') {
               GridItem() {
                 Grid(this.scrollerItemForGrid) {
                   ForEach(this.numbers, (day: string) => {
@@ -135,7 +178,7 @@ struct ScrollToIndexForGrid02 {
                 })
                 .id("GridID_Grid02")
               }
-            }else{
+            } else {
               GridItem() {
                 Text(day)
                   .fontSize(16)
@@ -157,15 +200,22 @@ struct ScrollToIndexForGrid02 {
           top: 20,
           bottom: 20
         })
-        Column(){
-          Flex({justifyContent:FlexAlign.SpaceBetween}){
+
+        Column() {
+          Flex({ justifyContent: FlexAlign.SpaceBetween }) {
             Button('next page', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(150).height(30)
+              .borderRadius(8)
+              .backgroundColor(0x317aff)
+              .width(150)
+              .height(30)
               .onClick(() => {
-                router.pushUrl({url:'pages/GridDome01'})
+                router.pushUrl({ url: 'pages/GridDome01' })
               })
             Button('go back', { type: ButtonType.Normal, stateEffect: true })
-              .borderRadius(8).backgroundColor(0x317aff).width(150).height(30)
+              .borderRadius(8)
+              .backgroundColor(0x317aff)
+              .width(150)
+              .height(30)
               .onClick(() => {
                 router.back()
               })
@@ -173,6 +223,10 @@ struct ScrollToIndexForGrid02 {
         }
 
       }
-    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding(20)
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding(20)
   }
 }
