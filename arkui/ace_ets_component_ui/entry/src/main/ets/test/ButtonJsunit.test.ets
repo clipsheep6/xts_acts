@@ -15,7 +15,7 @@
 import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter'
-import CommonFunc from '../MainAbility/Utils/Common';
+import CommonFunc from '../MainAbility/utils/Common';
 import { Driver } from '@ohos.UiTest';
 
 export default function buttonJsunit() {
