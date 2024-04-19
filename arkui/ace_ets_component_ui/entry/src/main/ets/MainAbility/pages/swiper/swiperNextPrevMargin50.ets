@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { MessageManager, Callback, Message } from '../../utils/MessageManager';
+import { MessageManager, Callback } from '../../utils/MessageManager';
 
 class MyDataSource50 implements IDataSource {
   private list: number[] = []
