@@ -142,6 +142,11 @@ import spanJsunit from './spanTest/SpanJsunit.test';
 import textJsunit from './textTest/TextJsunit.test';
 import outline from './textTest/outline.test';
 
+import buttonJsunit from './buttonTest/ButtonJsunit.test';
+import spanJsunit2 from './spanTest/SpanJsunit2.test';
+import textJsunit2 from './textTest/TextJsunit2.test';
+import timeStampJsunit from './textTest/TimeStampJsunit.test';
+
 export default function testsuite() {
   TextStateJsunit();
   richEditorApi4();
@@ -266,4 +271,9 @@ export default function testsuite() {
   spanJsunit()
   textJsunit()
   outline()
+
+  buttonJsunit()
+  spanJsunit2()
+  textJsunit2()
+  timeStampJsunit()
 }

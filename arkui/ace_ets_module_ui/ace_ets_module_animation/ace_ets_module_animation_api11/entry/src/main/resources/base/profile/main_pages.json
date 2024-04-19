@@ -5,6 +5,11 @@
         "MainAbility/pages/RouteType/RouteType1",
         "MainAbility/pages/RouteType/RouteType2",
         "MainAbility/pages/animateto",
-        "MainAbility/pages/animationCurve"
+        "MainAbility/pages/animationCurve",
+        "MainAbility/pages/animation/animate",
+        "MainAbility/pages/motionPath/motionPath",
+        "MainAbility/pages/sharedTransition/sharedTransition",
+        "MainAbility/pages/sharedTransition/sharedTransition2",
+        "MainAbility/pages/transition/transition"
     ]
 }

@@ -22,6 +22,10 @@ import datapanelJsunit from './DataPanelTest/DataPanelJsunit.test';
 import progressJsunit from './ProgressTest/ProgressJsunit.test';
 import qrcodeJsunit from './QrcodeTest/QrcodeJsunit.test';
 
+import badgeJsunit2 from './BadgeTest/BadgeJsunit2.test';
+import progressJsunit2 from './progressTest/ProgressJsunit2.test';
+import qrCodeJsunit2 from './QrCodeTest/QrCodeJsunit2.test';
+
 export default function testsuite() {
   gaugeJsunit();
   CounterEnableTest();
@@ -33,4 +37,7 @@ export default function testsuite() {
   progressJsunit()
   qrcodeJsunit()
 
+  badgeJsunit2()
+  progressJsunit2()
+  qrCodeJsunit2()
 }

@@ -9,6 +9,12 @@
         "MainAbility/pages/Canvas/CanvasShader",
         "MainAbility/pages/Canvas/CanvasColor",
         "MainAbility/pages/OffScreenCanvas/OffScreenCanvas",
-        "MainAbility/pages/Canvas/drawCanvas"
+        "MainAbility/pages/Canvas/drawCanvas",
+        
+        "MainAbility/pages/Canvas/canvas1",
+        "MainAbility/pages/Canvas/canvas2",
+        "MainAbility/pages/Circle/circle1",
+        "MainAbility/pages/line/line1",
+        "MainAbility/pages/Shape/shape1"
     ]
 }

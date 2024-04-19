@@ -9,6 +9,9 @@
         "MainAbility/pages/Counter/Counter",
         "MainAbility/pages/DataPanel/DataPanel",
         "MainAbility/pages/Progress/ProgressA",
-        "MainAbility/pages/Qrcode/Qrcode"
+        "MainAbility/pages/Qrcode/Qrcode",
+        "MainAbility/pages/Badge/badge2",
+        "MainAbility/pages/progress/progress1",
+        "MainAbility/pages/QrCode/QrCode2"
     ]
 }

@@ -46,6 +46,12 @@
         "MainAbility/pages/PanGesture/PanGesture3",
         "MainAbility/pages/LongPressGesture/LongPressGesture1",
         "MainAbility/pages/LongPressGesture/LongPressGesture2",
-        "MainAbility/pages/LongPressGesture/LongPressGesture3"
+        "MainAbility/pages/LongPressGesture/LongPressGesture3",
+        "MainAbility/pages/onAppear/aboutToDisappear",
+        "MainAbility/pages/GestureGroup/priorityGesture",
+        "MainAbility/pages/GestureGroup/parallelGesture",
+        "MainAbility/pages/TapGesture/tapGesture",
+        "MainAbility/pages/PanGesture/PanGesture",
+        "MainAbility/pages/LongPressGesture/longPressGesture"
     ]
 }

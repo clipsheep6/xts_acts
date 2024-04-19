@@ -16,9 +16,19 @@ import geometryTransition from './geometryTransitionTest/geometryTransition.test
 import animateToTest from './animateto.test';
 import animationCurveTest from './animationCurve.test';
 
+import animateJsunit from './animationTest/AnimateJsunit.test';
+import motionPathJsunit from './motionPathTest/MotionPathJsunit.test';
+import sharedTransitionJsunit from './sharedTransitionTest/SharedTransitionJsunit.test';
+import transitionJsunit from './transitionTest/TransitionJsunit.test';
+
 export default function testsuite() {
   animateToTest();
   animationCurveTest();
 
   geometryTransition()
+
+  animateJsunit()
+  motionPathJsunit()
+  sharedTransitionJsunit()
+  transitionJsunit()
 }

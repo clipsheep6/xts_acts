@@ -59,6 +59,13 @@ import LongPressGesture1 from './LongPressGestureTest/LongPressGesture1.test'
 import LongPressGesture2 from './LongPressGestureTest/LongPressGesture2.test'
 import LongPressGesture3 from './LongPressGestureTest/LongPressGesture3.test'
 
+import aboutToDisappearJsunit from './onAppearTest/AboutToDisappearJsunit.test';
+import priorityGestureJsunit from './GestureGroupTest/PriorityGestureJsunit.test';
+import parallelGestureJsunit from './GestureGroupTest/ParallelGestureJsunit.test';
+import tapGesture from './TapGestureTest/TapGesture.test';
+import panGestureJsunit from './PanGestureTest/PanGestureJsunit.test';
+import longPressGestureJsUnit from './LongPressGestureTest/LongPressGesture.test';
+
 export default function testsuite() {
   touchJsunit();
   appearJsunit();
@@ -106,4 +113,11 @@ export default function testsuite() {
   LongPressGesture2()
   LongPressGesture3()
   GestureLongPressGesture();
+
+  aboutToDisappearJsunit()
+  priorityGestureJsunit()
+  parallelGestureJsunit()
+  tapGesture()
+  panGestureJsunit();
+  longPressGestureJsUnit();
 }

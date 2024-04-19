@@ -6,6 +6,8 @@
         "MainAbility/pages/onChildTouch/onChildTouch",
         "MainAbility/pages/cursorControl/setCursor",
         "MainAbility/pages/monopolizeEvents/monopolize",
-        "MainAbility/pages/assemblyCallback"
+        "MainAbility/pages/assemblyCallback",
+        "MainAbility/pages/focusControl/focusControl",
+        "MainAbility/pages/responseRegion/ResponseRegion"
     ]
 }

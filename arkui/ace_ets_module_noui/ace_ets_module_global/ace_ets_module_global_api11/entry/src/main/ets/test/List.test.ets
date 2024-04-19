@@ -12,8 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import globalJsunit from './globalTest/GlobalJsunit.test';
+import commonJsunit from './dpiTest/CommonJsunit.test';
+
 export default function testsuite() {
   globalJsunit();
+  commonJsunit();
 }
