@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { MessageManager, Callback, Message } from '../../../utils/MessageManager';
+import { MessageManager, Callback } from '../../../utils/MessageManager';
 
 @Entry
 @Component
@@ -34,7 +34,7 @@ struct getGridItemRect3 {
     globalThis.value = {
       name: 'messageManager', message: this.messageManager
     }
-    let callback: Callback<ESObject> = (message: Message<ESObject>) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'index') {
         this.index = message.value;
