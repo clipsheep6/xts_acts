@@ -15,7 +15,7 @@
 import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium"
 import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter'
-import Utils from './Utils';
+import CommonFunc from '../MainAbility/Utils/Common';
 import { Driver } from '@ohos.UiTest';
 
 export default function buttonJsunit() {
@@ -32,7 +32,7 @@ export default function buttonJsunit() {
         if (!("button" == pages.name)) {
           console.info("get button state pages.name: " + JSON.stringify(pages.name));
           await router.pushUrl(options);
-          await Utils.sleep(2000);
+          await CommonFunc.sleep(2000);
         }
       } catch (err) {
         console.error("push button page error: " + err);
@@ -41,18 +41,18 @@ export default function buttonJsunit() {
     });
 
     beforeEach(async () => {
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       console.info("button before each called");
     })
 
     afterEach(async () => {
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       console.info("button after each called");
     })
 
     it('testButton01', 0, async (done: Function) => {
       console.info('[testButton01] START');
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('button');
       console.info("[testButton01] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
       expect(JSON.parse(strJson).$type).assertEqual('Button');
@@ -62,7 +62,7 @@ export default function buttonJsunit() {
 
     it('testButton02', 0, async (done: Function) => {
       console.info('[testButton02] START');
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('button1');
       console.info("[testButton02] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
       expect(JSON.parse(strJson).$type).assertEqual('Button');
@@ -72,7 +72,7 @@ export default function buttonJsunit() {
 
     it('testButton03', 0, async (done: Function) => {
       console.info('[testButton03] START');
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('button2');
       console.info("[testButton03] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
       expect(JSON.parse(strJson).$attrs.fontSize).assertEqual('20.00px');
@@ -81,7 +81,7 @@ export default function buttonJsunit() {
 
     it('testButton04', 0, async (done: Function) => {
       console.info('[testButton04] START');
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('button3');
       console.info("[testButton04] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
       expect(JSON.parse(strJson).$attrs.borderColor).assertEqual('#FF000000');
@@ -90,7 +90,7 @@ export default function buttonJsunit() {
 
     it('testButton05', 0, async (done: Function) => {
       console.info('[testButton05] START');
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       try {
         let eventData: events_emitter.EventData = {
           data: {
@@ -106,7 +106,7 @@ export default function buttonJsunit() {
       } catch (err) {
         console.log("[testButton05] change component data error: " + err.message);
       }
-      await Utils.sleep(2000);
+      await CommonFunc.sleep(2000);
       let strJsonNew = getInspectorByKey('button');
 
       console.info("[testButton05] component JSON.parse(strJsonNew) is: " + JSON.stringify(JSON.parse(strJsonNew)));
@@ -116,7 +116,7 @@ export default function buttonJsunit() {
 
     it('testButton06', 0, async (done: Function) => {
       console.info('[testButton06] START');
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       try {
         let eventData: events_emitter.EventData = {
           data: {
@@ -132,7 +132,7 @@ export default function buttonJsunit() {
       } catch (err) {
         console.log("[testButton06] change component data error: " + err.message);
       }
-      await Utils.sleep(2000);
+      await CommonFunc.sleep(2000);
       let strJsonNew = getInspectorByKey('button2');
 
       console.info("[testButton05] component JSON.parse(strJsonNew) is: " + JSON.stringify(JSON.parse(strJsonNew)));
@@ -142,7 +142,7 @@ export default function buttonJsunit() {
 
     it('testButton07', 0, async (done: Function) => {
       console.info('[testButton07] START');
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       try {
         let eventData: events_emitter.EventData = {
           data: {
@@ -158,7 +158,7 @@ export default function buttonJsunit() {
       } catch (err) {
         console.log("[testButton07] change component data error: " + err.message);
       }
-      await Utils.sleep(2000);
+      await CommonFunc.sleep(2000);
       let strJsonNew = getInspectorByKey('button2');
 
       console.info("[testButton07] component JSON.parse(strJsonNew) is: " + JSON.stringify(JSON.parse(strJsonNew)));
@@ -168,7 +168,7 @@ export default function buttonJsunit() {
 
     it('testButton08', 0, async (done: Function) => {
       console.info('[testButton08] START');
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       try {
         let eventData: events_emitter.EventData = {
           data: {
@@ -184,7 +184,7 @@ export default function buttonJsunit() {
       } catch (err) {
         console.log("[testButton08] change component data error: " + err.message);
       }
-      await Utils.sleep(2000);
+      await CommonFunc.sleep(2000);
       let strJsonNew = getInspectorByKey('button2');
 
       console.info("[testButton08] component JSON.parse(strJsonNew) is: " + JSON.stringify(JSON.parse(strJsonNew)));
@@ -194,7 +194,7 @@ export default function buttonJsunit() {
 
     it('testButton09', 0, async (done: Function) => {
       console.info('[testButton09] START');
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       try {
         let eventData: events_emitter.EventData = {
           data: {
@@ -210,7 +210,7 @@ export default function buttonJsunit() {
       } catch (err) {
         console.log("[testButton09] change component data error: " + err.message);
       }
-      await Utils.sleep(2000);
+      await CommonFunc.sleep(2000);
       let strJsonNew = getInspectorByKey('button2');
 
       console.info("[testButton09] component JSON.parse(strJsonNew) is: " + JSON.stringify(JSON.parse(strJsonNew)));
@@ -235,7 +235,7 @@ export default function buttonJsunit() {
       } catch (err) {
         console.log("testButton10 change component data error: " + err.message);
       }
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       let indexEvent: events_emitter.InnerEvent = {
         eventId: 72,
         priority: events_emitter.EventPriority.LOW
@@ -251,7 +251,7 @@ export default function buttonJsunit() {
         console.info("testButton10 on events_emitter err : " + JSON.stringify(err));
       }
       console.info("testButton10 click result is: " + JSON.stringify(sendEventByKey('button3', 10, "")));
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       console.info('[testButton10] END');
     });
 
@@ -272,12 +272,12 @@ export default function buttonJsunit() {
       } catch (err) {
         console.log("testButton11 change component data error: " + err.message);
       }
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       let indexEvent: events_emitter.InnerEvent = {
         eventId: 71,
         priority: events_emitter.EventPriority.LOW
       }
-      let callback = (indexEvent) => {
+      let callback = (indexEvent: events_emitter.EventData) => {
         console.info("testButton11 get state result is: " + JSON.stringify(indexEvent))
         expect(indexEvent.data.fontColorValue).assertEqual(332)
         done();
@@ -288,7 +288,7 @@ export default function buttonJsunit() {
         console.info("testButton11 on events_emitter err : " + JSON.stringify(err));
       }
       console.info("testButton11 click result is: " + JSON.stringify(sendEventByKey('button2', 10, "")));
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       console.info('[testButton11] END');
     });
 
@@ -296,7 +296,7 @@ export default function buttonJsunit() {
       let driver = Driver.create();
       let density = await driver.getDisplayDensity();
       console.info("[testButton12] getDisplayDensity is: " + JSON.stringify(density));
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       let callback = (eventData: events_emitter.EventData) => {
         console.info("[testButton12] get event state result is: " + JSON.stringify(eventData));
         expect(eventData.data.ACTION).assertEqual(true)
@@ -312,12 +312,12 @@ export default function buttonJsunit() {
             expect(Math.abs(JSON.parse(eventData.data.event).screenY - 533) <= 1).assertTrue()
             expect(Math.trunc(JSON.parse(eventData.data.event).x)).assertEqual(100)
             expect(Math.trunc(JSON.parse(eventData.data.event).y)).assertEqual(50)
-          } else if(density.x == 2700) {
+          } else if (density.x == 2700) {
             expect(Math.abs(JSON.parse(eventData.data.event).screenX - 190) <= 1).assertTrue()
             expect(Math.abs(JSON.parse(eventData.data.event).screenY - 523) <= 1).assertTrue()
             expect(Math.trunc(JSON.parse(eventData.data.event).x)).assertEqual(100)
             expect(Math.trunc(JSON.parse(eventData.data.event).y)).assertEqual(50)
-          }else {
+          } else {
             expect(Math.abs(JSON.parse(eventData.data.event).screenX - 185) <= 1).assertTrue()
             expect(Math.abs(JSON.parse(eventData.data.event).screenY - 523) <= 1).assertTrue()
             expect(Math.trunc(JSON.parse(eventData.data.event).x)).assertEqual(100)
@@ -339,13 +339,13 @@ export default function buttonJsunit() {
         console.info("[testButton12] on events_emitter err : " + JSON.stringify(err));
       }
       console.info('[testButton12] sendEventByKey ' + JSON.stringify(sendEventByKey('buttonClick', 10, "")));
-      await Utils.sleep(1000)
+      await CommonFunc.sleep(1000)
       console.info('[testButton12] testSendTouchEvent END');
     });
 
     it('testButton13', 0, async (done: Function) => {
       console.info('[testButton13] START');
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       try {
         let eventData: events_emitter.EventData = {
           data: {
@@ -361,7 +361,7 @@ export default function buttonJsunit() {
       } catch (err) {
         console.log("[testButton13] change component data error: " + err.message);
       }
-      await Utils.sleep(2000);
+      await CommonFunc.sleep(2000);
       let strJsonNew = getInspectorByKey('button');
 
       console.info("[testButton13] component JSON.parse(strJsonNew) is: " + JSON.stringify(JSON.parse(strJsonNew)
@@ -373,7 +373,7 @@ export default function buttonJsunit() {
 
     it('testButton14', 0, async (done: Function) => {
       console.info('[testButton14] START');
-      await Utils.sleep(1000);
+      await CommonFunc.sleep(1000);
       try {
         let eventData: events_emitter.EventData = {
           data: {
@@ -389,7 +389,7 @@ export default function buttonJsunit() {
       } catch (err) {
         console.log("[testButton14] change component data error: " + err.message);
       }
-      await Utils.sleep(2000);
+      await CommonFunc.sleep(2000);
       let strJsonNew = getInspectorByKey('button');
 
       console.info("[testButton14] component JSON.parse(strJsonNew) is: " + JSON.stringify(JSON.parse(strJsonNew)
@@ -416,7 +416,7 @@ export default function buttonJsunit() {
       } catch (err) {
         console.log("testButton15 change component data error: " + err.message);
       }
-      await Utils.sleep(500);
+      await CommonFunc.sleep(500);
       let indexEvent: events_emitter.InnerEvent = {
         eventId: 77996,
         priority: events_emitter.EventPriority.LOW

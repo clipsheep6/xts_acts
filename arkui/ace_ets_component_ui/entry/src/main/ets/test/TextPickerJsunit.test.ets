@@ -68,11 +68,11 @@ export default function TextPickerJsunit() {
         .$attrs
         .defaultPickerItemHeight));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.range)
+      expect(JSON.parse(strJson).$attrs.range)
         .assertEqual('["icon:,text:apple1","icon:,text:orange2","icon:,text:peach3","icon:,text:grape4"]');
-      expect(obj.$attrs.selected).assertEqual('0');
+      expect(JSON.parse(strJson).$attrs.selected).assertEqual('0');
       //expect(obj.$attrs.value).assertEqual('orange2');
-      expect(obj.$attrs.defaultPickerItemHeight).assertEqual('20.00fp');
+      expect(JSON.parse(strJson).$attrs.defaultPickerItemHeight).assertEqual('20.00fp');
 
       // Get the content of Initial value
       let driver = await UiDriver.create()
