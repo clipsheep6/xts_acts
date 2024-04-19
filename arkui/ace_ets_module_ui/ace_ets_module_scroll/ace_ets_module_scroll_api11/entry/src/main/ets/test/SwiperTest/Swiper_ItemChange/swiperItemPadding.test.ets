@@ -44,7 +44,7 @@ export default function swiperItemPadding() {
         await CommonFunc.sleep(1000);
         let pages = router.getState();
         console.info("get swiperItemPadMar state success " + JSON.stringify(pages));
-        if (!("swiperItemPadMar" == pages.name)) {
+        if (!("swiperItemPadding" == pages.name)) {
           console.info("get swiperItemPadMar state success " + JSON.stringify(pages.name));
           let result = await router.pushUrl(options)
           console.info("push swiperItemPadMar page success " + JSON.stringify(result));

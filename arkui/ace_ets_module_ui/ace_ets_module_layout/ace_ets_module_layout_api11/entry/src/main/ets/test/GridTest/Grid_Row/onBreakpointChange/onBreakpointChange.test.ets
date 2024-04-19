@@ -28,7 +28,7 @@ export default function GridRow_onBreakpoint() {
         router.clear();
         let pages = router.getState();
         console.info("get GridRow_onBreakpoint state pages:" + JSON.stringify(pages));
-        if (!("GridRow_onBreakpoint" == pages.name)) {
+        if (!("onBreakpointChange" == pages.name)) {
           console.info("get GridRow_onBreakpoint pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);

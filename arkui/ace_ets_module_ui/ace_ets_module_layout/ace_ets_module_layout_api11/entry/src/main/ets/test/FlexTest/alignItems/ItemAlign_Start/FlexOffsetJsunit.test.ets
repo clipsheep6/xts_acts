@@ -28,7 +28,7 @@ export default function flexOffset_StartJsunit() {
         await CommonFunc.sleep(1000);
         let pages = router.getState();
         console.info("get flexOffsetTest state success " + JSON.stringify(pages));
-        if (!("flexOffsetTest" == pages.name)) {
+        if (!("FlexOffset" == pages.name)) {
           console.info("get flexOffsetTest state success " + JSON.stringify(pages.name));
           let result = await router.pushUrl(options)
           console.info("push flexOffsetTest page success " + JSON.stringify(result));

@@ -139,6 +139,9 @@
         "MainAbility/pages/image/Image",
         "MainAbility/pages/span/Span",
         "MainAbility/pages/text/Text",
+        "MainAbility/pages/image/imageAnimator",
+        "MainAbility/pages/piece/PieceCode",
+        "MainAbility/pages/Search/search",
         "MainAbility/pages/text/outline"
     ]
 }

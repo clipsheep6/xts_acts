@@ -29,7 +29,7 @@ export default function dragPreviewJsSuit() {
         router.clear();
         let pages = router.getState();
         console.info("get dragPreviewJsSuit state pages: " + JSON.stringify(pages));
-        if (!("overlay" == pages.name)) {
+        if (!("dragPreview" == pages.name)) {
           console.info("get dragPreviewJsSuit state pages.name:" + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);

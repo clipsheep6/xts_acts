@@ -39,6 +39,9 @@ import sliderJsunit1 from './slider/SliderJsunit1.test';
 import menuBackgroundBlurStyle from './SelectTest/menuBackgroundBlurStyle.test.ets'
 import menuBackgroundColor from './SelectTest/menuBackgroundColor.test.ets'
 
+import datePickerJsunit from './DatePickerTest/DatePickerJsunit.test.ets';
+import radioJsunit from './RadioTest/RadioJsunit.test.ets';
+
 export default function testsuite() {
   stageTimePickerDialog();
   stageTextPickerDialog();
@@ -67,4 +70,7 @@ export default function testsuite() {
   sliderJsunit()
   menuBackgroundBlurStyle()
   menuBackgroundColor()
+
+  datePickerJsunit()
+  radioJsunit()
 }

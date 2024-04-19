@@ -13,6 +13,8 @@
  * limitations under the License.
  */
 import geometryTransition from './geometryTransitionTest/geometryTransition.test';
+import animationStatusJsunit from './animationTest/AnimationStatusJsunit.test.ets';
+import pageTransitionJsunit from './pageTransitionTest/PageTransitionJsunit.test.ets';
 import animateToTest from './animateto.test';
 import animationCurveTest from './animationCurve.test';
 
@@ -21,4 +23,6 @@ export default function testsuite() {
   animationCurveTest();
 
   geometryTransition()
+  animationStatusJsunit()
+  pageTransitionJsunit()
 }

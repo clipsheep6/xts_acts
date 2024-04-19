@@ -3,6 +3,7 @@
         "MainAbility/pages/index/index",
         "MainAbility/pages/GridContainer/gridContainer",
         "MainAbility/pages/GridContainer/gridSettings",
-        "MainAbility/pages/layoutConstraints/layoutConstraints"
+        "MainAbility/pages/layoutConstraints/layoutConstraints",
+        "MainAbility/pages/FlexLayout/placement"
     ]
 }

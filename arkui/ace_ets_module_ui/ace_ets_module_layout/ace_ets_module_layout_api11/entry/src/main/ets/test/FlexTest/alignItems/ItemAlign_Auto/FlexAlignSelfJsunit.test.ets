@@ -28,7 +28,7 @@ export default function flexAlignSelf_AutoJsunit() {
         await CommonFunc.sleep(1000);
         let pages = router.getState();
         console.info("get FlexSecond state success " + JSON.stringify(pages));
-        if (!("FlexSecond" == pages.name)) {
+        if (!("FlexAlignSelf" == pages.name)) {
           console.info("get FlexSecond state success " + JSON.stringify(pages.name));
           let result = await router.pushUrl(options)
           console.info("push FlexSecond page success " + JSON.stringify(result));

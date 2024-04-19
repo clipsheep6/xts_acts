@@ -58,7 +58,7 @@ export default function swiperTest() {
         router.clear();
         let pages = router.getState();
         console.info("get Swipersec state success " + JSON.stringify(pages));
-        if (!("Swipersec" == pages.name)) {
+        if (!("Swiper1" == pages.name)) {
           console.info("get Swipersec state success " + JSON.stringify(pages.name));
           let result = await router.pushUrl(options)
           console.info("push Swipersec page success " + JSON.stringify(result));

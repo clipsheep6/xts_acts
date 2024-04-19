@@ -46,6 +46,7 @@
         "MainAbility/pages/PanGesture/PanGesture3",
         "MainAbility/pages/LongPressGesture/LongPressGesture1",
         "MainAbility/pages/LongPressGesture/LongPressGesture2",
-        "MainAbility/pages/LongPressGesture/LongPressGesture3"
+        "MainAbility/pages/LongPressGesture/LongPressGesture3",
+        "MainAbility/pages/Click/sourceType"
     ]
 }

@@ -30,7 +30,7 @@ export default function ColumnSetLayoutWeight_SubChange() {
         await CommonFunc.sleep(1000);
         let pages = router.getState();
         console.info("get SetLayoutWeight state success " + JSON.stringify(pages));
-        if (!("SetLayoutWeight" == pages.name)) {
+        if (!("ColumnSetLayoutWeight_SubChange" == pages.name)) {
           console.info("get SetLayoutWeight state success " + JSON.stringify(pages.name));
           let result = await router.push(options)
           console.info("push SetLayoutWeight page success " + JSON.stringify(result));

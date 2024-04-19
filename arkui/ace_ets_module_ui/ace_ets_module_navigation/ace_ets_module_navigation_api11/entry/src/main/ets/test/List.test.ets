@@ -30,6 +30,9 @@ import navigationJsunit from './NavigationTest/NavigationJsunit.test'
 import stepperJsunit1 from './stepperTest/StepperJsunit1.test'
 import navigatorJsunit from './Navigator/NavigatorJsunit.test'
 
+import navigationJsunit3 from './NavigationTest/NavigationJsunit3.test';
+import navigatorCodeJsunit from './NavigationTest/NavigatorCodeJsunit.test';
+
 export default function testsuite() {
   stepperJsunit();
   NavigationParamTest();
@@ -49,4 +52,6 @@ export default function testsuite() {
   stepperJsunit1()
   navigatorJsunit()
 
+  navigationJsunit3()
+  navigatorCodeJsunit()
 }

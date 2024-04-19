@@ -21,6 +21,7 @@ import promptTest from './promptActionTest/promptTest.test';
 import DialogTest from './promptActionTest/Dialog.test';
 import panelJsunit from './Panel/PanelJsunit.test';
 import panelClose from './panelTest/panelClose'
+import systempromptJsunit from './promptActionTest/SystempromptJsunit.test.ets';
 
 import ActionSheet from './actionSheetTest/ActionSheet.test'
 import ActionSheetFalse from './actionSheetTest/ActionSheetFalse.test'
@@ -57,6 +58,7 @@ export default function testsuite() {
   DialogTest();
   panelJsunit();
   panelClose()
+  systempromptJsunit()
 
   ActionSheet();
   ActionSheetFalse();

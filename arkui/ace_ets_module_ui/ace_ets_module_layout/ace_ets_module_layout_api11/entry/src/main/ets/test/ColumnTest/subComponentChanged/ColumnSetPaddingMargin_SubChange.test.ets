@@ -30,7 +30,7 @@ export default function ColumnSetPaddingMargin_SubChange() {
         await CommonFunc.sleep(1000);
         let pages = router.getState();
         console.info("get ColumnSetPaddingMargin state success " + JSON.stringify(pages));
-        if (!("ColumnSetPaddingMargin" == pages.name)) {
+        if (!("ColumnSetPaddingMargin_SubChange" == pages.name)) {
           console.info("get ColumnSetPaddingMargin state success " + JSON.stringify(pages.name));
           let result = await router.push(options)
           console.info("push ColumnSetPaddingMargin page success " + JSON.stringify(result));

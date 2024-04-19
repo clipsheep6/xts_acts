@@ -29,7 +29,7 @@ export default function InvertOptionsJsSuit() {
         router.clear();
         let pages = router.getState();
         console.info("get InvertOptionsJsSuit state pages: " + JSON.stringify(pages));
-        if (!("overlay" == pages.name)) {
+        if (!("InvertOptions" == pages.name)) {
           console.info("get InvertOptionsJsSuit state pages.name:" + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);
