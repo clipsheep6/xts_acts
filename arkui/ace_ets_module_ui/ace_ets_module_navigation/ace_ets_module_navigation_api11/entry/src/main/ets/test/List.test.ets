@@ -71,6 +71,7 @@ import NavDestination_onBackPressed from './NavRouter/NavDestination_onBackPress
 import navigationJsunit from './NavigationTest/NavigationJsunit.test'
 import stepperJsunit1 from './stepperTest/StepperJsunit1.test'
 import navigatorJsunit from './Navigator/NavigatorJsunit.test'
+import navigationuxtest from './NavigationTest/navigationux.test'
 
 export default function testsuite() {
   stepperJsunit();
@@ -132,4 +133,5 @@ export default function testsuite() {
   NavRouter_onStateChange1();
   NavRouter_onStateChange2();
   NavDestination_onBackPressed();
+  navigationuxtest();
 }
