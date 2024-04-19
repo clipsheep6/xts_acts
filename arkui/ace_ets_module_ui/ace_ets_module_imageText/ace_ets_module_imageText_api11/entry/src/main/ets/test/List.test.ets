@@ -141,6 +141,10 @@ import imageJsunit from './imageTest/ImageJsunit.test';
 import spanJsunit from './spanTest/SpanJsunit.test';
 import textJsunit from './textTest/TextJsunit.test';
 
+import imageAnimatorJsunit from './imageTest/ImageAnimatorJsunit.test.ets'
+import pieceJsunit from './pieceTest/PieceJsunit.test.ets';
+import searchJsunit from './SearchTest/SearchJsunit.test.ets';
+
 export default function testsuite() {
   TextStateJsunit();
   richEditorApi4();
@@ -264,4 +268,8 @@ export default function testsuite() {
   imageJsunit()
   spanJsunit()
   textJsunit()
+
+  imageAnimatorJsunit()
+  pieceJsunit()
+  searchJsunit()
 }

@@ -44,7 +44,7 @@ export default function List_strokeWidth() {
         router.clear();
         let pages = router.getState();
         console.info("get List_strokeWidth state pages:" + JSON.stringify(pages));
-        if (!("List_SpaceChange" == pages.name)) {
+        if (!("List_strokeWidth" == pages.name)) {
           console.info("get List_strokeWidth pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);

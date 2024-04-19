@@ -17,6 +17,8 @@
 
         "MainAbility/pages/Navigation/Navigation",
         "MainAbility/pages/stepper/Stepper1",
-        "MainAbility/pages/Navigator/Navigator"
+        "MainAbility/pages/Navigator/Navigator",
+        "MainAbility/pages/Navigation/navigation3",
+        "MainAbility/pages/Navigation/NavigatorCode"
     ]
 }

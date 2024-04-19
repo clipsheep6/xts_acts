@@ -44,7 +44,7 @@ export default function ListItem_Delete_End_String() {
         router.clear();
         let pages = router.getState();
         console.info("get ListItem_Delete_End_String state pages:" + JSON.stringify(pages));
-        if (!("List_SpaceChange" == pages.name)) {
+        if (!("ListItem_Delete_End_String" == pages.name)) {
           console.info("get ListItem_Delete_End_String pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);

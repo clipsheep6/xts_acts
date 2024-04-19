@@ -21,6 +21,7 @@ import promptTest from './promptActionTest/promptTest.test';
 import DialogTest from './promptActionTest/Dialog.test';
 import panelJsunit from './Panel/PanelJsunit.test';
 import panelClose from './panelTest/panelClose'
+import systempromptJsunit from './promptActionTest/SystempromptJsunit.test.ets';
 
 export default function testsuite() {
   CustomDialogMaskTest()
@@ -32,4 +33,5 @@ export default function testsuite() {
   DialogTest();
   panelJsunit();
   panelClose()
+  systempromptJsunit()
 }

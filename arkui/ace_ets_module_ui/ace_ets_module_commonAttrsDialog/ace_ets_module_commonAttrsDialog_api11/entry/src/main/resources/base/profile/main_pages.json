@@ -8,6 +8,8 @@
         "MainAbility/pages/menu/ModalBlurStyle",
         "MainAbility/pages/popupControl/popupArrow",
         "MainAbility/pages/bindSheet/Index",
-        "MainAbility/pages/popupControl/popupfirst"
+        "MainAbility/pages/popupControl/popupfirst",
+        "MainAbility/pages/menuControl/bindMenu2",
+        "MainAbility/pages/popupControl/bindPopup"
     ]
 }

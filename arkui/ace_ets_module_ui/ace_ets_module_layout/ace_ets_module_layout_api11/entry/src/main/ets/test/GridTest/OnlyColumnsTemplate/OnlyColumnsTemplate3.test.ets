@@ -29,7 +29,7 @@ export default function OnlyColumnsTemplate3() {
         router.clear();
         let pages = router.getState();
         console.info("get OnlyColumnsTemplate3 state pages:" + JSON.stringify(pages));
-        if (!("GridFrictionPage" == pages.name)) {
+        if (!("OnlyColumnsTemplate3" == pages.name)) {
           console.info("get OnlyColumnsTemplate3 pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);

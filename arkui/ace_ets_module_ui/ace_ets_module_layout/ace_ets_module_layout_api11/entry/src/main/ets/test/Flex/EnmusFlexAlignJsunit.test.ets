@@ -27,7 +27,7 @@ export default function enumsFlexItemJsunit() {
         router.clear();
         let pages = router.getState();
         console.info('beforeEach get enumsFlexItem state pages:' + JSON.stringify(pages));
-        if (!('enumsFlexItem' == pages.name)) {
+        if (!('enumsFlexAlign' == pages.name)) {
           console.info('beforeEach get enumsFlexItem state pages.name:' + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await Utils.sleep(2000);

@@ -30,7 +30,7 @@ export default function ColumnWidthHeight_SubChange() {
         await CommonFunc.sleep(1000);
         let pages = router.getState();
         console.info("get FlexBase state success " + JSON.stringify(pages));
-        if (!("FlexBase" == pages.name)) {
+        if (!("ColumnWidthHeight_SubChange" == pages.name)) {
           console.info("get FlexBase state success " + JSON.stringify(pages.name));
           let result = await router.push(options)
           console.info("push FlexBase page success " + JSON.stringify(result));

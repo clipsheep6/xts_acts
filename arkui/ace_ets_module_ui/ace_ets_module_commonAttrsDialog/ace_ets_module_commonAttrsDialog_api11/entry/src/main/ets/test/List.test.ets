@@ -20,6 +20,8 @@ import ModalBlurStyle from './menuTest/ModalBlurStyle.test';
 import popupArrowJsunit from './popupControlTest/popupArrowJsunit.test';
 import ModelSheetTest from './bindSheetTest/ModelSheet.test';
 import abilityTest from './popupControlTest/popupfirst.test';
+import bindMenuJsunit from './menuControlTest/BindMenuJsunit.test.ets';
+import bindPopupJsunit from './popupControlTest/BindPopupJsunit.test.ets';
 
 export default function testsuite() {
   BindMenuTest();
@@ -30,4 +32,6 @@ export default function testsuite() {
   popupArrowJsunit()
   ModelSheetTest()
   abilityTest()
+  bindMenuJsunit()
+  bindPopupJsunit()
 }

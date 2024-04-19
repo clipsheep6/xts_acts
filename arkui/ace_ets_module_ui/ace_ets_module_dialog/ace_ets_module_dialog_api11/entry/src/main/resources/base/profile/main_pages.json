@@ -10,6 +10,7 @@
     "MainAbility/pages/promptAction/Index",
     "MainAbility/pages/AlertDialog/AlertDialog",
     "MainAbility/pages/Panel/Panel",
-    "MainAbility/pages/panel/Index"
+    "MainAbility/pages/panel/Index",
+    "MainAbility/pages/promptAction/systemPrompt"
   ]
 }

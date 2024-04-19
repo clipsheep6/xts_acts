@@ -39,7 +39,7 @@ export default function listJsunit1() {
         await sleep(1);
         let pages = router.getState();
         console.info("get List state success " + JSON.stringify(pages));
-        if (!("List" == pages.name)) {
+        if (!("List1" == pages.name)) {
           console.info("get List state success " + JSON.stringify(pages.name));
           let result = await router.push(options)
           console.info("push List page success " + JSON.stringify(result));

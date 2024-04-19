@@ -12,12 +12,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import girdContainerJsunit from './GridContainerTest/GridContainerJsunit.test';
 import gridSettingsJsunit from './GridContainerTest/GridSettingsJsunit.test';
 import layoutConstraintsJsunit from './layoutConstraintsTest/LayoutConstraintsJsunit.test';
+import placementJsunit from './FlexLayoutTest/PlacementJsunit.test.ets';
+
 export default function testsuite() {
   girdContainerJsunit();
   gridSettingsJsunit();
   layoutConstraintsJsunit();
+  placementJsunit()
 }

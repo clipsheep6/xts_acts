@@ -28,7 +28,7 @@ export default function OnlyRowsTemplate5() {
         router.clear();
         let pages = router.getState();
         console.info("get OnlyRowsTemplate5 state pages:" + JSON.stringify(pages));
-        if (!("GridFrictionPage" == pages.name)) {
+        if (!("OnlyRowsTemplate1" == pages.name)) {
           console.info("get OnlyRowsTemplate5 pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
