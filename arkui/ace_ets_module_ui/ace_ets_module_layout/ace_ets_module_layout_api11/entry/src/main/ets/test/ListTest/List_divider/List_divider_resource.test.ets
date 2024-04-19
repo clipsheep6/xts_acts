@@ -44,7 +44,7 @@ export default function List_divider_resource() {
         router.clear();
         let pages = router.getState();
         console.info("get List_divider_resource state pages:" + JSON.stringify(pages));
-        if (!("List_SpaceChange" == pages.name)) {
+        if (!("List_divider_resource" == pages.name)) {
           console.info("get List_divider_resource pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);

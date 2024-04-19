@@ -28,6 +28,8 @@
         "MainAbility/pages/State/RouterPushOne",
         "MainAbility/pages/State/RouterPushTwo",
         "MainAbility/pages/State/RouterPushThree",
-        "MainAbility/pages/State/RouterUrlError"
+        "MainAbility/pages/State/RouterUrlError",
+        "MainAbility/pages/ohosRouter/ohosRouterA",
+        "MainAbility/pages/ohosRouter/ohosRouterB"
     ]
 }

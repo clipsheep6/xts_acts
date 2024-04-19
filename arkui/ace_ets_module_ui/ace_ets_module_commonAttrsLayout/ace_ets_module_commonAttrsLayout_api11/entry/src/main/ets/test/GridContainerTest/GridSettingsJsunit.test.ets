@@ -28,7 +28,7 @@ export default function gridSettingsJsunit() {
         router.clear();
         let pages = router.getState();
         console.info("get gridSettings state pages:" + JSON.stringify(pages));
-        if (!("textStyle" == pages.name)) {
+        if (!("gridSettings" == pages.name)) {
           console.info("get gridSettings state pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await Utils.sleep(2000);

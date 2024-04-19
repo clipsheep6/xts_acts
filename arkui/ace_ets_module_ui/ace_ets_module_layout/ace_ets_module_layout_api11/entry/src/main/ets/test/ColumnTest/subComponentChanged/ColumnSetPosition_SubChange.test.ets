@@ -30,7 +30,7 @@ export default function ColumnSetPosition_SubChange() {
         await CommonFunc.sleep(1000);
         let pages = router.getState();
         console.info("get SetPosition state success " + JSON.stringify(pages));
-        if (!("SetPosition" == pages.name)) {
+        if (!("ColumnSetPosition_SubChange" == pages.name)) {
           console.info("get SetPosition state success " + JSON.stringify(pages.name));
           let result = await router.push(options)
           console.info("push SetPosition page success " + JSON.stringify(result));

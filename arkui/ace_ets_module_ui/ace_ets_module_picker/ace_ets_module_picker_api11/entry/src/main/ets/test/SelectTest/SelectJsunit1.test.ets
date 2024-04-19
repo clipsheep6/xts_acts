@@ -27,7 +27,7 @@ export default function selectJsunit() {
         router.clear();
         let pages = router.getState();
         console.info("get select state success " + JSON.stringify(pages));
-        if (!("select" == pages.name)) {
+        if (!("select1" == pages.name)) {
           console.info("get select success " + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await Utils.sleep(2000);

@@ -88,6 +88,10 @@
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperMarPad",
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperPadding",
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperVertical",
-        "MainAbility/pages/Scroll/ScrollA"
+        "MainAbility/pages/Scroll/ScrollA",
+
+        "MainAbility/pages/List/listItem2",
+        "MainAbility/pages/Scroll/scrollBar2",
+        "MainAbility/pages/WaterFlow/WaterflowDemo"
     ]
 }

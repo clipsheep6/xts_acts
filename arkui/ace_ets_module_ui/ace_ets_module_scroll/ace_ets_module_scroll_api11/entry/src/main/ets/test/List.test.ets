@@ -88,6 +88,11 @@ import swiperJsunit2 from './SwiperTest/SwiperJsunit2.test';
 import tabJsunit from './TabsTest/TabJsunit.test';
 
 import ScrollJsunit from './ScrollTest/ScrollJsunit.test';
+
+import listItemJsunit2 from './ListTest/ListItemJsunit2.test.ets';
+import scrollBarJsunit2 from './ScrollTest/ScrollBarJsunit2.test.ets';
+import waterFlowDemoJsunit from './WaterFlowTest/waterFlowDemo.test.ets';
+
 import ActsGridTest from "./gridTest/GridJC.test";
 import gridScrollbarUpdateTest from "./gridTest/gridScrollbarUpdate.test";
 import List07Test from './ListTest/List07.test';
@@ -175,4 +180,8 @@ export default function testsuite() {
   swiperItemPadMar()
   swiperItemVisibility()
   ScrollJsunit()
+  
+  listItemJsunit2()
+  scrollBarJsunit2()
+  waterFlowDemoJsunit()
 }

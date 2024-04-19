@@ -30,7 +30,7 @@ export default function ColumnSetFlexShink_SubChange() {
         await CommonFunc.sleep(1000);
         let pages = router.getState();
         console.info("get SetFlexShink state success " + JSON.stringify(pages));
-        if (!("SetFlexShink" == pages.name)) {
+        if (!("ColumnSetFlexShink_SubChange" == pages.name)) {
           console.info("get SetFlexShink state success " + JSON.stringify(pages.name));
           let result = await router.push(options)
           console.info("push SetFlexShink page success " + JSON.stringify(result));

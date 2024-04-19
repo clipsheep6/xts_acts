@@ -29,7 +29,7 @@ export default function ForegroundColorJsSuit() {
         router.clear();
         let pages = router.getState();
         console.info("get ForegroundColorJsSuit state pages: " + JSON.stringify(pages));
-        if (!("overlay" == pages.name)) {
+        if (!("ForegroundColor" == pages.name)) {
           console.info("get ForegroundColorJsSuit state pages.name:" + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);

@@ -63,7 +63,7 @@ export default function swiperJsunit2() {
         router.clear();
         let pages = router.getState();
         console.info("get Swiper state success " + JSON.stringify(pages));
-        if (!("Swiper" == pages.name)) {
+        if (!("Swiper2" == pages.name)) {
           console.info("get Swiper state success " + JSON.stringify(pages.name));
           let result = await router.push(options)
           console.info("push Swiper page success " + JSON.stringify(result));
