@@ -28,15 +28,15 @@ export default function TextPickerDialogCallback() {
       try {
         router.clear();
         let pages = router.getState();
-        console.info("get TextPickerDialogAJsunit state pages: " + JSON.stringify(pages));
+        console.info("get TextPickerDialogCallback state pages: " + JSON.stringify(pages));
         if (!("TextPickerDialogCallback" == pages.name)) {
-          console.info("get TextPickerDialogAJsunit state pages.name: " + JSON.stringify(pages.name));
+          console.info("get TextPickerDialogCallback state pages.name: " + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);
-          console.info("push TextPickerDialogAJsunit page success " + JSON.stringify(result));
+          console.info("push TextPickerDialogCallback page success " + JSON.stringify(result));
         }
       } catch (err) {
-        console.error("push TextPickerDialogAJsunit page error: " + err);
+        console.error("push TextPickerDialogCallback page error: " + err);
         expect().assertFail();
       }
       done()
@@ -52,46 +52,12 @@ export default function TextPickerDialogCallback() {
      */
     it('TextPickerDialogCallback_0100', 0, async (done) => {
       let driver1 = Driver.create();
-      let callback = (event) => {
-        expect(event.data.action).assertEqual('onWillAppear');
-        console.info('TextPickerDialogCallback_0100 event01: ' + event.data.action);
-      }
-      let event = {
-        eventId: 50001,
-        priority: events_emitter.EventPriority.LOW
-      }
-      events_emitter.on(event, callback);
-      console.info('TextPickerDialogCallback_0100 START');
       let button = await driver1.findComponent(ON.id('TextPicker_dialog_B'));
       await button.click();
       await new Promise((res, rej) => setTimeout(res, 3000, '1'))
 
-
-      let callback1 = (event) => {
-        expect(event.data.action).assertEqual('onDidAppear');
-        console.info('TextPickerDialogCallback_0100 event02: ' + event.data.action);
-      }
-      let event1 = {
-        eventId: 50002,
-        priority: events_emitter.EventPriority.LOW
-      }
-      events_emitter.on(event1, callback1);
-
-      console.info('TextPickerDialogCallback_0100 START');
-
-      let callback2 = (event) => {
-        expect(event.data.action).assertEqual('onWillDisappear');
-        console.info('TextPickerDialogCallback_0100 event03: ' + event.data.action);
-      }
-      let event2 = {
-        eventId: 50003,
-        priority: events_emitter.EventPriority.LOW
-      }
-      events_emitter.on(event2, callback2);
-      console.info('TextPickerDialogCallback_0100 START');
-
-      let callback3 = (event) => {
-        expect(event.data.action).assertEqual('onDidDisappear');
+      let callback = (event) => {
+        expect(event.data.action).assertEqual('1234');
         console.info('TextPickerDialogCallback_0100 event04: ' + event.data.action);
         done();
       }
@@ -99,7 +65,7 @@ export default function TextPickerDialogCallback() {
         eventId: 50004,
         priority: events_emitter.EventPriority.LOW
       }
-      events_emitter.on(event3, callback3);
+      events_emitter.on(event3, callback);
       console.info('TextPickerDialogCallback_0100 START');
       await new Promise((res, rej) => setTimeout(res, 3000, '1'))
       await driver1.pressBack();

@@ -18,6 +18,8 @@ import events_emitter from '@ohos.events.emitter';
 @Component
 struct CalendarPickerDialogExampleA {
   private selectedDate: Date = new Date()
+  private order: string = ''
+
   build() {
     Column() {
       Button("CalendarPickerDialog按esc弹窗逐层退出").key('Calendar_dialog_A')
@@ -35,53 +37,29 @@ struct CalendarPickerDialogExampleA {
             onChange: (value) => {
             },
             onWillAppear: () => {
-              var eventData = {
-                data: {
-                  "action": 'onWillAppear'
-                }
-              }
-              let event = {
-                eventId: 50001,
-                priority: events_emitter.EventPriority.LOW
-              }
-              events_emitter.emit(event, eventData)
+              this.order += 1
               console.info("CalendarPickerDialog: onWillAppear()")
             },
             onDidAppear: () => {
-              var eventData = {
-                data: {
-                  "action": 'onDidAppear'
-                }
-              }
-              let event = {
-                eventId: 50002,
-                priority: events_emitter.EventPriority.LOW
-              }
-              events_emitter.emit(event, eventData)
+
+              this.order += 2
               console.info("CalendarPickerDialog: onDidAppear()")
             },
             onWillDisappear: () => {
-              var eventData = {
-                data: {
-                  "action": 'onWillDisappear'
-                }
-              }
-              let event = {
-                eventId: 50003,
-                priority: events_emitter.EventPriority.LOW
-              }
-              events_emitter.emit(event, eventData)
+              this.order += 3
               console.info("CalendarPickerDialog: onWillDisappear()")
             },
             onDidDisappear: () => {
-              var eventData = {
-                data: {
-                  "action": 'onDidDisappear'
-                }
-              }
+
               let event = {
                 eventId: 50004,
                 priority: events_emitter.EventPriority.LOW
+              }
+              this.order += 4
+              var eventData = {
+                data: {
+                  "action": this.order
+                }
               }
               events_emitter.emit(event, eventData)
               console.info("CalendarPickerDialog: onDidDisappear()")

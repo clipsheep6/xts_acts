@@ -17,6 +17,7 @@ import events_emitter from '@ohos.events.emitter';
 @Component
 struct DatePickerDialogExampleA {
   selectedDate: Date = new Date("2010-1-1")
+    private order: string = ''
 
   build() {
     Column() {
@@ -32,50 +33,25 @@ struct DatePickerDialogExampleA {
             textStyle: { color: '#ff00ff00', font: { size: '18fp', weight: FontWeight.Normal } },
             selectedTextStyle: { color: '#ff182431', font: { size: '14fp', weight: FontWeight.Regular } },
             onWillAppear: () => {
-              var eventData = {
-                data: {
-                  "action": 'onWillAppear'
-                }
-              }
-              let event = {
-                eventId: 50001,
-                priority: events_emitter.EventPriority.LOW
-              }
-              events_emitter.emit(event, eventData)
+              this.order += 1
               console.info("DatePickerDialog onWillAppear()")
             },
             onDidAppear: () => {
-              var eventData = {
-                data: {
-                  "action": 'onDidAppear'
-                }
-              }
-              let event = {
-                eventId: 50002,
-                priority: events_emitter.EventPriority.LOW
-              }
-              events_emitter.emit(event, eventData)
+              this.order += 2
               console.info("DatePickerDialog:onDidAppear()")
             },
             onWillDisappear: () => {
-              var eventData = {
-                data: {
-                  "action": 'onWillDisappear'
-                }
-              }
-              let event = {
-                eventId: 50003,
-                priority: events_emitter.EventPriority.LOW
-              }
-              events_emitter.emit(event, eventData)
+              this.order += 3
               console.info("DatePickerDialog onWillDisappear()")
             },
             onDidDisappear: () => {
+              this.order += 4
               var eventData = {
                 data: {
-                  "action": 'onDidDisappear'
+                  "action": this.order
                 }
               }
+
               let event = {
                 eventId: 50004,
                 priority: events_emitter.EventPriority.LOW

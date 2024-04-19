@@ -14,7 +14,7 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import { Driver, ON} from '@ohos.UiTest';
+import { Driver, ON } from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 import events_emitter from '@ohos.events.emitter';
 
@@ -28,15 +28,15 @@ export default function DatePickerDialogCallback() {
       try {
         router.clear();
         let pages = router.getState();
-        console.info("get DatePickerDialogAJsunit state pages: " + JSON.stringify(pages));
+        console.info("get DatePickerDialogCallback state pages: " + JSON.stringify(pages));
         if (!("DatePickerDialogCallback" == pages.name)) {
-          console.info("get DatePickerDialogAJsunit state pages.name: " + JSON.stringify(pages.name));
+          console.info("get DatePickerDialogCallback state pages.name: " + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);
-          console.info("push DatePickerDialogAJsunit page success " + JSON.stringify(result));
+          console.info("push DatePickerDialogCallback page success " + JSON.stringify(result));
         }
       } catch (err) {
-        console.error("push DatePickerDialogAJsunit page error: " + err);
+        console.error("push DatePickerDialogCallback page error: " + err);
         expect().assertFail();
       }
       done()
@@ -52,42 +52,12 @@ export default function DatePickerDialogCallback() {
      */
     it('DatePickerDialogCallback_0100', 0, async (done) => {
       let driver1 = Driver.create();
-      let callback = (event) => {
-        expect(event.data.action).assertEqual('onWillAppear');
-        console.info('DatePickerDialogCallback_0100 event01: ' + event.data.action);
-      }
-      let event = {
-        eventId: 50001,
-        priority: events_emitter.EventPriority.LOW
-      }
-      events_emitter.on(event, callback);
-      console.info('DatePickerDialogCallback_0100 START');
       let button = await driver1.findComponent(ON.id('DatePicker_dialog_B'));
       await button.click();
       await new Promise((res, rej) => setTimeout(res, 3000, '1'))
 
-      let callback1 = (event) => {
-        expect(event.data.action).assertEqual('onDidAppear');
-        console.info('DatePickerDialogCallback_0100 event02: ' + event.data.action);
-      }
-      let event1 = {
-        eventId: 50002,
-        priority: events_emitter.EventPriority.LOW
-      }
-      events_emitter.on(event1, callback1);
-
-      let callback2 = (event) => {
-        expect(event.data.action).assertEqual('onWillDisappear');
-        console.info('DatePickerDialogCallback_0100 event03: ' + event.data.action);
-      }
-      let event2 = {
-        eventId: 50003,
-        priority: events_emitter.EventPriority.LOW
-      }
-      events_emitter.on(event2, callback2);
-
-      let callback3 = (event) => {
-        expect(event.data.action).assertEqual('onDidDisappear');
+      let callback = (event) => {
+        expect(event.data.action).assertEqual('1234');
         console.info('DatePickerDialogCallback_0100 event04: ' + event.data.action);
         done();
       }
@@ -95,7 +65,7 @@ export default function DatePickerDialogCallback() {
         eventId: 50004,
         priority: events_emitter.EventPriority.LOW
       }
-      events_emitter.on(event3, callback3);
+      events_emitter.on(event3, callback);
       await new Promise((res, rej) => setTimeout(res, 3000, '1'))
       await driver1.pressBack();
 
