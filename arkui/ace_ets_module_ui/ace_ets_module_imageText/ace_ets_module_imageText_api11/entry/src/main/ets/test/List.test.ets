@@ -140,6 +140,7 @@ import propJsunit from './textTest/PropJsunit.test';
 import imageJsunit from './imageTest/ImageJsunit.test';
 import spanJsunit from './spanTest/SpanJsunit.test';
 import textJsunit from './textTest/TextJsunit.test';
+import outline from './textTest/outline.test';
 
 import imageAnimatorJsunit from './imageTest/ImageAnimatorJsunit.test'
 import pieceJsunit from './pieceTest/PieceJsunit.test';
@@ -272,4 +273,5 @@ export default function testsuite() {
   imageAnimatorJsunit()
   pieceJsunit()
   searchJsunit()
+  outline()
 }

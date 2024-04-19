@@ -21,6 +21,8 @@ import CanvasColorTest from './CanvasTest/CanvasColor.test'
 import OffScreenCanvasTest from './OffScreenCanvasTest/OffScreenCanvas.test'
 import curvesJsunit from './CanvasTest/CurvesJsunit.test';
 
+import drawCanvas from './CanvasText/drawCanvas.test'
+
 export default function testsuite() {
   ellipseJsunit();
   CanvasAPIUnitTest();
@@ -30,4 +32,5 @@ export default function testsuite() {
   CanvasColorTest();
   OffScreenCanvasTest();
   curvesJsunit()
+  drawCanvas()
 }

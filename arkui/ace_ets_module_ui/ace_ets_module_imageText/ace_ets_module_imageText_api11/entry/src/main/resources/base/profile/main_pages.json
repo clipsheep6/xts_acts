@@ -22,6 +22,21 @@
         "MainAbility/pages/ContainerSpan/APITextBackgroundStyle",
         "MainAbility/pages/SymbolGlyph/SXSymbolGlyphSINGLE01",
         "MainAbility/pages/button/buttonControlSize",
+
+        "MainAbility/pages/button/getcomponent",
+        "MainAbility/pages/button/getcomponentadd",
+
+        "MainAbility/pages/RichEditor/RichEditor/RichEditor",
+        "MainAbility/pages/text/textObscured",
+        "MainAbility/pages/text/textSpanFont",
+
+
+        "MainAbility/pages/image/imageObscuredTest",
+        "MainAbility/pages/button/stageAnimator",
+        "MainAbility/pages/button/ButtonHover",
+
+
+
         "MainAbility/pages/RelativeContainer/RelativeGuideLine",
         "MainAbility/pages/RelativeContainer/RelativeGuideLine2",
         "MainAbility/pages/RelativeContainer/RelativeGuideLine3",
@@ -126,6 +141,7 @@
         "MainAbility/pages/text/Text",
         "MainAbility/pages/image/imageAnimator",
         "MainAbility/pages/piece/PieceCode",
-        "MainAbility/pages/Search/search"
+        "MainAbility/pages/Search/search",
+        "MainAbility/pages/text/outline"
     ]
 }

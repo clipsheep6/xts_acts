@@ -3,6 +3,8 @@
         "MainAbility/pages/index/index",
         "MainAbility/pages/geometryTransition/geometryTransition",
         "MainAbility/pages/animation/animationStatus",
-        "MainAbility/pages/pageTransition/pageTransition"
+        "MainAbility/pages/pageTransition/pageTransition",
+        "MainAbility/pages/animateto",
+        "MainAbility/pages/animationCurve"
     ]
 }

@@ -10,6 +10,15 @@
         "MainAbility/pages/bindSheet/Index",
         "MainAbility/pages/popupControl/popupfirst",
         "MainAbility/pages/menuControl/bindMenu2",
-        "MainAbility/pages/popupControl/bindPopup"
+        "MainAbility/pages/popupControl/bindPopup",
+        "MainAbility/pages/menuControl/bindContextMenu",
+        "MainAbility/pages/popupControl/CustomPopupOptions",
+        "MainAbility/pages/popupControl/CustomPopupOptionsFalse",
+        "MainAbility/pages/popupControl/CustomPopupOptionsTrue",
+        "MainAbility/pages/popupControl/PopupOptions",
+        "MainAbility/pages/popupControl/PopupOptionsFalse",
+        "MainAbility/pages/popupControl/PopupOptionsTrue",
+        "MainAbility/pages/menuControl/BindMenu1"
+
     ]
 }

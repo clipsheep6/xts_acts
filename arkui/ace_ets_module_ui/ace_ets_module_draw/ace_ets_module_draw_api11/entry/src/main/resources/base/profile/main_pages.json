@@ -9,6 +9,7 @@
         "MainAbility/pages/Canvas/CanvasShader",
         "MainAbility/pages/Canvas/CanvasColor",
         "MainAbility/pages/OffScreenCanvas/OffScreenCanvas",
-        "MainAbility/pages/Canvas/curves3"
+        "MainAbility/pages/Canvas/curves3",
+        "MainAbility/pages/Canvas/drawCanvas"
     ]
 }

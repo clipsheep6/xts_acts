@@ -22,6 +22,14 @@ import ModelSheetTest from './bindSheetTest/ModelSheet.test';
 import abilityTest from './popupControlTest/popupfirst.test';
 import bindMenuJsunit from './menuControlTest/BindMenuJsunit.test.ets';
 import bindPopupJsunit from './popupControlTest/BindPopupJsunit.test.ets';
+import CustomPopupOptions from './popupControlTest/CustomPopupOptions.test';
+import CustomPopupOptionsFalse from './popupControlTest/CustomPopupOptionsFalse.test';
+import CustomPopupOptionsTrue from './popupControlTest/CustomPopupOptionsTrue.test';
+import PopupOptions from './popupControlTest/PopupOptions.test';
+import PopupOptionsFalse from './popupControlTest/PopupOptionsFalse.test';
+import PopupOptionsTrue from './popupControlTest/PopupOptionsTrue.test';
+import bindContextMenu from './menuControlTest/bindContextMenu.test';
+import BindMenu from './menuControlTest/BindMenu1.test';
 
 export default function testsuite() {
   BindMenuTest();
@@ -34,4 +42,13 @@ export default function testsuite() {
   abilityTest()
   bindMenuJsunit()
   bindPopupJsunit()
+
+  CustomPopupOptions()
+  CustomPopupOptionsFalse()
+  CustomPopupOptionsTrue()
+  PopupOptions()
+  PopupOptionsFalse()
+  PopupOptionsTrue()
+  bindContextMenu()
+  BindMenu()
 }
