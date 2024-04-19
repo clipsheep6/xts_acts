@@ -74,7 +74,7 @@ import relativeCTest from "./RelativeContainerTest/relative/relative.test"
 import getClipToFrameJsunit from './RenderNodeTest/RenderNodeTest_001/getClipToFrameJsunit.test'
 import getOpacityJsunit from './RenderNodeTest/RenderNodeTest_001/getOpacityJsunit.test'
 import getSizeJsunit from './RenderNodeTest/RenderNodeTest_001/getSizeJsunit.test'
-import SetSizeJsunit from './RenderNodeTest/RenderNodeTest_001/SetSizeJsunit.test.ets'
+import SetSizeJsunit from './RenderNodeTest/RenderNodeTest_001/SetSizeJsunit.test'
 import SetClipToFrameJsunit from './RenderNodeTest/RenderNodeTest_001/SetClipToFrameJsunit.test'
 import SetOpacityJsunit from './RenderNodeTest/RenderNodeTest_001/SetOpacityJsunit.test'
 import SetPositionJsunit from './RenderNodeTest/RenderNodeTest_001/SetPositionJsunit.test'
@@ -141,9 +141,9 @@ import imageJsunit from './imageTest/ImageJsunit.test';
 import spanJsunit from './spanTest/SpanJsunit.test';
 import textJsunit from './textTest/TextJsunit.test';
 
-import imageAnimatorJsunit from './imageTest/ImageAnimatorJsunit.test.ets'
-import pieceJsunit from './pieceTest/PieceJsunit.test.ets';
-import searchJsunit from './SearchTest/SearchJsunit.test.ets';
+import imageAnimatorJsunit from './imageTest/ImageAnimatorJsunit.test'
+import pieceJsunit from './pieceTest/PieceJsunit.test';
+import searchJsunit from './SearchTest/SearchJsunit.test';
 
 export default function testsuite() {
   TextStateJsunit();
