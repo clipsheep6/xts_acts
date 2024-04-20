@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-class MyDataSource implements IDataSource {
+class MyDataSourceSwiper implements IDataSource {
   private list: number[] = []
   private listener: DataChangeListener
 
@@ -40,14 +40,14 @@ class MyDataSource implements IDataSource {
 @Component
 struct SwiperAddExample {
   private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource = new MyDataSource([])
+  private data: MyDataSourceSwiper = new MyDataSourceSwiper([])
   @State  stringValue : string = "hello"
   aboutToAppear(): void {
     let list = []
     for (var i = 1; i <= 10; i++) {
       list.push(i.toString());
     }
-    this.data = new MyDataSource(list)
+    this.data = new MyDataSourceSwiper(list)
   }
 
   build() {
