@@ -142,6 +142,10 @@
         "MainAbility/pages/image/Image",
         "MainAbility/pages/span/Span",
         "MainAbility/pages/text/Text",
-        "MainAbility/pages/text/outline"
+        "MainAbility/pages/text/outline",
+        "MainAbility/pages/button/ButtonIndex",
+        "MainAbility/pages/TextInput/TextinputIndex",
+        "MainAbility/pages/TextInput/TextinputSec",
+        "MainAbility/pages/SegmentButton/SegmentButtonIndex"
     ]
 }

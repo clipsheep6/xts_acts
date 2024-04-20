@@ -89,6 +89,9 @@
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperPadding",
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperVertical",
         "MainAbility/pages/Scroll/ScrollA",
-	"MainAbility/pages/List/list_ux"
+        "MainAbility/pages/grid/GridIndex",
+        "MainAbility/pages/grid/GridTestPage",
+        "MainAbility/pages/PatternLock/PatternLockIndex",
+	    "MainAbility/pages/List/list_ux"
     ]
 }

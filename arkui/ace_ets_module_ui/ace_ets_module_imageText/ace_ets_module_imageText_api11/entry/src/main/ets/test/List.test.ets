@@ -144,8 +144,11 @@ import outline from './textTest/outline.test';
 
 import stageFontTest from './textTest/stageFont.test';
 import stageMediaquery from './textTest/stageMediaquery.test';
+import buttonTest from './buttonTest/button'
 
-
+import textInputTest from './TextInputTest/textinput'
+import textinputSec from './TextInputTest/textinputSec'
+import segmentbuttonTest from './SegmentButtonTest/segmentbutton'
 export default function testsuite() {
   stageFontTest();
   stageMediaquery();
@@ -273,4 +276,9 @@ export default function testsuite() {
   spanJsunit()
   textJsunit()
   outline()
+
+  buttonTest();
+  textInputTest()
+  textinputSec()
+  segmentbuttonTest()
 }
