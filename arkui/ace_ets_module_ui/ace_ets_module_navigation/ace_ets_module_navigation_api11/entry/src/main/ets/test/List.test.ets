@@ -32,8 +32,11 @@ import navigatorJsunit from './Navigator/NavigatorJsunit.test'
 
 import navigationJsunit3 from './NavigationTest/NavigationJsunit3.test';
 import navigatorCodeJsunit from './NavigationTest/NavigatorCodeJsunit.test';
+import navigationTypeTest from './NavigationTest/navigationType.test'
 
 export default function testsuite() {
+  navigationTypeTest();
+
   stepperJsunit();
   NavigationParamTest();
   NavigationApi()

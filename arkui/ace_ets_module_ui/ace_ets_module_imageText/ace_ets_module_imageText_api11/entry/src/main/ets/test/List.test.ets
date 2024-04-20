@@ -145,8 +145,14 @@ import outline from './textTest/outline.test';
 import imageAnimatorJsunit from './imageTest/ImageAnimatorJsunit.test'
 import pieceJsunit from './pieceTest/PieceJsunit.test';
 import searchJsunit from './SearchTest/SearchJsunit.test';
+import stageFontTest from './textTest/stageFont.test';
+import stageMediaquery from './textTest/stageMediaquery.test';
+
 
 export default function testsuite() {
+  stageFontTest();
+  stageMediaquery();
+
   TextStateJsunit();
   richEditorApi4();
   richEditorApi5();
