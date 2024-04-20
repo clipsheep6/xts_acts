@@ -33,7 +33,7 @@ export default function sliderJsunit() {
   describe('SliderTest', () => {
     beforeEach(async (done: Function) => {
       let options: router.RouterOptions = {
-        url: 'MainAbility/pages/Slider/slider',
+        url: 'MainAbility/pages/Slider/Slider',
       }
       try {
         router.clear();
