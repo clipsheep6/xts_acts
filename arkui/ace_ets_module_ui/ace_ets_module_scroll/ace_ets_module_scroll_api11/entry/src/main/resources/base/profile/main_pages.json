@@ -91,6 +91,7 @@
         "MainAbility/pages/Scroll/ScrollA",
         "MainAbility/pages/grid/GridIndex",
         "MainAbility/pages/grid/GridTestPage",
-        "MainAbility/pages/PatternLock/PatternLockIndex"
+        "MainAbility/pages/PatternLock/PatternLockIndex",
+	    "MainAbility/pages/List/list_ux"
     ]
 }
