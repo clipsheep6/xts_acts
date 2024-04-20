@@ -146,8 +146,14 @@ import buttonJsunit from './buttonTest/ButtonJsunit.test';
 import spanJsunit2 from './spanTest/SpanJsunit2.test';
 import textJsunit2 from './textTest/TextJsunit2.test';
 import timeStampJsunit from './textTest/TimeStampJsunit.test';
+import stageFontTest from './textTest/stageFont.test';
+import stageMediaquery from './textTest/stageMediaquery.test';
+
 
 export default function testsuite() {
+  stageFontTest();
+  stageMediaquery();
+
   TextStateJsunit();
   richEditorApi4();
   richEditorApi5();
