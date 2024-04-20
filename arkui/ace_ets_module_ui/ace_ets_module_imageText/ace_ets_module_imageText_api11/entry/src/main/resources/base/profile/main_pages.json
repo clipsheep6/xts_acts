@@ -1,6 +1,9 @@
 {
     "src": [
         "MainAbility/pages/index/index",
+        "MainAbility/pages/text/stageFont",
+        "MainAbility/pages/text/stageMediaquery",
+
         "MainAbility/pages/text/textStyle",
         "MainAbility/pages/text/TextState",
         "MainAbility/pages/marquee/marquee",
@@ -139,6 +142,9 @@
         "MainAbility/pages/image/Image",
         "MainAbility/pages/span/Span",
         "MainAbility/pages/text/Text",
-        "MainAbility/pages/text/outline"
+        "MainAbility/pages/text/outline",
+        "MainAbility/pages/RenderNode/rotation",
+        "MainAbility/pages/RenderNode/transform",
+        "MainAbility/pages/RenderNode/translation"
     ]
 }

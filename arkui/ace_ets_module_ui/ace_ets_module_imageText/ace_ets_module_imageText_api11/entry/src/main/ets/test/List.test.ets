@@ -141,8 +141,18 @@ import imageJsunit from './imageTest/ImageJsunit.test';
 import spanJsunit from './spanTest/SpanJsunit.test';
 import textJsunit from './textTest/TextJsunit.test';
 import outline from './textTest/outline.test';
+import rotationTest from './RenderNodeTest/rotation.test.ets'
+import transformTest from './RenderNodeTest/transform.test.ets'
+import translationTest from './RenderNodeTest/translation.test.ets'
+
+import stageFontTest from './textTest/stageFont.test';
+import stageMediaquery from './textTest/stageMediaquery.test';
+
 
 export default function testsuite() {
+  stageFontTest();
+  stageMediaquery();
+
   TextStateJsunit();
   richEditorApi4();
   richEditorApi5();
@@ -266,4 +276,7 @@ export default function testsuite() {
   spanJsunit()
   textJsunit()
   outline()
+  rotationTest()
+  transformTest()
+  translationTest()
 }
