@@ -74,6 +74,7 @@ import swiperItemPadding from './SwiperTest/Swiper_ItemChange/swiperItemPadding.
 import swiperItemMargin from './SwiperTest/Swiper_ItemChange/swiperItemMargin.test.ets';
 import swiperItemPadMar from './SwiperTest/Swiper_ItemChange/swiperItemPadMar.test.ets';
 import swiperItemVisibility from './SwiperTest/Swiper_ItemChange/swiperItemVisibility.test.ets';
+
 import edgeEffectJsunit from './ListTest/EdgeEffectJsunit.test'
 import swiperTest from './SwiperTest/swiper.test';
 import swiperSecTest from './SwiperTest/swipersec.test';
@@ -85,12 +86,14 @@ import listJsunit1 from './ListTest/ListJsunit1.test';
 import listItemJsunit from './ListTest/ListItemJsunit.test';
 import swiperJsunit2 from './SwiperTest/SwiperJsunit2.test';
 import tabJsunit from './TabsTest/TabJsunit.test';
+
 import ScrollJsunit from './ScrollTest/ScrollJsunit.test';
 import ActsGridTest from "./gridTest/GridJC.test";
 import gridScrollbarUpdateTest from "./gridTest/gridScrollbarUpdate.test";
 import List07Test from './ListTest/List07.test';
 import Swiper07Test from './SwiperTest/Swiper07.test';
 import sidebarTypeTest from './sidebarType.test';
+import listUxTest from './ListTest/listux.test.ets'
 import SwiperMinSize from './SwiperTest/swiperUI/SwiperMinSize.test.ets';
 import SwiperNextPrevMarginAddJsunit from './SwiperTest/swiperUI/SwiperNextPrevMarginAddJsunit.test.ets'
 import ScrollToIndexForWaterFlowJsunit01 from './ScrollTest/ScrollToIndex/ScrollToIndexForWaterFlowJsunit01.test';
@@ -102,6 +105,7 @@ import ApiCommponentAddJsunit from './ScrollTest/ApiCommponentAddJsunit.test.ets
 
 
 export default function testsuite() {
+ listUxTest()
   ActsGridTest();
   gridScrollbarUpdateTest();
   List07Test();
@@ -118,31 +122,32 @@ export default function testsuite() {
   TabsApi();
   APIScrollflingSpeedLimitJsunit();
   APITabsBarBackgroundBlurStyleJsunit();
-  alphabetTest();
-  gridIndexTest();
-  listSContentTest();
-  SwiperLoop();
-  SwiperVisibility();
-  swiper1();
-  swiper2();
-  swiperWidthTest();
-  swiperGroupTest();
-  swiperPageTest();
-  swiperNextPreTest();
-  swiperDelAddTest();
-  swiperEdgeTest();
-  swipeleftScrollTest();
-  swiperRightScrollTest();
-  tabsApi1();
-  TouchTestStrategy();
-  ScrollTest();
-  tabs();
-  tabsSec();
-  tabsThird();
-  AlphabetIndexer();
-  RefreshTest();
-  ScrollTest2();
-  edgeEffectJsunit();
+  alphabetTest()
+  gridIndexTest()
+  listSContentTest()
+  SwiperLoop()
+  SwiperVisibility()
+  swiper1()
+  swiper2()
+  swiperWidthTest()
+  swiperGroupTest()
+  swiperPageTest()
+  swiperNextPreTest()
+  swiperDelAddTest()
+  swiperEdgeTest()
+  swipeleftScrollTest()
+  swiperRightScrollTest()
+  tabsApi1()
+  TouchTestStrategy()
+  ScrollTest()
+  tabs()
+  tabsSec()
+  tabsThird()
+  AlphabetIndexer()
+  RefreshTest()
+  ScrollTest2()
+
+  edgeEffectJsunit()
   swiperTest();
   swiperSecTest();
   scrollbarJsunit();
@@ -153,6 +158,7 @@ export default function testsuite() {
   listItemJsunit();
   swiperJsunit2();
   tabJsunit();
+  
   Tabs_itemPadMar();
   Tabs_itemSize();
   tabs_IndexTest();
@@ -162,25 +168,25 @@ export default function testsuite() {
   Tabs_barPosition();
   Tabs_barWidHei();
   Tabs_scrollable();
-  waterFlow_WaterFlowFrictionTest();
-  scroll_ScrollFrictionTest();
-  swiperIndex();
-  swiperVertical();
-  swiperLoopTrue();
-  swiperLoopFalse();
-  swiperItemSpace();
-  swiperPadding();
-  swiperMargin();
-  swiperMarPad();
-  swiperDisableSwipeTrue();
-  swiperDisableSwipeFalse();
-  swiperItemSize();
-  swiperItemSize2();
-  swiperItemPadding();
-  swiperItemMargin();
-  swiperItemPadMar();
-  swiperItemVisibility();
-  ScrollJsunit();
+  waterFlow_WaterFlowFrictionTest()
+  scroll_ScrollFrictionTest()
+  swiperIndex()
+  swiperVertical()
+  swiperLoopTrue()
+  swiperLoopFalse()
+  swiperItemSpace()
+  swiperPadding()
+  swiperMargin()
+  swiperMarPad()
+  swiperDisableSwipeTrue()
+  swiperDisableSwipeFalse()
+  swiperItemSize()
+  swiperItemSize2()
+  swiperItemPadding()
+  swiperItemMargin()
+  swiperItemPadMar()
+  swiperItemVisibility()
+  ScrollJsunit()
   SwiperMinSize();
   SwiperNextPrevMarginAddJsunit();
   ScrollToIndexForWaterFlowJsunit01();

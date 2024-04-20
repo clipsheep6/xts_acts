@@ -5,6 +5,9 @@
         "MainAbility/pages/List/List07",
         "MainAbility/pages/Swiper/Swiper07",
         "MainAbility/pages/sidebarType",
+
+
+
         "MainAbility/pages/Swiper/swiper",
         "MainAbility/pages/List/ListDelete",
         "MainAbility/pages/List/ListSwipe",
@@ -41,6 +44,7 @@
         "MainAbility/pages/grid/GridJC",
         "MainAbility/pages/grid/gridScrollBar",
         "MainAbility/pages/Scroll/Index2",
+ 
         "MainAbility/pages/List/edgeEffect",
         "MainAbility/pages/Swiper/Swipersec",
         "MainAbility/pages/Swiper/Swiper1",
@@ -52,6 +56,7 @@
         "MainAbility/pages/List/ListItem",
         "MainAbility/pages/Swiper/Swiper2",
         "MainAbility/pages/Tabs/Tab",
+
         "MainAbility/pages/Tabs/tabs_index/Tabs_index",
         "MainAbility/pages/Tabs/Tabs_ItemsChange/Tabs_itemPadMar",
         "MainAbility/pages/Tabs/Tabs_ItemsChange/Tabs_itemSize",
@@ -84,7 +89,8 @@
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperPadding",
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperVertical",
         "MainAbility/pages/Scroll/ScrollA",
-	"MainAbility/pages/Swiper/swiperUI/swiperNextPrevMargin50",
+	    "MainAbility/pages/List/list_ux",
+        "MainAbility/pages/Swiper/swiperUI/swiperNextPrevMargin50",
         "MainAbility/pages/Swiper/swiperUI/swiperNextPrevMargin52",
         "MainAbility/pages/Swiper/swiperUI/swiperNextPrevMargin53",
         "MainAbility/pages/Swiper/swiperUI/swiperNextPrevMargin54",
