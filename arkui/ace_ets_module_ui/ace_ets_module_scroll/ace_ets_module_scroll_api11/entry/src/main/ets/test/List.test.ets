@@ -93,6 +93,8 @@ import gridScrollbarUpdateTest from "./gridTest/gridScrollbarUpdate.test";
 import List07Test from './ListTest/List07.test';
 import Swiper07Test from './SwiperTest/Swiper07.test';
 import sidebarTypeTest from './sidebarType.test';
+import GridTest from './gridTest/GridPage.test'
+import patternLock from './PatternLockTest/patternLock'
 export default function testsuite() {
   ActsGridTest();
   gridScrollbarUpdateTest();
@@ -175,4 +177,6 @@ export default function testsuite() {
   swiperItemPadMar()
   swiperItemVisibility()
   ScrollJsunit()
+  GridTest()
+  patternLock()
 }
