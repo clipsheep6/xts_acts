@@ -25,6 +25,12 @@ import QueryNavDestinationInfoNavDestinationJsunit from './NavDestinationTest/Qu
 import NavigationAttr from './NavigationTest/NavigationAttr.test'
 import navigationApi1 from './NavigationTest/navigationApi/navigationApi1.test'
 import sidebar from './SideBarContainerTest/SideBar.test'
+import SideBarContainer_Attribute from './SideBarContainerTest/SideBarContainer_attribute/SideBarContainer_Attribute.test';
+import SideBarContainerType from './SideBarContainerTest/SideBarContainerType/SideBarContainerType.test';
+import SideBarContainerType_DefaultValue1 from './SideBarContainerTest/SideBarContainerType/SideBarContainerType_DefaultValue1.test';
+import SideBarContainerType_DefaultValue2 from './SideBarContainerTest/SideBarContainerType/SideBarContainerType_DefaultValue2.test';
+import SideBarContainerType_DefaultValue3 from './SideBarContainerTest/SideBarContainerType/SideBarContainerType_DefaultValue3.test';
+import SideBarContainerDivider from './SideBarContainerTest/SideBarContainerDivider/SideBarContainerDivider.test';
 import NavRouterJsunit from './NavRouter/NavRouterJsunit.test.ets';
 import NavDestinationJsunit from './NavDestinationTest/NavDestinationJsunit.test.ets';
 import NavigationJsunit from './Navigation/NavigationJsunit.test.ets';
@@ -71,12 +77,22 @@ import NavDestination_onBackPressed from './NavRouter/NavDestination_onBackPress
 import navigationJsunit from './NavigationTest/NavigationJsunit.test'
 import stepperJsunit1 from './stepperTest/StepperJsunit1.test'
 import navigatorJsunit from './Navigator/NavigatorJsunit.test'
-
 import navigationTypeTest from './NavigationTest/navigationType.test'
+import navigation_pushDestination from './Navigation_pushResult/navigation_pushDestination.test'
+import navigation_pushDestination2 from './Navigation_pushResult/navigation_pushDestination2.test'
+import navigation_pushDestinationByName3 from './Navigation_pushResult/navigation_pushDestinationByName3.test'
+import navigation_pushDestination4 from './Navigation_pushResult/navigation_pushDestination4.test'
+import navigation_pushDestinationByName5 from './Navigation_pushResult/navigation_pushDestinationByName5.test'
+import navigation_pushDestinationByName6 from './Navigation_pushResult/navigation_pushDestinationByName6.test'
+import navigation_pushDestinationByName7 from './Navigation_pushResult/navigation_pushDestinationByName7.test'
+import navigation_pushDestinationByName8 from './Navigation_pushResult/navigation_pushDestinationByName8.test'
+import navigation_pushDestination9 from './Navigation_pushResult/navigation_pushDestination9.test'
+import navigation_pushDestination10 from './Navigation_pushResult/navigation_pushDestination10.test'
+import navigation_pushDestination11 from './Navigation_pushResult/navigation_pushDestination11.test'
+import navigation_pushDestination12 from './Navigation_pushResult/navigation_pushDestination12.test'
 
 export default function testsuite() {
   navigationTypeTest();
-
   stepperJsunit();
   NavigationParamTest();
   NavigationApi();
@@ -136,4 +152,22 @@ export default function testsuite() {
   NavRouter_onStateChange1();
   NavRouter_onStateChange2();
   NavDestination_onBackPressed();
+  SideBarContainer_Attribute();
+  SideBarContainerType();
+  SideBarContainerType_DefaultValue1();
+  SideBarContainerType_DefaultValue2();
+  SideBarContainerType_DefaultValue3();
+  SideBarContainerDivider();
+  navigation_pushDestination();
+  navigation_pushDestination2();
+  navigation_pushDestinationByName3();
+  navigation_pushDestination4();
+  navigation_pushDestinationByName5();
+  navigation_pushDestinationByName6();
+  navigation_pushDestinationByName7();
+  navigation_pushDestinationByName8();
+  navigation_pushDestination9();
+  navigation_pushDestination10();
+  navigation_pushDestination11();
+  navigation_pushDestination12();
 }
