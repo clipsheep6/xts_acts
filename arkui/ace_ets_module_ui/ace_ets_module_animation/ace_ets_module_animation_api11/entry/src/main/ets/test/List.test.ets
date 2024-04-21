@@ -15,15 +15,8 @@
 import geometryTransition from './geometryTransitionTest/geometryTransition.test';
 import animationStatusJsunit from './animationTest/AnimationStatusJsunit.test.ets';
 import pageTransitionJsunit from './pageTransitionTest/PageTransitionJsunit.test.ets';
-import animateToTest from './animateto.test';
+
 import animationCurveTest from './animationCurve.test';
-import geometryTransitionJsunit from './geometryTransitionTest/GeometryTransitionJsunit.test';
-import animatorOnframeJsunit from './Animation/animator.test';
-import remoteWindowJsunit from './RemoteWindowTest/remoteWindow.test.ets'
-
-import pageTransitionJsunit from './pageTransitionTest/PageTransitionJsunit.test.ets';
-import animationStatusJsunit from './animationTest/AnimationStatusJsunit.test.ets';
-
 import geometryTransitionJsunit from './geometryTransitionTest/GeometryTransitionJsunit.test';
 import animatorOnframeJsunit from './Animation/animator.test';
 import remoteWindowJsunit from './RemoteWindowTest/remoteWindow.test.ets'
@@ -38,10 +31,4 @@ export default function testsuite() {
   animationStatusJsunit()
   pageTransitionJsunit()
   geometryTransition()
-  animationStatusJsunit()
-  pageTransitionJsunit()
-
-  geometryTransitionJsunit()
-  animatorOnframeJsunit()
-  remoteWindowJsunit()
 }
