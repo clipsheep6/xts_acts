@@ -93,6 +93,8 @@ import gridScrollbarUpdateTest from "./gridTest/gridScrollbarUpdate.test";
 import List07Test from './ListTest/List07.test';
 import Swiper07Test from './SwiperTest/Swiper07.test';
 import sidebarTypeTest from './sidebarType.test';
+import tabsJsunit from './TabsTest/TabsJsunit2.test';
+import scrollCodeJsunit from './ScrollTest/ScrollCodeJsunit.test';
 import listUxTest from './ListTest/listux.test.ets'
 import tabsOnContentWillChangeJsunitTest from './TabsTest/tabs_api12/tabsOnContentWillChange.test'
 import tabsOnContentWillChangeIndex3JsunitTest from './TabsTest/tabs_api12/tabsOnContentWillChangeIndex3.test'
@@ -205,6 +207,8 @@ export default function testsuite() {
   swiperItemPadMar()
   swiperItemVisibility()
   ScrollJsunit()
+  tabsJsunit();
+  scrollCodeJsunit();
   GridTest()
   patternLock()
   SwiperMinSize();

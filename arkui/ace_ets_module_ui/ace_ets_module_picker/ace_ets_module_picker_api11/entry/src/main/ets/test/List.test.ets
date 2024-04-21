@@ -39,6 +39,9 @@ import sliderJsunit1 from './slider/SliderJsunit1.test';
 import menuBackgroundBlurStyle from './SelectTest/menuBackgroundBlurStyle.test.ets'
 import menuBackgroundColor from './SelectTest/menuBackgroundColor.test.ets'
 
+import ratingJsunit2 from './RatingTest/RatingJsunit2.test';
+import toggleJsunit2 from './ToggleTest/ToggleJsunit2.test';
+
 import select from './SelectTest/Select';
 import selectmenuTest from './SelectTest/SelectMenu';
 import calendarpicker from './CalendarPickerTest/calendarpicker';
@@ -75,6 +78,8 @@ export default function testsuite() {
   menuBackgroundBlurStyle()
   menuBackgroundColor()
 
+  ratingJsunit2()
+  toggleJsunit2()
   select()
   selectmenuTest()
   calendarpicker()

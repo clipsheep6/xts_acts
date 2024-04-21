@@ -600,6 +600,9 @@ import RelativeContainer_AnchorPoint_Offset
   from './RelativeContainer/RelativeContainer_AnchorPoint/RelativeContainer_AnchorPoint_Offset.test.ets';
 import RelativeContainer_AnchorPoint_Position
   from './RelativeContainer/RelativeContainer_AnchorPoint/RelativeContainer_AnchorPoint_Position.test.ets';
+import blankJsunit2 from './BlankTest/BlankJsunit2.test';
+import gridJsunit from './GridTest/GridJsunit.test';
+
 export default function testsuite() {
   FolderStack3ApiJsunit()
   enumFolderTest()
@@ -1090,4 +1093,6 @@ export default function testsuite() {
   RelativeContainer_AnchorPoint_Id_Undefined()
   RelativeContainer_AnchorPoint_Offset()
   RelativeContainer_AnchorPoint_Position()
+  blankJsunit();
+  gridJsunit();
 }

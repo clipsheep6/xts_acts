@@ -33,6 +33,8 @@
         "MainAbility/pages/Slider/Slider",
         "MainAbility/pages/Select/menuBackgroundBlurStyle",
         "MainAbility/pages/Select/menuBackgroundColor",
+        "MainAbility/pages/Rating/rating2",
+        "MainAbility/pages/Toggle/toggle2",
 
         "MainAbility/pages/Select/SelectIndex",
         "MainAbility/pages/Select/SelectMenu",
