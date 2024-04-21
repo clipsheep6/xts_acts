@@ -21,6 +21,8 @@ import Router3 from './Router/Router3.test'
 import Router4 from './Router/Router4.test'
 import stageRouterTest from './Router/stageRouter.test'
 
+import systemRouterJsunit from './Router/SystemRouterJsunit.test';
+import routerStandardJsunit from './ohosRouterTest/router.test.ets';
 import aboutToAppearRouterTest from './back_router/init_page.test';
 import aboutToAppearRouterTest2 from './back_router/init_page2.test';
 import goWithParams from './back_router/A_page.test'
@@ -44,4 +46,6 @@ export default function testsuite() {
   RouterWithParamJsunit();
   RouterUrlErrorJsunit();
   stageRouterTest();
+  systemRouterJsunit()
+  routerStandardJsunit()
 }

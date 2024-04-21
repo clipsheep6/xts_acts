@@ -25,6 +25,12 @@ import qrcodeJsunit from './QrcodeTest/QrcodeJsunit.test';
 import badgeTest from './BadgeTest/badge'
 import datapanelTest from './DataPanelTest/datapanel'
 import advancedCounter from './advancedCounterTest/advancedCounter'
+import patternLockJsunit from './patternLockTest/PatternLockJsunit.test';
+import loadingProgressCircularJsunit from './LoadingProgressTest/loadingProgress.test.ets';
+import progressScaleCountJsunit from './ProgressTest/progress3.test.ets';
+
+import gaugeColorsJsunit from './gaugeTest/gauge1.test';
+import progressStyleJsunit from './ProgressTest/progress2.test';
 export default function testsuite() {
   gaugeJsunit();
   CounterEnableTest();
@@ -39,4 +45,10 @@ export default function testsuite() {
   datapanelTest();
   GaugeUxTest();
   advancedCounter()
+  patternLockJsunit()
+  loadingProgressCircularJsunit()
+  progressScaleCountJsunit()
+
+  gaugeColorsJsunit()
+  progressStyleJsunit()
 }
