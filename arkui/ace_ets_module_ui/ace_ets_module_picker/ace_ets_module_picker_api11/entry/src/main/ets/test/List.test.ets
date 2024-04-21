@@ -42,6 +42,13 @@ import menuBackgroundColor from './SelectTest/menuBackgroundColor.test.ets'
 import ratingJsunit2 from './RatingTest/RatingJsunit2.test';
 import toggleJsunit2 from './ToggleTest/ToggleJsunit2.test';
 
+import select from './SelectTest/Select';
+import selectmenuTest from './SelectTest/SelectMenu';
+import calendarpicker from './CalendarPickerTest/calendarpicker';
+import datepicker from './DatePickerTest/DatePicker';
+import ActsDatePickerTest from './DatePickerTest/DatePicker.test';
+import checkBoxTest1 from './CheckboxTest/checkBox';
+import checkBoxGroupTest from './checkboxGroup/checkBoxGroup';
 export default function testsuite() {
   stageTimePickerDialog();
   stageTextPickerDialog();
@@ -73,4 +80,11 @@ export default function testsuite() {
 
   ratingJsunit2()
   toggleJsunit2()
+  select()
+  selectmenuTest()
+  calendarpicker()
+  ActsDatePickerTest()
+  datepicker()
+  checkBoxTest1()
+  checkBoxGroupTest()
 }

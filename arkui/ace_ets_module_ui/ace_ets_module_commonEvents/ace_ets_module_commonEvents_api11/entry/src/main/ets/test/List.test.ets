@@ -66,6 +66,18 @@ import tapGesture from './TapGestureTest/TapGesture.test';
 import panGestureJsunit from './PanGestureTest/PanGestureJsunit.test';
 import longPressGestureJsUnit from './LongPressGestureTest/LongPressGesture.test';
 
+import enumsLineCapStyleJsunit from './enumTest/EnmusLineCapStyleJsunit.test';
+import enmusItemAlignJsunit from './enumTest/EnmusItemAlignJsunit.test';
+import dragEventJsunit from './DragController/DragEventJsunit.test';
+import GestureModeJsunit from './onGestureJudgeBeginTest/GestureModeJsunit.test';
+import PanDirectionJsunit from './PanGestureTest/PanDirectionJsunit.test';
+import subscribedAbstractPropertyJsunit from './Abstract/SubscribedAbstractPropertyJsunit.test';
+import subscribaleAbstractJsunit from './Abstract/SubscribaleAbstractJsunit.test';
+
+import uiAppearanceALWAYS_DARKJsunit from './onAppearTest/uiAppearance.test.ets';
+import gestureParallelJsunit from './GestureGroupTest/gesture.test.ets';
+import gestureSetDirectionJsunit from './PanGestureTest/gesture.test';
+import lazyForEachOnDataAddJsunit from './lazyForeachTest/lazyForEach.test';
 export default function testsuite() {
   touchJsunit();
   appearJsunit();
@@ -120,4 +132,14 @@ export default function testsuite() {
   tapGesture()
   panGestureJsunit();
   longPressGestureJsUnit();
+  dragEventJsunit()
+  enumsLineCapStyleJsunit()
+  enmusItemAlignJsunit()
+  GestureModeJsunit()
+  PanDirectionJsunit()
+  subscribedAbstractPropertyJsunit()
+  
+  gestureParallelJsunit()
+  gestureSetDirectionJsunit()
+  lazyForEachOnDataAddJsunit()
 }

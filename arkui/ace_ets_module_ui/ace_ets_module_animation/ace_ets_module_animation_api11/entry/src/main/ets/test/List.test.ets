@@ -20,6 +20,9 @@ import animateJsunit from './animationTest/AnimateJsunit.test';
 import motionPathJsunit from './motionPathTest/MotionPathJsunit.test';
 import sharedTransitionJsunit from './sharedTransitionTest/SharedTransitionJsunit.test';
 import transitionJsunit from './transitionTest/TransitionJsunit.test';
+import geometryTransitionJsunit from './geometryTransitionTest/GeometryTransitionJsunit.test';
+import animatorOnframeJsunit from './Animation/animator.test';
+import remoteWindowJsunit from './RemoteWindowTest/remoteWindow.test.ets'
 
 export default function testsuite() {
   animateToTest();
@@ -31,4 +34,7 @@ export default function testsuite() {
   motionPathJsunit()
   sharedTransitionJsunit()
   transitionJsunit()
+  geometryTransitionJsunit()
+  animatorOnframeJsunit()
+  remoteWindowJsunit()
 }

@@ -146,6 +146,13 @@
         "MainAbility/pages/button/button",
         "MainAbility/pages/span/span2",
         "MainAbility/pages/text/text2",
-        "MainAbility/pages/text/timeStamp"
+        "MainAbility/pages/text/timeStamp",
+        "MainAbility/pages/RenderNode/rotation",
+        "MainAbility/pages/RenderNode/transform",
+        "MainAbility/pages/RenderNode/translation",
+        "MainAbility/pages/button/ButtonIndex",
+        "MainAbility/pages/TextInput/TextinputIndex",
+        "MainAbility/pages/TextInput/TextinputSec",
+        "MainAbility/pages/SegmentButton/SegmentButtonIndex"
     ]
 }

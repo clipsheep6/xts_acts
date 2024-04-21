@@ -73,7 +73,13 @@ import stepperJsunit1 from './stepperTest/StepperJsunit1.test'
 import navigatorJsunit from './Navigator/NavigatorJsunit.test'
 
 import navigationTypeTest from './NavigationTest/navigationType.test'
-
+import navigationuxtest from './NavigationTest/navigationux.test'
+import SideBarContainer_Attribute from './SideBarContainerTest/SideBarContainer_attribute/SideBarContainer_Attribute.test';
+import SideBarContainerType from './SideBarContainerTest/SideBarContainerType/SideBarContainerType.test';
+import SideBarContainerType_DefaultValue1 from './SideBarContainerTest/SideBarContainerType/SideBarContainerType_DefaultValue1.test';
+import SideBarContainerType_DefaultValue2 from './SideBarContainerTest/SideBarContainerType/SideBarContainerType_DefaultValue2.test';
+import SideBarContainerType_DefaultValue3 from './SideBarContainerTest/SideBarContainerType/SideBarContainerType_DefaultValue3.test';
+import SideBarContainerDivider from './SideBarContainerTest/SideBarContainerDivider/SideBarContainerDivider.test';
 export default function testsuite() {
   navigationTypeTest();
 
@@ -136,4 +142,12 @@ export default function testsuite() {
   NavRouter_onStateChange1();
   NavRouter_onStateChange2();
   NavDestination_onBackPressed();
+  navigationuxtest()
+  SideBarContainer_Attribute();
+  SideBarContainerType();
+  SideBarContainerType_DefaultValue1();
+  SideBarContainerType_DefaultValue2();
+  SideBarContainerType_DefaultValue3();
+  SideBarContainerDivider();
+
 }

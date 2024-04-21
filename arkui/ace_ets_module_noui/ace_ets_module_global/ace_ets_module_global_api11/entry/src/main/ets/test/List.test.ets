@@ -14,8 +14,20 @@
  */
 import globalJsunit from './globalTest/GlobalJsunit.test';
 import commonJsunit from './dpiTest/CommonJsunit.test';
+import ResourceColor from './ResourceTest/ResourceColor.test.ets'
+import ResourceFloat from './ResourceTest/ResourceFloat.test.ets'
+import ResourceInteger from './ResourceTest/ResourceInteger.test.ets'
+import ResourcePlural from './ResourceTest/ResourcePlural.test.ets'
+import ResourceStrarray from './ResourceTest/ResourceStrarray.test.ets'
+import ResourceString from './ResourceTest/ResourceString.test.ets'
 
 export default function testsuite() {
   globalJsunit();
   commonJsunit();
+  ResourceColor();
+  ResourceFloat();
+  ResourceInteger();
+  ResourcePlural();
+  ResourceStrarray();
+  ResourceString();
 }
