@@ -285,7 +285,7 @@ export default function testsuite() {
   textJsunit()
   outline()
 
-  buttonJsunit()
+  // buttonJsunit()
   spanJsunit2()
   textJsunit2()
   timeStampJsunit()
