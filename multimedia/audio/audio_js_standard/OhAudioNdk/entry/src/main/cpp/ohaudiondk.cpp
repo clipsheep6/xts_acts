@@ -61,6 +61,7 @@
 #define SOURCETYPE1 1
 #define SOURCETYPE2 2
 #define SOURCETYPE7 7
+#define SOURCETYPE11 11
 
 #define KNUMBER0 0
 #define KNUMBER1 1
@@ -1159,6 +1160,8 @@ static napi_value OHAudioStreamBuilderSetCapturerInfo(napi_env env, napi_callbac
         case SOURCETYPE7:
             sourceType = AUDIOSTREAM_SOURCE_TYPE_VOICE_COMMUNICATION;
             break;
+        case SOURCETYPE11:
+            sourceType = AUDIOSTREAM_SOURCE_TYPE_REMOTE_CAST;
         default:
             break;
     }
