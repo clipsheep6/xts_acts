@@ -141,10 +141,6 @@
       "value": "#FFFF0000"
     },
     {
-      "name": "start_window_background",
-      "value": "#FFFFFF"
-    },
-    {
       "name": "gaugeColor1",
       "value": "#FF0000FF"
     },
