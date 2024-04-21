@@ -15,7 +15,9 @@
 // @ts-nocheck
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import commonEvent from '@ohos.commonEvent';
+import {Driver, ON} from '@ohos.UiTest';
 
+let driver = Driver.create();
 var subscriberInfo = {
     events: ['MainAbility_Start_CommonEvent_multi_hap_entry', 'MainAbility_Start_CommonEvent_multi_hap_feature'],
 };
@@ -23,7 +25,9 @@ var subscriberInfo = {
 
 export default function abilityTest() {
     describe('ActsAbilityMultiTest', function () {
-
+        beforeEach(async (done) => {
+            setTimeout(() => { done(); }, 3000)
+        })
         /**
          * @tc.number: ACTS_getAbilityInfo_0400
          * @tc.name: Starting singleton ability the second time does triggers onNewWant.
@@ -44,6 +48,7 @@ export default function abilityTest() {
                 + JSON.stringify(error) + ", " + JSON.stringify(data))
             })
 
+            
             commonEvent.createSubscriber(subscriberInfo).then(async (data) => {
                 console.debug("ACTS_getAbilityInfo_0400====>Create Subscriber====>");
                 Subscriber = data;
@@ -87,6 +92,15 @@ export default function abilityTest() {
             function UnSubscribeCallback() {
                 console.debug("ACTS_getAbilityInfo_0400====>UnSubscribe CallBack====>");
                 done();
+            }
+            
+            await driver.delayMs(2000);
+            let allowed = await driver.findComponent(ON.text("打开"));
+            if (allowed) {
+              console.log("find button");
+              let point = await allowed.getBoundsCenter();
+              console.log('point.x : ' + point.x +'point.y : '+ point.y);
+              await driver.click(point.x, point.y);
             }
         })
 
