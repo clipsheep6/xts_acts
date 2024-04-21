@@ -113,6 +113,17 @@ import tabsOnContentWillChangeIndex15JsunitTest from './TabsTest/tabs_api12/tabs
 import listItemJsunit2 from './ListTest/ListItemJsunit2.test.ets';
 import scrollBarJsunit2 from './ScrollTest/ScrollBarJsunit2.test.ets';
 import waterFlowDemoJsunit from './WaterFlowTest/waterFlowDemo.test.ets';
+import GridTest from './gridTest/GridPage.test'
+import patternLock from './PatternLockTest/patternLock'
+
+import SwiperMinSize from './SwiperTest/swiperUI/SwiperMinSize.test.ets';
+import SwiperNextPrevMarginAddJsunit from './SwiperTest/swiperUI/SwiperNextPrevMarginAddJsunit.test.ets'
+import ScrollToIndexForWaterFlowJsunit01 from './ScrollTest/ScrollToIndex/ScrollToIndexForWaterFlowJsunit01.test';
+import ScrollToIndexForWaterFlowJsunit02 from './ScrollTest/ScrollToIndex/ScrollToIndexForWaterFlowJsunit02.test';
+import ScrollToIndexForGridJsunit01 from './ScrollTest/ScrollToIndex/ScrollToIndexForGridJsunit01.test';
+import ScrollToIndexForGridJsunit02 from './ScrollTest/ScrollToIndex/ScrollToIndexForGridJsunit02.test';
+import ScrollToIndexForGridJsunit03 from './ScrollTest/ScrollToIndex/ScrollToIndexForGridJsunit03.test';
+import ApiCommponentAddJsunit from './ScrollTest/ApiCommponentAddJsunit.test.ets';
 
 export default function testsuite() {
   listUxTest()
@@ -197,6 +208,16 @@ export default function testsuite() {
   swiperItemPadMar()
   swiperItemVisibility()
   ScrollJsunit()
+  GridTest()
+  patternLock()
+  SwiperMinSize();
+  SwiperNextPrevMarginAddJsunit();
+  ScrollToIndexForWaterFlowJsunit01();
+  ScrollToIndexForWaterFlowJsunit02();
+  ScrollToIndexForGridJsunit01();
+  ScrollToIndexForGridJsunit02();
+  ScrollToIndexForGridJsunit03();
+  ApiCommponentAddJsunit();
   tabsOnContentWillChangeJsunitTest()
   tabsOnContentWillChangeIndex3JsunitTest()
   tabsOnContentWillChangeIndex03JsunitTest()

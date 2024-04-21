@@ -30,6 +30,9 @@
         "MainAbility/pages/State/RouterPushThree",
         "MainAbility/pages/State/RouterUrlError",
         "MainAbility/pages/ohosRouter/ohosRouterA",
-        "MainAbility/pages/ohosRouter/ohosRouterB"
+        "MainAbility/pages/ohosRouter/ohosRouterB",
+        "MainAbility/pages/Router/pushUrlasync",
+        "MainAbility/pages/Router/stageRouter"
+
     ]
 }
