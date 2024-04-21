@@ -33,7 +33,13 @@ import navigatorJsunit from './Navigator/NavigatorJsunit.test'
 import navigationJsunit3 from './NavigationTest/NavigationJsunit3.test';
 import navigatorCodeJsunit from './NavigationTest/NavigatorCodeJsunit.test';
 import navigationTypeTest from './NavigationTest/navigationType.test'
-
+import navigationuxtest from './NavigationTest/navigationux.test'
+import SideBarContainer_Attribute from './SideBarContainerTest/SideBarContainer_attribute/SideBarContainer_Attribute.test';
+import SideBarContainerType from './SideBarContainerTest/SideBarContainerType/SideBarContainerType.test';
+import SideBarContainerType_DefaultValue1 from './SideBarContainerTest/SideBarContainerType/SideBarContainerType_DefaultValue1.test';
+import SideBarContainerType_DefaultValue2 from './SideBarContainerTest/SideBarContainerType/SideBarContainerType_DefaultValue2.test';
+import SideBarContainerType_DefaultValue3 from './SideBarContainerTest/SideBarContainerType/SideBarContainerType_DefaultValue3.test';
+import SideBarContainerDivider from './SideBarContainerTest/SideBarContainerDivider/SideBarContainerDivider.test';
 export default function testsuite() {
   navigationTypeTest();
 
@@ -57,4 +63,69 @@ export default function testsuite() {
 
   navigationJsunit3()
   navigatorCodeJsunit()
+  NavigationApi();
+  NavigationApi2();
+  NavigationApi3();
+  NavPathStackApi1();
+  NavPathStackApi2();
+  NavPathStackApi3();
+  NavDestinationInfoStateJsunit();
+  QueryNavDestinationInfoNavDestinationJsunit();
+  NavigationAttr();
+  navigationApi1();
+  sidebar();
+  navigationJsunit();
+  stepperJsunit1();
+  navigatorJsunit();
+  NavRouterJsunit();
+  NavDestinationJsunit();
+  NavigationJsunit();
+  navigationNavbar02();
+  navigationPosition();
+  navigationNavbar01();
+  NavigationStack01Jsunit();
+  NavigationStack10Jsunit();
+  NavigationStack11Jsunit();
+  NavigationStack12Jsunit();
+  NavigationStack13Jsunit();
+  NavigationStack14Jsunit();
+  NavigationStack15Jsunit();
+  NavigationStack16Jsunit();
+  NavigationStack17Jsunit();
+  NavigationStack18Jsunit();
+  NavigationStack19Jsunit();
+  NavigationStack20Jsunit();
+  NavigationStack21Jsunit();
+  NavigationStack23Jsunit();
+  NavigationStack24Jsunit();
+  NavigationStack25Jsunit();
+  NavigationStack26Jsunit();
+  NavigationMode01Jsunit();
+  NavigationMode02Jsunit();
+  NavigationMode03Jsunit();
+  NavigationMode04Jsunit();
+  NavigationMode05Jsunit();
+  NavigationMode06Jsunit();
+  NavigationMode07Jsunit();
+  NavigationMode08Jsunit();
+  NavigationMode09Jsunit();
+  NavigationMode10Jsunit();
+  NavigationMode11Jsunit();
+  NavigationMode12Jsunit();
+  NavigationMode13Jsunit();
+  NavigationMode14Jsunit();
+  NavigationMode15Jsunit();
+  NavigationMode16Jsunit();
+  NavigationMode17Jsunit();
+  NavRouter_onStateChange1();
+  NavRouter_onStateChange2();
+  NavDestination_onBackPressed();
+  navigationuxtest()
+  SideBarContainer_Attribute();
+  SideBarContainerType();
+  SideBarContainerType_DefaultValue1();
+  SideBarContainerType_DefaultValue2();
+  SideBarContainerType_DefaultValue3();
+  SideBarContainerDivider();
+
 }

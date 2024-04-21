@@ -5,6 +5,10 @@
         "MainAbility/pages/animation/animationStatus",
         "MainAbility/pages/pageTransition/pageTransition",
         "MainAbility/pages/animateto",
-        "MainAbility/pages/animationCurve"
+        "MainAbility/pages/animationCurve",
+        "MainAbility/pages/geometryTransition/geometryTransition2",
+        "MainAbility/pages/Animation/animate_play_mode",
+        "MainAbility/pages/Animation/animator",
+        "MainAbility/pages/RemoteWindow/remoteWindow"
     ]
 }

@@ -115,6 +115,7 @@ import scrollBarJsunit2 from './ScrollTest/ScrollBarJsunit2.test.ets';
 import waterFlowDemoJsunit from './WaterFlowTest/waterFlowDemo.test.ets';
 
 export default function testsuite() {
+  listUxTest()
   ActsGridTest();
   gridScrollbarUpdateTest();
   List07Test();
