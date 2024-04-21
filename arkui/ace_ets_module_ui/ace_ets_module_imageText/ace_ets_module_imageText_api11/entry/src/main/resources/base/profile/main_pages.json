@@ -149,6 +149,7 @@
         "MainAbility/pages/button/ButtonIndex",
         "MainAbility/pages/TextInput/TextinputIndex",
         "MainAbility/pages/TextInput/TextinputSec",
-        "MainAbility/pages/SegmentButton/SegmentButtonIndex"
+        "MainAbility/pages/SegmentButton/SegmentButtonIndex",
+	"MainAbility/pages/TextArea/textAreaux",
     ]
 }
