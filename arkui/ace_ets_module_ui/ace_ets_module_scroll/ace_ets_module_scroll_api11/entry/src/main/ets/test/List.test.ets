@@ -110,6 +110,9 @@ import tabsOnContentWillChangeIndex13JsunitTest from './TabsTest/tabs_api12/tabs
 import tabsOnContentWillChangeIndex14JsunitTest from './TabsTest/tabs_api12/tabsOnContentWillChangeIndex14.test'
 import tabsOnContentWillChangeIndex15JsunitTest from './TabsTest/tabs_api12/tabsOnContentWillChangeIndex15.test'
 
+import listItemJsunit2 from './ListTest/ListItemJsunit2.test.ets';
+import scrollBarJsunit2 from './ScrollTest/ScrollBarJsunit2.test.ets';
+import waterFlowDemoJsunit from './WaterFlowTest/waterFlowDemo.test.ets';
 import GridTest from './gridTest/GridPage.test'
 import patternLock from './PatternLockTest/patternLock'
 
@@ -230,4 +233,8 @@ export default function testsuite() {
   tabsOnContentWillChangeIndex13JsunitTest()
   tabsOnContentWillChangeIndex14JsunitTest()
   tabsOnContentWillChangeIndex15JsunitTest()
+  
+  listItemJsunit2()
+  scrollBarJsunit2()
+  waterFlowDemoJsunit()
 }

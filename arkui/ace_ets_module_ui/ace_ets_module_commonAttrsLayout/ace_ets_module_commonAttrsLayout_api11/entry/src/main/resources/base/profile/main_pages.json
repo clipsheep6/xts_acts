@@ -4,6 +4,7 @@
         "MainAbility/pages/GridContainer/gridContainer",
         "MainAbility/pages/GridContainer/gridSettings",
         "MainAbility/pages/layoutConstraints/layoutConstraints",
+        "MainAbility/pages/FlexLayout/placement",
         "MainAbility/pages/comSizeAbility/comSizeAbilityTest_01",
         "MainAbility/pages/comSizeAbility/comSizeAbilityTest_02",
         "MainAbility/pages/comSizeAbility/comSizeAbilityTest_03",

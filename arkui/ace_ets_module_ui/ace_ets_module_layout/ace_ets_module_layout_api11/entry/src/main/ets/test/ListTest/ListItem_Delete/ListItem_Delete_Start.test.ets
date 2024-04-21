@@ -29,7 +29,7 @@ export default function ListItem_Delete_Start() {
         router.clear();
         let pages = router.getState();
         console.info("get ListItem_Delete_Start state pages:" + JSON.stringify(pages));
-        if (!("List_SpaceChange" == pages.name)) {
+        if (!("ListItem_Delete_Start" == pages.name)) {
           console.info("get ListItem_Delete_Start pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);

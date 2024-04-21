@@ -84,6 +84,11 @@
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperPadding",
         "MainAbility/pages/Swiper/Swiper_ParmsChange/swiperVertical",
         "MainAbility/pages/Scroll/ScrollA",
+
+        "MainAbility/pages/List/listItem2",
+        "MainAbility/pages/Scroll/scrollBar2",
+        "MainAbility/pages/WaterFlow/WaterflowDemo",
+	"MainAbility/pages/List/list_ux",
 	    "MainAbility/pages/List/list_ux",
         "MainAbility/pages/components/Marquee",
         "MainAbility/pages/components/Path",

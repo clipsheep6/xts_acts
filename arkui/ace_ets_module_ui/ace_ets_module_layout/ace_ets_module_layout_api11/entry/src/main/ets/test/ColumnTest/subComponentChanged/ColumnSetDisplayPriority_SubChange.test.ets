@@ -30,7 +30,7 @@ export default function ColumnSetDisplayPriority_SubChange() {
         await CommonFunc.sleep(1000);
         let pages = router.getState();
         console.info("get SetDisplayPriority state success " + JSON.stringify(pages));
-        if (!("SetDisplayPriority" == pages.name)) {
+        if (!("ColumnSetDisplayPriority_SubChange" == pages.name)) {
           console.info("get SetDisplayPriority state success " + JSON.stringify(pages.name));
           let result = await router.push(options)
           console.info("push SetDisplayPriority page success " + JSON.stringify(result));

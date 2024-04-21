@@ -600,6 +600,15 @@ import RelativeContainer_AnchorPoint_Offset
   from './RelativeContainer/RelativeContainer_AnchorPoint/RelativeContainer_AnchorPoint_Offset.test.ets';
 import RelativeContainer_AnchorPoint_Position
   from './RelativeContainer/RelativeContainer_AnchorPoint/RelativeContainer_AnchorPoint_Position.test.ets';
+
+import direction2Jsunit from './FlexTest/Direction2Jsunit.test';
+import directionJsunit from './FlexTest/DirectionJsunit.test.ets';
+import flexDirectionJsunit from './FlexTest/FlexDirectionJsunit.test';
+import flexWrapJsunit from './FlexTest/FlexWrapJsunit.test';
+import dividerJsunit2 from './DividerTest/DividerJsunit2.test';
+import gradientDirectionJsunit from './RowTest/GradientDirectionJsunit.test';
+import rowJsunit3 from './RowTest/RowJsunit3.test';
+
 export default function testsuite() {
   FolderStack3ApiJsunit()
   enumFolderTest()
@@ -1090,4 +1099,12 @@ export default function testsuite() {
   RelativeContainer_AnchorPoint_Id_Undefined()
   RelativeContainer_AnchorPoint_Offset()
   RelativeContainer_AnchorPoint_Position()
+
+  directionJsunit()
+  direction2Jsunit()
+  flexDirectionJsunit()
+  flexWrapJsunit()
+  dividerJsunit2()
+  gradientDirectionJsunit()
+  rowJsunit()
 }

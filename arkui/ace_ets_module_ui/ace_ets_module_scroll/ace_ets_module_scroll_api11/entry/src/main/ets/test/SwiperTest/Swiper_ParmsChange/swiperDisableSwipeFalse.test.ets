@@ -44,7 +44,7 @@ export default function swiperDisableSwipeFalse() {
         await CommonFunc.sleep(1000);
         let pages = router.getState();
         console.info("get DisableSwipe state success " + JSON.stringify(pages));
-        if (!("DisableSwipe" == pages.name)) {
+        if (!("swiperDisableSwipeFalse" == pages.name)) {
           console.info("get DisableSwipe state success " + JSON.stringify(pages.name));
           let result = await router.pushUrl(options)
           console.info("push DisableSwipe page success " + JSON.stringify(result));

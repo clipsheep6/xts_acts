@@ -30,7 +30,7 @@ export default function ColumnSetPadding__SubChange() {
         await CommonFunc.sleep(1000);
         let pages = router.getState();
         console.info("get parentComponentSetPadding state success " + JSON.stringify(pages));
-        if (!("parentComponentSetPadding" == pages.name)) {
+        if (!("ColumnSetPadding_SubChange" == pages.name)) {
           console.info("get parentComponentSetPadding state success " + JSON.stringify(pages.name));
           let result = await router.push(options)
           console.info("push parentComponentSetPadding page success " + JSON.stringify(result));

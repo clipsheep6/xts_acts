@@ -47,6 +47,7 @@
         "MainAbility/pages/LongPressGesture/LongPressGesture1",
         "MainAbility/pages/LongPressGesture/LongPressGesture2",
         "MainAbility/pages/LongPressGesture/LongPressGesture3",
+        "MainAbility/pages/Click/sourceType",
         "MainAbility/pages/DragController/dragEvent",
         "MainAbility/pages/DragController/dragEvent2",
         "MainAbility/pages/enum/enumsLineCapStyle",

@@ -20,6 +20,8 @@ import ToastShowMode from './promptActionTest/ToastShowMode.test';
 import promptTest from './promptActionTest/promptTest.test';
 import DialogTest from './promptActionTest/Dialog.test';
 import panelJsunit from './Panel/PanelJsunit.test';
+import panelClose from './panelTest/panelClose'
+import systempromptJsunit from './promptActionTest/SystempromptJsunit.test.ets';
 import panelClose from './Panel/panelClose'
 
 import ActionSheet from './actionSheetTest/ActionSheet.test'
@@ -92,6 +94,7 @@ export default function testsuite() {
   DialogTest();
   panelJsunit();
   panelClose()
+  systempromptJsunit()
 
   ActionSheet();
   ActionSheetFalse();

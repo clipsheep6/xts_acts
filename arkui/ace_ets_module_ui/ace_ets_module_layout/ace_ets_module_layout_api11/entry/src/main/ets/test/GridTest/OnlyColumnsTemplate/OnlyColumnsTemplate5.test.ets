@@ -30,7 +30,7 @@ export default function OnlyColumnsTemplate5() {
         router.clear();
         let pages = router.getState();
         console.info("get OnlyColumnsTemplate5 state pages:" + JSON.stringify(pages));
-        if (!("GridFrictionPage" == pages.name)) {
+        if (!("OnlyColumnsTemplate1" == pages.name)) {
           console.info("get OnlyColumnsTemplate5 pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);

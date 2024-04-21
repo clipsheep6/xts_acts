@@ -38,7 +38,7 @@ export default function ScrollJsunit() {
         router.clear();
         let pages = router.getState();
         console.info("get Scroll state success " + JSON.stringify(pages));
-        if (!("Scroll" == pages.name)) {
+        if (!("ScrollA" == pages.name)) {
           console.info("get Scroll state success " + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           console.info("push Scroll page success " + JSON.stringify(result));

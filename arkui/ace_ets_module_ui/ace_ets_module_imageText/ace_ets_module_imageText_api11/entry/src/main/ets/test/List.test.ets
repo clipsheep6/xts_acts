@@ -74,7 +74,7 @@ import relativeCTest from "./RelativeContainerTest/relative/relative.test"
 import getClipToFrameJsunit from './RenderNodeTest/RenderNodeTest_001/getClipToFrameJsunit.test'
 import getOpacityJsunit from './RenderNodeTest/RenderNodeTest_001/getOpacityJsunit.test'
 import getSizeJsunit from './RenderNodeTest/RenderNodeTest_001/getSizeJsunit.test'
-import SetSizeJsunit from './RenderNodeTest/RenderNodeTest_001/SetSizeJsunit.test.ets'
+import SetSizeJsunit from './RenderNodeTest/RenderNodeTest_001/SetSizeJsunit.test'
 import SetClipToFrameJsunit from './RenderNodeTest/RenderNodeTest_001/SetClipToFrameJsunit.test'
 import SetOpacityJsunit from './RenderNodeTest/RenderNodeTest_001/SetOpacityJsunit.test'
 import SetPositionJsunit from './RenderNodeTest/RenderNodeTest_001/SetPositionJsunit.test'
@@ -146,6 +146,9 @@ import rotationTest from './RenderNodeTest/rotation.test.ets'
 import transformTest from './RenderNodeTest/transform.test.ets'
 import translationTest from './RenderNodeTest/translation.test.ets'
 
+import imageAnimatorJsunit from './imageTest/ImageAnimatorJsunit.test'
+import pieceJsunit from './pieceTest/PieceJsunit.test';
+import searchJsunit from './SearchTest/SearchJsunit.test';
 import stageFontTest from './textTest/stageFont.test';
 import stageMediaquery from './textTest/stageMediaquery.test';
 
@@ -279,6 +282,10 @@ export default function testsuite() {
   imageJsunit()
   spanJsunit()
   textJsunit()
+
+  imageAnimatorJsunit()
+  pieceJsunit()
+  searchJsunit()
   outline()
   rotationTest()
   transformTest()

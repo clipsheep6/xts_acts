@@ -22,6 +22,8 @@ import counterJsunit from './CounterTest/CounterJsunit.test';
 import datapanelJsunit from './DataPanelTest/DataPanelJsunit.test';
 import progressJsunit from './ProgressTest/ProgressJsunit.test';
 import qrcodeJsunit from './QrcodeTest/QrcodeJsunit.test';
+import loadingProgressJsunit from './LoadingProgressTest/LoadingProgressJsunit.test.ets';
+
 import badgeTest from './BadgeTest/badge'
 import datapanelTest from './DataPanelTest/datapanel'
 import advancedCounter from './advancedCounterTest/advancedCounter'
@@ -35,6 +37,7 @@ export default function testsuite() {
   datapanelJsunit()
   progressJsunit()
   qrcodeJsunit()
+  loadingProgressJsunit()
   badgeTest();
   datapanelTest();
   GaugeUxTest();

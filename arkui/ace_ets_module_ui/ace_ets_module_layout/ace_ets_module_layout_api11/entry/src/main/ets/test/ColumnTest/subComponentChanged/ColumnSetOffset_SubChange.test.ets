@@ -30,7 +30,7 @@ export default function ColumnSetOffset_SubChange() {
         await CommonFunc.sleep(1000);
         let pages = router.getState();
         console.info("get SetOffset state success " + JSON.stringify(pages));
-        if (!("SetOffset" == pages.name)) {
+        if (!("ColumnSetOffset_SubChange" == pages.name)) {
           console.info("get SetOffset state success " + JSON.stringify(pages.name));
           let result = await router.push(options)
           console.info("push SetOffset page success " + JSON.stringify(result));

@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 import girdContainerJsunit from './GridContainerTest/GridContainerJsunit.test';
 import gridSettingsJsunit from './GridContainerTest/GridSettingsJsunit.test';
 import layoutConstraintsJsunit from './layoutConstraintsTest/LayoutConstraintsJsunit.test';
+import placementJsunit from './FlexLayoutTest/PlacementJsunit.test.ets';
 import comSizeAbilityTest_01 from './comSizeAbility/comSizeAbilityTest_01.test';
 import comSizeAbilityTest_02 from './comSizeAbility/comSizeAbilityTest_02.test';
 import comSizeAbilityTest_03 from './comSizeAbility/comSizeAbilityTest_03.test';
@@ -82,6 +82,7 @@ export default function testsuite() {
   girdContainerJsunit();
   gridSettingsJsunit();
   layoutConstraintsJsunit();
+  placementJsunit()
   comSizeAbilityTest_01();
   comSizeAbilityTest_02();
   comSizeAbilityTest_03();

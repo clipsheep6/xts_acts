@@ -9,6 +9,8 @@
         "MainAbility/pages/popupControl/popupArrow",
         "MainAbility/pages/bindSheet/Index",
         "MainAbility/pages/popupControl/popupfirst",
+        "MainAbility/pages/menuControl/bindMenu2",
+        "MainAbility/pages/popupControl/bindPopup",
         "MainAbility/pages/menuControl/bindContextMenu",
         "MainAbility/pages/popupControl/CustomPopupOptions",
         "MainAbility/pages/popupControl/CustomPopupOptionsFalse",

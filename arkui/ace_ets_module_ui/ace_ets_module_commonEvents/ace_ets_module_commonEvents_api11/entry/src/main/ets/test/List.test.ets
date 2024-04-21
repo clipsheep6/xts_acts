@@ -58,6 +58,7 @@ import GestureLongPressGesture from './onGestureJudgeBeginTest/GestureLongPressG
 import LongPressGesture1 from './LongPressGestureTest/LongPressGesture1.test'
 import LongPressGesture2 from './LongPressGestureTest/LongPressGesture2.test'
 import LongPressGesture3 from './LongPressGestureTest/LongPressGesture3.test'
+import sourceTypeJsunit from './ClickTest/SourceTypeJsunit.test.ets';
 
 import enumsLineCapStyleJsunit from './enumTest/EnmusLineCapStyleJsunit.test';
 import enmusItemAlignJsunit from './enumTest/EnmusItemAlignJsunit.test';
@@ -118,6 +119,7 @@ export default function testsuite() {
   LongPressGesture2()
   LongPressGesture3()
   GestureLongPressGesture();
+  sourceTypeJsunit()
   dragEventJsunit()
   enumsLineCapStyleJsunit()
   enmusItemAlignJsunit()

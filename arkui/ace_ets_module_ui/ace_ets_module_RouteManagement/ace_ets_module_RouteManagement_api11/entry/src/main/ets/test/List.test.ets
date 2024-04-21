@@ -27,6 +27,9 @@ import goWithParams from './back_router/A_page.test'
 import RouterPushUrlJsunit from './State/RouterPushUrlJsunit.test';
 import RouterWithParamJsunit from './State/RouterWithParamJsunit.test';
 import RouterUrlErrorJsunit from './State/RouterUrlErrorJsunit.test';
+import ohosRouterJsunit from './ohosRouterTest/OhosRouterJsnuit.test.ets';
+
+
 
 
 export default function testsuite() {
@@ -43,5 +46,6 @@ export default function testsuite() {
   RouterPushUrlJsunit();
   RouterWithParamJsunit();
   RouterUrlErrorJsunit();
+  ohosRouterJsunit()
   stageRouterTest();
 }
