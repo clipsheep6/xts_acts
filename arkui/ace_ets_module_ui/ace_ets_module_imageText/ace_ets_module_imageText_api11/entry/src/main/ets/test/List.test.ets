@@ -152,6 +152,7 @@ import buttonTest from './buttonTest/button'
 import textInputTest from './TextInputTest/textinput'
 import textinputSec from './TextInputTest/textinputSec'
 import segmentbuttonTest from './SegmentButtonTest/segmentbutton'
+import textAreaUxTest  from './TextAreaTest/textareaux.test';
 export default function testsuite() {
   stageFontTest();
   stageMediaquery();
@@ -287,4 +288,5 @@ export default function testsuite() {
   textInputTest()
   textinputSec()
   segmentbuttonTest()
+  textAreaUxTest();
 }
