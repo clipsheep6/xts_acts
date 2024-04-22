@@ -1,0 +1,40 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "SecondmoduleAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "SecondmoduleAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "ServiceExtAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "ServiceExtAbility_label",
+      "value": "label"
+    },
+    {
+      "name": "UIExtension_desc",
+      "value": "description"
+    },
+    {
+      "name": "UIExtension_label",
+      "value": "label"
+    },
+    {
+      "name": "MultipleAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "MultipleAbility_label",
+      "value": "label"
+    }
+  ]
+}
