@@ -33,6 +33,11 @@ import onSelectionChange17 from './onSelectionChange/onSelectionChange17.test'
 import onSelectionChange18 from './onSelectionChange/onSelectionChange18.test'
 import onSelectionChange19 from './onSelectionChange/onSelectionChange19.test'
 import MediaCachedImageTest from './MediaCachedImageTest.test';
+
+import onComplete from './ImageAttrTest/onComplete.test'
+import removeStyles from './ImageAttrTest/removeStyles.test'
+import StyledStringTest from './ImageAttrTest/StyledStringTest.test'
+import clearStyles from './ImageAttrTest/clearStyles.test'
 export default function testsuite() {
   onSelectionChange1();
   onSelectionChange2();
@@ -54,5 +59,9 @@ export default function testsuite() {
   onSelectionChange18();
   onSelectionChange19();
   MediaCachedImageTest();
+  onComplete()
+  removeStyles()
+  clearStyles()
+  StyledStringTest()
   
 }
