@@ -37,7 +37,7 @@ import polygonNewJsunit from './polygonTest/polygon.test';
 import polyLineNeJsunit from './polylineTest/polyLine.test';
 import rectNeJsunit from './RectTest/rect.test';
 
-import drawCanvas from './CanvasText/drawCanvas.test'
+import drawCanvas from './CanvasTest/drawCanvas.test'
 import ParticlePropertyJsunit from './ParticleTest/ParticlePropertyJsunit.test.ets'
 
 export default function testsuite() {
