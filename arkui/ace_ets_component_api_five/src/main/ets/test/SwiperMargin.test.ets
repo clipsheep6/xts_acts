@@ -16,6 +16,7 @@ import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
 import router from '@ohos.router'
 import { UiDriver, UiComponent, BY, Driver, Component, ON } from '@ohos.UiTest'
 import { BusinessError } from '@ohos.base';
+import CommonFunc from '../../MainAbility/utils/Common';
 
 export default function SwiperMarginTest() {
 
@@ -40,6 +41,7 @@ export default function SwiperMarginTest() {
       } catch (err) {
         console.error(`${SUITE} beforeEach error:` + JSON.stringify(err));
       }
+      await CommonFunc.sleep(1000);
       done()
     });
 
