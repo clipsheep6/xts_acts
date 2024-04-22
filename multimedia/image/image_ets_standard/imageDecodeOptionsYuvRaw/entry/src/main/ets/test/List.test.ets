@@ -12,8 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import abilityTest from './Ability.test';
+ 
+import imageDecodeOptionsYuvTest from './ImageDecodeOptionsYuv.test';
+import imageDecodeOptionsRawTest from './ImageDecodeOptionsRaw.test';
 
 export default function testsuite() {
-  abilityTest();
+  imageDecodeOptionsYuvTest();
+  imageDecodeOptionsRawTest();
 }

@@ -14,31 +14,31 @@
 import("//build/ohos.gni")
 import("//test/xts/tools/build/suite.gni")
 
-ohos_js_hap_suite("image_decode_yuv_hap") {
+ohos_js_hap_suite("image_decode_options_yuv_raw_hap") {
   hap_profile = "entry/src/main/module.json"
   js_build_mode = "debug"
   deps = [
-    ":actsImageDecodeYUVTest_js_assets",
-    ":actsImageDecodeYUVTest_resources",
+    ":actsImageDecodeOptionsYuvRawTest_js_assets",
+    ":actsImageDecodeOptionsYuvRawTest_resources",
   ]
   ets2abc = true
   certificate_profile = "signature/openharmony_sx.p7b"
-  hap_name = "ActsImageDecodeYUVTest"
+  hap_name = "ActsImageDecodeOptionsYuvRawTest"
   subsystem_name = "multimedia"
   part_name = "image_framework"
 }
 
-ohos_app_scope("actsImageDecodeYUVTest_app_profile") {
+ohos_app_scope("actsImageDecodeOptionsYuvRawTest_app_profile") {
   app_profile = "AppScope/app.json"
   sources = [ "AppScope/resources" ]
 }
 
-ohos_js_assets("actsImageDecodeYUVTest_js_assets") {
+ohos_js_assets("actsImageDecodeOptionsYuvRawTest_js_assets") {
   source_dir = "entry/src/main/ets"
 }
 
-ohos_resources("actsImageDecodeYUVTest_resources") {
+ohos_resources("actsImageDecodeOptionsYuvRawTest_resources") {
   sources = [ "entry/src/main/resources" ]
-  deps = [ ":actsImageDecodeYUVTest_app_profile" ]
+  deps = [ ":actsImageDecodeOptionsYuvRawTest_app_profile" ]
   hap_profile = "entry/src/main/module.json"
 }

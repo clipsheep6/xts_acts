@@ -40,8 +40,8 @@ let sleep = async (delay: number): Promise<void> => {
   });
 };
 
-export default function decodeOptionsWithYUVAbilityTest() {
-  describe('ActsDecodeOptionsWithYUVAbilityTest', () => {
+export default function imageDecodeOptionsYuvTest() {
+  describe('ImageDecodeOptionsYuv', () => {
     let filePath: string;
     let fdNumber: number;
     let globalPixelMap: PixelMap;
