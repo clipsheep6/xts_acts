@@ -12,50 +12,54 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import Ability from '@ohos.app.ability.UIAbility';
 import commonEvent from '@ohos.commonEvent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
-var TAG3 = 'StageOnAndOffScreen:MainAbility3:';
-var listPush3 = "StageOnAndOffScreen_MainAbility3_";
+let TAG3 = 'StageOnAndOffScreen:MainAbility3:';
+let listPush3 = "StageOnAndOffScreen_MainAbility3_";
+
 export default class MainAbility3 extends Ability {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log(TAG3 + 'onCreate');
+  }
 
-    onCreate(want, launchParam) {
-        console.log(TAG3 + 'onCreate');
-    }
+  onDestroy() {
+    console.log(TAG3 + 'onDestroy');
+  }
 
-    onDestroy() {
-        console.log(TAG3 + 'onDestroy');
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    console.log(TAG3 + 'onWindowStageCreate');
 
-    onWindowStageCreate(windowStage) {
-        console.log(TAG3 + 'onWindowStageCreate');
+    windowStage.loadContent("pages/third", (err, data) => {
+      if (err.code) {
+        console.log(TAG3 + 'Failed to load the content. Cause:' + JSON.stringify(err));
+        return;
+      }
+      console.log(TAG3 + 'Succeeded in loading the content. Data: ' + JSON.stringify(data));
+    });
+  }
 
-        windowStage.loadContent("pages/third", (err, data) => {
-            if (err.code) {
-                console.log(TAG3 + 'Failed to load the content. Cause:' + JSON.stringify(err));
-                return;
-            }
-            console.log(TAG3 + 'Succeeded in loading the content. Data: ' + JSON.stringify(data));
-        });
-    }
+  onWindowStageDestroy() {
+    console.log(TAG3 + 'onWindowStageDestroy');
+  }
 
-    onWindowStageDestroy() {
-        console.log(TAG3 + 'onWindowStageDestroy');
-    }
+  onForeground() {
+    console.log(TAG3 + 'onForeground');
 
-    onForeground() {
-        console.log(TAG3 + 'onForeground');
+    commonEvent.publish(listPush3 + "onForeground", (err) => {
+      console.log(TAG3 + listPush3 + "onForeground");
+    });
+  }
 
-        commonEvent.publish(listPush3 + "onForeground", (err) => {
-            console.log(TAG3 + listPush3 + "onForeground");
-        });
-    }
+  onBackground() {
+    console.log(TAG3 + 'onBackground');
 
-    onBackground() {
-        console.log(TAG3 + 'onBackground');
-
-        commonEvent.publish(listPush3 + "onBackground", (err) => {
-            console.log(TAG3 + listPush3 + "onBackground");
-        });
-    }
+    commonEvent.publish(listPush3 + "onBackground", (err) => {
+      console.log(TAG3 + listPush3 + "onBackground");
+    });
+  }
 };
