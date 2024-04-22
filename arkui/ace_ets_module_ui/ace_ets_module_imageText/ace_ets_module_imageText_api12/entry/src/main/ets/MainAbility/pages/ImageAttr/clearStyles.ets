@@ -34,7 +34,7 @@ struct styled_clearStyle {
   })
   // 创建可读写属性字符串的对象mutableStyledString1
   // 创建构造入参有字符串和样式的对象mutableStyledString2
-  mutableStyledString2: MutableStyledString = new MutableStyledString("test hello world",
+   mutableStyledString2: MutableStyledString = new MutableStyledString("test hello world",
     [{
       start: 0,
       length: 5,
