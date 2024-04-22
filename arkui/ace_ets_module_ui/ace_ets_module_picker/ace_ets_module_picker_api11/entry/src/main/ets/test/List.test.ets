@@ -48,6 +48,8 @@ import datepicker from './DatePickerTest/DatePicker';
 import ActsDatePickerTest from './DatePickerTest/DatePicker.test';
 import checkBoxTest1 from './CheckboxTest/checkBox';
 import checkBoxGroupTest from './checkboxGroup/checkBoxGroup';
+import toggle3Jsunit from './Toggle/Toggle3Jsunit.test';
+import rating3Jsunit from './RatingTest/Rating3Jsunit.test';
 export default function testsuite() {
   stageTimePickerDialog();
   stageTextPickerDialog();
@@ -86,4 +88,6 @@ export default function testsuite() {
   checkBoxGroupTest()
   RadioJsunit();
   RatingUIJsunit();
+  toggle3Jsunit();
+  rating3Jsunit();
 }

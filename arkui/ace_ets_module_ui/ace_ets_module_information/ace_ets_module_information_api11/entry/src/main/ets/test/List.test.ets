@@ -32,6 +32,8 @@ import loadingProgressCircularJsunit from './LoadingProgressTest/loadingProgress
 import progressScaleCountJsunit from './ProgressTest/progress3.test.ets';
 import gaugeColorsJsunit from './gaugeTest/gauge1.test';
 import progressStyleJsunit from './ProgressTest/progress2.test';
+import badge3Jsunit from './BadgeTest/Badge3Jsunit.test';
+import qrCode3Jsunit from './QrcodeTest/QrCode3Jsunit.test';
 
 export default function testsuite() {
   gaugeJsunit();
@@ -55,4 +57,6 @@ export default function testsuite() {
 
   gaugeColorsJsunit()
   progressStyleJsunit()
+  badge3Jsunit();
+  qrCode3Jsunit();
 }

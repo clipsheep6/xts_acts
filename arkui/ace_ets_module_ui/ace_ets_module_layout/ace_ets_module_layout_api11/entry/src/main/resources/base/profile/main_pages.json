@@ -480,6 +480,22 @@
         "MainAbility/pages/RelativeContainer/RelativeContainer_AnchorPoint/RelativeContainer_AnchorPoint_Id_Null",
         "MainAbility/pages/RelativeContainer/RelativeContainer_AnchorPoint/RelativeContainer_AnchorPoint_Id_Undefined",
         "MainAbility/pages/RelativeContainer/RelativeContainer_AnchorPoint/RelativeContainer_AnchorPoint_Offset",
-        "MainAbility/pages/RelativeContainer/RelativeContainer_AnchorPoint/RelativeContainer_AnchorPoint_Position"
+        "MainAbility/pages/RelativeContainer/RelativeContainer_AnchorPoint/RelativeContainer_AnchorPoint_Position",
+	"MainAbility/pages/Blank/blankParentWidth",
+        "MainAbility/pages/Grid/GridRowPage",
+        "MainAbility/pages/Grid/GridItemPage",
+        "MainAbility/pages/Grid/GridColoffsetPage",
+        "MainAbility/pages/Grid/GridCallbackPage",
+        "MainAbility/pages/Grid/GridRowCol",
+        "MainAbility/pages/Grid/GridRowCol02",
+        "MainAbility/pages/Grid/GridLayoutDirection",
+        "MainAbility/pages/Grid/GridPage",
+        "MainAbility/pages/List/ListPage",
+        "MainAbility/pages/List/ListLanes",
+        "MainAbility/pages/List/ListLanes02",
+        "MainAbility/pages/List/ListLanes03",
+        "MainAbility/pages/List/ListLanes04",
+        "MainAbility/pages/List/ListLanes05",
+        "MainAbility/pages/Blank/blank3"
     ]
 }

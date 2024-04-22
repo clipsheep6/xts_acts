@@ -219,6 +219,12 @@ import TextStyle2 from './textTest/TextApi/TextStyle2.test';
 import textMinFontSizeJsunit from './textTest/text.test';
 import textAreaOnCutJsunit from './TextAreaTest/textArea.test';
 import textInputOnEditChangeJsunit from './TextInputTest/textInput.test';
+import progress3Jsunit from './ProgressTest/Progress3Jsunit.test';
+import text3Jsunit from './textTest/Text3Jsunit.test';
+import span3Jsunit from './spanTest/Span3Jsunit.test';
+import button3Jsunit from './buttonTest/Button3Jsunit.test';
+import timeStampJsunit from './TimePickerTest/TimeStampJsunit.test';
+
 export default function testsuite() {
   stageFontTest();
   stageMediaquery();
@@ -415,4 +421,9 @@ export default function testsuite() {
   TextStyle2()
   unitsModuleNameJsunit()
   ImageApi()
+  progress3Jsunit();
+  text3Jsunit();
+  button3Jsunit();
+  span3Jsunit();
+  timeStampJsunit();
 }

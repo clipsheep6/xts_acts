@@ -11,6 +11,7 @@
         "MainAbility/pages/Animation/animator",
         "MainAbility/pages/RemoteWindow/remoteWindow",
         "MainAbility/pages/Animation/Animation",
-        "MainAbility/pages/Animation/animationAdd"
+        "MainAbility/pages/Animation/animationAdd",
+        "MainAbility/pages/Animation/animate"
     ]
 }

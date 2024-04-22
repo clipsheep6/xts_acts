@@ -219,5 +219,10 @@
         "MainAbility/pages/TextInput/textInput6",
         "MainAbility/pages/TextArea/textArea6",
         "MainAbility/pages/text/text6"
+	"MainAbility/pages/Progress/progress3",
+        "MainAbility/pages/button/button3",
+        "MainAbility/pages/span/span3",
+        "MainAbility/pages/text/text3",
+        "MainAbility/pages/TimePicker/timeStamp"
     ]
 }

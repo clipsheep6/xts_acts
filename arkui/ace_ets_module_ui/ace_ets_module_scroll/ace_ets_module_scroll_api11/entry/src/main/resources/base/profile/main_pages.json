@@ -178,6 +178,9 @@
         "MainAbility/pages/Tabs/tabs_api12/tabs_onContentWillChangeIndex13",
         "MainAbility/pages/Tabs/tabs_api12/tabs_onContentWillChangeIndex14",
         "MainAbility/pages/Tabs/tabs_api12/tabs_onContentWillChangeIndex15",
-	"MainAbility/pages/Swiper/swiperUI/swiperAnimation"
+	"MainAbility/pages/Swiper/swiperUI/swiperAnimation",
+        "MainAbility/pages/Scroll/scrollCode",
+        "MainAbility/pages/Tabs/tabs",
+        "MainAbility/pages/grid/gridPage"
     ]
 }

@@ -80,6 +80,9 @@
         "MainAbility/pages/SideBarContainer/SideBarContainerType/SideBarContainerType_DefaultValue1",
         "MainAbility/pages/SideBarContainer/SideBarContainerType/SideBarContainerType_DefaultValue2",
         "MainAbility/pages/SideBarContainer/SideBarContainerType/SideBarContainerType_DefaultValue3",
-        "MainAbility/pages/SideBarContainer/SideBarContainerDivider/SideBarContainerDivider"
+        "MainAbility/pages/SideBarContainer/SideBarContainerDivider/SideBarContainerDivider",
+	"MainAbility/pages/Navigator/transition",
+        "MainAbility/pages/Navigator/sharedTransition",
+        "MainAbility/pages/Navigator/sharedTransition2"
     ]
 }

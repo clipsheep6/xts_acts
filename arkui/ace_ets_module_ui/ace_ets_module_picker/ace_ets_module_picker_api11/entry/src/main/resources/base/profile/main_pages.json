@@ -43,6 +43,8 @@
         "MainAbility/pages/Checkbox/CheckBoxIndex",
         "MainAbility/pages/checkboxGroup/CheckBoxGroup1",
 	"MainAbility/pages/Radio/RadioPage",
-        "MainAbility/pages/Rating/RatingPage"
+        "MainAbility/pages/Rating/RatingPage",
+        "MainAbility/pages/Toggle/toggle3",
+        "MainAbility/pages/Rating/rating3"
     ]
 }
