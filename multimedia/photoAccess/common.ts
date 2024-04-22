@@ -271,6 +271,23 @@ export async function getFileNameArray() {
   }
 }
 
+export async function getFileNameArray2() {
+  try{
+    let listFileOption: ListFileOptions = {
+      recursion: true,
+      listNum: 0,
+      filter: {
+        suffix: [],
+      }
+    }
+    listFileOption.filter.suffix = validImageExt.concat(validVideoExt).concat(['.png','.gif','.mpeg']);
+    let nameArray = await fs.listFile(pathDir, listFileOption)
+    return nameArray;
+  } catch (err) {
+    console.info('getFileNameArray failed: ' + err);
+  }
+}
+
 export async function pushCreateAsset(names: Array<string>){
   console.info('pushCreateAsset start')
   let successNum = 0;
@@ -287,12 +304,60 @@ export async function pushCreateAsset(names: Array<string>){
       let rawExtension: string = fileName.split('.')[1];
       for (let j = 0; j < names.length; j++) {
         let name = names[j];
+        if (fileName.includes('native_request')) continue
         let extension: string = name.split('.')[1];
         if (rawExtension === extension) {
           let options: photoAccessHelper.CreateOptions = {
             title: name.split('.')[0]
           }
           if (validImageExt.includes(('.' + extension))) {
+            photoType = photoAccessHelper.PhotoType.IMAGE;
+            resourceType = photoAccessHelper.ResourceType.IMAGE_RESOURCE;
+          } else {
+            photoType = photoAccessHelper.PhotoType.VIDEO;
+            resourceType = photoAccessHelper.ResourceType.VIDEO_RESOURCE;
+          }
+          let assetChangeRequest: photoAccessHelper.MediaAssetChangeRequest = photoAccessHelper.MediaAssetChangeRequest.createAssetRequest(globalThis.abilityContext, photoType, extension, options);
+          assetChangeRequest.addResource(resourceType, fileUri);
+          await phAccessHelper.applyChanges(assetChangeRequest);
+          successNum++;
+        }
+      }
+    }
+    console.info('Push_createAsset successfully fileNumber: ' + successNum);
+  }catch(err){
+    console.info('Push_createAsset push resource failed: ' + err)
+    return;
+  }
+}
+
+export async function pushCreateAssetSingle(names: Array<string>){
+  console.info('pushCreateAssetSingle start')
+  let successNum = 0;
+  try{
+    console.info('pushCreateAssetSingle name: ' + names)
+    let photoType: photoAccessHelper.PhotoType;
+    let resourceType: photoAccessHelper.ResourceType;
+    let fileNames: string[] = await getFileNameArray2();
+    for(let i = 0; i < fileNames.length; i++) {
+      let fileName = fileNames[i];
+      let filePath = pathDir + '/' + fileName;
+      let fileUri = fileuri.getUriFromPath(filePath);
+      let rawExtension: string = fileName.split('.')[1];
+      for (let j = 0; j < names.length; j++) {
+   
+
+        let name = names[j];
+        console.info('pushCreateAssetSingle fileName: ' + fileName);
+        console.info('pushCreateAssetSingle name: ' + '/'+name);
+
+        if(fileName != '/'+name) continue
+        let extension: string = name.split('.')[1];
+        if (rawExtension === extension) {
+          let options: photoAccessHelper.CreateOptions = {
+            title: name.split('.')[0]
+          }
+          if (['.png','.gif','.jpg'].includes(('.' + extension))) {
             photoType = photoAccessHelper.PhotoType.IMAGE;
             resourceType = photoAccessHelper.ResourceType.IMAGE_RESOURCE;
           } else {
