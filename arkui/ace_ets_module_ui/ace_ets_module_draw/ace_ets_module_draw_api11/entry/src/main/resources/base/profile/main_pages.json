@@ -26,7 +26,11 @@
         "MainAbility/pages/Rect/rect",
         "MainAbility/pages/Shape/shape",
         "MainAbility/pages/Circle/circle",
-        "MainAbility/pages/common"
+        "MainAbility/pages/common",
         
+        "MainAbility/pages/Particle/ParticleOptions",
+        "MainAbility/pages/Particle/ParticleProperty",
+        "MainAbility/pages/Canvas/CanvasRenderer",
+        "MainAbility/pages/Canvas/drwableAdd"
     ]
 }

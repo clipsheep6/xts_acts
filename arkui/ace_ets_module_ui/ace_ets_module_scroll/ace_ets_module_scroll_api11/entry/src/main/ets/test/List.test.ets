@@ -44,7 +44,7 @@ import ScrollTest from './ScrollTest/Scroll.test'
 import tabs from './TabsTest/Tabs'
 import tabsSec from './TabsTest/TabsSec'
 import tabsThird from './TabsTest/TabsThird'
-import AlphabetIndexer from './AlphabetIndexerTest/AlphabetIndexer'
+import ActsAlphabetIndexerUxTest from './AlphabetIndexerTest/AlphabetIndexer.test'
 import RefreshTest from './RefreshTest/Refresh.test'
 import ScrollTest2 from './ScrollTest/Scroll2.test'
 import Tabs_itemPadMar from './TabsTest/Tabs_ItemsChange/Tabs_itemPadMar.test';
@@ -121,6 +121,9 @@ import ScrollToIndexForGridJsunit01 from './ScrollTest/ScrollToIndex/ScrollToInd
 import ScrollToIndexForGridJsunit02 from './ScrollTest/ScrollToIndex/ScrollToIndexForGridJsunit02.test';
 import ScrollToIndexForGridJsunit03 from './ScrollTest/ScrollToIndex/ScrollToIndexForGridJsunit03.test';
 import ApiCommponentAddJsunit from './ScrollTest/ApiCommponentAddJsunit.test.ets';
+import ScrollBarJsunit from './ScrollTest/ScrollBarJsunit.test';
+import sliderJsunit from './SliderTest/sliderJsunit.test.ets';
+import swiperAnimationJsunit from './SwiperTest/swiperUI/swiperAnimationJsunit.test.ets'
 
 import refreshJsunit from './RefreshTest/RefreshJsunit.test';
 import listtestIdleJsunit from './ListTest/listtest.test';
@@ -178,7 +181,7 @@ export default function testsuite() {
   tabs()
   tabsSec()
   tabsThird()
-  AlphabetIndexer()
+  ActsAlphabetIndexerUxTest()
   RefreshTest()
   ScrollTest2()
 
@@ -264,4 +267,7 @@ export default function testsuite() {
   stackAlignContentJsunit()
   swiperCurveJsunit()
   tabsBarPositionJsunit()
+  ScrollBarJsunit();
+  sliderJsunit();
+  swiperAnimationJsunit();
 }

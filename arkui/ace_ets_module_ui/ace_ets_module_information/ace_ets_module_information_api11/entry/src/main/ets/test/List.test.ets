@@ -31,6 +31,8 @@ import progressScaleCountJsunit from './ProgressTest/progress3.test.ets';
 
 import gaugeColorsJsunit from './gaugeTest/gauge1.test';
 import progressStyleJsunit from './ProgressTest/progress2.test';
+import QRCodeUIJsunit from './QrcodeTest/QRCodeUIJsunit.test.ets';
+
 export default function testsuite() {
   gaugeJsunit();
   CounterEnableTest();
@@ -51,4 +53,5 @@ export default function testsuite() {
 
   gaugeColorsJsunit()
   progressStyleJsunit()
+  QRCodeUIJsunit();
 }

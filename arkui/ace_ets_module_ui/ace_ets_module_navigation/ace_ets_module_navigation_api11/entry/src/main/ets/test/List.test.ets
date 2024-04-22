@@ -88,6 +88,8 @@ import NavigationApiOther from './NavigationTest/NavigationApiOther.test.ets';
 import navigatorTargetJsunit from './NavigationTest/navigator.test'
 import pageRouteTest from './pageRouteTest/pageRoute.test'
 import searchOnCutJsunit from './SearchTest/search.test'
+import stepperUIJsunit from './stepperTest/stepperUIJsunit.test.ets';
+
 export default function testsuite() {
   navigationTypeTest();
 
@@ -167,4 +169,5 @@ export default function testsuite() {
   pageRouteTest()
   searchOnCutJsunit()
 
+  stepperUIJsunit();
 }
