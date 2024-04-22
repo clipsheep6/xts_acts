@@ -19,7 +19,6 @@ group("graphic") {
       "effectKit:EffectKitTest",
       "graphicColorSpace:ActsColorSpaceManagerTest",
       "graphicDrawing:ActsGraphicDrawingTest",
-      "graphicEGL:ActsGraphicEglTest",
       "graphicGLES3:ActsGraphicGles3Test",
       "graphicGlesExtension:ActsGraphicGlesExtensionTest",
       "graphicnapidrawingtest:ActsGraphicNapiDrawingTest",
