@@ -153,6 +153,24 @@ import buttonTest from './buttonTest/button'
 import textInputTest from './TextInputTest/textinput'
 import textinputSec from './TextInputTest/textinputSec'
 import segmentbuttonTest from './SegmentButtonTest/segmentbutton'
+import focusJsunit from './buttonTest/FocusJsunit.test';
+import imageJsunit55 from './imageTest/ImageJsunit55.test';
+import playModeJsunit from './buttonTest/PlayModeJsunit.test';
+import richTextJsunit from './RichEditorTest/RichTextJsunit.test';
+
+import textClockJsunit from './textTest/TextClockJsunit.test';
+import textTimerJsunit from './textTest/TextTimerJsunit.test';
+
+import unitsModuleNameJsunit from './textTest/units.test.ets';
+import ImageApi from './imageTest/ImageApi.test.ets';
+import appVersionCodeJsunit from './textTest/app.test';
+import colorEnumJsunit from './textTest/color.test';
+import copyOptionJsunit from './textTest/copyOption.test';
+import TextStyle2 from './textTest/TextApi/TextStyle2.test';
+
+import textMinFontSizeJsunit from './textTest/text.test';
+import textAreaOnCutJsunit from './TextAreaTest/textArea.test';
+import textInputOnEditChangeJsunit from './TextInputTest/textInput.test';
 import search_caret from './SearchTest/search_caret.test';
 import search_maxLength from './SearchTest/search_maxLength.test';
 import search_maxLength2 from './SearchTest/search_maxLength2.test';
@@ -355,6 +373,18 @@ export default function testsuite() {
   textinputSec()
   segmentbuttonTest()
   textAreaUxTest();
+  focusJsunit()
+  imageJsunit55()
+  playModeJsunit()
+  richTextJsunit()
+  textClockJsunit()
+  textTimerJsunit()
+  appVersionCodeJsunit();
+  colorEnumJsunit();
+  copyOptionJsunit();
+  TextStyle2()
+  unitsModuleNameJsunit()
+  ImageApi()
   search_caret();
   search_maxLength();
   search_maxLength2();  
