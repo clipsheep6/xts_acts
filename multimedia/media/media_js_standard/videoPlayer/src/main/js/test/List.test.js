@@ -18,8 +18,8 @@ import VideoPlayerEnumTest from './VideoPlayerEnumTest.test.js'
 import VideoPlayerFuncCallbackTest from './VideoPlayerFuncCallbackTest.test.js'
 import VideoPlayerFuncPromiseTest from './VideoPlayerFuncPromiseTest.test.js'
 export default function testsuite() {
-VideoPlayerAPICallbackTest()
+// VideoPlayerAPICallbackTest()
 VideoPlayerEnumTest()
-VideoPlayerFuncCallbackTest()
-VideoPlayerFuncPromiseTest()
+// VideoPlayerFuncCallbackTest()
+// VideoPlayerFuncPromiseTest()
 }

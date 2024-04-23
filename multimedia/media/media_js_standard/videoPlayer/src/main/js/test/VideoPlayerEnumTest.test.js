@@ -167,6 +167,7 @@ describe('VideoPlayerEnumTest', function () {
         expect(media.MediaDescriptionKey.MD_KEY_FRAME_RATE).assertEqual("frame_rate");
         expect(media.MediaDescriptionKey.MD_KEY_AUD_CHANNEL_COUNT).assertEqual("channel_count");
         expect(media.MediaDescriptionKey.MD_KEY_AUD_SAMPLE_RATE).assertEqual("sample_rate");
+        expect(media.MediaDescriptionKey.MD_KEY_AUD_SAMPLE_DEPTH).assertEqual("sample_depth");
         done();
     })
 
