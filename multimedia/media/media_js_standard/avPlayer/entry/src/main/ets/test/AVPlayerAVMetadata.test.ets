@@ -25,10 +25,12 @@ export default function AVMetadata() {
     const AUDIO_SOURCE = 'mjpeg_mp3.mp3';
     const VIDEO_SOURCE = 'H264_AAC_Matedata.mp4';
     const VIDEO_NOSUPPORT = 'No_Support_Format.mov'
+    const HDR_VIVID_SOURCE = 'HDR.mp4';
     const TAG = "MetadataDemo"
     let AVFileDescriptor = null;
     let AVFileDescriptor2 = null;
     let AVFileDescriptor3 = null;
+    let AVFileDescriptor4 = null;
     // let avMetadataExtractor = null;
     beforeAll(async function () {
       console.info('beforeAll case');
@@ -40,6 +42,9 @@ export default function AVMetadata() {
       });
       await mediaTestBase.getStageFileDescriptor(VIDEO_NOSUPPORT).then((res) => {
         AVFileDescriptor3 = res;
+      });
+      await mediaTestBase.getStageFileDescriptor(HDR_VIVID_SOURCE).then((res) => {
+        AVFileDescriptor4 = res;
       });
     })
 
@@ -56,6 +61,7 @@ export default function AVMetadata() {
       await mediaTestBase.closeFileDescriptor(AUDIO_SOURCE);
       await mediaTestBase.closeFileDescriptor(VIDEO_SOURCE);
       await mediaTestBase.closeFileDescriptor(VIDEO_NOSUPPORT);
+      await mediaTestBase.closeFileDescriptor(HDR_VIVID_SOURCE);
     })
     /* *
        * @tc.number    : SUB_MULTIMEDIA_PLAYER_AVMETADATA_ALBUM_PROMISE_FUNCTION_0100
@@ -1339,6 +1345,72 @@ export default function AVMetadata() {
         avMetadataExtractor.release()
         done()
       })
+    })
+
+    /* *
+    * @tc.number    : SUB_MULTIMEDIA_PLAYER_AVMETADATA_HDRTYPE_PROMISE_FUNCTION_0100
+    * @tc.name      : test hdrType of HDR video
+    * @tc.desc      : Local vivid video playback control test
+    * @tc.size      : MediumTest
+    * @tc.type      : Function Test
+    * @tc.level     : Level 0
+       */
+    it('SUB_MULTIMEDIA_PLAYER_AVMETADATA_HDRTYPE_PROMISE_FUNCTION_0100', 0, async function (done) {
+      let avMetadataExtractor: media.AVMetadataExtractor;
+      await media.createAVMetadataExtractor().then((extractor) => {
+        if (extractor != null) {
+          avMetadataExtractor = extractor;
+          console.info('createAVMetadataExtractor success');
+        } else {
+          console.error('createAVMetadataExtractor fail');
+        }
+      }).catch((error) => {
+        console.error(`AVMetadataExtractor catchCallback, error message:${error.message}`);
+      });
+      // 获取元数据
+      avMetadataExtractor.fdSrc = AVFileDescriptor4;
+      // 获取元信息
+      await avMetadataExtractor.fetchMetadata().then((metadata) => {
+        console.info(TAG, `fetchMetadata callback success video videoIsHdrVived :${metadata.hdrType}}`)
+        expect(metadata.hdrType).assertEqual(1)
+        avMetadataExtractor.release()
+      }).catch((error) => {
+        console.error(`fetchMetadata catchCallback, error message:${error.message}`);
+      });
+      done();
+    })
+
+    /* *
+    * @tc.number    : SUB_MULTIMEDIA_PLAYER_AVMETADATA_HDRTYPE_PROMISE_FUNCTION_0200
+    * @tc.name      : test hdrType of non-HDR Video
+    * @tc.desc      : Local normal video playback control test
+    * @tc.size      : MediumTest
+    * @tc.type      : Function Test
+    * @tc.level     : Level 0
+      */
+    it('SUB_MULTIMEDIA_PLAYER_AVMETADATA_HDRTYPE_PROMISE_FUNCTION_0200', 0, async function (done) {
+      let avMetadataExtractor: media.AVMetadataExtractor;
+      await media.createAVMetadataExtractor().then((extractor) => {
+        if (extractor != null) {
+          avMetadataExtractor = extractor;
+          console.info('createAVMetadataExtractor success');
+        } else {
+          console.error('createAVMetadataExtractor fail');
+        }
+      }).catch((error) => {
+        console.error(`AVMetadataExtractor catchCallback, error message:${error.message}`);
+      });
+      // 获取元数据
+      avMetadataExtractor.fdSrc = AVFileDescriptor2;
+      // 获取元信息
+      await avMetadataExtractor.fetchMetadata().then((metadata) => {
+        console.info(TAG, `fetchMetadata callback success video videoIsHdrVived :${metadata.hdrType}}`)
+        expect(metadata.hdrType).assertEqual(0)
+        avMetadataExtractor.release()
+      }).catch((error) => {
+        console.error(`fetchMetadata catchCallback, error message:${error.message}`);
+      });
+      done();
     })
   })
 }
