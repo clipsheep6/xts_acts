@@ -67,6 +67,7 @@
         "MainAbility/pages/PanGesture/PanGesture",
         "MainAbility/pages/TapGesture/tapGesture",
         "MainAbility/pages/TapGesture/priorityGesture",
-        "MainAbility/pages/TapGesture/parallelGesture"
+        "MainAbility/pages/TapGesture/parallelGesture",
+        "MainAbility/pages/motionPath"
     ]
 }
