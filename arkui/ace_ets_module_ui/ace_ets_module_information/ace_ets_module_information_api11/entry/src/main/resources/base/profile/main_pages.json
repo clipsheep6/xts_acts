@@ -19,7 +19,7 @@
         "MainAbility/pages/LoadingProgress/loadingProgress",
         "MainAbility/pages/Progress/progress3",
         "MainAbility/pages/gauge/gauge1",
-        "MainAbility/pages/Progress/progress2"
+        "MainAbility/pages/Progress/progress2",
 	"MainAbility/pages/Badge/badge3",
         "MainAbility/pages/Qrcode/QrCode3"
     ]
