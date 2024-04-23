@@ -155,7 +155,7 @@ export default function canOpenLink() {
 
     /**
      * @tc.number: SUB_BMS_CANOPENLINK_0090
-     * @tc.name: canOpenLinkUndefinedType
+     * @tc.name: canOpenLinkSchemeMatch
      * @tc.desc: Test canOpenLink when scheme match.
      */
     it('canOpenLinkSchemeMatch', 0, async (done: Function) => {
