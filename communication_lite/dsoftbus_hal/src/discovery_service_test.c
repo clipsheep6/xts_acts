@@ -196,7 +196,7 @@ LITE_TEST_CASE(DiscoveryServiceTestSuite, PublishServiceTest001, Function | Medi
     ret = PublishService(g_pkgName, &testInfo, NULL);
     TEST_ASSERT_TRUE(ret != 0);
 
-    testInfo.medium = (ExchanageMedium)(COAP + 1);
+    testInfo.medium = (ExchangeMedium)(COAP + 1);
     ret = PublishService(g_pkgName, &testInfo, &g_publishCb);
     TEST_ASSERT_TRUE(ret != 0);
     testInfo.medium = COAP;
@@ -266,7 +266,7 @@ LITE_TEST_CASE(DiscoveryServiceTestSuite, StartDiscoveryTest001, Function | Medi
     ret = StartDiscovery(g_pkgName, &testInfo, NULL);
     TEST_ASSERT_TRUE(ret != 0);
 
-    testInfo.medium = (ExchanageMedium)(COAP + 1);
+    testInfo.medium = (ExchangeMedium)(COAP + 1);
     ret = StartDiscovery(g_pkgName, &testInfo, &g_subscribeCb);
     TEST_ASSERT_TRUE(ret != 0);
     testInfo.medium = COAP;

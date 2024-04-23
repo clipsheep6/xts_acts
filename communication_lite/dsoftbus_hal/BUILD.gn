@@ -12,6 +12,7 @@
 # limitations under the License.
 
 import("//test/xts/tools/lite/build/suite_lite.gni")
+import("//foundation/communication/dsoftbus/core/common/dfx/dsoftbus_dfx.gni")
 hctest_suite("ActsDsoftbusMgrTest") {
   suite_name = "acts"
   sources = [
@@ -21,6 +22,8 @@ hctest_suite("ActsDsoftbusMgrTest") {
   ]
 
   include_dirs = [
+    "$hilog_lite_include_path",
+    "//foundation/communication/dsoftbus/core/common/dfx/interface/include",
     "//foundation/communication/dsoftbus/interfaces/kits/transport",
     "//foundation/communication/dsoftbus/interfaces/kits/bus_center",
     "//foundation/communication/dsoftbus/interfaces/kits/common",
@@ -30,5 +33,7 @@ hctest_suite("ActsDsoftbusMgrTest") {
     "//foundation/communication/dsoftbus/adapter/common/include",
     "//foundation/communication/dsoftbus/adapter/default_config/spec_config",
   ]
+
+  deps = [ "$hilog_lite_deps_path" ]
   cflags = [ "-Wno-error" ]
 }

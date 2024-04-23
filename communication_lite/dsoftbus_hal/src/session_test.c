@@ -30,6 +30,8 @@
 #define LOG2_WARN(fmt, ...) printf("WARN:%s:%d " fmt "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define LOG2_ERR(fmt, ...)  printf("ERROR:%s:%d " fmt "\n", __FUNCTION__, __LINE__, ##__VA_ARGS__)
 
+#define INVALID_SESSION_ID -1
+
 enum StatusNum {
     TRANS_STATE_NONE = 0,
     TRANS_STATE_INIT,
