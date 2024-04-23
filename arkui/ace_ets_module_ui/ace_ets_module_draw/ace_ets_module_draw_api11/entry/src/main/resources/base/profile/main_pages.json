@@ -20,7 +20,6 @@
         "MainAbility/pages/Circle/circle3",
         "MainAbility/pages/Canvas/canvas3",
         "MainAbility/pages/Line/line",
-        "MainAbility/pages/Circle/circle",
 	    "MainAbility/pages/path/path",
         "MainAbility/pages/polygon/polygon",
         "MainAbility/pages/polyline/polyline",
