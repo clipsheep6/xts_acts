@@ -22,7 +22,7 @@ export default function qrCodeJsunit() {
   describe('qrCodeTest', () => {
     beforeEach(async (done: Function) => {
       let options: router.RouterOptions = {
-        url: 'MainAbility/pages/QrCode/QrCode3',
+        url: 'MainAbility/pages/Qrcode/QrCode3',
       }
       try {
         router.clear();
