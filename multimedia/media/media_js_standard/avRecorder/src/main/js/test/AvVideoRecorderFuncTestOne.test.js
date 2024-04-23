@@ -285,7 +285,7 @@ export default function avVideoRecorderTestOne() {
                 console.info('beforeAll out');
 
             }else{
-                isInitCamera = false;
+                isSupportUSBCamera = false;
                 console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
                 console.info('beforeAll out');
             }
