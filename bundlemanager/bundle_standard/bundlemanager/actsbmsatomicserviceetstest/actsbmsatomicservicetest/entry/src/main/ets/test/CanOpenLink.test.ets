@@ -141,13 +141,11 @@ export default function canOpenLink() {
      * @tc.desc: The parameter is lowercase letter when configure is capital letter.
      */
     it('canOpenLinkLowercaseParam', 0, async (done: Function) => {
-      console.info('kkkkkstart canOpenLinkLowercaseParam')
       try {
         let data = bundle.canOpenLink("scheme://com.ohos.test");
         expect(data).assertTrue();
         done();
       } catch (err) {
-        console.info('kkkkkfail :'+JSON.stringify(err))
         expect().assertFail();
         done();
       }
