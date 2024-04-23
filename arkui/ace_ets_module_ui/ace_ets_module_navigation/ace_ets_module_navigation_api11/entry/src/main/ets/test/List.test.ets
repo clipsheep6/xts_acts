@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import stepperJsunit from './stepperTest/StepperJsunit.test';
+import StepperJsunit11 from './stepperTest/StepperJsunit11.test';
 import NavigationParamTest from './NavigationTest/NavigationParam.test';
 import NavigationApi from './NavigationTest/NavigationApi.test';
 import NavigationApi2 from './NavigationTest/NavigationApi2.test';
@@ -94,7 +94,7 @@ import searchOnCutJsunit from './SearchTest/search.test'
 export default function testsuite() {
   navigationTypeTest();
 
-  stepperJsunit();
+  StepperJsunit11();
   NavigationParamTest();
   NavigationApi();
   NavigationApi2();

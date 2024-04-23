@@ -74,7 +74,6 @@ import swiperItemPadding from './SwiperTest/Swiper_ItemChange/swiperItemPadding.
 import swiperItemMargin from './SwiperTest/Swiper_ItemChange/swiperItemMargin.test.ets';
 import swiperItemPadMar from './SwiperTest/Swiper_ItemChange/swiperItemPadMar.test.ets';
 import swiperItemVisibility from './SwiperTest/Swiper_ItemChange/swiperItemVisibility.test.ets';
-
 import edgeEffectJsunit from './ListTest/EdgeEffectJsunit.test'
 import swiperTest from './SwiperTest/swiper.test';
 import swiperSecTest from './SwiperTest/swipersec.test';
@@ -86,7 +85,6 @@ import listJsunit1 from './ListTest/ListJsunit1.test';
 import listItemJsunit from './ListTest/ListItemJsunit.test';
 import swiperJsunit2 from './SwiperTest/SwiperJsunit2.test';
 import tabJsunit from './TabsTest/TabJsunit.test';
-
 import ScrollJsunit from './ScrollTest/ScrollJsunit.test';
 import ActsGridTest from "./gridTest/GridJC.test";
 import gridScrollbarUpdateTest from "./gridTest/gridScrollbarUpdate.test";
@@ -109,10 +107,8 @@ import tabsOnContentWillChangeIndex12JsunitTest from './TabsTest/tabs_api12/tabs
 import tabsOnContentWillChangeIndex13JsunitTest from './TabsTest/tabs_api12/tabsOnContentWillChangeIndex13.test'
 import tabsOnContentWillChangeIndex14JsunitTest from './TabsTest/tabs_api12/tabsOnContentWillChangeIndex14.test'
 import tabsOnContentWillChangeIndex15JsunitTest from './TabsTest/tabs_api12/tabsOnContentWillChangeIndex15.test'
-
 import GridTest from './gridTest/GridPage.test'
 import patternLock from './PatternLockTest/patternLock'
-
 import SwiperMinSize from './SwiperTest/swiperUI/SwiperMinSize.test.ets';
 import SwiperNextPrevMarginAddJsunit from './SwiperTest/swiperUI/SwiperNextPrevMarginAddJsunit.test.ets'
 import ScrollToIndexForWaterFlowJsunit01 from './ScrollTest/ScrollToIndex/ScrollToIndexForWaterFlowJsunit01.test';
@@ -134,6 +130,8 @@ import refreshDragJsunit from './RefreshTest/refresh2.test';
 import swiperMaskJsunit from './SwiperTest/swiper3.test';
 import alphabetIndexerOnSelectJsunit from './AlphabetIndexerTest/alphabetIndexer1.test';
 import gridMaxCountJsunit from './gridTest/grid1.test';
+import alphabetIndexerOnSelectJsunit from './AlphabetIndexerTest/alphabetIndexerAPI.test';
+import gridMaxCountJsunit from './gridTest/gridAPI.test';
 import gridItemOnSelectJsunit from './gridItemTest/gridItem.test';
 import listNewJsunit from './ListTest/listTestAPI.test';
 import list_itemOnSelectJsunit from './ListTest/list_item.test';
@@ -186,7 +184,6 @@ export default function testsuite() {
   ActsAlphabetIndexerUxTest()
   RefreshTest()
   ScrollTest2()
-
   edgeEffectJsunit()
   swiperTest();
   swiperSecTest();
@@ -198,7 +195,6 @@ export default function testsuite() {
   listItemJsunit();
   swiperJsunit2();
   tabJsunit();
-  
   Tabs_itemPadMar();
   Tabs_itemSize();
   tabs_IndexTest();
@@ -258,14 +254,9 @@ export default function testsuite() {
   scrollCodeJsunit();
   tabsJsunit();
   gridJsunit();
-  
-  
   refreshJsunit()
   listtestIdleJsunit()
-  list_item_groupJsunit()
-  refreshDragJsunit()
   swiperMaskJsunit()
-
   alphabetIndexerOnSelectJsunit()
   gridMaxCountJsunit()
   gridItemOnSelectJsunit()
