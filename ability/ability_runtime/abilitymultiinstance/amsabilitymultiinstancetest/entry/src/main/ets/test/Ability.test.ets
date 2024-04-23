@@ -19,6 +19,11 @@ import Want from '@ohos.app.ability.Want';
 import commonEvent from '@ohos.commonEvent';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import { BusinessError } from '@ohos.base';
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
+import systemParameterEnhance from '@ohos.systemParameterEnhance';
+
+let deviceType = systemParameterEnhance.getSync('const.product.devicetype');
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 class Params {
   startId: number
@@ -35,7 +40,7 @@ const ONACCEPTWANT_KEY_NOTSET_ID = -1;
 const ONACCEPTWANT_KEY_UNDEFINED_ID = -2;
 const UNSUBSCRIBE_TIMEOUT = 5000;
 
-async function startAbilityProcess(abilityContext: common.UIAbilityContext, parameters: Params) {
+async function startAbilityProcess(testAbilityContext: common.UIAbilityContext, parameters: Params) {
   let bundleName = "com.acts.abilitymultiinstancea";
   let abilityName = "com.acts.abilitymultiinstancea.MainAbility";
 
@@ -90,7 +95,7 @@ async function startAbilityProcess(abilityContext: common.UIAbilityContext, para
       break;
   }
   parameters.nextStep = ++idx;
-  abilityContext.startAbility({
+  testAbilityContext.startAbility({
     bundleName: bundleName,
     abilityName: abilityName,
     parameters: {
@@ -104,20 +109,13 @@ async function startAbilityProcess(abilityContext: common.UIAbilityContext, para
   })
 }
 
-export default function abilityTest(abilityContext: common.UIAbilityContext) {
+export default function abilityTest(testAbilityContext: common.UIAbilityContext) {
   describe('ActsAbilityTest', () => {
     let TAG1 = "ACTS_AbilityMultiInstance_Single == ";
     afterEach(async (done: Function) => {
       console.log(TAG1 + "afterEach called");
-      let wantInfo: Want = {
-        bundleName: "com.example.abilitymultiinstance",
-        abilityName: "com.example.abilitymultiinstance.MainAbility"
-      }
-      await abilityContext.startAbility(wantInfo).then((data) => {
-        console.log(TAG1 + "startAbility data : " + JSON.stringify(data));
-      }).catch((err: BusinessError) => {
-        console.log(TAG1 + "startAbility err : " + JSON.stringify(err));
-      })
+
+      await abilityDelegator.executeShellCommand('aa start -b com.example.abilitymultiinstance -a com.example.abilitymultiinstance.MainAbility');
 
       setTimeout(() => {
         console.log(TAG1 + "afterEach end");
@@ -157,6 +155,15 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
           } else if (data.event == "MultiInstanceStartNext") {
             console.log('ACTS_AbilityMultiInstance_Single_0100 callBackSeq = ' + data.data);
             expect(data.data).assertEqual(checkEventResults[checkIndex++]);
+            if (checkIndex === 2 && deviceType === '2in1') {
+              clearTimeout(id);
+                commonEvent.unsubscribe(subscriber, () => {
+                  console.debug("====>UnSubscribe CallBack====>");
+                  setTimeout(() => {
+                    done();
+                  }, 700)
+                })
+            }
           }
         })
       })
@@ -172,7 +179,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0100 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 3,
         nextStep: 0,
@@ -213,6 +220,15 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
           } else if (data.event == "MultiInstanceStartNext") {
             console.log('ACTS_AbilityMultiInstance_Single_0200 callBackSeq = ' + data.data);
             expect(data.data).assertEqual(checkEventResults[checkIndex++]);
+            if (checkIndex === 2 && deviceType === '2in1') {
+              clearTimeout(id);
+                commonEvent.unsubscribe(subscriber, () => {
+                  console.debug("====>UnSubscribe CallBack====>");
+                  setTimeout(() => {
+                    done();
+                  }, 700)
+                })
+            }
           }
         })
       })
@@ -228,7 +244,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0200 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 3,
         nextStep: 0,
@@ -243,6 +259,10 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
     */
     it('ACTS_AbilityMultiInstance_Single_0300', 0, async (done: Function) => {
       console.log('ACTS_AbilityMultiInstance_Single_0300====<begin');
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let subscriber: commonEventManager.CommonEventSubscriber;
       let id: number;
       let checkEventResults = ["AppA:onForegroundonAcceptWantCalledId1", "AppC:onCreateonForeground",
@@ -283,7 +303,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0300 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 3,
         nextStep: 0,
@@ -298,6 +318,10 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
     */
     it('ACTS_AbilityMultiInstance_Single_0400', 0, async (done: Function) => {
       console.log('ACTS_AbilityMultiInstance_Single_0400====<begin');
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let subscriber: commonEventManager.CommonEventSubscriber;
       let id: number;
       let checkEventResults = ["AppA:onForegroundonAcceptWantCalledId3", "AppC:onForeground",
@@ -338,7 +362,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0400 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 3,
         nextStep: 0,
@@ -353,6 +377,10 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
     */
     it('ACTS_AbilityMultiInstance_Single_0600', 0, async (done: Function) => {
       console.log('ACTS_AbilityMultiInstance_Single_0600====<begin');
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let subscriber: commonEventManager.CommonEventSubscriber;
       let id: number;
       let checkEventResults = ["AppA:onForegroundonAcceptWantCalledId1",
@@ -393,7 +421,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT)
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0600 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 2,
         nextStep: 0,
@@ -408,6 +436,10 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
     */
     it('ACTS_AbilityMultiInstance_Single_0700', 0, async (done: Function) => {
       console.log('ACTS_AbilityMultiInstance_Single_0700====<begin');
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let subscriber: commonEventManager.CommonEventSubscriber;
       let id: number;
       let checkEventResults = ["AppA:onForegroundonAcceptWantCalledId1", "AppB:onCreateonForeground",
@@ -448,7 +480,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0700 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 4,
         nextStep: 0,
@@ -463,6 +495,10 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
     */
     it('ACTS_AbilityMultiInstance_Single_0800', 0, async (done: Function) => {
       console.log('ACTS_AbilityMultiInstance_Single_0800====<begin');
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let subscriber: commonEventManager.CommonEventSubscriber;
       let id: number;
       let checkEventResults = ["AppA:onForegroundonAcceptWantCalledId3", "AppB:onCreateonForeground",
@@ -503,7 +539,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0800 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 4,
         nextStep: 0,
@@ -519,6 +555,10 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
     it('ACTS_AbilityMultiInstance_Single_0900', 0, async (done: Function) => {
       console.log('ACTS_AbilityMultiInstance_Single_0900====<begin');
       let subscriber: commonEventManager.CommonEventSubscriber;
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let id: number;
       let checkEventResults = ["AppB:onCreateonForeground", "AppA:onForegroundonAcceptWantCalledId1",
         "AppC:onForeground", "AppA:onForegroundonAcceptWantCalledId1"];
@@ -559,7 +599,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_0900 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 4,
         nextStep: 0,
@@ -574,6 +614,10 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
     */
     it('ACTS_AbilityMultiInstance_Single_1000', 0, async (done: Function) => {
       console.log('ACTS_AbilityMultiInstance_Single_1000====<begin');
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let subscriber: commonEventManager.CommonEventSubscriber;
       let id: number;
       let checkEventResults = ["AppB:onCreateonForeground", "AppA:onForegroundonAcceptWantCalledId1",
@@ -615,7 +659,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1000 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 4,
         nextStep: 0,
@@ -630,6 +674,10 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
     */
     it('ACTS_AbilityMultiInstance_Single_1100', 0, async (done: Function) => {
       console.log('ACTS_AbilityMultiInstance_Single_1100====<begin');
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let subscriber: commonEventManager.CommonEventSubscriber;
       let id: number;
       let checkEventResults = ["AppD:onCreateonForegroundonAcceptWantCalledId1", "AppD:onCreateonForeground",
@@ -670,7 +718,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1100 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 4,
         nextStep: 0,
@@ -685,6 +733,10 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
     */
     it('ACTS_AbilityMultiInstance_Single_1200', 0, async (done: Function) => {
       console.log('ACTS_AbilityMultiInstance_Single_1200====<begin');
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let subscriber: commonEventManager.CommonEventSubscriber;
       let id: number;
       let checkEventResults = ["AppD:onCreateonForegroundonAcceptWantCalledId2", "AppD:onCreateonForeground",
@@ -725,7 +777,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1200 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 4,
         nextStep: 0,
@@ -740,6 +792,10 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
     */
     it('ACTS_AbilityMultiInstance_Single_1300', 0, async (done: Function) => {
       console.log('ACTS_AbilityMultiInstance_Single_1300====<begin');
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let subscriber: commonEventManager.CommonEventSubscriber;
       let id: number;
       let checkEventResults = ["AppB:onCreateonForeground", "AppB:onCreateonForeground"];
@@ -779,7 +835,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1300 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 2,
         nextStep: 0,
@@ -794,6 +850,10 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
     */
     it('ACTS_AbilityMultiInstance_Single_1400', 0, async (done: Function) => {
       console.log('ACTS_AbilityMultiInstance_Single_1400====<begin');
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let subscriber: commonEventManager.CommonEventSubscriber;
       let id: number;
       let checkEventResults = ["AppE:onInit", "AppA:onForegroundonAcceptWantCalledId1"];
@@ -834,7 +894,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1400 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 2,
         nextStep: 0,
@@ -849,6 +909,10 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
             */
     it('ACTS_AbilityMultiInstance_Single_1500', 0, async (done: Function) => {
       console.log('ACTS_AbilityMultiInstance_Single_1500====<begin');
+      if (deviceType === '2in1') {
+        done();
+        return;
+      }
       let subscriber: commonEventManager.CommonEventSubscriber;
       let id: number;
       let checkEventResults = ["AppA:onForegroundonAcceptWantCalledId2", "AppE:onInit"];
@@ -888,7 +952,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1500 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 2,
         nextStep: 0,
@@ -940,7 +1004,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1600 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 1,
         nextStep: 0,
@@ -994,7 +1058,7 @@ export default function abilityTest(abilityContext: common.UIAbilityContext) {
       }, START_ABILITY_TIMEOUT);
       console.log('Start AbilityMultiInstanceTester ACTS_AbilityMultiInstance_Single_1700 timer id : ' + id);
 
-      startAbilityProcess(abilityContext, {
+      startAbilityProcess(testAbilityContext, {
         startId: 0,
         stepNum: 1,
         nextStep: 0,

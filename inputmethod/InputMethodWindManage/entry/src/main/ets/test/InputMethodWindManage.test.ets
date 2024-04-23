@@ -21,7 +21,7 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import display from '@ohos.display';
 import { PanelInfo, PanelFlag, PanelType } from '@ohos.inputMethod.Panel';
 import deviceinfo from '@ohos.deviceInfo';
-import {Driver, ON, MatchPattern, Component, UiWindow } from '@ohos.UiTest'
+import {Driver, ON, MatchPattern, Component, UiWindow, DisplayRotation } from '@ohos.UiTest'
 import { BusinessError} from '@ohos.base'
 
 export default function inputMethodWindManageAbility() {
@@ -33,59 +33,6 @@ export default function inputMethodWindManageAbility() {
     beforeAll(async (done)=>{
       console.info('====>beforeAll inputMethod_enable start!')
       try{
-        if(deviceinfo.deviceType != 'default'){
-          let abilityDelegator: AbilityDelegatorRegistry.AbilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
-          let cmd = 'aa start -a com.huawei.hmos.settings.MainAbility -b com.huawei.hmos.settings';
-          abilityDelegator.executeShellCommand(cmd);
-          await sleep(2000)
-          console.info(`====>inputMethod_enable deviceinfo.deviceType: ${deviceinfo.deviceType}`);
-          let settingList = await driver.waitForComponent(ON.type('List').isBefore(ON.text('蓝牙')), 3000);
-          console.info(`====>inputMethod_enable settingList: ${settingList}`);
-          if(deviceinfo.deviceType === '2in1'){
-            console.info('====> 2in1');
-            let systemAndUpdate: Component = await settingList.scrollSearch(ON.text('系统和更新', MatchPattern.CONTAINS));
-            console.info(`====>inputMethod_enable systemAndUpdate: ${systemAndUpdate}`);
-            await systemAndUpdate.click();
-          } else if(deviceinfo.deviceType === 'tablet'){
-            console.info('====> tablet');
-            let systemAndUpdate: Component = await settingList.scrollSearch(ON.text('通用', MatchPattern.CONTAINS));
-            console.info(`====>inputMethod_enable systemAndUpdate: ${systemAndUpdate}`);
-            await systemAndUpdate.click();
-          } else {
-            console.info('====> other');
-            await driver.swipe(600, 2500, 600, 1000, 15000);
-            let common_text: Component = await driver.waitForComponent(ON.text('通用', MatchPattern.CONTAINS), 3000);
-            console.info(`====>inputMethod_enable common_text: ${common_text}`);
-            await common_text.click();
-          }
-          await driver.delayMs(500);
-          let inputMethod_Setting: Component = await driver.waitForComponent(ON.text('输入法', MatchPattern.CONTAINS), 3000);
-          console.info(`====>inputMethod_enable inputMethod_Setting: ${inputMethod_Setting}`);
-          await inputMethod_Setting.click();
-          await driver.delayMs(500);
-          let checkList: Array<Component> = await driver.findComponents(ON.type('Checkbox'));
-          console.info(`====>inputMethod_enable checkList: ${checkList}`);
-          for(let index=0; index<checkList.length; index++){
-            let checkStatus = await checkList[index].isChecked();
-            console.info(`====>inputMethod_enable checkStatus: ${checkStatus}`);
-            if(JSON.stringify(checkStatus) === 'false'){
-              await checkList[index].click();
-              await driver.delayMs(500);
-            }
-          }
-          if(deviceinfo.deviceType === '2in1'){
-            console.info('====> 2in1 start close settings window');
-            let window: UiWindow = await driver.findWindow({bundleName: "com.huawei.hmos.settings"});
-            console.info(`====>inputMethod_enable window: ${window}`);
-            await window.close();
-          }else{
-            console.info('====> other start close settings window and start test window');
-            abilityDelegator.executeShellCommand("aa force-stop com.huawei.hmos.settings");
-            abilityDelegator.executeShellCommand("aa start -d 0 -a com.acts.inputmethodwidmanage.test.MainAbility -b com.acts.inputmethodwidmanage.test");
-          }
-          await driver.delayMs(5000);
-        }
-
         let inputMethodSetting: inputMethod.InputMethodSetting = inputMethod.getSetting();
         let result: boolean = await inputMethodSetting.showOptionalInputMethods();
         console.info('====>beforeAll inputMethodSwitch showOptionalInputMethods result: ' + JSON.stringify(result));
@@ -113,12 +60,10 @@ export default function inputMethodWindManageAbility() {
         }
         console.info('====>beforeAll inputMethodSwitch done');
         await driver.delayMs(1000);
-        if(deviceinfo.deviceType === '2in1'){
-          let testWindow: UiWindow = await driver.findWindow({bundleName: "com.acts.inputmethodwidmanage.test"});
-          console.info('====>beforeAll inputMethodSwitch switch window: ' + JSON.stringify(testWindow));
-          await testWindow.focus();
-          await driver.delayMs(1000);
-        }
+        let testWindow: UiWindow = await driver.findWindow({bundleName: "com.acts.inputmethodwidmanage.test"});
+        console.info('====>beforeAll inputMethodSwitch switch window: ' + JSON.stringify(testWindow));
+        await testWindow.focus();
+        await driver.delayMs(1000);
         textArea = await driver.findComponent(ON.type('TextArea'));
         console.info('====>beforeAll inputMethodSwitch window textArea:' + JSON.stringify(textArea))
         rectInfo = await textArea.getBounds();

@@ -13,5 +13,12 @@
 
 group("networkmanager") {
   testonly = true
-  deps = [ "http:http" ]
+  deps = [
+    "fetch:fetch",
+    "http:http",
+    "network:network",
+    "noNet:noNet",
+    "noPermission:noPermission",
+    "socket:socket",
+  ]
 }
