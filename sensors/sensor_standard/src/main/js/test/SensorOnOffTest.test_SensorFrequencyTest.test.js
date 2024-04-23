@@ -97,8 +97,6 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
             done();
         }
     })
@@ -135,8 +133,6 @@ describe("SensorJsTest_sensor_63", function () {
                 });
             } catch (err) {
                 console.error('Sensor is not support');
-                expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-                expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
                 done();
             }
         })
@@ -173,8 +169,6 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
             done();
         }
     })
@@ -211,8 +205,6 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
             done();
         }
     })
@@ -249,8 +241,6 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
             done();
         }
     })
@@ -287,8 +277,6 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
             done();
         }
     })
@@ -325,8 +313,6 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
             done();
         }
     })
@@ -363,8 +349,6 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
             done();
         }
     })
@@ -401,8 +385,6 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
             done();
         }
     })

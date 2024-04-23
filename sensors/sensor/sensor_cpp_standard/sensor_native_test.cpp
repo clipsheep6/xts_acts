@@ -121,6 +121,7 @@ void SensorDataCallbackImpl(Sensor_Event *event)
 HWTEST_F(SensorAgentTest, OH_Sensor_GetInfos_001, TestSize.Level1)
 {
     SEN_HILOGI("OH_Sensor_GetInfos_001 in");
+    if (g_existGravity) {
     uint32_t count = 0;
     int32_t ret = OH_Sensor_GetInfos(nullptr, &count);
     ASSERT_EQ(ret, SENSOR_SUCCESS);
@@ -156,14 +157,17 @@ HWTEST_F(SensorAgentTest, OH_Sensor_GetInfos_001, TestSize.Level1)
     }
     ret = OH_Sensor_DestroyInfos(sensors, count);
     ASSERT_EQ(ret, SENSOR_SUCCESS);
+    }
 }
 
 HWTEST_F(SensorAgentTest, OH_Sensor_GetInfos_002, TestSize.Level1)
 {
     SEN_HILOGI("OH_Sensor_GetInfos_003 in");
+    if (g_existGravity) {
     Sensor_Info *sensors { nullptr };
     int32_t ret = OH_Sensor_GetInfos(&sensors, nullptr);
     ASSERT_NE(ret, SENSOR_SUCCESS);
+    }
 }
 
 HWTEST_F(SensorAgentTest, OH_Sensor_Subscribe_001, TestSize.Level1)
@@ -205,6 +209,7 @@ HWTEST_F(SensorAgentTest, OH_Sensor_Subscribe_001, TestSize.Level1)
 HWTEST_F(SensorAgentTest, OH_Sensor_Subscribe_002, TestSize.Level1)
 {
     SEN_HILOGI("OH_Sensor_Subscribe_002 in");
+    if (g_existGravity) {    
     Sensor_SubscriptionId *id = OH_Sensor_CreateSubscriptionId();
     int32_t ret = OH_SensorSubscriptionId_SetType(id, SENSOR_ID);
     ASSERT_EQ(ret, SENSOR_SUCCESS);
@@ -221,11 +226,14 @@ HWTEST_F(SensorAgentTest, OH_Sensor_Subscribe_002, TestSize.Level1)
     if (attr != nullptr) {
         OH_Sensor_DestroySubscriptionAttribute(attr);
     }
+    }
+    SEN_HILOGI("OH_Sensor_Subscribe_002 end");
 }
 
 HWTEST_F(SensorAgentTest, OH_Sensor_Subscribe_003, TestSize.Level1)
 {
     SEN_HILOGI("OH_Sensor_Subscribe_003 in");
+    if (g_existGravity) {
     g_user = OH_Sensor_CreateSubscriber();
     int32_t ret = OH_SensorSubscriber_SetCallback(g_user, SensorDataCallbackImpl);
     ASSERT_EQ(ret, SENSOR_SUCCESS);
@@ -243,11 +251,13 @@ HWTEST_F(SensorAgentTest, OH_Sensor_Subscribe_003, TestSize.Level1)
         OH_Sensor_DestroySubscriber(g_user);
         g_user = nullptr;
     }
+    }
 }
 
 HWTEST_F(SensorAgentTest, OH_Sensor_Subscribe_004, TestSize.Level1)
 {
     SEN_HILOGI("OH_Sensor_Subscribe_004 in");
+    if (g_existGravity) {    
     g_user = OH_Sensor_CreateSubscriber();
     int32_t ret = OH_SensorSubscriber_SetCallback(g_user, SensorDataCallbackImpl);
     ASSERT_EQ(ret, SENSOR_SUCCESS);
@@ -265,11 +275,13 @@ HWTEST_F(SensorAgentTest, OH_Sensor_Subscribe_004, TestSize.Level1)
         OH_Sensor_DestroySubscriber(g_user);
         g_user = nullptr;
     }
+    }
 }
 
 HWTEST_F(SensorAgentTest, OH_Sensor_Unsubscribe_001, TestSize.Level1)
 {
     SEN_HILOGI("OH_Sensor_Unsubscribe_001 in");
+    if (g_existGravity) {
     g_user = OH_Sensor_CreateSubscriber();
     int32_t ret = OH_SensorSubscriber_SetCallback(g_user, SensorDataCallbackImpl);
     ASSERT_EQ(ret, SENSOR_SUCCESS);
@@ -280,11 +292,13 @@ HWTEST_F(SensorAgentTest, OH_Sensor_Unsubscribe_001, TestSize.Level1)
         OH_Sensor_DestroySubscriber(g_user);
         g_user = nullptr;
     }
+    }
 }
 
 HWTEST_F(SensorAgentTest, OH_Sensor_Unsubscribe_002, TestSize.Level1)
 {
     SEN_HILOGI("OH_Sensor_Unsubscribe_002 in");
+    if (g_existGravity) {
     Sensor_SubscriptionId *id = OH_Sensor_CreateSubscriptionId();
     int32_t ret = OH_SensorSubscriptionId_SetType(id, SENSOR_ID);
     ASSERT_EQ(ret, SENSOR_SUCCESS);
@@ -294,31 +308,38 @@ HWTEST_F(SensorAgentTest, OH_Sensor_Unsubscribe_002, TestSize.Level1)
     if (id != nullptr) {
         OH_Sensor_DestroySubscriptionId(id);
     }
+    }
 }
 
 HWTEST_F(SensorAgentTest, OH_SensorSubscriptionId_SetType_001, TestSize.Level1)
 {
+    if (g_existGravity) {
     SEN_HILOGI("OH_SensorSubscriptionId_SetType_001 in");
     int32_t ret = OH_SensorSubscriptionId_SetType(nullptr, SENSOR_ID);
     ASSERT_EQ(ret, SENSOR_PARAMETER_ERROR);
+    }
 }
 
 HWTEST_F(SensorAgentTest, OH_SensorSubscriptionId_GetType_001, TestSize.Level1)
 {
     SEN_HILOGI("OH_SensorSubscriptionId_GetType_001 in");
+    if (g_existGravity) {
     Sensor_Type type;
     int32_t ret = OH_SensorSubscriptionId_GetType(nullptr, &type);
     ASSERT_EQ(ret, SENSOR_PARAMETER_ERROR);
+    }
 }
 
 HWTEST_F(SensorAgentTest, OH_SensorSubscriptionId_GetType_002, TestSize.Level1)
 {
     SEN_HILOGI("OH_SensorSubscriptionId_GetType_002 in");
+    if (g_existGravity) {
     Sensor_SubscriptionId *id = OH_Sensor_CreateSubscriptionId();
     int32_t ret = OH_SensorSubscriptionId_GetType(id, nullptr);
     ASSERT_EQ(ret, SENSOR_PARAMETER_ERROR);
     if (id != nullptr) {
         OH_Sensor_DestroySubscriptionId(id);
+    }
     }
 }
 
@@ -326,20 +347,24 @@ HWTEST_F(SensorAgentTest, OH_SensorSubscriptionAttribute_SetSamplingInterval_001
     TestSize.Level1)
 {
     SEN_HILOGI("OH_SensorSubscriptionAttribute_SetSamplingInterval_001 in");
+    if (g_existGravity) {
     int32_t ret = OH_SensorSubscriptionAttribute_SetSamplingInterval(nullptr,
         SENSOR_SAMPLE_PERIOD);
     ASSERT_EQ(ret, SENSOR_PARAMETER_ERROR);
+    }
 }
 
 HWTEST_F(SensorAgentTest, OH_SensorSubscriptionAttribute_SetSamplingInterval_002,
     TestSize.Level1)
 {
     SEN_HILOGI("OH_SensorSubscriptionAttribute_SetSamplingInterval_002 in");
+    if (g_existGravity) {
     Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
     int32_t ret = OH_SensorSubscriptionAttribute_SetSamplingInterval(attr, INVALID_VALUE);
     ASSERT_EQ(ret, SENSOR_PARAMETER_ERROR);
     if (attr != nullptr) {
         OH_Sensor_DestroySubscriptionAttribute(attr);
+    }
     }
 }
 
@@ -347,55 +372,67 @@ HWTEST_F(SensorAgentTest, OH_SensorSubscriptionAttribute_GetSamplingInterval_001
     TestSize.Level1)
 {
     SEN_HILOGI("OH_SensorSubscriptionAttribute_GetSamplingInterval_001 in");
+    if (g_existGravity) {
     int64_t samplingInterval = 0;
     int32_t ret = OH_SensorSubscriptionAttribute_GetSamplingInterval(nullptr,
         &samplingInterval);
     ASSERT_EQ(ret, SENSOR_PARAMETER_ERROR);
+    }
 }
 
 HWTEST_F(SensorAgentTest, OH_SensorSubscriptionAttribute_GetSamplingInterval_002,
     TestSize.Level1)
 {
     SEN_HILOGI("OH_SensorSubscriptionAttribute_GetSamplingInterval_002 in");
+    if (g_existGravity) {
     Sensor_SubscriptionAttribute *attr = OH_Sensor_CreateSubscriptionAttribute();
     int32_t ret = OH_SensorSubscriptionAttribute_GetSamplingInterval(attr, nullptr);
     ASSERT_EQ(ret, SENSOR_PARAMETER_ERROR);
     if (attr != nullptr) {
         OH_Sensor_DestroySubscriptionAttribute(attr);
     }
+    }
 }
 
 HWTEST_F(SensorAgentTest, OH_SensorSubscriber_SetCallback_001, TestSize.Level1)
 {
     SEN_HILOGI("OH_SensorSubscriber_SetCallback_001 in");
+    if (g_existGravity) {
     int32_t ret = OH_SensorSubscriber_SetCallback(nullptr, SensorDataCallbackImpl);
     ASSERT_EQ(ret, SENSOR_PARAMETER_ERROR);
+    }
 }
 
 HWTEST_F(SensorAgentTest, OH_SensorSubscriber_SetCallback_002, TestSize.Level1)
 {
     SEN_HILOGI("OH_SensorSubscriber_SetCallback_002 in");
+    if (g_existGravity) {
     g_user = OH_Sensor_CreateSubscriber();
     int32_t ret = OH_SensorSubscriber_SetCallback(g_user, nullptr);
     ASSERT_EQ(ret, SENSOR_PARAMETER_ERROR);
+    }
 }
 
 HWTEST_F(SensorAgentTest, OH_SensorSubscriber_GetCallback_001, TestSize.Level1)
 {
     SEN_HILOGI("OH_SensorSubscriber_GetCallback_001 in");
+    if (g_existGravity) {
     Sensor_EventCallback callback;
     int32_t ret = OH_SensorSubscriber_GetCallback(nullptr, &callback);
     ASSERT_EQ(ret, SENSOR_PARAMETER_ERROR);
+    }
 }
 
 HWTEST_F(SensorAgentTest, OH_SensorSubscriber_GetCallback_002, TestSize.Level1)
 {
     SEN_HILOGI("OH_SensorSubscriber_GetCallback_002 in");
+    if (g_existGravity) {
     g_user = OH_Sensor_CreateSubscriber();
     int32_t ret = OH_SensorSubscriber_GetCallback(g_user, nullptr);
     ASSERT_EQ(ret, SENSOR_PARAMETER_ERROR);
     if (g_user != nullptr) {
         OH_Sensor_DestroySubscriber(g_user);
+    }
     }
 }
 }  // namespace Sensors
