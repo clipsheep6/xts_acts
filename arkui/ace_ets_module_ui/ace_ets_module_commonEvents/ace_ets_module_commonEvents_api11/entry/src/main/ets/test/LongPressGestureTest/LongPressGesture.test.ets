@@ -22,7 +22,7 @@ export default function longPressGestureJsunit() {
     beforeEach(async (done: Function) => {
       console.info("longPressGesture beforeEach start");
       let options: router.RouterOptions = {
-        url: 'MainAbility/pages/longPressGesture/longPressGesture',
+        url: 'MainAbility/pages/LongPressGesture/longPressGesture',
       }
       try {
         router.clear();
