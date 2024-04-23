@@ -13,10 +13,12 @@
  * limitations under the License.
  */
 
-import ActsAutoSaveTest from './SUB_Ability_AbilityRuntime_AutoSave';
-import ActsAutoFillTest from './SUB_Ability_AbilityRuntime_AutoFill';
+export let nameList: Array<string> = ['张三','张德发', '李雪丽', '王林', '刘二妹'];
+export let phoneList: Array<string> = ['11122223333', '22233331111', '33311112222', '33322221111'];
+export let addressList: Array<string> = [
+    '金陵市雨花台区安德门大街99号',
+    '京海市海淀区学院路128号',
+    '长安市长安区东祥路11号',
+    '黄原市原西县石圪节公社双水村66号'
+];
 
-export default function testsuite() {
-  ActsAutoSaveTest();
-  ActsAutoFillTest();
-}
