@@ -63,6 +63,7 @@ import addResourceChangeRequestTest from './MediaAssetChangeRequest/addResource'
 import getWriteCacheHandlerTest from './MediaAssetChangeRequest/getWriteCacheHandler'
 import requestImageTest from './MediaAssetManager/requestImage'
 import requestImageDataTest from './MediaAssetManager/requestImageData'
+import getMovingPhotoTest from './PhotoAccessHelper/getMovingPhoto'
 
 export default function testsuite () {
   provisionResourcesTest()
@@ -116,4 +117,5 @@ export default function testsuite () {
   getWriteCacheHandlerTest()
   requestImageTest()
   requestImageDataTest()
+  getMovingPhotoTest()
 }
