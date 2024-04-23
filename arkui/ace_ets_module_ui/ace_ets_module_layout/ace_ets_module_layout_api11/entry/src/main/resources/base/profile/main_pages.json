@@ -496,6 +496,7 @@
         "MainAbility/pages/List/ListLanes03",
         "MainAbility/pages/List/ListLanes04",
         "MainAbility/pages/List/ListLanes05",
-        "MainAbility/pages/Blank/blank3"
+        "MainAbility/pages/Blank/blank3",
+        "MainAbility/pages/Divider/dividerUI"
     ]
 }
