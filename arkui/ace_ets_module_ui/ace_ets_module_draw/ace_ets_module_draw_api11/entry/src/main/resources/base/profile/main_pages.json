@@ -17,6 +17,7 @@
         "MainAbility/pages/Canvas/canvas",
         "MainAbility/pages/Canvas/canvas2",
         "MainAbility/pages/Shape/shape",
-        "MainAbility/pages/Line/line"
+        "MainAbility/pages/Line/line",
+        "MainAbility/pages/Circle/circle"
     ]
 }
