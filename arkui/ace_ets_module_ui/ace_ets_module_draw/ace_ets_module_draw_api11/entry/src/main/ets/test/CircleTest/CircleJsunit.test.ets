@@ -18,17 +18,17 @@ import events_emitter from '@ohos.events.emitter';
 import Utils from '../Utils';
 
 export default function circleJsunit() {
-  describe('circleTest', () => {
+  describe('circleJsunit', () => {
     beforeEach(async (done: Function) => {
       console.info("circle beforeEach start");
       let options: router.RouterOptions = {
-        url: 'MainAbility/pages/Circle/circle',
+        url: 'MainAbility/pages/Circle/circle3',
       }
       try {
         router.clear();
         let pages = router.getState();
         console.info("get circle state pages:" + JSON.stringify(pages));
-        if (!("circle" == pages.name)) {
+        if (!("circle3" == pages.name)) {
           console.info("get circle state pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await Utils.sleep(2000);

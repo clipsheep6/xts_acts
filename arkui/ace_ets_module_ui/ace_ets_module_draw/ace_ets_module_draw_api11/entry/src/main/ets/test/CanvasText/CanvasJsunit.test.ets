@@ -17,17 +17,17 @@ import router from '@ohos.router';
 import Utils from '../Utils';
 
 export default function canvasJsunit() {
-  describe('canvasTest', () => {
+  describe('canvasJsunit', () => {
     beforeEach(async (done: Function) => {
       console.info("canvas beforeEach start");
       let options: router.RouterOptions = {
-        url: 'MainAbility/pages/Canvas/canvas',
+        url: 'MainAbility/pages/Canvas/canvas3',
       }
       try {
         router.clear();
         let pages = router.getState();
         console.info("get canvas state pages:" + JSON.stringify(pages));
-        if (!("canvas" == pages.name)) {
+        if (!("canvas3" == pages.name)) {
           console.info("get canvas state pages.name:" + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await Utils.sleep(2000);

@@ -124,9 +124,10 @@ import ApiCommponentAddJsunit from './ScrollTest/ApiCommponentAddJsunit.test.ets
 import ScrollBarJsunit from './ScrollTest/ScrollBarJsunit.test';
 import sliderJsunit from './SliderTest/sliderJsunit.test.ets';
 import swiperAnimationJsunit from './SwiperTest/swiperUI/swiperAnimationJsunit.test.ets'
-import scrollCodeJsunit from './ScrollTest/ScrollCodeJsunit.test';
-import tabsJsunit from './TabsTest/Tabs3Jsunit.test';
-import gridJsunit from './gridTest/Grid3Jsunit.test';
+import scrollCodeJsunit from './ScrollTest/ScrollCodeJsunit.test.ets';
+import tabsJsunit from './TabsTest/Tabs3Jsunit.test.ets';
+import gridJsunit from './gridTest/Grid3Jsunit.test.ets';
+
 export default function testsuite() {
   listUxTest()
   ActsGridTest();

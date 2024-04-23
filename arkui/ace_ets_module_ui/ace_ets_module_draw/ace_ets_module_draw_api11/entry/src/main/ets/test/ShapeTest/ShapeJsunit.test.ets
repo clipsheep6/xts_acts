@@ -19,16 +19,16 @@ import Utils from '../Utils';
 import events_emitter from '@ohos.events.emitter';
 
 export default function shapeJsunit() {
-  describe('shapeTest', () => {
+  describe('shapeJsunit', () => {
     beforeEach(async (done: Function) => {
       let options: router.RouterOptions = {
-        url: 'MainAbility/pages/Shape/shape',
+        url: 'MainAbility/pages/Shape/shape3',
       }
       try {
         router.clear();
         let pages = router.getState();
         console.info("get shape state success " + JSON.stringify(pages));
-        if (!("shape" == pages.name)) {
+        if (!("shape3" == pages.name)) {
           console.info("get shape state success " + JSON.stringify(pages.name));
           let result = await router.pushUrl(options);
           await Utils.sleep(1000);

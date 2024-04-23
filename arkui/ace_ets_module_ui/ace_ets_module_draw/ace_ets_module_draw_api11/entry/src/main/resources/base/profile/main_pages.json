@@ -14,10 +14,10 @@
         "MainAbility/pages/Particle/ParticleProperty",
         "MainAbility/pages/Canvas/CanvasRenderer",
         "MainAbility/pages/Canvas/drwableAdd",
-        "MainAbility/pages/Canvas/canvas",
         "MainAbility/pages/Canvas/canvas2",
-        "MainAbility/pages/Shape/shape",
+        "MainAbility/pages/Shape/shape3",
         "MainAbility/pages/Line/line",
-        "MainAbility/pages/Circle/circle"
+        "MainAbility/pages/Circle/circle3",
+        "MainAbility/pages/Canvas/canvas3"
     ]
 }
