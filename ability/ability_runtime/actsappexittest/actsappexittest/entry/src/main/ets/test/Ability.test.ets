@@ -37,7 +37,7 @@ export default function abilityTest() {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
-    it('SUB_Ability_AbilityRuntime_terminateProcess_0100', 0, async (done: Function) => {
+    it('SUB_Ability_AbilityRuntime_terminate_0100', 0, async (done: Function) => {
       let subscriber: commonEvent.CommonEventSubscriber;
       commonEvent.createSubscriber(ACTS_CallFunction).then(async (data) => {
         console.info(`====>SUB_Ability_AbilityRuntime_terminateProcess_0100 createSubscriber  ${data}`);
@@ -94,7 +94,7 @@ export default function abilityTest() {
     })
 
 
-    it('SUB_Ability_AbilityRuntime_terminateProcess_0200', 0, async (done: Function) => {
+    it('SUB_Ability_AbilityRuntime_terminate_0200', 0, async (done: Function) => {
       await sleep(2000);
       let subscriber: commonEvent.CommonEventSubscriber;
       commonEvent.createSubscriber(ACTS_CallFunction).then(async (data) => {
@@ -147,7 +147,7 @@ export default function abilityTest() {
     })
 
 
-    it('SUB_Ability_AbilityRuntime_terminateProcess_0300', 0, async (done: Function) => {
+    it('SUB_Ability_AbilityRuntime_terminate_0300', 0, async (done: Function) => {
       await sleep(2000);
       let subscriber: commonEvent.CommonEventSubscriber;
       commonEvent.createSubscriber(ACTS_CallFunction).then(async (data) => {
@@ -207,7 +207,7 @@ export default function abilityTest() {
     })
 
 
-    it('SUB_Ability_AbilityRuntime_terminateProcess_0400', 0, async (done: Function) => {
+    it('SUB_Ability_AbilityRuntime_terminate_0400', 0, async (done: Function) => {
       await sleep(2000);
       let subscriber: commonEvent.CommonEventSubscriber;
       let flag = 0;
@@ -267,7 +267,7 @@ export default function abilityTest() {
     })
 
 
-    it('SUB_Ability_AbilityRuntime_terminateProcess_0500', 0, async (done: Function) => {
+    it('SUB_Ability_AbilityRuntime_terminate_0500', 0, async (done: Function) => {
       await sleep(2000);
       let subscriber: commonEvent.CommonEventSubscriber;
       let flag = 0;
@@ -338,7 +338,7 @@ export default function abilityTest() {
     })
 
 
-    it('SUB_Ability_AbilityRuntime_terminateProcess_0600', 0, async (done: Function) => {
+    it('SUB_Ability_AbilityRuntime_terminate_0600', 0, async (done: Function) => {
       await sleep(2000);
       let subscriber: commonEvent.CommonEventSubscriber;
       let flag = 0;
@@ -408,7 +408,7 @@ export default function abilityTest() {
     })
 
 
-    it('SUB_Ability_AbilityRuntime_terminateProcess_0700', 0, async (done: Function) => {
+    it('SUB_Ability_AbilityRuntime_terminate_0700', 0, async (done: Function) => {
       await sleep(2000);
       let subscriber: commonEvent.CommonEventSubscriber;
       commonEvent.createSubscriber(ACTS_CallFunction).then(async (data) => {
@@ -466,7 +466,7 @@ export default function abilityTest() {
     })
 
 
-    it('SUB_Ability_AbilityRuntime_terminateProcess_0800', 0, async (done: Function) => {
+    it('SUB_Ability_AbilityRuntime_terminate_0800', 0, async (done: Function) => {
       await sleep(3000);
       let subscriber: commonEvent.CommonEventSubscriber;
       commonEvent.createSubscriber(ACTS_CallFunction).then(async (data) => {
@@ -519,7 +519,7 @@ export default function abilityTest() {
     })
 
 
-    it('SUB_Ability_AbilityRuntime_terminateProcess_0900', 0, async (done: Function) => {
+    it('SUB_Ability_AbilityRuntime_terminate_0900', 0, async (done: Function) => {
       await sleep(3000);
       let subscriber: commonEvent.CommonEventSubscriber;
       commonEvent.createSubscriber(ACTS_CallFunction).then(async (data) => {
@@ -578,7 +578,7 @@ export default function abilityTest() {
     })
 
 
-    it('SUB_Ability_AbilityRuntime_terminateProcess_1000', 0, async (done: Function) => {
+    it('SUB_Ability_AbilityRuntime_terminate_1000', 0, async (done: Function) => {
       await sleep(3000);
       let flag = 0;
       let subscriber: commonEvent.CommonEventSubscriber;
@@ -644,7 +644,7 @@ export default function abilityTest() {
     })
 
 
-    it('SUB_Ability_AbilityRuntime_terminateProcess_1100', 0, async (done: Function) => {
+    it('SUB_Ability_AbilityRuntime_terminate_1100', 0, async (done: Function) => {
       await sleep(3000);
       let flag = 0;
       let subscriber: commonEvent.CommonEventSubscriber;
@@ -710,7 +710,7 @@ export default function abilityTest() {
     })
 
 
-    it('SUB_Ability_AbilityRuntime_terminateProcess_1200', 0, async (done: Function) => {
+    it('SUB_Ability_AbilityRuntime_terminate_1200', 0, async (done: Function) => {
       await sleep(3000);
       let flag = 0;
       let subscriber: commonEvent.CommonEventSubscriber;
