@@ -61,7 +61,7 @@ export default function stageContextPropertiesTestUpdateConfiguration(applicatio
         },
       };
       environmentId = applicationContext.on('environment', envCallback);
-      applicationContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_LIGHT);
+      applicationContext.setColorMode(ConfigurationConstant.ColorMode.COLOR_MODE_DARK);
       setTimeout(() => {
         applicationContext.off('environment', environmentId);
         expect(resultTag).assertEqual(0);
