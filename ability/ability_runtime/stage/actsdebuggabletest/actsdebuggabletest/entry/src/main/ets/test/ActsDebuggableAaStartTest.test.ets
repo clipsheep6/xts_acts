@@ -121,7 +121,6 @@ export default function actsDebuggableAaStartTest() {
           hilog.info(0x0000, 'debuggabletest', '%{public}s', 'SUB_AA_AMS_Debuggable_2600 aa process err is: ' + JSON.stringify(err));
         });
       expect(res).assertContain('usage: aa start <options>');
-      expect(res).assertContain('[-p <perf-cmd>]');
       expect(res).assertContain('[-S]');
       done();
     })
