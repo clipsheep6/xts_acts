@@ -3,7 +3,7 @@
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "300000",
-        "bundle-name": "ohos.acts.image.imagePackExif",
+        "bundle-name": "ohos.acts.image.imagePackeExif",
         "module-name": "entry",
         "shell-timeout": "300000",
         "testcase-timeout": 60000
@@ -11,7 +11,7 @@
     "kits": [
         {
             "test-file-name": [
-                "ActsImagePackExifAbilityTest.hap"
+                "ActsImagePackeExifTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
@@ -19,19 +19,19 @@
         {
             "type": "ShellKit",
             "run-command": [
-                "mkdir -p /data/app/el2/100/base/ohos.acts.image.imagePackExif/haps/entry/files/",
-                "chmod -R 666 /data/app/el2/100/base/ohos.acts.image.imagePackExif/haps/entry/files/*",
-                "mkdir -p /data/app/el2/100/base/ohos.acts.image.imagePackExif/haps/entry/cache/",
-                "chmod -R 777 /data/app/el2/100/base/ohos.acts.image.imagePackExif/haps/entry/cache/*"
+                "mkdir -p /data/app/el2/100/base/ohos.acts.image.imagePackeExif/haps/entry/files/",
+                "chmod -R 666 /data/app/el2/100/base/ohos.acts.image.imagePackeExif/haps/entry/files/*",
+                "mkdir -p /data/app/el2/100/base/ohos.acts.image.imagePackeExif/haps/entry/cache/",
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.image.imagePackeExif/haps/entry/cache/*"
             ]
         },
         {
             "type": "PushKit",
             "pre-push": [],
             "push": [
-                "./resource/image/test_exif_jpeg.jpg ->/data/app/el2/100/base/ohos.acts.image.imagePackExif/haps/entry/files",
-                "./resource/image/test_exif_png.png ->/data/app/el2/100/base/ohos.acts.image.imagePackExif/haps/entry/files",
-                "./resource/image/test_exif_webp.webp ->/data/app/el2/100/base/ohos.acts.image.imagePackExif/haps/entry/files"
+                "./resource/image/test_exif_jpeg.jpg ->/data/app/el2/100/base/ohos.acts.image.imagePackeExif/haps/entry/files",
+                "./resource/image/test_exif_png.png ->/data/app/el2/100/base/ohos.acts.image.imagePackeExif/haps/entry/files",
+                "./resource/image/test_exif_webp.webp ->/data/app/el2/100/base/ohos.acts.image.imagePackeExif/haps/entry/files"
             ]
         }
     ]

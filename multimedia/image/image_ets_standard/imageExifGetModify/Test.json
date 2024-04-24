@@ -19,32 +19,32 @@
         {
             "type": "ShellKit",
             "run-command": [
-                "mkdir -p /data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files/"
+                "mkdir -p /data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files/"
             ]
         },
         {
             "type": "PushKit",
             "pre-push": [],
             "push": [
-                "./resource/image/test_exif_empty.jpg ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files",
-                "./resource/image/test_exif_v2.jpg ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files",
-                "./resource/image/test_exif_empty_2.jpg ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files",
-                "./resource/image/test_exif_empty.png ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files",
-                "./resource/image/test_exif_v2.png ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files",
-                "./resource/image/test_exif_empty_2.png ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files",
-                "./resource/image/test_exif_empty.heic ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files",
-                "./resource/image/test_exif_v2.heic ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files",
-                "./resource/image/test_exif_empty_2.heic ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files",
-                "./resource/image/test_exif_empty.webp ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files",
-                "./resource/image/test.webp ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files",
-                "./resource/image/test_exif_empty3.webp ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files",
-                "./resource/image/test_public_exif.webp ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files"
+                "./resource/image/test_exif_empty.jpg ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files",
+                "./resource/image/test_exif_v2.jpg ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files",
+                "./resource/image/test_exif_empty_2.jpg ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files",
+                "./resource/image/test_exif_empty.png ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files",
+                "./resource/image/test_exif_v2.png ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files",
+                "./resource/image/test_exif_empty_2.png ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files",
+                "./resource/image/test_exif_empty.heic ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files",
+                "./resource/image/test_exif_v2.heic ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files",
+                "./resource/image/test_exif_empty_2.heic ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files",
+                "./resource/image/test_exif_empty.webp ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files",
+                "./resource/image/test.webp ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files",
+                "./resource/image/test_exif_empty3.webp ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files",
+                "./resource/image/test_public_exif.webp ->/data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files"
             ]
         },
         {
             "type": "ShellKit",
             "run-command": [
-                "chmod -R 777 /data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry_test/files/*"
+                "chmod -R 777 /data/app/el2/100/base/ohos.acts.image.imageExifGetModify/haps/entry/files/*"
             ]
         }
     ]

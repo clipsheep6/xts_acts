@@ -11,7 +11,7 @@
     "kits": [
         {
             "test-file-name": [
-                "ActsImageDecodeYUVTest.hap"
+                "ActsImageDecodeOptionsYuvRawTest.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
