@@ -219,6 +219,8 @@
         "MainAbility/pages/button/button3",
         "MainAbility/pages/span/span3",
         "MainAbility/pages/text/text3",
-        "MainAbility/pages/TimePicker/timeStamp"
+        "MainAbility/pages/TimePicker/timeStamp",
+	"MainAbility/pages/ImageAnimator/imageAnimator2",
+        "MainAbility/pages/Progress/loadingProgress2"
     ]
 }

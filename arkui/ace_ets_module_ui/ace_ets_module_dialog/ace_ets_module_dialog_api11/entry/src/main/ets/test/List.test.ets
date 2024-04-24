@@ -21,7 +21,6 @@ import promptTest from './promptActionTest/promptTest.test';
 import DialogTest from './promptActionTest/Dialog.test';
 import panelJsunit from './Panel/PanelJsunit.test';
 import panelClose from './Panel/panelClose'
-
 import ActionSheet from './actionSheetTest/ActionSheet.test'
 import ActionSheetFalse from './actionSheetTest/ActionSheetFalse.test'
 import ActionSheetTrue from './actionSheetTest/ActionSheetTrue.test'
@@ -46,7 +45,6 @@ import showToast from './promptActionTest/showToast.test'
 import AlertDialog1 from './alertDialogTest/AlertDialog1.test'
 import AlertDialogFalse from './alertDialogTest/AlertDialogFalse.test'
 import AlertDialogTrue from './alertDialogTest/AlertDialogTrue.test'
-
 import bindPopupOffsetTest from './promptActionTest/bindPopupOffset.test'
 import stagePromptTest from './promptActionTest/stagePrompt.test'
 import stageActionSheet from './actionSheetTest/stageActionSheet.test'
@@ -55,11 +53,9 @@ import customDialogControllerJsunit from './customDialogTest/CustomDialogControl
 import calendarJsunit from './calendarPickerDialogTest/CalendarJsunit.test';
 import ohosPromptJsunit from './promptActionTest/OhosPromptJsunit.test';
 import textPickerJsunit from './textPickerDialogTest/TextPickerJsunit.test';
-
 import alertDialogCenterStartJsunit from './alertDialogTest/alertDialog.test';
 import responseTypeJsunit from './MenuTest/responseType.test.ets';
 import promptShowDialogJsunit from './promptActionTest/prompt.test.ets';
-
 import ActionsheetDialogAJsunit from './Dialog/ActionsheetDialogJsunit.test.ets';
 import AlertDialogAJsunit from './Dialog/AlertDialogAJsunit.test';
 import CalendarDialogAJsunit from './Dialog/CalendarDialogJsunit.test.ets';
@@ -80,13 +76,14 @@ import PanelUIJsunit from './Panel/PanelUIJsunit.test.ets';
 import ActionSheetJsunit from './actionSheetTest/ActionSheetJsunit.test.ets';
 import menuEnabledJsunit from './MenuTest/menuEnabledJsunit.test.ets';
 import responseRegionJsunit from './MenuTest/ResponseRegionJsunit.test';
+import bindMenuJsunitt from './MenuTest/BindMenuJsunitt.test.ets';
+import bindPopupJsunit from './MenuTest/BindPopupJsunit.test.ets';
 
 export default function testsuite() {
   bindPopupOffsetTest();
   stagePromptTest();
   stageActionSheet();
   stageAlertDialog();
-
   CustomDialogMaskTest()
   menu()
   menuTest()
@@ -96,7 +93,6 @@ export default function testsuite() {
   DialogTest();
   panelJsunit();
   panelClose()
-
   ActionSheet();
   ActionSheetFalse();
   ActionSheetTrue();
@@ -125,11 +121,9 @@ export default function testsuite() {
   calendarJsunit()
   ohosPromptJsunit()
   textPickerJsunit()
-  
   alertDialogCenterStartJsunit();
   responseTypeJsunit()
   promptShowDialogJsunit()
-  
   ActionsheetDialogAJsunit();
   AlertDialogAJsunit();
   CalendarDialogAJsunit();
@@ -150,4 +144,6 @@ export default function testsuite() {
   ActionSheetJsunit();
   menuEnabledJsunit();
   responseRegionJsunit();
+  bindMenuJsunitt()
+  bindPopupJsunit();
 }
