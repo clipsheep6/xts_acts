@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import stepperJsunit from './stepperTest/StepperJsunit.test';
+import StepperJsunit11 from './stepperTest/StepperJsunit11.test';
 import NavigationParamTest from './NavigationTest/NavigationParam.test';
 import NavigationApi from './NavigationTest/NavigationApi.test';
 import NavigationApi2 from './NavigationTest/NavigationApi2.test';
@@ -81,11 +81,18 @@ import SideBarContainerType_DefaultValue2 from './SideBarContainerTest/SideBarCo
 import SideBarContainerType_DefaultValue3 from './SideBarContainerTest/SideBarContainerType/SideBarContainerType_DefaultValue3.test';
 import SideBarContainerDivider from './SideBarContainerTest/SideBarContainerDivider/SideBarContainerDivider.test';
 import stepperUIJsunit from './stepperTest/stepperUIJsunit.test.ets';
+import NavigationApiFirst from './NavigationTest/NavigationApiFirst.test';
+import sidebarIconsJsunit from './SideBarContainerTest/sidebarfirst.test'
+import stepperItemDisabledJsunit from './stepperTest/stepperItem.test';
+import NavigationApiOther from './NavigationTest/NavigationApiOther.test.ets';
+import navigatorTargetJsunit from './NavigationTest/navigator.test'
+import pageRouteTest from './pageRouteTest/pageRoute.test'
+import searchOnCutJsunit from './SearchTest/search.test'
 
 export default function testsuite() {
   navigationTypeTest();
 
-  stepperJsunit();
+  StepperJsunit11();
   NavigationParamTest();
   NavigationApi();
   NavigationApi2();
@@ -152,4 +159,13 @@ export default function testsuite() {
   SideBarContainerType_DefaultValue3();
   SideBarContainerDivider();
   stepperUIJsunit();
+  
+  navigationTypeTest();
+  NavigationApiFirst()
+  sidebarIconsJsunit()
+  stepperItemDisabledJsunit()
+  NavigationApiOther()
+  navigatorTargetJsunit()
+  pageRouteTest()
+  searchOnCutJsunit()
 }
