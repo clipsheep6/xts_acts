@@ -264,8 +264,8 @@ export default function avVideoRecorderTestOne() {
             let cameraDevice = cameras[0];
             console.info('initCamera 006');
             let cameraOutputCapability = cameraManager.getSupportedOutputCapability(cameraDevice);
-            console.info('initCamera 007');
             if(cameraOutputCapability?.videoProfiles){
+                console.info('initCamera 007');
                 let defaultDisplay = null;
                 try {
                     defaultDisplay = display.getDefaultDisplaySync();
@@ -293,13 +293,15 @@ export default function avVideoRecorderTestOne() {
 
         beforeEach(async function () {
             console.info('beforeEach case');
-            await avRecorderTestBase.sleep(1000);
+            if(isSupportUSBCamera){
+                await avRecorderTestBase.sleep(1000);
+            }
         })
 
         afterEach(async function () {
+            console.info('afterEach case');
             if(isSupportUSBCamera){
                 isInitCamera = false
-                console.info('afterEach case');
                 if (avRecorder != null) {
                     avRecorder.release().then(() => {
                         console.info(TAG + 'this testCase execution completed')
@@ -307,8 +309,6 @@ export default function avVideoRecorderTestOne() {
                 }
                 await mediaTestBase.closeFd(fdObject.fileAsset, fdObject.fdNumber);
                 await avRecorderTestBase.sleep(1000);
-            }else{
-                console.info('afterEach case');
             }
         })
 
