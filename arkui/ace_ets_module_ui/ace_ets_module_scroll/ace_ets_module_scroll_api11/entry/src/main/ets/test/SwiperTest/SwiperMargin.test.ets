@@ -37,6 +37,7 @@ export default function SwiperMarginTest() {
             console.error(`${SUITE} router.pushUrl failed, code is ${error.code}, message is ${error.message}`);
           })
         }
+        let driver = Driver.create()
         await driver.delayMs(3000)
       } catch (err) {
         console.error(`${SUITE} beforeEach error:` + JSON.stringify(err));
