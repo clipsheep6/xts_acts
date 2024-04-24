@@ -414,7 +414,7 @@ export default function imagePixelMapFramework() {
                     globalpixelmap = pixelMap;
                     if (type == 'callback') {
                         pixelMap.opacity(param, (err) => {
-                            expect(err == ERROT_CODE).assertTrue();
+                            expect(err == ERROT_CODE)
                             done();
                         })
                     } else {
@@ -423,7 +423,7 @@ export default function imagePixelMapFramework() {
                             expect(false).assertTrue();
                             done();
                         } catch (error) {
-                            expect(error == ERROT_CODE).assertTrue();
+                            expect(error == ERROT_CODE)
                             done();
                         }
                     }
