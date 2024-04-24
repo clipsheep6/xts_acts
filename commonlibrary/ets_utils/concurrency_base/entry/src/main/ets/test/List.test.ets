@@ -14,7 +14,9 @@
  */
 
 import ConcurrencyBaseTest from './ConcurrencyBase.test.ets'
+import SendableChainTest from './SendablesChain.test.ets'
 
 export default function testsuite() {
     ConcurrencyBaseTest();
+    SendableChainTest();
 }
