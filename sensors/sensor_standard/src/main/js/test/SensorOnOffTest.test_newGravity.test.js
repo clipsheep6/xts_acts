@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021-2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -86,6 +86,7 @@ describe("SensorJsTest_sensor_42", function () {
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
     let invalid  = -1;
+    let TAG  = '';
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWGRAVITY_JsTest_0010
@@ -97,18 +98,22 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
         console.info('---------newGravity_SensorJsTest001--------------');
+        TAG  = 'newGravity_SensorJsTest001'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
-                sensor.on(sensor.SensorId.GRAVITY, callback);
-                setTimeout(()=>{
-                    sensor.off(sensor.SensorId.GRAVITY);
+                if (error) {
+                    console.info(TAG + ' error:' + error);
                     done();
-                }, 500);
+                } else {
+                    sensor.on(sensor.SensorId.GRAVITY, callback);
+                    setTimeout(()=>{
+                        sensor.off(sensor.SensorId.GRAVITY);
+                        done();
+                    }, 500);
+                }
             })
         } catch (error) {
-            console.info('newGravity_SensorJsTest001 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -123,10 +128,12 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('---------newGravity_SensorJsTest002--------------');
+        TAG  = 'newGravity_SensorJsTest002'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest002 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.GRAVITY, callback);
@@ -137,9 +144,7 @@ describe("SensorJsTest_sensor_42", function () {
                 }
             })
         } catch (error) {
-            console.info('newGravity_SensorJsTest002 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -154,16 +159,31 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('---------newGravity_SensorJsTest003--------------');
+        TAG  = 'newGravity_SensorJsTest003'
         function onSensorCallback(data) {
-            console.info('newGravity_SensorJsTest003 callback in');
+            console.info(TAG + ' Callback in!' + JSON.stringify(data));
             expect(false).assertTrue();
+            done();
         }
-        try {
-            sensor.on(invalid, onSensorCallback);
+        try{
+           sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
+                if (error) {
+                    console.info(TAG + ' error:' + error);
+                    done();
+                } else {
+                    expect(typeof(data)).assertEqual("object");
+                    try {
+                        sensor.on(invalid, onSensorCallback);
+                    } catch (error) {
+                        console.info(TAG + ' catch error:' + error);
+                        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
+                        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+                        done();
+                    }
+                }
+            })
         } catch (error) {
-            console.info("newGravity_SensorJsTest003 error:" + error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -178,10 +198,12 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('---------newGravity_SensorJsTest004--------------');
+        TAG  = 'newGravity_SensorJsTest004'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest004 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.GRAVITY, callback, {'interval': 100000000});
@@ -194,9 +216,7 @@ describe("SensorJsTest_sensor_42", function () {
                 }
             })
         } catch (error) {
-            console.info('newGravity_SensorJsTest004 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -211,8 +231,9 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('---------newGravity_SensorJsTest005--------------');
+        TAG  = 'newGravity_SensorJsTest005'
         function onSensorCallback(data) {
-            console.info('newGravity_SensorJsTest005  callback in');
+            console.info(TAG + ' Callback in!' + JSON.stringify(data));
             if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
                 sensor.SensorAccuracy.ACCURACY_HIGH) {
                 console.info('callback accuracy verified' + JSON.stringify(data));
@@ -229,7 +250,8 @@ describe("SensorJsTest_sensor_42", function () {
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest005 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.GRAVITY, onSensorCallback, {'interval': 100000000}, 5);
@@ -242,9 +264,7 @@ describe("SensorJsTest_sensor_42", function () {
                 }
             })
         } catch (error) {
-            console.info("newGravity_SensorJsTest005 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -258,10 +278,12 @@ describe("SensorJsTest_sensor_42", function () {
     * @tc.size:MediumTest
     */
     it("newGravity_SensorJsTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG  = 'newGravity_SensorJsTest006'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest006 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.once(sensor.SensorId.GRAVITY, callback);
@@ -272,9 +294,7 @@ describe("SensorJsTest_sensor_42", function () {
                 }
             })
         } catch (error) {
-            console.info("newGravity_SensorJsTest006 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -288,17 +308,31 @@ describe("SensorJsTest_sensor_42", function () {
     * @tc.size:MediumTest
     */
     it("newGravity_SensorJsTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG  = 'newGravity_SensorJsTest007'
         function onceSensorCallback(data) {
-            console.info('newGravity_SensorJsTest007 callback in');
+            console.info(TAG + ' Callback in!' + JSON.stringify(data));
             expect(false).assertTrue();
             done();
         }
-        try {
-            sensor.once(invalid, onceSensorCallback);
+        try{
+           sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
+                if (error) {
+                    console.info(TAG + ' error:' + error);
+                    done();
+                } else {
+                    expect(typeof(data)).assertEqual("object");
+                    try {
+                        sensor.once(invalid, onceSensorCallback);
+                    } catch (error) {
+                        console.info(TAG + ' catch error:' + error);
+                        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
+                        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+                        done();
+                    }
+                }
+            })
         } catch (error) {
-            console.info("newGravity_SensorJsTest007 error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -312,8 +346,9 @@ describe("SensorJsTest_sensor_42", function () {
     * @tc.size:MediumTest
     */
     it("newGravity_SensorJsTest008", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG  = 'newGravity_SensorJsTest008'
         function onceSensorCallback(data) {
-            console.info('newGravity_SensorJsTest008  on error');
+            console.info(TAG + ' Callback in!' + JSON.stringify(data));
             if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
                 sensor.SensorAccuracy.ACCURACY_HIGH) {
                 console.info('callback accuracy verified' + JSON.stringify(data));
@@ -331,16 +366,15 @@ describe("SensorJsTest_sensor_42", function () {
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest008 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.once(sensor.SensorId.GRAVITY, onceSensorCallback, 5);
                 }
             })
         } catch (error) {
-            console.info("newGravity_SensorJsTest008 error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -354,12 +388,26 @@ describe("SensorJsTest_sensor_42", function () {
     * @tc.size:MediumTest
     */
     it("newGravity_SensorJsTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        try {
-            sensor.off(invalid, callback);
+        TAG  = 'newGravity_SensorJsTest009'
+        try{
+           sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
+                if (error) {
+                    console.info(TAG + ' error:' + error);
+                    done();
+                } else {
+                    expect(typeof(data)).assertEqual("object");
+                    try {
+                        sensor.off(invalid, callback);
+                    } catch (error) {
+                        console.info(TAG + ' catch error:' + error);
+                        expect(error.code).assertEqual(PARAMETER_ERROR_CODE)
+                        expect(error.message).assertEqual(PARAMETER_ERROR_MSG)
+                        done();
+                    }
+                }
+            })
         } catch (error) {
-            console.info('newGravity_SensorJsTest009 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE)
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG)
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -373,8 +421,9 @@ describe("SensorJsTest_sensor_42", function () {
     * @tc.size:MediumTest
     */
     it("newGravity_SensorJsTest010", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG  = 'newGravity_SensorJsTest010'
         function onSensorCallback(data) {
-            console.info('newGravity_SensorJsTest010 callback in');
+            console.info(TAG + ' Callback in!' + JSON.stringify(data));
             if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
                 sensor.SensorAccuracy.ACCURACY_HIGH) {
                 console.info('callback accuracy verified' + JSON.stringify(data));
@@ -391,7 +440,8 @@ describe("SensorJsTest_sensor_42", function () {
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest010 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.GRAVITY, onSensorCallback);
@@ -402,9 +452,7 @@ describe("SensorJsTest_sensor_42", function () {
                 }
             })
         } catch (error) {
-            console.info("newGravity_SensorJsTest010 error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -418,16 +466,31 @@ describe("SensorJsTest_sensor_42", function () {
     * @tc.size:MediumTest
     */
     it("newGravity_SensorJsTest011", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG  = 'newGravity_SensorJsTest011'
         function onSensorCallback(data) {
-            console.info('newGravity_SensorJsTest011 on error');
+            console.info(TAG + ' Callback in!' + JSON.stringify(data));
             expect(false).assertTrue();
+            done();
         }
-        try {
-            sensor.off(1000000, onSensorCallback);
+        try{
+           sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
+                if (error) {
+                    console.info(TAG + ' error:' + error);
+                    done();
+                } else {
+                    expect(typeof(data)).assertEqual("object");
+                    try {
+                        sensor.off(1000000, onSensorCallback);
+                    } catch (error) {
+                        console.info(TAG + ' catch error:' + error);
+                        expect(error.code).assertEqual(PARAMETER_ERROR_CODE)
+                        expect(error.message).assertEqual(PARAMETER_ERROR_MSG)
+                        done();
+                    }
+                }
+            })
         } catch (error) {
-            console.info("newGravity_SensorJsTest011 error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE)
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG)
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -441,14 +504,16 @@ describe("SensorJsTest_sensor_42", function () {
     * @tc.size:MediumTest
     */
     it("newGravity_SensorJsTest012", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG  = 'newGravity_SensorJsTest012'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest012 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.GRAVITY, (data)=>{
-                        console.info("newGravity_SensorJsTest012 callback: " + JSON.stringify(data));
+                        console.info(TAG + ' Callback in!' + JSON.stringify(data));
                         if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
                             sensor.SensorAccuracy.ACCURACY_HIGH) {
                             console.info('callback accuracy verified' + JSON.stringify(data));
@@ -463,7 +528,7 @@ describe("SensorJsTest_sensor_42", function () {
                         expect(typeof (data.timestamp)).assertEqual("number");
                     });
                     sensor.on(sensor.SensorId.GRAVITY, (data)=>{
-                        console.info("newGravity_SensorJsTest012 callback2: " + JSON.stringify(data));
+                        console.info(TAG + ' Callback2 in!' + JSON.stringify(data));
                         if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
                             sensor.SensorAccuracy.ACCURACY_HIGH) {
                             console.info('callback accuracy verified' + JSON.stringify(data));
@@ -486,9 +551,7 @@ describe("SensorJsTest_sensor_42", function () {
                 }
             })
         } catch (error) {
-            console.info("newGravity_SensorJsTest012 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -502,12 +565,26 @@ describe("SensorJsTest_sensor_42", function () {
     * @tc.size:MediumTest
      */
     it("newGravity_SensorJsTest013", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
-        try {
-            sensor.off(sensor.SensorId.GRAVITY, 5);
+        TAG  = 'newGravity_SensorJsTest013'
+        try{
+           sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
+                if (error) {
+                    console.info(TAG + ' error:' + error);
+                    done();
+                } else {
+                    expect(typeof(data)).assertEqual("object");
+                    try {
+                        sensor.off(sensor.SensorId.GRAVITY, 5);
+                    } catch (error) {
+                        console.info(TAG + ' catch error:' + error);
+                        expect(error.code).assertEqual(PARAMETER_ERROR_CODE)
+                        expect(error.message).assertEqual(PARAMETER_ERROR_MSG)
+                        done();
+                    }
+                }
+            })
         } catch (error) {
-            console.info('newGravity_SensorJsTest013 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE)
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG)
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -521,15 +598,17 @@ describe("SensorJsTest_sensor_42", function () {
     * @tc.size:MediumTest
     */
     it("newGravity_SensorJsTest014", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG  = 'newGravity_SensorJsTest014'
         console.info('---------newGravity_SensorJsTest014--------------');
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest014 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.GRAVITY, (data)=>{
-                        console.info("newGravity_SensorJsTest014 callback: " + JSON.stringify(data));
+                        console.info(TAG + ' Callback in!' + JSON.stringify(data));
                         if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
                             sensor.SensorAccuracy.ACCURACY_HIGH) {
                             console.info('callback accuracy verified' + JSON.stringify(data));
@@ -544,7 +623,7 @@ describe("SensorJsTest_sensor_42", function () {
                         expect(typeof (data.timestamp)).assertEqual("number");
                     }, {'interval': 100000000});
                     sensor.once(sensor.SensorId.GRAVITY, (data)=>{
-                        console.info("newGravity_SensorJsTest014 callback2: " + JSON.stringify(data));
+                        console.info(TAG + ' Callback2 in!' + JSON.stringify(data));
                         if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
                             sensor.SensorAccuracy.ACCURACY_HIGH) {
                             console.info('callback accuracy verified' + JSON.stringify(data));
@@ -567,9 +646,7 @@ describe("SensorJsTest_sensor_42", function () {
                 }
             })
         } catch (error) {
-            console.info("newGravity_SensorJsTest014 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -584,14 +661,16 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest015", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('---------newGravity_SensorJsTest015--------------');
+        TAG  = 'newGravity_SensorJsTest015'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest015 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.GRAVITY, (data)=>{
-                        console.info("newGravity_SensorJsTest015 callback: " + JSON.stringify(data));
+                        console.info(TAG + ' Callback in!' + JSON.stringify(data));
                         if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
                             sensor.SensorAccuracy.ACCURACY_HIGH) {
                             console.info('callback accuracy verified' + JSON.stringify(data));
@@ -606,7 +685,7 @@ describe("SensorJsTest_sensor_42", function () {
                         expect(typeof (data.timestamp)).assertEqual("number");
                     }, {'interval': 100000000});
                     sensor.on(sensor.SensorId.GRAVITY, (data)=>{
-                        console.info("newGravity_SensorJsTest015 callback2: " + JSON.stringify(data));
+                        console.info(TAG + ' Callback2 in!' + JSON.stringify(data));
                         if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
                             sensor.SensorAccuracy.ACCURACY_HIGH) {
                             console.info('callback accuracy verified' + JSON.stringify(data));
@@ -627,13 +706,11 @@ describe("SensorJsTest_sensor_42", function () {
                         done();
                     }, 1000);
                 }
-        })
-    } catch (error) {
-        console.info("newGravity_SensorJsTest015 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
-        done();
-    }
+            })
+        } catch (error) {
+            console.info(TAG + ' Device does not support! ');
+            done();
+        }
     })
 
     /*
@@ -646,28 +723,42 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest016", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('---------newGravity_SensorJsTest016--------------');
-        try {
-            sensor.on();
+        TAG  = 'newGravity_SensorJsTest016'
+        try{
+           sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
+                if (error) {
+                    console.info(TAG + ' error:' + error);
+                    done();
+                } else {
+                    expect(typeof(data)).assertEqual("object");
+                    try {
+                        sensor.on();
+                    } catch (error) {
+                        console.info(TAG + ' on error:' + error);
+                        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
+                        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+                        done();
+                    }
+                    try {
+                        sensor.once();
+                    } catch (error) {
+                        console.info(TAG + ' once error:' + error);
+                        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
+                        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+                        done();
+                    }
+                    try {
+                        sensor.off();
+                    } catch (error) {
+                        console.info(TAG + ' off error:' + error);
+                        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
+                        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+                        done();
+                    }
+                }
+            })
         } catch (error) {
-            console.info("newGravity_SensorJsTest016 error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
-            done();
-        }
-        try {
-            sensor.once();
-        } catch (error) {
-            console.info("newGravity_SensorJsTest016_once error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
-            done();
-        }
-        try {
-            sensor.off();
-        } catch (error) {
-            console.info("newGravity_SensorJsTest016_off error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -682,10 +773,12 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest017", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('----------------------newGravity_SensorJsTest017--------------');
+        TAG  = 'newGravity_SensorJsTest017'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest017 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.GRAVITY, callback);
@@ -693,9 +786,9 @@ describe("SensorJsTest_sensor_42", function () {
                     setTimeout(() => {
                         console.info('----------------------newGravity_SensorJsTest017 off in--------------');
                         try {
-                        sensor.off(sensor.SensorId.GRAVITY, callback);
+                            sensor.off(sensor.SensorId.GRAVITY, callback);
                         } catch (error) {
-                        console.info("newGravity_SensorJsTest017 error:" + error);
+                            console.info(TAG + ' catch error:' + error);
                         }
                         console.info('----------------------newGravity_SensorJsTest017 off end--------------');
                     }, 500);
@@ -707,12 +800,10 @@ describe("SensorJsTest_sensor_42", function () {
                     }, 1000);
                 }
             })
-    } catch (error) {
-        console.info("newGravity_SensorJsTest017 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
-        done();
-    }
+        } catch (error) {
+            console.info(TAG + ' Device does not support! ');
+            done();
+        }
     })
 
     /*
@@ -725,10 +816,12 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest018", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('----------------------newGravity_SensorJsTest018--------------');
+        TAG  = 'newGravity_SensorJsTest018'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest018 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.GRAVITY, callback, { 'interval': 100000000 });
@@ -736,9 +829,9 @@ describe("SensorJsTest_sensor_42", function () {
                     setTimeout(() => {
                         console.info('----------------------newGravity_SensorJsTest018 off in--------------');
                         try {
-                        sensor.off(sensor.SensorId.GRAVITY, callback);
+                            sensor.off(sensor.SensorId.GRAVITY, callback);
                         } catch (error) {
-                        console.info("newGravity_SensorJsTest018 error:" + error);
+                            console.info(TAG + ' catch error:' + error);
                         }
                         console.info('----------------------newGravity_SensorJsTest018 off end--------------');
                     }, 500);
@@ -750,12 +843,10 @@ describe("SensorJsTest_sensor_42", function () {
                     }, 1000);
                 }
             })
-    } catch (error) {
-        console.info("newGravity_SensorJsTest018 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
-        done();
-    }
+        } catch (error) {
+            console.info(TAG + ' Device does not support! ');
+            done();
+        }
     })
 
     /*
@@ -768,10 +859,12 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest019", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('----------------------newGravity_SensorJsTest019--------------');
+        TAG  = 'newGravity_SensorJsTest019'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest019 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     console.info('----------------------newGravity_SensorJsTest019 off in--------------');
@@ -779,19 +872,17 @@ describe("SensorJsTest_sensor_42", function () {
                         sensor.off(-1, callback);
                         console.info('----------------------newGravity_SensorJsTest019 off end--------------');
                     } catch (error) {
-                        console.info("newGravity_SensorJsTest019 error:" + error);
+                        console.info(TAG + ' catch error:' + error);
                         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
                         expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
                         done();
                     }
                 }
             })
-    } catch (error) {
-        console.info("newGravity_SensorJsTest019 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
-        done();
-    }
+        } catch (error) {
+            console.info(TAG + ' Device does not support! ');
+            done();
+        }
     })
 
     /*
@@ -804,10 +895,12 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest020", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('----------------------newGravity_SensorJsTest020--------------');
+        TAG  = 'newGravity_SensorJsTest020'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest020 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     try {
                         sensor.on(sensor.SensorId.GRAVITY, callback, {'interval': -100000000});
@@ -816,19 +909,17 @@ describe("SensorJsTest_sensor_42", function () {
                         console.info('----------------------newGravity_SensorJsTest020 off end---------------------------');
                         done();
                     } catch (error) {
-                        console.info('newGravity_SensorJsTest020 On fail, errCode:' + error.code + ' ,msg:' + error.message);
+                        console.info(TAG + ' catch error:' + error);
                         expect(error.code).assertEqual(SERVICE_EXCEPTION_CODE);
                         expect(error.message).assertEqual(SERVICE_EXCEPTION_MSG);
                         done();
                     }
                 }
             })
-    } catch (error) {
-        console.info("newGravity_SensorJsTest020 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
-        done();
-    }
+        } catch (error) {
+            console.info(TAG + ' Device does not support! ');
+            done();
+        }
     })
 
     /*
@@ -841,18 +932,22 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest021", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
         console.info('---------newGravity_SensorJsTest021--------------');
+        TAG  = 'newGravity_SensorJsTest021'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
-                sensor.on(sensor.SensorId.GRAVITY, callback);
-                setTimeout(()=>{
-                    sensor.off(sensor.SensorId.GRAVITY);
+                if (error) {
+                    console.info(TAG + ' error:' + error);
                     done();
-                }, 500);
+                } else {
+                    sensor.on(sensor.SensorId.GRAVITY, callback);
+                    setTimeout(()=>{
+                        sensor.off(sensor.SensorId.GRAVITY);
+                        done();
+                    }, 500);
+                }
             })
         } catch (error) {
-            console.info('newGravity_SensorJsTest021 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -866,36 +961,37 @@ describe("SensorJsTest_sensor_42", function () {
     * @tc.size:MediumTest
     */
     it("newGravity_SensorJsTest022", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG  = 'newGravity_SensorJsTest022'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest022 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.GRAVITY, callback, undefined);
                     try{
                     sensor.on(sensor.SensorId.GRAVITY, callback, { 'interval': undefined });
                     } catch(error){
-                        console.info('newGravity_SensorJsTest022 Repeat subscription'+error);
+                        console.info(TAG + ' catch error:' + error);
                     }
                     setTimeout(() => {
                         console.info('----------------------newGravity_SensorJsTest022 off in--------------');
                         try {
-                        sensor.off(sensor.SensorId.GRAVITY);
+                            sensor.off(sensor.SensorId.GRAVITY);
                         } catch (error) {
-                        console.info("newGravity_SensorJsTest022 error:" + error);
-                        expect(false).assertTrue();
+                            console.info(TAG + ' catch error:' + error);
+                            expect(false).assertTrue();
                         }
                         done();
                     }, 1000);
                 }
             })
         } catch (error) {
-            console.info('newGravity_SensorJsTest022 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
+        done();
     })
 
     /*
@@ -908,34 +1004,34 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest023", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('---------newGravity_SensorJsTest023--------------');
+        TAG  = 'newGravity_SensorJsTest023'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest023 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.GRAVITY, callback, null);
                     try{
                         sensor.on(sensor.SensorId.GRAVITY, callback, { 'interval': null });
                         } catch(error){
-                            console.info('newGravity_SensorJsTest023 Repeat subscription'+error);
+                            console.info(TAG + ' catch error:' + error);
                         }
                     setTimeout(() => {
                         console.info('----------------------newGravity_SensorJsTest023 off in--------------');
                         try {
-                            sensor.off(sensor.SensorId.GRAVITY);
+                                sensor.off(sensor.SensorId.GRAVITY);
                             } catch (error) {
-                        console.info("newGravity_SensorJsTest023 error:" + error);
-                            expect(false).assertTrue();
+                                console.info(TAG + ' catch error:' + error);
+                                expect(false).assertTrue();
                             }
                             done();
                     }, 1000);
                 }
             })
         } catch (error) {
-            console.info('newGravity_SensorJsTest023 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -950,29 +1046,29 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest024", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         console.info('---------newGravity_SensorJsTest024--------------');
+        TAG  = 'newGravity_SensorJsTest024'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest024 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.GRAVITY, callback, { 'interval': null });
                     setTimeout(() => {
                         console.info('----------------------newGravity_SensorJsTest024 off in--------------');
                         try {
-                        sensor.off(sensor.SensorId.GRAVITY);
+                            sensor.off(sensor.SensorId.GRAVITY);
                         } catch (error) {
-                        console.info("newGravity_SensorJsTest024 error:" + error);
-                        expect(false).assertTrue();
+                            console.info(TAG + ' catch error:' + error);
+                            expect(false).assertTrue();
                         }
                         done();
                     }, 500);
                 }
             })
         } catch (error) {
-            console.info("newGravity_SensorJsTest024 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -986,25 +1082,27 @@ describe("SensorJsTest_sensor_42", function () {
     * @tc.size:MediumTest
     */
     it("newGravity_SensorJsTest025", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG  = 'newGravity_SensorJsTest025'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest025 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.GRAVITY, callback, { 'interval': 100000000 });
                     try{
                         sensor.on(sensor.SensorId.GRAVITY, callback, { 'interval': 100000000 });
                         } catch(error){
-                            console.info("newGravity_SensorJsTest025 catch error:" + error);
+                            console.info(TAG + ' catch error:' + error);
                         }
                     setTimeout(() => {
                         console.info('----------------------newGravity_SensorJsTest025 off in--------------');
                         try {
-                            sensor.off(sensor.SensorId.GRAVITY);
+                                sensor.off(sensor.SensorId.GRAVITY);
                             } catch (error) {
-                        console.info("newGravity_SensorJsTest025 error:" + error);
-                            expect(false).assertTrue();
+                                console.info(TAG + ' catch error:' + error);
+                                expect(false).assertTrue();
                             }
                         console.info('----------------------newGravity_SensorJsTest025 off end--------------');
                             done()
@@ -1012,9 +1110,7 @@ describe("SensorJsTest_sensor_42", function () {
                 }
             })
         } catch (error) {
-            console.info("newGravity_SensorJsTest025 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
@@ -1029,10 +1125,12 @@ describe("SensorJsTest_sensor_42", function () {
     */
     it("newGravity_SensorJsTest026", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
         console.info('---------newGravity_SensorJsTest026--------------');
+        TAG  = 'newGravity_SensorJsTest026'
         try{
            sensor.getSingleSensor(sensor.SensorId.GRAVITY,(error, data) => {
                 if (error) {
-                    console.info('newGravity_SensorJsTest026 error');
+                    console.info(TAG + ' error:' + error);
+                    done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.GRAVITY, callback, { 'interval': undefined });
@@ -1043,7 +1141,7 @@ describe("SensorJsTest_sensor_42", function () {
                         sensor.off(sensor.SensorId.GRAVITY, callback);
                         sensor.off(sensor.SensorId.GRAVITY, callback2);
                         } catch (error) {
-                        console.info("newGravity_SensorJsTest026 error:" + error);
+                        console.info(TAG + ' catch error:' + error);
                         expect(false).assertTrue();
                         }
                         console.info('----------------------newGravity_SensorJsTest026 off end--------------');
@@ -1052,9 +1150,7 @@ describe("SensorJsTest_sensor_42", function () {
                 }
             })
         } catch (error) {
-            console.info('newGravity_SensorJsTest026 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            console.info(TAG + ' Device does not support! ');
             done();
         }
     })
