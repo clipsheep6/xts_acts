@@ -22,5 +22,6 @@ group("networkmanager") {
     "noNet:noNet",
     "noPermission:noPermission",
     "socket:socket",
+    "statistics:statistics",
   ]
 }

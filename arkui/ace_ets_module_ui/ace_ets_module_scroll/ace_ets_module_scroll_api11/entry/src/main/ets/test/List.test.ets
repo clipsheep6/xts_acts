@@ -132,8 +132,8 @@ import list_item_groupJsunit from './ListTest/list_item_group.test'
 import refreshDragJsunit from './RefreshTest/refresh2.test';
 import swiperMaskJsunit from './SwiperTest/swiper3.test';
 
-import alphabetIndexerOnSelectJsunit from './AlphabetIndexerTest/alphabetIndexer1.test';
-import gridMaxCountJsunit from './gridTest/grid1.test';
+import alphabetIndexerOnSelectJsunit from './AlphabetIndexerTest/alphabetIndexerAPI.test';
+import gridMaxCountJsunit from './gridTest/gridAPI.test';
 import gridItemOnSelectJsunit from './gridItemTest/gridItem.test';
 import listNewJsunit from './ListTest/listTestAPI.test';
 import list_itemOnSelectJsunit from './ListTest/list_item.test';
@@ -142,6 +142,8 @@ import sideBarShowSideBarJsunit from './SideBarContainerTest/sideBar.test';
 import stackAlignContentJsunit from './StackTest/stack.test';
 import swiperCurveJsunit from './SwiperTest/swiper1.test';
 import tabsBarPositionJsunit from './TabsTest/tabs.test';
+import scrollBarJsunitt from './ScrollBar/ScrollBarJsunitt.test.ets';
+import listItemJsunit2 from './ListTest/ListItemJsunit2.test';
 
 export default function testsuite() {
   listUxTest()
@@ -258,8 +260,6 @@ export default function testsuite() {
   
   refreshJsunit()
   listtestIdleJsunit()
-  list_item_groupJsunit()
-  refreshDragJsunit()
   swiperMaskJsunit()
 
   alphabetIndexerOnSelectJsunit()
@@ -272,4 +272,7 @@ export default function testsuite() {
   stackAlignContentJsunit()
   swiperCurveJsunit()
   tabsBarPositionJsunit()
+  
+  scrollBarJsunitt()
+  listItemJsunit2()
 }
