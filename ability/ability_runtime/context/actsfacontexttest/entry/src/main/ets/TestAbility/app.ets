@@ -13,9 +13,9 @@
  * limitations under the License.
  */
 
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry'
-import { Hypium } from '@ohos/hypium'
-import testsuite from '../test/List.test'
+import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+import { Hypium } from '@ohos/hypium';
+import testsuite from '../test/List.test';
 
 export default {
   onCreate() {

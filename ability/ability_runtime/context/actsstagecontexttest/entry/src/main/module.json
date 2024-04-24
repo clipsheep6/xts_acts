@@ -37,7 +37,7 @@
       },
       {
         "name": "TestAbility",
-        "srcEntrance": "./ets/TestAbility/TestAbility.ts",
+        "srcEntrance": "./ets/TestAbility/TestAbility.ets",
         "description": "$string:TestAbility_desc",
         "icon": "$media:icon",
         "label": "$string:TestAbility_label",

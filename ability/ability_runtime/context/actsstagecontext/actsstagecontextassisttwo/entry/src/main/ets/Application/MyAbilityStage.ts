@@ -13,55 +13,66 @@
 * limitations under the License.
 */
 
-import AbilityStage from "@ohos.app.ability.AbilityStage"
-import commonEvent from '@ohos.commonEvent'
+import AbilityStage from "@ohos.app.ability.AbilityStage";
+import commonEvent from '@ohos.commonEvent';
+import common from '@ohos.app.ability.common';
 
 function sleep(delay) {
-    let start = new Date().getTime();
-    while (true) {
-        if (new Date().getTime() - start > delay) {
-            break;
-        }
+  let start = new Date().getTime();
+  while (true) {
+    if (new Date().getTime() - start > delay) {
+      break;
     }
+  }
 }
 
 export default class MyAbilityStage extends AbilityStage {
-    onCreate() {
-        console.info("ActsStageContextAssistTwo AbilityStage onCreate")
-        globalThis.abilityStageContextB = this.context
-    }
+  onCreate() {
+    console.info("ActsStageContextAssistTwo AbilityStage onCreate");
+    AppStorage.setOrCreate<common.AbilityStageContext>("abilityStageContextB", this.context);
+    AppStorage.get<common.AbilityStageContext>("abilityStageContextB")!
+  }
 
-    onAcceptWant(want) {
-        console.log("ActsStageContextAssistTwo onAcceptWant called want:" + JSON.stringify(want));
-        async function publishContext() {
-            let stageContextJson = {
-                'cacheDir': globalThis.abilityStageContextB.cacheDir, 'tempDir': globalThis.abilityStageContextB.tempDir,
-                'filesDir': globalThis.abilityStageContextB.filesDir, 'distributedFilesDir': globalThis.abilityStageContextB.distributedFilesDir,
-                'databaseDir': globalThis.abilityStageContextB.databaseDir, 'preferencesDir': globalThis.abilityStageContextB.preferencesDir,
-                'bundleCodeDir': globalThis.abilityStageContextB.bundleCodeDir
-            };
+  onAcceptWant(want) {
+    console.log("ActsStageContextAssistTwo onAcceptWant called want:" + JSON.stringify(want));
 
-            let stageAppContext = globalThis.abilityStageContextB.getApplicationContext()
+    async function publishContext() {
+      let stageContextJson = {
+        'cacheDir': AppStorage.get<common.AbilityStageContext>("abilityStageContextB")!.cacheDir,
+        'tempDir': AppStorage.get<common.AbilityStageContext>("abilityStageContextB")!.tempDir,
+        'filesDir': AppStorage.get<common.AbilityStageContext>("abilityStageContextB")!.filesDir,
+        'distributedFilesDir': AppStorage.get<common.AbilityStageContext>("abilityStageContextB")!.distributedFilesDir,
+        'databaseDir': AppStorage.get<common.AbilityStageContext>("abilityStageContextB")!.databaseDir,
+        'preferencesDir': AppStorage.get<common.AbilityStageContext>("abilityStageContextB")!.preferencesDir,
+        'bundleCodeDir': AppStorage.get<common.AbilityStageContext>("abilityStageContextB")!.bundleCodeDir
+      };
 
-            let stageAppContextJson = {
-                'cacheDir': stageAppContext.cacheDir, 'tempDir': stageAppContext.tempDir, 'filesDir': stageAppContext.filesDir,
-                'distributedFilesDir': stageAppContext.distributedFilesDir, 'databaseDir': stageAppContext.databaseDir,
-                'preferencesDir': stageAppContext.preferencesDir, 'bundleCodeDir': stageAppContext.bundleCodeDir
-            };
+      let stageAppContext = AppStorage.get<common.AbilityStageContext>("abilityStageContextB")!.getApplicationContext();
 
-            let commonEventData = {
-                parameters: {
-                    abilityStageContextAssistOne: stageContextJson,
-                    abilityStageAppContextAssistOne: stageAppContextJson,
-                }
-            }
-            commonEvent.publish("AssistContextTwo_StageAbilityA_Start_CommonEvent", commonEventData, () => {
-                console.log("Publish AssistContextTwo_StageAbilityA_Start_CommonEvent callback")
-            })
+      let stageAppContextJson = {
+        'cacheDir': stageAppContext.cacheDir,
+        'tempDir': stageAppContext.tempDir,
+        'filesDir': stageAppContext.filesDir,
+        'distributedFilesDir': stageAppContext.distributedFilesDir,
+        'databaseDir': stageAppContext.databaseDir,
+        'preferencesDir': stageAppContext.preferencesDir,
+        'bundleCodeDir': stageAppContext.bundleCodeDir
+      };
+
+      let commonEventData = {
+        parameters: {
+          abilityStageContextAssistOne: stageContextJson,
+          abilityStageAppContextAssistOne: stageAppContextJson,
         }
-        publishContext()
-        sleep(500)
-        let abilityId = want.parameters.startId.toString();
-        return abilityId;
+      }
+      commonEvent.publish("AssistContextTwo_StageAbilityA_Start_CommonEvent", commonEventData, () => {
+        console.log("Publish AssistContextTwo_StageAbilityA_Start_CommonEvent callback");
+      })
     }
+
+    publishContext();
+    sleep(500);
+    let abilityId = want.parameters.startId.toString();
+    return abilityId;
+  }
 }

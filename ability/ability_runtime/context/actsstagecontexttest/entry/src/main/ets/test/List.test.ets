@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import actsStageContextTest from './ActsStageContextTest.test'
+import actsStageContextTest from './ActsStageContextTest.test';
 
 export default function testsuite() {
-  actsStageContextTest()
+  actsStageContextTest();
 }

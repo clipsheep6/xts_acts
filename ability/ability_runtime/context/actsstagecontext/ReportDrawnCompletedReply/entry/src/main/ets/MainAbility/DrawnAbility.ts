@@ -15,9 +15,12 @@
 
 import Ability from '@ohos.app.ability.UIAbility';
 import commonEvent from '@ohos.commonEvent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
 
 export default class DrawnAbility extends Ability {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     console.info('ActsStageContextAssistOne DrawnAbility onCreate');
     this.context.reportDrawnCompleted(() => {
       console.info('The call to the reportDrawnCompleted interface succeeded');
@@ -28,9 +31,9 @@ export default class DrawnAbility extends Ability {
     console.info('ActsStageContextAssistOne DrawnAbility onDestroy');
   }
 
-  onWindowStageCreate(windowStage) {
+  onWindowStageCreate(windowStage: window.WindowStage) {
     console.info('ActsStageContextAssistOne DrawnAbility onWindowStageCreate');
-    windowStage.setUIContent(this.context, 'pages/index', null);
+    windowStage.loadContent('pages/index', null);
   }
 
   onWindowStageDestroy() {

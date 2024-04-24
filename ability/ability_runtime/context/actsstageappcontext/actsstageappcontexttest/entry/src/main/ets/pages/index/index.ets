@@ -13,15 +13,11 @@
  * limitations under the License.
  */
 
-
 @Entry
 @Component
 struct Index {
-  aboutToAppear(){
-  }
-
   build() {
-    Flex({ direction:FlexDirection.Column, alignItems:ItemAlign.Center, justifyContent: FlexAlign.Center }) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('MainAbility Hello World')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
@@ -29,13 +25,11 @@ struct Index {
         Text('next page')
           .fontSize(25)
           .fontWeight(FontWeight.Bold)
-      }.type(ButtonType.Capsule)
-      .margin({
-        top: 20
-      })
+      }
+      .type(ButtonType.Capsule)
+      .margin({ top: 20 })
       .backgroundColor('#0D9FFB')
       .onClick(() => {
-
       })
     }
     .width('100%')
