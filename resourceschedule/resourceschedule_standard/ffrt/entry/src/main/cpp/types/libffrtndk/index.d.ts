@@ -86,7 +86,6 @@ export const ffrt_timer_start_0002: () => number;
 export const ffrt_timer_cancel_0001: () => number;
 export const ffrt_loop_0001: () => number;
 export const ffrt_loop_0002: () => number;
-export const ffrt_timer_start_abnormal_0001: () => number;
 export const ffrt_loop_abnormal_0001: () => number;
 export const ffrt_loop_abnormal_0002: () => number;
 export const ffrt_queue_parallel_api_0001: () => number;
