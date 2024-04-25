@@ -64,11 +64,11 @@ export default function provide2() {
       let button = await driver.findComponent(BY.key('prBtn1'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson: string = getInspectorByKey('prBtn1');
-
-      console.info("[provide2_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[provide2_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.backgroundColor));
-      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FF007DFF');
+      let strJson = getInspectorByKey('prBtn1');
+      let obj = JSON.parse(strJson);
+      console.info("[provide2_0100] component obj is: " + JSON.stringify(obj));
+      console.info("[provide2_0100] title: " + JSON.stringify(obj.$attrs.type));
+      expect(obj.$attrs.type).assertEqual('ButtonType.Capsule');
       console.info('[provide2_0100] END');
       done();
 
@@ -80,11 +80,11 @@ export default function provide2() {
       let button = await driver.findComponent(BY.key('prBtn2'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson: string = getInspectorByKey('prBtn2');
-
-      console.info("[provide2_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[provide2_0200] title: " + JSON.stringify(JSON.parse(strJson).$attrs.backgroundColor));
-      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FF007DFF');
+      let strJson = getInspectorByKey('prBtn2');
+      let obj = JSON.parse(strJson);
+      console.info("[provide2_0200] component obj is: " + JSON.stringify(obj));
+      console.info("[provide2_0200] title: " + JSON.stringify(obj.$attrs.type));
+      expect(obj.$attrs.type).assertEqual('ButtonType.Capsule');
       console.info('[provide2_0200] END');
       done();
 
@@ -130,11 +130,11 @@ export default function provide2() {
       let button = await driver.findComponent(BY.key('coBtn1'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson: string = getInspectorByKey('coBtn1');
-
-      console.info("[provide2_0500] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[provide2_0500] title: " + JSON.stringify(JSON.parse(strJson).$attrs.backgroundColor));
-      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FF007DFF');
+      let strJson = getInspectorByKey('coBtn1');
+      let obj = JSON.parse(strJson);
+      console.info("[provide2_0500] component obj is: " + JSON.stringify(obj));
+      console.info("[provide2_0500] title: " + JSON.stringify(obj.$attrs.type));
+      expect(obj.$attrs.type).assertEqual('ButtonType.Capsule');
       console.info('[provide2_0500] END');
       done();
 
@@ -143,16 +143,14 @@ export default function provide2() {
     it('provide2_0600', 0, async (done: Function) => {
       console.info('provide2_0600 START');
       let driver = await UiDriver.create()
-      await driver.swipe(100, 500, 100, 100)
-      await CommonFunc.sleep(1000);
       let button = await driver.findComponent(BY.key('coBtn2'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson: string = getInspectorByKey('coBtn2');
-
-      console.info("[provide2_0600] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[provide2_0600] title: " + JSON.stringify(JSON.parse(strJson).$attrs.backgroundColor));
-      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FF007DFF');
+      let strJson = getInspectorByKey('coBtn2');
+      let obj = JSON.parse(strJson);
+      console.info("[provide2_0600] component obj is: " + JSON.stringify(obj));
+      console.info("[provide2_0600] title: " + JSON.stringify(obj.$attrs.type));
+      expect(obj.$attrs.type).assertEqual('ButtonType.Capsule');
       console.info('[provide2_0600] END');
       done();
 
@@ -162,8 +160,6 @@ export default function provide2() {
     it('provide2_0700', 0, async (done: Function) => {
       console.info('provide2_0700 START');
       let driver = await UiDriver.create()
-      await driver.swipe(100, 500, 100, 100)
-      await CommonFunc.sleep(1000);
       let button = await driver.findComponent(BY.key('coBtn3'));
       await button.click();
       await CommonFunc.sleep(1000);
@@ -180,8 +176,6 @@ export default function provide2() {
     it('provide2_0800', 0, async (done: Function) => {
       console.info('provide2_0800 START');
       let driver = await UiDriver.create()
-      await driver.swipe(100, 500, 100, 100)
-      await CommonFunc.sleep(1000);
       let button = await driver.findComponent(BY.key('coBtn4'));
       await button.click();
       await CommonFunc.sleep(1000);

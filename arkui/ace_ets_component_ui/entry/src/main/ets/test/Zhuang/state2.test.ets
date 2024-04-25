@@ -64,11 +64,11 @@ export default function state2() {
       let button = await driver.findComponent(BY.key('stBtn1'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson: string = getInspectorByKey('stBtn1');
-
-      console.info("[state2_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[state2_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.backgroundColor));
-      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FF007DFF');
+      let strJson = getInspectorByKey('stBtn1');
+      let obj = JSON.parse(strJson);
+      console.info("[state2_0100] component obj is: " + JSON.stringify(obj));
+      console.info("[state2_0100] title: " + JSON.stringify(obj.$attrs.type));
+      expect(obj.$attrs.type).assertEqual('ButtonType.Capsule');
       console.info('[state2_0100] END');
       done();
 
@@ -80,11 +80,11 @@ export default function state2() {
       let button = await driver.findComponent(BY.key('stBtn2'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson: string = getInspectorByKey('stBtn2');
-
-      console.info("[state2_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[state2_0200] title: " + JSON.stringify(JSON.parse(strJson).$attrs.backgroundColor));
-      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FF007DFF');
+      let strJson = getInspectorByKey('stBtn2');
+      let obj = JSON.parse(strJson);
+      console.info("[state2_0200] component obj is: " + JSON.stringify(obj));
+      console.info("[state2_0200] title: " + JSON.stringify(obj.$attrs.type));
+      expect(obj.$attrs.type).assertEqual('ButtonType.Capsule');
       console.info('[state2_0200] END');
       done();
 

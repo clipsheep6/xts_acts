@@ -65,11 +65,11 @@ export default function Prop2() {
       let button = await driver.findComponent(BY.key('prop2Btn1'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson: string = getInspectorByKey('prop2Btn1');
-
-      console.info("[Prop2_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[Prop2_0100] title: " + JSON.stringify(JSON.parse(strJson).$attrs.backgroundColor));
-      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FF007DFF');
+      let strJson = getInspectorByKey('prop2Btn1');
+      let obj = JSON.parse(strJson);
+      console.info("[Prop2_0100] component obj is: " + JSON.stringify(obj));
+      console.info("[Prop2_0100] title: " + JSON.stringify(obj.$attrs.type));
+      expect(obj.$attrs.type).assertEqual('ButtonType.Capsule');
       console.info('[Prop2_0100] END');
       done();
 
@@ -81,11 +81,11 @@ export default function Prop2() {
       let button = await driver.findComponent(BY.key('prop2Btn2'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson: string = getInspectorByKey('prop2Btn2');
-
-      console.info("[Prop2_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[Prop2_0200] title: " + JSON.stringify(JSON.parse(strJson).$attrs.backgroundColor));
-      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FF007DFF');
+      let strJson = getInspectorByKey('prop2Btn2');
+      let obj = JSON.parse(strJson);
+      console.info("[Prop2_0200] component obj is: " + JSON.stringify(obj));
+      console.info("[Prop2_0200] title: " + JSON.stringify(obj.$attrs.type));
+      expect(obj.$attrs.type).assertEqual('ButtonType.Capsule');
       console.info('[Prop2_0200] END');
       done();
 
@@ -131,11 +131,11 @@ export default function Prop2() {
       let button = await driver.findComponent(BY.key('ziProp2Btn1'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson: string = getInspectorByKey('ziProp2Btn1');
-
-      console.info("[Prop2_0500] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[Prop2_0500] title: " + JSON.stringify(JSON.parse(strJson).$attrs.backgroundColor));
-      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FF007DFF');
+      let strJson = getInspectorByKey('ziProp2Btn1');
+      let obj = JSON.parse(strJson);
+      console.info("[Prop2_0500] component obj is: " + JSON.stringify(obj));
+      console.info("[Prop2_0500] title: " + JSON.stringify(obj.$attrs.type));
+      expect(obj.$attrs.type).assertEqual('ButtonType.Capsule');
       console.info('[Prop2_0500] END');
       done();
 
@@ -144,16 +144,14 @@ export default function Prop2() {
     it('Prop2_0600', 0, async (done: Function) => {
       console.info('Prop2_0600 START');
       let driver = await UiDriver.create()
-      await driver.swipe(100, 500, 100, 100)
-      await CommonFunc.sleep(1000);
       let button = await driver.findComponent(BY.key('ziProp2Btn2'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson: string = getInspectorByKey('ziProp2Btn2');
-
-      console.info("[Prop2_0600] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
-      console.info("[Prop2_0600] title: " + JSON.stringify(JSON.parse(strJson).$attrs.backgroundColor));
-      expect(JSON.parse(strJson).$attrs.backgroundColor).assertEqual('#FF007DFF');
+      let strJson = getInspectorByKey('ziProp2Btn2');
+      let obj = JSON.parse(strJson);
+      console.info("[Prop2_0600] component obj is: " + JSON.stringify(obj));
+      console.info("[Prop2_0600] title: " + JSON.stringify(obj.$attrs.type));
+      expect(obj.$attrs.type).assertEqual('ButtonType.Capsule');
       console.info('[Prop2_0600] END');
       done();
 
@@ -163,8 +161,6 @@ export default function Prop2() {
     it('Prop2_0700', 0, async (done: Function) => {
       console.info('Prop2_0700 START');
       let driver = await UiDriver.create()
-      await driver.swipe(100, 500, 100, 100)
-      await CommonFunc.sleep(1000);
       let button = await driver.findComponent(BY.key('ziProp2Btn3'));
       await button.click();
       await CommonFunc.sleep(1000);
@@ -181,8 +177,6 @@ export default function Prop2() {
     it('Prop2_0800', 0, async (done: Function) => {
       console.info('Prop2_0800 START');
       let driver = await UiDriver.create()
-      await driver.swipe(100, 500, 100, 100)
-      await CommonFunc.sleep(1000);
       let button = await driver.findComponent(BY.key('ziProp2Btn4'));
       await button.click();
       await CommonFunc.sleep(1000);
