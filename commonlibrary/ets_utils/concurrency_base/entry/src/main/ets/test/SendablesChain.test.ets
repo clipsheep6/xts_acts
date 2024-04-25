@@ -40,7 +40,8 @@ export default function SendableChainTest() {
          * @tc.author: oleg-ignatenko
          */
         it('testChainedPath0', 0, async (done: Function) => {
-           expect(testChainedPath0).assertPromiseIsResolved();
+           let result = await testChainedPath0();
+           expect(result).assertEqual("PASSED");
            done();
         })
 
@@ -50,7 +51,8 @@ export default function SendableChainTest() {
          * @tc.author: oleg-ignatenko
          */
         it('testChainedPath1', 0, async (done: Function) => {
-           expect(testChainedPath1).assertPromiseIsResolved();
+           let result = await testChainedPath1();
+           expect(result).assertEqual("PASSED");
            done();
         })
 
@@ -60,7 +62,8 @@ export default function SendableChainTest() {
          * @tc.author: oleg-ignatenko
          */
         it('testChainedPath0Negative', 0, async (done: Function) => {
-           expect(testChainedPath0Negative).assertPromiseIsResolved();
+           let result = await testChainedPath0Negative();
+           expect(result).assertEqual("PASSED");
            done();
         })
 
@@ -70,7 +73,8 @@ export default function SendableChainTest() {
          * @tc.author: oleg-ignatenko
          */
         it('In_Progress_testChainedPath2', 0, async (done: Function) => {
-           expect(testChainedPath2).assertPromiseIsResolved();
+           let result = await testChainedPath2();
+           expect(result).assertEqual("PASSED");
            done();
         })
     })

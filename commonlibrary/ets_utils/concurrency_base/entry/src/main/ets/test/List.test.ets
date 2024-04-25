@@ -15,8 +15,12 @@
 
 import ConcurrencyBaseTest from './ConcurrencyBase.test.ets'
 import SendableChainTest from './SendablesChain.test.ets'
+import SendableGroupTest from './SendablesGroup.test.ets'
+import SendableGroupWithAllocTest from './SendablesGroupWithAlloc.test.ets'
 
 export default function testsuite() {
     ConcurrencyBaseTest();
     SendableChainTest();
+    SendableGroupTest();
+    SendableGroupWithAllocTest();
 }
