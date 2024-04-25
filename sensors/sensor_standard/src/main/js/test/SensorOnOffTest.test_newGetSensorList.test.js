@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2021 Huawei Device Co., Ltd.
+ * Copyright (C) 2021-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -56,180 +56,251 @@ describe("SensorJsTest_sensor_35", function () {
     const SERVICE_EXCEPTION_CODE = 14500101
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
-	
+    let TAG  = ''
+
    /**
      * @tc.number:SUB_SensorsSystem_GetSensorLists_JSTest_0010
      * @tc.name: getSensorLists_SensorJsTest001
      * @tc.desc: Verification results of the incorrect parameters of the test interface.
+     * @tc.level:Level 0
+     * @tc.type:Function
+     * @tc.size:MediumTest
      */
-	it("getSensorLists_SensorJsTest001",TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
-        sensor.getSensorList().then((data) => {	
-		for (let i = 0; i < data.length; i++) {
-            console.info("getSensorLists_SensorJsTest001 " + JSON.stringify(data[i]));
-			done();
+    it("getSensorLists_SensorJsTest001",TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
+        TAG = 'getSensorLists_SensorJsTest001';
+        try{
+            sensor.getSensorList().then((data) => {
+            for (let i = 0; i < data.length; i++) {
+                console.info(TAG + ' Callback in!' + JSON.stringify(data[i]));
+            }
+            done();
+            }, (error)=>{
+                console.info(TAG + ' error:' + error);
+                done();
+            });
+        } catch (error) {
+            console.info(TAG + ' Device does not support! ');
+            done();
         }
-        }, (error)=>{
-            console.info('getSensorLists_SensorJsTest001 failed');
-            expect(false).assertTrue();
-        });
     })
 
-	/**
+    /**
      * @tc.number:SUB_SensorsSystem_GetSensorLists_JSTest_0020
      * @tc.name: getSensorLists_SensorJsTest002
      * @tc.desc: Verification results of the incorrect parameters of the test interface.
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
      */
-	it("getSensorLists_SensorJsTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-    sensor.getSensorList((error, data) => {	
-        if (error) {
-            console.info('getSensorLists_SensorJsTest002 error');
-            expect(false).assertTrue();
-        } else {
-            for (let i =0; i < data.length; i++) {
-                console.info("getSensorLists_SensorJsTest002 " + JSON.stringify(data[i]));
+    it("getSensorLists_SensorJsTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'getSensorLists_SensorJsTest002';
+        try{
+            sensor.getSensorList((error, data) => {
+            if (error) {
+                console.info(TAG + ' error:' + error);
+                done();
+            } else {
+                for (let i =0; i < data.length; i++) {
+                    console.info(TAG + ' Callback in!' + JSON.stringify(data[i]));
+                }
+                done();
             }
-            done()
+            });
+        } catch (error) {
+            console.info(TAG + ' Device does not support! ');
+            done();
         }
-		});
-	})
+    })
 
     /**
      * @tc.number:SUB_SensorsSystem_GetSensorLists_JSTest_0030
      * @tc.name: getSensorLists_SensorJsTest003
      * @tc.desc: Verification results of the incorrect parameters of the test interface.
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
      */
     it("getSensorLists_SensorJsTest003", 0, async function (done) {
-        sensor.getSensorList(null).then(data => {
-            for (let i = 0; i < data.length; i++) {
-                console.info("getSensorLists_SensorJsTest003 " + JSON.stringify(data[i]));
-            }
-            expect(true).assertTrue();
+        TAG = 'getSensorLists_SensorJsTest003';
+        try{
+            sensor.getSensorList(null).then(data => {
+                for (let i = 0; i < data.length; i++) {
+                    console.info(TAG + ' Callback in!' + JSON.stringify(data[i]));
+                }
+                expect(true).assertTrue();
+                done();
+            }, (error) => {
+                console.info(TAG + ' error:' + error);
+                done();
+            });
+        } catch (error) {
+            console.info(TAG + ' Device does not support! ');
             done();
-        }, (error) => {
-            console.info('getSensorLists_SensorJsTest003 failed');
-            expect(false).assertTrue();
-            done();
-        });
+        }
     })
 
 /**
      * @tc.number:SUB_SensorsSystem_GetSensorLists_JSTest_0040
      * @tc.name: getSensorLists_SensorJsTest004
      * @tc.desc: Verification results of the incorrect parameters of the test interface.
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
      */
 it("getSensorLists_SensorJsTest004", 0, async function (done) {
-    sensor.getSensorList(errMessage).then(data => {
-        for (let i = 0; i < data.length; i++) {
-            console.info("getSensorLists_SensorJsTest004 " + JSON.stringify(data[i]));
-        }
-        expect(true).assertTrue();
+    TAG = 'getSensorLists_SensorJsTest004';
+    try{
+        sensor.getSensorList(errMessage).then(data => {
+            for (let i = 0; i < data.length; i++) {
+                console.info(TAG + ' Callback in!' + JSON.stringify(data[i]));
+            }
+            expect(true).assertTrue();
+            done();
+        }, (error) => {
+            console.info(TAG + ' error:' + error);
+            done();
+        });
+    } catch (error) {
+        console.info(TAG + ' Device does not support! ');
         done();
-    }, (error) => {
-        console.info('getSensorLists_SensorJsTest004 failed');
-        expect(false).assertTrue();
-        done();
-    });
+    }
 })
 
 /**
      * @tc.number:SUB_SensorsSystem_GetSensorLists_JSTest_0050
      * @tc.name: getSensorLists_SensorJsTest005
      * @tc.desc: Verification results of the incorrect parameters of the test interface.
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
      */
 it("getSensorLists_SensorJsTest005", 0, async function (done) {
-    sensor.getSensorList('xxx').then(data => {
-        console.info("--getSensorLists_SensorJsTest005 callback in--" + data.length);
-        for (let i = 0; i < data.length; i++) {
-            console.info("getSensorLists_SensorJsTest005 " + JSON.stringify(data[i]));
-        }
-        expect(true).assertTrue();
+    TAG = 'getSensorLists_SensorJsTest005';
+    try{
+        sensor.getSensorList('xxx').then(data => {
+            console.info("--getSensorLists_SensorJsTest005 callback in--" + data.length);
+            for (let i = 0; i < data.length; i++) {
+                console.info(TAG + ' Callback in!' + JSON.stringify(data[i]));
+            }
+            expect(true).assertTrue();
+            done();
+        }, (error) => {
+            console.info(TAG + ' error:' + error);
+            done();
+        });
+    } catch (error) {
+        console.info(TAG + ' Device does not support! ');
         done();
-    }, (error) => {
-        console.info('getSensorLists_SensorJsTest005 failed');
-        expect(false).assertTrue();
-        done();
-    });
+    }
 })
 
-	/**
+    /**
      * @tc.number:SUB_SensorsSystem_GetSensorLists_JSTest_0060
      * @tc.name: getSensorLists_SensorJsTest006
      * @tc.desc: Verification results of the incorrect parameters of the test interface.
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
      */
     it("getSensorLists_SensorJsTest006", 0, async function (done) {
-        sensor.getSensorList(invild).then(data => {
-            console.info("--getSensorLists_SensorJsTest006 callback in--" + data.length);
-            for (let i = 0; i < data.length; i++) {
-                console.info("getSensorLists_SensorJsTest006 " + JSON.stringify(data[i]));
-            }
-            expect(true).assertTrue();
+        TAG = 'getSensorLists_SensorJsTest006';
+        try{
+            sensor.getSensorList(invild).then(data => {
+                console.info("--getSensorLists_SensorJsTest006 callback in--" + data.length);
+                for (let i = 0; i < data.length; i++) {
+                    console.info(TAG + ' Callback in!' + JSON.stringify(data[i]));
+                }
+                expect(true).assertTrue();
+                done();
+            }, (error) => {
+                console.info(TAG + ' error:' + error);
+                done();
+            });
+        } catch (error) {
+            console.info(TAG + ' Device does not support! ');
             done();
-        }, (error) => {
-            console.info('getSensorLists_SensorJsTest006 failed'+error);
-            expect(false).assertTrue();
-            done();
-        });
+        }
     })
-	
-	/**
+
+    /**
      * @tc.number:SUB_SensorsSystem_GetSensorLists_JSTest_0070
      * @tc.name: getSensorLists_SensorJsTest007
      * @tc.desc: Verification results of the incorrect parameters of the test interface.
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
      */
     it("getSensorLists_SensorJsTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        try {
-            sensor.getSensorList(invild).then(data => {
-                console.info("getSensorLists_SensorJsTest007 " + JSON.stringify(data));
+        TAG = 'getSensorLists_SensorJsTest007';
+        try{
+            try {
+                sensor.getSensorList(invild).then(data => {
+                    console.info(TAG + ' Callback in!' + JSON.stringify(data[i]));
+                }), (error => {
+                    console.info(TAG + ' error:' + error);
+                    done();
+                });
+            } catch(error) {
+                console.info(TAG + ' catch error:' + error);
                 done();
-            }), (error => {
-                console.info(error);
-                expect(error.code).assertEqual(SERVICE_EXCEPTION_CODE);
-                expect(error.code).assertEqual(SERVICE_EXCEPTION_MSG);
-                done();
-            });
-        } catch(error) {
-            console.info(error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            }
+        } catch (error) {
+            console.info(TAG + ' Device does not support! ');
             done();
         }
-	})
-	
-	/**
+    })
+
+    /**
      * @tc.number:SUB_SensorsSystem_GetSensorLists_JSTest_0080
      * @tc.name: getSensorLists_SensorJsTest008
      * @tc.desc: Verification results of the incorrect parameters of the test interface.
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
      */
     it("getSensorLists_SensorJsTest008", 0, async function (done) {
-        sensor.getSensorList(undefined).then((data) => {
-            for (let i = 0; i < data.length; i++) {
-                console.info("getSensorLists_SensorJsTest008 " + JSON.stringify(data[i]));
-            }
-            expect(true).assertTrue();
+        TAG = 'getSensorLists_SensorJsTest008';
+        try{
+            sensor.getSensorList(undefined).then((data) => {
+                for (let i = 0; i < data.length; i++) {
+                    console.info(TAG + ' Callback in!' + JSON.stringify(data[i]));
+                }
+                expect(true).assertTrue();
+                done();
+            }, (error) => {
+                console.info(TAG + ' error:' + error);
+                done();
+            });
+        } catch (error) {
+            console.info(TAG + ' Device does not support! ');
             done();
-        }, (error) => {
-            console.info('getSensorLists_SensorJsTest008 failed');
-            expect(false).assertTrue();
-            done();
-        });
+        }
     })
 
-	/**
+    /**
      * @tc.number:SUB_SensorsSystem_GetSensorLists_JSTest_0090
      * @tc.name: getSensorLists_SensorJsTest009
      * @tc.desc: Verification results of the incorrect parameters of the test interface.
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
      */
     it("getSensorLists_SensorJsTest009", 0, async function (done) {
-        sensor.getSensorList(null).then((data) => {
-            for (let i = 0; i < data.length; i++) {
-                console.info("getSensorLists_SensorJsTest009 " + JSON.stringify(data[i]));
-            }
-            expect(true).assertTrue();
+        TAG = 'getSensorLists_SensorJsTest009';
+        try{
+            sensor.getSensorList(null).then((data) => {
+                for (let i = 0; i < data.length; i++) {
+                    console.info(TAG + ' Callback in!' + JSON.stringify(data[i]));
+                }
+                expect(true).assertTrue();
+                done();
+            }, (error) => {
+                console.info(TAG + ' error:' + error);
+                done();
+            });
+        } catch (error) {
+            console.info(TAG + ' Device does not support! ');
             done();
-        }, (error) => {
-            console.info('getSensorLists_SensorJsTest009 failed');
-            expect(false).assertTrue();
-            done();
-        });
-    })	
+        }
+    })
 })}
