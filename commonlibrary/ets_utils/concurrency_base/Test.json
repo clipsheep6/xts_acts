@@ -5,7 +5,8 @@
         "test-timeout": "800000",
         "bundle-name": "com.example.concurrency_base_xts",
         "module-name": "entry",
-        "shell-timeout": "800000"
+        "shell-timeout": "800000",
+        "compile-mode": "esmodule"
     },
     "kits": [
         {
