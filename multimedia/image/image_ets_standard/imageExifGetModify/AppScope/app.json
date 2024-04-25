@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "ohos.acts.image.imageExifGetModify",
+    "bundleName": "ohos.acts.multimedia.image.imageExifGetModify",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

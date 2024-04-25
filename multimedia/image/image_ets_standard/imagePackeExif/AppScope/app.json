@@ -1,6 +1,6 @@
 {
   "app": {
-    "bundleName": "ohos.acts.image.imagePackeExif",
+    "bundleName": "ohos.acts.multimedia.image.imagePackeExif",
     "vendor": "example",
     "versionCode": 1000000,
     "versionName": "1.0.0",

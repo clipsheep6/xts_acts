@@ -90,7 +90,7 @@ export default function imageDecodeOptionsRawTest() {
             break
           case 'callBackCreate':
             await callBackCreate(TAG, imageSourceApi, decodingOptions, desiredPixelFormat);
-            await sleep(50000);
+            await sleep(65000);
             break
         }
         await sleep(1000);

@@ -219,7 +219,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('BitsPerSample')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -242,7 +242,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('Orientation')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -265,7 +265,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ImageLength')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -288,7 +288,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ImageWidth')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -311,7 +311,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSLatitude')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -334,7 +334,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSLongitude')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -357,7 +357,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSLatitudeRef')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -380,7 +380,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSLongitudeRef')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -403,7 +403,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('DateTimeOriginal')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -426,7 +426,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ExposureTime')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -449,7 +449,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SceneType')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -472,7 +472,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ISOSpeedRatings')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -495,7 +495,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('FNumber')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -518,7 +518,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('DateTime')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -541,7 +541,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSTimeStamp')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -564,7 +564,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSDateStamp')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -587,7 +587,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ImageDescription')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -610,7 +610,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('Make')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -633,7 +633,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('Model')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -656,7 +656,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('PhotoMode')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -679,7 +679,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SensitivityType')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -702,7 +702,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('StandardOutputSensitivity')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -725,7 +725,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('RecommendedExposureIndex')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -748,7 +748,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ApertureValue')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -771,7 +771,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ExposureBiasValue')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -794,7 +794,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('MeteringMode')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -817,7 +817,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('LightSource')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -840,7 +840,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('Flash')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -863,7 +863,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('FocalLength')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -886,7 +886,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('UserComment')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -909,7 +909,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('PixelXDimension')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -932,7 +932,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('PixelYDimension')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -955,7 +955,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('WhiteBalance')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -978,7 +978,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('FocalLengthIn35mmFilm')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1001,7 +1001,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('Compression')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1024,7 +1024,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('PhotometricInterpretation')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1047,7 +1047,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('StripOffsets')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1070,7 +1070,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SamplesPerPixel')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1093,7 +1093,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('RowsPerStrip')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1116,7 +1116,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('StripByteCounts')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1139,7 +1139,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('XResolution')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1162,7 +1162,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('YResolution')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1185,7 +1185,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('PlanarConfiguration')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1208,7 +1208,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ResolutionUnit')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1231,7 +1231,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('TransferFunction')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1254,7 +1254,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('Software')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1277,7 +1277,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('Artist')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1300,7 +1300,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('WhitePoint')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1323,7 +1323,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('PrimaryChromaticities')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1346,7 +1346,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('YCbCrCoefficients')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1369,7 +1369,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('YCbCrSubSampling')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1392,7 +1392,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('YCbCrPositioning')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1415,7 +1415,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ReferenceBlackWhite')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1438,7 +1438,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('Copyright')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1461,7 +1461,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('JPEGInterchangeFormat')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1484,7 +1484,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('JPEGInterchangeFormatLength')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1507,7 +1507,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ExposureProgram')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1530,7 +1530,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SpectralSensitivity')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1553,7 +1553,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('OECF')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1576,7 +1576,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ExifVersion')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1599,7 +1599,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('DateTimeDigitized')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1622,7 +1622,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ComponentsConfiguration')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1645,7 +1645,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ShutterSpeedValue')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1668,7 +1668,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('BrightnessValue')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1691,7 +1691,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('MaxApertureValue')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1714,7 +1714,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SubjectDistance')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1737,7 +1737,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SubjectArea')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1760,7 +1760,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('MakerNote')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1790,7 +1790,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SubsecTime')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1813,7 +1813,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SubsecTimeOriginal')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1836,7 +1836,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SubsecTimeDigitized')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1859,7 +1859,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('FlashpixVersion')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1882,7 +1882,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ColorSpace')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1905,7 +1905,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('RelatedSoundFile')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1928,7 +1928,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('FlashEnergy')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1951,7 +1951,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SpatialFrequencyResponse')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1974,7 +1974,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('FocalPlaneXResolution')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1997,7 +1997,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('FocalPlaneYResolution')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2020,7 +2020,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('FocalPlaneResolutionUnit')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2043,7 +2043,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SubjectLocation')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2066,7 +2066,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ExposureIndex')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2089,7 +2089,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SensingMethod')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2112,7 +2112,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('FileSource')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2135,7 +2135,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('CFAPattern')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2158,7 +2158,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('CustomRendered')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2181,7 +2181,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ExposureMode')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2204,7 +2204,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('DigitalZoomRatio')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2227,7 +2227,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SceneCaptureType')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2250,7 +2250,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GainControl')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2273,7 +2273,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('Contrast')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2296,7 +2296,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('Saturation')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2319,7 +2319,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('Sharpness')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2342,7 +2342,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('DeviceSettingDescription')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2365,7 +2365,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SubjectDistanceRange')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2388,7 +2388,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ImageUniqueID')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2411,7 +2411,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSVersionID')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2434,7 +2434,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSAltitudeRef')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2457,7 +2457,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSAltitude')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2480,7 +2480,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSSatellites')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2503,7 +2503,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSStatus')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2526,7 +2526,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSMeasureMode')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2549,7 +2549,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSDOP')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2572,7 +2572,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSSpeedRef')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2595,7 +2595,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSSpeed')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2618,7 +2618,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSTrackRef')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2641,7 +2641,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSTrack')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2664,7 +2664,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSImgDirectionRef')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2687,7 +2687,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSImgDirection')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2710,7 +2710,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSMapDatum')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2733,7 +2733,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSDestLatitudeRef')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2756,7 +2756,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSDestLatitude')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2779,7 +2779,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSDestLongitudeRef')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2802,7 +2802,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSDestLongitude')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2825,7 +2825,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSDestBearingRef')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2848,7 +2848,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSDestBearing')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2871,7 +2871,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSDestDistanceRef')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2894,7 +2894,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSDestDistance')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2917,7 +2917,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSProcessingMethod')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2940,7 +2940,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSAreaInformation')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2963,7 +2963,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSDifferential')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2986,7 +2986,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('BodySerialNumber')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3009,7 +3009,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('CameraOwnerName')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3032,7 +3032,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('CompositeImage')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3055,7 +3055,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('CompressedBitsPerPixel')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3078,7 +3078,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('DNGVersion')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3101,7 +3101,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('DefaultCropSize')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3124,7 +3124,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('Gamma')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3147,7 +3147,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ISOSpeedLatitudeyyy')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3170,7 +3170,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('ISOSpeedLatitudezzz')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3193,7 +3193,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('LensMake')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3216,7 +3216,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('LensModel')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3239,7 +3239,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('LensSerialNumber')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3262,7 +3262,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('LensSpecification')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3285,7 +3285,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('NewSubfileType')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3308,7 +3308,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('OffsetTime')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3331,7 +3331,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('OffsetTimeDigitized')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3354,7 +3354,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('OffsetTimeOriginal')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3377,7 +3377,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SourceExposureTimesOfCompositeImage')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3400,7 +3400,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SourceImageNumberOfCompositeImage')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3423,7 +3423,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('SubfileType')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3446,7 +3446,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('GPSHPositioningError')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3469,7 +3469,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('PhotographicSensitivity')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3492,7 +3492,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteCaptureMode')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3515,7 +3515,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnotePhysicalAperture')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3538,7 +3538,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteRollAngle')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3561,7 +3561,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnotePitchAngle')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3584,7 +3584,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteSceneFoodConf')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3607,7 +3607,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteSceneStageConf')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3630,7 +3630,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteSceneBlueSkyConf')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3653,7 +3653,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteSceneGreenPlantConf')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3676,7 +3676,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteSceneBeachConf')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3699,7 +3699,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteSceneSnowConf')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3722,7 +3722,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteSceneSunsetConf')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3745,7 +3745,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteSceneFlowersConf')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3768,7 +3768,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteSceneNightConf')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3791,7 +3791,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteSceneTextConf')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3814,7 +3814,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteFaceCount')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3837,7 +3837,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteFocusMode')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3860,7 +3860,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteBurstNumber')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3883,7 +3883,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteFaceConf')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3906,7 +3906,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteFaceLeyeCenter')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3929,7 +3929,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteFaceMouthCenter')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3952,7 +3952,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteFacePointer')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3975,7 +3975,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteFaceRect')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -3998,7 +3998,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteFaceReyeCenter')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4021,7 +4021,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteFaceSmileScore')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4044,7 +4044,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteFaceVersion')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4067,7 +4067,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteFrontCamera')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4090,7 +4090,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteScenePointer')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4113,7 +4113,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.getImageProperty('HwMnoteSceneVersion')_promise
      *                 3.the getImageProperty value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4136,7 +4136,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('BitsPerSample', `1,1,1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4160,7 +4160,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Orientation', `1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4184,7 +4184,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ImageLength', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4208,7 +4208,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ImageWidth', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4232,7 +4232,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSLatitude', `39,54,20`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4256,7 +4256,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSLongitude', `120/1 52/1 26/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4280,7 +4280,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSLatitudeRef', `N`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4304,7 +4304,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSLongitudeRef', `E`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4328,7 +4328,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('DateTimeOriginal', `2024:01:25 05:51:34`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4352,7 +4352,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ExposureTime', `1/34`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4376,7 +4376,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SceneType', `1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4400,7 +4400,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ISOSpeedRatings', `1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4424,7 +4424,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FNumber', `1/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4448,7 +4448,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('DateTime', `2024:12:31`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4472,7 +4472,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSTimeStamp', `11/1 37/1 58/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4496,7 +4496,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDateStamp', `2025:01:11`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4520,7 +4520,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ImageDescription', `_cuva%s\d`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4544,7 +4544,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Make', `华为`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4568,7 +4568,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Model', `TNY-AL00`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4592,7 +4592,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('PhotoMode', `252`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4616,7 +4616,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SensitivityType', `5`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4640,7 +4640,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('StandardOutputSensitivity', `5`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4664,7 +4664,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('RecommendedExposureIndex', `123`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4688,7 +4688,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ApertureValue', `4/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4712,7 +4712,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ExposureBiasValue', `23/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4736,7 +4736,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('MeteringMode', `5`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4760,7 +4760,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('LightSource', `1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4784,7 +4784,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Flash', `5`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4808,7 +4808,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FocalLength', `0/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4832,7 +4832,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('UserComment', `place for user comments`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4856,7 +4856,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('PixelXDimension', `123`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4880,7 +4880,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('PixelYDimension', `234`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4904,7 +4904,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('WhiteBalance', `1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4928,7 +4928,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FocalLengthIn35mmFilm', `2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4952,7 +4952,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Compression', `1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -4976,7 +4976,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('PhotometricInterpretation', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5000,7 +5000,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('StripOffsets', `123`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5024,7 +5024,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SamplesPerPixel', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5048,7 +5048,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('RowsPerStrip', `123`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5072,7 +5072,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('StripByteCounts', `123`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5096,7 +5096,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('XResolution', `0/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5120,7 +5120,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('YResolution', `0/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5144,7 +5144,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('PlanarConfiguration', `1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5168,7 +5168,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ResolutionUnit', `2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5192,7 +5192,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('TransferFunction', `abc`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5216,7 +5216,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Software', `华为`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5240,7 +5240,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Artist', `None`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5264,7 +5264,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('WhitePoint', `252/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5288,7 +5288,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('PrimaryChromaticities', `0/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5312,7 +5312,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('YCbCrCoefficients', `299/1000 587/1000 114/1000`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5336,7 +5336,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('YCbCrSubSampling', `3 2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5360,7 +5360,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('YCbCrPositioning', `1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5384,7 +5384,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ReferenceBlackWhite', `222 0 1.5 0 25.2 25.2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5408,7 +5408,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Copyright', `undefined`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5432,7 +5432,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ExposureProgram', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5456,7 +5456,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SpectralSensitivity', `abc`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5480,7 +5480,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('OECF', `excc`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5504,7 +5504,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ExifVersion', `0110`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5528,7 +5528,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('DateTimeDigitized', `2022:06:02 15:51:34`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5552,7 +5552,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ComponentsConfiguration', `1456`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5576,7 +5576,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ShutterSpeedValue', `5/2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5600,7 +5600,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('BrightnessValue', `5/2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5624,7 +5624,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('MaxApertureValue', `5/2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5648,7 +5648,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubjectDistance', `5/2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5672,7 +5672,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubjectArea', `12 13`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5696,7 +5696,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubsecTime', `123456`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5720,7 +5720,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubsecTimeOriginal', `427000`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5744,7 +5744,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubsecTimeDigitized', `427000`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5768,7 +5768,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FlashpixVersion', `0100`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5792,7 +5792,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ColorSpace', `1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5816,7 +5816,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('RelatedSoundFile', `/usr/home`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5840,7 +5840,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FlashEnergy', `832/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5864,7 +5864,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SpatialFrequencyResponse', `13`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5888,7 +5888,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FocalPlaneXResolution', `1080/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5912,7 +5912,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FocalPlaneYResolution', `880/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5936,7 +5936,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FocalPlaneResolutionUnit', `2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5960,7 +5960,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubjectLocation', `0 1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -5984,7 +5984,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ExposureIndex', `3/2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6008,7 +6008,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SensingMethod', `3`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6032,7 +6032,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FileSource', `3`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6056,7 +6056,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('CFAPattern', `3`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6080,7 +6080,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('CustomRendered', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6104,7 +6104,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ExposureMode', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6128,7 +6128,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('DigitalZoomRatio', `321/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6152,7 +6152,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SceneCaptureType', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6176,7 +6176,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GainControl', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6200,7 +6200,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Contrast', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6224,7 +6224,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Saturation', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6248,7 +6248,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Sharpness', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6272,7 +6272,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('DeviceSettingDescription', `2xxx`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6296,7 +6296,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubjectDistanceRange', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6320,7 +6320,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ImageUniqueID', `FXIC012`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6344,7 +6344,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSVersionID', `2.2.0.0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6368,7 +6368,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSAltitudeRef', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6392,7 +6392,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSAltitude', `0/100`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6416,7 +6416,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSSatellites', `xxx`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6440,7 +6440,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSStatus', `A`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6464,7 +6464,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSMeasureMode', `2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6488,7 +6488,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDOP', `182/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6512,7 +6512,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSSpeedRef', `N`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6536,7 +6536,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSSpeed', `150/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6560,7 +6560,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSTrackRef', `T`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6584,7 +6584,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSTrack', `114/3`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6608,7 +6608,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSImgDirectionRef', `M`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6632,7 +6632,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSImgDirection', `125/56`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6656,7 +6656,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSMapDatum', `xxx`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6680,7 +6680,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestLatitudeRef', `N`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6704,7 +6704,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestLatitude', `33/1 22/1 11/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6728,7 +6728,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestLongitudeRef', `E`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6752,7 +6752,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestLongitude', `33/1 22/1 11/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6776,7 +6776,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestBearingRef', `T`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6800,7 +6800,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestBearing', `22/11`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6824,7 +6824,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestDistanceRef', `N`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6848,7 +6848,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestDistance', `10/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6872,7 +6872,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSProcessingMethod', `CELLID`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6896,7 +6896,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSAreaInformation', `arexxx`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6920,7 +6920,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDifferential', `0`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6944,7 +6944,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('BodySerialNumber', `exoch`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6968,7 +6968,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('CameraOwnerName', `c.uec`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -6992,7 +6992,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('CompositeImage', `2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7016,7 +7016,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('CompressedBitsPerPixel', `24/1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7040,7 +7040,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('DNGVersion', `2 2 3 1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7064,7 +7064,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('DefaultCropSize', `153 841`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7088,7 +7088,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Gamma', `5/2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7112,7 +7112,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ISOSpeedLatitudeyyy', `1456`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7136,7 +7136,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ISOSpeedLatitudezzz', `1456`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7160,7 +7160,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('LensMake', `xxwx`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7184,7 +7184,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('LensModel', `txaw`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7208,7 +7208,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('LensSerialNumber', `qxhc`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7232,7 +7232,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('LensSpecification', `3/4 5/2 3/2 1/2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7256,7 +7256,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('NewSubfileType', `3`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7280,7 +7280,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('OffsetTime', `2024:01:25`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7304,7 +7304,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('OffsetTimeDigitized', `cfh`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7328,7 +7328,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('OffsetTimeOriginal', `chex`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7352,7 +7352,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SourceExposureTimesOfCompositeImage', `xxxw`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7376,7 +7376,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SourceImageNumberOfCompositeImage', `23 34`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7400,7 +7400,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubfileType', `2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7424,7 +7424,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSHPositioningError', `5/2`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7448,7 +7448,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('PhotographicSensitivity', `50`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7472,7 +7472,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('HwMnoteCaptureMode', `1`)_promise
      *                 3.getImageProperty_callback value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -7538,7 +7538,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('BitsPerSample', `65535,65535,65535`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7562,7 +7562,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Orientation', `8`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7586,7 +7586,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ImageLength', `65535`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7610,7 +7610,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ImageWidth', `65535`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7634,7 +7634,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSLatitude', `114,3`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7658,7 +7658,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSLongitude', `114,3`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7682,7 +7682,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSLatitudeRef', `S`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7706,7 +7706,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSLongitudeRef', `W`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7730,7 +7730,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('DateTimeOriginal', `1900:01:01 00:00:00`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7754,7 +7754,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ExposureTime', `1/60`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7778,7 +7778,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ISOSpeedRatings', `65535`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7802,7 +7802,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FNumber', `1/30`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7826,7 +7826,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('DateTime', `1900:01:01`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7850,7 +7850,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSTimeStamp', `12 54 20`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7874,7 +7874,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDateStamp', `1900:01:01`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7898,7 +7898,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ImageDescription', `@  @`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7922,7 +7922,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Make', `APPLE`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7946,7 +7946,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Model', `%s \0`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7970,7 +7970,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('PhotoMode', `13`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -7994,7 +7994,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SensitivityType', `0`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8018,7 +8018,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('StandardOutputSensitivity', `1000`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8042,7 +8042,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('RecommendedExposureIndex', `2147483647`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8066,7 +8066,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ApertureValue', `16`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8090,7 +8090,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ExposureBiasValue', `4`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8114,7 +8114,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('MeteringMode', `0`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8138,7 +8138,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('LightSource', `2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8162,7 +8162,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Flash', `95`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8186,7 +8186,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FocalLength', `31/1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8210,7 +8210,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('UserComment', `%s \0`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8234,7 +8234,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('PixelXDimension', `0`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8258,7 +8258,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('PixelYDimension', `0`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8282,7 +8282,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('WhiteBalance', `0`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8306,7 +8306,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FocalLengthIn35mmFilm', `12`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8330,7 +8330,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Compression', `32773`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8354,7 +8354,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('PhotometricInterpretation', `1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8378,7 +8378,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('StripOffsets', `456`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8402,7 +8402,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SamplesPerPixel', `65535`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8426,7 +8426,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('RowsPerStrip', `345`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8450,7 +8450,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('StripByteCounts', `345`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8474,7 +8474,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('XResolution', `31/1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8498,7 +8498,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('YResolution', `31/1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8522,7 +8522,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('PlanarConfiguration', `2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8546,7 +8546,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ResolutionUnit', `3`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8570,7 +8570,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('TransferFunction', `123`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8594,7 +8594,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Software', `%s \0`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8618,7 +8618,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Artist', `%s \0`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8642,7 +8642,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('WhitePoint', `31/1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8666,7 +8666,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('PrimaryChromaticities', `31/1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8690,7 +8690,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('YCbCrCoefficients', `3/2 4/2 9/3`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8714,7 +8714,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('YCbCrSubSampling', `4 5`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8738,7 +8738,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('YCbCrPositioning', `2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8762,7 +8762,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ReferenceBlackWhite', `3`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8786,7 +8786,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Copyright', `joseph`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8810,7 +8810,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ExposureProgram', `8`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8834,7 +8834,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SpectralSensitivity', `1234`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8858,7 +8858,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('OECF', `ab`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8882,7 +8882,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ExifVersion', `0120`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8906,7 +8906,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('DateTimeDigitized', `1900:01:01 00:00:00`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8930,7 +8930,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ComponentsConfiguration', `1256`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8954,7 +8954,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ShutterSpeedValue', `3/2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -8978,7 +8978,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('BrightnessValue', `6/5`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9002,7 +9002,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('MaxApertureValue', `8/5`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9026,7 +9026,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubjectDistance', `1/2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9050,7 +9050,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubjectArea', `45 23`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9074,7 +9074,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubsecTime', `427000`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9098,7 +9098,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubsecTimeOriginal', `123456`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9122,7 +9122,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubsecTimeDigitized', `999999`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9146,7 +9146,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FlashpixVersion', `0101`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9170,7 +9170,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ColorSpace', `2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9194,7 +9194,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('RelatedSoundFile', `abc`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9218,7 +9218,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FlashEnergy', `5/2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9242,7 +9242,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SpatialFrequencyResponse', `corn`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9266,7 +9266,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FocalPlaneXResolution', `102/1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9290,7 +9290,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FocalPlaneYResolution', `81/1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9314,7 +9314,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FocalPlaneResolutionUnit', `3`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9338,7 +9338,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubjectLocation', `23 112`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9362,7 +9362,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ExposureIndex', `5/2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9386,7 +9386,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SensingMethod', `8`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9410,7 +9410,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('FileSource', `4`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9434,7 +9434,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('CFAPattern', `ab`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9458,7 +9458,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('CustomRendered', `1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9482,7 +9482,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ExposureMode', `2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9506,7 +9506,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('DigitalZoomRatio', `23/1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9530,7 +9530,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SceneCaptureType', `3`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9554,7 +9554,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GainControl', `4`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9578,7 +9578,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Contrast', `2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9602,7 +9602,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Saturation', `2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9626,7 +9626,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Sharpness', `2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9650,7 +9650,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('DeviceSettingDescription', `coxex`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9674,7 +9674,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubjectDistanceRange', `3`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9698,7 +9698,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ImageUniqueID', `xxx`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9722,7 +9722,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSVersionID', `2.2.0.1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9746,7 +9746,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSAltitudeRef', `1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9770,7 +9770,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSAltitude', `100/100`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9794,7 +9794,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSSatellites', `a b c`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9818,7 +9818,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSStatus', `V`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9842,7 +9842,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSMeasureMode', `3`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9866,7 +9866,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDOP', `100/100`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9890,7 +9890,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSSpeedRef', `K`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9914,7 +9914,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSSpeed', `0/1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9938,7 +9938,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSTrackRef', `M`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9962,7 +9962,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSTrack', `3.5`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -9986,7 +9986,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSImgDirectionRef', `T`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10010,7 +10010,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSImgDirection', `2.5`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10034,7 +10034,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSMapDatum', `%s\0`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10058,7 +10058,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestLatitudeRef', `S`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10082,7 +10082,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestLatitude', `0/1 0/1 0/1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10106,7 +10106,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestLongitudeRef', `W`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10130,7 +10130,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestLongitude', `0/1 0/1 0/1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10154,7 +10154,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestBearingRef', `C`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10178,7 +10178,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestBearing', `2.5`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10202,7 +10202,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestDistanceRef', `K`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10226,7 +10226,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDestDistance', `2.5`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10250,7 +10250,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSProcessingMethod', `XXX`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10274,7 +10274,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSAreaInformation', `client`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10298,7 +10298,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSDifferential', `1`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10322,7 +10322,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('BodySerialNumber', `xoinc`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10346,7 +10346,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('CameraOwnerName', `joseph`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10370,7 +10370,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('CompositeImage', `3`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10394,7 +10394,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('CompressedBitsPerPixel', `25`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10418,7 +10418,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('DNGVersion', `2 2 3 2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10442,7 +10442,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('DefaultCropSize', `123 654`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10466,7 +10466,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('Gamma', `3/2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10490,7 +10490,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ISOSpeedLatitudeyyy', `123`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10514,7 +10514,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('ISOSpeedLatitudezzz', `123`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10538,7 +10538,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('LensMake', `plex`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10562,7 +10562,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('LensModel', `world`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10586,7 +10586,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('LensSerialNumber', `root`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10610,7 +10610,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('LensSpecification', `3/4 5/2 3/2 5/2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10634,7 +10634,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('NewSubfileType', `5`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10658,7 +10658,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('OffsetTime', `2023:01:25`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10682,7 +10682,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('OffsetTimeDigitized', `cirtize`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10706,7 +10706,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('OffsetTimeOriginal', `ject`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10730,7 +10730,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SourceExposureTimesOfCompositeImage', `xixe`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10754,7 +10754,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SourceImageNumberOfCompositeImage', `11 23`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10778,7 +10778,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('SubfileType', `3`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10802,7 +10802,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('GPSHPositioningError', `1/2`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10826,7 +10826,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('PhotographicSensitivity', `12800`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10850,7 +10850,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('HwMnoteCaptureMode', `123456789`)_callback
      *                 3.getImageProperty_promise value is the expected value
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -10874,7 +10874,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('BitsPerSample', `8,8`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -10898,7 +10898,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('Orientation', `0`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -10922,7 +10922,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ImageLength', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -10946,7 +10946,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ImageWidth', `@@@`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -10970,7 +10970,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSLatitude', `abc,3`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -10994,7 +10994,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSLongitude', `12,a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11018,7 +11018,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSLatitudeRef', `W`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11042,7 +11042,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSLongitudeRef', `S`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11066,7 +11066,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('DateTimeOriginal', `05:61:34`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11090,7 +11090,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ExposureTime', `1/0`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11114,7 +11114,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ISOSpeedRatings', `-1`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11138,7 +11138,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('FNumber', `1/0`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11162,7 +11162,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('DateTime', `2024:13:01`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11186,7 +11186,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSTimeStamp', `37/0,58/0`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11210,7 +11210,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSDateStamp', `2023:01`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11234,7 +11234,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('PhotoMode', `Unknown`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11258,7 +11258,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('SensitivityType', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11282,7 +11282,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('StandardOutputSensitivity', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11306,7 +11306,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('RecommendedExposureIndex', `-123`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11330,7 +11330,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ApertureValue', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11354,7 +11354,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ExposureBiasValue', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11378,7 +11378,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('MeteringMode', `256`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11402,7 +11402,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('LightSource', `256`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11426,7 +11426,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('Flash', `999`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11450,7 +11450,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('FocalLength', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11474,7 +11474,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('PixelXDimension', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11498,7 +11498,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('PixelYDimension', `!!!`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11522,7 +11522,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('WhiteBalance', `2`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11546,7 +11546,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('FocalLengthIn35mmFilm', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11570,7 +11570,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('Compression', `11`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11594,7 +11594,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('PhotometricInterpretation', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11618,7 +11618,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('StripOffsets', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11642,7 +11642,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('SamplesPerPixel', `-1`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11666,7 +11666,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('RowsPerStrip', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11690,7 +11690,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('StripByteCounts', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11714,7 +11714,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('XResolution', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11738,7 +11738,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('YResolution', `b`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11762,7 +11762,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('PlanarConfiguration', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11786,7 +11786,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ResolutionUnit', `4`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11810,7 +11810,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('WhitePoint', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11834,7 +11834,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('PrimaryChromaticities', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11858,7 +11858,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('YCbCrCoefficients', `123,345`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11882,7 +11882,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('YCbCrSubSampling', `4`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11906,7 +11906,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('YCbCrPositioning', `3`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11930,7 +11930,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ReferenceBlackWhite', `undefined`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11954,7 +11954,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ExposureProgram', `-1`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -11978,7 +11978,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ExifVersion', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12002,7 +12002,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('DateTimeDigitized', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12026,7 +12026,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ComponentsConfiguration', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12050,7 +12050,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ShutterSpeedValue', `0/0`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12074,7 +12074,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('BrightnessValue', `12000000/0`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12098,7 +12098,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('MaxApertureValue', `-1/0`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12122,7 +12122,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('SubjectDistance', `meter`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12146,7 +12146,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('SubjectArea', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12170,7 +12170,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('FlashpixVersion', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12194,7 +12194,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ColorSpace', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12218,7 +12218,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('FlashEnergy', `华为`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12242,7 +12242,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('FocalPlaneXResolution', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12266,7 +12266,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('FocalPlaneYResolution', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12290,7 +12290,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('FocalPlaneResolutionUnit', `255`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12314,7 +12314,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('SubjectLocation', `beijing`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12338,7 +12338,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ExposureIndex', `-1/1`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12362,7 +12362,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('SensingMethod', `9`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12386,7 +12386,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('CustomRendered', `2`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12410,7 +12410,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ExposureMode', `3`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12434,7 +12434,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('DigitalZoomRatio', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12458,7 +12458,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('SceneCaptureType', `4`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12482,7 +12482,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GainControl', `5`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12506,7 +12506,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('Contrast', `3`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12530,7 +12530,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('Saturation', `65536`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12554,7 +12554,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('Sharpness', `65535`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12578,7 +12578,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('SubjectDistanceRange', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12602,7 +12602,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSVersionID', `23`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12626,7 +12626,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSAltitudeRef', `2`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12650,7 +12650,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSAltitude', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12674,7 +12674,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSStatus', `C`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12698,7 +12698,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSMeasureMode', `4`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12722,7 +12722,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSDOP', `-1`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12746,7 +12746,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSSpeedRef', `AA`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12770,7 +12770,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSSpeed', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12794,7 +12794,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSTrackRef', `C`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12818,7 +12818,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSTrack', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12842,7 +12842,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSImgDirectionRef', `C`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12866,7 +12866,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSImgDirection', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12890,7 +12890,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSDestLatitudeRef', `W`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12914,7 +12914,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSDestLatitude', `abc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12938,7 +12938,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSDestLongitudeRef', `S`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12962,7 +12962,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSDestLongitude', `none`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -12986,7 +12986,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSDestBearing', `x`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13010,7 +13010,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSDestDistanceRef', `C`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13034,7 +13034,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSDestDistance', `B`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13058,7 +13058,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSDifferential', `4`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13082,7 +13082,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('CompositeImage', `5`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13106,7 +13106,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('CompressedBitsPerPixel', `diry`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13130,7 +13130,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('DNGVersion', `2 3`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13154,7 +13154,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('DefaultCropSize', `hi xic`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13178,7 +13178,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('Gamma', `rat`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13202,7 +13202,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ISOSpeedLatitudeyyy', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13226,7 +13226,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('ISOSpeedLatitudezzz', `bc`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13250,7 +13250,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('LensSpecification', `a b c`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13274,7 +13274,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('NewSubfileType', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13298,7 +13298,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('OffsetTime', `2023:01`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13322,7 +13322,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('SourceImageNumberOfCompositeImage', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13346,7 +13346,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('SubfileType', `5`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13370,7 +13370,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('GPSHPositioningError', `a`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13394,7 +13394,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('PhotographicSensitivity', `华为`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13418,7 +13418,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('HwMnoteCaptureMode', `á`)_callback
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13442,7 +13442,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.getImageProperty('BitsPerSample')_promise
      *                 3.getImageProperty_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13491,7 +13491,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('HwMnoteFaceMouthCenter', '987654321')_promise
      *                 3.getImageProperty('HwMnoteFaceMouthCenter')_promise error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13552,7 +13552,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imagesource
      *                 2.modifyImageProperty('HwMnoteFaceMouthCenter', '987654321')_promise
      *                 3.getImageProperty('HwMnoteFaceMouthCenter') error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13613,7 +13613,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('MakerNote', 'abc')_promise
      *                 3.getImageProperty('MakerNote') error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -13677,7 +13677,7 @@ export default function imageExifJpegGetModifyTest() {
      * @tc.desc      : 1.create imageSource
      *                 2.modifyImageProperty('LightSource', '1')_promise
      *                 3.getImageProperty('MakerNote') error code is the expected code
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */

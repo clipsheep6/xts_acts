@@ -44,7 +44,7 @@ export default function imagePngPackeExifTest() {
     beforeAll(async () => {
       filesDir = AppStorage.get('pathDir')
       cacheDir = AppStorage.get('cacheDir')
-      const filePath = filesDir + "/" + "test_exif_png.png";
+      const filePath = filesDir + "/" + "test_exif_v2.png";
       const file = fs.openSync(filePath)
       imageSourceApi = image.createImageSource(file.fd);
       let opt:image.DecodingOptions = {
@@ -89,7 +89,7 @@ export default function imagePngPackeExifTest() {
      * @tc.name      : packing -promise
      * @tc.desc      : 1.modifyImageProperty
      *                 2.getImageProperty
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -115,7 +115,7 @@ export default function imagePngPackeExifTest() {
      * @tc.name      : packing -promise
      * @tc.desc      : 1.packing
      *                 2.getImageProperty
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -141,7 +141,7 @@ export default function imagePngPackeExifTest() {
      * @tc.name      : packToFile -promise
      * @tc.desc      : 1.pacToFile
      *                 2.getImageProperty
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -169,7 +169,7 @@ export default function imagePngPackeExifTest() {
      * @tc.name      : packToFile -promise
      * @tc.desc      : 1.pacToFile
      *                 2.getImageProperty
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -195,9 +195,9 @@ export default function imagePngPackeExifTest() {
     /**
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_CALLBACK_0200
      * @tc.name      : packing -callback
-     * @tc.de        : 1.packing                                                                                                                                                                           sc      : 1.modifyImageProperty
+     * @tc.desc      : 1.packing                                                                                                                                                                           sc      : 1.modifyImageProperty
      *                 2.getImageProperty
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -232,7 +232,7 @@ export default function imagePngPackeExifTest() {
      * @tc.name      : packing -callback
      * @tc.desc      : 1.packing
      *                 2.getImageProperty
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -270,7 +270,7 @@ export default function imagePngPackeExifTest() {
      * @tc.name      : packToFile -callback
      * @tc.desc      : 1.pacToFile
      *                 2.getImageProperty
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
@@ -309,7 +309,7 @@ export default function imagePngPackeExifTest() {
      * @tc.name      : packToFile -callback
      * @tc.desc      : 1.pacToFile
      *                 2.getImageProperty
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
