@@ -31,6 +31,7 @@ struct CalendarPickerDialogExample {
           .onClick(() => {
             console.info("CalendarDialog.show")
             CalendarPickerDialog.show({
+              alignment: DialogAlignment.Bottom,
               selected: this.selectedDate,
               onAccept: (value) => {
                 console.info("calendar onAccept:" + JSON.stringify(value))
