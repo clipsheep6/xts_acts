@@ -1043,7 +1043,7 @@ export default function OhAVPlayerNDKOtherTest() {
     beforeAll(async () => {
       console.info('beforeAll case');
       copyFileToSandox("testAV.mp4");
-      copyFileToSandox("test2.MP4");
+      copyFileToSandox("test2.mp4");
       await Utils.sleep(sleep5000);
     });
     beforeEach(() => {

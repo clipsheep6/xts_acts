@@ -43,12 +43,12 @@
 #define KNUMBER4 4
 #define KNUMBER5 5
 
-static int32_t G_PLAYTIME = 1;
-static int32_t L_PLAYTIME = 1;
+static int32_t g_gPlaytime = 1;
+static int32_t g_lPlaytime = 1;
 
 std::string PREPATH = "/data/storage/el2/base/files/";
 std::string PATH = "/data/storage/el2/base/files/testAV.mp4"; 
-std::string OHERPATH = "/data/storage/el2/base/files/test2.MP4"; 
+std::string OHERPATH = "/data/storage/el2/base/files/test2.mp4"; 
 
 std::string FileList[] = {
     "/data/storage/el2/base/files/testAV.mp4",
@@ -60,7 +60,7 @@ std::string FileList[] = {
     "/data/storage/el2/base/files/testAV6.mp4",
     "/data/storage/el2/base/files/testAV7.mp4",
     "/data/storage/el2/base/files/testAV8.mp4"};
-static int fileDesc;
+static int g_fileDesc;
 static OH_AVPlayer *mainPlayer;
 static OH_AVPlayer *temmpPlayer;
 static OH_AVPlayer *GlobalAVPlayer()
@@ -156,7 +156,7 @@ static napi_value OhAvPlayerSetFdPathIndex(napi_env env, napi_callback_info info
     int64_t fileSize = GetFileSize(filePath.c_str());
     OH_AVErrCode avErrCode = OH_AVPlayer_SetFDSource(mainPlayer, fileDescribe, PARAM_0, fileSize);
     napi_create_int32(env, avErrCode, &result);
-    fileDesc = fileDescribe;
+    g_fileDesc = fileDescribe;
     return result;
 }
 // 创建播放器
@@ -183,7 +183,7 @@ static napi_value OhAvPlayerSetFdPathSource(napi_env env, napi_callback_info inf
     int64_t fileSize = GetFileSize(PATH.c_str());
     OH_AVErrCode avErrCode = OH_AVPlayer_SetFDSource(mainPlayer, fileDescribe, PARAM_0, fileSize);
     napi_create_int32(env, avErrCode, &result);
-    fileDesc = fileDescribe;
+    g_fileDesc = fileDescribe;
     return result;
 }
 
@@ -198,15 +198,16 @@ static napi_value OhAvPlayerSetFdPathSourceTwo(napi_env env, napi_callback_info 
     int64_t fileSize = GetFileSize(OHERPATH.c_str());
     OH_AVErrCode avErrCode = OH_AVPlayer_SetFDSource(mainPlayer, fileDescribe, PARAM_0, fileSize);
     napi_create_int32(env, avErrCode, &result);
-    fileDesc = fileDescribe;
+    g_fileDesc = fileDescribe;
     return result;
 }
 
 static napi_value OhCloseFile(napi_env env, napi_callback_info info) 
 {
     napi_value result = nullptr;
-    if (fileDesc > 0) {
-        close(fileDesc);
+    if (g_fileDesc > 0) {
+        close(g_fileDesc);
+        g_fileDesc = 0;
         napi_create_int32(env, 0, &result);
     } else {
         napi_create_int32(env, -1, &result);
@@ -220,7 +221,7 @@ static napi_value OhAvPlayerPrepare(napi_env env, napi_callback_info info)
     napi_value result = nullptr;
     
     OH_AVErrCode avErrCode = OH_AVPlayer_Prepare(mainPlayer);
-    sleep(G_PLAYTIME);
+    sleep(g_gPlaytime);
     napi_create_int32(env, avErrCode, &result);
     return result; // 返回0
 }
@@ -244,7 +245,7 @@ static napi_value OhAvPlayerPlay(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     OH_AVErrCode errCode = OH_AVPlayer_Play(mainPlayer);
-    sleep(L_PLAYTIME);
+    sleep(g_lPlaytime);
     napi_create_int32(env, errCode, &result);
     return result;
 }
@@ -282,7 +283,7 @@ static napi_value OhAvPlayerPause(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     OH_AVErrCode errCode = OH_AVPlayer_Pause(mainPlayer);
-    sleep(G_PLAYTIME);
+    sleep(g_gPlaytime);
     napi_create_int32(env, errCode, &result);
     return result;
 }
@@ -386,7 +387,7 @@ static napi_value OhAvPlayerRelease(napi_env env, napi_callback_info info)
     temmpPlayer = mainPlayer;
     mainPlayer = nullptr;
     OH_AVErrCode errCode = OH_AVPlayer_Release(temmpPlayer);
-    sleep(G_PLAYTIME);
+    sleep(g_gPlaytime);
     napi_create_int32(env, errCode, &result);
     return result;
 }
@@ -407,7 +408,7 @@ static napi_value OhAvPlayerReset(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     OH_AVErrCode avErrCode = OH_AVPlayer_Reset(mainPlayer); // 将播放器恢复到初始状态
-    sleep(G_PLAYTIME);
+    sleep(g_gPlaytime);
     napi_create_int32(env, avErrCode, &result);
     return result;
 }
@@ -565,7 +566,7 @@ static napi_value OhAvPlayerStop(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     OH_AVErrCode oH_AVErrCode = OH_AVPlayer_Stop(mainPlayer);
-    sleep(G_PLAYTIME);
+    sleep(g_gPlaytime);
     napi_create_int32(env, oH_AVErrCode, &result);
     return result;
 }

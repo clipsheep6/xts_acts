@@ -22,21 +22,21 @@ ohos_app_assist_suite("AVPlayer_ndk_main") {
   part_name = "media_framework"
 }
 
-ohos_js_app_suite("OhRendererTest") {
+ohos_js_app_suite("OhAVPlayerNDK") {
   test_hap = true
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "OhRendererTest"
+  hap_name = "OhAVPlayerNDK"
   subsystem_name = "multimedia"
   part_name = "media_framework"
   deps = [ ":AVPlayer_ndk_main" ]
 }
 
-ohos_js_app_suite("OhCapturerTest") {
+ohos_js_app_suite("OhAVPlayerNDKOther") {
   test_hap = true
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "OhCapturerTest"
+  hap_name = "OhAVPlayerNDKOther"
   subsystem_name = "multimedia"
   part_name = "media_framework"
   deps = [ ":AVPlayer_ndk_main" ]
