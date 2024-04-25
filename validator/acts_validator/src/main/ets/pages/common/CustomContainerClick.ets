@@ -45,7 +45,6 @@ export default class RangeFunc {
     let obj: Record<string, Object> = JSON.parse(strJson);
     let rectInfo: Array<string> = JSON.parse('[' + obj.$rect + ']');
     RangeFunc.rect_left = JSON.parse('[' + rectInfo[0] + ']')[0];
-    console.log('左左右右' + RangeFunc.rect_left)
     RangeFunc.rect_top = JSON.parse('[' + rectInfo[0] + ']')[1];
     RangeFunc.rect_right = JSON.parse('[' + rectInfo[1] + ']')[0];
     RangeFunc.rect_bottom = JSON.parse('[' + rectInfo[1] + ']')[1];
