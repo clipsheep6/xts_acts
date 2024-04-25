@@ -23,7 +23,7 @@
 #define TIMEOUT_FIVE 10
 
 static bool g_flag = false;
-static void OnVSync(long long timestamp, void *data) { g_flag = true; }
+static void OnVSync(long long timestamp, long long frameCount, void *data) { g_flag = true; }
 
 static napi_value OHNativeVSyncCreate(napi_env env, napi_callback_info info)
 {
