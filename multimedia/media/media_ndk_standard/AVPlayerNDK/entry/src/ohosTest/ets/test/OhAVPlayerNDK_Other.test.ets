@@ -148,7 +148,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERLIST_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERLIST_0100
      * @tc.name       : testOhAvPlayerList001
      * @tc.desc       : Test Playlist
      * @tc.size       : MediumTest
@@ -270,7 +270,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-play-pause-stop-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERNORMALPROCESS_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERNORMALPROCESS_0100
      * @tc.name       : testGetAVPlayerNormalProcess001
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -318,7 +318,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-play-pause-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERNORMALPROCESS_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERNORMALPROCESS_0200
      * @tc.name       : testGetAVPlayerNormalProcess002
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -363,7 +363,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-play-stop-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERNORMALPROCESS_0300
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERNORMALPROCESS_0300
      * @tc.name       : testGetAVPlayerNormalProcess003
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -408,7 +408,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-play-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERNORMALPROCESS_0400
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERNORMALPROCESS_0400
      * @tc.name       : testGetAVPlayerNormalProcess004
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -447,7 +447,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERNORMALPROCESS_0500
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERNORMALPROCESS_0500
      * @tc.name       : testGetAVPlayerNormalProcess005
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -474,7 +474,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERNORMALPROCESS_0600
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERNORMALPROCESS_0600
      * @tc.name       : testGetAVPlayerNormalProcess006
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -507,7 +507,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-play-stop-reset-setFD-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERNORMALPROCESS_0700
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERNORMALPROCESS_0700
      * @tc.name       : testGetAVPlayerNormalProcess007
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -562,7 +562,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-play-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_0100
      * @tc.name       : testGetAVPlayerAbnormal001
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -590,7 +590,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-pause-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_0200
      * @tc.name       : testGetAVPlayerAbnormal002
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -621,7 +621,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-play-stop-pause-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_0300
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_0300
      * @tc.name       : testGetAVPlayerAbnormal003
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -657,7 +657,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-stop-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_0400
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_0400
      * @tc.name       : testGetAVPlayerAbnormal004
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -688,7 +688,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-pause-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_0500
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_0500
      * @tc.name       : testGetAVPlayerAbnormal005
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -716,7 +716,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-stop-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_0600
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_0600
      * @tc.name       : testGetAVPlayerAbnormal006
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -744,7 +744,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-play-stop-setFD-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_0700
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_0700
      * @tc.name       : testGetAVPlayerAbnormal007
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -781,7 +781,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-prepare-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_0800
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_0800
      * @tc.name       : testGetAVPlayerAbnormal008
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -803,7 +803,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-play-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_0900
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_0900
      * @tc.name       : testGetAVPlayerAbnormal009
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -825,7 +825,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-pause-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_1000
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_1000
      * @tc.name       : testGetAVPlayerAbnormal010
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -847,7 +847,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-stop-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_1100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_1100
      * @tc.name       : testGetAVPlayerAbnormal011
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -869,7 +869,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-play-pause-stop-play-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_1200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_1200
      * @tc.name       : testGetAVPlayerAbnormal011
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -923,7 +923,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-play-stop-play-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_1300
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_1300
      * @tc.name       : testGetAVPlayerAbnormal013
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -962,7 +962,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-play-pause-prepare-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_1400
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_1400
      * @tc.name       : testGetAVPlayerAbnormal014
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -1002,7 +1002,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
     /**
      * create-setFD-prepare-play-prepare-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERABNORMAL_1500
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERABNORMAL_1500
      * @tc.name       : testGetAVPlayerAbnormal015
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -1059,7 +1059,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETPLAYBACKSPEED_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETPLAYBACKSPEED_0100
      * @tc.name       : testOhAvPlayerSetPlaybackSpeed001
      * @tc.desc       : Set the player playback rate.
      * @tc.size       : MediumTest
@@ -1114,7 +1114,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETPLAYBACKSPEED_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETPLAYBACKSPEED_0200
      * @tc.name       : testOhAvPlayerSetPlaybackSpeed002
      * @tc.desc       : Set the player playback rate.
      * @tc.size       : MediumTest
@@ -1169,7 +1169,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETPLAYBACKSPEED_0300
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETPLAYBACKSPEED_0300
      * @tc.name       : testOhAvPlayerSetPlaybackSpeed003
      * @tc.desc       : Set the player playback rate.
      * @tc.size       : MediumTest
@@ -1224,7 +1224,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETPLAYBACKSPEED_0400
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETPLAYBACKSPEED_0400
      * @tc.name       : testOhAvPlayerSetPlaybackSpeed004
      * @tc.desc       : Set the player playback rate.
      * @tc.size       : MediumTest
@@ -1279,7 +1279,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETPLAYBACKSPEED_0500
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETPLAYBACKSPEED_0500
      * @tc.name       : testOhAvPlayerSetPlaybackSpeed005
      * @tc.desc       : Set the player playback rate.
      * @tc.size       : MediumTest
@@ -1334,7 +1334,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSELECTBITRATE_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSELECTBITRATE_0100
      * @tc.name       : testOhAvPlayerSelectBitRate001
      * @tc.desc       : Set the bitrate used by the HLS player.
      * @tc.size       : MediumTest
@@ -1383,7 +1383,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSELECTBITRATE_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSELECTBITRATE_0200
      * @tc.name       : testOhAvPlayerSelectBitRate002
      * @tc.desc       : Set the bitrate used by the HLS player.
      * @tc.size       : MediumTest
@@ -1432,7 +1432,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSELECTBITRATE_0300
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSELECTBITRATE_0300
      * @tc.name       : testOhAvPlayerSelectBitRate003
      * @tc.desc       : Set the bitrate used by the HLS player.
      * @tc.size       : MediumTest
@@ -1482,7 +1482,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSELECTBITRATE_0400
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSELECTBITRATE_0400
      * @tc.name       : testOhAvPlayerSelectBitRate004
      * @tc.desc       : Set the bitrate used by the HLS player.
      * @tc.size       : MediumTest
@@ -1532,7 +1532,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETPLAYERCALLBACK_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETPLAYERCALLBACK_0100
      * @tc.name       : testOhAvPlayerSetPlayerCallback001
      * @tc.desc       : Set the player callback method.
      * @tc.size       : MediumTest
@@ -1581,7 +1581,7 @@ export default function OhAVPlayerNDKOtherTest() {
       done();
     });
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETLOOPING_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETLOOPING_0100
      * @tc.name       : testOhAvPlayerSetLooping001
      * @tc.desc       : Set loop playback.
      * @tc.size       : MediumTest
@@ -1635,7 +1635,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETLOOPING_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETLOOPING_0200
      * @tc.name       : testOhAvPlayerSetLooping002
      * @tc.desc       : Set loop playback.
      * @tc.size       : MediumTest
@@ -1689,7 +1689,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETVOLUME_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETVOLUME_0100
      * @tc.name       : testOhAvPlayerSetVolume001
      * @tc.desc       : Set the volume of the player.
      * @tc.size       : MediumTest
@@ -1741,7 +1741,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETVOLUME_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETVOLUME_0200
      * @tc.name       : testOhAvPlayerSetVolume002
      * @tc.desc       : Set the volume of the player.
      * @tc.size       : MediumTest
@@ -1793,7 +1793,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETVOLUME_0300
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETVOLUME_0300
      * @tc.name       : testOhAvPlayerSetVolume003
      * @tc.desc       : Set the volume of the player.
      * @tc.size       : MediumTest
@@ -1847,7 +1847,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETVOLUME_0400
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETVOLUME_0400
      * @tc.name       : testOhAvPlayerSetVolume004
      * @tc.desc       : Set the volume of the player.
      * @tc.size       : MediumTest
@@ -1898,7 +1898,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETVOLUME_0500
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETVOLUME_0500
      * @tc.name       : testOhAvPlayerSetVolume005
      * @tc.desc       : Set the volume of the player.
      * @tc.size       : MediumTest
@@ -1949,7 +1949,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETVOLUME_0600
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETVOLUME_0600
      * @tc.name       : testOhAvPlayerSetVolume006
      * @tc.desc       : Set the volume of the player.
      * @tc.size       : MediumTest
@@ -2031,7 +2031,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERGETCURRENTTRACK_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERGETCURRENTTRACK_0100
      * @tc.name       : testOhAvPlayerGetCurrentTrack001
      * @tc.desc       : Get the currently valid track index.
      * @tc.size       : MediumTest
@@ -2066,7 +2066,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERGETCURRENTTRACK_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERGETCURRENTTRACK_0200
      * @tc.name       : testOhAvPlayerGetCurrentTrack002
      * @tc.desc       : Get the currently valid track index.
      * @tc.size       : MediumTest
@@ -2102,7 +2102,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERGETDURATION_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERGETDURATION_0100
      * @tc.name       : testOhAvPlayerGetDuration001
      * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.size       : MediumTest
@@ -2137,7 +2137,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERGETVIDEOWIDTH_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERGETVIDEOWIDTH_0100
      * @tc.name       : testOhAvPlayerGetVideoWidth001
      * @tc.desc       : Get video width.
      * @tc.size       : MediumTest
@@ -2171,7 +2171,7 @@ export default function OhAVPlayerNDKOtherTest() {
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERGETVIDEOHEIGHT_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERGETVIDEOHEIGHT_0100
      * @tc.name       : testOhAvPlayerGetVideoHeight001
      * @tc.desc       : Obtain video height.
      * @tc.size       : MediumTest
@@ -2256,7 +2256,7 @@ export default function OhAVPlayerNDKOtherTest() {
     // L0 L1;
     /**
      * create-setFD-prepare-(play-pause)x3-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_0100
      * @tc.name       : testGetAVPlayerCirculate001
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -2291,7 +2291,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-(prepare-stop)x3-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_0200
      * @tc.name       : testGetAVPlayerCirculate002
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -2379,7 +2379,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-(prepare-play-stop)x3-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_0300
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_0300
      * @tc.name       : testGetAVPlayerCirculate003
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -2416,7 +2416,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * (SetFd - Prepare - Reset)x3
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_0400
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_0400
      * @tc.name       : testGetAVPlayerCirculate004
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -2505,7 +2505,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * (setFD-prepare-play-stop-reset)x3
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_0500
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_0500
      * @tc.name       : testGetAVPlayerCirculate005
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -2545,7 +2545,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * (setFD-prepare-stop-reset)x3
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_0600
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_0600
      * @tc.name       : testGetAVPlayerCirculate006
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -2582,7 +2582,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * (setFD-prepare-play - pause -reset)x3
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_0700
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_0700
      * @tc.name       : testGetAVPlayerCirculate007
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -2675,7 +2675,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-stop-prepare-play-stop-prepare-stop-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_0800
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_0800
      * @tc.name       : testGetAVPlayerCirculate008
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -2723,7 +2723,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-play-stop-prepare-play-stop-prepare-stop-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_0900
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_0900
      * @tc.name       : testGetAVPlayerCirculate009
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -2829,7 +2829,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-play-stop-prepare-stop-prepare-play-stop-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_1000
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_1000
      * @tc.name       : testGetAVPlayerCirculate010
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -2877,7 +2877,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * create-setFD-prepare-stop-prepare-stop-prepare-play-stop-release
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_1100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_1100
      * @tc.name       : testGetAVPlayerCirculate011
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -2978,7 +2978,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * SetFd - Prepare - Reset-setFD-prepare-play-stop-reset-SetFd - Prepare - Reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_1200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_1200
      * @tc.name       : testGetAVPlayerCirculate012
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -3043,7 +3043,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * SetFd-Prepare-Reset-SetFd-Prepare-Reset-setFD-prepare-play-stop-reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_1300
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_1300
      * @tc.name       : testGetAVPlayerCirculate013
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -3164,7 +3164,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * setFD-prepare-play-stop-reset-setFD-prepare-play-stop-reset-SetFd-Prepare-Reset-
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_1400
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_1400
      * @tc.name       : testGetAVPlayerCirculate014
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -3233,7 +3233,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * setFD-prepare-stop-reset-setFD-prepare-play - pause -reset-setFD-prepare-stop-reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_1500
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_1500
      * @tc.name       : testGetAVPlayerCirculate015
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -3352,7 +3352,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * setFD-prepare-play - pause -reset-setFD-prepare-stop-reset-setFD-prepare-play - pause -reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_1600
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_1600
      * @tc.name       : testGetAVPlayerCirculate016
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -3414,7 +3414,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * SetFd - Prepare - Reset-setFD-prepare-play-stop-reset-setFD-prepare-stop-reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_1700
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_1700
      * @tc.name       : testGetAVPlayerCirculate017
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -3537,7 +3537,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * SetFd - Prepare - Reset-setFD-prepare-stop-reset-setFD-prepare-play-stop-reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_1800
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_1800
      * @tc.name       : testGetAVPlayerCirculate018
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -3603,7 +3603,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * SetFd - Prepare - Reset-SetFd - Prepare - Reset-setFD-prepare-stop-reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_1900
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_1900
      * @tc.name       : testGetAVPlayerCirculate019
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -3720,7 +3720,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * SetFd - Prepare - Reset-setFD-prepare-stop-reset-SetFd - Prepare - Reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_2000
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_2000
      * @tc.name       : testGetAVPlayerCirculate020
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -3782,7 +3782,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * setFD-prepare-play-stop-reset-SetFd - Prepare - Reset-SetFd - Prepare - Reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_2100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_2100
      * @tc.name       : testGetAVPlayerCirculate021
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -3903,7 +3903,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * setFD-prepare-play-stop-reset-SetFd - Prepare - Reset-setFD-prepare-play-stop-reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_2200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_2200
      * @tc.name       : testGetAVPlayerCirculate022
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -3972,7 +3972,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * setFD-prepare-play-stop-reset-setFD-prepare-play-stop-reset-SetFd - Prepare - Reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_2300
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_2300
      * @tc.name       : testGetAVPlayerCirculate023
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -4095,7 +4095,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * setFD-prepare-play-stop-reset-SetFd - Prepare - Reset-setFD-prepare-stop-reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_2400
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_2400
      * @tc.name       : testGetAVPlayerCirculate024
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -4161,7 +4161,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * setFD-prepare-play-stop-reset-setFD-prepare-stop-reset-SetFd - Prepare - Reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_2500
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_2500
      * @tc.name       : testGetAVPlayerCirculate025
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -4283,7 +4283,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * setFD-prepare-play-stop-reset-setFD-prepare-stop-reset-setFD-prepare-play-stop-reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_2600
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_2600
      * @tc.name       : testGetAVPlayerCirculate026
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest
@@ -4353,7 +4353,7 @@ export default function OhAVPlayerNDKOtherTest() {
 
     /**
      * setFD-prepare-play-stop-reset-setFD-prepare-stop-reset-setFD-prepare-stop-reset
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_GETAVPLAYERCIRCULATE_2700
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_GETAVPLAYERCIRCULATE_2700
      * @tc.name       : testGetAVPlayerCirculate027
      * @tc.desc       : State machine testing.
      * @tc.size       : MediumTest

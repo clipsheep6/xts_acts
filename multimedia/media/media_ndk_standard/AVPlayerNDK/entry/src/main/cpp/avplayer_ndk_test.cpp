@@ -21,7 +21,6 @@
 #include "native_window/external_window.h"
 #include "GLES3/gl32.h"
 #include <typeinfo>
-#include "string.h"
 #include <fcntl.h>
 #include <string>
 #include <arpa/nameser.h>
@@ -30,7 +29,6 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <vector>
-#define NyriadNum 10000 
 #define PARAM_1F (1.0f)
 #define INITSUCCESS 0
 #define PARAM_0 0
@@ -38,8 +36,15 @@
 #define ONEVAL 1
 #define PARAM_10 10
 #define FAIL (-1)
-static int32_t g_playTime = 1;
-static int32_t l_playTime = 1;
+#define KNUMBER0 0
+#define KNUMBER1 1
+#define KNUMBER2 2
+#define KNUMBER3 3
+#define KNUMBER4 4
+#define KNUMBER5 5
+
+static int32_t G_PLAYTIME = 1;
+static int32_t L_PLAYTIME = 1;
 
 std::string PREPATH = "/data/storage/el2/base/files/";
 std::string PATH = "/data/storage/el2/base/files/testAV.mp4"; 
@@ -61,9 +66,6 @@ static OH_AVPlayer *temmpPlayer;
 static OH_AVPlayer *GlobalAVPlayer()
 {
     OH_AVPlayer *player = OH_AVPlayer_Create();
-    if (player == nullptr) {
-        return 0;
-    }
     mainPlayer = player;
     return player;
 }
@@ -86,18 +88,18 @@ static void OhAvPlayerSetFdSource()
     OH_AVErrCode avErrCode = OH_AVPlayer_SetFDSource(mainPlayer, fileDescribe, PARAM_0, fileSize);
 }
 
-
-static void AVPlayerOnError(OH_AVPlayer *player, int32_t, const char *errorMsg) {
-    
+static void AVPlayerOnError(OH_AVPlayer *player, int32_t, const char *errorMsg) 
+{
 }
 
-static void AVPlayerOnInfo(OH_AVPlayer *player, AVPlayerOnInfoType infoType, int32_t extra) {
-    
+static void AVPlayerOnInfo(OH_AVPlayer *player, AVPlayerOnInfoType infoType, int32_t extra) 
+{
 }
     
 #pragma mark - 公用方法
 // 获取index下标的属性值
-static int getParamAtIndex(int index, napi_env env, napi_callback_info info) {
+static int getParamAtIndex(int index, napi_env env, napi_callback_info info) 
+{
     size_t argc = 6;
     napi_value args[6] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -115,14 +117,13 @@ static OH_AVPlayer *GetAVPlayer()
     OH_AVPlayer *player = OH_AVPlayer_Create();
     mainPlayer = player;
     if (player != nullptr) {
+        // 设置播放器回调方法
         AVPlayerCallback callback = {&AVPlayerOnInfo, &AVPlayerOnError};
         OH_AVPlayer_SetPlayerCallback(player, callback);
         // 设置播放器播放速率
         OH_AVPlayer_SetPlaybackSpeed(player, AV_SPEED_FORWARD_1_00_X);
         // 设置hls播放器使用的码率
         OH_AVPlayer_SelectBitRate(player, PARAM_10);
-        // 设置播放器回调方法
-
         // 设置循环播放
         OH_AVPlayer_SetLooping(player, true);
         // 设置播放画面窗口
@@ -139,141 +140,9 @@ static OH_AVPlayer *GetAVPlayer()
     return player;
 }
 
-// 手动传参初始化播放器
-static napi_value AvPlayerInit(napi_env env, napi_callback_info info) 
+static napi_value OhAvPlayerSetFdPathIndex(napi_env env, napi_callback_info info) 
 {
-    napi_value result = nullptr;  
-    FILE *file = fopen (PATH.c_str(), "wr");
-    if (file == nullptr) {
-        napi_create_int32(env, -1, &result);
-        return result;
-    }
-    
-    int backParam;   // 用于存储要返回的结果
-    OH_AVErrCode avErrCode;   // 用于存储设置结果
-    AVPlaybackSpeed avPlayerbackSpeed;   // 用于存储播放速率
-    
-    OH_AVPlayer *player = OH_AVPlayer_Create();
-    if (player == nullptr) {
-        avErrCode = AV_ERR_UNKNOWN;
-        napi_create_int32(env, avErrCode, &result);
-        return result;
-    }
-    
-    // 设置播放源，异步缓存媒体数据
-    OhAvPlayerSetFdSource();
-    if (avErrCode != AV_ERR_OK) {
-        napi_create_int32(env, avErrCode, &result);
-        return result;
-    }
-    
-    // 准备播放环境
-    avErrCode = OH_AVPlayer_Prepare(player);
-    sleep(g_playTime);
-    if (avErrCode != AV_ERR_OK) {
-        napi_create_int32(env, avErrCode, &result);
-        return result;
-    }
-
-    // 从info中获取播放速率参数赋值给rateValue
-    int32_t SpeedValue = getParamAtIndex(0,env,info); 
-    switch(SpeedValue) {
-        case 1:
-            avPlayerbackSpeed = AV_SPEED_FORWARD_0_75_X;
-            break;
-        case 2:
-            avPlayerbackSpeed = AV_SPEED_FORWARD_1_00_X;
-            break;    
-        case 3:
-            avPlayerbackSpeed = AV_SPEED_FORWARD_1_25_X;
-            break;
-        case 4:
-            avPlayerbackSpeed = AV_SPEED_FORWARD_1_75_X;
-            break;
-        case 5:
-            avPlayerbackSpeed = AV_SPEED_FORWARD_2_00_X;
-            break;
-        default:
-            avErrCode = AV_ERR_INVALID_VAL;
-            napi_create_int32(env, avErrCode, &result);
-            return result;
-    }
-    avErrCode = OH_AVPlayer_SetPlaybackSpeed(player, avPlayerbackSpeed);
-    if (avErrCode != AV_ERR_OK) {
-        napi_create_int32(env, avErrCode, &result);
-        return result;
-    }
-    
-    // 设置hls播放器使用的码率
-    int32_t rateValue = getParamAtIndex(1,env,info); 
-    if (rateValue < 0) {
-        avErrCode = AV_ERR_INVALID_VAL;
-        napi_create_int32(env, avErrCode, &result);
-        return result;
-    }
-    avErrCode = OH_AVPlayer_SelectBitRate(player, rateValue);
-    if (avErrCode != AV_ERR_OK) {
-        napi_create_int32(env, avErrCode, &result);
-        return result;
-    }
-    
-    // 设置播放器回调方法
-    AVPlayerCallback callback = {&AVPlayerOnInfo, &AVPlayerOnError};
-    OH_AVPlayer_SetPlayerCallback(player, callback); 
-    
-    // 设置循环播放
-    int32_t boolValue = getParamAtIndex(2,env,info);
-    if (boolValue != 1 || boolValue != 0) {
-        avErrCode = AV_ERR_INVALID_VAL;
-        napi_create_int32(env, avErrCode, &result);
-        return result;   // 返回3，无效参数
-    }
-    avErrCode = (boolValue ? OH_AVPlayer_SetLooping(player, true) : OH_AVPlayer_SetLooping(player, false));
-    if (avErrCode != AV_ERR_OK) {
-        napi_create_int32(env, avErrCode, &result);
-        return result;
-    }
-    
-    // 设置播放画面窗口
-    int32_t NativeImageValue = getParamAtIndex(3,env,info);
-    if (NativeImageValue < 0) {
-        avErrCode = AV_ERR_INVALID_VAL;
-        napi_create_int32(env, avErrCode, &result);
-        return result;
-    }
-    GLuint textureId = NativeImageValue;
-    glGenTextures(ONEVAL, &textureId);
-    OH_NativeImage *image = OH_NativeImage_Create(textureId, GL_TEXTURE_2D);
-    OHNativeWindow *window = OH_NativeImage_AcquireNativeWindow(image);
-    avErrCode = OH_AVPlayer_SetVideoSurface(player, window);
-    if (avErrCode != AV_ERR_OK) {
-        napi_create_int32(env, avErrCode, &result);
-        return result;
-    }
-    
-    // 设置播放器的音量
-    int32_t leftVolume = getParamAtIndex(4,env,info);
-    int32_t rightVolume = getParamAtIndex(5,env,info);
-    if ((leftVolume < 0 || leftVolume> 100) && (rightVolume < 0 || rightVolume > 100)) {
-        avErrCode = AV_ERR_INVALID_VAL;
-        napi_create_int32(env, avErrCode, &result);
-        return result; // 返回3，无效参数
-    }
-    avErrCode = OH_AVPlayer_SetVolume(player, leftVolume, rightVolume);
-    if (avErrCode != AV_ERR_OK) {
-        napi_create_int32(env, avErrCode, &result);
-        return result;
-    }
-    
-    backParam = INITSUCCESS;
-    napi_create_int32(env, backParam, &result);
-    return result;
-}
-
-
-static napi_value OhAvPlayerSetFdPathIndex (napi_env env, napi_callback_info info)
-{
-    napi_value result;
+    napi_value result = nullptr;
     size_t argc = PARAM_1;
     napi_value args[PARAM_1] = {nullptr};
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
@@ -295,9 +164,9 @@ static napi_value OhAvPlayerCreate(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     OH_AVPlayer *player = GetAVPlayer();
-    if (player == nullptr){
+    if (player == nullptr) {
         napi_create_int32(env, FAIL, &result);
-    }else {
+    } else {
         napi_create_int32(env, PARAM_0, &result);
     }
     return result;
@@ -351,7 +220,7 @@ static napi_value OhAvPlayerPrepare(napi_env env, napi_callback_info info)
     napi_value result = nullptr;
     
     OH_AVErrCode avErrCode = OH_AVPlayer_Prepare(mainPlayer);
-    sleep(g_playTime);
+    sleep(G_PLAYTIME);
     napi_create_int32(env, avErrCode, &result);
     return result; // 返回0
 }
@@ -375,7 +244,7 @@ static napi_value OhAvPlayerPlay(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     OH_AVErrCode errCode = OH_AVPlayer_Play(mainPlayer);
-    sleep(l_playTime);
+    sleep(L_PLAYTIME);
     napi_create_int32(env, errCode, &result);
     return result;
 }
@@ -386,9 +255,8 @@ static napi_value OhAvPlayerIsPlaying(napi_env env, napi_callback_info info)
     napi_value result = nullptr;
     OH_AVPlayer_Play(mainPlayer);
     bool isPlaying = OH_AVPlayer_IsPlaying(mainPlayer);
-    
-    if(isPlaying) {
-         napi_create_int32(env, ONEVAL, &result);
+    if (isPlaying) {
+        napi_create_int32(env, ONEVAL, &result);
     } else {
         napi_create_int32(env, PARAM_0, &result);
     }
@@ -414,7 +282,7 @@ static napi_value OhAvPlayerPause(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     OH_AVErrCode errCode = OH_AVPlayer_Pause(mainPlayer);
-    sleep(g_playTime);
+    sleep(G_PLAYTIME);
     napi_create_int32(env, errCode, &result);
     return result;
 }
@@ -518,7 +386,7 @@ static napi_value OhAvPlayerRelease(napi_env env, napi_callback_info info)
     temmpPlayer = mainPlayer;
     mainPlayer = nullptr;
     OH_AVErrCode errCode = OH_AVPlayer_Release(temmpPlayer);
-    sleep(g_playTime);
+    sleep(G_PLAYTIME);
     napi_create_int32(env, errCode, &result);
     return result;
 }
@@ -535,25 +403,25 @@ static napi_value OhAvPlayerReleaseSync(napi_env env, napi_callback_info info)
 }
 
 // 将播放器恢复到初始状态
-static napi_value OhAvPlayerReset (napi_env env, napi_callback_info info) 
+static napi_value OhAvPlayerReset(napi_env env, napi_callback_info info) 
 {
     napi_value result = nullptr;
     OH_AVErrCode avErrCode = OH_AVPlayer_Reset(mainPlayer); // 将播放器恢复到初始状态
-    sleep(g_playTime);
+    sleep(G_PLAYTIME);
     napi_create_int32(env, avErrCode, &result);
     return result;
 }
 
 // 改变播放位置
-static napi_value OhAvPlayerSeek(napi_env env, napi_callback_info info)
- {
+static napi_value OhAvPlayerSeek(napi_env env, napi_callback_info info) 
+{
     napi_value result = nullptr;
     int32_t mSeconds = getParamAtIndex(PARAM_0, env, info);
     int32_t speed = getParamAtIndex(ONEVAL, env, info);
     AVPlayerSeekMode mode;
     if (speed == 0) {
         mode == AV_SEEK_NEXT_SYNC;
-    } else if (speed == 1){
+    } else if (speed == 1) {
         mode = AV_SEEK_PREVIOUS_SYNC;
     } else {
         OH_AVErrCode avErrCode = AV_ERR_INVALID_VAL;
@@ -563,7 +431,7 @@ static napi_value OhAvPlayerSeek(napi_env env, napi_callback_info info)
     OH_AVErrCode avErrCode = OH_AVPlayer_Seek(mainPlayer, mSeconds, mode);
     napi_create_int32(env, avErrCode, &result);
     return result;
- }
+}
 
 // 设置hls播放器使用的码率
 static napi_value OhAvPlayerSelectBitRate(napi_env env, napi_callback_info info)
@@ -583,8 +451,8 @@ static napi_value OhAvPlayerSelectBitRate(napi_env env, napi_callback_info info)
     }
 }
 
-// 选择音频或字幕轨道。(默认播放第一个带数据的音频流，不播放字幕轨迹。 设置生效后，原曲目将失效。请设置字幕 处于准备/播放/暂停/完成状态，并将音轨设置为准备状态。)
-static napi_value OhAvPlayerSelectTrack (napi_env env, napi_callback_info info) 
+// 选择音频或字幕轨道
+static napi_value OhAvPlayerSelectTrack(napi_env env, napi_callback_info info) 
 {
     napi_value result = nullptr;
     OH_AVPlayer_Play(mainPlayer); // 开始播放
@@ -604,61 +472,62 @@ static napi_value OhAvPlayerSetLooping(napi_env env, napi_callback_info info)
     int boolValue;
     napi_get_value_int32(env, args[PARAM_0], &boolValue);
     if (boolValue == 1 || boolValue == 0) {
-        avErrCode = (boolValue == 1 ? OH_AVPlayer_SetLooping(mainPlayer, true) : OH_AVPlayer_SetLooping(mainPlayer, false));
+        avErrCode = (boolValue == 1 ? OH_AVPlayer_SetLooping(mainPlayer, true) 
+            : OH_AVPlayer_SetLooping(mainPlayer, false));
         napi_create_int32(env, avErrCode, &result);
         return result;
     }
-     avErrCode = AV_ERR_INVALID_VAL;
-     napi_create_int32(env, AV_ERR_INVALID_VAL, &result);
-     return result;
+    avErrCode = AV_ERR_INVALID_VAL;
+    napi_create_int32(env, AV_ERR_INVALID_VAL, &result);
+    return result;
 }
 
 // 设置播放器播放速率
 static napi_value OhAvPlayerSetPlaybackSpeed(napi_env env, napi_callback_info info)
 {
-    napi_value result = nullptr;
-    AVPlaybackSpeed avPlayerbackSpeed;
-    OH_AVErrCode avErrCode;
-    size_t argc = PARAM_1;
-    napi_value args[PARAM_1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    int index;
-    napi_get_value_int32(env, args[PARAM_0], &index);
-    
-    switch (index) {
-        case 1:
+     napi_value result = nullptr;
+     AVPlaybackSpeed avPlayerbackSpeed;
+     OH_AVErrCode avErrCode;
+     size_t argc = PARAM_1;
+     napi_value args[PARAM_1] = {nullptr};
+     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
+     int index;
+     napi_get_value_int32(env, args[PARAM_0], &index);
+
+     switch (index) {
+     case KNUMBER1:
         avPlayerbackSpeed = AV_SPEED_FORWARD_0_75_X;
         break;
-        case 2:
+     case KNUMBER2:
         avPlayerbackSpeed = AV_SPEED_FORWARD_1_00_X;
         break;
-        case 3:
+     case KNUMBER3:
         avPlayerbackSpeed = AV_SPEED_FORWARD_1_25_X;
         break;
-        case 4:
+     case KNUMBER4:
         avPlayerbackSpeed = AV_SPEED_FORWARD_1_75_X;
         break;
-        case 5:
+     case KNUMBER5:
         avPlayerbackSpeed = AV_SPEED_FORWARD_2_00_X;
         break;
-        default:
+     default:
         avErrCode = AV_ERR_INVALID_VAL;
         napi_create_int32(env, avErrCode, &result);
         return result;
-    }
-    avErrCode = OH_AVPlayer_SetPlaybackSpeed(mainPlayer, avPlayerbackSpeed);
-    napi_create_int32(env, avErrCode, &result);
-    return result;
+     }
+     avErrCode = OH_AVPlayer_SetPlaybackSpeed(mainPlayer, avPlayerbackSpeed);
+     napi_create_int32(env, avErrCode, &result);
+     return result;
 }
 
 // 设置播放器回调方法
 static napi_value OhAvPlayerSetPlayerCallback(napi_env env, napi_callback_info info) 
 {
-    napi_value result = nullptr;
-    AVPlayerCallback cb = {&AVPlayerOnInfo, &AVPlayerOnError};
-    OH_AVErrCode avErrCode = OH_AVPlayer_SetPlayerCallback(mainPlayer, cb);
-    napi_create_int32(env, avErrCode, &result);
-    return result;
+     napi_value result = nullptr;
+     AVPlayerCallback cb = {&AVPlayerOnInfo, &AVPlayerOnError};
+     OH_AVErrCode avErrCode = OH_AVPlayer_SetPlayerCallback(mainPlayer, cb);
+     napi_create_int32(env, avErrCode, &result);
+     return result;
 }
 
 // 设置播放画面窗口
@@ -696,45 +565,59 @@ static napi_value OhAvPlayerStop(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
     OH_AVErrCode oH_AVErrCode = OH_AVPlayer_Stop(mainPlayer);
-    sleep(g_playTime);
+    sleep(G_PLAYTIME);
     napi_create_int32(env, oH_AVErrCode, &result);
     return result;
 }
 
 
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports) {
+static napi_value Init(napi_env env, napi_value exports) 
+{
     napi_property_descriptor desc[] = {
         {"OhAvPlayerCreate", nullptr, OhAvPlayerCreate, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerPrepare", nullptr, OhAvPlayerPrepare, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerGetDuration", nullptr, OhAvPlayerGetDuration, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerPlay", nullptr, OhAvPlayerPlay, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerIsPlaying", nullptr, OhAvPlayerIsPlaying, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"OhAvPlayerGetCurrentTime", nullptr, OhAvPlayerGetCurrentTime, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"OhAvPlayerGetCurrentTime", nullptr, OhAvPlayerGetCurrentTime, 
+            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerPause", nullptr, OhAvPlayerPause, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerGetState", nullptr, OhAvPlayerGetState, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"OhAvPlayerGetPlaybackSpeed", nullptr, OhAvPlayerGetPlaybackSpeed, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"OhAvPlayerGetPlaybackSpeed", nullptr, OhAvPlayerGetPlaybackSpeed, 
+            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerIsLooping", nullptr, OhAvPlayerIsLooping, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"OhAvPlayerGetCurrentTrack", nullptr, OhAvPlayerGetCurrentTrack, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"OhAvPlayerGetVideoHeight", nullptr, OhAvPlayerGetVideoHeight, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"OhAvPlayerGetVideoWidth", nullptr, OhAvPlayerGetVideoWidth, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"OhAvPlayerDeselectTrack", nullptr, OhAvPlayerDeselectTrack, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"OhAvPlayerGetCurrentTrack", nullptr, OhAvPlayerGetCurrentTrack, 
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"OhAvPlayerGetVideoHeight", nullptr, OhAvPlayerGetVideoHeight, 
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"OhAvPlayerGetVideoWidth", nullptr, OhAvPlayerGetVideoWidth, 
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"OhAvPlayerDeselectTrack", nullptr, OhAvPlayerDeselectTrack, 
+            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerRelease", nullptr, OhAvPlayerRelease, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerReleaseSync", nullptr, OhAvPlayerReleaseSync, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerReset", nullptr, OhAvPlayerReset, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerSeek", nullptr, OhAvPlayerSeek, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"OhAvPlayerSelectBitRate", nullptr, OhAvPlayerSelectBitRate, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"OhAvPlayerSelectBitRate", nullptr, OhAvPlayerSelectBitRate, 
+            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerSelectTrack", nullptr, OhAvPlayerSelectTrack, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerSetLooping", nullptr, OhAvPlayerSetLooping, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"OhAvPlayerSetPlayerCallback", nullptr, OhAvPlayerSetPlayerCallback, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"OhAvPlayerSetPlaybackSpeed", nullptr, OhAvPlayerSetPlaybackSpeed, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"OhAvPlayerSetFdPathSource", nullptr, OhAvPlayerSetFdPathSource, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"OhAvPlayerSetVideoSurface", nullptr, OhAvPlayerSetVideoSurface, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"OhAvPlayerSetPlayerCallback", nullptr, OhAvPlayerSetPlayerCallback,
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"OhAvPlayerSetPlaybackSpeed", nullptr, OhAvPlayerSetPlaybackSpeed, 
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"OhAvPlayerSetFdPathSource", nullptr, OhAvPlayerSetFdPathSource, 
+            nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"OhAvPlayerSetVideoSurface", nullptr, OhAvPlayerSetVideoSurface, 
+            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerSetVolume", nullptr, OhAvPlayerSetVolume, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhAvPlayerStop", nullptr, OhAvPlayerStop, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"OhAvPlayerSetFdPathIndex", nullptr, OhAvPlayerSetFdPathIndex, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"OhAvPlayerSetFdPathIndex", nullptr, OhAvPlayerSetFdPathIndex, 
+            nullptr, nullptr, nullptr, napi_default, nullptr},
         {"OhCloseFile", nullptr, OhCloseFile, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"OhAvPlayerSetFdPathSourceTwo", nullptr, OhAvPlayerSetFdPathSourceTwo, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"OhAvPlayerSetFdPathSourceTwo", nullptr, OhAvPlayerSetFdPathSourceTwo, 
+            nullptr, nullptr, nullptr, napi_default, nullptr},
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;

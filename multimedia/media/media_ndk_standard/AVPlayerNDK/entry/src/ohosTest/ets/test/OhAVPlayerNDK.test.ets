@@ -122,7 +122,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERPREPARE_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERPREPARE_0100
      * @tc.name       : testOhAvPlayerPrepare001
      * @tc.desc       : Prepare the playback environment and asynchronously cache media data.
      * @tc.size       : MediumTest
@@ -143,7 +143,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERGETDURATION_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERGETDURATION_0100
      * @tc.name       : testOhAvPlayerGetDuration001
      * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.size       : MediumTest
@@ -165,7 +165,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERPLAY_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERPLAY_0100
      * @tc.name       : testOhAvPlayerPlay001
      * @tc.desc       : Start playing.
      * @tc.size       : MediumTest
@@ -190,7 +190,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERISPLAYING_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERISPLAYING_0100
      * @tc.name       : testOhAvPlayerIsPlaying001
      * @tc.desc       : Check if the player is playing.
      * @tc.size       : MediumTest
@@ -218,7 +218,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERPAUSE_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERPAUSE_0100
      * @tc.name       : testOhAvPlayerPause001
      * @tc.desc       : Pause playback.
      * @tc.size       : MediumTest
@@ -241,7 +241,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERGETSTATE_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERGETSTATE_0100
      * @tc.name       : testOhAvPlayerGetState001
      * @tc.desc       : Get the current playback status.
      * @tc.size       : MediumTest
@@ -262,7 +262,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERGETPLAYBACKSPEED_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERGETPLAYBACKSPEED_0100
      * @tc.name       : testOhAvPlayerGetPlaybackSpeed001
      * @tc.desc       : Get the current player playback rate.
      * @tc.size       : MediumTest
@@ -283,7 +283,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERISLOOPING_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERISLOOPING_0100
      * @tc.name       : testOhAvPlayerIsLooping001
      * @tc.desc       : Determine whether to play in a loop.
      * @tc.size       : MediumTest
@@ -304,7 +304,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERGETCURRENTTRACK_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERGETCURRENTTRACK_0100
      * @tc.name       : testOhAvPlayerGetCurrentTrack001
      * @tc.desc       : Get the currently valid track index.
      * @tc.size       : MediumTest
@@ -325,7 +325,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERGETVIDEOHEIGHT_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERGETVIDEOHEIGHT_0100
      * @tc.name       : testOhAvPlayerGetVideoHeight001
      * @tc.desc       : Obtain video height.
      * @tc.size       : MediumTest
@@ -346,7 +346,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERGETVIDEOWIDTH_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERGETVIDEOWIDTH_0100
      * @tc.name       : testOhAvPlayerGetVideoWidth001
      * @tc.desc       : Get video width.
      * @tc.size       : MediumTest
@@ -367,7 +367,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERDESELECTTRACK_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERDESELECTTRACK_0100
      * @tc.name       : testOhAvPlayerDeselectTrack001
      * @tc.desc       : Deselect the current audio or subtitle track.
      * @tc.size       : MediumTest
@@ -389,7 +389,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERDESELECTTRACK_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERDESELECTTRACK_0200
      * @tc.name       : testOhAvPlayerDeselectTrack001
      * @tc.desc       : Deselect the current audio or subtitle track.
      * @tc.size       : MediumTest
@@ -410,7 +410,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERRESET_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERRESET_0100
      * @tc.name       : testOHAVPlayerReset001
      * @tc.desc       : Restore the player to its initial state.
      * @tc.size       : MediumTest
@@ -434,7 +434,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSEEK_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSEEK_0100
      * @tc.name       : testOHAVPlayerSeek001
      * @tc.desc       : SChange playback position.
      * @tc.size       : MediumTest
@@ -456,7 +456,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSEEK_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSEEK_0200
      * @tc.name       : testOHAVPlayerSeek002
      * @tc.desc       : Change playback position.
      * @tc.size       : MediumTest
@@ -478,7 +478,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERGETCURRENTTIME_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERGETCURRENTTIME_0100
      * @tc.name       : testOHAVPlayerSelectBitRate001
      * @tc.desc       : Set the bitrate used by the HLS player.
      * @tc.size       : MediumTest
@@ -503,7 +503,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSELECTBITRATE_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSELECTBITRATE_0100
      * @tc.name       : testOHAVPlayerSelectBitRate001
      * @tc.desc       : Set the bitrate used by the HLS player.
      * @tc.size       : MediumTest
@@ -524,7 +524,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSELECTBITRATE_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSELECTBITRATE_0200
      * @tc.name       : testOHAVPlayerSelectBitRate002
      * @tc.desc       : Set the bitrate used by the HLS player.
      * @tc.size       : MediumTest
@@ -546,7 +546,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSELECTBITRATE_0300
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSELECTBITRATE_0300
      * @tc.name       : testOHAVPlayerSelectBitRate003
      * @tc.desc       : Set the bitrate used by the HLS player.
      * @tc.size       : MediumTest
@@ -567,7 +567,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSELECTBITRATE_0400
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSELECTBITRATE_0400
      * @tc.name       : testOHAVPlayerSelectBitRate004
      * @tc.desc       : Set the bitrate used by the HLS player.
      * @tc.size       : MediumTest
@@ -588,7 +588,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSELECTBITRATE_0500
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSELECTBITRATE_0500
      * @tc.name       : testOHAVPlayerSelectBitRate005
      * @tc.desc       : Set the bitrate used by the HLS player.
      * @tc.size       : MediumTest
@@ -609,7 +609,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSELECTTRACK_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSELECTTRACK_0100
      * @tc.name       : testOHAVPlayerSelectTrack001
      * @tc.desc       : Select audio or subtitle tracks.
      * @tc.size       : MediumTest
@@ -630,7 +630,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSELECTTRACK_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSELECTTRACK_0200
      * @tc.name       : testOHAVPlayerSelectTrack002
      * @tc.desc       : Select audio or subtitle tracks.
      * @tc.size       : MediumTest
@@ -652,7 +652,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSELECTTRACK_0300
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSELECTTRACK_0300
      * @tc.name       : testOHAVPlayerSelectTrack003
      * @tc.desc       : Select audio or subtitle tracks.
      * @tc.size       : MediumTest
@@ -674,7 +674,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSELECTTRACK_0400
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSELECTTRACK_0400
      * @tc.name       : testOHAVPlayerSelectTrack004
      * @tc.desc       : Select audio or subtitle tracks.
      * @tc.size       : MediumTest
@@ -696,7 +696,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSELECTTRACK_0500
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSELECTTRACK_0500
      * @tc.name       : testOHAVPlayerSelectTrack005
      * @tc.desc       : Select audio or subtitle tracks.
      * @tc.size       : MediumTest
@@ -718,7 +718,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETLOOPING_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETLOOPING_0100
      * @tc.name       : testOHAVPlayerSetLooping001
      * @tc.desc       : Set loop playback.
      * @tc.size       : MediumTest
@@ -739,7 +739,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETLOOPING_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETLOOPING_0200
      * @tc.name       : testOHAVPlayerSetLooping002
      * @tc.desc       : Set loop playback.
      * @tc.size       : MediumTest
@@ -760,7 +760,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETPLAYERCALLBACK_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETPLAYERCALLBACK_0100
      * @tc.name       : testOhAvPlayerSetPlayerCallback001
      * @tc.desc       : Set the player callback method.
      * @tc.size       : MediumTest
@@ -781,7 +781,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETPLAYBACKSPEED_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETPLAYBACKSPEED_0100
      * @tc.name       : testOHAVPlayerSetPlaybackSpeed001
      * @tc.desc       : Set the player playback rate.
      * @tc.size       : MediumTest
@@ -803,7 +803,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETPLAYBACKSPEED_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETPLAYBACKSPEED_0200
      * @tc.name       : testOHAVPlayerSetPlaybackSpeed002
      * @tc.desc       : Set the player playback rate.
      * @tc.size       : MediumTest
@@ -825,7 +825,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETPLAYBACKSPEED_0300
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETPLAYBACKSPEED_0300
      * @tc.name       : testOHAVPlayerSetPlaybackSpeed003
      * @tc.desc       : Set the player playback rate.
      * @tc.size       : MediumTest
@@ -847,7 +847,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETPLAYBACKSPEED_0400
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETPLAYBACKSPEED_0400
      * @tc.name       : testOHAVPlayerSetPlaybackSpeed004
      * @tc.desc       : Set the player playback rate.
      * @tc.size       : MediumTest
@@ -869,7 +869,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETPLAYBACKSPEED_0500
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETPLAYBACKSPEED_0500
      * @tc.name       : testOHAVPlayerSetPlaybackSpeed005
      * @tc.desc       : Set the player playback rate.
      * @tc.size       : MediumTest
@@ -891,7 +891,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETVIDEOSURFACE_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETVIDEOSURFACE_0100
      * @tc.name       : testOhAvPlayerSetVideoSurface001
      * @tc.desc       : Set the playback screen window.
      * @tc.size       : MediumTest
@@ -912,7 +912,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETVOLUME_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETVOLUME_0100
      * @tc.name       : testOhAvPlayerSetVolume001
      * @tc.desc       : Set the volume of the player.
      * @tc.size       : MediumTest
@@ -933,7 +933,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETVOLUME_0200
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETVOLUME_0200
      * @tc.name       : testOhAvPlayerSetVolume002
      * @tc.desc       : Set the volume of the player.
      * @tc.size       : MediumTest
@@ -954,7 +954,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETVOLUME_0300
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETVOLUME_0300
      * @tc.name       : testOhAvPlayerSetVolume003
      * @tc.desc       : Set the volume of the player.
      * @tc.size       : MediumTest
@@ -975,7 +975,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSETVOLUME_0400
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSETVOLUME_0400
      * @tc.name       : testOhAvPlayerSetVolume004
      * @tc.desc       : Set the volume of the player.
      * @tc.size       : MediumTest
@@ -996,7 +996,7 @@ export default function OhAVPlayerNDKTest() { // L2
     });
 
     /**
-     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_NDK_OHAVPLAYERSTOP_0100
+     * @tc.number     : SUB_MULTIMEIDA_AVPLAYER_OHAVPLAYERSTOP_0100
      * @tc.name       : testOhAvPlayerStop001
      * @tc.desc       : Stop playing.
      * @tc.size       : MediumTest
