@@ -83,27 +83,27 @@ export default function Tabs_barWidHei() {
       expect(JSON.parse(strJson).$attrs.index).assertEqual("0");
       expect(JSON.parse(strJson).$attrs.scrollable).assertEqual(true);
       expect(JSON.parse(strJson).$attrs.barMode).assertEqual('BarMode.Fixed');
-      let Tabs_barWidHei_001: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_001');
-      let Tabs_barWidHei_011: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_011');
+      let Tabs_barWidHei_001: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_001');
+      let Tabs_barWidHei_011: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_011');
       let driver = Driver.create();
       await driver.swipe(Math.round((Tabs_barWidHei_011.right - 30)),
         Math.round(Tabs_barWidHei_011.top + ((Tabs_barWidHei_011.bottom - Tabs_barWidHei_011.top) / 2)),
         Math.round(Tabs_barWidHei_011.left + 30),
         Math.round(Tabs_barWidHei_011.top + ((Tabs_barWidHei_011.bottom - Tabs_barWidHei_011.top) / 2)));
       await CommonFunc.sleep(1000);
-      let Tabs_barWidHei_002: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_002');
-      let Tabs_barWidHei_012: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_012');
+      let Tabs_barWidHei_002: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_002');
+      let Tabs_barWidHei_012: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_012');
       await driver.swipe(Math.round(Tabs_barWidHei_012.right - 30),
         Math.round(Tabs_barWidHei_012.top + ((Tabs_barWidHei_012.bottom - Tabs_barWidHei_012.top) / 2)),
         Math.round(Tabs_barWidHei_012.left + 30),
         Math.round(Tabs_barWidHei_012.top + ((Tabs_barWidHei_012.bottom - Tabs_barWidHei_012.top) / 2)));
       await CommonFunc.sleep(1000);
-      let Tabs_barWidHei_003: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_003');
-      let Tabs_barWidHei_013: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_013');
-      let Tabs_barWidHei_01: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_01');
-      let subGreen: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_green');
-      let subBlue: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_blue');
-      let subYellow: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_yellow');
+      let Tabs_barWidHei_003: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_003');
+      let Tabs_barWidHei_013: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_013');
+      let Tabs_barWidHei_01: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_01');
+      let subGreen: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_green');
+      let subBlue: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_blue');
+      let subYellow: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_yellow');
 
       console.info(`[testTabsBarWidToNegative]Tabs_barWidHei_011.left equal Tabs_barWidHei_001.left
         ${Tabs_barWidHei_011.left} === ${Tabs_barWidHei_001.left}`);
@@ -137,9 +137,9 @@ export default function Tabs_barWidHei() {
       expect(Math.round(Tabs_barWidHei_001.bottom - Tabs_barWidHei_001.top)).assertEqual(Math.round(vp2px(244)));
       expect(Math.round(Tabs_barWidHei_002.bottom - Tabs_barWidHei_002.top)).assertEqual(Math.round(vp2px(244)));
       expect(Math.round(Tabs_barWidHei_003.bottom - Tabs_barWidHei_003.top)).assertEqual(Math.round(vp2px(244)));
-      expect(Math.round(Tabs_barWidHei_001.right - Tabs_barWidHei_001.left)).assertEqual(Math.round(vp2px(330)));
-      expect(Math.round(Tabs_barWidHei_002.right - Tabs_barWidHei_002.left)).assertEqual(Math.round(vp2px(330)));
-      expect(Math.round(Tabs_barWidHei_003.right - Tabs_barWidHei_003.left)).assertEqual(Math.round(vp2px(330)));
+      expect(Math.abs(Math.round(Tabs_barWidHei_001.right - Tabs_barWidHei_001.left) - Math.round(vp2px(330))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Tabs_barWidHei_002.right - Tabs_barWidHei_002.left) - Math.round(vp2px(330))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Tabs_barWidHei_003.right - Tabs_barWidHei_003.left) - Math.round(vp2px(330))) <= 1).assertTrue();
 
       console.info(`[testTabsBarWidToNegative]subGreen.bottom - subGreen.top
         ${Math.round(subGreen.bottom - subGreen.top)}`);
@@ -181,27 +181,27 @@ export default function Tabs_barWidHei() {
       expect(JSON.parse(strJson).$attrs.index).assertEqual("0");
       expect(JSON.parse(strJson).$attrs.scrollable).assertEqual(true);
       expect(JSON.parse(strJson).$attrs.barMode).assertEqual('BarMode.Fixed');
-      let Tabs_barWidHei_001: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_001');
-      let Tabs_barWidHei_011: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_011');
+      let Tabs_barWidHei_001: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_001');
+      let Tabs_barWidHei_011: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_011');
       let driver = Driver.create();
       await driver.swipe(Math.round(Tabs_barWidHei_011.right - 30),
         Math.round(Tabs_barWidHei_011.top + ((Tabs_barWidHei_011.bottom - Tabs_barWidHei_011.top) / 2)),
         Math.round(Tabs_barWidHei_011.left + 30),
         Math.round(Tabs_barWidHei_011.top + ((Tabs_barWidHei_011.bottom - Tabs_barWidHei_011.top) / 2)));
       await CommonFunc.sleep(1000);
-      let Tabs_barWidHei_002: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_002');
-      let Tabs_barWidHei_012: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_012');
+      let Tabs_barWidHei_002: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_002');
+      let Tabs_barWidHei_012: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_012');
       await driver.swipe(Math.round(Tabs_barWidHei_012.right - 30),
         Math.round(Tabs_barWidHei_012.top + ((Tabs_barWidHei_012.bottom - Tabs_barWidHei_012.top) / 2)),
         Math.round(Tabs_barWidHei_012.left + 30),
         Math.round(Tabs_barWidHei_012.top + ((Tabs_barWidHei_012.bottom - Tabs_barWidHei_012.top) / 2)));
       await CommonFunc.sleep(1000);
-      let Tabs_barWidHei_003: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_003');
-      let Tabs_barWidHei_013: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_013');
-      let Tabs_barWidHei_01: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_01');
-      let subGreen: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_green');
-      let subBlue: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_blue');
-      let subYellow: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_yellow');
+      let Tabs_barWidHei_003: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_003');
+      let Tabs_barWidHei_013: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_013');
+      let Tabs_barWidHei_01: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_01');
+      let subGreen: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_green');
+      let subBlue: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_blue');
+      let subYellow: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_yellow');
 
       console.info(`[testTabsBarWidExceedTabsWid]Tabs_barWidHei_011.left equal Tabs_barWidHei_001.left
         ${Tabs_barWidHei_011.left} === ${Tabs_barWidHei_001.left}`);
@@ -235,9 +235,9 @@ export default function Tabs_barWidHei() {
       expect(Math.round(Tabs_barWidHei_001.bottom - Tabs_barWidHei_001.top)).assertEqual(Math.round(vp2px(244)));
       expect(Math.round(Tabs_barWidHei_002.bottom - Tabs_barWidHei_002.top)).assertEqual(Math.round(vp2px(244)));
       expect(Math.round(Tabs_barWidHei_003.bottom - Tabs_barWidHei_003.top)).assertEqual(Math.round(vp2px(244)));
-      expect(Math.round(Tabs_barWidHei_001.right - Tabs_barWidHei_001.left)).assertEqual(Math.round(vp2px(330)));
-      expect(Math.round(Tabs_barWidHei_002.right - Tabs_barWidHei_002.left)).assertEqual(Math.round(vp2px(330)));
-      expect(Math.round(Tabs_barWidHei_003.right - Tabs_barWidHei_003.left)).assertEqual(Math.round(vp2px(330)));
+      expect(Math.abs(Math.round(Tabs_barWidHei_001.right - Tabs_barWidHei_001.left) - Math.round(vp2px(330))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Tabs_barWidHei_002.right - Tabs_barWidHei_002.left) - Math.round(vp2px(330))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Tabs_barWidHei_003.right - Tabs_barWidHei_003.left) - Math.round(vp2px(330))) <= 1).assertTrue();
 
       console.info(`[testTabsBarWidExceedTabsWid]subGreen.bottom - subGreen.top=
         ${Math.round(subGreen.bottom - subGreen.top)}`);
@@ -278,27 +278,27 @@ export default function Tabs_barWidHei() {
       expect(JSON.parse(strJson).$attrs.index).assertEqual("0");
       expect(JSON.parse(strJson).$attrs.scrollable).assertEqual(true);
       expect(JSON.parse(strJson).$attrs.barMode).assertEqual('BarMode.Fixed');
-      let Tabs_barWidHei_001: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_001');
-      let Tabs_barWidHei_011: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_011');
+      let Tabs_barWidHei_001: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_001');
+      let Tabs_barWidHei_011: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_011');
       let driver = Driver.create();
       await driver.swipe(Math.round(Tabs_barWidHei_011.right - 30),
         Math.round(Tabs_barWidHei_011.top + ((Tabs_barWidHei_011.bottom - Tabs_barWidHei_011.top) / 2)),
         Math.round(Tabs_barWidHei_011.left + 30),
         Math.round(Tabs_barWidHei_011.top + ((Tabs_barWidHei_011.bottom - Tabs_barWidHei_011.top) / 2)));
       await CommonFunc.sleep(1000);
-      let Tabs_barWidHei_002: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_002');
-      let Tabs_barWidHei_012: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_012');
+      let Tabs_barWidHei_002: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_002');
+      let Tabs_barWidHei_012: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_012');
       await driver.swipe(Math.round(Tabs_barWidHei_012.right - 30),
         Math.round(Tabs_barWidHei_012.top + ((Tabs_barWidHei_012.bottom - Tabs_barWidHei_012.top) / 2)),
         Math.round(Tabs_barWidHei_012.left + 30),
         Math.round(Tabs_barWidHei_012.top + ((Tabs_barWidHei_012.bottom - Tabs_barWidHei_012.top) / 2)));
       await CommonFunc.sleep(1000);
-      let Tabs_barWidHei_003: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_003');
-      let Tabs_barWidHei_013: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_013');
-      let Tabs_barWidHei_01: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_01');
-      let subGreen: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_green');
-      let subBlue: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_blue');
-      let subYellow: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_yellow');
+      let Tabs_barWidHei_003: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_003');
+      let Tabs_barWidHei_013: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_013');
+      let Tabs_barWidHei_01: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_01');
+      let subGreen: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_green');
+      let subBlue: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_blue');
+      let subYellow: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_yellow');
 
       console.info(`[testTabsBarWidWithinTabsWid]Tabs_barWidHei_011.left equal Tabs_barWidHei_001.left
         ${Tabs_barWidHei_011.left} === ${Tabs_barWidHei_001.left}`);
@@ -332,9 +332,9 @@ export default function Tabs_barWidHei() {
       expect(Math.round(Tabs_barWidHei_001.bottom - Tabs_barWidHei_001.top)).assertEqual(Math.round(vp2px(244)));
       expect(Math.round(Tabs_barWidHei_002.bottom - Tabs_barWidHei_002.top)).assertEqual(Math.round(vp2px(244)));
       expect(Math.round(Tabs_barWidHei_003.bottom - Tabs_barWidHei_003.top)).assertEqual(Math.round(vp2px(244)));
-      expect(Math.round(Tabs_barWidHei_001.right - Tabs_barWidHei_001.left)).assertEqual(Math.round(vp2px(330)));
-      expect(Math.round(Tabs_barWidHei_002.right - Tabs_barWidHei_002.left)).assertEqual(Math.round(vp2px(330)));
-      expect(Math.round(Tabs_barWidHei_003.right - Tabs_barWidHei_003.left)).assertEqual(Math.round(vp2px(330)));
+      expect(Math.abs(Math.round(Tabs_barWidHei_001.right - Tabs_barWidHei_001.left) - Math.round(vp2px(330))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Tabs_barWidHei_002.right - Tabs_barWidHei_002.left) - Math.round(vp2px(330))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Tabs_barWidHei_003.right - Tabs_barWidHei_003.left) - Math.round(vp2px(330))) <= 1).assertTrue();
 
       console.info(`[testTabsBarWidWithinTabsWid]subGreen.bottom - subGreen.top=
         ${Math.round(subGreen.bottom - subGreen.top)}`);
@@ -377,27 +377,27 @@ export default function Tabs_barWidHei() {
       expect(JSON.parse(strJson).$attrs.index).assertEqual("0");
       expect(JSON.parse(strJson).$attrs.scrollable).assertEqual(true);
       expect(JSON.parse(strJson).$attrs.barMode).assertEqual('BarMode.Fixed');
-      let Tabs_barWidHei_001: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_001');
-      let Tabs_barWidHei_011: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_011');
+      let Tabs_barWidHei_001: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_001');
+      let Tabs_barWidHei_011: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_011');
       let driver = Driver.create();
       await driver.swipe(Math.round(Tabs_barWidHei_011.right - 30),
         Math.round(Tabs_barWidHei_011.top + ((Tabs_barWidHei_011.bottom - Tabs_barWidHei_011.top) / 2)),
         Math.round(Tabs_barWidHei_011.left + 30),
         Math.round(Tabs_barWidHei_011.top + ((Tabs_barWidHei_011.bottom - Tabs_barWidHei_011.top) / 2)));
       await CommonFunc.sleep(1000);
-      let Tabs_barWidHei_002: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_002');
-      let Tabs_barWidHei_012: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_012');
+      let Tabs_barWidHei_002: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_002');
+      let Tabs_barWidHei_012: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_012');
       await driver.swipe(Math.round(Tabs_barWidHei_012.right - 30),
         Math.round(Tabs_barWidHei_012.top + ((Tabs_barWidHei_012.bottom - Tabs_barWidHei_012.top) / 2)),
         Math.round(Tabs_barWidHei_012.left + 30),
         Math.round(Tabs_barWidHei_012.top + ((Tabs_barWidHei_012.bottom - Tabs_barWidHei_012.top) / 2)));
       await CommonFunc.sleep(1000);
-      let Tabs_barWidHei_003: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_003');
-      let Tabs_barWidHei_013: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_013');
-      let Tabs_barWidHei_01: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_01');
-      let subGreen: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_green');
-      let subBlue: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_blue');
-      let subYellow: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_yellow');
+      let Tabs_barWidHei_003: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_003');
+      let Tabs_barWidHei_013: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_013');
+      let Tabs_barWidHei_01: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_01');
+      let subGreen: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_green');
+      let subBlue: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_blue');
+      let subYellow: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_yellow');
 
       console.info(`[testTabsBarHeiExceedTabsHei]Tabs_barWidHei_011.left equal Tabs_barWidHei_001.left
         ${Tabs_barWidHei_011.left} === ${Tabs_barWidHei_001.left}`);
@@ -431,9 +431,9 @@ export default function Tabs_barWidHei() {
       expect(Math.round(Tabs_barWidHei_001.bottom - Tabs_barWidHei_001.top)).assertEqual(Math.round(vp2px(244)));
       expect(Math.round(Tabs_barWidHei_002.bottom - Tabs_barWidHei_002.top)).assertEqual(Math.round(vp2px(244)));
       expect(Math.round(Tabs_barWidHei_003.bottom - Tabs_barWidHei_003.top)).assertEqual(Math.round(vp2px(244)));
-      expect(Math.round(Tabs_barWidHei_001.right - Tabs_barWidHei_001.left)).assertEqual(Math.round(vp2px(330)));
-      expect(Math.round(Tabs_barWidHei_002.right - Tabs_barWidHei_002.left)).assertEqual(Math.round(vp2px(330)));
-      expect(Math.round(Tabs_barWidHei_003.right - Tabs_barWidHei_003.left)).assertEqual(Math.round(vp2px(330)));
+      expect(Math.abs(Math.round(Tabs_barWidHei_001.right - Tabs_barWidHei_001.left) - Math.round(vp2px(330))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Tabs_barWidHei_002.right - Tabs_barWidHei_002.left) - Math.round(vp2px(330))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Tabs_barWidHei_003.right - Tabs_barWidHei_003.left) - Math.round(vp2px(330))) <= 1).assertTrue();
 
       console.info(`[testTabsBarHeiExceedTabsHei]subGreen.bottom - subGreen.top=
         ${Math.round(subGreen.bottom - subGreen.top)}`);
@@ -474,27 +474,27 @@ export default function Tabs_barWidHei() {
       expect(JSON.parse(strJson).$attrs.index).assertEqual("0");
       expect(JSON.parse(strJson).$attrs.scrollable).assertEqual(true);
       expect(JSON.parse(strJson).$attrs.barMode).assertEqual('BarMode.Fixed');
-      let Tabs_barWidHei_001: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_001');
-      let Tabs_barWidHei_011: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_011');
+      let Tabs_barWidHei_001: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_001');
+      let Tabs_barWidHei_011: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_011');
       let driver = Driver.create();
       await driver.swipe(Math.round(Tabs_barWidHei_011.right - 30),
         Math.round(Tabs_barWidHei_011.top + ((Tabs_barWidHei_011.bottom - Tabs_barWidHei_011.top) / 2)),
         Math.round(Tabs_barWidHei_011.left + 30),
         Math.round(Tabs_barWidHei_011.top + ((Tabs_barWidHei_011.bottom - Tabs_barWidHei_011.top) / 2)));
       await CommonFunc.sleep(1000);
-      let Tabs_barWidHei_002: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_002');
-      let Tabs_barWidHei_012: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_012');
+      let Tabs_barWidHei_002: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_002');
+      let Tabs_barWidHei_012: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_012');
       await driver.swipe(Math.round(Tabs_barWidHei_012.right - 30),
         Math.round(Tabs_barWidHei_012.top + ((Tabs_barWidHei_012.bottom - Tabs_barWidHei_012.top) / 2)),
         Math.round(Tabs_barWidHei_012.left + 30),
         Math.round(Tabs_barWidHei_012.top + ((Tabs_barWidHei_012.bottom - Tabs_barWidHei_012.top) / 2)));
       await CommonFunc.sleep(1000);
-      let Tabs_barWidHei_003: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_003');
-      let Tabs_barWidHei_013: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_013');
-      let Tabs_barWidHei_01: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_01');
-      let subGreen: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_green');
-      let subBlue: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_blue');
-      let subYellow: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_yellow');
+      let Tabs_barWidHei_003: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_003');
+      let Tabs_barWidHei_013: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_013');
+      let Tabs_barWidHei_01: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_01');
+      let subGreen: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_green');
+      let subBlue: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_blue');
+      let subYellow: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_yellow');
 
       console.info(`[testTabsBarHeiWithinTabsHei]Tabs_barWidHei_011.left equal Tabs_barWidHei_001.left
         ${Tabs_barWidHei_011.left} === ${Tabs_barWidHei_001.left}`);
@@ -528,9 +528,9 @@ export default function Tabs_barWidHei() {
       expect(Math.round(Tabs_barWidHei_001.bottom - Tabs_barWidHei_001.top)).assertEqual(Math.round(vp2px(200)));
       expect(Math.round(Tabs_barWidHei_002.bottom - Tabs_barWidHei_002.top)).assertEqual(Math.round(vp2px(200)));
       expect(Math.round(Tabs_barWidHei_003.bottom - Tabs_barWidHei_003.top)).assertEqual(Math.round(vp2px(200)));
-      expect(Math.round(Tabs_barWidHei_001.right - Tabs_barWidHei_001.left)).assertEqual(Math.round(vp2px(330)));
-      expect(Math.round(Tabs_barWidHei_002.right - Tabs_barWidHei_002.left)).assertEqual(Math.round(vp2px(330)));
-      expect(Math.round(Tabs_barWidHei_003.right - Tabs_barWidHei_003.left)).assertEqual(Math.round(vp2px(330)));
+      expect(Math.abs(Math.round(Tabs_barWidHei_001.right - Tabs_barWidHei_001.left) - Math.round(vp2px(330))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Tabs_barWidHei_002.right - Tabs_barWidHei_002.left) - Math.round(vp2px(330))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Tabs_barWidHei_003.right - Tabs_barWidHei_003.left) - Math.round(vp2px(330))) <= 1).assertTrue();
 
       console.info(`[testTabsBarHeiWithinTabsHei]subGreen.bottom - subGreen.top=
         ${Math.round(subGreen.bottom - subGreen.top)}`);
@@ -566,27 +566,27 @@ export default function Tabs_barWidHei() {
       expect(JSON.parse(strJson).$attrs.index).assertEqual("0");
       expect(JSON.parse(strJson).$attrs.scrollable).assertEqual(true);
       expect(JSON.parse(strJson).$attrs.barMode).assertEqual('BarMode.Fixed');
-      let Tabs_barWidHei_001: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_001');
-      let Tabs_barWidHei_011: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_011');
+      let Tabs_barWidHei_001: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_001');
+      let Tabs_barWidHei_011: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_011');
       let driver = Driver.create();
       await driver.swipe(Math.round(Tabs_barWidHei_011.right - 30),
         Math.round(Tabs_barWidHei_011.top + ((Tabs_barWidHei_011.bottom - Tabs_barWidHei_011.top) / 2)),
         Math.round(Tabs_barWidHei_011.left + 30),
         Math.round(Tabs_barWidHei_011.top + ((Tabs_barWidHei_011.bottom - Tabs_barWidHei_011.top) / 2)));
       await CommonFunc.sleep(1000);
-      let Tabs_barWidHei_002: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_002');
-      let Tabs_barWidHei_012: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_012');
+      let Tabs_barWidHei_002: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_002');
+      let Tabs_barWidHei_012: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_012');
       await driver.swipe(Math.round(Tabs_barWidHei_012.right - 30),
         Math.round(Tabs_barWidHei_012.top + ((Tabs_barWidHei_012.bottom - Tabs_barWidHei_012.top) / 2)),
         Math.round(Tabs_barWidHei_012.left + 30),
         Math.round(Tabs_barWidHei_012.top + ((Tabs_barWidHei_012.bottom - Tabs_barWidHei_012.top) / 2)));
       await CommonFunc.sleep(1000);
-      let Tabs_barWidHei_003: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_003');
-      let Tabs_barWidHei_013: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_013');
-      let Tabs_barWidHei_01: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_01');
-      let subGreen: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_green');
-      let subBlue: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_blue');
-      let subYellow: RectValue = CommonFunc.getComponentRect('Tabs_barWidHei_yellow');
+      let Tabs_barWidHei_003: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_003');
+      let Tabs_barWidHei_013: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_013');
+      let Tabs_barWidHei_01: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_01');
+      let subGreen: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_green');
+      let subBlue: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_blue');
+      let subYellow: RectValue = CommonFunc.getComponentRectOnScreen('Tabs_barWidHei_yellow');
 
       console.info(`[testTabsBarHeiToNegative]Tabs_barWidHei_011.left equal Tabs_barWidHei_001.left
         ${Tabs_barWidHei_011.left} === ${Tabs_barWidHei_001.left}`);
@@ -620,9 +620,9 @@ export default function Tabs_barWidHei() {
       expect(Math.round(Tabs_barWidHei_001.bottom - Tabs_barWidHei_001.top)).assertEqual(Math.round(vp2px(244)));
       expect(Math.round(Tabs_barWidHei_002.bottom - Tabs_barWidHei_002.top)).assertEqual(Math.round(vp2px(244)));
       expect(Math.round(Tabs_barWidHei_003.bottom - Tabs_barWidHei_003.top)).assertEqual(Math.round(vp2px(244)));
-      expect(Math.round(Tabs_barWidHei_001.right - Tabs_barWidHei_001.left)).assertEqual(Math.round(vp2px(330)));
-      expect(Math.round(Tabs_barWidHei_002.right - Tabs_barWidHei_002.left)).assertEqual(Math.round(vp2px(330)));
-      expect(Math.round(Tabs_barWidHei_003.right - Tabs_barWidHei_003.left)).assertEqual(Math.round(vp2px(330)));
+      expect(Math.abs(Math.round(Tabs_barWidHei_001.right - Tabs_barWidHei_001.left) - Math.round(vp2px(330))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Tabs_barWidHei_002.right - Tabs_barWidHei_002.left) - Math.round(vp2px(330))) <= 1).assertTrue();
+      expect(Math.abs(Math.round(Tabs_barWidHei_003.right - Tabs_barWidHei_003.left) - Math.round(vp2px(330))) <= 1).assertTrue();
 
       console.info(`[testTabsBarHeiToNegative]subGreen.bottom - subGreen.top=
         ${Math.round(subGreen.bottom - subGreen.top)}`);

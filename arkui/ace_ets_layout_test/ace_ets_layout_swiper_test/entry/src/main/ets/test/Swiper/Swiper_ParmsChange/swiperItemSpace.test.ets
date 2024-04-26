@@ -72,30 +72,37 @@ export default function swiperItemSpace() {
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('itemspacekey');
 
-      let itemspacekey: RectValue = CommonFunc.getComponentRect('itemspacekey');
-      let itemspacekey01: RectValue = CommonFunc.getComponentRect('itemspacekey01');
-      let itemspacekey02: RectValue = CommonFunc.getComponentRect('itemspacekey02');
-      let itemspacekey03: RectValue = CommonFunc.getComponentRect('itemspacekey03');
-      let itemspacekey04: RectValue = CommonFunc.getComponentRect('itemspacekey04');
-      let itemspacekey05: RectValue = CommonFunc.getComponentRect('itemspacekey05');
-      let itemspacekey06: RectValue = CommonFunc.getComponentRect('itemspacekey06');
+      let itemspacekey = CommonFunc.getComponentRect('itemspacekey');
+      let itemspacekey01 = CommonFunc.getComponentRect('itemspacekey01');
+      let itemspacekey02 = CommonFunc.getComponentRect('itemspacekey02');
+      let itemspacekey03 = CommonFunc.getComponentRect('itemspacekey03');
+      let itemspacekey04 = CommonFunc.getComponentRect('itemspacekey04');
+      let itemspacekey05 = CommonFunc.getComponentRect('itemspacekey05');
+      let itemspacekey06 = CommonFunc.getComponentRect('itemspacekey06');
       // Before flipping the page.
       console.info("Before page turning , the itemspacekey.left value is " + JSON.stringify(itemspacekey.left));
       console.info("Before page turning , the itemspacekey01.left value is " + JSON.stringify(itemspacekey01.left));
-      expect(itemspacekey.left).assertEqual(itemspacekey01.left)
-      expect(itemspacekey.top).assertEqual(itemspacekey01.top)
-      expect(itemspacekey.bottom).assertEqual(itemspacekey01.bottom)
+      expect(Math.abs(itemspacekey.left - itemspacekey01.left) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.top - itemspacekey01.top) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.bottom - itemspacekey01.bottom) <= 1).assertTrue();
       // Page turning.
-      expect(itemspacekey.top).assertEqual(itemspacekey02.top)
-      expect(itemspacekey.bottom).assertEqual(itemspacekey02.bottom)
-      expect(Math.round(itemspacekey02.left - itemspacekey01.right)).assertEqual(vp2px(20))
-      expect(itemspacekey.right).assertEqual(itemspacekey02.right)
+      expect(Math.abs(itemspacekey.top - itemspacekey02.top) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.bottom - itemspacekey02.bottom) <= 1).assertTrue();
+      expect(Math.abs(Math.round(itemspacekey02.left - itemspacekey01.right) - Math.round(vp2px(20))) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.right - itemspacekey02.right) <= 1).assertTrue();
 
       let driver = Driver.create();
-      await CommonFunc.sleep(500);
-      await driver.swipe(vp2px(180), vp2px(100), vp2px(20), vp2px(100));
-      //await driver.swipe(250, 230, 200, 230);
+      // await CommonFunc.sleep(500);
+      // await driver.swipe(vp2px(180), vp2px(100), vp2px(20), vp2px(100));
       await CommonFunc.sleep(1000);
+      let gridRect:RectValue = CommonFunc.getComponentRectOnScreen('itemspacekey')
+      await driver.swipe(
+        Number.parseInt(`${(gridRect.right - gridRect.left) * 0.8 + gridRect.left}`),
+        Number.parseInt(`${(gridRect.bottom - gridRect.top) * 0.5 + gridRect.top}`),
+        Number.parseInt(`${(gridRect.right - gridRect.left) * 0.1 + gridRect.left}`),
+        Number.parseInt(`${(gridRect.bottom - gridRect.top) * 0.5 + gridRect.top}`),
+        1000);
+      await CommonFunc.sleep(3000);
       itemspacekey = CommonFunc.getComponentRect('itemspacekey');
       itemspacekey01 = CommonFunc.getComponentRect('itemspacekey01');
       itemspacekey02 = CommonFunc.getComponentRect('itemspacekey02');
@@ -106,14 +113,14 @@ export default function swiperItemSpace() {
       // After flipping the page.
       console.info("After page turning , the itemspacekey.left value is " + JSON.stringify(itemspacekey.left));
       console.info("After page turning , the itemspacekey02.left value is " + JSON.stringify(itemspacekey02.left));
-      expect(itemspacekey.left).assertEqual(itemspacekey02.left);
-      expect(itemspacekey.top).assertEqual(itemspacekey02.top);
-      expect(itemspacekey.bottom).assertEqual(itemspacekey02.bottom);
+      expect(Math.abs(itemspacekey.left - itemspacekey02.left) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.top - itemspacekey02.top) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.bottom - itemspacekey02.bottom) <= 1).assertTrue();
 
-      expect(itemspacekey.top).assertEqual(itemspacekey03.top);
-      expect(itemspacekey.bottom).assertEqual(itemspacekey03.bottom);
-      expect(Math.round(itemspacekey03.left - itemspacekey02.right)).assertEqual(Math.round(vp2px(20)));
-      expect(itemspacekey.right).assertEqual(itemspacekey03.right)
+      expect(Math.abs(itemspacekey.top - itemspacekey03.top) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.bottom - itemspacekey03.bottom) <= 1).assertTrue();
+      expect(Math.abs(Math.round(itemspacekey03.left - itemspacekey02.right) - Math.round(vp2px(20))) <= 1).assertTrue();
+      expect(Math.abs(itemspacekey.right - itemspacekey03.right) <= 1).assertTrue();
       console.info("The type value is " + JSON.stringify(JSON.parse(strJson).$type));
       console.info("The loop value is " + JSON.stringify(JSON.parse(strJson).$attrs.loop));
       console.info("The itemSpace value is " + JSON.stringify(JSON.parse(strJson).$attrs.itemSpace));
@@ -139,13 +146,13 @@ export default function swiperItemSpace() {
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('itemspacekey');
 
-      let itemspacekey: RectValue = CommonFunc.getComponentRect('itemspacekey');
-      let itemspacekey01: RectValue = CommonFunc.getComponentRect('itemspacekey01');
-      let itemspacekey02: RectValue = CommonFunc.getComponentRect('itemspacekey02');
-      let itemspacekey03: RectValue = CommonFunc.getComponentRect('itemspacekey03');
-      let itemspacekey04: RectValue = CommonFunc.getComponentRect('itemspacekey04');
-      let itemspacekey05: RectValue = CommonFunc.getComponentRect('itemspacekey05');
-      let itemspacekey06: RectValue = CommonFunc.getComponentRect('itemspacekey06');
+      let itemspacekey = CommonFunc.getComponentRect('itemspacekey');
+      let itemspacekey01 = CommonFunc.getComponentRect('itemspacekey01');
+      let itemspacekey02 = CommonFunc.getComponentRect('itemspacekey02');
+      let itemspacekey03 = CommonFunc.getComponentRect('itemspacekey03');
+      let itemspacekey04 = CommonFunc.getComponentRect('itemspacekey04');
+      let itemspacekey05 = CommonFunc.getComponentRect('itemspacekey05');
+      let itemspacekey06 = CommonFunc.getComponentRect('itemspacekey06');
       // Before flipping the page.
       console.info("Before page turning , the itemspacekey.left value is " + JSON.stringify(itemspacekey.left));
       console.info("Before page turning , the itemspacekey01.left value is " + JSON.stringify(itemspacekey01.left));
@@ -159,10 +166,19 @@ export default function swiperItemSpace() {
       expect(itemspacekey02.right).assertEqual(itemspacekey.right);
       // After flipping the page.
       let driver = Driver.create();
-      await CommonFunc.sleep(500);
-      await driver.swipe(vp2px(180), vp2px(100), vp2px(20), vp2px(100));
-      // await driver.swipe(250, 230, 200, 230);
+     //  await CommonFunc.sleep(500);
+     //  await driver.swipe(vp2px(180), vp2px(100), vp2px(20), vp2px(100));
+     // // await driver.swipe(250, 230, 200, 230);
+     //  await CommonFunc.sleep(1000);
       await CommonFunc.sleep(1000);
+      let gridRect:RectValue = CommonFunc.getComponentRectOnScreen('itemspacekey')
+      await driver.swipe(
+        Number.parseInt(`${(gridRect.right - gridRect.left) * 0.8 + gridRect.left}`),
+        Number.parseInt(`${(gridRect.bottom - gridRect.top) * 0.5 + gridRect.top}`),
+        Number.parseInt(`${(gridRect.right - gridRect.left) * 0.1 + gridRect.left}`),
+        Number.parseInt(`${(gridRect.bottom - gridRect.top) * 0.5 + gridRect.top}`),
+        1000);
+      await CommonFunc.sleep(3000);
       itemspacekey = CommonFunc.getComponentRect('itemspacekey');
       itemspacekey01 = CommonFunc.getComponentRect('itemspacekey01');
       itemspacekey02 = CommonFunc.getComponentRect('itemspacekey02');

@@ -461,30 +461,36 @@ export default function abilityTest() {
       done();
     })
 
-     /*
-     * @tc.number  SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0301
-     * @tc.name    test_sUB_bASIC_bARRIERFREE_aPI_accessibilityErrCode_0301
-     * @tc.desc    The parameters input are '' and 'install', test the getAccessibilityExtensionList() function,
-     *             and the output is the list of AccessibilityAbilityInfo CallBack
-     * @tc.size    SmallTest
-     * @tc.type    User
-     * @tc.level   Level 1
-     */
+    /*
+    * @tc.number  SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0301
+    * @tc.name    test_sUB_bASIC_bARRIERFREE_aPI_accessibilityErrCode0301
+    * @tc.desc    The parameters input are '' and 'install', test the getAccessibilityExtensionList() function,
+    *             and the output is the list of AccessibilityAbilityInfo CallBack
+    * @tc.size    SmallTest
+    * @tc.type    User
+    * @tc.level   Level 1
+    */
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0301', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0301');
-      let abilityType ;
-      accessibility.getAccessibilityExtensionList(abilityType, 'install', (err, data) => {
-        if (err && err.code != 0) {
-          console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0301 has error: ${err.code}`);
-          expect(err.code).assertEqual(401);
-          done();
-        }else{
-          console.info(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0301 result ${data.length}`);
-          expect(Array.isArray(data)).assertEqual(false);
-          done();
-        }
-      });
-    })
+      try {
+        let abilityType ;
+        accessibility.getAccessibilityExtensionList(abilityType, 'install', (err, data) => {
+          if (err && err.code != 0) {
+            console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0301 has error: ${err.code}`);
+            expect(err.code).assertEqual(401);
+            done();
+          }else{
+            console.info(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0301 result ${data.length}`);
+            expect(Array.isArray(data)).assertEqual(false);
+            done();
+          }
+        });
+      } catch (exception) {
+        console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0301 has error: ${exception.code}`);
+        expect(exception.code).assertEqual(401);
+        done();
+      }
+    });
 
     /*
     * @tc.number  SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0302
@@ -497,69 +503,87 @@ export default function abilityTest() {
     */
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0302', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0302');
-      let abilityType = null;
-      accessibility.getAccessibilityExtensionList(abilityType, 'install', (err, data) => {
-        if (err && err.code != 0) {
-          console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0302 has error: ${err.code}`);
-          expect(err.code).assertEqual(401);
-          done();
-        }else{
-          console.info(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0302 result ${data.length}`);
-          expect(Array.isArray(data)).assertEqual(false);
-          done();
-        }
-      });
-    })
+      try {
+        let abilityType = null;
+        accessibility.getAccessibilityExtensionList(abilityType, 'install', (err, data) => {
+          if (err && err.code != 0) {
+            console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0302 has error: ${err.code}`);
+            expect(err.code).assertEqual(401);
+            done();
+          }else{
+            console.info(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0302 result ${data.length}`);
+            expect(Array.isArray(data)).assertEqual(false);
+            done();
+          }
+        });
+      } catch (exception) {
+        console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0302 has error: ${exception.code}`);
+        expect(exception.code).assertEqual(401);
+        done();
+      }
+    });
 
     /*
-     * @tc.number  SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0303
-     * @tc.name    test_sUB_bASIC_bARRIERFREE_aPI_accessibilityErrCode_0303
-     * @tc.desc    The parameters input are 'all' and '', test the getAccessibilityExtensionList() function,
-     *             and the output is the list of AccessibilityAbilityInfo CallBack
-     * @tc.size    SmallTest
-     * @tc.type    User
-     * @tc.level   Level 1
-     */
+    * @tc.number  SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0303
+    * @tc.name    test_sUB_bASIC_bARRIERFREE_aPI_accessibilityErrCode_0303
+    * @tc.desc    The parameters input are 'all' and '', test the getAccessibilityExtensionList() function,
+    *             and the output is the list of AccessibilityAbilityInfo CallBack
+    * @tc.size    SmallTest
+    * @tc.type    User
+    * @tc.level   Level 1
+    */
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0303', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0303');
-      let abilityState ;
-      accessibility.getAccessibilityExtensionList('all', abilityState, (err, data) => {
-        if (err && err.code != 0) {
-          console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0303 has error: ${err.code}`);
-          expect(err.code).assertEqual(401);
-          done();
-        }else{
-          console.info(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0303 result ${data.length}`);
-          expect(Array.isArray(data)).assertEqual(false);
-          done();
-        }
-      });
-    })
+      try {
+        let abilityState ;
+        accessibility.getAccessibilityExtensionList('all', abilityState, (err, data) => {
+          if (err && err.code != 0) {
+            console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0303 has error: ${err.code}`);
+            expect(err.code).assertEqual(401);
+            done();
+          }else{
+            console.info(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0303 result ${data.length}`);
+            expect(Array.isArray(data)).assertEqual(false);
+            done();
+          }
+        });
+      } catch (exception) {
+        console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0303 has error: ${exception.code}`);
+        expect(exception.code).assertEqual(401);
+        done();
+      }
+    });
 
     /*
-     * @tc.number  SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0304
-     * @tc.name    test_sUB_bASIC_bARRIERFREE_aPI_accessibilityErrCode_0304
-      @tc.desc    The parameters input are 'all' and null, test the getAccessibilityExtensionList() function,
-     *             and the output is the list of AccessibilityAbilityInfo CallBack
-     * @tc.size    SmallTest
-     * @tc.type    User
-     * @tc.level   Level 1
-     */
+    * @tc.number  SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0304
+    * @tc.name    test_sUB_bASIC_bARRIERFREE_aPI_accessibilityErrCode_0304
+    * @tc.desc    The parameters input are 'all' and null, test the getAccessibilityExtensionList() function,
+    *             and the output is the list of AccessibilityAbilityInfo CallBack
+    * @tc.size    SmallTest
+    * @tc.type    User
+    * @tc.level   Level 1
+    */
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0304', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0304');
-      let abilityState = null;
-      accessibility.getAccessibilityExtensionList('all', abilityState, (err, data) => {
-        if (err && err.code != 0) {
-          console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0304 has error: ${err.code}`);
-          expect(err.code).assertEqual(401);
-          done();
-        }else{
-          console.info(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0304 result ${data.length}`);
-          expect(Array.isArray(data)).assertEqual(false);
-          done();
-        }
-      });
-    })
+      try {
+        let abilityState = null;
+        accessibility.getAccessibilityExtensionList('all', abilityState, (err, data) => {
+          if (err && err.code != 0) {
+            console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0304 has error: ${err.code}`);
+            expect(err.code).assertEqual(401);
+            done();
+          }else{
+            console.info(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0304 result ${data.length}`);
+            expect(Array.isArray(data)).assertEqual(false);
+            done();
+          }
+        });
+      } catch (exception) {
+        console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0304 has error: ${exception.code}`);
+        expect(exception.code).assertEqual(401);
+        done();
+      }
+    });
 
     /*
     * @tc.number  SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305
@@ -572,17 +596,23 @@ export default function abilityTest() {
     */
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305');
-      let abilityType ;
-      accessibility.getAccessibilityExtensionList(abilityType, 'install').then((result) => {
-        console.info(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305 result ${result.length}`);
-        expect(Array.isArray(result)).assertEqual(false);
+      try {
+        let abilityType ;
+        accessibility.getAccessibilityExtensionList(abilityType, 'install').then((result) => {
+          console.info(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305 result ${result.length}`);
+          expect(Array.isArray(result)).assertEqual(false);
+          done();
+        }).catch((err) => {
+          console.error(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305 has error: ${err}`);
+          expect(err.code).assertEqual(401);
+          done();
+        })
+      } catch (exception) {
+        console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305 has error: ${exception.code}`);
+        expect(exception.code).assertEqual(401);
         done();
-      }).catch((err) => {
-        console.error(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305 has error: ${err}`);
-        expect(err.code).assertEqual(401);
-        done();
-      });
-    })
+      }
+    });
 
     /*
     * @tc.number  SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0306
@@ -595,63 +625,83 @@ export default function abilityTest() {
     */
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0306', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0306');
-      let abilityType = null;
-      accessibility.getAccessibilityExtensionList(abilityType, 'install').then((result) => {
-        console.info(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0306 result ${result.length}`);
-        expect(Array.isArray(result)).assertEqual(false);
+      try {
+        let abilityType = null;
+        accessibility.getAccessibilityExtensionList(abilityType, 'install').then((result) => {
+          console.info(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305 result ${result.length}`);
+          expect(Array.isArray(result)).assertEqual(false);
+          done();
+        }).catch((err) => {
+          console.error(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305 has error: ${err}`);
+          expect(err.code).assertEqual(401);
+          done();
+        })
+      } catch (exception) {
+        console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305 has error: ${exception.code}`);
+        expect(exception.code).assertEqual(401);
         done();
-      }).catch((err) => {
-        console.error(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0306 has error: ${err}`);
-        expect(err.code).assertEqual(401);
-        done();
-      });
-    })
+      }
+    });
 
     /*
-     * @tc.number  SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0307
-     * @tc.name    test_sUB_bASIC_bARRIERFREE_aPI_accessibilityErrCode_0307
-     * @tc.desc    The parameters input are 'all' and '', test the getAccessibilityExtensionList() function,
-     *             and the output is the list of AccessibilityAbilityInfo Promise
-     * @tc.size    SmallTest
-     * @tc.type    User
-     * @tc.level   Level 1
-     */
+    * @tc.number  SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0307
+    * @tc.name    test_sUB_bASIC_bARRIERFREE_aPI_accessibilityErrCode_0307
+    * @tc.desc    The parameters input are 'all' and '', test the getAccessibilityExtensionList() function,
+    *             and the output is the list of AccessibilityAbilityInfo Promise
+    * @tc.size    SmallTest
+    * @tc.type    User
+    * @tc.level   Level 1
+    */
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0307', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0307');
-      let abilityState ;
-      accessibility.getAccessibilityExtensionList('all', abilityState).then((result) => {
-        console.info(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0307 result ${result.length}`);
-        expect(Array.isArray(result)).assertEqual(false);
+      try {
+        let abilityState ;
+        accessibility.getAccessibilityExtensionList('all', abilityState).then((result) => {
+          console.info(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0307 result ${result.length}`);
+          expect(Array.isArray(result)).assertEqual(false);
+          done();
+        }).catch((err) => {
+          console.error(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0307 has error: ${err}`);
+          expect(err.code).assertEqual(401);
+          done();
+        })
+      } catch (exception) {
+        console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0307 has error: ${exception.code}`);
+        expect(exception.code).assertEqual(401);
         done();
-      }).catch((err) => {
-        console.error(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0307 has error: ${err}`);
-        expect(err.code).assertEqual(401);
-        done();
-      });
-    })
+      }
+    });
+
 
     /*
-     * @tc.number  SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0308
-     * @tc.name    test_sUB_bASIC_bARRIERFREE_aPI_accessibilityErrCode_0308
-      @tc.desc    The parameters input are 'all' and null, test the getAccessibilityExtensionList() function,
-     *             and the output is the list of AccessibilityAbilityInfo Promise
-     * @tc.size    SmallTest
-     * @tc.type    User
-     * @tc.level   Level 1
-     */
+    * @tc.number  SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0308
+    * @tc.name    test_sUB_bASIC_bARRIERFREE_aPI_accessibilityErrCode_0308
+    * @tc.desc    The parameters input are 'all' and null, test the getAccessibilityExtensionList() function,
+    *             and the output is the list of AccessibilityAbilityInfo Promise
+    * @tc.size    SmallTest
+    * @tc.type    User
+    * @tc.level   Level 1
+    */
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0308', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0308');
-      let abilityState = null;
-      accessibility.getAccessibilityExtensionList('all', abilityState).then((result) => {
-        console.info(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0308 result ${result.length}`);
-        expect(Array.isArray(result)).assertEqual(false);
+      try {
+        let abilityState = null;
+        accessibility.getAccessibilityExtensionList('all', abilityState).then((result) => {
+          console.info(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0308 result ${result.length}`);
+          expect(Array.isArray(result)).assertEqual(false);
+          done();
+        }).catch((err) => {
+          console.error(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0308 has error: ${err}`);
+          expect(err.code).assertEqual(401);
+          done();
+        })
+      } catch (exception) {
+        console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0308 has error: ${exception.code}`);
+        expect(exception.code).assertEqual(401);
         done();
-      }).catch((err) => {
-        console.error(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0308 has error: ${err}`);
-        expect(err.code).assertEqual(401);
-        done();
-      });
-    })
+      }
+    });
+
     /*
     * @tc.number  SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0800
     * @tc.name    test_sUB_bASIC_bARRIERFREE_aPI_accessibilityErrCode0800

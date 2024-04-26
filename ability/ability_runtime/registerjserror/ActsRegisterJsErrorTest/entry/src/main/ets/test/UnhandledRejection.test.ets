@@ -24,11 +24,11 @@ export default function unhandledRejectionTest() {
   describe('ActsUnhandledRejectionTest', function () {
     beforeEach(async () => {
       errorManager.off("unhandledRejection");
-      await sleep(1000);
+      await sleep(800);
     })
     afterEach(async () => {
       errorManager.off("unhandledRejection");
-      await sleep(1000);
+      await sleep(800);
     })    
 
     /*
@@ -57,7 +57,7 @@ export default function unhandledRejectionTest() {
         }
         done();
       }, 1000);
-      await sleep(1000);
+      await sleep(800);
     })
 
     /*
@@ -86,7 +86,7 @@ export default function unhandledRejectionTest() {
         }
         done();
       }, 1000);
-      await sleep(1000);
+      await sleep(800);
     })
 
     /*
@@ -119,7 +119,7 @@ export default function unhandledRejectionTest() {
         }
         done();
       }, 1000);
-      await sleep(1000);
+      await sleep(800);
     })
 
     /*
@@ -151,7 +151,7 @@ export default function unhandledRejectionTest() {
         }
         done();
       }, 1000);
-      await sleep(1000);
+      await sleep(800);
     })
 
     /*
@@ -178,7 +178,7 @@ export default function unhandledRejectionTest() {
         }
         done();
      }, 1000);
-     await sleep(1000);
+     await sleep(800);
     })
 
     /*
@@ -204,7 +204,7 @@ export default function unhandledRejectionTest() {
         }
         done();
       }, 1000);
-      await sleep(1000);
+      await sleep(800);
     })
 
     /*
@@ -227,6 +227,106 @@ export default function unhandledRejectionTest() {
     })
 
     /*
+     * @tc.number: ACTS_Register_JsErrorCallback_UnhandledRejection_0900
+     * @tc.name: JsError unhandled rejection callback enhancement
+     * @tc.desc: When an error is thrown during the parsing process in try catch, it will be captured as an unhandled rejection.
+     */
+    it('ACTS_Register_JsErrorCallback_UnhandledRejection_0900', 0, async (done) => {
+      console.log("=====>ACTS_Register_JsErrorCallback_UnhandledRejection_0900<=====");
+
+      let flag = false;
+
+      let errorObserver: errorManager.ErrorObserver = {
+        onUnhandledException(errMsg: string) {
+          expect().assertFail();
+          done();
+        },
+        onException(err: Error) {
+          expect().assertFail();
+          done();
+        }
+      };
+
+      let unhandledRejectionObserver: errorManager.UnhandledRejectionObserver = (reason: Error) => {
+        flag = true;
+        expect(reason.message).assertContain("ACTS_Register_JsErrorCallback_UnhandledRejection_0900_Error");
+      };
+
+      errorManager.on('unhandledRejection', unhandledRejectionObserver);
+      errorManager.on('error', errorObserver);
+
+      try {
+        new Promise<void>((res) => {
+          res();
+        }).then(() => {
+          throw new Error("ACTS_Register_JsErrorCallback_UnhandledRejection_0900_Error")
+        });
+      } catch (e) {
+        expect().assertFail();
+        done();
+      }
+
+      setTimeout(() => {
+        expect(flag).assertTrue();
+        done();
+      }, 1000);
+
+      await sleep(800);
+    })
+
+    /*
+     * @tc.number: ACTS_Register_JsErrorCallback_UnhandledRejection_1000
+     * @tc.name: JsError unhandled rejection callback enhancement
+     * @tc.desc: Construct promise nested promise 
+     */
+    it('ACTS_Register_JsErrorCallback_UnhandledRejection_1000', 0, async (done) => {
+      console.log("=====>ACTS_Register_JsErrorCallback_UnhandledRejection_1000<=====");
+
+      let flag = false;
+
+      let errorObserver: errorManager.ErrorObserver = {
+        onUnhandledException(errMsg: string) {
+          expect().assertFail();
+          done();
+        },
+        onException(err: Error) {
+          expect().assertFail();
+          done();
+        }
+      };
+
+      let unhandledRejectionObserver: errorManager.UnhandledRejectionObserver = (reason: Error) => {
+        flag = true;
+        expect(reason.message).assertContain("ACTS_Register_JsErrorCallback_UnhandledRejection_1000_Error");
+      };
+
+      errorManager.on('unhandledRejection', unhandledRejectionObserver);
+      errorManager.on('error', errorObserver);
+
+      try {
+        new Promise<void>((res) => {
+          res();
+        }).then(() => {
+          new Promise<void>((res) => {
+            res();
+          }).then(() => {
+            throw new Error("ACTS_Register_JsErrorCallback_UnhandledRejection_1000_Error");
+          })
+        });
+      } catch (e) {
+        expect().assertFail();
+        done();
+      }
+
+      setTimeout(() => {
+        expect(flag).assertTrue();
+        done();
+      }, 1000);
+
+      await sleep(800);
+    })
+
+    /*
      * @tc.number: ACTS_Unregister_JsErrorCallback_UnhandledRejection_0100
      * @tc.name: JsError unhandled rejection callback enhancement
      * @tc.desc: Trying to unregister a registered UnhandledRejectionObserver will succeed.
@@ -241,7 +341,7 @@ export default function unhandledRejectionTest() {
       setTimeout(() => {
         errorManager.off("unhandledRejection", oldObserver)
       }, 1000);
-      await sleep(1000);
+      await sleep(800);
 
       let flag = false;
       let newObserver: errorManager.UnhandledRejectionObserver = (reason: Error) => {
@@ -264,7 +364,7 @@ export default function unhandledRejectionTest() {
         }
         done();
       }, 1000);
-      await sleep(1000);
+      await sleep(800);
     })
 
     /*
@@ -290,7 +390,7 @@ export default function unhandledRejectionTest() {
       setTimeout(() => {
         errorManager.off("unhandledRejection")
       }, 1000);
-      await sleep(1000);
+      await sleep(800);
 
       let flag = false;
       let newObserver: errorManager.UnhandledRejectionObserver = (reason: Error) => {
@@ -313,7 +413,7 @@ export default function unhandledRejectionTest() {
         }
         done();
       }, 1000);
-      await sleep(1000);
+      await sleep(800);
     })
 
     /*
@@ -335,7 +435,7 @@ export default function unhandledRejectionTest() {
       setTimeout(() => {
         done();
       }, 1000);
-      await sleep(1000);
+      await sleep(800);
     })
 
     /*
@@ -358,7 +458,7 @@ export default function unhandledRejectionTest() {
       setTimeout(() => {
         done();
       }, 1000);
-      await sleep(1000);
+      await sleep(800);
     })
 
     /*
@@ -384,7 +484,7 @@ export default function unhandledRejectionTest() {
         expect(Number(evt.data)).assertEqual(16200001);
         flag = !flag;
       }
-      await sleep(1000);
+      await sleep(800);
 
       setTimeout(() => {
         if (!flag) {
@@ -393,7 +493,7 @@ export default function unhandledRejectionTest() {
         done();
       }, 2000);
 
-      await sleep(1000);
+      await sleep(800);
     })
   })
 }

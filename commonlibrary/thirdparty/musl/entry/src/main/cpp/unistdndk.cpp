@@ -14,6 +14,7 @@
  */
 
 #include "common/napi_helper.cpp"
+#include "common/native_common.h"
 #include "napi/native_api.h"
 #include <cstdlib>
 #include <cstring>
@@ -1141,6 +1142,7 @@ static napi_value Fsync(napi_env env, napi_callback_info info)
 static napi_value Ftruncate(napi_env env, napi_callback_info info)
 {
     FILE *fptr = fopen("/data/storage/el2/base/files/Fzl.txt", "w");
+    NAPI_ASSERT(env, fptr != nullptr, "Ftruncate fopen Error");
     fprintf(fptr, "%s", "this is a sample!");
     int freturn = ftruncate(fileno(fptr), SIZE_100);
     fclose(fptr);
@@ -1152,6 +1154,7 @@ static napi_value Ftruncate(napi_env env, napi_callback_info info)
 static napi_value Ftruncate64(napi_env env, napi_callback_info info)
 {
     FILE *fptr = fopen("/data/storage/el2/base/files/Fzl.txt", "w");
+    NAPI_ASSERT(env, fptr != nullptr, "Ftruncate64 fopen Error");
     fprintf(fptr, "%s", "this is a sample!");
     int freturn = ftruncate64(fileno(fptr), SIZE_100);
     fclose(fptr);
@@ -1877,18 +1880,14 @@ static napi_value Dup2(napi_env env, napi_callback_info info)
 static napi_value Dup3(napi_env env, napi_callback_info info)
 {
     errno = ERRON_0;
-    size_t argc = PARAM_1;
-    napi_value args[PARAM_1] = {nullptr};
-    napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    size_t length = LENGTH;
-    size_t strResult = PARAM_0;
-    char path[length];
-    napi_get_value_string_utf8(env, args[PARAM_0], path, length, &strResult);
-    int fileDescribe = open(path, O_CREAT, TEST_MODE);
-    dup3(fileDescribe, TEST_DUP, TEST_DUP);
+    int fileDescribe = open(PATH, O_CREAT, TEST_MODE);
+    int returnValue = FAIL;
+    if (dup3(fileDescribe, TEST_DUP, O_CLOEXEC) != -1) {
+        returnValue = BACKGROUND;
+    }
     close(fileDescribe);
     napi_value result = nullptr;
-    napi_create_int32(env, errno, &result);
+    napi_create_int32(env, returnValue, &result);
     return result;
 }
 

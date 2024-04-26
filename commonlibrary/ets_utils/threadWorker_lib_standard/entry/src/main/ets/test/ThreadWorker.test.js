@@ -103,7 +103,7 @@ describe('threadWorkerTest', function () {
      * @tc.desc: worker constructor to Creates a worker instance.
      */
     it('threadWorker_constructor_test_004', 0, async function (done) {
-        let ss = new worker.ThreadWorker("entry/ets/workers/newworker.js", 
+        let ss = new worker.ThreadWorker("entry/ets/workers/newworker.js",
                                          {type:"classic", name:"3st worker", shared: true})
         let isTerminate = false
 
@@ -129,7 +129,7 @@ describe('threadWorkerTest', function () {
         let flag = 0
         try {
             let a = 0
-            while (a <= 8) {
+            while (a <= 64) {
                 ss[a] = new worker.ThreadWorker("entry/ets/workers/newworker.js")
                 ss[a].onexit = function() {
                     flag += 1
@@ -141,11 +141,11 @@ describe('threadWorkerTest', function () {
             let msg = "Worker initialization failure, the number of workers exceeds the maximum."
             expect(error.message).assertEqual(msg)
             let b = 0
-            while (b < 8) {
+            while (b < 64) {
                 ss[b].terminate()
                 b += 1
             }
-            while (flag != 8) {
+            while (flag != 64) {
                 await promiseCase()
             }
             done()
@@ -580,7 +580,7 @@ describe('threadWorkerTest', function () {
             await promiseCase()
         }
         expect(res).assertEqual(1)
-        
+
         try {
             ss.postMessage("hello world")
             await promiseCase()
@@ -1740,13 +1740,13 @@ describe('threadWorkerTest', function () {
             expect(error.message).assertEqual(msg)
 
             done()
-        }        
+        }
     })
 
     // check onmessageerror is ok
     /**
      * @tc.name: threadWorker_onmessageerror_test_001
-     * @tc.desc: The onmessage attribute of the worker specifies the event handler when the worker receives 
+     * @tc.desc: The onmessage attribute of the worker specifies the event handler when the worker receives
        a message that cannot be serialized. The event handler is executed in the host thread
      */
     it('threadWorker_onmessageerror_test_001', 0, async function (done) {
@@ -1773,7 +1773,7 @@ describe('threadWorkerTest', function () {
     // check onmessageerror is ok
     /**
      * @tc.name: threadWorker_onmessageerror_test_002
-     * @tc.desc: The onmessage attribute of the worker specifies the event handler when the worker receives 
+     * @tc.desc: The onmessage attribute of the worker specifies the event handler when the worker receives
        a message that cannot be serialized. The event handler is executed in the host thread
      */
     it('threadWorker_onmessageerror_test_002', 0, async function (done) {
@@ -2856,6 +2856,7 @@ describe('threadWorkerTest', function () {
             return res
         }
     }
+
     // Check the CallObject of worker.
     /**
      * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_THREADWORKER_0003
@@ -2865,7 +2866,7 @@ describe('threadWorkerTest', function () {
      * @tc.type: Function
      * @tc.level: Level 2
      */
-    it('threadWorker_worker_callObject_test_001', 0, async function (done) {       
+    it('threadWorker_worker_callObject_test_001', 0, async function (done) {
         let ss = new worker.ThreadWorker("entry/ets/workers/newworker_031.js");
         let res = "";
         let isTerminate = false;
@@ -3027,6 +3028,93 @@ describe('threadWorkerTest', function () {
           await promiseCase();
         }
         expect(res).assertEqual("The globalCallObject is not registered");
+        done();
+    })
+
+    // Check the timer in worker thread.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_THREADWORKER_0008
+     * @tc.name: threadWorker_timer_test_001
+     * @tc.desc: Check whether the timer in the worker thread is normal.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('threadWorker_timer_test_001', 0, async function (done) {
+        let ss = new worker.ThreadWorker("entry/ets/workers/newworker_035.js");
+        let res = "";
+        let isTerminate = false;
+
+        ss.onmessage = function (d) {
+            res = d.data;
+            ss.terminate();
+        }
+        ss.onexit = function () {
+            isTerminate = true;
+        }
+        ss.postMessage("1");
+        while (!isTerminate) {
+          await promiseCase();
+        }
+        expect(res).assertEqual("123");
+        done();
+    })
+
+    // Check the nested call in worker thread.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_THREADWORKER_0009
+     * @tc.name: threadWorker_nestedCall_test_001
+     * @tc.desc: Check whether nested call in the worker thread is normal.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('threadWorker_nestedCall_test_001', 0, async function (done) {
+        let ss = new worker.ThreadWorker("entry/ets/workers/newworker_036.js");
+        let res = "";
+        let isTerminate = false;
+
+        ss.onmessage = function (d) {
+            res = d.data;
+            ss.terminate();
+        }
+        ss.onexit = function () {
+            isTerminate = true;
+        }
+        ss.postMessage("1");
+        while (!isTerminate) {
+          await promiseCase();
+        }
+        expect(res).assertEqual("456");
+        done();
+    })
+
+    // Check the napi_queue_async_work_with_qos in worker thread.
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ETSUTILS_THREADWORKER_0009
+     * @tc.name: threadWorke_async_call_test_001
+     * @tc.desc: Check whether napi_queue_async_work_with_qos in the worker thread is normal.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 2
+     */
+    it('threadWorke_async_call_test_001', 0, async function (done) {
+        let ss = new worker.ThreadWorker("entry/ets/workers/newworker_038.js");
+        let res = "";
+        let isTerminate = false;
+
+        ss.onmessage = function (d) {
+            res = d.data;
+            ss.terminate();
+        }
+        ss.onexit = function () {
+            isTerminate = true;
+        }
+        ss.postMessage("1");
+        while (!isTerminate) {
+          await promiseCase();
+        }
+        expect(res).assertEqual("97,98,99");
         done();
     })
 })
