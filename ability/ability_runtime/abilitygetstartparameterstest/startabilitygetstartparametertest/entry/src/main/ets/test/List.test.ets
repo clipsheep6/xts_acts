@@ -14,7 +14,9 @@
  */
 
 import StartAbilityGetStartParameterTest from './StartAbilityGetStartParameter.test';
+import appManagerApiTest from './AppManagerApi.test'
 
 export default function testsuite() {
   StartAbilityGetStartParameterTest();
+  appManagerApiTest()
 }
