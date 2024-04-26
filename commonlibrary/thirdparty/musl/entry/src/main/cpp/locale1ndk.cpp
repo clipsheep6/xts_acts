@@ -23,6 +23,7 @@
 #include <ifaddrs.h>
 #include <js_native_api_types.h>
 #include <net/if.h>
+#include <string.h>
 
 #define MAX_NAMBER 80
 #define FAIL (-1)
@@ -45,6 +46,19 @@ static napi_value Newlocale(napi_env env, napi_callback_info info)
     return result;
 }
 
+static napi_value Newlocale2(napi_env env, napi_callback_info info)
+{
+    locale_t newLocale = newlocale(LC_ALL_MASK, "zh_CN.UTF-8", nullptr);
+    napi_value result;
+    if (newLocale == PARAM_0) {
+        napi_create_int32(env, FAIL, &result);
+    } else {
+        napi_create_int32(env, PARAM_0, &result);
+        freelocale(newLocale);
+    }
+    return result;
+}
+
 static napi_value Setlocale(napi_env env, napi_callback_info info)
 {
     char *locale = setlocale(INIT, "");
@@ -57,12 +71,31 @@ static napi_value Setlocale(napi_env env, napi_callback_info info)
     return result;
 }
 
+static napi_value Localeconv(napi_env env, napi_callback_info info)
+{
+    setlocale(LC_ALL, "zh_CN.UTF-8");
+    struct lconv *ptr = localeconv();
+    napi_value result;
+    if (ptr == nullptr) {
+        napi_create_int32(env, FAIL, &result);
+    } else {
+        if (strcmp(ptr->int_curr_symbol, "CNY") == 0) {
+            napi_create_int32(env, PARAM_0, &result);
+        } else {
+            napi_create_int32(env, FAIL, &result);
+        }
+    }
+    return result;
+}
+
 EXTERN_C_START
 static napi_value Init(napi_env env, napi_value exports)
 {
     napi_property_descriptor desc[] = {
         {"newlocale", nullptr, Newlocale, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"setlocale", nullptr, Setlocale, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"newlocale2", nullptr, Newlocale2, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"setlocale", nullptr, Setlocale, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"localeconv", nullptr, Localeconv, nullptr, nullptr, nullptr, napi_default, nullptr}};
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }

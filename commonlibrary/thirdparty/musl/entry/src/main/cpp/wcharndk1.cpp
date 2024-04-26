@@ -28,6 +28,7 @@
 #include <fcntl.h>
 #include <memory.h>
 #include <unistd.h>
+#include <locale.h>
 
 #define PARAM_0 0
 #define PARAM_1 1
@@ -791,6 +792,19 @@ static napi_value Wcstod_One(napi_env env, napi_callback_info info)
     return result;
 }
 
+static napi_value WcstodL_One(napi_env env, napi_callback_info info)
+{
+    wchar_t str0[] = L"3.14wcstod";
+    wchar_t *end = nullptr;
+    wchar_t str1[] = L"wcstod";
+    locale_t loc = newlocale(LC_ALL_MASK, "zh_CN.UTF-8", nullptr);
+    double ret = wcstod_l(str0, &end, loc);
+    NAPI_ASSERT(env, (fabs(ret - PARAM_314) < DBL_EPSILON), "wcstod Error");
+    napi_value result = nullptr;
+    napi_create_int32(env, wcscmp(end, str1) == ERRON_0, &result);
+    return result;
+}
+
 static napi_value Wcstof_One(napi_env env, napi_callback_info info)
 {
     wchar_t str0[] = L"3.14wcstof";
@@ -1261,6 +1275,7 @@ static napi_value Init(napi_env env, napi_value exports)
         {"Wcsspn_One", nullptr, Wcsspn_One, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"Wcsstr_One", nullptr, Wcsstr_One, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"Wcstod_One", nullptr, Wcstod_One, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"WcstodL_One", nullptr, WcstodL_One, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"Wcstof_One", nullptr, Wcstof_One, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"Wcstok_One", nullptr, Wcstok_One, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"Wcstol_One", nullptr, Wcstol_One, nullptr, nullptr, nullptr, napi_default, nullptr},
