@@ -56,15 +56,15 @@ export default function flagstartwithouttipstest() {
     })
 
     /**
-     * @tc.number: SUB_Ability_AbilityRuntime_startAbility_FLAG_0100
+     * @tc.number: 001_SUB_Ability_AbilityRuntime_startAbility_FLAG
      * @tc.name: Verify that the implicit startup application does not set flags and does not match the display popup
      * @tc.desc: A pop-up dialog box
      * @tc.size: MediumTest
      * @tc.type: Function
      * @tc.level 0
      */
-    it('SUB_Ability_AbilityRuntime_startAbility_FLAG_0100', 0, async (done: Function) => {
-      let TAG = 'SUB_Ability_AbilityRuntime_startAbility_FLAG_0100';
+    it('001_SUB_Ability_AbilityRuntime_startAbility_FLAG', 0, async (done: Function) => {
+      let TAG = '001_SUB_Ability_AbilityRuntime_startAbility_FLAG';
       hilog.info(0x0000, TAG, '%{public}s', '--start');
       let popupCorrect = false;
       let getCloseBtn = false;
@@ -116,15 +116,15 @@ export default function flagstartwithouttipstest() {
     })
 
     /**
-     * @tc.number: SUB_Ability_AbilityRuntime_startAbility_FLAG_0200
+     * @tc.number: 002_SUB_Ability_AbilityRuntime_startAbility_FLAG
      * @tc.name: Verify that the implicit startup application sets flags and does not display pop-ups if they do not match
      * @tc.desc: No information dialog box is displayed
      * @tc.size: MediumTest
      * @tc.type: Function
      * @tc.level 0
      */
-    it('SUB_Ability_AbilityRuntime_startAbility_FLAG_0200', 0, async (done: Function) => {
-      let TAG = 'SUB_Ability_AbilityRuntime_startAbility_FLAG_0200';
+    it('002_SUB_Ability_AbilityRuntime_startAbility_FLAG', 0, async (done: Function) => {
+      let TAG = '002_SUB_Ability_AbilityRuntime_startAbility_FLAG';
       hilog.info(0x0000, TAG, '%{public}s', '--start');
       let wantInfo: Want = {
         action: 'action.want.notability.notability',
@@ -174,15 +174,15 @@ export default function flagstartwithouttipstest() {
     })
 
     /**
-     * @tc.number: SUB_Ability_AbilityRuntime_startAbility_FLAG_0500
+     * @tc.number: 005_SUB_Ability_AbilityRuntime_startAbility_FLAG
      * @tc.name: Verify that the implicit startup service does not set flags and does not display pop-ups
      * @tc.desc: Pop-up selection box
      * @tc.size: MediumTest
      * @tc.type: Function
      * @tc.level 3
     */
-    it('SUB_Ability_AbilityRuntime_startAbility_FLAG_0500', 0, async (done: Function) => {
-      let TAG = 'SUB_Ability_AbilityRuntime_startAbility_FLAG_0500';
+    it('005_SUB_Ability_AbilityRuntime_startAbility_FLAG', 0, async (done: Function) => {
+      let TAG = '005_SUB_Ability_AbilityRuntime_startAbility_FLAG';
       hilog.info(0x0000, TAG, '%{public}s', '--start');
       let wantInfo: Want = {
         action: 'com.acts.two.ability'
@@ -232,15 +232,15 @@ export default function flagstartwithouttipstest() {
     })
 
     /**
-     * @tc.number: SUB_Ability_AbilityRuntime_startAbility_FLAG_0600
+     * @tc.number: 006_SUB_Ability_AbilityRuntime_startAbility_FLAG
      * @tc.name: Verify that the implicit startup service sets flags and does not display pop-ups if they do not match
      * @tc.desc: Pop-up selection box
      * @tc.size: MediumTest
      * @tc.type: Function
      * @tc.level 3
      */
-    it('SUB_Ability_AbilityRuntime_startAbility_FLAG_0600', 0, async (done: Function) => {
-      let TAG = 'SUB_Ability_AbilityRuntime_startAbility_FLAG_0600';
+    it('006_SUB_Ability_AbilityRuntime_startAbility_FLAG', 0, async (done: Function) => {
+      let TAG = '006_SUB_Ability_AbilityRuntime_startAbility_FLAG';
       hilog.info(0x0000, TAG, '%{public}s', '--start');
       let wantInfo: Want = {
         action: 'com.acts.two.ability',
@@ -291,15 +291,15 @@ export default function flagstartwithouttipstest() {
     })
 
     /**
-     * @tc.number: SUB_Ability_AbilityRuntime_startAbility_FLAG_0700
+     * @tc.number: 007_SUB_Ability_AbilityRuntime_startAbility_FLAG
      * @tc.name: Verify that the implicit startup application does not set flags and matches one that opens directly
      * @tc.desc: Pull the matching UIAbility directly
      * @tc.size: MediumTest
      * @tc.type: Function
      * @tc.level 3
      */
-    it('SUB_Ability_AbilityRuntime_startAbility_FLAG_0700', 0, async (done: Function) => {
-      let TAG = 'SUB_Ability_AbilityRuntime_startAbility_FLAG_0700';
+    it('007_SUB_Ability_AbilityRuntime_startAbility_FLAG', 0, async (done: Function) => {
+      let TAG = '007_SUB_Ability_AbilityRuntime_startAbility_FLAG';
       hilog.info(0x0000, TAG, '%{public}s', '--start');
       await abilityDelegator.executeShellCommand('aa start -b com.acts.flagstartwithouttipstest -a TestAbility');
       await sleep(3000);
@@ -318,7 +318,7 @@ export default function flagstartwithouttipstest() {
           hilog.info(0x0000, TAG, 'text at this success %{public}s ', JSON.stringify(data));
           openViewData = true;
           await sleep(100);
-          await data.click();
+          !!data?.click && await data?.click();
         }).catch(() => {
           hilog.info(0x0000, TAG, '%{public}s', 'findComponent failed');
         })
@@ -332,15 +332,15 @@ export default function flagstartwithouttipstest() {
     })
 
     /**
-     * @tc.number: SUB_Ability_AbilityRuntime_startAbility_FLAG_0800
+     * @tc.number: 008_SUB_Ability_AbilityRuntime_startAbility_FLAG
      * @tc.name: Verify that the implicit startup application sets flags and matches one that opens directly
      * @tc.desc: Pull the matching UIAbility directly
      * @tc.size: MediumTest
      * @tc.type: Function
      * @tc.level 3
      */
-    it('SUB_Ability_AbilityRuntime_startAbility_FLAG_0800', 0, async (done: Function) => {
-      let TAG = 'SUB_Ability_AbilityRuntime_startAbility_FLAG_0800';
+    it('008_SUB_Ability_AbilityRuntime_startAbility_FLAG', 0, async (done: Function) => {
+      let TAG = '008_SUB_Ability_AbilityRuntime_startAbility_FLAG';
       hilog.info(0x0000, TAG, '%{public}s', '--start');
       await abilityDelegator.executeShellCommand('aa start -b com.acts.flagstartwithouttipstest -a TestAbility');
       await sleep(3000);
@@ -360,7 +360,7 @@ export default function flagstartwithouttipstest() {
           hilog.info(0x0000, TAG, 'text at this success %{public}s ', JSON.stringify(data));
           openViewData = true;
           await sleep(100);
-          await data.click();
+          !!data?.click && await data?.click();
         }).catch(() => {
           hilog.info(0x0000, TAG, '%{public}s', 'findComponent failed');
         })
