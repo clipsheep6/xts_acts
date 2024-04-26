@@ -24,8 +24,8 @@ import { PropertyKey }from './PropertyKey'
 
 let imageSourceApi: image.ImageSource;
 let pixelMap: image.PixelMap;
-let filesDir: string
-let cacheDir: string
+let filesDir: string | undefined;
+let cacheDir: string | undefined;
 
 const callbackExpectFail = (done: Function, testTag: string) => {
   try {
