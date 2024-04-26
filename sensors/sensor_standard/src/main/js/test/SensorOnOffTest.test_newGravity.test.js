@@ -85,6 +85,8 @@ describe("SensorJsTest_sensor_42", function () {
     const SERVICE_EXCEPTION_CODE = 14500101
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
+    const SENSOR_NO_SUPPORT_CODE = 14500102
+    const SENSOR_NO_SUPPOR_MSG = 'Can\'t find the sensorId.'
     let invalid  = -1;
 
     /*
@@ -107,8 +109,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info('newGravity_SensorJsTest001 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -138,8 +140,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info('newGravity_SensorJsTest002 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -195,8 +197,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info('newGravity_SensorJsTest004 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -243,8 +245,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info("newGravity_SensorJsTest005 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -273,8 +275,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info("newGravity_SensorJsTest006 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -339,8 +341,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info("newGravity_SensorJsTest008 error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -403,8 +405,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info("newGravity_SensorJsTest010 error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -487,8 +489,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info("newGravity_SensorJsTest012 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -568,8 +570,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info("newGravity_SensorJsTest014 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -630,8 +632,8 @@ describe("SensorJsTest_sensor_42", function () {
         })
     } catch (error) {
         console.info("newGravity_SensorJsTest015 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
     })
@@ -709,8 +711,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
     } catch (error) {
         console.info("newGravity_SensorJsTest017 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
     })
@@ -752,8 +754,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
     } catch (error) {
         console.info("newGravity_SensorJsTest018 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
     })
@@ -788,8 +790,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
     } catch (error) {
         console.info("newGravity_SensorJsTest019 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
     })
@@ -825,8 +827,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
     } catch (error) {
         console.info("newGravity_SensorJsTest020 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
     })
@@ -851,8 +853,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info('newGravity_SensorJsTest021 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -892,8 +894,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info('newGravity_SensorJsTest022 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -934,8 +936,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info('newGravity_SensorJsTest023 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -971,8 +973,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info("newGravity_SensorJsTest024 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -1013,8 +1015,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info("newGravity_SensorJsTest025 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -1053,8 +1055,8 @@ describe("SensorJsTest_sensor_42", function () {
             })
         } catch (error) {
             console.info('newGravity_SensorJsTest026 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })

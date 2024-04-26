@@ -63,7 +63,9 @@ describe("SensorJsTest_sensor_63", function () {
     const PERMISSION_DENIED_CODE = 201
     const PARAMETER_ERROR_CODE = 401
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
-    const PERMISSION_DENIED_MSG = 'Permission denied.'    
+    const PERMISSION_DENIED_MSG = 'Permission denied.'
+    const SENSOR_NO_SUPPORT_CODE = 14500102
+    const SENSOR_NO_SUPPOR_MSG = 'Can\'t find the sensorId.'
 
     /*
      * @tc.name:SUB_SensorsSystem_NewFrequency_JSTest_0010
@@ -97,8 +99,8 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(err.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(err.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -135,8 +137,8 @@ describe("SensorJsTest_sensor_63", function () {
                 });
             } catch (err) {
                 console.error('Sensor is not support');
-                expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-                expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
+                expect(err.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(err.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
         })
@@ -173,8 +175,8 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(err.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(err.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -211,8 +213,8 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(err.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(err.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -249,8 +251,8 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(err.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(err.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -287,8 +289,8 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(err.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(err.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -325,8 +327,8 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(err.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(err.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -363,8 +365,8 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(err.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(err.message).assertEqual(SENSOR_NO_SUPPOR_MSG);;
             done();
         }
     })
@@ -401,8 +403,8 @@ describe("SensorJsTest_sensor_63", function () {
             });
         } catch (err) {
             console.error('Sensor is not support');
-            expect(err.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(err.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(err.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(err.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })

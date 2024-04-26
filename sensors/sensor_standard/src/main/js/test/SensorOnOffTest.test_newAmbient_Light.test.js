@@ -80,6 +80,8 @@ describe("SensorJsTest_sensor_41", function () {
     const PARAMETER_ERROR_CODE = 401
     const SERVICE_EXCEPTION_CODE = 14500101
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
+    const SENSOR_NO_SUPPORT_CODE = 14500102
+    const SENSOR_NO_SUPPOR_MSG = 'Can\'t find the sensorId.';
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
 	let invalid  = -1;
 	
@@ -105,8 +107,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
 		} catch (error) {
             console.info('newAmbient_Light_SensorJsTest001 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -156,8 +158,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
 		} catch (error) {
             console.info('newAmbient_Light_SensorJsTest003 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -199,8 +201,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
         } catch (error) {
             console.info("newAmbient_Light_SensorJsTest004 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }			
     })
@@ -226,8 +228,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
         } catch (error) {
             console.info("newAmbient_Light_SensorJsTest005 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }				
     })
@@ -284,8 +286,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
 	    } catch (error) {
             console.info("newAmbient_Light_SensorJsTest007 error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -340,8 +342,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
 		} catch (error) {
             console.info("newAmbient_Light_SensorJsTest009 error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -414,8 +416,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
 		} catch (error) {
             console.info("newAmbient_Light_SensorJsTest011 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -485,8 +487,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
 		} catch (error) {
             console.info("newAmbient_Light_SensorJsTest013 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }	
 	})		
@@ -541,8 +543,8 @@ describe("SensorJsTest_sensor_41", function () {
 		})
 	} catch (error) {
         console.info("newAmbient_Light_SensorJsTest014 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})	
@@ -614,8 +616,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
 	} catch (error) {
         console.info("newAmbient_Light_SensorJsTest016 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})
@@ -654,8 +656,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
 	} catch (error) {
         console.info("newAmbient_Light_SensorJsTest017 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})
@@ -687,8 +689,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
 	} catch (error) {
         console.info("newAmbient_Light_SensorJsTest018 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})
@@ -721,8 +723,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
 	} catch (error) {
         console.info("newAmbient_Light_SensorJsTest019 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})
@@ -758,8 +760,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
 		} catch (error) {
             console.info('newAmbient_Light_SensorJsTest020 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -796,8 +798,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
 		} catch (error) {
             console.info('newAmbient_Light_SensorJsTest021 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -835,8 +837,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
 		} catch (error) {
             console.info('newAmbient_Light_SensorJsTest022 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -869,8 +871,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
         } catch (error) {
             console.info("newAmbient_Light_SensorJsTest023 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }			
     })
@@ -908,8 +910,8 @@ describe("SensorJsTest_sensor_41", function () {
 			})
         } catch (error) {
             console.info("newAmbient_Light_SensorJsTest024 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }				
     })	
