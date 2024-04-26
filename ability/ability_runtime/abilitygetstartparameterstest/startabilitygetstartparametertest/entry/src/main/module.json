@@ -62,7 +62,6 @@
         "exported": true,
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
-
         "skills": [
           {
             "actions": [
@@ -83,7 +82,6 @@
         "exported": true,
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
-
         "skills": [
           {
             "actions": [
@@ -104,7 +102,6 @@
         "exported": true,
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
-
         "skills": [
           {
             "actions": [
@@ -125,7 +122,6 @@
         "exported": true,
         "startWindowIcon": "$media:icon",
         "startWindowBackground": "$color:start_window_background",
-
         "skills": [
           {
             "actions": [
@@ -140,8 +136,11 @@
     ],
     "requestPermissions": [
       {
-        "name":"ohos.permission.START_ABILITIES_FROM_BACKGROUND",
-        "reason":"need use ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+        "name": "ohos.permission.START_ABILITIES_FROM_BACKGROUND",
+        "reason": "need use ohos.permission.START_ABILITIES_FROM_BACKGROUND"
+      },
+      {
+        "name": "ohos.permission.RUNNING_STATE_OBSERVER"
       }
     ]
   }
