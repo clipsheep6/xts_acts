@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function textArea_center() {
-  describe('textArea_center', function () {
-    beforeEach(async function (done) {
+  describe('textArea_center', () => {
+    beforeEach(async (done: Function) => {
       console.info("textArea_center beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/textArea_center',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/textArea_center',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function textArea_center() {
         console.info("get textArea_center state pages: " + JSON.stringify(pages));
         if (!("textArea_center" == pages.name)) {
           console.info("get textArea_center state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push textArea_center page result: " + JSON.stringify(result));
         }
@@ -49,7 +62,7 @@ export default function textArea_center() {
     * @tc.desc  : When textArea is in the middle, clicking on the top of the input box triggers the keyboard
     * @tc.level : Level 2
     */
-    it('textArea_center_001', 0, async function (done) {
+    it('textArea_center_001', 0, async (done: Function) => {
 
       console.info('[textArea_center_001] START');
       await CommonFunc.sleep(1000);
@@ -63,7 +76,7 @@ export default function textArea_center() {
       let driver = await Driver.create();
       await CommonFunc.sleep(500);
       await driver.click(
-        (Math.round(textArea_01.left + (textArea_01.right - textArea_01.left) /2)),(Math.round(textArea_01.top + (textArea_01.bottom - textArea_01.top) /45))
+        (Math.round(textArea_01.left + (textArea_01.right - textArea_01.left) / 2)), (Math.round(textArea_01.top + (textArea_01.bottom - textArea_01.top) / 45))
       );
       await CommonFunc.sleep(1000);
 
@@ -85,7 +98,7 @@ export default function textArea_center() {
     * @tc.desc  : When textArea is in the middle, clicking on the middle of the input box triggers the keyboard
     * @tc.level : Level 2
     */
-    it('textArea_center_002', 0, async function (done) {
+    it('textArea_center_002', 0, async (done: Function) => {
 
       console.info('[textArea_center_002] START');
       await CommonFunc.sleep(1000);
@@ -99,7 +112,7 @@ export default function textArea_center() {
       let driver = await Driver.create();
       await CommonFunc.sleep(500);
       await driver.click(
-        (Math.round(textArea_01.left + (textArea_01.right - textArea_01.left) /2)),(Math.round(textArea_01.top + (textArea_01.bottom - textArea_01.top) /2))
+        (Math.round(textArea_01.left + (textArea_01.right - textArea_01.left) / 2)), (Math.round(textArea_01.top + (textArea_01.bottom - textArea_01.top) / 2))
       );
       await CommonFunc.sleep(1000);
 
@@ -121,7 +134,7 @@ export default function textArea_center() {
     * @tc.desc  : When textArea is in the middle, clicking on the bottom of the input box triggers the keyboard
     * @tc.level : Level 2
     */
-    it('textArea_center_003', 0, async function (done) {
+    it('textArea_center_003', 0, async (done: Function) => {
 
       console.info('[textArea_center_003] START');
       await CommonFunc.sleep(1000);
@@ -140,7 +153,7 @@ export default function textArea_center() {
 
       await CommonFunc.sleep(500);
       await driver.click(
-        (Math.round(textArea_01.left + (textArea_01.right - textArea_01.left) /2)),(Math.round(textArea_01.top + (textArea_01.bottom - textArea_01.top) /45 *44))
+        (Math.round(textArea_01.left + (textArea_01.right - textArea_01.left) / 2)), (Math.round(textArea_01.top + (textArea_01.bottom - textArea_01.top) / 45 * 44))
       );
       await CommonFunc.sleep(1000);
 
@@ -148,10 +161,7 @@ export default function textArea_center() {
       let textArea_02 = CommonFunc.getComponentRect('textArea_center_textArea_01');
       let y6 = textArea_02.bottom
       expect(y6).assertLess(y5);
-
       done();
     });
-
-
   })
 }

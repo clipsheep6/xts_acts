@@ -13,18 +13,31 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function ToggleJsunit() {
-  describe('ToggleJsunit', function () {
-    beforeEach(async function (done) {
+  describe('ToggleJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("Toggle beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/TogglePage',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/TogglePage',
       }
       try {
         router.clear();
@@ -32,7 +45,7 @@ export default function ToggleJsunit() {
         console.info("get Toggle state pages: " + JSON.stringify(pages));
         if (!("TogglePage" == pages.name)) {
           console.info("get Toggle state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           console.info("push Toggle page result: " + JSON.stringify(result));
           await CommonFunc.sleep(2000);
         }
@@ -43,36 +56,38 @@ export default function ToggleJsunit() {
       done();
     });
 
-    it('ToggleJsunit_0100', 0, async function (done) {
+    it('ToggleJsunit_0100', 0, async (done: Function) => {
       // Get the information of Toggle component
       console.info('[ToggleJsunit_0100] START');
-      let strJson = getInspectorByKey('toggleCheckbox');
-      let obj = JSON.parse(strJson);
-      console.info("[ToggleJsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[ToggleJsunit_0100] type: " + JSON.stringify(obj.$attrs.type));
-      console.info("[ToggleJsunit_0100] isOn: " + JSON.stringify(obj.$attrs.isOn));
-      console.info("[ToggleJsunit_0100] selectedColor: " + JSON.stringify(obj.$attrs.selectedColor));
+      let strJson: string = getInspectorByKey('toggleCheckbox');
+
+      console.info("[ToggleJsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[ToggleJsunit_0100] type: " + JSON.stringify(JSON.parse(strJson).$attrs.type));
+      console.info("[ToggleJsunit_0100] isOn: " + JSON.stringify(JSON.parse(strJson).$attrs.isOn));
+      console.info("[ToggleJsunit_0100] selectedColor: " + JSON.stringify(JSON.parse(strJson).$attrs.selectedColor));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.type).assertEqual('ToggleType.Checkbox');
-      expect(obj.$attrs.isOn).assertEqual('true');
-      expect(obj.$attrs.selectedColor).assertEqual('#FFFF0000');
+      expect(JSON.parse(strJson).$attrs.type).assertEqual('ToggleType.Checkbox');
+      expect(JSON.parse(strJson).$attrs.isOn).assertEqual('true');
+      expect(JSON.parse(strJson).$attrs.selectedColor).assertEqual('#FFFF0000');
       let strJson1 = getInspectorByKey('toggleSwitch');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[ToggleJsunit_0100] component obj1 is: " + JSON.stringify(obj1));
-      console.info("[ToggleJsunit_0100] switchPointColor: " + JSON.stringify(obj1.$attrs.switchPointColor));
+
+      console.info("[ToggleJsunit_0100] component JSON.parse(strJson1) is: " + JSON.stringify(JSON.parse(strJson1)));
+      console.info("[ToggleJsunit_0100] switchPointColor: " + JSON.stringify(JSON.parse(strJson1)
+        .$attrs
+        .switchPointColor));
       await CommonFunc.sleep(1000);
-      expect(obj1.$attrs.switchPointColor).assertEqual('#FF008000');
+      expect(JSON.parse(strJson1).$attrs.switchPointColor).assertEqual('#FF008000');
 
       // Get default value of Toggle component
-      console.info("[ToggleJsunit_0100] isOn: " + JSON.stringify(obj1.$attrs.isOn));
-      expect(obj1.$attrs.isOn).assertEqual('false');
+      console.info("[ToggleJsunit_0100] isOn: " + JSON.stringify(JSON.parse(strJson1).$attrs.isOn));
+      expect(JSON.parse(strJson1).$attrs.isOn).assertEqual('false');
       console.info('[ToggleJsunit_0100] END');
       done();
     });
 
-    it('ToggleJsunit_0200', 0, async function (done) {
+    it('ToggleJsunit_0200', 0, async (done: Function) => {
       // Verify switch function of Toggle component
-      console.info('[ToggleJsunit_0200] START');      
+      console.info('[ToggleJsunit_0200] START');
       let driver = await UiDriver.create();
       let switchButton = await driver.findComponent(BY.key('toggleSwitch'));
       await switchButton.click();
@@ -94,7 +109,7 @@ export default function ToggleJsunit() {
       done();
     });
 
-    it('ToggleJsunit_0300', 0, async function (done) {
+    it('ToggleJsunit_0300', 0, async (done: Function) => {
       // Verify checkbox function of Toggle component
       console.info('[ToggleJsunit_0300] START');
       await CommonFunc.sleep(1000);
@@ -116,7 +131,7 @@ export default function ToggleJsunit() {
       done();
     });
 
-    it('ToggleJsunit_0400', 0, async function (done) {
+    it('ToggleJsunit_0400', 0, async (done: Function) => {
       // Verify button function of Toggle component
       console.info('[ToggleJsunit_0400] START');
       let driver = await UiDriver.create();
@@ -137,68 +152,88 @@ export default function ToggleJsunit() {
       done();
     });
 
-    it('ToggleJsunit_0500', 0, async function (done) {
+    it('ToggleJsunit_0500', 0, async (done: Function) => {
       // Modify the attribute of Toggle component
       console.info('[ToggleJsunit_0500] START');
-      globalThis.value.message.notify({name:'type',value:ToggleType.Switch})
+      globalThis.value.message.notify({
+        name: 'type', value: ToggleType.Switch
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'isOn',value:'false'})
+      globalThis.value.message.notify({
+        name: 'isOn', value: 'false'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'selectedColor',value:'#FF008000'})
+      globalThis.value.message.notify({
+        name: 'selectedColor', value: '#FF008000'
+      })
       await CommonFunc.sleep(2000);
-      globalThis.value.message.notify({name:'switchPointColor',value:'#FFFF0000'})
+      globalThis.value.message.notify({
+        name: 'switchPointColor', value: '#FFFF0000'
+      })
       await CommonFunc.sleep(5000);
 
       // Get the attribute of Toggle component
-      let strJson = getInspectorByKey('toggleCheckbox');
-      let obj = JSON.parse(strJson);
-      console.info("[ToggleJsunit_0500] component obj is: " + JSON.stringify(obj));
-      console.info("[ToggleJsunit_0500] type: " + JSON.stringify(obj.$attrs.type));
-      console.info("[ToggleJsunit_0500] isOn: " + JSON.stringify(obj.$attrs.isOn));
-      console.info("[ToggleJsunit_0500] selectedColor: " + JSON.stringify(obj.$attrs.selectedColor));
+      let strJson: string = getInspectorByKey('toggleCheckbox');
+
+      console.info("[ToggleJsunit_0500] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[ToggleJsunit_0500] type: " + JSON.stringify(JSON.parse(strJson).$attrs.type));
+      console.info("[ToggleJsunit_0500] isOn: " + JSON.stringify(JSON.parse(strJson).$attrs.isOn));
+      console.info("[ToggleJsunit_0500] selectedColor: " + JSON.stringify(JSON.parse(strJson).$attrs.selectedColor));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.type).assertEqual('ToggleType.Switch');
-      expect(obj.$attrs.isOn).assertEqual('false');
-      expect(obj.$attrs.selectedColor).assertEqual('#FF008000');
+      expect(JSON.parse(strJson).$attrs.type).assertEqual('ToggleType.Switch');
+      expect(JSON.parse(strJson).$attrs.isOn).assertEqual('false');
+      expect(JSON.parse(strJson).$attrs.selectedColor).assertEqual('#FF008000');
       let strJson1 = getInspectorByKey('toggleSwitch');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[ToggleJsunit_0500] component obj1 is: " + JSON.stringify(obj1));
-      console.info("[ToggleJsunit_0500] switchPointColor: " + JSON.stringify(obj1.$attrs.switchPointColor));
+
+      console.info("[ToggleJsunit_0500] component JSON.parse(strJson1) is: " + JSON.stringify(JSON.parse(strJson1)));
+      console.info("[ToggleJsunit_0500] switchPointColor: " + JSON.stringify(JSON.parse(strJson1)
+        .$attrs
+        .switchPointColor));
       await CommonFunc.sleep(1000);
-      expect(obj1.$attrs.switchPointColor).assertEqual('#FFFF0000');
+      expect(JSON.parse(strJson1).$attrs.switchPointColor).assertEqual('#FFFF0000');
       console.info('[ToggleJsunit_0500] END');
       done();
     });
 
-    it('ToggleJsunit_0600', 0, async function (done) {
+    it('ToggleJsunit_0600', 0, async (done: Function) => {
       // Illegal modification of properties of Toggle component
       console.info('[ToggleJsunit_0600] START');
-      globalThis.value.message.notify({name:'type',value:123})
+      globalThis.value.message.notify({
+        name: 'type', value: 123
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'isOn',value:'aaa'})
+      globalThis.value.message.notify({
+        name: 'isOn', value: 'aaa'
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'selectedColor',value:123})
+      globalThis.value.message.notify({
+        name: 'selectedColor', value: 123
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'switchPointColor',value:'bbb'})
+      globalThis.value.message.notify({
+        name: 'switchPointColor', value: 'bbb'
+      })
       await CommonFunc.sleep(2000);
 
       // Get the attribute of Toggle component
-      let strJson = getInspectorByKey('toggleCheckbox');
-      let obj = JSON.parse(strJson);
-      console.info("[ToggleJsunit_0600] component obj is: " + JSON.stringify(obj));
-      console.info("[ToggleJsunit_0600] type: " + JSON.stringify(obj.$attrs.type));
-      console.info("[ToggleJsunit_0600] isOn: " + JSON.stringify(obj.$attrs.isOn));
-      console.info("[ToggleJsunit_0600] selectedColor: " + JSON.stringify(obj.$attrs.selectedColor));
+      let strJson: string = getInspectorByKey('toggleCheckbox');
+
+      console.info("[ToggleJsunit_0600] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[ToggleJsunit_0600] type: " + JSON.stringify(JSON.parse(strJson).$attrs.type));
+      console.info("[ToggleJsunit_0600] isOn: " + JSON.stringify(JSON.parse(strJson).$attrs.isOn));
+      console.info("[ToggleJsunit_0600] selectedColor: " + JSON.stringify(JSON.parse(strJson).$attrs.selectedColor));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.type).assertEqual('ToggleType.Switch');
-      expect(obj.$attrs.isOn).assertEqual('false');
-      expect(obj.$attrs.selectedColor).assertEqual('#FF00007B');
+      expect(JSON.parse(strJson).$attrs.type).assertEqual('ToggleType.Switch');
+      expect(JSON.parse(strJson).$attrs.isOn).assertEqual('false');
+      expect(JSON.parse(strJson).$attrs.selectedColor).assertEqual('#FF00007B');
       let strJson1 = getInspectorByKey('toggleSwitch');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[ToggleJsunit_0600] component obj1 is: " + JSON.stringify(obj1));
-      console.info("[ToggleJsunit_0600] switchPointColor: " + JSON.stringify(obj1.$attrs.switchPointColor));
+
+      console.info("[ToggleJsunit_0600] component JSON.parse(strJson1) is: " + JSON.stringify(JSON.parse(strJson1)));
+      console.info("[ToggleJsunit_0600] switchPointColor: " + JSON.stringify(JSON.parse(strJson1)
+        .$attrs
+        .switchPointColor));
       await CommonFunc.sleep(1000);
-      expect(obj1.$attrs.switchPointColor).assertEqual('#FFFFFFFF');
+      expect(JSON.parse(strJson1).$attrs.switchPointColor).assertEqual('#FFFFFFFF');
       console.info('[ToggleJsunit_0600] END');
       done();
     });

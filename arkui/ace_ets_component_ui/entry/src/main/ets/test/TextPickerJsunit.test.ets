@@ -14,14 +14,27 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
 
 
 export default function TextPickerJsunit() {
-  describe('TextPickerJsunit', function () {
-    beforeEach(async function (done) {
+  describe('TextPickerJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("TextPicker beforeEach start");
       let options = {
         uri: 'MainAbility/pages/TextPickerPage',
@@ -43,62 +56,73 @@ export default function TextPickerJsunit() {
       done();
     });
 
-    it('TextPickerJsunit_0100', 0, async function (done) {
+    it('TextPickerJsunit_0100', 0, async (done: Function) => {
       // Get the information of TextPicker component
       console.info('[TextPickerJsunit_0100] START');
       let strJson = getInspectorByKey('textPicker');
-      let obj = JSON.parse(strJson);
-      console.info("[TextPickerJsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[TextPickerJsunit_0100] range: " + JSON.stringify(obj.$attrs.range));
-      console.info("[TextPickerJsunit_0100] selected: " + JSON.stringify(obj.$attrs.selected));
-      console.info("[TextPickerJsunit_0100] value: " + JSON.stringify(obj.$attrs.value));
-      console.info("[TextPickerJsunit_0100] defaultPickerItemHeight: " + JSON.stringify(obj.$attrs.defaultPickerItemHeight));
+      console.info("[TextPickerJsunit_0100] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[TextPickerJsunit_0100] range: " + JSON.stringify(JSON.parse(strJson).$attrs.range));
+      console.info("[TextPickerJsunit_0100] selected: " + JSON.stringify(JSON.parse(strJson).$attrs.selected));
+      console.info("[TextPickerJsunit_0100] value: " + JSON.stringify(JSON.parse(strJson).$attrs.value));
+      console.info("[TextPickerJsunit_0100] defaultPickerItemHeight: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .defaultPickerItemHeight));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.range).assertEqual('["icon:,text:apple1","icon:,text:orange2","icon:,text:peach3","icon:,text:grape4"]');
-      expect(obj.$attrs.selected).assertEqual('0');
+      expect(JSON.parse(strJson).$attrs.range)
+        .assertEqual('["icon:,text:apple1","icon:,text:orange2","icon:,text:peach3","icon:,text:grape4"]');
+      expect(JSON.parse(strJson).$attrs.selected).assertEqual('0');
       //expect(obj.$attrs.value).assertEqual('orange2');
-      expect(obj.$attrs.defaultPickerItemHeight).assertEqual('20.00fp');
+      expect(JSON.parse(strJson).$attrs.defaultPickerItemHeight).assertEqual('20.00fp');
 
       // Get the content of Initial value
       let driver = await UiDriver.create()
       let strJson1 = getInspectorByKey('textContent1');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[TextPickerJsunit_0100] obj1: " + JSON.stringify(obj1));
-      expect(obj1.$attrs.content).assertEqual('value: 0');
+      console.info("[TextPickerJsunit_0100] obj1: " + JSON.stringify(JSON.parse(strJson1)));
+      expect(JSON.parse(strJson1).$attrs.content).assertEqual('value: 0');
       console.info('[TextPickerJsunit_0100] END');
       done();
     });
 
-    it('TextPickerJsunit_0200', 0, async function (done) {
+    it('TextPickerJsunit_0200', 0, async (done: Function) => {
       // Modify the attribute of TextPicker component
       console.info('[TextPickerJsunit_0200] START');
-      globalThis.value.message.notify({name:'fruits',value:['banana1', 'orange2', 'peach3', 'grape4']})
+      globalThis.value.message.notify({
+        name: 'fruits', value: ['banana1', 'orange2', 'peach3', 'grape4']
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'select',value:1})
+      globalThis.value.message.notify({
+        name: 'select', value: 1
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'parameterValue',value:'peach3'})
+      globalThis.value.message.notify({
+        name: 'parameterValue', value: 'peach3'
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'defaultPickerItemHeight',value:25})
+      globalThis.value.message.notify({
+        name: 'defaultPickerItemHeight', value: 25
+      })
       await CommonFunc.sleep(2000);
 
       // Get the attribute of TextPicker component
       let strJson = getInspectorByKey('textPicker');
-      let obj = JSON.parse(strJson);
-      console.info("[TextPickerJsunit_0200] component obj is: " + JSON.stringify(obj));
-      console.info("[TextPickerJsunit_0200] range: " + JSON.stringify(obj.$attrs.range));
-      console.info("[TextPickerJsunit_0200] selected: " + JSON.stringify(obj.$attrs.selected));
-      console.info("[TextPickerJsunit_0200] value: " + JSON.stringify(obj.$attrs.value));
-      console.info("[TextPickerJsunit_0200] defaultPickerItemHeight: " + JSON.stringify(obj.$attrs.defaultPickerItemHeight));
+      console.info("[TextPickerJsunit_0200] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[TextPickerJsunit_0200] range: " + JSON.stringify(JSON.parse(strJson).$attrs.range));
+      console.info("[TextPickerJsunit_0200] selected: " + JSON.stringify(JSON.parse(strJson).$attrs.selected));
+      console.info("[TextPickerJsunit_0200] value: " + JSON.stringify(JSON.parse(strJson).$attrs.value));
+      console.info("[TextPickerJsunit_0200] defaultPickerItemHeight: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .defaultPickerItemHeight));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.range).assertEqual('["icon:,text:banana1","icon:,text:orange2","icon:,text:peach3","icon:,text:grape4"]');
-      expect(obj.$attrs.selected).assertEqual('1');
+      expect(JSON.parse(strJson).$attrs.range)
+        .assertEqual('["icon:,text:banana1","icon:,text:orange2","icon:,text:peach3","icon:,text:grape4"]');
+      expect(JSON.parse(strJson).$attrs.selected).assertEqual('1');
       //expect(obj.$attrs.value).assertEqual('peach3');
-      expect(obj.$attrs.defaultPickerItemHeight).assertEqual('25.00fp');
+      expect(JSON.parse(strJson).$attrs.defaultPickerItemHeight).assertEqual('25.00fp');
       console.info('[TextPickerJsunit_0200] END');
       done();
     });
 
-    it('TextPickerJsunit_0300', 0, async function (done) {
+    it('TextPickerJsunit_0300', 0, async (done: Function) => {
       // Verify the functions of TextPicker component
       await CommonFunc.sleep(500);
       console.info('[TextPickerJsunit_0300] START');
@@ -114,37 +138,46 @@ export default function TextPickerJsunit() {
       await driver.swipe(Math.round(right / 2), Math.round(middle + 50), Math.round(right / 2), Math.round(middle - 50));
       await CommonFunc.sleep(6000);
       let strJson = getInspectorByKey('textContent1');
-      let obj = JSON.parse(strJson);
-      console.info("[TextPickerJsunit_0300] obj: " + JSON.stringify(obj));
-      expect(obj.$attrs.content == 'value: 0').assertFalse();
+      console.info("[TextPickerJsunit_0300] obj: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.content == 'value: 0').assertFalse();
       done();
     });
 
-    it('TextPickerJsunit_0400', 0, async function (done) {
+    it('TextPickerJsunit_0400', 0, async (done: Function) => {
       // Illegal modification of properties of TextPicker component
       console.info('[TextPickerJsunit_0400] START');
-      globalThis.value.message.notify({name:'fruits',value:'abc'})
+      globalThis.value.message.notify({
+        name: 'fruits', value: 'abc'
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'select',value:'test'})
+      globalThis.value.message.notify({
+        name: 'select', value: 'test'
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'parameterValue',value:123})
+      globalThis.value.message.notify({
+        name: 'parameterValue', value: 123
+      })
       await CommonFunc.sleep(1000);
-      globalThis.value.message.notify({name:'defaultPickerItemHeight',value:'abc'})
+      globalThis.value.message.notify({
+        name: 'defaultPickerItemHeight', value: 'abc'
+      })
       await CommonFunc.sleep(1000);
 
       // Get the attribute of TextPicker component
       let strJson = getInspectorByKey('textPicker');
-      let obj = JSON.parse(strJson);
-      console.info("[TextPickerJsunit_0400] component obj is: " + JSON.stringify(obj));
-      console.info("[TextPickerJsunit_0400] range: " + JSON.stringify(obj.$attrs.range));
-      console.info("[TextPickerJsunit_0400] selected: " + JSON.stringify(obj.$attrs.selected));
-      console.info("[TextPickerJsunit_0400] value: " + JSON.stringify(obj.$attrs.value));
-      console.info("[TextPickerJsunit_0400] defaultPickerItemHeight: " + JSON.stringify(obj.$attrs.defaultPickerItemHeight));
+      console.info("[TextPickerJsunit_0400] component obj is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[TextPickerJsunit_0400] range: " + JSON.stringify(JSON.parse(strJson).$attrs.range));
+      console.info("[TextPickerJsunit_0400] selected: " + JSON.stringify(JSON.parse(strJson).$attrs.selected));
+      console.info("[TextPickerJsunit_0400] value: " + JSON.stringify(JSON.parse(strJson).$attrs.value));
+      console.info("[TextPickerJsunit_0400] defaultPickerItemHeight: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .defaultPickerItemHeight));
       await CommonFunc.sleep(1000);
-      expect(obj.$attrs.range).assertEqual('["icon:,text:banana1","icon:,text:orange2","icon:,text:peach3","icon:,text:grape4"]');
-      expect(obj.$attrs.selected).assertEqual('1');
+      expect(JSON.parse(strJson).$attrs.range)
+        .assertEqual('["icon:,text:banana1","icon:,text:orange2","icon:,text:peach3","icon:,text:grape4"]');
+      expect(JSON.parse(strJson).$attrs.selected).assertEqual('1');
       //expect(obj.$attrs.value).assertEqual('');
-      expect(obj.$attrs.defaultPickerItemHeight).assertEqual('0.00fp');
+      expect(JSON.parse(strJson).$attrs.defaultPickerItemHeight).assertEqual('0.00fp');
       console.info('[TextPickerJsunit_0400] END');
       done();
     });

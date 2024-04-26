@@ -13,17 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 
 export default function Storage35Jsunit() {
-  describe('Storage35Jsunit', function () {
-    beforeEach(async function (done) {
+  describe('Storage35Jsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("Storage35Jsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/State/Storage35',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/State/Storage35',
       }
       try {
         router.clear();
@@ -31,7 +44,7 @@ export default function Storage35Jsunit() {
         console.info("get Storage35Jsunit state pages: " + JSON.stringify(pages));
         if (!("Storage35" == pages.name)) {
           console.info("get Storage35Jsunit state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push Storage35Jsunit page result: " + JSON.stringify(result));
         }
@@ -42,55 +55,57 @@ export default function Storage35Jsunit() {
       done();
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await CommonFunc.sleep(1000);
-      router.back({uri:"MainAbility/pages/index/index"});
+      router.back({
+        url: "MainAbility/pages/index/index"
+      });
     });
 
-    it('Storage35Jsunit_0100', 0, async function (done) {
+    it('Storage35Jsunit_0100', 0, async (done: Function) => {
       console.info('Storage35Jsunit_0100 START');
-      let strJson = getInspectorByKey('text35_link');
-      let obj = JSON.parse(strJson);
-      console.info("[Storage35Jsunit_0100] component obj is: " + JSON.stringify(obj));
-      console.info("[Storage35Jsunit_0100] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("121");
+      let strJson: string = getInspectorByKey('text35_link');
+
+      console.info("[Storage35Jsunit_0100] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[Storage35Jsunit_0100] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("121");
       console.info('[Storage35Jsunit_0100] END');
       done();
     });
 
-    it('Storage35Jsunit_0200', 0, async function (done) {
+    it('Storage35Jsunit_0200', 0, async (done: Function) => {
       console.info('Storage35Jsunit_0200 START');
-      let strJson = getInspectorByKey('text35_link2');
-      let obj = JSON.parse(strJson);
-      console.info("[Storage35Jsunit_0200] component obj is: " + JSON.stringify(obj));
-      console.info("[Storage35Jsunit_0200] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("undefined");
+      let strJson: string = getInspectorByKey('text35_link2');
+
+      console.info("[Storage35Jsunit_0200] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[Storage35Jsunit_0200] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("undefined");
       console.info('[Storage35Jsunit_0200] END');
       done();
     });
 
-    it('Storage35Jsunit_0300', 0, async function (done) {
+    it('Storage35Jsunit_0300', 0, async (done: Function) => {
       console.info('Storage35Jsunit_0300 START');
-      let strJson = getInspectorByKey('text35_link1Date2');
-      let obj = JSON.parse(strJson);
-      console.info("[Storage35Jsunit_0300] component obj is: " + JSON.stringify(obj));
-      console.info("[Storage35Jsunit_0300] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("0");
+      let strJson: string = getInspectorByKey('text35_link1Date2');
+
+      console.info("[Storage35Jsunit_0300] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[Storage35Jsunit_0300] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("0");
       console.info('[Storage35Jsunit_0300] END');
       done();
     });
 
-    it('Storage35Jsunit_0400', 0, async function (done) {
+    it('Storage35Jsunit_0400', 0, async (done: Function) => {
       console.info('Storage35Jsunit_0400 START');
       let driver = await UiDriver.create()
       let button = await driver.findComponent(BY.key('Storage35Btn'));
       await button.click();
       await CommonFunc.sleep(1000);
-      let strJson = getInspectorByKey('text35_link1Date2');
-      let obj = JSON.parse(strJson);
-      console.info("[Storage35Jsunit_0400] component obj is: " + JSON.stringify(obj));
-      console.info("[Storage35Jsunit_0400] text: " + JSON.stringify(obj.$attrs.content));
-      expect(obj.$attrs.content).assertEqual("121");
+      let strJson: string = getInspectorByKey('text35_link1Date2');
+
+      console.info("[Storage35Jsunit_0400] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      console.info("[Storage35Jsunit_0400] text: " + JSON.stringify(JSON.parse(strJson).$attrs.content));
+      expect(JSON.parse(strJson).$attrs.content).assertEqual("121");
       console.info('[Storage35Jsunit_0400] END');
       done();
     });

@@ -13,18 +13,32 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../MainAbility/utils/Common';
-import {MessageManager,Callback} from '../MainAbility/utils/MessageManager';
+import { MessageManager, Callback } from '../MainAbility/utils/MessageManager';
+
 const waitUiReadyMs = 1000;
 
 export default function dividerJsunit() {
-  describe('dividerJsunit', function () {
-    beforeEach(async function (done) {
+  describe('dividerJsunit', () => {
+    beforeEach(async (done: Function) => {
       console.info("dividerJsunit beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/divider',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/divider',
       }
       try {
         router.clear();
@@ -32,114 +46,134 @@ export default function dividerJsunit() {
         console.info("get dividerJsunit state pages:" + JSON.stringify(pages));
         if (!("divider" == pages.name)) {
           console.info("get dividerJsunit state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           console.info("push dividerJsunit success " + JSON.stringify(result));
         }
       } catch (err) {
-          console.error("push dividerJsunit page error:" + err);
-	        expect().assertFail();
+        console.error("push dividerJsunit page error:" + err);
+        expect().assertFail();
       }
       done();
     });
 
-    it('dividerJsunit_0100', 0, async function (done) {
-       console.info('dividerJsunit_0100 START');
-       await CommonFunc.sleep(1000);
-       // get the dividerJsunit_0100 component and test attribute
-       let strJson = getInspectorByKey('divider');
-       let obj = JSON.parse(strJson);
-       console.info("dividerJsunit_0100'] component obj is: " + JSON.stringify(obj));
-       expect(obj.$attrs.vertical).assertEqual('false');
-       expect(obj.$attrs.strokeWidth).assertEqual('20.00vp');
-       // to confirm
-       //expect(obj.$attrs.lineCap).assertEqual('LineCapStyle.Butt');
-       expect(obj.$attrs.lineCap).assertEqual('BUTT');
-       expect(obj.$attrs.color).assertEqual('#FFACBDEF');
-       done();
+    it('dividerJsunit_0100', 0, async (done: Function) => {
+      console.info('dividerJsunit_0100 START');
+      await CommonFunc.sleep(1000);
+      // get the dividerJsunit_0100 component and test attribute
+      let strJson: string = getInspectorByKey('divider');
+
+      console.info("dividerJsunit_0100'] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.vertical).assertEqual('false');
+      expect(JSON.parse(strJson).$attrs.strokeWidth).assertEqual('20.00vp');
+      // to confirm
+      //expect(JSON.parse(strJson).$attrs.lineCap).assertEqual('LineCapStyle.Butt');
+      expect(JSON.parse(strJson).$attrs.lineCap).assertEqual('BUTT');
+      expect(JSON.parse(strJson).$attrs.color).assertEqual('#FFACBDEF');
+      done();
     });
 
-   it('dividerJsunit_0200', 0, async function (done) {
+    it('dividerJsunit_0200', 0, async (done: Function) => {
       console.info('dividerJsunit_0200 START');
       await CommonFunc.sleep(1000);
       // modify the type attribute normal value of divider dynamically
-      globalThis.value.message.notify({name:'strokeWidth',value:'30'})
+      globalThis.value.message.notify({
+        name: 'strokeWidth', value: '30'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'lineCapStyle',value:LineCapStyle.Round})
+      globalThis.value.message.notify({
+        name: 'lineCapStyle', value: LineCapStyle.Round
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'color',value:'#FFFFFF'})
+      globalThis.value.message.notify({
+        name: 'color', value: '#FFFFFF'
+      })
       await CommonFunc.sleep(200);
       // check the value of changed attribute
-      let strJson = getInspectorByKey('divider');
-      let obj = JSON.parse(strJson);
-      console.info("[dividerJsunit_0200'] component obj is: " + JSON.stringify(obj.$attrs.lineCap));
-      expect(obj.$attrs.strokeWidth).assertEqual('30.00vp');
-      expect(obj.$attrs.lineCap).assertEqual('ROUND');
-      expect(obj.$attrs.color).assertEqual('#FFFFFFFF');
+      let strJson: string = getInspectorByKey('divider');
+
+      console.info("[dividerJsunit_0200'] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .lineCap));
+      expect(JSON.parse(strJson).$attrs.strokeWidth).assertEqual('30.00vp');
+      expect(JSON.parse(strJson).$attrs.lineCap).assertEqual('ROUND');
+      expect(JSON.parse(strJson).$attrs.color).assertEqual('#FFFFFFFF');
       done();
     });
 
-    it('dividerJsunit_0300', 0, async function (done) {
+    it('dividerJsunit_0300', 0, async (done: Function) => {
       console.info('dividerJsunit_0300 START');
       await CommonFunc.sleep(1000);
       // modify the lineCapStyle attribute normal value of divider dynamically
-      globalThis.value.message.notify({name:'lineCapStyle',value:LineCapStyle.Square})
+      globalThis.value.message.notify({
+        name: 'lineCapStyle', value: LineCapStyle.Square
+      })
       await CommonFunc.sleep(2000);
       // check the value of changed attribute
-      let strJson = getInspectorByKey('divider');
-      let obj = JSON.parse(strJson);
-      console.info("[dividerJsunit_0300'] component obj is: " + obj.$attrs.lineCap);
-      expect(obj.$attrs.lineCap).assertEqual('SQUARE');
+      let strJson: string = getInspectorByKey('divider');
+
+      console.info("[dividerJsunit_0300'] component JSON.parse(strJson) is: " + JSON.parse(strJson).$attrs.lineCap);
+      expect(JSON.parse(strJson).$attrs.lineCap).assertEqual('SQUARE');
       done();
     });
 
-    it('dividerJsunit_0400', 0, async function (done) {
+    it('dividerJsunit_0400', 0, async (done: Function) => {
       console.info('datelPanelJsunit_0400 START');
       await CommonFunc.sleep(1000);
       // modify the values attribute illegal value of divider dynamically
-      globalThis.value.message.notify({name:'strokeWidth',value:'-30'})
+      globalThis.value.message.notify({
+        name: 'strokeWidth', value: '-30'
+      })
       await CommonFunc.sleep(200);
-      globalThis.value.message.notify({name:'lineCapStyle',value:'4'})
+      globalThis.value.message.notify({
+        name: 'lineCapStyle', value: '4'
+      })
       await CommonFunc.sleep(200);
       //globalThis.value.message.notify({name:'color',value:'#FF'})
       //await CommonFunc.sleep(200);
       // check the value of changed attribute
-      let strJson = getInspectorByKey('divider');
-      let obj = JSON.parse(strJson);
-      expect(obj.$attrs.strokeWidth).assertEqual('-30.00vp');
-      expect(obj.$attrs.lineCap).assertEqual('BUTT');
+      let strJson: string = getInspectorByKey('divider');
+
+      expect(JSON.parse(strJson).$attrs.strokeWidth).assertEqual('-30.00vp');
+      expect(JSON.parse(strJson).$attrs.lineCap).assertEqual('BUTT');
       // to confirm
-     // expect(obj.$attrs.color).assertEqual('#33182431');
+      // expect(JSON.parse(strJson).$attrs.color).assertEqual('#33182431');
       done();
     });
 
-    it('dividerJsunit_0500', 0, async function (done) {
+    it('dividerJsunit_0500', 0, async (done: Function) => {
       console.info('dividerJsunit_0500 START');
       await CommonFunc.sleep(1000);
       // test the common attribute
-      globalThis.value.message.notify({name:'widthK',value:'1.0'})
+      globalThis.value.message.notify({
+        name: 'widthK', value: '1.0'
+      })
       await CommonFunc.sleep(2000);
       // check the value of changed attribute
-      let strJson = getInspectorByKey('divider');
-      let obj = JSON.parse(strJson);
-      console.info("[dividerJsunit_0500'] component obj is: " + JSON.stringify(obj));
-      expect(obj.$attrs.width).assertEqual('1.00vp')
+      let strJson: string = getInspectorByKey('divider');
+
+      console.info("[dividerJsunit_0500'] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)));
+      expect(JSON.parse(strJson).$attrs.width).assertEqual('1.00vp')
       done();
     });
 
-    
-    it('dividerJsunit_0600', 0, async function (done) {
+
+    it('dividerJsunit_0600', 0, async (done: Function) => {
       console.info('dividerJsunit_0500 START');
       await CommonFunc.sleep(1000);
       // modify the type attribute normal value of divider dynamically
-      globalThis.value.message.notify({name:'vertical',value:true})
+      globalThis.value.message.notify({
+        name: 'vertical', value: true
+      })
       await CommonFunc.sleep(2000);
       // check the value of changed attribute
-      let strJson = getInspectorByKey('divider');
-      let obj = JSON.parse(strJson);
-      console.info("[dividerJsunit_0600'] component obj is: " + JSON.stringify(obj.$attrs.vertical));
-      expect(obj.$attrs.vertical).assertEqual('true');
+      let strJson: string = getInspectorByKey('divider');
+
+      console.info("[dividerJsunit_0600'] component JSON.parse(strJson) is: " + JSON.stringify(JSON.parse(strJson)
+        .$attrs
+        .vertical));
+      expect(JSON.parse(strJson).$attrs.vertical).assertEqual('true');
       done();
-    });  
-    
+    });
+
   })
 }

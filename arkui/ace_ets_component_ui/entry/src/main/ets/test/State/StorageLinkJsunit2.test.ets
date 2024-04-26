@@ -13,17 +13,30 @@
  * limitations under the License.
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
-import router from '@system.router';
-import {UiComponent, UiDriver, Component, Driver, UiWindow, ON, BY, MatchPattern, DisplayRotation, ResizeDirection, WindowMode, PointerMatrix} from '@ohos.UiTest';
+import router from '@ohos.router';
+import {
+  UiComponent,
+  UiDriver,
+  Component,
+  Driver,
+  UiWindow,
+  ON,
+  BY,
+  MatchPattern,
+  DisplayRotation,
+  ResizeDirection,
+  WindowMode,
+  PointerMatrix
+} from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 
 
 export default function StorageLinkJsunit2() {
-  describe('StorageLinkJsunit2', function () {
-    beforeEach(async function (done) {
+  describe('StorageLinkJsunit2', () => {
+    beforeEach(async (done: Function) => {
       console.info("StorageLinkJsunit2 beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/State/StorageLink2',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/State/StorageLink2',
       }
       try {
         router.clear();
@@ -31,7 +44,7 @@ export default function StorageLinkJsunit2() {
         console.info("get StorageLinkJsunit2 state pages: " + JSON.stringify(pages));
         if (!("StorageProp" == pages.name)) {
           console.info("get StorageLinkJsunit2 state pages.name: " + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await CommonFunc.sleep(2000);
           console.info("push StorageLinkJsunit2 page result: " + JSON.stringify(result));
         }
@@ -42,7 +55,7 @@ export default function StorageLinkJsunit2() {
       done();
     });
 
-    it('StorageLinkJsunit2_0100', 0, async function (done) {
+    it('StorageLinkJsunit2_0100', 0, async (done: Function) => {
       // Get the init value of son1 and son2
       console.info('[StorageLinkJsunit2_0100] START');
       let driver = await UiDriver.create()
@@ -51,15 +64,15 @@ export default function StorageLinkJsunit2() {
       await CommonFunc.sleep(1000);
 
       let strJson1 = getInspectorByKey('button_son111');
-      let obj1 = JSON.parse(strJson1);
-      console.info("[StorageLinkJsunit2_0100] son1 obj1 is: " + JSON.stringify(obj1));
+
+      console.info("[StorageLinkJsunit2_0100] son1 JSON.parse(strJson1) is: " + JSON.stringify(JSON.parse(strJson1)));
       await CommonFunc.sleep(1000);
-      expect(obj1.$attrs.label).assertEqual('has1: true');
+      expect(JSON.parse(strJson1).$attrs.label).assertEqual('has1: true');
       console.info('[StorageLinkJsunit2_0100] END');
       done();
     });
 
-    it('StorageLinkJsunit2_0200', 0, async function (done) {
+    it('StorageLinkJsunit2_0200', 0, async (done: Function) => {
       // Get the init value of son1 and son2
       console.info('[StorageLinkJsunit2_0200] START');
       let driver = await UiDriver.create()
@@ -68,15 +81,15 @@ export default function StorageLinkJsunit2() {
       await CommonFunc.sleep(1000);
 
       let strJson2 = getInspectorByKey('button_son2');
-      let obj2 = JSON.parse(strJson2);
-      console.info("[StorageLinkJsunit2_0200] son2 obj2 is: " + JSON.stringify(obj2));
+
+      console.info("[StorageLinkJsunit2_0200] son2 JSON.parse(strJson2) is: " + JSON.stringify(JSON.parse(strJson2)));
       await CommonFunc.sleep(1000);
-      expect(obj2.$attrs.label).assertEqual('has2: false');
+      expect(JSON.parse(strJson2).$attrs.label).assertEqual('has2: false');
       console.info('[StorageLinkJsunit2_0200] END');
       done();
     });
 
-    it('StorageLinkJsunit2_0300', 0, async function (done) {
+    it('StorageLinkJsunit2_0300', 0, async (done: Function) => {
       // Get the init value of son1 and son2
       console.info('[StorageLinkJsunit2_0300] START');
       let driver = await UiDriver.create()
@@ -93,7 +106,7 @@ export default function StorageLinkJsunit2() {
       done();
     });
 
-    it('StorageLinkJsunit2_0400', 0, async function (done) {
+    it('StorageLinkJsunit2_0400', 0, async (done: Function) => {
       // Get the init value of son1 and son2
       console.info('[StorageLinkJsunit2_0400] START');
       let driver = await UiDriver.create()
@@ -102,15 +115,15 @@ export default function StorageLinkJsunit2() {
       await CommonFunc.sleep(1000);
 
       let strJson4 = getInspectorByKey('button_son4');
-      let obj4 = JSON.parse(strJson4);
-      console.info("[StorageLinkJsunit2_0400] son4 obj4 is: " + JSON.stringify(obj4));
+
+      console.info("[StorageLinkJsunit2_0400] son4 JSON.parse(strJson4) is: " + JSON.stringify(JSON.parse(strJson4)));
       await CommonFunc.sleep(1000);
-      expect(obj4.$attrs.label).assertEqual('has4: true');
+      expect(JSON.parse(strJson4).$attrs.label).assertEqual('has4: true');
       console.info('[StorageLinkJsunit2_0400] END');
       done();
     });
 
-    it('StorageLinkJsunit2_0500', 0, async function (done) {
+    it('StorageLinkJsunit2_0500', 0, async (done: Function) => {
       // Click to change the value of Storage
       console.info('[StorageLinkJsunit2_0500] START');
       let driver = await UiDriver.create()
@@ -119,15 +132,14 @@ export default function StorageLinkJsunit2() {
       await CommonFunc.sleep(2000);
 
       let strJson5 = getInspectorByKey('button_son5');
-      let obj5 = JSON.parse(strJson5);
-      console.info("[StorageLinkJsunit2_0500] son5 obj5 is: " + JSON.stringify(obj5));
+      console.info("[StorageLinkJsunit2_0500] son5 JSON.parse(strJson)5 is: " + JSON.stringify(JSON.parse(strJson5)));
       await CommonFunc.sleep(2000);
-      expect(obj5.$attrs.label).assertEqual('son1: 48');
+      expect(JSON.parse(strJson5).$attrs.label).assertEqual('son1: 48');
       console.info('[StorageLinkJsunit2_0500] END');
       done();
     });
 
-    it('StorageLinkJsunit2_0600', 0, async function (done) {
+    it('StorageLinkJsunit2_0600', 0, async (done: Function) => {
       // Click to change the value of Storage
       console.info('[StorageLinkJsunit2_0600] START');
       let driver = await UiDriver.create()
@@ -136,10 +148,9 @@ export default function StorageLinkJsunit2() {
       await CommonFunc.sleep(2000);
 
       let strJson6 = getInspectorByKey('button_son6');
-      let obj6 = JSON.parse(strJson6);
-      console.info("[StorageLinkJsunit2_0600] son6 obj6 is: " + JSON.stringify(obj6));
+      console.info("[StorageLinkJsunit2_0600] son6 JSON.parse(strJson)6 is: " + JSON.stringify(JSON.parse(strJson6)));
       await CommonFunc.sleep(1000);
-      expect(obj6.$attrs.label).assertEqual('son2: 49');
+      expect(JSON.parse(strJson6).$attrs.label).assertEqual('son2: 49');
       console.info('[StorageLinkJsunit2_0600] END');
       done();
     });
