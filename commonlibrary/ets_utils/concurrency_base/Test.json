@@ -1,5 +1,5 @@
 {
-    "description": "Configuration for hjunit demo Tests",
+    "description": "Configuration for concurrency base Tests",
     "driver": {
         "type": "OHJSUnitTest",
         "test-timeout": "800000",
@@ -16,5 +16,5 @@
             "type": "AppInstallKit",
             "cleanup-apps": true
         }
-    ] 
+    ]
 }

@@ -17,25 +17,25 @@
   "module": {
     "name": "entry",
     "type": "entry",
-    "description": "$string:entry_desc",
-    "mainElement": "MainAbility",
+    "description": "$string:module_test_desc",
+    "mainElement": "TestAbility",
     "deviceTypes": [
       "default",
       "tablet"
     ],
     "deliveryWithInstall": true,
     "installationFree": false,
-    "pages": "$profile:main_pages",
+    "pages": "$profile:test_pages",
     "abilities": [
       {
-        "name": "com.example.concurrency_base_xts.MainAbility",
-        "srcEntry": "./ets/MainAbility/MainAbility.ts",
-        "description": "$string:MainAbility_desc",
+        "name": "TestAbility",
+        "srcEntry": "./ets/testability/TestAbility.ets",
+        "description": "$string:TestAbility_desc",
         "icon": "$media:icon",
-        "label": "$string:MainAbility_label",
+        "label": "$string:TestAbility_label",
         "exported": true,
         "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:white",
+        "startWindowBackground": "$color:start_window_background",
         "skills": [
           {
             "actions": [

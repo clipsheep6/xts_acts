@@ -12,36 +12,6 @@
 # limitations under the License.
 
 import("//test/xts/tools/build/suite.gni")
-#
-#ohos_js_hap_suite("concurrency_base_js_hap") {
-#  hap_profile = "entry/src/main/module.json5"
-#  js_build_mode = "debug"
-#  deps = [
-#    ":concurrency_base_js_assets",
-#    ":concurrency_base_resources",
-#  ]
-#  ets2abc = true
-#  certificate_profile = "signature/openharmony_sx.p7b"
-#  hap_name = "ActsConcurrencyBaseJSTest"
-#
-#  subsystem_name = "commonlibrary"
-#  part_name = "ets_utils"
-#}
-##
-#ohos_app_scope("concurrency_base_app_profile") {
-#  app_profile = "AppScope/app.json5"
-#  sources = [ "AppScope/resources" ]
-#}
-#
-#ohos_js_assets("concurrency_base_js_assets") {
-#  source_dir = "entry/src/main/ets"
-#}
-#
-#ohos_resources("concurrency_base_resources") {
-#  sources = [ "entry/src/main/resources" ]
-#  deps = [ ":concurrency_base_app_profile" ]
-#  hap_profile = "entry/src/main/module.json5"
-#}
 
 ohos_js_app_suite("concurrency_base_js_hap") {
   hap_name = "ActsConcurrencyBaseJSTest"
