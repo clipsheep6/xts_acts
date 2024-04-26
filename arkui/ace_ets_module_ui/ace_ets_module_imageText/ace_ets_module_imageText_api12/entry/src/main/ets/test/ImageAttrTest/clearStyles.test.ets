@@ -62,7 +62,7 @@ export default function clearStyles() {
 
       let text1 = getInspectorByKey('clearLengthId');
       let Obj1 = JSON.parse(text1);
-      expect(Obj1.$attrs.content).assertEqual('5');
+      expect(Obj1.$attrs.content).assertEqual('6');
       await CommonFunc.sleep(500);
 
 

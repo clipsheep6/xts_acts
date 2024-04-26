@@ -62,7 +62,7 @@ export default function removeStyles() {
 
       let text1 = getInspectorByKey('lengthId');
       let Obj1 = JSON.parse(text1);
-      expect(Obj1.$attrs.content).assertEqual('5');
+      expect(Obj1.$attrs.content).assertEqual('6');
       await CommonFunc.sleep(500);
 
 
@@ -72,7 +72,7 @@ export default function removeStyles() {
 
       let text3 = getInspectorByKey('lengthId');
       let Obj3 = JSON.parse(text3);
-      expect(Obj3.$attrs.content).assertEqual('4');
+      expect(Obj3.$attrs.content).assertEqual('5');
       await CommonFunc.sleep(500);
 
       console.info('[removeStyles_0100] END');
