@@ -19,7 +19,7 @@ group("hitsbmsgetallpreinstalledappinfotest") {
     deps = [
       "hitsbmsgetallpreinstalledappinforely:ActsBmsGetAllPreinstalledAppinfoRely",
       "hitsbmsgetallpreinstalledappinfotest:ActsBmsGetAllPreinstalledAppinfoTest",
-      "hitsbmsgetallpreinstalledappinfowithsignrely:ActsBmsGetAllPreinstalledAppinfoWithSignRely"
+      "hitsbmsgetallpreinstalledappinfowithsignrely:ActsBmsGetAllPreinstalledAppinfoWithSignRely",
     ]
   }
 }

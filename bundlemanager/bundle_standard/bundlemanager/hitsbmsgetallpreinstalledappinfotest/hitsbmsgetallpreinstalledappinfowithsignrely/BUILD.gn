@@ -27,22 +27,17 @@ ohos_hap_assist_suite("ActsBmsGetAllPreinstalledAppinfoWithSignRely") {
   part_name = "bundle_framework"
 }
 
-ohos_app_scope(
-    "actsbmsgetallpreinstalledappinfowithsignrely_app_profile") {
+ohos_app_scope("actsbmsgetallpreinstalledappinfowithsignrely_app_profile") {
   app_profile = "AppScope/app.json"
   sources = [ "AppScope/resources" ]
 }
 
-ohos_js_assets(
-    "actsbmsgetallpreinstalledappinfowithsignrely_js_assets") {
+ohos_js_assets("actsbmsgetallpreinstalledappinfowithsignrely_js_assets") {
   source_dir = "entry/src/main/ets"
 }
 
-ohos_resources(
-    "actsbmsgetallpreinstalledappinfowithsignrely_resources") {
+ohos_resources("actsbmsgetallpreinstalledappinfowithsignrely_resources") {
   sources = [ "entry/src/main/resources" ]
-  deps = [
-    ":actsbmsgetallpreinstalledappinfowithsignrely_app_profile",
-  ]
+  deps = [ ":actsbmsgetallpreinstalledappinfowithsignrely_app_profile" ]
   hap_profile = "entry/src/main/module.json"
 }
