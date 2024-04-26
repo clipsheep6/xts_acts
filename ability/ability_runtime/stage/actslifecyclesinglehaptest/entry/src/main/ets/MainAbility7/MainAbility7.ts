@@ -14,6 +14,8 @@
  */
 import Ability from '@ohos.app.ability.UIAbility'
 
+let context7 = undefined;
+
 export default class MainAbility7 extends Ability {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility7 onCreate")
@@ -22,12 +24,14 @@ export default class MainAbility7 extends Ability {
 
     onDestroy() {
         console.log("[Demo] MainAbility7 onDestroy")
+        context7 = undefined;
     }
 
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
         console.log("[Demo] MainAbility7 onWindowStageCreate")
-        globalThis.ability7 = this.context;
+        context7 = this.context;
+        globalThis.ability7 = context7;
         windowStage.setUIContent(this.context, "MainAbility/pages/index7", null)
     }
 
@@ -129,6 +133,16 @@ export default class MainAbility7 extends Ability {
             globalThis.list7 = listKey7;
             globalThis.callbackid7 = lifecycleid;
         }, 1500);
+        setTimeout(function () {
+            if (context7) {
+                context7.terminateSelf()
+                    .then((data) => {
+                        console.info('[Demo] MainAbility7 terminateself succeeded: ' + data);
+                    }).catch((error) => {
+                    console.error('[Demo] MainAbility7 terminateself failed. Cause: ' + error);
+                })
+            }
+        }, 2000);
     }
 
     onBackground() {

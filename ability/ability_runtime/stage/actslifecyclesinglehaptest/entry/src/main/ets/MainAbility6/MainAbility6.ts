@@ -14,6 +14,9 @@
  */
 import Ability from '@ohos.app.ability.UIAbility'
 
+let context6 = undefined;
+let mainAbility6TwoonForeground = false;
+
 export default class MainAbility6 extends Ability {
     onCreate(want, launchParam) {
         console.log("[Demo] MainAbility6 onCreate")
@@ -22,12 +25,14 @@ export default class MainAbility6 extends Ability {
 
     onDestroy() {
         console.log("[Demo] MainAbility6 onDestroy")
+        context6 = undefined;
     }
 
     onWindowStageCreate(windowStage) {
         // Main window is created, set main page for this ability
         console.log("[Demo] MainAbility6 onWindowStageCreate")
-        globalThis.ability6 = this.context;
+        context6 = this.context;
+        globalThis.ability6 = context6;
         windowStage.setUIContent(this.context, "MainAbility/pages/index6", null)
     }
 
@@ -124,11 +129,24 @@ export default class MainAbility6 extends Ability {
         globalThis.applicationContext6 = globalThis.ability6.getApplicationContext();
         let lifecycleid = globalThis.applicationContext6.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
         console.log("[Demo] registerAbilityLifecycleCallback6 number: " + JSON.stringify(lifecycleid));
+        globalThis.callbackid6 = lifecycleid;
         setTimeout(function () {
             console.log("[Demo] registerAbilityLifecycleCallback6 listKey: " + JSON.stringify(listKey6));
             globalThis.list6 = listKey6;
-            globalThis.callbackid6 = lifecycleid;
         }, 1500);
+        if (mainAbility6TwoonForeground) {
+            setTimeout(function () {
+                if (context6) {
+                    context6.terminateSelf()
+                        .then((data) => {
+                            console.info('[Demo] MainAbility6 terminateself succeeded: ' + data);
+                        }).catch((error) => {
+                        console.error('[Demo] MainAbility6 terminateself failed. Cause: ' + error);
+                    })
+                }
+            }, 2000);
+        }
+        mainAbility6TwoonForeground = true;
     }
 
     onBackground() {
