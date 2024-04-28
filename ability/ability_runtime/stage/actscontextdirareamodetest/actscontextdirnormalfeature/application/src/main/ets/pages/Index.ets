@@ -16,7 +16,7 @@
 @Entry
 @Component
 struct Index {
-  @State message: string = 'Hello World Feature'
+  @State message: string = 'Hello World Feature';
 
   build() {
     Row() {

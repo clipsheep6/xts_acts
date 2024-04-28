@@ -12,10 +12,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import LifeCycleTest from './LifeCycleTest'
-import Test from './Test'
+
+import LifeCycleTest from './LifeCycleTest';
+import Test from './Test';
+import common from '@ohos.app.ability.common';
 
 export default function List() {
-  LifeCycleTest()
-  Test(globalThis.abilityContext)
+  LifeCycleTest();
+  Test(AppStorage.get<common.UIAbilityContext>("abilityContext")!);
 }

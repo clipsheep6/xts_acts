@@ -12,98 +12,103 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import common from '@ohos.app.ability.common';
+import window from '@ohos.window';
 
 export default class MainAbility2 extends Ability {
-    onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility2 onCreate")
-        globalThis.abilityWant = want;
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("[Demo] MainAbility2 onCreate");
+    globalThis.abilityWant = want;
 
-        globalThis.mainAbility2ListKey = [];
-        var abilityName = "";
-        let AbilityLifecycleCallback = {
-            onAbilityCreate(ability) {
-                abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName + " onAbilityCreate")
-                globalThis.mainAbility2ListKey.push(abilityName + " onAbilityCreate");
-                console.log("listKey is :" + globalThis.mainAbility2ListKey);
-            },
-            onWindowStageCreate(ability, windowStage) {
-                abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName + " onWindowStageCreate")
-                globalThis.mainAbility2ListKey.push(abilityName + " onWindowStageCreate");
-                console.log("listKey is :" + globalThis.mainAbility2ListKey);
-            },
-            onWindowStageActive(ability, windowStage) {
-                abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName + " onWindowStageActive")
-            },
-            onWindowStageInactive(ability, windowStage) {
-                abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName + " onWindowStageInactive")
-            },
-            onAbilityForeground(ability) {
-                abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName + " onAbilityForeground")
-                globalThis.mainAbility2ListKey.push(abilityName + " onAbilityForeground");
-                console.log("listKey is :" + globalThis.mainAbility2ListKey);
-            },
-            onAbilityBackground(ability) {
-                abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName + " onAbilityBackground")
-                globalThis.mainAbility2ListKey.push(abilityName + " onAbilityBackground");
-                console.log("listKey is :" + globalThis.mainAbility2ListKey);
-            },
-            onWindowStageDestroy(ability, windowStage) {
-                abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName + " onWindowStageDestroy")
-                globalThis.mainAbility2ListKey.push(abilityName + " onWindowStageDestroy");
-                console.log("listKey is :" + globalThis.mainAbility2ListKey);
-            },
-            onAbilityDestroy(ability) {
-                abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName + " onAbilityDestroy")
-                globalThis.mainAbility2ListKey.push(abilityName + " onAbilityDestroy");
-                console.log("listKey is :" + globalThis.mainAbility2ListKey);
-            },
-            onAbilityContinue(ability) {
-                abilityName = ability.context.abilityInfo.name;
-                console.log(abilityName + " onAbilityContinue")
-                globalThis.mainAbility2ListKey.push(abilityName + " onAbilityContinue");
-                console.log("listKey is :" + globalThis.mainAbility2ListKey);
-            }
-        }
-
-        globalThis.ApplicationContext2 = this.context.getApplicationContext();
-        globalThis.mainAbility2CallBackId = globalThis.ApplicationContext2.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
+    AppStorage.setOrCreate<string[]>("mainAbility2ListKey", []);
+    let abilityName = "";
+    let AbilityLifecycleCallback = {
+      onAbilityCreate(ability) {
+        abilityName = ability.context.abilityInfo.name;
+        console.log(abilityName + " onAbilityCreate")
+        AppStorage.get<string[]>("mainAbility2ListKey")!.push(abilityName + " onAbilityCreate");
+        console.log("listKey is :" + AppStorage.get<string[]>("mainAbility2ListKey")!);
+      },
+      onWindowStageCreate(ability, windowStage) {
+        abilityName = ability.context.abilityInfo.name;
+        console.log(abilityName + " onWindowStageCreate")
+        AppStorage.get<string[]>("mainAbility2ListKey")!.push(abilityName + " onWindowStageCreate");
+        console.log("listKey is :" + AppStorage.get<string[]>("mainAbility2ListKey")!);
+      },
+      onWindowStageActive(ability, windowStage) {
+        abilityName = ability.context.abilityInfo.name;
+        console.log(abilityName + " onWindowStageActive")
+      },
+      onWindowStageInactive(ability, windowStage) {
+        abilityName = ability.context.abilityInfo.name;
+        console.log(abilityName + " onWindowStageInactive")
+      },
+      onAbilityForeground(ability) {
+        abilityName = ability.context.abilityInfo.name;
+        console.log(abilityName + " onAbilityForeground")
+        AppStorage.get<string[]>("mainAbility2ListKey")!.push(abilityName + " onAbilityForeground");
+        console.log("listKey is :" + AppStorage.get<string[]>("mainAbility2ListKey")!);
+      },
+      onAbilityBackground(ability) {
+        abilityName = ability.context.abilityInfo.name;
+        console.log(abilityName + " onAbilityBackground")
+        AppStorage.get<string[]>("mainAbility2ListKey")!.push(abilityName + " onAbilityBackground");
+        console.log("listKey is :" + AppStorage.get<string[]>("mainAbility2ListKey")!);
+      },
+      onWindowStageDestroy(ability, windowStage) {
+        abilityName = ability.context.abilityInfo.name;
+        console.log(abilityName + " onWindowStageDestroy")
+        AppStorage.get<string[]>("mainAbility2ListKey")!.push(abilityName + " onWindowStageDestroy");
+        console.log("listKey is :" + AppStorage.get<string[]>("mainAbility2ListKey")!);
+      },
+      onAbilityDestroy(ability) {
+        abilityName = ability.context.abilityInfo.name;
+        console.log(abilityName + " onAbilityDestroy")
+        AppStorage.get<string[]>("mainAbility2ListKey")!.push(abilityName + " onAbilityDestroy");
+        console.log("listKey is :" + AppStorage.get<string[]>("mainAbility2ListKey")!);
+      },
+      onAbilityContinue(ability) {
+        abilityName = ability.context.abilityInfo.name;
+        console.log(abilityName + " onAbilityContinue")
+        AppStorage.get<string[]>("mainAbility2ListKey")!.push(abilityName + " onAbilityContinue");
+        console.log("listKey is :" + AppStorage.get<string[]>("mainAbility2ListKey")!);
+      }
     }
 
-    onDestroy() {
-        console.log("[Demo] MainAbility2 onDestroy")
-    }
+    AppStorage.setOrCreate<common.ApplicationContext>("ApplicationContext2", this.context.getApplicationContext());
+    AppStorage.setOrCreate<number>("mainAbility2CallBackId", AppStorage.get<common.ApplicationContext>("ApplicationContext2")!.on("abilityLifecycle", AbilityLifecycleCallback));
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility2 onWindowStageCreate")
-        globalThis.ability2Context = this.context;
-        windowStage.setUIContent(this.context, "MainAbility/pages/MainAbility2_pages", null)
-    }
+  onDestroy() {
+    console.log("[Demo] MainAbility2 onDestroy");
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("[Demo] MainAbility2 onWindowStageDestroy")
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("[Demo] MainAbility2 onWindowStageCreate");
+    globalThis.ability2Context = this.context;
+    windowStage.loadContent("MainAbility/pages/MainAbility2_pages", null);
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("[Demo] MainAbility2 onForeground")
-        setTimeout(() => {
-            globalThis.testEvent.push('MainAbility2onForeground');
-        }, 1500);
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("[Demo] MainAbility2 onWindowStageDestroy");
+  }
 
-    onBackground() {
-        // Ability has back to background
-        console.log("[Demo] MainAbility onBackground")
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("[Demo] MainAbility2 onForeground");
+    setTimeout(() => {
+      AppStorage.get<string[]>("testEvent")!.push('MainAbility2onForeground');
+    }, 1500);
+  }
+
+  onBackground() {
+    // Ability has back to background
+    console.log("[Demo] MainAbility onBackground");
+  }
 };

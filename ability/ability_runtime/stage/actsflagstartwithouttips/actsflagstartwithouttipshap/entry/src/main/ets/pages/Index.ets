@@ -18,7 +18,8 @@ import common from '@ohos.app.ability.common';
 @Entry
 @Component
 struct Index {
-  @State message: string = 'ohos.want.action.viewData ability'
+  @State message: string = 'ohos.want.action.viewData ability';
+  
   build() {
     Row() {
       Column() {

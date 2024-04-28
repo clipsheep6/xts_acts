@@ -12,118 +12,110 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
-import commonEvent from '@ohos.commonEvent'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import commonEvent from '@ohos.commonEvent';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
 
 export default class MainAbility1 extends Ability {
-    onCreate(want, launchParam) {
-        console.log("[Demo] MainAbility1 onCreate")
-        globalThis.abilityWant = want;
-        console.log("[Demo] MainAbility1 context: " + JSON.stringify(this.context));
-        globalThis.list1 = [];
-        let AbilityLifecycleCallback = {
-            onAbilityCreate(ability) {
-                console.log("[Demo] AbilityLifecycleCallback onAbilityCreate ability:"
-                + JSON.stringify(ability));
-            },
-            onWindowStageCreate(ability, windowStage) {
-                console.log("[Demo] AbilityLifecycleCallback onWindowStageCreate ability:"
-                + JSON.stringify(ability));
-                let abilityname = ability.context.abilityInfo.name;
-                console.log("[Demo] AbilityLifecycleCallback onWindowStageCreate abilityname:"
-                + JSON.stringify(abilityname));
-                console.log("[Demo] " + abilityname + " onWindowStageCreate");
-                globalThis.list1.push(abilityname + " onWindowStageCreate");
-            },
-            onWindowStageActive(ability, windowStage) {
-                console.log("[Demo] AbilityLifecycleCallback onWindowStageActive ability:"
-                + JSON.stringify(ability));
-                let abilityname = ability.context.abilityInfo.name;
-                console.log("[Demo] AbilityLifecycleCallback onWindowStageActive abilityname:"
-                + JSON.stringify(abilityname));
-                console.log("[Demo] " + abilityname + " onWindowStageActive");
-                globalThis.list1.push(abilityname + " onWindowStageActive");
-            },
-            onWindowStageInactive(ability, windowStage) {
-                console.log("[Demo] AbilityLifecycleCallback onWindowStageInactive ability:"
-                + JSON.stringify(ability));
-                let abilityname = ability.context.abilityInfo.name;
-                console.log("[Demo] AbilityLifecycleCallback onWindowStageInactive abilityname:"
-                + JSON.stringify(abilityname));
-                console.log("[Demo] " + abilityname + " onWindowStageInactive");
-                globalThis.list1.push(abilityname + " onWindowStageInactive");
-            },
-            onWindowStageDestroy(ability, windowStage) {
-                console.log("[Demo] AbilityLifecycleCallback onWindowStageDestroy ability:"
-                + JSON.stringify(ability));
-                let abilityname = ability.context.abilityInfo.name;
-                console.log("[Demo] AbilityLifecycleCallback onWindowStageDestroy abilityname:"
-                + JSON.stringify(abilityname));
-                console.log("[Demo] " + abilityname + " onWindowStageDestroy");
-                globalThis.list1.push(abilityname + " onWindowStageDestroy");
-            },
-            onAbilityDestroy(ability) {
-                console.log("[Demo] AbilityLifecycleCallback onAbilityDestroy ability:"
-                + JSON.stringify(ability));
-            },
-            onAbilityForeground(ability) {
-                console.log("[Demo] AbilityLifecycleCallback onAbilityForeground ability:"
-                + JSON.stringify(ability));
-            },
-            onAbilityBackground(ability) {
-                console.log("[Demo] AbilityLifecycleCallback onAbilityBackground ability:"
-                + JSON.stringify(ability));
-            },
-            onAbilityContinue(ability) {
-                console.log("[Demo] AbilityLifecycleCallback onAbilityContinue ability:"
-                + JSON.stringify(ability));
-            }
-        }
-        globalThis.ability1context = this.context;
-        globalThis.applicationContext1 = this.context.getApplicationContext();
-        let lifecycleid = globalThis.applicationContext1.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
-        console.log("[Demo] registerAbilityLifecycleCallback1 number: " + JSON.stringify(lifecycleid));
-        globalThis.callbackid1 = lifecycleid;
-
-        setTimeout(()=>{
-            commonEvent.publish("com.example.windowstagelifecycle_xts.MainAbility1.onCreate", ()=>{
-                console.log("[Demo] MainAbility1 onCreate")
-            });
-        }, 1500)
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("[Demo] MainAbility1 onCreate");
+    globalThis.abilityWant = want;
+    console.log("[Demo] MainAbility1 context: " + JSON.stringify(this.context));
+    AppStorage.setOrCreate<string[]>("list1", []);
+    let AbilityLifecycleCallback = {
+      onAbilityCreate(ability) {
+        console.log("[Demo] AbilityLifecycleCallback onAbilityCreate ability:" + JSON.stringify(ability));
+      },
+      onWindowStageCreate(ability, windowStage) {
+        console.log("[Demo] AbilityLifecycleCallback onWindowStageCreate ability:" + JSON.stringify(ability));
+        let abilityname = ability.context.abilityInfo.name;
+        console.log("[Demo] AbilityLifecycleCallback onWindowStageCreate abilityname:" + JSON.stringify(abilityname));
+        console.log("[Demo] " + abilityname + " onWindowStageCreate");
+        AppStorage.get<string[]>("list1")!.push(abilityname + " onWindowStageCreate");
+      },
+      onWindowStageActive(ability, windowStage) {
+        console.log("[Demo] AbilityLifecycleCallback onWindowStageActive ability:" + JSON.stringify(ability));
+        let abilityname = ability.context.abilityInfo.name;
+        console.log("[Demo] AbilityLifecycleCallback onWindowStageActive abilityname:" + JSON.stringify(abilityname));
+        console.log("[Demo] " + abilityname + " onWindowStageActive");
+        AppStorage.get<string[]>("list1")!.push(abilityname + " onWindowStageActive");
+      },
+      onWindowStageInactive(ability, windowStage) {
+        console.log("[Demo] AbilityLifecycleCallback onWindowStageInactive ability:" + JSON.stringify(ability));
+        let abilityname = ability.context.abilityInfo.name;
+        console.log("[Demo] AbilityLifecycleCallback onWindowStageInactive abilityname:" + JSON.stringify(abilityname));
+        console.log("[Demo] " + abilityname + " onWindowStageInactive");
+        AppStorage.get<string[]>("list1")!.push(abilityname + " onWindowStageInactive");
+      },
+      onWindowStageDestroy(ability, windowStage) {
+        console.log("[Demo] AbilityLifecycleCallback onWindowStageDestroy ability:" + JSON.stringify(ability));
+        let abilityname = ability.context.abilityInfo.name;
+        console.log("[Demo] AbilityLifecycleCallback onWindowStageDestroy abilityname:" + JSON.stringify(abilityname));
+        console.log("[Demo] " + abilityname + " onWindowStageDestroy");
+        AppStorage.get<string[]>("list1")!.push(abilityname + " onWindowStageDestroy");
+      },
+      onAbilityDestroy(ability) {
+        console.log("[Demo] AbilityLifecycleCallback onAbilityDestroy ability:" + JSON.stringify(ability));
+      },
+      onAbilityForeground(ability) {
+        console.log("[Demo] AbilityLifecycleCallback onAbilityForeground ability:" + JSON.stringify(ability));
+      },
+      onAbilityBackground(ability) {
+        console.log("[Demo] AbilityLifecycleCallback onAbilityBackground ability:" + JSON.stringify(ability));
+      },
+      onAbilityContinue(ability) {
+        console.log("[Demo] AbilityLifecycleCallback onAbilityContinue ability:" + JSON.stringify(ability));
+      }
     }
+    AppStorage.setOrCreate<common.UIAbilityContext>("ability1context", this.context);
+    AppStorage.setOrCreate<common.ApplicationContext>("applicationContext1", this.context.getApplicationContext());
+    let lifecycleid = AppStorage.get<common.ApplicationContext>("applicationContext1")!.on("abilityLifecycle", AbilityLifecycleCallback);
+    console.log("[Demo] registerAbilityLifecycleCallback1 number: " + JSON.stringify(lifecycleid));
+    AppStorage.setOrCreate<number>("callbackid1", lifecycleid);
 
-    onDestroy() {
-        console.log("[Demo] MainAbility1 onDestroy")
-        setTimeout(()=>{
-            commonEvent.publish("com.example.windowstagelifecycle_xts.MainAbility1.onDestroy", ()=>{
-                console.log("[Demo] MainAbility1 onDestroy")
-            });
-        }, 1500)
-    }
+    setTimeout(() => {
+      commonEvent.publish("com.example.windowstagelifecycle_xts.MainAbility1.onCreate", () => {
+        console.log("[Demo] MainAbility1 onCreate");
+      });
+    }, 1500)
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("[Demo] MainAbility1 onWindowStageCreate")
-        windowStage.setUIContent(this.context, "MainAbility/pages/index1", null)
-    }
+  onDestroy() {
+    console.log("[Demo] MainAbility1 onDestroy");
+    setTimeout(() => {
+      commonEvent.publish("com.example.windowstagelifecycle_xts.MainAbility1.onDestroy", () => {
+        console.log("[Demo] MainAbility1 onDestroy");
+      });
+    }, 1500)
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("[Demo] MainAbility1 onWindowStageDestroy")
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("[Demo] MainAbility1 onWindowStageCreate");
+    windowStage.loadContent("MainAbility/pages/index1", null);
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("[Demo] MainAbility1 onForeground")
-        setTimeout(()=>{
-            commonEvent.publish("com.example.windowstagelifecycle_xts.MainAbility1.onForeground", ()=>{
-                console.log("[Demo] MainAbility1 onForeground")
-            });
-        }, 1500)
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("[Demo] MainAbility1 onWindowStageDestroy");
+  }
 
-    onBackground() {
-        // Ability has back to background
-        console.log("[Demo] MainAbility1 onBackground")
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("[Demo] MainAbility1 onForeground");
+    setTimeout(() => {
+      commonEvent.publish("com.example.windowstagelifecycle_xts.MainAbility1.onForeground", () => {
+        console.log("[Demo] MainAbility1 onForeground");
+      });
+    }, 1500)
+  }
+
+  onBackground() {
+    // Ability has back to background
+    console.log("[Demo] MainAbility1 onBackground");
+  }
 };

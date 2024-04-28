@@ -17,26 +17,30 @@ import hilog from '@ohos.hilog';
 import Ability from '@ohos.app.ability.UIAbility';
 import commonEvent from '@ohos.commonEventManager';
 import Window from '@ohos.window';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
 
 export default class EntryAbility extends Ability {
-  onCreate(want, launchParam) {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
     hilog.isLoggable(0x0000, 'testTag', hilog.LogLevel.INFO);
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     hilog.info(0x0000, 'testTag', '%{public}s', 'want param:' + JSON.stringify(want) ?? '');
     hilog.info(0x0000, 'testTag', '%{public}s', 'launchParam:' + JSON.stringify(launchParam) ?? '');
-    this.context.getGroupDir('context_hap1').then(data => {
-      let commonEventData = {
-        parameters:{
-          res: data,
-        }
-      };
-      console.error('getgroupdirhap2 getGroupDir ====> result data' + data);
-      commonEvent.publish('ACTS_GETGROUP1_EVENT', commonEventData, (err) => {
-        console.log('getgroupdirhap2 getGroupDir publish err:' + JSON.stringify(err));
+    this.context.getGroupDir('context_hap1')
+      .then(data => {
+        let commonEventData = {
+          parameters: {
+            res: data,
+          }
+        };
+        console.error('getgroupdirhap2 getGroupDir ====> result data' + data);
+        commonEvent.publish('ACTS_GETGROUP1_EVENT', commonEventData, (err) => {
+          console.log('getgroupdirhap2 getGroupDir publish err:' + JSON.stringify(err));
+        });
+      })
+      .catch((error) => {
+        console.error('getgroupdirhap2 getGroupDir ====> result err' + JSON.stringify(error));
       });
-    }).catch((error) => {
-      console.error('getgroupdirhap2 getGroupDir ====> result err' + JSON.stringify(error));
-    });
   }
 
   onDestroy() {

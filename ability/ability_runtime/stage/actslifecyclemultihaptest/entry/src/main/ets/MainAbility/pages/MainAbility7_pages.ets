@@ -15,7 +15,7 @@
 @Entry
 @Component
 struct MainAbility7_pages {
-  @State message: string = 'MainAbility7'
+  @State message: string = 'MainAbility7';
 
   build() {
     Row() {

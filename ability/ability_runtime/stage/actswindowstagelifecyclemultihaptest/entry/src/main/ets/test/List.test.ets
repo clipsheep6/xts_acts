@@ -12,8 +12,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import lifecycleTest from './LifecycleTest'
+
+import lifecycleTest from './LifecycleTest';
 
 export default function List() {
-  lifecycleTest()
+  lifecycleTest();
 }

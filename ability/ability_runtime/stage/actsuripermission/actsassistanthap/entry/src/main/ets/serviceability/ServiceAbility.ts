@@ -12,14 +12,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility'
+
+import ServiceExtensionAbility from '@ohos.app.ability.ServiceExtensionAbility';
 
 export default class ServiceAbility extends ServiceExtensionAbility {
-    onCreate(want) {
-        console.info('ServiceAbility onCreate');
-    }
+  onCreate(want) {
+    console.info('ServiceAbility onCreate');
+  }
 
-    onDestroy() {
-        console.info('ServiceAbility onDestroy');
-    }
+  onDestroy() {
+    console.info('ServiceAbility onDestroy');
+  }
 };

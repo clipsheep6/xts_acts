@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import ContextDirTest from './ContextDirTest.test'
+import ContextDirTest from './ContextDirTest.test';
 
 export default function testsuite() {
-  ContextDirTest()
+  ContextDirTest();
 }

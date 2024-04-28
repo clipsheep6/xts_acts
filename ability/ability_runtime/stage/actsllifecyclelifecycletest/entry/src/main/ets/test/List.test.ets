@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import lifeCycleTest from './LifeCycle.test'
+import lifeCycleTest from './LifeCycle.test';
 
 export default function testsuite() {
-  lifeCycleTest()
+  lifeCycleTest();
 }

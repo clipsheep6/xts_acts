@@ -13,28 +13,30 @@
  * limitations under the License.
  */
 
-import AbilityStage from "@ohos.app.ability.AbilityStage"
+import AbilityStage from "@ohos.app.ability.AbilityStage";
 import hilog from '@ohos.hilog';
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
+import common from '@ohos.app.ability.common';
 
-const TEST_TAG = "TAG_MyAbilityStage"
+const TEST_TAG = "TAG_MyAbilityStage";
 
 export default class MyAbilityStage extends AbilityStage {
   onCreate() {
-    console.log("[Demo] MyAbilityStage onCreate")
+    console.log("[Demo] MyAbilityStage onCreate");
     globalThis.stageOnCreateRun = 1;
     globalThis.stageContext = this.context;
 
-    globalThis.mainAbilityStageListKey = []
-    var abilityName = "";
-    let AbilityLifecycleCallback = {
+    AppStorage.setOrCreate<string[]>("mainAbilityStageListKey", []);
+    let abilityName = "";
+    let AbilityLifecycleCallback: AbilityLifecycleCallback = {
       onAbilityCreate(ability) {
         abilityName = ability.context.abilityInfo.name;
-        globalThis.mainAbilityStageListKey.push(abilityName + " onAbilityCreate");
+        AppStorage.get<string[]>("mainAbilityStageListKey")!.push(abilityName + " onAbilityCreate");
         hilog.info(0x0000, TEST_TAG, `AbilityLifecycleCallback ${abilityName} onAbilityCreate`);
       },
       onWindowStageCreate(ability, windowStage) {
         abilityName = ability.context.abilityInfo.name;
-        globalThis.mainAbilityStageListKey.push(abilityName + " onWindowStageCreate");
+        AppStorage.get<string[]>("mainAbilityStageListKey")!.push(abilityName + " onWindowStageCreate");
         hilog.info(0x0000, TEST_TAG, `AbilityLifecycleCallback ${abilityName} onWindowStageCreate`);
       },
       onWindowStageActive(ability, windowStage) {
@@ -47,34 +49,34 @@ export default class MyAbilityStage extends AbilityStage {
       },
       onAbilityForeground(ability) {
         abilityName = ability.context.abilityInfo.name;
-        globalThis.mainAbilityStageListKey.push(abilityName + " onAbilityForeground");
+        AppStorage.get<string[]>("mainAbilityStageListKey")!.push(abilityName + " onAbilityForeground");
         hilog.info(0x0000, TEST_TAG, `AbilityLifecycleCallback ${abilityName} onAbilityForeground`);
       },
       onAbilityBackground(ability) {
         abilityName = ability.context.abilityInfo.name;
-        globalThis.mainAbilityStageListKey.push(abilityName + " onAbilityBackground");
+        AppStorage.get<string[]>("mainAbilityStageListKey")!.push(abilityName + " onAbilityBackground");
         hilog.info(0x0000, TEST_TAG, `AbilityLifecycleCallback ${abilityName} onAbilityBackground`);
       },
       onWindowStageDestroy(ability, windowStage) {
         abilityName = ability.context.abilityInfo.name;
-        globalThis.mainAbilityStageListKey.push(abilityName + " onWindowStageDestroy");
+        AppStorage.get<string[]>("mainAbilityStageListKey")!.push(abilityName + " onWindowStageDestroy");
         hilog.info(0x0000, TEST_TAG, `AbilityLifecycleCallback ${abilityName} onWindowStageDestroy`);
       },
       onAbilityDestroy(ability) {
         abilityName = ability.context.abilityInfo.name;
-        globalThis.mainAbilityStageListKey.push(abilityName + " onAbilityDestroy");
+        AppStorage.get<string[]>("mainAbilityStageListKey")!.push(abilityName + " onAbilityDestroy");
         hilog.info(0x0000, TEST_TAG, `AbilityLifecycleCallback ${abilityName} onAbilityDestroy`);
       },
       onAbilityContinue(ability) {
         abilityName = ability.context.abilityInfo.name;
-        globalThis.mainAbilityStageListKey.push(abilityName + " onAbilityContinue");
+        AppStorage.get<string[]>("mainAbilityStageListKey")!.push(abilityName + " onAbilityContinue");
         hilog.info(0x0000, TEST_TAG, `AbilityLifecycleCallback ${abilityName} onAbilityContinue`);
       }
     }
 
-    globalThis.ApplicationContextStage = this.context.getApplicationContext();
-    var callBackId = globalThis.ApplicationContextStage.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
-    globalThis.mainAbilityStageCallBackId = callBackId
+    AppStorage.setOrCreate<common.ApplicationContext>("ApplicationContextStage", this.context.getApplicationContext());
+    let callBackId = AppStorage.get<common.ApplicationContext>("ApplicationContextStage")!.on("abilityLifecycle", AbilityLifecycleCallback);
+    AppStorage.setOrCreate<number>("mainAbilityStageCallBackId", callBackId);
     hilog.info(0x0000, TEST_TAG, `callBackId :${callBackId}`);
   }
 }

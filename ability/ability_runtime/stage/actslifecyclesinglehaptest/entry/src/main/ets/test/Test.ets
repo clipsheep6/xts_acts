@@ -12,23 +12,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 
-export default function lifecycleTest(abilityContext) {
-  describe('LifeCycleOneTest', function () {
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium";
+import common from '@ohos.app.ability.common';
+import { BusinessError } from '@ohos.base';
+import AbilityLifecycleCallback from '@ohos.app.ability.AbilityLifecycleCallback';
 
-    beforeEach(async function (done) {
+function sleep(time: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, time));
+}
+
+export default function lifecycleTest(abilityContext: common.UIAbilityContext) {
+  describe('LifeCycleOneTest', () => {
+
+    beforeEach(async (done: Function) => {
       console.info('LifeCycleOneTest before each called');
       await sleep(1000);
-      done()
+      done();
     });
 
-    afterEach(async function (done) {
+    afterEach(async (done: Function) => {
       console.info('LifeCycleOneTest after each called');
       if ("Singlehap_LifeCycleTest_0200" === TAG || "Singlehap_LifeCycleTest_0300" === TAG
-      || "Singlehap_LifeCycleTest_0500" === TAG || "Singlehap_LifeCycleTest_0600" === TAG
-      || "Singlehap_LifeCycleTest_0800" === TAG || "Singlehap_LifeCycleTest_0900" === TAG) {
-        var para = {
+        || "Singlehap_LifeCycleTest_0500" === TAG || "Singlehap_LifeCycleTest_0600" === TAG
+        || "Singlehap_LifeCycleTest_0800" === TAG || "Singlehap_LifeCycleTest_0900" === TAG) {
+        let para: common.AbilityResult = {
           resultCode: 2,
           want: {
             "abilityName": "MainAbility1",
@@ -36,14 +44,15 @@ export default function lifecycleTest(abilityContext) {
           }
         }
         console.log("LifeCycleOneTest terminateSelfwithresult para: " + JSON.stringify(para));
-        await globalThis.ability1context.terminateSelfWithResult(para)
+        await AppStorage.get<common.UIAbilityContext>("ability1context")!.terminateSelfWithResult(para)
           .then((data) => {
             console.log("LifeCycleOneTest terminateSelfwithresult successful data: " + JSON.stringify(data));
-          }).catch((error) => {
+          })
+          .catch((error: BusinessError) => {
             console.log("LifeCycleOneTest terminateSelfwithresult error: " + JSON.stringify(error));
           });
       } else if ("Singlehap_LifeCycleTest_2000" === TAG) {
-        var para1 = {
+        let para1: common.AbilityResult = {
           resultCode: 2,
           want: {
             "abilityName": "MainAbility12",
@@ -51,22 +60,19 @@ export default function lifecycleTest(abilityContext) {
           }
         }
         console.log("LifeCycleOneTest terminateSelfwithresult para: " + JSON.stringify(para1));
-        await globalThis.ability12.terminateSelfWithResult(para1)
+        await AppStorage.get<common.UIAbilityContext>("ability12")!.terminateSelfWithResult(para1)
           .then((data) => {
             console.log("LifeCycleOneTest terminateSelfwithresult successful data: " + JSON.stringify(data));
-          }).catch((error) => {
+          })
+          .catch((error: BusinessError) => {
             console.log("LifeCycleOneTest terminateSelfwithresult error: " + JSON.stringify(error));
           });
       }
       done();
     });
 
-    var TAG = "";
-    var listKeyTemp = ""
-
-    function sleep(time) {
-      return new Promise((resolve) => setTimeout(resolve, time))
-    }
+    let TAG: string = "";
+    let listKeyTemp: string = ""
 
     /*
    * @tc.number  Singlehap_LifeCycleTest_0700
@@ -74,17 +80,17 @@ export default function lifecycleTest(abilityContext) {
    * @tc.desc    Function test
    * @tc.level   0
    */
-    it("Singlehap_LifeCycleTest_0700", 0, async function (done) {
+    it("Singlehap_LifeCycleTest_0700", 0, async (done: Function) => {
       console.log("------------Singlehap_LifeCycleTest_0700 START-------------");
       TAG = "Singlehap_LifeCycleTest_0700";
-      var code1;
-      var code2;
-      var code3;
-      var id1;
-      var id2;
-      var id3;
-      var listKey8 = [];
-      let AbilityLifecycleCallback = {
+      let code1: number = 1;
+      let code2: number = 1;
+      let code3: number = 1;
+      let id1: number;
+      let id2: number;
+      let id3: number;
+      let listKey8: string[] = [];
+      let AbilityLifecycleCallback: AbilityLifecycleCallback = {
         onAbilityCreate(ability) {
           console.log(TAG + " onAbilityCreate ability:" + JSON.stringify(ability));
           let abilityname = ability.context.abilityInfo.name;
@@ -108,75 +114,68 @@ export default function lifecycleTest(abilityContext) {
           console.log(abilityname + " onWindowStageInactive")
         },
         onWindowStageDestroy(ability, windowStage) {
-          console.log(TAG + " AbilityLifecycleCallback1 onWindowStageDestroy ability:"
-          + JSON.stringify(ability));
+          console.log(TAG + " AbilityLifecycleCallback1 onWindowStageDestroy ability:" + JSON.stringify(ability));
           let abilityname = ability.context.abilityInfo.name;
-          console.log(TAG + " AbilityLifecycleCallback1 onWindowStageDestroy abilityname:"
-          + JSON.stringify(abilityname));
+          console.log(TAG + " AbilityLifecycleCallback1 onWindowStageDestroy abilityname:" + JSON.stringify(abilityname));
           console.log(TAG + " " + abilityname + " onWindowStageDestroy");
           listKey8.push(abilityname + " onWindowStageDestroy");
         },
         onAbilityDestroy(ability) {
-          console.log(TAG + " AbilityLifecycleCallback1 onAbilityDestroy ability:"
-          + JSON.stringify(ability));
+          console.log(TAG + " AbilityLifecycleCallback1 onAbilityDestroy ability:" + JSON.stringify(ability));
           let abilityname = ability.context.abilityInfo.name;
-          console.log(TAG + " AbilityLifecycleCallback1 onAbilityDestroy abilityname:"
-          + JSON.stringify(abilityname));
+          console.log(TAG + " AbilityLifecycleCallback1 onAbilityDestroy abilityname:" + JSON.stringify(abilityname));
           console.log(TAG + " " + abilityname + " onAbilityDestroy");
           listKey8.push(abilityname + " onAbilityDestroy");
         },
         onAbilityForeground(ability) {
-          console.log(TAG + " AbilityLifecycleCallback1 onAbilityForeground ability:"
-          + JSON.stringify(ability));
+          console.log(TAG + " AbilityLifecycleCallback1 onAbilityForeground ability:" + JSON.stringify(ability));
           let abilityname = ability.context.abilityInfo.name;
-          console.log(TAG + " AbilityLifecycleCallback1 onAbilityForeground abilityname:"
-          + JSON.stringify(abilityname));
+          console.log(TAG + " AbilityLifecycleCallback1 onAbilityForeground abilityname:" + JSON.stringify(abilityname));
           console.log(TAG + " " + abilityname + " onAbilityForeground");
           listKey8.push(abilityname + " onAbilityForeground");
         },
         onAbilityBackground(ability) {
-          console.log(TAG + " AbilityLifecycleCallback1 onAbilityBackground ability:"
-          + JSON.stringify(ability));
+          console.log(TAG + " AbilityLifecycleCallback1 onAbilityBackground ability:" + JSON.stringify(ability));
           let abilityname = ability.context.abilityInfo.name;
-          console.log(TAG + " AbilityLifecycleCallback1 onAbilityBackground abilityname:"
-          + JSON.stringify(abilityname));
+          console.log(TAG + " AbilityLifecycleCallback1 onAbilityBackground abilityname:" + JSON.stringify(abilityname));
           console.log(TAG + " " + abilityname + " onAbilityBackground");
           listKey8.push(abilityname + " onAbilityBackground");
         },
         onAbilityContinue(ability) {
-          console.log(TAG + " AbilityLifecycleCallback1 onAbilityContinue ability:"
-          + JSON.stringify(ability));
+          console.log(TAG + " AbilityLifecycleCallback1 onAbilityContinue ability:" + JSON.stringify(ability));
           let abilityname = ability.context.abilityInfo.name;
-          console.log(TAG + " AbilityLifecycleCallback1 onAbilityContinue abilityname:"
-          + JSON.stringify(abilityname));
+          console.log(TAG + " AbilityLifecycleCallback1 onAbilityContinue abilityname:" + JSON.stringify(abilityname));
           console.log(TAG + " " + abilityname + " onAbilityContinue");
           listKey8.push(abilityname + " onAbilityContinue");
         }
       }
-      let applicationContext = globalThis.abilityContext.getApplicationContext();
-      id1 = applicationContext.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
+      let applicationContext = AppStorage.get<common.UIAbilityContext>("abilityContext")!.getApplicationContext();
+      id1 = applicationContext.on("abilityLifecycle", AbilityLifecycleCallback);
       console.log(TAG + " registerAbilityLifecycleCallback1 number: " + JSON.stringify(id1));
-      applicationContext.unregisterAbilityLifecycleCallback(id1, (error, data) => {
-        console.log(TAG + ": unregisterAbilityLifecycleCallback1 success, err: " + JSON.stringify(error) +
-        ",data: " + JSON.stringify(data));
-        code1 = error.code;
+      applicationContext.off("abilityLifecycle", id1, (error, data) => {
+        console.log(TAG + ": unregisterAbilityLifecycleCallback1 success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
+        if (error == null) {
+          code1 = 0;
+        }
       })
-      setTimeout(function () {
-        id2 = applicationContext.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
+      setTimeout(() => {
+        id2 = applicationContext.on("abilityLifecycle", AbilityLifecycleCallback);
         console.log(TAG + " registerAbilityLifecycleCallback2 number: " + JSON.stringify(id2));
-        applicationContext.unregisterAbilityLifecycleCallback(id2, (error, data) => {
-          console.log(TAG + ": unregisterAbilityLifecycleCallback2 success, err: " + JSON.stringify(error) +
-          ",data: " + JSON.stringify(data));
-          code2 = error.code;
+        applicationContext.off("abilityLifecycle", id2, (error, data) => {
+          console.log(TAG + ": unregisterAbilityLifecycleCallback2 success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
+          if (error == null) {
+            code2 = 0;
+          }
         })
       }, 1000);
-      setTimeout(function () {
-        id3 = applicationContext.registerAbilityLifecycleCallback(AbilityLifecycleCallback);
+      setTimeout(() => {
+        id3 = applicationContext.on("abilityLifecycle", AbilityLifecycleCallback);
         console.log(TAG + " registerAbilityLifecycleCallback3 number: " + JSON.stringify(id3));
-        applicationContext.unregisterAbilityLifecycleCallback(id3, (error, data) => {
-          console.log(TAG + ": unregisterAbilityLifecycleCallback3 success, err: " + JSON.stringify(error) +
-          ",data: " + JSON.stringify(data));
-          code3 = error.code;
+        applicationContext.off("abilityLifecycle", id3, (error, data) => {
+          console.log(TAG + ": unregisterAbilityLifecycleCallback3 success, err: " + JSON.stringify(error) + ",data: " + JSON.stringify(data));
+          if (error == null) {
+            code3 = 0;
+          }
           expect(id1 > 0).assertTrue();
           expect(id2).assertEqual(id1 + 1);
           expect(id3).assertEqual(id2 + 1);

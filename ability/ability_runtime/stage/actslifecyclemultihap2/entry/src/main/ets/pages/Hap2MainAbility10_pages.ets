@@ -12,10 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 @Entry
 @Component
 struct Hap2MainAbility10_pages {
-  @State message: string = 'Hap2MainAbility10'
+  @State message: string = 'Hap2MainAbility10';
 
   build() {
     Row() {

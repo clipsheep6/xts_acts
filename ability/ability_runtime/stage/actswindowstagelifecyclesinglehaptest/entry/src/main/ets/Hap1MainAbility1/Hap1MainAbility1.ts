@@ -12,50 +12,57 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
-import commonEvent from '@ohos.commonEvent'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import commonEvent from '@ohos.commonEvent';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import Want from '@ohos.app.ability.Want';
+import window from '@ohos.window';
+
 
 export default class Hap1MainAbility1 extends Ability {
-    onCreate(want, launchParam) {
-        console.log("[Demo] Hap1MainAbility1 onCreate")
-        globalThis.abilityWant = want;
-        setTimeout(() => {
-            this.context.terminateSelf().then((data) => {
-                console.log("Hap1MainAbility1 EventTest terminateSelf data: " + JSON.stringify(data));
-            }).catch((error) => {
-                console.log("Hap1MainAbility1 EventTest terminateSelf error: " + JSON.stringify(error));
-            })
-        }, 1000)
-    }
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("[Demo] Hap1MainAbility1 onCreate");
+    globalThis.abilityWant = want;
+    setTimeout(() => {
+      this.context.terminateSelf()
+        .then((data) => {
+          console.log("Hap1MainAbility1 EventTest terminateSelf data: " + JSON.stringify(data));
+        })
+        .catch((error) => {
+          console.log("Hap1MainAbility1 EventTest terminateSelf error: " + JSON.stringify(error));
+        })
+    }, 1000)
+  }
 
-    onDestroy() {
-        console.log("[Demo] Hap1MainAbility1 onDestroy")
-        setTimeout(()=>{
-            commonEvent.publish("com.example.windowstagelifecycle_xts.Hap1MainAbility1.onDestroy", ()=>{
-                console.log("[Demo] Hap1MainAbility1 onDestroy")
-            });
-        }, 500)
-    }
+  onDestroy() {
+    console.log("[Demo] Hap1MainAbility1 onDestroy");
+    setTimeout(() => {
+      commonEvent.publish("com.example.windowstagelifecycle_xts.Hap1MainAbility1.onDestroy", () => {
+        console.log("[Demo] Hap1MainAbility1 onDestroy");
+      });
+    }, 500)
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("[Demo] Hap1MainAbility1 onWindowStageCreate")
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("[Demo] Hap1MainAbility1 onWindowStageCreate");
 
-        windowStage.setUIContent(this.context, "MainAbility/pages/indexh1a1", null)
-    }
+    windowStage.loadContent("MainAbility/pages/indexh1a1", null);
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("[Demo] Hap1MainAbility1 onWindowStageDestroy")
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("[Demo] Hap1MainAbility1 onWindowStageDestroy");
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("[Demo] Hap1MainAbility1 onForeground")
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("[Demo] Hap1MainAbility1 onForeground");
+  }
 
-    onBackground() {
-        // Ability has back to background
-        console.log("[Demo] Hap1MainAbility1 onBackground")
-    }
+  onBackground() {
+    // Ability has back to background
+    console.log("[Demo] Hap1MainAbility1 onBackground");
+  }
 };

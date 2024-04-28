@@ -18,10 +18,12 @@ import hilog from '@ohos.hilog';
 @Entry
 @Component
 struct Index {
+  @State message: string = 'Hello World';
+
   aboutToAppear() {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility index aboutToAppear');
   }
-  @State message: string = 'Hello World'
+
   build() {
     Row() {
       Column() {
@@ -35,15 +37,14 @@ struct Index {
           Text('next page')
             .fontSize(20)
             .fontWeight(FontWeight.Bold)
-        }.type(ButtonType.Capsule)
-          .margin({
-            top: 20
-          })
-          .backgroundColor('#0D9FFB')
-          .width('35%')
-          .height('5%')
-          .onClick(() => {
-          })
+        }
+        .type(ButtonType.Capsule)
+        .margin({ top: 20 })
+        .backgroundColor('#0D9FFB')
+        .width('35%')
+        .height('5%')
+        .onClick(() => {
+        })
       }
       .width('100%')
     }
