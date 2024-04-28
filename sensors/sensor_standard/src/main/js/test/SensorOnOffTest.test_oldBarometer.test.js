@@ -66,6 +66,8 @@ describe("SensorJsTest_sensor_8", function () {
 	const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_CODE = 14500101
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
+    const SENSOR_NO_SUPPORT_CODE = 14500102
+    const SENSOR_NO_SUPPOR_MSG = 'Can\'t find the sensorId.'
 	let invalid  = -1;
     let errMessages = ['string is not defined','The parameter invalid'];
     let errMessage;
@@ -87,8 +89,8 @@ describe("SensorJsTest_sensor_8", function () {
 				})
 		} catch (error) {
             console.info('Barometer_SensorJsTest001 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -112,8 +114,8 @@ describe("SensorJsTest_sensor_8", function () {
 			})
 		} catch (error) {
             console.info('Barometer_SensorJsTest002 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -137,8 +139,8 @@ describe("SensorJsTest_sensor_8", function () {
 			})
 		} catch (error) {
             console.info('Barometer_SensorJsTest003 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -160,8 +162,8 @@ describe("SensorJsTest_sensor_8", function () {
 				})
 		} catch (error) {
             console.info('Barometer_SensorJsTest004 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -191,8 +193,8 @@ describe("SensorJsTest_sensor_8", function () {
 			})
 		} catch (error) {
             console.info('Barometer_SensorJsTest005 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -217,8 +219,8 @@ describe("SensorJsTest_sensor_8", function () {
 				})
 		} catch (error) {
             console.info('Barometer_SensorJsTest006 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -245,8 +247,8 @@ describe("SensorJsTest_sensor_8", function () {
 			})
 		} catch (error) {
             console.info('Barometer_SensorJsTest007 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -275,8 +277,8 @@ describe("SensorJsTest_sensor_8", function () {
 			})
 		} catch (error) {
             console.info('Barometer_SensorJsTest008 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -301,8 +303,8 @@ describe("SensorJsTest_sensor_8", function () {
 			})
 		} catch (error) {
             console.info('Barometer_SensorJsTest009 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -336,8 +338,8 @@ describe("SensorJsTest_sensor_8", function () {
 			})
 		} catch (error) {
             console.info('Barometer_SensorJsTest010 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -362,8 +364,8 @@ describe("SensorJsTest_sensor_8", function () {
 			})
 		} catch (error) {
             console.info('Barometer_SensorJsTest011 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -397,8 +399,8 @@ describe("SensorJsTest_sensor_8", function () {
 				})
 		} catch (error) {
             console.info('Barometer_SensorJsTest012 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -423,8 +425,8 @@ describe("SensorJsTest_sensor_8", function () {
 			})
 		} catch (error) {
             console.info('Barometer_SensorJsTest013 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -460,8 +462,8 @@ describe("SensorJsTest_sensor_8", function () {
 			})
 		} catch (error) {
             console.info('Barometer_SensorJsTest014 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -498,8 +500,8 @@ describe("SensorJsTest_sensor_8", function () {
 			})
 		} catch (error) {
             console.info('Barometer_SensorJsTest015 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -537,8 +539,8 @@ describe("SensorJsTest_sensor_8", function () {
 			})
 		} catch (error) {
             console.info('Barometer_SensorJsTest016 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -571,8 +573,8 @@ describe("SensorJsTest_sensor_8", function () {
 			})
         } catch (error) {
             console.info("Barometer_SensorJsTest017 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }			
     })
@@ -610,8 +612,8 @@ describe("SensorJsTest_sensor_8", function () {
 			})
         } catch (error) {
             console.info("Barometer_SensorJsTest018 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }				
     })	

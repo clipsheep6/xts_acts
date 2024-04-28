@@ -64,6 +64,8 @@ describe("SensorJsTest_sensor_54", function () {
 	const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_CODE = 14500101
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
+    const SENSOR_NO_SUPPORT_CODE = 14500102
+    const SENSOR_NO_SUPPOR_MSG = 'Can\'t find the sensorId.'
 	let invalid  = -1;
 	let errMessages = ['ReferenceError: string is not defined','TypeError: is not callable',
 	'ReferenceError: xxx is not defined']

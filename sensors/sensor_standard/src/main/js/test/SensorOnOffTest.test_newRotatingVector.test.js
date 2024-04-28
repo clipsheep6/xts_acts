@@ -87,6 +87,8 @@ describe("SensorJsTest_sensor_49", function () {
     const SERVICE_EXCEPTION_CODE = 14500101
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
+    const SENSOR_NO_SUPPORT_CODE = 14500102
+    const SENSOR_NO_SUPPOR_MSG = 'Can\'t find the sensorId.'
 	let invalid  = -1;
 	
 	/*
@@ -111,8 +113,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
 		} catch (error) {
             console.info('newRotatingVector_SensorJsTest001 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -162,8 +164,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
 		} catch (error) {
             console.info('newRotatingVector_SensorJsTest003 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -207,8 +209,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
         } catch (error) {
             console.info("newRotatingVector_SensorJsTest004 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }			
     })
@@ -234,8 +236,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
         } catch (error) {
             console.info("newRotatingVector_SensorJsTest005 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }				
     })
@@ -295,8 +297,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
 	    } catch (error) {
             console.info("newRotatingVector_SensorJsTest007 error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -354,8 +356,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
 		} catch (error) {
             console.info("newRotatingVector_SensorJsTest009 error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -434,8 +436,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
 		} catch (error) {
             console.info("newRotatingVector_SensorJsTest011 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -511,8 +513,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
 		} catch (error) {
             console.info("newRotatingVector_SensorJsTest013 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }	
 	})		
@@ -572,8 +574,8 @@ describe("SensorJsTest_sensor_49", function () {
 		})
 	} catch (error) {
         console.info("newRotatingVector_SensorJsTest014 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})	
@@ -645,8 +647,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
 	} catch (error) {
         console.info("newRotatingVector_SensorJsTest016 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})
@@ -685,8 +687,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
 	} catch (error) {
         console.info("newRotatingVector_SensorJsTest017 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})
@@ -718,8 +720,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
 	} catch (error) {
         console.info("newRotatingVector_SensorJsTest018 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})
@@ -752,8 +754,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
 	} catch (error) {
         console.info("newRotatingVector_SensorJsTest019 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})
@@ -789,8 +791,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
 		} catch (error) {
             console.info('newRotatingVector_SensorJsTest020 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -827,8 +829,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
 		} catch (error) {
             console.info('newRotatingVector_SensorJsTest021 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -866,8 +868,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
 		} catch (error) {
             console.info('newRotatingVector_SensorJsTest022 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -900,8 +902,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
         } catch (error) {
             console.info("newRotatingVector_SensorJsTest023 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }			
     })
@@ -939,8 +941,8 @@ describe("SensorJsTest_sensor_49", function () {
 			})
         } catch (error) {
             console.info("newRotatingVector_SensorJsTest024 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }				
     })	

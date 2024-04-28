@@ -85,6 +85,8 @@ describe("SensorJsTest_sensor_43", function () {
     const SERVICE_EXCEPTION_CODE = 14500101
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
+    const SENSOR_NO_SUPPORT_CODE = 14500102
+    const SENSOR_NO_SUPPOR_MSG = 'Can\'t find the sensorId.'
 	let invalid  = -1;
 	
 	/*
@@ -109,8 +111,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
 		} catch (error) {
             console.info('newGyroScope_SensorJsTest001 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -160,8 +162,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
 		} catch (error) {
             console.info('newGyroScope_SensorJsTest003 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -205,8 +207,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
         } catch (error) {
             console.info("newGyroScope_SensorJsTest004 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }			
     })
@@ -232,8 +234,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
         } catch (error) {
             console.info("newGyroScope_SensorJsTest005 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }				
     })
@@ -292,8 +294,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
 	    } catch (error) {
             console.info("newGyroScope_SensorJsTest007 error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -350,8 +352,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
 		} catch (error) {
             console.info("newGyroScope_SensorJsTest009 error:" +error);
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -428,8 +430,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
 		} catch (error) {
             console.info("newGyroScope_SensorJsTest011 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -503,8 +505,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
 		} catch (error) {
             console.info("newGravity_SensorJsTest013 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }	
 	})		
@@ -562,8 +564,8 @@ describe("SensorJsTest_sensor_43", function () {
 		})
 	} catch (error) {
         console.info("newGravity_SensorJsTest014 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})	
@@ -635,8 +637,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
 	} catch (error) {
         console.info("newGravity_SensorJsTest016 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})
@@ -675,8 +677,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
 	} catch (error) {
         console.info("newGravity_SensorJsTest017 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})
@@ -708,8 +710,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
 	} catch (error) {
         console.info("newGravity_SensorJsTest018 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})
@@ -742,8 +744,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
 	} catch (error) {
         console.info("newGravity_SensorJsTest019 Device does not support! ");
-        expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-        expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
 	})
@@ -779,8 +781,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
 		} catch (error) {
             console.info('newGyroScope_SensorJsTest020 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -817,8 +819,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
 		} catch (error) {
             console.info('newGyroScope_SensorJsTest021 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -856,8 +858,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
 		} catch (error) {
             console.info('newGyroScope_SensorJsTest022 Device does not support! ');
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -890,8 +892,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
         } catch (error) {
             console.info("newGyroScope_SensorJsTest023 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }			
     })
@@ -929,8 +931,8 @@ describe("SensorJsTest_sensor_43", function () {
 			})
         } catch (error) {
             console.info("newGyroScope_SensorJsTest024 Device does not support! ");
-            expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
-            expect(error.message).assertEqual(PARAMETER_ERROR_MSG);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }				
     })	
