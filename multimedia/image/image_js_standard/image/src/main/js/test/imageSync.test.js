@@ -25,24 +25,6 @@ export default function imageSync() {
         let filePath;
         let fdNumber;
         let globalpixelmap;
-        let globalimageSource;
-        let globalpacker;
-
-        async function getFd(fileName) {
-            let context = await featureAbility.getContext();
-            await context.getFilesDir().then((data) => {
-                filePath = data + '/' + fileName;
-                console.info('image case filePath is ' + filePath);
-            })
-            await fileio.open(filePath).then((data) => {
-                fdNumber = data;
-                console.info("image case open fd success " + fdNumber);
-            }, (err) => {
-                console.info("image cese open fd fail" + err)
-            }).catch((err) => {
-                console.info("image case open fd err " + err);
-            })
-        }
 
         beforeAll(async function () {
             console.info('beforeAll case');
@@ -61,28 +43,209 @@ export default function imageSync() {
                     console.info('globalpixelmap release fail');
                 }
             }
-            if (globalimageSource != undefined) {
-                console.info('globalimageSource release start');
-                try {
-                    await globalimageSource.release();
-                } catch (error) {
-                    console.info('globalimageSource release fail');
-                }
-            }
-            if (globalpacker != undefined) {
-                console.info('globalpacker release start');
-                try {
-                    await globalpacker.release();
-                } catch (error) {
-                    console.info('globalpacker release fail');
-                }
-            }
             console.info('afterEach case');
         })
 
         afterAll(async function () {
             console.info('afterAll case');
         })
+
+        async function getFd(fileName) {
+            let context = await featureAbility.getContext();
+            await context.getFilesDir().then((data) => {
+                filePath = data + '/' + fileName;
+                console.info('image case filePath is ' + filePath);
+            })
+            await fileio.open(filePath).then((data) => {
+                fdNumber = data;
+                console.info("image case open fd success " + fdNumber);
+            }, (err) => {
+                console.info("image case open fd fail" + err)
+            }).catch((err) => {
+                console.info("image case open fd err " + err);
+            })
+        }
+
+        async function getImageInfo(done, testNum, fileName, imageWidth, imageHeight, index) {
+            try {
+                await getFd(fileName);
+                const imageSourceApi = image.createImageSource(fdNumber);
+                if (imageSourceApi == undefined) {
+                    console.info(`${testNum} create image source failed`);
+                    expect(false).assertTrue();
+                    done();
+                } else {
+                    let imageInfoWidth = imageWidth;
+                    let imageInfoHeight = imageHeight;
+                    let imageInfo;
+                    if (index != null) {
+                        imageInfo = imageSourceApi.getImageInfoSync(index);
+                    } else {
+                        imageInfo = imageSourceApi.getImageInfoSync();
+                    }
+                    expect(imageInfo != undefined).assertTrue();
+                    expect(imageInfo.size.width).assertEqual(imageInfoWidth);
+                    expect(imageInfo.size.height).assertEqual(imageInfoHeight);
+                    expect(imageInfo.density == undefined).assertTrue();
+                    expect(imageInfo.stride == undefined).assertTrue();
+                    expect(imageInfo.pixelFormat == 0).assertTrue();
+                    expect(imageInfo.alphaType == 0).assertTrue();
+                    console.info(`${testNum} imageInfo:`);
+                    console.info('imageInfo.size.width:' + imageInfo.size.width);
+                    console.info('imageInfo.size.height:' + imageInfo.size.height);
+                    console.info('imageInfo.density:' + imageInfo.density);
+                    console.info('imageInfo.stride:' + imageInfo.stride);
+                    console.info('imageInfo.pixelFormat:' + imageInfo.pixelFormat);
+                    console.info('imageInfo.alphaType:' + imageInfo.alphaType);
+                    console.log(`${testNum} success`);
+                    done();
+                }
+            } catch (error) {
+                console.info(`${testNum} error ` + error);
+                expect(false).assertTrue();
+                done();
+            }
+        }
+
+        async function getImageInfoInvaildIndex(done, testNum, index) {
+            try {
+                await getFd('test.gif');
+                const imageSourceApi = image.createImageSource(fdNumber);
+                if (imageSourceApi == undefined) {
+                    console.info(`${testNum} create image source failed`);
+                    expect(false).assertTrue();
+                    done();
+                } else {
+                    let imageInfo = imageSourceApi.getImageInfoSync(index);
+                    expect(imageInfo == undefined).assertTrue();
+                    console.info(`${testNum} success`);
+                    done();
+                }
+            } catch (error) {
+                console.info(`${testNum} error: ` + error);
+                expect(false).assertTrue();
+                done();
+            }
+        }
+
+        async function createIncrementalSourcePixelMap(done, testNum, buffer) {
+            try {
+                let testimagebuffer = buffer;
+                console.info(`${testNum} start image buffer length: ` + testimagebuffer.length);
+                let bufferSize = testimagebuffer.length;
+                let offset = 0;
+                const incSouce = image.CreateIncrementalSource(new ArrayBuffer(1));
+                let ret;
+                let isFinished = false;
+                while (offset < testimagebuffer.length) {
+                    var oneStep = testimagebuffer.slice(offset, offset + bufferSize);
+                    console.info(`${testNum} one step length: ` + oneStep.length);
+                    if (oneStep.length < bufferSize) {
+                        isFinished = true;
+                    }
+                    ret = await incSouce.updateData(oneStep, isFinished, 0, oneStep.length);
+                    if (!ret) {
+                        console.info(`${testNum} updateData failed`);
+                        expect(ret).assertTrue();
+                        break;
+                    }
+                    offset = offset + oneStep.length;
+                    console.info(`${testNum} offset: ` + offset);
+                }
+                if (ret) {
+                    console.info(`${testNum} updateData success`);
+                    let decodingOptions = {
+                        sampleSize: 1
+                    };
+                    let pixelmap = incSouce.createPixelMapSync(decodingOptions)
+                    console.info(`${testNum} pixelmap: ` + pixelmap);
+                    expect(pixelmap != undefined).assertTrue();
+                    done();
+                } else {
+                    done();
+                }
+            } catch (error) {
+                console.info(`${testNum} error: ` + error);
+            }
+        }
+
+        async function createPixelMap(done, testNum, fileName, opts) {
+            try {
+                await getFd(fileName);
+                const imageSourceApi = image.createImageSource(fdNumber);
+                if (imageSourceApi == undefined) {
+                    console.info(`${testNum} create image source failed`);
+                    expect(false).assertTrue();
+                    done();
+                } else {
+                    if (opts != null) {
+                        if (opts.desiredSize == undefined) {
+                            opts.desiredSize = { width: 1446, height: 1476 };
+                        }
+                        globalpixelmap = imageSourceApi.createPixelMapSync(opts);
+                    } else {
+                        let csm = colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB, 2.4);
+                        opts = {
+                            editable: false,
+                            desiredSize: { width: 1446, height: 1476 },
+                            desiredPixelFormat: 3,
+                            fitDensity: 0,
+                            desiredColorSpace: csm
+                        };
+                        globalpixelmap = imageSourceApi.createPixelMapSync();
+                    }
+                    let pixelMapInfo = await globalpixelmap.getImageInfo();
+                    let pixelColorSpace = globalpixelmap.getColorSpace().getColorSpaceName();
+                    let pixelGamma = globalpixelmap.getColorSpace().getGamma();
+                    console.info(`${testNum} pixelmap info: `);
+                    expect(globalpixelmap != undefined).assertTrue();
+                    expect(pixelMapInfo.size.width == opts.desiredSize.width).assertTrue();
+                    expect(pixelMapInfo.size.height == opts.desiredSize.height).assertTrue();
+                    expect(pixelMapInfo.pixelFormat == opts.desiredPixelFormat).assertTrue();
+                    expect(globalpixelmap.isEditable == opts.editable).assertTrue();
+                    expect(globalpixelmap.getDensity() == opts.fitDensity).assertTrue();
+                    expect(pixelColorSpace == opts.desiredColorSpace.getColorSpaceName()
+                        || pixelColorSpace == colorSpaceManager.ColorSpace.CUSTOM
+                    ).assertTrue();
+                    expect(pixelGamma == opts.desiredColorSpace.getGamma()).assertTrue();
+                    console.info('pixelmap width: ' + pixelMapInfo.size.width);
+                    console.info('pixelmap height: ' + pixelMapInfo.size.height);
+                    console.info('pixelmap editable: ' + globalpixelmap.isEditable);
+                    console.info('pixelmap pixel format: ' + pixelMapInfo.pixelFormat);
+                    console.info('pixelmap density: ' + globalpixelmap.getDensity());
+                    console.info('pixelmap color space name: ' + pixelColorSpace);
+                    console.info('pixelmap color space gamma: ' + pixelGamma);
+                    console.info(`${testNum} success`);
+                    done();
+                }
+            } catch (error) {
+                console.info(`${testNum} error: ` + error);
+                expect(false).assertTrue();
+                done();
+            }
+        }
+
+        async function createPixelMapInvalidOpt(done, testNum, fileName, opts) {
+            try {
+                await getFd(fileName);
+                const imageSourceApi = image.createImageSource(fdNumber);
+                if (imageSourceApi == undefined) {
+                    console.info(`${testNum} create image source failed`);
+                    expect(false).assertTrue();
+                    done();
+                } else {
+                    console.info(`${testNum} create pixelmap failed with invalid options`);
+                    globalpixelmap = imageSourceApi.createPixelMapSync(opts);
+                    expect(globalpixelmap == undefined).assertTrue();
+                    console.info(`${testNum} success`);
+                    done();
+                }
+            } catch (error) {
+                console.info(`${testNum} error: ` + error);
+                expect(false).assertTrue();
+                done();
+            }
+        }
 
         /**
          * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0100
@@ -95,39 +258,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0100', 0, async function (done) {
-            try {
-                await getFd('test.jpg');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0100 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let imageInfoHeight = 1476;
-                    let imageInfoWidth = 1446;
-                    let imageInfo = imageSourceApi.getImageInfoSync(0);
-                    expect(imageInfo != undefined).assertTrue();
-                    expect(imageInfo.size.height).assertEqual(imageInfoHeight);
-                    expect(imageInfo.size.width).assertEqual(imageInfoWidth);
-                    expect(imageInfo.density == undefined).assertTrue();
-                    expect(imageInfo.stride == undefined).assertTrue();
-                    expect(imageInfo.pixelFormat == 0).assertTrue();
-                    expect(imageInfo.alphaType == 0).assertTrue();
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0100 imageInfo:');
-                    console.info('imageInfo.size.height:' + imageInfo.size.height);
-                    console.info('imageInfo.size.width:' + imageInfo.size.width);
-                    console.info('imageInfo.density:' + imageInfo.density);
-                    console.info('imageInfo.stride:' + imageInfo.stride);
-                    console.info('imageInfo.pixelFormat:' + imageInfo.pixelFormat);
-                    console.info('imageInfo.alphaType:' + imageInfo.alphaType);
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0100 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0100", "test.jpg", 1446, 1476, 0);
         })
 
         /**
@@ -141,39 +272,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0200', 0, async function (done) {
-            try {
-                await getFd('test.bmp');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0200 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let imageInfoHeight = 1042;
-                    let imageInfoWidth = 1399;
-                    let imageInfo = imageSourceApi.getImageInfoSync(0);
-                    expect(imageInfo != undefined).assertTrue();
-                    expect(imageInfo.size.height).assertEqual(imageInfoHeight);
-                    expect(imageInfo.size.width).assertEqual(imageInfoWidth);
-                    expect(imageInfo.density == undefined).assertTrue();
-                    expect(imageInfo.stride == undefined).assertTrue();
-                    expect(imageInfo.pixelFormat == 0).assertTrue();
-                    expect(imageInfo.alphaType == 0).assertTrue();
-                    console.warn('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0200 imageInfo:');
-                    console.info('imageInfo.size.height:' + imageInfo.size.height);
-                    console.info('imageInfo.size.width:' + imageInfo.size.width);
-                    console.info('imageInfo.density:' + imageInfo.density);
-                    console.info('imageInfo.stride:' + imageInfo.stride);
-                    console.info('imageInfo.pixelFormat:' + imageInfo.pixelFormat);
-                    console.info('imageInfo.alphaType:' + imageInfo.alphaType);
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0200 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0200", "test.bmp", 1399, 1042, 0);
         })
 
         /**
@@ -187,39 +286,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0300', 0, async function (done) {
-            try {
-                await getFd('test.png');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0300 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let imageInfoHeight = 3384;
-                    let imageInfoWidth = 6016;
-                    let imageInfo = imageSourceApi.getImageInfoSync(0);
-                    expect(imageInfo != undefined).assertTrue();
-                    expect(imageInfo.size.height).assertEqual(imageInfoHeight);
-                    expect(imageInfo.size.width).assertEqual(imageInfoWidth);
-                    expect(imageInfo.density == undefined).assertTrue();
-                    expect(imageInfo.stride == undefined).assertTrue();
-                    expect(imageInfo.pixelFormat == 0).assertTrue();
-                    expect(imageInfo.alphaType == 0).assertTrue();
-                    console.log('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0300 imageInfo:');
-                    console.info('imageInfo.size.height:' + imageInfo.size.height);
-                    console.info('imageInfo.size.width:' + imageInfo.size.width);
-                    console.info('imageInfo.density:' + imageInfo.density);
-                    console.info('imageInfo.stride:' + imageInfo.stride);
-                    console.info('imageInfo.pixelFormat:' + imageInfo.pixelFormat);
-                    console.info('imageInfo.alphaType:' + imageInfo.alphaType);
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0300 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0300", "test.png", 6016, 3384, 0);
         })
 
         /**
@@ -233,39 +300,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0400', 0, async function (done) {
-            try {
-                await getFd('test.gif');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0400 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let imageInfoHeight = 3384;
-                    let imageInfoWidth = 6016;
-                    let imageInfo = imageSourceApi.getImageInfoSync(0);
-                    expect(imageInfo != undefined).assertTrue();
-                    expect(imageInfo.size.height).assertEqual(imageInfoHeight);
-                    expect(imageInfo.size.width).assertEqual(imageInfoWidth);
-                    expect(imageInfo.density == undefined).assertTrue();
-                    expect(imageInfo.stride == undefined).assertTrue();
-                    expect(imageInfo.pixelFormat == 0).assertTrue();
-                    expect(imageInfo.alphaType == 0).assertTrue();
-                    console.error('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0400 imageInfo:');
-                    console.info('imageInfo.size.height:' + imageInfo.size.height);
-                    console.info('imageInfo.size.width:' + imageInfo.size.width);
-                    console.info('imageInfo.density:' + imageInfo.density);
-                    console.info('imageInfo.stride:' + imageInfo.stride);
-                    console.info('imageInfo.pixelFormat:' + imageInfo.pixelFormat);
-                    console.info('imageInfo.alphaType:' + imageInfo.alphaType);
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0400 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0400", "test.gif", 6016, 3384, 0);
         })
 
         /**
@@ -279,39 +314,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0500', 0, async function (done) {
-            try {
-                await getFd('test_dng.dng');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0500 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let imageInfoHeight = 2728;
-                    let imageInfoWidth = 3074;
-                    let imageInfo = imageSourceApi.getImageInfoSync(0);
-                    expect(imageInfo != undefined).assertTrue();
-                    expect(imageInfo.size.height).assertEqual(imageInfoHeight);
-                    expect(imageInfo.size.width).assertEqual(imageInfoWidth);
-                    expect(imageInfo.density == undefined).assertTrue();
-                    expect(imageInfo.stride == undefined).assertTrue();
-                    expect(imageInfo.pixelFormat == 0).assertTrue();
-                    expect(imageInfo.alphaType == 0).assertTrue();
-                    console.debug('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0500 imageInfo:');
-                    console.info('imageInfo.size.height:' + imageInfo.size.height);
-                    console.info('imageInfo.size.width:' + imageInfo.size.width);
-                    console.info('imageInfo.density:' + imageInfo.density);
-                    console.info('imageInfo.stride:' + imageInfo.stride);
-                    console.info('imageInfo.pixelFormat:' + imageInfo.pixelFormat);
-                    console.info('imageInfo.alphaType:' + imageInfo.alphaType);
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0500 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0500", "test_dng.dng", 3074, 2728, 0);
         })
 
         /**
@@ -325,39 +328,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0600', 0, async function (done) {
-            try {
-                await getFd('test_large.webp');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0600 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let imageInfoHeight = 681;
-                    let imageInfoWidth = 1212;
-                    let imageInfo = imageSourceApi.getImageInfoSync(0);
-                    expect(imageInfo != undefined).assertTrue();
-                    expect(imageInfo.size.height).assertEqual(imageInfoHeight);
-                    expect(imageInfo.size.width).assertEqual(imageInfoWidth);
-                    expect(imageInfo.density == undefined).assertTrue();
-                    expect(imageInfo.stride == undefined).assertTrue();
-                    expect(imageInfo.pixelFormat == 0).assertTrue();
-                    expect(imageInfo.alphaType == 0).assertTrue();
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0600 imageInfo:');
-                    console.info('imageInfo.size.height:' + imageInfo.size.height);
-                    console.info('imageInfo.size.width:' + imageInfo.size.width);
-                    console.info('imageInfo.density:' + imageInfo.density);
-                    console.info('imageInfo.stride:' + imageInfo.stride);
-                    console.info('imageInfo.pixelFormat:' + imageInfo.pixelFormat);
-                    console.info('imageInfo.alphaType:' + imageInfo.alphaType);
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0600 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0600", "test_large.webp", 1212, 681, 0);
         })
 
         /**
@@ -371,39 +342,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0700', 0, async function (done) {
-            try {
-                await getFd('test_large.svg');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0700 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let imageInfoHeight = 1968;
-                    let imageInfoWidth = 2136;
-                    let imageInfo = imageSourceApi.getImageInfoSync(0);
-                    expect(imageInfo != undefined).assertTrue();
-                    expect(imageInfo.size.height).assertEqual(imageInfoHeight);
-                    expect(imageInfo.size.width).assertEqual(imageInfoWidth);
-                    expect(imageInfo.density == undefined).assertTrue();
-                    expect(imageInfo.stride == undefined).assertTrue();
-                    expect(imageInfo.pixelFormat == 0).assertTrue();
-                    expect(imageInfo.alphaType == 0).assertTrue();
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0700 imageInfo:');
-                    console.info('imageInfo.size.height:' + imageInfo.size.height);
-                    console.info('imageInfo.size.width:' + imageInfo.size.width);
-                    console.info('imageInfo.density:' + imageInfo.density);
-                    console.info('imageInfo.stride:' + imageInfo.stride);
-                    console.info('imageInfo.pixelFormat:' + imageInfo.pixelFormat);
-                    console.info('imageInfo.alphaType:' + imageInfo.alphaType);
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0700 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0700", "test_large.svg", 2136, 1968, 0);
         })
 
         /**
@@ -417,39 +356,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0800', 0, async function (done) {
-            try {
-                await getFd('test.ico');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0800 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let imageInfoHeight = 128;
-                    let imageInfoWidth = 128;
-                    let imageInfo = imageSourceApi.getImageInfoSync(0);
-                    expect(imageInfo != undefined).assertTrue();
-                    expect(imageInfo.size.height).assertEqual(imageInfoHeight);
-                    expect(imageInfo.size.width).assertEqual(imageInfoWidth);
-                    expect(imageInfo.density == undefined).assertTrue();
-                    expect(imageInfo.stride == undefined).assertTrue();
-                    expect(imageInfo.pixelFormat == 0).assertTrue();
-                    expect(imageInfo.alphaType == 0).assertTrue();
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0800 imageInfo:');
-                    console.info('imageInfo.size.height:' + imageInfo.size.height);
-                    console.info('imageInfo.size.width:' + imageInfo.size.width);
-                    console.info('imageInfo.density:' + imageInfo.density);
-                    console.info('imageInfo.stride:' + imageInfo.stride);
-                    console.info('imageInfo.pixelFormat:' + imageInfo.pixelFormat);
-                    console.info('imageInfo.alphaType:' + imageInfo.alphaType);
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0800 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0800", "test.ico", 128, 128, 0);
         })
 
         /**
@@ -463,45 +370,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0900', 0, async function (done) {
-            try {
-                await getFd('test.123');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0900 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    try {
-                        let imageInfoHeight = 3384;
-                        let imageInfoWidth = 6016;
-                        let imageInfo = imageSourceApi.getImageInfoSync(0);
-                        expect(imageInfo.size.height).assertEqual(imageInfoHeight);
-                        expect(imageInfo.size.width).assertEqual(imageInfoWidth);
-                        expect(imageInfo != undefined).assertTrue();
-                        expect(imageInfo.density == undefined).assertTrue();
-                        expect(imageInfo.stride == undefined).assertTrue();
-                        expect(imageInfo.pixelFormat == 0).assertTrue();
-                        expect(imageInfo.alphaType == 0).assertTrue();
-                        console.info('imageInfo.size.height:' + imageInfo.size.height);
-                        console.info('imageInfo.size.width:' + imageInfo.size.width);
-                        console.info('imageInfo.density:' + imageInfo.density);
-                        console.info('imageInfo.stride:' + imageInfo.stride);
-                        console.info('imageInfo.pixelFormat:' + imageInfo.pixelFormat);
-                        console.info('imageInfo.alphaType:' + imageInfo.alphaType);
-                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0900 success');
-                        done();
-                    } catch (error) {
-                        console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0900 failed' + error);
-                        expect(false).assertTrue();
-                        done();
-                    }
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0900 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0900", "test.123", 6016, 3384, 0);
         })
 
         /**
@@ -515,24 +384,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0100', 0, async function (done) {
-            try {
-                await getFd('test.gif');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0100 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    let imageInfo = imageSourceApi.getImageInfoSync(1);
-                    expect(imageInfo == undefined).assertTrue();
-                    console.log('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0100 success');
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0100 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            getImageInfoInvaildIndex(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0100", 1);
         })
 
         /**
@@ -546,24 +398,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0200', 0, async function (done) {
-            try {
-                await getFd('test.gif');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0200 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    let imageInfo = imageSourceApi.getImageInfoSync(-1);
-                    expect(imageInfo == undefined).assertTrue();
-                    console.log('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0200 success');
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0200 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            getImageInfoInvaildIndex(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0200", -1);
         })
 
         /**
@@ -577,39 +412,21 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0300', 0, async function (done) {
-            try {
-                await getFd('moving_test.gif');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0300 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let imageInfoHeight = 202;
-                    let imageInfoWidth = 198;
-                    let imageInfo = imageSourceApi.getImageInfoSync(1);
-                    expect(imageInfo.size.height).assertEqual(imageInfoHeight);
-                    expect(imageInfo.size.width).assertEqual(imageInfoWidth);
-                    expect(imageInfo != undefined).assertTrue();
-                    expect(imageInfo.density == undefined).assertTrue();
-                    expect(imageInfo.stride == undefined).assertTrue();
-                    expect(imageInfo.pixelFormat == 0).assertTrue();
-                    expect(imageInfo.alphaType == 0).assertTrue();
-                    console.info('imageInfo.size.height:' + imageInfo.size.height);
-                    console.info('imageInfo.size.width:' + imageInfo.size.width);
-                    console.info('imageInfo.density:' + imageInfo.density);
-                    console.info('imageInfo.stride:' + imageInfo.stride);
-                    console.info('imageInfo.pixelFormat:' + imageInfo.pixelFormat);
-                    console.info('imageInfo.alphaType:' + imageInfo.alphaType);
-                    console.log('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0300 success');
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0300 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0300", "moving_test.gif", 198, 202, 1);
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0400
+         * @tc.name      : test getImageInfoSync with index null for jpg
+         * @tc.desc      : 1.create jpg imagesource
+         *                 2.call getImageInfoSync(index:null)
+         *                 3.return imageinfo
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level 1
+         */
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0400', 0, async function (done) {
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0400", "test.jpg", 1446, 1476, null);
         })
 
         /**
@@ -623,46 +440,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0100', 0, async function (done) {
-            try {
-                let testimagebuffer = testPng;
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0100 0003 ' + testimagebuffer.length);
-                let bufferSize = testimagebuffer.length;
-                let offset = 0;
-                const incSouce = image.CreateIncrementalSource(new ArrayBuffer(1));
-                globalimageSource = incSouce;
-                let ret;
-                let isFinished = false;
-                while (offset < testimagebuffer.length) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0100 0006 ' + testimagebuffer.length);
-                    var oneStep = testimagebuffer.slice(offset, offset + bufferSize);
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0100 0007 ' + oneStep.length);
-                    if (oneStep.length < bufferSize) {
-                        isFinished = true;
-                    }
-                    ret = await incSouce.updateData(oneStep, isFinished, 0, oneStep.length);
-                    if (!ret) {
-                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0100 updateData failed');
-                        expect(ret).assertTrue();
-                        break;
-                    }
-                    offset = offset + oneStep.length;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0100 0011 ' + offset);
-                }
-                if (ret) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0100 updateData success ');
-                    let decodingOptions = {
-                        sampleSize: 1
-                    };
-                    let pixelmap = incSouce.createPixelMapSync(decodingOptions)
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0100 0014' + pixelmap);
-                    expect(pixelmap != undefined).assertTrue();
-                    done();
-                } else {
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0100 updateData failed ' + error);
-            }
+            createIncrementalSourcePixelMap(done, "SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0100", testPng);
         })
 
         /**
@@ -676,45 +454,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0200', 0, async function (done) {
-            try {
-                let testimagebuffer = testJpg;
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0200 0003 ' + testimagebuffer.length);
-                let bufferSize = testimagebuffer.length;
-                let offset = 0;
-                const incSouce = image.CreateIncrementalSource(new ArrayBuffer(1));
-                globalimageSource = incSouce;
-                let isFinished = false;
-                let ret;
-                while (offset < testimagebuffer.length) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0200 0006 ' + testimagebuffer.length);
-                    var oneStep = testimagebuffer.slice(offset, offset + bufferSize);
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0200 0007 ' + oneStep.length);
-                    if (oneStep.length < bufferSize) {
-                        isFinished = true;
-                    }
-                    ret = await incSouce.updateData(oneStep, isFinished, 0, oneStep.length);
-                    if (!ret) {
-                        console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0200 updateData failed');
-                        expect(ret).assertTrue();
-                        break;
-                    }
-                    offset = offset + oneStep.length;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0200 0011 ' + offset);
-                }
-                if (ret) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0200 updateData success ');
-                    let decodingOptions = {
-                        sampleSize: 1
-                    };
-                    let pixelmap = incSouce.createPixelMapSync(decodingOptions);
-                    expect(pixelmap != undefined).assertTrue();
-                    done();
-                } else {
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0200 updateData failed ' + error);
-            }
+            createIncrementalSourcePixelMap(done, "SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0200", testJpg);
         })
 
         /**
@@ -729,29 +469,20 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0300', 0, async function (done) {
-            try {
-                await getFd('test.jpg');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0300 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let decodingOptions = {
-                        index: 0
-                    };
-                    let pixelmap = imageSourceApi.createPixelMapSync(decodingOptions);
-                    globalpixelmap = pixelmap;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0300 success ');
-                    expect(pixelmap != undefined).assertTrue();
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0300 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            let csm = colorSpaceManager.create(colorSpaceManager.ColorSpace.ADOBE_RGB_1998, 2.3);
+            let decodingOptions = {
+                index: 0,
+                sampleSize: 1,
+                rotate: 10,
+                editable: true,
+                desiredSize: { width: 100, height: 20 },
+                desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+                desiredPixelFormat: 2,
+                fitDensity: 240,
+                desiredColorSpace: csm,
+                desiredDynamicRange: 0
+            };
+            createPixelMap(done, "SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0300", "test.jpg", decodingOptions);
         })
 
         /**
@@ -766,29 +497,17 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0400', 0, async function (done) {
-            try {
-                await getFd('test.jpg');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0400 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let decodingOptions = {
-                        index: -1
-                    };
-                    let pixelmap = imageSourceApi.createPixelMapSync(decodingOptions);
-                    globalpixelmap = pixelmap;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0400 success ');
-                    expect(pixelmap == undefined).assertTrue();
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0400 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            let decodingOptions = {
+                index: -1,
+                sampleSize: 1,
+                rotate: 10,
+                editable: true,
+                desiredSize: { width: 1, height: 2 },
+                desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+                desiredPixelFormat: 2,
+                fitDensity: 240
+            };
+            createPixelMapInvalidOpt(done, "SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0400", "test.jpg", decodingOptions);
         })
 
         /**
@@ -803,29 +522,19 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0500', 0, async function (done) {
-            try {
-                await getFd('test.jpg');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0500 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let decodingOptions = {
-                        sampleSize: 1
-                    };
-                    let pixelmap = imageSourceApi.createPixelMapSync(decodingOptions);
-                    globalpixelmap = pixelmap;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0500 success ');
-                    expect(pixelmap != undefined).assertTrue();
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0500 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            let csm = colorSpaceManager.create(colorSpaceManager.ColorSpace.DCI_P3);
+            let decodingOptions = {
+                index: 0,
+                sampleSize: 1,
+                rotate: 10,
+                editable: true,
+                desiredSize: { width: 100, height: 20 },
+                desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+                desiredPixelFormat: 2,
+                fitDensity: 240,
+                desiredColorSpace: csm
+            };
+            createPixelMap(done, "SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0500", "test.jpg", decodingOptions);
         })
 
         /**
@@ -840,29 +549,19 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0600', 0, async function (done) {
-            try {
-                await getFd('test.jpg');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0600 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let decodingOptions = {
-                        rotate: 10
-                    };
-                    let pixelmap = imageSourceApi.createPixelMapSync(decodingOptions);
-                    globalpixelmap = pixelmap;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0600 success ');
-                    expect(pixelmap != undefined).assertTrue();
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0600 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            let csm = colorSpaceManager.create(colorSpaceManager.ColorSpace.DISPLAY_P3, 2.4);
+            let decodingOptions = {
+                index: 0,
+                sampleSize: 1,
+                rotate: 30,
+                editable: true,
+                desiredSize: { width: 10, height: 10 },
+                desiredRegion: { size: { height: 10, width: 10 }, x: 0, y: 0 },
+                desiredPixelFormat: 2,
+                fitDensity: 200,
+                desiredColorSpace: csm
+            };
+            createPixelMap(done, "SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0600", "test.jpg", decodingOptions);
         })
 
         /**
@@ -877,29 +576,19 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0700', 0, async function (done) {
-            try {
-                await getFd('test.jpg');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0700 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let decodingOptions = {
-                        editable: true
-                    };
-                    let pixelmap = imageSourceApi.createPixelMapSync(decodingOptions);
-                    globalpixelmap = pixelmap;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0700 success ');
-                    expect(pixelmap != undefined).assertTrue();
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0700 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            let csm = colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB, 1.9);
+            let decodingOptions = {
+                index: 0,
+                sampleSize: 1,
+                rotate: 30,
+                editable: true,
+                desiredSize: { width: 10, height: 10 },
+                desiredRegion: { size: { height: 10, width: 10 }, x: 1, y: 1 },
+                desiredPixelFormat: 2,
+                fitDensity: 200,
+                desiredColorSpace: csm
+            };
+            createPixelMap(done, "SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0700", "test.jpg", decodingOptions);
         })
 
         /**
@@ -914,29 +603,19 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0800', 0, async function (done) {
-            try {
-                await getFd('test.jpg');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0800 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let decodingOptions = {
-                        desiredSize: { width: 1, height: 2 }
-                    };
-                    let pixelmap = imageSourceApi.createPixelMapSync(decodingOptions);
-                    globalpixelmap = pixelmap;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0800 success ');
-                    expect(pixelmap != undefined).assertTrue();
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0800 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            let csm = colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB, 2.4);
+            let decodingOptions = {
+                index: 0,
+                sampleSize: 1,
+                rotate: 50,
+                editable: false,
+                desiredSize: { width: 10, height: 20 },
+                desiredRegion: { size: { height: 10, width: 20 }, x: 0, y: 0 },
+                desiredPixelFormat: 3,
+                fitDensity: 150,
+                desiredColorSpace: csm
+            };
+            createPixelMap(done, "SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0800", "test.jpg", decodingOptions);
         })
 
         /**
@@ -951,29 +630,29 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0900', 0, async function (done) {
-            try {
-                await getFd('test.jpg');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0900 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let decodingOptions = {
-                        desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 }
-                    };
-                    let pixelmap = imageSourceApi.createPixelMapSync(decodingOptions);
-                    globalpixelmap = pixelmap;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0900 success ');
-                    expect(pixelmap != undefined).assertTrue();
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0900 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            let primaries = {
+                redX: 0.64,
+                redY: 0.33,
+                greenX: 0.3,
+                greenY: 0.6,
+                blueX: 0.15,
+                blueY: 0.06,
+                whitePointX: 0.3127,
+                whitePointY: 0.3290
+            };
+            let csm = colorSpaceManager.create(primaries, 2.875);
+            let decodingOptions = {
+                index: 0,
+                sampleSize: 1,
+                rotate: 50,
+                editable: false,
+                desiredSize: { width: 1, height: 2 },
+                desiredRegion: { size: { height: 1, width: 2 }, x: 0, y: 0 },
+                desiredPixelFormat: 3,
+                fitDensity: 150,
+                desiredColorSpace: csm
+            };
+            createPixelMap(done, "SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_0900", "test.jpg", decodingOptions);
         })
 
         /**
@@ -988,29 +667,19 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1000', 0, async function (done) {
-            try {
-                await getFd('test.jpg');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1000 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let decodingOptions = {
-                        desiredPixelFormat: 0
-                    };
-                    let pixelmap = imageSourceApi.createPixelMapSync(decodingOptions);
-                    globalpixelmap = pixelmap;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1000 success ');
-                    expect(pixelmap != undefined).assertTrue();
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1000 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            let csm = colorSpaceManager.create(colorSpaceManager.ColorSpace.ADOBE_RGB_1998_LIMIT, undefined)
+            let decodingOptions = {
+                index: 0,
+                sampleSize: 1,
+                rotate: 70,
+                editable: false,
+                desiredSize: { width: 10, height: 20 },
+                desiredRegion: { size: { height: 1, width: 2 }, x: 30, y: 30 },
+                desiredPixelFormat: 3,
+                fitDensity: 100,
+                desiredColorSpace: csm
+            };
+            createPixelMap(done, "SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1000", "test.jpg", decodingOptions);
         })
 
         /**
@@ -1025,29 +694,19 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1100', 0, async function (done) {
-            try {
-                await getFd('test.jpg');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1100 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let decodingOptions = {
-                        fitDensity: 240
-                    };
-                    let pixelmap = imageSourceApi.createPixelMapSync(decodingOptions);
-                    globalpixelmap = pixelmap;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1100 success ');
-                    expect(pixelmap != undefined).assertTrue();
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1100 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            let csm = colorSpaceManager.create(colorSpaceManager.ColorSpace.LINEAR_SRGB, undefined);
+            let decodingOptions = {
+                index: 0,
+                sampleSize: 1,
+                rotate: 70,
+                editable: false,
+                desiredSize: { width: 10, height: 20 },
+                desiredRegion: { size: { height: 30, width: 30 }, x: 30, y: 30 },
+                desiredPixelFormat: 3,
+                fitDensity: 100,
+                desiredColorSpace: csm
+            };
+            createPixelMap(done, "SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1100", "test.jpg", decodingOptions);
         })
 
         /**
@@ -1062,30 +721,16 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1200', 0, async function (done) {
-            try {
-                await getFd('test.jpg');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1200 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let csm = colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB, 2.4);
-                    let decodingOptions = {
-                        desiredColorSpace: csm
-                    };
-                    let pixelmap = imageSourceApi.createPixelMapSync(decodingOptions);
-                    globalpixelmap = pixelmap;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1200 success ');
-                    expect(pixelmap != undefined).assertTrue();
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1200 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            let csm = colorSpaceManager.create(colorSpaceManager.ColorSpace.LINEAR_SRGB);
+            let decodingOptions = {
+                index: 0,
+                sampleSize: 1,
+                editable: false,
+                desiredPixelFormat: 3,
+                fitDensity: 50,
+                desiredColorSpace: csm
+            };
+            createPixelMap(done, "SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1200", "test.jpg", decodingOptions);
         })
 
         /**
@@ -1100,26 +745,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1300', 0, async function (done) {
-            try {
-                await getFd('test.jpg');
-                const imageSourceApi = image.createImageSource(fdNumber);
-                if (imageSourceApi == undefined) {
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1300 create image source failed');
-                    expect(false).assertTrue();
-                    done();
-                } else {
-                    globalimageSource = imageSourceApi;
-                    let pixelmap = imageSourceApi.createPixelMapSync();
-                    globalpixelmap = pixelmap;
-                    console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1300 success ');
-                    expect(pixelmap != undefined).assertTrue();
-                    done();
-                }
-            } catch (error) {
-                console.info('SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1300 error: ' + error);
-                expect(false).assertTrue();
-                done();
-            }
+            createPixelMap(done, "SUB_MULTIMEDIA_IMAGE_CREATEPIXELMAPSYNC_1300", "test.jpg", null);
         })
     })
 }
