@@ -36,10 +36,9 @@ export default function stageAppContextTest(abilityContext) {
             TestUiAbility = await abilityDelegator.getCurrentTopAbility();
         })
 
-        afterEach(async (done) => {
+        afterEach(async () => {
             console.log("ActsStageContextPropertiesTest run afterEach with await");
             await sleep(2000);
-            done()
         })
 
         /**
@@ -288,7 +287,7 @@ export default function stageAppContextTest(abilityContext) {
         });
 
         /**
-         * @tc.number: SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0100
+         * @tc.number: 001_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 1
          * calling interface clearUpApplicationData can be cleaning application data, run entry applicationData use Promise
          * @tc.desc: Function test
@@ -296,8 +295,8 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0100', 0, async (done) => {
-            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0100';
+        it('001_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData', 0, async (done) => {
+            let TAG = '001_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData';
             let startType = 'Promise';
             console.log(TAG + ' --- start');
             let createFile = true;
@@ -358,7 +357,7 @@ export default function stageAppContextTest(abilityContext) {
         });
 
         /**
-         * @tc.number: SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0200
+         * @tc.number: 002_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 2
          * calling interface clearUpApplicationData can be cleaning application data, run entry applicationData use Callback
          * @tc.desc: Function test
@@ -366,8 +365,8 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0200', 0, async (done) => {
-            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0200';
+        it('002_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData', 0, async (done) => {
+            let TAG = '002_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData';
             let startType = 'Callback';
             console.log(TAG + ' --- start');
             let createFile = true;
@@ -428,7 +427,7 @@ export default function stageAppContextTest(abilityContext) {
         });
 
         /**
-         * @tc.number: SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0300
+         * @tc.number: 003_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 3
          * calling interface clearUpApplicationData can be cleaning application data, run feature applicationData use Promise
          * @tc.desc: Function test
@@ -436,8 +435,8 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0300', 0, async (done) => {
-            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0300';
+        it('003_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData', 0, async (done) => {
+            let TAG = '003_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData';
             let startType = 'Promise';
             console.log(TAG + ' --- start');
             let createFile = true;
@@ -498,7 +497,7 @@ export default function stageAppContextTest(abilityContext) {
         });
 
         /**
-         * @tc.number: SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0400
+         * @tc.number: 004_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 4
          * calling interface clearUpApplicationData can be cleaning application data, run feature applicationData use Callback
          * @tc.desc: Function test
@@ -506,8 +505,8 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0400', 0, async (done) => {
-            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0400';
+        it('004_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData', 0, async (done) => {
+            let TAG = '004_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData';
             let startType = 'Callback';
             console.log(TAG + ' --- start');
             let createFile = true;
@@ -568,7 +567,7 @@ export default function stageAppContextTest(abilityContext) {
         });
 
         /**
-         * @tc.number: SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0500
+         * @tc.number: 005_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 5
          * calling interface clearUpApplicationData can be cleaning application data, run system applicationData use Promise
          * @tc.desc: Function test
@@ -576,8 +575,8 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0500', 0, async (done) => {
-            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0500';
+        it('005_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData', 0, async (done) => {
+            let TAG = '005_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData';
             let startType = 'Promise';
             console.log(TAG + ' --- start');
             let createFile = true;
@@ -638,7 +637,7 @@ export default function stageAppContextTest(abilityContext) {
         });
 
         /**
-         * @tc.number: SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0600
+         * @tc.number: 006_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 6
          * calling interface clearUpApplicationData can be cleaning application data, run system applicationData use Callback
          * @tc.desc: Function test
@@ -646,8 +645,8 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0600', 0, async (done) => {
-            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0600';
+        it('006_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData', 0, async (done) => {
+            let TAG = '006_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData';
             let startType = 'Callback';
             console.log(TAG + ' --- start');
             let createFile = true;
@@ -708,7 +707,7 @@ export default function stageAppContextTest(abilityContext) {
         });
 
         /**
-         * @tc.number: SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0700
+         * @tc.number: 007_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 7
          * calling interface clearUpApplicationData can be cleaning application data, run applicationDatas use Promise
          * @tc.desc: Function test
@@ -716,8 +715,8 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0700', 0, async (done) => {
-            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0700';
+        it('007_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData', 0, async (done) => {
+            let TAG = '007_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData';
             let startType = 'Promise';
             console.log(TAG + ' --- start');
             let createFile = true;
@@ -835,7 +834,7 @@ export default function stageAppContextTest(abilityContext) {
         });
 
         /**
-         * @tc.number: SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0800
+         * @tc.number: 008_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData
          * @tc.name: Verify that the clearUpApplicationData cleaning application data test 7
          * calling interface clearUpApplicationData can be cleaning application data, run applicationDatas use Callback
          * @tc.desc: Function test
@@ -843,8 +842,8 @@ export default function stageAppContextTest(abilityContext) {
          * @tc.type: Function
          * @tc.level   1
          */
-        it('SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0800', 0, async (done: Function) => {
-            let TAG = 'SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData_0800';
+        it('008_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData', 0, async (done: Function) => {
+            let TAG = '008_SUB_Ability_AbilityRuntime_Configration_ApplicationContext_ClearUpApplicationData';
             let startType = 'Callback';
             console.log(TAG + ' --- start');
             let createFile = true;
