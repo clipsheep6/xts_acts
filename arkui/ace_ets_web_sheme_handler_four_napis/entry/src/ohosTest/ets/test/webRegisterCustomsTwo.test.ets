@@ -30,8 +30,8 @@ export default function webviewApi() {
 
     
     /*
-     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_050
-     * @tc.name       : testWebServiceWorker_SetSchemeHandler
+     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_0500
+     * @tc.name       : testWebServiceWorker_SetSchemeHandler0500
      * @tc.desc       : test WebServiceWorker_SetSchemeHandler
      * @tc.size_t     : MediumTest
      * @tc.type       : Function
@@ -48,8 +48,8 @@ export default function webviewApi() {
     })
     
     /*
-     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_051
-     * @tc.name       : testWebSchemeHandler_SetOnRequestStart
+     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_0510
+     * @tc.name       : testWebSchemeHandler_SetOnRequestStart0510
      * @tc.desc       : test WebSchemeHandler_SetOnRequestStart
      * @tc.size_t     : MediumTest
      * @tc.type       : Function
@@ -66,8 +66,8 @@ export default function webviewApi() {
     })
 
     /*
-     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_052
-     * @tc.name       : testWebSchemeHandler_SetOnRequestStop
+     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_0520
+     * @tc.name       : testWebSchemeHandler_SetOnRequestStop0520
      * @tc.desc       : test WebSchemeHandler_SetOnRequestStop
      * @tc.size_t     : MediumTest
      * @tc.type       : Function
@@ -84,8 +84,8 @@ export default function webviewApi() {
     })
     
     /*
-     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_053
-     * @tc.name       : testWeb_ReleaseByteArray
+     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_0530
+     * @tc.name       : testWeb_ReleaseByteArray0530
      * @tc.desc       : test Web_ReleaseByteArray
      * @tc.size_t     : MediumTest
      * @tc.type       : Function
@@ -103,8 +103,8 @@ export default function webviewApi() {
     
     
     /*
-     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_054
-     * @tc.name       : testWeb_ReleaseString
+     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_0540
+     * @tc.name       : testWeb_ReleaseString0540
      * @tc.desc       : test Web_ReleaseString
      * @tc.size_t     : MediumTest
      * @tc.type       : Function
@@ -121,8 +121,8 @@ export default function webviewApi() {
     })
     
     /*
-     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_055
-     * @tc.name       : testWeb_DestroyResponse
+     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_0550
+     * @tc.name       : testWeb_DestroyResponse0550
      * @tc.desc       : test Web_DestroyResponse
      * @tc.size_t     : MediumTest
      * @tc.type       : Function
@@ -139,8 +139,8 @@ export default function webviewApi() {
     })
     
     /*
-     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_056
-     * @tc.name       : testWeb_CreateSchemeHandler
+     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_0560
+     * @tc.name       : testWeb_CreateSchemeHandler0560
      * @tc.desc       : test Web_CreateSchemeHandler
      * @tc.size_t     : MediumTest
      * @tc.type       : Function
@@ -157,8 +157,8 @@ export default function webviewApi() {
     })
     
     /*
-     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_057
-     * @tc.name       : testWebResourceRequest_GetRequestHeaders
+     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_0570
+     * @tc.name       : testWebResourceRequest_GetRequestHeaders0570
      * @tc.desc       : test WebResourceRequest_GetRequestHeaders
      * @tc.size_t     : MediumTest
      * @tc.type       : Function
@@ -175,8 +175,8 @@ export default function webviewApi() {
     })
     
     /*
-     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_058
-     * @tc.name       : testWebHttpBodyStream_GetUserData
+     * @tc.number     : SUB_ACE_WEB_SCHEME_HANDLER_NAPI_0580
+     * @tc.name       : testWebHttpBodyStream_GetUserData0580
      * @tc.desc       : test WebHttpBodyStream_GetUserData
      * @tc.size_t     : MediumTest
      * @tc.type       : Function
