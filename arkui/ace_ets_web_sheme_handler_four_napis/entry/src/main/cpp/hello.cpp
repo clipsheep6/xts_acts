@@ -149,8 +149,7 @@ void URLRequest::StartRead()
 
     OH_LOG_INFO(LOG_APP, "OH_ArkWebResourceRequest_GetRequestHeaders after %{public}p", headerList);
 
-    if (headerList == beforeHeaderList) 
-    {
+    if (headerList == beforeHeaderList) {
         g_testWebResourceRequestGetRequestHeaders = false;
         OH_LOG_INFO(LOG_APP, "OH_ArkWebResourceRequest_GetRequestHeaders before %{public}p",
                     g_testWebResourceRequestGetRequestHeaders);
@@ -165,8 +164,7 @@ void URLRequest::StartRead()
     OH_ArkWebResourceRequest_GetMethod(resourceRequest_, &method);
     OH_ArkWebResourceRequest_GetReferrer(resourceRequest_, &referrer);
 
-    if (url_ == "custom://www.example.com/302.html")
-    {
+    if (url_ == "custom://www.example.com/302.html") {
         if (thrd_create(&th, ReadHTTP302PageOnWorkerThread, (void *)this) != thrd_success) {
         } else {
             thrd_detach(th);
@@ -193,7 +191,7 @@ void URLRequest::Start()
     }
 }
 
-void URLRequest::Stop() 
+void URLRequest::Stop()
 {
 }
 
