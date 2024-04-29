@@ -56,7 +56,7 @@ export default function textPickerDefaultPickerItemHeightJsunit() {
       console.info("[testtextPickerDefaultPickerItemHeight0001] component width strJson:" + strJson);
       let obj: Record<string, Object> = JSON.parse(strJson);
       expect(obj.$type).assertEqual('TextPicker');
-      expect(JSON.parse(strJson).$attrs.width).assertEqual("-");
+      expect(JSON.parse(strJson).$attrs.width).assertEqual("120.00vp");
       console.info("[testtextPickerDefaultPickerItemHeight0001] width value :" + JSON.parse(strJson).$attrs.width);
 
     });
@@ -73,8 +73,25 @@ export default function textPickerDefaultPickerItemHeightJsunit() {
       console.info("[testtextPickerDefaultPickerItemHeight0002] component height strJson:" + strJson);
       let obj: Record<string, Object> = JSON.parse(strJson);
       expect(obj.$type).assertEqual('TextPicker');
-      expect(JSON.parse(strJson).$attrs.height).assertEqual("-");
+      expect(JSON.parse(strJson).$attrs.height).assertEqual("280.00vp");
       console.info("[testtextPickerDefaultPickerItemHeight0002] height value :" + JSON.parse(strJson).$attrs.height);
+
+    });
+
+    /*
+     * @tc.number       SUB_ACE_BASIC_ETS_API_0003
+     * @tc.name         testtextPickerDefaultPickerItemHeight0003
+     * @tc.desic         acetextPickerDefaultPickerItemHeightEtsTest0003
+     */
+    it('testtextPickerDefaultPickerItemHeight0003', 0, async () => {
+      console.info('textPickerDefaultPickerItemHeight testtextPickerDefaultPickerItemHeight0003 START');
+      await Utils.sleep(2000);
+      let strJson = getInspectorByKey('defaultPickerItemHeightText');
+      console.info("[testtextPickerDefaultPickerItemHeight0003] component height strJson:" + strJson);
+      let obj: Record<string, Object> = JSON.parse(strJson);
+      expect(obj.$type).assertEqual('TextPicker');
+      expect(JSON.parse(strJson).$attrs.defaultPickerItemHeight).assertEqual("80.00px");
+      console.info("[testtextPickerDefaultPickerItemHeight0003] height value :" + JSON.parse(strJson).$attrs.height);
 
     });
 
