@@ -83,6 +83,8 @@ const TEST_APP_ID_2: string = "test_app_id_2";
 const TEST_POLICIES: string = "test_policies";
 const TEST_POLICY_NAME: string = "test_policy_name";
 const TEST_POLICY_VALUE: string = "\"test_policy_value\"";
+const TEST_TOKEN_ID: number = 123;
+const TEST_CLIPBOARD_POLICY = 1;
 
 let isMultipleUserEnabled: boolean = true;
 
@@ -99,6 +101,7 @@ export {
   WANT1, ENTINFO1, SELFWANT, SELFHAPNAME, COMPANYNAME2, DESCRIPTION2, ENTINFO2,
   DEFAULT_USER_ID, TEST_USER_ID, ERR_USER_ID, SUBSCRIBE_EVENTS, SUBSCRIBE_INVALID_EVENTS,
   HAP_FILE_PATH, HAP_FILE_PATH_ERROR, EMPTY_HAP_FILE_PATH, isMultipleUserEnabled,
-  SetIsMultipleUserEnabled, SetTestUserId,
-  TEST_APP_ID_1, TEST_APP_ID_2, TEST_POLICIES, TEST_POLICY_NAME, TEST_POLICY_VALUE
+  SetIsMultipleUserEnabled, SetTestUserId, appIdsInit, EDM_INSTALL_PARAM, APP_IDS_1,
+  APP_IDS_200, APP_IDS_201, TEST_APP_ID_1, TEST_APP_ID_2, TEST_POLICIES, TEST_POLICY_NAME, TEST_POLICY_VALUE,
+  TEST_TOKEN_ID, TEST_CLIPBOARD_POLICY
 }
