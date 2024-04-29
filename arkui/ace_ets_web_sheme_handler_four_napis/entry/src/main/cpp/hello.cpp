@@ -58,18 +58,16 @@ private:
 namespace {
     uint8_t buffer[1024];
 
-    void InitCallback(const ArkWeb_HttpBodyStream *httpBodyStream, ArkWeb_NetError result) 
+    void InitCallback(const ArkWeb_HttpBodyStream *httpBodyStream, ArkWeb_NetError result)
     {
-        // TODO use the unsafe function: memset
         std:fill(buffer, buffer + BUFF_LEN, 0);
         OH_ArkWebHttpBodyStream_Read(httpBodyStream, buffer, BUFF_LEN);
     }
 
-    void ReadCallback(const ArkWeb_HttpBodyStream *httpBodyStream, uint8_t *buffer, int bytesRead) 
+    void ReadCallback(const ArkWeb_HttpBodyStream *httpBodyStream, uint8_t *buffer, int bytesRead)
     {
         bool isEof = OH_ArkWebHttpBodyStream_IsEof(httpBodyStream);
-        if (!isEof && bytesRead != 0)
-        {
+        if (!isEof && bytesRead != 0) {
             std:fill(buffer, buffer + BUFF_LEN, 0);
             OH_ArkWebHttpBodyStream_Read(httpBodyStream, buffer, BUFF_LEN);
             OH_LOG_INFO(LOG_APP, "OH_ArkWebHttpBodyStream_Read");
@@ -82,7 +80,7 @@ namespace {
         }
     }
 
-    int ReadHTTP302PageOnWorkerThread(void *urlRequest) 
+    int ReadHTTP302PageOnWorkerThread(void *urlRequest)
     {
         OH_LOG_INFO(LOG_APP, "ReadHTTP302PageOnWorkerThread");
 
@@ -102,7 +100,7 @@ namespace {
         return 0;
     }
 
-    int ReadXHRWithStatusNormalOnWorkerThread(void *urlRequest) 
+    int ReadXHRWithStatusNormalOnWorkerThread(void *urlRequest)
     {
         OH_LOG_ERROR(LOG_APP, "scheme_handler readnormalxhr in worker thread.");
         ArkWeb_Response *response;
@@ -151,11 +149,11 @@ void URLRequest::StartRead()
 
     OH_LOG_INFO(LOG_APP, "OH_ArkWebResourceRequest_GetRequestHeaders after %{public}p", headerList);
 
-    if (headerList == beforeHeaderList) {
+    if (headerList == beforeHeaderList) 
+    {
         g_testWebResourceRequestGetRequestHeaders = false;
         OH_LOG_INFO(LOG_APP, "OH_ArkWebResourceRequest_GetRequestHeaders before %{public}p",
                     g_testWebResourceRequestGetRequestHeaders);
-
     } else {
         g_testWebResourceRequestGetRequestHeaders = true;
         OH_LOG_INFO(LOG_APP, "OH_ArkWebResourceRequest_GetRequestHeaders before %{public}p",
@@ -167,15 +165,14 @@ void URLRequest::StartRead()
     OH_ArkWebResourceRequest_GetMethod(resourceRequest_, &method);
     OH_ArkWebResourceRequest_GetReferrer(resourceRequest_, &referrer);
 
-    if (url_ == "custom://www.example.com/302.html") 
+    if (url_ == "custom://www.example.com/302.html")
     {
         if (thrd_create(&th, ReadHTTP302PageOnWorkerThread, (void *)this) != thrd_success) {
         } else {
             thrd_detach(th);
         }
     };
-    if (url_ == "custom://www.example.com/xhr/normal/")
-    {
+    if (url_ == "custom://www.example.com/xhr/normal/") {
         if (thrd_create(&th, ReadXHRWithStatusNormalOnWorkerThread, (void *)this) != thrd_success) {
         } else {
             thrd_detach(th);
@@ -183,7 +180,8 @@ void URLRequest::StartRead()
     };
 }
 
-void URLRequest::Start() {
+void URLRequest::Start()
+{
     OH_ArkWebResourceRequest_GetHttpBodyStream(resourceRequest_, &stream_);
 
     if (stream_) {
@@ -195,12 +193,12 @@ void URLRequest::Start() {
     }
 }
 
-void URLRequest::Stop() {
-
+void URLRequest::Stop() 
+{
 }
 
 // 注册三方协议的配置，需要在Web内核初始化之前调用，否则会注册失败。
-static napi_value RegisterCustomSchemes(napi_env env, napi_callback_info info) 
+static napi_value RegisterCustomSchemes(napi_env env, napi_callback_info info)
 {
     OH_LOG_INFO(LOG_APP, "register custom schemes");
     OH_ArkWeb_RegisterCustomSchemes("custom", ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED
@@ -211,7 +209,7 @@ static napi_value RegisterCustomSchemes(napi_env env, napi_callback_info info)
 
 // 请求开始的回调，在该函数中我们创建一个RawfileRequest来实现对Web内核请求的拦截。
 void OnURLRequestStart(const ArkWeb_SchemeHandler *schemeHandler, ArkWeb_ResourceRequest *resourceRequest,
-                       const ArkWeb_ResourceHandler *resourceHandler, bool *intercept) 
+                       const ArkWeb_ResourceHandler *resourceHandler, bool *intercept)
 {
     void* userdata = OH_ArkWebSchemeHandler_GetUserData(schemeHandler);
 
@@ -224,7 +222,7 @@ void OnURLRequestStart(const ArkWeb_SchemeHandler *schemeHandler, ArkWeb_Resourc
 }
 
 // 请求结束的回调，在该函数中我们需要标记RawfileRequest已经结束了，内部不应该再使用ResourceHandler
-void OnURLRequestStop(const ArkWeb_SchemeHandler *schemeHandler, const ArkWeb_ResourceRequest *request) 
+void OnURLRequestStop(const ArkWeb_SchemeHandler *schemeHandler, const ArkWeb_ResourceRequest *request)
 {
     if (!request) {
         return;
@@ -241,13 +239,13 @@ void OnURLRequestStop(const ArkWeb_SchemeHandler *schemeHandler, const ArkWeb_Re
 
 
 // 设置 SchemeHandler
-static napi_value SetSchemeHandler(npai_env env, napi_callback_info info) 
+static napi_value SetSchemeHandler(npai_env env, napi_callback_info info)
 {
     OH_LOG_INFO(LOG_APP, "set scheme handler");
 
     OH_ArkWeb_CreateSchemeHandler(&g_schemeHandler);
 
-    testWebSchemeHandler_SetOnRequestStart = OH_ArkWebSchemeHandler_SetOnRequestStart(g_schemeHandler, 
+    testWebSchemeHandler_SetOnRequestStart = OH_ArkWebSchemeHandler_SetOnRequestStart(g_schemeHandler,
                                                                                       OnURLRequestStart);
     testWebSchemeHandler_SetOnRequestStop =OH_ArkWebSchemeHandler_SetOnRequestStop(g_schemeHandler, OnURLRequestStop);
 
@@ -260,7 +258,7 @@ static napi_value SetSchemeHandler(npai_env env, napi_callback_info info)
     return nullptr;
 }
 
-static napi_value ServiceWorkerSetSchemeHandler(napi_env env, napi_callback_info info) 
+static napi_value ServiceWorkerSetSchemeHandler(napi_env env, napi_callback_info info)
 {
     napi_value result;
     if (g_testWebServiceWorkerSetSchemeHandler) {
@@ -271,7 +269,7 @@ static napi_value ServiceWorkerSetSchemeHandler(napi_env env, napi_callback_info
     return result;
 }
 
-static napi_value SchemeHandlerSetOnRequestStart(napi_env env, napi_callback_info info) 
+static napi_value SchemeHandlerSetOnRequestStart(napi_env env, napi_callback_info info)
 {
     napi_value result;
     if (testWebSchemeHandler_SetOnRequestStart == 0) {
@@ -282,7 +280,7 @@ static napi_value SchemeHandlerSetOnRequestStart(napi_env env, napi_callback_inf
     return result;
 }
 
-static napi_value SchemeHandlerSetOnRequestStop(napi_env env, napi_callback_info info) 
+static napi_value SchemeHandlerSetOnRequestStop(napi_env env, napi_callback_info info)
 {
     napi_value result;
     if (testWebSchemeHandler_SetOnRequestStop == 0) {
@@ -293,7 +291,7 @@ static napi_value SchemeHandlerSetOnRequestStop(napi_env env, napi_callback_info
     return result;
 }
 
-static napi_value ReleaseString(napi_env env, napi_callback_info info) 
+static napi_value ReleaseString(napi_env env, napi_callback_info info)
 {
     napi_value result;
     OH_LOG_ERROR(LOG_APP, "ReleaseString ");
@@ -304,7 +302,7 @@ static napi_value ReleaseString(napi_env env, napi_callback_info info)
     return result;
 }
 
-static napi_value ReleaseByteArray(napi_env env, napi_callback_info info) 
+static napi_value ReleaseByteArray(napi_env env, napi_callback_info info)
 {
     napi_value result;
     OH_LOG_ERROR(LOG_APP, "ReleaseByteArray ");
@@ -315,7 +313,7 @@ static napi_value ReleaseByteArray(napi_env env, napi_callback_info info)
     return result;
 }
 
-static napi_value DestroyResponse(napi_env env, napi_callback_info info) 
+static napi_value DestroyResponse(napi_env env, napi_callback_info info)
 {
     napi_value result;
     OH_LOG_ERROR(LOG_APP, "DestroyResponse ");
@@ -328,7 +326,7 @@ static napi_value DestroyResponse(napi_env env, napi_callback_info info)
     return result;
 }
 
-static napi_value CreateSchemeHandler(napi_env env, napi_callback_info info) 
+static napi_value CreateSchemeHandler(napi_env env, napi_callback_info info)
 {
     napi_value result;
     OH_LOG_ERROR(LOG_APP, "CreateSchemeHandler ");
@@ -340,7 +338,7 @@ static napi_value CreateSchemeHandler(napi_env env, napi_callback_info info)
     return result;
 }
 
-static napi_value ResourceRequestGetRequestHeader(napi_env env, napi_callback_info info) 
+static napi_value ResourceRequestGetRequestHeader(napi_env env, napi_callback_info info)
 {
     napi_value result;
     OH_LOG_ERROR(LOG_APP, "ResourceRequestGetRequestHeader ");
@@ -352,7 +350,7 @@ static napi_value ResourceRequestGetRequestHeader(napi_env env, napi_callback_in
     return result;
 }
 
-static napi_value HttpBodyStreamGetUserData(napi_env env, napi_callback_info info) 
+static napi_value HttpBodyStreamGetUserData(napi_env env, napi_callback_info info)
 {
     napi_value result;
     OH_LOG_ERROR(LOG_APP, "HttpBodyStreamGetUserData ");
