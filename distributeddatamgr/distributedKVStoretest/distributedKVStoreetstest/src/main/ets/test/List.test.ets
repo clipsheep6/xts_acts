@@ -22,6 +22,7 @@ import SingleKvStoreCallbackTest from './SingleKvStoreKVCallbackEtsTest';
 import SingleKvStorePromiseTest from './SingleKvStoreKVPromiseEtsTest';
 import singleKvStoreEnumTest from './SingleKvStoreKVPromiseEtsTest';
 import queryTest from  './QueryKvEtsTest';
+import schemaTest from './SchemaEts.test';
 
 export default function testsuite() {
   deviceKvStoreCallbackTest();
@@ -33,4 +34,5 @@ export default function testsuite() {
   SingleKvStorePromiseTest();
   singleKvStoreEnumTest();
   queryTest();
+  schemaTest()；
 }
