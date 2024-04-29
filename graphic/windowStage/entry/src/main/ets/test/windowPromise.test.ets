@@ -2124,34 +2124,45 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
      */
     it("testSetWindowMask_Function_Promise", 0, async function(done){
       let msgStr = "testSetWindowMask_Function_Promise";
-      console.log(msgStr + "begin0");
+      console.log(msgStr + " begin0");
       if(currentDeviceIsPC){
-        console.log(msgStr + "begin1")
-        try{
-          let windowMask: Array<Array<number>> = [
-            [0, 0, 0, 1, 0, 0, 0],
-            [0, 0, 1, 1, 1, 0, 0],
-            [0, 1, 1, 0, 1, 1, 0],
-            [1, 1, 0, 0, 0, 1, 1]
-          ];
-          let windowClass = await ohosWindow.getLastWindow(context);
-          let promise = windowClass.setWindowMask(windowMask);
-          console.log(msgStr + windowMask);
+        console.log(msgStr + " begin1")
+        let windowMask: Array<Array<number>> = new Array<Array<number>>()
+        for(let i = 0; i < 500 ; i++){
+          let arr: Array<number> = new Array<number>(500);
+          for(let j = 0; j < 500 ; j++){
+            if(i + j < 500){
+              arr[j] = 0
+            } else {
+              arr[j] = 1
+            }
+          }
+          windowMask.push(arr)
+        }
+        console.log(msgStr + " windowMask OK ")
+        let windowClass = await ohosWindow.getLastWindow(context);
+        console.log(msgStr + " getLastWindow OK ")
+        let nowWindow = windowStage.createSubWindow('nowWindowA')
+        nowWindow.then(wnd => {
+          console.log(msgStr + " createSubWindow OK ")
+          wnd.resize(500,500)
+          console.log(msgStr + " resize OK ")
+          let promise = wnd.setWindowMask(windowMask)
           promise.then(() => {
-            console.log(msgStr + 'Succeeded in setting the window mask.');
+            console.log(msgStr + ' Succeeded in setting the window mask.');
             expect(true).assertTrue();
             console.log(msgStr + true);
             done();
           }).catch((err: BusinessError) => {
-            console.log(msgStr + 'Failed1 to set the window mask. Cause: ' + JSON.stringify(err));
+            console.log(msgStr + ' Failed to set the window mask. Cause: ' + JSON.stringify(err));
             expect().assertFail();
             done();
           });
-        } catch (exception) {
-          console.log(msgStr + 'Failed2 to set the window mask. Cause:' + JSON.stringify(exception));
-          expect().assertFail();
-          done();
-        }
+        }).catch(err => {
+            console.log(msgStr + ' Failed to createSubWindow. Cause: ' + JSON.stringify(err));
+            expect().assertFail();
+            done();
+        })
       }else{
         console.log(msgStr + "该设备类型不是PC" );
         expect(deviceInfo.deviceType).assertEqual(deviceInfo.deviceType);
