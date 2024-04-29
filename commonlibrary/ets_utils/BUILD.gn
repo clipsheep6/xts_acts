@@ -22,6 +22,7 @@ group("ets_utils") {
       "containerLine_lib_standard:containerLine_js_test",
       "containerRelation_lib_standard:containerRelation_js_test",
       "convertxml_lib_standard:convertxml_js_test",
+      "gc_vmb:gc_vmb",
       "intl_lib_standard:intl_js_test",
       "json_lib_standard:json_js_test",
       "process_lib_standard:process_js_test",

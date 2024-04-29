@@ -1,0 +1,19 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "800000",
+        "bundle-name": "com.example.gc_vmb_03_xts",
+        "module-name": "entry",
+        "shell-timeout": "800000"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "ActsGC_VMB_03_JSTest.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        }
+    ] 
+}
