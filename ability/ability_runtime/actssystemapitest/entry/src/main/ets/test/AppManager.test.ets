@@ -14,7 +14,8 @@
  */
 
 import { describe, it, expect } from '@ohos/hypium'
-import appManager from "@ohos.app.ability.appManager"
+import appManager  from "@ohos.app.ability.appManager"
+import AbilityFirstFrameStateObserver from "@ohos.app.ability.appManager"
 
 let ERROR_CODE = 202;
 export default function appManagerTest() {
@@ -255,7 +256,6 @@ export default function appManagerTest() {
         })
     })
 	
-	
     /**
      * @tc.number: System_API_Test_App_Manager_1100
      * @tc.name: callback form GetProcessMemoryByPid system interface interception test
@@ -372,7 +372,28 @@ export default function appManagerTest() {
         })
     })
 
-    
+    /**
+     * @tc.number: System_API_Test_App_Manager_1700
+     * @tc.name: appManager.on system interface interception test
+     * @tc.desc:  Test the third-party application call appManager.on will be blocked
+     * @tc.level   3
+     */
+    it('System_API_Test_App_Manager_1700', 0, function (done) {
+      let TAG = 'System_API_Test_App_Manager_1700';
+      let abilityFirstFrameStateObserverForAll: appManager.AbilityFirstFrameStateObserver = {
+        onAbilityFirstFrameDrawn(abilityStateData: appManager.AbilityFirstFrameStateData) {
+          console.log("onAbilityFirstFrameDrawingCompleted all", JSON.stringify(abilityStateData));
+        }
+      };
+      try {
+        appManager.on("abilityFirstFrameState", abilityFirstFrameStateObserverForAll, "com.example.test");
+      } catch (err) {
+        console.log(TAG + "  err.code: " + err.code);
+        expect(err.code).assertEqual(ERROR_CODE);
+        done();
+      }
+    })
+
     /**
      * @tc.number: Public_API_Test_App_Manager_0100
      * @tc.name: ProcessState enum public interface test
