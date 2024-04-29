@@ -342,5 +342,79 @@ export default function httpRequestJsunit() {
         done();
       }
     });
+    it("SUB_Telephony_http_HttpRequest_request_brotli_0100", 0, async function (done) {
+      var casename = "SUB_Telephony_http_HttpRequest_request_brotli_0100"
+      console.log("-----------------------HttpRequest_request Test is starting-----------------------");
+      try {
+        let httpRequestOptions = {
+          method: http.RequestMethod.GET,
+          extraData: null,
+          header: "Accept-Encoding': 'br',
+          readTimeout: 60000,
+          connectTimeout: 60000
+        }
+        var httpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
+          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+          expect(data.responseCode == 200).assertTrue();
+          httpRequest.destroy();
+          console.log("-----------------------HttpRequest_request Test end-----------------------");
+          done();
+        });
+      } catch (error) {
+        console.log("SUB_Telephony_http_HttpRequest_request_brotli_0100 : error = " + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+    it("SUB_Telephony_http_HttpRequest_request_brotli_0200", 0, async function (done) {
+      var casename = "SUB_Telephony_http_HttpRequest_request_brotli_0200"
+      console.log("-----------------------HttpRequest_request Test is starting-----------------------");
+      try {
+        let httpRequestOptions = {
+          method: http.RequestMethod.GET,
+          extraData: null,
+          header: "Accept-Encoding': 'gzip',
+          readTimeout: 60000,
+          connectTimeout: 60000
+        }
+        var httpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
+          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+          expect(data.responseCode == 200).assertTrue();
+          httpRequest.destroy();
+          console.log("-----------------------HttpRequest_request Test end-----------------------");
+          done();
+        });
+      } catch (error) {
+        console.log("SUB_Telephony_http_HttpRequest_request_brotli_0200 : error = " + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
+    it("SUB_Telephony_http_HttpRequest_request_brotli_0300", 0, async function (done) {
+      var casename = "SUB_Telephony_http_HttpRequest_request_brotli_0300"
+      console.log("-----------------------HttpRequest_request Test is starting-----------------------");
+      try {
+        let httpRequestOptions = {
+          method: http.RequestMethod.GET,
+          extraData: null,
+          readTimeout: 60000,
+          connectTimeout: 60000
+        }
+        var httpRequest = http.createHttp();
+        httpRequest.request("https://www.baidu.com/", httpRequestOptions, (err, data) => {
+          console.log(casename + JSON.stringify(err) + " data: " + JSON.stringify(data));
+          expect(data.responseCode == 200).assertTrue();
+          httpRequest.destroy();
+          console.log("-----------------------HttpRequest_request Test end-----------------------");
+          done();
+        });
+      } catch (error) {
+        console.log("SUB_Telephony_http_HttpRequest_request_brotli_0300 : error = " + error);
+        expect(false).assertTrue();
+        done();
+      }
+    });
   })
 };
