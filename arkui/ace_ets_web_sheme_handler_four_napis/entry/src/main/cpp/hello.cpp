@@ -26,11 +26,13 @@
 ArkWeb_ShemeHandler *g_schemeHandler;
 ArkWeb_ShemeHandler *g_schemeHandlerFowSW;
 
-bool testWebServiceWorker_SetSchemeHandler = false;
+bool g_testWebServiceWorkerSetSchemeHandler = false;
 int32_t testWebSchemeHandler_SetOnRequestStart = -1;
 int32_t testWebSchemeHandler_SetOnRequestStop = -1;
-bool testWebResourceRequest_GetRequestHeaders = false;
-
+bool g_testWebResourceRequestGetRequestHeaders = false;
+const int BUFF_LEN = 5;
+const int REDIRECT_CODE = 302;
+const int OK = 200;
 
 class URLRequest {
 public:
@@ -56,37 +58,41 @@ private:
 namespace {
     uint8_t buffer[1024];
 
-    void InitCallback(const ArkWeb_HttpBodyStream *httpBodyStream, ArkWeb_NetError result) {
-        memset(buffer, 0, 5);
-        OH_ArkWebHttpBodyStream_Read(httpBodyStream, buffer, 5);
+    void InitCallback(const ArkWeb_HttpBodyStream *httpBodyStream, ArkWeb_NetError result) 
+    {
+        // TODO use the unsafe function: memset
+        std:fill(buffer, buffer + BUFF_LEN, 0);
+        OH_ArkWebHttpBodyStream_Read(httpBodyStream, buffer, BUFF_LEN);
     }
 
-    void ReadCallback(const ArkWeb_HttpBodyStream *httpBodyStream, uint8_t *buffer, int bytesRead) {
+    void ReadCallback(const ArkWeb_HttpBodyStream *httpBodyStream, uint8_t *buffer, int bytesRead) 
+    {
         bool isEof = OH_ArkWebHttpBodyStream_IsEof(httpBodyStream);
-        if (!isEof && bytesRead != 0){
-            memset(buffer, 0, 5);
-            OH_ArkWebHttpBodyStream_Read(httpBodyStream, buffer, 5);
+        if (!isEof && bytesRead != 0)
+        {
+            std:fill(buffer, buffer + BUFF_LEN, 0);
+            OH_ArkWebHttpBodyStream_Read(httpBodyStream, buffer, BUFF_LEN);
             OH_LOG_INFO(LOG_APP, "OH_ArkWebHttpBodyStream_Read");
         } else {
             OH_LOG_INFO(LOG_APP, "OH_ArkWeb_ReleaseByteArray");
-            URLRequest *url_request = (URLRequest *)OH_ArkWebHttpBodyStream_GetUserData(httpBodyStream);
-            if (url_request) {
-                url_request->StartRead();
+            URLRequest *urlRequest = (URLRequest *)OH_ArkWebHttpBodyStream_GetUserData(httpBodyStream);
+            if (urlRequest) {
+                urlRequest->StartRead();
             }
         }
     }
 
-    int ReadHTTP302PageOnWorkerThread(void *urlRequest) {
-
+    int ReadHTTP302PageOnWorkerThread(void *urlRequest) 
+    {
         OH_LOG_INFO(LOG_APP, "ReadHTTP302PageOnWorkerThread");
 
         ArkWeb_Response *response;
         OH_ArkWeb_CreateResponse(&response);
         OH_ArkWebResponse_SetError(response, ARKWEB_NET_OK);
-        OH_ArkWebResponse_SetStatus(response, 302);
+        OH_ArkWebResponse_SetStatus(response, REDIRECT_CODE);
         OH_ArkWebResponse_SetStatusText(response, "page not found");
         OH_ArkWebResponse_SetMimeType(response, "text/html");
-        OH_ArkWebResponse_SetUrl(response, "https://www.huawei.com");
+        OH_ArkWebResponse_SetUrl(response, "https://www.example.com");
         OH_ArkWebResponse_SetCharset(response, "utf-8");
 
         // response
@@ -96,28 +102,27 @@ namespace {
         return 0;
     }
 
-    int ReadXHRWithStatusNormalOnWorkerThread(void *urlRequest) {
+    int ReadXHRWithStatusNormalOnWorkerThread(void *urlRequest) 
+    {
         OH_LOG_ERROR(LOG_APP, "scheme_handler readnormalxhr in worker thread.");
         ArkWeb_Response *response;
         OH_ArkWeb_CreateResponse(&response);
         OH_ArkWebResponse_SetError(response, ARKWEB_NET_OK);
-        OH_ArkWebResponse_SetStatus(response, 200);
+        OH_ArkWebResponse_SetStatus(response, OK);
         OH_ArkWebResponse_SetMimeType(response, "text/html");
         OH_ArkWebResponse_SetCharset(response, "utf-8");
 
         OH_ArkWebResponse_SetHeaderByName(response, "Access-Control-Allow-Origin", "*", false);
 
-        // moniyige response.
+        // 模拟一个response.
         OH_ArkWebResourceHandler_DidReceiveResponse(static_cast<URLRequest *>(urlRequest)->resourceHandler(), response);
-        // monidiyifenshuju
+        // 模拟第一份数据。
         std::string html_str = "{\"wanghui-debug\":\"jsontest\"}";
         OH_ArkWebResourceHandler_DidReceiveData(static_cast<URLRequest *>(urlRequest)->resourceHandler(),
                                                 (uint8_t *)html_str.c_str(), html_str.length());
         OH_ArkWebResourceHandler_DidFinish(static_cast<URLRequest *>(urlRequest)->resourceHandler());
         return 0;
-
     }
-
 } // namesapce
 
 
@@ -126,7 +131,8 @@ URLRequest::URLRequest(const ArkWeb_ResourceRequest *resourceRequest, const ArkW
     : resourceRequest_(resourceRequest), resourceHandler_(resourceHandler), url_(url) {}
 
 
-void URLRequest::StartRead(){
+void URLRequest::StartRead()
+{
     OH_ArkWeb_CreateResponse(&response_);
     // 开启线程
     thrd_t th;
@@ -145,51 +151,45 @@ void URLRequest::StartRead(){
 
     OH_LOG_INFO(LOG_APP, "OH_ArkWebResourceRequest_GetRequestHeaders after %{public}p", headerList);
 
-
     if (headerList == beforeHeaderList) {
-        testWebResourceRequest_GetRequestHeaders = false;
+        g_testWebResourceRequestGetRequestHeaders = false;
         OH_LOG_INFO(LOG_APP, "OH_ArkWebResourceRequest_GetRequestHeaders before %{public}p",
-        testWebResourceRequest_GetRequestHeaders);
+                    g_testWebResourceRequestGetRequestHeaders);
 
     } else {
-        testWebResourceRequest_GetRequestHeaders = true;
+        g_testWebResourceRequestGetRequestHeaders = true;
         OH_LOG_INFO(LOG_APP, "OH_ArkWebResourceRequest_GetRequestHeaders before %{public}p",
-                    testWebResourceRequest_GetRequestHeaders);
+                    g_testWebResourceRequestGetRequestHeaders);
     }
-
 
     char *method;
     char *referrer;
     OH_ArkWebResourceRequest_GetMethod(resourceRequest_, &method);
     OH_ArkWebResourceRequest_GetReferrer(resourceRequest_, &referrer);
 
-    if (url_ == "custom://www.huawei.com/302.html") {
+    if (url_ == "custom://www.example.com/302.html") 
+    {
         if (thrd_create(&th, ReadHTTP302PageOnWorkerThread, (void *)this) != thrd_success) {
-
         } else {
             thrd_detach(th);
         }
     };
-    if (url_ == "custom://www.huawei.com/xhr/normal/"){
+    if (url_ == "custom://www.example.com/xhr/normal/")
+    {
         if (thrd_create(&th, ReadXHRWithStatusNormalOnWorkerThread, (void *)this) != thrd_success) {
-
         } else {
             thrd_detach(th);
         }
     };
 }
 
-
 void URLRequest::Start() {
     OH_ArkWebResourceRequest_GetHttpBodyStream(resourceRequest_, &stream_);
 
     if (stream_) {
-
         OH_ArkWebHttpBodyStream_SetUserData(stream_, this);
         OH_ArkWebHttpBodyStream_SetReadCallback(stream_, ReadCallback);
         OH_ArkWebHttpBodyStream_Init(stream_, InitCallback);
-
-
     } else {
         StartRead();
     }
@@ -197,12 +197,11 @@ void URLRequest::Start() {
 
 void URLRequest::Stop() {
 
-
 }
 
-
 // 注册三方协议的配置，需要在Web内核初始化之前调用，否则会注册失败。
-static napi_value RegisterCustomSchemes(napi_env env, napi_callback_info info) {
+static napi_value RegisterCustomSchemes(napi_env env, napi_callback_info info) 
+{
     OH_LOG_INFO(LOG_APP, "register custom schemes");
     OH_ArkWeb_RegisterCustomSchemes("custom", ARKWEB_SCHEME_OPTION_DISPLAY_ISOLATED
     | ARKWEB_SCHEME_OPTION_FETCH_ENABLED | ARKWEB_SCHEME_OPTION_CORS_ENABLED | ARKWEB_SCHEME_OPTION_CSP_BYPASSING);
@@ -212,7 +211,8 @@ static napi_value RegisterCustomSchemes(napi_env env, napi_callback_info info) {
 
 // 请求开始的回调，在该函数中我们创建一个RawfileRequest来实现对Web内核请求的拦截。
 void OnURLRequestStart(const ArkWeb_SchemeHandler *schemeHandler, ArkWeb_ResourceRequest *resourceRequest,
-                       const ArkWeb_ResourceHandler *resourceHandler, bool *intercept) {
+                       const ArkWeb_ResourceHandler *resourceHandler, bool *intercept) 
+{
     void* userdata = OH_ArkWebSchemeHandler_GetUserData(schemeHandler);
 
     char* url;
@@ -221,19 +221,17 @@ void OnURLRequestStart(const ArkWeb_SchemeHandler *schemeHandler, ArkWeb_Resourc
     *intercept = true;
     URLRequest* request = new URLRequest(resourceRequest, resourceHandler, std::string(url));
     request->Start();
-
 }
 
 // 请求结束的回调，在该函数中我们需要标记RawfileRequest已经结束了，内部不应该再使用ResourceHandler
-void OnURLRequestStop(const ArkWeb_SchemeHandler *schemeHandler, const ArkWeb_ResourceRequest *request) {
-
+void OnURLRequestStop(const ArkWeb_SchemeHandler *schemeHandler, const ArkWeb_ResourceRequest *request) 
+{
     if (!request) {
         return;
     }
 
-
-    URLRequest* url_request = (URLRequest*)OH_ArkWebResourceRequest_GetUserData(request);
-    url_request->Stop();
+    URLRequest* urlRequest = (URLRequest*)OH_ArkWebResourceRequest_GetUserData(request);
+    urlRequest->Stop();
     // 接口覆盖 OH_ArkWebResourceRequest_DestroyHttpBodyStream
     ArkWeb_HttpBodyStream *httpBodyStreamTest;
     OH_ArkWebResourceRequest_GetHttpBodyStream(request, &httpBodyStreamTest);
@@ -243,28 +241,29 @@ void OnURLRequestStop(const ArkWeb_SchemeHandler *schemeHandler, const ArkWeb_Re
 
 
 // 设置 SchemeHandler
-static napi_value SetSchemeHandler(npai_env env, napi_callback_info info) {
+static napi_value SetSchemeHandler(npai_env env, napi_callback_info info) 
+{
     OH_LOG_INFO(LOG_APP, "set scheme handler");
 
     OH_ArkWeb_CreateSchemeHandler(&g_schemeHandler);
 
-    testWebSchemeHandler_SetOnRequestStart = OH_ArkWebSchemeHandler_SetOnRequestStart(g_schemeHandler, OnURLRequestStart);
+    testWebSchemeHandler_SetOnRequestStart = OH_ArkWebSchemeHandler_SetOnRequestStart(g_schemeHandler, 
+                                                                                      OnURLRequestStart);
     testWebSchemeHandler_SetOnRequestStop =OH_ArkWebSchemeHandler_SetOnRequestStop(g_schemeHandler, OnURLRequestStop);
 
     OH_ArkWeb_SetSchemeHandler("custom", "scheme-handler", g_schemeHandler);
-    testWebServiceWorker_SetSchemeHandler = OH_ArkWebServiceWorker_SetSchemeHandler("http", g_schemeHandler);
+    g_testWebServiceWorkerSetSchemeHandler = OH_ArkWebServiceWorker_SetSchemeHandler("http", g_schemeHandler);
     OH_LOG_INFO(LOG_APP, "testWebSchemeHandler_SetOnRequestStart %{public}d", testWebSchemeHandler_SetOnRequestStart);
     OH_LOG_INFO(LOG_APP, "testWebSchemeHandler_SetOnRequestStop %{public}d", testWebSchemeHandler_SetOnRequestStop);
-    OH_LOG_INFO(LOG_APP, "testWebServiceWorker_SetSchemeHandler %{public}d", testWebServiceWorker_SetSchemeHandler);
-
+    OH_LOG_INFO(LOG_APP, "g_testWebServiceWorkerSetSchemeHandler %{public}d", g_testWebServiceWorkerSetSchemeHandler);
 
     return nullptr;
 }
 
-static napi_value ServiceWorkerSetSchemeHandler(napi_env env, napi_callback_info info) {
-
+static napi_value ServiceWorkerSetSchemeHandler(napi_env env, napi_callback_info info) 
+{
     napi_value result;
-    if (testWebServiceWorker_SetSchemeHandler) {
+    if (g_testWebServiceWorkerSetSchemeHandler) {
         napi_create_int32(env, 0, &result);
     } else {
         napi_create_int32(env, -1, &result);
@@ -272,8 +271,8 @@ static napi_value ServiceWorkerSetSchemeHandler(napi_env env, napi_callback_info
     return result;
 }
 
-static napi_value SchemeHandlerSetOnRequestStart(napi_env env, napi_callback_info info) {
-
+static napi_value SchemeHandlerSetOnRequestStart(napi_env env, napi_callback_info info) 
+{
     napi_value result;
     if (testWebSchemeHandler_SetOnRequestStart == 0) {
         napi_create_int32(env, 0, &result);
@@ -283,8 +282,8 @@ static napi_value SchemeHandlerSetOnRequestStart(napi_env env, napi_callback_inf
     return result;
 }
 
-static napi_value SchemeHandlerSetOnRequestStop(napi_env env, napi_callback_info info) {
-
+static napi_value SchemeHandlerSetOnRequestStop(napi_env env, napi_callback_info info) 
+{
     napi_value result;
     if (testWebSchemeHandler_SetOnRequestStop == 0) {
         napi_create_int32(env, 0, &result);
@@ -294,7 +293,8 @@ static napi_value SchemeHandlerSetOnRequestStop(napi_env env, napi_callback_info
     return result;
 }
 
-static napi_value ReleaseString(napi_env env, napi_callback_info info) {
+static napi_value ReleaseString(napi_env env, napi_callback_info info) 
+{
     napi_value result;
     OH_LOG_ERROR(LOG_APP, "ReleaseString ");
     char* url = new char[1024];
@@ -304,7 +304,8 @@ static napi_value ReleaseString(napi_env env, napi_callback_info info) {
     return result;
 }
 
-static napi_value ReleaseByteArray(napi_env env, napi_callback_info info) {
+static napi_value ReleaseByteArray(napi_env env, napi_callback_info info) 
+{
     napi_value result;
     OH_LOG_ERROR(LOG_APP, "ReleaseByteArray ");
     uint8_t* buffer = new uint8_t[1024];
@@ -314,7 +315,8 @@ static napi_value ReleaseByteArray(napi_env env, napi_callback_info info) {
     return result;
 }
 
-static napi_value DestroyResponse(napi_env env, napi_callback_info info) {
+static napi_value DestroyResponse(napi_env env, napi_callback_info info) 
+{
     napi_value result;
     OH_LOG_ERROR(LOG_APP, "DestroyResponse ");
     ArkWeb_Response *response;
@@ -326,22 +328,23 @@ static napi_value DestroyResponse(napi_env env, napi_callback_info info) {
     return result;
 }
 
-static napi_value CreateSchemeHandler(napi_env env, napi_callback_info info) {
+static napi_value CreateSchemeHandler(napi_env env, napi_callback_info info) 
+{
     napi_value result;
     OH_LOG_ERROR(LOG_APP, "CreateSchemeHandler ");
     ArkWeb_SchemeHandler* test_schemeHandler;
     OH_ArkWeb_CreateSchemeHandler(&test_schemeHandler);
-
 
     napi_create_int32(env, 0, &result);
 
     return result;
 }
 
-static napi_value ResourceRequestGetRequestHeader(napi_env env, napi_callback_info info) {
+static napi_value ResourceRequestGetRequestHeader(napi_env env, napi_callback_info info) 
+{
     napi_value result;
     OH_LOG_ERROR(LOG_APP, "ResourceRequestGetRequestHeader ");
-    if (testWebResourceRequest_GetRequestHeaders) {
+    if (g_testWebResourceRequestGetRequestHeaders) {
         napi_create_int32(env, 0, &result);
     } else {
         napi_create_int32(env, -1, &result);
@@ -349,7 +352,8 @@ static napi_value ResourceRequestGetRequestHeader(napi_env env, napi_callback_in
     return result;
 }
 
-static napi_value HttpBodyStreamGetUserData(napi_env env, napi_callback_info info) {
+static napi_value HttpBodyStreamGetUserData(napi_env env, napi_callback_info info) 
+{
     napi_value result;
     OH_LOG_ERROR(LOG_APP, "HttpBodyStreamGetUserData ");
 

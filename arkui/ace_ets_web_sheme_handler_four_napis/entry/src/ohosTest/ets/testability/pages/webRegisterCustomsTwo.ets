@@ -182,7 +182,7 @@ struct webRegisterCustomsTwoComponent {
                         case "emitWebResourceRequest_GetRequestHeaders": {
                             await Utils.sleep(2000);
                             
-                            this.controller.runJavaScript("testxhr('custom://www.huawei.com/xhr/normal/')", (error, result)=> {
+                            this.controller.runJavaScript("testxhr('custom://www.example.com/xhr/normal/')", (error, result)=> {
                                 if (error) {
                                     console.info(" run JavaScript testError error:" + JSON.stringify(error));
                                     return;
