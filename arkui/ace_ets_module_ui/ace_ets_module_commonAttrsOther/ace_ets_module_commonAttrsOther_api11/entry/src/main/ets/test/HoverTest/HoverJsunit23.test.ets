@@ -72,7 +72,6 @@ export default function HoverJsunit23() {
       await CommonFunc.sleep(500);
       let point = await buttonCl.getBoundsCenter();
       await driver.mouseMoveTo({x:point.x + vp2px(100), y:point.y + vp2px(100)})
-      console.log('1123x'+point.x+'1123y' + point.y  )
       await CommonFunc.sleep(1000);
       let strJsonA = getInspectorByKey('hoverA23');
       let objA = JSON.parse(strJsonA);
@@ -96,7 +95,6 @@ export default function HoverJsunit23() {
       await CommonFunc.sleep(500);
       let point = await buttonCl.getBoundsCenter();
       await driver.mouseMoveTo({x:point.x + vp2px(100), y:point.y + vp2px(100)})
-      console.log('23x'+point.x+'23y' + point.y  )
       await CommonFunc.sleep(1000);
       let strJsonA = getInspectorByKey('hoverA23');
       let objA = JSON.parse(strJsonA);

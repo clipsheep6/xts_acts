@@ -69,7 +69,6 @@ export default function HoverJsunit5() {
       await CommonFunc.sleep(500);
       let point = await buttonCl.getBoundsCenter();
       await driver.mouseMoveTo({x:point.x , y:point.y })
-      console.log('55511x'+point.x+'55511y' + point.y  )
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('hover5');
       let obj = JSON.parse(strJson);
@@ -88,7 +87,6 @@ export default function HoverJsunit5() {
       await CommonFunc.sleep(500);
       let point = await buttonCl.getBoundsCenter();
       await driver.mouseMoveTo({x:point.x , y:point.y })
-      console.log('555x'+point.x+'555y' + point.y  )
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('hover5');
       let obj = JSON.parse(strJson);

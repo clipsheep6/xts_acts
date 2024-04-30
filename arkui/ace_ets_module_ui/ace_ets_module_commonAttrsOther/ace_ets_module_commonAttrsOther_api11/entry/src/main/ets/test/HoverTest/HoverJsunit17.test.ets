@@ -74,7 +74,6 @@ export default function HoverJsunit17() {
       await CommonFunc.sleep(500);
       let point = await buttonCl.getBoundsCenter();
       await driver.mouseMoveTo({x:point.x + vp2px(100), y:point.y  + vp2px(100) })
-      console.log('17x'+point.x+'17y' + point.y  )
       await CommonFunc.sleep(1000);
       let strJsonA = getInspectorByKey('hoverA17');
       let objA = JSON.parse(strJsonA);

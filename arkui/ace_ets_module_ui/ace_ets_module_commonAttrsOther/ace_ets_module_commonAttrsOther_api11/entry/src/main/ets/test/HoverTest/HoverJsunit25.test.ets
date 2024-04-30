@@ -63,7 +63,6 @@ export default function HoverJsunit25() {
       await CommonFunc.sleep(500);
       let point = await buttonCl.getBoundsCenter();
       await driver.mouseMoveTo({x:point.x , y:point.y })
-      console.log('1125x'+point.x+'1125y' + point.y  )
       await CommonFunc.sleep(1000);
 
       let strJson = getInspectorByKey('hover25');
