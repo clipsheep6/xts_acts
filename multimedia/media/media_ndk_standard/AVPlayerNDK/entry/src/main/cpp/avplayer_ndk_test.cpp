@@ -441,10 +441,8 @@ static napi_value OhAvPlayerSelectBitRate(napi_env env, napi_callback_info info)
         return result;
     }
     avErrCode = OH_AVPlayer_SelectBitRate(mainPlayer, rateValue);
-    if (avErrCode == AV_ERR_OK) {
-        napi_create_int32(env, avErrCode, &result);
-        return result;
-    }
+    napi_create_int32(env, avErrCode, &result);
+    return result;
 }
 
 // 选择音频或字幕轨道

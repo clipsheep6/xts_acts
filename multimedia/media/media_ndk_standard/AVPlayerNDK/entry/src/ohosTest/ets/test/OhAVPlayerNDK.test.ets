@@ -513,7 +513,7 @@ export default function OhAVPlayerNDKTest() { // L2
     it('testOHAVPlayerSelectBitRate001', 0, async (done: Function) => {
       console.info(`testOHAVPlayerSelectBitRate001 test start `);
       try {
-        let player : number = await avplayer.OhAVPlayerSelectBitRate(0);
+        let player : number = await avplayer.OhAvPlayerSelectBitRate(0);
         expect(player).assertEqual(AV_ERR_INVALID_VAL);
         hilog.info(0x0000, 'testTag', '%{public}s', `testOHAVPlayerSelectBitRate001:${player}`);
       } catch (error) {
@@ -556,8 +556,8 @@ export default function OhAVPlayerNDKTest() { // L2
     it('testOHAVPlayerSelectBitRate003', 0, async (done: Function) => {
       console.info(`testOHAVPlayerSelectBitRate003 test start `);
       try {
-        let player : number = await avplayer.OhAVPlayerSelectBitRate(100);
-        expect(player).assertEqual(AV_ERR_OK);
+        let player : number = await avplayer.OhAvPlayerSelectBitRate(100);
+        expect(player).assertEqual(AV_ERR_INVALID_VAL);
         hilog.info(0x0000, 'testTag', '%{public}s', `testOHAVPlayerSelectBitRate003:${player}`);
       } catch (error) {
         hilog.info(0x0000, 'testTag', '%{public}s', `testOHAVPlayerSelectBitRate003:${error}`);
@@ -577,7 +577,7 @@ export default function OhAVPlayerNDKTest() { // L2
     it('testOHAVPlayerSelectBitRate004', 0, async (done: Function) => {
       console.info(`testOHAVPlayerSelectBitRate004 test start `);
       try {
-        let player : number = await avplayer.OhAVPlayerSelectBitRate(1000);
+        let player : number = await avplayer.OhAvPlayerSelectBitRate(1000);
         expect(player).assertEqual(AV_ERR_OK);
         hilog.info(0x0000, 'testTag', '%{public}s', `testOHAVPlayerSelectBitRate004:${player}`);
       } catch (error) {
@@ -598,7 +598,7 @@ export default function OhAVPlayerNDKTest() { // L2
     it('testOHAVPlayerSelectBitRate005', 0, async (done: Function) => {
       console.info(`testOHAVPlayerSelectBitRate005 test start `);
       try {
-        let player : number = await avplayer.OhAVPlayerSelectBitRate(10000);
+        let player : number = await avplayer.OhAvPlayerSelectBitRate(10000);
         expect(player).assertEqual(AV_ERR_OK);
         hilog.info(0x0000, 'testTag', '%{public}s', `testOHAVPlayerSelectBitRate005:${player}`);
       } catch (error) {
@@ -663,7 +663,7 @@ export default function OhAVPlayerNDKTest() { // L2
       console.info(`testOHAVPlayerSelectTrack003 test start `);
       try {
         await avplayer.OhAvPlayerPrepare();
-        let player : number = await avplayer.OhAVPlayerSelectTrack(1);
+        let player : number = await avplayer.OhAvPlayerSelectTrack(1);
         expect(player).assertEqual(AV_ERR_OK);
         hilog.info(0x0000, 'testTag', '%{public}s', `testOHAVPlayerSelectTrack003:${player}`);
       } catch (error) {
@@ -685,7 +685,7 @@ export default function OhAVPlayerNDKTest() { // L2
       console.info(`testOHAVPlayerSelectTrack004 test start `);
       try {
         await avplayer.OhAvPlayerPrepare();
-        let player : number = await avplayer.OhAVPlayerSelectTrack(2);
+        let player : number = await avplayer.OhAvPlayerSelectTrack(2);
         expect(player).assertEqual(AV_ERR_OK);
         hilog.info(0x0000, 'testTag', '%{public}s', `testOHAVPlayerSelectTrack004:${player}`);
       } catch (error) {
@@ -858,7 +858,7 @@ export default function OhAVPlayerNDKTest() { // L2
       console.info(`testOHAVPlayerSetPlaybackSpeed004 test start `);
       try {
         await avplayer.OhAvPlayerPrepare();
-        let player : number = await avplayer.OhAVPlayerSetPlaybackSpeed(AV_SPEED_FORWARD_1_75_X);
+        let player : number = await avplayer.OhAvPlayerSetPlaybackSpeed(AV_SPEED_FORWARD_1_75_X);
         expect(player).assertEqual(AV_ERR_OK);
         hilog.info(0x0000, 'testTag', '%{public}s', `testOHAVPlayerSetPlaybackSpeed004:${player}`);
       } catch (error) {
@@ -880,7 +880,7 @@ export default function OhAVPlayerNDKTest() { // L2
       console.info(`testOHAVPlayerSetPlaybackSpeed005 test start `);
       try {
         await avplayer.OhAvPlayerPrepare();
-        let player : number = await avplayer.OhAVPlayerSetPlaybackSpeed(AV_SPEED_FORWARD_2_00_X);
+        let player : number = await avplayer.OhAvPlayerSetPlaybackSpeed(AV_SPEED_FORWARD_2_00_X);
         expect(player).assertEqual(AV_ERR_OK);
         hilog.info(0x0000, 'testTag', '%{public}s', `testOHAVPlayerSetPlaybackSpeed005:${player}`);
       } catch (error) {
