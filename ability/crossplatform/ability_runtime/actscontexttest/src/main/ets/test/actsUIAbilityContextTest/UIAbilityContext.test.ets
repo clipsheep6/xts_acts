@@ -16,8 +16,11 @@
 import common from '@ohos.app.ability.common';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import { BusinessError } from '@ohos.base';
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 
 import Want from '@ohos.app.ability.Want';
+
+let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
 
 function sleep(time: number) {
   return new Promise((resolve: (value: string) => void) => {
@@ -317,7 +320,7 @@ export default function UIAbilityContext() {
       try {
         let context: common.UIAbilityContext = globalThis.abilityContext;
         let want: Want = {
-          "bundleName": "com.example.contexttest",
+          "bundleName": "com.example.contexttest123",
           "abilityName": "MainAbility1",
           "moduleName": "abc"
         }
@@ -349,7 +352,7 @@ export default function UIAbilityContext() {
       try {
         let context: common.UIAbilityContext = globalThis.abilityContext;
         let want: Want = {
-          "bundleName": "com.example.contexttest",
+          "bundleName": "com.example.contexttest123",
           "abilityName": "MainAbility1",
           "moduleName": " "
         }
@@ -421,7 +424,7 @@ export default function UIAbilityContext() {
       try {
         let context: common.UIAbilityContext = globalThis.abilityContext;
         let want: Want = {
-          "bundleName": "com.example.contexttest",
+          "bundleName": "com.example.contexttest123",
           "abilityName": "abc",
           "moduleName": "entryTest"
         }
@@ -453,7 +456,7 @@ export default function UIAbilityContext() {
       try {
         let context: common.UIAbilityContext = globalThis.abilityContext;
         let want: Want = {
-          "bundleName": "com.example.contexttest",
+          "bundleName": "com.example.contexttest123",
           "abilityName": " ",
           "moduleName": "entryTest"
         }
@@ -485,7 +488,7 @@ export default function UIAbilityContext() {
       try {
         let context: common.UIAbilityContext = globalThis.abilityContext;
         let want: Want = {
-          "bundleName": "com.example.contexttest",
+          "bundleName": "com.example.contexttest123",
           "moduleName": "entryTest"
         }
         context.startAbility(want).then(() => {
@@ -515,7 +518,9 @@ export default function UIAbilityContext() {
     it('testStartAbilityPromise011', 0, async (done: Function) => {
       try {
         let context: common.UIAbilityContext = globalThis.abilityContext;
-        let want: Want = {}
+        let want: Want = {
+          "bundleName": "com.example.contexttest123"
+        }
         context.startAbility(want).then(() => {
           console.log(`testStartAbilityPromise011 fail: `);
           expect().assertFail();
@@ -799,7 +804,7 @@ export default function UIAbilityContext() {
         expect(context != null).assertTrue();
 
         let want: Want = {
-          "bundleName": "com.example.contexttest",
+          "bundleName": "com.example.contexttest123",
           "abilityName": "MainAbility1",
           "moduleName": "abc"
         }
@@ -834,7 +839,7 @@ export default function UIAbilityContext() {
         expect(context != null).assertTrue();
 
         let want: Want = {
-          "bundleName": "com.example.contexttest",
+          "bundleName": "com.example.contexttest123",
           "abilityName": "MainAbility1",
           "moduleName": " "
         }
@@ -912,7 +917,7 @@ export default function UIAbilityContext() {
         expect(context != null).assertTrue();
 
         let want: Want = {
-          "bundleName": "com.example.contexttest",
+          "bundleName": "com.example.contexttest123",
           "abilityName": "abc",
           "moduleName": "entryTest"
         }
@@ -947,7 +952,7 @@ export default function UIAbilityContext() {
         expect(context != null).assertTrue();
 
         let want: Want = {
-          "bundleName": "com.example.contexttest",
+          "bundleName": "com.example.contexttest123",
           "abilityName": " ",
           "moduleName": "entryTest"
         }
@@ -982,7 +987,7 @@ export default function UIAbilityContext() {
         expect(context != null).assertTrue();
 
         let want: Want = {
-          "bundleName": "com.example.contexttest",
+          "bundleName": "com.example.contexttest123",
           "moduleName": "entryTest"
         }
         context.startAbility(want, (err) => {
@@ -1121,6 +1126,15 @@ export default function UIAbilityContext() {
         console.info('result: ' + JSON.stringify(result));
         expect(result[0]).assertEqual('MainAbility1 onCreate');
         let context1: common.UIAbilityContext = globalThis.ability1Context;
+        
+        let res = undefined;
+        await abilityDelegator
+        .executeShellCommand('aa start -b com.example.contexttest -a TestAbility')
+        .then(data => {
+          res = data.stdResult;
+        }).catch(err => {
+          console.log(`testStartAbilityCallback013 aa fail` + JSON.stringify(err))
+        })
 
         context.startAbility(want, (err) => {
           if (err.code) {

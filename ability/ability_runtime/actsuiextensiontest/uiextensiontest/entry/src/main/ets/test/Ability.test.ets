@@ -130,6 +130,58 @@ export default function abilityTest() {
       })
     })
 
+    it('Acts_ReportDrawnCompleted_AsyncCallback_001',0, async function (done) {
+      console.log('====>Acts_ReportDrawnCompleted_AsyncCallback_001 expect start ');
+      let appearEvent = 'ACTS_UIExtension_AboutToAppear';
+      let reportDrawnCompletedEvent = 'ACTS_UIExtension_ReportDrawnCompleted';
+      let grepLog = "DRAWN_COMPLETED";
+      let cmd = "hilog -x | grep " + grepLog;
+      let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
+      var subscribeInfo = {
+        events: [appearEvent]
+      }
+      await commonEventManager.createSubscriber(subscribeInfo).then(async (data) => {
+        console.log(TAG + "createSubscriber data : " + JSON.stringify(data));
+        globalscribe = data;
+        commonEventManager.subscribe(globalscribe, async (err, data) => {
+
+          if (data.event == appearEvent) {
+            commonEventManager.publish(reportDrawnCompletedEvent, (err) => {
+              if (err) {
+                console.log(`publish Acts_ReportDrawnCompleted_AsyncCallback_001 failed, code is ${err.code}, message is ${err.message}`);
+              } else {
+                setTimeout(function () {
+                  console.log('publish Acts_ReportDrawnCompleted_AsyncCallback_001 success');
+                  abilityDelegator.executeShellCommand(cmd, (err, data) => {
+                    console.log('====>Acts_ReportDrawnCompleted_AsyncCallback_001 executeShellCommand err : ' + JSON.stringify(err));
+                    if (data.stdResult) {
+                      console.log('====>Acts_ReportDrawnCompleted_AsyncCallback_001 data.stdResult : ' + JSON.stringify(data.stdResult));
+                    try {
+                      expect(data.stdResult).assertContain("DRAWN_COMPLETED");
+                      expect(data.stdResult).assertContain("com.acts.uiextensionprovider");
+                      expect(data.stdResult).assertContain("UIExtAbility");
+                    } catch {
+                      expect().assertFail();
+                      done();
+                    }
+                      done();
+                    } else {
+                      expect().assertFail();
+                      done();
+                    }
+                  });
+                }, 100);
+              }
+            });
+          }
+        });
+      }).catch((error) => {
+        console.log(TAG + "createSubscriber err : " + JSON.stringify(error));
+        expect().assertFail();
+        done();
+      })
+    })
+
     /*
      * @tc.number  : ACTS_UIExtension_ConnectAbility_001
      * @tc.name    : UIExtension connect serviceAbility
@@ -1192,6 +1244,38 @@ export default function abilityTest() {
             console.log(TAG + "startAbilityByType003 success");
           }).catch((err)=> {
             console.error(TAG + "startAbilityByType003 fail, err:" + JSON.stringify(err));
+          })
+      } catch (error) {
+        expect().assertFail();
+        done();
+      }
+    })
+
+    /*
+     * @tc.number  : ACTS_UIExtension_StartAbilityByType004
+     * @tc.name    : test start UIExtensionAbility by type failed
+     * @tc.desc    : start UIExtensionAbility not configured in json
+     */
+    it('ACTS_UIExtension_StartAbilityByType004',0, async function (done) {
+      TAG = 'ACTS_UIExtension_StartAbilityByType004 == ';
+      console.log(TAG + "begin");
+      try {
+        let wantParam = {}
+        let abilityStartCallback = {
+          onError: (code, name, message) => {
+            console.log(TAG + "code:" + code + "name:" + name + "message:" + message);
+            expect(code).assertEqual(16000050);
+            done();
+          },
+          onResult: (abilityResult: common.AbilityResult) => {
+            console.log(TAG + "abilityResult.resultCode:" + abilityResult.resultCode);
+            done();
+          }
+        }
+        context.startAbilityByType("shareerror", wantParam, abilityStartCallback).then(() => {
+            console.log(TAG + "startAbilityByType004 success");
+          }).catch((err)=> {
+            console.error(TAG + "startAbilityByType004 fail, err:" + JSON.stringify(err));
           })
       } catch (error) {
         expect().assertFail();

@@ -1322,6 +1322,25 @@ describe('TextEncoderTest', function () {
     })
 
     /**
+     * @tc.number: SUB_COMMONLIBRARY_UTIL_GENERATE_RANDOM_UUID_003
+     * @tc.name: testUtilgenerateRandomUUID003
+     * @tc.desc: Generate a random RFC 4122 version 4 UUID.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testUtilgenerateRandomUUID003', 0, async function () {
+        let sum = 0
+        for (let i = 0; i < 10; i++) {
+          let result = util.generateRandomUUID(true);
+          if (result.length === 36) {
+            sum++;
+          }
+        }
+        expect(sum).assertEqual(10);
+    })
+
+    /**
      * @tc.number: SUB_COMMONLIBRARY_UTIL_GENERATE_RANDOM_BINARY_UUID_001
      * @tc.name: testUtilgenerateRandomBinaryUUID001
      * @tc.desc: Generate a random RFC 4122 version 4 UUID.
@@ -5110,6 +5129,109 @@ describe('RationalNumberTest', function () {
             expect(e.toString()).assertEqual("BusinessError: Parameter error.The type of str must be number");
         }
     })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_UTIL_GET_HASH_001
+     * @tc.name: testUtilGetHash001
+     * @tc.desc: Get the hash value of an object.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testUtilGetHash001', 0, function () {
+        let person = {
+          name: "Alice",
+          age: 30
+        };
+        let result1 = util.getHash(person);
+        let result2 = util.getHash(person);
+        expect(result1).assertEqual(result2);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_UTIL_GET_HASH_002
+     * @tc.name: testUtilGetHash002
+     * @tc.desc: Get the hash value of an object.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testUtilGetHash002', 0, function () {
+        let numbers = [1, 2, 3, 4, 5];
+        let result1 = util.getHash(numbers);
+        let result2 = util.getHash(numbers);
+        expect(result1).assertEqual(result2);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_UTIL_GET_HASH_003
+     * @tc.name: testUtilGetHash003
+     * @tc.desc: Get the hash value of an object.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testUtilGetHash003', 0, function () {
+        class Car {
+          make;
+          model;
+
+          constructor(make, model) {
+            this.make = make;
+            this.model = model;
+          }
+        }
+
+        let myCar = new Car("Toyota", "Corolla");
+        let result1 = util.getHash(myCar);
+        let result2 = util.getHash(myCar);
+        expect(result1).assertEqual(result2);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_UTIL_GET_HASH_004
+     * @tc.name: testUtilGetHash004
+     * @tc.desc: Get the hash value of an object.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testUtilGetHash004', 0, function () {
+        let now = new Date();
+        let result1 = util.getHash(now);
+        let result2 = util.getHash(now);
+        expect(result1).assertEqual(result2);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_UTIL_GET_HASH_005
+     * @tc.name: testUtilGetHash005
+     * @tc.desc: Get the hash value of an object.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testUtilGetHash005', 0, function () {
+        let regex = new RegExp("abc");
+        let result1 = util.getHash(regex);
+        let result2 = util.getHash(regex);
+        expect(result1).assertEqual(result2);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_UTIL_GET_HASH_006
+     * @tc.name: testUtilGetHash006
+     * @tc.desc: Get the hash value of an object.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testUtilGetHash006', 0, function () {
+        let mathObject = Math;
+        let result1 = util.getHash(mathObject);
+        let result2 = util.getHash(mathObject);
+        expect(result1).assertEqual(result2);
+    })
 })
 
 describe('Base64HelperTest', function () {
@@ -6267,6 +6389,44 @@ describe('Base64HelperTest', function () {
     })
 
     /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODETOSTRINGSYNC_BASE64URL_002
+     * @tc.name: test_encodeToStringSync_base64url_002
+     * @tc.desc: Encodes the specified byte array into a String using the Base64 and Base64URL encoding scheme.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+     it('test_encodeToStringSync_base64url_002', 0, function () {
+        let that = new util.Base64Helper()
+        let array = new Uint8Array([2,192,254,65,97,17,67,223,178]);
+        let result = that.encodeToStringSync(array);
+        let resBas = that.encodeToStringSync(array, util.Type.BASIC);
+        let resUrl = that.encodeToStringSync(array, util.Type.BASIC_URL_SAFE);
+        expect(result).assertEqual('AsD+QWERQ9+y');
+        expect(resBas).assertEqual('AsD+QWERQ9+y');
+        expect(resUrl).assertEqual('AsD-QWERQ9-y');
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODETOSTRINGSYNC_BASE64URL_003
+     * @tc.name: test_encodeToStringSync_base64url_003
+     * @tc.desc: Encodes the specified byte array into a String using the Base64 and Base64URL encoding scheme.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_encodeToStringSync_base64url_003', 0, function () {
+        let that = new util.Base64Helper()
+        let array = new Uint8Array([2,192,255,65,97,17,67,223,242]);
+        let result = that.encodeToStringSync(array);
+        let resBas = that.encodeToStringSync(array, util.Type.BASIC);
+        let resUrl = that.encodeToStringSync(array, util.Type.BASIC_URL_SAFE);
+        expect(result).assertEqual('AsD/QWERQ9/y');
+        expect(resBas).assertEqual('AsD/QWERQ9/y');
+        expect(resUrl).assertEqual('AsD_QWERQ9_y');
+    })
+
+    /**
      * @tc.number: SUB_COMMONLIBRARY_ENCODESYNC_BASE64URL_001
      * @tc.name: test_encodeSync_base64url_001
      * @tc.desc: Encodes all bytes from the specified u8 array into a newly-allocated u8.
@@ -6282,6 +6442,48 @@ describe('Base64HelperTest', function () {
         let resUrl = that.encodeSync(array, util.Type.BASIC_URL_SAFE);
         let arrBas = new Uint8Array([65,115,68,43,47,81,87,69,82,81,61,61]);
         let arrUrl = new Uint8Array([65,115,68,45,95,81,87,69,82,81]);
+        expect(result.every((value, index) => value === arrBas[index])).assertEqual(true);
+        expect(resBas.every((value, index) => value === arrBas[index])).assertEqual(true);
+        expect(resUrl.every((value, index) => value === arrUrl[index])).assertEqual(true);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODESYNC_BASE64URL_002
+     * @tc.name: test_encodeSync_base64url_002
+     * @tc.desc: Encodes all bytes from the specified u8 array into a newly-allocated u8.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_encodeSync_base64url_002', 0, function () {
+        let that = new util.Base64Helper()
+        let array = new Uint8Array([2,192,254,65,97,17,67,223,178]);
+        let result = that.encodeSync(array);
+        let resBas = that.encodeSync(array, util.Type.BASIC);
+        let resUrl = that.encodeSync(array, util.Type.BASIC_URL_SAFE);
+        let arrBas = new Uint8Array([65,115,68,43,81,87,69,82,81,57,43,121]);
+        let arrUrl = new Uint8Array([65,115,68,45,81,87,69,82,81,57,45,121]);
+        expect(result.every((value, index) => value === arrBas[index])).assertEqual(true);
+        expect(resBas.every((value, index) => value === arrBas[index])).assertEqual(true);
+        expect(resUrl.every((value, index) => value === arrUrl[index])).assertEqual(true);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODESYNC_BASE64URL_003
+     * @tc.name: test_encodeSync_base64url_003
+     * @tc.desc: Encodes all bytes from the specified u8 array into a newly-allocated u8.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_encodeSync_base64url_003', 0, function () {
+        let that = new util.Base64Helper()
+        let array = new Uint8Array([2,192,255,65,97,17,67,223,242]);
+        let result = that.encodeSync(array);
+        let resBas = that.encodeSync(array, util.Type.BASIC);
+        let resUrl = that.encodeSync(array, util.Type.BASIC_URL_SAFE);
+        let arrBas = new Uint8Array([65,115,68,47,81,87,69,82,81,57,47,121]);
+        let arrUrl = new Uint8Array([65,115,68,95,81,87,69,82,81,57,95,121]);
         expect(result.every((value, index) => value === arrBas[index])).assertEqual(true);
         expect(resBas.every((value, index) => value === arrBas[index])).assertEqual(true);
         expect(resUrl.every((value, index) => value === arrUrl[index])).assertEqual(true);
@@ -6311,6 +6513,52 @@ describe('Base64HelperTest', function () {
     })
 
     /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODETOSTRING_BASE64URL_002
+     * @tc.name: test_encodeToString_base64url_002
+     * @tc.desc: Asynchronously encodes the specified byte array into a String using the Base64 and
+     * Base64URL encoding scheme.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_encodeToString_base64url_002', 0, function () {
+        let that = new util.Base64Helper();
+        let array = new Uint8Array([2,192,254,65,97,17,67,223,178]);
+        that.encodeToString(array).then(result => {
+            expect(result).assertEqual('AsD+QWERQ9+y');
+        })
+        that.encodeToString(array, util.Type.BASIC).then(resBas => {
+            expect(resBas).assertEqual('AsD+QWERQ9+y');
+        })
+        that.encodeToString(array, util.Type.BASIC_URL_SAFE).then(resUrl => {
+            expect(resUrl).assertEqual('AsD-QWERQ9-y');
+        })
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODETOSTRING_BASE64URL_003
+     * @tc.name: test_encodeToString_base64url_003
+     * @tc.desc: Asynchronously encodes the specified byte array into a String using the Base64 and
+     * Base64URL encoding scheme.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_encodeToString_base64url_003', 0, function () {
+        let that = new util.Base64Helper();
+        let array = new Uint8Array([2,192,255,65,97,17,67,223,242]);
+        that.encodeToString(array).then(result => {
+            expect(result).assertEqual('AsD/QWERQ9/y');
+        })
+        that.encodeToString(array, util.Type.BASIC).then(resBas => {
+            expect(resBas).assertEqual('AsD/QWERQ9/y');
+        })
+        that.encodeToString(array, util.Type.BASIC_URL_SAFE).then(resUrl => {
+            expect(resUrl).assertEqual('AsD_QWERQ9_y');
+        })
+    })
+
+    /**
      * @tc.number: SUB_COMMONLIBRARY_ENCODE_BASE64URL_001
      * @tc.name: test_encode_base64url_001
      * @tc.desc: Asynchronously encodes all bytes in the specified u8 array into the newly allocated
@@ -6324,6 +6572,56 @@ describe('Base64HelperTest', function () {
         let array = new Uint8Array([2, 192, 254, 253, 5, 132, 69]);
         let arrBas = new Uint8Array([65,115,68,43,47,81,87,69,82,81,61,61]);
         let arrUrl = new Uint8Array([65,115,68,45,95,81,87,69,82,81]);
+        that.encode(array).then(result => {
+            expect(result.every((value, index) => value === arrBas[index])).assertEqual(true);
+        })
+        that.encode(array, util.Type.BASIC).then(resBas => {
+            expect(resBas.every((value, index) => value === arrBas[index])).assertEqual(true);
+        })
+        that.encode(array, util.Type.BASIC_URL_SAFE).then(resUrl => {
+            expect(resUrl.every((value, index) => value === arrUrl[index])).assertEqual(true);
+        })
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_BASE64URL_002
+     * @tc.name: test_encode_base64url_002
+     * @tc.desc: Asynchronously encodes all bytes in the specified u8 array into the newly allocated
+     * u8 array using the Base64 and Base64URL encoding scheme.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_encode_base64url_002', 0, function () {
+        let that = new util.Base64Helper();
+        let array = new Uint8Array([2,192,254,65,97,17,67,223,178]);
+        let arrBas = new Uint8Array([65,115,68,43,81,87,69,82,81,57,43,121]);
+        let arrUrl = new Uint8Array([65,115,68,45,81,87,69,82,81,57,45,121]);
+        that.encode(array).then(result => {
+            expect(result.every((value, index) => value === arrBas[index])).assertEqual(true);
+        })
+        that.encode(array, util.Type.BASIC).then(resBas => {
+            expect(resBas.every((value, index) => value === arrBas[index])).assertEqual(true);
+        })
+        that.encode(array, util.Type.BASIC_URL_SAFE).then(resUrl => {
+            expect(resUrl.every((value, index) => value === arrUrl[index])).assertEqual(true);
+        })
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_BASE64URL_003
+     * @tc.name: test_encode_base64url_003
+     * @tc.desc: Asynchronously encodes all bytes in the specified u8 array into the newly allocated
+     * u8 array using the Base64 and Base64URL encoding scheme.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_encode_base64url_003', 0, function () {
+        let that = new util.Base64Helper();
+        let array = new Uint8Array([2,192,255,65,97,17,67,223,242]);
+        let arrBas = new Uint8Array([65,115,68,47,81,87,69,82,81,57,47,121]);
+        let arrUrl = new Uint8Array([65,115,68,95,81,87,69,82,81,57,95,121]);
         that.encode(array).then(result => {
             expect(result.every((value, index) => value === arrBas[index])).assertEqual(true);
         })
@@ -6359,16 +6657,100 @@ describe('Base64HelperTest', function () {
     /**
      * @tc.number: SUB_COMMONLIBRARY_DECODESYNC_BASE64URL_002
      * @tc.name: test_decodeSync_base64url_002
-     * @tc.desc: Decodes input u8 array into a newly-allocated u8 array using the Base64 and Base64URL encoding scheme.
+     * @tc.desc: Decodes String into a newly-allocated u8 array using the Base64 and Base64URL encoding scheme.
      * @tc.size: MediumTest
      * @tc.type: Function
      * @tc.level: Level 1
      */
     it('test_decodeSync_base64url_002', 0, function () {
         let that = new util.Base64Helper();
+        let str = "AsD+QWERQ9+y";
+        let strUrl = "AsD-QWERQ9-y";
+        let array = new Uint8Array([2,192,254,65,97,17,67,223,178]);
+        let result = that.decodeSync(str);
+        let resBas = that.decodeSync(str, util.Type.BASIC);
+        let resUrl = that.decodeSync(strUrl, util.Type.BASIC_URL_SAFE);
+        expect(result.every((value, index) => value === array[index])).assertEqual(true);
+        expect(resBas.every((value, index) => value === array[index])).assertEqual(true);
+        expect(resUrl.every((value, index) => value === array[index])).assertEqual(true);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_DECODESYNC_BASE64URL_003
+     * @tc.name: test_decodeSync_base64url_003
+     * @tc.desc: Decodes String into a newly-allocated u8 array using the Base64 and Base64URL encoding scheme.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_decodeSync_base64url_003', 0, function () {
+        let that = new util.Base64Helper();
+        let str = "AsD/QWERQ9/y";
+        let strUrl = "AsD_QWERQ9_y";
+        let array = new Uint8Array([2,192,255,65,97,17,67,223,242]);
+        let result = that.decodeSync(str);
+        let resBas = that.decodeSync(str, util.Type.BASIC);
+        let resUrl = that.decodeSync(strUrl, util.Type.BASIC_URL_SAFE);
+        expect(result.every((value, index) => value === array[index])).assertEqual(true);
+        expect(resBas.every((value, index) => value === array[index])).assertEqual(true);
+        expect(resUrl.every((value, index) => value === array[index])).assertEqual(true);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_DECODESYNC_BASE64URL_004
+     * @tc.name: test_decodeSync_base64url_004
+     * @tc.desc: Decodes input u8 array into a newly-allocated u8 array using the Base64 and Base64URL encoding scheme.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_decodeSync_base64url_004', 0, function () {
+        let that = new util.Base64Helper();
         let arrBas = new Uint8Array([65,115,68,43,47,81,87,69,82,81,61,61]);
         let arrURL = new Uint8Array([65,115,68,45,95,81,87,69,82,81]);
         let array = new Uint8Array([2,192,254,253,5,132,69]);
+        let result = that.decodeSync(arrBas);
+        let resBas = that.decodeSync(arrBas, util.Type.BASIC);
+        let resUrl = that.decodeSync(arrURL, util.Type.BASIC_URL_SAFE);
+        expect(result.every((value, index) => value === array[index])).assertEqual(true);
+        expect(resBas.every((value, index) => value === array[index])).assertEqual(true);
+        expect(resUrl.every((value, index) => value === array[index])).assertEqual(true);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_DECODESYNC_BASE64URL_005
+     * @tc.name: test_decodeSync_base64url_005
+     * @tc.desc: Decodes input u8 array into a newly-allocated u8 array using the Base64 and Base64URL encoding scheme.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_decodeSync_base64url_005', 0, function () {
+        let that = new util.Base64Helper();
+        let arrBas = new Uint8Array([65,115,68,43,81,87,69,82,81,57,43,121]);
+        let arrURL = new Uint8Array([65,115,68,45,81,87,69,82,81,57,45,121]);
+        let array = new Uint8Array([2,192,254,65,97,17,67,223,178]);
+        let result = that.decodeSync(arrBas);
+        let resBas = that.decodeSync(arrBas, util.Type.BASIC);
+        let resUrl = that.decodeSync(arrURL, util.Type.BASIC_URL_SAFE);
+        expect(result.every((value, index) => value === array[index])).assertEqual(true);
+        expect(resBas.every((value, index) => value === array[index])).assertEqual(true);
+        expect(resUrl.every((value, index) => value === array[index])).assertEqual(true);
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_DECODESYNC_BASE64URL_006
+     * @tc.name: test_decodeSync_base64url_006
+     * @tc.desc: Decodes input u8 array into a newly-allocated u8 array using the Base64 and Base64URL encoding scheme.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_decodeSync_base64url_006', 0, function () {
+        let that = new util.Base64Helper();
+        let arrBas = new Uint8Array([65,115,68,47,81,87,69,82,81,57,47,121]);
+        let arrURL = new Uint8Array([65,115,68,95,81,87,69,82,81,57,95,121]);
+        let array = new Uint8Array([2,192,255,65,97,17,67,223,242]);
         let result = that.decodeSync(arrBas);
         let resBas = that.decodeSync(arrBas, util.Type.BASIC);
         let resUrl = that.decodeSync(arrURL, util.Type.BASIC_URL_SAFE);
@@ -6405,7 +6787,7 @@ describe('Base64HelperTest', function () {
     /**
      * @tc.number: SUB_COMMONLIBRARY_DECODE_BASE64URL_002
      * @tc.name: test_decode_base64url_002
-     * @tc.desc: Use the Base64 and Base64URL encoding scheme to asynchronously decode a input u8 array into
+     * @tc.desc: Use the Base64 and Base64URL encoding scheme to asynchronously decode a string into
      * a newly allocated u8 array.
      * @tc.size: MediumTest
      * @tc.type: Function
@@ -6413,9 +6795,109 @@ describe('Base64HelperTest', function () {
      */
     it('test_decode_base64url_002', 0, function () {
         let that = new util.Base64Helper();
+        let str = "AsD+QWERQ9+y";
+        let strUrl = "AsD-QWERQ9-y";
+        let array = new Uint8Array([2,192,254,65,97,17,67,223,178]);
+        that.decode(str).then(result => {
+            expect(result.every((value, index) => value === array[index])).assertEqual(true);
+        })
+        that.decode(str, util.Type.BASIC).then(resBas => {
+            expect(resBas.every((value, index) => value === array[index])).assertEqual(true);
+        })
+        that.decode(strUrl, util.Type.BASIC_URL_SAFE).then(resUrl => {
+            expect(resUrl.every((value, index) => value === array[index])).assertEqual(true);
+        })
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_DECODE_BASE64URL_003
+     * @tc.name: test_decode_base64url_003
+     * @tc.desc: Use the Base64 and Base64URL encoding scheme to asynchronously decode a string into
+     * a newly allocated u8 array.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_decode_base64url_003', 0, function () {
+        let that = new util.Base64Helper();
+        let str = "AsD/QWERQ9/y";
+        let strUrl = "AsD_QWERQ9_y";
+        let array = new Uint8Array([2,192,255,65,97,17,67,223,242]);
+        that.decode(str).then(result => {
+            expect(result.every((value, index) => value === array[index])).assertEqual(true);
+        })
+        that.decode(str, util.Type.BASIC).then(resBas => {
+            expect(resBas.every((value, index) => value === array[index])).assertEqual(true);
+        })
+        that.decode(strUrl, util.Type.BASIC_URL_SAFE).then(resUrl => {
+            expect(resUrl.every((value, index) => value === array[index])).assertEqual(true);
+        })
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_DECODE_BASE64URL_004
+     * @tc.name: test_decode_base64url_004
+     * @tc.desc: Use the Base64 and Base64URL encoding scheme to asynchronously decode a input u8 array into
+     * a newly allocated u8 array.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_decode_base64url_004', 0, function () {
+        let that = new util.Base64Helper();
         let arrBas = new Uint8Array([65,115,68,43,47,81,87,69,82,81,61,61]);
         let arrUrl = new Uint8Array([65,115,68,45,95,81,87,69,82,81]);
         let array = new Uint8Array([2,192,254,253,5,132,69]);
+        that.decode(arrBas).then(result => {
+            expect(result.every((value, index) => value === array[index])).assertEqual(true);
+        })
+        that.encode(arrBas, util.Type.BASIC).then(resBas => {
+            expect(resBas.every((value, index) => value === array[index])).assertEqual(true);
+        })
+        that.encode(arrUrl, util.Type.BASIC_URL_SAFE).then(resUrl => {
+            expect(resUrl.every((value, index) => value === array[index])).assertEqual(true);
+        })
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_DECODE_BASE64URL_005
+     * @tc.name: test_decode_base64url_005
+     * @tc.desc: Use the Base64 and Base64URL encoding scheme to asynchronously decode a input u8 array into
+     * a newly allocated u8 array.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_decode_base64url_005', 0, function () {
+        let that = new util.Base64Helper();
+        let arrBas = new Uint8Array([65,115,68,43,81,87,69,82,81,57,43,121]);
+        let arrUrl = new Uint8Array([65,115,68,45,81,87,69,82,81,57,45,121]);
+        let array = new Uint8Array([2,192,254,65,97,17,67,223,178]);
+        that.decode(arrBas).then(result => {
+            expect(result.every((value, index) => value === array[index])).assertEqual(true);
+        })
+        that.encode(arrBas, util.Type.BASIC).then(resBas => {
+            expect(resBas.every((value, index) => value === array[index])).assertEqual(true);
+        })
+        that.encode(arrUrl, util.Type.BASIC_URL_SAFE).then(resUrl => {
+            expect(resUrl.every((value, index) => value === array[index])).assertEqual(true);
+        })
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_DECODE_BASE64URL_006
+     * @tc.name: test_decode_base64url_006
+     * @tc.desc: Use the Base64 and Base64URL encoding scheme to asynchronously decode a input u8 array into
+     * a newly allocated u8 array.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('test_decode_base64url_006', 0, function () {
+        let that = new util.Base64Helper();
+        let arrBas = new Uint8Array([65,115,68,47,81,87,69,82,81,57,47,121]);
+        let arrUrl = new Uint8Array([65,115,68,95,81,87,69,82,81,57,95,121]);
+        let array = new Uint8Array([2,192,255,65,97,17,67,223,242]);
         that.decode(arrBas).then(result => {
             expect(result.every((value, index) => value === array[index])).assertEqual(true);
         })
@@ -7324,9 +7806,9 @@ describe('DecodeEncodeTest', function () {
      * @tc.level: Level 1
      */
     it('testEncoding_005', 0, function () {
-        var that = new util.TextEncoder('euc-kr')
+        var that = new util.TextEncoder('x-mac-cyrillic')
         var str = that.encoding
-        expect(str).assertEqual('euc-kr')
+        expect(str).assertEqual('x-mac-cyrillic')
     })
 	
     /**
@@ -7394,9 +7876,9 @@ describe('DecodeEncodeTest', function () {
      * @tc.level: Level 1
      */
     it('testEncoding_create_005', 0, function () {
-        var that = util.TextEncoder.create('euc-kr')
+        var that = util.TextEncoder.create('x-mac-cyrillic')
         var str = that.encoding
-        expect(str).assertEqual('euc-kr')
+        expect(str).assertEqual('x-mac-cyrillic')
     })
 
     /**
@@ -7493,6 +7975,533 @@ describe('DecodeEncodeTest', function () {
         expect(result[0]).assertEqual(97)
         expect(result[3]).assertEqual(63)
         expect(result[4]).assertEqual(63)
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_016
+     * @tc.name: testEncodeInto016
+     * @tc.desc: Returns the result of encoder for GBK.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto016', 0, function () {
+        let that = new util.TextEncoder('GBK');
+        let result = that.encodeInto('abc哈熠');
+        let res = new Uint8Array([97,98,99,185,254,236,218]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_017
+     * @tc.name: testEncodeInto017
+     * @tc.desc: Returns the result of encoder for GB2312.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto017', 0, function () {
+        let that = new util.TextEncoder('GB2312');
+        let result = that.encodeInto('abc哈熠');
+        let res = new Uint8Array([97,98,99,185,254,236,218]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_018
+     * @tc.name: testEncodeInto018
+     * @tc.desc: Returns the result of encoder for iso-8859-2.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto018', 0, function () {
+        let that = new util.TextEncoder('iso-8859-2');
+        let result = that.encodeInto('¡Hola, Mundo!');
+        let res = new Uint8Array([26,72,111,108,97,44,32,77,117,110,100,111,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_019
+     * @tc.name: testEncodeInto019
+     * @tc.desc: Returns the result of encoder for iso-8859-3.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto019', 0, function () {
+        let that = new util.TextEncoder('iso-8859-3');
+        let result = that.encodeInto('¡Hola, Mundo!');
+        let res = new Uint8Array([26,72,111,108,97,44,32,77,117,110,100,111,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_020
+     * @tc.name: testEncodeInto020
+     * @tc.desc: Returns the result of encoder for iso-8859-4.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto020', 0, function () {
+        let that = new util.TextEncoder('iso-8859-4');
+        let result = that.encodeInto('¡Hola, Mundo!');
+        let res = new Uint8Array([26,72,111,108,97,44,32,77,117,110,100,111,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_021
+     * @tc.name: testEncodeInto021
+     * @tc.desc: Returns the result of encoder for iso-8859-5.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto021', 0, function () {
+        let that = new util.TextEncoder('iso-8859-5');
+        let result = that.encodeInto('¡Hola, Mundo!');
+        let res = new Uint8Array([26,72,111,108,97,44,32,77,117,110,100,111,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_022
+     * @tc.name: testEncodeInto022
+     * @tc.desc: Returns the result of encoder for iso-8859-6.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto022', 0, function () {
+        let that = new util.TextEncoder('iso-8859-6');
+        let result = that.encodeInto('¡Hola, Mundo!');
+        let res = new Uint8Array([26,72,111,108,97,44,32,77,117,110,100,111,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_023
+     * @tc.name: testEncodeInto023
+     * @tc.desc: Returns the result of encoder for iso-8859-7.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto023', 0, function () {
+        let that = new util.TextEncoder('iso-8859-7');
+        let result = that.encodeInto('¡Hola, Mundo!');
+        let res = new Uint8Array([26,72,111,108,97,44,32,77,117,110,100,111,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_024
+     * @tc.name: testEncodeInto024
+     * @tc.desc: Returns the result of encoder for iso-8859-8.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto024', 0, function () {
+        let that = new util.TextEncoder('iso-8859-8');
+        let result = that.encodeInto('¡Hola, Mundo!');
+        let res = new Uint8Array([26,72,111,108,97,44,32,77,117,110,100,111,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_025
+     * @tc.name: testEncodeInto025
+     * @tc.desc: Returns the result of encoder for iso-8859-8-i.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto025', 0, function () {
+        let that = new util.TextEncoder('iso-8859-8-i');
+        let result = that.encodeInto('¡Hola, Mundo!');
+        let res = new Uint8Array([26,72,111,108,97,44,32,77,117,110,100,111,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_026
+     * @tc.name: testEncodeInto026
+     * @tc.desc: Returns the result of encoder for iso-8859-10.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto026', 0, function () {
+        let that = new util.TextEncoder('iso-8859-10');
+        let result = that.encodeInto('¡Hola, Mundo!');
+        let res = new Uint8Array([26,72,111,108,97,44,32,77,117,110,100,111,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_027
+     * @tc.name: testEncodeInto027
+     * @tc.desc: Returns the result of encoder for iso-8859-13.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto027', 0, function () {
+        let that = new util.TextEncoder('iso-8859-13');
+        let result = that.encodeInto('¡Hola, Mundo!');
+        let res = new Uint8Array([26,72,111,108,97,44,32,77,117,110,100,111,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_028
+     * @tc.name: testEncodeInto028
+     * @tc.desc: Returns the result of encoder for iso-8859-14.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto028', 0, function () {
+        let that = new util.TextEncoder('iso-8859-14');
+        let result = that.encodeInto('¡Hola, Mundo!');
+        let res = new Uint8Array([26,72,111,108,97,44,32,77,117,110,100,111,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_029
+     * @tc.name: testEncodeInto029
+     * @tc.desc: Returns the result of encoder for iso-8859-15.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto029', 0, function () {
+        let that = new util.TextEncoder('iso-8859-15');
+        let result = that.encodeInto('¡Hola, Mundo!');
+        let res = new Uint8Array([161,72,111,108,97,44,32,77,117,110,100,111,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_030
+     * @tc.name: testEncodeInto030
+     * @tc.desc: Returns the result of encoder for koi8-r.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto030', 0, function () {
+        let that = new util.TextEncoder('koi8-r');
+        let result = that.encodeInto('Привет, мир!');
+        let res = new Uint8Array([240,210,201,215,197,212,44,32,205,201,210,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_031
+     * @tc.name: testEncodeInto031
+     * @tc.desc: Returns the result of encoder for koi8-u.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto031', 0, function () {
+        let that = new util.TextEncoder('koi8-u');
+        let result = that.encodeInto('Привіт, світ');
+        let res = new Uint8Array([240,210,201,215,166,212,44,32,211,215,166,212]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_032
+     * @tc.name: testEncodeInto032
+     * @tc.desc: Returns the result of encoder for windows-874.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto032', 0, function () {
+        let that = new util.TextEncoder('windows-874');
+        let result = that.encodeInto('สวัสดี，โลก');
+        let res = new Uint8Array([202,199,209,202,180,213,63,226,197,161]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_033
+     * @tc.name: testEncodeInto033
+     * @tc.desc: Returns the result of encoder for windows-1250.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto033', 0, function () {
+        let that = new util.TextEncoder('windows-1250');
+        let result = that.encodeInto('Ahoj, svět');
+        let res = new Uint8Array([65,104,111,106,44,32,115,118,236,116]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_034
+     * @tc.name: testEncodeInto034
+     * @tc.desc: Returns the result of encoder for windows-1251.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto034', 0, function () {
+        let that = new util.TextEncoder('windows-1251');
+        let result = that.encodeInto('Привет, мир');
+        let res = new Uint8Array([207,240,232,226,229,242,44,32,236,232,240]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_035
+     * @tc.name: testEncodeInto035
+     * @tc.desc: Returns the result of encoder for windows-1252.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto035', 0, function () {
+        let that = new util.TextEncoder('windows-1252');
+        let result = that.encodeInto('Hi, World');
+        let res = new Uint8Array([72,105,44,32,87,111,114,108,100]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_036
+     * @tc.name: testEncodeInto036
+     * @tc.desc: Returns the result of encoder for windows-1253.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto036', 0, function () {
+        let that = new util.TextEncoder('windows-1253');
+        let result = that.encodeInto('Γεια σας, κόσμο');
+        let res = new Uint8Array([195,229,233,225,32,243,225,242,44,32,234,252,243,236,239]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_037
+     * @tc.name: testEncodeInto037
+     * @tc.desc: Returns the result of encoder for windows-1254.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto037', 0, function () {
+        let that = new util.TextEncoder('windows-1254');
+        let result = that.encodeInto('Merhaba, dünya');
+        let res = new Uint8Array([77,101,114,104,97,98,97,44,32,100,252,110,121,97]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_038
+     * @tc.name: testEncodeInto038
+     * @tc.desc: Returns the result of encoder for windows-1255.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto038', 0, function () {
+        let that = new util.TextEncoder('windows-1255');
+        let result = that.encodeInto('שלום, עולם');
+        let res = new Uint8Array([249,236,229,237,44,32,242,229,236,237]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_039
+     * @tc.name: testEncodeInto039
+     * @tc.desc: Returns the result of encoder for windows-1256.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto039', 0, function () {
+        let that = new util.TextEncoder('windows-1256');
+        let result = that.encodeInto('مرحبا, العالم');
+        let res = new Uint8Array([227,209,205,200,199,44,32,199,225,218,199,225,227]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_040
+     * @tc.name: testEncodeInto040
+     * @tc.desc: Returns the result of encoder for windows-1257.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto040', 0, function () {
+        let that = new util.TextEncoder('windows-1257');
+        let result = that.encodeInto('Tere, maailma');
+        let res = new Uint8Array([84,101,114,101,44,32,109,97,97,105,108,109,97]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_041
+     * @tc.name: testEncodeInto041
+     * @tc.desc: Returns the result of encoder for windows-1258.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto041', 0, function () {
+        let that = new util.TextEncoder('windows-1258');
+        let result = that.encodeInto('Chào, thế giới');
+        let res = new Uint8Array([67,104,224,111,44,32,116,104,26,32,103,105,26,105]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_042
+     * @tc.name: testEncodeInto042
+     * @tc.desc: Returns the result of encoder for euc-jp.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto042', 0, function () {
+        let that = new util.TextEncoder('euc-jp');
+        let result = that.encodeInto('こんにちは、世界!');
+        let res = new Uint8Array([164,179,164,243,164,203,164,193,164,207,161,162,192,164,179,166,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_043
+     * @tc.name: testEncodeInto043
+     * @tc.desc: Returns the result of encoder for euc-kr.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto043', 0, function () {
+        let that = new util.TextEncoder('euc-kr');
+        let result = that.encodeInto('안녕, 세상!');
+        let res = new Uint8Array([190,200,179,231,44,32,188,188,187,243,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_044
+     * @tc.name: testEncodeInto044
+     * @tc.desc: Returns the result of encoder for x-mac-cyrillic.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto044', 0, function () {
+        let that = new util.TextEncoder('x-mac-cyrillic');
+        let result = that.encodeInto('Привет, мир!');
+        let res = new Uint8Array([143,240,232,226,229,242,44,32,236,232,240,33]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_045
+     * @tc.name: testEncodeInto045
+     * @tc.desc: Returns the result of encoder for utf-16be.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto045', 0, function () {
+        let that = new util.TextEncoder('utf-16be');
+        let result = that.encodeInto('abc哈熠');
+        let res = new Uint8Array([97,0,98,0,99,0,200,84,160,113]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
+    })
+
+    /**
+     * @tc.number: SUB_COMMONLIBRARY_ENCODE_INTO_046
+     * @tc.name: testEncodeInto046
+     * @tc.desc: Returns the result of encoder for utf-16le.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: Level 1
+     */
+    it('testEncodeInto046', 0, function () {
+        let that = new util.TextEncoder('utf-16le');
+        let result = that.encodeInto('abc哈熠');
+        let res = new Uint8Array([0,97,0,98,0,99,84,200,113,160]);
+        for (let i = 0; i < result.length; i++) {
+          expect(result[i]).assertEqual(res[i]);
+        }
     })
 
     /**

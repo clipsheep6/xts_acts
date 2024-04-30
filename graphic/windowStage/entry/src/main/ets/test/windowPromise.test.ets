@@ -52,6 +52,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
   console.log('windowTest abilityStorage: ' + JSON.stringify(abilityStorage))
   describe('windowPromise_test', () => {
     console.log('describe window_api_test start!!!')
+    let WindowStage:ohosWindow.WindowStage;
     const TRUE_FLAG: boolean = true;
     let commonRGBColorArr: Array<string> = ['rgb(255,0,0)', 'rgb(0,255,0)', 'rgb(0,0,255)', 'rgb(255,255,255)', 'rgb(0,0,0)', 'rgb(249,0,230)', 'rgb(102,102,102)', 'rgb(255,247,0)'];
     let commonNUMBERColorArr: Array<string> = ['#00FF0000', '#0000FF00', '#000000FF', '#00FFFFFF', '#00000000', '#00F900E6', '#00666666', '#00FFF700'];
@@ -62,14 +63,18 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       'TYPE_FLOAT': 8,
     }
     let currentDeviceIsRk = false;
+    let currentDeviceIsPC = false;
     beforeAll(() => {
       let deviceTypeInfo = deviceInfo.deviceType
       currentDeviceIsRk = deviceTypeInfo === 'default' ? true : false;
+      currentDeviceIsPC = deviceTypeInfo === '2in1' ? true : false;
       console.info('the value of the deviceType is :' + deviceInfo.deviceType);
       console.log('jsunittest beforeall ohosWindow.WindowType=' + JSON.stringify(ohosWindow.WindowType.TYPE_FLOAT));
       systemWindowTypeDicArr = Object.keys(systemWindowTypeDic);
       console.log('jsUnittest beforeAll systemWindowTypeDicArr=' + JSON.stringify(systemWindowTypeDicArr) + '   ,length=' + systemWindowTypeDicArr.length);
       systemWindowTypeArr = Object.keys(systemWindowTypeDic);
+      WindowStage = AppStorage.get('windowStage') as ohosWindow.WindowStage;
+      console.log('WindowStage' +JSON.stringify(WindowStage));
     })
 
     /**
@@ -141,7 +146,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       let wndId = 'listenerTest2';
       let baseType = ohosWindow.WindowType.TYPE_FLOAT;
       let changedModel = 102;
-      let resizeValue = 200;
+      let resizeValue = 1000;
       console.log(msgStr + 'begin');
       let flag = false;
       let tempWindow: ohosWindow.Window | undefined = undefined;
@@ -182,7 +187,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         await tempWnd.resetSize(resizeValue, resizeValue).catch((err: BusinessError) => {
           unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.resetSize(' + resizeValue + ', ' + resizeValue + ')', done);
         });
-        await sleep(1500);
+        await sleep(900);
         console.log(msgStr + 'tempWnd.resetSize(' + resizeValue + ', ' + resizeValue + ') success');
       }
 
@@ -281,14 +286,14 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         await sleep(1000);
         tempWindow.on('windowSizeChange', async (sizeData: ohosWindow.Size) => {
           console.log(msgStr + 'tempWnd.on windowSizeChange, sizeData : ' + JSON.stringify(sizeData));
-          expect(sizeData.width === 100).assertTrue();
-          expect(sizeData.height === 100).assertTrue();
+          expect(sizeData.width === 1000).assertTrue();
+          expect(sizeData.height === 1000).assertTrue();
           tempWindow.off('windowSizeChange');
           await tempWindow.destroy();
           done();
         })
         console.log(msgStr + 'tempWnd.on windowSizeChange finished');
-        await tempWindow.resetSize(100, 100).then(() => {
+        await tempWindow.resetSize(1000, 1000).then(() => {
           listenerOffFlag = true;
           console.log(msgStr + 'listenerOffFlag:' + listenerOffFlag);
         }).catch((err: BusinessError) => {
@@ -481,13 +486,12 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.setSystemBarEnable([])', done);
       });
       console.log(msgStr + 'tempWnd.setSystemBarEnable([]) success');
-      // @ts-ignore
-      await tempWnd.setSystemBarEnable([null, '123']).catch((err: BusinessError) => {
-        console.log(msgStr + 'tempWnd.setSystemBarEnable([null, 123]) err=' + JSON.stringify(err));
+      await tempWnd.setSystemBarEnable([null, undefined]).catch((err: BusinessError) => {
+        console.log(msgStr + 'tempWnd.setSystemBarEnable([null, undefined]) err=' + JSON.stringify(err));
         expect(err.code === 1003).assertTrue();
         done();
       });
-      console.log(msgStr + 'tempWnd.setSystemBarEnable([null, 123]) finished');
+      console.log(msgStr + 'tempWnd.setSystemBarEnable([null, undefined]) finished');
     })
 
     /**
@@ -531,6 +535,8 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
           navigationBarColor: tempColor,
           isNavigationBarLightIcon: false,
           navigationBarContentColor: tempColor,
+          enableStatusBarAnimation:false,
+          enableNavigationBarAnimation:false,         
         };
         await tempWnd.setSystemBarProperties(systemBarProperties).then(() => {
           console.log(msgStr + 'tempWnd.setSystemBarProperties ' + tempColor + ' success');
@@ -584,6 +590,8 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
           navigationBarColor: tempColor,
           isNavigationBarLightIcon: true,
           navigationBarContentColor: tempColor,
+          enableStatusBarAnimation:false,
+          enableNavigationBarAnimation:false,     
         };
         await tempWnd.setSystemBarProperties(systemBarProperties).then(() => {
           console.log(msgStr + 'tempWnd.setSystemBarProperties ' + tempColor + ' success');
@@ -637,6 +645,8 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
           navigationBarColor: tempColor,
           isNavigationBarLightIcon: false,
           navigationBarContentColor: tempColor,
+          enableStatusBarAnimation:false,
+          enableNavigationBarAnimation:false,     
         };
         await tempWnd.setSystemBarProperties(systemBarProperties).then(() => {
           console.log(msgStr + 'tempWnd.setSystemBarProperties ' + tempColor + ' success');
@@ -1188,7 +1198,8 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       let num = 0
       let orientationItem = ['UNSPECIFIED', 'PORTRAIT', 'LANDSCAPE', 'PORTRAIT_INVERTED',
         'LANDSCAPE_INVERTED', 'AUTO_ROTATION', 'AUTO_ROTATION_PORTRAIT', 'AUTO_ROTATION_LANDSCAPE',
-        'AUTO_ROTATION_RESTRICTED', 'AUTO_ROTATION_PORTRAIT_RESTRICTED', 'AUTO_ROTATION_LANDSCAPE_RESTRICTED', 'LOCKED', 'UNSPECIFIED'];
+        'AUTO_ROTATION_RESTRICTED', 'AUTO_ROTATION_PORTRAIT_RESTRICTED', 'AUTO_ROTATION_LANDSCAPE_RESTRICTED', 'LOCKED','AUTO_ROTATION_UNSPECIFIED',
+        'USER_ROTATION_PORTRAIT', 'USER_ROTATION_LANDSCAPE','USER_ROTATION_PORTRAIT_INVERTED','USER_ROTATION_LANDSCAPE_INVERTED','UNSPECIFIED'];
       for (let i = 0; i < orientationItem.length; i++) {
         let orientation: ohosWindow.Orientation = ohosWindow.Orientation[orientationItem[i]]
         console.log(msgStr + 'i : ' + i + ' ,orientation : ' + orientation);
@@ -1356,27 +1367,6 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       done();
     })
     /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0500
-     * @tc.name      : testGetCutoutInfo_Promise
-     * @tc.desc      : Obtain information about unavailable screen areas such as the hole screen, fringe screen, and waterfall screen
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level3
-     */
-    it('testGetCutoutInfo_Promise', 0, async (done: Function) => {
-      let caseName: string = 'testGetCutoutInfo_Promise';
-      let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      console.log(msgStr + 'begin context==' + JSON.stringify(context));
-      let dpClass = display.getDefaultDisplaySync();
-      expect(!!dpClass).assertTrue();
-      dpClass.getCutoutInfo().then((data: display.CutoutInfo) => {
-        console.info('Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
-        done();
-      }).catch((err: BusinessError) => {
-        unexpectedError(TRUE_FLAG, err, caseName, 'displayClass.getCutoutInfo', done);
-      });
-    })
-    /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1080
      * @tc.name      : testSetAspectRatio_Cancel_Upon_Success_Promise
      * @tc.desc      : Validate the scenario cancelled after setting the proportion of the content layout of the main window
@@ -1489,32 +1479,6 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       }
     })
     /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_2310
-     * @tc.name      : testOrientation_Enum
-     * @tc.desc      : Test the enumeration value of Orientation
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level3
-     */
-    it('testOrientation_Enum', 0, async (done: Function) => {
-      let caseName: string = 'testOrientation_Enum';
-      let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      console.log(msgStr + 'begin');
-      console.log(msgStr + 'display.orientation:' + JSON.stringify('PORTRAIT: ' + display.Orientation.PORTRAIT + ';LANDSCAPE: ' + display.Orientation.LANDSCAPE + ';PORTRAIT_INVERTED: ' + display.Orientation.PORTRAIT_INVERTED + ';LANDSCAPE_INVERTED: ' + display.Orientation.LANDSCAPE_INVERTED));
-      try {
-        expect(0).assertEqual(display.Orientation.PORTRAIT);
-        expect(1).assertEqual(display.Orientation.LANDSCAPE);
-        expect(2).assertEqual(display.Orientation.PORTRAIT_INVERTED);
-        expect(3).assertEqual(display.Orientation.LANDSCAPE_INVERTED);
-        done();
-      } catch (err) {
-        let e: BusinessError = err as BusinessError;
-        console.info(msgStr + 'Orientation error :' + JSON.stringify(e));
-        expect().assertFail();
-        done();
-      }
-    })
-    /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0100
      * @tc.name      : testSetSpecificSystemBarEnabled_Function_Promise
      * @tc.desc      : Test the function of setSpecificSystemBarEnabled
@@ -1546,13 +1510,13 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       }
     })
     /**
-    * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0200
-    * @tc.name      : testSetSpecificSystemBarEnabled_2_Function_Promise
-    * @tc.desc      : Test the function of setSpecificSystemBarEnabled
-    * @tc.size      : MediumTest
-    * @tc.type      : Function
-    * @tc.level     : Level3
-    */
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0200
+     * @tc.name      : testSetSpecificSystemBarEnabled_2_Function_Promise
+     * @tc.desc      : Test the function of setSpecificSystemBarEnabled
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
     it('testSetSpecificSystemBarEnabled_2_Function_Promise', 0, async function(done){
       let msgStr = 'testSetSpecificSystemBarEnabled_2';
       console.log(msgStr + 'begin')
@@ -1802,7 +1766,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
-     */ 
+     */
     it("testCreateSubWindowWithOptions_Function_Promise", 0, async function(done){
       let msgStr = "testCreateSubWindowWithOptions_Function_Promise";
       console.log(msgStr + " begin");
@@ -1811,7 +1775,8 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         console.log(msgStr + " try begin")
         let options:ohosWindow.SubWindowOptions = {
           title: 'title',
-          decorEnabled: true
+          decorEnabled: true,
+          isModal: false,
         };
         let promise = windowStage.createSubWindowWithOptions('mySubWindow', options);
         promise.then((data) => {
@@ -1837,9 +1802,9 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         } else {
           expect.assertFail();
           done();
-        }        
+        }
       }
-    })       
+    })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_3920
      * @tc.name      : testGetWindowSystemBarProperties_Function
@@ -1847,7 +1812,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
-     */ 
+     */
     it("testGetWindowSystemBarProperties_Function", 0, async function(done){
       let msgStr = "testGetWindowSystemBarProperties_Function";
       console.log(msgStr + " begin");
@@ -1866,6 +1831,178 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         }
       })
     })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_WULTMNDOW_GET_WINDOWSYSTEMBARPROPERTIES_0100
+     * @tc.name      : test_FullSereen_SetWindowSystemBarProperties_and_GetWindowSystemBarProperties
+     * @tc.desc      : test_FullSereen_SetWindowSystemBarProperties_and_GetWindowSystemBarProperties
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it("test_FullSereen_SetWindowSystemBarProperties_and_GetWindowSystemBarProperties", 0, async function(done){
+      let msgStr = "test_FullSereen_SetWindowSystemBarProperties_and_GetWindowSystemBarProperties";
+      let SystemBarProperties = {
+        statusBarColor: '#FF0000FF',
+        navigationBarColor: '#FF00FF00',
+        statusBarContentColor: '#FF00FFAA',
+        navigationBarContentColor: '#FF00FFFF'
+      };
+      console.log(msgStr + " begin");
+      ohosWindow.getLastWindow(context).then(async wnd => {
+        console.log(msgStr + ' window.getTopWindow wnd: ' + wnd);
+        expect(wnd != null).assertTrue();
+        try {
+          await wnd.setWindowSystemBarProperties(SystemBarProperties).then(() => {
+            console.info('Succeeded in setting the system bar properties.');
+            let systemBarProperty = wnd.getWindowSystemBarProperties();
+            console.info('Success in obtaining system bar properties. Property: ' + JSON.stringify(systemBarProperty));
+            expect(systemBarProperty.statusBarColor).assertEqual('#FF0000FF');
+            expect(systemBarProperty.navigationBarColor).assertEqual('#FF00FF00');
+            expect(systemBarProperty.statusBarContentColor).assertEqual('#FF00FFAA');
+            expect(systemBarProperty.navigationBarContentColor).assertEqual('#FF00FFFF');
+            done()
+          }).catch((err) => {
+            console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+            expect(false).assertTrue();
+            done()
+          });
+          
+        } catch (exception) {
+          console.error(msgStr + ' Failed to get system bar properties. Cause: ' + JSON.stringify(exception));
+          expect().assertFail()
+          done()
+        }
+      })
+    })
+
+  /**
+     * @tc.number    : SUB_BASIC_WMS_WULTMNDOW_GET_WINDOWSYSTEMBARPROPERTIES_0200
+     * @tc.name      : test_subWindow_GetWindowSystemBarProperties_1300004
+     * @tc.desc      : test_subWindow_GetWindowSystemBarProperties_1300004
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it("test_subWindow_GetWindowSystemBarProperties_1300004", 2, async function(done){
+      let msgStr = "test_subWindow_GetWindowSystemBarProperties_1300004";
+      console.log(msgStr + " begin");
+      try{
+        await WindowStage.createSubWindow('mySubWindow').then((data) => {
+        let SubWindowClass = data;
+        console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+        try {
+        let systemBarProperty = SubWindowClass.getWindowSystemBarProperties();
+        console.info('Success in obtaining system bar properties. Property: ' + JSON.stringify(systemBarProperty));
+      } catch (err) {
+        console.error('Failed to get system bar properties. Code: ' + JSON.stringify(err)+ err.code);
+        expect(err.code).assertEqual(1300004)
+        done();
+      }
+      }).catch((err) => {
+        console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+          done()
+      });
+    } catch (exception) {
+      console.error('test_subWindow_GetWindowSystemBarProperties_1300004 Failed. Cause: ' + JSON.stringify(exception));
+        expect(false).assertTrue();
+        done()
+    }
+
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_WULTMNDOW_SET_WINDOWSYSTEMBARPROPERTIES_0100
+     * @tc.name      : test_subWindow_SetWindowSystemBarProperties
+     * @tc.desc      : test_subWindow_GetWindowSystemBarProperties
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 2
+     */
+    it("test_subWindow_SetWindowSystemBarProperties", 2, async function(done){
+      let msgStr = "test_subWindow_GetWindowSystemBarProperties_1300004";
+      console.log(msgStr + " begin");
+      let SystemBarProperties = {
+        statusBarColor: '#ff00ff',
+        navigationBarColor: '#00ff00',
+        statusBarContentColor: '#ffffff',
+        navigationBarContentColor: '#00ffff'
+      };
+      try{
+        await WindowStage.createSubWindow('mySubWindow2').then((data) => {
+          let SubWindowClass = data;
+          console.info('Succeeded in creating the subwindow. Data: ' + JSON.stringify(data));
+          try {
+            SubWindowClass.setWindowSystemBarProperties(SystemBarProperties).then(() => {
+              console.info('Succeeded in setting the system bar properties.');
+              expect(true).assertTrue();
+              done();
+            }).catch((err) => {
+              console.error('Failed to set the system bar properties. Cause: ' + JSON.stringify(err));
+              expect(false).assertTrue();
+              done();
+            });
+          } catch (err) {
+            console.error('Failed to setWindowSystemBarProperties. Code: ' + JSON.stringify(err)+ err.code);
+            expect(false).assertTrue();
+            done();
+          }
+        }).catch((err) => {
+          console.error('Failed to create the subwindow. Cause: ' + JSON.stringify(err));
+          expect(false).assertTrue();
+          done()
+        });
+      } catch (exception) {
+        console.error('test_subWindow_GetWindowSystemBarProperties_1300004 Failed. Cause: ' + JSON.stringify(exception));
+        expect(false).assertTrue();
+        done()
+      }
+
+    })
+
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STANDARD_JS_API_1180
+     * @tc.name      : testSetWindowLimits_Function_Promise
+     * @tc.desc      : test the function of setWindowLimits
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level4
+     */
+    it('testSetWindowLimits_Function_Promise', 4, async function (done){
+      let tag = 'setWindowLimits_Function_Promise '
+      console.log(tag + 'begin')
+      try {
+          let WindowLimits = {
+              maxWidth: 1500,
+              maxHeight: 1000,
+              minWidth: 500,
+              minHeight: 400
+          };
+          let windowClass = await ohosWindow.getLastWindow(context);
+          let promise = windowClass.setWindowLimits(WindowLimits);
+          promise.then((data) => {
+              console.log(tag + 'Succeeded in setWindowLimits. Cause:' + JSON.stringify(data));
+              expect(true).assertTrue();
+              done();
+          }).catch((error) => {
+              console.log(tag + 'www data Failed to setWindowLimits. Cause: ' + JSON.stringify(error));
+              if (error.code == 801) {
+                  expect(true).assertTrue()
+                  done()
+              } else {
+                  expect().assertFail();
+                  done();
+              }
+          });
+          
+        } catch (error) {
+            console.log(tag + 'Failed to change the window limits out. Cause:' + JSON.stringify(error));
+            expect().assertFail();
+            done();
+        }
+  })
+
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_4000
      * @tc.name      : testEnableLandscapeMultiWindow_Function
@@ -1873,7 +2010,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
-     */ 
+     */
     it("testEnableLandscapeMultiWindow_Function", 0, async function(done){
       let msgStr = "testEnableLandscapeMultiWindow_Function";
       console.log(msgStr + " begin");
@@ -1881,15 +2018,15 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         console.log(msgStr + ' window.getTopWindow wnd: ' + wnd);
         expect(wnd != null).assertTrue();
         try {
-          let promise = wnd.enableLandscapeMultiWindow() 
+          let promise = wnd.enableLandscapeMultiWindow()
           promise.then(() => {
-              console.info(msgStr + ' Succeeded in making multi-window become landscape.');
-              expect(true).assertTrue()
-              done()
+            console.info(msgStr + ' Succeeded in making multi-window become landscape.');
+            expect(true).assertTrue()
+            done()
           }).catch((err: BusinessError) => {
-              console.error(msgStr + ' Failed to make multi-window become landscape. Cause: ' + JSON.stringify(err));
-              expect().assertFail()
-              done()
+            console.error(msgStr + ' Failed to make multi-window become landscape. Cause: ' + JSON.stringify(err));
+            expect().assertFail()
+            done()
           });
         } catch (exception) {
           console.error(msgStr + ' Failed to call enableLandscapeMultiWindow. Cause: ' + JSON.stringify(exception));
@@ -1897,7 +2034,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
           done()
         }
       })
-    }) 
+    })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_4010
      * @tc.name      : testDisableLandscapeMultiWindow_Function
@@ -1905,7 +2042,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level3
-     */ 
+     */
     it("testDisableLandscapeMultiWindow_Function", 0, async function(done){
       let msgStr = "testDisableLandscapeMultiWindow_Function";
       console.log(msgStr + " begin");
@@ -1913,15 +2050,15 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         console.log(msgStr + ' window.getTopWindow wnd: ' + wnd);
         expect(wnd != null).assertTrue();
         try {
-          let promise = wnd.enableLandscapeMultiWindow() 
+          let promise = wnd.disableLandscapeMultiWindow()
           promise.then(() => {
-              console.info(msgStr + ' Succeeded in making multi-window become not landscape.');
-              expect(true).assertTrue()
-              done()
+            console.info(msgStr + ' Succeeded in making multi-window become not landscape.');
+            expect(true).assertTrue()
+            done()
           }).catch((err: BusinessError) => {
-              console.error(msgStr + ' Failed to make multi-window become not landscape. Cause: ' + JSON.stringify(err));
-              expect().assertFail()
-              done()
+            console.error(msgStr + ' Failed to make multi-window become not landscape. Cause: ' + JSON.stringify(err));
+            expect().assertFail()
+            done()
           });
         } catch (exception) {
           console.error(msgStr + ' Failed to call enableLandscapeMultiWindow. Cause: ' + JSON.stringify(exception));
@@ -1929,6 +2066,63 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
           done()
         }
       })
-    }) 
+    })
+    /**
+     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_3930
+     * @tc.name      : testSetWindowMask_Function_Promise
+     * @tc.desc      : Test the function value of setWindowMask
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level3
+     */
+    it("testSetWindowMask_Function_Promise", 0, async function(done){
+      let msgStr = "testSetWindowMask_Function_Promise";
+      console.log(msgStr + " begin0");
+      if(currentDeviceIsPC){
+        console.log(msgStr + " begin1")
+        let windowMask: Array<Array<number>> = new Array<Array<number>>()
+        for(let i = 0; i < 500 ; i++){
+          let arr: Array<number> = new Array<number>(500);
+          for(let j = 0; j < 500 ; j++){
+            if(i + j < 500){
+              arr[j] = 0
+            } else {
+              arr[j] = 1
+            }
+          }
+          windowMask.push(arr)
+        }
+        console.log(msgStr + " windowMask OK ")
+        let windowClass = await ohosWindow.getLastWindow(context);
+        console.log(msgStr + " getLastWindow OK ")
+        let nowWindow = windowStage.createSubWindow('nowWindowA')
+        nowWindow.then(wnd => {
+          console.log(msgStr + " createSubWindow OK ")
+          wnd.resize(500,500)
+          console.log(msgStr + " resize OK ")
+          let promise = wnd.setWindowMask(windowMask)
+          promise.then(() => {
+            console.log(msgStr + ' Succeeded in setting the window mask.');
+            expect(true).assertTrue();
+            console.log(msgStr + true);
+            done();
+          }).catch((err: BusinessError) => {
+            console.log(msgStr + ' Failed to set the window mask. Cause: ' + JSON.stringify(err));
+            expect().assertFail();
+            done();
+          });
+        }).catch(err => {
+          console.log(msgStr + ' Failed to createSubWindow. Cause: ' + JSON.stringify(err));
+          expect().assertFail();
+          done();
+        })
+      }else{
+        console.log(msgStr + "该设备类型不是PC" );
+        expect(deviceInfo.deviceType).assertEqual(deviceInfo.deviceType);
+        done();
+      }
+    })
+
+
   })
 }

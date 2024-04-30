@@ -20,6 +20,8 @@ group("http") {
       "HttpResponse:ActsNetworkManagerHttpResponseTest",
       "httpCache:ActsNetworkManagerHttpCacheTest",
       "httpDataOptions:ActsNetworkManagerHttpDataOptionsTest",
+      "httpRequest:ActsNetworkManagerHttpRequestTest",
+      "httpRequestOnAndOff:ActsNetworkManagerHttpRequestOnAndOffTest",
     ]
   }
 }
