@@ -12,49 +12,54 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import Ability from '@ohos.app.ability.UIAbility'
-import commonEvent from '@ohos.commonEvent'
+
+import Ability from '@ohos.app.ability.UIAbility';
+import commonEvent from '@ohos.commonEvent';
+import Want from '@ohos.app.ability.Want';
+import AbilityConstant from '@ohos.app.ability.AbilityConstant';
+import window from '@ohos.window';
+import common from '@ohos.app.ability.common';
 
 function publishCallBackOne() {
   console.debug("====MainAbility4 Publish CallBack GetCurrentTopAbility");
 }
+
 export default class MainAbility4 extends Ability {
+  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam) {
+    console.log("MainAbility4 onCreate");
+  }
 
-    onCreate(want, launchParam) {
-        console.log("MainAbility4 onCreate")
-    }
+  onDestroy() {
+    // Ability is destroying, release resources for this ability
+    console.log("MainAbility4 onDestroy");
+  }
 
-    onDestroy() {
-        // Ability is destroying, release resources for this ability
-        console.log("MainAbility4 onDestroy")
-    }
+  onWindowStageCreate(windowStage: window.WindowStage) {
+    // Main window is created, set main page for this ability
+    console.log("MainAbility4 onWindowStageCreate");
+    windowStage.loadContent("pages/index", null);
+    AppStorage.setOrCreate<common.UIAbilityContext>("ability4Context", this.context);
+    windowStage.on('windowStageEvent', (data) => {
+      console.log(`ActsGetAbilityStatestAgeTest onWindwoStageMainAbilty4 is : ${JSON.stringify(data)}`);
+      if (data == 2) {
+        console.log(`ActsGetAbilityStatestAgeTest getWindowStageActiveMainAbility4 is sucess`);
+        commonEvent.publish("GetCurrentTopAbility", publishCallBackOne);
+      }
+    })
+  }
 
-    onWindowStageCreate(windowStage) {
-        // Main window is created, set main page for this ability
-        console.log("MainAbility4 onWindowStageCreate");
-        windowStage.setUIContent(this.context, "pages/index", null);
-        globalThis.ability4Context = this.context;
-        windowStage.on('windowStageEvent', (data) => {
-          console.log(`ActsGetAbilityStatestAgeTest onWindwoStageMainAbilty4 is : ${JSON.stringify(data)}`);
-          if (data == 2 ) {
-            console.log(`ActsGetAbilityStatestAgeTest getWindowStageActiveMainAbility4 is sucess`);
-            commonEvent.publish("GetCurrentTopAbility", publishCallBackOne);
-          }
-        })
-    }
+  onWindowStageDestroy() {
+    // Main window is destroyed, release UI related resources
+    console.log("MainAbility4 onWindowStageDestroy");
+  }
 
-    onWindowStageDestroy() {
-        // Main window is destroyed, release UI related resources
-        console.log("MainAbility4 onWindowStageDestroy")
-    }
+  onForeground() {
+    // Ability has brought to foreground
+    console.log("MainAbility4 onForeground");
+  }
 
-    onForeground() {
-        // Ability has brought to foreground
-        console.log("MainAbility4 onForeground")
-    }
-
-    onBackground() {
-        // Ability has back to background
-        console.log("MainAbility4 onBackground")
-    }
-};
+  onBackground() {
+    // Ability has back to background
+    console.log("MainAbility4 onBackground");
+  }
+}
