@@ -1,0 +1,156 @@
+{
+  "forms": [
+    {
+      "name": "widget",
+      "description": "静态卡片.",
+      "src": "./ets/widget/pages/WidgetCard.ets",
+      "uiSyntax": "arkts",
+      "isDynamic": false,
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": true,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "1*2",
+        "2*2",
+        "2*4",
+        "4*4",
+        "6*4"
+      ]
+    },
+    {
+      "name": "widget1",
+      "description": "动态卡片.",
+      "src": "./ets/widget1/pages/Widget1Card.ets",
+      "uiSyntax": "arkts",
+      "isDynamic": true,
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "1*2",
+        "2*2",
+        "2*4",
+        "4*4",
+        "6*4"
+      ]
+    },
+    {
+      "name": "widget2",
+      "description": "静态卡片-定时更新.",
+      "src": "./ets/widget/pages/WidgetCard.ets",
+      "uiSyntax": "arkts",
+      "isDynamic": false,
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": true,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2",
+        "6*4"
+      ]
+    },
+    {
+      "name": "widget3",
+      "description": "静态卡片-提供方延迟10s返回数据.",
+      "src": "./ets/widget/pages/WidgetCard.ets",
+      "uiSyntax": "arkts",
+      "isDynamic": false,
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2",
+        "6*4"
+      ]
+    },
+    {
+      "name": "widget4",
+      "description": "默认isDynamic为true卡片",
+      "src": "./ets/widget/pages/WidgetCard.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "2*2",
+      "supportDimensions": [
+        "2*2",
+        "6*4"
+      ]
+    },
+    {
+      "name": "widget5",
+      "displayName": "$string:widget5_display_name",
+      "description": "静态卡片-跳转刷新",
+      "src": "./ets/widget5/pages/Widget5Card.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDynamic": false,
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "6*4",
+      "supportDimensions": [
+        "6*4"
+      ]
+    },
+    {
+      "name": "widget6",
+      "displayName": "$string:widget6_display_name",
+      "description": "动态卡片-跳转刷新",
+      "src": "./ets/widget6/pages/Widget6Card.ets",
+      "uiSyntax": "arkts",
+      "window": {
+        "designWidth": 720,
+        "autoDesignWidth": true
+      },
+      "colorMode": "auto",
+      "isDynamic": true,
+      "isDefault": false,
+      "updateEnabled": false,
+      "scheduledUpdateTime": "10:30",
+      "updateDuration": 1,
+      "defaultDimension": "6*4",
+      "supportDimensions": [
+        "6*4"
+      ]
+    }
+  ]
+}
