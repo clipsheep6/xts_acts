@@ -48,7 +48,8 @@ export default function HoverJsunit11() {
 
       console.info('HoverJsunit_0200 START');
       let driver = await Driver.create()
-      await driver.mouseMoveTo({x:200, y:300})
+      await CommonFunc.sleep(500);
+      await driver.mouseMoveTo({x: globalThis.winLeft + vp2px(100), y:globalThis.winTop + vp2px(100)})
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('hover11');
       let obj = JSON.parse(strJson);
@@ -63,7 +64,11 @@ export default function HoverJsunit11() {
 
       console.info('HoverJsunit_0200 START');
       let driver = await Driver.create()
-      await driver.mouseMoveTo({x:500, y:300})
+      let buttonCl = await driver.findComponent(ON.id('columnB11'));
+      await CommonFunc.sleep(500);
+      let point = await buttonCl.getBoundsCenter();
+      await driver.mouseMoveTo({x:point.x , y:point.y})
+      console.log('11x'+point.x+'11y' + point.y  )
       await CommonFunc.sleep(1000);
       let strJson = getInspectorByKey('hover11');
       let obj = JSON.parse(strJson);
