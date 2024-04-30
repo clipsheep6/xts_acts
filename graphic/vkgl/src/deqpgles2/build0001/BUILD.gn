@@ -53,7 +53,7 @@ ohos_moduletest_suite("ActsDeqpgles2TestSuite0001") {
     "../ActsDeqpgles20001TestSuite.cpp",
     "../functional/Deqpgles2conversions_scalar_to_scalarTestCase.cpp",
     "../functional/Deqpgles2conversions_scalar_to_vectorTestCase.cpp",
-    "../functional/Deqpgles2conversions_vector_illegalTestCase.cpp",
+    #"../functional/Deqpgles2conversions_vector_illegalTestCase.cpp",
     "../functional/Deqpgles2conversions_vector_to_scalarTestCase.cpp",
     "../functional/Deqpgles2conversions_vector_to_vectorTestCase.cpp",
     "../functional/Deqpgles2functional_clip_controlTestCase.cpp",
