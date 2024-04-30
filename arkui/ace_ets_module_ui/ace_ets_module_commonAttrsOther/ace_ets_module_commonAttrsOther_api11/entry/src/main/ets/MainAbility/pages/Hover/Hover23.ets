@@ -39,7 +39,7 @@ struct HoverExample232 {
           .onHover((isHover?: boolean, event?: HoverEvent) => {
             console.info('Scale isHover: ' + isHover as string)
             this.isHoverValA17 = isHover as boolean
-          }).key('column_23A')
+          })
         Text('A' + JSON.stringify(this.isHoverValA17))
           .fontSize(20).margin(15).position({ x: 100, y: 100 }).key('hoverA23')
       }
