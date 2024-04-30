@@ -66,7 +66,7 @@ export default function imageSync() {
             })
         }
 
-        async function getImageInfo(done, testNum, fileName, imageWidth, imageHeight, index) {
+        async function getImageInfo(done, testNum, fileName, imageWidth, imageHeight, mimeType, index) {
             try {
                 await getFd(fileName);
                 const imageSourceApi = image.createImageSource(fdNumber);
@@ -75,8 +75,6 @@ export default function imageSync() {
                     expect(false).assertTrue();
                     done();
                 } else {
-                    let imageInfoWidth = imageWidth;
-                    let imageInfoHeight = imageHeight;
                     let imageInfo;
                     if (index != null) {
                         imageInfo = imageSourceApi.getImageInfoSync(index);
@@ -84,19 +82,21 @@ export default function imageSync() {
                         imageInfo = imageSourceApi.getImageInfoSync();
                     }
                     expect(imageInfo != undefined).assertTrue();
-                    expect(imageInfo.size.width).assertEqual(imageInfoWidth);
-                    expect(imageInfo.size.height).assertEqual(imageInfoHeight);
+                    expect(imageInfo.size.width).assertEqual(imageWidth);
+                    expect(imageInfo.size.height).assertEqual(imageHeight);
                     expect(imageInfo.density == undefined).assertTrue();
                     expect(imageInfo.stride == undefined).assertTrue();
                     expect(imageInfo.pixelFormat == 0).assertTrue();
                     expect(imageInfo.alphaType == 0).assertTrue();
+                    expect(imageInfo.mimeType).assertEqual(mimeType);
                     console.info(`${testNum} imageInfo:`);
-                    console.info('imageInfo.size.width:' + imageInfo.size.width);
-                    console.info('imageInfo.size.height:' + imageInfo.size.height);
-                    console.info('imageInfo.density:' + imageInfo.density);
+                    console.info('imageInfo.size.width: ' + imageInfo.size.width);
+                    console.info('imageInfo.size.height: ' + imageInfo.size.height);
+                    console.info('imageInfo.density: ' + imageInfo.density);
                     console.info('imageInfo.stride:' + imageInfo.stride);
-                    console.info('imageInfo.pixelFormat:' + imageInfo.pixelFormat);
-                    console.info('imageInfo.alphaType:' + imageInfo.alphaType);
+                    console.info('imageInfo.pixelFormat: ' + imageInfo.pixelFormat);
+                    console.info('imageInfo.alphaType: ' + imageInfo.alphaType);
+                    console.info('imageInfo.mimeType: ' + imageInfo.mimeType);
                     console.log(`${testNum} success`);
                     done();
                 }
@@ -107,9 +107,9 @@ export default function imageSync() {
             }
         }
 
-        async function getImageInfoInvaildIndex(done, testNum, index) {
+        async function getImageInfoInvaildIndex(done, testNum, fileName, index) {
             try {
-                await getFd('test.gif');
+                await getFd(fileName);
                 const imageSourceApi = image.createImageSource(fdNumber);
                 if (imageSourceApi == undefined) {
                     console.info(`${testNum} create image source failed`);
@@ -258,7 +258,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0100', 0, async function (done) {
-            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0100", "test.jpg", 1446, 1476, 0);
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0100", "test.jpg", 1446, 1476, "image/jpeg", 0);
         })
 
         /**
@@ -272,7 +272,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0200', 0, async function (done) {
-            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0200", "test.bmp", 1399, 1042, 0);
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0200", "test.bmp", 1399, 1042, "image/bmp", 0);
         })
 
         /**
@@ -286,7 +286,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0300', 0, async function (done) {
-            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0300", "test.png", 6016, 3384, 0);
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0300", "test.png", 6016, 3384, "image/png", 0);
         })
 
         /**
@@ -300,7 +300,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0400', 0, async function (done) {
-            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0400", "test.gif", 6016, 3384, 0);
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0400", "test.gif", 6016, 3384, "image/gif", 0);
         })
 
         /**
@@ -314,7 +314,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0500', 0, async function (done) {
-            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0500", "test_dng.dng", 3074, 2728, 0);
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0500", "test.dng", 5976, 3992, "image/raw", 0);
         })
 
         /**
@@ -328,7 +328,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0600', 0, async function (done) {
-            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0600", "test_large.webp", 1212, 681, 0);
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0600", "test_large.webp", 1212, 681, "image/webp", 0);
         })
 
         /**
@@ -342,7 +342,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0700', 0, async function (done) {
-            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0700", "test_large.svg", 2136, 1968, 0);
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0700", "test_large.svg", 2136, 1968, "image/svg+xml", 0);
         })
 
         /**
@@ -356,7 +356,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0800', 0, async function (done) {
-            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0800", "test.ico", 128, 128, 0);
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0800", "test.ico", 48, 48, "image/x-ico", 0);
         })
 
         /**
@@ -370,7 +370,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0900', 0, async function (done) {
-            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0900", "test.123", 6016, 3384, 0);
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_0900", "test.123", 6016, 3384, "image/bmp", 0);
         })
 
         /**
@@ -384,7 +384,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0100', 0, async function (done) {
-            getImageInfoInvaildIndex(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0100", 1);
+            getImageInfoInvaildIndex(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0100", "test.gif", 1);
         })
 
         /**
@@ -398,7 +398,7 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0200', 0, async function (done) {
-            getImageInfoInvaildIndex(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0200", -1);
+            getImageInfoInvaildIndex(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0200", "test.gif", -1);
         })
 
         /**
@@ -412,11 +412,39 @@ export default function imageSync() {
          * @tc.level     : Level 1
          */
         it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0300', 0, async function (done) {
-            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0300", "moving_test.gif", 198, 202, 1);
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0300", "moving_test.gif", 198, 202, "image/gif", 1);
         })
 
         /**
          * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0400
+         * @tc.name      : test getImageInfoSync with index1 for one frame webp
+         * @tc.desc      : 1.create jpg imagesource
+         *                 2.call getImageInfoSync(index:1)
+         *                 3.return imageinfo
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level 1
+         */
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0400', 0, async function (done) {
+            getImageInfoInvaildIndex(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0400", "test_large.webp", 1);
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0500
+         * @tc.name      : test getImageInfoSync with index1 for webp
+         * @tc.desc      : 1.create jpg imagesource
+         *                 2.call getImageInfoSync(index:1)
+         *                 3.return imageinfo
+         * @tc.size      : MediumTest
+         * @tc.type      : Function
+         * @tc.level     : Level 1
+         */
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0500', 0, async function (done) {
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0500", "test.webp", 658, 494, "image/webp", 1);
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0600
          * @tc.name      : test getImageInfoSync with index null for jpg
          * @tc.desc      : 1.create jpg imagesource
          *                 2.call getImageInfoSync(index:null)
@@ -425,8 +453,8 @@ export default function imageSync() {
          * @tc.type      : Function
          * @tc.level     : Level 1
          */
-        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0400', 0, async function (done) {
-            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0400", "test.jpg", 1446, 1476, null);
+        it('SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0600', 0, async function (done) {
+            getImageInfo(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEINFOSYNC_INDEX_0600", "test.jpg", 1446, 1476, "image/jpeg", null);
         })
 
         /**
