@@ -13,14 +13,11 @@
  * limitations under the License.
  */
 
-import file from '@system.file';
-
 @Entry
 @Component
 struct Index {
-
   aboutToAppear() {
-    console.info("start run testcase!!!!")
+    console.info("start run testcase!!!!");
   }
 
   build() {
