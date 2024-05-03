@@ -17,24 +17,25 @@ import StartupTask from '@ohos.app.appstartup.StartupTask'
 import hilog from '@ohos.hilog';
 import commonEventManager from '@ohos.commonEventManager';
 
-const NAME = "Sample_016";
-
-function sleep(time: number) {
-  return new Promise<void>((resolve, reject) => {
-    setTimeout(() => {
-      resolve()
-    }, time)
-  }).then(() => {
-    console.info(`sleep ${time} over...`);
-  })
-}
-
+@Sendable
 export default class Sample_016 extends StartupTask {
-
+  constructor() {
+    super();
+  }
+  sleep(time: number) {
+  "use concurrent"
+    return new Promise<void>((resolve, reject) => {
+      setTimeout(() => {
+        resolve()
+      }, time)
+    }).then(() => {
+      console.info(`sleep ${time} over...`);
+    })
+  }
   async init(context) {
-    hilog.info(0x0000, 'StartupTest', '%{public}s', NAME);
+    hilog.info(0x0000, 'StartupTest', '%{public}s', 'Sample_016');
     console.info("StartupTest Sample_016 init");
-    await sleep(3000);
+    await this.sleep(3000);
     commonEventManager.publish('StartupSample_016', (err, data)=>{
       console.log("StartupTest Sample_016 init, publish msg, err=" + JSON.stringify(err));
       console.log("StartupTest Sample_016 init, publish msg, data=" + JSON.stringify(data));
@@ -42,7 +43,7 @@ export default class Sample_016 extends StartupTask {
   }
 
   onDependencyCompleted(dependence: string, result) {
-    hilog.info(0x0000, 'StartupTest', '%{public}s, dependence:%{public}s, result:%{public}s', NAME, dependence,
+    hilog.info(0x0000, 'StartupTest', '%{public}s, dependence:%{public}s, result:%{public}s', 'Sample_016', dependence,
       JSON.stringify(result));
     console.info("StartupTest Sample_016 onDependencyCompleted dependence=" + dependence);
     console.info("StartupTest Sample_016 onDependencyCompleted result=" + JSON.stringify(result));
