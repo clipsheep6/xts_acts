@@ -17,11 +17,13 @@ import StartupTask from '@ohos.app.appstartup.StartupTask'
 import hilog from '@ohos.hilog';
 import commonEventManager from '@ohos.commonEventManager';
 
-const NAME = "Sample_007";
 @Sendable
 export default class Sample_007 extends StartupTask {
+  constructor() {
+    super();
+  }
   async init(context) {
-    hilog.info(0x0000, 'StartupTest', '%{public}s', NAME);
+    hilog.info(0x0000, 'StartupTest', '%{public}s', 'Sample_007');
     console.info("StartupTest Sample_007 init");
     commonEventManager.publish('StartupSample_007', (err, data)=>{
       console.log("StartupTest Sample_007 init, publish msg, err=" + JSON.stringify(err));
@@ -30,7 +32,7 @@ export default class Sample_007 extends StartupTask {
   }
 
   onDependencyCompleted(dependence: string, result) {
-    hilog.info(0x0000, 'StartupTest', '%{public}s, dependence:%{public}s, result:%{public}s', NAME, dependence,
+    hilog.info(0x0000, 'StartupTest', '%{public}s, dependence:%{public}s, result:%{public}s', 'Sample_007', dependence,
       JSON.stringify(result));
     console.info("StartupTest Sample_007 onDependencyCompleted dependence=" + dependence);
     console.info("StartupTest Sample_007 onDependencyCompleted result=" + JSON.stringify(result));

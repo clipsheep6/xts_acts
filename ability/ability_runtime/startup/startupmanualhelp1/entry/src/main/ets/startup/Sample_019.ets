@@ -16,19 +16,19 @@
 import StartupTask from '@ohos.app.appstartup.StartupTask'
 import hilog from '@ohos.hilog';
 
-const NAME = "Sample_019";
-
 @Sendable
 export default class Sample_019 extends StartupTask {
-
+  constructor() {
+    super();
+  }
   async init(context) {
-    hilog.info(0x0000, 'StartupTest', '%{public}s', NAME);
+    hilog.info(0x0000, 'StartupTest', '%{public}s', 'Sample_019');
     console.info("StartupTest Sample_019 init");
     return "Sample_019 init success";
   }
 
   onDependencyCompleted(dependence: string, result) {
-    hilog.info(0x0000, 'StartupTest', '%{public}s, dependence:%{public}s, result:%{public}s', NAME, dependence,
+    hilog.info(0x0000, 'StartupTest', '%{public}s, dependence:%{public}s, result:%{public}s', 'Sample_019', dependence,
       JSON.stringify(result));
   }
 }
