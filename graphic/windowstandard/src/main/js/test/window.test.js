@@ -26,10 +26,11 @@ export default function window_test() {
         var topWindow;
         const DELAY_TIME = 3000;
         var height;
+        var height0;
 
         function windowSizeChangeCallback(data) {
             console.log('windowTest OnOffTest1 callback  ' + JSON.stringify(data));
-            height = data.height;
+            height0 = data.height;
         }
 
         function systemAvoidAreaChangeCallback(data) {
