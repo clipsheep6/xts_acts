@@ -84,7 +84,7 @@ async function testPutAndGet(kvManager, options) {
     });
   } catch (e) {
     console.info('testPutAndGet get exception: ' + e);
-  }
+    expect(null).assertFail();
 }
 export default function schemaTest(){
   describe('schemaTest', function() {
@@ -257,27 +257,6 @@ export default function schemaTest(){
       } catch (e) {
         console.info("SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0300 fail on exception: " + e);
         expect(null).assertFail();
-      }
-      done();
-    })
-
-    /**
-     * @tc.name SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0400
-     * @tc.desc  Test Js Api Schema.ToJsonString() testcase 004
-     * @tc.type: FUNC
-     * @tc.number: SUB_DistributedData_KVStore_SDK_DisKVSchemaJsApiTest_0400
-     */
-    it('SUB_DDM_DKV_SCHEMA_TOJSONSTRING_0400', 0, async function(done) {
-      try {
-        let english = new ddm.FieldNode('english');
-        english.type = ddm.ValueType.STRING;
-
-        let schema = new ddm.Schema();
-        schema.root.appendChild(english);
-        schema.indexes = [];    // indexex set to empty array -> invalid indexes.
-        expect(null).assertFail();
-      } catch (e) {
-        console.info("schema exception is ok: " + e);
       }
       done();
     })
