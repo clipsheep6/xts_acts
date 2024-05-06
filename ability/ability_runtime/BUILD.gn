@@ -43,6 +43,7 @@ group("ability_runtime") {
       "actsmultiplecall:actsmultiplecall",
       "actsnfcselecttypes:actsnfcselecttypes",
       "actsparsingparameterstest:actsparsingparameterstest",
+      "actsprocesscachetest:actsprocesscachetest",
       "actsqueryfunctiontest:actsqueryfunctiontest",
       "actsrequestdialogtest:actsrequestdialogtest",
       "actsrevokequickfixtest:ActsRevokeQuickFixApp",
