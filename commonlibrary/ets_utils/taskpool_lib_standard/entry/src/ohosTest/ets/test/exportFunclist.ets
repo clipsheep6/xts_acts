@@ -13,7 +13,26 @@
  * limitations under the License.
  */
 
+import taskpool from '@ohos.taskpool';
+
 export function strCat(value1: string, value2: string): string {
   "use concurrent"
   return value1 + value2;
+}
+
+export async function asyncSend(value1: number, value2: number): Promise<number> {
+  let result: number = value1 + value2;
+  await sendDataInner(result);
+  return result;
+}
+
+export async function sendDataInner(value: number): Promise<void> {
+  taskpool.Task.sendData(value);
+}
+
+export async function sendAddResult(value1: number, value2: number): Promise<number> {
+  "use concurrent"
+  let result: number = value1 + value2;
+  taskpool.Task.sendData(result);
+  return result;
 }
