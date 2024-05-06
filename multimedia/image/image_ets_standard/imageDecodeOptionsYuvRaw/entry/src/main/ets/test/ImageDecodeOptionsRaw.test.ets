@@ -89,7 +89,7 @@ export default function decodeOptionsWithRawAbilityTest() {
             break
           case 'callBackCreate':
             await callBackCreate(TAG, imageSourceApi, decodingOptions, desiredPixelFormat);
-            await sleep(20000);
+            await sleep(5000);
             break
         }
         await sleep(1000);
@@ -162,7 +162,7 @@ export default function decodeOptionsWithRawAbilityTest() {
             break
           case 'callBackCreate':
             await callBackCreate_F16(TAG, imageSourceApi, decodingOptions, desiredPixelFormat);
-            await sleep(20000);
+            await sleep(5000);
             break
         }
         await sleep(1000);
