@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,8 +13,26 @@
  * limitations under the License.
  */
 {
-  "hvigorVersion": "4.0.2",
-  "dependencies": {
-    "@ohos/hvigor-ohos-plugin": "4.0.2"
-  }
+  "apiType": 'stageMode',
+  "buildOption": {
+    "externalNativeOptions": {
+      "path": "./src/main/cpp/CMakeLists.txt",
+      "arguments": "",
+      "cppFlags": "",
+      "abiFilters": [  //用于设置本机的ABI编译环境
+        "armeabi-v7a",
+        "arm64-v8a",
+        "x86_64"
+      ]
+    }
+  },
+  "targets": [
+    {
+      "name": "default",
+      "runtimeOS": "OpenHarmony"
+    },
+    {
+      "name": "ohosTest",
+    }
+  ]
 }

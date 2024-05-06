@@ -764,11 +764,7 @@ static napi_value OHAudioRendererGetChannelCount(napi_env env, napi_callback_inf
     napi_value result = nullptr;
     int32_t channelCount;
     OH_AudioStream_Result oH_AudioStream_Result = OH_AudioRenderer_GetChannelCount(audiorenderer, &channelCount);
-    if (oH_AudioStream_Result == AUDIOSTREAM_SUCCESS) {
-        napi_create_int32(env, channelCount, &result);
-    } else {
-        napi_create_int32(env, -1, &result);
-    }
+    napi_create_int32(env, channelCount, &result);
     return result;
 }
 
