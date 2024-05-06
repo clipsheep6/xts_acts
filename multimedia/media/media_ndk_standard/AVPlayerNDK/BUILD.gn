@@ -17,27 +17,17 @@ import("//test/xts/tools/build/suite.gni")
 ohos_app_assist_suite("AVPlayer_ndk_main") {
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "OhAudioNdkMainTest"
+  hap_name = "ActsOhAVPlayerNDKMainTest"
   subsystem_name = "multimedia"
-  part_name = "media_framework"
+  part_name = "player_framework"
 }
 
 ohos_js_app_suite("OhAVPlayerNDK") {
   test_hap = true
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "OhAVPlayerNDK"
+  hap_name = "ActsOhAVPlayerNDK"
   subsystem_name = "multimedia"
-  part_name = "media_framework"
-  deps = [ ":AVPlayer_ndk_main" ]
-}
-
-ohos_js_app_suite("OhAVPlayerNDKOther") {
-  test_hap = true
-  testonly = true
-  certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "OhAVPlayerNDKOther"
-  subsystem_name = "multimedia"
-  part_name = "media_framework"
+  part_name = "player_framework"
   deps = [ ":AVPlayer_ndk_main" ]
 }

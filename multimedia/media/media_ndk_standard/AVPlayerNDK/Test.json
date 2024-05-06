@@ -5,13 +5,13 @@
         "test-timeout": "600000",
         "shell-timeout": "600000",
         "bundle-name": "com.example.avplayerndk",
-        "module-name": "com.example.avplayerndk"
+        "module-name": "entry_test"
     },
     "kits": [
         {
             "test-file-name": [
-                "OhAudioNdkMainTest.hap",
-                "OhRendererTest.hap"
+                "ActsOhAVPlayerNDKMainTest.hap",
+                "ActsOhAVPlayerNDK.hap"
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
