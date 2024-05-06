@@ -1,0 +1,15 @@
+{
+  "src": [
+    "TestAbility/pages/Index",
+    "TestAbility/pages/border_width",
+    "TestAbility/pages/border_color",
+    "TestAbility/pages/border_radius",
+    "TestAbility/pages/borderWidth",
+    "TestAbility/pages/borderColor",
+    "TestAbility/pages/borderRadius",
+    "TestAbility/pages/padding",
+    "TestAbility/pages/outlineColor",
+    "TestAbility/pages/outline_color",
+    "TestAbility/pages/margin"
+  ]
+}
