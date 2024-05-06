@@ -1,18 +1,3 @@
-/*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, Level } from '@ohos/hypium';
 import fs from '@ohos.file.fs';
 import image from '@ohos.multimedia.image';
@@ -45,8 +30,8 @@ let sleep = async (delay: number): Promise<void> => {
   });
 };
 
-export default function imageDecodeOptionsRawTest() {
-  describe('ImageDecodeOptionsRaw', () => {
+export default function decodeOptionsWithRawAbilityTest() {
+  describe('ActsDecodeOptionsWithRawAbilityTest', () => {
     beforeAll(async () => {
       filesDir = AppStorage.get('pathDir')
     })
@@ -90,7 +75,7 @@ export default function imageDecodeOptionsRawTest() {
             break
           case 'callBackCreate':
             await callBackCreate(TAG, imageSourceApi, decodingOptions, desiredPixelFormat);
-            await sleep(65000);
+            await sleep(20000);
             break
         }
         await sleep(1000);
@@ -163,7 +148,7 @@ export default function imageDecodeOptionsRawTest() {
             break
           case 'callBackCreate':
             await callBackCreate_F16(TAG, imageSourceApi, decodingOptions, desiredPixelFormat);
-            await sleep(65000);
+            await sleep(20000);
             break
         }
         await sleep(1000);
@@ -249,9 +234,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0100", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0100', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -277,9 +262,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0200", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0200', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -306,9 +291,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0300", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0300', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DCI_P3), 'decodingOptions');
@@ -334,9 +319,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0400", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0400', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DCI_P3), 'callBackCreate');
@@ -363,9 +348,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0500", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0500', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DISPLAY_P3), 'decodingOptions');
@@ -391,9 +376,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0600", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0600', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DISPLAY_P3), 'callBackCreate');
@@ -420,9 +405,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0700", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0700', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.ADOBE_RGB_1998), 'decodingOptions');
@@ -448,9 +433,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0800", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0800', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.ADOBE_RGB_1998), 'callBackCreate');
@@ -477,9 +462,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0900", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_0900', -1, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -505,9 +490,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1000", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1000', -1, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -534,9 +519,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1100", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1100', 0, -1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -562,9 +547,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1200", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1200', 0, -1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -591,9 +576,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1300", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1300', 0, 1, -1, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -619,9 +604,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1400", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1400', 0, 1, -1, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -648,9 +633,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1500", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { height: -5472, width: 7296 };
+        let Size : image.Size = { height: -548, width: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1500', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -676,9 +661,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1600", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { height: -5479, width: 7296 };
+        let Size : image.Size = { height: -548, width: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1600', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -705,9 +690,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1700", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { height: 5479, width: -7296 };
+        let Size : image.Size = { height: 548, width: -730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1700', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -733,9 +718,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1800", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { height: 5479, width: -7296 };
+        let Size : image.Size = { height: 548, width: -730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1800', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -762,9 +747,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1900", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: -1, y: 0, size: { height: 2, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_1900', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -790,9 +775,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2000", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: -1, y: 0, size: { height: 2, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2000', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -819,9 +804,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2100", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: -1, size: { height: 2, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2100', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -847,9 +832,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2200", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: -1, size: { height: 2, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2200', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -876,9 +861,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2300", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: -1, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2300', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -904,9 +889,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2400", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: -1, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2400', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -933,9 +918,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2500", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 2, width: -1 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2500', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -961,9 +946,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2600", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 2, width: -1 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2600', 0, 1, 90, true, Size, Region, 2,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -990,9 +975,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2700", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2700', 0, 1, 90, true, Size, Region, 2,
           -100, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -1018,9 +1003,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2800", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGB565_CREATEPIXELMAP_2800', 0, 1, 90, true, Size, Region, 2,
           -100, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -1047,9 +1032,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0100", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0100', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -1075,9 +1060,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0200", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0200', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -1104,9 +1089,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0300", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0300', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DCI_P3), 'decodingOptions');
@@ -1132,9 +1117,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0400", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0400', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DCI_P3), 'callBackCreate');
@@ -1161,9 +1146,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0500", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0500', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DISPLAY_P3), 'decodingOptions');
@@ -1189,9 +1174,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0600", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0600', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DISPLAY_P3), 'callBackCreate');
@@ -1218,9 +1203,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0700", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0700', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.ADOBE_RGB_1998), 'decodingOptions');
@@ -1246,9 +1231,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0800", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0800', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.ADOBE_RGB_1998), 'callBackCreate');
@@ -1275,9 +1260,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0900", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_0900', -1, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -1303,9 +1288,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1000", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1000', -1, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -1332,9 +1317,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1100", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1100', 0, -1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -1360,9 +1345,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1200", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1200', 0, -1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -1389,9 +1374,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1300", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1300', 0, 1, -1, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -1417,9 +1402,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1400", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1400', 0, 1, -1, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -1446,7 +1431,7 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1500", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
         let Size : image.Size = { height: -5, width: -100 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
@@ -1474,7 +1459,7 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1600", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
         let Size : image.Size = { height: -1, width: 3 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
@@ -1503,7 +1488,7 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1700", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
         let Size : image.Size = { height: 2, width: -1 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
@@ -1531,7 +1516,7 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1800", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
         let Size : image.Size = { height: 2, width: -1 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
@@ -1560,9 +1545,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1900", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: -1, y: 0, size: { height: 2, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_1900', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -1588,9 +1573,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2000", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: -1, y: 0, size: { height: 2, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2000', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -1617,9 +1602,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2100", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: -1, size: { height: 2, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2100', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -1645,9 +1630,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2200", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: -1, size: { height: 2, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2200', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -1674,9 +1659,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2300", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: -1, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2300', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -1702,9 +1687,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2400", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: -1, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2400', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -1731,9 +1716,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2500", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 2, width: -1 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2500', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -1759,9 +1744,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2600", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 2, width: -1 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2600', 0, 1, 90, true, Size, Region, 3,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -1788,9 +1773,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2700", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2700', 0, 1, 90, true, Size, Region, 3,
           -100, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -1816,9 +1801,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2800", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_RGBA8888_CREATEPIXELMAP_2800', 0, 1, 90, true, Size, Region, 3,
           -100, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -1845,9 +1830,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0100", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0100', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -1873,9 +1858,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0200", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0200', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -1902,9 +1887,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0300", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0300', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DCI_P3), 'decodingOptions');
@@ -1930,9 +1915,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0400", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0400', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DCI_P3), 'callBackCreate');
@@ -1959,9 +1944,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0500", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0500', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DISPLAY_P3), 'decodingOptions');
@@ -1987,9 +1972,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0600", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0600', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DISPLAY_P3), 'callBackCreate');
@@ -2016,9 +2001,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0700", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0700', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.ADOBE_RGB_1998), 'decodingOptions');
@@ -2044,9 +2029,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0800", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0800', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.ADOBE_RGB_1998), 'callBackCreate');
@@ -2073,9 +2058,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0900", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_0900', -1, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -2101,9 +2086,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1000", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1000', -1, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -2130,9 +2115,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1100", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1100', 0, -1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -2158,9 +2143,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1200", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1200', 0, -1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -2187,9 +2172,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1300", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1300', 0, 1, -1, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -2215,9 +2200,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1400", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1400', 0, 1, -1, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -2244,7 +2229,7 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1500", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
         let Size : image.Size = { height: -5, width: -100 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
@@ -2272,7 +2257,7 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1600", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
         let Size : image.Size = { height: -1, width: 3 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
@@ -2301,7 +2286,7 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1700", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
         let Size : image.Size = { height: 2, width: -1 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
@@ -2329,7 +2314,7 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1800", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
         let Size : image.Size = { height: 2, width: -1 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
@@ -2358,9 +2343,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1900", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: -1, y: 0, size: { height: 2, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_1900', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -2386,9 +2371,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2000", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: -1, y: 0, size: { height: 2, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2000', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -2415,9 +2400,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2100", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: -1, size: { height: 2, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2100', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -2443,9 +2428,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2200", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: -1, size: { height: 2, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2200', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -2472,9 +2457,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2300", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: -1, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2300', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -2500,9 +2485,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2400", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: -1, width: 3 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2400', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -2529,9 +2514,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2500", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 2, width: -1 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2500', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -2557,9 +2542,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2600", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 2, width: -1 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2600', 0, 1, 90, true, Size, Region, 4,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -2586,9 +2571,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2700", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2700', 0, 1, 90, true, Size, Region, 4,
           -100, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -2614,9 +2599,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2800", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult('SUB_DECODEOPTIONS_WITH_BGRA8888_CREATEPIXELMAP_2800', 0, 1, 90, true, Size, Region, 4,
           -100, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -2643,9 +2628,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0100", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0100', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -2671,9 +2656,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0200", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0200', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -2700,9 +2685,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0300", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0300', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DCI_P3), 'decodingOptions');
@@ -2728,9 +2713,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0400", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0400', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DCI_P3), 'callBackCreate');
@@ -2757,9 +2742,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0500", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0500', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DISPLAY_P3), 'decodingOptions');
@@ -2785,9 +2770,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0600", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0600', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.DISPLAY_P3), 'callBackCreate');
@@ -2814,9 +2799,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0700", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0700', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.ADOBE_RGB_1998), 'decodingOptions');
@@ -2842,9 +2827,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 0
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0800", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0800', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.ADOBE_RGB_1998), 'callBackCreate');
@@ -2871,9 +2856,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0900", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_0900', -1, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -2899,9 +2884,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1000", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1000', -1, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -2928,9 +2913,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1100", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1100', 0, -1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -2956,9 +2941,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1200", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1200', 0, -1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -2985,9 +2970,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1300", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1300', 0, 1, -1, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -3013,9 +2998,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1400", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1400', 0, 1, -1, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -3042,7 +3027,7 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1500", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
         let Size : image.Size = { height: -5, width: -100 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
@@ -3070,7 +3055,7 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1600", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
         let Size : image.Size = { height: -1, width: 3 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
@@ -3099,7 +3084,7 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1700", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
         let Size : image.Size = { height: 2, width: -1 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
@@ -3127,7 +3112,7 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1800", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
         let Size : image.Size = { height: 2, width: -1 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
@@ -3156,9 +3141,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1900", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: -1, y: 0, size: { height: 2, width: 3 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_1900', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -3184,9 +3169,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2000", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: -1, y: 0, size: { height: 2, width: 3 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2000', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -3213,9 +3198,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2100", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: -1, size: { height: 2, width: 3 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2100', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -3241,9 +3226,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2200", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: -1, size: { height: 2, width: 3 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2200', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -3270,9 +3255,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2300", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: -1, width: 3 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2300', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -3298,9 +3283,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2400", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: -1, width: 3 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2400', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -3327,9 +3312,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2500", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 2, width: -1 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2500', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -3355,9 +3340,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2600", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 2, width: -1 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2600', 0, 1, 90, true, Size, Region, 7,
           120, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
@@ -3384,9 +3369,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2700", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2700', 0, 1, 90, true, Size, Region, 7,
           -100, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'decodingOptions');
@@ -3412,9 +3397,9 @@ export default function imageDecodeOptionsRawTest() {
      * @tc.level     : Level 3
      */
     it("SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2800", 0, async (done: Function) => {
-      await getFd("test2.dng");
+      await getFd("test2.arw");
       try {
-        let Size : image.Size = { width: 5472, height: 7296 };
+        let Size : image.Size = { width: 548, height: 730 };
         let Region : image.Region = { x: 0, y: 0, size: { height: 80, width: 120 } };
         await getResult_F16('SUB_DECODEOPTIONS_WITH_RGBA_F16_CREATEPIXELMAP_2800', 0, 1, 90, true, Size, Region, 7,
           -100, colorSpaceManager.create(colorSpaceManager.ColorSpace.SRGB), 'callBackCreate');
