@@ -68,7 +68,7 @@ namespace {
     {
         bool isEof = OH_ArkWebHttpBodyStream_IsEof(httpBodyStream);
         if (!isEof && bytesRead != 0) {
-            std:fill(buffer, buffer + BUFF_LEN, 0);
+            std::fill(buffer, buffer + BUFF_LEN, 0);
             OH_ArkWebHttpBodyStream_Read(httpBodyStream, buffer, BUFF_LEN);
             OH_LOG_INFO(LOG_APP, "OH_ArkWebHttpBodyStream_Read");
         } else {
