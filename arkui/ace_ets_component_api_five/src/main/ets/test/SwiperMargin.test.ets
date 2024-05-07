@@ -61,6 +61,7 @@ export default function SwiperMarginTest() {
       console.info(`${SUITE} ${CASE} END`);
       console.info(`test`);
       console.info(`${SUITE1111111} ${CASE} END`);
+      console.info(`${SUITE} ${CASE} END`);
       done();
     });
 
