@@ -13,20 +13,21 @@
  * limitations under the License.
  */
 
-import { describe, it, expect } from '@ohos/hypium'
-import appManager from "@ohos.app.ability.appManager"
+import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import appManager from '@ohos.app.ability.appManager';
 
 let ERROR_CODE = 202;
+
 export default function appManagerTest() {
   describe('appManagerTest', function () {
 
     /**
      * @tc.number: System_API_Test_App_Manager_0100
      * @tc.name: appManager.on system interface interception test
-     * @tc.desc:  Test the third-party application call appManager.on will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call appManager.on will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_0100',0, function (done) {
+    it('System_API_Test_App_Manager_0100', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_0100';
       let applicationStateObserver = {
         onForegroundApplicationChanged(appStateData) {
@@ -64,10 +65,10 @@ export default function appManagerTest() {
     /**
      * @tc.number: System_API_Test_App_Manager_0200
      * @tc.name: Multi-parameter appManager.on system interface interception test
-     * @tc.desc:  Test the third-party application call appManager.on will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call appManager.on will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_0200',0, function (done) {
+    it('System_API_Test_App_Manager_0200', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_0200';
       let applicationStateObserver = {
         onForegroundApplicationChanged(appStateData) {
@@ -106,10 +107,10 @@ export default function appManagerTest() {
     /**
      * @tc.number: System_API_Test_App_Manager_0300
      * @tc.name: callback form getForegroundApplications system interface interception test
-     * @tc.desc:  Test the third-party application call getForegroundApplications will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call getForegroundApplications will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_0300',0, function (done) {
+    it('System_API_Test_App_Manager_0300', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_0300';
       appManager.getForegroundApplications((err) => {
         console.log(TAG + "  err.code: " + err.code);
@@ -121,10 +122,10 @@ export default function appManagerTest() {
     /**
      * @tc.number: System_API_Test_App_Manager_0400
      * @tc.name: promise form getForegroundApplications system interface interception test
-     * @tc.desc:  Test the third-party application call getForegroundApplications will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call getForegroundApplications will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_0400',0, function (done) {
+    it('System_API_Test_App_Manager_0400', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_0400';
       appManager.getForegroundApplications()
         .then(err => {
@@ -142,10 +143,10 @@ export default function appManagerTest() {
     /**
      * @tc.number: System_API_Test_App_Manager_0500
      * @tc.name: callback form killProcessWithAccount system interface interception test
-     * @tc.desc:  Test the third-party application call killProcessWithAccount will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call killProcessWithAccount will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_0500',0, function (done) {
+    it('System_API_Test_App_Manager_0500', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_0500';
       let bundleName = "com.ohos.application";
       let accountId = 100;
@@ -159,10 +160,10 @@ export default function appManagerTest() {
     /**
      * @tc.number: System_API_Test_App_Manager_0600
      * @tc.name: promise form killProcessWithAccount system interface interception test
-     * @tc.desc:  Test the third-party application call killProcessWithAccount will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call killProcessWithAccount will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_0600',0, function (done) {
+    it('System_API_Test_App_Manager_0600', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_0600';
       let bundleName = "com.ohos.application";
       let accountId = 100;
@@ -182,10 +183,10 @@ export default function appManagerTest() {
     /**
      * @tc.number: System_API_Test_App_Manager_0700
      * @tc.name: callback form killProcessesByBundleName system interface interception test
-     * @tc.desc:  Test the third-party application call killProcessesByBundleName will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call killProcessesByBundleName will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_0700',0, function (done) {
+    it('System_API_Test_App_Manager_0700', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_0700';
       let bundleName = "com.ohos.application";
       appManager.killProcessesByBundleName(bundleName, (err) => {
@@ -198,10 +199,10 @@ export default function appManagerTest() {
     /**
      * @tc.number: System_API_Test_App_Manager_0800
      * @tc.name: promise form killProcessesByBundleName system interface interception test
-     * @tc.desc:  Test the third-party application call killProcessesByBundleName will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call killProcessesByBundleName will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_0800',0, function (done) {
+    it('System_API_Test_App_Manager_0800', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_0800';
       let bundleName = "com.ohos.application";
       appManager.killProcessesByBundleName(bundleName)
@@ -220,10 +221,10 @@ export default function appManagerTest() {
     /**
      * @tc.number: System_API_Test_App_Manager_0900
      * @tc.name: callback form clearUpApplicationData system interface interception test
-     * @tc.desc:  Test the third-party application call clearUpApplicationData will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call clearUpApplicationData will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_0900',0, function (done) {
+    it('System_API_Test_App_Manager_0900', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_0900';
       let bundleName = "com.ohos.application";
       appManager.clearUpApplicationData(bundleName, (err) => {
@@ -236,10 +237,10 @@ export default function appManagerTest() {
     /**
      * @tc.number: System_API_Test_App_Manager_1000
      * @tc.name: promise form clearUpApplicationData system interface interception test
-     * @tc.desc:  Test the third-party application call clearUpApplicationData will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call clearUpApplicationData will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_1000',0, function (done) {
+    it('System_API_Test_App_Manager_1000', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_1000';
       let bundleName = "com.ohos.application";
       appManager.clearUpApplicationData(bundleName)
@@ -254,15 +255,15 @@ export default function appManagerTest() {
           done();
         })
     })
-	
-	
+
+
     /**
      * @tc.number: System_API_Test_App_Manager_1100
      * @tc.name: callback form GetProcessMemoryByPid system interface interception test
-     * @tc.desc:  Test the third-party application call GetProcessMemoryByPid will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call GetProcessMemoryByPid will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_1100',0, function (done) {
+    it('System_API_Test_App_Manager_1100', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_1100';
       let pid = 0;
       appManager.getProcessMemoryByPid(pid, (err) => {
@@ -275,10 +276,10 @@ export default function appManagerTest() {
     /**
      * @tc.number: System_API_Test_App_Manager_1200
      * @tc.name: promise form GetProcessMemoryByPid system interface interception test
-     * @tc.desc:  Test the third-party application call GetProcessMemoryByPid will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call GetProcessMemoryByPid will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_1200',0, function (done) {
+    it('System_API_Test_App_Manager_1200', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_1200';
       let pid = 0;
       appManager.getProcessMemoryByPid(pid)
@@ -297,10 +298,10 @@ export default function appManagerTest() {
     /**
      * @tc.number: System_API_Test_App_Manager_1300
      * @tc.name: callback form getRunningProcessInfoByBundleName system interface interception test
-     * @tc.desc:  Test the third-party application call getRunningProcessInfoByBundleName will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call getRunningProcessInfoByBundleName will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_1300',0, function (done) {
+    it('System_API_Test_App_Manager_1300', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_1300';
       let bundleName = "com.ohos.application";
       appManager.getRunningProcessInfoByBundleName(bundleName, (err) => {
@@ -313,10 +314,10 @@ export default function appManagerTest() {
     /**
      * @tc.number: System_API_Test_App_Manager_1400
      * @tc.name: promise form getRunningProcessInfoByBundleName system interface interception test
-     * @tc.desc:  Test the third-party application call getRunningProcessInfoByBundleName will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call getRunningProcessInfoByBundleName will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_1400',0, function (done) {
+    it('System_API_Test_App_Manager_1400', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_1400';
       let bundleName = "com.ohos.application";
       appManager.getRunningProcessInfoByBundleName(bundleName)
@@ -335,10 +336,10 @@ export default function appManagerTest() {
     /**
      * @tc.number: System_API_Test_App_Manager_1500
      * @tc.name: callback form getRunningProcessInfoByBundleName system interface interception test
-     * @tc.desc:  Test the third-party application call getRunningProcessInfoByBundleName will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call getRunningProcessInfoByBundleName will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_1500',0, function (done) {
+    it('System_API_Test_App_Manager_1500', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_1500';
       let bundleName = "com.ohos.application";
       let userId = 100;
@@ -352,10 +353,10 @@ export default function appManagerTest() {
     /**
      * @tc.number: System_API_Test_App_Manager_1600
      * @tc.name: promise form getRunningProcessInfoByBundleName system interface interception test
-     * @tc.desc:  Test the third-party application call getRunningProcessInfoByBundleName will be blocked
-     * @tc.level   3
+     * @tc.desc: Test the third-party application call getRunningProcessInfoByBundleName will be blocked
+     * @tc.level 3
      */
-    it('System_API_Test_App_Manager_1600',0, function (done) {
+    it('System_API_Test_App_Manager_1600', 0, function (done) {
       let TAG = 'System_API_Test_App_Manager_1600';
       let bundleName = "com.ohos.application";
       let userId = 100;
@@ -372,14 +373,37 @@ export default function appManagerTest() {
         })
     })
 
-    
+
+    /**
+     * @tc.number: System_API_Test_App_Manager_2005
+     * @tc.name: appManager.on system interface interception test
+     * @tc.desc: Test the third-party application get ProcessState enum will be right
+     * @tc.level 3
+     */
+    it('System_API_Test_App_Manager_2005', 0, async (done: Function) => {
+      let TAG = 'System_API_Test_App_Manager_2005';
+      try {
+        let abilityFirstFrameStateObserverForAll: appManager.AbilityFirstFrameStateObserver = {
+          onAbilityFirstFrameDrawn(abilityStateData: appManager.AbilityFirstFrameStateData) {
+            console.log("onAbilityFirstFrameDrawingCompleted all", JSON.stringify(abilityStateData));
+          }
+        };
+        appManager.on("abilityFirstFrameState", abilityFirstFrameStateObserverForAll);
+        done();
+      } catch (err) {
+        console.log(TAG + "  err.code: " + err.code);
+        expect(err.code).assertEqual(ERROR_CODE);
+        done();
+      }
+    })
+
     /**
      * @tc.number: Public_API_Test_App_Manager_0100
      * @tc.name: ProcessState enum public interface test
      * @tc.desc: Test the third-party application get ProcessState enum will be right
      * @tc.level 3
      */
-    it('Public_API_Test_App_Manager_0100',0, function (done) {
+    it('Public_API_Test_App_Manager_0100', 0, function (done) {
       expect(appManager.ProcessState.STATE_CREATE).assertEqual(0);
       expect(appManager.ProcessState.STATE_FOREGROUND).assertEqual(2);
       expect(appManager.ProcessState.STATE_ACTIVE).assertEqual(3);
@@ -394,7 +418,7 @@ export default function appManagerTest() {
      * @tc.desc: Test the third-party application get ApplicationState enum will be right
      * @tc.level 3
      */
-    it('Public_API_Test_App_Manager_0200',0, function (done) {
+    it('Public_API_Test_App_Manager_0200', 0, function (done) {
       expect(appManager.ApplicationState.STATE_CREATE).assertEqual(0);
       expect(appManager.ApplicationState.STATE_FOREGROUND).assertEqual(2);
       expect(appManager.ApplicationState.STATE_ACTIVE).assertEqual(3);
