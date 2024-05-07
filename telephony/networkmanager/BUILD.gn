@@ -17,11 +17,13 @@ group("networkmanager") {
     "connection:connection",
     "fetch:fetch",
     "http:http",
+    "mdns:mdns",
+    "ndk:ndk",
     "network:network",
-    "noNet:noNet",
     "noNet:noNet",
     "noPermission:noPermission",
     "socket:socket",
     "statistics:statistics",
+    "websocket:websocket",
   ]
 }

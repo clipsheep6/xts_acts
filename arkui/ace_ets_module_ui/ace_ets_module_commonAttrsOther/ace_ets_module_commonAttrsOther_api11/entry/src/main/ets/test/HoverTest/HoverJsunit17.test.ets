@@ -49,7 +49,7 @@ export default function HoverJsunit17() {
     it('HoverJsunit_0100', 0, async function (done) {
       console.info('HoverJsunit_0200 START');
       let driver = await Driver.create()
-      await driver.mouseMoveTo({x:200, y:300})
+      await driver.mouseMoveTo({x: globalThis.winLeft + vp2px(100), y:globalThis.winTop + vp2px(100)})
       await CommonFunc.sleep(1000);
       let strJsonA = getInspectorByKey('hoverA17');
       let objA = JSON.parse(strJsonA);
@@ -70,7 +70,10 @@ export default function HoverJsunit17() {
     it('HoverJsunit_0200', 0, async function (done) {
       console.info('HoverJsunit_0200 START');
       let driver = await Driver.create()
-      await driver.mouseMoveTo({x:500, y:300})
+      let buttonCl = await driver.findComponent(ON.id('hoverBColumn'));
+      await CommonFunc.sleep(500);
+      let point = await buttonCl.getBoundsCenter();
+      await driver.mouseMoveTo({x:point.x + vp2px(100), y:point.y  + vp2px(100) })
       await CommonFunc.sleep(1000);
       let strJsonA = getInspectorByKey('hoverA17');
       let objA = JSON.parse(strJsonA);
@@ -92,7 +95,10 @@ export default function HoverJsunit17() {
     it('HoverJsunit_0300', 0, async function (done) {
       console.info('HoverJsunit_0300 START');
       let driver = await Driver.create()
-      await driver.mouseMoveTo({x:800, y:300})
+      let buttonCl = await driver.findComponent(ON.id('hoverBColumn'));
+      await CommonFunc.sleep(500);
+      let point = await buttonCl.getBoundsCenter();
+      await driver.mouseMoveTo({x:point.x + vp2px(100), y:point.y + vp2px(100)})
       await CommonFunc.sleep(1000);
       let strJsonA = getInspectorByKey('hoverA17');
       let objA = JSON.parse(strJsonA);

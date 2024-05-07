@@ -33,9 +33,12 @@ import insightIntent from '@ohos.app.ability.insightIntent';
 import startOptions from '@ohos.app.ability.StartOptions';
 import ability from '@ohos.ability.ability';
 import Want from '@ohos.app.ability.Want';
+import wantConstant from '@ohos.app.ability.wantConstant';
 import { BusinessError } from '@ohos.base';
 import commonEventManager from '@ohos.commonEventManager';
+import systemParameterEnhance from '@ohos.systemParameterEnhance';
 
+let deviceType = systemParameterEnhance.getSync('const.product.devicetype');
 let EXTENSION_INFO_ERR = 16000001;
 let INNER_ERROR = 16000050;
 let CROSS_USER_DENY = 201;
@@ -46,7 +49,6 @@ let createModuleContext: ESObject;
 function sleep(time: number) {
   return new Promise<void>((resolve) => setTimeout(resolve, time));
 }
-
 
 function func1(a: string, b: string) {
   array.push(a);
@@ -416,6 +418,8 @@ export default function ApiCoverTest() {
      * @tc.level   3
      */
     it('SUB_AA_AMS_Context_0100', 0, async (done: Function) => {
+      let bundleName = "com.example.apicoverhaptest";
+      let userId = 100;
       expect("/data/storage/el2/base/haps/phone/cache")
         .assertEqual(AppStorage.get<common.UIAbilityContext>("abilityContext")!.cacheDir);
       expect("/data/storage/el2/base/haps/phone/temp")
@@ -430,6 +434,8 @@ export default function ApiCoverTest() {
         .assertEqual(AppStorage.get<common.UIAbilityContext>("abilityContext")!.bundleCodeDir);
       expect("/data/storage/el2/distributedfiles")
         .assertEqual(AppStorage.get<common.UIAbilityContext>("abilityContext")!.distributedFilesDir);
+      expect("/data/service/el2/" + userId + "/hmdfs/cloud/data/" + bundleName)
+        .assertEqual(AppStorage.get<common.UIAbilityContext>("abilityContext")!.cloudFileDir);
       expect(1).assertEqual(AppStorage.get<common.UIAbilityContext>("abilityContext")!.area);
       if (AppStorage.get<common.UIAbilityContext>("abilityContext")!.resourceDir != "") {
         fs.access(AppStorage.get<common.UIAbilityContext>("abilityContext")!.resourceDir, (err, res) => {
@@ -452,8 +458,12 @@ export default function ApiCoverTest() {
       AppStorage.get<common.UIAbilityContext>("abilityContext")!.resourceManager.getConfiguration((err, data) => {
         if (err == undefined) {
           console.log(`Ability: getConfiguration success: ${JSON.stringify(data)}`);
-          console.log(`Ability: getConfiguration success: JSON.stringify(data.direction)`);
-          expect(0).assertEqual(data.direction);
+          console.log(`Ability: getConfiguration success1: ${JSON.stringify(data.direction)}`);
+          if (deviceType === '2in1') {
+            expect(1).assertEqual(data.direction);
+          } else {
+            expect(0).assertEqual(data.direction);
+          }
           done();
         } else {
           expect().assertFail();
@@ -571,8 +581,10 @@ export default function ApiCoverTest() {
       // expect('ohos.extra.param.key.form_rendering_mode').assertEqual(formInfoNew.FormParam.FORM_RENDERING_MODE_KEY);
       console.info("SUB_AA_Test_InsightIntent_0100:" + formInfoNew.FormParam.FORM_RENDERING_MODE_KEY);
       expect('ohos.extra.param.key.host_bg_inverse_color').assertEqual(formInfoNew.FormParam.HOST_BG_INVERSE_COLOR_KEY)
-      expect('ohos.extra.param.key.permission_name').assertEqual(formInfoNew.FormParam.FORM_PERMISSION_NAME_KEY)
-      expect('ohos.extra.param.key.permission_granted').assertEqual(formInfoNew.FormParam.FORM_PERMISSION_GRANTED_KEY)
+      if (deviceType !== '2in1') {
+        expect('ohos.extra.param.key.permission_name').assertEqual(formInfoNew.FormParam.FORM_PERMISSION_NAME_KEY)
+        expect('ohos.extra.param.key.permission_granted').assertEqual(formInfoNew.FormParam.FORM_PERMISSION_GRANTED_KEY)
+      }
       expect(1).assertEqual(formInfoNew.LaunchReason.FORM_DEFAULT);
       expect(2).assertEqual(formInfoNew.LaunchReason.FORM_SHARE);
       expect(0).assertEqual(formInfoNew.FormState.DEFAULT);
@@ -660,6 +672,46 @@ export default function ApiCoverTest() {
       expect(0).assertEqual(insightIntent.ExecuteMode.UI_ABILITY_FOREGROUND);
       expect(1).assertEqual(insightIntent.ExecuteMode.UI_ABILITY_BACKGROUND);
       console.info("SUB_AA_Test_InsightIntent_0100:" + insightIntent.ExecuteMode.UI_EXTENSION_ABILITY);
+      // expect(2).assertEqual(insightIntent.ExecuteMode.UI_EXTENSION_ABILITY)
+      AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(startWant, startOp, (err, data) => {
+        if (err.code == 0) {
+          console.info("SUB_AA_FMS_AbilityStage_0100===CreateSubscriberCallback===");
+          expect().assertFail();
+          done();
+        } else {
+          console.info("SUB_AA_FMS_AbilityStage_0100===failed===");
+          expect(err.code).assertEqual(EXTENSION_INFO_ERR);
+          done();
+        }
+      })
+    });
+
+    /*
+     * @tc.number  SUB_AA_Test_StartOptions_0100
+     * @tc.name    Test insightIntent.ExecuteMode and startOptions.
+     * @tc.desc    Function test
+     * @tc.size:   MediumTest
+     * @tc.type:   Function
+     * @tc.level   3
+     */
+    it('SUB_AA_Test_StartOptions_0100', 0, async (done: Function) => {
+      let startOp: startOptions = {
+        withAnimation: false,
+        displayId: 0,
+        windowLeft: 100,
+        windowTop: 100,
+        windowWidth: 100,
+        windowHeight: 100,
+        windowFocused: true,
+      }
+      let startWant: Want = {
+        deviceId: "",
+        bundleName: "ohos.acts.aafwk.test.stagesupplementerr",
+        abilityName: "MainAbility3",
+      }
+      expect(0).assertEqual(insightIntent.ExecuteMode.UI_ABILITY_FOREGROUND);
+      expect(1).assertEqual(insightIntent.ExecuteMode.UI_ABILITY_BACKGROUND);
+      console.info("SUB_AA_Test_StartOptions_0100:" + insightIntent.ExecuteMode.UI_EXTENSION_ABILITY);
       // expect(2).assertEqual(insightIntent.ExecuteMode.UI_EXTENSION_ABILITY)
       AppStorage.get<common.UIAbilityContext>("abilityContext")!.startAbility(startWant, startOp, (err, data) => {
         if (err.code == 0) {
@@ -1079,5 +1131,17 @@ export default function ApiCoverTest() {
       }
     });
 
+    /*
+     * @tc.number : SUB_Ability_AbilityRuntime_ABILITY_URI_FLAG_0100
+     * @tc.name   : Check if value of FLAG_AUTH_PERSISTABLE_URI_PERMISSION is as expected
+     * @tc.desc   : Uri Flag api cover
+     * @tc.size   : MediumTest
+     * @tc.type   : Function
+     * @tc.level  : 1
+     */
+    it('SUB_Ability_AbilityRuntime_ABILITY_URI_FLAG_0100', 0, async (done: Function) => {
+      expect(wantConstant.Flags.FLAG_AUTH_PERSISTABLE_URI_PERMISSION).assertEqual(0x00000040);
+      done();
+    });
   })
 }

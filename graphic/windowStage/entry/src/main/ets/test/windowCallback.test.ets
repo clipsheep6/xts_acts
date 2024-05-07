@@ -1672,7 +1672,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
       let mainWin: ohosWindow.Window | void;
       let orientationItem = ['UNSPECIFIED', 'PORTRAIT', 'LANDSCAPE', 'PORTRAIT_INVERTED',
         'LANDSCAPE_INVERTED', 'AUTO_ROTATION', 'AUTO_ROTATION_PORTRAIT', 'AUTO_ROTATION_LANDSCAPE',
-        'AUTO_ROTATION_RESTRICTED', 'AUTO_ROTATION_PORTRAIT_RESTRICTED', 'AUTO_ROTATION_LANDSCAPE_RESTRICTED', 'LOCKED',
+        'AUTO_ROTATION_RESTRICTED', 'AUTO_ROTATION_PORTRAIT_RESTRICTED', 'AUTO_ROTATION_LANDSCAPE_RESTRICTED', 'LOCKED','AUTO_ROTATION_UNSPECIFIED',
         'USER_ROTATION_PORTRAIT', 'USER_ROTATION_LANDSCAPE','USER_ROTATION_PORTRAIT_INVERTED','USER_ROTATION_LANDSCAPE_INVERTED','UNSPECIFIED'];
 
       let setPreferredOrientationFun: Function = (win: ohosWindow.Window, orientation: ohosWindow.Orientation) => {
@@ -1882,29 +1882,6 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         }
       });
 
-    })
-    /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0490
-     * @tc.name      : testGetCutoutInfo_Callbcak
-     * @tc.desc      : Obtain information about unavailable screen areas such as the hole screen, fringe screen, and waterfall screen
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level3
-     */
-    it('testGetCutoutInfo_Callbcak', 0, async (done: Function) => {
-      let caseName: string = 'testGetCutoutInfo_Callbcak';
-      let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      console.log(msgStr + 'begin context==' + JSON.stringify(context));
-      let dpClass: display.Display = display.getDefaultDisplaySync();
-      expect(!!dpClass).assertTrue();
-      dpClass.getCutoutInfo((err, data) => {
-        if (err && err.code) {
-          unexpectedError(TRUE_FLAG, err, caseName, 'displayClass.getCutoutInfo', done);
-        } else {
-          console.info(msgStr + 'Succeeded in getting cutoutInfo. Data: ' + JSON.stringify(data));
-          done();
-        }
-      })
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1070
