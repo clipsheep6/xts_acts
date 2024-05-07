@@ -66,6 +66,7 @@ import requestImageDataTest from './MediaAssetManager/requestImageData'
 import requestVideoNativeTest from './MediaAssetManager/requestVideoNative'
 import requestImageNativeTest from './MediaAssetManager/requestImageNative'
 import requestCancelNativeTest from './MediaAssetManager/requestCancelNative'
+import requestVideoTest from './MediaAssetManager/requestVideo'
 
 export default function testsuite () {
   provisionResourcesTest()
@@ -122,4 +123,5 @@ export default function testsuite () {
   requestVideoNativeTest()
   requestImageNativeTest()
   requestCancelNativeTest()
+  requestVideoTest()
 }
