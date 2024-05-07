@@ -38,6 +38,35 @@ export default function locale1NdkTest() {
       done()
     });
 
+
+    /**
+     * @tc.number     : SUB_THIRDPARTY_MUSL_LOCALE_NEWLOCALE_0300
+     * @tc.name       : testMuslLocaleNewlocale003
+     * @tc.desc       : test newlocale
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+    it('testMuslLocaleNewlocale003', 0, async (done: Function) => {
+      let result: number = locale.newlocale2();
+      expect(result).assertEqual(0)
+      done()
+    });
+
+    /**
+     * @tc.number     : SUB_THIRDPARTY_MUSL_LOCALE_LOCALECONV_0200
+     * @tc.name       : testMuslLocaleLocaleconv002
+     * @tc.desc       ：testMuslLocale
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+    it('testMuslLocaleLocaleconv002', 0, async (done: Function) => {
+      let result: number = locale.localeconv();
+      expect(result).assertEqual(0)
+      done()
+    });
+
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_LOCALE_SETLOCALE_0200
      * @tc.name       : testMuslLocaleSetlocale002

@@ -1291,6 +1291,21 @@ static napi_value StrToDL(napi_env env, napi_callback_info info)
     return result;
 }
 
+static napi_value StrToDL2(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    const char *nptr = "10";
+    char *endptr = nullptr;
+    locale_t loc = newlocale(LC_ALL_MASK, "zh_CN.UTF-8");
+    double value = strtod_l(nptr, &endptr, &loc);
+    if (value == TEST_NUM) {
+        napi_create_int32(env, PARAM_0, &result);
+    } else {
+        napi_create_int32(env, FAILED, &result);
+    }
+    return result;
+}
+
 static napi_value StrToLdL(napi_env env, napi_callback_info info)
 {
     napi_value result = nullptr;
@@ -1404,6 +1419,7 @@ static napi_value Init(napi_env env, napi_value exports)
         {"setState", nullptr, SetState, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"strToFL", nullptr, StrToFL, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"strToDL", nullptr, StrToDL, nullptr, nullptr, nullptr, napi_default, nullptr},
+        {"strToDL2", nullptr, StrToDL2, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"strToLdL", nullptr, StrToLdL, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"valloc", nullptr, Valloc, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"realloc", nullptr, Realloc, nullptr, nullptr, nullptr, napi_default, nullptr},

@@ -2529,6 +2529,20 @@ export default function stdlibNdkTest() {
     });
 
     /**
+     * @tc.number     : SUB_THIRDPARTY_MUSL_STDLIB_STRTODL_0200
+     * @tc.name       : testMuslStdlibStrToDL002
+     * @tc.desc       : test strtod_l
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 1
+     */
+    it('testMuslStdlibStrToDL002', 0, async (done: Function) => {
+      let data: number = stdlib.strToDL2();
+      expect(data).assertEqual(0);
+      done();
+    });
+
+    /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_STDLIB_STRTOLDL_0100
      * @tc.name       : testMuslStdlibStrToLdL001
      * @tc.desc       : test strtold_l

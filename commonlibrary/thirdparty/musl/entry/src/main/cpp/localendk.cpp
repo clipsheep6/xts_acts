@@ -62,6 +62,7 @@ static napi_value Newlocale(napi_env env, napi_callback_info info)
         napi_create_int32(env, FAIL, &result);
     } else {
         napi_create_int32(env, PARAM_0, &result);
+        freelocale(newLocale);
     }
     return result;
 }
@@ -130,7 +131,7 @@ static napi_value Init(napi_env env, napi_value exports)
         {"duplocale", nullptr, DupLocale, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"localeconv", nullptr, Localeconv, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"newlocale", nullptr, Newlocale, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"freelocale", nullptr, Freelocale, nullptr, nullptr, nullptr, napi_default, nullptr}};
+        {"freelocale", nullptr, Freelocale, nullptr, nullptr, nullptr, napi_default, nullptr}};   
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }

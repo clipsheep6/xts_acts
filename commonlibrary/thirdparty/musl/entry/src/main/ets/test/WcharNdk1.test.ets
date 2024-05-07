@@ -757,6 +757,19 @@ export default function wcharNdk1Test() {
     });
 
     /**
+     * @tc.number     : SUB_THIRDPARTY_MUSL_WCHAR_WCSTODL_0100
+     * @tc.name       : testMuslWcharWcstodL001
+     * @tc.desc       : test the normal condition of WcstodL_One
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 0
+     */
+    it('testMuslWcharWcstodL001', 0, async (done: Function) => {
+      expect(wchar1.WcstodL_One()).assertEqual(1);
+      done();
+    });
+
+    /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_WCHAR_WCSTOF_0100
      * @tc.name       : testMuslWcharWcstof001
      * @tc.desc       : test the normal condition of Wcstof_One
