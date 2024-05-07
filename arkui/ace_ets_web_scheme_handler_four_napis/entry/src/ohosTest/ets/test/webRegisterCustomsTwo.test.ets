@@ -77,7 +77,7 @@ export default function webviewApi() {
         
         hilog.info(0x0000, 'testTag', '%{public}s', 'testWebSchemeHandler_SetOnRequestStop PASS');
         
-        Utils.emitEvent("testWebSchemeHandler_SetOnRequestStop", 10)
+        Utils.emitEvent("emitWebSchemeHandler_SetOnRequestStop", 10)
         await Utils.sleep(2000);
         Utils.registerEvent("testWebSchemeHandler_SetOnRequestStop", true, 7758, done);
         sendEventByKey('webHostingButton', 10, '');
