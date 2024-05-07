@@ -59,6 +59,7 @@ export default function SwiperMarginTest() {
       expect(JSON.parse(strJson).$attrs.prevMargin).assertEqual('0.00vp')
       expect(JSON.parse(strJson).$attrs.nextMargin).assertEqual('0.00vp')
       console.info(`${SUITE} ${CASE} END`);
+      console.info(`${SUITE} ${CASE} END`);
       console.info(`test`);
       console.info(`testyjj`);
       console.info(`testyjj`);
