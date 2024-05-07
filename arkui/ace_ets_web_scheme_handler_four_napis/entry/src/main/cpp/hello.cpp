@@ -23,8 +23,8 @@
 #undef LOG_TAG
 #define LOG_TAG "ss-handler"
 
-ArkWeb_ShemeHandler *g_schemeHandler;
-ArkWeb_ShemeHandler *g_schemeHandlerFowSW;
+ArkWeb_SchemeHandler *g_schemeHandler;
+ArkWeb_SchemeHandler *g_schemeHandlerFowSW;
 
 bool g_testWebServiceWorkerSetSchemeHandler = false;
 int32_t testWebSchemeHandler_SetOnRequestStart = -1;
@@ -60,7 +60,7 @@ namespace {
 
     void InitCallback(const ArkWeb_HttpBodyStream *httpBodyStream, ArkWeb_NetError result)
     {
-        std:fill(buffer, buffer + BUFF_LEN, 0);
+        std::fill(buffer, buffer + BUFF_LEN, 0);
         OH_ArkWebHttpBodyStream_Read(httpBodyStream, buffer, BUFF_LEN);
     }
 
@@ -237,7 +237,7 @@ void OnURLRequestStop(const ArkWeb_SchemeHandler *schemeHandler, const ArkWeb_Re
 
 
 // 设置 SchemeHandler
-static napi_value SetSchemeHandler(npai_env env, napi_callback_info info)
+static napi_value SetSchemeHandler(napi_env env, napi_callback_info info)
 {
     OH_LOG_INFO(LOG_APP, "set scheme handler");
 
@@ -317,7 +317,7 @@ static napi_value DestroyResponse(napi_env env, napi_callback_info info)
     OH_LOG_ERROR(LOG_APP, "DestroyResponse ");
     ArkWeb_Response *response;
     OH_ArkWeb_CreateResponse(&response);
-    OH_ArkWeb_DestroyResponse(&response);
+    OH_ArkWeb_DestroyResponse(response);
 
     napi_create_int32(env, 0, &result);
 
@@ -386,14 +386,14 @@ static napi_value Init(napi_env env, napi_value exports) {
         {"releaseByteArray", nullptr, ReleaseByteArray, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"destroyResponse", nullptr, DestroyResponse, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"createSchemeHandler", nullptr, CreateSchemeHandler, nullptr, nullptr, nullptr, napi_default, nullptr},
-        {"resourceRequestGetRequestHeaders", nullptr, ResourceRequestGetRequestHeaders, nullptr, nullptr, nullptr,
+        {"resourceRequestGetRequestHeaders", nullptr, ResourceRequestGetRequestHeader, nullptr, nullptr, nullptr,
          napi_default, nullptr},
         {"httpBodyStreamGetUserData", nullptr, HttpBodyStreamGetUserData, nullptr, nullptr, nullptr, napi_default,
          nullptr}
 
     };
 
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]). desc);
+    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
     return exports;
 }
 EXTERN_C_END
