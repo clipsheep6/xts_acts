@@ -1,4 +1,4 @@
-﻿{
+ {
     "description": "Configuration for native image Tests",
     "driver": {
         "type": "OHJSUnitTest",
