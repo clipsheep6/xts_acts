@@ -1144,24 +1144,6 @@ export default function imageJsTest() {
                 region: { size: { height: 1, width: 2 }, x: 0, y: 0 }
             };
             console.info('============ bufferArr ' + JSON.stringify(readArea));
-            // pixelmap.readPixels(readArea).then(() => {
-            //     var readArr = new Uint8Array(readArea.pixels);
-            //     var res = true;
-            //     for (var i = 0; i < readArr.length; i++) {
-            //         if (readArr[i] != tcBuf022[i]) {
-            //             res = false;
-            //             console.info('SUB_MULTIMEDIA_IMAGE_WRITEPIXELS_PROMISE_0100 failed');
-            //             expect(false).assertTrue();
-            //             done();
-            //             break;
-            //         }
-            //     }
-            //     if (res) {
-            //         console.info('SUB_MULTIMEDIA_IMAGE_WRITEPIXELS_PROMISE_0100 success');
-            //         expect(true).assertTrue()
-            //         done();
-            //     }
-            // })
             pixelmap.readPixelsSync(readArea);
             var readArr = new Uint8Array(readArea.pixels);
             var res = true;
