@@ -17,6 +17,8 @@ import photoAccessHelper from '@ohos.file.photoAccessHelper'
 import image from '@ohos.multimedia.image'
 import { describe, it, expect } from 'deccjsunit/index'
 import { albumType, albumSubtype, genRadomStr, albumKeys } from '../../../../../../../common'
+import fs from '@ohos.file.fs';
+import fileUri from "@ohos.file.fileuri";
 import {
   photoKeys,
   fetchOption,
@@ -32,12 +34,10 @@ export default function requestVideoTest() {
         let fetchResult = await helper.getAssets(fetchOps);
         let photoAsset = await fetchResult.getFirstObject();
         
-        let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.VIDEO;
-        let extension: string = 'mp4';
-        let CreateOptions: photoAccessHelper.CreateOptions = {
-          title: 'testPhoto' + new Date().getTime()
-        }
-        let fileUri: string = await helper.createAsset(photoType, extension, CreateOptions);
+        let pathDir = globalThis.abilityContext.filesDir;
+        let path = pathDir + '/test'+ new Date().getTime()+'.mp4';
+        fs.openSync(path, 0o100)
+        let destUri = fileUri.getUriFromPath(path);
         class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<boolean> {
           async onDataPrepared(data : boolean) {
             console.info(`${testNum} succeed`);
@@ -46,7 +46,7 @@ export default function requestVideoTest() {
           }
         }
         const handler = new MediaHandler();
-        await photoAccessHelper.MediaAssetManager.requestVideoFile(globalThis.abilityContext, photoAsset, requestOptions, fileUri, handler)
+        await photoAccessHelper.MediaAssetManager.requestVideoFile(globalThis.abilityContext, photoAsset, requestOptions, destUri, handler)
       } catch (error) {
         console.error(`${testNum} failed; error: ${error.code}  ${error.message}`);
         expect(false).assertTrue();
@@ -59,12 +59,10 @@ export default function requestVideoTest() {
         let fetchOps = fetchOption(testNum, photoKeys.DISPLAY_NAME, "request_video.mp4");
         let fetchResult = await helper.getAssets(fetchOps);
         let photoAsset = await fetchResult.getFirstObject();
-        let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.VIDEO;
-        let extension: string = 'mp4';
-        let CreateOptions: photoAccessHelper.CreateOptions = {
-          title: 'testPhoto' + new Date().getTime()
-        }
-        let fileUri: string = await helper.createAsset(photoType, extension, CreateOptions);
+        let pathDir = globalThis.abilityContext.filesDir;
+        let path = pathDir + '/test'+ new Date().getTime()+'.mp4';
+        fs.openSync(path, 0o100)
+        let destUri = fileUri.getUriFromPath(path);
         class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<boolean> {
           onDataPrepared(data : boolean) {
             console.info(`${testNum} failed`);
@@ -73,7 +71,7 @@ export default function requestVideoTest() {
           }
         }
         const handler = new MediaHandler();
-        await photoAccessHelper.MediaAssetManager.requestVideoFile(globalThis.abilityContext, photoAsset, requestOptions, fileUri, handler)
+        await photoAccessHelper.MediaAssetManager.requestVideoFile(globalThis.abilityContext, photoAsset, requestOptions, destUri, handler)
       } catch (error) {
         console.error(`${testNum} failed; error: ${error.code}  ${error.message}`);
         expect(error.code).assertEqual('401');
@@ -83,12 +81,10 @@ export default function requestVideoTest() {
 
     async function requestVideoPhotoAssetError(testNum, done, photoAsset) {
       try {
-        let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.VIDEO;
-        let extension: string = 'mp4';
-        let CreateOptions: photoAccessHelper.CreateOptions = {
-          title: 'testPhoto' + new Date().getTime()
-        }
-        let fileUri: string = await helper.createAsset(photoType, extension, CreateOptions);
+        let pathDir = globalThis.abilityContext.filesDir;
+        let path = pathDir + '/test'+ new Date().getTime()+'.mp4';
+        fs.openSync(path, 0o100)
+        let destUri = fileUri.getUriFromPath(path);
         class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<boolean> {
           onDataPrepared(data : boolean) {
             console.info(`${testNum} failed`);
@@ -101,7 +97,7 @@ export default function requestVideoTest() {
         sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE,
       }
         const handler = new MediaHandler();
-        await photoAccessHelper.MediaAssetManager.requestVideoFile(globalThis.abilityContext, photoAsset, requestOptions, fileUri, handler)
+        await photoAccessHelper.MediaAssetManager.requestVideoFile(globalThis.abilityContext, photoAsset, requestOptions, destUri, handler)
       } catch (error) {
         console.error(`${testNum} failed; error: ${error.code} ${error.message}`);
         expect(error.code).assertEqual('401');
@@ -109,7 +105,7 @@ export default function requestVideoTest() {
       }
     }
 
-    async function requestVideoDestUriError(testNum, done, fileUri, errCode) {
+    async function requestVideoDestUriError(testNum, done, destUri, errCode) {
       try {
         let fetchOps = fetchOption(testNum, photoKeys.DISPLAY_NAME, "request_video.mp4");
         let fetchResult = await helper.getAssets(fetchOps);
@@ -126,7 +122,7 @@ export default function requestVideoTest() {
         sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE,
       }
         const handler = new MediaHandler();
-        await photoAccessHelper.MediaAssetManager.requestVideoFile(globalThis.abilityContext, photoAsset, requestOptions, fileUri, handler)
+        await photoAccessHelper.MediaAssetManager.requestVideoFile(globalThis.abilityContext, photoAsset, requestOptions, destUri, handler)
       } catch (error) {
         console.error(`${testNum} failed; error: ${error.code} ${error.message}`);
         expect(error.code).assertEqual(errCode);
@@ -520,12 +516,10 @@ export default function requestVideoTest() {
         let fetchResult = await helper.getAssets(fetchOps);
         let photoAsset = await fetchResult.getFirstObject();
         
-        let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.VIDEO;
-        let extension: string = 'mp4';
-        let CreateOptions: photoAccessHelper.CreateOptions = {
-          title: 'testPhoto' + new Date().getTime()
-        }
-        let fileUri: string = await helper.createAsset(photoType, extension, CreateOptions);
+        let pathDir = globalThis.abilityContext.filesDir;
+        let path = pathDir + '/test'+ new Date().getTime()+'.mp4';
+        fs.openSync(path, 0o100)
+        let destUri = fileUri.getUriFromPath(path);
         class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<boolean> {
           onDataPrepared(data : boolean) {
             console.info(`${testNum} succeed`);
@@ -538,7 +532,7 @@ export default function requestVideoTest() {
           sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE,
         }
         const handler = new MediaHandler();
-        await photoAccessHelper.MediaAssetManager.requestVideoFile(globalThis.abilityContext, photoAsset, requestOptions, fileUri, handler)
+        await photoAccessHelper.MediaAssetManager.requestVideoFile(globalThis.abilityContext, photoAsset, requestOptions, destUri, handler)
       } catch (error) {
         console.error(`${testNum} failed; error: ${error.code}  ${error.message}`);
         expect(error.code).assertEqual('401');
@@ -561,12 +555,10 @@ export default function requestVideoTest() {
         let fetchResult = await helper.getAssets(fetchOps);
         let photoAsset = await fetchResult.getFirstObject();
         
-        let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
-        let extension: string = 'jpg';
-        let CreateOptions: photoAccessHelper.CreateOptions = {
-          title: 'testJpg' + new Date().getTime()
-        }
-        let fileUri: string = await helper.createAsset(photoType, extension, CreateOptions);
+        let pathDir = globalThis.abilityContext.filesDir;
+        let path = pathDir + '/test'+ new Date().getTime()+'.jpg';
+        fs.openSync(path, 0o100)
+        let destUri = fileUri.getUriFromPath(path);
         class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<boolean> {
           onDataPrepared(data : boolean) {
             console.info(`${testNum} succeed`);
@@ -579,7 +571,7 @@ export default function requestVideoTest() {
           sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE,
         }
         const handler = new MediaHandler();
-        await photoAccessHelper.MediaAssetManager.requestVideoFile(globalThis.abilityContext, photoAsset, requestOptions, fileUri, handler)
+        await photoAccessHelper.MediaAssetManager.requestVideoFile(globalThis.abilityContext, photoAsset, requestOptions, destUri, handler)
       } catch (error) {
         console.error(`${testNum} failed; error: ${error.code}  ${error.message}`);
         expect(error.code).assertEqual('401');
@@ -601,12 +593,10 @@ export default function requestVideoTest() {
         let fetchOps = fetchOption(testNum, photoKeys.DISPLAY_NAME, "request_image.jpg");
         let fetchResult = await helper.getAssets(fetchOps);
         let photoAsset = await fetchResult.getFirstObject();
-        let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.IMAGE;
-        let extension: string = 'jpg';
-        let CreateOptions: photoAccessHelper.CreateOptions = {
-          title: 'testPhoto' + new Date().getTime()
-        }
-        let fileUri: string = await helper.createAsset(photoType, extension, CreateOptions);
+        let pathDir = globalThis.abilityContext.filesDir;
+        let path = pathDir + '/test'+ new Date().getTime()+'.jpg';
+        fs.openSync(path, 0o100)
+        let destUri = fileUri.getUriFromPath(path);
         class MediaHandler implements photoAccessHelper.MediaAssetDataHandler<boolean> {
           onDataPrepared(data : boolean) {
             console.info(`${testNum} succeed`);
@@ -619,7 +609,7 @@ export default function requestVideoTest() {
           sourceMode: photoAccessHelper.SourceMode.ORIGINAL_MODE,
         }
         const handler = new MediaHandler();
-        await photoAccessHelper.MediaAssetManager.requestVideoFile(globalThis.abilityContext, photoAsset, requestOptions, fileUri, handler)
+        await photoAccessHelper.MediaAssetManager.requestVideoFile(globalThis.abilityContext, photoAsset, requestOptions, destUri, handler)
       } catch (error) {
         console.error(`${testNum} failed; error: ${error.code}  ${error.message}`);
         expect(error.code).assertEqual('401');
