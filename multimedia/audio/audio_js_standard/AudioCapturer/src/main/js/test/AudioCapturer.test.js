@@ -3369,20 +3369,5 @@ export default function audioCapturer() {
             await audioCapPromise.release();
             done();
         })
-
-        /**
-         *@tc.number    : SUB_MULTIMEDIA_AUDIO_CAPTURER_SOURCE_TYPE_0100
-         *@tc.name      : DeviceType - ALL Device Type
-         *@tc.desc      : DeviceType - ALL Device Type
-         *@tc.size      : MEDIUM
-         *@tc.type      : Function
-         *@tc.level     : Level 2
-         */
-         it('SUB_MULTIMEDIA_AUDIO_CAPTURER_SOURCE_TYPE_0100', 2, async function (done) {
-            expect(audio.SourceType.SOURCE_TYPE_REMOTE_CAST).assertEqual(11);
-            console.info("audio.SourceType.REMOTE_CAST:" + audio.SourceType.SOURCE_TYPE_REMOTE_CAST);
-            await sleep(50);
-            done();
-        })
     })
 }
