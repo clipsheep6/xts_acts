@@ -48,7 +48,7 @@ export default function RichEditor1() {
     });
     /**
      * @tc.number    ：RichEditor1_0100
-     * @tc.name      ：scenario testing
+     * @tc.name      ：testRichEditor
      * @tc.desc      ：Test text drag in.
      * @tc.size      : MediumTest
      * @tc.type      : Function
