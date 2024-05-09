@@ -30,10 +30,16 @@
   "MainAbility/pages/Text/TextStyle",
   "MainAbility/pages/Marquee/MarqueeApi",
   "MainAbility/pages/Matrix/srcIndex",
-    "MainAbility/pages/Matrix/dstIndex",
+  "MainAbility/pages/Matrix/dstIndex",
   "MainAbility/pages/RichEditor/RichEditorApi1",
   "MainAbility/pages/RichEditor/RichEditorApi3",
   "MainAbility/pages/RichEditor/RichEditorApi5",
-        "MainAbility/pages/RichEditor/RichEditorChangeCallback"
+  "MainAbility/pages/RichEditor/RichEditorChangeCallback",
+  "MainAbility/pages/Text/MarqueeHorseRace",
+  "MainAbility/pages/Text/MarqueeHorseRace2",
+  "MainAbility/pages/Text/MarqueeHorseRace3",
+  "MainAbility/pages/Text/MarqueeHorseRace4",
+  "MainAbility/pages/Text/MarqueeHorseRace5",
+  "MainAbility/pages/Text/MarqueeHorseRace6"
   ]
 }
