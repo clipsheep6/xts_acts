@@ -1,0 +1,7 @@
+{
+    "src": [
+          "MainAbility/pages/refresh",
+          "MainAbility/pages/index",
+          "MainAbility/pages/index/index"
+    ]
+}
