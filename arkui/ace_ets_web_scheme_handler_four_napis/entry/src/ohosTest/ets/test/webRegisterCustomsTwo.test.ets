@@ -23,7 +23,7 @@ export default function webviewApi() {
   describe('webRegisterCustomsTwo', () => {
       
     beforeEach(async (done:Function) => {
-      await Utils.sleep(2000);
+      await Utils.sleep(1000);
       console.info("web beforeEach start");
       done();
     })
@@ -42,7 +42,7 @@ export default function webviewApi() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'testWebServiceWorker_SetSchemeHandler PASS');
         
         Utils.emitEvent("emitWebServiceWorker_SetSchemeHandler", 10)
-        await Utils.sleep(2000);
+        await Utils.sleep(1000);
         Utils.registerEvent("testWebServiceWorker_SetSchemeHandler", true, 7756, done);
         sendEventByKey('webHostingButton', 10, '');
     })
@@ -60,7 +60,7 @@ export default function webviewApi() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'testWebSchemeHandler_SetOnRequestStart PASS');
         
         Utils.emitEvent("emitWebSchemeHandler_SetOnRequestStart", 10)
-        await Utils.sleep(2000);
+        await Utils.sleep(1000);
         Utils.registerEvent("testWebSchemeHandler_SetOnRequestStart", true, 7757, done);
         sendEventByKey('webHostingButton', 10, '');
     })
@@ -78,7 +78,7 @@ export default function webviewApi() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'testWebSchemeHandler_SetOnRequestStop PASS');
         
         Utils.emitEvent("emitWebSchemeHandler_SetOnRequestStop", 10)
-        await Utils.sleep(2000);
+        await Utils.sleep(1000);
         Utils.registerEvent("testWebSchemeHandler_SetOnRequestStop", true, 7758, done);
         sendEventByKey('webHostingButton', 10, '');
     })
@@ -96,7 +96,7 @@ export default function webviewApi() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'testWeb_ReleaseByteArray PASS');
         
         Utils.emitEvent("emitWeb_ReleaseByteArray", 10)
-        await Utils.sleep(2000);
+        await Utils.sleep(1000);
         Utils.registerEvent("testWeb_ReleaseByteArray", true, 7759, done);
         sendEventByKey('webHostingButton', 10, '');
     })
@@ -115,7 +115,7 @@ export default function webviewApi() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'testWeb_ReleaseString PASS');
         
         Utils.emitEvent("emitWeb_ReleaseString", 10)
-        await Utils.sleep(2000);
+        await Utils.sleep(1000);
         Utils.registerEvent("testWeb_ReleaseString", true, 7760, done);
         sendEventByKey('webHostingButton', 10, '');
     })
@@ -133,7 +133,7 @@ export default function webviewApi() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'testWeb_DestroyResponse PASS');
         
         Utils.emitEvent("emitWeb_DestroyResponse", 10)
-        await Utils.sleep(2000);
+        await Utils.sleep(1000);
         Utils.registerEvent("testWeb_DestroyResponse", true, 7761, done);
         sendEventByKey('webHostingButton', 10, '');
     })
@@ -151,7 +151,7 @@ export default function webviewApi() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'testWeb_CreateSchemeHandler PASS');
         
         Utils.emitEvent("emitWeb_CreateSchemeHandler", 10)
-        await Utils.sleep(2000);
+        await Utils.sleep(1000);
         Utils.registerEvent("testWeb_CreateSchemeHandler", true, 7762, done);
         sendEventByKey('webHostingButton', 10, '');
     })
@@ -169,7 +169,7 @@ export default function webviewApi() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'testWebResourceRequest_GetRequestHeaders PASS');
         
         Utils.emitEvent("emitWebResourceRequest_GetRequestHeaders", 10)
-        await Utils.sleep(2000);
+        await Utils.sleep(1000);
         Utils.registerEvent("testWebResourceRequest_GetRequestHeaders", true, 7763, done);
         sendEventByKey('webHostingButton', 10, '');
     })
@@ -187,7 +187,7 @@ export default function webviewApi() {
         hilog.info(0x0000, 'testTag', '%{public}s', 'testWebHttpBodyStream_GetUserData PASS');
         
         Utils.emitEvent("emitWebHttpBodyStream_GetUserData", 10)
-        await Utils.sleep(2000);
+        await Utils.sleep(1000);
         Utils.registerEvent("testWebHttpBodyStream_GetUserData", true, 7764, done);
         sendEventByKey('webHostingButton', 10, '');
     })

@@ -75,9 +75,9 @@ struct webRegisterCustomsTwoComponent {
                     console.info("key==>" + this.str)
                     switch (this.str) {
                         case "emitWebServiceWorker_SetSchemeHandler": {
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             let result:number = testNapi.serviceWorkerSetSchemeHandler();
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             
                             console.log("emitWebServiceWorker_SetSchemeHandler ==>" + result);
                             
@@ -90,9 +90,9 @@ struct webRegisterCustomsTwoComponent {
                         }
                         
                         case "emitWebSchemeHandler_SetOnRequestStart": {
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             let result:number = testNapi.schemeHandlerSetOnRequestStart();
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             
                             console.log("emitWebSchemeHandler_SetOnRequestStart ==>" + result);
                             
@@ -105,9 +105,9 @@ struct webRegisterCustomsTwoComponent {
                         }
                         
                         case "emitWebSchemeHandler_SetOnRequestStop": {
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             let result:number = testNapi.schemeHandlerSetOnRequestStop();
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             
                             console.log("emitWebSchemeHandler_SetOnRequestStop ==>" + result);
                             
@@ -120,9 +120,9 @@ struct webRegisterCustomsTwoComponent {
                         }
                         
                         case "emitWeb_ReleaseByteArray": {
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             let result:number = testNapi.releaseByteArray();
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             
                             console.log("emitWeb_ReleaseByteArray ==>" + result);
                             
@@ -135,9 +135,9 @@ struct webRegisterCustomsTwoComponent {
                         }
                         
                         case "emitWeb_ReleaseString": {
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             let result:number = testNapi.releaseString();
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             
                             console.log("emitWeb_ReleaseString ==>" + result);
                             
@@ -150,9 +150,9 @@ struct webRegisterCustomsTwoComponent {
                         }
                         
                         case "emitWeb_DestroyResponse": {
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             let result:number = testNapi.destroyResponse();
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             
                             console.log("emitWeb_DestroyResponse ==>" + result);
                             
@@ -165,9 +165,9 @@ struct webRegisterCustomsTwoComponent {
                         }
                         
                         case "emitWeb_CreateSchemeHandler": {
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             let result:number = testNapi.createSchemeHandler();
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             
                             console.log("emitWeb_CreateSchemeHandler ==>" + result);
                             
@@ -180,7 +180,7 @@ struct webRegisterCustomsTwoComponent {
                         }
                         
                         case "emitWebResourceRequest_GetRequestHeaders": {
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             
                             this.controller.runJavaScript("testxhr('custom://www.example.com/xhr/normal/')", (error, result)=> {
                                 if (error) {
@@ -191,7 +191,7 @@ struct webRegisterCustomsTwoComponent {
                                     console.info(" run JavaScript testError return value is:" + result);
                                 }
                             })
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             
                             let result:number = testNapi.resourceRequestGetRequestHeaders();
                             
@@ -206,9 +206,9 @@ struct webRegisterCustomsTwoComponent {
                         }
                         
                         case "emitWebHttpBodyStream_GetUserData": {
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             let result:number = testNapi.httpBodyStreamGetUserData();
-                            await Utils.sleep(2000);
+                            await Utils.sleep(1000);
                             
                             console.log("emitWebHttpBodyStream_GetUserData ==>" + result);
                             
