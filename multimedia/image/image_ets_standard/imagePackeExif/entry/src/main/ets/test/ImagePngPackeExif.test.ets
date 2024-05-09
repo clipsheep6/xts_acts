@@ -85,7 +85,7 @@ export default function imagePngPackeExifTest() {
 
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_PROMISE_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PNG_PACKING_IMAGESOURCE_PROMISE_0100
      * @tc.name      : packing -promise
      * @tc.desc      : 1.modifyImageProperty
      *                 2.getImageProperty
@@ -93,8 +93,8 @@ export default function imagePngPackeExifTest() {
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
-    it('SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_PROMISE_0100',0,  async (done:Function) => {
-      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_PROMISE_0100"
+    it('SUB_MULTIMEDIA_IMAGE_PNG_PACKING_IMAGESOURCE_PROMISE_0100',0,  async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PNG_PACKING_IMAGESOURCE_PROMISE_0100"
       try {
         const imagePackerApi : image.ImagePacker = image.createImagePacker();
         let packOpts : image.PackingOption = { format:"image/png", quality:100 };
@@ -111,7 +111,7 @@ export default function imagePngPackeExifTest() {
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_PROMISE_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PNG_PACKING_PIXELMAP_PROMISE_0100
      * @tc.name      : packing -promise
      * @tc.desc      : 1.packing
      *                 2.getImageProperty
@@ -119,8 +119,8 @@ export default function imagePngPackeExifTest() {
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
-    it('SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_PROMISE_0100',0,  async  (done:Function) => {
-      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_PROMISE_0100"
+    it('SUB_MULTIMEDIA_IMAGE_PNG_PACKING_PIXELMAP_PROMISE_0100',0,  async  (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PNG_PACKING_PIXELMAP_PROMISE_0100"
       try {
         const imagePackerApi : image.ImagePacker = image.createImagePacker();
         let packOpts : image.PackingOption = { format:"image/png", quality:100 };
@@ -137,7 +137,7 @@ export default function imagePngPackeExifTest() {
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_PROMISE_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PNG_PACKTOFILE_IMAGESOURCE_PROMISE_0100
      * @tc.name      : packToFile -promise
      * @tc.desc      : 1.pacToFile
      *                 2.getImageProperty
@@ -145,8 +145,8 @@ export default function imagePngPackeExifTest() {
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
-    it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_PROMISE_0100',0, async (done:Function) => {
-      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_PROMISE_0100"
+    it('SUB_MULTIMEDIA_IMAGE_PNG_PACKTOFILE_IMAGESOURCE_PROMISE_0100',0, async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PNG_PACKTOFILE_IMAGESOURCE_PROMISE_0100"
       try {
         const imagePackerApi : image.ImagePacker = image.createImagePacker();
         let packOpts : image.PackingOption = { format:"image/png", quality:100 };
@@ -165,7 +165,7 @@ export default function imagePngPackeExifTest() {
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_PROMISE_0100
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PNG_PACKTOFILE_PIXELMAP_PROMISE_0100
      * @tc.name      : packToFile -promise
      * @tc.desc      : 1.pacToFile
      *                 2.getImageProperty
@@ -173,8 +173,8 @@ export default function imagePngPackeExifTest() {
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
-    it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_PROMISE_0100',0, async (done:Function) => {
-      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_PROMISE_0100"
+    it('SUB_MULTIMEDIA_IMAGE_PNG_PACKTOFILE_PIXELMAP_PROMISE_0100',0, async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PNG_PACKTOFILE_PIXELMAP_PROMISE_0100"
       try {
         const imagePackerApi : image.ImagePacker = image.createImagePacker();
         let packOpts : image.PackingOption = { format:"image/png", quality:100 };
@@ -193,7 +193,7 @@ export default function imagePngPackeExifTest() {
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_CALLBACK_0200
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PNG_PACKING_PIXELMAP_CALLBACK_0200
      * @tc.name      : packing -callback
      * @tc.desc      : 1.packing                                                                                                                                                                           sc      : 1.modifyImageProperty
      *                 2.getImageProperty
@@ -201,8 +201,8 @@ export default function imagePngPackeExifTest() {
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
-    it('SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_CALLBACK_0200',0,  async (done:Function) => {
-      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKING_PIXELMAP_CALLBACK_0200"
+    it('SUB_MULTIMEDIA_IMAGE_PNG_PACKING_PIXELMAP_CALLBACK_0200',0,  async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PNG_PACKING_PIXELMAP_CALLBACK_0200"
       try {
         const imagePackerApi : image.ImagePacker = image.createImagePacker();
         let packOpts : image.PackingOption = { format:"image/png", quality:100 };
@@ -228,7 +228,7 @@ export default function imagePngPackeExifTest() {
     })
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_CALLBACK_0200
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PNG_PACKING_IMAGESOURCE_CALLBACK_0200
      * @tc.name      : packing -callback
      * @tc.desc      : 1.packing
      *                 2.getImageProperty
@@ -236,8 +236,8 @@ export default function imagePngPackeExifTest() {
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
-    it('SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_CALLBACK_0200',0,  async  (done:Function) => {
-      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKING_IMAGESOURCE_CALLBACK_0200"
+    it('SUB_MULTIMEDIA_IMAGE_PNG_PACKING_IMAGESOURCE_CALLBACK_0200',0,  async  (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PNG_PACKING_IMAGESOURCE_CALLBACK_0200"
       try {
         const imagePackerApi : image.ImagePacker = image.createImagePacker();
         let packOpts : image.PackingOption = { format:"image/png", quality:100 };
@@ -266,7 +266,7 @@ export default function imagePngPackeExifTest() {
 
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_CALLBACK_0200
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PNG_PACKTOFILE_PIXELMAP_CALLBACK_0200
      * @tc.name      : packToFile -callback
      * @tc.desc      : 1.pacToFile
      *                 2.getImageProperty
@@ -274,8 +274,8 @@ export default function imagePngPackeExifTest() {
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
-    it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_CALLBACK_0200',0, async (done:Function) => {
-      const tag:string = "SUB_MULTIMEDIA_IMAGE_PACKTOFILE_PIXELMAP_CALLBACK_0200"
+    it('SUB_MULTIMEDIA_IMAGE_PNG_PACKTOFILE_PIXELMAP_CALLBACK_0200',0, async (done:Function) => {
+      const tag:string = "SUB_MULTIMEDIA_IMAGE_PNG_PACKTOFILE_PIXELMAP_CALLBACK_0200"
       try {
         const imagePackerApi : image.ImagePacker = image.createImagePacker();
         let packOpts : image.PackingOption = { format:"image/png", quality:100 };
@@ -305,7 +305,7 @@ export default function imagePngPackeExifTest() {
 
 
     /**
-     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACk_0200
+     * @tc.number    : SUB_MULTIMEDIA_IMAGE_PNG_PACKTOFILE_IMAGESOURCE_CALLBACk_0200
      * @tc.name      : packToFile -callback
      * @tc.desc      : 1.pacToFile
      *                 2.getImageProperty
@@ -313,8 +313,8 @@ export default function imagePngPackeExifTest() {
      * @tc.type      : Functional
      * @tc.level     : Level 3
      */
-    it('SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACk_0200',0, async (done:Function) => {
-      const tag:string = 'SUB_MULTIMEDIA_IMAGE_PACKTOFILE_IMAGESOURCE_CALLBACk_0200'
+    it('SUB_MULTIMEDIA_IMAGE_PNG_PACKTOFILE_IMAGESOURCE_CALLBACk_0200',0, async (done:Function) => {
+      const tag:string = 'SUB_MULTIMEDIA_IMAGE_PNG_PACKTOFILE_IMAGESOURCE_CALLBACk_0200'
       try {
         const imagePackerApi : image.ImagePacker = image.createImagePacker();
         let packOpts : image.PackingOption = { format:"image/png", quality:100 };
