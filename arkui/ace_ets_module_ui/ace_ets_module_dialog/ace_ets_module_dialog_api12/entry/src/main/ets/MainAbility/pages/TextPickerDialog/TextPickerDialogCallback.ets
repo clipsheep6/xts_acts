@@ -18,58 +18,33 @@ import events_emitter from '@ohos.events.emitter';
 struct TextPickerDialogExampleA {
   private select: number | number[] = 2
   private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4', 'banana5']
+  private order: string = ''
 
   build() {
     Row() {
-      Column() {       
+      Column() {
         Button("TextPickerDialog按esc弹窗逐层退出").key('TextPicker_dialog_B')
           .margin(20)
           .onClick(() => {
             TextPickerDialog.show({
               range: this.fruits,
               onWillAppear: () => {
-                var eventData = {
-                  data: {
-                    "action": 'onWillAppear'
-                  }
-                }
-                let event = {
-                  eventId: 50001,
-                  priority: events_emitter.EventPriority.LOW
-                }
-                events_emitter.emit(event, eventData)
+                this.order += 1
                 console.info("TextPickerDialog: onWillAppear()")
               },
               onDidAppear: () => {
-                var eventData = {
-                  data: {
-                    "action": 'onDidAppear'
-                  }
-                }
-                let event = {
-                  eventId: 50002,
-                  priority: events_emitter.EventPriority.LOW
-                }
-                events_emitter.emit(event, eventData)
+                this.order += 2
                 console.info("TextPickerDialog: onDidAppear()")
               },
               onWillDisappear: () => {
-                var eventData = {
-                  data: {
-                    "action": 'onWillDisappear'
-                  }
-                }
-                let event = {
-                  eventId: 50003,
-                  priority: events_emitter.EventPriority.LOW
-                }
-                events_emitter.emit(event, eventData)
+                this.order += 3
                 console.info("TextPickerDialog: onWillDisappear()")
               },
               onDidDisappear: () => {
+                this.order += 4
                 var eventData = {
                   data: {
-                    "action": 'onDidDisappear'
+                    "action": this.order
                   }
                 }
                 let event = {

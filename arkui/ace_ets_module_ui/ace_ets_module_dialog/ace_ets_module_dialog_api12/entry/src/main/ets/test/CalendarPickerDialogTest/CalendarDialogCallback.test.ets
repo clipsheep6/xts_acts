@@ -14,7 +14,7 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import router from '@system.router';
-import { Driver, ON, } from '@ohos.UiTest';
+import { Driver, ON } from '@ohos.UiTest';
 import CommonFunc from '../../MainAbility/utils/Common';
 import events_emitter from '@ohos.events.emitter';
 
@@ -29,15 +29,15 @@ export default function CalendarDialogCallback() {
       try {
         router.clear();
         let pages = router.getState();
-        console.info("get CalendarDialogAJsunit state pages: " + JSON.stringify(pages));
+        console.info("get CalendarDialogCallback state pages: " + JSON.stringify(pages));
         if (!("CalendarDialogCallback" == pages.name)) {
-          console.info("get CalendarDialogAJsunit state pages.name: " + JSON.stringify(pages.name));
+          console.info("get CalendarDialogCallback state pages.name: " + JSON.stringify(pages.name));
           let result = await router.push(options);
           await CommonFunc.sleep(2000);
-          console.info("push CalendarDialogAJsunit page success " + JSON.stringify(result));
+          console.info("push CalendarDialogCallback page success " + JSON.stringify(result));
         }
       } catch (err) {
-        console.error("push CalendarDialogAJsunit page error: " + err);
+        console.error("push CalendarDialogCallback page error: " + err);
         expect().assertFail();
       }
       done()
@@ -53,44 +53,12 @@ export default function CalendarDialogCallback() {
      */
     it('CalendarPickerDialogCallback_0100', 0, async (done) => {
       let driver1 = Driver.create();
-      let callback = (event) => {
-        expect(event.data.action).assertEqual('onWillAppear');
-        console.info('CalendarPickerDialogCallback_0100 event01: ' + event.data.action);
-      }
-      let event = {
-        eventId: 50001,
-        priority: events_emitter.EventPriority.LOW
-      }
-      events_emitter.on(event, callback);
-      console.info('CalendarPickerDialogCallback_0100 START');
+      await new Promise((res, rej) => setTimeout(res, 1500, '1'))
       let button = await driver1.findComponent(ON.id('Calendar_dialog_A'));
       await button.click();
-      await new Promise((res, rej) => setTimeout(res, 3000, '1'))
 
-      let callback1 = (event) => {
-        expect(event.data.action).assertEqual('onDidAppear');
-        console.info('CalendarPickerDialogCallback_0100 event02: ' + event.data.action);
-      }
-      let event1 = {
-        eventId: 50002,
-        priority: events_emitter.EventPriority.LOW
-      }
-      events_emitter.on(event1, callback1);
-      console.info('CalendarPickerDialogCallback_0100 START');
-
-      let callback2 = (event) => {
-        expect(event.data.action).assertEqual('onWillDisappear');
-        console.info('CalendarPickerDialogCallback_0100 event03: ' + event.data.action);
-      }
-      let event2 = {
-        eventId: 50003,
-        priority: events_emitter.EventPriority.LOW
-      }
-      events_emitter.on(event2, callback2);
-      console.info('CalendarPickerDialogCallback_0100 START');
-
-      let callback3 = (event) => {
-        expect(event.data.action).assertEqual('onDidDisappear');
+      let callback = (event) => {
+        expect(event.data.action).assertEqual('1234');
         console.info('CalendarPickerDialogCallback_0100 event04: ' + event.data.action);
         done();
       }
@@ -98,11 +66,10 @@ export default function CalendarDialogCallback() {
         eventId: 50004,
         priority: events_emitter.EventPriority.LOW
       }
-      events_emitter.on(event3, callback3);
+      events_emitter.on(event3, callback);
       console.info('CalendarPickerDialogCallback_0100 START');
-      await new Promise((res, rej) => setTimeout(res, 3000, '1'))
+      await new Promise((res, rej) => setTimeout(res, 1000, '1'))
       await driver1.pressBack();
-
     });
   })
 }
