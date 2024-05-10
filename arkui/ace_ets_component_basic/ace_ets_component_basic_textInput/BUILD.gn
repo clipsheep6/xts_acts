@@ -11,13 +11,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-group("ActsAceEtsComponentBasicTest") {
+group("ActsAceEtsComponentBasicTextInputTest") {
   testonly = true
   if (is_standard_system) {
     deps = [
-      "ace_ets_component_basic_navigation:ActsAceEtsComponentBasicNavigationTest",
-      "ace_ets_component_basic_richEditor:ActsAceEtsComponentBasicRichEditorTest",
-      "ace_ets_component_basic_textInput:ActsAceEtsComponentBasicTextInputTest",
+      "ace_ets_component_basic_textinput_api12:ActsAceEtsComponentBasicTextInputApi12Test"
     ]
   }
 }
