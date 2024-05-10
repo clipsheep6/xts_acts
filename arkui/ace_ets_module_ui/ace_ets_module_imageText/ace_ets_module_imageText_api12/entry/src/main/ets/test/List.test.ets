@@ -49,6 +49,7 @@ import RichEditorApi1 from './RichEditor/RichEditorApi1.test'
 import RichEditorApi3 from './RichEditor/RichEditorApi3.test'
 import RichEditorApi5 from './RichEditor/RichEditorApi5.test'
 import RichEditorChangeCallback from './RichEditor/RichEditorChangeCallback.test'
+import RichEditor1 from './RichEditorEnhance/RichEditor1.test'
 export default function testsuite() {
 APIContentTypeTest();
 APIUnderlineColorTest();
@@ -86,4 +87,5 @@ APIUnderlineColorTest();
   RichEditorApi3();
   RichEditorApi5();
   RichEditorChangeCallback();
+  RichEditor1();
 }
