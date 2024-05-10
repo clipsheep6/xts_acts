@@ -18,8 +18,6 @@ import { describe, it, expect,beforeAll } from '@ohos/hypium';
 import image from '@ohos.multimedia.image';
 import { BusinessError } from '@ohos.base';
 import fs from '@ohos.file.fs';
-import common from '@ohos.app.ability.common';
-import fileIo from '@ohos.file.fs';
 
 const callbackExpectFail = (done: Function, testTag: string) => {
   try {
@@ -159,32 +157,41 @@ export default function multimediaWebpImageExifTest() {
     const modifyPromiseErrorResult = async (done: Function, testTag: string, key: string, errorDate: string,
                                             value: string) => {
       await getFd('test_exif_v2.webp');
-      const imageSourceApi = image.createImageSource(fdNumber);
+      let imageSourceApi = image.createImageSource(fdNumber);
       if (imageSourceApi == undefined) {
         console.info(testTag + " create image source failed");
         expect().assertFail();
         done();
       } else {
-        await imageSourceApi.modifyImageProperty(key, errorDate)
-          .then(async () => {
+        imageSourceApi.modifyImageProperty(key, errorDate, async (error: BusinessError) => {
+          if (!error) {
             hilog.info(0x0000, testTag,
               `modifyPromiseErrorResult modifyImageProperty error code success %{public}s %{public}s`, key, errorDate);
-            await imageSourceApi.getImageProperty(key)
+            let imageSourceApiGet = image.createImageSource(fdNumber);
+            await imageSourceApiGet.getImageProperty(key)
               .then((data: string) => {
                 hilog.info(0x0000, testTag,
                   `modifyPromiseErrorResult getModifiedProperty error success %{public}s %{public}s `, key, data);
               })
             expect().assertFail();
             done();
-          })
-          .catch(async (err: BusinessError) => {
-            if (62980135 == err.code) {
-              await imageSourceApi.getImageProperty(key)
+          } else {
+            hilog.info(0x0000, testTag,
+              `modifyPromiseErrorResult modifyImageProperty error code compare %{public}s %{public}s %{public}s `,
+              key, error.code, '62980135');
+            if (62980135 == error.code) {
+              let imageSourceApiGet = image.createImageSource(fdNumber);
+              await imageSourceApiGet.getImageProperty(key)
                 .then((data: string) => {
                   hilog.info(0x0000, testTag,
-                    `modifyPromiseErrorResult getModifiedProperty success %{public}s %{public}s %{public}s`,testTag, key, data);
-                  expect(data === value).assertTrue();
-                  done();
+                    `modifyPromiseErrorResult getModifiedProperty success %{public}s %{public}s %{public}s`, key, data, value);
+                  if (data == value) {
+                    expect(true).assertTrue();
+                    done();
+                  } else {
+                    expect().assertFail();
+                    done();
+                  }
                 })
                 .catch((err: BusinessError) => {
                   hilog.info(0x0000, testTag,
@@ -193,12 +200,11 @@ export default function multimediaWebpImageExifTest() {
                   done();
                 })
             } else {
-              hilog.info(0x0000, testTag,
-                `modifyPromiseErrorResult modifyImageProperty error code compare failed %{public}s %{public}s %{public}s`, testTag, key, err.code);
-              expect(false).assertTrue()
-              done()
+              expect().assertFail();
+              done();
             }
-          })
+          }
+        })
       }
     }
 
@@ -652,7 +658,7 @@ export default function multimediaWebpImageExifTest() {
       try {
         await modifyPromiseResult(done, testTag, key, modifyDate, compareDate);
       } catch (e) {
-        hilog.info(0x0000, testTag, `modifyImageProperty promise error PhotographicSensitivity ` + e);
+        hilog.info(0x0000, testTag, `modifyImageProperty promise error Model ` + e);
         expect().assertFail();
         done();
       }
@@ -3590,7 +3596,7 @@ export default function multimediaWebpImageExifTest() {
             })
         }
       } catch (e) {
-        hilog.info(0x0000, testTag, `modifyImageProperty promise error PhotographicSensitivity ` + e);
+        hilog.info(0x0000, testTag, `modifyImageProperty promise error HwMnoteCaptureMode ` + e);
         expect().assertFail();
         done();
       }
@@ -3598,9 +3604,9 @@ export default function multimediaWebpImageExifTest() {
 
     /**
      * @tc.number    : SUB_MULTIMEDIA_WEBP_EXIF_MODIFYIMAGEPROPERTY_PROMISE_014600
-     * @tc.name      : modifyImageProperty('Model')_promise
+     * @tc.name      : modifyImageProperty('LightSource')_promise
      * @tc.desc      : 1.create imageSource
-     *                 2.modifyImageProperty('Model', `%s \\0`)_promise
+     *                 2.modifyImageProperty('LightSource', `%s \\0`)_promise
      *                 3.getImageProperty_callback value is the expected value
      * @tc.size      : MediumTest
      * @tc.type      : Functional
@@ -3614,7 +3620,7 @@ export default function multimediaWebpImageExifTest() {
       try {
         await modifyPromiseResult(done, testTag, key, modifyDate, compareDate);
       } catch (e) {
-        hilog.info(0x0000, testTag, `modifyImageProperty promise error PhotographicSensitivity ` + e);
+        hilog.info(0x0000, testTag, `modifyImageProperty promise error LightSource ` + e);
         expect().assertFail();
         done();
       }
@@ -4047,10 +4053,30 @@ export default function multimediaWebpImageExifTest() {
      */
     it('SUB_MULTIMEDIA_WEBP_EXIF_GETIMAGEPROPERTY_PROMISE_01900', 0, async (done: Function) => {
       const testTag = 'SUB_MULTIMEDIA_WEBP_EXIF_GETIMAGEPROPERTY_PROMISE_01900'
-      const key: string = 'model';
-      const value: string = '2.2.0.0';
+      const key: string = 'Model';
+      const value: string = 'TNY-AL00';
       try {
-        await getPromiseResult(done, testTag, key, value);
+        await getFd('test_webp_exif.webp');
+        const imageSourceApi = image.createImageSource(fdNumber);
+        if (imageSourceApi == undefined) {
+          console.info(testTag + " create image source failed");
+          expect().assertFail();
+          done();
+        } else {
+          await imageSourceApi.getImageProperty(key)
+            .then((data: string) => {
+              hilog.info(0x0000, testTag,
+                `getImageProperty promise success %{public}s %{public}s | data: %{public}s | %{public}s`, testTag, key, data, value);
+              expect(data.trim() === value.trim()).assertTrue();
+              done();
+            })
+            .catch((err: BusinessError) => {
+              hilog.info(0x0000, testTag,
+                `getImageProperty promise failed %{public}s %{public}s %{public}s`,testTag, key, err.code);
+              expect().assertFail();
+              done();
+            })
+        }
       } catch (e) {
         hilog.info(0x0000, testTag, `getImageProperty error HwMnoteSceneVersion ` + e);
         expect().assertFail();
@@ -4866,9 +4892,9 @@ export default function multimediaWebpImageExifTest() {
 
     /**
      * @tc.number    : SUB_MULTIMEDIA_WEBP_EXIF_GETIMAGEPROPERTY_PROMISE_05500
-     * @tc.name      : getImageProperty('WEBPInterchangeFormat', property)_promise
+     * @tc.name      : getImageProperty('JPEGInterchangeFormat', property)_promise
      * @tc.desc      : 1.create imageSource
-     *                 2.getImageProperty('WEBPInterchangeFormat')_promise
+     *                 2.getImageProperty('JPEGInterchangeFormat')_promise
      *                 3.the getImageProperty value is the expected value
      * @tc.size      : MediumTest
      * @tc.type      : Functional
@@ -4876,10 +4902,30 @@ export default function multimediaWebpImageExifTest() {
      */
     it('SUB_MULTIMEDIA_WEBP_EXIF_GETIMAGEPROPERTY_PROMISE_05500', 0, async (done: Function) => {
       const testTag = 'SUB_MULTIMEDIA_WEBP_EXIF_GETIMAGEPROPERTY_PROMISE_05500'
-      const key: string = 'WEBPInterchangeFormat';
-      const value: string = '2.2.0.0';
+      const key: string = 'JPEGInterchangeFormat';
+      const value: string = '1252';
       try {
-        await getPromiseResult(done, testTag, key, value);
+        await getFd('test_webp_exif.webp');
+        const imageSourceApi = image.createImageSource(fdNumber);
+        if (imageSourceApi == undefined) {
+          console.info(testTag + " create image source failed");
+          expect().assertFail();
+          done();
+        } else {
+          await imageSourceApi.getImageProperty(key)
+            .then((data: string) => {
+              hilog.info(0x0000, testTag,
+                `getImageProperty promise success %{public}s %{public}s | data: %{public}s | %{public}s`, testTag, key, data, value);
+              expect(data.trim() === value.trim()).assertTrue();
+              done();
+            })
+            .catch((err: BusinessError) => {
+              hilog.info(0x0000, testTag,
+                `getImageProperty promise failed %{public}s %{public}s %{public}s`,testTag, key, err.code);
+              expect().assertFail();
+              done();
+            })
+        }
       } catch (e) {
         hilog.info(0x0000, testTag, `getImageProperty error WEBPInterchangeFormat ` + e);
         expect().assertFail();
@@ -4889,9 +4935,9 @@ export default function multimediaWebpImageExifTest() {
 
     /**
      * @tc.number    : SUB_MULTIMEDIA_WEBP_EXIF_GETIMAGEPROPERTY_PROMISE_05600
-     * @tc.name      : getImageProperty('WEBPInterchangeFormatLength', property)_promise
+     * @tc.name      : getImageProperty('JPEGInterchangeFormatLength', property)_promise
      * @tc.desc      : 1.create imageSource
-     *                 2.getImageProperty('WEBPInterchangeFormatLength')_promise
+     *                 2.getImageProperty('JPEGInterchangeFormatLength')_promise
      *                 3.the getImageProperty value is the expected value
      * @tc.size      : MediumTest
      * @tc.type      : Functional
@@ -4899,12 +4945,32 @@ export default function multimediaWebpImageExifTest() {
      */
     it('SUB_MULTIMEDIA_WEBP_EXIF_GETIMAGEPROPERTY_PROMISE_05600', 0, async (done: Function) => {
       const testTag = 'SUB_MULTIMEDIA_WEBP_EXIF_GETIMAGEPROPERTY_PROMISE_05600'
-      const key: string = 'WEBPInterchangeFormatLength';
-      const value: string = '2.2.0.0';
+      const key: string = 'JPEGInterchangeFormatLength';
+      const value: string = '24042';
       try {
-        await getPromiseResult(done, testTag, key, value);
+        await getFd('test_webp_exif.webp');
+        const imageSourceApi = image.createImageSource(fdNumber);
+        if (imageSourceApi == undefined) {
+          console.info(testTag + " create image source failed");
+          expect().assertFail();
+          done();
+        } else {
+          await imageSourceApi.getImageProperty(key)
+            .then((data: string) => {
+              hilog.info(0x0000, testTag,
+                `getImageProperty promise success %{public}s %{public}s | data: %{public}s | %{public}s`, testTag, key, data, value);
+              expect(data.trim() === value.trim()).assertTrue();
+              done();
+            })
+            .catch((err: BusinessError) => {
+              hilog.info(0x0000, testTag,
+                `getImageProperty promise failed %{public}s %{public}s %{public}s`,testTag, key, err.code);
+              expect().assertFail();
+              done();
+            })
+        }
       } catch (e) {
-        hilog.info(0x0000, testTag, `getImageProperty error WEBPInterchangeFormatLength ` + e);
+        hilog.info(0x0000, testTag, `getImageProperty error JPEGInterchangeFormatLength ` + e);
         expect().assertFail();
         done();
       }
@@ -7971,7 +8037,7 @@ export default function multimediaWebpImageExifTest() {
             })
         }
       } catch (e) {
-        hilog.info(0x0000, testTag, `modifyImageProperty promise error PhotographicSensitivity ` + e);
+        hilog.info(0x0000, testTag, `modifyImageProperty promise error PhotoMode ` + e);
         expect().assertFail();
         done();
       }
@@ -10165,9 +10231,9 @@ export default function multimediaWebpImageExifTest() {
             if (!error) {
               callbackExpectFail(done, testTag)
             } else {
-              if(error.code === 62980135){
+              if(error.code == 62980135){
                 const value = await imageSourceApi.getImageProperty(key)
-                callbackExpect(done, testTag, key, value, "default_exif_value")
+                callbackExpect(done, testTag, key, value, "1")
               }else {
                 callbackExpect(done, testTag, key, '' + error.code, '62980135')
               }
@@ -13729,9 +13795,9 @@ export default function multimediaWebpImageExifTest() {
 
     /**
      * @tc.number    : SUB_MULTIMEDIA_WEBP_EXIF_MODIFYIMAGEPROPERTY_CALLBACK_014500
-     * @tc.name      : modifyImageProperty('PhotographicSensitivity')_callback
+     * @tc.name      : modifyImageProperty('HwMnoteCaptureMode')_callback
      * @tc.desc      : 1.create imageSource
-     *                 2.modifyImageProperty('PhotographicSensitivity', `50`)_callback
+     *                 2.modifyImageProperty('HwMnoteCaptureMode', `123456789`)_callback
      *                 3.getImageProperty_promise value is the expected value
      * @tc.size      : MediumTest
      * @tc.type      : Functional
@@ -13745,13 +13811,11 @@ export default function multimediaWebpImageExifTest() {
       try {
         await modifyCallbackResult(done, testTag, key, modifyDate, compareDate);
       } catch (e) {
-        hilog.info(0x0000, testTag, `modifyImageProperty callback error PhotographicSensitivity ` + e);
+        hilog.info(0x0000, testTag, `modifyImageProperty callback error HwMnoteCaptureMode ` + e);
         expect().assertFail();
         done();
       }
     })
-
-
 
   })
 }
