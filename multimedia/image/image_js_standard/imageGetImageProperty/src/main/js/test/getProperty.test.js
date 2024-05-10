@@ -20,7 +20,7 @@ import { getPropertyBuf } from "./getPropertyBuf";
 import featureAbility from "@ohos.ability.featureAbility";
 export default function imageGetImageProperty() {
     describe("imageGetImageProperty", function () {
-        const { DATE_TIME_ORIGINAL, EXPOSURE_TIME, SCENE_TYPE, ISO_SPEED_RATINGS, F_NUMBER } = image.PropertyKey;
+        const { DATE_TIME_ORIGINAL, EXPOSURE_TIME, SCENE_TYPE, ISO_SPEED_RATINGS, F_NUMBER, GIF_LOOP_COUNT} = image.PropertyKey;
         let filePath;
         let fdNumber;
         async function getFd(fileName) {
@@ -66,6 +66,7 @@ export default function imageGetImageProperty() {
             SceneType: "Directly photographed",
             ISOSpeedRatings: "400",
             FNumber: "f/1.8",
+            GIFLoopCount: "5",
         };
         async function getPromise(done, testNum, type, args) {
             let imageSourceApi;
@@ -256,6 +257,228 @@ export default function imageGetImageProperty() {
                 }
             }
         }
+
+        async function getLoopCount(done, testNum, type, args) {
+            let imageSourceApi;
+            if (type == "buf") {
+                const data = getPropertyBuf.buffer;
+                imageSourceApi = image.createImageSource(data);
+            } else {
+                await getFd("moving_test_loop5.gif");
+                imageSourceApi = image.createImageSource(fdNumber);
+            }
+            if (imageSourceApi == undefined) {
+                console.info(`${testNum} create image source failed`);
+                expect(false).assertTrue();
+                done();
+            } else {
+                imageSourceApi
+                    .getImageProperty(args)
+                    .then((data) => {
+                        console.info(`${testNum} ${args} ` + data);
+                        expect(data == props[args]).assertTrue();
+                        done();
+                    })
+                    .catch((error) => {
+                        console.log(`${testNum} error: ` + error);
+                        expect(false).assertTrue();
+                        done();
+                    });
+            }
+        }
+
+        async function getFiveLoopCount(done, testNum, type, args) {
+            let imageSourceApi;
+            if (type == "buf") {
+                const data = getPropertyBuf.buffer;
+                imageSourceApi = image.createImageSource(data);
+            } else {
+                await getFd("moving_test_loop5.gif");
+                imageSourceApi = image.createImageSource(fdNumber);
+            }
+            if (imageSourceApi == undefined) {
+                console.info(`${testNum} create image source failed`);
+                expect(false).assertTrue();
+                done();
+            } else {
+                imageSourceApi
+                    .getImageProperty(args)
+                    .then((data) => {
+                        console.info(`${testNum} ${args} ` + data);
+                        expect(data == 5).assertTrue();
+                        done();
+                    })
+                    .catch((error) => {
+                        console.log(`${testNum} error: ` + error);
+                        expect(false).assertTrue();
+                        done();
+                    });
+            }
+        }
+
+        async function getOneLoopCount(done, testNum, type, args) {
+            let imageSourceApi;
+            if (type == "buf") {
+                const data = getPropertyBuf.buffer;
+                imageSourceApi = image.createImageSource(data);
+            } else {
+                await getFd("moving_test_loop1.gif");
+                imageSourceApi = image.createImageSource(fdNumber);
+            }
+            if (imageSourceApi == undefined) {
+                console.info(`${testNum} create image source failed`);
+                expect(false).assertTrue();
+                done();
+            } else {
+                imageSourceApi
+                    .getImageProperty(args)
+                    .then((data) => {
+                        console.info(`${testNum} ${args} ` + data);
+                        expect(data == 1).assertTrue();
+                        done();
+                    })
+                    .catch((error) => {
+                        console.log(`${testNum} error: ` + error);
+                        expect(false).assertTrue();
+                        done();
+                    });
+            }
+        }
+
+        async function getZeroLoopCount(done, testNum, type, args) {
+            let imageSourceApi;
+            if (type == "buf") {
+                const data = getPropertyBuf.buffer;
+                imageSourceApi = image.createImageSource(data);
+            } else {
+                await getFd("moving_test_loop0.gif");
+                imageSourceApi = image.createImageSource(fdNumber);
+            }
+            if (imageSourceApi == undefined) {
+                console.info(`${testNum} create image source failed`);
+                expect(false).assertTrue();
+                done();
+            } else {
+                imageSourceApi
+                    .getImageProperty(args)
+                    .then((data) => {
+                        console.info(`${testNum} ${args} ` + data);
+                        expect(data == 0).assertTrue();
+                        done();
+                    })
+                    .catch((error) => {
+                        console.log(`${testNum} error: ` + error);
+                        expect(false).assertTrue();
+                        done();
+                    });
+            }
+        }
+
+        async function getNoGifLoopCount(done, testNum, type, args) {
+            let imageSourceApi;
+            if (type == "buf") {
+                const data = getPropertyBuf.buffer;
+                imageSourceApi = image.createImageSource(data);
+            } else {
+                await getFd("text.jpg");
+                imageSourceApi = image.createImageSource(fdNumber);
+            }
+            if (imageSourceApi == undefined) {
+                console.info(`${testNum} create image source failed`);
+                expect(false).assertTrue();
+                done();
+            } else {
+                imageSourceApi
+                    .getImageProperty(args)
+                    .then((data) => {
+                        console.info(`${testNum} ${args} ` + data);
+                        expect(false).assertTrue();
+                        done();
+                    })
+                    .catch((error) => {
+                        console.log(`${testNum} error: ` + error);
+                        console.log(`${testNum} error: ` + JSON.stringify(error));
+                        expect(error.code == "62980149").assertTrue();
+                        done();
+                    });
+            }
+        }
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_0000
+         * @tc.name      : getImageProperty(GIF_LOOP_COUNT)
+         * @tc.desc      : 1.create imagesource
+         *                 2.set property
+         *                 3.call getImageProperty(GIF_LOOP_COUNT)
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_0000", 0, async function (done) {
+            let key = GIF_LOOP_COUNT;
+            console.info(`SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_0000 start`);
+            getLoopCount(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_0000", "picture", key);
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0100
+         * @tc.name      : test getImageProperty obtains the number of five cycles in the dynamic graph
+         * @tc.desc      : 1.getFd()
+         *                 2.getImageProperty()
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0100", 0, async function (done) {
+            let key = GIF_LOOP_COUNT;
+            console.info(`SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0100 start`);
+            getFiveLoopCount(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0100", "picture", key);
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0200
+         * @tc.name      : test getImageProperty obtains the number of one cycle in the dynamic graph
+         * @tc.desc      : 1.getFd()
+         *                 2.getImageProperty()
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0200", 0, async function (done) {
+            let key = GIF_LOOP_COUNT;
+            console.info(`SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0200 start`);
+            getOneLoopCount(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0200", "picture", key);
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0300
+         * @tc.name      : test getImageProperty to obtain the number of infinite loops in a dynamic graph
+         * @tc.desc      : 1.getFd()
+         *                 2.getImageProperty()
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0300", 0, async function (done) {
+            let key = GIF_LOOP_COUNT;
+            console.info(`SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0300 start`);
+            getZeroLoopCount(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0300", "picture", key);
+        });
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0400
+         * @tc.name      : test getImageProperty to obtain the number of loops in non dynamic graphs
+         * @tc.desc      : 1.getFd()
+         *                 2.getImageProperty()
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it("SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0400", 0, async function (done) {
+            let key = GIF_LOOP_COUNT;
+            console.info(`SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0400 start`);
+            getNoGifLoopCount(done, "SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_CYCLE_0400", "picture", key);
+        });
 
         /**
          * @tc.number    : SUB_MULTIMEDIA_IMAGE_GETIMAGEPROPERTY_PROMISE_0100
