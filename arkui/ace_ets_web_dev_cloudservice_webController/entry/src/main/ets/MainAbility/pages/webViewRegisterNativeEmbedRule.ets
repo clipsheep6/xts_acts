@@ -251,7 +251,7 @@ struct webViewRegisterNativeEmbedRule {
                                                                 px2vp(this.embedMap?.get("cameraTest")?.height))
                             this.nodeController.rebuild()
                             console.log("surfaceId = " + this.embedMap?.get("cameraTest")?.surfaceId);
-                            this.odeContainerWidth = px2vp(this.embedMap?.get("cameraTest")?.width);
+                            this.nodeContainerWidth = px2vp(this.embedMap?.get("cameraTest")?.width);
                             this.nodeContainerHeight = px2vp(this.embedMap?.get("cameraTest")?.height);
                             
                             this.nodeController1.setRenderOption(this.embedMap?.get("cameraTest1")?.surfaceId as string, NodeRenderType.RENDER_TYPE_TEXTURE,

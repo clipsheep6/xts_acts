@@ -820,7 +820,7 @@ interface PageBeginParam {
     url: string
 }
 
-interface pageParams {
+interface PageParams {
     shouldOverlay: boolean;
     componentOverlay?: boolean;
 }
@@ -1041,7 +1041,7 @@ struct WebComponent {
                     this.area = newValue;
                 })
                 .onNativeEmbedGestureEvent((event: NativeEmbedTouchInfo) => {
-                    if (!event.TouchEvent || !this.node_controller) {
+                    if (!event.touchEvent || !this.node_controller) {
                         return;
                     }
                     let ret = this.node_controller.postTouchEvent(event.touchEvent);

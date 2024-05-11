@@ -21,7 +21,7 @@ import Utils from '../../test/Utils';
 @Entry
 @Component
 struct webViewOnMetaViewportTrue {
-  controller: web_webview.WebviewController = new web_webview.WebviewController();
+  controller: webview.WebviewController = new webview.WebviewController();
   handler: FullScreenExitHandler = new FullScreenExitHandler();
   @State str: string = "emitWebViewMetaViewportTrue";
   @State javaScriptAccess: boolean = true;

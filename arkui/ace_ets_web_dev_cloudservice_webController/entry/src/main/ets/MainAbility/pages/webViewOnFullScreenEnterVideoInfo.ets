@@ -46,7 +46,7 @@ struct webViewOnFullScreenEnterInfo {
       if (eventData != null) {
           console.info("valueChangeCallBack:" + JSON.stringify(eventData));
           if (eventData.data != null && eventData.data.ACTION != null) {
-              this.emitKey = eventData.data.ACTION;
+              this.str = eventData.data.ACTION;
           }
       }
   }

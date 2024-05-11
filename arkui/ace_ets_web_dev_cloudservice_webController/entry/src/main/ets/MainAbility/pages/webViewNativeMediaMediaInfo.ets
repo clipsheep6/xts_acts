@@ -115,7 +115,7 @@ class AVPlayerDemo {
             }
             listener?.onBufferedTimeChanged(value);
         })
-        avPlayer.on('onVideoSizeChange', (width: number, height: number) => {
+        avPlayer.on('videoSizeChange', (width: number, height: number) => {
             console.info('AVPlayer state onVideoSizeChange success, and width is:' + width + ', height is :' + height)
             listener?.onVideoSizeChanged(width, height);
         })
@@ -499,7 +499,6 @@ interface PageBeginParam {
 @Component
 struct WebComponent {
   controller: WebviewController = new webview.WebviewController();
-  textAreaController: textAreaController = new textAreaController()
   nativePlayer? : webview.NativeMediaPlayerBridge
   page_url: Resource = $rawfile('nativeMediaInfo.html')
   node_controller?: MyNodeController

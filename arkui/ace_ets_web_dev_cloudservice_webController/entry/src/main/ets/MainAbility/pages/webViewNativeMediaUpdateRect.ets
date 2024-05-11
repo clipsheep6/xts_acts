@@ -502,7 +502,6 @@ interface PageBeginParam {
 @Component
 struct WebComponent {
   controller: WebviewController = new webview.WebviewController();
-  textAreaController: textAreaController = new textAreaController()
   nativePlayer? : webview.NativeMediaPlayerBridge
   page_url: Resource = $rawfile('nativeMediaUpdateRect.html')
   node_controller?: MyNodeController

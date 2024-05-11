@@ -16,7 +16,7 @@ import webViewJsBridgeLastJsProxyCallingFrameUrl from './webViewJsBridgeLastJsPr
 import webViewOnFullScreenEnterVideoInfo from './webViewOnFullScreenEnterVideoInfo.test';
 import webViewNativeVideoMediaInfo from './webViewNativeMediaMediaInfo.test';
 import webViewNativeMediaEnterExitFullScreen from './webViewNativeMediaEnterExitFullScreen.test';
-import webViewNativeVideoSetVolumn from './webViewNativeMediaSetVolumn.test';
+import webViewNativeVideoSetVolume from './webViewNativeMediaSetVolume.test';
 import webViewNativeVideoUpdateRect from './webViewNativeMediaUpdateRect.test';
 import webViewNativeVideoSetMuted from './webViewNativeMediaSetMuted.test';
 import webViewNativeVideoSetSeek from './webViewNativeMediaSetSeek.test';
@@ -43,7 +43,7 @@ export default function testsuite() {
   webViewNativeVideoSetSeek()
   webViewNativeMediaPlayerHandler()
   webViewNativeMediaPlayerHandler2()
-  webViewNativeVideoSetVolumn()
+  webViewNativeVideoSetVolume()
   webViewNativeVideoSetPlaybackRate()
   webViewNativeMediaPlayerHandleFullScreen()
   webViewJsBridgeLastJsProxyCallingFrameUrl()

@@ -13,9 +13,8 @@
  * limitations under the License.
  */
 
-import testsuite from '../../../test/List.test';
 import { Hypium } from '@ohos/hypium';
-import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
+//import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import router from '@ohos.router';
  
 @Entry
@@ -23,11 +22,11 @@ import router from '@ohos.router';
 struct Index {
     aboutAppear() {
         console.info("start run testcase!!!")
-        
-        let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
+
+        /*let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator()
         let abilityDelegatorArguments = AbilityDelegatorRegistry.getArguments()
         console.info('start run testcase!!!!)
-        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)
+        Hypium.hypiumTest(abilityDelegator, abilityDelegatorArguments, testsuite)*/
     }
     
     build() {
@@ -37,7 +36,7 @@ struct Index {
             .fontWeight(FontWeight.Bold)
           Button() {
               Text('next page')
-                .fontSize(25
+                .fontSize(25)
                 .fontWeight(FontWeight.Bold)
           }.type(ButtonType.Capsule)
           .margin({

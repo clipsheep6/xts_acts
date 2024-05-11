@@ -176,7 +176,7 @@ class AVPlayerDemo {
         this.setAVPlayerCallback(this.avPlayer, playerParam.listener);
         let context = getContext(this) as common.UIAbilityContext;
         let fileDescriptor = await context.resourceManager.getRawFd('blender_short.mp4');
-        let avFileDescriptor:media.avFileDescriptor = 
+        let avFileDescriptor:media.AVFileDescriptor = 
             { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
         this.isSeek = true; // 支持seek操作
         // 为fdSrc赋值出发initialized状态机上报
@@ -523,7 +523,7 @@ class AVPlayerListenerImpl implements AVPlayerListener {
         this.handler.handleDurationChanged(duration);
         console.log('[BrowserShell] onNetworkStateChanged(' + webview.NetworkState + '), handler[' + this.handler + ']')
         //this.handler.handleNetWorkStateChanged(webview.NetworkState.LOADING);
-        this.handler.handleNetWorkStateChanged(1);
+        this.handler.handleNetworkStateChanged(1);
     }
     onPlaybackRateChanged(speed: number) {
         console.log('[BrowserShell] onPlaybackRateChanged(' + speed + '), handler[' + this.handler + ']')
@@ -810,7 +810,7 @@ interface PageBeginParam {
     url: string
 }
 
-interface pageParams {
+interface PageParams {
     shouldOverlay: boolean;
     componentOverlay?: boolean;
 }
@@ -885,9 +885,9 @@ struct WebComponent {
                       })
               }
               Web({ src: this.page_url, controller: this.controller })
-                .key('webViewNativeMediaPlayerHandleFullscreenKey)
+                .key('webViewNativeMediaPlayerHandleFullscreenKey')
                 .enableNativeMediaPlayer({ enable: true, shouldOverlay: true })
-                .onPageBegin((event: PageBeginParam) => {
+                .onPageBegin(async(event: PageBeginParam) => {
                     console.error('enter onPageBegin, url:' + event.url);
                     console.error(' in onPageBegin, onCreateNativeMediaPlayer:' + this.controller.onCreateNativeMediaPlayer);
                     this.controller.onCreateNativeMediaPlayer((handler: webview.NativeMediaPlayerHandler, videoInfo: webview.MediaInfo) => {
@@ -916,7 +916,7 @@ struct WebComponent {
                     this.area = newValue;
                 })
                 .onNativeEmbedGestureEvent((event: NativeEmbedTouchInfo) => {
-                    if (!event.TouchEvent || !this.node_controller) {
+                    if (!event.touchEvent || !this.node_controller) {
                         return;
                     }
                     let ret = this.node_controller.postTouchEvent(event.touchEvent);
