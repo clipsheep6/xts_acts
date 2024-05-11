@@ -235,7 +235,6 @@ void RawfileRequest::Stop() {
 
 void RawfileRequest::DidReceiveResponse() {
     OH_LOG_INFO(LOG_APP, "did receive response.");
-//     std::lock_guard<std::mutex> guard(mutex_);
     if (!stopped_) {
         // 接口覆盖
         OH_LOG_INFO(LOG_APP, "OH_ArkWebResourceHandler_DidReceiveResponse start.");
