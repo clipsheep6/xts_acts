@@ -36,8 +36,7 @@ ohos_shared_library("ImageNdk") {
 
   include_dirs = [
     "../cpp",
-    "$MEDIA_IMAGE_DIR/interfaces/kits/native/include/image",
-    "//foundation/hiviewdfx/hilog/interfaces/native/kits/include"
+    "$MEDIA_IMAGE_DIR/interfaces/kits/native/include/image"
   ]
   external_deps = [
     "hilog:hilog_ndk",
