@@ -24,7 +24,6 @@ static napi_value Init(napi_env env, napi_value exports)
     napi_property_descriptor desc[] = {
         STATIC_FUNCTION("JsConvertPixelmapToNapi", JsConvertPixelmapToNapi),
         STATIC_FUNCTION("JsConvertPixelmapFromNapi", JsConvertPixelmapFromNapi),
-        STATIC_FUNCTION("JsImageSourceGetMimeType", JsImageSourceGetMimeType),
         STATIC_FUNCTION("JsPixelMapGetMimeType", JsPixelMapGetMimeType),
     };
     napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
@@ -124,6 +123,42 @@ napi_value ImagePixelMapNativeTest::JsConvertPixelmapFromNapi(napi_env env, napi
         napi_create_int32(env, error, &result);
         return result;
     }
+    return result;
+}
+
+napi_value ImagePixelMapNativeTest::JsPixelMapGetMimeType(napi_env env, napi_callback_info info)
+{
+    napi_value result = nullptr;
+    napi_get_undefined(env, &result);
+    napi_value argValue[NUM_1] = {0};
+    size_t argCount = 1;
+    uint32_t num = getNativeImageSource(env, info, argValue, argCount);
+    if (num != 0)
+    {
+        HiviewDFX::HiLog::Error(LABEL, "getNativeImageSource failed");
+        return result;
+    }
+    int32_t fd = 0;
+    napi_get_value_int32(env, argValue[NUM_0], &fd);
+    OH_PixelmapNative *pixelmap = nullptr;
+    ImagePixelMapNative ISMT;
+    int32_t error = ISMT.GetPixelmap(fd, &pixelmap);
+    if (error != 0)
+    {
+        HiviewDFX::HiLog::Error(LABEL, "GetPixelmap failed");
+        napi_create_int32(env, error, &result);
+        return result;
+    }
+    Image_MimeType mimeType;
+    error = ISMT.GetPixelMapMimeType(pixelmap, &mimeType);
+    if (error != 0)
+    {
+        HiviewDFX::HiLog::Error(LABEL, "GetPixelMapMimeType failed");
+        napi_create_int32(env, error, &result);
+        return result;
+    }
+    std::string name(mimeType.data, mimeType.size);
+    napi_create_string_utf8(env, name.c_str(), NAPI_AUTO_LENGTH, &result);
     return result;
 }
 

@@ -13,6 +13,7 @@ class ImagePixelMapNativeTest {
 public:
     static napi_value JsConvertPixelmapToNapi(napi_env env, napi_callback_info info);
     static napi_value JsConvertPixelmapFromNapi(napi_env env, napi_callback_info info);
+    static napi_value JsPixelMapGetMimeType(napi_env env, napi_callback_info info);
 private:
 };
 } // namespace Media

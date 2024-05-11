@@ -135,12 +135,40 @@ export default function PixelMapNDKTest() {
             }
         }
 
+        async function pixelMapGetMimeTypeTest(done, testNum, picName) {
+            try {
+                console.info("pixelMapGetMimeTypeTest testNum: " + testNum + " picName: " + picName);
+                await getFd(picName);
+                console.info("getFd result fdNumber: " + fdNumber);
+                let res = ndkTest.JsPixelMapGetMimeType(fdNumber);
+                if (res == undefined) {
+                    console.info("pixelMapGetMimeTypeTest undefined");
+                    expect(res == undefined).assertFail();
+                    done();
+                    return;
+                } else {
+                    console.info("pixelMapGetMimeTypeTest success mimeType: " + res);
+                    expect(res != undefined).assertTrue();
+                    done();
+                    return;
+                }
+            } catch {
+                console.info("pixelMapGetMimeTypeTest failed testNum: " + testNum + " res: " + res);
+                expect().assertFail();
+                done();
+            }
+        }
+
         it('SUB_MULTIMEDIA_IMAGE_SOURCE_ConvertPixelmapToNapi_0100', 0, async function (done) {
             await imageSourceCreateFromFdTest(done, "SUB_MULTIMEDIA_IMAGE_SOURCE_ConvertPixelmapToNapi_0100", "test.jpg");
         })
 
         it('SUB_MULTIMEDIA_IMAGE_SOURCE_ConvertPixelmapFromNapi_0200', 0, async function (done) {
             await PixelMapCreateFromFdTest(done, "SUB_MULTIMEDIA_IMAGE_SOURCE_ConvertPixelmapFromNapiT_0200", "test.jpg");
+        })
+
+        it('SUB_MULTIMEDIA_IMAGE_SOURCE_pixelMapGetMimeType_0300', 0, async function (done) {
+            await pixelMapGetMimeTypeTest(done, "SUB_MULTIMEDIA_IMAGE_SOURCE_pixelMapGetMimeType_0300", "test.jpg");
         })
     })
 }

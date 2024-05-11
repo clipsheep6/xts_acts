@@ -119,3 +119,31 @@ int32_t ImagePixelMapNative::GetPixelmapPixelFormat(napi_env env, OH_PixelmapNat
     napi_create_int32(env, PixelFormat, format);
     return ret1;
 }
+
+int32_t ImagePixelMapNative::GetPixelMapMimeType(OH_PixelmapNative *pixelmap, Image_MimeType *mimetype)
+{
+    OH_Pixelmap_ImageInfo *info = nullptr;
+    int32_t error = OH_PixelmapImageInfo_Create(&info);
+    if (error != 0)
+    {
+        OH_PixelmapNative_Release(pixelmap);
+        return 101;
+    }
+
+    error =  OH_PixelmapNative_GetImageInfo(pixelmap, info);
+    if (error != 0)
+    {
+        OH_PixelmapImageInfo_Release(info);
+        OH_PixelmapNative_Release(pixelmap);
+        return 102;
+    }
+    error = OH_PixelmapImageInfo_GetMimeType(info, mimetype);
+    {
+        OH_PixelmapImageInfo_Release(info);
+        OH_PixelmapNative_Release(pixelmap);
+        return error;
+    }
+    OH_PixelmapImageInfo_Release(info);
+    OH_PixelmapNative_Release(pixelmap);
+    return error;
+}

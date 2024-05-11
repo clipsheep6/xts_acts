@@ -20,6 +20,8 @@ public:
     int32_t ConvertPixelmapToNapi(napi_env env, OH_PixelmapNative *pixelmap, napi_value *res);
     int32_t ConvertPixelmapFromNapi(napi_env env, napi_value source, OH_PixelmapNative **pixelmap);
     int32_t GetPixelmapPixelFormat(napi_env env, OH_PixelmapNative *pixelmap, napi_value *format);
+    int32_t GetPixelMapMimeType(OH_PixelmapNative *pixelmap, Image_MimeType *mimetype);
+
 private:
 };
 #endif // PIXEL_MAP_MODULE_TEST_H
