@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import { describe, beforeAll,  afterEach,  it, expect } from '@ohos/hypium'
+import { describe, beforeAll, afterEach, it, expect } from '@ohos/hypium'
 import ndkTest from 'libImageNdk.so'
 import image from "@ohos.multimedia.image";
 import hilog from '@ohos.hilog';
@@ -23,7 +23,7 @@ import fs from '@ohos.file.fs';
 export default function ImagePixelMapCApiTest() {
   describe('ImagePixelMapCApiTest', () => {
     let globalpixelmap: image.PixelMap;
-    let outBuffer:ArrayBuffer = new ArrayBuffer(1200000)
+    let outBuffer: ArrayBuffer = new ArrayBuffer(1200000)
     afterEach(async () => {
       if (globalpixelmap != undefined) {
         console.info('globalpixelmap release start');
@@ -42,18 +42,18 @@ export default function ImagePixelMapCApiTest() {
 
     let filePath: string;
     let fileFd: number;
-    let buffer:ArrayBuffer;
-    let filesDir:string|undefined
+    let buffer: ArrayBuffer;
+    let filesDir: string | undefined
 
     const getFd = async (fileName: string) => {
-      filePath = filesDir + '/' +fileName;
+      filePath = filesDir + '/' + fileName;
       console.log('filePath:', filePath)
       let file = fs.openSync(filePath);
       fileFd = file.fd;
     }
 
-    const getBuffer = async (fileName:string) => {
-      filePath = filesDir + '/' +fileName;
+    const getBuffer = async (fileName: string) => {
+      filePath = filesDir + '/' + fileName;
       console.log('filePath:', filePath)
       let file = fs.openSync(filePath);
       const stats = fs.statSync(filePath);
@@ -63,8 +63,8 @@ export default function ImagePixelMapCApiTest() {
       buffer = bufferRead
     }
 
-    const NDK_CreateFromUri = async (TAG: string, filename: string, done:Function) => {
-      hilog.info(0x0000, 'scaleTest', '%{public}s',  TAG + `ndkTest： ` + JSON.stringify(ndkTest))
+    const NDK_CreateFromUri = async (TAG: string, filename: string, done: Function) => {
+      hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `ndkTest： ` + JSON.stringify(ndkTest))
       await getFd(filename);
       const imageSourceApi = ndkTest.CreateFromUri(filePath)
       if (typeof imageSourceApi === "object") {
@@ -79,7 +79,7 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const NDK_CreateFromFd = async (TAG: string, filename: string, done:Function) => {
+    const NDK_CreateFromFd = async (TAG: string, filename: string, done: Function) => {
       hilog.info(0x0000, 'scaleTest', '%{public}s', `ndkTest： ` + JSON.stringify(ndkTest))
       await getFd(filename);
       const imageSourceApi = ndkTest.CreateFromFd(fileFd);
@@ -95,7 +95,7 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const NDK_CreateFromData = async (TAG: string, filename: string, done:Function) => {
+    const NDK_CreateFromData = async (TAG: string, filename: string, done: Function) => {
       hilog.info(0x0000, 'scaleTest', '%{public}s', `ndkTest： ` + JSON.stringify(ndkTest))
       await getBuffer(filename);
       const imageSourceApi = ndkTest.CreateFromData(buffer);
@@ -111,9 +111,9 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const NDK_CreatePixelMapByUri = async (TAG: string, index:number, rotate:number, x:number, y:number,
-                                           Regionwidth:number, RegionHeight:number, width:number, height:number,
-                                           desiredPixelFormat:number, filename: string, done:Function) => {
+    const NDK_CreatePixelMapByUri = async (TAG: string, index: number, rotate: number, x: number, y: number,
+      Regionwidth: number, RegionHeight: number, width: number, height: number,
+      desiredPixelFormat: number, filename: string, done: Function) => {
       try {
         await getFd(filename);
         console.log('-------------------- NDK' + ndkTest)
@@ -134,7 +134,7 @@ export default function ImagePixelMapCApiTest() {
             ndkTest.PixelMapRelease(pixelMap);
             done()
           } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s',TAG + `pixelMap failed: ${pixelMap}`)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap failed: ${pixelMap}`)
             ndkTest.SourceRelease(imageSourceApi)
             expect(false).assertTrue();
             done()
@@ -151,9 +151,9 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const NDK_CreatePixelMapByFd = async (TAG: string, index:number, rotate:number, x:number, y:number,
-                                          Regionwidth:number, RegionHeight:number, width:number, height:number,
-                                          desiredPixelFormat:number, filename: string, done:Function) => {
+    const NDK_CreatePixelMapByFd = async (TAG: string, index: number, rotate: number, x: number, y: number,
+      Regionwidth: number, RegionHeight: number, width: number, height: number,
+      desiredPixelFormat: number, filename: string, done: Function) => {
       try {
         await getFd(filename);
         const imageSourceApi = ndkTest.CreateFromFd(fileFd);
@@ -173,7 +173,7 @@ export default function ImagePixelMapCApiTest() {
             ndkTest.PixelMapRelease(pixelMap);
             done()
           } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s',TAG + `pixelMap failed: ${pixelMap}`)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap failed: ${pixelMap}`)
             ndkTest.SourceRelease(imageSourceApi);
             expect(false).assertTrue();
             done()
@@ -190,9 +190,9 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const NDK_CreatePixelMapByData = async (TAG: string, index:number, rotate:number, x:number, y:number,
-                                            Regionwidth:number, RegionHeight:number, width:number, height:number,
-                                            desiredPixelFormat:number, filename: string, done:Function) => {
+    const NDK_CreatePixelMapByData = async (TAG: string, index: number, rotate: number, x: number, y: number,
+      Regionwidth: number, RegionHeight: number, width: number, height: number,
+      desiredPixelFormat: number, filename: string, done: Function) => {
       try {
         await getBuffer(filename);
         const imageSourceApi = ndkTest.CreateFromData(buffer);
@@ -212,7 +212,7 @@ export default function ImagePixelMapCApiTest() {
             ndkTest.PixelMapRelease(pixelMap);
             done()
           } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s',TAG + `pixelMap failed: ${pixelMap}`)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap failed: ${pixelMap}`)
             ndkTest.SourceRelease(imageSourceApi);
             expect(false).assertTrue();
             done()
@@ -230,9 +230,9 @@ export default function ImagePixelMapCApiTest() {
     }
 
 
-    const NDK_CreatePixelMapListByUri = async (TAG: string, index:number, rotate:number, x:number, y:number,
-                                               Regionwidth:number, RegionHeight:number, width:number, height:number,
-                                               desiredPixelFormat:number, filename: string, done:Function) => {
+    const NDK_CreatePixelMapListByUri = async (TAG: string, index: number, rotate: number, x: number, y: number,
+      Regionwidth: number, RegionHeight: number, width: number, height: number,
+      desiredPixelFormat: number, filename: string, done: Function) => {
       try {
         await getFd(filename);
         const imageSourceApi = ndkTest.CreateFromUri(filePath);
@@ -254,7 +254,7 @@ export default function ImagePixelMapCApiTest() {
             });
             done()
           } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s',TAG + `pixelMapList failed: ${pixelMapList}`)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList failed: ${pixelMapList}`)
             ndkTest.SourceRelease(imageSourceApi);
             expect(false).assertTrue();
             done()
@@ -271,9 +271,9 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const NDK_CreatePixelMapListByFd = async (TAG: string, index:number, rotate:number, x:number, y:number,
-                                              Regionwidth:number, RegionHeight:number, width:number, height:number,
-                                              desiredPixelFormat:number, filename: string, done:Function) => {
+    const NDK_CreatePixelMapListByFd = async (TAG: string, index: number, rotate: number, x: number, y: number,
+      Regionwidth: number, RegionHeight: number, width: number, height: number,
+      desiredPixelFormat: number, filename: string, done: Function) => {
       try {
         await getFd(filename);
         const imageSourceApi = ndkTest.CreateFromFd(fileFd);
@@ -295,7 +295,7 @@ export default function ImagePixelMapCApiTest() {
             });
             done()
           } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s',TAG + `pixelMapList failed: ${pixelMapList}`)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList failed: ${pixelMapList}`)
             ndkTest.SourceRelease(imageSourceApi);
             expect(false).assertTrue();
             done()
@@ -312,9 +312,9 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const NDK_CreatePixelMapListByData = async (TAG: string, index:number, rotate:number, x:number, y:number,
-                                                Regionwidth:number, RegionHeight:number, width:number, height:number,
-                                                desiredPixelFormat:number, filename: string, done:Function) => {
+    const NDK_CreatePixelMapListByData = async (TAG: string, index: number, rotate: number, x: number, y: number,
+      Regionwidth: number, RegionHeight: number, width: number, height: number,
+      desiredPixelFormat: number, filename: string, done: Function) => {
       try {
         await getBuffer(filename);
         const imageSourceApi = ndkTest.CreateFromData(buffer);
@@ -336,7 +336,7 @@ export default function ImagePixelMapCApiTest() {
             });
             done()
           } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s',TAG + `pixelMapList failed: ${pixelMapList}`)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList failed: ${pixelMapList}`)
             ndkTest.SourceRelease(imageSourceApi);
             expect(false).assertTrue();
             done()
@@ -354,7 +354,7 @@ export default function ImagePixelMapCApiTest() {
     }
 
 
-    const NDK_GetDelayTime = async (TAG: string, filename: string, type: string, done:Function) => {
+    const NDK_GetDelayTime = async (TAG: string, filename: string, type: string, done: Function) => {
       try {
         await getFd(filename);
         let imageSourceApi: image.ImageSource = ndkTest.CreateFromUri(filePath);
@@ -369,13 +369,13 @@ export default function ImagePixelMapCApiTest() {
         if (typeof imageSourceApi === "object") {
           hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
           const delayTime = ndkTest.GetDelayTime(imageSourceApi)
-          if (Array.isArray(delayTime)){
+          if (Array.isArray(delayTime)) {
             hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `delayTime success:${delayTime}`)
             ndkTest.SourceRelease(imageSourceApi);
             expect(true).assertTrue();
             done()
           } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s',TAG + `delayTime failed: ${delayTime}`)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `delayTime failed: ${delayTime}`)
             ndkTest.SourceRelease(imageSourceApi);
             expect(false).assertTrue();
             done()
@@ -392,20 +392,20 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const NDK_GetImageInfoByUri = async (TAG: string, index:number, filename: string, done:Function) => {
+    const NDK_GetImageInfoByUri = async (TAG: string, index: number, filename: string, done: Function) => {
       try {
         await getFd(filename);
         const imageSourceApi = ndkTest.CreateFromUri(filePath);
         if (typeof imageSourceApi === "object") {
           hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          const  imageInfo = ndkTest.GetImageInfo(imageSourceApi, index)
+          const imageInfo = ndkTest.GetImageInfo(imageSourceApi, index)
           if (typeof imageInfo === "object") {
             hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo success: ${imageInfo}`)
             ndkTest.SourceRelease(imageSourceApi);
             expect(true).assertTrue();
             done()
           } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s',TAG + `imageInfo failed: ${imageInfo}`)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo failed: ${imageInfo}`)
             ndkTest.SourceRelease(imageSourceApi);
             expect(false).assertTrue();
             done()
@@ -422,20 +422,20 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const NDK_GetImageInfoByFd = async (TAG: string, index:number, filename: string, done:Function) => {
+    const NDK_GetImageInfoByFd = async (TAG: string, index: number, filename: string, done: Function) => {
       try {
         await getFd(filename);
         const imageSourceApi = ndkTest.CreateFromFd(fileFd);
         if (typeof imageSourceApi === "object") {
           hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          const  imageInfo = ndkTest.GetImageInfo(imageSourceApi, index)
+          const imageInfo = ndkTest.GetImageInfo(imageSourceApi, index)
           if (typeof imageInfo === "object") {
             hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo success: ${imageInfo}`)
             ndkTest.SourceRelease(imageSourceApi);
             expect(true).assertTrue();
             done()
           } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s',TAG + `imageInfo failed: ${imageInfo}`)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo failed: ${imageInfo}`)
             ndkTest.SourceRelease(imageSourceApi);
             expect(false).assertTrue();
             done()
@@ -452,20 +452,20 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const NDK_GetImageInfoByData = async (TAG: string, index:number, filename: string, done:Function) => {
+    const NDK_GetImageInfoByData = async (TAG: string, index: number, filename: string, done: Function) => {
       try {
         await getBuffer(filename);
         const imageSourceApi = ndkTest.CreateFromData(buffer);
         if (typeof imageSourceApi === "object") {
           hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          const  imageInfo = ndkTest.GetImageInfo(imageSourceApi, index)
+          const imageInfo = ndkTest.GetImageInfo(imageSourceApi, index)
           if (typeof imageInfo === "object") {
             hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo success: ${imageInfo}`)
             ndkTest.SourceRelease(imageSourceApi);
             expect(true).assertTrue();
             done()
           } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s',TAG + `imageInfo failed: ${imageInfo}`)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo failed: ${imageInfo}`)
             ndkTest.SourceRelease(imageSourceApi);
             expect(false).assertTrue();
             done()
@@ -482,7 +482,7 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const NDK_GetImageProperty = async (TAG: string, filename: string, type: string, done:Function) => {
+    const NDK_GetImageProperty = async (TAG: string, filename: string, type: string, done: Function) => {
       try {
         let key = image.PropertyKey.SCENE_TYPE;
         await getFd(filename);
@@ -497,7 +497,7 @@ export default function ImagePixelMapCApiTest() {
           expect(true).assertTrue();
           done()
         } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s',TAG + `imageInfo failed: ${imagePropertyRes}`)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo failed: ${imagePropertyRes}`)
           ndkTest.SourceRelease(imageSourceApi);
           expect(false).assertTrue();
           done()
@@ -509,57 +509,57 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const NDK_ModifyImagePropertyByUri = async (TAG: string, filename: string, done:Function) => {
+    const NDK_ModifyImagePropertyByUri = async (TAG: string, filename: string, done: Function) => {
       try {
         await getFd(filename);
         const imageSourceApi = ndkTest.CreateFromUri(filePath);
         let propertyModifyRes = ndkTest.ModifyImageProperty(imageSourceApi, image.PropertyKey.ORIENTATION, "4");
         if (propertyModifyRes === 0) {
           hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes success:` +
-          JSON.stringify(propertyModifyRes))
+            JSON.stringify(propertyModifyRes))
           ndkTest.SourceRelease(imageSourceApi);
           expect(true).assertTrue();
           done();
         } else {
           hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes failed:` +
-          JSON.stringify(propertyModifyRes))
+            JSON.stringify(propertyModifyRes))
           ndkTest.SourceRelease(imageSourceApi);
           expect(false).assertTrue();
           done();
         }
       } catch (error) {
-        hilog.info(0x0000, 'scaleTest', '%{public}s',  TAG + `imagePropertyRes failed:` + error)
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes failed:` + error)
         expect().assertTrue();
         done();
       }
     }
 
-    const NDK_ModifyImagePropertyByFd = async (TAG: string, filename: string, done:Function) => {
+    const NDK_ModifyImagePropertyByFd = async (TAG: string, filename: string, done: Function) => {
       try {
         await getFd(filename);
         const imageSourceApi = ndkTest.CreateFromFd(fileFd);
         let propertyModifyRes = ndkTest.ModifyImageProperty(imageSourceApi, image.PropertyKey.ORIENTATION, "4");
         if (propertyModifyRes === 0) {
           hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes success:` +
-          JSON.stringify(propertyModifyRes))
+            JSON.stringify(propertyModifyRes))
           ndkTest.SourceRelease(imageSourceApi);
           expect(true).assertTrue();
           done();
         } else {
           hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes failed:` +
-          JSON.stringify(propertyModifyRes))
+            JSON.stringify(propertyModifyRes))
           ndkTest.SourceRelease(imageSourceApi);
           expect(false).assertTrue();
           done();
         }
       } catch (error) {
-        hilog.info(0x0000, 'scaleTest', '%{public}s',  TAG + `imagePropertyRes failed:` + error)
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes failed:` + error)
         expect().assertTrue();
         done();
       }
     }
 
-    const NDK_GetFrameCount = async (TAG: string, filename: string, type: string, done:Function) => {
+    const NDK_GetFrameCount = async (TAG: string, filename: string, type: string, done: Function) => {
       try {
         await getFd(filename);
         let imageSourceApi: image.ImageSource = ndkTest.CreateFromUri(filePath);
@@ -572,7 +572,7 @@ export default function ImagePixelMapCApiTest() {
         }
         if (typeof imageSourceApi === "object") {
           hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          const  frameCount = ndkTest.GetFrameCount(imageSourceApi)
+          const frameCount = ndkTest.GetFrameCount(imageSourceApi)
           ndkTest.SourceRelease(imageSourceApi);
           if (Object.values(frameCount)[1] === 0) {
             hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `frameCount success: ${Object.values(frameCount)[1]}`)
@@ -595,7 +595,7 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const NDK_SourceRelease = async (TAG: string, filename: string, type: string, done:Function) => {
+    const NDK_SourceRelease = async (TAG: string, filename: string, type: string, done: Function) => {
       try {
         await getFd(filename);
         let imageSourceApi: image.ImageSource = ndkTest.CreateFromUri(filePath);
@@ -614,25 +614,25 @@ export default function ImagePixelMapCApiTest() {
             expect(true).assertTrue();
             done()
           } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s',  TAG + `release failed: ${release}`)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `release failed: ${release}`)
             expect(false).assertTrue();
             done()
           }
         } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s',  TAG + `create image source failed: ${imageSourceApi}`)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed: ${imageSourceApi}`)
           expect(false).assertTrue();
           done();
         }
       } catch (error) {
-        console.error( TAG + "Test exception" + error);
+        console.error(TAG + "Test exception" + error);
         expect(false).assertTrue();
         done();
       }
     }
 
-    const NDK_GetImageInfoByOption = async (TAG: string, index:number, rotate:number, x:number, y:number,
-                                            Regionwidth:number, RegionHeight:number, width:number, height:number,
-                                            desiredPixelFormat:number, done:Function) => {
+    const NDK_GetImageInfoByOption = async (TAG: string, index: number, rotate: number, x: number, y: number,
+      Regionwidth: number, RegionHeight: number, width: number, height: number,
+      desiredPixelFormat: number, done: Function) => {
       try {
         let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
         ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
@@ -721,7 +721,7 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const compResult = (res:Number, done:Function) =>{
+    const compResult = (res: Number, done: Function) => {
       if (res === -1 || res === 62980115 || res === 1) {
         expect(false).assertTrue();
         done()
@@ -731,9 +731,9 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const compResultC = (res:Number, done:Function) =>{
+    const compResultC = (res: Number, done: Function) => {
 
-      if (res !== 0){
+      if (res !== 0) {
         expect(true).assertTrue();
         done()
       } else {
@@ -742,18 +742,18 @@ export default function ImagePixelMapCApiTest() {
       }
     }
 
-    const closeFile = (fileFd:number) => {
+    const closeFile = (fileFd: number) => {
       try {
         fs.closeSync(fileFd)
-      }catch (e) {
-        console.log("close failed FD ",  fileFd)
+      } catch (e) {
+        console.log("close failed FD ", fileFd)
 
       }
     }
 
 
-    const NDK_Packer = async (TAG: string, filename: string, done:Function, apiType:string, dataSource:string,
-                              quality:number, mimeType:string, counterExample: boolean):Promise<void> => {
+    const NDK_Packer = async (TAG: string, filename: string, done: Function, apiType: string, dataSource: string,
+      quality: number, mimeType: string, counterExample: boolean): Promise<void> => {
       try {
         hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} start`)
         const parker = ndkTest.PackerCreate()
@@ -765,18 +765,18 @@ export default function ImagePixelMapCApiTest() {
           const imageSourceApi = ndkTest.CreateFromFd(fileFd);
           hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} imageSource ${imageSourceApi}`)
           if (imageSourceApi) {
-            let packOpts : image.PackingOption = ndkTest.CreatePackingOptions()
+            let packOpts: image.PackingOption = ndkTest.CreatePackingOptions()
             hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} createPackOpts ${imageSourceApi}`)
             const resQuality = ndkTest.PackingOptionsSetQuality(packOpts, quality)
             const resMimeType = ndkTest.PackingOptionsSetMimeType(packOpts, mimeType)
             hilog.info(0x0000, 'scaleTest', '%{public}s', ` ${TAG} res1 res2 test ${resQuality} ${resMimeType}`)
             let res: number
             hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} 1111 `)
-            if(resQuality&&resMimeType){
+            if (resQuality && resMimeType) {
               expect(false).assertTrue();
             }
             hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} 222 `)
-            if(dataSource === "pixelMap"){
+            if (dataSource === "pixelMap") {
               hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} 333 `)
               const imagesource = ndkTest.CreateFromFd(fileFd)
               hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} imageSource ${imagesource}`)
@@ -785,30 +785,30 @@ export default function ImagePixelMapCApiTest() {
               hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} pixelMap ${pixelMap}`)
               hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} packOpts ${packOpts}`)
               hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} parker ${parker}`)
-              if(apiType === "packing"){
+              if (apiType === "packing") {
                 hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToDataFromPixelMap`)
                 res = ndkTest.PackToDataFromPixelMap(parker, packOpts, pixelMap, outBuffer)
                 hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToDataFromPixelMap ${res}`)
-              }else{
+              } else {
                 hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} .PackToFileFromPixelMap`)
                 res = ndkTest.PackToFileFromPixelMap(parker, packOpts, pixelMap, fileFd)
                 hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} .PackToFileFromPixelMap ${res}`)
               }
               hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} 444 `)
-            }else {
-              if (apiType === "packing"){
+            } else {
+              if (apiType === "packing") {
                 hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToDataFromImageSource`)
                 res = ndkTest.PackToDataFromImageSource(parker, packOpts, imageSourceApi, outBuffer)
                 hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToDataFromImageSource res  ${res}`)
-              }else {
+              } else {
                 hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToFileFromImageSource`)
-                res = ndkTest.PackToFileFromImageSource(parker,packOpts, imageSourceApi,fileFd)
+                res = ndkTest.PackToFileFromImageSource(parker, packOpts, imageSourceApi, fileFd)
                 hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToFileFromImageSource ${res}`)
               }
             }
             closeFile(fileFd)
             hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} packresult ${res}`)
-            if(counterExample){
+            if (counterExample) {
               return compResultC(res, done)
             }
             return compResult(res, done)
@@ -1081,7 +1081,7 @@ export default function ImagePixelMapCApiTest() {
     it('SUB_MULTIMEDIA_PIXELMAPCAPI_Scale_0100', 0, (done: Function) => {
       let resultPixelmap = ndkTest.testCreatePixelmap(6, 4, 3, 1)
       expect(resultPixelmap).assertEqual(0)
-      let result = ndkTest.testScale(100,100)
+      let result = ndkTest.testScale(100, 100)
       expect(result).assertEqual(0)
       done();
     })
@@ -1097,7 +1097,7 @@ export default function ImagePixelMapCApiTest() {
     it('SUB_MULTIMEDIA_PIXELMAPCAPI_Translate_0100', 0, (done: Function) => {
       let resultPixelmap = ndkTest.testCreatePixelmap(6, 4, 3, 1)
       expect(resultPixelmap).assertEqual(0)
-      let result = ndkTest.testTranslate(100,100)
+      let result = ndkTest.testTranslate(100, 100)
       expect(result).assertEqual(0)
       done();
     })
@@ -1129,7 +1129,7 @@ export default function ImagePixelMapCApiTest() {
     it('SUB_MULTIMEDIA_PIXELMAPCAPI_Flip_0100', 0, (done: Function) => {
       let resultPixelmap = ndkTest.testCreatePixelmap(6, 4, 3, 1)
       expect(resultPixelmap).assertEqual(0)
-      let result = ndkTest.testFlip(true,true)
+      let result = ndkTest.testFlip(true, true)
       expect(result).assertEqual(0)
       done();
     })
@@ -1145,7 +1145,7 @@ export default function ImagePixelMapCApiTest() {
     it('SUB_MULTIMEDIA_PIXELMAPCAPI_Crop_0100', 0, (done: Function) => {
       let resultPixelmap = ndkTest.testCreatePixelmap(6, 4, 3, 1)
       expect(resultPixelmap).assertEqual(0)
-      let result = ndkTest.testCrop(100,100,100,100)
+      let result = ndkTest.testCrop(100, 100, 100, 100)
       expect(result).assertEqual(0)
       done();
     })
@@ -1155,7 +1155,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromUri
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1168,7 +1168,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromUri
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1181,7 +1181,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromUri
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1194,7 +1194,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromUri
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1207,7 +1207,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromUri
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1220,7 +1220,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromUri
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1233,7 +1233,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromUri
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1246,7 +1246,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromUri
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1259,7 +1259,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromFd
      * @tc.desc      : 1.get image fileFd
      *                 2.createImageSourceFromFd
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1272,7 +1272,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromFd
      * @tc.desc      : 1.get image fileFd
      *                 2.createImageSourceFromFd
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1285,7 +1285,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromFd
      * @tc.desc      : 1.get image fileFd
      *                 2.createImageSourceFromFd
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1298,7 +1298,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromFd
      * @tc.desc      : 1.get image fileFd
      *                 2.createImageSourceFromFd
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1311,7 +1311,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromFd
      * @tc.desc      : 1.get image fileFd
      *                 2.createImageSourceFromFd
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1324,7 +1324,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromFd
      * @tc.desc      : 1.get image fileFd
      *                 2.createImageSourceFromFd
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1337,7 +1337,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromFd
      * @tc.desc      : 1.get image fileFd
      *                 2.createImageSourceFromFd
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1350,7 +1350,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromFd
      * @tc.desc      : 1.get image fileFd
      *                 2.createImageSourceFromFd
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1363,7 +1363,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromBuffer
      * @tc.desc      : 1.get testPng.buffer
      *                 2.createImageSourceFromBuffer
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1376,7 +1376,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromBuffer
      * @tc.desc      : 1.get testPng.buffer
      *                 2.createImageSourceFromBuffer
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1389,7 +1389,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromBuffer
      * @tc.desc      : 1.get testPng.buffer
      *                 2.createImageSourceFromBuffer
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1402,7 +1402,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromBuffer
      * @tc.desc      : 1.get testPng.buffer
      *                 2.createImageSourceFromBuffer
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1415,7 +1415,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromBuffer
      * @tc.desc      : 1.get testPng.buffer
      *                 2.createImageSourceFromBuffer
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1428,7 +1428,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromBuffer
      * @tc.desc      : 1.get testPng.buffer
      *                 2.createImageSourceFromBuffer
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1441,7 +1441,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromBuffer
      * @tc.desc      : 1.get testPng.buffer
      *                 2.createImageSourceFromBuffer
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1454,7 +1454,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : createImageSourceFromBuffer
      * @tc.desc      : 1.get testPng.buffer
      *                 2.createImageSourceFromBuffer
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1468,7 +1468,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuUri,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1483,7 +1483,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuUri,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1498,7 +1498,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuUri,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1513,7 +1513,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuUri,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1528,7 +1528,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuUri,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1543,7 +1543,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuUri,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1558,7 +1558,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuUri,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1573,7 +1573,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuUri,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1588,7 +1588,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuFd,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1603,7 +1603,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuFd,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1618,7 +1618,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuFd,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1633,7 +1633,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuFd,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1648,7 +1648,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuFd,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1663,7 +1663,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuFd,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1678,7 +1678,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuFd,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1693,7 +1693,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuFd,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1708,7 +1708,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuData,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1723,7 +1723,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuData,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1738,7 +1738,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuData,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1753,7 +1753,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuData,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1768,7 +1768,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuData,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1783,7 +1783,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuData,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1798,7 +1798,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuData,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1813,7 +1813,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuData,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMap
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1828,7 +1828,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuUri,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMapList
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1843,7 +1843,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromuUri,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMapList
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1858,7 +1858,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromFd,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMapList
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1873,7 +1873,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromFd,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMapList
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1888,7 +1888,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromData,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMapList
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1903,7 +1903,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.getimagepath,2.createImageSourceFromData,3.CreateDecodingOptions,4.DecodingOptionsSetFormat，
      *                 5.DecodingOptionsSetIndex,6.DecodingOptionsSetRotate,7.DecodingOptionsSetDesiredSize,
      *                 8.DecodingOptionsSetDesiredRegion,9.CreatePixelMapList
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1918,7 +1918,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
      *                 3.GetDelayTime
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1932,7 +1932,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromFd
      *                 3.GetDelayTime
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1946,7 +1946,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromData
      *                 3.GetDelayTime
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1960,7 +1960,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1974,7 +1974,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -1988,7 +1988,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2002,7 +2002,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2016,7 +2016,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2030,7 +2030,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2044,7 +2044,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2058,7 +2058,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2072,7 +2072,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromFd
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2086,7 +2086,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromFd
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2100,7 +2100,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromFd
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2114,7 +2114,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromFd
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2128,7 +2128,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromFd
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2142,7 +2142,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromFd
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2156,7 +2156,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromFd
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2170,7 +2170,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromFd
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2184,7 +2184,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromData
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2198,7 +2198,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromData
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2212,7 +2212,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromData
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2226,7 +2226,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromData
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2240,7 +2240,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromData
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2254,7 +2254,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromData
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2268,7 +2268,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromData
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2282,7 +2282,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromData
      *                 3.GetImageInfo
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2296,7 +2296,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
      *                 3.GetImageProperty
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2310,7 +2310,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromFd
      *                 3.GetImageProperty
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2324,7 +2324,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
      *                 3.ModifyImageProperty
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2338,7 +2338,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromFd
      *                 3.ModifyImageProperty
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2352,12 +2352,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromUri
      *                 3.GetFrameCount
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_FRAME_COUNT_0100", 0, async (done: Function) => {
-      await NDK_GetFrameCount('SUB_MULTIMEDIA_IMAGE_NDK_GET_FRAME_COUNT_0100', "test6.gif", "Uri",done);
+      await NDK_GetFrameCount('SUB_MULTIMEDIA_IMAGE_NDK_GET_FRAME_COUNT_0100', "test6.gif", "Uri", done);
     });
 
     /**
@@ -2366,12 +2366,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromFd
      *                 3.GetFrameCount
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_FRAME_COUNT_0200", 0, async (done: Function) => {
-      await NDK_GetFrameCount('SUB_MULTIMEDIA_IMAGE_NDK_GET_FRAME_COUNT_0200', "test6.gif", "Fd",done);
+      await NDK_GetFrameCount('SUB_MULTIMEDIA_IMAGE_NDK_GET_FRAME_COUNT_0200', "test6.gif", "Fd", done);
     });
 
     /**
@@ -2380,7 +2380,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromuri
      *                 3.SourceRelease
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2394,7 +2394,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromFd
      *                 3.SourceRelease
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2408,7 +2408,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.desc      : 1.get image path
      *                 2.createImageSourceFromData
      *                 3.SourceRelease
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2423,7 +2423,7 @@ export default function ImagePixelMapCApiTest() {
      *                 4.DecodingOptionsSetRotate,5.DecodingOptionsSetDesiredSize,6.DecodingOptionsSetDesiredRegion,
      *                 7.DecodingOptionsGetPixelFormat,8.DecodingOptionsGetIndex9.DecodingOptionsGetRotate,
      *                 10.DecodingOptionsGetDesiredSize,11.DecodingOptionsGetDesiredRegion
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 0
      */
@@ -2436,7 +2436,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACKING_CREATE_0100
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.ndkTest.Create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -2462,7 +2462,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.ndkTest.Create
      2.ndkTest.Release
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -2497,7 +2497,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0100
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndke
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -2510,12 +2510,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0200
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0200', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0200",  "test.jpg", done, "packing", "pixelMap", 100,
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0200", "test.jpg", done, "packing", "pixelMap", 100,
         "image/jpeg", false)
     })
 
@@ -2523,7 +2523,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0300
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -2537,7 +2537,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0400
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -2550,12 +2550,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0500
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0500', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0700",  "test.jpg", done, "packing", "imageSource", 100,
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0700", "test.jpg", done, "packing", "imageSource", 100,
         "image/webp", false)
     })
 
@@ -2563,12 +2563,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0600
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0600', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0600",  "test.jpg", done, "packing", "pixelMap", 100,
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0600", "test.jpg", done, "packing", "pixelMap", 100,
         "image/webp", false)
     })
 
@@ -2577,7 +2577,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0700
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -2591,7 +2591,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0800
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -2604,12 +2604,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0900
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0900', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0900",  "test.jpg", done, "packing", "imageSource", 100,
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0900", "test.jpg", done, "packing", "imageSource", 100,
         "image/png", false)
     })
 
@@ -2617,12 +2617,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01000
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01000', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01000",  "test.jpg", done, "packing", "imageSource", 100,
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01000", "test.jpg", done, "packing", "imageSource", 100,
         "image/png", false)
     })
 
@@ -2630,7 +2630,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01100
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -2643,12 +2643,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01200
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01200', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01200",  "test.jpg", done, "packing", "imageSource", 10,
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01200", "test.jpg", done, "packing", "imageSource", 10,
         "image/png", false)
     })
 
@@ -2657,7 +2657,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0100
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -2670,7 +2670,7 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0200
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
@@ -2685,12 +2685,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0300
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0300', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0300",  "test.jpg", done, "packToFile",
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0300", "test.jpg", done, "packToFile",
         "imageSource", 10, "image/jpeg", false)
     })
 
@@ -2698,12 +2698,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0400
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0400', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0400",  "test.jpg", done, "packToFile", "pixelMap",
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0400", "test.jpg", done, "packToFile", "pixelMap",
         10, "image/jpeg", false)
     })
 
@@ -2712,12 +2712,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0500
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0500', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0500",  "test.jpg", done, "packToFile", "imageSource",
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0500", "test.jpg", done, "packToFile", "imageSource",
         100, "image/webp", false)
     })
 
@@ -2725,12 +2725,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0600
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0600', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0600",  "test.jpg", done, "packToFile", "pixelMap",
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0600", "test.jpg", done, "packToFile", "pixelMap",
         100, "image/webp", false)
     })
 
@@ -2738,12 +2738,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0700
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0700', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0700",  "test.jpg", done, "packToFile", "imageSource",
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0700", "test.jpg", done, "packToFile", "imageSource",
         10, "image/webp", false)
     })
 
@@ -2751,12 +2751,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0800
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0800', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0800",  "test.jpg", done, "packToFile", "pixelMap",
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0800", "test.jpg", done, "packToFile", "pixelMap",
         10, "image/webp", false)
     })
 
@@ -2764,12 +2764,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0900
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0900', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0900",  "test.jpg", done, "packToFile", "imageSource",
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0900", "test.jpg", done, "packToFile", "imageSource",
         100, "image/png", false)
     })
 
@@ -2777,12 +2777,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01000
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01000', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01000",  "test.jpg", done, "packToFile", "pixelMap",
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01000", "test.jpg", done, "packToFile", "pixelMap",
         100, "image/png", false)
     })
 
@@ -2790,12 +2790,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01100
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01100', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01100",  "test.jpg", done, "packToFile",
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01100", "test.jpg", done, "packToFile",
         "imageSource", 10, "image/png", false)
     })
 
@@ -2803,12 +2803,12 @@ export default function ImagePixelMapCApiTest() {
      * @tc.number    : SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01200
      * @tc.name      : sub_multimedia_image_imagepackendk_packing
      * @tc.desc      : 1.packingtestndk create
-     * @tc.size      : MEDIUM
+     * @tc.size      : MediumTest
      * @tc.type      : Functional
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01200', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01200",  "test.jpg", done, "packToFile", "pixelMap",
+      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01200", "test.jpg", done, "packToFile", "pixelMap",
         10, "image/png", false)
     })
   })
