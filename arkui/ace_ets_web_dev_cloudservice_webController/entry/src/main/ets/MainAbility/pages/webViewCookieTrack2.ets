@@ -59,7 +59,7 @@ struct webViewCookieTrack2 {
   }
   
   private triggerCookie = async () => {
-      this.controller.enableIntelligenTrackingPrevention(true);
+      this.controller.enableIntelligentTrackingPrevention(true);
       web_webview.WebCookieManager.putAcceptThirdPartyCookieEnabled(true);
       console.log("当前状态：" + this.controller.isIntelligentTrackingPreventionEnabled())
       web_webview.WebCookieManager.clearAllCookiesSync()
@@ -119,12 +119,12 @@ struct webViewCookieTrack2 {
                 .databaseAccess(true)
                 .domStorageAccess(true)
                 .fileAccess(true)
-                .cacheMode(cacheMode.Default)
+                .cacheMode(CacheMode.Default)
                 .onPageBegin(() => {
                 })
                 .onIntelligentTrackingPreventionResult((event) => {
                     if (event) {
-                        this.cookie = "host:" + event.host + ",url:" + event.emitCookieTrackTrackerHost
+                        this.cookie = "host:" + event.host + ",url:" + event.trackerHost
                         this.traceHosts.push(this.cookie)
                         Utils.emitEvent(true,1381)
                         console.log("onIntelligentTrackingPreventionResult ->" + this.cookie)

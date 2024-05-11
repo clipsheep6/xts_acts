@@ -124,28 +124,6 @@ struct MyComponent {
     @State bkColor: Color = Color.Red
     @State index: Boolean = false;
     
-    videoController: videoController = new videoController();
-    player?: AVPlayerDemo
-    offset_x: number = 0
-    offset_y: number = 0
-    @State video_width_percent: number = 100;
-    @State video_height_percent: number = 100;
-    view_width: number = 0;
-    view_height: number = 0;
-    video_width: number = 0;
-    video_height: number = 0;
-    
-    fullscreen: boolean = false;
-    
-    onSizeChanged(width: number, height: number) {
-        this.video_width = width;
-        this.video_height = height;
-        let scale: number = this.view_width / width;
-        let scaled_video_height: number = scale * height;
-        this.video_height_percent = scaled_video_height / this.view_height * 100;
-        console.log('[BrowserShell] onSizeChanged(' + width + ',' + height + '), video_height_percent[' + this.video_height_percent + ']')
-    }
-    
     build() {
         Column({ space: 3 }) {
             Button(this.params.text)
@@ -178,17 +156,17 @@ function ButtonBuilder(params: Params) {
 @Component
 struct webViewRegisterNativeEmbedRule {
   browserTabController: WebviewController = new webview.WebviewController();
-  private NodeController: MyNodeController = new MyNodeController()
-  private NodeController1: MyNodeController1 = new MyNodeController()
+  private nodeController: MyNodeController = new MyNodeController()
+  private nodeController1: MyNodeController = new MyNodeController()
 
-  @State NodeContainerWidth : number = 0
-  @State NodeContainerHeight : number = 0
-  @State NodeContainer1Width : number = 0
-  @State NodeContainer1Height : number = 0
+  @State nodeContainerWidth : number = 0
+  @State nodeContainerHeight : number = 0
+  @State nodeContainer1Width : number = 0
+  @State nodeContainer1Height : number = 0
   private embedMap : Map<string, mapItem> = new Map()
   @State num : number = 0
-  @State eventType : string = '触碰类型‘
-  @State eventType2 : string = '触碰次数‘
+  @State eventType : string = '触碰类型'
+  @State eventType2 : string = '触碰次数'
   @State str : string = "emitWebViewRegisterNativeEmbedRule";
   @State javaScriptAccess: boolean = true;
   @State fileAccess: boolean = true;
@@ -208,11 +186,11 @@ struct webViewRegisterNativeEmbedRule {
       events_emitter.on(valueChangeEvent, this.valueChangeCallBack)
   }
   
-  private valueChangeCallBack = (eventData: events_emitter.eventData) => {
+  private valueChangeCallBack = (eventData: events_emitter.EventData) => {
       if (eventData != null) {
           console.info("valueChangeCallBack:" + JSON.stringify(eventData));
           if (eventData.data != null && eventData.data.ACTION != null) {
-              this.emitKey = eventData.data.ACTION;
+              this.str = eventData.data.ACTION;
           }
       }
   }
@@ -236,23 +214,23 @@ struct webViewRegisterNativeEmbedRule {
             .height(45)
             .margin({ right: 10 })
             Button("remove").onClick(() => {
-                if (this.NodeController && this.NodeController1) {
-                    this.NodeController.add()
-                    this.NodeController.rebuild()
-                    this.NodeController1.add()
-                    this.NodeController1.rebuild()
+                if (this.nodeController && this.nodeController1) {
+                    this.nodeController.add()
+                    this.nodeController.rebuild()
+                    this.nodeController1.add()
+                    this.nodeController1.rebuild()
                 }
             }).key('add')
             Text(this.eventType)
             Text(this.eventType2)
           Stack() {
-              NodeContainer(this.NodeController)
-                .width(this.NodeContainerWidth)
-                .height(this.NodeContainerHeight)
+              NodeContainer(this.nodeController)
+                .width(this.nodeContainerWidth)
+                .height(this.nodeContainerHeight)
                 .backgroundColor(Color.Yellow)
-              NodeContainer(this.NodeController1)
-                .width(this.NodeContainer1Width)
-                .height(this.NodeContainer1Height)
+              NodeContainer(this.nodeController1)
+                .width(this.nodeContainer1Width)
+                .height(this.nodeContainer1Height)
                 .backgroundColor(Color.Yellow)            
               Web({ src: $rawfile("registerNativeEmbedRule.html"), controller: this.browserTabController })
                 .enableNativeEmbedMode(true)
@@ -265,24 +243,24 @@ struct webViewRegisterNativeEmbedRule {
                     }
                     if (embed.status == NativeEmbedStatus.CREATE) {
                         console.log("NativeEmbed create" + JSON.stringify(embed.info));
-                        this.embedMap.set(embed.info?.i as string, {surfaceId : embed.surfaceId as string,
+                        this.embedMap.set(embed.info?.id as string, {surfaceId : embed.surfaceId as string,
                             embedId : embed.embedId as string, width : embed.info?.width as number, height : embed.info?.height as number})
                         if (this.embedMap.size === 2) {
                             this.nodeController.setRenderOption(this.embedMap?.get("cameraTest")?.surfaceId as string, NodeRenderType.RENDER_TYPE_TEXTURE,
-                                                                this.embedMap?get("cameraTest")?.embedId as string, px2vp(this.embedMap?get("cameraTest")?.width),
-                                                                px2vp(this.embedMap?get("cameraTest")?.height))
+                                                                this.embedMap?.get("cameraTest")?.embedId as string, px2vp(this.embedMap?.get("cameraTest")?.width),
+                                                                px2vp(this.embedMap?.get("cameraTest")?.height))
                             this.nodeController.rebuild()
-                            console.log("surfaceId = " + this.embedMap?get("cameraTest")?.surfaceId);
-                            this.NodeContainerWidth = px2vp(this.embedMap?get("cameraTest")?.width);
-                            this.NodeContainerHeight = px2vp(this.embedMap?get("cameraTest")?.height);
+                            console.log("surfaceId = " + this.embedMap?.get("cameraTest")?.surfaceId);
+                            this.odeContainerWidth = px2vp(this.embedMap?.get("cameraTest")?.width);
+                            this.nodeContainerHeight = px2vp(this.embedMap?.get("cameraTest")?.height);
                             
                             this.nodeController1.setRenderOption(this.embedMap?.get("cameraTest1")?.surfaceId as string, NodeRenderType.RENDER_TYPE_TEXTURE,
-                                                                this.embedMap?get("cameraTest1")?.embedId as string, px2vp(this.embedMap?get("cameraTest1")?.width),
-                                                                px2vp(this.embedMap?get("cameraTest1")?.height))
+                                                                this.embedMap?.get("cameraTest1")?.embedId as string, px2vp(this.embedMap?.get("cameraTest1")?.width),
+                                                                px2vp(this.embedMap?.get("cameraTest1")?.height))
                             this.nodeController1.rebuild()
-                            console.log("surfaceId1 = " + this.embedMap?get("cameraTest1")?.surfaceId);
-                            this.NodeContainer1Width = px2vp(this.embedMap?get("cameraTest1")?.width);
-                            this.NodeContainer1Height = px2vp(this.embedMap?get("cameraTest1")?.height);
+                            console.log("surfaceId1 = " + this.embedMap?.get("cameraTest1")?.surfaceId);
+                            this.nodeContainer1Width = px2vp(this.embedMap?.get("cameraTest1")?.width);
+                            this.nodeContainer1Height = px2vp(this.embedMap?.get("cameraTest1")?.height);
                         }
                     }else if (embed.status == NativeEmbedStatus.UPDATE) {
                         console.log("NativeEmbed update" + JSON.stringify(embed.info));

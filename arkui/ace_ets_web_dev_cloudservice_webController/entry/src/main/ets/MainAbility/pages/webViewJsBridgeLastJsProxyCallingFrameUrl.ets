@@ -48,7 +48,7 @@ struct webViewJsBridgeLastJsProxyCallingFrameUrl {
       if (eventData != null) {
           console.info("valueChangeCallBack:" + JSON.stringify(eventData));
           if (eventData.data != null && eventData.data.ACTION != null) {
-              this.emitKey = eventData.data.ACTION;
+              this.str = eventData.data.ACTION;
           }
       }
   }
@@ -61,7 +61,7 @@ struct webViewJsBridgeLastJsProxyCallingFrameUrl {
               .onClick(async () => {
                   console.info("key==>" + this.str)
                 switch (this.str) {
-                    case "emitJsBridgeLastJavascriptProxyCallingFrameUrl": {
+                    case "emitJsBridgeGetLastJavascriptProxyCallingFrameUrl": {
                         let transObj_02 = new DataTrans()
                         this.controller.registerJavaScriptProxy(transObj_02, "DataTrans", ["trans"])
                         this.controller.refresh()
@@ -72,12 +72,12 @@ struct webViewJsBridgeLastJsProxyCallingFrameUrl {
               })
           }
           Web({ src: 'metaViewport.html', controller: this.controller })
-                .javaScriptAccess(this.javaScriptAccess)
-                .fileAccess(this.fileAccess)
-                .imageAccess(this.imageAccess)
-                .domStorageAccess(this.domStorageAccess)
-                .onlineImageAccess(this.onlineImageAccess)
-                .databaseAccess(this.databaseAccess)
+                .javaScriptAccess(true)
+                .fileAccess(true)
+                .imageAccess(true)
+                .domStorageAccess(true)
+                .onlineImageAccess(true)
+                .databaseAccess(true)
                 
                 .onPageEnd(() => {
                 try{

@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 import webViewJsBridgeLastJsProxyCallingFrameUrl from './webViewJsBridgeLastJsProxyCallingFrameUrl.test';
-import webViewOnFullScreenEnterInfo from './webViewOnFullScreenEnterInfo.test';
+import webViewOnFullScreenEnterVideoInfo from './webViewOnFullScreenEnterVideoInfo.test';
 import webViewNativeVideoMediaInfo from './webViewNativeMediaMediaInfo.test';
-import webViewNativeVideoEnterExitFullScreen from './webViewNativeVideoEnterExitFullScreen.test';
-import webViewNatvieVideoSetVolumn from './webViewNatvieMediaSetVolumn.test';
+import webViewNativeMediaEnterExitFullScreen from './webViewNativeMediaEnterExitFullScreen.test';
+import webViewNativeVideoSetVolumn from './webViewNativeMediaSetVolumn.test';
 import webViewNativeVideoUpdateRect from './webViewNativeMediaUpdateRect.test';
 import webViewNativeVideoSetMuted from './webViewNativeMediaSetMuted.test';
 import webViewNativeVideoSetSeek from './webViewNativeMediaSetSeek.test';
@@ -35,15 +35,15 @@ import webViewMetaViewportFalse from './webViewMetaViewportFalse.test';
 import webViewMetaViewportTrue from './webViewMetaViewportTrue.test';
 
 export default function testsuite() {
-  webViewOnFullScreenEnterInfo()
+  webViewOnFullScreenEnterVideoInfo()
   webViewNativeVideoMediaInfo()
-  webViewNativeVideoEnterExitFullScreen()
+  webViewNativeMediaEnterExitFullScreen()
   webViewNativeVideoUpdateRect()
   webViewNativeVideoSetMuted()
   webViewNativeVideoSetSeek()
   webViewNativeMediaPlayerHandler()
   webViewNativeMediaPlayerHandler2()
-  webViewNatvieVideoSetVolumn()
+  webViewNativeVideoSetVolumn()
   webViewNativeVideoSetPlaybackRate()
   webViewNativeMediaPlayerHandleFullScreen()
   webViewJsBridgeLastJsProxyCallingFrameUrl()

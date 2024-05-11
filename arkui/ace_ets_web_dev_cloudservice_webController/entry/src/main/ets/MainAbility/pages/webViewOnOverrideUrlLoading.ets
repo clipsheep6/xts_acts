@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 import events_emitter from '@ohos.events.emitter';
-import { Hypium } from '@ohos/Hypium'
+import { Hypium } from '@ohos/hypium'
 import Utils from '../../test/Utils';
+import web_webview from '@ohos.web.webview'
 
 @Entry
 @Component
@@ -44,7 +45,7 @@ struct webViewOnMetaOnOverriderUrlLoading {
       if (eventData != null) {
           console.info("valueChangeCallBack:" + JSON.stringify(eventData));
           if (eventData.data != null && eventData.data.ACTION != null) {
-              this.emitKey = eventData.data.ACTION;
+              this.str = eventData.data.ACTION;
           }
       }
   }
@@ -78,7 +79,7 @@ struct webViewOnMetaOnOverriderUrlLoading {
                 .onlineImageAccess(this.onlineImageAccess)
                 .databaseAccess(this.databaseAccess)
                 
-                .onOverRideUrlLoading((webResourceRequest: webResourceRequest) => {
+                .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
                     if (webResourceRequest && webResourceRequest.getRequestUrl() == "https://www.baidu.com") {
                         return true;
                     }

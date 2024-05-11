@@ -16,7 +16,7 @@ import { afterEach, beforeAll, beforeEach, describe, it, expect } from '@ohos/hy
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 import router from '@ohos.router';
-import emitter from '@ohos.events.emitter;
+import emitter from '@ohos.events.emitter';
 // @ts-nocheck
 let emitKey = "emitWebViewNativeMediaSetVolume"
 
@@ -24,7 +24,7 @@ export default function webViewNativeMediaSetVolume() {
   describe('ActsAceWebViewNativeMediaSetVolume', () => {
       
     beforeAll(async (done: Function) => {
-        let option : router.RouterOptions = {
+        let options : router.RouterOptions = {
             url: 'testability/pages/webViewNativeMediaSetVolume',
         }
         
@@ -35,7 +35,7 @@ export default function webViewNativeMediaSetVolume() {
             if (!("webViewNativeMediaSetVolume" == pages.name)) {
                 console.info("get webViewNativeMediaSetVolume state success " + JSON.stringify(pages.name));
                 let result = await router.pushUrl(options);
-                await.Utils.sleep(1000);
+                await Utils.sleep(1000);
                 console.info("push webViewNativeMediaSetVolume state success " + JSON.stringify(result));
             }
         } catch (err) {

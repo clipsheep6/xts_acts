@@ -16,7 +16,7 @@ import { afterEach, beforeAll, beforeEach, describe, it, expect } from '@ohos/hy
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 import router from '@ohos.router';
-import emitter from '@ohos.events.emitter;
+import emitter from '@ohos.events.emitter';
 // @ts-nocheck
 let emitKey = "emitWebViewRegisterNativeEmbedRule"
 
@@ -24,7 +24,7 @@ export default function webViewRegisterNativeEmbedRule() {
   describe('ActsAceRegisterNativeEmbedRule', () => {
       
     beforeAll(async (done: Function) => {
-        let option : router.RouterOptions = {
+        let options : router.RouterOptions = {
             url: 'testability/pages/webViewRegisterNativeEmbedRule',
         }
         
@@ -35,7 +35,7 @@ export default function webViewRegisterNativeEmbedRule() {
             if (!("webViewRegisterNativeEmbedRule" == pages.name)) {
                 console.info("get webViewRegisterNativeEmbedRule state success " + JSON.stringify(pages.name));
                 let result = await router.pushUrl(options);
-                await.Utils.sleep(1000);
+                await Utils.sleep(1000);
                 console.info("push webViewRegisterNativeEmbedRule page success " + JSON.stringify(result));
             }
         } catch (err) {

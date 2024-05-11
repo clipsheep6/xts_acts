@@ -16,7 +16,7 @@ import { afterEach, beforeAll, beforeEach, describe, it, expect } from '@ohos/hy
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 import router from '@ohos.router';
-import emitter from '@ohos.events.emitter;
+import emitter from '@ohos.events.emitter';
 // @ts-nocheck
 export default function webViewNativeMediaPlayerHandler() {
   describe('ActsAceWebViewNativeMediaPlayerHandler', () => {
@@ -35,7 +35,8 @@ export default function webViewNativeMediaPlayerHandler() {
      *@tc.level 1
      */
     it('testWebViewNativeMediaPlayerHandlePlaybackRateChanged', 0, async (done: Function) => {
-      emitKey = "emitWebViewNativeMediaPlayerHandlePlaybackRateChanged";
+      let emitKey = "emitWebViewNativeMediaPlayerHandlePlaybackRateChanged";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewNativeMediaPlayerHandlePlaybackRateChanged", true, 1304, done);
       sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })
@@ -48,7 +49,8 @@ export default function webViewNativeMediaPlayerHandler() {
      *@tc.level 1
      */
     it('testWebViewNativeMediaPlayerHandleTimeUpdate', 0, async (done: Function) => {
-      emitKey = "emitWebViewNativeMediaPlayerHandleTimeUpdate";
+      let emitKey = "emitWebViewNativeMediaPlayerHandleTimeUpdate";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewNativeMediaPlayerHandleTimeUpdate", true, 1300, done);
       sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })
@@ -61,7 +63,8 @@ export default function webViewNativeMediaPlayerHandler() {
      *@tc.level 1
      */
     it('testWebViewNativeMediaPlayerHandleBufferedEndTimeChanged', 0, async (done: Function) => {
-      emitKey = "emitWebViewNativeMediaPlayerHandleBufferedEndTimeChanged";
+      let emitKey = "emitWebViewNativeMediaPlayerHandleBufferedEndTimeChanged";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewNativeMediaPlayerHandleBufferedEndTimeChanged", true, 1301, done);
       sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })
@@ -74,7 +77,8 @@ export default function webViewNativeMediaPlayerHandler() {
      *@tc.level 1
      */
     it('testWebViewNativeMediaPlayerHandleDurationChanged', 0, async (done: Function) => {
-      emitKey = "emitWebViewNativeMediaPlayerHandlePlaybackRateChanged";
+      let emitKey = "emitWebViewNativeMediaPlayerHandlePlaybackRateChanged";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewNativeMediaPlayerHandleDurationChanged", true, 1302, done);
       sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })
@@ -87,7 +91,8 @@ export default function webViewNativeMediaPlayerHandler() {
      *@tc.level 1
      */
     it('testWebViewNativeMediaPlayerHandleVideoSizeChanged', 0, async (done: Function) => {
-      emitKey = "emitWebViewNativeMediaPlayerHandleVideoSizeChanged";
+      let emitKey = "emitWebViewNativeMediaPlayerHandleVideoSizeChanged";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewNativeMediaPlayerHandleVideoSizeChanged", true, 1303, done);
       sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })
@@ -100,7 +105,8 @@ export default function webViewNativeMediaPlayerHandler() {
      *@tc.level 1
      */
     it('testWebViewNativeMediaPlayerHandleSeeking', 0, async (done: Function) => {
-      emitKey = "emitWebViewNativeMediaPlayerHandleSeeking";
+      let emitKey = "emitWebViewNativeMediaPlayerHandleSeeking";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewNativeMediaPlayerHandleSeeking", true, 1305, done);
       sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })
@@ -113,7 +119,8 @@ export default function webViewNativeMediaPlayerHandler() {
      *@tc.level 1
      */
     it('testWebViewNativeMediaPlayerHandleSeekFinished', 0, async (done: Function) => {
-      emitKey = "emitWebViewNativeMediaPlayerHandleSeekFinished";
+      let emitKey = "emitWebViewNativeMediaPlayerHandleSeekFinished";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewNativeMediaPlayerHandleSeekFinished", true, 1306, done);
       sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })
@@ -126,7 +133,8 @@ export default function webViewNativeMediaPlayerHandler() {
      *@tc.level 1
      */
     it('testWebViewNativeMediaPlayerHandleVolumeChanged', 0, async (done: Function) => {
-      emitKey = "emitWebViewNativeMediaPlayerHandleVolumeChanged";
+      let emitKey = "emitWebViewNativeMediaPlayerHandleVolumeChanged";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewNativeMediaPlayerHandleVolumeChanged", true, 1307, done);
       sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })
@@ -139,7 +147,8 @@ export default function webViewNativeMediaPlayerHandler() {
      *@tc.level 1
      */
     it('testWebViewNativeMediaPlayerHandleEnded', 0, async (done: Function) => {
-      emitKey = "emitWebViewNativeMediaPlayerHandleEnded";
+      let emitKey = "emitWebViewNativeMediaPlayerHandleEnded";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewNativeMediaPlayerHandleEnded", true, 1308, done);
       sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })
@@ -152,7 +161,8 @@ export default function webViewNativeMediaPlayerHandler() {
      *@tc.level 1
      */
     it('testWebViewNativeMediaPlayerHandleError', 0, async (done: Function) => {
-      emitKey = "emitWebViewNativeMediaPlayerHandleError";
+      let emitKey = "emitWebViewNativeMediaPlayerHandleError";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewNativeMediaPlayerHandleError", true, 1309, done);
       sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })

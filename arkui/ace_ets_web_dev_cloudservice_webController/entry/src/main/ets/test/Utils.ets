@@ -15,9 +15,9 @@
 
 import events_emitter from '@ohos.events.emitter';
 import { expect } from '@ohos/hypium';
-import ( Driver, ON } from '@ohos.UiTest';
+import { Driver, ON } from '@ohos.UiTest';
 import systemDateTime from '@ohos.systemDateTime';
-import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegtorRegistry'
+import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import fs from '@ohos.file.fs';
 
 export default class Utils {
@@ -71,7 +71,7 @@ export default class Utils {
       console.info("[isFileExist] filePath:" + filePath);
       try {
           let fileExist = fs.accessSync(filePath)
-          console.info("[isFileExist] return:" + fileExist');
+          console.info("[isFileExist] return:" + fileExist);
           return fileExist
       } catch (error) {
           console.info("[isFileExist] error:" + error);

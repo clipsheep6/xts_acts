@@ -16,7 +16,7 @@ import { afterEach, beforeAll, beforeEach, describe, it, expect } from '@ohos/hy
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 import router from '@ohos.router';
-import emitter from '@ohos.events.emitter;
+import emitter from '@ohos.events.emitter';
 // @ts-nocheck
 export default function webViewNativeMediaPlayerHandler2() {
   describe('ActsAceWebViewNativeMediaPlayerHandler2', () => {
@@ -35,7 +35,8 @@ export default function webViewNativeMediaPlayerHandler2() {
      *@tc.level 1
      */
     it('testWebViewNativeMediaPlayerHandleReadyStateChanged', 0, async (done: Function) => {
-      emitKey = "emitWebViewNativeMediaPlayerHandleReadyStateChanged";
+      let emitKey = "emitWebViewNativeMediaPlayerHandleReadyStateChanged";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewNativeMediaPlayerHandleReadyStateChanged", true, 1310, done);
       sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })
@@ -48,7 +49,8 @@ export default function webViewNativeMediaPlayerHandler2() {
      *@tc.level 1
      */
     it('testWebViewNativeMediaPlayerHandleStatusChanged', 0, async (done: Function) => {
-      emitKey = "emitWebViewNativeMediaPlayerHandleStatusChanged";
+      let emitKey = "emitWebViewNativeMediaPlayerHandleStatusChanged";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewNativeMediaPlayerHandleStatusChanged", true, 1312, done);
       sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })
@@ -61,7 +63,8 @@ export default function webViewNativeMediaPlayerHandler2() {
      *@tc.level 1
      */
     it('testWebViewNativeMediaPlayerHandleNetworkStateChanged', 0, async (done: Function) => {
-      emitKey = "emitWebViewNativeMediaPlayerHandleNetworkStateChanged";
+      let emitKey = "emitWebViewNativeMediaPlayerHandleNetworkStateChanged";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewNativeMediaPlayerHandleNetworkStateChanged", true, 1315, done);
       sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })
@@ -74,7 +77,8 @@ export default function webViewNativeMediaPlayerHandler2() {
      *@tc.level 1
      */
     it('testWebViewNativeMediaPlayerHandleMutedChanged', 0, async (done: Function) => {
-      emitKey = "emitWebViewNativeMediaPlayerHandleMutedChanged";
+      let emitKey = "emitWebViewNativeMediaPlayerHandleMutedChanged";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewNativeMediaPlayerHandleMutedChanged", true, 1316, done);
       sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })

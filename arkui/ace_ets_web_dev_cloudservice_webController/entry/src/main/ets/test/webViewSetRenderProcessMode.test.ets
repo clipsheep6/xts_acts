@@ -16,7 +16,7 @@ import { afterEach, beforeAll, beforeEach, describe, it, expect } from '@ohos/hy
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 import router from '@ohos.router';
-import emitter from '@ohos.events.emitter;
+import emitter from '@ohos.events.emitter';
 // @ts-nocheck
 let emitKey = "emitSetRenderProcessMode"
 
@@ -24,7 +24,7 @@ export default function webViewSetRenderProcessMode() {
   describe('ActsAceSetRenderProcessMode', () => {
       
     beforeAll(async (done: Function) => {
-        let option : router.RouterOptions = {
+        let options : router.RouterOptions = {
             url: 'testability/pages/webViewSetRenderProcessMode',
         }
         
@@ -35,7 +35,7 @@ export default function webViewSetRenderProcessMode() {
             if (!("webViewSetRenderProcessMode" == pages.name)) {
                 console.info("get webViewSetRenderProcessMode state success " + JSON.stringify(pages.name));
                 let result = await router.pushUrl(options);
-                await.Utils.sleep(1000);
+                await Utils.sleep(1000);
                 console.info("push webViewSetRenderProcessMode page success " + JSON.stringify(result));
             }
         } catch (err) {

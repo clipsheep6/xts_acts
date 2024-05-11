@@ -16,7 +16,7 @@ import { afterEach, beforeAll, beforeEach, describe, it, expect } from '@ohos/hy
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 import router from '@ohos.router';
-import emitter from '@ohos.events.emitter;
+import emitter from '@ohos.events.emitter';
 // @ts-nocheck
 let emitKey = "emitJsBridgeLastJsProxyCallingFrameUrl"
 
@@ -24,7 +24,7 @@ export default function webViewJsBridgeLastJsProxyCallingFrameUrl() {
   describe('ActsAceWebDevWebViewJsBridgeLastJsProxyCallingFrameUrl', () => {
       
     beforeAll(async (done: Function) => {
-        let option : router.RouterOptions = {
+        let options : router.RouterOptions = {
             url: 'testability/pages/webViewJsBridgeLastJsProxyCallingFrameUrl',
         }
         
@@ -35,7 +35,7 @@ export default function webViewJsBridgeLastJsProxyCallingFrameUrl() {
             if (!("webViewJsBridgeLastJsProxyCallingFrameUrl" == pages.name)) {
                 console.info("get webViewJsBridgeLastJsProxyCallingFrameUrl state success " + JSON.stringify(pages.name));
                 let result = await router.pushUrl(options);
-                await.Utils.sleep(1000);
+                await Utils.sleep(1000);
                 console.info("push webViewJsBridgeLastJsProxyCallingFrameUrl state success " + JSON.stringify(result));
             }
         } catch (err) {
@@ -77,7 +77,8 @@ export default function webViewJsBridgeLastJsProxyCallingFrameUrl() {
      *@tc.level 1
      */
     it('testJsBridgeGetLastJavascriptProxyCallingFrameUrl', 0, async (done: Function) => {
-      emitKey = "emitJsBridgeGetLastJavascriptProxyCallingFrameUrl";
+      let emitKey = "emitJsBridgeGetLastJavascriptProxyCallingFrameUrl";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testJsBridgeGetLastJavascriptProxyCallingFrameUrl", "success", 1277, done);
       sendEventByKey('webViewJsBridgeLastJsProxyCallingFrameUrl', 10, '');
     })

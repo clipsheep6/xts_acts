@@ -16,7 +16,7 @@ import { afterEach, beforeAll, beforeEach, describe, it, expect } from '@ohos/hy
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 import router from '@ohos.router';
-import emitter from '@ohos.events.emitter;
+import emitter from '@ohos.events.emitter';
 // @ts-nocheck
 let emitKey = "emitWebViewCookieTrack"
 
@@ -24,7 +24,7 @@ export default function ActsAcewebViewCookieTrack() {
   describe('ActsAcewebViewCookieTrack', () => {
       
     beforeAll(async (done: Function) => {
-        let option : router.RouterOptions = {
+        let options : router.RouterOptions = {
             url: 'testability/pages/webViewCookieTrack',
         }
         
@@ -33,7 +33,7 @@ export default function ActsAcewebViewCookieTrack() {
             let pages = router.getState();
             if (!("webViewCookieTrack" == pages.name)) {
                 let result = await router.pushUrl(options);
-                await.Utils.sleep(1000);
+                await Utils.sleep(1000);
             }
         } catch (err) {
             console.error("push webViewCookieTrack page error:" + err);
@@ -74,7 +74,8 @@ export default function ActsAcewebViewCookieTrack() {
      *@tc.level 1
      */
     it('testWebViewCookieTrackEnableTrue', 0, async (done: Function) => {
-      emitKey = "emitWebViewCookieTrackEnableTrue";
+      let emitKey = "emitWebViewCookieTrackEnableTrue";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewCookieTrackEnableTrue", true, 7701, done);
       sendEventByKey('webViewCookieTrackTriggerButton', 10, '');
     })
@@ -87,7 +88,8 @@ export default function ActsAcewebViewCookieTrack() {
      *@tc.level 1
      */
     it('testWebViewCookieTrackEnableFalse', 0, async (done: Function) => {
-      emitKey = "emitWebViewCookieTrackEnableFalse";
+      let emitKey = "emitWebViewCookieTrackEnableFalse";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testWebViewCookieTrackEnableFalse", true, 1278, done);
       sendEventByKey('webViewCookieTrackTriggerButton', 10, '');
     })
@@ -100,7 +102,8 @@ export default function ActsAcewebViewCookieTrack() {
      *@tc.level 1
      */
     it('testCookieTrackOnIntelligentTrackingPreventionResult', 0, async (done: Function) => {
-      emitKey = "emitCookieTrackOnIntelligentTrackingPreventionResult";
+      let emitKey = "emitCookieTrackOnIntelligentTrackingPreventionResult";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testCookieTrackOnIntelligentTrackingPreventionResult", true, 1381, done);
       sendEventByKey('webViewCookieTrackTriggerButton', 10, '');
     })
@@ -113,7 +116,8 @@ export default function ActsAcewebViewCookieTrack() {
      *@tc.level 1
      */
     it('testCookieTrackIsIntelligentTrackingPreventionEnabled', 0, async (done: Function) => {
-      emitKey = "emitCookieTrackIsIntelligentTrackingPreventionEnabled";
+      let emitKey = "emitCookieTrackIsIntelligentTrackingPreventionEnabled";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testCookieTrackIsIntelligentTrackingPreventionEnabled", true, 1382, done);
       sendEventByKey('webViewCookieTrackTriggerButton', 10, '');
     })
@@ -126,7 +130,8 @@ export default function ActsAcewebViewCookieTrack() {
      *@tc.level 1
      */
     it('testCookieTrackClearTrackingPrevention', 0, async (done: Function) => {
-      emitKey = "emitCookieTrackClearTrackingPrevention";
+      let emitKey = "emitCookieTrackClearTrackingPrevention";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testCookieTrackClearTrackingPrevention", true, 1282, done);
       sendEventByKey('webViewCookieTrackTriggerButton', 10, '');
     })
@@ -139,7 +144,8 @@ export default function ActsAcewebViewCookieTrack() {
      *@tc.level 1
      */
     it('testCookieTrackAddTrackingPrevention', 0, async (done: Function) => {
-      emitKey = "emitCookieTrackAddTrackingPrevention";
+      let emitKey = "emitCookieTrackAddTrackingPrevention";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testCookieTrackAddTrackingPrevention", true, 1280, done);
       sendEventByKey('webViewCookieTrackTriggerButton', 10, '');
     })
@@ -152,7 +158,8 @@ export default function ActsAcewebViewCookieTrack() {
      *@tc.level 1
      */
     it('testCookieTrackTrackerHost', 0, async (done: Function) => {
-      emitKey = "emitCookieTrackTrackerHost";
+      let emitKey = "emitCookieTrackTrackerHost";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testCookieTrackTrackerHost", true, 7702, done);
       sendEventByKey('webViewCookieTrackTriggerButton', 10, '');
     })

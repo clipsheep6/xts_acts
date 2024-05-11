@@ -16,7 +16,7 @@ import { afterEach, beforeAll, beforeEach, describe, it, expect } from '@ohos/hy
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 import router from '@ohos.router';
-import emitter from '@ohos.events.emitter;
+import emitter from '@ohos.events.emitter';
 // @ts-nocheck
 
 export default function webViewNativeMediaPlayerHandler() {
@@ -36,7 +36,8 @@ export default function webViewNativeMediaPlayerHandler() {
      */
     it('testWebViewNativeMediaPlayerHandleFullscreenChanged', 0, async (done: Function) => {
         sendEventByKey('webViewNativePlayerHandleFullscreenKey', 10, '');
-        Utils.emitEvent("emitWebViewNativeMediaPlayerHandleFullscreenChanged",10)
+        let emitKey="emitWebViewNativeMediaPlayerHandleFullscreenChanged"
+        Utils.emitEvent(emitKey,10)
         Utils.registerEvent("testWebViewNativeMediaPlayerHandleFullscreenChanged", true, 1313, done);
         sendEventByKey('webViewNativeMediaPlayerHandler', 10, '');
     })

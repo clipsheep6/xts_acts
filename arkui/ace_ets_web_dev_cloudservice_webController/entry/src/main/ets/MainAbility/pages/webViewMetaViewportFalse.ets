@@ -15,7 +15,7 @@
 import events_emitter from '@ohos.events.emitter';
 import { Hypium } from '@ohos/hypium';
 import abilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
-import { Hypium } from '@ohos/Hypium'
+import { Hypium } from '@ohos/hypium'
 import Utils from '../../test/Utils';
 
 @Entry
@@ -46,7 +46,7 @@ struct webViewOnMetaViewportFalse {
       if (eventData != null) {
           console.info("valueChangeCallBack:" + JSON.stringify(eventData));
           if (eventData.data != null && eventData.data.ACTION != null) {
-              this.emitKey = eventData.data.ACTION;
+              this.str = eventData.data.ACTION;
           }
       }
   }

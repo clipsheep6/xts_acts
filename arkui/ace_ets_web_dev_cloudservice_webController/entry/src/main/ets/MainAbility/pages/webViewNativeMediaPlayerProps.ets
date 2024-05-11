@@ -34,7 +34,7 @@ interface AVPlayerListener {
     onPlaying() : void
     onPaused() : void
     onDurationChanged(duration: number) : void
-    onBufferedTimeChanged(bufferd: number) : void
+    onBufferedTimeChanged(buffered: number) : void
     onTimeUpdate(time: number) : void
     onEnded() : void
     onVolume (vol: number) : void
@@ -76,7 +76,7 @@ class AVPlayerDemo {
             listener.onVolume && listener.onVolume(vol);
         })
         // 状态机变化回调函数
-        avPlayer.on('stateChange', async (state: string, reason: media.stateChangeReason) => {
+        avPlayer.on('stateChange', async (state: string, reason: media.StateChangeReason) => {
             switch (state) {
                 case 'idle': // 成功调用reset接口后触发该状态机上报
                     console.info('AVPlayer state idle called.');
@@ -162,16 +162,16 @@ class AVPlayerDemo {
         // 返回类型为{fd,offset,length},fd为HAP包fd地址， offset为媒体资源拍你一辆，length为播放长度
         let context = getContext(this) as common.UIAbilityContext;
         let fileDescriptor = await context.resourceManager.getRawFd('mate50-pro-tvc.mp4');
-        let avFileDescriptor: media.avFileDescriptor = 
+        let avFileDescriptor: media.AVFileDescriptor = 
             { fd: fileDescriptor.fd, offset: fileDescriptor.offset, length: fileDescriptor.length };
         this.isSeek = false; // 不支持seek操作
         // 为fdSrc赋值出发initialized状态机上报
         this.avPlayer.fdSrc = avFileDescriptor;
     }
     
-    paly() {
-        console.info('AVPlayer.paly()');
-        this.avPlayer?.paly()
+    play() {
+        console.info('AVPlayer.play()');
+        this.avPlayer?.play()
     }
     pause() {
         console.info('AVPlayer.pause()');
@@ -197,7 +197,7 @@ class AVPlayerDemo {
 class NativeMediaPlayerHandlerImpl implements webview.NativeMediaPlayerHandler{
     
     private rawHandler: webview.NativeMediaPlayerHandler;
-    constructor(handler: webivew.NativeMediaPlayerHandler) {
+    constructor(handler: webview.NativeMediaPlayerHandler) {
         this.rawHandler = handler
     }
     handleStatusChanged(status: webview.PlaybackStatus): void {
@@ -240,9 +240,9 @@ class NativeMediaPlayerHandlerImpl implements webview.NativeMediaPlayerHandler{
         this.rawHandler.handleEnded()
     }
     
-    handleNetWorkStateChanged(state: webview.NetworkState): void {
-        console.log("handleNetWorkStateChanged:" + state)
-        console.log("handleNetWorkStateChangedNETWORK_ERROR:" + webview.NetworkState.NETWORK_ERROR.toString())
+    handleNetworkStateChanged(state: webview.NetworkState): void {
+        console.log("handleNetworkStateChanged:" + state)
+        console.log("handleNetworkStateChangedNETWORK_ERROR:" + webview.NetworkState.NETWORK_ERROR.toString())
         if(webview.NetworkState.EMPTY.toString() == '0') {
             Utils.emitEvent(true,1304)
         } else {
@@ -260,7 +260,7 @@ class NativeMediaPlayerHandlerImpl implements webview.NativeMediaPlayerHandler{
         } else {
             Utils.emitEvent(false,1306)
         }
-        this.rawHandler.handleNetWorkStateChanged(state)
+        this.rawHandler.handleNetworkStateChanged(state)
     }
     
     handleReadyStateChanged(state: webview.ReadyState): void {
@@ -417,7 +417,7 @@ class AVPlayerListenerImpl implements AVPlayerListener {
     onDurationChanged(duration: number) {
         console.log('[BrowserShell] onDurationChanged(' + duration + '), handler[' + this.handler + ']')
         this.handler.handleDurationChanged(duration);
-        this.handler.handleNetWorkStateChanged(webview.NetworkState.LOADING);
+        this.handler.handleNetworkStateChanged(webview.NetworkState.LOADING);
     }
     onPlaybackRateChanged(speed: number) {
         console.log('[BrowserShell] onPlaybackRateChanged(' + speed + '), handler[' + this.handler + ']')
@@ -480,10 +480,10 @@ interface Params {
 struct MyComponent {
     params?: Params
     @State bkColor: Color = Color.Red
-    mXComponentController: mXComponentController = new mXComponentController();
+    mXComponentController: XComponentController = new XComponentController();
     @State player_changed: boolean = false;
     
-    videoController: videoController = new videoController();
+    videoController: VideoController = new VideoController();
     player?: AVPlayerDemo
     offset_x: number = 0
     offset_y: number = 0
@@ -565,7 +565,7 @@ struct MyComponent {
                                 if (this.params.handler.handleFullscreenChanged) {
                                     this.params.handler.handleFullscreenChanged(this.fullscreen);
                                 } else {
-                                    this.params.handler['handleFullscreenChanged'](this.fullscreen);
+                                    this.params.handler['handleFullScreenChanged'](this.fullscreen);
                                 }
                             })
                             .onTouch((event: TouchEvent) => {
@@ -609,7 +609,7 @@ struct MyComponent {
         .height('100%')
         .onTouchIntercept((event : TouchEvent) => {
             console.log('[BrowserShell] 2 onTouchIntercept');
-            return HitTextMode.None
+            return HitTestMode.None
         })
         .onAreaChange((oldValue: Area, newValue: Area) => {
             this.view_width = new Number(newValue.width).valueOf()
@@ -663,7 +663,7 @@ class MyNodeController extends NodeController {
     build() {
         if (this.rootNode) {
             this.rootNode.build(wrapBuilder(ButtonBuilder), 
-                                {"text": "play", "text2": "pause", web_tab, handler: this.listener, player: this.player})
+                                {"text": "play", "text2": "pause", web_tab:this.web_tab, handler: this.listener, player: this.player})
         }
     }
 }
@@ -698,7 +698,7 @@ struct WebComponent {
       events_emitter.on(valueChangeEvent, this.valueChangeCallBack)
   }
   
-  private valueChangeCallBack = (eventData: events_emitter.eventData) => {
+  private valueChangeCallBack = (eventData: events_emitter.EventData) => {
       if (eventData != null) {
           console.info("valueChangeCallBack:" + JSON.stringify(eventData));
           if (eventData.data != null && eventData.data.ACTION != null) {

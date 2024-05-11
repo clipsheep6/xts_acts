@@ -49,7 +49,7 @@ struct webViewSetRenderProcessMode {
       if (eventData != null) {
           console.info("valueChangeCallBack:" + JSON.stringify(eventData));
           if (eventData.data != null && eventData.data.ACTION != null) {
-              this.emitKey = eventData.data.ACTION;
+              this.str = eventData.data.ACTION;
           }
       }
   }
@@ -61,7 +61,7 @@ struct webViewSetRenderProcessMode {
               .key('webViewSetRenderProcessMode')
               .onClick(async () => {
                   try {
-                      web_webview.WebviewController.setRenderProcessMode(web_webview.RenderProcessMode.MULIPLE);
+                      web_webview.WebviewController.setRenderProcessMode(web_webview.RenderProcessMode.MULTIPLE);
                       Utils.sleep(1000);
                       let mode = web_webview.WebviewController.getRenderProcessMode();
                       console.info('>>>>>renderProcessMode:' + mode)

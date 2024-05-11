@@ -15,7 +15,7 @@
 import events_emitter from '@ohos.events.emitter';
 import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import web_webview from '@ohos.web.webview';
-import { Hypium } from '@ohos/Hypium'
+import { Hypium } from '@ohos/hypium'
 import Utils from '../../test/Utils';
 import promptAction from '@ohos.promptAction';
 
@@ -78,7 +78,7 @@ struct webViewGetRenderProcessMode {
               .height(45)
               .margin({ right: 10})
           }
-          Web({ src: 'metaViewport.html', controller: this.controller })
+          Web({ src: $rawfile('metaViewport.html'), controller: this.controller })
                 .javaScriptAccess(this.javaScriptAccess)
                 .fileAccess(this.fileAccess)
                 .imageAccess(this.imageAccess)

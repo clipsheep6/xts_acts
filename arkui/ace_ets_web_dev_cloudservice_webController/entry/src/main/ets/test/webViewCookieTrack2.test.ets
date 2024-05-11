@@ -16,7 +16,7 @@ import { afterEach, beforeAll, beforeEach, describe, it, expect } from '@ohos/hy
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 import router from '@ohos.router';
-import emitter from '@ohos.events.emitter;
+import emitter from '@ohos.events.emitter';
 // @ts-nocheck
 let emitKey = "emitWebViewCookieTrack"
 
@@ -24,7 +24,7 @@ export default function ActsAcewebViewCookieTrack2() {
   describe('ActsAcewebViewCookieTrack2', () => {
       
     beforeAll(async (done: Function) => {
-        let option : router.RouterOptions = {
+        let options : router.RouterOptions = {
             url: 'testability/pages/webViewCookieTrack2',
         }
         
@@ -33,7 +33,7 @@ export default function ActsAcewebViewCookieTrack2() {
             let pages = router.getState();
             if (!("webViewCookieTrack2" == pages.name)) {
                 let result = await router.pushUrl(options);
-                await.Utils.sleep(1000);
+                await Utils.sleep(1000);
             }
         } catch (err) {
             console.error("push webViewCookieTrack page error:" + err);
@@ -74,7 +74,8 @@ export default function ActsAcewebViewCookieTrack2() {
      *@tc.level 1
      */
     it('testCookieTrackRemoveTrackingPrevention', 0, async (done: Function) => {
-      emitKey = "emitCookieTrackRemoveTrackingPrevention";
+      let emitKey = "emitCookieTrackRemoveTrackingPrevention";
+      Utils.emitEvent(emitKey, 10)
       Utils.registerEvent("testCookieTrackRemoveTrackingPrevention", true, 1281, done);
       sendEventByKey('webViewCookieTrackTriggerButton', 10, '');
     })

@@ -16,7 +16,7 @@ import { afterEach, beforeAll, beforeEach, describe, it, expect } from '@ohos/hy
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 import router from '@ohos.router';
-import emitter from '@ohos.events.emitter;
+import emitter from '@ohos.events.emitter';
 // @ts-nocheck
 let emitKey = "emitOnfullscreenenterinfo"
 
@@ -24,7 +24,7 @@ export default function webViewOnFullScreenEnterInfo() {
   describe('ActsAceDevWebViewOnFullScreenEnterInfoTest', () => {
       
     beforeAll(async (done: Function) => {
-        let option : router.RouterOptions = {
+        let options : router.RouterOptions = {
             url: 'testability/pages/webViewOnFullScreenEnterInfo',
         }
         
@@ -35,7 +35,7 @@ export default function webViewOnFullScreenEnterInfo() {
             if (!("webViewOnFullScreenEnterInfo" == pages.name)) {
                 console.info("get webViewOnFullScreenEnterInfo state success " + JSON.stringify(pages.name));
                 let result = await router.pushUrl(options);
-                await.Utils.sleep(1000);
+                await Utils.sleep(1000);
                 console.info("push webViewOnFullScreenEnterInfo state success " + JSON.stringify(result));
             }
         } catch (err) {
@@ -78,7 +78,8 @@ export default function webViewOnFullScreenEnterInfo() {
      */
     it('testOnFullScreenEnterVideoInfo', 0, async (done: Function) => {
         sendEventByKey('TestwebviewOnFullScreenEnterInfo', 10, '');
-        emitKey="emitOnfullscreenenterinfo";
+        let emitKey="emitOnfullscreenenterinfo";
+        Utils.emitEvent(emitKey,10)
         Utils.registerEvent("testOnFullScreenEnterVideoInfo", true, 1285, done);
         sendEventByKey('webViewOnFullScreenEnterInfo', 10, '');
     })
