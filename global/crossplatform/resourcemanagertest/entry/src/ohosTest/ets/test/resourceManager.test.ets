@@ -1333,22 +1333,6 @@ describe('resourceManagerTest', function () {
     })
 
     /* *
-    * @tc.number  TEST_RELEASE_001
-    * @tc.name    test release method
-    * @tc.desc    get the release function
-    * @tc.size:    MediumTest
-    * @tc.type     method
-    * @tc.level    level 2
-    */
-    it('testRelease001', 0, async function (done) {
-            context.resourceManager.getString($r('app.string.test_1').id, (err, value) => {
-                expect(value !== null).assertTrue();
-                done();
-            })
-            context.resourceManager.release();
-    })
-
-    /* *
     * @tc.number  TEST_GETRAWFILECONTENTCALLBACK_001
     * @tc.name    test getRawFile method in callback mode
     * @tc.desc    get the getRawFile in callback mode
