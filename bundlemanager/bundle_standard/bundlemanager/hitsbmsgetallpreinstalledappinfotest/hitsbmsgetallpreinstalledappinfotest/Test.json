@@ -1,0 +1,30 @@
+{
+    "description": "Configuration for hjunit demo Tests",
+    "driver": {
+      "type": "OHJSUnitTest",
+      "test-timeout": "600000",
+      "bundle-name": "com.example.hitsbmsgetallpreinstalledappinfotest",
+      "module-name": "entry_test",
+      "shell-timeout": "600000",
+      "testcase-timeout": 10000
+    },
+    "kits": [
+      {
+        "test-file-name": [
+          "ActsBmsGetAllPreinstalledAppinfoRely.hap",
+          "ActsBmsGetAllPreinstalledAppinfoTest.hap",
+          "ActsBmsGetAllPreinstalledAppinfoWithSignRely.hap"
+        ],
+        "type": "AppInstallKit",
+        "cleanup-apps": true
+      },
+      {
+        "type": "ShellKit",
+        "run-command": [
+          "wait 10",
+          "power-shell wakeup",
+          "power-shell setmode 602"
+        ]
+      }
+    ]
+  }
