@@ -24,7 +24,7 @@ export default async function SystemDisplayTest() {
         console.log("System SystemDisplay Unit Test Begin");
 
         /**
-         * @tc.number system_display_js_0100
+         * @tc.number SUB_PowerSystem_SystemDisplay_JSTest_0010
          * @tc.name get_value_success
          * @tc.desc Get brightness success
          */
@@ -41,8 +41,8 @@ export default async function SystemDisplayTest() {
         });
 
         /**
-         * @tc.number system_display_js_0101
-         * @tc.name get_value_success_not_must_test
+         * @tc.number SUB_PowerSystem_SystemDisplay_JSTest_0020
+         * @tc.name get_status_test_success_not_must
          * @tc.desc Get brightness
          */
         it('get_status_test_success_not_must', 0, async function (done) {
@@ -60,7 +60,7 @@ export default async function SystemDisplayTest() {
         })
 
         /**
-         * @tc.number system_display_js_0102
+         * @tc.number SUB_PowerSystem_SystemDisplay_JSTest_0030
          * @tc.name get_value_fail_not_must_test
          * @tc.desc Get brightness
          */
@@ -75,8 +75,8 @@ export default async function SystemDisplayTest() {
         });
 
         /**
-         * @tc.number system_display_js_0103
-         * @tc.name get_value_null_test
+         * @tc.number SUB_PowerSystem_SystemDisplay_JSTest_0040
+         * @tc.name get_status_test_fail_not_must
          * @tc.desc Get brightness
          */
         it('get_status_test_fail_not_must', 0, async function (done) {
@@ -86,7 +86,7 @@ export default async function SystemDisplayTest() {
         })
 
         /**
-         * @tc.number system_display_js_0201
+         * @tc.number SUB_PowerSystem_SystemDisplay_JSTest_0050
          * @tc.name set_value_success_value
          * @tc.desc Set brightness success
          */
@@ -120,7 +120,7 @@ export default async function SystemDisplayTest() {
         });
 
         /**
-         * @tc.number system_display_js_0202
+         * @tc.number SUB_PowerSystem_SystemDisplay_JSTest_0060
          * @tc.name set_value_fail
          * @tc.desc Set brightness fail
          */
@@ -143,7 +143,7 @@ export default async function SystemDisplayTest() {
         });
 
         /**
-         * @tc.number system_display_js_0203
+         * @tc.number SUB_PowerSystem_SystemDisplay_JSTest_0070
          * @tc.name set_value_undefined
          * @tc.desc Check undefined as input of setValue
          */
@@ -168,7 +168,7 @@ export default async function SystemDisplayTest() {
         });
 
         /**
-         * @tc.number system_display_js_0300
+         * @tc.number SUB_PowerSystem_SystemDisplay_JSTest_0080
          * @tc.name get_mode_success
          * @tc.desc Get mode success
          */
@@ -183,7 +183,7 @@ export default async function SystemDisplayTest() {
         })
 
         /**
-         * @tc.number system_display_js_0301
+         * @tc.number SUB_PowerSystem_SystemDisplay_JSTest_0090
          * @tc.name get_mode_success_null
          * @tc.desc Get mode success is null
          */
@@ -202,7 +202,7 @@ export default async function SystemDisplayTest() {
         });
 
         /**
-         * @tc.number system_display_js_0400
+         * @tc.number SUB_PowerSystem_SystemDisplay_JSTest_0100
          * @tc.name set_mode_success
          * @tc.desc set mode success
          */
@@ -226,7 +226,7 @@ export default async function SystemDisplayTest() {
         });
 
         /**
-         * @tc.number system_display_js_0401
+         * @tc.number SUB_PowerSystem_SystemDisplay_JSTest_0110
          * @tc.name set_mode_fail
          * @tc.desc set mode fail
          */
@@ -250,7 +250,7 @@ export default async function SystemDisplayTest() {
         });
 
         /**
-         * @tc.number system_display_js_0500
+         * @tc.number SUB_PowerSystem_SystemDisplay_JSTest_0120
          * @tc.name set_keep_screen_on_true
          * @tc.desc set keep screen on true
          */
@@ -273,7 +273,7 @@ export default async function SystemDisplayTest() {
         });
 
         /**
-         * @tc.number system_display_js_0501
+         * @tc.number SUB_PowerSystem_SystemDisplay_JSTest_0130
          * @tc.name set_keep_screen_on_false
          * @tc.desc set keep screen on false
          */

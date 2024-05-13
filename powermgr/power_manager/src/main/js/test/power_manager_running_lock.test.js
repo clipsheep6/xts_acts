@@ -14,7 +14,6 @@
  */
 
 import runningLock from '@ohos.runningLock'
-
 import { describe, it, expect } from '@ohos/hypium'
 
 export default function PowerManagerRunningLockTest() {
@@ -22,7 +21,7 @@ export default function PowerManagerRunningLockTest() {
         console.log("*************RunningLock Unit Test Begin*************");
 
         /**
-         * @tc.number SUB_PowerSystem_PowerManager_JSTest_0010
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0010
          * @tc.name Running_Lock_Lock_JSTest0010
          * @tc.desc Prevents the system from hibernating and sets the lock duration (deprecated since 9)
          */
@@ -37,16 +36,17 @@ export default function PowerManagerRunningLockTest() {
                     used = runninglock.isUsed();
                     console.info('after lock Running_Lock_Lock_JSTest0010 is used: ' + used);
                     expect(used).assertTrue();
+                    done();
                 })
                 .catch(error => {
                     console.log('Running_Lock_Lock_JSTest0010 error: ' + error);
                     expect().assertFail();
+                    done();
                 })
-            done();
         })
 
         /**
-         * @tc.number SUB_PowerSystem_PowerManager_JSTest_0020
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0020
          * @tc.name Running_Lock_used_JSTest0020
          * @tc.desc Checks whether a lock is held or in use (deprecated since 9)
          */
@@ -58,16 +58,17 @@ export default function PowerManagerRunningLockTest() {
                     console.info('Running_Lock_used_JSTest0020 used: ' + used);
                     expect(used).assertFalse();
                     console.info('Running_Lock_used_JSTest0020 success');
+                    done();
                 })
                 .catch(error => {
                     console.log('Running_Lock_used_JSTest0020 error: ' + error);
                     expect().assertFail();
+                    done();
                 })
-            done();
         })
 
         /**
-         * @tc.number SUB_PowerSystem_PowerManager_JSTest_0030
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0030
          * @tc.name Running_Lock_Unlock_JSTest0030
          * @tc.desc Release running lock (deprecated since 9)
          */
@@ -87,16 +88,17 @@ export default function PowerManagerRunningLockTest() {
                     console.info('after unlock Running_Lock_Unlock_JSTest0030 is used: ' + used);
                     expect(used).assertFalse();
                     console.info('Running_Lock_Unlock_JSTest0030 success');
+                    done();
                 })
                 .catch(error => {
                     console.log('Running_Lock_Unlock_JSTest0030 error: ' + error);
                     expect().assertFail();
+                    done();
                 })
-            done();
         })
 
         /**
-        * @tc.number SUB_PowerSystem_PowerManager_JSTest_0040
+        * @tc.number SUB_PowerSystem_RunningLock_JSTest_0040
         * @tc.name Running_Lock_Hold_IsHolding_UnHold_JSTest0040
         * @tc.desc hold lock, is holding , unhold
         */
@@ -116,98 +118,181 @@ export default function PowerManagerRunningLockTest() {
                         expect(holding).assertTrue();
                         runninglock.unhold();
                         expect(runninglock.isHolding()).assertFalse();
+                        done();
                     })
                     .catch((error) => {
                         isExec = true;
                         console.info('Running_Lock_Hold_IsHolding_UnHold_JSTest0040 error:' + (typeof error));
                         expect(typeof error !== "undefined").assertTrue();
                         console.info('Running_Lock_Hold_IsHolding_UnHold_JSTest0040 error code:' + error.code + " msg: " + error.message);
+                        done();
                     })
                     .finally(() => {
                         expect(isExec).assertTrue();
+                        done();
                     })
             } catch (e) {
                 console.info('Running_Lock_Hold_IsHolding_UnHold_JSTest0040 error:' + e);
                 expect().assertFail();
+                done();
             }
-            done();
         })
 
         /**
-         * @tc.number SUB_PowerSystem_PowerManager_JSTest_0050
-         * @tc.name Enum_RunningLock_Type_Background_JSTest0050
+        * @tc.number SUB_PowerSystem_RunningLock_JSTest_0050
+        * @tc.name Running_Lock_IsHolding_UnHold_JSTest0050
+        * @tc.desc hold lock, is holding , unhold
+        */
+        it('Running_Lock_IsHolding_UnHold_JSTest0050', 0, async function (done) {
+            try {
+                let isExec = false;
+                await runningLock.create("Running_Lock_IsHolding_UnHold_JSTest0050", runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL)
+                    .then((runninglock) => {
+                        isExec = true;
+                        expect(runninglock !== null).assertTrue();
+                        let holding = runninglock.isHolding();
+                        console.info('Running_Lock_IsHolding_UnHold_JSTest0050 holding false:' + holding);
+                        expect(holding).assertFalse();
+                        runninglock.unhold();
+                        expect(runninglock.isHolding()).assertFalse();
+                        done();
+                    })
+                    .catch((error) => {
+                        isExec = true;
+                        console.info('Running_Lock_IsHolding_UnHold_JSTest0050 error:' + (typeof error));
+                        expect(typeof error !== "undefined").assertTrue();
+                        console.info('Running_Lock_IsHolding_UnHold_JSTest0050 error code:' + error.code + " msg: " + error.message);
+                        done();
+                    })
+                    .finally(() => {
+                        expect(isExec).assertTrue();
+                        done();
+                    })
+            } catch (e) {
+                console.info('Running_Lock_IsHolding_UnHold_JSTest0050 error:' + e);
+                expect().assertFail();
+                done();
+            }
+        })
+
+        /**
+        * @tc.number SUB_PowerSystem_RunningLock_JSTest_0060
+        * @tc.name Running_Lock_Hold_IsHolding_UnHold_JSTest0060
+        * @tc.desc hold lock, is holding , unhold
+        */
+        it('Running_Lock_Hold_IsHolding_UnHold_JSTest0060', 0, async function (done) {
+            try {
+                let isExec = false;
+                await runningLock.create("Running_Lock_Hold_IsHolding_UnHold_JSTest0060", runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL)
+                    .then((runninglock) => {
+                        isExec = true;
+                        expect(runninglock !== null).assertTrue();
+                        let holding = runninglock.isHolding();
+                        console.info('Running_Lock_Hold_IsHolding_UnHold_JSTest0060 holding false:' + holding);
+                        expect(holding).assertFalse();
+                        runninglock.hold(-1);
+                        holding = runninglock.isHolding();
+                        console.info('Running_Lock_Hold_IsHolding_UnHold_JSTest0060 holding true:' + holding);
+                        expect(holding).assertTrue();
+                        runninglock.unhold();
+                        expect(runninglock.isHolding()).assertFalse();
+                        done();
+                    })
+                    .catch((error) => {
+                        isExec = true;
+                        console.info('Running_Lock_Hold_IsHolding_UnHold_JSTest0060 error:' + (typeof error));
+                        expect(typeof error !== "undefined").assertTrue();
+                        console.info('Running_Lock_Hold_IsHolding_UnHold_JSTest0060 error code:' + error.code + " msg: " + error.message);
+                        done();
+                    })
+                    .finally(() => {
+                        expect(isExec).assertTrue();
+                        done();
+                    })
+            } catch (e) {
+                console.info('Running_Lock_Hold_IsHolding_UnHold_JSTest0060 error:' + e);
+                expect().assertFail();
+                done();
+            }
+        })
+
+        /**
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0070
+         * @tc.name Enum_RunningLock_Type_Background_JSTest0070
          * @tc.desc The lock type is BACKGROUND
          */
-        it('Enum_RunningLock_Type_Background_JSTest0050', 0, function () {
+        it('Enum_RunningLock_Type_Background_JSTest0070', 0, function () {
             let runningLockType = runningLock.RunningLockType.BACKGROUND;
             console.info('runningLockType = ' + runningLockType);
             expect(runningLockType == 1).assertTrue();
-            console.info('Enum_RunningLock_Type_Background_JSTest0050 success');
+            console.info('Enum_RunningLock_Type_Background_JSTest0070 success');
         })
 
         /**
-         * @tc.number SUB_PowerSystem_PowerManager_JSTest_0060
-         * @tc.name Enum_RunningLock_Type_Proximityscreencontrol_JSTest0060
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0080
+         * @tc.name Enum_RunningLock_Type_Proximityscreencontrol_JSTest0080
          * @tc.desc The lock type is PROXIMITY_SCREEN_CONTROL
          */
-        it('Enum_RunningLock_Type_Proximityscreencontrol_JSTest0060', 0, function () {
+        it('Enum_RunningLock_Type_Proximityscreencontrol_JSTest0080', 0, function () {
             let runningLockType = runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL;
             console.info('runningLockType = ' + runningLockType);
             expect(runningLockType == 2).assertTrue();
-            console.info('Enum_RunningLock_Type_Proximityscreencontrol_JSTest0060 success');
+            console.info('Enum_RunningLock_Type_Proximityscreencontrol_JSTest0080 success');
         })
 
         /**
-         * @tc.number SUB_PowerSystem_PowerManager_JSTest_0070
-         * @tc.name Is_Runninglock_Type_Supported_Promise_JSTest0070
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0090
+         * @tc.name Is_Runninglock_Type_Supported_Promise_JSTest0090
          * @tc.desc Checks whether the specified RunningLockType is supported (deprecated since 9)
          */
-        it('Is_Runninglock_Type_Supported_Promise_JSTest0070', 0, async function (done) {
+        it('Is_Runninglock_Type_Supported_Promise_JSTest0090', 0, async function (done) {
             await runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL)
                 .then(supported => {
-                    console.info('Is_Runninglock_Type_Supported_Promise_JSTest0070 PROXIMITY_SCREEN_CONTROL supported is ' + supported);
+                    console.info('Is_Runninglock_Type_Supported_Promise_JSTest0090 PROXIMITY_SCREEN_CONTROL supported is ' + supported);
                     expect(supported).assertTrue();
-                    console.info('Is_Runninglock_Type_Supported_Promise_JSTest0070 success');
+                    console.info('Is_Runninglock_Type_Supported_Promise_JSTest0090 success');
+                    done();
                 })
                 .catch(error => {
-                    console.log('Is_Runninglock_Type_Supported_Promise_JSTest0070 error: ' + error);
+                    console.log('Is_Runninglock_Type_Supported_Promise_JSTest0090 error: ' + error);
                     expect().assertFail();
+                    done();
                 })
-            done();
         })
 
         /**
-         * @tc.number SUB_PowerSystem_PowerManager_JSTest_0080
-         * @tc.name Is_Runninglock_Type_Supported_Promise_JSTest0080
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0100
+         * @tc.name Is_Runninglock_Type_Supported_Promise_JSTest0100
          * @tc.desc Checks whether the specified RunningLockType is supported (deprecated since 9)
          */
-        it('Is_Runninglock_Type_Supported_Promise_JSTest0080', 0, async function (done) {
+        it('Is_Runninglock_Type_Supported_Promise_JSTest0100', 0, async function (done) {
             await runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND)
                 .then(supported => {
-                    console.info('Is_Runninglock_Type_Supported_Promise_JSTest0080 BACKGROUND supported is ' + supported);
+                    console.info('Is_Runninglock_Type_Supported_Promise_JSTest0100 BACKGROUND supported is ' + supported);
                     expect(supported).assertTrue();
-                    console.info('Is_Runninglock_Type_Supported_Promise_JSTest0080 success');
+                    console.info('Is_Runninglock_Type_Supported_Promise_JSTest0100 success');
+                    done();
                 })
                 .catch(error => {
-                    console.log('Is_Runninglock_Type_Supported_Promise_JSTest0080 error: ' + error);
+                    console.log('Is_Runninglock_Type_Supported_Promise_JSTest0100 error: ' + error);
                     expect().assertFail();
+                    done();
                 })
-            done();
         })
 
         /**
-         * @tc.number SUB_PowerSystem_PowerManager_JSTest_0090
-         * @tc.name Is_Runninglock_Type_Supported_Callback_JSTest0090
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0110
+         * @tc.name Is_Runninglock_Type_Supported_Callback_JSTest0110
          * @tc.desc Checks whether the specified RunningLockType is supported (deprecated since 9)
          */
-        it('Is_Runninglock_Type_Supported_Callback_JSTest0090', 0, async function (done) {
+        it('Is_Runninglock_Type_Supported_Callback_JSTest0110', 0, async function (done) {
             runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND, (error, supported) => {
                 if (typeof error === "undefined") {
-                    console.info('Is_Runninglock_Type_Supported_Callback_JSTest0090 supported is ' + supported);
+                    console.info('Is_Runninglock_Type_Supported_Callback_JSTest0110 supported is ' + supported);
                     expect(supported).assertTrue();
-                    console.info('Is_Runninglock_Type_Supported_Callback_JSTest0090 success');
+                    console.info('Is_Runninglock_Type_Supported_Callback_JSTest0110 success');
                 } else {
-                    console.log('Is_Runninglock_Type_Supported_Callback_JSTest0090: ' + error);
+                    console.log('Is_Runninglock_Type_Supported_Callback_JSTest0110: ' + error);
                     expect().assertFail();
                 }
                 done();
@@ -215,60 +300,132 @@ export default function PowerManagerRunningLockTest() {
         })
 
         /**
-         * @tc.number SUB_PowerSystem_PowerManager_JSTest_0100
-         * @tc.name Is_Supported_JSTest0100
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0120
+         * @tc.name Is_Runninglock_Type_Supported_Callback_JSTest0120
+         * @tc.desc Checks whether the specified RunningLockType is supported (deprecated since 9)
+         */
+        it('Is_Runninglock_Type_Supported_Callback_JSTest0120', 0, async function (done) {
+            runningLock.isRunningLockTypeSupported(3, (error, supported) => {
+                if (typeof error === "undefined") {
+                    console.info('Is_Runninglock_Type_Supported_Callback_JSTest0120 supported is ' + supported);
+                    expect(supported).assertFalse();
+                    console.info('Is_Runninglock_Type_Supported_Callback_JSTest0120 success');
+                } else {
+                    console.log('Is_Runninglock_Type_Supported_Callback_JSTest0120: ' + error);
+                    expect().assertFail();
+                }
+                done();
+            })
+        })
+
+        /**
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0130
+         * @tc.name Is_Supported_JSTest0130
          * @tc.desc Checks whether the specified RunningLockType is supported.
          */
-        it('Is_Supported_JSTest0100', 0, async function (done) {
+        it('Is_Supported_JSTest0130', 0, async function (done) {
             try {
                 let background = runningLock.isSupported(runningLock.RunningLockType.BACKGROUND)
                 expect(background).assertTrue();
+                done();
             } catch (e) {
-                console.info('Is_Supported_JSTest0100 code:' + e);
+                console.info('Is_Supported_JSTest0130 code:' + e);
                 expect().assertFail();
+                done();
             }
-            done();
         })
 
         /**
-         * @tc.number SUB_PowerSystem_PowerManager_JSTest_0110
-         * @tc.name Create_Running_Lock_Promise_JSTest0110
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0140
+         * @tc.name Is_Supported_JSTest0140
+         * @tc.desc Checks whether the specified RunningLockType is supported.
+         */
+        it('Is_Supported_JSTest0140', 0, async function (done) {
+            try {
+                let proximityScreenControl = runningLock.isSupported(runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL)
+                expect(proximityScreenControl).assertTrue();
+                done();
+            } catch (e) {
+                console.info('Is_Supported_JSTest0140 code:' + e);
+                expect().assertFail();
+                done();
+            }
+        })
+
+        /**
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0150
+         * @tc.name Is_Supported_JSTest0150
+         * @tc.desc Checks whether the specified RunningLockType is supported.
+         */
+        it('Is_Supported_JSTest0150', 0, async function (done) {
+            try {
+                let other = runningLock.isSupported(0)
+                expect(other).assertFalse();
+                done();
+            } catch (e) {
+                console.info('Is_Supported_JSTest0150 code:' + e);
+                expect().assertFail();
+                done();
+            }
+        })
+
+        /**
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0160
+         * @tc.name Is_Supported_JSTest0160
+         * @tc.desc Checks whether the specified RunningLockType is supported.
+         */
+        it('Is_Supported_JSTest0160', 0, async function (done) {
+            try {
+                let other = runningLock.isSupported(3)
+                expect(other).assertFalse();
+                done();
+            } catch (e) {
+                console.info('Is_Supported_JSTest0160 code:' + e);
+                expect().assertFail();
+                done();
+            }
+        })
+
+        /**
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0170
+         * @tc.name Create_Running_Lock_Promise_JSTest0170
          * @tc.desc Create running lock promise (deprecated since 9)
          */
-        it('Create_Running_Lock_Promise_JSTest0110', 0, async function (done) {
-            await runningLock.createRunningLock("running_lock_test_1", runningLock.RunningLockType.BACKGROUND)
+        it('Create_Running_Lock_Promise_JSTest0170', 0, async function (done) {
+            await runningLock.createRunningLock("Create_Running_Lock_Promise_JSTest0170", runningLock.RunningLockType.BACKGROUND)
                 .then(runninglock => {
                     expect(runninglock !== null).assertTrue();
-                    console.info('Create_Running_Lock_Promise_JSTest0110 success');
+                    console.info('Create_Running_Lock_Promise_JSTest0170 success');
+                    done();
                 })
                 .catch(error => {
-                    console.log('Create_Running_Lock_Promise_JSTest0110 error: ' + error);
+                    console.log('Create_Running_Lock_Promise_JSTest0170 error: ' + error);
                     expect().assertFail();
+                    done();
                 })
-            done();
         })
 
         /**
-         * @tc.number SUB_PowerSystem_PowerManager_JSTest_0120
-         * @tc.name Create_Running_Lock_CallBack_JSTest0120
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0180
+         * @tc.name Create_Running_Lock_CallBack_JSTest0180
          * @tc.desc Create running lock callback (deprecated since 9)
          */
-        it('Create_Running_Lock_CallBack_JSTest0120', 0, async function (done) {
-            runningLock.createRunningLock("Create_Running_Lock_CallBack_JSTest0120", runningLock.RunningLockType.BACKGROUND,
+        it('Create_Running_Lock_CallBack_JSTest0180', 0, async function (done) {
+            runningLock.createRunningLock("Create_Running_Lock_CallBack_JSTest0180", runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL,
                 (error, runninglock) => {
                     if (typeof error === "undefined") {
-                        console.info('Create_Running_Lock_CallBack_JSTest0120: runningLock is ' + runninglock);
+                        console.info('Create_Running_Lock_CallBack_JSTest0180: runningLock is ' + runninglock);
                         expect(runninglock !== null).assertTrue();
                         let used = runninglock.isUsed();
-                        console.info('Create_Running_Lock_CallBack_JSTest0120 is used: ' + used);
+                        console.info('Create_Running_Lock_CallBack_JSTest0180 is used: ' + used);
                         expect(used).assertFalse();
                         runninglock.lock(500);
                         used = runninglock.isUsed();
-                        console.info('after lock Create_Running_Lock_CallBack_JSTest0120 is used: ' + used);
+                        console.info('after lock Create_Running_Lock_CallBack_JSTest0180 is used: ' + used);
                         expect(used).assertTrue();
-                        console.info('Create_Running_Lock_CallBack_JSTest0120 success');
+                        console.info('Create_Running_Lock_CallBack_JSTest0180 success');
                     } else {
-                        console.log('Create_Running_Lock_CallBack_JSTest0120: ' + error);
+                        console.log('Create_Running_Lock_CallBack_JSTest0180: ' + error);
                         expect().assertFail();
                     }
                     done();
@@ -276,91 +433,237 @@ export default function PowerManagerRunningLockTest() {
         })
 
         /**
-        * @tc.number SUB_PowerSystem_PowerManager_JSTest_0130
-        * @tc.name Create_Running_Lock_Promise_JSTest0130
+        * @tc.number SUB_PowerSystem_RunningLock_JSTest_0190
+        * @tc.name Create_Running_Lock_Promise_JSTest0190
         * @tc.desc Create lock promise
         */
-        it('Create_Running_Lock_Promise_JSTest0130', 0, async function (done) {
+        it('Create_Running_Lock_Promise_JSTest0190', 0, async function (done) {
             try {
                 let isExec = false;
-                await runningLock.create("Create_Running_Lock_Promise_JSTest0130", runningLock.RunningLockType.BACKGROUND)
+                await runningLock.create("Create_Running_Lock_Promise_JSTest0190", runningLock.RunningLockType.BACKGROUND)
                     .then((runninglock) => {
                         isExec = true;
                         expect(runninglock !== null).assertTrue();
-                        console.info('Create_Running_Lock_Promise_JSTest0130 success');
+                        console.info('Create_Running_Lock_Promise_JSTest0190 success');
+                        done();
                     })
                     .catch((error) => {
                         isExec = true;
-                        console.info('Create_Running_Lock_Promise_JSTest0130 error:' + (typeof error));
+                        console.info('Create_Running_Lock_Promise_JSTest0190 error:' + (typeof error));
                         expect(typeof error !== "undefined").assertTrue();
-                        console.info('Create_Running_Lock_Promise_JSTest0130 error code:' + error.code + " msg: " + error.message);
+                        console.info('Create_Running_Lock_Promise_JSTest0190 error code:' + error.code + " msg: " + error.message);
+                        done();
                     })
                     .finally(() => {
                         expect(isExec).assertTrue();
+                        done();
                     })
             } catch (e) {
-                console.info('Create_Running_Lock_Promise_JSTest0130 error:' + e);
+                console.info('Create_Running_Lock_Promise_JSTest0190 error:' + e);
                 expect().assertFail();
+                done();
             }
-            done();
+            
         })
 
         /**
-         * @tc.number SUB_PowerSystem_PowerManager_JSTest_0140
-         * @tc.name Create_Running_Lock_Promise_Invalid_JSTest0130
+        * @tc.number SUB_PowerSystem_RunningLock_JSTest_0200
+        * @tc.name Create_Running_Lock_Promise_JSTest0200
+        * @tc.desc Create lock promise
+        */
+        it('Create_Running_Lock_Promise_JSTest0200', 0, async function (done) {
+            try {
+                let isExec = false;
+                await runningLock.create("Create_Running_Lock_Promise_JSTest0200", runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL)
+                    .then((runninglock) => {
+                        isExec = true;
+                        expect(runninglock !== null).assertTrue();
+                        console.info('Create_Running_Lock_Promise_JSTest0200 success');
+                        done();
+                    })
+                    .catch((error) => {
+                        isExec = true;
+                        console.info('Create_Running_Lock_Promise_JSTest0200 error:' + (typeof error));
+                        expect(typeof error !== "undefined").assertTrue();
+                        console.info('Create_Running_Lock_Promise_JSTest0200 error code:' + error.code + " msg: " + error.message);
+                        done();
+                    })
+                    .finally(() => {
+                        expect(isExec).assertTrue();
+                        done();
+                    })
+            } catch (e) {
+                console.info('Create_Running_Lock_Promise_JSTest0200 error:' + e);
+                expect().assertFail();
+                done();
+            }
+        })
+
+        /**
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0210
+         * @tc.name Create_Running_Lock_Promise_Invalid_JSTest0210
          * @tc.desc Create lock input invalid value
          */
-        it('Create_Running_Lock_Promise_Invalid_JSTest0130', 0, async function (done) {
+        it('Create_Running_Lock_Promise_Invalid_JSTest0210', 0, async function (done) {
             try {
                 runningLock.create(0, runningLock.RunningLockType.BACKGROUND)
                     .then((runninglock) => {
                         expect().assertFail();
+                        done();
                     })
             } catch (e) {
-                console.info('Create_Running_Lock_Promise_Invalid_JSTest0130 code:' + e.code + "msg:" + e.message);
+                console.info('Create_Running_Lock_Promise_Invalid_JSTest0210 code:' + e.code + "msg:" + e.message);
                 // 401: Invalid input parameter
                 expect(e.code === 401).assertTrue();
+                done();
             }
-            done();
         })
 
         /**
-         * @tc.number SUB_PowerSystem_PowerManager_JSTest_0140
-         * @tc.name Create_Running_Lock_Callback_JSTest0140
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0220
+         * @tc.name Create_Running_Lock_Promise_Invalid_JSTest0220
+         * @tc.desc Create lock input invalid value
+         */
+        it('Create_Running_Lock_Promise_Invalid_JSTest0220', 0, async function (done) {
+            try {
+                runningLock.create("Create_Running_Lock_Promise_Invalid_JSTest0220", 0)
+                    .then((error, runninglock) => {
+                        expect(typeof error !== "undefined").assertTrue();
+                        expect(runninglock === null).assertTrue();
+                    })
+                done();
+            } catch (e) {
+                console.info('Create_Running_Lock_Promise_Invalid_JSTest0220 code:' + e.code + "msg:" + e.message);
+                // 401: Invalid input parameter
+                expect(e.code === 401).assertTrue();
+                done();
+            }
+        })
+
+        /**
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0230
+         * @tc.name Create_Running_Lock_Promise_Invalid_JSTest0230
+         * @tc.desc Create lock input invalid value
+         */
+        it('Create_Running_Lock_Promise_Invalid_JSTest0230', 0, async function (done) {
+            try {
+                runningLock.create("Create_Running_Lock_Promise_Invalid_JSTest0230", 5)
+                    .then((error, runninglock) => {
+                        expect(typeof error !== "undefined").assertTrue();
+                        expect(runninglock === null).assertTrue();
+                    })
+                done();
+            } catch (e) {
+                console.info('Create_Running_Lock_Promise_Invalid_JSTest0230 code:' + e.code + "msg:" + e.message);
+                // 401: Invalid input parameter
+                expect(e.code === 401).assertTrue();
+                done();
+            }
+        })
+
+        /**
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0240
+         * @tc.name Create_Running_Lock_Callback_JSTest0240
          * @tc.desc Create lock callback
          */
-        it('Create_Running_Lock_Callback_JSTest0140', 0, async function (done) {
+        it('Create_Running_Lock_Callback_JSTest0240', 0, async function (done) {
             try {
-                runningLock.create("Create_Running_Lock_Callback_JSTest0140", runningLock.RunningLockType.BACKGROUND,
+                runningLock.create("Create_Running_Lock_Callback_JSTest0240", runningLock.RunningLockType.BACKGROUND,
                     (error, runninglock) => {
                         expect(typeof error === "undefined").assertTrue();
                         expect(runninglock !== null).assertTrue();
-                        console.info('Create_Running_Lock_Callback_JSTest0140 success');
-                        done();
+                        console.info('Create_Running_Lock_Callback_JSTest0240 success');        
                     });
+                done();
             } catch (e) {
-                console.info('Create_Running_Lock_Callback_JSTest0230 error:' + e);
+                console.info('Create_Running_Lock_Callback_JSTest0240 error:' + e);
                 expect().assertFail();
+                done();
             }
         })
 
         /**
-         * @tc.number SUB_PowerSystem_PowerManager_JSTest_0150
-         * @tc.name Create_Running_Lock_Callback_JSTest0150
-         * @tc.desc Create lock input invalid value
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0250
+         * @tc.name Create_Running_Lock_Callback_JSTest0250
+         * @tc.desc Create lock callback
          */
-        it('Create_Running_Lock_Callback_Invalid_JSTest0150', 0, async function (done) {
+        it('Create_Running_Lock_Callback_JSTest0250', 0, async function (done) {
             try {
-                runningLock.create("Create_Running_Lock_Callback_Invalid_JSTest0150", "invalid",
+                runningLock.create("Create_Running_Lock_Callback_JSTest0250", runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL,
                     (error, runninglock) => {
-                        expect().assertFail();
+                        expect(typeof error === "undefined").assertTrue();
+                        expect(runninglock !== null).assertTrue();
+                        console.info('Create_Running_Lock_Callback_JSTest0250 success');
+                        done();
                     });
             } catch (e) {
-                console.info('Create_Running_Lock_Callback_Invalid_JSTest0150 code:' + e.code + "msg:" + e.message);
+                console.info('Create_Running_Lock_Callback_JSTest0250 error:' + e);
+                expect().assertFail();
+                done();
+            }
+        })
+
+        /**
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0260
+         * @tc.name Create_Running_Lock_Callback_Invalid_JSTest0260
+         * @tc.desc Create lock input invalid value
+         */
+        it('Create_Running_Lock_Callback_Invalid_JSTest0260', 0, async function (done) {
+            try {
+                runningLock.create("Create_Running_Lock_Callback_Invalid_JSTest0260", "invalid",
+                    (error, runninglock) => {
+                        expect().assertFail();
+                        done();
+                    });
+            } catch (e) {
+                console.info('Create_Running_Lock_Callback_Invalid_JSTest0260 code:' + e.code + "msg:" + e.message);
                 // 401: Invalid input parameter
                 expect(e.code === 401).assertTrue();
+                done();
             }
-            done();
+        })
+
+        /**
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0270
+         * @tc.name Create_Running_Lock_Callback_Invalid_JSTest0270
+         * @tc.desc Create lock input invalid value
+         */
+        it('Create_Running_Lock_Callback_Invalid_JSTest0270', 0, async function (done) {
+            try {
+                await runningLock.create("Create_Running_Lock_Callback_Invalid_JSTest0270", -1,
+                    (error, runninglock) => {
+                        console.info('Create_Running_Lock_Callback_Invalid_JSTest0270 error code:' + error.code + " msg: " + error.message);
+                        expect(typeof error !== "undefined").assertTrue();
+                        expect(runninglock === null).assertTrue();
+                    });
+                done();
+            } catch (e) {
+                console.info('Create_Running_Lock_Callback_Invalid_JSTest0270 code:' + e.code + "msg:" + e.message);
+                // 401: Invalid input parameter
+                expect(e.code === 401).assertTrue();
+                done();
+            }
+        })
+
+        /**
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0280
+         * @tc.name Create_Running_Lock_Callback_Invalid_JSTest0280
+         * @tc.desc Create lock input invalid value
+         */
+        it('Create_Running_Lock_Callback_Invalid_JSTest0280', 0, async function (done) {
+            try {
+                runningLock.create("Create_Running_Lock_Callback_Invalid_JSTest0280", 3)
+                    .then((error, runninglock) => {
+                        expect(typeof error !== "undefined").assertTrue();
+                        expect(runninglock === null).assertTrue();
+                    })
+                done();
+            } catch (e) {
+                console.info('Create_Running_Lock_Callback_Invalid_JSTest0280 code:' + e.code + "msg:" + e.message);
+                // 401: Invalid input parameter
+                expect(e.code === 401).assertTrue();
+                done();
+            }
         })
     })
 }

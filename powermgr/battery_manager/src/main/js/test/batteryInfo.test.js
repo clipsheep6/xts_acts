@@ -14,15 +14,14 @@
  */
 
 import batteryInfo from '@ohos.batteryInfo';
-import brightness from '@ohos.brightness';
 import { describe, it, expect } from '@ohos/hypium'
 
-export default function BatteryUnitTest() {
-describe('BatteryUnitTest', function () {
+export default function BatteryInfoTest() {
+describe('BatteryInfoTest', function () {
     console.log("*************Battery Unit Test Begin*************");
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1510
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0010
      * @tc.name battery_soc_JSTest
      * @tc.desc Battery acquisition kit
      */
@@ -33,7 +32,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1520
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0020
      * @tc.name charging_status_JSTest
      * @tc.desc Battery charging kit
      */
@@ -44,7 +43,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1530
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0030
      * @tc.name health_status_JSTest
      * @tc.desc Get Battery Health Get KIT
      */
@@ -55,7 +54,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1540
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0040
      * @tc.name plugged_type_JSTest
      * @tc.desc Obtaining the SUB Connection Type KIT
      */
@@ -66,7 +65,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1550
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0050
      * @tc.name voltage_JSTest
      * @tc.desc Obtaining the Voltage Interface KIT
      */
@@ -77,7 +76,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1560
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0060
      * @tc.name technology_JSTest
      * @tc.desc Obtaining the Battery Technology Interface KIT
      */
@@ -88,7 +87,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1570
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0070
      * @tc.name battery_temperature_JSTest
      * @tc.desc BatteryTemperature values Interface Test
      */
@@ -99,7 +98,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1580
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0080
      * @tc.name enum_health_state_JSTest_unknown
      * @tc.desc BatteryHealthState values Interface Test
      */
@@ -110,7 +109,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1590
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0090
      * @tc.name enum_health_state_JSTest_good
      * @tc.desc BatteryHealthState values Interface Test
      */
@@ -121,7 +120,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1600
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0100
      * @tc.name enum_health_state_JSTest_overheat
      * @tc.desc BatteryHealthState values Interface Test
      */
@@ -132,7 +131,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1610
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0110
      * @tc.name enum_health_state_JSTest_overvoltage
      * @tc.desc BatteryHealthState values Interface Test
      */
@@ -143,7 +142,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1620
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0120
      * @tc.name enum_health_state_JSTest_cold
      * @tc.desc BatteryHealthState values Interface Test
      */
@@ -154,7 +153,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1630
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0130
      * @tc.name enum_health_state_JSTest_dead
      * @tc.desc BatteryHealthState values Interface Test
      */
@@ -165,7 +164,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1640
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0140
      * @tc.name enum_charge_state_JSTest_none
      * @tc.desc BatteryChargeState values Interface Test
      */
@@ -176,7 +175,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1650
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0150
      * @tc.name enum_charge_state_JSTest_enable
      * @tc.desc BatteryChargeState values Interface Test
      */
@@ -187,7 +186,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1660
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0160
      * @tc.name enum_charge_state_JSTest_disable
      * @tc.desc BatteryChargeState values Interface Test
      */
@@ -198,7 +197,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1670
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0170
      * @tc.name enum_charge_state_JSTest_full
      * @tc.desc BatteryChargeState values Interface Test
      */
@@ -209,7 +208,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1680
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0180
      * @tc.name enum_plugged_type_JSTest_none
      * @tc.desc BatteryPluggedType values Interface Test
      */
@@ -220,7 +219,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1690
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0190
      * @tc.name enum_plugged_type_JSTest_ac
      * @tc.desc BatteryPluggedType values Interface Test
      */
@@ -231,7 +230,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1700
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0200
      * @tc.name enum_plugged_type_JSTest_usb
      * @tc.desc BatteryPluggedType values Interface Test
      */
@@ -242,7 +241,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1710
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0210
      * @tc.name enum_plugged_type_JSTest_wireless
      * @tc.desc BatteryPluggedType values Interface Test
      */
@@ -253,19 +252,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1720
-     * @tc.name brightness_JSTest
-     * @tc.desc Set Value Interface Test
-     */
-    it('brightness_JSTest', 0, function () {
-        brightness.setValue(10);
-        brightness.setValue(0);
-        brightness.setValue(255);
-        expect(0 == 0).assertTrue();
-    })
-
-    /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1730
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0220
      * @tc.name is_battery_present_JSTest
      * @tc.desc Battry Present Interface Test
      */
@@ -280,7 +267,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1740
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0230
      * @tc.name batterylevel_JSTest
      * @tc.desc Battry Present Interface Test
      */
@@ -292,7 +279,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1750
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0240
      * @tc.name enum_level_state_JSTest_full
      * @tc.desc Battry Present Interface Test
      */
@@ -303,7 +290,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1760
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0250
      * @tc.name enum_level_state_JSTest_high
      * @tc.desc Battry Present Interface Test
      */
@@ -314,7 +301,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1770
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0260
      * @tc.name enum_level_state_JSTest_normal
      * @tc.desc Battry Present Interface Test
      */
@@ -325,7 +312,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1780
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0270
      * @tc.name enum_level_state_JSTest_low
      * @tc.desc Battry Present Interface Test
      */
@@ -336,7 +323,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1790
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0280
      * @tc.name enum_level_state_JSTest_warning
      * @tc.desc Battry Present Interface Test
      */
@@ -347,7 +334,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1800
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0290
      * @tc.name enum_level_state_JSTest_critical
      * @tc.desc Battry Present Interface Test
      */
@@ -358,7 +345,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1810
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0300
      * @tc.name enum_level_state_JSTest_shutdown
      * @tc.desc Battry Present Interface Test
      */
@@ -369,7 +356,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1830
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0310
      * @tc.name CommonEventBatteryChangedCode_EXTRA_SOC_JSTest
      * @tc.desc Battry Present Interface Test
      */
@@ -380,7 +367,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1940
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0320
      * @tc.name CommonEventBatteryChangedCode_EXTRA_CHARGE_STATE_JSTest
      * @tc.desc Battry Present Interface Test
      */
@@ -391,7 +378,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1850
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0330
      * @tc.name CommonEventBatteryChangedCode_EXTRA_HEALTH_STATE_JSTest
      * @tc.desc Battry Present Interface Test
      */
@@ -402,7 +389,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1860
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0340
      * @tc.name CommonEventBatteryChangedCode_EXTRA_PLUGGED_TYPE_JSTest
      * @tc.desc Battry Present Interface Test
      */
@@ -413,7 +400,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1870
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0350
      * @tc.name CommonEventBatteryChangedCode_EXTRA_VOLTAGE_JSTest
      * @tc.desc Battry Present Interface Test
      */
@@ -424,7 +411,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1880
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0360
      * @tc.name CommonEventBatteryChangedCode_EXTRA_TECHNOLOGY_JSTest
      * @tc.desc Battry Present Interface Test
      */
@@ -435,7 +422,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1890
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0370
      * @tc.name CommonEventBatteryChangedCode_EXTRA_TEMPERATURE_JSTest
      * @tc.desc Battry Present Interface Test
      */
@@ -446,7 +433,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1900
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0380
      * @tc.name CommonEventBatteryChangedCode_EXTRA_PRESENT_JSTest
      * @tc.desc Battry Present Interface Test
      */
@@ -457,7 +444,7 @@ describe('BatteryUnitTest', function () {
     })
 
     /**
-     * @tc.number SUB_PowerSystem_BatteryManager_JSTest_1910
+     * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0390
      * @tc.name CommonEventBatteryChangedCode_CAPACITY_LEVEL_JSTest
      * @tc.desc Battry Present Interface Test
      */
