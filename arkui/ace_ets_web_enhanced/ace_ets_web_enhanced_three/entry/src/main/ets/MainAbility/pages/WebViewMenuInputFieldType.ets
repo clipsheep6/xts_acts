@@ -24,6 +24,7 @@ import { Driver, MouseButton } from '@ohos.UiTest';
 @Component
 struct WebViewMenuInputFieldType {
   @State str: string = ""
+  @State userAgentPC: string = "";
   controller: webView.WebviewController = new webView.WebviewController();
 
   onPageShow() {
@@ -51,53 +52,83 @@ struct WebViewMenuInputFieldType {
           console.info("key==>" + this.str)
           switch (this.str) {
             case "emitInputFieldTypeNumber001": {
-              this.controller.loadUrl("resource://rawfile/InputFieldTypeTestNumber.html")
+              this.userAgentPC = this.controller.getUserAgent();
+              if ((this.userAgentPC).includes("PC")) {
+                this.controller.loadUrl("resource://rawfile/InputFieldTypeTestNumberPC.html")
+              } else {
+                this.controller.loadUrl("resource://rawfile/InputFieldTypeTestNumber.html")
+              }
               await Utils.sleep(2000);
               let webRect = Utils.getComponentRect('WebViewMenuInputFieldTypeTestWebView');
               let driver = Driver.create();
               let X = Utils.getRectHorizontalCenterX(webRect)
               let Y = Utils.getRectVerticalCenterY(webRect)
               await driver.mouseClick({ x: X, y: Y }, MouseButton.MOUSE_BUTTON_RIGHT);
+              await driver.mouseMoveTo({x:0, y:0})
               break;
             }
             case "emitInputFieldTypeText001": {
-              this.controller.loadUrl("resource://rawfile/InputFieldTypeTestText.html")
+              this.userAgentPC = this.controller.getUserAgent();
+              if ((this.userAgentPC).includes("PC")) {
+                this.controller.loadUrl("resource://rawfile/InputFieldTypeTestTextPC.html")
+              } else {
+                this.controller.loadUrl("resource://rawfile/InputFieldTypeTestText.html")
+              }
               await Utils.sleep(2000);
               let webRect = Utils.getComponentRect('WebViewMenuInputFieldTypeTestWebView');
               let driver = Driver.create();
               let X = Utils.getRectHorizontalCenterX(webRect)
               let Y = Utils.getRectVerticalCenterY(webRect)
               await driver.mouseClick({ x: X, y: Y }, MouseButton.MOUSE_BUTTON_RIGHT);
+              await driver.mouseMoveTo({x:0, y:0})
               break;
             }
             case "emitInputFieldTypePassWord001": {
-              this.controller.loadUrl("resource://rawfile/InputFieldTypeTestPassWord.html")
+              this.userAgentPC = this.controller.getUserAgent();
+              if ((this.userAgentPC).includes("PC")) {
+                this.controller.loadUrl("resource://rawfile/InputFieldTypeTestPassWordPC.html")
+              } else {
+                this.controller.loadUrl("resource://rawfile/InputFieldTypeTestPassWord.html")
+              }
               await Utils.sleep(2000);
               let webRect = Utils.getComponentRect('WebViewMenuInputFieldTypeTestWebView');
               let driver = Driver.create();
               let X = Utils.getRectHorizontalCenterX(webRect)
               let Y = Utils.getRectVerticalCenterY(webRect)
               await driver.mouseClick({ x: X, y: Y }, MouseButton.MOUSE_BUTTON_RIGHT);
+              await driver.mouseMoveTo({x:0, y:0})
               break;
             }
             case "emitInputFieldTypeTelephone001": {
-              this.controller.loadUrl("resource://rawfile/InputFieldTypeTestTel.html")
+              this.userAgentPC = this.controller.getUserAgent();
+              if ((this.userAgentPC).includes("PC")) {
+                this.controller.loadUrl("resource://rawfile/InputFieldTypeTestTelPC.html")
+              } else {
+                this.controller.loadUrl("resource://rawfile/InputFieldTypeTestTel.html")
+              }
               await Utils.sleep(2000);
               let webRect = Utils.getComponentRect('WebViewMenuInputFieldTypeTestWebView');
               let driver = Driver.create();
               let X = Utils.getRectHorizontalCenterX(webRect)
               let Y = Utils.getRectVerticalCenterY(webRect)
               await driver.mouseClick({ x: X, y: Y }, MouseButton.MOUSE_BUTTON_RIGHT);
+              await driver.mouseMoveTo({x:0, y:0})
               break;
             }
             case "emitInputFieldTypeOther001": {
-              this.controller.loadUrl("resource://rawfile/InputFieldTypeTestOther.html")
+              this.userAgentPC = this.controller.getUserAgent();
+              if ((this.userAgentPC).includes("PC")) {
+                this.controller.loadUrl("resource://rawfile/InputFieldTypeTestOtherPC.html")
+              } else {
+                this.controller.loadUrl("resource://rawfile/InputFieldTypeTestOther.html")
+              }
               await Utils.sleep(2000);
               let webRect = Utils.getComponentRect('WebViewMenuInputFieldTypeTestWebView');
               let driver = Driver.create();
               let X = Utils.getRectHorizontalCenterX(webRect)
               let Y = Utils.getRectVerticalCenterY(webRect)
               await driver.mouseClick({ x: X, y: Y }, MouseButton.MOUSE_BUTTON_RIGHT);
+              await driver.mouseMoveTo({x:0, y:0})
               break;
             }
           }

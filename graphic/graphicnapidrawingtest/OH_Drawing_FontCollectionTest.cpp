@@ -13,10 +13,10 @@
  * limitations under the License.
  */
 
-#include "c/drawing_font_collection.h"
+#include "drawing_font_collection.h"
 
 #include "gtest/gtest.h"
-#include "c/drawing_text_declaration.h"
+#include "drawing_text_declaration.h"
 
 using namespace testing;
 using namespace testing::ext;
@@ -35,5 +35,10 @@ HWTEST_F(OH_Drawing_FontCollectionTest, OH_Drawing_FontCollectionTest001, TestSi
     OH_Drawing_FontCollection* fontCollection = OH_Drawing_CreateFontCollection();
     EXPECT_EQ(fontCollection == nullptr, false);
     OH_Drawing_DestroyFontCollection(fontCollection);
+    OH_Drawing_FontCollection* sharedFontCollection = OH_Drawing_CreateSharedFontCollection();
+    EXPECT_EQ(sharedFontCollection == nullptr, false);
+    OH_Drawing_DisableFontCollectionFallback(sharedFontCollection);
+    OH_Drawing_DisableFontCollectionSystemFont(sharedFontCollection);
+    OH_Drawing_DestroyFontCollection(sharedFontCollection);
 }
 }

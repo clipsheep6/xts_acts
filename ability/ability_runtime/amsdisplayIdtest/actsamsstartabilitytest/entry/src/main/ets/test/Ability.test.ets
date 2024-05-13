@@ -13,8 +13,13 @@
  * limitations under the License.
  */
 
-import { describe, afterEach, it, expect } from '@ohos/hypium'
-import commonEvent from '@ohos.commonEvent'
+import { describe, beforeEach, afterEach, it, expect } from '@ohos/hypium'
+import commonEvent from '@ohos.commonEvent';
+import {Driver, ON} from '@ohos.UiTest';
+import display from '@ohos.display';
+
+let displayClassId = display.getDefaultDisplaySync().id;
+let driver = Driver.create();
 
 
 var subscriberInfoMultiInstance = {
@@ -44,6 +49,15 @@ async function startAbilityProcess(abilityContext, options, parameters) {
     }, options, (error, data) => {
       console.log('startAbilityProcess result: ' + JSON.stringify(error) + ", " + JSON.stringify(data))
     })
+    await driver.delayMs(2000);
+    let allowed = await driver.findComponent(ON.text("打开"));
+    if (allowed) {
+      console.log("find button");
+      let point = await allowed.getBoundsCenter();
+      console.log('point.x : ' + point.x +'point.y : '+ point.y);
+
+      await driver.click(point.x, point.y);
+    }
   } catch (err) {
     console.log('ACTS_getDisplayIdTest_0100 err: ' + err)
   }
@@ -53,7 +67,7 @@ async function startAbilityProcess(abilityContext, options, parameters) {
 export default function abilityTest(abilityContext) {
   describe('ActsGetDisplayIdStartAbilityTest', function () {
 
-    afterEach(async (done) => {
+    beforeEach(async (done) => {
       setTimeout(() => { done(); }, 3000)
     })
 
@@ -73,8 +87,7 @@ export default function abilityTest(abilityContext) {
 
         async function processInfoCheck(data) {
           console.info('====> ACTS_StartAbility_2100=====>');
-          expect(data.parameters['displayId']).assertEqual(15);
-          expect(data.parameters['windowMode']).assertEqual(0);
+          expect(data.parameters['displayId']).assertEqual(displayClassId);
           done();
         }
 
@@ -107,8 +120,7 @@ export default function abilityTest(abilityContext) {
       console.log('Start ACTS_StartAbility_2100 timer id : ' + id);
 
       await startAbilityProcess(abilityContext, {
-        windowMode: 0,
-        displayId: 15
+        displayId: displayClassId
       }, {
         startId: 0,
         stepNum: 1,
@@ -133,7 +145,6 @@ export default function abilityTest(abilityContext) {
         async function processInfoCheck(data) {
           console.info('====> ACTS_StartAbility_2300=====>');
           expect(data.parameters['displayId']).assertEqual(0);
-          expect(data.parameters['windowMode']).assertEqual(0);
           done();
         }
 
@@ -166,7 +177,6 @@ export default function abilityTest(abilityContext) {
       console.log('Start ACTS_StartAbility_2300 timer id : ' + id);
 
       await startAbilityProcess(abilityContext, {
-        windowMode: 0,
         displayId: "abc"
       }, {
         startId: 0,
@@ -192,7 +202,6 @@ export default function abilityTest(abilityContext) {
         async function processInfoCheck(data) {
           console.info('====> ACTS_StartAbility_2500=====>');
           expect(data.parameters['displayId']).assertEqual(0);
-          expect(data.parameters['windowMode']).assertEqual(0);
           done();
         }
 
@@ -225,7 +234,6 @@ export default function abilityTest(abilityContext) {
       console.log('Start ACTS_StartAbility_2500 timer id : ' + id);
 
       await startAbilityProcess(abilityContext, {
-        windowMode: 0,
         displayId: undefined
       }, {
         startId: 0,
@@ -250,7 +258,6 @@ export default function abilityTest(abilityContext) {
 
         async function processInfoCheck(data) {
           console.info('====> ACTS_StartAbility_2700=====>');
-          expect(data.parameters['windowMode']).assertEqual(0);
           expect(data.parameters['displayId']).assertEqual(0);
           done();
         }

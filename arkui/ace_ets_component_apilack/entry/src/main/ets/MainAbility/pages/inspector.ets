@@ -1,4 +1,3 @@
-
 /**
  * Copyright (c) 2022 Shenzhen Kaihong Digital Industry Development Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,37 +13,37 @@
  * limitations under the License.
  */
 
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
 import events_emitter from '@ohos.events.emitter';
 
 @Entry
 @Component
 struct Inspector {
   @State message: string = 'test'
-  @State setColor:string = '#F9CF93'
-  @State catchStatus:string = "success"
+  @State setColor: string = '#F9CF93'
+  @State catchStatus: string = "success"
 
   onPageShow() {
     console.info('[inspector] page show called');
-    var stateChangeEvent = {
+    let stateChangeEvent: events_emitter.InnerEvent = {
       eventId: 60211,
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack);
   }
 
-  private stateChangCallBack = (eventData) => {
+  private stateChangCallBack = (eventData: events_emitter.EventData) => {
     console.info("[inspector] page stateChangCallBack");
     if (eventData != null) {
       console.info("[inspector] page state change called:" + JSON.stringify(eventData));
-      if (eventData.data.setColor != null) {
-        this.setColor = eventData.data.setColor;
+      if (eventData.data?.setColor != null) {
+        this.setColor = eventData.data?.setColor;
       }
     }
   }
 
-  build(){
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center,justifyContent:FlexAlign.Center }){
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
 
       Text("inspector")
         .width(100)
@@ -65,47 +64,47 @@ struct Inspector {
             .key("inspectorApiOne")
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
-            .onClick(()=> {
+            .onClick(() => {
               let getInspectorNodesObj = JSON.stringify(getInspectorNodes())
               try {
-                var backData = {
+                let backData: events_emitter.EventData = {
                   data: {
                     "getInspectorNodes": getInspectorNodesObj,
-                    "result":"success"
+                    "result": "success"
                   }
                 }
-                let backEvent = {
+                let backEvent: events_emitter.InnerEvent = {
                   eventId: 60208,
                   priority: events_emitter.EventPriority.LOW
                 }
                 console.info("inspector_101 onClick start to emit action state")
                 events_emitter.emit(backEvent, backData)
               } catch (err) {
-                console.info("inspector_101 onClick emit action state err: " + JSON.stringify(err.message))
+                console.info("inspector_101 onClick emit action state err: " + JSON.stringify((err as Error)?.message))
               }
             })
           Text("inspectorApiTwo")
             .key("inspectorApiTwo")
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
-            .onClick(()=> {
+            .onClick(() => {
               try {
-                let i = JSON.parse(JSON.stringify(getInspectorNodes()))["inspectors"][0]["id"]
+                let i: string = JSON.parse(JSON.stringify(getInspectorNodes()))["inspectors"][0]["id"]
                 let getInspectorNodeByIdObj = JSON.stringify(getInspectorNodeById(parseInt(i)))
                 console.info("getInspectorNodeByIdObj is " + getInspectorNodeByIdObj)
-                var backData1 = {
+                let backData1: events_emitter.EventData = {
                   data: {
                     "result": "success",
                   }
                 }
-                let backEvent1 = {
+                let backEvent1: events_emitter.InnerEvent = {
                   eventId: 60209,
                   priority: events_emitter.EventPriority.LOW
                 }
                 console.info("inspector_102 onClick start to emit action state")
                 events_emitter.emit(backEvent1, backData1)
               } catch (err) {
-                console.info("inspector_102 onClick emit action state err: " + JSON.stringify(err.message))
+                console.info("inspector_102 onClick emit action state err: " + JSON.stringify((err as Error)?.message))
               }
             })
 
@@ -113,7 +112,7 @@ struct Inspector {
             .key("inspectorApiThree")
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
-            .onClick(()=> {
+            .onClick(() => {
               setAppBgColor('#F9CF93');
             })
 
@@ -121,31 +120,31 @@ struct Inspector {
             .key("inspectorApiFour")
             .fontSize(50)
             .fontWeight(FontWeight.Bold)
-            .onClick(()=> {
-              try{
+            .onClick(() => {
+              try {
                 Profiler.registerVsyncCallback((info: string) => {
                   console.info("VsyncCallback" + info)
                 });
                 Profiler.unregisterVsyncCallback();
                 this.catchStatus = "callBackSuccess"
-              }catch(err){
-                console.info("inspector_103 onClick err: " + JSON.stringify(err.message))
+              } catch (err) {
+                console.info("inspector_103 onClick err: " + JSON.stringify((err as Error)?.message))
                 this.catchStatus = "callBackFail"
               }
               try {
-                var backData2 = {
+                let backData2: events_emitter.EventData = {
                   data: {
                     "catchStatus": this.catchStatus,
                   }
                 }
-                let backEvent2 = {
+                let backEvent2: events_emitter.InnerEvent = {
                   eventId: 60210,
                   priority: events_emitter.EventPriority.LOW
                 }
                 console.info("inspector_103 onClick start to emit action state")
                 events_emitter.emit(backEvent2, backData2)
               } catch (err) {
-                console.info("inspector_103 onClick emit action state err: " + JSON.stringify(err.message))
+                console.info("inspector_103 onClick emit action state err: " + JSON.stringify((err as Error)?.message))
               }
             })
         }

@@ -13,11 +13,11 @@
  * limitations under the License.
  */
 
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
 
 class MyDataSource implements IDataSource {
   private list: number[] = []
-  private listener: DataChangeListener
+  private listener: DataChangeListener | undefined = undefined
 
   constructor(list: number[]) {
     this.list = list
@@ -27,7 +27,7 @@ class MyDataSource implements IDataSource {
     return this.list.length
   }
 
-  getData(index: number): any {
+  getData(index: number): number {
     return this.list[index]
   }
 
@@ -45,32 +45,36 @@ const TAG = 'ets_apiLack_add';
 @Entry
 @Component
 struct SwiperCurve {
-
   private swiperController: SwiperController = new SwiperController()
   private data: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
     Log.showInfo(TAG, `aboutToAppear SwiperCurve start`)
-    let list = []
-    for (var i = 1; i <= 10; i++) {
-      list.push(i.toString());
+    let list: number[] = []
+    for (let i: number = 1; i <= 10; i++) {
+      list.push(i);
     }
     this.data = new MyDataSource(list)
   }
 
-  aboutToDisappear(){
+  aboutToDisappear() {
     Log.showInfo(TAG, `aboutToDisAppear SwiperCurve end`)
   }
 
-  build(){
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center,justifyContent:FlexAlign.Center }){
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
 
       Column({ space: 5 }) {
 
         Swiper(this.swiperController) {
           LazyForEach(this.data, (item: string) => {
-            Text(item).width('90%').height(160).backgroundColor(0xAFEEEE).textAlign(TextAlign.Center).fontSize(20)
-          }, item => item)
+            Text(item)
+              .width('90%')
+              .height(160)
+              .backgroundColor(0xAFEEEE)
+              .textAlign(TextAlign.Center)
+              .fontSize(20)
+          }, (item: string) => item)
         }
         .key("swiper")
         .cachedCount(2)

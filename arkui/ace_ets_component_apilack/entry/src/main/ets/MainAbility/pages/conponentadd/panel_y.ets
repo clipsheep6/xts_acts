@@ -14,14 +14,16 @@
  */
 
 import events_emitter from '@ohos.events.emitter';
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
+
 const TAG = 'ets_apiLack_add';
 
 @Entry
 @Component
 struct PanelBackgroundMask {
   @State mode: PanelMode = PanelMode.Full
-  @State navBarPosition:PanelMode = PanelMode.Full
+  @State navBarPosition: PanelMode = PanelMode.Full
+
   aboutToAppear() {
     Log.showInfo(TAG, `aboutToAppear PanelBackgroundMask start`)
   }
@@ -70,21 +72,21 @@ struct PanelBackgroundMask {
       .onHeightChange((value: number) => {
         Log.showInfo(TAG, 'onHeightChange: ' + value)
         try {
-          var backData = {
+          let backData: events_emitter.EventData = {
             data: {
-              "result":"success"
+              "result": "success"
             }
           }
-          let backEvent = {
+          let backEvent: events_emitter.InnerEvent = {
             eventId: 10111,
             priority: events_emitter.EventPriority.LOW
           }
           console.info("onHeightChange start to emit action state")
           events_emitter.emit(backEvent, backData)
         } catch (err) {
-          console.info("testpanelOnHeightChange0002 emit action state err: " + JSON.stringify(err.message))
+          console.info("testpanelOnHeightChange0002 emit action state err: " + JSON.stringify((err as Error)?.message))
         }
-       })
+      })
 
     }.width("100%").height("100%")
   }

@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
 
 const TAG = 'ets_apiLack_add';
 
@@ -45,7 +45,7 @@ struct DomCreateElement {
         .textOverflow({ overflow: TextOverflow.None })
         .key("createElementText")
         .onClick(() => {
-//          dom.createElement('div')
+          //          dom.createElement('div')
         })
 
     }.width("100%").height("100%")

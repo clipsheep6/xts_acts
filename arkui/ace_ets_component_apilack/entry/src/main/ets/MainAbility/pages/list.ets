@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
-import Log from '../common/Log.ets';
-const TAG = 'ets_apiLack_add';
+import Log from '../common/Log';
 import events_emitter from '@ohos.events.emitter';
+
+const TAG = 'ets_apiLack_add';
 
 @Entry
 @Component
@@ -24,37 +25,36 @@ struct ListLanes {
   @State listPosition: number = 0 // 0代表滚动到List顶部，1代表中间值，2代表滚动到List底
   @State edgeEffect: EdgeEffect = EdgeEffect.None;
   @State alwaysEnabled: boolean = true
-
   private scroller: Scroller = new Scroller()
 
   aboutToAppear() {
     Log.showInfo(TAG, `aboutToAppear ListLanes start`)
   }
 
-  aboutToDisappear(){
+  aboutToDisappear() {
     Log.showInfo(TAG, `aboutToDisAppear ListLanes end`)
   }
 
-  private stateChangCallBack = (eventData) => {
+  private stateChangCallBack = (eventData: events_emitter.EventData) => {
     console.info("list page state change called:" + JSON.stringify(eventData));
     if (eventData != null) {
-      if (eventData.data.alwaysEnabled != null) {
-        this.alwaysEnabled = eventData.data.alwaysEnabled;
+      if (eventData.data?.alwaysEnabled != null) {
+        this.alwaysEnabled = eventData.data?.alwaysEnabled;
       }
     }
   }
 
   onPageShow() {
     console.info('list page show called');
-    var stateChangeEvent = {
+    let stateChangeEvent: events_emitter.InnerEvent = {
       eventId: 322,
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack);
   }
 
-  build(){
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center,justifyContent:FlexAlign.Center }){
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
 
       Text("list-Lanes")
         .width(100)
@@ -101,7 +101,7 @@ struct ListLanes {
       Stack({ alignContent: Alignment.TopStart }) {
         Scroll(this.scroller) {
           List({ space: 20, initialIndex: 0 }) {
-            ForEach(this.arr, (item) => {
+            ForEach(this.arr, (item: number) => {
               ListItem() {
                 Text('' + item)
                   .width('100%')
@@ -110,7 +110,7 @@ struct ListLanes {
 
               }
               .border({ width: 2, color: Color.Green })
-            }, item => item)
+            }, (item: string) => item)
           }
           .key("list1")
           .height(300)
@@ -118,7 +118,7 @@ struct ListLanes {
           .editMode(true)
           .alignListItem(ListItemAlign.Start)
           .border({ width: 3, color: Color.Red })
-          .edgeEffect(this.edgeEffect, {alwaysEnabled: this.alwaysEnabled})
+          .edgeEffect(this.edgeEffect, { alwaysEnabled: this.alwaysEnabled })
           .lanes(4)
           .onScrollFrameBegin((offset: number, state: ScrollState) => {
             if ((this.listPosition == 0 && offset >= 0) || (this.listPosition == 2 && offset <= 0)) {
@@ -127,22 +127,6 @@ struct ListLanes {
             }
             this.listPosition = 1;
             return { offsetRemain: offset }
-
-            try {
-              var backData = {
-                data: {
-                  "result":"success"
-                }
-              }
-              let backEvent = {
-                eventId: 60216,
-                priority: events_emitter.EventPriority.LOW
-              }
-              console.info("onScrollBegin onClick start to emit action state")
-              events_emitter.emit(backEvent, backData)
-            } catch (err) {
-              console.info("onScrollBegin onClick emit action state err: " + JSON.stringify(err.message))
-            }
           })
         }
         .scrollable(ScrollDirection.Vertical)

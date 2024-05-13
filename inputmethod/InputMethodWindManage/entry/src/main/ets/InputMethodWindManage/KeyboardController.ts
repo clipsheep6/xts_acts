@@ -375,7 +375,7 @@ export class KeyboardController {
         console.info(TAG + '====>receive Sub_Misc_inputMethod_Panel_setUiContentCallback_0050 success');
         try {
             if (this.softKeyboardPanel !== null) {
-                this.softKeyboardPanel.setUiContent('pages/Index', async (err, data) => {
+                this.softKeyboardPanel.setUiContent('pages/second/second', async (err, data) => {
                     console.info(TAG + '====>receive Sub_Misc_inputMethod_Panel_setUiContentCallback_0050 setUiContent');
                     if (err) {
                         commonEventPublishData = {
@@ -412,7 +412,7 @@ export class KeyboardController {
         console.info(TAG + '====>receive Sub_Misc_inputMethod_Panel_setUiContentPromise_0060 success');
         try {
             if (this.softKeyboardPanel !== null) {
-                this.softKeyboardPanel.setUiContent('pages/Index').then(async (data) => {
+                this.softKeyboardPanel.setUiContent('pages/second/second').then(async (data) => {
                     commonEventPublishData = {
                         data: 'SUCCESS'
                     };
@@ -446,7 +446,7 @@ export class KeyboardController {
         console.info(TAG + '====>receive Sub_Misc_inputMethod_Panel_setUiContentCallback_0070 success');
         try {
             if (this.softKeyboardPanel !== null) {
-                this.softKeyboardPanel.setUiContent('pages/Index', this.storage, async (err, data) => {
+                this.softKeyboardPanel.setUiContent('pages/second/second', this.storage, async (err, data) => {
                     console.info(TAG + '====>receive Sub_Misc_inputMethod_Panel_setUiContentCallback_0070 setUiContent');
                     if (err) {
                         commonEventPublishData = {
@@ -483,7 +483,7 @@ export class KeyboardController {
         console.info(TAG + '====>receive Sub_Misc_inputMethod_Panel_setUiContentPromise_0080 success');
         try {
             if (this.softKeyboardPanel !== null) {
-                this.softKeyboardPanel.setUiContent('pages/Index', this.storage).then(async (data) => {
+                this.softKeyboardPanel.setUiContent('pages/second/second', this.storage).then(async (data) => {
                     commonEventPublishData = {
                         data: 'SUCCESS'
                     };
@@ -934,7 +934,7 @@ export class KeyboardController {
                     if (timeCount === 2) {
                         clearInterval(t1);
                     }
-                },100);
+                },300);
 
                 let t2 = setTimeout(() => {
                     console.info(TAG + '====>setTimeout count: ' +  count);
@@ -945,7 +945,7 @@ export class KeyboardController {
                     }
                     commoneventmanager.publish('Sub_Misc_inputMethod_Panel_offHide_0200', commonEventPublishData, this.publishCallback);
                     clearTimeout(t2);
-                },500);
+                },1000);
 
             } else {
                 commonEventPublishData = {
@@ -1105,7 +1105,6 @@ export class KeyboardController {
                             data: 'SUCCESS'
                         };
                     }
-
                 }
             } else {
                 console.info(TAG + '====>Sub_InputMethod_IMF_SecurityKeyboard_0800 this.softKeyboardPanel is null');

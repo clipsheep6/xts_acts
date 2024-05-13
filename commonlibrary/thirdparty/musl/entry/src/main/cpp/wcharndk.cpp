@@ -18,8 +18,10 @@
 #include "cstdio"
 #include "cstdlib"
 #include "napi/native_api.h"
+#include <cerrno>
 #include <clocale>
 #include <cstdarg>
+#include <cstdio>
 #include <cstdlib>
 #include <cstring>
 #include <ctime>
@@ -27,11 +29,6 @@
 #include <js_native_api.h>
 #include <linux/elf-fdpic.h>
 #include <node_api.h>
-#include "napi/native_api.h"
-#include <cerrno>
-#include <clocale>
-#include <cstdio>
-#include <cwchar>
 #include <unistd.h>
 
 #define FAIL (-1)
@@ -96,6 +93,7 @@ static napi_value Vfwprintf(napi_env env, napi_callback_info info)
     } else {
         napi_create_int32(env, PARAM_0, &result);
     }
+    fclose(file);
     return result;
 }
 
@@ -1679,7 +1677,7 @@ static napi_value Fwide(napi_env env, napi_callback_info info)
     }
     napi_value result = nullptr;
     napi_create_int32(env, ret, &result);
-
+    fclose(fp);
     return result;
 }
 
@@ -1709,6 +1707,7 @@ static napi_value FGetWs(napi_env env, napi_callback_info info)
     wchar_t mystring[100];
     char str[] = "test";
     FILE *fp = fopen("/data/storage/el2/base/files/Fzl.txt", "w+");
+    NAPI_ASSERT(env, fp != nullptr, "FGetWs fopen Error");
     fwrite(str, sizeof(char), sizeof(str), fp);
     fseek(fp, ZEROVAL, SEEK_SET);
     wchar_t *ret = fgetws(mystring, SIZE_100, fp);
@@ -1726,6 +1725,7 @@ static napi_value FGetWc(napi_env env, napi_callback_info info)
 {
     setlocale(LC_ALL, "en_US.utf8");
     FILE *fp = fopen("/data/storage/el2/base/files/Fzl.txt", "w+");
+    NAPI_ASSERT(env, fp != nullptr, "FGetWc fopen Error");
     fputs("кошка\n", fp);
     wint_t wc;
     napi_value result = nullptr;
@@ -1768,6 +1768,7 @@ static napi_value Getwc(napi_env env, napi_callback_info info)
 {
     const char *ptr = "/data/storage/el2/base/files/test.txt";
     FILE *fptr = fopen(ptr, "w+");
+    NAPI_ASSERT(env, fptr != nullptr, "Getwc fopen Error");
     wchar_t wc = L'p';
     putwc(wc, fptr);
     rewind(fptr);

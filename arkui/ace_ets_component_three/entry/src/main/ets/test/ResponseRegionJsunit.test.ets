@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,20 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {describe, beforeAll, beforeEach, afterEach, afterAll, it, expect} from "@ohos/hypium";
-import router from '@system.router';
+import { describe, beforeEach, afterEach, it, expect } from "@ohos/hypium";
+import router from '@ohos.router';
 import events_emitter from '@ohos.events.emitter';
 import Utils from './Utils';
 
 export default function ResponseRegionJsunit() {
-  describe('responseRegionTest', function () {
-    var x_value;
-    var y_value;
+  describe('responseRegionTest', () => {
+    let x_value: number;
+    let y_value: number;
 
-    beforeEach(async function (done) {
+    beforeEach(async (done: Function) => {
       console.info("ResponseRegion beforeEach start");
-      let options = {
-        uri: 'MainAbility/pages/ResponseRegion',
+      let options: router.RouterOptions = {
+        url: 'MainAbility/pages/ResponseRegion',
       }
       try {
         router.clear();
@@ -34,7 +33,7 @@ export default function ResponseRegionJsunit() {
         console.info("get ResponseRegion state pages:" + JSON.stringify(pages));
         if (!("ResponseRegion" == pages.name)) {
           console.info("get ResponseRegion state pages.name:" + JSON.stringify(pages.name));
-          let result = await router.push(options);
+          let result = await router.pushUrl(options);
           await Utils.sleep(2000);
           console.info("push ResponseRegion page result:" + JSON.stringify(result));
         }
@@ -44,35 +43,35 @@ export default function ResponseRegionJsunit() {
       done()
     });
 
-    afterEach(async function () {
+    afterEach(async () => {
       await Utils.sleep(1000);
       console.info("ResponseRegion after each called");
     });
 
-    it('testResponseRegion01', 0, async function (done) {
+    it('testResponseRegion01', 0, async (done: Function) => {
       console.info('[testResponseRegion01] START');
       try {
-        var eventData = {
+        let eventData: events_emitter.EventData = {
           data: {
             "touchable": true,
           }
         }
-        var innerEvent = {
+        let innerEvent: events_emitter.InnerEvent = {
           eventId: 30,
           priority: events_emitter.EventPriority.LOW
         }
         console.info("[testResponseRegion01] start to publish emit:" + JSON.stringify(eventData.data));
         events_emitter.emit(innerEvent, eventData);
       } catch (err) {
-        console.log("[testResponseRegion01] change component data error: " + err.message);
+        console.log("[testResponseRegion01] change component data error: " + (err as Error)?.message);
       }
       await Utils.sleep(1000);
       console.info('[testResponseRegion01] END');
       done();
     });
 
-    it('testResponseRegion02', 0, async function (done) {
-      let rect = await Utils.getComponentRect('region')
+    it('testResponseRegion02', 0, async (done: Function) => {
+      let rect = Utils.getComponentRect('region')
       console.info("[testResponseRegion02] rectInfo is " + JSON.stringify(rect));
       x_value = rect.left + (rect.right - rect.left) / 10
       y_value = rect.top + (rect.bottom - rect.top) / 10
@@ -82,14 +81,20 @@ export default function ResponseRegionJsunit() {
         x: x_value,
         y: y_value,
         type: TouchType.Down,
+        displayX: 0,
+        displayY: 0,
+        windowX: 0,
+        windowY: 0,
+        screenX: 0,
+        screenY: 0,
       }
-      var callbackTwo = (eventData) => {
+      let callbackTwo = (eventData: events_emitter.EventData) => {
         console.info("[testResponseRegion02] get event state result is: " + JSON.stringify(eventData));
-        expect(eventData.data.ACTION).assertEqual(true)
-        expect(eventData.data.EVENT_TYPE).assertEqual('Down')
+        expect(eventData.data?.ACTION).assertEqual(true)
+        expect(eventData.data?.EVENT_TYPE).assertEqual('Down')
         done();
       }
-      var innerEventTwo = {
+      let innerEventTwo: events_emitter.InnerEvent = {
         eventId: 31,
         priority: events_emitter.EventPriority.LOW
       }

@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
 import events_emitter from '@ohos.events.emitter';
 import mediaquery from '@ohos.mediaquery'
+
 const TAG = 'ets_apiLack_add';
 
 @Entry
@@ -62,21 +63,21 @@ struct MediaQueryOff {
         .onClick(() => {
           this.listener.off('change', (mediaQueryResult) => {
             console.log(JSON.stringify(mediaQueryResult))
-            var result=true
+            let result = true
             try {
-              var backData = {
+              let backData: events_emitter.EventData = {
                 data: {
                   "STATUS": result
                 }
               }
-              let backEvent = {
+              let backEvent: events_emitter.InnerEvent = {
                 eventId: 60218,
                 priority: events_emitter.EventPriority.LOW
               }
               console.info("onSelect start to emit action state")
               events_emitter.emit(backEvent, backData)
             } catch (err) {
-              console.info("onSelect emit action state err: " + JSON.stringify(err.message))
+              console.info("onSelect emit action state err: " + JSON.stringify((err as Error)?.message))
             }
           })
         })
@@ -96,21 +97,21 @@ struct MediaQueryOff {
         .key("matchMediaSyncText")
         .onClick(() => {
           console.log('mediaQuery-MatchMediaSync: ' + JSON.stringify(this.listener))
-          var result=(this.listener!=null)
+          let result = (this.listener != null)
           try {
-            var backData = {
+            let backData: events_emitter.EventData = {
               data: {
                 "STATUS": result
               }
             }
-            let backEvent = {
+            let backEvent: events_emitter.InnerEvent = {
               eventId: 60219,
               priority: events_emitter.EventPriority.LOW
             }
             console.info("onSelect start to emit action state")
             events_emitter.emit(backEvent, backData)
           } catch (err) {
-            console.info("onSelect emit action state err: " + JSON.stringify(err.message))
+            console.info("onSelect emit action state err: " + JSON.stringify((err as Error)?.message))
           }
 
         })

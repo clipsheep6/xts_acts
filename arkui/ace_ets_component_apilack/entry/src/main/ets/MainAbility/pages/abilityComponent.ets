@@ -13,21 +13,21 @@
  * limitations under the License.
  */
 
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
 import prompt from '@ohos.prompt'
 import events_emitter from '@ohos.events.emitter';
+
 const TAG = 'ets_apiLack_add';
 
 
 @Entry
 @Component
 struct MyComponent {
-
   aboutToAppear() {
     Log.showInfo(TAG, `aboutToAppear AbilityComponent start`)
   }
 
-  aboutToDisappear(){
+  aboutToDisappear() {
     Log.showInfo(TAG, `aboutToDisAppear AbilityComponent end`)
   }
 

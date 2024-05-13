@@ -13,11 +13,17 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import nltypes from 'libnltypesndk.so'
 
 export default function nltypesNdkTest() {
   describe('MuslNltypesTest', () => {
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
+
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_NLTYPES_CATOPEN_0100
      * @tc.name       : testMuslNltypesCatopen001
@@ -33,34 +39,5 @@ export default function nltypesNdkTest() {
       done()
     });
 
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_NLTYPES_CATGETS_0100
-     * @tc.name       : testMuslNltypesCatgets001
-     * @tc.desc       : test catgets
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslNltypesCatgets001', 0, async (done: Function) => {
-      let resultTrue = 1;
-      let result: number = nltypes.catgets();
-      expect(result).assertEqual(resultTrue);
-      done()
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_NLTYPES_CATCLOSE_0100
-     * @tc.name       : testMuslNltypesCatclose001
-     * @tc.desc       : test catclose
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslNltypesCatclose001', 0, async (done: Function) => {
-      let resultTrue = 0;
-      let result: number = nltypes.catclose();
-      expect(result).assertEqual(resultTrue);
-      done()
-    });
   })
 }

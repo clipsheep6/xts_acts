@@ -13,13 +13,14 @@
  * limitations under the License.
  */
 
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
+
 const TAG = 'ets_apiLack_add';
 
 @Entry
 @Component
 struct SideBarShowSideBar {
-  normalIcon : Resource = $r("app.media.user")
+  normalIcon: Resource = $r("app.media.user")
   selectedIcon: Resource = $r("app.media.userFull")
   @State arr: number[] = [1, 2, 3]
   @State current: number = 1
@@ -28,15 +29,14 @@ struct SideBarShowSideBar {
     Log.showInfo(TAG, `aboutToAppear SideBarShowSideBar start`)
   }
 
-  aboutToDisappear(){
+  aboutToDisappear() {
     Log.showInfo(TAG, `aboutToDisAppear SideBarShowSideBar end`)
   }
 
   build() {
-    SideBarContainer(SideBarContainerType.Embed)
-    {
+    SideBarContainer(SideBarContainerType.Embed) {
       Column() {
-        ForEach(this.arr, (item, index) => {
+        ForEach(this.arr, (item: number) => {
           Column({ space: 5 }) {
             Image(this.current === item ? this.selectedIcon : this.normalIcon).width(64).height(64)
             Text("Index0" + item)
@@ -47,15 +47,17 @@ struct SideBarShowSideBar {
           .onClick(() => {
             this.current = item
           })
-        }, item => item)
+        }, (item: string) => item)
       }.width('100%')
       .justifyContent(FlexAlign.SpaceEvenly)
       .backgroundColor('#19000000')
+
       RowSplit() {
-        Column(){
+        Column() {
           Text('Split page one').fontSize(30)
         }.justifyContent(FlexAlign.Center)
-        Column(){
+
+        Column() {
           Text('Split page two').fontSize(30)
         }.justifyContent(FlexAlign.Center)
       }.width('100%')

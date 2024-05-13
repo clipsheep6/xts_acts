@@ -28,7 +28,7 @@ let videoProfile = {
     audioSampleRate: 48000,
     fileFormat: 'mp4',
     videoBitrate: 2000000,
-    videoCodec: 'video/mp4v-es',
+    videoCodec: 'video/avc',
     videoFrameWidth: 640,
     videoFrameHeight: 480,
     videoFrameRate: 30
@@ -264,9 +264,8 @@ export default function CameraErrorCodeUsecaseTest() {
 
     async function releaseVideoReceiveSurface() {
         console.log(TAG + 'Entering releaseVideoReceiveSurface')
-        videoRecorder.release((err) => {
-            console.info(TAG + 'Entering release video receiver')
-        })
+        await videoRecorder.release()
+        videoRecorder = null
         await closeFd();
         console.log(TAG + 'Exit releaseVideoReceiveSurface')
     }
@@ -341,8 +340,8 @@ export default function CameraErrorCodeUsecaseTest() {
             }
         })
 
-        afterAll(function () {
-            releaseVideoReceiveSurface();
+        afterAll(async function () {
+            await releaseVideoReceiveSurface();
             sleep(1000);
             console.info('afterAll case');
         })
@@ -2194,7 +2193,6 @@ export default function CameraErrorCodeUsecaseTest() {
             createOutput(0);
             mCameraSession.addOutput(mPreviewOutput);
             mCameraSession.addOutput(mPhotoOutput);
-            await commitCameraSessionConfig();
             try {
                 await mPhotoOutput.capture();
             } catch (err) {
@@ -2222,7 +2220,6 @@ export default function CameraErrorCodeUsecaseTest() {
             createOutput(0);
             mCameraSession.addOutput(mPreviewOutput);
             mCameraSession.addOutput(mPhotoOutput);
-            await commitCameraSessionConfig();
             mPhotoOutput.capture(async (err) => {
                 if (!err) {
                     expect(true).assertTrue();
@@ -2232,8 +2229,8 @@ export default function CameraErrorCodeUsecaseTest() {
                     console.info(TAG + "ERRORCODE: " + err.code);
                     expect(err.code == cameraObj.CameraErrorCode.SESSION_NOT_RUNNING).assertTrue();
                 }
+                done();
             })
-            done();
         })
 
         /**
@@ -2252,7 +2249,6 @@ export default function CameraErrorCodeUsecaseTest() {
             createOutput(0);
             mCameraSession.addOutput(mPreviewOutput);
             mCameraSession.addOutput(mPhotoOutput);
-            await commitCameraSessionConfig();
             mPhotoOutput.capture(captureSetting, async (err) => {
                 if (!err) {
                     expect(true).assertTrue();
@@ -2262,9 +2258,8 @@ export default function CameraErrorCodeUsecaseTest() {
                     console.info(TAG + "ERRORCODE: " + err.code);
                     expect(err.code == cameraObj.CameraErrorCode.SESSION_NOT_RUNNING).assertTrue();
                 }
+                done();
             })
-            sleep(1000);
-            done();
         })
 
         /**
@@ -2283,7 +2278,6 @@ export default function CameraErrorCodeUsecaseTest() {
             createOutput(0);
             mCameraSession.addOutput(mPreviewOutput);
             mCameraSession.addOutput(mPhotoOutput);
-            await commitCameraSessionConfig();
             try {
                 await mPhotoOutput.capture(captureSetting);
             } catch (err) {

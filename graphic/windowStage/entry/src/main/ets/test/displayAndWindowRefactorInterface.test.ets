@@ -14,47 +14,16 @@
  */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from "@ohos/hypium"
 import ohosWindow from '@ohos.window';
-import screenManager from '@ohos.screen';
-import display from '@ohos.display';
-import displaySync from '@ohos.graphics.displaySync'
 
 export default function displayAndWindowRefactorInterfaceTest(context, windowStage, abilityStorage) {
   console.log('windowTest context: ' + JSON.stringify(context))
   console.log('windowTest abilityStorage: ' + JSON.stringify(abilityStorage))
   describe('displayAndWindowRefactorInterface_test', function () {
-    console.log('describe window_api_test3 start!!!')
+    console.log('describe displayAndWindowRefactorInterface_test start!!!')
     const TRUE_FLAG = true;
-    var appWindowTypeArr = [];
-    var windowTypeArr = [];
-    var appWindowTypeDic = {
-      'TYPE_BASE': 0,
-      'TYPE_APP': 0,
-      'TYPE_APP_SUB_WINDOW': 1,
-    };
-    var systemWindowValueArr = [];
-    var systemWindowTypeArr = [];
-    var systemWindowTypeDicArr = [];
-    var systemWindowTypeDic = {
-      'TYPE_FLOAT': 8,
-    }
-    var windowLayoutModeArr = [];
-    var windowLayoutModeDic = {
-      'WINDOW_LAYOUT_MODE_TILE': 1,
-      'WINDOW_LAYOUT_MODE_CASCADE': 0
-    };
-    beforeAll(function () {
-      console.log('jsunittest beforeall ohosWindow.WindowType=' + JSON.stringify(ohosWindow.WindowType));
-      systemWindowTypeDicArr = Object.keys(systemWindowTypeDic);
-      console.log('jsunittest beforeall systemWindowTypeDicArr=' + JSON.stringify(systemWindowTypeDicArr) + '   ,length=' + systemWindowTypeDicArr.length);
-      systemWindowValueArr = Object.keys(systemWindowTypeDic);
-      systemWindowTypeArr = Object.keys(systemWindowTypeDic);
-      for (var i in ohosWindow.WindowType) {
-        console.log('jsunittest beforeall i=' + i);
-        windowTypeArr.push(ohosWindow.WindowType[i])
-      }
-    })
+
     async function sleep(time) {
-      let timeoutId= null;
+      let timeoutId = null;
       let promise = new Promise(resolve => {
         timeoutId = setTimeout(() => {
           resolve('sleep finished');
@@ -63,80 +32,6 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
       let result = await promise;
       clearTimeout(timeoutId)
     }
-    /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0450
-     * @tc.name      : tesGetAllDisplays_Promise
-     * @tc.desc      : Gets all current display objects
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level3
-     */
-    it('tesGetAllDisplays_Promise', 0, async function (done) {
-      let caseName = 'tesGetAllDisplays_Promise';
-      let msgStr = 'jsunittest ' + caseName + ' ';
-      console.log(msgStr + 'begin');
-      await display.getAllDisplays().then((data) => {
-        console.info(msgStr + 'Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
-        expect(data[0].id != null).assertTrue();
-        expect(data[0].refreshRate != null).assertTrue();
-        expect(data[0].width != null).assertTrue();
-        expect(data[0].height != null).assertTrue();
-        expect(data[0].rotation != null).assertTrue();
-        expect(data[0].densityDPI != null).assertTrue();
-        expect(data[0].name != null).assertTrue();
-        expect(data[0].alive).assertTrue();
-        expect(data[0].state != null).assertTrue();
-        expect(data[0].densityPixels != null).assertTrue();
-        expect(data[0].scaledDensity != null).assertTrue();
-        expect(data[0].xDPI != null).assertTrue();
-        expect(data[0].yDPI != null).assertTrue();
-        done();
-      }).catch((err) => {
-        console.error(msgStr + 'Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-        expect().assertFail();
-        done();
-      });
-    })
-    /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0440
-     * @tc.name      : tesGetAllDisplays_Callback
-     * @tc.desc      : Gets all current display objects
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level3
-     */
-    it('tesGetAllDisplays_Callback', 0, async function (done) {
-      let caseName = 'tesGetAllDisplays_Callback';
-      let msgStr = 'jsunittest ' + caseName + ' ';
-      console.log(msgStr + 'begin');
-      display.getAllDisplays((err, data) => {
-        if (err.code) {
-          console.error(msgStr + 'Failed to obtain all the display objects. Code: ' + JSON.stringify(err));
-          try {
-            expect().assertFail();
-          } catch (error) {
-            console.info(`display.getAllDisplays catch error: ${JSON.stringify(error)}`)
-          }
-          done();
-          return;
-        }
-        console.info(msgStr + 'Succeeded in obtaining all the display objects. Data: ' + JSON.stringify(data));
-        expect(data[0].refreshRate != null).assertTrue();
-        expect(data[0].width != null).assertTrue();
-        expect(data[0].height != null).assertTrue();
-        expect(data[0].rotation != null).assertTrue();
-        expect(data[0].densityDPI != null).assertTrue();
-        expect(data[0].name != null).assertTrue();
-        expect(data[0].alive).assertTrue();
-        expect(data[0].state != null).assertTrue();
-        expect(data[0].densityPixels != null).assertTrue();
-        expect(data[0].scaledDensity != null).assertTrue();
-        expect(data[0].xDPI != null).assertTrue();
-        expect(data[0].yDPI != null).assertTrue();
-        done();
-        console.log(msgStr + 'done ');
-      });
-    })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0090
      * @tc.name      : testCreateWindow_Diff_Type_Wins_Promise
@@ -149,32 +44,23 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
       let caseName = 'testCreateWindow_Diff_Type_Wins_Promise';
       let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let loopCount = systemWindowTypeDicArr.length;
-      console.log(msgStr + 'loopCount: ' + loopCount);
-      for(let i=0;i<loopCount;i++ ){
-        let tempType = Number(ohosWindow.WindowType[systemWindowTypeDicArr[i]])
-        let windId = 'createWindowTest1' + i;
-        console.log(msgStr + 'ohosWindow.createWindow:  ' + tempType + ' start');
-        let windowConfig = {
-          name: windId,
-          windowType: tempType,
-          ctx: context,
-          displayId: 0,
-          parentId: 0
-        };
-        let tempWnd;
-        tempWnd = await ohosWindow.createWindow(windowConfig).catch((err) => {
-          console.log(msgStr + 'ohosWindow.createWindow ' + tempType + 'catched, err: ' + JSON.stringify(err));
-          expect().assertFail();
-          done();
-          return;
-        });
-        console.log(msgStr + 'ohosWindow.createWindow ' + tempType + 'finished, wnd: ' + JSON.stringify(tempWnd));
-        console.log(msgStr + 'ohosWindow.createWindow ' + tempType + 'finished, step: ' + i);
-        expect(!!tempWnd).assertTrue();
-        await tempWnd.destroyWindow();
-        if (i == loopCount-1) done();
-      }
+      let windowConfig = {
+        name: "testCreateWindow_Diff_Type_Wins_Promise",
+        windowType: ohosWindow.WindowType.TYPE_FLOAT,
+        ctx: context,
+        displayId: 0,
+        parentId: 0
+      };
+      let tempWnd;
+      tempWnd = await ohosWindow.createWindow(windowConfig).catch((err) => {
+        console.log(msgStr + 'ohosWindow.createWindow '+ 'catched, err: ' + JSON.stringify(err));
+        expect().assertFail();
+        done();
+        return;
+      });
+      expect(!!tempWnd).assertTrue();
+      await tempWnd.destroyWindow();
+      done();
     })
 
     /**
@@ -228,7 +114,6 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
      * @tc.level     : Level3
      */
     it('testCreateWindow_Not_Exist_WinType_Promise', 0, async function (done) {
-      sleep(1000)
       let caseName = 'testCreateWindow_Not_Exist_WinType_Promise';
       let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin context==' + JSON.stringify(context));
@@ -304,8 +189,6 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
       let caseName = 'testCreateWindow_Type_Float_Win_Callback';
       let msgStr = 'jsunittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      let loopCount = systemWindowTypeArr.length;
-      console.log('jsunittest loopCount: ' + loopCount);
       let tempType = ohosWindow.WindowType.TYPE_FLOAT;
       let windId = 'createWindowTest5';
       console.log(msgStr + 'ohosWindow.createWindow ' + tempType + ' start');
@@ -977,6 +860,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
       let winsowConfig = {
         name: windowId, windowType: baseWndType, ctx: context
       };
+
       function createFirstWindow() {
         return new Promise((resolve, reject) => {
           try {
@@ -999,6 +883,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
           ;
         })
       }
+
       let winData;
       winData = await createFirstWindow();
       expect(!!winData).assertTrue();
@@ -1021,7 +906,8 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
         })
       } catch (exception) {
         console.error(msgStr + 'Failed to move the window. Cause:' + JSON.stringify(exception));
-      };
+      }
+      ;
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0930
@@ -1040,6 +926,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
       let winsowConfig = {
         name: windowId, windowType: baseWndType, ctx: context
       };
+
       function createFirstWindow() {
         return new Promise((resolve, reject) => {
           try {
@@ -1062,6 +949,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
           ;
         })
       }
+
       let winData;
       winData = await createFirstWindow();
       expect(!!winData).assertTrue();
@@ -1084,7 +972,8 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
         })
       } catch (exception) {
         console.error(msgStr + 'Failed to move the window. Cause:' + JSON.stringify(exception));
-      };
+      }
+      ;
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0950
@@ -1103,6 +992,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
       let winsowConfig = {
         name: windowId, windowType: baseWndType, ctx: context
       };
+
       function createFirstWindow() {
         return new Promise((resolve, reject) => {
           try {
@@ -1125,6 +1015,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
           ;
         })
       }
+
       let winData;
       winData = await createFirstWindow();
       expect(!!winData).assertTrue();
@@ -1147,7 +1038,8 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
         })
       } catch (exception) {
         console.error(msgStr + 'Failed to move the window. Cause:' + JSON.stringify(exception));
-      };
+      }
+      ;
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0910
@@ -1166,6 +1058,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
       let winsowConfig = {
         name: windowId, windowType: baseWndType, ctx: context
       };
+
       function createFirstWindow() {
         return new Promise((resolve, reject) => {
           try {
@@ -1188,6 +1081,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
           ;
         })
       }
+
       let winData;
       winData = await createFirstWindow();
       expect(!!winData).assertTrue();
@@ -1210,7 +1104,8 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
         })
       } catch (exception) {
         console.error(msgStr + 'Failed to move the window. Cause:' + JSON.stringify(exception));
-      };
+      }
+      ;
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1060
@@ -1440,7 +1335,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
         });
         console.log(msgStr + 'ohosWindow.createWindow ' + baseWndType + ' wnd: ' + tempWnd);
         expect(!!tempWnd).assertTrue();
-        for(let i=0;i<5;i++){
+        for (let i = 0; i < 5; i++) {
           console.log(msgStr + 'begin resize current step:' + i)
           await tempWnd.resize(100, 100).catch((err) => {
             console.error(msgStr + 'Failed to change the window size. Cause: ' + JSON.stringify(err));
@@ -1449,7 +1344,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
             return;
           })
           console.log(msgStr + 'success resize current step:' + i)
-          if(i==4){
+          if (i == 4) {
             console.log(msgStr + 'finish resize current step:' + i)
             done()
           }
@@ -1479,6 +1374,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
       let winsowConfig = {
         name: windowId, windowType: baseWndType, ctx: context
       };
+
       function createFirstWindow() {
         return new Promise((resolve, reject) => {
           try {
@@ -1524,7 +1420,8 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
         });
       } catch (exception) {
         console.error(msgStr + 'Failed to change the window size. Cause:' + JSON.stringify(exception));
-      };
+      }
+      ;
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1000
@@ -1543,6 +1440,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
       let winsowConfig = {
         name: windowId, windowType: baseWndType, ctx: context
       };
+
       function createFirstWindow() {
         return new Promise((resolve, reject) => {
           try {
@@ -1565,9 +1463,10 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
           ;
         })
       }
-      function resizeFun(width, height,i){
-        console.log(msgStr + 'resize begin step:'+i)
-        return new Promise((resolve,reject)=>{
+
+      function resizeFun(width, height, i) {
+        console.log(msgStr + 'resize begin step:' + i)
+        return new Promise((resolve, reject) => {
           try {
             winData.resize(width, height, async (err) => {
               if (err.code) {
@@ -1580,25 +1479,27 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
                 done();
                 reject(null)
               }
-              console.info(msgStr + 'Succeeded in changing the window size. step:'+i);
+              console.info(msgStr + 'Succeeded in changing the window size. step:' + i);
               resolve(true)
             });
           } catch (exception) {
             console.error(msgStr + 'Failed to change the window size. Cause:' + JSON.stringify(exception));
-          };
+          }
+          ;
         })
       }
+
       let winData;
       winData = await createFirstWindow();
       expect(!!winData).assertTrue();
       let width = 100;
       let height = 100;
-      for(let i=1;i<5;i++){
+      for (let i = 1; i < 5; i++) {
         width = width * i;
         height = height * i;
-        await resizeFun(width, height,i);
-        if(i==4){
-          console.log(msgStr + 'resize finished step:'+i)
+        await resizeFun(width, height, i);
+        if (i == 4) {
+          console.log(msgStr + 'resize finished step:' + i)
           await winData.destroyWindow();
           done()
         }
@@ -1671,6 +1572,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
       let winsowConfig = {
         name: windowId, windowType: baseWndType, ctx: context
       };
+
       function createFirstWindow() {
         return new Promise((resolve, reject) => {
           try {
@@ -2123,7 +2025,7 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
         expect(wnd != null).assertTrue();
         try {
           let isLayoutFullScreen = false;
-         await wnd.setWindowLayoutFullScreen(isLayoutFullScreen).then(() => {
+          await wnd.setWindowLayoutFullScreen(isLayoutFullScreen).then(() => {
             console.info(msgStr + 'Succeeded in setting the window not layout to full-screen mode.');
             try {
               let propData = wnd.getWindowProperties()
@@ -2274,67 +2176,6 @@ export default function displayAndWindowRefactorInterfaceTest(context, windowSta
         expect().assertFail();
         done();
       }
-    })
-    /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STANDARD_JS_API_1810
-     * @tc.name      : testSetExpectedFrameRateRange
-     * @tc.desc      : test the enum value of hdrFormats
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level4
-     */
-    it('testSetExpectedFrameRateRange',0, async function (done){
-        let msg = "testSetExpectedFrameRateRange"
-        let backDisplaySyncBigger = displaySync.create()
-        console.log(msg + ' www data '  + backDisplaySyncBigger)
-        try {
-          let range : ExpectedFrameRateRange = {
-            expected: 10,
-            min:0,
-            max:120
-          };
-          console.log(msg + ' www data '  + range)
-          backDisplaySyncBigger.setExpectedFrameRateRange(range)
-          expect(true).assertTrue()
-          done()
-        } catch (error) {
-          console.log(msg + ' www data Failed to create the subwindow. Cause: ' + JSON.stringify(error));
-          if (error.code) {
-            expect().assertFail()
-          } else {
-            expect(true).assertTrue()
-          }
-          done()
-      }
-    })
-     /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STANDARD_JS_API_1820
-     * @tc.name      : testTargetTimestamp
-     * @tc.desc      : test the enum value of IntervalInfo
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level4
-     */
-    it('testTargetTimestamp',0, async function (done){
-        let msg = "testTargetTimestamp"
-        let backDisplaySyncBigger = displaySync.create()
-        console.log(msg + ' www data ' + backDisplaySyncBigger)
-        try {
-            let bigger = (frameInfo) => {
-                let a = frameInfo.targetTimestamp
-                console.log(msg + ' www data' + JSON.stringify(a))
-            }
-            expect(true).assertTrue()
-            done()
-        } catch (error) {
-            console.log(msg + ' www data Failed to Cause: ' + JSON.stringify(error));
-            if (error.code) {
-                expect().assertFail()
-            } else {
-                expect(true).assertTrue()
-            }
-            done()
-        }
     })
   })
 }

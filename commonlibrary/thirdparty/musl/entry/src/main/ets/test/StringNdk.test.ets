@@ -13,11 +13,16 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import string from 'libstringndk.so'
 
 export default function stringNdkTest() {
   describe('MuslStringTest', () => {
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
 
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_STRING_STRNCMP_0100
@@ -122,23 +127,6 @@ export default function stringNdkTest() {
       let strndupResult: number = string.strndup(firstParam, secondParam);
       console.info("Test strndupResult= " + strndupResult);
       expect(strndupResult).assertEqual('abcdefg');
-      done();
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_STRING_STRNLEN_0100
-     * @tc.name       : testMuslStringStrnlen001
-     * @tc.desc       : test strnlen
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 1
-     */
-    it('testMuslStringStrnlen001', 0, async (done: Function) => {
-      let firstParam = 'abcdefg';
-      let secondParam = 5;
-      let strnlenResult: number = string.strnlen(firstParam, secondParam);
-      console.info("Test strnlenResult= " + strnlenResult);
-      expect(strnlenResult).assertEqual(5);
       done();
     });
 

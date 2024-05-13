@@ -1,4 +1,3 @@
-// @ts-nocheck
 /**
  * Copyright (c) 2023 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,15 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import router from '@system.router';
-import routery from '@ohos.router';
-
+import router from '@ohos.router';
 
 @Entry
 @Component
 struct OhosRouterA {
   build() {
-    Flex({direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center}) {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text('A Page')
         .fontSize(50)
         .fontWeight(FontWeight.Bold)
@@ -29,10 +26,10 @@ struct OhosRouterA {
         .key('pushButtonA')
         .backgroundColor('#FF0B8FE2')
         .fontSize(20)
-        .margin({top: 20})
+        .margin({ top: 20 })
         .onClick(() => {
           router.push({
-            uri: 'pages/ohosRouterB',
+            url: 'pages/ohosRouterB',
             params: {
               data: 'B Page'
             }
@@ -42,120 +39,124 @@ struct OhosRouterA {
         .key('pushButtonA')
         .backgroundColor('#FF0B8FE2')
         .fontSize(20)
-        .margin({top: 20})
+        .margin({ top: 20 })
         .onClick(() => {
           router.push({
-            uri: 'pages/ohosRouterB',
+            url: 'pages/ohosRouterB',
             params: {
               data: 'B Page'
             }
           });
         });
-        Button('pushUrl')
+      Button('pushUrl')
         .key('pushButtonA1')
         .backgroundColor('#FF0B8FE2')
         .fontSize(20)
-        .margin({top: 20})
+        .margin({ top: 20 })
         .onClick(() => {
           try {
-			  routery.pushUrl({
-				url: 'pages/routerpage2',
-				params: {
-				  data1: 'message',
-				  data2: {
-					data3: [123, 456, 789]
-				  },
-				},
-			  })
-				.then(() => {
-				  // success
-				})
-				.catch(err => {
-				  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-				})
-			} catch (error) {
-			  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
-			};
+            router.pushUrl({
+              url: 'pages/routerpage2',
+              params: {
+                data1: 'message',
+                data2: {
+                  data3: [123, 456, 789]
+                },
+              },
+            })
+              .then(() => {
+                // success
+              })
+              .catch(err => {
+                console.error(`pushUrl failed, code is ${err.code}, message is ${(err as Error)?.message}`);
+              })
+          } catch (error) {
+            console.error(`pushUrl args error code is ${(error as BusinessError)?.code}, message is ${(error as Error)?.message}`);
+          }
+          ;
         });
       Button('pushUrl')
-      .key('pushButtonA1')
-      .backgroundColor('#FF0B8FE2')
-      .fontSize(20)
-      .margin({top: 20})
-      .onClick(() => {
-        try {
-		  routery.pushUrl({
-			url: 'pages/routerpage2',
-			params: {
-			  data1: 'message',
-			  data2: {
-				data3: [123, 456, 789]
-			  },
-			},
-		  }, routery.RouterMode.Standard)
-			.then(() => {
-			  // success
-			})
-			.catch(err => {
-			  console.error(`pushUrl failed, code is ${err.code}, message is ${err.message}`);
-			})
-		} catch (error) {
-		  console.error(`pushUrl args error code is ${error.code}, message is ${error.message}`);
-		};
-      });
+        .key('pushButtonA1')
+        .backgroundColor('#FF0B8FE2')
+        .fontSize(20)
+        .margin({ top: 20 })
+        .onClick(() => {
+          try {
+            router.pushUrl({
+              url: 'pages/routerpage2',
+              params: {
+                data1: 'message',
+                data2: {
+                  data3: [123, 456, 789]
+                },
+              },
+            }, router.RouterMode.Standard)
+              .then(() => {
+                // success
+              })
+              .catch(err => {
+                console.error(`pushUrl failed, code is ${err.code}, message is ${(err as Error)?.message}`);
+              })
+          } catch (error) {
+            console.error(`pushUrl args error code is ${(error as BusinessError)?.code}, message is ${(error as Error)?.message}`);
+          }
+          ;
+        });
 
       Button('replaceUr2')
-      .key('pushButtonA2')
-      .backgroundColor('#FF0B8FE2')
-      .fontSize(20)
-      .margin({top: 20})
-      .onClick(() => {
-        try {
-		  routery.replaceUrl({
-			url: 'pages/detail',
-			params: {
-			  data1: 'message',
-			},
-		  }, routery.RouterMode.Standard)
-			.then(() => {
-			  // success
-			})
-			.catch(err => {
-			  console.error(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-			})
-		} catch (error) {
-		  console.error(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
-		};
-      });
+        .key('pushButtonA2')
+        .backgroundColor('#FF0B8FE2')
+        .fontSize(20)
+        .margin({ top: 20 })
+        .onClick(() => {
+          try {
+            router.replaceUrl({
+              url: 'pages/detail',
+              params: {
+                data1: 'message',
+              },
+            }, router.RouterMode.Standard)
+              .then(() => {
+                // success
+              })
+              .catch(err => {
+                console.error(`replaceUrl failed, code is ${err.code}, message is ${(err as Error)?.message}`);
+              })
+          } catch (error) {
+            console.error(`replaceUrl args error code is ${(error as BusinessError)?.code}, message is ${(error as Error)?.message}`);
+          }
+          ;
+        });
       Button('replaceUrl')
-      .key('pushButtonA1')
-      .backgroundColor('#FF0B8FE2')
-      .fontSize(20)
-      .margin({top: 20})
-      .onClick(() => {
-        try {
-		  routery.replaceUrl({
-			url: 'pages/detail',
-			params: {
-			  data1: 'message',
-			},
-		  })
-			.then(() => {
-			  // success
-			})
-			.catch(err => {
-			  console.info(`replaceUrl failed, code is ${err.code}, message is ${err.message}`);
-			})
-		} catch (error) {
-		  console.info(`replaceUrl args error code is ${error.code}, message is ${error.message}`);
-		};
+        .key('pushButtonA1')
+        .backgroundColor('#FF0B8FE2')
+        .fontSize(20)
+        .margin({ top: 20 })
+        .onClick(() => {
+          try {
+            router.replaceUrl({
+              url: 'pages/detail',
+              params: {
+                data1: 'message',
+              },
+            })
+              .then(() => {
+                // success
+              })
+              .catch(err => {
+                console.info(`replaceUrl failed, code is ${err.code}, message is ${(err as Error)?.message}`);
+              })
+          } catch (error) {
+            console.info(`replaceUrl args error code is ${(error as BusinessError)?.code}, message is ${(error as Error)?.message}`);
+          }
+          ;
         });
 
       Button('clear')
         .key('pushButtonA')
         .backgroundColor('#FF0B8FE2')
         .fontSize(20)
-        .margin({top: 20})
+        .margin({ top: 20 })
         .onClick(() => {
           router.push({
             uri: 'pages/ohosRouterB',
@@ -168,10 +169,10 @@ struct OhosRouterA {
         .key('pushButtonA')
         .backgroundColor('#FF0B8FE2')
         .fontSize(20)
-        .margin({top: 20})
+        .margin({ top: 20 })
         .onClick(() => {
           router.push({
-            uri: 'pages/ohosRouterB',
+            url: 'pages/ohosRouterB',
             params: {
               data: 'B Page'
             }
@@ -181,38 +182,38 @@ struct OhosRouterA {
         .key('pushButtonA')
         .backgroundColor('#FF0B8FE2')
         .fontSize(20)
-        .margin({top: 20})
+        .margin({ top: 20 })
         .onClick(() => {
           router.push({
-            uri: 'pages/ohosRouterB',
+            url: 'pages/ohosRouterB',
             params: {
               data: 'B Page'
             }
           });
         });
-        Button('enableBackPageAlert')
+      Button('enableBackPageAlert')
         .key('pushButtonA')
         .backgroundColor('#FF0B8FE2')
         .fontSize(20)
-        .margin({top: 20})
+        .margin({ top: 20 })
         .onClick(() => {
           try {
-            router.enableBackPageAlert({            
-              message: 'Message Info'        
+            router.enableBackPageAlert({
+              message: 'Message Info'
             });
-            } catch(error) {
-            console.error(`enableBackPageAlert failed, code is ${error.code}, message is ${error.message}`);
-            }
+          } catch (error) {
+            console.error(`enableBackPageAlert failed, code is ${(error as BusinessError)?.code}, message is ${(error as Error)?.message}`);
+          }
         });
 
       Button('disableAlertBeforeBackPage')
         .key('pushButtonA')
         .backgroundColor('#FF0B8FE2')
         .fontSize(20)
-        .margin({top: 20})
+        .margin({ top: 20 })
         .onClick(() => {
           router.push({
-            uri: 'pages/ohosRouterB',
+            url: 'pages/ohosRouterB',
             params: {
               data: 'B Page'
             }

@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
+
 const TAG = 'ets_apiLack_add';
 
 @Entry
@@ -52,7 +53,7 @@ struct RectNe {
         .key("neText")
 
       Rect({ width: '90%', height: "50px" }).radiusHeight(20).radiusWidth(20)
-      .key("Rect")
+        .key("Rect")
 
       Image($rawfile('test.png'))
         .mask(new Rect({ width: '150px', height: '150px' }).fill(Color.Gray))

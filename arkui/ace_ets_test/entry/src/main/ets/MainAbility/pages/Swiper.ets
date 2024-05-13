@@ -12,10 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 class MyDataSource implements IDataSource {
   private list: number[] = []
-  private listener: DataChangeListener
+  private listener: DataChangeListener|undefined = undefined
 
   constructor(list: number[]) {
     this.list = list
@@ -25,7 +25,7 @@ class MyDataSource implements IDataSource {
     return this.list.length
   }
 
-  getData(index: number): any {
+  getData(index: number): number {
     return this.list[index]
   }
 
@@ -44,9 +44,9 @@ struct SwiperExample {
   private data: MyDataSource = new MyDataSource([])
 
   aboutToAppear(): void {
-    let list = []
-    for (var i = 1; i <= 10; i++) {
-      list.push(i.toString());
+    let list: number[] = []
+    for (let i = 1; i <= 10; i++) {
+      list.push(i);
     }
     this.data = new MyDataSource(list)
   }
@@ -61,7 +61,7 @@ struct SwiperExample {
             .backgroundColor(0xAFEEEE)
             .textAlign(TextAlign.Center)
             .fontSize(20)
-        }, item => item)
+        }, (item: string) => item)
       }
       .key('swiper')
       .cachedCount(2)

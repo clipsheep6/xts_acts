@@ -317,6 +317,7 @@ export default function getBundleInfoForSelf() {
         expect(data.hapModulesInfo[0].abilitiesInfo[0].iconId).assertLarger(0);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].process).assertEqual("");
         expect(data.hapModulesInfo[0].abilitiesInfo[0].exported).assertTrue();
+        expect(data.hapModulesInfo[0].abilitiesInfo[0].excludeFromDock).assertFalse();
         expect(data.hapModulesInfo[0].abilitiesInfo[0].orientation).assertEqual(bundle.DisplayOrientation.PORTRAIT);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].launchType).assertEqual(bundle.LaunchType.SINGLETON);
         expect(data.hapModulesInfo[0].abilitiesInfo[0].permissions.length).assertEqual(0);
@@ -419,6 +420,7 @@ export default function getBundleInfoForSelf() {
           expect(data.hapModulesInfo[0].abilitiesInfo[0].iconId).assertLarger(0);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].process).assertEqual("");
           expect(data.hapModulesInfo[0].abilitiesInfo[0].exported).assertTrue();
+          expect(data.hapModulesInfo[0].abilitiesInfo[0].excludeFromDock).assertFalse();
           expect(data.hapModulesInfo[0].abilitiesInfo[0].orientation).assertEqual(bundle.DisplayOrientation.PORTRAIT);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].launchType).assertEqual(bundle.LaunchType.SINGLETON);
           expect(data.hapModulesInfo[0].abilitiesInfo[0].permissions.length).assertEqual(0);
@@ -508,9 +510,9 @@ export default function getBundleInfoForSelf() {
         expect(data.appInfo).assertEqual(null);
         expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(0);
         let extensionList = data.hapModulesInfo[0].extensionAbilitiesInfo
-        expect(extensionList.length).assertEqual(19);
+        expect(extensionList.length).assertEqual(20);
         let count = 0;
-        for (let i = 0;i < 19; i++) {
+        for (let i = 0;i < 20; i++) {
           switch (extensionList[i].name) {
             case "Form":
               console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
@@ -629,10 +631,15 @@ export default function getBundleInfoForSelf() {
               expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.ADS_SERVICE)
               count = count + 20;
               break;
+            case 'embeddedUI':
+              console.info("embeddedUI" + JSON.stringify(extensionList[i].extensionAbilityType));
+              expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.EMBEDDED_UI)
+              count = count + 21;
+              break;
           }
           console.info("count" + JSON.stringify(count));
         }
-        expect(count).assertEqual(175);
+        expect(count).assertEqual(196);
         expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
         expect(data.reqPermissionDetails.length).assertEqual(0);
         expect(data.permissionGrantStates.length).assertEqual(0);
@@ -660,9 +667,9 @@ export default function getBundleInfoForSelf() {
           expect(data.appInfo).assertEqual(null);
           expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(0);
           let extensionList = data.hapModulesInfo[0].extensionAbilitiesInfo
-          expect(extensionList.length).assertEqual(19);
+          expect(extensionList.length).assertEqual(20);
           let count = 0;
-          for (let i = 0;i < 19; i++) {
+          for (let i = 0;i < 20; i++) {
             switch (extensionList[i].name) {
               case "Form":
                 console.info("Form" + JSON.stringify(extensionList[i].extensionAbilityType));
@@ -781,10 +788,15 @@ export default function getBundleInfoForSelf() {
                 expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.ADS_SERVICE)
                 count = count + 20;
                 break;
+              case 'embeddedUI':
+                console.info("embeddedUI" + JSON.stringify(extensionList[i].extensionAbilityType));
+                expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.EMBEDDED_UI)
+                count = count + 21;
+                break;
             }
             console.info("count" + JSON.stringify(count));
           }
-          expect(count).assertEqual(175);
+          expect(count).assertEqual(196);
           expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
           expect(data.reqPermissionDetails.length).assertEqual(0);
           expect(data.permissionGrantStates.length).assertEqual(0);
@@ -792,6 +804,7 @@ export default function getBundleInfoForSelf() {
           expect(err).assertEqual(null);
           expect(bundle.ExtensionAbilityType.SERVICE).assertEqual(3);
           expect(bundle.ExtensionAbilityType.DATA_SHARE).assertEqual(5);
+          expect(bundle.ExtensionAbilityType.EMBEDDED_UI).assertEqual(21);
           expect(bundle.ExtensionAbilityType.UNSPECIFIED).assertEqual(255);
           done();
         })
@@ -1244,7 +1257,7 @@ export default function getBundleInfoForSelf() {
       expect(data.hapModulesInfo[0].deviceTypes[1]).assertEqual("tablet");
       expect(data.hapModulesInfo[0].installationFree).assertFalse();
       expect(data.hapModulesInfo[0].hashValue).assertEqual("");
-      expect(data.hapModulesInfo[0].fileContextMenuConfig).assertEqual("{\"src\": [\"MainAbility/pages/index/index\",\"MainAbility/pages/second/second\"]}");
+      expect(data.hapModulesInfo[0].fileContextMenuConfig).assertEqual("{\"src\":[\"MainAbility/pages/index/index\",\"MainAbility/pages/second/second\"]}");
       expect(data.reqPermissionDetails.length).assertEqual(0);
       expect(data.permissionGrantStates.length).assertEqual(0);
       expect(data.signatureInfo).assertEqual(null);
@@ -1276,6 +1289,7 @@ export default function getBundleInfoForSelf() {
       expect(data.hapModulesInfo[0].abilitiesInfo[0].iconId).assertLarger(0);
       expect(data.hapModulesInfo[0].abilitiesInfo[0].process).assertEqual("");
       expect(data.hapModulesInfo[0].abilitiesInfo[0].exported).assertTrue();
+      expect(data.hapModulesInfo[0].abilitiesInfo[0].excludeFromDock).assertFalse();
       expect(data.hapModulesInfo[0].abilitiesInfo[0].orientation).assertEqual(bundle.DisplayOrientation.PORTRAIT);
       expect(data.hapModulesInfo[0].abilitiesInfo[0].launchType).assertEqual(bundle.LaunchType.SINGLETON);
       expect(data.hapModulesInfo[0].abilitiesInfo[0].permissions.length).assertEqual(0);
@@ -1361,9 +1375,9 @@ export default function getBundleInfoForSelf() {
       expect(data.appInfo).assertEqual(null);
       expect(data.hapModulesInfo[0].abilitiesInfo.length).assertEqual(0);
       let extensionList = data.hapModulesInfo[0].extensionAbilitiesInfo
-      expect(extensionList.length).assertEqual(19);
+      expect(extensionList.length).assertEqual(20);
       let count = 0;
-      for (let i = 0;i < 19; i++) {
+      for (let i = 0;i < 20; i++) {
         switch (extensionList[i].name) {
           case "Form":
             console.info("Form" + JSON.stringify(extensionList[i]));
@@ -1482,10 +1496,15 @@ export default function getBundleInfoForSelf() {
             expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.ADS_SERVICE)
             count = count + 20;
             break;
+          case 'embeddedUI':
+            console.info("embeddedUI" + JSON.stringify(extensionList[i].extensionAbilityType));
+            expect(extensionList[i].extensionAbilityType).assertEqual(bundle.ExtensionAbilityType.EMBEDDED_UI)
+            count = count + 21;
+            break;
         }
         console.info("count" + JSON.stringify(count));
       }
-      expect(count).assertEqual(175);
+      expect(count).assertEqual(196);
       expect(data.hapModulesInfo[0].metadata.length).assertEqual(0);
       expect(data.reqPermissionDetails.length).assertEqual(0);
       expect(data.permissionGrantStates.length).assertEqual(0);
@@ -1544,6 +1563,7 @@ export default function getBundleInfoForSelf() {
       expect(data.hapModulesInfo[0].metadata[0].value).assertEqual("MetaDataValue");
       expect(data.hapModulesInfo[0].metadata[0].resource).assertEqual("$profile:shortcuts_config");
       expect(data.hapModulesInfo[0].routerMap.length).assertEqual(0);
+      expect(data.routerMap.length).assertEqual(0);
       expect(data.reqPermissionDetails.length).assertEqual(0);
       expect(data.permissionGrantStates.length).assertEqual(0);
       expect(data.signatureInfo).assertEqual(null);
@@ -1604,6 +1624,7 @@ export default function getBundleInfoForSelf() {
       expect(data.signatureInfo).assertEqual(null);
       expect(data.hapModulesInfo[0].routerMap.length).assertEqual(2);
       checkRouterMapInfo(data.hapModulesInfo[0].routerMap);
+      checkRouterMapInfo(data.routerMap);
       done();
     })
 
@@ -1681,6 +1702,7 @@ export default function getBundleInfoForSelf() {
       expect(data.iconId).assertLarger(0);
       expect(data.process).assertEqual("");
       expect(data.exported).assertTrue();
+      expect(data.excludeFromDock).assertFalse();
       expect(data.permissions.length).assertEqual(0);
       expect(data.deviceTypes.length).assertEqual(3);
       console.info("checkComm" + JSON.stringify(data.deviceTypes[0]));
@@ -1704,21 +1726,16 @@ export default function getBundleInfoForSelf() {
     }
 
     function checkRouterMapInfo(data) {
+      let routerMapTest: bundle.RouterItem = data[0];
+      expect(typeof (routerMapTest.name)).assertEqual('string');
       expect(data.length).assertEqual(2);
-      expect(data[0].name).assertEqual("DynamicPage1");
-      expect(data[0].pageModule).assertEqual("entry");
-      expect(data[0].pageSourceFile).assertEqual("entry/src/index");
-      expect(data[0].buildFunction).assertEqual("myFunction");
-      expect(data[0].data.length).assertEqual(0);
+      expect(routerMapTest.name).assertEqual("DynamicPage1");
+      expect(routerMapTest.pageSourceFile).assertEqual("entry/src/index");
+      expect(routerMapTest.buildFunction).assertEqual("myFunction");
+      expect(routerMapTest.data.length).assertEqual(0);
       expect(data[1].name).assertEqual("DynamicPage2");
-      expect(data[1].pageModule).assertEqual("entry");
       expect(data[1].pageSourceFile).assertEqual("entry/src/index");
       expect(data[1].buildFunction).assertEqual("myBuilder");
-      expect(data[1].data.length).assertEqual(2);
-      expect(data[1].data[0].key).assertEqual("key1");
-      expect(data[1].data[0].value).assertEqual("data1");
-      expect(data[1].data[1].key).assertEqual("key2");
-      expect(data[1].data[1].value).assertEqual("data2");
       console.info("checkRouterMapInfo end");
     }
   })

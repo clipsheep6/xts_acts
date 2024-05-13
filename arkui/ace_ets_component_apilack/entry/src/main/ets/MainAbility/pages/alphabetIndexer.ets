@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
 import prompt from '@ohos.prompt'
 import events_emitter from '@ohos.events.emitter';
+
 const TAG = 'ets_apiLack_add';
 
 @Entry
@@ -25,23 +26,24 @@ struct AlphabetIndexerOnSelect {
   private content: string = "AlphabetIndexer Page"
   @State onSelectStatus: boolean = false;
   @State onRequestPopupDataStatus: boolean = false;
+
   aboutToAppear() {
     Log.showInfo(TAG, `aboutToAppear AlphabetIndexerOnSelect start`)
   }
 
-  aboutToDisappear(){
+  aboutToDisappear() {
     Log.showInfo(TAG, `aboutToDisAppear AlphabetIndexerOnSelect end`)
   }
 
-  showToast(message) {
+  showToast(message: string) {
     prompt.showToast({
       message: message,
       duration: 2000
     });
   }
 
-  build(){
-    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center,justifyContent:FlexAlign.Center }){
+  build() {
+    Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Text(`${this.content}`)
         .fontSize(20)
         .align(Alignment.Center)
@@ -65,19 +67,19 @@ struct AlphabetIndexerOnSelect {
           this.showToast("onSelect() " + index)
           this.onSelectStatus = true;
           try {
-            var backData = {
+            let backData: events_emitter.EventData = {
               data: {
                 "STATUS": this.onSelectStatus
               }
             }
-            let backEvent = {
+            let backEvent: events_emitter.InnerEvent = {
               eventId: 60201,
               priority: events_emitter.EventPriority.LOW
             }
             console.info("onSelect start to emit action state")
             events_emitter.emit(backEvent, backData)
           } catch (err) {
-            console.info("onSelect emit action state err: " + JSON.stringify(err.message))
+            console.info("onSelect emit action state err: " + JSON.stringify((err as Error)?.message))
           }
         })
         .onPopupSelect((index: number) => {
@@ -89,19 +91,19 @@ struct AlphabetIndexerOnSelect {
           this.showToast("onRequestPopupData() " + index)
           this.onRequestPopupDataStatus = true
           try {
-            var backData = {
+            let backData: events_emitter.EventData = {
               data: {
                 "STATUS": this.onRequestPopupDataStatus
               }
             }
-            let backEvent = {
+            let backEvent: events_emitter.InnerEvent = {
               eventId: 60202,
               priority: events_emitter.EventPriority.LOW
             }
             console.info("onRequestPopupData start to emit action state")
             events_emitter.emit(backEvent, backData)
           } catch (err) {
-            console.info("onRequestPopupData emit action state err: " + JSON.stringify(err.message))
+            console.info("onRequestPopupData emit action state err: " + JSON.stringify((err as Error)?.message))
           }
           return ['1', '2', '3', '4', '5']
 

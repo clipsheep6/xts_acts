@@ -13,17 +13,18 @@
  * limitations under the License.
  */
 
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
 import events_emitter from '@ohos.events.emitter';
 import Curves from '@ohos.curves'
+
 const TAG = 'ets_apiLack_add';
 
 @Entry
 @Component
 struct CurvesSteps {
-  @State curveApi:string = "success"
-  @State curve1:ICurve = Curves.springMotion(0.40, 0.99, 0)
-  @State curve2:ICurve = Curves.responsiveSpringMotion(0.40, 0.99, 0);
+  @State curveApi: string = "success"
+  @State curve1: ICurve = Curves.springMotion(0.40, 0.99, 0)
+  @State curve2: ICurve = Curves.responsiveSpringMotion(0.40, 0.99, 0);
 
   aboutToAppear() {
     Log.showInfo(TAG, `aboutToAppear CurvesSteps start`)
@@ -49,30 +50,30 @@ struct CurvesSteps {
         .textOverflow({ overflow: TextOverflow.None })
         .key("stepsText")
         .onClick(() => {
-          try{
+          try {
             let curve = Curves.steps(1, true)
             console.info("curve is" + curve)
             this.curveApi = "callBackSuccess"
-          }catch(err){
-            console.info("curve onClick err: " + JSON.stringify(err.message))
+          } catch (err) {
+            console.info("curve onClick err: " + JSON.stringify((err as Error)?.message))
             this.curveApi = "callBackFail"
           }
           try {
-            var backData = {
+            let backData: events_emitter.EventData = {
               data: {
                 "curveApi": this.curveApi,
                 "curveSpringMotion": this.curve1,
                 "curveResSpringMotion": this.curve2
               }
             }
-            let backEvent = {
+            let backEvent: events_emitter.InnerEvent = {
               eventId: 60229,
               priority: events_emitter.EventPriority.LOW
             }
             console.info("curveApi onClick start to emit action state")
             events_emitter.emit(backEvent, backData)
           } catch (err) {
-            console.info("curveApi onClick emit action state err: " + JSON.stringify(err.message))
+            console.info("curveApi onClick emit action state err: " + JSON.stringify((err as Error)?.message))
           }
         })
     }.width("100%").height("100%")

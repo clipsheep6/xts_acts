@@ -13,8 +13,9 @@
  * limitations under the License.
  */
 
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
 import events_emitter from '@ohos.events.emitter';
+
 const TAG = 'ets_apiLack_add';
 
 @Entry
@@ -49,20 +50,20 @@ struct XcomponentGetXComponentContext {
         .onClick(() => {
           try {
             Log.showInfo(TAG, 'xcomponentController.getXComponentContext' + JSON.stringify(this.xcomponentController.getXComponentContext()))
-            var result = (this.xcomponentController.getXComponentContext() != null)
-            var backData = {
+            let result = (this.xcomponentController.getXComponentContext() != null)
+            let backData: events_emitter.EventData = {
               data: {
                 "STATUS": "callBackSuccess"
               }
             }
-            let backEvent = {
+            let backEvent: events_emitter.InnerEvent = {
               eventId: 60228,
               priority: events_emitter.EventPriority.LOW
             }
             console.info("xcomponentController start to emit action state")
             events_emitter.emit(backEvent, backData)
           } catch (err) {
-            console.info("xcomponentController emit action state err: " + JSON.stringify(err.message))
+            console.info("xcomponentController emit action state err: " + JSON.stringify((err as Error)?.message))
           }
         })
 

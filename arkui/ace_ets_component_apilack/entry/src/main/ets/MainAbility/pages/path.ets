@@ -13,17 +13,13 @@
  * limitations under the License.
  */
 
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
+
 const TAG = 'ets_apiLack_add';
 
 @Entry
 @Component
 struct PathNew {
-  private path: any = new Path({
-    width: 100,
-    height: 100,
-    commands: 'M150 0 L300 300 L0 300 Z'
-  })
 
   aboutToAppear() {
     Log.showInfo(TAG, `aboutToAppear PathNew start`)
@@ -51,7 +47,7 @@ struct PathNew {
         .key("neText")
 
       Path().width("100px").height("100px").commands('M150 0 L300 300 L0 300 Z')
-      .key("Path")
+        .key("Path")
 
       Image($rawfile('test.png'))
         .mask(new Path({ width: '150px', height: '150px' }).fill(Color.Gray))

@@ -14,8 +14,9 @@
  */
 
 import prompt from '@ohos.prompt'
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
 import events_emitter from '@ohos.events.emitter';
+
 const TAG = 'ets_apiLack_add';
 
 @Entry
@@ -47,19 +48,19 @@ struct PromptShowDialog {
         .key("showDialogText")
         .onClick(() => {
           try {
-            var backData = {
+            let backData: events_emitter.EventData = {
               data: {
                 "STATUS": true
               }
             }
-            let backEvent = {
+            let backEvent: events_emitter.InnerEvent = {
               eventId: 60220,
               priority: events_emitter.EventPriority.LOW
             }
             console.info("showDialog start to emit action state")
             events_emitter.emit(backEvent, backData)
           } catch (err) {
-            console.info("showDialog emit action state err: " + JSON.stringify(err.message))
+            console.info("showDialog emit action state err: " + JSON.stringify((err as Error)?.message))
           }
         })
 
@@ -78,19 +79,19 @@ struct PromptShowDialog {
         .key("showActionMenuText")
         .onClick(() => {
           try {
-            var backData1 = {
+            let backData1: events_emitter.EventData = {
               data: {
                 "STATUS": true
               }
             }
-            let backEvent1 = {
+            let backEvent1: events_emitter.InnerEvent = {
               eventId: 60221,
               priority: events_emitter.EventPriority.LOW
             }
             console.info("showActionMenu start to emit action state")
             events_emitter.emit(backEvent1, backData1)
           } catch (err) {
-            console.info("showActionMenu emit action state err: " + JSON.stringify(err.message))
+            console.info("showActionMenu emit action state err: " + JSON.stringify((err as Error)?.message))
           }
         })
 

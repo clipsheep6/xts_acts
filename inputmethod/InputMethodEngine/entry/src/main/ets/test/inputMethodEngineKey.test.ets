@@ -116,7 +116,7 @@ export default function inputMethodEngineKeyJSUnit() {
           let t = setTimeout(async ()=>{
             await driver.triggerKey(2045)
             clearTimeout(t);
-          }, 100)    
+          }, 200)
         }
       }
 
@@ -182,7 +182,7 @@ export default function inputMethodEngineKeyJSUnit() {
           let t = setTimeout(async ()=>{
             await driver.triggerKey(2017)
             clearTimeout(t);
-          }, 100)             
+          }, 200)
         }
       }
 
@@ -246,9 +246,9 @@ export default function inputMethodEngineKeyJSUnit() {
           console.info("====>SUB_Misc_InputMethod_Manage_Physical_Buttons_0030 publishCallback failed:" + JSON.stringify(err));
         } else {
           let t = setTimeout(async ()=>{
-            await driver.triggerCombineKeys(2045, 2049);
+            await driver.triggerCombineKeys(2072, 2017);
             clearTimeout(t);
-          }, 100)            
+          }, 200)
         }
       }
 
@@ -314,7 +314,7 @@ export default function inputMethodEngineKeyJSUnit() {
           let t = setTimeout(async ()=>{
             await driver.triggerCombineKeys(2017, 2047);
             clearTimeout(t);
-          }, 100)  
+          }, 200)
         }
       }
 
@@ -380,7 +380,7 @@ export default function inputMethodEngineKeyJSUnit() {
           let t = setTimeout(async ()=>{
             await driver.triggerCombineKeys(2047, 2017);
             clearTimeout(t);
-          }, 100)  
+          }, 200)
           
         }
       }
@@ -445,9 +445,9 @@ export default function inputMethodEngineKeyJSUnit() {
           console.info("====>SUB_Misc_InputMethod_Manage_Physical_Buttons_0060 publishCallback failed:" + JSON.stringify(err));
         } else {
           let t = setTimeout(async ()=>{
-            await driver.triggerCombineKeys(2072, 2045, 2055);
+            await driver.triggerCombineKeys(2047, 2001);
             clearTimeout(t);
-          }, 100)  
+          }, 200)
         }
       }
 
@@ -511,9 +511,9 @@ export default function inputMethodEngineKeyJSUnit() {
           console.info("====>SUB_Misc_InputMethod_Manage_Physical_Buttons_0070 publishCallback failed:" + JSON.stringify(err));
         } else {
           let t = setTimeout(async ()=>{
-            await driver.triggerCombineKeys(2072, 2045, 2017)
+            await driver.triggerCombineKeys(2047, 2062)
             clearTimeout(t)
-          }, 100)  
+          }, 200)
         }
       }
 

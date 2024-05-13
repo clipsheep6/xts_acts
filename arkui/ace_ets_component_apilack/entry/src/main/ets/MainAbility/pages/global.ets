@@ -13,18 +13,18 @@
  * limitations under the License.
  */
 
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
+
 const TAG = 'ets_apiLack_add';
 
 @Entry
 @Component
 struct GlobalLack {
-
   aboutToAppear() {
     Log.showInfo(TAG, `aboutToAppear GlobalLack start`)
   }
 
-  aboutToDisappear(){
+  aboutToDisappear() {
     Log.showInfo(TAG, `aboutToDisAppear GlobalLack end`)
   }
 
@@ -34,7 +34,7 @@ struct GlobalLack {
         .onClick(() => {
           console.info("Click2" + JSON.stringify(sendEventByKey("Del", 10, "")));
         }).key("Click2")
-      List({space:10}) {
+      List({ space: 10 }) {
         ListItem() {
           Text("Hello world") {
           }

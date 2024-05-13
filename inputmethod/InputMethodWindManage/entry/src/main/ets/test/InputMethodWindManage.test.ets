@@ -21,41 +21,59 @@ import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry
 import display from '@ohos.display';
 import { PanelInfo, PanelFlag, PanelType } from '@ohos.inputMethod.Panel';
 import deviceinfo from '@ohos.deviceInfo';
-import {Driver, ON, MatchPattern, Component } from '@ohos.UiTest'
+import {Driver, ON, MatchPattern, Component, UiWindow, DisplayRotation } from '@ohos.UiTest'
 import { BusinessError} from '@ohos.base'
 
 export default function inputMethodWindManageAbility() {
   describe('inputMethodWindManageTest', function () {
+    let driver = Driver.create();
+    let textArea: Component;
+    let rectInfo;
+
     beforeAll(async (done)=>{
-      console.info('====>beforeAll inputMethod_enable deviceinfo.deviceType:' + JSON.stringify(deviceinfo.deviceType));
-      console.info('====>beforeAll inputMethodSwitch into inputMethod_switch' )
-      try {
-        let driver: Driver = Driver.create();
-        await driver.delayMs(500);
+      console.info('====>beforeAll inputMethod_enable start!')
+      try{
         let inputMethodSetting: inputMethod.InputMethodSetting = inputMethod.getSetting();
         let result: boolean = await inputMethodSetting.showOptionalInputMethods();
-        console.info('====>beforeAll inputMethodSwitch else result: ' + JSON.stringify(result));
-        let list = await driver.waitForComponent(ON.type('List'), 1000);
-        console.info('====>beforeAll inputMethodSwitch else list: ' + JSON.stringify(list));
-        if (JSON.stringify(list) == 'null') {
+        console.info('====>beforeAll inputMethodSwitch showOptionalInputMethods result: ' + JSON.stringify(result));
+        let inputMethodList = await driver.waitForComponent(ON.type('List'), 3000);
+        console.info('====>beforeAll inputMethodSwitch inputMethodList: ' + JSON.stringify(inputMethodList));
+        if (JSON.stringify(inputMethodList) === 'null') {
           await driver.delayMs(200);
-          list = await driver.findComponent(ON.type('List'));
-          console.info('====>beforeAll inputMethodSwitch second list: ' + JSON.stringify(list));
+          inputMethodList = await driver.findComponent(ON.type('List'));
+          console.info('====>beforeAll inputMethodSwitch inputMethodList second: ' + JSON.stringify(inputMethodList));
         }
-        await driver.delayMs(500);
-        let inputMethod_name: Component = await list.scrollSearch(ON.text('widmanage', MatchPattern.CONTAINS));
-        console.info('====>beforeAll inputMethodSwitch else waitForComponent: ' + JSON.stringify(inputMethod_name));
-        if (JSON.stringify(inputMethod_name) == 'null') {
-          await driver.delayMs(200);
-          inputMethod_name = await list.scrollSearch(ON.text('widmanage', MatchPattern.CONTAINS));
+        await driver.delayMs(1000);
+        if(deviceinfo.deviceType === '2in1'){
+          let inputMethod_name: Component = await driver.waitForComponent(ON.text('widmanage', MatchPattern.CONTAINS), 2000);
+          await inputMethod_name.click();
+          await driver.delayMs(500);
+        }else{
+          let inputMethod_name: Component = await inputMethodList.scrollSearch(ON.text('widmanage', MatchPattern.CONTAINS));
+          console.info('====>beforeAll inputMethodSwitch inputMethod_name: ' + JSON.stringify(inputMethod_name));
+          if (JSON.stringify(inputMethod_name) === 'null') {
+            await driver.delayMs(200);
+            inputMethod_name = await inputMethodList.scrollSearch(ON.text('widmangae', MatchPattern.CONTAINS));
+            console.info('====>beforeAll inputMethodSwitch inputMethod_name second: ' + JSON.stringify(inputMethod_name));
+          }
+          await inputMethod_name.click();
         }
-        await inputMethod_name.click();
-        console.info('====>beforeAll inputMethodSwitch else done' )
-        await driver.delayMs(2000);
-        console.info(`====>runCmd else attach`);
+        console.info('====>beforeAll inputMethodSwitch done');
+        await driver.delayMs(1000);
+        let testWindow: UiWindow = await driver.findWindow({bundleName: "com.acts.inputmethodwidmanage.test"});
+        console.info('====>beforeAll inputMethodSwitch switch window: ' + JSON.stringify(testWindow));
+        await testWindow.focus();
+        await driver.delayMs(1000);
+        textArea = await driver.findComponent(ON.type('TextArea'));
+        console.info('====>beforeAll inputMethodSwitch window textArea:' + JSON.stringify(textArea))
+        rectInfo = await textArea.getBounds();
+        console.info('====>beforeAll inputMethodSwitch textArea rectInfo:' + JSON.stringify(rectInfo))
+        await driver.delayMs(1000);
+        await runCmd();
+        await driver.delayMs(1000);
         done();
-      } catch(err) {
-        console.info('====>beforeAll inputMethodSwitch else err:' + JSON.stringify(err));
+      }catch(err){
+        console.info('====>beforeAll throw err:' + JSON.stringify(err.message))
         done();
       }
     })
@@ -63,6 +81,22 @@ export default function inputMethodWindManageAbility() {
     afterAll(async (done) => {
       done();
     })
+
+    let sleep = function (timeout) {
+      return new Promise(resolve => {
+        const st = setTimeout(() => {
+          resolve(null);
+          clearTimeout(st);
+        }, timeout);
+      });
+    };
+
+    async function runCmd(){
+      let cursor_x = rectInfo.left + Math.floor(Math.random() * (rectInfo.right - rectInfo.left) * 0.9);
+      let cursor_y = rectInfo.top + Math.floor(Math.random() * (rectInfo.bottom - rectInfo.top) * 0.9);
+      console.info(`====>start click x: ${cursor_x}  y: ${cursor_y}`)
+      await driver.click(cursor_x, cursor_y)
+    }
 
     /*
     * @tc.number  Sub_Misc_inputMethod_Panel_createPanelCallback_0010
@@ -913,6 +947,8 @@ export default function inputMethodWindManageAbility() {
     * @tc.level   2
     */
     it('Sub_Misc_inputMethod_Panel_showPromise_0140', 0, async function (done) {
+      const ATTRIBUTE:any = {inputAttribute:{textInputType:0,enterKeyType:0}}
+      await inputMethod.getController().attach(false, ATTRIBUTE);
       function unSubscriberCallback(err) {
         console.info('====>Sub_Misc_inputMethod_Panel_showPromise_0140 unSubscriberCallback start');
         if (err) {
@@ -1033,6 +1069,8 @@ export default function inputMethodWindManageAbility() {
     * @tc.level   2
     */
     it('Sub_Misc_inputMethod_Panel_onShow_0170', 0, async function (done) {
+      const ATTRIBUTE:any = {inputAttribute:{textInputType:0,enterKeyType:0}}
+      await inputMethod.getController().attach(false, ATTRIBUTE);
       function unSubscriberCallback(err) {
         console.info('====>Sub_Misc_inputMethod_Panel_onShow_0170 unSubscriberCallback start');
         if (err) {
@@ -1093,6 +1131,8 @@ export default function inputMethodWindManageAbility() {
     * @tc.level   2
     */
     it('Sub_Misc_inputMethod_Panel_onHide_0180', 0, async function (done) {
+      const ATTRIBUTE:any = {inputAttribute:{textInputType:0,enterKeyType:0}}
+      await inputMethod.getController().attach(false, ATTRIBUTE);
       function unSubscriberCallback(err) {
         console.info('====>Sub_Misc_inputMethod_Panel_onHide_0180 unSubscriberCallback start');
         if (err) {
@@ -1153,6 +1193,8 @@ export default function inputMethodWindManageAbility() {
     * @tc.level   2
     */
     it('Sub_Misc_inputMethod_Panel_offShow_0190', 0, async function (done) {
+      const ATTRIBUTE:any = {inputAttribute:{textInputType:0,enterKeyType:0}}
+      await inputMethod.getController().attach(false, ATTRIBUTE);
       function unSubscriberCallback(err) {
         console.info('====>Sub_Misc_inputMethod_Panel_offShow_0190 unSubscriberCallback start');
         if (err) {
@@ -1213,6 +1255,8 @@ export default function inputMethodWindManageAbility() {
     * @tc.level   2
     */
     it('Sub_Misc_inputMethod_Panel_offHide_0200', 0, async function (done) {
+      const ATTRIBUTE:any = {inputAttribute:{textInputType:0,enterKeyType:0}}
+      await inputMethod.getController().attach(false, ATTRIBUTE);
       function unSubscriberCallback(err) {
         console.info('====>Sub_Misc_inputMethod_Panel_offHide_0200 unSubscriberCallback start');
         if (err) {

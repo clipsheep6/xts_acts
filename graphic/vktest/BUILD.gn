@@ -16,6 +16,7 @@ import("//test/xts/tools/build/suite.gni")
 import("//test/xts/acts/graphic/vktest/comm.gni")
 
 ohos_moduletest_suite("ActsVulkanTests") {
+  part_name = "graphic_2d"
   sources = [
     "src/ActsVulkanApiTest.cpp",
     "src/ActsVulkanBinding_modelTest.cpp",
@@ -100,6 +101,7 @@ group("vulkanTest") {
       "src/drmformatmodifierstest:ActsVulkanDrmformatmodifiersTest",
       "src/dynamicrenderingtest:ActsVulkanDynamicrenderingTest",
       "src/dynamicstatetest:ActsVulkanDynamicstateTest",
+      "src/fastlinkedlibrary:ActsVulkanFastlinkedLibraryTest",
       "src/fragmentoperationstest:ActsVulkanFragmentoperationsTest",
       "src/fragmentshaderinterlocktest:ActsVulkanFragmentshaderinterlockTest",
       "src/fragmentshadingratetest:ActsVulkanFragmentshadingrateTest",
@@ -112,8 +114,9 @@ group("vulkanTest") {
       "src/memorymodeltest:ActsVulkanMemorymodelTest",
       "src/memorytest:ActsVulkanMemoryTest",
       "src/meshshadertest:ActsVulkanMeshshaderTest",
+      "src/monolithic:ActsVulkanMonolithicTest",
       "src/multiviewtest:ActsVulkanMultiviewTest",
-      "src/pipelinetest:ActsVulkanPipelineTest",
+      "src/pipelinelibrary:ActsVulkanPipelineLibraryTest",
       "src/protectedmemorytest:ActsVulkanProtectedmemoryTest",
       "src/querypooltest:ActsVulkanQuerypoolTest",
       "src/rasterizationtest:ActsVulkanRasterizationTest",

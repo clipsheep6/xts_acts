@@ -45,6 +45,7 @@ struct WebViewControllerPart3 {
   @State onScrollCallBack: boolean = false;
   @State onMessageEventCallBack: boolean = false
   @State ports: webView.WebMessagePort[] = [];
+  @State userAgentPC:string = "";
 
   onPageShow() {
     let valueChangeEvent: events_emitter.InnerEvent = {
@@ -137,7 +138,7 @@ struct WebViewControllerPart3 {
               try {
                 this.controller.loadData(
                   "<html><head><title>LoadData</title></head>" +
-                  "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
+                    "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
                   "text/html",
                   "UTF-8"
                 );
@@ -184,7 +185,7 @@ struct WebViewControllerPart3 {
               try {
                 this.controller.loadData(
                   "<html><head><title>LoadData</title></head>" +
-                  "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
+                    "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
                   "text/html",
                   "UTF-8"
                 );
@@ -238,7 +239,7 @@ struct WebViewControllerPart3 {
               try {
                 this.controller.loadData(
                   "<html><head><title>LoadData</title></head>" +
-                  "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
+                    "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
                   "text/html",
                   "UTF-8"
                 );
@@ -253,7 +254,7 @@ struct WebViewControllerPart3 {
               try {
                 this.controller.loadData(
                   "<html><head><title>LoadData</title></head>" +
-                  "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
+                    "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
                   "text/html",
                   "UTF-8"
                 );
@@ -270,7 +271,7 @@ struct WebViewControllerPart3 {
               try {
                 this.controller.loadData(
                   "<html><head><title>LoadData</title></head>" +
-                  "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
+                    "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
                   "text/html",
                   "UTF-8"
                 );
@@ -287,7 +288,7 @@ struct WebViewControllerPart3 {
               try {
                 this.controller.loadData(
                   "<html><head><title>LoadData</title></head>" +
-                  "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
+                    "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
                   "text/html",
                   "UTF-8"
                 );
@@ -718,7 +719,12 @@ struct WebViewControllerPart3 {
 
             case "testPageDown001": {
               try {
-                this.controller.loadUrl($rawfile('indexCopy.html'))
+                this.userAgentPC = this.controller.getUserAgent();
+                if ((this.userAgentPC).includes("tablet")) {
+                  Utils.emitEvent(true, 100063)
+                  break;
+                }
+                this.controller.loadUrl($rawfile('indexCopyTwo.html'))
                 await Utils.sleep(3000)
                 this.controller.runJavaScript("checkVIsible()", (error, result) => {
                   if (error) {
@@ -727,6 +733,7 @@ struct WebViewControllerPart3 {
                   }
                   this.checkEleResult = JSON.parse(result)
                   console.log(`The checkVIsible() return value is: ${result}`);
+                  
                 })
                 this.controller.pageDown(false);
                 await Utils.sleep(1000)
@@ -737,7 +744,7 @@ struct WebViewControllerPart3 {
                   }
                   console.log(`The checkVIsible() again return value is: ${result}`);
                   if (this.checkEleResult[3] < JSON.parse(result)[3] && JSON.parse(result)[3] <
-                  (JSON.parse(result)[1] / 2)) {
+                    (JSON.parse(result)[1] / 2)) {
                     console.log('testPageDown001 result is :' + true);
                     Utils.emitEvent(true, 100063)
                   } else {
@@ -754,7 +761,11 @@ struct WebViewControllerPart3 {
 
             case "testPageDown002": {
               try {
-                this.controller.loadUrl($rawfile('indexCopy.html'))
+                this.controller.loadUrl($rawfile('indexCopyTwo.html'))
+                this.userAgentPC = this.controller.getUserAgent();
+                if ((this.userAgentPC).includes("Tablet")) {
+                  this.controller.loadUrl($rawfile('indexCopyTablet.html'))
+                }
                 await Utils.sleep(3000)
                 this.controller.runJavaScript("checkVIsible()", (error, result) => {
                   if (error) {
@@ -764,7 +775,7 @@ struct WebViewControllerPart3 {
                   console.log(`The checkVIsible() return value is: ${result}`);
                 })
                 this.controller.pageDown(true);
-                await Utils.sleep(1000)
+                await Utils.sleep(3000)
                 this.controller.runJavaScript("checkVIsible()", (error, result) => {
                   if (error) {
                     console.error(`The checkVIsible() return value is: error`);
@@ -789,7 +800,12 @@ struct WebViewControllerPart3 {
 
             case "testPageUp001": {
               try {
-                this.controller.loadUrl($rawfile('indexCopy.html'))
+                this.userAgentPC = this.controller.getUserAgent();
+                if ((this.userAgentPC).includes("tablet")) {
+                  Utils.emitEvent(true, 100065)
+                  break;
+                }
+                this.controller.loadUrl($rawfile('indexCopyTwo.html'))
                 await Utils.sleep(3000)
                 this.controller.pageDown(false);
                 await Utils.sleep(1000)
@@ -810,7 +826,7 @@ struct WebViewControllerPart3 {
                   }
                   console.log(`The checkVIsible() again return value is: ${result}`);
                   if (JSON.parse(result)[3] == 0 && this.checkEleResult[3] >
-                  (JSON.parse(result)[1] / 4)) {
+                    (JSON.parse(result)[1] / 4)) {
                     console.log('testPageUp001 result is :' + true);
                     Utils.emitEvent(true, 100065)
                   } else {
@@ -827,10 +843,14 @@ struct WebViewControllerPart3 {
 
             case "testPageUp002": {
               try {
-                this.controller.loadUrl($rawfile('indexCopy.html'))
+                this.controller.loadUrl($rawfile('indexCopyTwo.html'))
+                this.userAgentPC = this.controller.getUserAgent();
+                if ((this.userAgentPC).includes("Tablet")) {
+                  this.controller.loadUrl($rawfile('indexCopyTablet.html'))
+                }
                 await Utils.sleep(3000)
                 this.controller.pageDown(true);
-                await Utils.sleep(1000)
+                await Utils.sleep(3000)
                 this.controller.runJavaScript("checkVIsible()", (error, result) => {
                   if (error) {
                     console.error(`The checkVIsible() return value is: error`);
@@ -840,7 +860,7 @@ struct WebViewControllerPart3 {
                   this.checkEleResult = JSON.parse(result)
                 })
                 this.controller.pageUp(true);
-                await Utils.sleep(1000)
+                await Utils.sleep(3000)
                 this.controller.runJavaScript("checkVIsible()", (error, result) => {
                   if (error) {
                     console.error(`The checkVIsible() return value is: error`);
@@ -881,7 +901,7 @@ struct WebViewControllerPart3 {
                 await Utils.sleep(2000)
                 this.controller.loadData(
                   "<html><head><title>LoadData</title></head>" +
-                  "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
+                    "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
                   "text/html",
                   "UTF-8"
                 );
@@ -927,7 +947,7 @@ struct WebViewControllerPart3 {
               try {
                 this.controller.loadData(
                   "<html><head><title>LoadData</title></head>" +
-                  "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
+                    "<body bgcolor=\"white\">Source:<pre>source</pre></body></html>",
                   "text/html",
                   "UTF-8"
                 );

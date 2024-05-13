@@ -12,14 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 @Entry
 @Component
 struct gridItem_testcasee {
-  @State numbers: string[] = Array.apply(null, Array(16)).map(function (item, i) {
-    return i.toString()
-  })
+  @State numbers: string[] = Array.from(Array(16).keys()).map(item => item.toString())
   @State active: boolean = false
+
   build() {
     Column() {
       Navigator({ target: "pages/index", type: NavigationType.Back }) {
@@ -40,7 +39,7 @@ struct gridItem_testcasee {
             .forceRebuild(false)
             .key('GridItem1')
 
-            ForEach(this.numbers, (item) => {
+            ForEach(this.numbers, (item: string) => {
               GridItem() {
                 Text(item)
                   .fontSize(16)
@@ -49,7 +48,7 @@ struct gridItem_testcasee {
                   .height('100%')
                   .textAlign(TextAlign.Center)
               }.forceRebuild(false)
-            }, item => item)
+            }, (item: string) => item)
             GridItem() {
               Text('5')
                 .fontSize(16)

@@ -13,11 +13,16 @@
  * limitations under the License.
  */
 
-import { describe, it, expect } from "@ohos/hypium"
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import dlfcnndk from 'libdlfcnndk.so'
 
 export default function dlfcnNdkTest() {
   describe('MuslDlfcnTest', () => {
+
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
 
     /**
      * @tc.number     : SUB_THIRDPARTY_MUSL_DLFCN_DLSYM_0100
@@ -29,6 +34,18 @@ export default function dlfcnNdkTest() {
      */
     it('testMuslDlFcnDlSym001', 0, async (done: Function) => {
       expect(dlfcnndk.dlsym()).assertEqual(0);
+      done()
+    });
+    /**
+     * @tc.number     : SUB_THIRDPARTY_MUSL_DLFCN_DLVSYM_0100
+     * @tc.name       : testMuslDlFcnDlVSym001
+     * @tc.desc       : test dlvsym
+     * @tc.size       : MediumTest
+     * @tc.type       : Function
+     * @tc.level      : Level 0
+     */
+    it('testMuslDlFcnDlVSym001', 0, async (done: Function) => {
+      expect(dlfcnndk.dlvsym()).assertEqual(0);
       done()
     });
 

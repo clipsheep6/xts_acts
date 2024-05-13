@@ -14,9 +14,10 @@
  */
 
 
-import Log from '../common/Log.ets';
+import Log from '../common/Log';
 import router1 from '@ohos.router'
 import router2 from '@system.router'
+
 const TAG = 'ets_apiLack_add';
 
 @Entry
@@ -31,10 +32,10 @@ struct RouterEnableAlertBeforeBackPage {
 
     router2.enableAlertBeforeBackPage({
       message: 'Message Info',
-      success: function () {
+      success: () => {
         console.log('success')
       },
-      cancel: function () {
+      cancel: () => {
         console.log('fail')
       },
     })

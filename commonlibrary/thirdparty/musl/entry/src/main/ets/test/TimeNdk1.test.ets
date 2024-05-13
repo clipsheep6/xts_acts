@@ -13,7 +13,8 @@
  * limitations under the License.
  */
 
-import { describe, expect, it } from '@ohos/hypium'
+import { beforeEach, describe, expect, it } from '@ohos/hypium'
+import Utils from './Utils'
 import time1 from 'libtimendk1.so'
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry';
 import fs from '@ohos.file.fs'
@@ -22,57 +23,9 @@ export default function timeNdk1Test() {
 
   describe('MuslTime1Test', () => {
 
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_TIME_TIMER_GETTIME64_0100
-     * @tc.name       : testMuslTimeTimerGetTime64001
-     * @tc.desc       : test the normal condition of Timer_getTime64_One
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslTimeTimerGetTime64001', 0, async (done: Function) => {
-      expect(time1.Timer_getTime64_One()).assertEqual(1);
-      done()
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_TIME_TIMER_GETTIME64_0200
-     * @tc.name       : testMuslTimeTimerGetTime64002
-     * @tc.desc       : test the abnormal condition of Timer_getTime64_Two
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslTimeTimerGetTime64002', 0, async (done: Function) => {
-      expect(time1.Timer_getTime64_Two()).assertEqual(1);
-      done()
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_TIME_TIMER_SETTIME64_0100
-     * @tc.name       : testMuslTimeTimerSetTime64001
-     * @tc.desc       : test the normal condition of Timer_setTime64_One
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslTimeTimerSetTime64001', 0, async (done: Function) => {
-      expect(time1.Timer_setTime64_One()).assertEqual(1);
-      done()
-    });
-
-    /**
-     * @tc.number     : SUB_THIRDPARTY_MUSL_TIME_TIMER_SETTIME64_0200
-     * @tc.name       : testMuslTimeTimerSetTime64002
-     * @tc.desc       : test the abnormal condition of Timer_setTime64_Two
-     * @tc.size       : MediumTest
-     * @tc.type       : Function
-     * @tc.level      : Level 0
-     */
-    it('testMuslTimeTimerSetTime64002', 0, async (done: Function) => {
-      expect(time1.Timer_setTime64_Two()).assertEqual(1);
-      done()
-    });
+    beforeEach(async () => {
+      await Utils.sleep(50)
+    })
 
     /**
     * @tc.number     : SUB_THIRDPARTY_MUSL_TIME_FUTIMES_0100

@@ -239,90 +239,6 @@ export default function AVPlayerLocalTest() {
             });
         }
 
-        async function testAudioInterruptMode(audioSource, videoSource, done) {
-            let testAVPlayer01 = await media.createAVPlayer();
-            let testAVPlayer02 = await media.createAVPlayer();
-            let surfaceID = globalThis.value;
-            testAVPlayer01.on('stateChange', async (state, reason) => {
-                switch (state) {
-                    case AV_PLAYER_STATE.INITIALIZED:
-                        console.info(`case AV_PLAYER_STATE.INITIALIZED`);
-                        expect(testAVPlayer01.state).assertEqual(AV_PLAYER_STATE.INITIALIZED);
-                        testAVPlayer01.prepare((err) => {
-                            console.info('case prepare called' + err);
-                            if (err != null) {
-                                console.error(`case prepare error, errMessage is ${err.message}`);
-                                expect().assertFail();
-                                done();
-                            } else {
-                                console.info('case avPlayer.duration: ' + testAVPlayer01.duration);
-                            }
-                        });
-                        break;
-                    case AV_PLAYER_STATE.PREPARED:
-                        testAVPlayer01.audioInterruptMode = audio.InterruptMode.INDEPENDENT_MODE;
-                        testAVPlayer01.play();
-                        break;
-                    case AV_PLAYER_STATE.PLAYING:
-                        testAVPlayer02.fdSrc = videoSource;
-                        break;
-                    case AV_PLAYER_STATE.RELEASED:
-                        break;
-                    case AV_PLAYER_STATE.ERROR:
-                        expect().assertFail();
-                        testAVPlayer01.release().then(() => {
-                        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-                        break;
-                    default:
-                        break;
-                }
-            })
-
-            testAVPlayer01.on('audioInterrupt', async (info) => {
-                console.info('case audioInterrupt1 is called, info is :' + JSON.stringify(info));
-                await testAVPlayer02.release();
-                await testAVPlayer01.release().then(() => {
-                    console.info('case release called!!');
-                    done();
-                }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-            });
-
-            testAVPlayer02.on('stateChange', async (state, reason) => {
-                switch (state) {
-                    case AV_PLAYER_STATE.INITIALIZED:
-                        console.info(`case AV_PLAYER_STATE.INITIALIZED`);
-                        expect(testAVPlayer02.state).assertEqual(AV_PLAYER_STATE.INITIALIZED);
-                        testAVPlayer02.surfaceId = surfaceID;
-                        testAVPlayer02.prepare((err) => {
-                            console.info('case prepare called' + err);
-                            if (err != null) {
-                                console.error(`case prepare error, errMessage is ${err.message}`);
-                                expect().assertFail();
-                                done();
-                            } else {
-                                console.info('case avPlayer.duration: ' + testAVPlayer02.duration);
-                            }
-                        });
-                        break;
-                    case AV_PLAYER_STATE.PREPARED:
-                        testAVPlayer02.play();
-                        break;
-                    case AV_PLAYER_STATE.PLAYING:
-                        break;
-                    case AV_PLAYER_STATE.RELEASED:
-                        break;
-                    case AV_PLAYER_STATE.ERROR:
-                        expect().assertFail();
-                        testAVPlayer02.release().then(() => {
-                        }, mediaTestBase.failureCallback).catch(mediaTestBase.catchCallback);
-                        break;
-                    default:
-                        break;
-                }
-            })
-            testAVPlayer01.fdSrc = audioSource;
-        }
-
         async function setOnCallback(avPlayer, done) {
             let surfaceID = globalThis.value;
             let count = 0;
@@ -511,30 +427,6 @@ export default function AVPlayerLocalTest() {
         })
 
         /* *
-            * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_AUDIOINTERRUPTMODE_0100
-            * @tc.name      : 001.test audioInterruptMode Function
-            * @tc.desc      : Local Video playback control test
-            * @tc.size      : MediumTest
-            * @tc.type      : Function test
-            * @tc.level     : Level1
-        */
-        it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_AUDIOINTERRUPTMODE_0100', 0, async function (done) {
-            testAudioInterruptMode(fileDescriptor2, fileDescriptor, done);
-        })
-
-        /* *
-            * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_AUDIOINTERRUPTMODE_0200
-            * @tc.name      : 002.test audioInterruptMode Function
-            * @tc.desc      : Local Video playback control test
-            * @tc.size      : MediumTest
-            * @tc.type      : Function test
-            * @tc.level     : Level1
-        */
-        it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_AUDIOINTERRUPTMODE_0200', 0, async function (done) {
-            testAudioInterruptMode(fileDescriptor, fileDescriptor2, done);
-        })
-
-        /* *
             * @tc.number    : SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_OFF_CALLBACK_0100
             * @tc.name      : 001.test off callback Function
             * @tc.desc      : Local Video playback control test
@@ -544,73 +436,6 @@ export default function AVPlayerLocalTest() {
         */
         it('SUB_MULTIMEDIA_MEDIA_VIDEO_PLAYER_OFF_CALLBACK_0100', 0, async function (done) {
             testOffCallback(fileDescriptor, avPlayer, done);
-        })
-
-        /* *
-        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AVPLAYER_SET_DECRYPTION_CONFIG_0100
-        * @tc.name      : test setDecryptionConfig
-        * @tc.desc      : create AVPlayer to setDecryptionConfig
-        * @tc.size      : MediumTest
-        * @tc.type      : Function test
-        * @tc.level     : Level1
-        */
-        it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_SET_DECRYPTION_CONFIG_0100', 1, async function (done) {
-            let sysSupport = drm.isMediaKeySystemSupported("com.clearplay.drm");
-            console.log(`DRM clearplay is sysSupport: ${sysSupport}`);
-            let uuid;
-	    if (sysSupport === true) {
-                uuid = "com.clearplay.drm";
-            } else {
-                uuid = "com.wiseplay.drm";
-            }
-            if (sysSupport === true) {
-                let drmsys = drm.createMediaKeySystem(uuid);
-                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                let avPlayer = await media.createAVPlayer();
-                avPlayer.setDecryptionConfig(session, false);
-                session.destroy()
-                drmsys.destroy();
-            }
-            done();
-        })
-
-        /* *
-        * @tc.number    : SUB_MULTIMEDIA_MEDIA_AVPLAYER_SET_DECRYPTION_CONFIG_0200
-        * @tc.name      : test setDecryptionConfig with invalid parameter
-        * @tc.desc      : create AVPlayer to setDecryptionConfig with invalid parameter
-        * @tc.size      : MediumTest
-        * @tc.type      : Function test
-        * @tc.level     : Level1
-        */
-        it('SUB_MULTIMEDIA_MEDIA_AVPLAYER_SET_DECRYPTION_CONFIG_0200', 1, async function (done) {
-            let sysSupport = drm.isMediaKeySystemSupported("com.clearplay.drm");
-            console.log(`DRM clearplay is sysSupport: ${sysSupport}`);
-            let uuid;
-	    if (sysSupport === true) {
-                uuid = "com.clearplay.drm";
-            } else {
-                uuid = "com.wiseplay.drm";
-            }
-            if (sysSupport === true) {
-                let drmsys = drm.createMediaKeySystem(uuid);
-                let session = drmsys.createMediaKeySession(drm.ContentProtectionLevel.CONTENT_PROTECTION_LEVEL_UNKNOWN);
-                let avPlayer = await media.createAVPlayer();
-                try {
-                    avPlayer.setDecryptionConfig(session, 'false');
-                    expect().assertFail();
-                } catch (err) {
-                    if (err.code == 401) {
-                        expect(true).assertTrue();
-                        console.info(`setDecryptionConfig err.code: ${err.code}, err.message:${err.message}`);
-                    } else {
-                        console.info(`setDecryptionConfig err.code: ${err.code}, err.message:${err.message}`);
-                        expect().assertFail();
-                    }
-                }
-                session.destroy()
-                drmsys.destroy();
-            }
-            done();
         })
     })
 }

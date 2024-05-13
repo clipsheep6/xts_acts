@@ -53,8 +53,7 @@ async function onShowProcess() {
         data: callBackData,
         parameters: {
             displayId: globalThis.abilityWant.parameters['ohos.aafwk.param.displayId'],
-            windowMode: globalThis.abilityWant.parameters['ohos.aafwk.param.windowMode'],
-}
+        }
     };
 
     console.log("AbilityMultiInstanceAppA abilityWant = " + JSON.stringify(abilityWant));
@@ -90,7 +89,7 @@ export default class MainAbility extends Ability {
         console.log("actsspecifytesthap onWindowStageCreate")
         //       callBackSeq += "onWindowStageCreate";
         globalThis.abilityContext = this.context
-        windowStage.setUIContent(this.context, "pages/index", null)
+        windowStage.setUIContent(this.context, "pages/index/index", null)
         console.log("actsspecifytesthap onWindowStageCreate finish")
     }
 

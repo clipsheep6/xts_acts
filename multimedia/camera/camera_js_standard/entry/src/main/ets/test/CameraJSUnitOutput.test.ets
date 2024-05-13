@@ -41,7 +41,7 @@ let videoProfile = {
   audioSampleRate: 48000,
   fileFormat: 'mp4',
   videoBitrate: 2000000,
-  videoCodec: 'video/mp4v-es',
+  videoCodec: 'video/avc',
   videoFrameWidth: 640,
   videoFrameHeight: 480,
   videoFrameRate: 30
@@ -164,6 +164,8 @@ export default function cameraJSUnitOutput() {
 
   async function release() {
     console.log(TAG + "start release");
+    await videoRecorder.release();
+    videoRecorder = null;
     await captureSession.release();
     console.log(TAG + "release end")
   }
@@ -1107,7 +1109,7 @@ export default function cameraJSUnitOutput() {
           expect().assertFail();
         });
       }
-      await sleep(1000);
+      await sleep(3000);
       done();
     })
 
@@ -1136,11 +1138,11 @@ export default function cameraJSUnitOutput() {
             expect().assertFail();
           }
           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CAPTURE_DEFAULT_CALLBACK_0100 ends here");
-          await sleep(1000);
+          await sleep(3000);
           done();
         })
       }
-      await sleep(1000);
+      await sleep(3000);
       done();
     })
 
@@ -1173,7 +1175,7 @@ export default function cameraJSUnitOutput() {
         });
 
       }
-      await sleep(1000);
+      await sleep(3000);
       done();
     })
 
@@ -1202,11 +1204,11 @@ export default function cameraJSUnitOutput() {
             console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CAPTURE_SETTING_CALLBACK_0100 FAILED: " + err.message);
           }
           console.info(TAG + "Entering SUB_MULTIMEDIA_CAMERA_PHOTO_OUTPUT_CAPTURE_SETTING_CALLBACK_0100 ends here");
-          await sleep(1000);
+          await sleep(3000);
           done();
         })
       }
-      await sleep(1000);
+      await sleep(3000);
       done();
     })
 
