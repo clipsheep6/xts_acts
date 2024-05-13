@@ -223,11 +223,22 @@ export default function UIAbilityContext() {
           "abilityName": "Main1Ability",
           "moduleName": "entry"
         }
-        context.startAbility(want).then(() => {
-          console.info('testStartAbilityPromise001 start successful.');
-        }).catch((error) => {
+        // context.startAbility(want).then(() => {
+        //   console.info('testStartAbilityPromise001 start successful.');
+        // }).catch((error) => {
+        //   console.error('testStartAbilityPromise001 start failed. Cause: ' + JSON.stringify(error));
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.info('testStartAbilityPromise001 start successful.');
+          console.info("testStartAbilityPromise001 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+          })
+        } catch (error) {
           console.error('testStartAbilityPromise001 start failed. Cause: ' + JSON.stringify(error));
-        })
+        }
+        
+        
         await sleep(1500);
         const result = globalThis.list1;
         console.info('result: ' + JSON.stringify(result));
@@ -262,16 +273,32 @@ export default function UIAbilityContext() {
           "abilityName": "Main1Ability",
           "moduleName": "entry"
         }
-        context.startAbility(want).then(() => {
-          console.log(`testStartAbilityPromise002 fail: `);
-          expect().assertFail();
-          done();
-        }).catch((error) => {
+        // context.startAbility(want).then(() => {
+        //   console.log(`testStartAbilityPromise002 fail: `);
+        //   expect().assertFail();
+        //   done();
+        // }).catch((error) => {
+        //   console.log(`testStartAbilityPromise002 error.code: ` + error.code);
+        //   expect(error.code).assertEqual(16000001);
+        //   expect(error.message).assertEqual("The specified ability does not exist.");
+        //   done();
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.log(`testStartAbilityPromise002 fail: `);
+            expect().assertFail();
+            console.info("testStartAbilityPromise002 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+            done();
+          })
+        } catch (error) {
           console.log(`testStartAbilityPromise002 error.code: ` + error.code);
           expect(error.code).assertEqual(16000001);
           expect(error.message).assertEqual("The specified ability does not exist.");
           done();
-        })
+        }
+        
+        
       } catch (err) {
         console.log(`testStartAbilityPromise002 fail: ` + err);
         expect().assertFail();
@@ -295,16 +322,31 @@ export default function UIAbilityContext() {
           "abilityName": "Main1Ability",
           "moduleName": "entry"
         }
-        context.startAbility(want).then(() => {
-          console.log(`testStartAbilityPromise003 fail: `);
-          expect().assertFail();
-          done();
-        }).catch((error) => {
+        // context.startAbility(want).then(() => {
+        //   console.log(`testStartAbilityPromise003 fail: `);
+        //   expect().assertFail();
+        //   done();
+        // }).catch((error) => {
+        //   console.log(`testStartAbilityPromise003 error.code: ` + error.code);
+        //   expect(error.code).assertEqual(16000001);
+        //   expect(error.message).assertEqual("The specified ability does not exist.");
+        //   done();
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.log(`testStartAbilityPromise003 fail: `);
+            console.info("testStartAbilityPromise003 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+            expect().assertFail();
+            done();
+          })
+        } catch (error) {
           console.log(`testStartAbilityPromise003 error.code: ` + error.code);
           expect(error.code).assertEqual(16000001);
           expect(error.message).assertEqual("The specified ability does not exist.");
           done();
-        })
+        }
+        
       } catch (err) {
         console.log(`testStartAbilityPromise003 catch fail: ` + err);
         expect().assertFail();
@@ -327,16 +369,32 @@ export default function UIAbilityContext() {
           "abilityName": "Main1Ability",
           "moduleName": "entry"
         }
-        context.startAbility(want).then(() => {
-          console.log(`testStartAbilityPromise004 fail: `);
-          expect().assertFail();
-          done();
-        }).catch((error) => {
+        
+        // context.startAbility(want).then(() => {
+        //   console.log(`testStartAbilityPromise004 fail: `);
+        //   expect().assertFail();
+        //   done();
+        // }).catch((error) => {
+        //   console.log(`testStartAbilityPromise004 error.code: ` + error.code);
+        //   expect(error.code).assertEqual(16000001);
+        //   expect(error.message).assertEqual("The specified ability does not exist.");
+        //   done();
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.log(`testStartAbilityPromise004 fail: `);
+            console.info("testStartAbilityPromise004 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+            expect().assertFail();
+            done();
+          })
+        } catch (error) {
           console.log(`testStartAbilityPromise004 error.code: ` + error.code);
           expect(error.code).assertEqual(16000001);
           expect(error.message).assertEqual("The specified ability does not exist.");
           done();
-        })
+        }
+        
       } catch (err) {
         console.log(`testStartAbilityPromise004 catch fail: ` + err);
         expect().assertFail();
@@ -360,15 +418,29 @@ export default function UIAbilityContext() {
           "abilityName": "Main1Ability",
           "moduleName": "abc"
         }
-        context.startAbility(want).then(() => {
-          console.log(`testStartAbilityPromise005 fail: `);
-          done();
-        }).catch((error) => {
+        // context.startAbility(want).then(() => {
+        //   console.log(`testStartAbilityPromise005 fail: `);
+        //   done();
+        // }).catch((error) => {
+        //   console.log(`testStartAbilityPromise005 error.code: ` + error.code);
+        //   console.log(`testStartAbilityPromise005 error.message: ` + error.message);
+        //   expect(true).assertTrue();
+        //   done();
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.log(`testStartAbilityPromise005 fail: `);
+            console.info("testStartAbilityPromise005 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+            done();
+          })
+        } catch (error) {
           console.log(`testStartAbilityPromise005 error.code: ` + error.code);
           console.log(`testStartAbilityPromise005 error.message: ` + error.message);
           expect(true).assertTrue();
           done();
-        })
+        }
+        
       } catch (err) {
         console.log(`testStartAbilityPromise005 catch fail: ` + err);
         expect().assertFail();
@@ -392,15 +464,30 @@ export default function UIAbilityContext() {
           "abilityName": "Main1Ability",
           "moduleName": " "
         }
-        context.startAbility(want).then(() => {
-          console.log(`testStartAbilityPromise006 fail `);
-          expect().assertFail();
-          done();
-        }).catch((error) => {
+        // context.startAbility(want).then(() => {
+        //   console.log(`testStartAbilityPromise006 fail `);
+        //   expect().assertFail();
+        //   done();
+        // }).catch((error) => {
+        //   console.log(`testStartAbilityPromise006 error.code: ` + error.code);
+        //   expect(true).assertTrue();
+        //   done();
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.log(`testStartAbilityPromise006 fail `);
+            console.info("testStartAbilityPromise006 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+            expect().assertFail();
+            done();
+          })
+        } catch (error) {
           console.log(`testStartAbilityPromise006 error.code: ` + error.code);
           expect(true).assertTrue();
           done();
-        })
+        }
+
+        
       } catch (err) {
         console.log(`testStartAbilityPromise006 fail: ` + err);
         expect().assertFail();
@@ -424,11 +511,22 @@ export default function UIAbilityContext() {
           "bundleName": "com.example.contexttest",
           "abilityName": "MainAbility1"
         }
-        context.startAbility(want).then((data) => {
-          console.info('testStartAbilityPromise007 start successful.');
-        }).catch((error) => {
+        // context.startAbility(want).then((data) => {
+        //   console.info('testStartAbilityPromise007 start successful.');
+        // }).catch((error) => {
+        //   console.error('testStartAbilityPromise007 start failed. Cause: ' + JSON.stringify(error));
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.info('testStartAbilityPromise007 start successful.');
+            console.info("testStartAbilityPromise007 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+          })
+        } catch (error) {
           console.error('testStartAbilityPromise007 start failed. Cause: ' + JSON.stringify(error));
-        })
+        }
+        
+        
         console.log(`testStartAbilityPromise007 success`);
         done();
       } catch (err) {
@@ -454,14 +552,28 @@ export default function UIAbilityContext() {
           "abilityName": "abc",
           "moduleName": "entry"
         }
-        context.startAbility(want).then(() => {
-          console.log(`testStartAbilityPromise008 fail: `);
-          done();
-        }).catch((error) => {
+        // context.startAbility(want).then(() => {
+        //   console.log(`testStartAbilityPromise008 fail: `);
+        //   done();
+        // }).catch((error) => {
+        //   console.log(`testStartAbilityPromise008 error.code: ` + error.code);
+        //   expect(true).assertTrue();
+        //   done();
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.log(`testStartAbilityPromise008 fail: `);
+            console.info("testStartAbilityPromise008 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+            done();
+          })
+        } catch (error) {
           console.log(`testStartAbilityPromise008 error.code: ` + error.code);
           expect(true).assertTrue();
           done();
-        })
+        }
+        
+        
       } catch (err) {
         console.log(`testStartAbilityPromise008 catch fail: ` + err);
         expect().assertFail();
@@ -485,14 +597,28 @@ export default function UIAbilityContext() {
           "abilityName": " ",
           "moduleName": "entry"
         }
-        context.startAbility(want).then(() => {
-          console.log(`testStartAbilityPromise009 fail: `);
-          done();
-        }).catch((error) => {
+        // context.startAbility(want).then(() => {
+        //   console.log(`testStartAbilityPromise009 fail: `);
+        //   done();
+        // }).catch((error) => {
+        //   console.log(`testStartAbilityPromise009 error.code: ` + error.code);
+        //   expect(true).assertTrue();
+        //   done();
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.log(`testStartAbilityPromise009 fail: `);
+            console.info("xxxxxxxxxxxxx error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+            done();
+          })
+        } catch (error) {
           console.log(`testStartAbilityPromise009 error.code: ` + error.code);
           expect(true).assertTrue();
           done();
-        })
+        }
+        
+        
       } catch (err) {
         console.log(`testStartAbilityPromise009 fail: ` + err);
         expect().assertFail();
@@ -515,16 +641,31 @@ export default function UIAbilityContext() {
           "bundleName": "com.example.contexttest",
           "moduleName": "entry"
         }
-        context.startAbility(want).then(() => {
-          console.log(`testStartAbilityPromise010 fail: `);
-          expect().assertFail();
-          done();
-        }).catch((error) => {
+        // context.startAbility(want).then(() => {
+        //   console.log(`testStartAbilityPromise010 fail: `);
+        //   expect().assertFail();
+        //   done();
+        // }).catch((error) => {
+        //   console.log(`testStartAbilityPromise010 error.code: ` + error.code);
+        //   expect(error.code).assertEqual(16000050);
+        //   expect(error.message).assertEqual("Internal error.");
+        //   done();
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.log(`testStartAbilityPromise010 fail: `);
+            console.info("testStartAbilityPromise010 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+            expect().assertFail();
+            done();
+          })
+        } catch (error) {
           console.log(`testStartAbilityPromise010 error.code: ` + error.code);
           expect(error.code).assertEqual(16000050);
           expect(error.message).assertEqual("Internal error.");
           done();
-        })
+        }
+        
       } catch (err) {
         console.log(`testStartAbilityPromise010 fail: ` + err);
         expect().assertFail();
@@ -544,16 +685,31 @@ export default function UIAbilityContext() {
       try {
         let context: common.UIAbilityContext = globalThis.abilityContext;
         var want = {}
-        context.startAbility(want).then(() => {
-          console.log(`testStartAbilityPromise011 fail: `);
-          expect().assertFail();
-          done();
-        }).catch((error) => {
+        // context.startAbility(want).then(() => {
+        //   console.log(`testStartAbilityPromise011 fail: `);
+        //   expect().assertFail();
+        //   done();
+        // }).catch((error) => {
+        //   console.log(`testStartAbilityPromise011 error.code: ` + error.code);
+        //   expect(error.code).assertEqual(16000050);
+        //   expect(error.message).assertEqual("Internal error.");
+        //   done();
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.log(`testStartAbilityPromise011 fail: `);
+            console.info("testStartAbilityPromise011 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+            expect().assertFail();
+            done();
+          })
+        } catch (error) {
           console.log(`testStartAbilityPromise011 error.code: ` + error.code);
           expect(error.code).assertEqual(16000050);
           expect(error.message).assertEqual("Internal error.");
           done();
-        })
+        }
+        
       } catch (err) {
         console.log(`testStartAbilityPromise011 fail: ` + err);
         expect().assertFail();
@@ -584,11 +740,21 @@ export default function UIAbilityContext() {
             "key3": "this is string"
           }
         }
-        context.startAbility(want).then(() => {
-          console.info('testStartAbilityPromise012 start successful.');
-        }).catch((error) => {
+        // context.startAbility(want).then(() => {
+        //   console.info('testStartAbilityPromise012 start successful.');
+        // }).catch((error) => {
+        //   console.error('testStartAbilityPromise012 start failed. Cause: ' + JSON.stringify(error));
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.info('testStartAbilityPromise012 start successful.');
+            console.info("testStartAbilityPromise012 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+          })
+        } catch (error) {
           console.error('testStartAbilityPromise012 start failed. Cause: ' + JSON.stringify(error));
-        })
+        }
+        
         await sleep(1500);
         const result = globalThis.list1;
         const parameters = globalThis.parameters;
@@ -630,22 +796,42 @@ export default function UIAbilityContext() {
           "moduleName": "entry"
         }
 
-        context.startAbility(want).then(() => {
-          console.info('testStartAbilityPromise013 start1 successful.');
-        }).catch((error) => {
+        // context.startAbility(want).then(() => {
+        //   console.info('testStartAbilityPromise013 start1 successful.');
+        // }).catch((error) => {
+        //   console.error('testStartAbilityPromise013 start1 failed. Cause: ' + JSON.stringify(error));
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.info('testStartAbilityPromise013 start1 successful.');
+            console.info("testStartAbilityPromise013 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+          })
+        } catch (error) {
           console.error('testStartAbilityPromise013 start1 failed. Cause: ' + JSON.stringify(error));
-        })
+        }
+        
         await sleep(1000);
         const result = globalThis.list1;
         console.info('result: ' + JSON.stringify(result));
         expect(result[0]).assertEqual('Main1Ability onCreate');
         let context1: common.UIAbilityContext = globalThis.ability1Context;
 
-        context.startAbility(want).then(() => {
-          console.info('testStartAbilityPromise013 start2 successful.');
-        }).catch((error) => {
+        // context.startAbility(want).then(() => {
+        //   console.info('testStartAbilityPromise013 start2 successful.');
+        // }).catch((error) => {
+        //   console.error('testStartAbilityPromise013 start2 failed. Cause: ' + JSON.stringify(error));
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.info('testStartAbilityPromise013 start2 successful.');
+            console.info("testStartAbilityPromise013 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+          })
+        } catch (error) {
           console.error('testStartAbilityPromise013 start2 failed. Cause: ' + JSON.stringify(error));
-        })
+        }
+        
         await sleep(1000);
         const result2 = globalThis.list1;
         console.info('result2: ' + JSON.stringify(result2));
@@ -1187,11 +1373,21 @@ export default function UIAbilityContext() {
           "abilityName": "Main1Ability",
           "moduleName": "entry"
         }
-        context.startAbility(want).then(() => {
-          console.info('testTerminateSelfPromise001 start successful. ');
-        }).catch((error) => {
+        // context.startAbility(want).then(() => {
+        //   console.info('testTerminateSelfPromise001 start successful. ');
+        // }).catch((error) => {
+        //   console.error('testTerminateSelfPromise001 start failed. Cause: ' + JSON.stringify(error));
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.info('testTerminateSelfPromise001 start successful. ');
+            console.info("testTerminateSelfPromise001 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+          })
+        } catch (error) {
           console.error('testTerminateSelfPromise001 start failed. Cause: ' + JSON.stringify(error));
-        })
+        }
+        
         await sleep(1500);
 
         let context1: common.UIAbilityContext = globalThis.ability1Context;
@@ -1229,11 +1425,21 @@ export default function UIAbilityContext() {
           "abilityName": "Main1Ability",
           "moduleName": "entry"
         }
-        context.startAbility(want).then(() => {
-          console.info('testTerminateSelfCallback001 start successful. ');
-        }).catch((error) => {
+        // context.startAbility(want).then(() => {
+        //   console.info('testTerminateSelfCallback001 start successful. ');
+        // }).catch((error) => {
+        //   console.error('testTerminateSelfCallback001 start failed. Cause: ' + JSON.stringify(error));
+        // })
+        
+        try {
+          context.startAbility(want, (error, data) => {
+            console.info('testTerminateSelfCallback001 start successful. ');
+            console.info("testTerminateSelfCallback001 error:", JSON.stringify(error), "data: ", JSON.stringify(data))
+          })
+        } catch (error) {
           console.error('testTerminateSelfCallback001 start failed. Cause: ' + JSON.stringify(error));
-        })
+        }
+        
         await sleep(1500);
 
         let context1: common.UIAbilityContext = globalThis.ability1Context;
