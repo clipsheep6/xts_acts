@@ -112,118 +112,100 @@ export default function ImagePixelMapCApiTest() {
     }
 
     const NDK_CreatePixelMapByUri = async (TAG: string, index: number, rotate: number, x: number, y: number,
-      Regionwidth: number, RegionHeight: number, width: number, height: number,
-      desiredPixelFormat: number, filename: string, done: Function) => {
-      try {
-        await getFd(filename);
-        console.log('-------------------- NDK' + ndkTest)
-        const imageSourceApi = ndkTest.CreateFromUri(filePath);
-        if (typeof imageSourceApi === "object") {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
-          ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
-          ndkTest.DecodingOptionsSetIndex(options, index);
-          ndkTest.DecodingOptionsSetRotate(options, rotate);
-          ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
-          ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
-          const pixelMap = ndkTest.CreatePixelMap(imageSourceApi, options)
-          if (typeof pixelMap === "object") {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap success :${pixelMap}`)
-            expect(true).assertTrue();
-            ndkTest.SourceRelease(imageSourceApi);
-            ndkTest.PixelMapRelease(pixelMap);
-            done()
-          } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap failed: ${pixelMap}`)
-            ndkTest.SourceRelease(imageSourceApi)
-            expect(false).assertTrue();
-            done()
-          }
+                                           Regionwidth: number, RegionHeight: number, width: number, height: number,
+                                           desiredPixelFormat: number, filename: string, done: Function) => {
+      await getFd(filename);
+      console.log('-------------------- NDK' + ndkTest)
+      const imageSourceApi = ndkTest.CreateFromUri(filePath);
+      if (typeof imageSourceApi === "object") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+        let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
+        ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
+        ndkTest.DecodingOptionsSetIndex(options, index);
+        ndkTest.DecodingOptionsSetRotate(options, rotate);
+        ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
+        ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
+        const pixelMap = ndkTest.CreatePixelMap(imageSourceApi, options)
+        if (typeof pixelMap === "object") {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap success :${pixelMap}`)
+          expect(true).assertTrue();
+          ndkTest.SourceRelease(imageSourceApi);
+          ndkTest.PixelMapRelease(pixelMap);
+          done()
         } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed :${imageSourceApi}`)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap failed: ${pixelMap}`)
+          ndkTest.SourceRelease(imageSourceApi)
           expect(false).assertTrue();
-          done();
+          done()
         }
-      } catch (error) {
-        console.error(TAG + "Test exception " + error);
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed :${imageSourceApi}`)
         expect(false).assertTrue();
         done();
       }
     }
 
     const NDK_CreatePixelMapByFd = async (TAG: string, index: number, rotate: number, x: number, y: number,
-      Regionwidth: number, RegionHeight: number, width: number, height: number,
-      desiredPixelFormat: number, filename: string, done: Function) => {
-      try {
-        await getFd(filename);
-        const imageSourceApi = ndkTest.CreateFromFd(fileFd);
-        if (typeof imageSourceApi === "object") {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
-          ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
-          ndkTest.DecodingOptionsSetIndex(options, index);
-          ndkTest.DecodingOptionsSetRotate(options, rotate);
-          ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
-          ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
-          const pixelMap = ndkTest.CreatePixelMap(imageSourceApi, options)
-          if (typeof pixelMap === "object") {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap success :${pixelMap}`)
-            expect(true).assertTrue();
-            ndkTest.SourceRelease(imageSourceApi)
-            ndkTest.PixelMapRelease(pixelMap);
-            done()
-          } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap failed: ${pixelMap}`)
-            ndkTest.SourceRelease(imageSourceApi);
-            expect(false).assertTrue();
-            done()
-          }
+                                          Regionwidth: number, RegionHeight: number, width: number, height: number,
+                                          desiredPixelFormat: number, filename: string, done: Function) => {
+      await getFd(filename);
+      const imageSourceApi = ndkTest.CreateFromFd(fileFd);
+      if (typeof imageSourceApi === "object") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+        let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
+        ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
+        ndkTest.DecodingOptionsSetIndex(options, index);
+        ndkTest.DecodingOptionsSetRotate(options, rotate);
+        ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
+        ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
+        const pixelMap = ndkTest.CreatePixelMap(imageSourceApi, options)
+        if (typeof pixelMap === "object") {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap success :${pixelMap}`)
+          expect(true).assertTrue();
+          ndkTest.SourceRelease(imageSourceApi)
+          ndkTest.PixelMapRelease(pixelMap);
+          done()
         } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed :${imageSourceApi}`)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap failed: ${pixelMap}`)
+          ndkTest.SourceRelease(imageSourceApi);
           expect(false).assertTrue();
-          done();
+          done()
         }
-      } catch (error) {
-        console.error(TAG + "Test exception " + error);
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed :${imageSourceApi}`)
         expect(false).assertTrue();
         done();
       }
     }
 
     const NDK_CreatePixelMapByData = async (TAG: string, index: number, rotate: number, x: number, y: number,
-      Regionwidth: number, RegionHeight: number, width: number, height: number,
-      desiredPixelFormat: number, filename: string, done: Function) => {
-      try {
-        await getBuffer(filename);
-        const imageSourceApi = ndkTest.CreateFromData(buffer);
-        if (typeof imageSourceApi === "object") {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
-          ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
-          ndkTest.DecodingOptionsSetIndex(options, index);
-          ndkTest.DecodingOptionsSetRotate(options, rotate);
-          ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
-          ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
-          const pixelMap = ndkTest.CreatePixelMap(imageSourceApi, options)
-          if (typeof pixelMap === "object") {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap success :${pixelMap}`)
-            expect(true).assertTrue();
-            ndkTest.SourceRelease(imageSourceApi);
-            ndkTest.PixelMapRelease(pixelMap);
-            done()
-          } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap failed: ${pixelMap}`)
-            ndkTest.SourceRelease(imageSourceApi);
-            expect(false).assertTrue();
-            done()
-          }
+                                            Regionwidth: number, RegionHeight: number, width: number, height: number,
+                                            desiredPixelFormat: number, filename: string, done: Function) => {
+      await getBuffer(filename);
+      const imageSourceApi = ndkTest.CreateFromData(buffer);
+      if (typeof imageSourceApi === "object") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+        let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
+        ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
+        ndkTest.DecodingOptionsSetIndex(options, index);
+        ndkTest.DecodingOptionsSetRotate(options, rotate);
+        ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
+        ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
+        const pixelMap = ndkTest.CreatePixelMap(imageSourceApi, options)
+        if (typeof pixelMap === "object") {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap success :${pixelMap}`)
+          expect(true).assertTrue();
+          ndkTest.SourceRelease(imageSourceApi);
+          ndkTest.PixelMapRelease(pixelMap);
+          done()
         } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed :${imageSourceApi}`)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMap failed: ${pixelMap}`)
+          ndkTest.SourceRelease(imageSourceApi);
           expect(false).assertTrue();
-          done();
+          done()
         }
-      } catch (error) {
-        console.error(TAG + "Test exception " + error);
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed :${imageSourceApi}`)
         expect(false).assertTrue();
         done();
       }
@@ -231,123 +213,105 @@ export default function ImagePixelMapCApiTest() {
 
 
     const NDK_CreatePixelMapListByUri = async (TAG: string, index: number, rotate: number, x: number, y: number,
-      Regionwidth: number, RegionHeight: number, width: number, height: number,
-      desiredPixelFormat: number, filename: string, done: Function) => {
-      try {
-        await getFd(filename);
-        const imageSourceApi = ndkTest.CreateFromUri(filePath);
-        if (typeof imageSourceApi === "object") {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
-          ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
-          ndkTest.DecodingOptionsSetIndex(options, index);
-          ndkTest.DecodingOptionsSetRotate(options, rotate);
-          ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
-          ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
-          const pixelMapList = ndkTest.CreatePixelMapList(imageSourceApi, options)
-          if (Array.isArray(pixelMapList)) {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList success :${pixelMapList}`)
-            expect(true).assertTrue();
-            ndkTest.SourceRelease(imageSourceApi);
-            pixelMapList.forEach(pixelMap => {
-              ndkTest.PixelMapRelease(pixelMap);
-            });
-            done()
-          } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList failed: ${pixelMapList}`)
-            ndkTest.SourceRelease(imageSourceApi);
-            expect(false).assertTrue();
-            done()
-          }
+                                               Regionwidth: number, RegionHeight: number, width: number, height: number,
+                                               desiredPixelFormat: number, filename: string, done: Function) => {
+      await getFd(filename);
+      const imageSourceApi = ndkTest.CreateFromUri(filePath);
+      if (typeof imageSourceApi === "object") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+        let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
+        ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
+        ndkTest.DecodingOptionsSetIndex(options, index);
+        ndkTest.DecodingOptionsSetRotate(options, rotate);
+        ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
+        ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
+        const pixelMapList = ndkTest.CreatePixelMapList(imageSourceApi, options)
+        if (Array.isArray(pixelMapList)) {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList success :${pixelMapList}`)
+          expect(true).assertTrue();
+          ndkTest.SourceRelease(imageSourceApi);
+          pixelMapList.forEach(pixelMap => {
+            ndkTest.PixelMapRelease(pixelMap);
+          });
+          done()
         } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed :${imageSourceApi}`)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList failed: ${pixelMapList}`)
+          ndkTest.SourceRelease(imageSourceApi);
           expect(false).assertTrue();
-          done();
+          done()
         }
-      } catch (error) {
-        console.error(TAG + "Test exception " + error);
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed :${imageSourceApi}`)
         expect(false).assertTrue();
         done();
       }
     }
 
     const NDK_CreatePixelMapListByFd = async (TAG: string, index: number, rotate: number, x: number, y: number,
-      Regionwidth: number, RegionHeight: number, width: number, height: number,
-      desiredPixelFormat: number, filename: string, done: Function) => {
-      try {
-        await getFd(filename);
-        const imageSourceApi = ndkTest.CreateFromFd(fileFd);
-        if (typeof imageSourceApi === "object") {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
-          ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
-          ndkTest.DecodingOptionsSetIndex(options, index);
-          ndkTest.DecodingOptionsSetRotate(options, rotate);
-          ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
-          ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
-          const pixelMapList = ndkTest.CreatePixelMapList(imageSourceApi, options)
-          if (Array.isArray(pixelMapList)) {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList success :${pixelMapList}`)
-            expect(true).assertTrue();
-            ndkTest.SourceRelease(imageSourceApi);
-            pixelMapList.forEach(pixelMap => {
-              ndkTest.PixelMapRelease(pixelMap);
-            });
-            done()
-          } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList failed: ${pixelMapList}`)
-            ndkTest.SourceRelease(imageSourceApi);
-            expect(false).assertTrue();
-            done()
-          }
+                                              Regionwidth: number, RegionHeight: number, width: number, height: number,
+                                              desiredPixelFormat: number, filename: string, done: Function) => {
+      await getFd(filename);
+      const imageSourceApi = ndkTest.CreateFromFd(fileFd);
+      if (typeof imageSourceApi === "object") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+        let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
+        ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
+        ndkTest.DecodingOptionsSetIndex(options, index);
+        ndkTest.DecodingOptionsSetRotate(options, rotate);
+        ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
+        ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
+        const pixelMapList = ndkTest.CreatePixelMapList(imageSourceApi, options)
+        if (Array.isArray(pixelMapList)) {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList success :${pixelMapList}`)
+          expect(true).assertTrue();
+          ndkTest.SourceRelease(imageSourceApi);
+          pixelMapList.forEach(pixelMap => {
+            ndkTest.PixelMapRelease(pixelMap);
+          });
+          done()
         } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed :${imageSourceApi}`)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList failed: ${pixelMapList}`)
+          ndkTest.SourceRelease(imageSourceApi);
           expect(false).assertTrue();
-          done();
+          done()
         }
-      } catch (error) {
-        console.error(TAG + "Test exception " + error);
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed :${imageSourceApi}`)
         expect(false).assertTrue();
         done();
       }
     }
 
     const NDK_CreatePixelMapListByData = async (TAG: string, index: number, rotate: number, x: number, y: number,
-      Regionwidth: number, RegionHeight: number, width: number, height: number,
-      desiredPixelFormat: number, filename: string, done: Function) => {
-      try {
-        await getBuffer(filename);
-        const imageSourceApi = ndkTest.CreateFromData(buffer);
-        if (typeof imageSourceApi === "object") {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
-          ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
-          ndkTest.DecodingOptionsSetIndex(options, index);
-          ndkTest.DecodingOptionsSetRotate(options, rotate);
-          ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
-          ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
-          const pixelMapList = ndkTest.CreatePixelMapList(imageSourceApi, options)
-          if (Array.isArray(pixelMapList)) {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList success :${pixelMapList}`)
-            expect(true).assertTrue();
-            ndkTest.SourceRelease(imageSourceApi);
-            pixelMapList.forEach(pixelMap => {
-              ndkTest.PixelMapRelease(pixelMap);
-            });
-            done()
-          } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList failed: ${pixelMapList}`)
-            ndkTest.SourceRelease(imageSourceApi);
-            expect(false).assertTrue();
-            done()
-          }
+                                                Regionwidth: number, RegionHeight: number, width: number, height: number,
+                                                desiredPixelFormat: number, filename: string, done: Function) => {
+      await getBuffer(filename);
+      const imageSourceApi = ndkTest.CreateFromData(buffer);
+      if (typeof imageSourceApi === "object") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+        let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
+        ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
+        ndkTest.DecodingOptionsSetIndex(options, index);
+        ndkTest.DecodingOptionsSetRotate(options, rotate);
+        ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
+        ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
+        const pixelMapList = ndkTest.CreatePixelMapList(imageSourceApi, options)
+        if (Array.isArray(pixelMapList)) {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList success :${pixelMapList}`)
+          expect(true).assertTrue();
+          ndkTest.SourceRelease(imageSourceApi);
+          pixelMapList.forEach(pixelMap => {
+            ndkTest.PixelMapRelease(pixelMap);
+          });
+          done()
         } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed :${imageSourceApi}`)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `pixelMapList failed: ${pixelMapList}`)
+          ndkTest.SourceRelease(imageSourceApi);
           expect(false).assertTrue();
-          done();
+          done()
         }
-      } catch (error) {
-        console.error(TAG + "Test exception " + error);
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed :${imageSourceApi}`)
         expect(false).assertTrue();
         done();
       }
@@ -355,370 +319,311 @@ export default function ImagePixelMapCApiTest() {
 
 
     const NDK_GetDelayTime = async (TAG: string, filename: string, type: string, done: Function) => {
-      try {
-        await getFd(filename);
-        let imageSourceApi: image.ImageSource = ndkTest.CreateFromUri(filePath);
+      await getFd(filename);
+      let imageSourceApi: image.ImageSource = ndkTest.CreateFromUri(filePath);
 
-        if (type === 'Fd') {
-          imageSourceApi = ndkTest.CreateFromFd(fileFd);
-        }
-        if (type === 'Buffer') {
-          await getBuffer(filename);
-          imageSourceApi = ndkTest.CreateFromData(buffer);
-        }
-        if (typeof imageSourceApi === "object") {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          const delayTime = ndkTest.GetDelayTime(imageSourceApi)
-          if (Array.isArray(delayTime)) {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `delayTime success:${delayTime}`)
-            ndkTest.SourceRelease(imageSourceApi);
-            expect(true).assertTrue();
-            done()
-          } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `delayTime failed: ${delayTime}`)
-            ndkTest.SourceRelease(imageSourceApi);
-            expect(false).assertTrue();
-            done()
-          }
+      if (type === 'Fd') {
+        imageSourceApi = ndkTest.CreateFromFd(fileFd);
+      }
+      if (type === 'Buffer') {
+        await getBuffer(filename);
+        imageSourceApi = ndkTest.CreateFromData(buffer);
+      }
+      if (typeof imageSourceApi === "object") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+        const delayTime = ndkTest.GetDelayTime(imageSourceApi)
+        if (Array.isArray(delayTime)) {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `delayTime success:${delayTime}`)
+          ndkTest.SourceRelease(imageSourceApi);
+          expect(true).assertTrue();
+          done()
         } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed: ${imageSourceApi}`)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `delayTime failed: ${delayTime}`)
+          ndkTest.SourceRelease(imageSourceApi);
           expect(false).assertTrue();
-          done();
+          done()
         }
-      } catch (error) {
-        console.error(TAG + "Test exception " + error);
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed: ${imageSourceApi}`)
         expect(false).assertTrue();
         done();
       }
     }
 
     const NDK_GetImageInfoByUri = async (TAG: string, index: number, filename: string, done: Function) => {
-      try {
-        await getFd(filename);
-        const imageSourceApi = ndkTest.CreateFromUri(filePath);
-        if (typeof imageSourceApi === "object") {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          const imageInfo = ndkTest.GetImageInfo(imageSourceApi, index)
-          if (typeof imageInfo === "object") {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo success: ${imageInfo}`)
-            ndkTest.SourceRelease(imageSourceApi);
-            expect(true).assertTrue();
-            done()
-          } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo failed: ${imageInfo}`)
-            ndkTest.SourceRelease(imageSourceApi);
-            expect(false).assertTrue();
-            done()
-          }
+      await getFd(filename);
+      const imageSourceApi = ndkTest.CreateFromUri(filePath);
+      if (typeof imageSourceApi === "object") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+        const imageInfo = ndkTest.GetImageInfo(imageSourceApi, index)
+        if (typeof imageInfo === "object") {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo success: ${imageInfo}`)
+          ndkTest.SourceRelease(imageSourceApi);
+          expect(true).assertTrue();
+          done()
         } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed:${imageSourceApi}`)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo failed: ${imageInfo}`)
+          ndkTest.SourceRelease(imageSourceApi);
           expect(false).assertTrue();
-          done();
+          done()
         }
-      } catch (error) {
-        console.error(TAG + "Test exception " + error);
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed:${imageSourceApi}`)
         expect(false).assertTrue();
         done();
       }
     }
 
     const NDK_GetImageInfoByFd = async (TAG: string, index: number, filename: string, done: Function) => {
-      try {
-        await getFd(filename);
-        const imageSourceApi = ndkTest.CreateFromFd(fileFd);
-        if (typeof imageSourceApi === "object") {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          const imageInfo = ndkTest.GetImageInfo(imageSourceApi, index)
-          if (typeof imageInfo === "object") {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo success: ${imageInfo}`)
-            ndkTest.SourceRelease(imageSourceApi);
-            expect(true).assertTrue();
-            done()
-          } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo failed: ${imageInfo}`)
-            ndkTest.SourceRelease(imageSourceApi);
-            expect(false).assertTrue();
-            done()
-          }
+      await getFd(filename);
+      const imageSourceApi = ndkTest.CreateFromFd(fileFd);
+      if (typeof imageSourceApi === "object") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+        const imageInfo = ndkTest.GetImageInfo(imageSourceApi, index)
+        if (typeof imageInfo === "object") {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo success: ${imageInfo}`)
+          ndkTest.SourceRelease(imageSourceApi);
+          expect(true).assertTrue();
+          done()
         } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed:${imageSourceApi}`)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo failed: ${imageInfo}`)
+          ndkTest.SourceRelease(imageSourceApi);
           expect(false).assertTrue();
-          done();
+          done()
         }
-      } catch (error) {
-        console.error(TAG + "Test exception " + error);
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed:${imageSourceApi}`)
         expect(false).assertTrue();
         done();
       }
     }
 
     const NDK_GetImageInfoByData = async (TAG: string, index: number, filename: string, done: Function) => {
-      try {
-        await getBuffer(filename);
-        const imageSourceApi = ndkTest.CreateFromData(buffer);
-        if (typeof imageSourceApi === "object") {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          const imageInfo = ndkTest.GetImageInfo(imageSourceApi, index)
-          if (typeof imageInfo === "object") {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo success: ${imageInfo}`)
-            ndkTest.SourceRelease(imageSourceApi);
-            expect(true).assertTrue();
-            done()
-          } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo failed: ${imageInfo}`)
-            ndkTest.SourceRelease(imageSourceApi);
-            expect(false).assertTrue();
-            done()
-          }
+      await getBuffer(filename);
+      const imageSourceApi = ndkTest.CreateFromData(buffer);
+      if (typeof imageSourceApi === "object") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+        const imageInfo = ndkTest.GetImageInfo(imageSourceApi, index)
+        if (typeof imageInfo === "object") {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo success: ${imageInfo}`)
+          ndkTest.SourceRelease(imageSourceApi);
+          expect(true).assertTrue();
+          done()
         } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed:${imageSourceApi}`)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo failed: ${imageInfo}`)
+          ndkTest.SourceRelease(imageSourceApi);
           expect(false).assertTrue();
-          done();
+          done()
         }
-      } catch (error) {
-        console.error(TAG + "Test exception " + error);
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed:${imageSourceApi}`)
         expect(false).assertTrue();
         done();
       }
     }
 
     const NDK_GetImageProperty = async (TAG: string, filename: string, type: string, done: Function) => {
-      try {
-        let key = image.PropertyKey.SCENE_TYPE;
-        await getFd(filename);
-        let imageSourceApi: image.ImageSource = ndkTest.CreateFromUri(filePath);
-        if (type === 'Fd') {
-          imageSourceApi = ndkTest.CreateFromFd(fileFd);
-        }
-        const imagePropertyRes = ndkTest.GetImageProperty(imageSourceApi, key);
-        if (typeof imagePropertyRes === "string") {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo success: ${imagePropertyRes}`)
-          ndkTest.SourceRelease(imageSourceApi);
-          expect(true).assertTrue();
-          done()
-        } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo failed: ${imagePropertyRes}`)
-          ndkTest.SourceRelease(imageSourceApi);
-          expect(false).assertTrue();
-          done()
-        }
-      } catch (error) {
-        console.error(TAG + "Test exception " + error);
-        expect().assertFail();
-        done();
+      let key = image.PropertyKey.SCENE_TYPE;
+      await getFd(filename);
+      let imageSourceApi: image.ImageSource = ndkTest.CreateFromUri(filePath);
+      if (type === 'Fd') {
+        imageSourceApi = ndkTest.CreateFromFd(fileFd);
+      }
+      const imagePropertyRes = ndkTest.GetImageProperty(imageSourceApi, key);
+      if (typeof imagePropertyRes === "string") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo success: ${imagePropertyRes}`)
+        ndkTest.SourceRelease(imageSourceApi);
+        expect(true).assertTrue();
+        done()
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imageInfo failed: ${imagePropertyRes}`)
+        ndkTest.SourceRelease(imageSourceApi);
+        expect(false).assertTrue();
+        done()
       }
     }
 
     const NDK_ModifyImagePropertyByUri = async (TAG: string, filename: string, done: Function) => {
-      try {
-        await getFd(filename);
-        const imageSourceApi = ndkTest.CreateFromUri(filePath);
-        let propertyModifyRes = ndkTest.ModifyImageProperty(imageSourceApi, image.PropertyKey.ORIENTATION, "4");
-        if (propertyModifyRes === 0) {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes success:` +
-            JSON.stringify(propertyModifyRes))
-          ndkTest.SourceRelease(imageSourceApi);
-          expect(true).assertTrue();
-          done();
-        } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes failed:` +
-            JSON.stringify(propertyModifyRes))
-          ndkTest.SourceRelease(imageSourceApi);
-          expect(false).assertTrue();
-          done();
-        }
-      } catch (error) {
-        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes failed:` + error)
-        expect().assertTrue();
+      await getFd(filename);
+      const imageSourceApi = ndkTest.CreateFromUri(filePath);
+      let propertyModifyRes = ndkTest.ModifyImageProperty(imageSourceApi, image.PropertyKey.ORIENTATION, "4");
+      if (propertyModifyRes === 0) {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes success:` +
+        JSON.stringify(propertyModifyRes))
+        ndkTest.SourceRelease(imageSourceApi);
+        expect(true).assertTrue();
+        done();
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes failed:` +
+        JSON.stringify(propertyModifyRes))
+        ndkTest.SourceRelease(imageSourceApi);
+        expect(false).assertTrue();
         done();
       }
     }
 
     const NDK_ModifyImagePropertyByFd = async (TAG: string, filename: string, done: Function) => {
-      try {
-        await getFd(filename);
-        const imageSourceApi = ndkTest.CreateFromFd(fileFd);
-        let propertyModifyRes = ndkTest.ModifyImageProperty(imageSourceApi, image.PropertyKey.ORIENTATION, "4");
-        if (propertyModifyRes === 0) {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes success:` +
-            JSON.stringify(propertyModifyRes))
-          ndkTest.SourceRelease(imageSourceApi);
-          expect(true).assertTrue();
-          done();
-        } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes failed:` +
-            JSON.stringify(propertyModifyRes))
-          ndkTest.SourceRelease(imageSourceApi);
-          expect(false).assertTrue();
-          done();
-        }
-      } catch (error) {
-        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes failed:` + error)
-        expect().assertTrue();
+      await getFd(filename);
+      const imageSourceApi = ndkTest.CreateFromFd(fileFd);
+      let propertyModifyRes = ndkTest.ModifyImageProperty(imageSourceApi, image.PropertyKey.ORIENTATION, "4");
+      if (propertyModifyRes === 0) {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes success:` +
+        JSON.stringify(propertyModifyRes))
+        ndkTest.SourceRelease(imageSourceApi);
+        expect(true).assertTrue();
+        done();
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `imagePropertyRes failed:` +
+        JSON.stringify(propertyModifyRes))
+        ndkTest.SourceRelease(imageSourceApi);
+        expect(false).assertTrue();
         done();
       }
     }
 
     const NDK_GetFrameCount = async (TAG: string, filename: string, type: string, done: Function) => {
-      try {
-        await getFd(filename);
-        let imageSourceApi: image.ImageSource = ndkTest.CreateFromUri(filePath);
-        if (type === 'Fd') {
-          imageSourceApi = ndkTest.CreateFromFd(fileFd);
-        }
-        if (type === 'Buffer') {
-          await getBuffer(filename);
-          imageSourceApi = ndkTest.CreateFromData(buffer);
-        }
-        if (typeof imageSourceApi === "object") {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          const frameCount = ndkTest.GetFrameCount(imageSourceApi)
-          ndkTest.SourceRelease(imageSourceApi);
-          if (Object.values(frameCount)[1] === 0) {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `frameCount success: ${Object.values(frameCount)[1]}`)
-            expect(true).assertTrue();
-            done()
-          } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `frameCount failed: ${Object.values(frameCount)[1]}`)
-            expect(false).assertTrue();
-            done()
-          }
+
+      await getFd(filename);
+      let imageSourceApi: image.ImageSource = ndkTest.CreateFromUri(filePath);
+      if (type === 'Fd') {
+        imageSourceApi = ndkTest.CreateFromFd(fileFd);
+      }
+      if (type === 'Buffer') {
+        await getBuffer(filename);
+        imageSourceApi = ndkTest.CreateFromData(buffer);
+      }
+      if (typeof imageSourceApi === "object") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+        const frameCount = ndkTest.GetFrameCount(imageSourceApi)
+        ndkTest.SourceRelease(imageSourceApi);
+        if (Object.values(frameCount)[1] === 0) {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `frameCount success: ${Object.values(frameCount)[1]}`)
+          expect(true).assertTrue();
+          done()
         } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed: ${imageSourceApi}`)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `frameCount failed: ${Object.values(frameCount)[1]}`)
           expect(false).assertTrue();
-          done();
+          done()
         }
-      } catch (error) {
-        console.error(TAG + "Test exception" + error);
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed: ${imageSourceApi}`)
         expect(false).assertTrue();
         done();
       }
     }
 
     const NDK_SourceRelease = async (TAG: string, filename: string, type: string, done: Function) => {
-      try {
-        await getFd(filename);
-        let imageSourceApi: image.ImageSource = ndkTest.CreateFromUri(filePath);
-        if (type === 'Fd') {
-          imageSourceApi = ndkTest.CreateFromFd(fileFd);
-        }
-        if (type === 'Buffer') {
-          await getBuffer(filename);
-          imageSourceApi = ndkTest.CreateFromData(buffer);
-        }
-        if (typeof imageSourceApi === "object") {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
-          const release = ndkTest.SourceRelease(imageSourceApi)
-          if (release === 0) {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `release success ${release}`)
-            expect(true).assertTrue();
-            done()
-          } else {
-            hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `release failed: ${release}`)
-            expect(false).assertTrue();
-            done()
-          }
+      await getFd(filename);
+      let imageSourceApi: image.ImageSource = ndkTest.CreateFromUri(filePath);
+      if (type === 'Fd') {
+        imageSourceApi = ndkTest.CreateFromFd(fileFd);
+      }
+      if (type === 'Buffer') {
+        await getBuffer(filename);
+        imageSourceApi = ndkTest.CreateFromData(buffer);
+      }
+      if (typeof imageSourceApi === "object") {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source success:${imageSourceApi}`)
+        const release = ndkTest.SourceRelease(imageSourceApi)
+        if (release === 0) {
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `release success ${release}`)
+          expect(true).assertTrue();
+          done()
         } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed: ${imageSourceApi}`)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `release failed: ${release}`)
           expect(false).assertTrue();
-          done();
+          done()
         }
-      } catch (error) {
-        console.error(TAG + "Test exception" + error);
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `create image source failed: ${imageSourceApi}`)
         expect(false).assertTrue();
         done();
       }
     }
 
     const NDK_GetImageInfoByOption = async (TAG: string, index: number, rotate: number, x: number, y: number,
-      Regionwidth: number, RegionHeight: number, width: number, height: number,
-      desiredPixelFormat: number, done: Function) => {
-      try {
-        let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
-        ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
-        ndkTest.DecodingOptionsSetIndex(options, index);
-        ndkTest.DecodingOptionsSetRotate(options, rotate);
-        ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
-        ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
-        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `set DecodingOptions success:${options}`)
-        const targetFromat = ndkTest.DecodingOptionsGetPixelFormat(options);
-        if (targetFromat === desiredPixelFormat) {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsFormat success:${targetFromat}`)
-          expect(true).assertTrue();
-        } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsFormat failed:${targetFromat}`)
-          expect(false).assertTrue();
-        }
-
-        const targetIndex = ndkTest.DecodingOptionsGetIndex(options);
-        if (targetIndex === index) {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsIndex success:${targetIndex}`)
-          expect(true).assertTrue();
-        } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsIndex failed:${targetIndex}`)
-          expect(false).assertTrue();
-        }
-
-        const targetRotate = ndkTest.DecodingOptionsGetRotate(options);
-        if (targetRotate === rotate) {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsRotate success:${targetRotate}`)
-          expect(true).assertTrue();
-        } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsRotate failed:${targetRotate}`)
-          expect(false).assertTrue();
-        }
-
-        const targetSize = ndkTest.DecodingOptionsGetDesiredSize(options);
-        if (Object.values(targetSize)[0] === width) {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsWidth success`);
-          expect(true).assertTrue();
-        } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsWidth failed`)
-          expect(false).assertTrue();
-        }
-        if (Object.values(targetSize)[1] === height) {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsHeight success`)
-          expect(true).assertTrue();
-        } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsHeight failed`)
-          expect(false).assertTrue();
-        }
-
-        const targetRegion = ndkTest.DecodingOptionsGetDesiredRegion(options);
-        if (Object.values(targetRegion)[0] === x) {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsX success`)
-          expect(true).assertTrue();
-        } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsX failed`)
-          expect(false).assertTrue();
-        }
-        if (Object.values(targetRegion)[1] === y) {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsY success`)
-          expect(true).assertTrue();
-        } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsY failed`)
-          expect(false).assertTrue();
-        }
-        if (Object.values(targetRegion)[2] === Regionwidth) {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsRegionwidth success`)
-          expect(true).assertTrue();
-        } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsRegionwidth failed`)
-          expect(false).assertTrue();
-        }
-        if (Object.values(targetRegion)[3] === RegionHeight) {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsRegionHeight success`)
-          expect(true).assertTrue();
-        } else {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsRegionHeight failed`)
-          expect(false).assertTrue();
-        }
-        done();
-      } catch (error) {
-        console.error(TAG + "Test exception " + error);
+                                            Regionwidth: number, RegionHeight: number, width: number, height: number,
+                                            desiredPixelFormat: number, done: Function) => {
+      let options: image.DecodingOptions = ndkTest.CreateDecodingOptions();
+      ndkTest.DecodingOptionsSetPixelFormat(options, desiredPixelFormat);
+      ndkTest.DecodingOptionsSetIndex(options, index);
+      ndkTest.DecodingOptionsSetRotate(options, rotate);
+      ndkTest.DecodingOptionsSetDesiredSize(options, width, height);
+      ndkTest.DecodingOptionsSetDesiredRegion(options, x, y, Regionwidth, RegionHeight);
+      hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `set DecodingOptions success:${options}`)
+      const targetFromat = ndkTest.DecodingOptionsGetPixelFormat(options);
+      if (targetFromat === desiredPixelFormat) {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsFormat success:${targetFromat}`)
+        expect(true).assertTrue();
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsFormat failed:${targetFromat}`)
         expect(false).assertTrue();
-        done();
       }
+
+      const targetIndex = ndkTest.DecodingOptionsGetIndex(options);
+      if (targetIndex === index) {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsIndex success:${targetIndex}`)
+        expect(true).assertTrue();
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsIndex failed:${targetIndex}`)
+        expect(false).assertTrue();
+      }
+
+      const targetRotate = ndkTest.DecodingOptionsGetRotate(options);
+      if (targetRotate === rotate) {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsRotate success:${targetRotate}`)
+        expect(true).assertTrue();
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsRotate failed:${targetRotate}`)
+        expect(false).assertTrue();
+      }
+
+      const targetSize = ndkTest.DecodingOptionsGetDesiredSize(options);
+      if (Object.values(targetSize)[0] === width) {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsWidth success`);
+        expect(true).assertTrue();
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsWidth failed`)
+        expect(false).assertTrue();
+      }
+      if (Object.values(targetSize)[1] === height) {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsHeight success`)
+        expect(true).assertTrue();
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsHeight failed`)
+        expect(false).assertTrue();
+      }
+
+      const targetRegion = ndkTest.DecodingOptionsGetDesiredRegion(options);
+      if (Object.values(targetRegion)[0] === x) {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsX success`)
+        expect(true).assertTrue();
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsX failed`)
+        expect(false).assertTrue();
+      }
+      if (Object.values(targetRegion)[1] === y) {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsY success`)
+        expect(true).assertTrue();
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsY failed`)
+        expect(false).assertTrue();
+      }
+      if (Object.values(targetRegion)[2] === Regionwidth) {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsRegionwidth success`)
+        expect(true).assertTrue();
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsRegionwidth failed`)
+        expect(false).assertTrue();
+      }
+      if (Object.values(targetRegion)[3] === RegionHeight) {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsRegionHeight success`)
+        expect(true).assertTrue();
+      } else {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', TAG + `Get DecodingOptionsRegionHeight failed`)
+        expect(false).assertTrue();
+      }
+      done();
     }
 
     const compResult = (res: Number, done: Function) => {
@@ -753,79 +658,73 @@ export default function ImagePixelMapCApiTest() {
 
 
     const NDK_Packer = async (TAG: string, filename: string, done: Function, apiType: string, dataSource: string,
-      quality: number, mimeType: string, counterExample: boolean): Promise<void> => {
-      try {
-        hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} start`)
-        const parker = ndkTest.PackerCreate()
-        hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} create packer `)
-        if (parker) {
-          hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} create packer success`)
-          await getFd(filename);
-          hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} getFd`)
-          const imageSourceApi = ndkTest.CreateFromFd(fileFd);
-          hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} imageSource ${imageSourceApi}`)
-          if (imageSourceApi) {
-            let packOpts: image.PackingOption = ndkTest.CreatePackingOptions()
-            hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} createPackOpts ${imageSourceApi}`)
-            const resQuality = ndkTest.PackingOptionsSetQuality(packOpts, quality)
-            const resMimeType = ndkTest.PackingOptionsSetMimeType(packOpts, mimeType)
-            hilog.info(0x0000, 'scaleTest', '%{public}s', ` ${TAG} res1 res2 test ${resQuality} ${resMimeType}`)
-            let res: number
-            hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} 1111 `)
-            if (resQuality && resMimeType) {
-              expect(false).assertTrue();
-            }
-            hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} 222 `)
-            if (dataSource === "pixelMap") {
-              hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} 333 `)
-              const imagesource = ndkTest.CreateFromFd(fileFd)
-              hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} imageSource ${imagesource}`)
-              const DecodingOptions = ndkTest.CreateDecodingOptions()
-              const pixelMap = ndkTest.CreatePixelMap(imagesource, DecodingOptions)
-              hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} pixelMap ${pixelMap}`)
-              hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} packOpts ${packOpts}`)
-              hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} parker ${parker}`)
-              if (apiType === "packing") {
-                hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToDataFromPixelMap`)
-                res = ndkTest.PackToDataFromPixelMap(parker, packOpts, pixelMap, outBuffer)
-                hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToDataFromPixelMap ${res}`)
-              } else {
-                hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} .PackToFileFromPixelMap`)
-                res = ndkTest.PackToFileFromPixelMap(parker, packOpts, pixelMap, fileFd)
-                hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} .PackToFileFromPixelMap ${res}`)
-              }
-              hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} 444 `)
-            } else {
-              if (apiType === "packing") {
-                hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToDataFromImageSource`)
-                res = ndkTest.PackToDataFromImageSource(parker, packOpts, imageSourceApi, outBuffer)
-                hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToDataFromImageSource res  ${res}`)
-              } else {
-                hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToFileFromImageSource`)
-                res = ndkTest.PackToFileFromImageSource(parker, packOpts, imageSourceApi, fileFd)
-                hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToFileFromImageSource ${res}`)
-              }
-            }
-            closeFile(fileFd)
-            hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} packresult ${res}`)
-            if (counterExample) {
-              return compResultC(res, done)
-            }
-            return compResult(res, done)
-          } else {
-            closeFile(fileFd)
-            hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} failed `)
-            expect().assertFail()
-            done()
+                              quality: number, mimeType: string, counterExample: boolean): Promise<void> => {
+
+      hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} start`)
+      const parker = ndkTest.PackerCreate()
+      hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} create packer `)
+      if (parker) {
+        hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} create packer success`)
+        await getFd(filename);
+        hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} getFd`)
+        const imageSourceApi = ndkTest.CreateFromFd(fileFd);
+        hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} imageSource ${imageSourceApi}`)
+        if (imageSourceApi) {
+          let packOpts: image.PackingOption = ndkTest.CreatePackingOptions()
+          hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} createPackOpts ${imageSourceApi}`)
+          const resQuality = ndkTest.PackingOptionsSetQuality(packOpts, quality)
+          const resMimeType = ndkTest.PackingOptionsSetMimeType(packOpts, mimeType)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', ` ${TAG} res1 res2 test ${resQuality} ${resMimeType}`)
+          let res: number
+          hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} 1111 `)
+          if (resQuality && resMimeType) {
+            expect(false).assertTrue();
           }
+          hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} 222 `)
+          if (dataSource === "pixelMap") {
+            hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} 333 `)
+            const imagesource = ndkTest.CreateFromFd(fileFd)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} imageSource ${imagesource}`)
+            const DecodingOptions = ndkTest.CreateDecodingOptions()
+            const pixelMap = ndkTest.CreatePixelMap(imagesource, DecodingOptions)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} pixelMap ${pixelMap}`)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} packOpts ${packOpts}`)
+            hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} parker ${parker}`)
+            if (apiType === "packing") {
+              hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToDataFromPixelMap`)
+              res = ndkTest.PackToDataFromPixelMap(parker, packOpts, pixelMap, outBuffer)
+              hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToDataFromPixelMap ${res}`)
+            } else {
+              hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} .PackToFileFromPixelMap`)
+              res = ndkTest.PackToFileFromPixelMap(parker, packOpts, pixelMap, fileFd)
+              hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} .PackToFileFromPixelMap ${res}`)
+            }
+            hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} 444 `)
+          } else {
+            if (apiType === "packing") {
+              hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToDataFromImageSource`)
+              res = ndkTest.PackToDataFromImageSource(parker, packOpts, imageSourceApi, outBuffer)
+              hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToDataFromImageSource res  ${res}`)
+            } else {
+              hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToFileFromImageSource`)
+              res = ndkTest.PackToFileFromImageSource(parker, packOpts, imageSourceApi, fileFd)
+              hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} PackToFileFromImageSource ${res}`)
+            }
+          }
+          closeFile(fileFd)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} packresult ${res}`)
+          if (counterExample) {
+            return compResultC(res, done)
+          }
+          return compResult(res, done)
         } else {
           closeFile(fileFd)
+          hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} failed `)
           expect().assertFail()
-          done();
+          done()
         }
-      } catch (error) {
+      } else {
         closeFile(fileFd)
-        hilog.info(0x0000, 'scaleTest', '%{public}s', `${TAG} error: ${error}`)
         expect().assertFail()
         done();
       }
@@ -1160,7 +1059,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0100", 0, async (done: Function) => {
-      await NDK_CreateFromUri('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0100', "test5.jpg", done);
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0100"
+      try{
+        await NDK_CreateFromUri(testTag, "test5.jpg", done);
+      }catch(error){
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1173,7 +1079,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0200", 0, async (done: Function) => {
-      await NDK_CreateFromUri('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0200', "test7.png", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0200'
+      try {
+        await NDK_CreateFromUri(testTag, "test7.png", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1186,7 +1099,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0300", 0, async (done: Function) => {
-      await NDK_CreateFromUri('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0300', "test6.gif", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0300'
+      try {
+        await NDK_CreateFromUri(testTag, "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1199,7 +1119,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0400", 0, async (done: Function) => {
-      await NDK_CreateFromUri('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0400', "test8.bmp", done);
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0400"
+      try {
+        await NDK_CreateFromUri(testTag, "test8.bmp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1212,7 +1139,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0500", 0, async (done: Function) => {
-      await NDK_CreateFromUri('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0500', "test.webp", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0500'
+      try {
+        await NDK_CreateFromUri(testTag, "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1225,7 +1159,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0600", 0, async (done: Function) => {
-      await NDK_CreateFromUri('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0600', "test.arw", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0600'
+      try {
+        await NDK_CreateFromUri(testTag, "test.arw", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1238,7 +1179,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0700", 0, async (done: Function) => {
-      await NDK_CreateFromUri('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0700', "docx.ico", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0700'
+      try {
+        await NDK_CreateFromUri(testTag, "docx.ico", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1251,7 +1199,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0800", 0, async (done: Function) => {
-      await NDK_CreateFromUri('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0800', "SVG.svg", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_URI_0800'
+      try {
+        await NDK_CreateFromUri(testTag, "SVG.svg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1264,7 +1219,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0100", 0, async (done: Function) => {
-      await NDK_CreateFromFd('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0100', "test5.jpg", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0100'
+      try {
+        await NDK_CreateFromFd(testTag, "test5.jpg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1277,7 +1239,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0200", 0, async (done: Function) => {
-      await NDK_CreateFromFd('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0200', "test7.png", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0200'
+      try {
+        await NDK_CreateFromFd(testTag, "test7.png", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1290,7 +1259,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0300", 0, async (done: Function) => {
-      await NDK_CreateFromFd('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0300', "test6.gif", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0300'
+      try {
+        await NDK_CreateFromFd(testTag, "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1303,7 +1279,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0400", 0, async (done: Function) => {
-      await NDK_CreateFromFd('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0400', "test8.bmp", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0400'
+      try {
+        await NDK_CreateFromFd(testTag, "test8.bmp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1316,7 +1299,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0500", 0, async (done: Function) => {
-      await NDK_CreateFromFd('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0500', "test.webp", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0500'
+      try {
+        await NDK_CreateFromFd(testTag, "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1329,7 +1319,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0600", 0, async (done: Function) => {
-      await NDK_CreateFromFd('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0600', "test.arw", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0600'
+      try {
+        await NDK_CreateFromFd(testTag, "test.arw", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1342,7 +1339,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0700", 0, async (done: Function) => {
-      await NDK_CreateFromFd('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0700', "docx.ico", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0700'
+      try {
+        await NDK_CreateFromFd(testTag, "docx.ico", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
+
     });
 
     /**
@@ -1355,7 +1360,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0800", 0, async (done: Function) => {
-      await NDK_CreateFromFd('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0800', "SVG.svg", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_FD_0800'
+      try {
+        await NDK_CreateFromFd(testTag, "SVG.svg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1368,7 +1380,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0100", 0, async (done: Function) => {
-      await NDK_CreateFromData('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0100', "test5.jpg", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0100'
+      try {
+        await NDK_CreateFromData(testTag, "test5.jpg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1381,7 +1400,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0200", 0, async (done: Function) => {
-      await NDK_CreateFromData('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0200', "test7.png", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0200'
+      try {
+        await NDK_CreateFromData(testTag, "test7.png", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1394,7 +1420,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0300", 0, async (done: Function) => {
-      await NDK_CreateFromData('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0300', "test6.gif", done);
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0300"
+      try {
+        await NDK_CreateFromData(testTag, "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1407,7 +1440,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0400", 0, async (done: Function) => {
-      await NDK_CreateFromData('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0400', "test8.bmp", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0400'
+      try {
+        await NDK_CreateFromData(testTag, "test8.bmp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1420,7 +1460,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0500", 0, async (done: Function) => {
-      await NDK_CreateFromData('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0500', "test.webp", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0500'
+      try {
+        await NDK_CreateFromData(testTag, "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1433,7 +1480,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0600", 0, async (done: Function) => {
-      await NDK_CreateFromData('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0600', "test.arw", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0600'
+      try {
+        await NDK_CreateFromData(testTag, "test.arw", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1446,7 +1500,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0700", 0, async (done: Function) => {
-      await NDK_CreateFromData('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0700', "docx.ico", done);
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0700"
+      try {
+        await NDK_CreateFromData(testTag, "docx.ico", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1459,7 +1520,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0800", 0, async (done: Function) => {
-      await NDK_CreateFromData('SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0800', "SVG.svg", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BY_BUFFER_0800'
+      try {
+        await NDK_CreateFromData(testTag, "SVG.svg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1473,8 +1541,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYURI_0100", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByUri('SUNDK_SOURCENDK_CREATE_BYURI_0100', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test5.jpg", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYURI_0100'
+      try {
+        await NDK_CreatePixelMapByUri(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test5.jpg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1488,8 +1563,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYURI_0200", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByUri('SUNDK_SOURCENDK_CREATE_BYURI_0200', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test7.png", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYURI_0200'
+      try {
+        await NDK_CreatePixelMapByUri(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test7.png", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1503,8 +1585,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYURI_0300", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByUri('SUNDK_SOURCENDK_CREATE_BYURI_0300', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test6.gif", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYURI_0300'
+      try {
+        await NDK_CreatePixelMapByUri(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1518,8 +1607,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYURI_0400", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByUri('SUNDK_SOURCENDK_CREATE_BYURI_0400', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test8.bmp", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYURI_0400'
+      try {
+        await NDK_CreatePixelMapByUri(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test8.bmp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1533,8 +1629,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYURI_0500", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByUri('SUNDK_SOURCENDK_CREATE_BYURI_0500', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test.webp", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYURI_0500'
+      try {
+        await NDK_CreatePixelMapByUri(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1548,8 +1651,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYURI_0600", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByUri('SUNDK_SOURCENDK_CREATE_BYURI_0600', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test.arw", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYURI_0600'
+      try {
+        await NDK_CreatePixelMapByUri(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test.arw", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1563,8 +1673,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYURI_0700", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByUri('SUNDK_SOURCENDK_CREATE_BYURI_0700', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "docx.ico", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYURI_0700'
+      try {
+        await NDK_CreatePixelMapByUri(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "docx.ico", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1578,8 +1695,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYURI_0800", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByUri('SUNDK_SOURCENDK_CREATE_BYURI_0800', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "SVG.svg", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYURI_0800'
+      try {
+        await NDK_CreatePixelMapByUri(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "SVG.svg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1593,8 +1717,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYFD_0100", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByFd('SUNDK_SOURCENDK_CREATE_BYFD_0100', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test5.jpg", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYFD_0100'
+      try {
+        await NDK_CreatePixelMapByFd(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test5.jpg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1608,8 +1739,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYFD_0200", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByFd('SUNDK_SOURCENDK_CREATE_BYFD_0200', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test7.png", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYFD_0200'
+      try {
+        await NDK_CreatePixelMapByFd(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test7.png", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1623,8 +1761,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYFD_0300", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByFd('SUNDK_SOURCENDK_CREATE_BYFD_0300', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test6.gif", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYFD_0300'
+      try {
+        await NDK_CreatePixelMapByFd(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1638,8 +1783,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYFD_0400", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByFd('SUNDK_SOURCENDK_CREATE_BYFD_0400', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test8.bmp", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYFD_0400'
+      try {
+        await NDK_CreatePixelMapByFd(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test8.bmp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1653,8 +1805,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYFD_0500", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByFd('SUNDK_SOURCENDK_CREATE_BYFD_0500', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test.webp", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYFD_0500'
+      try {
+        await NDK_CreatePixelMapByFd(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1668,8 +1827,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYFD_0600", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByFd('SUNDK_SOURCENDK_CREATE_BYFD_0600', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test.arw", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYFD_0600'
+      try {
+        await NDK_CreatePixelMapByFd(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test.arw", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1683,8 +1849,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYFD_0700", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByFd('SUNDK_SOURCENDK_CREATE_BYFD_0700', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "docx.ico", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYFD_0700'
+      try {
+        await NDK_CreatePixelMapByFd(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "docx.ico", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1698,8 +1871,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYFD_0800", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByFd('SUNDK_SOURCENDK_CREATE_BYFD_0800', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "SVG.svg", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYFD_0800'
+      try {
+        await NDK_CreatePixelMapByFd(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "SVG.svg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1713,8 +1893,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYDATA_0100", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByData('SUNDK_SOURCENDK_CREATE_BYDATA_0100', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test5.jpg", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYDATA_0100'
+      try {
+        await NDK_CreatePixelMapByData(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test5.jpg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1728,8 +1915,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYDATA_0200", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByData('SUNDK_SOURCENDK_CREATE_BYDATA_0200', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test7.png", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYDATA_0200'
+      try {
+        await NDK_CreatePixelMapByData(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test7.png", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1743,8 +1937,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYDATA_0300", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByData('SUNDK_SOURCENDK_CREATE_BYDATA_0300', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test6.gif", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYDATA_0300'
+      try {
+        await NDK_CreatePixelMapByData(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1758,8 +1959,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYDATA_0400", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByData('SUNDK_SOURCENDK_CREATE_BYDATA_0400', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test8.bmp", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYDATA_0400'
+      try {
+        await NDK_CreatePixelMapByData(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test8.bmp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1773,8 +1981,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYDATA_0500", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByData('SUNDK_SOURCENDK_CREATE_BYDATA_0500', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test.webp", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYDATA_0500'
+      try {
+        await NDK_CreatePixelMapByData(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1788,8 +2003,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYDATA_0600", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByData('SUNDK_SOURCENDK_CREATE_BYDATA_0600', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test.arw", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYDATA_0600'
+      try {
+        await NDK_CreatePixelMapByData(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test.arw", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1803,8 +2025,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYDATA_0700", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByData('SUNDK_SOURCENDK_CREATE_BYDATA_0700', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "docx.ico", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYDATA_0700'
+      try {
+        await NDK_CreatePixelMapByData(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "docx.ico", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1818,8 +2047,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_CREATE_BYDATA_0800", 0, async (done: Function) => {
-      await NDK_CreatePixelMapByData('SUNDK_SOURCENDK_CREATE_BYDATA_0800', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "SVG.svg", done);
+      const testTag = 'SUNDK_SOURCENDK_CREATE_BYDATA_0800'
+      try {
+        await NDK_CreatePixelMapByData(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "SVG.svg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1833,8 +2069,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_GIF_CREATE_RGBA8888LIST_BYURI_0100", 0, async (done: Function) => {
-      await NDK_CreatePixelMapListByUri('GIF_CREATE_RGBA8888LIST_BYURI_0100', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test6.gif", done);
+      const testTag = 'GIF_CREATE_RGBA8888LIST_BYURI_0100'
+      try {
+        await NDK_CreatePixelMapListByUri(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1848,8 +2091,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_WEBP_CREATE_RGBA8888LIST_BYURI_0100", 0, async (done: Function) => {
-      await NDK_CreatePixelMapListByUri('WEBP_CREATE_RGBA8888LIST_BYURI_0100', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test.webp", done);
+      const testTag = 'WEBP_CREATE_RGBA8888LIST_BYURI_0100'
+      try {
+        await NDK_CreatePixelMapListByUri(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1863,8 +2113,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_GIF_CREATE_RGBA8888LIST_BYFD_0100", 0, async (done: Function) => {
-      await NDK_CreatePixelMapListByFd('GIF_CREATE_RGBA8888LIST_BYFD_0100', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test6.gif", done);
+      const testTag = 'GIF_CREATE_RGBA8888LIST_BYFD_0100'
+      try {
+        await NDK_CreatePixelMapListByFd(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1878,8 +2135,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_WEBP_CREATE_RGBA8888LIST_BYFD_0100", 0, async (done: Function) => {
-      await NDK_CreatePixelMapListByFd('WEBP_CREATE_RGBA8888LIST_BYFD_0100', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test.webp", done);
+      const testTag = 'WEBP_CREATE_RGBA8888LIST_BYFD_0100'
+      try {
+        await NDK_CreatePixelMapListByFd(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1893,8 +2157,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_GIF_CREATE_RGBA8888LIST_BYDATA_0100", 0, async (done: Function) => {
-      await NDK_CreatePixelMapListByData('GIF_CREATE_RGBA8888LIST_BYDATA_0100', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test6.gif", done);
+      const testTag = 'GIF_CREATE_RGBA8888LIST_BYDATA_0100'
+      try {
+        await NDK_CreatePixelMapListByData(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1908,8 +2179,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCENDK_WEBP_CREATE_RGBA8888LIST_BYDATA_0100", 0, async (done: Function) => {
-      await NDK_CreatePixelMapListByData('WEBP_CREATE_RGBA8888LIST_BYDATA_0100', 0, 90, 0, 0, 100, 200, 400, 600, 3,
-        "test.webp", done);
+      const testTag = 'WEBP_CREATE_RGBA8888LIST_BYDATA_0100'
+      try {
+        await NDK_CreatePixelMapListByData(testTag, 0, 90, 0, 0, 100, 200, 400, 600, 3,
+          "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1923,7 +2201,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_DELAY_TIME_0100", 0, async (done: Function) => {
-      await NDK_GetDelayTime('SUB_MULTIMEDIA_IMAGE_NDK_GET_DELAY_TIME_0100', "test6.gif", "Uri", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_DELAY_TIME_0100'
+      try {
+        await NDK_GetDelayTime(testTag, "test6.gif", "Uri", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1937,7 +2222,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_DELAY_TIME_0200", 0, async (done: Function) => {
-      await NDK_GetDelayTime('SUB_MULTIMEDIA_IMAGE_NDK_GET_DELAY_TIME_0200', "test6.gif", "Fd", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_DELAY_TIME_0200'
+      try {
+        await NDK_GetDelayTime(testTag, "test6.gif", "Fd", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1951,7 +2243,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_DELAY_TIME_0300", 0, async (done: Function) => {
-      await NDK_GetDelayTime('SUB_MULTIMEDIA_IMAGE_NDK_GET_DELAY_TIME_0300', "test6.gif", "Buffer", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_DELAY_TIME_0300'
+      try {
+        await NDK_GetDelayTime(testTag, "test6.gif", "Buffer", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1965,7 +2264,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0100", 0, async (done: Function) => {
-      await NDK_GetImageInfoByUri('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0100', 0, "test5.jpg", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0100'
+      try {
+        await NDK_GetImageInfoByUri(testTag, 0, "test5.jpg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1979,7 +2285,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0200", 0, async (done: Function) => {
-      await NDK_GetImageInfoByUri('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0200', 0, "test7.png", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0200'
+      try {
+        await NDK_GetImageInfoByUri(testTag, 0, "test7.png", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -1993,7 +2306,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0300", 0, async (done: Function) => {
-      await NDK_GetImageInfoByUri('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0300', 0, "test6.gif", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0300'
+      try {
+        await NDK_GetImageInfoByUri(testTag, 0, "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2007,7 +2327,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0400", 0, async (done: Function) => {
-      await NDK_GetImageInfoByUri('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0400', 0, "test8.bmp", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0400'
+      try {
+        await NDK_GetImageInfoByUri(testTag, 0, "test8.bmp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2021,7 +2348,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0500", 0, async (done: Function) => {
-      await NDK_GetImageInfoByUri('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0500', 0, "test.webp", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0500'
+      try {
+        await NDK_GetImageInfoByUri(testTag, 0, "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2035,7 +2369,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0600", 0, async (done: Function) => {
-      await NDK_GetImageInfoByUri('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0600', 0, "test.arw", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0600'
+      try {
+        await NDK_GetImageInfoByUri(testTag, 0, "test.arw", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2049,7 +2390,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0700", 0, async (done: Function) => {
-      await NDK_GetImageInfoByUri('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0700', 0, "docx.ico", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0700'
+      try {
+        await NDK_GetImageInfoByUri(testTag, 0, "docx.ico", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2063,7 +2411,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0800", 0, async (done: Function) => {
-      await NDK_GetImageInfoByUri('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0800', 0, "SVG.svg", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_URI_0800'
+      try {
+        await NDK_GetImageInfoByUri(testTag, 0, "SVG.svg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2077,7 +2432,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0100", 0, async (done: Function) => {
-      await NDK_GetImageInfoByFd('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0100', 0, "test5.jpg", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0100'
+      try {
+        await NDK_GetImageInfoByFd(testTag, 0, "test5.jpg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2091,7 +2453,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0200", 0, async (done: Function) => {
-      await NDK_GetImageInfoByFd('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0200', 0, "test7.png", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0200'
+      try {
+        await NDK_GetImageInfoByFd(testTag, 0, "test7.png", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2105,7 +2474,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0300", 0, async (done: Function) => {
-      await NDK_GetImageInfoByFd('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0300', 0, "test6.gif", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0300'
+      try {
+        await NDK_GetImageInfoByFd(testTag, 0, "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2119,7 +2495,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0400", 0, async (done: Function) => {
-      await NDK_GetImageInfoByFd('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0400', 0, "test8.bmp", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0400'
+      try {
+        await NDK_GetImageInfoByFd(testTag, 0, "test8.bmp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2133,7 +2516,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0500", 0, async (done: Function) => {
-      await NDK_GetImageInfoByFd('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0500', 0, "test.webp", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0500'
+      try {
+        await NDK_GetImageInfoByFd(testTag, 0, "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2147,7 +2537,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0600", 0, async (done: Function) => {
-      await NDK_GetImageInfoByFd('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0600', 0, "test.arw", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0600'
+      try {
+        await NDK_GetImageInfoByFd(testTag, 0, "test.arw", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2161,7 +2558,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0700", 0, async (done: Function) => {
-      await NDK_GetImageInfoByFd('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0700', 0, "docx.ico", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0700'
+      try {
+        await NDK_GetImageInfoByFd(testTag, 0, "docx.ico", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2175,7 +2579,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0800", 0, async (done: Function) => {
-      await NDK_GetImageInfoByFd('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0800', 0, "SVG.svg", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_FD_0800'
+      try {
+        await NDK_GetImageInfoByFd(testTag, 0, "SVG.svg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2189,7 +2600,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0100", 0, async (done: Function) => {
-      await NDK_GetImageInfoByData('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0100', 0, "test5.jpg", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0100'
+      try {
+        await NDK_GetImageInfoByData(testTag, 0, "test5.jpg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2203,7 +2621,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0200", 0, async (done: Function) => {
-      await NDK_GetImageInfoByData('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0200', 0, "test7.png", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0200'
+      try {
+        await NDK_GetImageInfoByData(testTag, 0, "test7.png", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2217,7 +2642,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0300", 0, async (done: Function) => {
-      await NDK_GetImageInfoByData('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0300', 0, "test6.gif", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0300'
+      try {
+        await NDK_GetImageInfoByData(testTag, 0, "test6.gif", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2231,7 +2663,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0400", 0, async (done: Function) => {
-      await NDK_GetImageInfoByData('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0400', 0, "test8.bmp", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0400'
+      try {
+        await NDK_GetImageInfoByData(testTag, 0, "test8.bmp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2245,7 +2684,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0500", 0, async (done: Function) => {
-      await NDK_GetImageInfoByData('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0500', 0, "test.webp", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0500'
+      try {
+        await NDK_GetImageInfoByData(testTag, 0, "test.webp", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2259,7 +2705,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0600", 0, async (done: Function) => {
-      await NDK_GetImageInfoByData('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0600', 0, "test.arw", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0600'
+      try {
+        await NDK_GetImageInfoByData(testTag, 0, "test.arw", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2273,7 +2726,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0700", 0, async (done: Function) => {
-      await NDK_GetImageInfoByData('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0700', 0, "docx.ico", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0700'
+      try {
+        await NDK_GetImageInfoByData(testTag, 0, "docx.ico", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2287,7 +2747,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0800", 0, async (done: Function) => {
-      await NDK_GetImageInfoByData('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0800', 0, "SVG.svg", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_INFO_DATA_0800'
+      try {
+        await NDK_GetImageInfoByData(testTag, 0, "SVG.svg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2301,7 +2768,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_PROPERTY_0100", 0, async (done: Function) => {
-      await NDK_GetImageProperty('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_PROPERTY_0100', "test_exif_v2.jpg", "Uri", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_PROPERTY_0100'
+      try {
+        await NDK_GetImageProperty(testTag, "test_exif_v2.jpg", "Uri", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2315,7 +2789,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_PROPERTY_0200", 0, async (done: Function) => {
-      await NDK_GetImageProperty('SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_PROPERTY_0200', "test_exif_v2.jpg", "Fd", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_IMAGE_PROPERTY_0200'
+      try {
+        await NDK_GetImageProperty(testTag, "test_exif_v2.jpg", "Fd", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2329,7 +2810,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_MODIFY_IMAGE_PROPERTY_URI_0100", 0, async (done: Function) => {
-      await NDK_ModifyImagePropertyByUri('MODIFY_IMAGE_PROPERTY_URI_0100', "test5.jpg", done);
+      const testTag = 'MODIFY_IMAGE_PROPERTY_URI_0100'
+      try {
+        await NDK_ModifyImagePropertyByUri(testTag, "test5.jpg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2343,7 +2831,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_MODIFY_IMAGE_PROPERTY_FD_0100", 0, async (done: Function) => {
-      await NDK_ModifyImagePropertyByFd('MODIFY_IMAGE_PROPERTY_FD_0100', "test5.jpg", done);
+      const testTag = 'MODIFY_IMAGE_PROPERTY_FD_0100'
+      try {
+        await NDK_ModifyImagePropertyByFd(testTag, "test5.jpg", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2357,7 +2852,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_FRAME_COUNT_0100", 0, async (done: Function) => {
-      await NDK_GetFrameCount('SUB_MULTIMEDIA_IMAGE_NDK_GET_FRAME_COUNT_0100', "test6.gif", "Uri", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_FRAME_COUNT_0100'
+      try {
+        await NDK_GetFrameCount(testTag, "test6.gif", "Uri", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2371,7 +2873,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GET_FRAME_COUNT_0200", 0, async (done: Function) => {
-      await NDK_GetFrameCount('SUB_MULTIMEDIA_IMAGE_NDK_GET_FRAME_COUNT_0200', "test6.gif", "Fd", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GET_FRAME_COUNT_0200'
+      try {
+        await NDK_GetFrameCount(testTag, "test6.gif", "Fd", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2385,7 +2894,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCERELEASE_0100", 0, async (done: Function) => {
-      await NDK_SourceRelease('SUB_MULTIMEDIA_IMAGE_NDK_SOURCERELEASE_0100', "test5.jpg", "Uri", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCERELEASE_0100'
+      try {
+        await NDK_SourceRelease(testTag, "test5.jpg", "Uri", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2399,7 +2915,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCERELEASE_0200", 0, async (done: Function) => {
-      await NDK_SourceRelease('SUB_MULTIMEDIA_IMAGE_NDK_SOURCERELEASE_0200', "test5.jpg", "Fd", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCERELEASE_0200'
+      try {
+        await NDK_SourceRelease(testTag, "test5.jpg", "Fd", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2413,7 +2936,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_SOURCERELEASE_0300", 0, async (done: Function) => {
-      await NDK_SourceRelease('SUB_MULTIMEDIA_IMAGE_NDK_SOURCERELEASE_0300', "test5.jpg", "Buffer", done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_SOURCERELEASE_0300'
+      try {
+        await NDK_SourceRelease(testTag, "test5.jpg", "Buffer", done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2428,8 +2958,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 0
      */
     it("SUB_MULTIMEDIA_IMAGE_NDK_GETIMAGEINFOBYOPTION_TO_RGBA8888_0100", 0, async (done: Function) => {
-      await NDK_GetImageInfoByOption('SUB_MULTIMEDIA_IMAGE_NDK_GETIMAGEINFOBYOPTION_TO_RGBA8888_0100', 0, 90, 0, 0, 100,
-        200, 400, 600, 3, done);
+      const testTag = 'SUB_MULTIMEDIA_IMAGE_NDK_GETIMAGEINFOBYOPTION_TO_RGBA8888_0100'
+      try {
+        await NDK_GetImageInfoByOption('SUB_MULTIMEDIA_IMAGE_NDK_GETIMAGEINFOBYOPTION_TO_RGBA8888_0100', 0, 90, 0, 0, 100,
+          200, 400, 600, 3, done);
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     });
 
     /**
@@ -2502,8 +3039,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0100', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0100", "test.jpg", done, "packing", "imageSource", 100,
-        "image/jpeg", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0100"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packing", "imageSource", 100,
+          "image/jpeg", false)
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2515,8 +3059,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0200', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0200", "test.jpg", done, "packing", "pixelMap", 100,
-        "image/jpeg", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0200"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packing", "pixelMap", 100,
+          "image/jpeg", false)
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2528,8 +3079,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0300', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0300", "test.jpg", done, "packing", "imageSource", 10,
-        "image/jpeg", true)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0300"
+      try {
+        await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0300", "test.jpg", done, "packing", "imageSource", 10,
+          "image/jpeg", true)
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
 
@@ -2542,8 +3100,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0400', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0400", "test.jpg", done, "packing", "pixelMap", 10,
-        "image/jpeg", true)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0400"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packing", "pixelMap", 10, "image/jpeg", true)
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2555,8 +3119,14 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0500', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0700", "test.jpg", done, "packing", "imageSource", 100,
-        "image/webp", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0500"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packing", "imageSource", 100, "image/webp", false)
+      }catch(error){
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2568,8 +3138,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0600', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0600", "test.jpg", done, "packing", "pixelMap", 100,
-        "image/webp", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0600"
+      try {
+        await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0600", "test.jpg", done, "packing", "pixelMap", 100,
+          "image/webp", false)
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
 
@@ -2582,8 +3159,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0700', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0700", "test.jpg", done, "packing", "imageSource", 10,
-        "image/webp", true)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0700"
+      try {
+        await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0700", "test.jpg", done, "packing", "imageSource", 10,
+          "image/webp", true)
+      }catch(error){
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
 
@@ -2596,8 +3180,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0800', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0800", "test.jpg", done, "packing", "pixelMap", 10,
-        "image/webp", true)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0800"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packing", "pixelMap", 10,
+          "image/webp", true)
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2609,8 +3200,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0900', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0900", "test.jpg", done, "packing", "imageSource", 100,
-        "image/png", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0900"
+      try {
+        await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_0900", "test.jpg", done, "packing", "imageSource", 100,
+          "image/png", false)
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2622,8 +3220,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01000', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01000", "test.jpg", done, "packing", "imageSource", 100,
-        "image/png", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01000"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packing", "imageSource", 100,
+          "image/png", false)
+      }catch(error){
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2635,8 +3240,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01100', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01100", "test.jpg", done, "packing", "pixelMap", 10,
-        "image/png", true)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01100"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packing", "pixelMap", 10,
+          "image/png", true)
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2648,8 +3260,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01200', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01200", "test.jpg", done, "packing", "imageSource", 10,
-        "image/png", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACKING_JPG_01200"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packing", "imageSource", 10,
+          "image/png", false)
+      }catch(error){
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
 
@@ -2662,8 +3281,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0100', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0100", "test.jpg", done, "packToFile", "imageSource",
-        100, "image/jpeg", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0100"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packToFile", "imageSource",
+          100, "image/jpeg", false)
+      }catch(error){
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2675,8 +3301,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0200', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0200", "test.jpg", done, "packToFile", "pixelMap",
-        100, "image/jpeg", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0200"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packToFile", "pixelMap",
+          100, "image/jpeg", false)
+      }catch(error){
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
 
@@ -2690,8 +3323,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0300', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0300", "test.jpg", done, "packToFile",
-        "imageSource", 10, "image/jpeg", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0300"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packToFile",
+          "imageSource", 10, "image/jpeg", false)
+      }catch(error){
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2703,8 +3343,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0400', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0400", "test.jpg", done, "packToFile", "pixelMap",
-        10, "image/jpeg", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0400"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packToFile", "pixelMap",
+          10, "image/jpeg", false)
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
 
@@ -2717,8 +3364,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0500', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0500", "test.jpg", done, "packToFile", "imageSource",
-        100, "image/webp", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0500"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packToFile", "imageSource",
+          100, "image/webp", false)
+      }catch(error){
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2730,8 +3384,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0600', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0600", "test.jpg", done, "packToFile", "pixelMap",
-        100, "image/webp", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0600"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packToFile", "pixelMap",
+          100, "image/webp", false)
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2743,8 +3404,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0700', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0700", "test.jpg", done, "packToFile", "imageSource",
-        10, "image/webp", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0700"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packToFile", "imageSource",
+          10, "image/webp", false)
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2756,8 +3424,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0800', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0800", "test.jpg", done, "packToFile", "pixelMap",
-        10, "image/webp", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0800"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packToFile", "pixelMap",
+          10, "image/webp", false)
+      }catch(error){
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2769,8 +3444,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0900', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0900", "test.jpg", done, "packToFile", "imageSource",
-        100, "image/png", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_0900"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packToFile", "imageSource",
+          100, "image/png", false)
+      }catch(error){
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2782,8 +3464,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01000', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01000", "test.jpg", done, "packToFile", "pixelMap",
-        100, "image/png", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01000"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packToFile", "pixelMap",
+          100, "image/png", false)
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2795,8 +3484,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01100', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01100", "test.jpg", done, "packToFile",
-        "imageSource", 10, "image/png", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01100"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packToFile",
+          "imageSource", 10, "image/png", false)
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
 
     /**
@@ -2808,8 +3504,15 @@ export default function ImagePixelMapCApiTest() {
      * @tc.level     : Level 1
      */
     it('SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01200', 0, async (done: Function) => {
-      await NDK_Packer("SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01200", "test.jpg", done, "packToFile", "pixelMap",
-        10, "image/png", false)
+      const testTag = "SUB_MULTIMEDIA_IMAGE_NDK_PACK_TO_FILE_JPG_01200"
+      try {
+        await NDK_Packer(testTag, "test.jpg", done, "packToFile", "pixelMap",
+          10, "image/png", false)
+      } catch (error) {
+        hilog.info(0x0000, testTag, `Test exception  ` + error);
+        expect().assertFail();
+        done();
+      }
     })
   })
 }
