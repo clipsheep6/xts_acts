@@ -40,6 +40,7 @@ group("communication") {
       "wifi_ets_standard:ActsEtsWifiTest",
       "wifi_p2p:ActsP2PJSTest",
       "wifi_standard:ActsWifiJSTest",
+      "capi_ipc:ActsCAPIIPCTest",
     ]
   } else {
     deps = [ "wifi_standard:ActsWifiJSTest" ]
