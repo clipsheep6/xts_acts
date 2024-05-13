@@ -67,7 +67,7 @@ export default function priCertJsAPINoPermissionTestUnit() {
       let keystorePwd: string = '123456';
       let certAlias: string = 'appCertAliasDemoEcc';
       try {
-        await new Promise((resolve, reject) => {
+        await new Promise<certManager.CMResult>((resolve, reject) => {
           certManager.installPrivateCertificate(keystore, keystorePwd, certAlias, (err, cmResult) => {
             if (err) {
               reject(err);
@@ -105,7 +105,7 @@ export default function priCertJsAPINoPermissionTestUnit() {
      */
     it('Security_CertManager_PriCertJsApi_NoPermission_Func_0400', 0, async (done: Function) => {
       try {
-        await new Promise((resolve, reject) => {
+        await new Promise<certManager.CMResult>((resolve, reject) => {
           certManager.getPrivateCertificate("11111", (err, CMResult) => {
             if (err) {
               reject(err);
@@ -131,7 +131,7 @@ export default function priCertJsAPINoPermissionTestUnit() {
         purpose: certManager.CmKeyPurpose.CM_KEY_PURPOSE_SIGN
       };
       try {
-        await new Promise((resolve, reject) => {
+        await new Promise<certManager.CMHandle>((resolve, reject) => {
           certManager.init("11111", signSpec, (err, cmResult) => {
             if (err) {
               reject(err);
@@ -174,7 +174,7 @@ export default function priCertJsAPINoPermissionTestUnit() {
       let keyStore: Uint8Array = commonParameter.priEccCredData;
       let handle: Uint8Array = new Uint8Array([0X00]);
       try {
-        await new Promise((resolve, reject) => {
+        await new Promise<void>((resolve, reject) => {
           certManager.update(handle, keyStore, (err, cmResult) => {
             if (err) {
               reject(err);
@@ -216,7 +216,7 @@ export default function priCertJsAPINoPermissionTestUnit() {
       let keyStore: Uint8Array = commonParameter.priEccCredData;
       let handle: Uint8Array = new Uint8Array([0X00]);
       try {
-        await new Promise((resolve, reject) => {
+        await new Promise<certManager.CMResult>((resolve, reject) => {
           certManager.finish(handle, keyStore, (err, cmResult) => {
             if (err) {
               reject(err);
@@ -230,7 +230,7 @@ export default function priCertJsAPINoPermissionTestUnit() {
         expect(err.code).assertEqual(201);
       }
       try {
-        await new Promise((resolve, reject) => {
+        await new Promise<certManager.CMResult>((resolve, reject) => {
           certManager.finish(handle, (err, cmResult) => {
             if (err) {
               reject(err);
@@ -271,7 +271,7 @@ export default function priCertJsAPINoPermissionTestUnit() {
     it('Security_CertManager_PriCertJsApi_NoPermission_Func_1100', 0, async (done: Function) => {
       let handle: Uint8Array = new Uint8Array([0X00]);
       try {
-        await new Promise((resolve, reject) => {
+        await new Promise<void>((resolve, reject) => {
           certManager.abort(handle, (err, cmResult) => {
             if (err) {
               reject(err);
@@ -325,7 +325,7 @@ export default function priCertJsAPINoPermissionTestUnit() {
      */
     it('Security_CertManager_PriCertJsApi_NoPermission_Func_1400', 0, async (done: Function) => {
       try {
-        await new Promise((resolve, reject) => {
+        await new Promise<void>((resolve, reject) => {
           certManager.uninstallPrivateCertificate("1111111", (err, status) => {
             if (err) {
               reject(err);
@@ -365,7 +365,7 @@ export default function priCertJsAPINoPermissionTestUnit() {
      */
     it('Security_CertManager_PriCertJsApi_NoPermission_Func_1600', 0, async (done: Function) => {
       try {
-        await new Promise((resolve, reject) => {
+        await new Promise<certManager.CMResult>((resolve, reject) => {
           certManager.getAllAppPrivateCertificates((err, status) => {
             if (err) {
               reject(err);
