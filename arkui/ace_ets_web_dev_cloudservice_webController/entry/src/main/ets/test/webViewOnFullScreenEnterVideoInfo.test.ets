@@ -77,8 +77,8 @@ export default function webViewOnFullScreenEnterInfo() {
      *@tc.level 1
      */
     it('testOnFullScreenEnterVideoInfo', 0, async (done: Function) => {
-        sendEventByKey('TestwebviewOnFullScreenEnterInfo', 10, '');
-        let emitKey="emitOnfullscreenenterinfo";
+        sendEventByKey('TestwebViewOnFullScreenEnterInfo', 10, '');
+        let emitKey="emitOnfullscreenenterInfo";
         Utils.emitEvent(emitKey,10)
         Utils.registerEvent("testOnFullScreenEnterVideoInfo", true, 1285, done);
         sendEventByKey('webViewOnFullScreenEnterInfo', 10, '');

@@ -77,7 +77,7 @@ export default function webViewMetaViewportFalse() {
      *@tc.level 1
      */
     it('emitWebViewMetaViewportFalse', 0, async (done: Function) => {
-        Utils.registerEvent("emitWebViewMetaViewportFalse", true, 10002, done);
+        Utils.registerEvent("emitWebViewMetaViewportFalse", "false", 10002, done);
         sendEventByKey('webViewMetaViewportFalse', 10, '');
     })
   })

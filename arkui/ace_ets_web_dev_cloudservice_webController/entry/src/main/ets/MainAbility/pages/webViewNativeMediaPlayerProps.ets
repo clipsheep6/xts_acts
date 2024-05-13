@@ -434,6 +434,7 @@ class AVPlayerListenerImpl implements AVPlayerListener {
     onTimeUpdate(time: number) {
         console.log('[BrowserShell] onTimeUpdate(' + time + '), handler[' + this.handler + ']')
         this.handler.handleTimeUpdate(time);
+        this.handler.handleReadyStateChanged(webview.ReadyState.HAVE_METADATA);
     }
     onEnded() {
         console.log('[BrowserShell] onEnded(), handler[' + this.handler + ']')

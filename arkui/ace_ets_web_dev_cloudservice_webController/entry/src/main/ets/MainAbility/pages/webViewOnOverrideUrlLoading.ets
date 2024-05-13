@@ -80,7 +80,7 @@ struct webViewOnMetaOnOverriderUrlLoading {
                 .databaseAccess(this.databaseAccess)
                 
                 .onOverrideUrlLoading((webResourceRequest: WebResourceRequest) => {
-                    if (webResourceRequest && webResourceRequest.getRequestUrl() == "https://www.baidu.com") {
+                    if (webResourceRequest && webResourceRequest.getRequestUrl() == "https://www.baidu.com/") {
                         return true;
                     }
                     return false;

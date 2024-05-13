@@ -63,7 +63,7 @@ struct webViewJsBridgeLastJsProxyCallingFrameUrl {
                 switch (this.str) {
                     case "emitJsBridgeGetLastJavascriptProxyCallingFrameUrl": {
                         let transObj_02 = new DataTrans()
-                        this.controller.registerJavaScriptProxy(transObj_02, "DataTrans", ["trans"])
+                        this.controller.registerJavaScriptProxy(transObj_02, "dataTrans", ["trans"])
                         this.controller.refresh()
                         this.controller.loadUrl(this.webUrl)
                         break;

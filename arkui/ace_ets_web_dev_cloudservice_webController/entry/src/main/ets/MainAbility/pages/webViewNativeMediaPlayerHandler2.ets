@@ -551,6 +551,7 @@ class AVPlayerListenerImpl implements AVPlayerListener {
     onTimeUpdate(time: number) {
         console.log('[BrowserShell] onTimeUpdate(' + time + '), handler[' + this.handler + ']')
         this.handler.handleTimeUpdate(time);
+        this.handler.handleReadyStateChanged(webview.ReadyState.HAVE_METADATA);
     }
     onEnded() {
         console.log('[BrowserShell] onEnded(), handler[' + this.handler + ']')
@@ -875,6 +876,7 @@ struct WebComponent {
                     case "emitWebViewNativeMediaPlayerHandleStatusChanged": {
                         try {
                             console.log('emitWebViewNativeMediaPlayerHandleStatusChanged==>')
+                            await Utils.sleep(1000)
                             this.controller.runJavaScript("buttonPause()", (error, result) => {
                                 console.log('The pause() return value is: ${result}');
                             })

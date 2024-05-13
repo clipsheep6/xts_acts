@@ -534,7 +534,7 @@ struct WebComponent {
   build() {
       Column() {
           Row() {
-              Button("web click").key('webViewNativeVideoSetSeek').onClick(async () => {
+              Button("web click").key('webViewNativeMediaSetSeek').onClick(async () => {
                   console.info("key==>" + this.emitKey)
                     switch (this.emitKey) {
                         case "emitWebViewNativeVideoSetSeek": {

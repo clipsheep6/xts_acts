@@ -531,7 +531,7 @@ struct WebComponent {
   build() {
       Column() {
           Row() {
-              Button("web click").key('webViewNativeVideoMediaInfo').onClick(async () => {
+              Button("web click").key('webViewNativeMediaMediaInfo').onClick(async () => {
                   console.info("key==>" + this.emitKey)
                   await Utils.sleep(1000)
                   this.controller.runJavaScript("buttonLoad()", (error, result) => {
