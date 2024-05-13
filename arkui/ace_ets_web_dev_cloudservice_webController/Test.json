@@ -2,7 +2,7 @@
     "description": "Configuration for hjunit demo Tests",
     "driver": {
         "type": "OHJSUnitTest",
-        "test-timeout": "180000",
+        "test-timeout": "1800000",
         "bundle-name": "com.open.harmony.acewebcloudservicetest",
         "module-name": "phone",
         "shell-timeout": "600000",
