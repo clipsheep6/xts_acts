@@ -11,10 +11,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import("//build/ohos.gni")
 import("//test/xts/tools/build/suite.gni")
 
 ohos_js_hap_suite("image_ndk_hap") {
-  hap_profile = "./src/main/module.json"
+  hap_profile = "entry/src/main/module.json"
   js_build_mode = "debug"
   deps = [
     ":actsImageNdkTest_js_assets",
@@ -26,7 +27,7 @@ ohos_js_hap_suite("image_ndk_hap") {
   subsystem_name = "multimedia"
   part_name = "image_framework"
   shared_libraries = [
-     "./src/main/cpp:ImageNdk",
+     "entry/src/main/cpp:ImageNdk",
      ":libcppsharedso"
   ]
 }
@@ -43,11 +44,11 @@ ohos_app_scope("actsImageNdkTest_app_profile") {
 }
 
 ohos_js_assets("actsImageNdkTest_js_assets") {
-  source_dir = "./src/main/ets"
+  source_dir = "entry/src/main/ets"
 }
 
 ohos_resources("actsImageNdkTest_resources") {
-  sources = [ "./src/main/resources" ]
+  sources = [ "entry/src/main/resources" ]
   deps = [ ":actsImageNdkTest_app_profile" ]
-  hap_profile = "./src/main/module.json"
+  hap_profile = "entry/src/main/module.json"
 }

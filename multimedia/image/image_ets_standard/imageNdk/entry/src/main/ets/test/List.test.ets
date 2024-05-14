@@ -13,8 +13,8 @@
  * limitations under the License.
  */
 
-import abilityTest from './Ability.test'
+import imageNdkTest from './ImageNdk.test'
 
 export default function testsuite() {
-  abilityTest()
+  imageNdkTest()
 }

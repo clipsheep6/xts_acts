@@ -20,8 +20,8 @@ import hilog from '@ohos.hilog';
 
 import fs from '@ohos.file.fs';
 
-export default function ImagePixelMapCApiTest() {
-  describe('ImagePixelMapCApiTest', () => {
+export default function imageNdkTest() {
+  describe('ImageNdkTest', () => {
     let globalpixelmap: image.PixelMap;
     let outBuffer: ArrayBuffer = new ArrayBuffer(1200000)
     afterEach(async () => {
