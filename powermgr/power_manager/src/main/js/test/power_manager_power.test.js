@@ -22,7 +22,7 @@ describe('PowerManagerPowerTest', function () {
 
     /**
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0010
-     * @tc.name Power_Is_Screnn_On_Promise_Test
+     * @tc.name testPower_Is_Screnn_On_Promise_Test
      * @tc.desc Checks whether the screen of a device is on or off (deprecated since 9)
      * @tc.level: Level 1
      * @tc.type: Functiontion
@@ -38,7 +38,7 @@ describe('PowerManagerPowerTest', function () {
 
     /**
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0020
-     * @tc.name Power_Is_Screnn_On_Callback_Test
+     * @tc.name testPower_Is_Screnn_On_Callback_Test
      * @tc.desc Checks whether the screen of a device is on or off (deprecated since 9)
      * @tc.level: Level 1
      * @tc.type: Functiontion
@@ -62,7 +62,7 @@ describe('PowerManagerPowerTest', function () {
 
     /**
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0030
-     * @tc.name Power_Is_Active_Test
+     * @tc.name testPower_Is_Active_Test
      * @tc.desc On and Off Screen and get the current screen on and off
      * @tc.level: Level 1
      * @tc.type: Functiontion
@@ -80,7 +80,7 @@ describe('PowerManagerPowerTest', function () {
 
     /**
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0040
-     * @tc.name Power_Get_Power_Mode_Test
+     * @tc.name testPower_Get_Power_Mode_Test
      * @tc.desc Gets and sets the power mode
      * @tc.level: Level 1
      * @tc.type: Functiontion
@@ -95,7 +95,7 @@ describe('PowerManagerPowerTest', function () {
 
     /**
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0050
-     * @tc.name Power_Device_Power_Mode_MODENORMAL_Test
+     * @tc.name testPower_Device_Power_Mode_MODENORMAL_Test
      * @tc.desc Get device power mode MODE_NORMAL
      * @tc.level: Level 3
      * @tc.type: Functiontion
@@ -109,7 +109,7 @@ describe('PowerManagerPowerTest', function () {
 
     /**
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0060
-     * @tc.name Power_Device_Power_Mode_MODEPOWERSAVE_Test
+     * @tc.name testPower_Device_Power_Mode_MODEPOWERSAVE_Test
      * @tc.desc Get device power mode MODE_POWER_SAVE
      * @tc.level: Level 3
      * @tc.type: Functiontion
@@ -123,7 +123,7 @@ describe('PowerManagerPowerTest', function () {
 
     /**
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0070
-     * @tc.name Power_Device_Power_Mode_MODEPERFORMANCE_Test
+     * @tc.name testPower_Device_Power_Mode_MODEPERFORMANCE_Test
      * @tc.desc Get device power mode MODE_PERFORMANCE
      * @tc.level: Level 3
      * @tc.type: Functiontion
@@ -137,7 +137,7 @@ describe('PowerManagerPowerTest', function () {
 
     /**
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0080
-     * @tc.name Power_Device_Power_Mode_MODE_EXTREME_POWER_SAVE_Test
+     * @tc.name testPower_Device_Power_Mode_MODE_EXTREME_POWER_SAVE_Test
      * @tc.desc Get device power mode MODE_EXTREME_POWER_SAVE
      * @tc.level: Level 3
      * @tc.type: Functiontion
@@ -151,7 +151,7 @@ describe('PowerManagerPowerTest', function () {
 
     /**
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0090
-     * @tc.name power_Suspend_undefined_Test
+     * @tc.name testpower_Suspend_undefined_Test
      * @tc.desc Device suspend interface verification
      * @tc.level: Level 3
      * @tc.type: Functiontion
@@ -169,7 +169,7 @@ describe('PowerManagerPowerTest', function () {
 
     /**
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0100
-     * @tc.name power_Suspend_Device_Test
+     * @tc.name testpower_Suspend_Device_Test
      * @tc.desc Device suspend interface verification
      * @tc.level: Level 3
      * @tc.type: Functiontion
@@ -187,7 +187,7 @@ describe('PowerManagerPowerTest', function () {
 
     /**
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0110
-     * @tc.name power_Suspend_False_Test
+     * @tc.name testpower_Suspend_False_Test
      * @tc.desc Device suspend interface verification
      * @tc.level: Level 3
      * @tc.type: Functiontion
@@ -205,7 +205,7 @@ describe('PowerManagerPowerTest', function () {
 
     /**
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0120
-     * @tc.name power_Device_IsStandby_Test
+     * @tc.name testpower_Device_IsStandby_Test
      * @tc.desc Device isStandby interface verification
      * @tc.level: Level 3
      * @tc.type: Functiontion

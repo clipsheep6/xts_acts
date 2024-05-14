@@ -43,7 +43,7 @@ export default function SystemBatteryTest() {
 
         /**
          * @tc.number SUB_PowerSystem_SystemBattery_JSTest_0010
-         * @tc.name get_status_success_test
+         * @tc.name testget_status_success_test
          * @tc.desc Battery acquisition kit
          * @tc.level: Level 1
          * @tc.type: Functiontion
@@ -66,7 +66,7 @@ export default function SystemBatteryTest() {
 
         /**
          * @tc.number SUB_PowerSystem_SystemBattery_JSTest_0020
-         * @tc.name get_status_success_null_test
+         * @tc.name testget_status_success_null_test
          * @tc.desc Battery acquisition kit
          * @tc.level: Level 1
          * @tc.type: Functiontion
@@ -87,7 +87,7 @@ export default function SystemBatteryTest() {
 
         /**
          * @tc.number SUB_PowerSystem_SystemBattery_JSTest_0030
-         * @tc.name get_status_success_empty_test
+         * @tc.name testget_status_success_empty_test
          * @tc.desc Battery acquisition kit
          * @tc.level: Level 1
          * @tc.type: Functiontion
@@ -107,7 +107,7 @@ export default function SystemBatteryTest() {
 
         /**
          * @tc.number SUB_PowerSystem_SystemBattery_JSTest_0040
-         * @tc.name get_status_fail_null_test
+         * @tc.name testget_status_fail_null_test
          * @tc.desc Battery acquisition kit
          * @tc.level: Level 3
          * @tc.type: Functiontion
@@ -128,7 +128,7 @@ export default function SystemBatteryTest() {
 
         /**
          * @tc.number SUB_PowerSystem_SystemBattery_JSTest_0050
-         * @tc.name get_status_fail_empty_test
+         * @tc.name testget_status_fail_empty_test
          * @tc.desc Battery acquisition kit
          * @tc.level: Level 3
          * @tc.type: Functiontion
@@ -148,7 +148,7 @@ export default function SystemBatteryTest() {
 
         /**
          * @tc.number SUB_PowerSystem_SystemBattery_JSTest_0060
-         * @tc.name get_status_complete_null_test
+         * @tc.name testget_status_complete_null_test
          * @tc.desc Battery acquisition kit
          * @tc.level: Level 3
          * @tc.type: Functiontion
@@ -169,7 +169,7 @@ export default function SystemBatteryTest() {
 
         /**
          * @tc.number SUB_PowerSystem_SystemBattery_JSTest_0070
-         * @tc.name get_status_complete_empty_test
+         * @tc.name testget_status_complete_empty_test
          * @tc.desc Battery acquisition kit
          * @tc.level: Level 3
          * @tc.type: Functiontion
@@ -189,7 +189,7 @@ export default function SystemBatteryTest() {
 
         /**
          * @tc.number SUB_PowerSystem_SystemBattery_JSTest_0080
-         * @tc.name get_status_all_null
+         * @tc.name testget_status_all_null
          * @tc.desc Battery acquisition kit
          * @tc.level: Level 3
          * @tc.type: Functiontion
@@ -207,7 +207,7 @@ export default function SystemBatteryTest() {
 
         /**
          * @tc.number SUB_PowerSystem_SystemBattery_JSTest_0090
-         * @tc.name get_status_all_empty
+         * @tc.name testget_status_all_empty
          * @tc.desc Battery acquisition kit
          * @tc.level: Level 3
          * @tc.type: Functiontion
