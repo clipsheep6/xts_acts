@@ -31,7 +31,6 @@ function successFunc(data, tag) {
 
 function failFunc(data, code, tag) {
     console.log(tag + ": data: " + data + ", code: " + code);
-    expect().assertFail();
 }
 
 function completeFunc(tag) {
@@ -54,6 +53,7 @@ export default function SystemBatteryTest() {
                 },
                 fail: (data, code) => {
                     failFunc(data, code, successTest);
+                    expect().assertFail();
                 },
                 complete: () => {
                     completeFunc(successTest);
@@ -71,6 +71,7 @@ export default function SystemBatteryTest() {
                 success: null,
                 fail: (data, code) => {
                     failFunc(data, code, successNullTest);
+                    expect().assertFail();
                 },
                 complete: () => {
                     completeFunc(successNullTest);
@@ -87,6 +88,7 @@ export default function SystemBatteryTest() {
             battery.getStatus({
                 fail: (data, code) => {
                     failFunc(data, code, successEmptyTest);
+                    expect().assertFail();
                 },
                 complete: () => {
                     completeFunc(successEmptyTest);
@@ -102,6 +104,7 @@ export default function SystemBatteryTest() {
         it('get_status_fail_null_test', 0, function () {
             battery.getStatus({
                 success: (data) => {
+                    expect(data).assertNotNull();
                     successFunc(data, failNullTest);
                 },
                 fail: null,
@@ -119,7 +122,8 @@ export default function SystemBatteryTest() {
         it('get_status_fail_empty_test', 0, function () {
             battery.getStatus({
                 success: () => {
-                    successFunc(data, failEmptyTest);
+                    successFunc(data, failNullTest);
+                    expect(data).assertNull();
                 },
                 complete: () => {
                     completeFunc(failEmptyTest);
@@ -139,6 +143,7 @@ export default function SystemBatteryTest() {
                 },
                 fail: (data, code) => {
                     failFunc(data, code, completeNullTest);
+                    expect().assertFail();
                 },
                 complete: null
             });
@@ -156,6 +161,7 @@ export default function SystemBatteryTest() {
                 },
                 fail: (data, code) => {
                     failFunc(data, code, completeEmptyTest);
+                    expect().assertFail();
                 }
             });
         });
