@@ -690,9 +690,12 @@ export default function PowerManagerRunningLockTest() {
             try {
                 runningLock.create("Create_Running_Lock_Callback_Invalid_JSTest0260", "invalid",
                     (error, runninglock) => {
+                        expect(typeof error !== "undefined").assertTrue();
+                        expect(runninglock === null).assertTrue();
+                        console.info('Create_Running_Lock_Callback_Invalid_JSTest0260 success');
                         expect().assertFail();
-                        done();
                     });
+                done();
             } catch (e) {
                 console.info('Create_Running_Lock_Callback_Invalid_JSTest0260 code:' + e.code + "msg:" + e.message);
                 // 401: Invalid input parameter
