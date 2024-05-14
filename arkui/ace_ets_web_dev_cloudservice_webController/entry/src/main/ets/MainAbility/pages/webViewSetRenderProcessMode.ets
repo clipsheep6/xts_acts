@@ -13,9 +13,7 @@
  * limitations under the License.
  */
 import events_emitter from '@ohos.events.emitter';
-import AbilityDelegatorRegistry from '@ohos.application.abilityDelegatorRegistry';
 import web_webview from '@ohos.web.webview';
-import { Hypium } from '@ohos/Hypium'
 import Utils from '../../test/Utils';
 import promptAction from '@ohos.promptAction';
 

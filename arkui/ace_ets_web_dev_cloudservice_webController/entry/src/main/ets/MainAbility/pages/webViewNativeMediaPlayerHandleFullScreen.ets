@@ -521,7 +521,7 @@ class AVPlayerListenerImpl implements AVPlayerListener {
     onDurationChanged(duration: number) {
         console.log('[BrowserShell] onDurationChanged(' + duration + '), handler[' + this.handler + ']')
         this.handler.handleDurationChanged(duration);
-        console.log('[BrowserShell] onNetworkStateChanged(' + webview.NetworkState + '), handler[' + this.handler + ']')
+        console.log('[BrowserShell] onNetworkStateChanged(' + webview.NetworkState.toString() + '), handler[' + this.handler + ']')
         //this.handler.handleNetWorkStateChanged(webview.NetworkState.LOADING);
         this.handler.handleNetworkStateChanged(1);
     }
