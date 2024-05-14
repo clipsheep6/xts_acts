@@ -24,7 +24,7 @@ describe('PowerManagerPowerTest', function () {
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0010
      * @tc.name Power_Is_Screnn_On_Promise_Test
      * @tc.desc Checks whether the screen of a device is on or off (deprecated since 9)
-     * @tc.level: Level 3
+     * @tc.level: Level 1
      * @tc.type: Functiontion
      * @tc.size: MediumTest
      */
@@ -40,7 +40,7 @@ describe('PowerManagerPowerTest', function () {
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0020
      * @tc.name Power_Is_Screnn_On_Callback_Test
      * @tc.desc Checks whether the screen of a device is on or off (deprecated since 9)
-     * @tc.level: Level 3
+     * @tc.level: Level 1
      * @tc.type: Functiontion
      * @tc.size: MediumTest
      */
@@ -64,7 +64,7 @@ describe('PowerManagerPowerTest', function () {
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0030
      * @tc.name Power_Is_Active_Test
      * @tc.desc On and Off Screen and get the current screen on and off
-     * @tc.level: Level 3
+     * @tc.level: Level 1
      * @tc.type: Functiontion
      * @tc.size: MediumTest
      */
@@ -82,7 +82,7 @@ describe('PowerManagerPowerTest', function () {
      * @tc.number SUB_PowerSystem_PowerTest_JSTest_0040
      * @tc.name Power_Get_Power_Mode_Test
      * @tc.desc Gets and sets the power mode
-     * @tc.level: Level 3
+     * @tc.level: Level 1
      * @tc.type: Functiontion
      * @tc.size: MediumTest
      */

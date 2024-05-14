@@ -24,7 +24,7 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0010
      * @tc.name battery_soc_JSTest
      * @tc.desc Battery acquisition kit
-     * @tc.level: Level 3
+     * @tc.level: Level 1
      * @tc.type: Functiontion
      * @tc.size: MediumTest
      */
@@ -38,7 +38,7 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0020
      * @tc.name charging_status_JSTest
      * @tc.desc Battery charging kit
-     * @tc.level: Level 3
+     * @tc.level: Level 1
      * @tc.type: Functiontion
      * @tc.size: MediumTest
      */
@@ -52,7 +52,7 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0030
      * @tc.name health_status_JSTest
      * @tc.desc Get Battery Health Get KIT
-     * @tc.level: Level 3
+     * @tc.level: Level 1
      * @tc.type: Functiontion
      * @tc.size: MediumTest
      */

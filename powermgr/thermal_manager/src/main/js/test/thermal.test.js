@@ -24,7 +24,7 @@ export default function ThermalUnitTest() {
         /* @tc.number SUB_PowerSystem_ThermalManager_JSTest_0010
          * @tc.name Get_Thermal_Level_JSTest0010
          * @tc.desc Thermal acquisition kit
-         * @tc.level: Level 3
+         * @tc.level: Level 1
          * @tc.type: Functiontion
          * @tc.size: MediumTest
          */
@@ -44,7 +44,7 @@ export default function ThermalUnitTest() {
         /* @tc.number SUB_PowerSystem_ThermalManager_JSTest_0020
          * @tc.name SubscribeAndUnsubscribe_Thermal_Level_JSTest0020
          * @tc.desc Thermal acquisition kit
-         * @tc.level: Level 3
+         * @tc.level: Level 1
          * @tc.type: Functiontion
          * @tc.size: MediumTest
          */
@@ -68,7 +68,7 @@ export default function ThermalUnitTest() {
          * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0030
          * @tc.name Get_Thermal_Level_Cool_JSTest0030
          * @tc.desc Get device thermalLevel COOL
-         * @tc.level: Level 3
+         * @tc.level: Level 1
          * @tc.type: Functiontion
          * @tc.size: MediumTest
          */
@@ -82,7 +82,7 @@ export default function ThermalUnitTest() {
          * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0040
          * @tc.name Get_Thermal_Level_Normal_JSTest0040
          * @tc.desc Get device thermalLevel NORMAL
-         * @tc.level: Level 3
+         * @tc.level: Level 1
          * @tc.type: Functiontion
          * @tc.size: MediumTest
          */
