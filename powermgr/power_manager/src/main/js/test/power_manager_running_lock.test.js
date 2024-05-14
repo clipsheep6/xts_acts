@@ -24,6 +24,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0010
          * @tc.name Running_Lock_Lock_JSTest0010
          * @tc.desc Prevents the system from hibernating and sets the lock duration (deprecated since 9)
+         * @tc.level: Level 1
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Running_Lock_Lock_JSTest0010', 0, async function (done) {
             await runningLock.createRunningLock("Running_Lock_Lock_JSTest0010", runningLock.RunningLockType.BACKGROUND)
@@ -49,6 +52,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0020
          * @tc.name Running_Lock_used_JSTest0020
          * @tc.desc Checks whether a lock is held or in use (deprecated since 9)
+         * @tc.level: Level 1
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Running_Lock_used_JSTest0020', 0, async function (done) {
             await runningLock.createRunningLock("Running_Lock_used_JSTest0020", runningLock.RunningLockType.BACKGROUND)
@@ -71,6 +77,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0030
          * @tc.name Running_Lock_Unlock_JSTest0030
          * @tc.desc Release running lock (deprecated since 9)
+         * @tc.level: Level 1
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Running_Lock_Unlock_JSTest0030', 0, async function (done) {
             await runningLock.createRunningLock("Running_Lock_Unlock_JSTest0030", runningLock.RunningLockType.BACKGROUND)
@@ -98,10 +107,13 @@ export default function PowerManagerRunningLockTest() {
         })
 
         /**
-        * @tc.number SUB_PowerSystem_RunningLock_JSTest_0040
-        * @tc.name Running_Lock_Hold_IsHolding_UnHold_JSTest0040
-        * @tc.desc hold lock, is holding , unhold
-        */
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0040
+         * @tc.name Running_Lock_Hold_IsHolding_UnHold_JSTest0040
+         * @tc.desc hold lock, is holding , unhold
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
+         */
         it('Running_Lock_Hold_IsHolding_UnHold_JSTest0040', 0, async function (done) {
             try {
                 let isExec = false;
@@ -139,10 +151,13 @@ export default function PowerManagerRunningLockTest() {
         })
 
         /**
-        * @tc.number SUB_PowerSystem_RunningLock_JSTest_0050
-        * @tc.name Running_Lock_IsHolding_UnHold_JSTest0050
-        * @tc.desc hold lock, is holding , unhold
-        */
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0050
+         * @tc.name Running_Lock_IsHolding_UnHold_JSTest0050
+         * @tc.desc hold lock, is holding , unhold
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
+         */
         it('Running_Lock_IsHolding_UnHold_JSTest0050', 0, async function (done) {
             try {
                 let isExec = false;
@@ -176,10 +191,13 @@ export default function PowerManagerRunningLockTest() {
         })
 
         /**
-        * @tc.number SUB_PowerSystem_RunningLock_JSTest_0060
-        * @tc.name Running_Lock_Hold_IsHolding_UnHold_JSTest0060
-        * @tc.desc hold lock, is holding , unhold
-        */
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0060
+         * @tc.name Running_Lock_Hold_IsHolding_UnHold_JSTest0060
+         * @tc.desc hold lock, is holding , unhold
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
+         */
         it('Running_Lock_Hold_IsHolding_UnHold_JSTest0060', 0, async function (done) {
             try {
                 let isExec = false;
@@ -220,6 +238,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0070
          * @tc.name Enum_RunningLock_Type_Background_JSTest0070
          * @tc.desc The lock type is BACKGROUND
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Enum_RunningLock_Type_Background_JSTest0070', 0, function () {
             let runningLockType = runningLock.RunningLockType.BACKGROUND;
@@ -232,6 +253,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0080
          * @tc.name Enum_RunningLock_Type_Proximityscreencontrol_JSTest0080
          * @tc.desc The lock type is PROXIMITY_SCREEN_CONTROL
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Enum_RunningLock_Type_Proximityscreencontrol_JSTest0080', 0, function () {
             let runningLockType = runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL;
@@ -244,6 +268,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0090
          * @tc.name Is_Runninglock_Type_Supported_Promise_JSTest0090
          * @tc.desc Checks whether the specified RunningLockType is supported (deprecated since 9)
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Is_Runninglock_Type_Supported_Promise_JSTest0090', 0, async function (done) {
             await runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL)
@@ -264,6 +291,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0100
          * @tc.name Is_Runninglock_Type_Supported_Promise_JSTest0100
          * @tc.desc Checks whether the specified RunningLockType is supported (deprecated since 9)
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Is_Runninglock_Type_Supported_Promise_JSTest0100', 0, async function (done) {
             await runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND)
@@ -284,6 +314,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0110
          * @tc.name Is_Runninglock_Type_Supported_Callback_JSTest0110
          * @tc.desc Checks whether the specified RunningLockType is supported (deprecated since 9)
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Is_Runninglock_Type_Supported_Callback_JSTest0110', 0, async function (done) {
             runningLock.isRunningLockTypeSupported(runningLock.RunningLockType.BACKGROUND, (error, supported) => {
@@ -303,6 +336,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0120
          * @tc.name Is_Runninglock_Type_Supported_Callback_JSTest0120
          * @tc.desc Checks whether the specified RunningLockType is supported (deprecated since 9)
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Is_Runninglock_Type_Supported_Callback_JSTest0120', 0, async function (done) {
             runningLock.isRunningLockTypeSupported(3, (error, supported) => {
@@ -322,6 +358,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0130
          * @tc.name Is_Supported_JSTest0130
          * @tc.desc Checks whether the specified RunningLockType is supported.
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Is_Supported_JSTest0130', 0, async function (done) {
             try {
@@ -339,6 +378,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0140
          * @tc.name Is_Supported_JSTest0140
          * @tc.desc Checks whether the specified RunningLockType is supported.
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Is_Supported_JSTest0140', 0, async function (done) {
             try {
@@ -356,6 +398,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0150
          * @tc.name Is_Supported_JSTest0150
          * @tc.desc Checks whether the specified RunningLockType is supported.
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Is_Supported_JSTest0150', 0, async function (done) {
             try {
@@ -373,6 +418,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0160
          * @tc.name Is_Supported_JSTest0160
          * @tc.desc Checks whether the specified RunningLockType is supported.
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Is_Supported_JSTest0160', 0, async function (done) {
             try {
@@ -390,6 +438,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0170
          * @tc.name Create_Running_Lock_Promise_JSTest0170
          * @tc.desc Create running lock promise (deprecated since 9)
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Create_Running_Lock_Promise_JSTest0170', 0, async function (done) {
             await runningLock.createRunningLock("Create_Running_Lock_Promise_JSTest0170", runningLock.RunningLockType.BACKGROUND)
@@ -409,6 +460,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0180
          * @tc.name Create_Running_Lock_CallBack_JSTest0180
          * @tc.desc Create running lock callback (deprecated since 9)
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Create_Running_Lock_CallBack_JSTest0180', 0, async function (done) {
             runningLock.createRunningLock("Create_Running_Lock_CallBack_JSTest0180", runningLock.RunningLockType.PROXIMITY_SCREEN_CONTROL,
@@ -433,10 +487,13 @@ export default function PowerManagerRunningLockTest() {
         })
 
         /**
-        * @tc.number SUB_PowerSystem_RunningLock_JSTest_0190
-        * @tc.name Create_Running_Lock_Promise_JSTest0190
-        * @tc.desc Create lock promise
-        */
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0190
+         * @tc.name Create_Running_Lock_Promise_JSTest0190
+         * @tc.desc Create lock promise
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
+         */
         it('Create_Running_Lock_Promise_JSTest0190', 0, async function (done) {
             try {
                 let isExec = false;
@@ -467,10 +524,13 @@ export default function PowerManagerRunningLockTest() {
         })
 
         /**
-        * @tc.number SUB_PowerSystem_RunningLock_JSTest_0200
-        * @tc.name Create_Running_Lock_Promise_JSTest0200
-        * @tc.desc Create lock promise
-        */
+         * @tc.number SUB_PowerSystem_RunningLock_JSTest_0200
+         * @tc.name Create_Running_Lock_Promise_JSTest0200
+         * @tc.desc Create lock promise
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
+         */
         it('Create_Running_Lock_Promise_JSTest0200', 0, async function (done) {
             try {
                 let isExec = false;
@@ -503,6 +563,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0210
          * @tc.name Create_Running_Lock_Promise_Invalid_JSTest0210
          * @tc.desc Create lock input invalid value
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Create_Running_Lock_Promise_Invalid_JSTest0210', 0, async function (done) {
             try {
@@ -523,6 +586,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0220
          * @tc.name Create_Running_Lock_Promise_Invalid_JSTest0220
          * @tc.desc Create lock input invalid value
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Create_Running_Lock_Promise_Invalid_JSTest0220', 0, async function (done) {
             try {
@@ -544,6 +610,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0230
          * @tc.name Create_Running_Lock_Promise_Invalid_JSTest0230
          * @tc.desc Create lock input invalid value
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Create_Running_Lock_Promise_Invalid_JSTest0230', 0, async function (done) {
             try {
@@ -565,6 +634,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0240
          * @tc.name Create_Running_Lock_Callback_JSTest0240
          * @tc.desc Create lock callback
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Create_Running_Lock_Callback_JSTest0240', 0, async function (done) {
             try {
@@ -586,6 +658,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0250
          * @tc.name Create_Running_Lock_Callback_JSTest0250
          * @tc.desc Create lock callback
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Create_Running_Lock_Callback_JSTest0250', 0, async function (done) {
             try {
@@ -607,6 +682,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0260
          * @tc.name Create_Running_Lock_Callback_Invalid_JSTest0260
          * @tc.desc Create lock input invalid value
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Create_Running_Lock_Callback_Invalid_JSTest0260', 0, async function (done) {
             try {
@@ -627,6 +705,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0270
          * @tc.name Create_Running_Lock_Callback_Invalid_JSTest0270
          * @tc.desc Create lock input invalid value
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Create_Running_Lock_Callback_Invalid_JSTest0270', 0, async function (done) {
             try {
@@ -649,6 +730,9 @@ export default function PowerManagerRunningLockTest() {
          * @tc.number SUB_PowerSystem_RunningLock_JSTest_0280
          * @tc.name Create_Running_Lock_Callback_Invalid_JSTest0280
          * @tc.desc Create lock input invalid value
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Create_Running_Lock_Callback_Invalid_JSTest0280', 0, async function (done) {
             try {

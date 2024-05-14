@@ -24,6 +24,9 @@ export default function ThermalUnitTest() {
         /* @tc.number SUB_PowerSystem_ThermalManager_JSTest_0010
          * @tc.name Get_Thermal_Level_JSTest0010
          * @tc.desc Thermal acquisition kit
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Get_Thermal_Level_JSTest0010', 0, async function (done) {
             console.info("enter");
@@ -41,6 +44,9 @@ export default function ThermalUnitTest() {
         /* @tc.number SUB_PowerSystem_ThermalManager_JSTest_0020
          * @tc.name SubscribeAndUnsubscribe_Thermal_Level_JSTest0020
          * @tc.desc Thermal acquisition kit
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('SubscribeAndUnsubscribe_Thermal_Level_JSTest0020', 0, async function (done) {
             thermal.subscribeThermalLevel((level) => {
@@ -62,6 +68,9 @@ export default function ThermalUnitTest() {
          * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0030
          * @tc.name Get_Thermal_Level_Cool_JSTest0030
          * @tc.desc Get device thermalLevel COOL
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Get_Thermal_Level_Cool_JSTest0030', 0, function () {
             let thermalLevel = thermal.ThermalLevel.COOL;
@@ -73,6 +82,9 @@ export default function ThermalUnitTest() {
          * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0040
          * @tc.name Get_Thermal_Level_Normal_JSTest0040
          * @tc.desc Get device thermalLevel NORMAL
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Get_Thermal_Level_Normal_JSTest0040', 0, function () {
             let thermalLevel = thermal.ThermalLevel.NORMAL;
@@ -84,6 +96,9 @@ export default function ThermalUnitTest() {
          * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0050
          * @tc.name Get_Thermal_Level_Warm_JSTest0050
          * @tc.desc Get device thermalLevel WARM
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Get_Thermal_Level_Warm_JSTest0050', 0, function () {
             let thermalLevel = thermal.ThermalLevel.WARM;
@@ -95,6 +110,9 @@ export default function ThermalUnitTest() {
          * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0060
          * @tc.name Get_Thermal_Level_Hot_JSTest0060
          * @tc.desc Get device thermalLevel HOT
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Get_Thermal_Level_Hot_JSTest0060', 0, function () {
             let thermalLevel = thermal.ThermalLevel.HOT;
@@ -106,6 +124,9 @@ export default function ThermalUnitTest() {
          * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0070
          * @tc.name Get_Thermal_Level_OverHeated_JSTest0070
          * @tc.desc Get device thermalLevel OVERHEATED
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Get_Thermal_Level_OverHeated_JSTest0070', 0, function () {
             let thermalLevel = thermal.ThermalLevel.OVERHEATED;
@@ -117,6 +138,9 @@ export default function ThermalUnitTest() {
          * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0080
          * @tc.name Get_Thermal_Level_Warning_JSTest0080
          * @tc.desc Get device thermalLevel WARNING
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Get_Thermal_Level_Warning_JSTest0080', 0, function () {
             let thermalLevel = thermal.ThermalLevel.WARNING;
@@ -128,6 +152,9 @@ export default function ThermalUnitTest() {
          * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0090
          * @tc.name Get_Thermal_Level_Emergency_JSTest0090
          * @tc.desc Get device thermalLevel EMERGENCY
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Get_Thermal_Level_Emergency_JSTest0090', 0, function () {
             let thermalLevel = thermal.ThermalLevel.EMERGENCY;
@@ -139,6 +166,9 @@ export default function ThermalUnitTest() {
          * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0100
          * @tc.name Get_Thermal_Level_Escape_JSTest0100
          * @tc.desc Get device thermalLevel ESCAPE
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Get_Thermal_Level_Escape_JSTest0100', 0, function () {
             let thermalLevel = thermal.ThermalLevel.ESCAPE;
@@ -146,9 +176,13 @@ export default function ThermalUnitTest() {
             expect(thermalLevel === 7).assertTrue();
         })
 
-        /* @tc.number SUB_PowerSystem_ThermalManager_JSTest_0110
+        /** 
+         * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0110
          * @tc.name Get_Level_JSTest0110
          * @tc.desc Thermal acquisition kit
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Get_Level_JSTest0110', 0, async function (done) {
             let level = thermal.getLevel();
@@ -157,9 +191,13 @@ export default function ThermalUnitTest() {
             done();
         })
 
-        /* @tc.number SUB_PowerSystem_ThermalManager_JSTest_0120
+        /** 
+         * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0120
          * @tc.name Register_Thermal_Level_Callback_JSTest0120
          * @tc.desc Thermal acquisition kit
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Register_Thermal_Level_Callback_JSTest0120', 0, async function (done) {
             try {
@@ -176,9 +214,13 @@ export default function ThermalUnitTest() {
             }
         })
 
-        /* @tc.number SUB_PowerSystem_ThermalManager_JSTest_0130
+        /** 
+         * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0130
          * @tc.name Register_Thermal_Level_Callback_JSTest0130
          * @tc.desc Thermal acquisition kit
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
          */
         it('Register_Thermal_Level_Callback_JSTest0130', 0, async function (done) {
             try {
@@ -192,10 +234,11 @@ export default function ThermalUnitTest() {
             }
         })
 
-        /* @tc.number SUB_PowerSystem_ThermalManager_JSTest_0140
-        * @tc.name UnRegister_Thermal_Level_Callback_JSTest0140
-        * @tc.desc Thermal acquisition kit
-        */
+        /** 
+         * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0140
+         * @tc.name UnRegister_Thermal_Level_Callback_JSTest0140
+         * @tc.desc Thermal acquisition kit
+         */
         it('UnRegister_Thermal_Level_Callback_JSTest0140', 0, async function (done) {
             try {
                 thermal.unregisterThermalLevelCallback('')
@@ -208,10 +251,14 @@ export default function ThermalUnitTest() {
             }
         })
 
-        /* @tc.number SUB_PowerSystem_ThermalManager_JSTest_0150
-        * @tc.name UnRegister_Thermal_Level_Callback_JSTest0150
-        * @tc.desc Thermal acquisition kit
-        */
+        /** 
+         * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0150
+         * @tc.name UnRegister_Thermal_Level_Callback_JSTest0150
+         * @tc.desc Thermal acquisition kit
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
+         */
         it('UnRegister_Thermal_Level_Callback_JSTest0150', 0, async function (done) {
             try {
                 thermal.unregisterThermalLevelCallback()
@@ -223,10 +270,14 @@ export default function ThermalUnitTest() {
             }
         })
 
-        /* @tc.number SUB_PowerSystem_ThermalManager_JSTest_0160
-        * @tc.name UnRegister_Thermal_Level_Callback_JSTest0160
-        * @tc.desc Thermal acquisition kit
-        */
+        /**
+         * @tc.number SUB_PowerSystem_ThermalManager_JSTest_0160
+         * @tc.name UnRegister_Thermal_Level_Callback_JSTest0160
+         * @tc.desc Thermal acquisition kit
+         * @tc.level: Level 3
+         * @tc.type: Functiontion
+         * @tc.size: MediumTest
+         */
         it('UnRegister_Thermal_Level_Callback_JSTest0160', 0, async function (done) {
             try {
                 thermal.unregisterThermalLevelCallback(() => {

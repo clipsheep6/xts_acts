@@ -24,6 +24,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0010
      * @tc.name battery_soc_JSTest
      * @tc.desc Battery acquisition kit
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('battery_soc_JSTest', 0, function () {
         let batterySoc = batteryInfo.batterySOC;
@@ -35,6 +38,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0020
      * @tc.name charging_status_JSTest
      * @tc.desc Battery charging kit
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('charging_status_JSTest', 0, function () {
         let chargingStatus = batteryInfo.chargingStatus;
@@ -46,6 +52,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0030
      * @tc.name health_status_JSTest
      * @tc.desc Get Battery Health Get KIT
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('health_status_JSTest', 0, function () {
         let healthStatus = batteryInfo.healthStatus;
@@ -57,6 +66,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0040
      * @tc.name plugged_type_JSTest
      * @tc.desc Obtaining the SUB Connection Type KIT
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('plugged_type_JSTest', 0, function () {
         let pluggedType = batteryInfo.pluggedType;
@@ -68,6 +80,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0050
      * @tc.name voltage_JSTest
      * @tc.desc Obtaining the Voltage Interface KIT
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('voltage_JSTest', 0, function () {
         let voltage = batteryInfo.voltage;
@@ -79,6 +94,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0060
      * @tc.name technology_JSTest
      * @tc.desc Obtaining the Battery Technology Interface KIT
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('technology_JSTest', 0, function () {
         let technology = batteryInfo.technology;
@@ -90,6 +108,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0070
      * @tc.name battery_temperature_JSTest
      * @tc.desc BatteryTemperature values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('battery_temperature_JSTest', 0, function () {
         let batteryTemperature = batteryInfo.batteryTemperature;
@@ -101,6 +122,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0080
      * @tc.name enum_health_state_JSTest_unknown
      * @tc.desc BatteryHealthState values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_health_state_JSTest_unknown', 0, function () {
         let batteryHealthState = batteryInfo.BatteryHealthState.UNKNOWN;
@@ -112,6 +136,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0090
      * @tc.name enum_health_state_JSTest_good
      * @tc.desc BatteryHealthState values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_health_state_JSTest_good', 0, function () {
         let batteryHealthState = batteryInfo.BatteryHealthState.GOOD;
@@ -123,6 +150,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0100
      * @tc.name enum_health_state_JSTest_overheat
      * @tc.desc BatteryHealthState values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_health_state_JSTest_overheat', 0, function () {
         let batteryHealthState = batteryInfo.BatteryHealthState.OVERHEAT;
@@ -134,6 +164,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0110
      * @tc.name enum_health_state_JSTest_overvoltage
      * @tc.desc BatteryHealthState values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_health_state_JSTest_overvoltage', 0, function () {
         let batteryHealthState = batteryInfo.BatteryHealthState.OVERVOLTAGE;
@@ -145,6 +178,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0120
      * @tc.name enum_health_state_JSTest_cold
      * @tc.desc BatteryHealthState values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_health_state_JSTest_cold', 0, function () {
         let batteryHealthState = batteryInfo.BatteryHealthState.COLD;
@@ -156,6 +192,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0130
      * @tc.name enum_health_state_JSTest_dead
      * @tc.desc BatteryHealthState values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_health_state_JSTest_dead', 0, function () {
         let batteryHealthState = batteryInfo.BatteryHealthState.DEAD;
@@ -167,6 +206,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0140
      * @tc.name enum_charge_state_JSTest_none
      * @tc.desc BatteryChargeState values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_charge_state_JSTest_none', 0, function () {
         let batteryChargeState = batteryInfo.BatteryChargeState.NONE;
@@ -178,6 +220,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0150
      * @tc.name enum_charge_state_JSTest_enable
      * @tc.desc BatteryChargeState values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_charge_state_JSTest_enable', 0, function () {
         let batteryChargeState = batteryInfo.BatteryChargeState.ENABLE;
@@ -189,6 +234,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0160
      * @tc.name enum_charge_state_JSTest_disable
      * @tc.desc BatteryChargeState values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_charge_state_JSTest_disable', 0, function () {
         let batteryChargeState = batteryInfo.BatteryChargeState.DISABLE;
@@ -200,6 +248,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0170
      * @tc.name enum_charge_state_JSTest_full
      * @tc.desc BatteryChargeState values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_charge_state_JSTest_full', 0, function () {
         let batteryChargeState = batteryInfo.BatteryChargeState.FULL;
@@ -211,6 +262,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0180
      * @tc.name enum_plugged_type_JSTest_none
      * @tc.desc BatteryPluggedType values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_plugged_type_JSTest_none', 0, function () {
         let batteryPluggedType = batteryInfo.BatteryPluggedType.NONE;
@@ -222,6 +276,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0190
      * @tc.name enum_plugged_type_JSTest_ac
      * @tc.desc BatteryPluggedType values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_plugged_type_JSTest_ac', 0, function () {
         let batteryPluggedType = batteryInfo.BatteryPluggedType.AC;
@@ -233,6 +290,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0200
      * @tc.name enum_plugged_type_JSTest_usb
      * @tc.desc BatteryPluggedType values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_plugged_type_JSTest_usb', 0, function () {
         let batteryPluggedType = batteryInfo.BatteryPluggedType.USB;
@@ -244,6 +304,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0210
      * @tc.name enum_plugged_type_JSTest_wireless
      * @tc.desc BatteryPluggedType values Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_plugged_type_JSTest_wireless', 0, function () {
         let batteryPluggedType = batteryInfo.BatteryPluggedType.WIRELESS;
@@ -255,6 +318,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0220
      * @tc.name is_battery_present_JSTest
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('is_battery_present_JSTest', 0, function () {
         let isBatteryPresent = batteryInfo.isBatteryPresent;
@@ -270,6 +336,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0230
      * @tc.name batterylevel_JSTest
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('batterylevel_JSTest', 0, function () {
         let batteryLevel = batteryInfo.batteryCapacityLevel;
@@ -282,6 +351,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0240
      * @tc.name enum_level_state_JSTest_full
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_level_state_JSTest_full', 0, function () {
         let batteryLevelState = batteryInfo.BatteryCapacityLevel.LEVEL_FULL;
@@ -293,6 +365,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0250
      * @tc.name enum_level_state_JSTest_high
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_level_state_JSTest_high', 0, function () {
         let batteryLevelState = batteryInfo.BatteryCapacityLevel.LEVEL_HIGH;
@@ -304,6 +379,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0260
      * @tc.name enum_level_state_JSTest_normal
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_level_state_JSTest_normal', 0, function () {
         let batteryLevelState = batteryInfo.BatteryCapacityLevel.LEVEL_NORMAL;
@@ -315,6 +393,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0270
      * @tc.name enum_level_state_JSTest_low
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_level_state_JSTest_low', 0, function () {
         let batteryLevelState = batteryInfo.BatteryCapacityLevel.LEVEL_LOW;
@@ -326,6 +407,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0280
      * @tc.name enum_level_state_JSTest_warning
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_level_state_JSTest_warning', 0, function () {
         let batteryLevelState = batteryInfo.BatteryCapacityLevel.LEVEL_WARNING;
@@ -337,6 +421,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0290
      * @tc.name enum_level_state_JSTest_critical
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_level_state_JSTest_critical', 0, function () {
         let batteryLevelState = batteryInfo.BatteryCapacityLevel.LEVEL_CRITICAL;
@@ -348,6 +435,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0300
      * @tc.name enum_level_state_JSTest_shutdown
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('enum_level_state_JSTest_shutdown', 0, function () {
         let batteryLevelState = batteryInfo.BatteryCapacityLevel.LEVEL_SHUTDOWN;
@@ -359,6 +449,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0310
      * @tc.name CommonEventBatteryChangedCode_EXTRA_SOC_JSTest
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('CommonEventBatteryChangedCode_EXTRA_SOC_JSTest', 0, function () {
         console.info('CommonEventBatteryChangedCode_EXTRA_SOC = '
@@ -370,6 +463,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0320
      * @tc.name CommonEventBatteryChangedCode_EXTRA_CHARGE_STATE_JSTest
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('CommonEventBatteryChangedCode_EXTRA_CHARGE_STATE_JSTest', 0, function () {
         console.info('CommonEventBatteryChangedCode_EXTRA_CHARGE_STATE = '
@@ -381,6 +477,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0330
      * @tc.name CommonEventBatteryChangedCode_EXTRA_HEALTH_STATE_JSTest
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('CommonEventBatteryChangedCode_EXTRA_HEALTH_STATE_JSTest', 0, function () {
         console.info('CommonEventBatteryChangedCode_EXTRA_HEALTH_STATE = '
@@ -392,6 +491,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0340
      * @tc.name CommonEventBatteryChangedCode_EXTRA_PLUGGED_TYPE_JSTest
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('CommonEventBatteryChangedCode_EXTRA_PLUGGED_TYPE_JSTest', 0, function () {
         console.info('CommonEventBatteryChangedCode_EXTRA_PLUGGED_TYPE = '
@@ -403,6 +505,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0350
      * @tc.name CommonEventBatteryChangedCode_EXTRA_VOLTAGE_JSTest
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('CommonEventBatteryChangedCode_EXTRA_VOLTAGE_JSTest', 0, function () {
         console.info('CommonEventBatteryChangedCode_EXTRA_VOLTAGE = '
@@ -414,6 +519,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0360
      * @tc.name CommonEventBatteryChangedCode_EXTRA_TECHNOLOGY_JSTest
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('CommonEventBatteryChangedCode_EXTRA_TECHNOLOGY_JSTest', 0, function () {
         console.info('CommonEventBatteryChangedCode_EXTRA_TECHNOLOGY = '
@@ -425,6 +533,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0370
      * @tc.name CommonEventBatteryChangedCode_EXTRA_TEMPERATURE_JSTest
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('CommonEventBatteryChangedCode_EXTRA_TEMPERATURE_JSTest', 0, function () {
         console.info('CommonEventBatteryChangedCode_EXTRA_TEMPERATURE = '
@@ -436,6 +547,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0380
      * @tc.name CommonEventBatteryChangedCode_EXTRA_PRESENT_JSTest
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('CommonEventBatteryChangedCode_EXTRA_PRESENT_JSTest', 0, function () {
         console.info('CommonEventBatteryChangedCode_EXTRA_PRESENT = '
@@ -447,6 +561,9 @@ describe('BatteryInfoTest', function () {
      * @tc.number SUB_PowerSystem_BatteryInfo_JSTest_0390
      * @tc.name CommonEventBatteryChangedCode_CAPACITY_LEVEL_JSTest
      * @tc.desc Battry Present Interface Test
+     * @tc.level: Level 3
+     * @tc.type: Functiontion
+     * @tc.size: MediumTest
      */
     it('CommonEventBatteryChangedCode_CAPACITY_LEVEL_JSTest', 0, function () {
         console.info('CommonEventBatteryChangedCode_CAPACITY_LEVEL = '
