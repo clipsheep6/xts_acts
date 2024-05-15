@@ -1,0 +1,48 @@
+{
+    "description": "Configuration for aceceshi Tests",
+    "driver": {
+        "type": "OHJSUnitTest",
+        "test-timeout": "2000000",
+        "bundle-name": "com.acts.switchuserextensiontest",
+        "module-name": "entry_test",
+        "shell-timeout": "2000000",
+        "testcase-timeout": "100000"
+    },
+    "kits": [
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "param set persist.sys.suspend_manager_enabled false",
+                "reboot",
+                "acm create -n user101 -t normal",
+                "power-shell wakeup",
+                "uinput -T -d 300 600 -m 300 600 300 100 -u 300 100"
+            ],
+            "teardown-command": [
+                "acm delete -i 101"
+            ]
+        },
+        {
+            "test-file-name": [
+                "ActsSwitchUserExtensionTest.hap",
+                "ActsSwitchUserExtensionRely.hap"
+            ],
+            "type": "AppInstallKit",
+            "cleanup-apps": true
+        },
+        {
+            "type": "ShellKit",
+            "run-command": [
+                "power-shell setmode 602",
+                "hilog -Q pidoff",
+                "hilog -Q domainoff",
+                "hilog -b D",
+                "setenforce 0"
+            ],
+            "teardown-command": [
+                "param set persist.sys.suspend_manager_enabled true",
+                "power-shell setmode 601"
+            ]
+        }
+    ]
+}
