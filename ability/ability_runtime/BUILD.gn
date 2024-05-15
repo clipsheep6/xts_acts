@@ -74,6 +74,8 @@ group("ability_runtime") {
       "faapicover:faapicover",
       "featureability:featureability",
       "freeinstalltest:freeinstalltest",
+      "getrunningprocessinformation:getrunningprocessinformation",
+      "getrunningprocessinformationcase:getrunningprocessinformationcase",
       "newwant:newwant",
       "registerjserror:registerjserror",
       "shareextensionability:actsshareextensionability",
