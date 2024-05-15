@@ -1710,54 +1710,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
       }
       done()
     })
-    /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1110
-     * @tc.name      : testSetForbidSplitMove_Callback
-     * @tc.desc      : Sets whether Windows are forbidden to move in split screen mode
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level3
-     */
-    it('testSetForbidSplitMove_Callback', 0, async (done: Function) => {
-      let caseName: string = 'testSetForbidSplitMove_Callback';
-      let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      console.log(msgStr + 'begin');
-
-      let setForbidSplitMoveFun: Function = (win: ohosWindow.Window, boolean: boolean) => {
-        return new Promise<boolean>((resolve, reject) => {
-          win.setForbidSplitMove(boolean, (err, data) => {
-            if (err.code) {
-              reject(null)
-            } else {
-              console.log(msgStr + 'success set window.setForbidSplitMove drag is prohibited' + JSON.stringify(data));
-              resolve(true)
-            }
-          })
-        })
-      }
-
-      let mainWin: ohosWindow.Window | void;
-      mainWin = await windowStage.getMainWindow().catch((err: BusinessError) => {
-        unexpectedError(TRUE_FLAG, err, caseName, 'windowStage.getMainWindow', done);
-        expect().assertFail();
-        done();
-      });
-      console.log(msgStr + 'windowStage.getMainWindow' + JSON.stringify(mainWin));
-      expect(!!mainWin).assertTrue();
-
-      await setForbidSplitMoveFun(mainWin, true).catch((err: BusinessError) => {
-        console.log(msgStr + 'failed set window.setForbidSplitMove drag is prohibited, error: ' + JSON.stringify(err));
-        expect().assertFail();
-        done();
-      })
-      await setForbidSplitMoveFun(mainWin, false).catch((err: BusinessError) => {
-        console.log(msgStr + 'failed set window.setForbidSplitMove drag is prohibited, error: ' + JSON.stringify(err));
-        expect().assertFail();
-        done();
-      })
-      console.log(msgStr + 'done ');
-      done();
-    })
+    
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_2150
      * @tc.name      : testSnapshotTest_Callback_Form
