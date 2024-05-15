@@ -28,6 +28,8 @@ describe("SensorJsTest_sensor_41", function () {
             expect(false).assertTrue();
         }
         expect(typeof (data.intensity)).assertEqual("number");
+        expect(typeof (data.colorTemperature)).assertEqual("number");
+        expect(typeof (data.infraredLuminance)).assertEqual("number");
         expect(typeof (data.timestamp)).assertEqual("number");
     }
 
@@ -42,6 +44,8 @@ describe("SensorJsTest_sensor_41", function () {
             expect(false).assertTrue();
         }
         expect(typeof (data.intensity)).assertEqual("number");
+        expect(typeof (data.colorTemperature)).assertEqual("number");
+        expect(typeof (data.infraredLuminance)).assertEqual("number");
         expect(typeof (data.timestamp)).assertEqual("number");
     }
 
@@ -206,6 +210,8 @@ describe("SensorJsTest_sensor_41", function () {
                 expect(false).assertTrue();
             }
             expect(typeof (data.intensity)).assertEqual("number");
+            expect(typeof (data.colorTemperature)).assertEqual("number");
+            expect(typeof (data.infraredLuminance)).assertEqual("number");
             expect(typeof (data.timestamp)).assertEqual("number");
         }
         try{
@@ -319,6 +325,8 @@ describe("SensorJsTest_sensor_41", function () {
                 expect(false).assertTrue();
             }
             expect(typeof (data.intensity)).assertEqual("number");
+            expect(typeof (data.colorTemperature)).assertEqual("number");
+            expect(typeof (data.infraredLuminance)).assertEqual("number");
             expect(typeof (data.timestamp)).assertEqual("number");
             done();
         }
@@ -392,6 +400,8 @@ describe("SensorJsTest_sensor_41", function () {
                 expect(false).assertTrue();
             }
             expect(typeof (data.intensity)).assertEqual("number");
+            expect(typeof (data.colorTemperature)).assertEqual("number");
+            expect(typeof (data.infraredLuminance)).assertEqual("number");
             expect(typeof (data.timestamp)).assertEqual("number");
         }
         try{
@@ -477,6 +487,8 @@ describe("SensorJsTest_sensor_41", function () {
                             expect(false).assertTrue();
                         }
                         expect(typeof (data.intensity)).assertEqual("number");
+                        expect(typeof (data.colorTemperature)).assertEqual("number");
+                        expect(typeof (data.infraredLuminance)).assertEqual("number");
                         expect(typeof (data.timestamp)).assertEqual("number");
                     });
                     sensor.on(sensor.SensorId.AMBIENT_LIGHT, (data)=>{
@@ -568,6 +580,8 @@ describe("SensorJsTest_sensor_41", function () {
                             expect(false).assertTrue();
                         }
                         expect(typeof (data.intensity)).assertEqual("number");
+                        expect(typeof (data.colorTemperature)).assertEqual("number");
+                        expect(typeof (data.infraredLuminance)).assertEqual("number");
                         expect(typeof (data.timestamp)).assertEqual("number");
                     }, {'interval': 100000000});
                     sensor.once(sensor.SensorId.AMBIENT_LIGHT, (data)=>{
@@ -626,6 +640,8 @@ describe("SensorJsTest_sensor_41", function () {
                             expect(false).assertTrue();
                         }
                         expect(typeof (data.intensity)).assertEqual("number");
+                        expect(typeof (data.colorTemperature)).assertEqual("number");
+                        expect(typeof (data.infraredLuminance)).assertEqual("number");
                         expect(typeof (data.timestamp)).assertEqual("number");
                     }, {'interval': 100000000});
                     sensor.on(sensor.SensorId.AMBIENT_LIGHT, (data)=>{
@@ -639,7 +655,8 @@ describe("SensorJsTest_sensor_41", function () {
                             expect(false).assertTrue();
                         }
                         expect(typeof (data.intensity)).assertEqual("number");
-                        expect(typeof (data.timestamp)).assertEqual("number");
+                        expect(typeof (data.colorTemperature)).assertEqual("number");
+                        expect(typeof (data.infraredLuminance)).assertEqual("number");
                         expect(typeof (data.timestamp)).assertEqual("number");
                     }, {'interval': 100000000});
                     setTimeout(()=>{
