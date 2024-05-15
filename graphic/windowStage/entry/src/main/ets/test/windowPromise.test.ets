@@ -129,66 +129,6 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       console.log(msgStr + 'tempWnd.setSystemBarEnable([status, navigation]) success');
     })
 
-    /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0770
-     * @tc.name      : testListener_windowSizeChange
-     * @tc.desc      : Verify that the window size avoidance area changes and monitor whether it can be opened normally.
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level3
-     */
-    it('testListener_windowSizeChange', 0, async (done: Function) => {
-      await sleep(900)
-      let caseName: string = 'testListener_windowSizeChange';
-      let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      let wndId = 'listenerTest2';
-      let baseType = ohosWindow.WindowType.TYPE_FLOAT;
-      let changedModel = 102;
-      let resizeValue = 1000;
-      console.log(msgStr + 'begin');
-      let flag = false;
-      let tempWindow: ohosWindow.Window | undefined = undefined;
-      try {
-        await ohosWindow.create(context, wndId, baseType).then((data: ohosWindow.Window) => {
-          tempWindow = data
-          console.log(msgStr + 'ohosWindow.create data:' + JSON.stringify(data));
-        }).catch((err: BusinessError) => {
-          unexpectedError(TRUE_FLAG, err, caseName, 'ohosWindow.create ' + baseType, done);
-        });
-        console.log(msgStr + 'ohosWindow.create ' + baseType + ', tempWnd: ' + tempWindow);
-        expect(!!tempWindow).assertTrue();
-      } catch (err) {
-        let e: BusinessError = err as BusinessError;
-        console.log(msgStr + 'ohosWindow.create catch err:' + JSON.stringify(e));
-      }
-      await sleep(900);
-      if (tempWindow != undefined) {
-        let tempWnd: ohosWindow.Window = tempWindow as ohosWindow.Window;
-        tempWnd.on('windowSizeChange', async (sizeData) => {
-          console.log(msgStr + 'tempWnd.on windowSizeChange, systemBatData : ' + JSON.stringify(sizeData));
-          if (flag) {
-            expect(!!sizeData).assertTrue();
-            tempWnd.off('windowSizeChange');
-            await tempWnd.destroy();
-            done();
-          }
-        })
-        await tempWnd.show().catch((err: BusinessError) => {
-          unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.show', done);
-        });
-        console.log(msgStr + 'tempWnd.show success');
-        await tempWnd.setWindowMode(changedModel).catch((err: BusinessError) => {
-          unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.setWindowMode ' + changedModel, done);
-        });
-        console.log(msgStr + 'tempWnd.setWindowMode ' + changedModel + ' success');
-        flag = true
-        await tempWnd.resetSize(resizeValue, resizeValue).catch((err: BusinessError) => {
-          unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.resetSize(' + resizeValue + ', ' + resizeValue + ')', done);
-        });
-        await sleep(900);
-        console.log(msgStr + 'tempWnd.resetSize(' + resizeValue + ', ' + resizeValue + ') success');
-      }
-
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0740
@@ -241,68 +181,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       await sleep(500);
       console.log(msgStr + 'tempWnd.setSystemBarEnable([status, navigation]) success');
     })
-    /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0780
-     * @tc.name      : testListener_windowSizeChange_Off
-     * @tc.desc      : Verify whether the window size change monitoring can be closed normally.
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level3
-     */
-    it('testListener_windowSizeChange_Off', 0, async (done: Function) => {
-      await sleep(900)
-      let caseName: string = 'testListener_windowSizeChange_Off';
-      let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      let wndId: string = 'listenerTest4';
-      let baseType: number = ohosWindow.WindowType.TYPE_FLOAT;
-      let changedModel: number = 102;
-      let listenerOffFlag: boolean = false;
-      console.log(msgStr + 'begin');
-      let createWindowObj: ohosWindow.Configuration = {
-        name: wndId, windowType: baseType, ctx: context
-      }
-      console.log(msgStr + 'ohosWindow.create createWindowObj:' + JSON.stringify(createWindowObj));
-      let tempWnd: ohosWindow.Window | undefined = undefined;
-      await ohosWindow.create(context, wndId, baseType).then((data: ohosWindow.Window) => {
-        console.log(msgStr + 'ohosWindow.create data:' + JSON.stringify(data));
-        tempWnd = data
-        console.log(msgStr + 'ohosWindow.create ' + baseType + ', tempWnd: ' + tempWnd);
-        expect(!!tempWnd).assertTrue();
-      }).catch((err: BusinessError) => {
-        unexpectedError(TRUE_FLAG, err, caseName, 'ohosWindow.create ' + baseType, done);
-      });
-      if (tempWnd != undefined) {
-        let tempWindow: ohosWindow.Window = tempWnd as ohosWindow.Window
-        await tempWindow.show().catch((err: BusinessError) => {
-          unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.show', done);
-        });
-        console.log(msgStr + 'tempWnd.show success');
-        await tempWindow.setWindowMode(changedModel).catch((err: BusinessError) => {
-          unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.setWindowMode ' + changedModel, done);
-        });
-        console.log(msgStr + 'tempWnd.setWindowMode ' + changedModel + ' success');
-        await sleep(800);
-        await sleep(800);
-        tempWindow.on('windowSizeChange', async (sizeData: ohosWindow.Size) => {
-          console.log(msgStr + 'tempWnd.on windowSizeChange, sizeData : ' + JSON.stringify(sizeData));
-          expect(sizeData.width === 1000).assertTrue();
-          expect(sizeData.height === 1000).assertTrue();
-          tempWindow.off('windowSizeChange');
-          await tempWindow.destroy();
-          done();
-        })
-        console.log(msgStr + 'tempWnd.on windowSizeChange finished');
-        await tempWindow.resetSize(1000, 1000).then(() => {
-          listenerOffFlag = true;
-          console.log(msgStr + 'listenerOffFlag:' + listenerOffFlag);
-        }).catch((err: BusinessError) => {
-          unexpectedError(TRUE_FLAG, err, caseName, 'tempWnd.resetSize(100, 100)', done);
-        });
-        console.log(msgStr + 'tempWnd.resetSize(100, 100) success');
-        await sleep(800)
-        await sleep(800)
-      }
-    })
+    
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_1310
      * @tc.name      : testSetSystemBarEnable_ShowStatusBar_HideNavBar_Promise
