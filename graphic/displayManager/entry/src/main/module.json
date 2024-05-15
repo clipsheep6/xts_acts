@@ -32,5 +32,11 @@
                 ]
             }]
         }],
+        "requestPermissions": [
+            {
+                "name": "ohos.permission.CAPTURE_SCREEN",
+                "reason": "need use ohos.permission.CAPTURE_SCREEN"
+            }
+        ]
     }
 }
