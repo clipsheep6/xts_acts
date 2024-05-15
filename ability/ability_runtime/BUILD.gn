@@ -57,6 +57,7 @@ group("ability_runtime") {
       "actsstartupruleoptimizetest:actsstartupruleoptimizetest",
       "actsstserviceabilityclientcase:ActsStServiceAbilityClientCaseTest",
       "actssupportfunction:actssupportfunction",
+      "actsswitchuserextension:actsswitchuserextension",
       "actssystemapitest:ActsSystemAPITest",
       "actsturipermisssiontest:actsturipermisssiontest",
       "actsuiabilitycontext:actsuiabilitycontext",
@@ -82,7 +83,6 @@ group("ability_runtime") {
       "stopserviceextension:stopserviceextension",
       "want:want",
       "workercontextcover:workercontextcover",
-      "actsswitchuserextension:actsswitchuserextension"
     ]
   }
 }

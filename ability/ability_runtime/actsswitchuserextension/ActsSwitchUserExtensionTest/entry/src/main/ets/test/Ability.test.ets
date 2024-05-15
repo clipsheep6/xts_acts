@@ -59,6 +59,9 @@ export default function abilityTest() {
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is an extension for the modal window, which will be displayed when switching
      *           back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_0100', 0, async function (done) {
       let want = {
@@ -142,6 +145,9 @@ export default function abilityTest() {
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is an extension for a non modal window TYPE_SYSTEM_ALERT that will not be displayed
      *           when switching back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_0200', 0, async function (done) {
       let want = {
@@ -235,6 +241,9 @@ export default function abilityTest() {
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is an extension for a non modal window TYPE_INPUT_METHOD that will not be displayed
      *           when switching back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_0300', 0, async function (done) {
       let want = {
@@ -328,6 +337,9 @@ export default function abilityTest() {
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is an extension for a non modal window TYPE_STATUS_BAR that will not be displayed
      *           when switching back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_0400', 0, async function (done) {
       let want = {
@@ -421,6 +433,9 @@ export default function abilityTest() {
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is an extension for a non modal window TYPE_PANEL that will not be displayed
      *           when switching back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_0500', 0, async function (done) {
       let want = {
@@ -514,6 +529,9 @@ export default function abilityTest() {
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is an extension for a non modal window TYPE_KEYGUARD that will not be displayed
      *           when switching back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_0600', 0, async function (done) {
       let want = {
@@ -606,6 +624,9 @@ export default function abilityTest() {
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is an extension for a non modal window TYPE_VOLUME_OVERLAY that will not be displayed
      *           when switching back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_0700', 0, async function (done) {
       let want = {
@@ -699,6 +720,9 @@ export default function abilityTest() {
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is an extension for a non modal window TYPE_NAVIGATION_BAR that will not be displayed
      *           when switching back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_0800', 0, async function (done) {
       let want = {
@@ -792,6 +816,9 @@ export default function abilityTest() {
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is an extension for a non modal window TYPE_FLOAT that will not be displayed
      *           when switching back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_0900', 0, async function (done) {
       let want = {
@@ -885,6 +912,9 @@ export default function abilityTest() {
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is an extension for a non modal window TYPE_LAUNCHER_RECENT that will not be displayed
      *           when switching back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_1000', 0, async function (done) {
       let want = {
@@ -978,6 +1008,9 @@ export default function abilityTest() {
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is an extension for a non modal window TYPE_LAUNCHER_DOCK that will not be displayed
      *           when switching back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_1100', 0, async function (done) {
       let want = {
@@ -1071,6 +1104,9 @@ export default function abilityTest() {
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is an extension for a non modal window TYPE_VOICE_INTERACTION that will not be displayed
      *           when switching back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_1200', 0, async function (done) {
       let want = {
@@ -1164,6 +1200,9 @@ export default function abilityTest() {
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is an extension for a non modal window TYPE_POINTER that will not be displayed
      *           when switching back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_1300', 0, async function (done) {
       let want = {
@@ -1257,6 +1296,9 @@ export default function abilityTest() {
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is an extension for a non modal window TYPE_FLOAT_CAMERA that will not be displayed
      *           when switching back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_1400', 0, async function (done) {
       let want = {
@@ -1353,6 +1395,9 @@ export default function abilityTest() {
      * @tc.name: DSwitch user hide extension window
      * @tc.desc: There is an extension for a non modal window TYPE_SCREENSHOT that will not be displayed
      *           when switching back to the current user and entering the application again.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_1500', 0, async function (done) {
       let want = {
@@ -1445,6 +1490,9 @@ export default function abilityTest() {
      * @tc.number: Acts_StopServiceExtension_1600
      * @tc.name: Switch user hide extension window
      * @tc.desc: There is no Extension for Window, and it will not be cleared by the system when switching users.
+     * @tc.size: MediumTest
+     * @tc.type: Function
+     * @tc.level: 3
      */
     it('Acts_SwitchUserExtension_1600', 0, async function (done) {
       let id;
