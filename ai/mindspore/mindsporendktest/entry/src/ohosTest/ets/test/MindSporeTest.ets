@@ -15,7 +15,6 @@
 
 import { beforeAll, beforeEach, describe, expect, it } from '@ohos/hypium'
 import mindSpore from 'libmindspore.so'
-import deviceInfo from '@ohos.deviceInfo'
 import fs from '@ohos.file.fs';
 import AbilityDelegatorRegistry from '@ohos.app.ability.abilityDelegatorRegistry'
 import Utils from './Utils';
@@ -36,7 +35,6 @@ enum OH_AI_PerformanceMode {
   OH_AI_PERFORMANCE_HIGH = 3,
   OH_AI_PERFORMANCE_EXTREME = 4
 }
-let deviceTypeInfo: string = deviceInfo.deviceType;
 
 function getContext(): Context {
   let abilityDelegator = AbilityDelegatorRegistry.getAbilityDelegator();
@@ -1204,11 +1202,12 @@ export default function mindSporeTest() {
      * @tc.level      : Level 1
      */
     it('testMindSporeGetAllNNRTDeviceDescs001', 0, async (done: Function) => {
-      if (deviceTypeInfo=="Mate40"){
-        let data = mindSpore.oHAIGetAllNNRTDeviceDescsOne();
+      let data = mindSpore.oHAIGetAllNNRTDeviceDescsOne();
+      if (data!=-9){
         expect(data).assertEqual(1);
         done()
       } else {
+        console.info(`设备不支持`);
         done()
       }
     });
@@ -1222,11 +1221,12 @@ export default function mindSporeTest() {
      * @tc.level      : Level 1
      */
     it('testMindSporeDestroyAllNNRTDeviceDescs001', 0, async (done: Function) => {
-      if (deviceTypeInfo=="Mate40"){
-        let data = mindSpore.oHAIDestroyAllNNRTDeviceDescsOne();
+		let data = mindSpore.oHAIDestroyAllNNRTDeviceDescsOne();
+      if (data!=-9){
         expect(data).assertEqual(1);
         done()
       } else {
+        console.info(`设备不支持`);
         done()
       }
     });
@@ -1240,11 +1240,12 @@ export default function mindSporeTest() {
      * @tc.level      : Level 1
      */
     it('testMindSporeGetDeviceIdFromNNRTDeviceDesc001', 0, async (done: Function) => {
-      if (deviceTypeInfo=="Mate40"){
         let data = mindSpore.oHAIGetDeviceIdFromNNRTDeviceDescOne();
+      if (data!=-9){
         expect(data).assertEqual(1);
         done()
       } else {
+        console.info(`设备不支持`);
         done()
       }
     });
@@ -1258,11 +1259,12 @@ export default function mindSporeTest() {
      * @tc.level      : Level 1
      */
     it('testMindSporeGetNameFromNNRTDeviceDesc001', 0, async (done: Function) => {
-      if (deviceTypeInfo=="Mate40"){
         let data = mindSpore.oHAIGetNameFromNNRTDeviceDescOne();
+      if (data!=-9){
         expect(data).assertEqual(1);
         done()
       } else {
+        console.info(`设备不支持`);
         done()
       }
     });
@@ -1276,11 +1278,12 @@ export default function mindSporeTest() {
      * @tc.level      : Level 1
      */
     it('testMindSporeGetTypeFromNNRTDeviceDesc001', 0, async (done: Function) => {
-      if (deviceTypeInfo=="Mate40"){
         let data = mindSpore.oHAIGetTypeFromNNRTDeviceDescOne();
+      if (data!=-9){
         expect(data).assertEqual(1);
         done()
       } else {
+        console.info(`设备不支持`);
         done()
       }
     });
@@ -1294,11 +1297,12 @@ export default function mindSporeTest() {
      * @tc.level      : Level 1
      */
     it('testMindSporeCreateNNRTDeviceInfoByName001', 0, async (done: Function) => {
-      if (deviceTypeInfo=="Mate40"){
         let data = mindSpore.oHAICreateNNRTDeviceInfoByNameOne();
+      if (data!=-9){
         expect(data).assertEqual(1);
         done()
       } else {
+        console.info(`设备不支持`);
         done()
       }
     });
@@ -1312,11 +1316,12 @@ export default function mindSporeTest() {
      * @tc.level      : Level 1
      */
     it('testMindSporeCreateNNRTDeviceInfoByType001', 0, async (done: Function) => {
-      if (deviceTypeInfo=="Mate40"){
         let data = mindSpore.oHAICreateNNRTDeviceInfoByTypeOne();
+      if (data!=-9){
         expect(data).assertEqual(1);
         done()
       } else {
+        console.info(`设备不支持`);
         done()
       }
     });
@@ -1344,11 +1349,12 @@ export default function mindSporeTest() {
      * @tc.level      : Level 1
      */
     it('testMindSporeGetElementOfNNRTDeviceDescs001', 0, async (done: Function) => {
-      if (deviceTypeInfo=="Mate40"){
         let data = mindSpore.oHAIGetElementOfNNRTDeviceDescsOne();
+      if (data!=-9){
         expect(data).assertEqual(1);
         done()
       } else {
+        console.info(`设备不支持`);
         done()
       }
     });
