@@ -32,6 +32,9 @@
       },
       {
         "name": "ohos.permission.GRANT_SENSITIVE_PERMISSIONS"
+      },
+     {
+        "name": "ohos.permission.SET_TELEPHONY_STATE"
       }
     ],
     "deliveryWithInstall": true,

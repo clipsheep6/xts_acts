@@ -3,6 +3,7 @@
   "MainAbility/pages/index/index",
   "MainAbility/pages/TextInput/APIContentType",
   "MainAbility/pages/TextInput/APIUnderlineColor",
+    "MainAbility/pages/TextInput/underlineColor",
   "MainAbility/pages/RichEditor/onSelectionChange1",
   "MainAbility/pages/RichEditor/onSelectionChange2",
   "MainAbility/pages/RichEditor/onSelectionChange3",
@@ -40,6 +41,18 @@
   "MainAbility/pages/Text/MarqueeHorseRace3",
   "MainAbility/pages/Text/MarqueeHorseRace4",
   "MainAbility/pages/Text/MarqueeHorseRace5",
-  "MainAbility/pages/Text/MarqueeHorseRace6"
+  "MainAbility/pages/Text/MarqueeHorseRace6",
+  "MainAbility/pages/RichEditorEnhance01/RichEditorWordBreak",
+  "MainAbility/pages/RichEditorEnhance01/RichEditorMenuPolicy",
+  "MainAbility/pages/RichEditorEnhance01/RichEditor_TextStyle",
+  "MainAbility/pages/RichEditorEnhance01/RichEditorFontFeature",
+  "MainAbility/pages/RichEditorEnhance/RichEditor1",
+  "MainAbility/pages/RichEditorEnhance/RichEditor2",
+  "MainAbility/pages/RichEditorEnhance/RichEditor3",
+  "MainAbility/pages/RichEditorEnhance/RichEditor4",
+  "MainAbility/pages/RichEditorEnhance/RichEditor5",
+  "MainAbility/pages/RichEditorEnhance/RichEditor6",
+  "MainAbility/pages/RichEditorEnhance/RichEditor7",
+  "MainAbility/pages/RichEditorEnhance/TextInputTextAreaSearch"
   ]
 }

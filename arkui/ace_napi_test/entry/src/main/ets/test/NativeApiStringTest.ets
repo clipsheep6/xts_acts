@@ -2218,5 +2218,177 @@ export default function nativeApiStringJsunit() {
       expect(value).assertEqual(0);
       done();
     });
+
+    /**
+     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0149
+     * @tc.name aceNapiTest0149
+     * @tc.desc aceNapiEtsTest
+     */
+    it('aceNapiTest0149', 0, async function (done) {
+      console.info('aceNapiTest0149 START');
+      value = napitest.napiSetNamedProperty();
+      console.info('aceNapiTest0149 testString result is: ' + value);
+      expect(value).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0150
+     * @tc.name aceNapiTest0150
+     * @tc.desc aceNapiEtsTest
+     */
+    it('aceNapiTest0150', 0, async function (done) {
+      console.info('aceNapiTest0150 START');
+      value = napitest.napiGetNamedProperty();
+      console.info('aceNapiTest0150 testString result is: ' + value);
+      expect(value).assertEqual(0);
+      done();
+    });
+
+    /**
+     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0151
+     * @tc.name aceNapiTest0151
+     * @tc.desc aceNapiEtsTest
+     */
+    it('aceNapiTest0151', 0, async function (done) {
+      class MyClass {
+        constructor() {
+        }
+        // 类的方法
+        add(num1, num2) {
+          return num1 + num2;
+        }
+      }
+      const myObj = new MyClass();
+      console.info('aceNapiTest0151 START');
+      value = napitest.callAddNumFunction(myObj, myObj.add);
+      console.info('aceNapiTest0151 testString result is: ' + value);
+      expect(value).assertEqual(12);
+      done();
+    });
+
+    /**
+     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0152
+     * @tc.name aceNapiTest0152
+     * @tc.desc aceNapiEtsTest
+     */
+    it('aceNapiTest0152', 0, async function (done) {
+      console.info('aceNapiTest0152 START');
+      value = napitest.napiNewInstance();
+      console.info('aceNapiTest0152 testString result is: ' + value);
+      expect(value).assertTrue();
+      done();
+    });
+
+    /**
+     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0153
+     * @tc.name aceNapiTest0153
+     * @tc.desc aceNapiEtsTest
+     */
+    it('aceNapiTest0153', 0, async function (done) {
+      console.info('aceNapiTest0153 START');
+      value = napitest.napiCrateAndGetValueString('love');
+      console.info('aceNapiTest0153 testString result is: ' + value);
+      expect(value).assertEqual('love');
+      done();
+    });
+
+    /**
+     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0154
+     * @tc.name aceNapiTest0154
+     * @tc.desc aceNapiEtsTest
+     */
+    it('aceNapiTest0154', 0, async function (done) {
+      try {
+        console.info('aceNapiTest0154 START');
+        value = napitest.exceptionalSetNamedProperty();
+        console.info('aceNapiTest0154 testString result is: ' + value);
+      } catch (err) {
+        console.info('aceNapiTest0154 testString result is err: ' + err + "--" + JSON.stringify(err));
+        let er = JSON.stringify(err)
+        expect(er === '{}').assertTrue();
+      }
+      done();
+    });
+
+    /**
+     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0155
+     * @tc.name aceNapiTest0155
+     * @tc.desc aceNapiEtsTest
+     */
+    it('aceNapiTest0155', 0, async function (done) {
+      try {
+        console.info('aceNapiTest0155 START');
+        value = napitest.exceptionalGetNamedProperty();
+        console.info('aceNapiTest0155 testString result is: ' + value);
+      } catch (err) {
+        console.info('aceNapiTest0155 testString result is err: ' + err + "--" + JSON.stringify(err));
+        let er = JSON.stringify(err)
+        expect(er === '{}').assertTrue();
+      }
+      done();
+    });
+
+    /**
+     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0156
+     * @tc.name aceNapiTest0156
+     * @tc.desc aceNapiEtsTest
+     */
+    it('aceNapiTest0156', 0, async function (done) {
+      class MyClass {
+        constructor() {
+        }
+        // 类的方法
+        add(num1, num2) {
+          return num1 + num2;
+        }
+      }
+      try {
+        console.info('aceNapiTest0156 START');
+        value = napitest.exceptionalCallAddNumFunction(myObj, myObj.add);
+        console.info('aceNapiTest0156 testString result is: ' + value);
+      } catch (err) {
+        console.info('aceNapiTest0156 testString result is err: ' + err + "--" + JSON.stringify(err));
+        let er = JSON.stringify(err)
+        expect(er === '{}').assertTrue();
+      }
+      done();
+    });
+
+    /**
+     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0157
+     * @tc.name aceNapiTest0157
+     * @tc.desc aceNapiEtsTest
+     */
+    it('aceNapiTest0157', 0, async function (done) {
+      try {
+        console.info('aceNapiTest0157 START');
+        value = napitest.exceptionalNapiNewInstance();
+        console.info('aceNapiTest0157 testString result is: ' + value);
+      } catch (err) {
+        console.info('aceNapiTest0157 testString result is err: ' + err + "--" + JSON.stringify(err));
+        let er = JSON.stringify(err)
+        expect(er === '{}').assertTrue();
+      }
+      done();
+    });
+
+    /**
+     * @tc.number SUB_ACE_BASIC_ETS_NAPI_0158
+     * @tc.name aceNapiTest0158
+     * @tc.desc aceNapiEtsTest
+     */
+    it('aceNapiTest0158', 0, async function (done) {
+      try {
+        console.info('aceNapiTest0158 START');
+        value = napitest.ExceptionalNapiCrateAndGetValueString('love');
+        console.info('aceNapiTest0158 testString result is: ' + value);
+      } catch (err) {
+        console.info('aceNapiTest0158 testString result is err: ' + err + "--" + JSON.stringify(err));
+        let er = JSON.stringify(err)
+        expect(er === '{}').assertTrue();
+      }
+      done();
+    });
   })
 }
