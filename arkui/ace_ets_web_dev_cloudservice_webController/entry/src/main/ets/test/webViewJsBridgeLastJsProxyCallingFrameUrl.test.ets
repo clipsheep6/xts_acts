@@ -25,7 +25,7 @@ export default function webViewJsBridgeLastJsProxyCallingFrameUrl() {
       
     beforeAll(async (done: Function) => {
         let options : router.RouterOptions = {
-            url: 'testability/pages/webViewJsBridgeLastJsProxyCallingFrameUrl',
+            url: 'MainAbility/pages/webViewJsBridgeLastJsProxyCallingFrameUrl',
         }
         
         try {

@@ -25,7 +25,7 @@ export default function webViewNativeMediaUpdateRect() {
       
     beforeAll(async (done: Function) => {
         let options : router.RouterOptions = {
-            url: 'testability/pages/webViewNativeMediaUpdateRect',
+            url: 'MainAbility/pages/webViewNativeMediaUpdateRect',
         }
         
         try {

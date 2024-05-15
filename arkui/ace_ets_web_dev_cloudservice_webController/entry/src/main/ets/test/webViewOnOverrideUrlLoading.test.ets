@@ -25,7 +25,7 @@ export default function webViewOnOverrideUrlLoading() {
       
     beforeAll(async (done: Function) => {
         let options : router.RouterOptions = {
-            url: 'testability/pages/webViewOnOverrideUrlLoading',
+            url: 'MainAbility/pages/webViewOnOverrideUrlLoading',
         }
         
         try {

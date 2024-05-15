@@ -25,7 +25,7 @@ export default function webViewGetRenderProcessMode() {
       
     beforeAll(async (done: Function) => {
         let options : router.RouterOptions = {
-            url: 'testability/pages/webViewGetRenderProcessMode',
+            url: 'MainAbility/pages/webViewGetRenderProcessMode',
         }
         
         try {

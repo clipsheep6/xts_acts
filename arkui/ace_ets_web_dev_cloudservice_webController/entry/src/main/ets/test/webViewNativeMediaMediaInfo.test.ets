@@ -25,7 +25,7 @@ export default function webViewNativeMediaMediaInfo() {
       
     beforeAll(async (done: Function) => {
         let options : router.RouterOptions = {
-            url: 'testability/pages/webViewNativeMediaMediaInfo',
+            url: 'MainAbility/pages/webViewNativeMediaMediaInfo',
         }
         
         try {

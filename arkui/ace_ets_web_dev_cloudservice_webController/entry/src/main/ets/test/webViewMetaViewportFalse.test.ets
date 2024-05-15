@@ -25,7 +25,7 @@ export default function webViewMetaViewportFalse() {
       
     beforeAll(async (done: Function) => {
         let options : router.RouterOptions = {
-            url: 'testability/pages/webViewMetaViewportFalse',
+            url: 'MainAbility/pages/webViewMetaViewportFalse',
         }
         
         try {

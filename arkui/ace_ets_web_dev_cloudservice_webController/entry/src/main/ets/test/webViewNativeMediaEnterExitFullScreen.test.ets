@@ -25,7 +25,7 @@ export default function webViewNativeVideoEnterExitFullScreen() {
       
     beforeAll(async (done: Function) => {
         let options : router.RouterOptions = {
-            url: 'testability/pages/webViewNativeMediaEnterExitFullScreen',
+            url: 'MainAbility/pages/webViewNativeMediaEnterExitFullScreen',
         }
         
         try {
