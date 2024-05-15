@@ -25,7 +25,7 @@ export default function webViewNativeVideoSetPlaybackRate() {
       
     beforeAll(async (done: Function) => {
         let options : router.RouterOptions = {
-            url: 'testability/pages/webViewNativeMediaSetPlaybackRate',
+            url: 'MainAbility/pages/webViewNativeMediaSetPlaybackRate',
         }
         
         try {

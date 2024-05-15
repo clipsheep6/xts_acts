@@ -25,7 +25,7 @@ export default function webViewNativeMediaSetSeek() {
       
     beforeAll(async (done: Function) => {
         let options : router.RouterOptions = {
-            url: 'testability/pages/webViewNativeMediaSetSeek',
+            url: 'MainAbility/pages/webViewNativeMediaSetSeek',
         }
         
         try {

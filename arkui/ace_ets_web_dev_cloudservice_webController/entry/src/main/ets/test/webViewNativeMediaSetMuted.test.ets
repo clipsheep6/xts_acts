@@ -25,7 +25,7 @@ export default function webViewNativeMediaSetMuted() {
       
     beforeAll(async (done: Function) => {
         let options : router.RouterOptions = {
-            url: 'testability/pages/webViewNativeMediaSetMuted',
+            url: 'MainAbility/pages/webViewNativeMediaSetMuted',
         }
         
         try {

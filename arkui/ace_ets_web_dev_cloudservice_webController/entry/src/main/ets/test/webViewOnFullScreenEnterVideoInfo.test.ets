@@ -25,7 +25,7 @@ export default function webViewOnFullScreenEnterInfo() {
       
     beforeAll(async (done: Function) => {
         let options : router.RouterOptions = {
-            url: 'testability/pages/webViewOnFullScreenEnterInfo',
+            url: 'MainAbility/pages/webViewOnFullScreenEnterInfo',
         }
         
         try {

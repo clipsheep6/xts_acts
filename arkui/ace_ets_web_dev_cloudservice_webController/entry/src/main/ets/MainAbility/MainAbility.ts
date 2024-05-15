@@ -31,7 +31,7 @@ export default class MainAbility extends Ability {
     console.log("[Demo] MainAbility onWindowStageCreate windowStage=" + windowStage);
     globalThis.windowStage = windowStage;
     globalThis.abilityContext = this.context;
-    windowStage.setUIContent(this.context, "MainAbility/pages/webOnBeforeUnload", null);
+    windowStage.setUIContent(this.context, "MainAbility/pages/webViewGetRenderProcessMode", null);
   }
 
   onWindowStageDestroy() {
