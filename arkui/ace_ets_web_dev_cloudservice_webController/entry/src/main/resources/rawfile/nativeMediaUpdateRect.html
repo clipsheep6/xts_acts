@@ -114,7 +114,7 @@ function moveElementUp(){
 }
 function computeNum(value){
 
-    if(!value || value == ''){
+    if(!value || value === ''){
     return 0
     } else {
     return parseFloat(value)
@@ -193,7 +193,7 @@ function fullScreenDom(id){
         var i = 1;
         var tr = null;
         for (key in arrayEventDef) {
-            if (tr == null) tr = document.createElement("tr");
+            if (tr === null) tr = document.createElement("tr");
             var th = document.createElement("th");
             th.textContent = key;
             var td = document.createElement("td");
@@ -203,7 +203,7 @@ function fullScreenDom(id){
             tr.appendChild(th);
             tr.appendChild(td);
 
-            if ((i++ % 2) == 0) {
+            if ((i++ % 2) === 0) {
                 tbody.appendChild(tr);
                 tr = null;
             }
@@ -215,7 +215,7 @@ function fullScreenDom(id){
         var i = 0;
         var tr = null;
         do {
-            if (tr == null) tr    = document.createElement("tr");
+            if (tr === null) tr    = document.createElement("tr");
             var th = document.createElement("th");
             th.textContent = arrayPropDef[i];
             var td = document.createElement("td");
@@ -231,7 +231,7 @@ function fullScreenDom(id){
             tr.appendChild(th);
             tr.appendChild(td);
             arrayProp[i] = td;
-            if ((++i % 1) == 0) {
+            if ((++i % 1) === 0) {
                 tbody.appendChild(tr);
                 tr = null;
             }
@@ -367,7 +367,7 @@ function fullScreenDom(id){
         mp4.setAttribute("src", videos[n][1]);
 
         if (videos[n][2]) {
-            if (webm.parentNode == null) {
+            if (webm.parentNode === null) {
                 parent.insertBefore(webm, mp4);
             }
             webm.setAttribute("src", videos[n][2]);
