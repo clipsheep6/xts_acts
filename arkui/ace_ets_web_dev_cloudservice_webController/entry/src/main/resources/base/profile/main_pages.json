@@ -1,0 +1,25 @@
+{
+    "src": [
+        "MainAbility/pages/webViewCookieTrack",
+        "MainAbility/pages/webViewCookieTrack2",
+        "MainAbility/pages/webViewGetRenderProcessMode",
+        "MainAbility/pages/webViewJsBridgeLastJsProxyCallingFrameUrl",
+        "MainAbility/pages/webViewMetaViewportFalse",
+        "MainAbility/pages/webViewMetaViewportTrue",
+        "MainAbility/pages/webViewNativeMediaEnterExitFullScreen",
+        "MainAbility/pages/webViewNativeMediaMediaInfo",
+        "MainAbility/pages/webViewNativeMediaPlayerHandleFullScreen",
+        "MainAbility/pages/webViewNativeMediaPlayerHandler",
+        "MainAbility/pages/webViewNativeMediaPlayerHandler2",
+        "MainAbility/pages/webViewNativeMediaPlayerProps",
+        "MainAbility/pages/webViewNativeMediaSetMuted",
+        "MainAbility/pages/webViewNativeMediaSetPlaybackRate",
+        "MainAbility/pages/webViewNativeMediaSetSeek",
+        "MainAbility/pages/webViewNativeMediaSetVolume",
+        "MainAbility/pages/webViewNativeMediaUpdateRect",
+        "MainAbility/pages/webViewOnFullScreenEnterVideoInfo",
+        "MainAbility/pages/webViewOnOverrideUrlLoading",
+        "MainAbility/pages/webViewRegisterNativeEmbedRule",
+        "MainAbility/pages/webViewSetRenderProcessMode"
+    ]
+}
