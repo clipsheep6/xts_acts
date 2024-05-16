@@ -19,7 +19,8 @@ import { BusinessError } from '@ohos.base'
 import { A, B, currentFun, transferArrayBuffer, transferAtomics, setCloneListTest, setTransferListTest,
          testString, testTime, testNumber, testTaskPool, promiseCase, printArgs, asyncSum,
          printArgsFunc, Sum, delaySum, Add, StrCat, funcStrCat, arraySum, objectSum, Multi, AdditionDelay, WaitforRunner,
-         errorTest, testCancelDelayed, dependend, hashMapTest } from './testFunclist'
+         errorTest, testCancelDelayed, dependend, hashMapTest, sendDataFunc, sendDatainAsync,
+         sendDataNested } from './testFunclist'
 
 export default function TaskPoolTest() {
   describe('ActsAbilityTest', () => {
@@ -2497,6 +2498,136 @@ export default function TaskPoolTest() {
         expect((e as BusinessError).toString()).assertEqual("BusinessError: The executed task does not support the registration of listeners.");
       }
 
+      done();
+    })
+
+        /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0120
+     * @tc.name      : TaskPoolTestClass120
+     * @tc.desc      : execute long task
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass120', 0, async (done: Function) => {
+      let task: taskpool.LongTask = new taskpool.LongTask(Sum, 10, 20);
+      let result = await taskpool.execute(task);
+      taskpool.terminateTask(task);
+      expect(result).assertEqual(30);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0121
+     * @tc.name      : TaskPoolTestClass121
+     * @tc.desc      : the long task can only be executed once
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass121', 0, async (done: Function) => {
+      let task: taskpool.LongTask = new taskpool.LongTask(Sum, 10, 20);
+      let result = await taskpool.execute(task);
+      taskpool.terminateTask(task);
+      try {
+        taskpool.execute(task)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: The long task can only be executed once");
+      }
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0122
+     * @tc.name      : TaskPoolTestClass122
+     * @tc.desc      : task group does not support the long task
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass122', 0, async (done: Function) => {
+      let task: taskpool.LongTask = new taskpool.LongTask(Sum, 10, 20);
+      let group = new taskpool.TaskGroup();
+      try {
+        group.addTask(task)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The input parameters are invalid, taskpool:: The interface does not support the long task");
+      }
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0123
+     * @tc.name      : TaskPoolTestClass123
+     * @tc.desc      : onReceiveData does not register
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass123', 0, async (done: Function) => {
+      let task: taskpool.Task = new taskpool.Task(sendDataFunc, 10);
+      try {
+        await taskpool.execute(task)
+      } catch (e) {
+        expect(e.toString()).assertEqual("BusinessError: The callback is not registered on the host side");
+      }
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0124
+     * @tc.name      : TaskPoolTestClass124
+     * @tc.desc      : sendData in async/await function
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass124', 0, async (done: Function) => {
+      let task: taskpool.Task = new taskpool.Task(sendDatainAsync, 10, 20);
+      let result: number = 0;
+      task.onReceiveData((res: number) => {
+        result = res;
+      })
+      await taskpool.execute(task);
+      expect(result).assertEqual(30);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0119
+     * @tc.name      : TaskPoolTestClass119
+     * @tc.desc      : sendData in async/await function
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass125', 0, async (done: Function) => {
+      let task: taskpool.Task = new taskpool.Task(sendDatainAsync, 10, 20);
+      let result: number = 0;
+      task.onReceiveData((res: number) => {
+        result = res;
+      })
+      await taskpool.execute(task);
+      expect(result).assertEqual(30);
+      done();
+    })
+
+    /**
+     * @tc.number    : SUB_COMMONLIBRARY_ETSUTILS_TASKPOOL_0126
+     * @tc.name      : TaskPoolTestClass126
+     * @tc.desc      : sendData in nested concurrent function
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level 0
+     */
+    it('TaskPoolTestClass126', 0, async (done: Function) => {
+      let task: taskpool.Task = new taskpool.Task(sendDataNested, 10, 20);
+      let result: number = 0;
+      task.onReceiveData((res: number) => {
+        result = res;
+      })
+      await taskpool.execute(task);
+      expect(result).assertEqual(30)
       done();
     })
   })

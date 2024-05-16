@@ -15,7 +15,7 @@
 
 import taskpool from '@ohos.taskpool';
 import { BusinessError } from '@ohos.base'
-import { strCat } from './exportFunclist'
+import { strCat, asyncSend, sendDataInner, sendAddResult } from './exportFunclist'
 import HashMap from '@ohos.util.HashMap';
 
 export class A {
@@ -245,4 +245,37 @@ export function hashMapTest(args:number) {
   let hashMap1: HashMap<string, number> = new HashMap();
   hashMap1.set('a', 123);
   return hashMap1;
+}
+
+export function sendDataFunc(value: number): void {
+  "use concurrent"
+  taskpool.Task.sendData(value);
+  let start: number = Date.now();
+  while (Date.now() - start < 500) {
+    continue;
+  }
+}
+
+export async function sendDatainAsync(value1: number, value2: number): Promise<void> {
+  "use concurrent"
+  await asyncSend(value1, value2);
+  let start: number = Date.now();
+  while (Date.now() - start < 500) {
+    continue;
+  }
+}
+
+export async function sendDataNested(value1: number, value2: number): Promise<void> {
+  "use concurrent"
+  await asyncSend(value1, value2);
+  let result: number = 0;
+  let task: taskpool.Task = new taskpool.Task(sendAddResult, value1, value2);
+  task.onReceiveData((res: number) => {
+    result = res;
+  })
+  await taskpool.execute(task);
+  let start: number = Date.now();
+  while (Date.now() - start < 500) {
+    continue;
+  }
 }
