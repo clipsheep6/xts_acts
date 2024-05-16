@@ -116,7 +116,7 @@ function moveElementUp(){
 }
 function computeNum(value){
 
-    if(!value || value == ''){
+    if(!value || value === ''){
     return 0
     } else {
     return parseFloat(value)
@@ -135,29 +135,29 @@ function fullScreenDom(id){
     // the following was extracted from the spec in October 2014
 
     var media_events = new Array();
-    media_events["loadstart"] = 0;
-    media_events["progress"] = 0;
-    media_events["suspend"] = 0;
-    media_events["abort"] = 0;
-    media_events["error"] = 0;
-    media_events["emptied"] = 0;
-    media_events["stalled"] = 0;
-    media_events["loadedmetadata"] = 0;
-    media_events["loadeddata"] = 0;
-    media_events["canplay"] = 0;
-    media_events["canplaythrough"] = 0;
-    media_events["playing"] = 0;
-    media_events["waiting"] = 0;
-    media_events["seeking"] = 0;
-    media_events["seeked"] = 0;
-    media_events["ended"] = 0;
-    media_events["durationchange"] = 0;
-    media_events["timeupdate"] = 0;
-    media_events["play"] = 0;
-    media_events["pause"] = 0;
-    media_events["ratechange"] = 0;
-    media_events["resize"] = 0;
-    media_events["volumechange"] = 0;
+    media_events.loadstart = 0;
+    media_events.progress = 0;
+    media_events.suspend = 0;
+    media_events.abort = 0;
+    media_events.error = 0;
+    media_events.emptied = 0;
+    media_events.stalled = 0;
+    media_events.loadedmetadata = 0;
+    media_events.loadeddata = 0;
+    media_events.canplay = 0;
+    media_events.canplaythrough = 0;
+    media_events.playing = 0;
+    media_events.waiting = 0;
+    media_events.seeking = 0;
+    media_events.seeked = 0;
+    media_events.ended = 0;
+    media_events.durationchange = 0;
+    media_events.timeupdate = 0;
+    media_events.play = 0;
+    media_events.pause = 0;
+    media_events.ratechange = 0;
+    media_events.resize = 0;
+    media_events.volumechange = 0;
 
     var media_properties = [ "error", "src", "srcObject", "currentSrc", "crossOrigin", "networkState", "preload", "buffered", "readyState", "seeking", "currentTime", "duration",
         "paused", "defaultPlaybackRate", "playbackRate", "played", "seekable", "ended", "autoplay", "loop", "controls", "volume",
@@ -195,7 +195,7 @@ function fullScreenDom(id){
         var i = 1;
         var tr = null;
         for (key in arrayEventDef) {
-            if (tr == null) tr = document.createElement("tr");
+            if (tr === null) tr = document.createElement("tr");
             var th = document.createElement("th");
             th.textContent = key;
             var td = document.createElement("td");
@@ -205,27 +205,27 @@ function fullScreenDom(id){
             tr.appendChild(th);
             tr.appendChild(td);
 
-            if ((i++ % 2) == 0) {
+            if ((i++ % 2) === 0) {
                 tbody.appendChild(tr);
                 tr = null;
             }
         }
-        if (tr != null) tbody.appendChild(tr);
+        if (tr !== null) tbody.appendChild(tr);
     }
     function init_properties(id, arrayPropDef, arrayProp) {
         var tbody = document.getElementById(id);
         var i = 0;
         var tr = null;
         do {
-            if (tr == null) tr    = document.createElement("tr");
+            if (tr === null) tr    = document.createElement("tr");
             var th = document.createElement("th");
             th.textContent = arrayPropDef[i];
             var td = document.createElement("td");
             var r;
             td.setAttribute("id", "p_" + arrayPropDef[i]);
-            r = eval("document._video." + arrayPropDef[i]);
+            r = "document._video." + arrayPropDef[i];
             td.textContent = r;
-            if (typeof(r) != "undefined") {
+            if (typeof(r) !== "undefined") {
                 td.className = "true";
             } else {
                 td.className = "false";
@@ -233,12 +233,12 @@ function fullScreenDom(id){
             tr.appendChild(th);
             tr.appendChild(td);
             arrayProp[i] = td;
-            if ((++i % 1) == 0) {
+            if ((++i % 1) === 0) {
                 tbody.appendChild(tr);
                 tr = null;
             }
         } while (i < arrayPropDef.length);
-        if (tr != null) tbody.appendChild(tr);
+        if (tr !== null) tbody.appendChild(tr);
     }
 
     function init_mediatypes() {
@@ -288,7 +288,7 @@ function fullScreenDom(id){
             }
         }
         for (key in media_properties) {
-            var val = eval("document._video." + media_properties[key]);
+            var val = "document._video." + media_properties[key];
             media_properties_elts[i++].textContent = val;
         }
         if (document._video.audioTracks !== undefined) {
@@ -398,12 +398,12 @@ function fullScreenDom(id){
         mp4.setAttribute("src", videos[n][1]);
 
         if (videos[n][2]) {
-            if (webm.parentNode == null) {
+            if (webm.parentNode === null) {
                 parent.insertBefore(webm, mp4);
             }
             webm.setAttribute("src", videos[n][2]);
         } else {
-            if (webm.parentNode != null) {
+            if (webm.parentNode !== null) {
                 parent.removeChild(webm);
             }
         }

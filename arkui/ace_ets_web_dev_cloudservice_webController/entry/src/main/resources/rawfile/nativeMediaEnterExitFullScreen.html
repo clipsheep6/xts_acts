@@ -193,7 +193,7 @@ function fullScreenDom(id){
         var i = 1;
         var tr = null;
         for (key in arrayEventDef) {
-            if (tr == null) tr = document.createElement("tr");
+            if (tr === null) tr = document.createElement("tr");
             var th = document.createElement("th");
             th.textContent = key;
             var td = document.createElement("td");
@@ -208,20 +208,20 @@ function fullScreenDom(id){
                 tr = null;
             }
         }
-        if (tr != null) tbody.appendChild(tr);
+        if (tr !== null) tbody.appendChild(tr);
     }
     function init_properties(id, arrayPropDef, arrayProp) {
         var tbody = document.getElementById(id);
         var i = 0;
         var tr = null;
         do {
-            if (tr == null) tr    = document.createElement("tr");
+            if (tr === null) tr    = document.createElement("tr");
             var th = document.createElement("th");
             th.textContent = arrayPropDef[i];
             var td = document.createElement("td");
             var r;
             td.setAttribute("id", "p_" + arrayPropDef[i]);
-            r = JSON.parse("document._video." + arrayPropDef[i]);
+            r = "document._video." + arrayPropDef[i];
             td.textContent = r;
             if (typeof(r) !== "undefined") {
                 td.className = "true";
@@ -236,7 +236,7 @@ function fullScreenDom(id){
                 tr = null;
             }
         } while (i < arrayPropDef.length);
-        if (tr != null) tbody.appendChild(tr);
+        if (tr !== null) tbody.appendChild(tr);
     }
 
     function init_mediatypes() {
@@ -286,7 +286,7 @@ function fullScreenDom(id){
             }
         }
         for (key in media_properties) {
-            var val = JSON.parse("document._video." + media_properties[key]);
+            var val = "document._video." + media_properties[key];
             media_properties_elts[i++].textContent = val;
         }
         if (document._video.audioTracks !== undefined) {
@@ -361,12 +361,12 @@ function fullScreenDom(id){
         mp4.setAttribute("src", videos[n][1]);
 
         if (videos[n][2]) {
-            if (webm.parentNode == null) {
+            if (webm.parentNode === null) {
                 parent.insertBefore(webm, mp4);
             }
             webm.setAttribute("src", videos[n][2]);
         } else {
-            if (webm.parentNode != null) {
+            if (webm.parentNode !== null) {
                 parent.removeChild(webm);
             }
         }
@@ -424,11 +424,11 @@ function fullScreenDom(id){
     function fullScreen(el) {
         var rfs = el.requestFullScreen || el.webkitRequestFullScreen || el.mozRequestFullScreen || el.msRequestFullScreen,
             wscript;
-        if(typeof rfs != "undefined" && rfs) {
+        if(typeof rfs !== "undefined" && rfs) {
             rfs.call(el);
             return;
         }
-        if(typeof window.ActiveXObject != "undefined") {
+        if(typeof window.ActiveXObject !== "undefined") {
             wscript = new ActiveXObject("WScript.Shell");
             if(wscript) {
                 wscript.SendKeys("{F11}");
@@ -439,13 +439,13 @@ function fullScreenDom(id){
         var el= document,
             cfs = el.cancelFullScreen || el.webkitCancelFullScreen || el.mozCancelFullScreen || el.exitFullScreen,
             wscript;
-        if (typeof cfs != "undefined" && cfs) {
+        if (typeof cfs !== "undefined" && cfs) {
         cfs.call(el);
         return;
         }
         if (typeof window.ActiveXObject !== "undefined") {
             wscript = new ActiveXObject("WScript.Shell");
-            if (wscript != null) {
+            if (wscript !== null) {
                 wscript.SendKeys("{F11}");
             }
     }
