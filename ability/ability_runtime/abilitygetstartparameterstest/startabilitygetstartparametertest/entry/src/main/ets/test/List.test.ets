@@ -14,7 +14,9 @@
  */
 
 import StartAbilityGetStartParameterTest from './StartAbilityGetStartParameter.test';
+import queryBundleInfoTest from './GetBundleInfoTest.test';
 
 export default function testsuite() {
   StartAbilityGetStartParameterTest();
+  queryBundleInfoTest();
 }
