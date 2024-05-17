@@ -34,9 +34,9 @@ export default function getBundleInfoTest() {
   describe('getBundleInfoTest', function () {
 
     /**
-     * @tc.number Sub_Bms_Framework_Get_BundleInfo_001
-     * @tc.name getBundleInfoTest001
-     * @tc.desc getBundleInfoTest001
+     * @tc.number Sub_Bms_Framework_Get_BundleInfoForSelfSync0100
+     * @tc.name getBundleInfoForSelfSync0100
+     * @tc.desc getBundleInfoForSelfSync0100
      */
     it('getBundleInfoForSelfSync0100', 0, async function (done) {
       bundleManager.getBundleInfoForSelfSync(bundleFlags, (err, data) => {
