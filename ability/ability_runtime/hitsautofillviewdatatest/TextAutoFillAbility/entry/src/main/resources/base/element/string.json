@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "EntryAbility_label",
+      "value": "TextAutoFillAbility"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "TextAutoFillAbility"
+    },
+    {
+      "name": "module_desc",
+      "value": "TextAutoFillAbility"
+    },
+    {
+      "name": "signature",
+      "value": "Signature: "
+    },
+    {
+      "name": "confirm_password",
+      "value": "*Confirm Password: "
+    },
+    {
+      "name": "setting",
+      "value": "Setup is complete"
+    },
+    {
+      "name": "account",
+      "value": "Account Info"
+    },
+    {
+      "name": "modify",
+      "value": "Modify Info"
+    },
+    {
+      "name": "application",
+      "value": "Switch APP"
+    },
+    {
+      "name": "AutofillAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "AutofillAbility_label",
+      "value": "label"
+    }
+  ]
+}
