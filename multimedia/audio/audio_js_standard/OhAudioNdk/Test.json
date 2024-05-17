@@ -1,6 +1,7 @@
 {
     "description": "Config for ohaudio ndk test cases",
     "driver": {
+<<<<<<< HEAD
         "module-name": "ActsOhaudioNdkTest",
         "native-test-timeout": "300000",
         "native-test-device-path": "/data/local/tmp",
@@ -15,6 +16,19 @@
                 "rm /data/media/*",
                 "mkdir -p /data/media/",
                 "mkdir -p /data/local/tmp/"
+=======
+        "type": "OHJSUnitTest",
+        "test-timeout": "600000",
+        "shell-timeout": "600000",
+        "bundle-name": "com.example.ohaudiondk",
+        "module-name": "entry_test"
+    },
+    "kits": [
+        {
+            "test-file-name": [
+                "OhAudioNdkMainTest.hap",
+                "OhAudioNdkTest.hap"
+>>>>>>> 3dec36a1fade12efeaec84bb0d580b53ae7428d6
             ],
             "push": [
                 "ActsOhaudioNdkTest->/data/local/tmp/ActsOhaudioNdkTest"
