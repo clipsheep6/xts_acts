@@ -40,7 +40,6 @@ export default function getBundleInfoTest() {
      */
     it('getBundleInfoForSelfSync0100', 0, async function (done) {
       bundleManager.getBundleInfoForSelfSync(bundleFlags, (err, data) => {
-        console.info("getBundleInfoForSelfSync0100 data= " + JSON.stringify(data));
         expect(data.name).assertEqual("com.ohos.startabilitygetstartparametertest");
         done();
       });
