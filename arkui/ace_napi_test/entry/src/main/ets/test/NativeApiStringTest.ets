@@ -2402,6 +2402,12 @@ export default function nativeApiStringJsunit() {
      * @tc.name aceNapiTest0159
      * @tc.desc aceNapiEtsTest
      */
+    it('aceNapiTest0159', 0, async (done: Function) => {
+      console.info('aceNapiTest0159 START');
+      value = napitest.ThreadSafePriority((num1, num2) => {
+        return num1 + num2;
+      });
+      console.info('aceNapiTest0159 testString result is value: ' + JSON.stringify(value));
     it('aceNapiTest0159', 0, async function (done) {
       console.info('aceNapiTest0159 START');
       function test1() {
