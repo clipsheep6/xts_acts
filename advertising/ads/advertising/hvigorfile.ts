@@ -12,15 +12,5 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-export default class Utils {
-  static sleep(time) {
-    return new Promise<void>((resolve, reject) => {
-      setTimeout(() => {
-        resolve()
-      }, time)
-    }).then(() => {
-      console.info(`sleep ${time} over...`)
-    })
-  }
-}
+// Script for compiling build behavior. It is built in the build plug-in and cannot be modified currently.
+export { appTasks } from '@ohos/hvigor-ohos-plugin';
