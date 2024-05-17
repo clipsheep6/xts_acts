@@ -1,8 +1,8 @@
 {
   "module": {
-    "name": "entry_test",
+    "name": "entry",
     "type": "entry",
-    "srcEntrance": "./ets/Application/AbilityStage.ts",
+    "srcEntry": "./ets/Application/AbilityStage.ts",
     "description": "$string:entry_test_desc",
     "mainElement": "MainAbility",
     "deviceTypes": [
@@ -13,14 +13,15 @@
     "deliveryWithInstall": true,
     "installationFree": false,
     "pages": "$profile:main_pages",
-    "uiSyntax": "ets",
     "abilities": [
       {
         "name": "MainAbility",
-        "srcEntrance": "./ets/MainAbility/MainAbility.ets",
+        "srcEntry": "./ets/MainAbility/MainAbility.ets",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
         "visible": true,
         "skills": [
           {
@@ -35,16 +36,20 @@
       },
       {
         "name": "MainAbility2",
-        "srcEntrance": "./ets/MainAbility2/MainAbility2.ets",
+        "srcEntry": "./ets/MainAbility2/MainAbility2.ets",
         "description": "$string:MainAbility2_desc",
         "icon": "$media:icon",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
         "label": "$string:MainAbility2_label"
       },
       {
         "name": "MainAbility3",
-        "srcEntrance": "./ets/MainAbility3/MainAbility3.ets",
+        "srcEntry": "./ets/MainAbility3/MainAbility3.ets",
         "description": "$string:MainAbility3_desc",
         "icon": "$media:icon",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
         "label": "$string:MainAbility3_label"
       }
     ]
