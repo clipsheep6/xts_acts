@@ -14,18 +14,21 @@
  */
 import sensor from '@ohos.sensor'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
-
 export default function SensorJsTest_sensor_4() {
 describe("SensorJsTest_sensor_4", function () {
     function callback(data) {
         console.info("old callback" + JSON.stringify(data));
         expect(typeof (data.intensity)).assertEqual("number");
+        expect(typeof (data.colorTemperature)).assertEqual("number");
+        expect(typeof (data.infraredLuminance)).assertEqual("number");        
         expect(typeof (data.timestamp)).assertEqual("number");
     }
 
     function callback2(data) {
         console.info("old callback2" + JSON.stringify(data));
         expect(typeof (data.intensity)).assertEqual("number");
+        expect(typeof (data.colorTemperature)).assertEqual("number");
+        expect(typeof (data.infraredLuminance)).assertEqual("number");        
         expect(typeof (data.timestamp)).assertEqual("number");
     }
 
@@ -141,6 +144,8 @@ describe("SensorJsTest_sensor_4", function () {
         function onSensorCallback(data) {
             console.info('AmbientLightSensorJsTest003  on error');
             expect(typeof (data.intensity)).assertEqual("number");
+            expect(typeof (data.colorTemperature)).assertEqual("number");
+            expect(typeof (data.infraredLuminance)).assertEqual("number");        
             expect(typeof (data.timestamp)).assertEqual("number");
             done();
         }
@@ -201,6 +206,8 @@ describe("SensorJsTest_sensor_4", function () {
         function onceSensorCallback(data) {
             console.info('AmbientLightSensorJsTest005  on error');
             expect(typeof (data.intensity)).assertEqual("number");
+            expect(typeof (data.colorTemperature)).assertEqual("number");
+            expect(typeof (data.infraredLuminance)).assertEqual("number");        
             expect(typeof (data.timestamp)).assertEqual("number");
             done();
         }
@@ -270,6 +277,8 @@ describe("SensorJsTest_sensor_4", function () {
         function onSensorCallback(data) {
             console.info('AmbientLightSensorJsTest007  on error');
             expect(typeof (data.intensity)).assertEqual("number");
+            expect(typeof (data.colorTemperature)).assertEqual("number");
+            expect(typeof (data.infraredLuminance)).assertEqual("number");        
             expect(typeof (data.timestamp)).assertEqual("number");
         }
         try{

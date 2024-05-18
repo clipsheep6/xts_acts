@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 import sensor from '@system.sensor'
-
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
 
 export default function SensorJsTest_sensor_31() {
@@ -72,6 +71,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest001 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                         },
                         fail: function (data, code) {
                             console.log("subscribeLightSensorJsTest001 is failed, data: " + data + ", code: " + code);
@@ -110,6 +112,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest002 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                         },
                         fail: function (data, code) {
                             console.log("subscribeLightSensorJsTest002 is failed, data: " + data + ", code: " + code);
@@ -149,6 +154,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest003 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                         },
                         fail: function (data, code) {
                             console.log("subscribeLightSensorJsTest003 is failed, data: " + data + ", code: " + code);
@@ -187,6 +195,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest004 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                         },
                         fail: function (data, code) {
                             console.log("subscribeLightSensorJsTest004 is failed, data: " + data + ", code: " + code);
@@ -199,6 +210,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest004_1 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                         },
                         fail: function (data, code) {
                             console.log("subscribeLightSensorJsTest004_1 is failed, data: " + data + ", code: " + code);
@@ -237,6 +251,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest005 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                             done();
                         },
                         fail: function (data, code) {
@@ -273,6 +290,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest006 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                             done();
                         },
                     });
@@ -305,6 +325,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest007 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                         },
                         fail: null,
                     });
@@ -341,6 +364,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest008 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                         },
                         fail: undefined,
                     });
@@ -376,6 +402,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest009 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                         },
                         fail: undefined,
                     });
@@ -412,6 +441,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest010 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                         },
                         fail: undefined,
                     });
@@ -448,6 +480,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest011 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                         },
                         fail: undefined,
                     });
@@ -457,6 +492,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest011_1 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                         },
                         fail: null,
                     });
@@ -493,6 +531,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest012 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                         },
                         fail: undefined,
                     });
@@ -528,6 +569,9 @@ describe("SensorJsTest_sensor_31", function () {
                         success: function (data) {
                             console.info("subscribeLightSensorJsTest013 success" + JSON.stringify(data));
                             expect(typeof (data.intensity)).assertEqual("number");
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                            expect(typeof (data.infraredLuminance)).assertEqual("number");
+                            expect(typeof (data.timestamp)).assertEqual("number");
                         },
                         fail: null,
                     });
