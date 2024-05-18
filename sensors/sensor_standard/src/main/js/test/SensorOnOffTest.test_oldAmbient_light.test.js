@@ -14,18 +14,21 @@
  */
 import sensor from '@ohos.sensor'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
-
 export default function SensorJsTest_sensor_4() {
 describe("SensorJsTest_sensor_4", function () {
     function callback(data) {
         console.info("old callback" + JSON.stringify(data));
         expect(typeof (data.intensity)).assertEqual("number");
+        expect(typeof (data.colorTemperature)).assertEqual("number");
+        expect(typeof (data.infraredLuminance)).assertEqual("number");        
         expect(typeof (data.timestamp)).assertEqual("number");
     }
 
     function callback2(data) {
         console.info("old callback2" + JSON.stringify(data));
         expect(typeof (data.intensity)).assertEqual("number");
+        expect(typeof (data.colorTemperature)).assertEqual("number");
+        expect(typeof (data.infraredLuminance)).assertEqual("number");        
         expect(typeof (data.timestamp)).assertEqual("number");
     }
 
@@ -92,7 +95,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
            })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest001 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -123,7 +128,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest002 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -141,6 +148,8 @@ describe("SensorJsTest_sensor_4", function () {
         function onSensorCallback(data) {
             console.info('AmbientLightSensorJsTest003  on error');
             expect(typeof (data.intensity)).assertEqual("number");
+            expect(typeof (data.colorTemperature)).assertEqual("number");
+            expect(typeof (data.infraredLuminance)).assertEqual("number");        
             expect(typeof (data.timestamp)).assertEqual("number");
             done();
         }
@@ -154,7 +163,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest003 Device does not support! ');
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -183,7 +194,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
            })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest004 Device does not support! ');
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -201,6 +214,8 @@ describe("SensorJsTest_sensor_4", function () {
         function onceSensorCallback(data) {
             console.info('AmbientLightSensorJsTest005  on error');
             expect(typeof (data.intensity)).assertEqual("number");
+            expect(typeof (data.colorTemperature)).assertEqual("number");
+            expect(typeof (data.infraredLuminance)).assertEqual("number");        
             expect(typeof (data.timestamp)).assertEqual("number");
             done();
         }
@@ -220,7 +235,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest005 Device does not support! ');
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -252,7 +269,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
           })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest006 Device does not support! ');
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -270,6 +289,8 @@ describe("SensorJsTest_sensor_4", function () {
         function onSensorCallback(data) {
             console.info('AmbientLightSensorJsTest007  on error');
             expect(typeof (data.intensity)).assertEqual("number");
+            expect(typeof (data.colorTemperature)).assertEqual("number");
+            expect(typeof (data.infraredLuminance)).assertEqual("number");        
             expect(typeof (data.timestamp)).assertEqual("number");
         }
         try{
@@ -286,7 +307,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest007 Device does not support! ');
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -323,7 +346,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest008 Device does not support! ');
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -355,7 +380,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest009 Device does not support! ');
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -396,7 +423,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest010 Device does not support! ');
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -428,7 +457,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest011 Device does not support! ');
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -469,7 +500,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest012 Device does not support! ');
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -501,7 +534,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest013 Device does not support! ');
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -540,7 +575,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest014 Device does not support! ');
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -580,7 +617,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest015 Device does not support! ');
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -621,7 +660,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info('AmbientLightSensorJsTest016 Device does not support! ');
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -657,7 +698,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info("AmbientLightSensorJsTest017 Device does not support! ");
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -698,7 +741,9 @@ describe("SensorJsTest_sensor_4", function () {
                 }
             })
         } catch (error) {
-            console.info("AmbientLightSensorJsTest018 Device does not support! ");
+            cconsole.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })

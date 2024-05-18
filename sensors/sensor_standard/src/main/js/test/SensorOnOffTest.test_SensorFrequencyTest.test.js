@@ -64,6 +64,8 @@ describe("SensorJsTest_sensor_63", function () {
     const PARAMETER_ERROR_CODE = 401
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const PERMISSION_DENIED_MSG = 'Permission denied.'
+    const SENSOR_NO_SUPPORT_CODE = 14500102
+    const SENSOR_NO_SUPPOR_MSG = 'The sensor is not supported by the device.'
 
     /*
      * @tc.name:SUBSensorsSystemNewFrequencyJSTest0010
@@ -96,7 +98,9 @@ describe("SensorJsTest_sensor_63", function () {
                 }
             });
         } catch (err) {
-            console.error('Sensor is not support');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -132,7 +136,9 @@ describe("SensorJsTest_sensor_63", function () {
                     }
                 });
             } catch (err) {
-                console.error('Sensor is not support');
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
         })
@@ -168,7 +174,9 @@ describe("SensorJsTest_sensor_63", function () {
                 }
             });
         } catch (err) {
-            console.error('Sensor is not support');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -204,7 +212,9 @@ describe("SensorJsTest_sensor_63", function () {
                 }
             });
         } catch (err) {
-            console.error('Sensor is not support');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -240,7 +250,9 @@ describe("SensorJsTest_sensor_63", function () {
                 }
             });
         } catch (err) {
-            console.error('Sensor is not support');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -276,7 +288,9 @@ describe("SensorJsTest_sensor_63", function () {
                 }
             });
         } catch (err) {
-            console.error('Sensor is not support');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -312,7 +326,9 @@ describe("SensorJsTest_sensor_63", function () {
                 }
             });
         } catch (err) {
-            console.error('Sensor is not support');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -348,7 +364,9 @@ describe("SensorJsTest_sensor_63", function () {
                 }
             });
         } catch (err) {
-            console.error('Sensor is not support');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -384,7 +402,9 @@ describe("SensorJsTest_sensor_63", function () {
                 }
             });
         } catch (err) {
-            console.error('Sensor is not support');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })

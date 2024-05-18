@@ -67,8 +67,10 @@ describe("SensorJsTest_sensor_15", function () {
 
     const PARAMETER_ERROR_CODE = 401
     const SERVICE_EXCEPTION_CODE = 14500101
+    const SENSOR_NO_SUPPORT_CODE = 14500102
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
+    const SENSOR_NO_SUPPOR_MSG = 'The sensor is not supported by the device.'
     let errMessages = ['string is not defined','The parameter invalid'];
     let errMessage;
 
@@ -96,7 +98,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
            })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest001 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -127,7 +131,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest002 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -160,7 +166,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest003 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -189,7 +197,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
                 })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest004 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -228,7 +238,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest005 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -260,7 +272,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest006 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -296,7 +310,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest007 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -333,7 +349,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest008 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -365,7 +383,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest009 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -406,7 +426,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest010 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -438,7 +460,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest011 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -479,7 +503,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
            })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest012 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -511,7 +537,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest013 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -550,7 +578,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest014 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -590,7 +620,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest015 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -631,7 +663,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info('MagneticFieldSensorJsTest016 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -667,7 +701,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info("MagneticFieldSensorJsTest017 Device does not support! ");
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -708,7 +744,9 @@ describe("SensorJsTest_sensor_15", function () {
                 }
             })
         } catch (error) {
-            console.info("MagneticFieldSensorJsTest018 Device does not support! ");
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })

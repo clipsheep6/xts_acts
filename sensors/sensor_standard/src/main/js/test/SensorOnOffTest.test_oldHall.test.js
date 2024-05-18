@@ -62,9 +62,11 @@ describe("SensorJsTest_sensor_7", function () {
     })
 
     const PARAMETER_ERROR_CODE = 401
-    const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_CODE = 14500101
+    const SENSOR_NO_SUPPORT_CODE = 14500102
+    const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
+    const SENSOR_NO_SUPPOR_MSG = 'The sensor is not supported by the device.'
     let errMessages = ['string is not defined','The parameter invalid'];
     let errMessage;
 
@@ -92,7 +94,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
           })
         } catch (error) {
-            console.info('HallSensorJsTest001 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -123,7 +127,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info('HallSensorJsTest002 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -154,7 +160,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info('HallSensorJsTest003 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -183,7 +191,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info('HallSensorJsTest004 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -218,7 +228,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info('HallSensorJsTest005 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -250,7 +262,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
            })
         } catch (error) {
-            console.info('HallSensorJsTest006 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -284,7 +298,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info('HallSensorJsTest007 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -321,7 +337,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info('HallSensorJsTest008 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -353,7 +371,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info('HallSensorJsTest009 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -394,7 +414,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info('HallSensorJsTest010 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -426,7 +448,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info('HallSensorJsTest011 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -467,7 +491,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info('HallSensorJsTest012 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -499,7 +525,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info('HallSensorJsTest013 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -538,7 +566,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info('HallSensorJsTest014 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -578,7 +608,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info('HallSensorJsTest015 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -619,7 +651,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info('HallSensorJsTest016 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -655,7 +689,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info("HallSensorJsTest017 Device does not support! ");
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -696,7 +732,9 @@ describe("SensorJsTest_sensor_7", function () {
                 }
             })
         } catch (error) {
-            console.info("HallSensorJsTest018 Device does not support! ");
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })

@@ -51,6 +51,12 @@ describe("SensorJsTest_sensor_26", function () {
     })
 
     let BarometerId = 8
+    const PARAMETER_ERROR_CODE = 401
+    const SERVICE_EXCEPTION_CODE = 14500101
+    const SENSOR_NO_SUPPORT_CODE = 14500102
+    const PARAMETER_ERROR_MSG = 'The parameter invalid.'
+    const SERVICE_EXCEPTION_MSG = 'Service exception.'
+    const SENSOR_NO_SUPPOR_MSG = 'The sensor is not supported by the device.'    
 
     /*
      * @tc.number:SUB_SensorsSystem_SubscribeBarometer_JSTest_0010
@@ -85,7 +91,9 @@ describe("SensorJsTest_sensor_26", function () {
                 }
             })
         } catch (error) {
-            console.info('subscribeBarometerSensorJsTest001 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -133,7 +141,9 @@ describe("SensorJsTest_sensor_26", function () {
                 }
             })
         } catch (error) {
-            console.info('subscribeBarometerSensorJsTest002 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -171,7 +181,9 @@ describe("SensorJsTest_sensor_26", function () {
                 }
             })
         } catch (error) {
-            console.info('subscribeBarometerSensorJsTest003 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -214,7 +226,9 @@ describe("SensorJsTest_sensor_26", function () {
                 }
             })
         } catch (error) {
-            console.info('subscribeBarometerSensorJsTest004 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -249,7 +263,9 @@ describe("SensorJsTest_sensor_26", function () {
                 }
             })
         } catch (error) {
-            console.info('subscribeBarometerSensorJsTest005 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })

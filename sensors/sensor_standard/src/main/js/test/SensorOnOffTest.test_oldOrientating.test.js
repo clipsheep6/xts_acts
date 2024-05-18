@@ -66,9 +66,11 @@ describe("SensorJsTest_sensor_16", function () {
     })
 
     const PARAMETER_ERROR_CODE = 401
-    const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_CODE = 14500101
+    const SENSOR_NO_SUPPORT_CODE = 14500102
+    const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
+    const SENSOR_NO_SUPPOR_MSG = 'The sensor is not supported by the device.'
     let errMessages = ['string is not defined','The parameter invalid'];
     let errMessage;
 
@@ -96,7 +98,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
                 })
         } catch (error) {
-            console.info('OrientatingSensorJsTest001 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -127,7 +131,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
             })
         } catch (error) {
-            console.info('OrientatingSensorJsTest002 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -160,7 +166,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
             })
         } catch (error) {
-            console.info('OrientatingSensorJsTest003 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -189,7 +197,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
                 })
         } catch (error) {
-            console.info('OrientatingSensorJsTest004 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -228,7 +238,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
             })
         } catch (error) {
-            console.info('OrientatingSensorJsTest005 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -260,7 +272,9 @@ describe("SensorJsTest_sensor_16", function () {
                     }
                 })
         } catch (error) {
-            console.info('OrientatingSensorJsTest006 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -296,7 +310,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
             })
         } catch (error) {
-            console.info('OrientatingSensorJsTest007 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -332,7 +348,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
             })
         } catch (error) {
-            console.info('OrientatingSensorJsTest008 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -364,7 +382,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
             })
         } catch (error) {
-            console.info('OrientatingSensorJsTest009 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -405,7 +425,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
             })
         } catch (error) {
-            console.info('OrientatingSensorJsTest010 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -437,7 +459,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
             })
         } catch (error) {
-            console.info('OrientatingSensorJsTest011 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -478,7 +502,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
                 })
         } catch (error) {
-            console.info('OrientatingSensorJsTest012 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -510,7 +536,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
             })
         } catch (error) {
-            console.info('OrientatingSensorJsTest013 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -549,7 +577,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
             })
         } catch (error) {
-            console.info('OrientatingSensorJsTest014 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -589,7 +619,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
             })
         } catch (error) {
-            console.info('OrientatingSensorJsTest015 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -630,7 +662,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
             })
         } catch (error) {
-            console.info('OrientatingSensorJsTest016 Device does not support! ');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -666,7 +700,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
             })
         } catch (error) {
-            console.info("OrientatingSensorJsTest017 Device does not support! ");
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -707,7 +743,9 @@ describe("SensorJsTest_sensor_16", function () {
                 }
             })
         } catch (error) {
-            console.info("OrientatingSensorJsTest018 Device does not support! ");
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2023 Huawei Device Co., Ltd.
+ * Copyright (C) 2023-2024 Huawei Device Co., Ltd.
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -32,7 +32,9 @@ const PARAMETER_ERROR_CODE = 401
 const SERVICE_EXCEPTION_CODE = 14500101
 const SERVICE_EXCEPTION_MSG = 'Service exception.'
 const PARAMETER_ERROR_MSG = 'The parameter invalid.'
+const SENSOR_NO_SUPPORT_CODE = 14500102
 const PERMISSION_DENIED_MSG = 'Permission denied.'
+const SENSOR_NO_SUPPOR_MSG = 'The sensor is not supported by the device.'
 let tokenID = undefined
 let permissionNameUser = 'ohos.permission.ACTIVITY_MOTION'
 async function grantPerm(){
@@ -148,7 +150,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest001 Sensor is not support');
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
         })
@@ -180,7 +184,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest002 Sensor is not support');
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
         })
@@ -215,7 +221,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest003 Sensor is not support');
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
         })
@@ -250,7 +258,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest004 Sensor is not support');
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
         })
@@ -282,7 +292,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest005 Sensor is not support');
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
         })
@@ -313,7 +325,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest006 Sensor is not support');
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
         })
@@ -349,7 +363,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest007 Sensor is not support');
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
         })
@@ -388,7 +404,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest008 Sensor is not support');
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
         })
@@ -424,7 +442,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest009 Sensor is not support');
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
         })
@@ -459,7 +479,9 @@ describe("SensorJsTest_sensor_57", function () {
                 }
             });
         } catch (error) {
-            console.error('newPedometerDetectionSensorJsTest010 Sensor is not support');
+            console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -503,7 +525,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest011 Sensor is not support'+error);
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
     })
@@ -538,7 +562,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest012 Sensor is not support'+error);
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
         })
@@ -573,7 +599,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest013 Sensor is not support'+error);
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
     })
@@ -612,7 +640,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest014 Sensor is not support'+error);
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
     })
@@ -644,7 +674,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest015 Sensor is not support'+error);
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
     })
@@ -705,7 +737,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest016 Sensor is not support'+error);
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
     })
@@ -749,7 +783,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest017 Sensor is not support'+error);
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
     })
@@ -784,7 +820,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest018 Sensor is not support');
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
     })
@@ -820,7 +858,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest019 Sensor is not support');
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
     })
@@ -859,7 +899,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest020 Sensor is not support');
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
     })
@@ -899,7 +941,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest021 Sensor is not support');
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
     })
@@ -933,7 +977,9 @@ describe("SensorJsTest_sensor_57", function () {
                     }
                 });
             } catch (error) {
-                console.error('newPedometerDetectionSensorJsTest022 Sensor is not support'+error);
+                console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
+                expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+                expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
                 done();
             }
     })
