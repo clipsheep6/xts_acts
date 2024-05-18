@@ -11,20 +11,10 @@
 
 import("//test/xts/tools/build/suite.gni")
 
-ohos_app_assist_suite("AACommand07Main") {
-  testonly = true
-  certificate_profile = "./signature/openharmony_sx.p7b"
-  hap_name = "AACommand07Main"
-  part_name = "ability_runtime"
-  subsystem_name = "ability"
-}
-
-ohos_js_app_suite("AACommand07") {
-  test_hap = true
+ohos_app_assist_suite("AACommand07") {
   testonly = true
   certificate_profile = "./signature/openharmony_sx.p7b"
   hap_name = "AACommand07"
   part_name = "ability_runtime"
   subsystem_name = "ability"
-  deps = [ ":AACommand07Main" ]
 }

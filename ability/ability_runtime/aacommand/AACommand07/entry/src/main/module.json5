@@ -35,8 +35,6 @@
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_label",
-        "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background",
         "visible": true,
         "skills": [
           {
@@ -47,25 +45,27 @@
               "action.system.home"
             ]
           }
-        ]
+        ],
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background"
       },
       {
         "name": "MainAbility2",
         "srcEntry": "./ets/MainAbility2/MainAbility2.ets",
         "description": "$string:MainAbility2_desc",
         "icon": "$media:icon",
+        "label": "$string:MainAbility2_label",
         "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background",
-        "label": "$string:MainAbility2_label"
+        "startWindowBackground": "$color:start_window_background"
       },
       {
         "name": "MainAbility3",
         "srcEntry": "./ets/MainAbility3/MainAbility3.ets",
         "description": "$string:MainAbility3_desc",
         "icon": "$media:icon",
+        "label": "$string:MainAbility3_label",
         "startWindowIcon": "$media:icon",
-        "startWindowBackground": "$color:start_window_background",
-        "label": "$string:MainAbility3_label"
+        "startWindowBackground": "$color:start_window_background"
       }
     ]
   }
