@@ -22,7 +22,6 @@ import Ability from '@ohos.app.ability.Ability';
 import { BusinessError, Callback } from '@ohos.base';
 import { UIContext } from '@ohos.arkui.UIContext';
 import common from '@ohos.app.ability.common';
-import deviceInfo from '@ohos.deviceInfo';
 
 function unexpectedError(error: BusinessError, caseName: string, apiName: string, TRUE_FLAG: boolean, done: Function) {
   let msgStr: string = 'jsUnittest ' + caseName + ' ' + apiName + ' failed, err: ';
@@ -49,11 +48,11 @@ function buttonClick(buttonText: string, msgStr: string) {
     let driver = await UiDriver.create()
     console.info(msgStr + `case come in buttonClick fun 222`)
     console.info(msgStr + `driver is ${JSON.stringify(driver)}`)
-    await sleep(1000)
+    await sleep(900)
     console.info(msgStr + `UiDriver start`)
     let button: UiComponent = await driver.findComponent(BY.text(buttonText))
     console.info(msgStr + `button is ${JSON.stringify(button)}`)
-    await sleep(1000)
+    await sleep(900)
     if (button) {
       console.info(msgStr + `button click begin`)
       await button.click()
@@ -72,11 +71,11 @@ function inputClick(buttonText: string, msgStr: string) {
     let driver = await UiDriver.create()
     console.info(msgStr + `case come in inputClick fun 222`)
     console.info(msgStr + `driver is ${JSON.stringify(driver)}`)
-    await sleep(1000)
+    await sleep(900)
     console.info(msgStr + `UiDriver start`)
     let input: UiComponent = await driver.findComponent(BY.key(buttonText))
     console.info(msgStr + `input is ${JSON.stringify(input)}`)
-    await sleep(1000)
+    await sleep(900)
     if (input) {
       console.info(msgStr + `input click begin`)
       await input.click()
@@ -95,12 +94,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
   describe('windowInterface_optionalParameter_test', () => {
     console.log('describe window_api_test start!!!')
     const TRUE_FLAG: boolean = true;
-    let currentDeviceIsPC = false;
     beforeAll(async () => {
-      let deviceTypeInfo = deviceInfo.deviceType
-      currentDeviceIsPC = deviceTypeInfo === '2in1' ? true : false;
-      console.info('the value of the deviceType is :' + deviceInfo.deviceType);
-
       // 点击掉USB用于的弹窗
       let msgStr: string = 'USB用于的弹窗';
       await buttonClick('取消', msgStr).catch(async (err: BusinessError) => {
@@ -135,7 +129,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         expect().assertFail();
         done();
       }
-      await sleep(1000);
+      await sleep(900);
       try {
         // @ts-ignore
         (mainWin as ohosWindow.Window).off('touchOutside', callback);
@@ -238,7 +232,10 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         num++
         secondListenFlag = true
       });
-      await sleep(3000);
+      await sleep(800);
+      await sleep(800);
+      await sleep(800);
+      await sleep(600);
       await buttonClick("点击pageOne", msgStr).catch(async (err: BusinessError) => {
         console.info(msgStr + err);
         await (tempWnd as ohosWindow.Window).destroyWindow();
@@ -341,7 +338,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       (tempWnd as ohosWindow.Window).on('touchOutside', firstCall);
       // @ts-ignore
       (tempWnd as ohosWindow.Window).on('touchOutside', secondCall);
-      await sleep(1000);
+      await sleep(800);
       await buttonClick('点击pageOne', msgStr).catch(async (err: BusinessError) => {
         console.info(msgStr + err);
         await (tempWnd as ohosWindow.Window).destroyWindow();
@@ -360,7 +357,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         expect(TRUE_FLAG).assertFail();
         done();
       })
-      await sleep(1000)
+      await sleep(800)
       await (tempWnd as ohosWindow.Window).destroyWindow();
       await (tempWnd_two as ohosWindow.Window).destroyWindow();
       if (!firstListenFlag && secondListenFlag) {
@@ -441,7 +438,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         await (tempWnd as ohosWindow.Window).destroyWindow();
         done();
       })
-      await sleep(1000);
+      await sleep(800);
       (tempWnd as ohosWindow.Window).off('windowSizeChange');
       firstListenFlag = false
       secondListenFlag = false
@@ -509,7 +506,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         await (tempWnd as ohosWindow.Window).destroyWindow();
         done();
       })
-      await sleep(1000);
+      await sleep(800);
       (tempWnd as ohosWindow.Window).off('windowSizeChange', firstCall);
       firstListenFlag = false
       secondListenFlag = false
@@ -570,7 +567,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       await (tempWnd as ohosWindow.Window).setSystemBarEnable(['status']).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'tempWnd.setSystemBarEnable([status])', TRUE_FLAG, done);
       });
-      await sleep(1000);
+      await sleep(800);
       (tempWnd as ohosWindow.Window).off('avoidAreaChange');
       firstListenFlag = false
       secondListenFlag = false
@@ -623,7 +620,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       await (tempWnd as ohosWindow.Window).setFullScreen(true).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'tempWnd.setFullScreen(true)', TRUE_FLAG, done);
       });
-      await sleep(1000);
+      await sleep(800);
       (tempWnd as ohosWindow.Window).off('avoidAreaChange', firstCall);
       firstListenFlag = false
       secondListenFlag = false
@@ -633,7 +630,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       await (tempWnd as ohosWindow.Window).setSystemBarEnable(['status', 'navigation']).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'tempWnd.setSystemBarEnable([status])', TRUE_FLAG, done);
       });
-      await sleep(1000);
+      await sleep(800);
       if (!firstListenFlag && secondListenFlag) {
         (tempWnd as ohosWindow.Window).off('avoidAreaChange');
         done();
@@ -697,7 +694,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         expect().assertFail();
         done();
       });
-      await sleep(1000);
+      await sleep(800);
       (tempWnd as ohosWindow.Window).off('screenshot');
       firstListenFlag = false
       secondListenFlag = false
@@ -710,7 +707,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         expect().assertFail();
         done();
       });
-      await sleep(1000);
+      await sleep(800);
       if (num >= 2 && firstListenFlag === false && secondListenFlag === false) {
         await (tempWnd as ohosWindow.Window).destroyWindow();
         done();
@@ -776,7 +773,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         expect().assertFail();
         done();
       });
-      await sleep(1000);
+      await sleep(800);
       (tempWnd as ohosWindow.Window).off('screenshot', firstCall);
       firstListenFlag = false
       secondListenFlag = false
@@ -789,7 +786,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         expect().assertFail();
         done();
       });
-      await sleep(1000);
+      await sleep(800);
       (tempWnd as ohosWindow.Window).off('screenshot');
       await (tempWnd as ohosWindow.Window).destroyWindow();
       if (!firstListenFlag && secondListenFlag) {
@@ -850,7 +847,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         expect(TRUE_FLAG).assertFail();
         done();
       })
-      await sleep(1000);
+      await sleep(800);
       (tempWnd as ohosWindow.Window).off('dialogTargetTouch');
       firstListenFlag = false
       secondListenFlag = false
@@ -860,7 +857,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         expect(TRUE_FLAG).assertFail();
         done();
       })
-      await sleep(1000);
+      await sleep(800);
       if (num >= 2 && firstListenFlag === false && secondListenFlag === false) {
         await (tempWnd as ohosWindow.Window).destroyWindow();
         done();
@@ -918,7 +915,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         expect(TRUE_FLAG).assertFail();
         done();
       })
-      await sleep(1000);
+      await sleep(800);
       (tempWnd as ohosWindow.Window).off('dialogTargetTouch', firstCall);
       firstListenFlag = false
       secondListenFlag = false
@@ -928,7 +925,7 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         expect(TRUE_FLAG).assertFail();
         done();
       })
-      await sleep(1000);
+      await sleep(800);
       (tempWnd as ohosWindow.Window).off('dialogTargetTouch');
       await (tempWnd as ohosWindow.Window).destroyWindow();
       if (!firstListenFlag && secondListenFlag) {
@@ -950,8 +947,8 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       let caseName: string = 'testWindow_off_keyboardHeightChange_AllListening_LogOut';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      // pc上输入框聚焦没有软件盘弹出，该用例无法测试执行
-      if(currentDeviceIsPC){
+      // pc上输入框聚焦没有软键盘弹出，该用例无法测试执行
+      if(!canIUse("SyatemCapability.Sensors.Sensor")){
         done();
         return;
       }
@@ -997,25 +994,25 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         expect(TRUE_FLAG).assertFail();
         done();
       })
-      await sleep(1000);
+      await sleep(800);
       (tempWnd as ohosWindow.Window).off('keyboardHeightChange');
       firstListenFlag = false
       secondListenFlag = false
-      await sleep(1000);
+      await sleep(800);
       await buttonClick('点击按钮获取焦点', msgStr).catch(async (err: BusinessError) => {
         console.info(msgStr + err);
         await (tempWnd as ohosWindow.Window).destroyWindow();
         expect().assertFail();
         done();
       })
-      await sleep(1000);
+      await sleep(800);
       await inputClick('pageTwoinputSecond', msgStr).catch(async (err: BusinessError) => {
         console.info(msgStr + err);
         await (tempWnd as ohosWindow.Window).destroyWindow();
         expect(TRUE_FLAG).assertFail();
         done();
       })
-      await sleep(2000);
+      await sleep(800);
       if (num >= 2 && firstListenFlag === false && secondListenFlag === false) {
         await (tempWnd as ohosWindow.Window).destroyWindow();
         done();
@@ -1033,8 +1030,8 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       let caseName: string = 'testWindow_off_keyboardHeightChange_FirstCall_LogOut';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       console.log(msgStr + 'begin');
-      // pc上输入框聚焦没有软件盘弹出，该用例无法测试执行
-      if(currentDeviceIsPC){
+      // pc上输入框聚焦没有软键盘弹出，该用例无法测试执行
+      if(!canIUse("SyatemCapability.Sensors.Sensor")){
         done();
         return;
       }
@@ -1082,25 +1079,25 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
         expect(TRUE_FLAG).assertFail();
         done();
       })
-      await sleep(1000);
+      await sleep(800);
       (tempWnd as ohosWindow.Window).off('keyboardHeightChange', firstCall);
       firstListenFlag = false
       secondListenFlag = false
-      await sleep(1000);
+      await sleep(800);
       await buttonClick('点击按钮获取焦点', msgStr).catch(async (err: BusinessError) => {
         console.info(msgStr + err);
         await (tempWnd as ohosWindow.Window).destroyWindow();
         expect().assertFail();
         done();
       })
-      await sleep(1000);
+      await sleep(800);
       await inputClick('pageTwoinputSecond', msgStr).catch(async (err: BusinessError) => {
         console.info(msgStr + err);
         await (tempWnd as ohosWindow.Window).destroyWindow();
         expect(TRUE_FLAG).assertFail();
         done();
       })
-      await sleep(2000);
+      await sleep(800);
       if (!firstListenFlag && secondListenFlag) {
         (tempWnd as ohosWindow.Window).off('keyboardHeightChange');
         await (tempWnd as ohosWindow.Window).destroyWindow();
@@ -1149,14 +1146,14 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       await (tempWnd as ohosWindow.Window).hide().catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'tempWnd.hide', TRUE_FLAG, done);
       });
-      await sleep(1000);
+      await sleep(800);
       windowStage.off("windowStageEvent");
       firstListenFlag = false
       secondListenFlag = false
       await (tempWnd as ohosWindow.Window).show().catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'tempWnd.show', TRUE_FLAG, done);
       });
-      await sleep(1000);
+      await sleep(800);
       if (num >= 2 && firstListenFlag === false && secondListenFlag === false) {
         done();
       }
@@ -1194,14 +1191,14 @@ export default function windowPromiseTest(context: common.UIAbilityContext, wind
       await (tempWnd as ohosWindow.Window).hide().catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'tempWnd.hide', TRUE_FLAG, done);
       });
-      await sleep(1000);
+      await sleep(800);
       windowStage.off("windowStageEvent", firstCall);
       firstListenFlag = false
       secondListenFlag = false
       await (tempWnd as ohosWindow.Window).show().catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'tempWnd.show', TRUE_FLAG, done);
       });
-      await sleep(1000);
+      await sleep(800);
       windowStage.off("windowStageEvent");
       if (!firstListenFlag && secondListenFlag) {
         done();

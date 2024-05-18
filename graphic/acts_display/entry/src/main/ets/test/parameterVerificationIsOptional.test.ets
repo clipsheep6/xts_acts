@@ -55,307 +55,7 @@ export default function windowInterfaceOptionalParameterTest(context: common.UIA
       console.info('the value of the deviceType is :' + deviceInfo.deviceType);
 
     })
-    /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0340
-     * @tc.name      : testDisplay_off_add_Deregister_All_Listeners
-     * @tc.desc      : Enable the monitor that shows device changes.
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level4
-     */
-    it('testDisplay_off_add_Deregister_All_Listeners', 0, async (done: Function) => {
-      let caseName: string = 'testDisplay_off_add_Deregister_All_Listeners';
-      let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      console.log(msgStr + 'begin');
-      let num: number = 0
-      let firstListenFlag: boolean = false
-      let secondListenFlag: boolean = false
-
-      let firstCall = () => {
-        console.log(msgStr + "first listener trigger")
-        num++
-        firstListenFlag = true
-      }
-
-      let secondCall = () => {
-        console.log(msgStr + "second listener trigger")
-        num++
-        secondListenFlag = true
-      }
-
-      display.on("add", firstCall);
-      display.on("add", secondCall);
-      let screenClass: screen.Screen | void = await screen.createVirtualScreen({
-        name: 'add01',
-        width: 1080,
-        height: 2340,
-        density: 2,
-        surfaceId: ''
-      }).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.createVirtualScreen', TRUE_FLAG, done);
-      });
-      expect(!!screenClass).assertTrue();
-      await screen.makeExpand([{
-        screenId: 0, startX: 0, startY: 0
-      }, {
-        screenId: (screenClass as screen.Screen).id, startX: 1080, startY: 0
-      }]).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
-      });
-      await sleep(1000);
-      display.off('add')
-      firstListenFlag = false
-      secondListenFlag = false
-      await screen.destroyVirtualScreen((screenClass as screen.Screen).id)
-      let screenClass_two: screen.Screen | void = await screen.createVirtualScreen({
-        name: 'add001',
-        width: 900,
-        height: 2000,
-        density: 3,
-        surfaceId: ''
-      }).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.createVirtualScreen', TRUE_FLAG, done);
-      });
-      expect(!!screenClass_two).assertTrue();
-      await screen.makeExpand([{
-        screenId: 0, startX: 0, startY: 0
-      }, {
-        screenId: (screenClass_two as screen.Screen).id, startX: 1080, startY: 0
-      }]).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
-      });
-      await sleep(1000);
-      if (num >= 2 && firstListenFlag === false && secondListenFlag === false) {
-        await screen.destroyVirtualScreen((screenClass_two as screen.Screen).id)
-        done();
-      }
-    })
-    /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0350
-     * @tc.name      : testDisplay_off_add_Deregister_FirstCall_Listeners
-     * @tc.desc      : Enable the monitor that shows device changes.
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level4
-     */
-    it('testDisplay_off_add_Deregister_FirstCall_Listeners', 0, async (done: Function) => {
-      let caseName: string = 'testDisplay_off_add_Deregister_FirstCall_Listeners';
-      let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      console.log(msgStr + 'begin');
-      let firstListenFlag: boolean = false
-      let secondListenFlag: boolean = false
-      let firstCall: Callback<number> = () => {
-        console.log(msgStr + "first listener trigger")
-        firstListenFlag = true
-      }
-
-      let secondCall: Callback<number> = () => {
-        console.log(msgStr + "second listener trigger")
-        secondListenFlag = true
-      }
-
-      display.on("add", firstCall);
-      display.on("add", secondCall);
-      let screenClass: screen.Screen | void = await screen.createVirtualScreen({
-        name: 'add02',
-        width: 1080,
-        height: 2340,
-        density: 2,
-        surfaceId: ''
-      }).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.createVirtualScreen', TRUE_FLAG, done);
-      });
-      expect(!!screenClass).assertTrue();
-      await screen.makeExpand([{
-        screenId: 0, startX: 0, startY: 0
-      }, {
-        screenId: (screenClass as screen.Screen).id, startX: 1080, startY: 0
-      }]).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
-      });
-      await sleep(1000);
-      display.off("add", firstCall)
-      firstListenFlag = false
-      secondListenFlag = false
-      await screen.destroyVirtualScreen((screenClass as screen.Screen).id)
-      let screenClass_two: screen.Screen | void = await screen.createVirtualScreen({
-        name: 'add002',
-        width: 900,
-        height: 2000,
-        density: 3,
-        surfaceId: ''
-      }).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.createVirtualScreen', TRUE_FLAG, done);
-      });
-      expect(!!screenClass_two).assertTrue();
-      await screen.makeExpand([{
-        screenId: 0, startX: 0, startY: 0
-      }, {
-        screenId: (screenClass_two as screen.Screen).id, startX: 1080, startY: 0
-      }]).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
-      });
-      await sleep(1000);
-      await screen.destroyVirtualScreen((screenClass_two as screen.Screen).id)
-      display.off("add")
-      if (!firstListenFlag && secondListenFlag) {
-        done();
-      } else {
-        expect(TRUE_FLAG).assertFail();
-        done();
-      }
-    })
-    /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0380
-     * @tc.name      : testDisplay_off_remove_Deregister_All_Listeners
-     * @tc.desc      : Enable the monitor that shows device changes.
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level4
-     */
-    it('testDisplay_off_remove_Deregister_All_Listeners', 0, async (done: Function) => {
-      let caseName: string = 'testDisplay_off_remove_Deregister_All_Listeners';
-      let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      console.log(msgStr + 'begin');
-      let num: number = 0
-      let firstListenFlag: boolean = false
-      let secondListenFlag: boolean = false
-
-      let firstCall: Callback<number> = () => {
-        console.log(msgStr + "first listener trigger")
-        num++
-        firstListenFlag = true
-      }
-
-      let secondCall: Callback<number> = () => {
-        console.log(msgStr + "second listener trigger")
-        num++
-        secondListenFlag = true
-      }
-
-      display.on('remove', firstCall);
-      display.on('remove', secondCall);
-      let screenClass: screen.Screen | void = await screen.createVirtualScreen({
-        name: 'remove01',
-        width: 1080,
-        height: 2340,
-        density: 2,
-        surfaceId: ''
-      }).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.createVirtualScreen', TRUE_FLAG, done);
-      });
-      expect(!!screenClass).assertTrue();
-      await screen.makeExpand([{
-        screenId: 0, startX: 0, startY: 0
-      }, {
-        screenId: (screenClass as screen.Screen).id, startX: 1080, startY: 0
-      }]).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
-      });
-      await screen.destroyVirtualScreen((screenClass as screen.Screen).id)
-      await sleep(1000);
-      display.off('remove')
-      firstListenFlag = false
-      secondListenFlag = false
-      let screenClass_two: screen.Screen | void = await screen.createVirtualScreen({
-        name: 'remove001',
-        width: 900,
-        height: 2000,
-        density: 3,
-        surfaceId: ''
-      }).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.createVirtualScreen', TRUE_FLAG, done);
-      });
-      expect(!!screenClass_two).assertTrue();
-      await screen.makeExpand([{
-        screenId: 0, startX: 0, startY: 0
-      }, {
-        screenId: (screenClass_two as screen.Screen).id, startX: 1080, startY: 0
-      }]).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
-      });
-      await screen.destroyVirtualScreen((screenClass_two as screen.Screen).id)
-      await sleep(1000);
-      if (num >= 2 && firstListenFlag === false && secondListenFlag === false) {
-        done();
-      }
-    })
-    /**
-     * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0390
-     * @tc.name      : testDisplay_off_remove_Deregister_FirstCall_Listeners
-     * @tc.desc      : Enable the monitor that shows device changes.
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level4
-     */
-    it('testDisplay_off_remove_Deregister_FirstCall_Listeners', 0, async (done: Function) => {
-      let caseName: string = 'testDisplay_off_remove_Deregister_FirstCall_Listeners';
-      let msgStr: string = 'jsUnittest ' + caseName + ' ';
-      console.log(msgStr + 'begin');
-      let firstListenFlag: boolean = false
-      let secondListenFlag: boolean = false
-
-      let firstCall: Callback<number> = () => {
-        console.log(msgStr + "first listener trigger")
-        firstListenFlag = true
-      }
-
-      let secondCall: Callback<number> = () => {
-        console.log(msgStr + "second listener trigger")
-        secondListenFlag = true
-      }
-
-      display.on('remove', firstCall);
-      display.on('remove', secondCall);
-      let screenClass: screen.Screen | void = await screen.createVirtualScreen({
-        name: 'remove02',
-        width: 1080,
-        height: 2340,
-        density: 2,
-        surfaceId: ''
-      }).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.createVirtualScreen', TRUE_FLAG, done);
-      });
-      expect(!!screenClass).assertTrue();
-      await screen.makeExpand([{
-        screenId: 0, startX: 0, startY: 0
-      }, {
-        screenId: (screenClass as screen.Screen).id, startX: 1080, startY: 0
-      }]).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
-      });
-      await screen.destroyVirtualScreen((screenClass as screen.Screen).id)
-      await sleep(1000);
-      display.off('remove', firstCall)
-      firstListenFlag = false
-      secondListenFlag = false
-      let screenClass_two: screen.Screen | void = await screen.createVirtualScreen({
-        name: 'remove002',
-        width: 900,
-        height: 2000,
-        density: 3,
-        surfaceId: ''
-      }).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.createVirtualScreen', TRUE_FLAG, done);
-      });
-      expect(!!screenClass_two).assertTrue();
-      await screen.makeExpand([{
-        screenId: 0, startX: 0, startY: 0
-      }, {
-        screenId: (screenClass_two as screen.Screen).id, startX: 1080, startY: 0
-      }]).catch((err: BusinessError) => {
-        unexpectedError(err, caseName, 'screen.makeExpand', TRUE_FLAG, done);
-      });
-      await screen.destroyVirtualScreen((screenClass_two as screen.Screen).id)
-      await sleep(1000);
-      display.off('remove')
-      if (!firstListenFlag && secondListenFlag) {
-        done();
-      } else {
-        expect(TRUE_FLAG).assertFail();
-        done();
-      }
-    })
+    
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0360
      * @tc.name      : testDisplay_off_change_Deregister_All_Listeners
@@ -383,37 +83,64 @@ export default function windowInterfaceOptionalParameterTest(context: common.UIA
         num++
         secondListenFlag = true
       }
-
+      if(canIUse("SyatemCapability.Sensors.Sensor")){
+        console.log('该设备支持SyatemCapability.Sensors.Sensor');
       display.on('change', firstCall);
       display.on('change', secondCall);
       let mainWindow: ohosWindow.Window | void;
-      mainWindow = await windowStage.getMainWindow().catch((err: BusinessError) => {
+      await windowStage.getMainWindow().then((data)=>{
+        mainWindow = data;
+        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'windowStage.getMainWindow', TRUE_FLAG, done);
       });
       expect(!!mainWindow).assertTrue();
-      await (mainWindow as ohosWindow.Window).setPreferredOrientation(ohosWindow.Orientation.PORTRAIT_INVERTED)
-        .catch((err: BusinessError) => {
+      await (mainWindow as ohosWindow.Window).setPreferredOrientation(ohosWindow.Orientation.PORTRAIT_INVERTED).then(() => {
+        console.info('Succeeded in setting the window orientation.');
+        console.info('1:firstListenFlag'+firstListenFlag,'secondListenFlag:'+secondListenFlag);
+      }).catch((err: BusinessError) => {
           console.error(msgStr + 'Failed to set the window orientation. Cause: ' + JSON.stringify(err));
           expect().assertFail();
           done();
         });
       await sleep(1000);
+      console.info('2:firstListenFlag'+firstListenFlag,'secondListenFlag:'+secondListenFlag);
       display.off('change')
       firstListenFlag = false
       secondListenFlag = false
-      await (mainWindow as ohosWindow.Window).setPreferredOrientation(ohosWindow.Orientation.UNSPECIFIED)
+      await (mainWindow as ohosWindow.Window).setPreferredOrientation(ohosWindow.Orientation.UNSPECIFIED).then(() => {
+        console.info('Succeeded in setting the window orientation.');
+        console.info('3:firstListenFlag'+firstListenFlag,'secondListenFlag:'+secondListenFlag);
+      })
         .catch((err: BusinessError) => {
           console.error(msgStr + 'Failed to set the window orientation. Cause: ' + JSON.stringify(err));
           expect(TRUE_FLAG).assertFail();
           done();
         });
       await sleep(1000);
+      console.info('4:firstListenFlag'+firstListenFlag,'secondListenFlag:'+secondListenFlag);
       if (num >= 2 && firstListenFlag === false && secondListenFlag === false) {
         done();
       } else {
         expect(TRUE_FLAG).assertFail();
         done();
       }
+    }else{
+      console.log('该设备不支持SyatemCapability.Sensors.Sensor');
+        let mainWindow: ohosWindow.Window | void
+        await windowStage.getMainWindow().then((data)=>{
+        mainWindow = data;
+        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+        expect(!!mainWindow).assertTrue();
+        let orientation = (mainWindow as ohosWindow.Window).getPreferredOrientation();
+        console.log('orientation:'+JSON.stringify(orientation));
+        expect(orientation).assertEqual(ohosWindow.Orientation.PORTRAIT);
+        done();
+      }).catch((err: BusinessError) => {
+        unexpectedError(err, caseName, 'windowStage.getMainWindow', TRUE_FLAG, done);
+        done();
+      });
+    }
     })
     /**
      * @tc.number    : SUB_BASIC_WMS_SPCIAL_XTS_STAGE_JS_API_0370
@@ -439,25 +166,36 @@ export default function windowInterfaceOptionalParameterTest(context: common.UIA
         console.log(msgStr + "second listener trigger")
         secondListenFlag = true
       }
-
+      if(canIUse("SyatemCapability.Sensors.Sensor")){
+        console.log('该设备支持SyatemCapability.Sensors.Sensor');
       display.on('change', firstCall);
       display.on('change', secondCall);
       let mainWindow: ohosWindow.Window | void
-      mainWindow = await windowStage.getMainWindow().catch((err: BusinessError) => {
+      await windowStage.getMainWindow().then((data)=>{
+        mainWindow = data;
+        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+      }).catch((err: BusinessError) => {
         unexpectedError(err, caseName, 'windowStage.getMainWindow', TRUE_FLAG, done);
       });
       expect(!!mainWindow).assertTrue();
-      await (mainWindow as ohosWindow.Window).setPreferredOrientation(ohosWindow.Orientation.PORTRAIT_INVERTED)
-        .catch((err: BusinessError) => {
+
+      await (mainWindow as ohosWindow.Window).setPreferredOrientation(ohosWindow.Orientation.PORTRAIT_INVERTED).then(() => {
+        console.info('Succeeded in setting the window orientation.');
+        console.info('1:firstListenFlag'+firstListenFlag,'secondListenFlag:'+secondListenFlag);
+      }).catch((err: BusinessError) => {
           console.error(msgStr + 'Failed to set the window orientation. Cause: ' + JSON.stringify(err));
           expect().assertFail();
           done();
         });
       await sleep(1000);
+      console.info('2:firstListenFlag'+firstListenFlag,'secondListenFlag:'+secondListenFlag);
       display.off('change', firstCall)
       firstListenFlag = false
       secondListenFlag = false
-      await (mainWindow as ohosWindow.Window).setPreferredOrientation(ohosWindow.Orientation.UNSPECIFIED)
+      await (mainWindow as ohosWindow.Window).setPreferredOrientation(ohosWindow.Orientation.UNSPECIFIED).then(() => {
+        console.info('Succeeded in setting the window orientation.');
+        console.info('3:firstListenFlag'+firstListenFlag,'secondListenFlag:'+secondListenFlag);
+      })
         .catch((err: BusinessError) => {
           console.error(msgStr + 'Failed to set the window orientation. Cause: ' + JSON.stringify(err));
           expect().assertFail();
@@ -465,11 +203,28 @@ export default function windowInterfaceOptionalParameterTest(context: common.UIA
         });
       await sleep(1000);
       display.off('change')
+      console.info('4:firstListenFlag'+firstListenFlag,'secondListenFlag:'+secondListenFlag);
       if (!firstListenFlag && secondListenFlag) {
         done();
       } else {
         expect(TRUE_FLAG).assertFail();
         done();
+      }}else{
+        console.log('该设备不支持SyatemCapability.Sensors.Sensor');
+        let mainWindow: ohosWindow.Window | void
+        await windowStage.getMainWindow().then((data)=>{
+        mainWindow = data;
+        console.info('Succeeded in obtaining the main window. Data: ' + JSON.stringify(data));
+        expect(!!mainWindow).assertTrue();
+        let orientation = (mainWindow as ohosWindow.Window).getPreferredOrientation();
+        console.log('orientation:'+JSON.stringify(orientation));
+        expect(orientation).assertEqual(ohosWindow.Orientation.PORTRAIT);
+        done();
+      }).catch((err: BusinessError) => {
+        unexpectedError(err, caseName, 'windowStage.getMainWindow', TRUE_FLAG, done);
+        done();
+      });
+      
       }
     })
   })

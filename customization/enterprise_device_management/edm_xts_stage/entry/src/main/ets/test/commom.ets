@@ -16,9 +16,6 @@
 import installer from '@ohos.bundle.installer';
 import adminManager from '@ohos.enterprise.adminManager'
 import bundleManager from '@ohos.enterprise.bundleManager'
-import networkManager from '@ohos.enterprise.networkManager'
-import deviceSettings from '@ohos.enterprise.deviceSettings';
-import connection from '@ohos.net.connection';
 
 const WANT1 = {
   bundleName: "com.example.extensionzerotest",
@@ -33,6 +30,10 @@ const SELFWANT = {
   bundleName: "com.example.myapplication",
   abilityName: "com.example.myapplication.EnterpriseAdminAbility"
 };
+
+const INVALID_WANT = {
+  bundleName: 'com.example.myapplication'
+}
 
 const AUTOSTARTAPP1 = {
   bundleName: "com.example.myapplication",
@@ -89,6 +90,8 @@ const TEST_APP_ID_2: string = "test_app_id_2";
 const TEST_POLICIES: string = "test_policies";
 const TEST_POLICY_NAME: string = "test_policy_name";
 const TEST_POLICY_VALUE: string = "\"test_policy_value\"";
+const TEST_TOKEN_ID: number = 123;
+const TEST_CLIPBOARD_POLICY = 1;
 
 let isMultipleUserEnabled: boolean = true;
 
@@ -124,10 +127,14 @@ function appIdsInit(){
   }
 }
 
+// upgrade
+const UPGRADE_VERSION: string = "version1.0";
+
 export {
-  WANT1, ENTINFO1, SELFWANT, SELFHAPNAME, COMPANYNAME2, DESCRIPTION2, ENTINFO2, NETWORK_ETH_LOCAL,
-  DEFAULT_USER_ID, TEST_USER_ID, ERR_USER_ID, SUBSCRIBE_EVENTS, SUBSCRIBE_INVALID_EVENTS,
-  HAP_FILE_PATH, HAP_FILE_PATH_ERROR, EMPTY_HAP_FILE_PATH, isMultipleUserEnabled,
-  SetIsMultipleUserEnabled, SetTestUserId, appIdsInit, EDM_INSTALL_PARAM, APP_IDS_1,
-  APP_IDS_200, APP_IDS_201, TEST_APP_ID_1, TEST_APP_ID_2, TEST_POLICIES, TEST_POLICY_NAME, TEST_POLICY_VALUE
+  WANT1, ENTINFO1, SELFWANT, AUTOSTARTAPP1, AUTOSTARTAPP2, SELFHAPNAME, COMPANYNAME2, DESCRIPTION2,
+  ENTINFO2, NETWORK_ETH_LOCAL, NETWORK_ETH_INVALID, DEFAULT_USER_ID, TEST_USER_ID, ERR_USER_ID,
+  SUBSCRIBE_EVENTS, SUBSCRIBE_INVALID_EVENTS, HAP_FILE_PATH, HAP_FILE_PATH_ERROR, EMPTY_HAP_FILE_PATH,
+  isMultipleUserEnabled, SetIsMultipleUserEnabled, SetTestUserId, appIdsInit, EDM_INSTALL_PARAM, APP_IDS_1,
+  APP_IDS_200, APP_IDS_201, TEST_APP_ID_1, TEST_APP_ID_2, TEST_POLICIES, TEST_POLICY_NAME, TEST_POLICY_VALUE,
+  INVALID_WANT, TEST_TOKEN_ID, TEST_CLIPBOARD_POLICY, UPGRADE_VERSION
 }

@@ -16,9 +16,11 @@
 import photoAccessHelper from '@ohos.file.photoAccessHelper'
 import { describe, it, expect } from 'deccjsunit/index'
 import mediaNative from "libmediaAssetManager.so";
+
 import {
   photoKeys,
   fetchOption,
+  createSandboxFileUri,
 } from '../../../../../../../common'
 
 export default function requestCancelNativeTest() {
@@ -32,12 +34,7 @@ export default function requestCancelNativeTest() {
         let fetchResult = await helper.getAssets(fetchOps);
         let photoAsset = await fetchResult.getFirstObject();
         let srcUri = photoAsset.uri;
-        let photoType: photoAccessHelper.PhotoType = photoAccessHelper.PhotoType.VIDEO;
-        let extension: string = 'mp4';
-        let CreateOptions: photoAccessHelper.CreateOptions = {
-          title: 'testPhoto' + new Date().getTime()
-        }
-        let destUri: string = await helper.createAsset(photoType, extension, CreateOptions);
+        let destUri = createSandboxFileUri('mp4');
         let result = await mediaNative.testRequestVideoForPath(srcUri, requestOptions, destUri, (err, state, requestId ) => {
             console.info(`${testNum} succeed ${state} ${requestId}`);
             expect(state).assertEqual(0);

@@ -43,12 +43,24 @@ import APIContentTypeTest from './TextInput/APIContentTypeTest.test';
 import APIUnderlineColorTest from './TextInput/APIUnderlineColorTest.test';
 import srcIndexTest from './MatrixTest/srcIndexTest.test'
 import dstIndexTest from './MatrixTest/dstIndexTest.test'
-
+import underlineColor from './TextInput/underlineColor.test'
 
 import RichEditorApi1 from './RichEditor/RichEditorApi1.test'
 import RichEditorApi3 from './RichEditor/RichEditorApi3.test'
 import RichEditorApi5 from './RichEditor/RichEditorApi5.test'
 import RichEditorChangeCallback from './RichEditor/RichEditorChangeCallback.test'
+import RichEditorWordBreakJsunitTest from './RichEditorEnhance01/RichEditorWordBreakJsunitTest.test'
+import RichEditorMenuPolicyJsunit from './RichEditorEnhance01/RichEditorMenuPolicyJsunit.test'
+import RichEditorTextStyleJsunit from './RichEditorEnhance01/RichEditorTextStyleJsunit.test'
+import RichEditorFontFeatureJsunit from './RichEditorEnhance01/RichEditorFontFeatureJsunit.test'
+import RichEditor1 from './RichEditorEnhance/RichEditor1.test'
+import RichEditor2 from './RichEditorEnhance/RichEditor2.test'
+import RichEditor3 from './RichEditorEnhance/RichEditor3.test'
+import RichEditor4 from './RichEditorEnhance/RichEditor4.test'
+import RichEditor5 from './RichEditorEnhance/RichEditor5.test'
+import RichEditor6 from './RichEditorEnhance/RichEditor6.test'
+import RichEditor7 from './RichEditorEnhance/RichEditor7.test'
+import TextInputTextAreaSearch from './RichEditorEnhance/TextInputTextAreaSearch.test'
 export default function testsuite() {
 APIContentTypeTest();
 APIUnderlineColorTest();
@@ -78,7 +90,7 @@ APIUnderlineColorTest();
   StyledStringTest()
   TextStyle();
   MarqueeApi();
-
+  underlineColor();
   srcIndexTest();
   dstIndexTest();
   
@@ -86,4 +98,16 @@ APIUnderlineColorTest();
   RichEditorApi3();
   RichEditorApi5();
   RichEditorChangeCallback();
+  RichEditorWordBreakJsunitTest();
+  RichEditorMenuPolicyJsunit();
+  RichEditorTextStyleJsunit();
+  RichEditorFontFeatureJsunit();
+  RichEditor1();
+  RichEditor2();
+  RichEditor3();
+  RichEditor4();
+  RichEditor5();
+  RichEditor6();
+  RichEditor7();
+  TextInputTextAreaSearch();
 }

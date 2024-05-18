@@ -19,7 +19,6 @@ import display from '@ohos.display';
 import { BusinessError } from '@ohos.base';
 import { Context } from '@ohos.abilityAccessCtrl';
 import common from '@ohos.app.ability.common';
-import deviceInfo from '@ohos.deviceInfo';
 
 function expectedError(TRUE_FLAG: boolean, error: BusinessError, caseName: string, apiName: string, done: Function, code: number) {
   let msgStr: string = 'jsUnittest ' + caseName + ' ' + apiName + ' failed, err: ';
@@ -79,11 +78,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
       'TYPE_FLOAT': 8,
     }
 
-    let currentDeviceIsRk = false;
     beforeAll(() => {
-      let deviceTypeInfo = deviceInfo.deviceType
-      currentDeviceIsRk = deviceTypeInfo === 'default' ? true : false;
-      console.info('the value of the deviceType is :' + deviceInfo.deviceType);
       appWindowTypeArr = Object.keys(appWindowTypeDic);
       systemWindowTypeArr = Object.keys(systemWindowTypeDic);
       let wndTypeArray: Array<number> = [ohosWindow.WindowType.TYPE_FLOAT, ohosWindow.WindowType.TYPE_APP, ohosWindow.WindowType.TYPE_SYSTEM_ALERT, ohosWindow.WindowType.TYPE_DIALOG]
@@ -405,7 +400,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         expect().assertFail()
         done();
       });
-      await sleep(2000)
+      await sleep(800)
       await setSystemBarEnableT(mainWnd).catch((err: BusinessError) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
@@ -714,7 +709,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         expect().assertFail();
         done();
       });
-      await sleep(1000);
+      await sleep(800);
       let loopCount: number = commonNUMBERColorArr.length
       for (let i = 0; i < loopCount; i++) {
         console.log(msgStr + 'tempWnd.setSystemBarEnable i:' + i);
@@ -779,7 +774,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         expect().assertFail();
         done();
       });
-      await sleep(1000);
+      await sleep(800);
       let loopCount: number = commonRGBColorArr.length
       for (let i = 0; i < loopCount; i++) {
         let tempColor: string = commonKEYColorArr[i];
@@ -1008,7 +1003,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
      * @tc.level     : Level3
      */
     it('testListener_Sys_AvoidAreaChange_Callback', 0, async (done: Function) => {
-      await sleep(1000)
+      await sleep(800)
       let caseName: string = 'testListener_Sys_AvoidAreaChange_Callback';
       let msgStr: string = 'jsUnittest ' + caseName + ' ';
       let listenerOnFlag = false;
@@ -1068,7 +1063,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
       });
-      await sleep(1000)
+      await sleep(800)
       await setSystemBarEnableT(tempWnd).catch((err: BusinessError) => {
         console.info(msgStr + 'setWindowSystemBarEnable error : ' + JSON.stringify(err));
         expect().assertFail();
@@ -1701,13 +1696,16 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
       });
       expect(!!mainWin).assertTrue();
       for (let i = 0; i < orientationItem.length; i++) {
+        await sleep(900)
+        await sleep(900)
         let orientation: ohosWindow.Orientation = ohosWindow.Orientation[orientationItem[i]]
         await setPreferredOrientationFun(mainWin, orientation).catch((err: BusinessError) => {
           console.error(msgStr + 'Failed to obtain the main window. Cause: ' + JSON.stringify(err));
           expect().assertFail();
           done();
         });
-        await sleep(3000)
+        await sleep(900)
+        await sleep(300)
         console.info(msgStr + 'Succeeded in setting window orientation. orientation: ' + orientation + "step: " + i);
       }
       done()
@@ -1779,7 +1777,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
       console.log(msgStr + 'windowStage.getMainWindow' + JSON.stringify(mainWin));
 
       expect(!!mainWin).assertTrue();
-      await sleep(2000);
+      await sleep(500);
       (mainWin as ohosWindow.Window).snapshot((err, data) => {
         if (err && err.code) {
           console.log(msgStr + 'snapshot err.code:' + JSON.stringify(err.code));
@@ -2358,7 +2356,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         done();
       } catch(error){
         console.log(msgStr + 'Failed to register callback. Cause: ' + JSON.stringify(error));
-        if (!currentDeviceIsRk) {
+        if (error.code != 801) {
           console.error(msgStr + 'Failed to register callback. Cause:' + JSON.stringify(error));
           expect().assertFail();
           done();
@@ -2391,7 +2389,7 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         done();
       } catch(error){
         console.log(msgStr + 'Failed to register callback. Cause: ' + JSON.stringify(error));
-        if (!currentDeviceIsRk) {
+        if (error.code != 801) {
           console.error(msgStr + 'Failed to register callback. Cause:' + JSON.stringify(error));
           expect().assertFail();
           done();
@@ -2425,13 +2423,13 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         done();
       } catch (error) {
         console.log(msgStr + 'Failed to register callback. Cause: ' + JSON.stringify(error));
-        if(!currentDeviceIsRk){
+        if (error.code != 801) {
           console.log(msgStr + 'Failed to register callback. Cause: ' + JSON.stringify(error));
           expect().assertFail();
           done();
         } else {
           console.log(msgStr + '当前设备类型不支持系统能力SystemCapability.Window.SessionManager');
-          expect(true).assertTrue();
+          expect(error.code).assertEqual(801);
           done();
         }
       }
@@ -2457,13 +2455,13 @@ export default function windowCallbackTest(context: common.UIAbilityContext, win
         done();
       } catch (error) {
         console.log(msgStr + 'Failed to unregister callback. Cause: ' + JSON.stringify(error));
-        if(!currentDeviceIsRk){
+        if (error.code != 801) {
           console.log(msgStr + 'Failed to unregister callback. Cause: ' + JSON.stringify(error));
           expect().assertFail();
           done();
         } else {
           console.log(msgStr + '当前设备类型不支持系统能力SystemCapability.Window.SessionManager');
-          expect(true).assertTrue();
+          expect(error.code).assertEqual(801);
           done();
         }
       }

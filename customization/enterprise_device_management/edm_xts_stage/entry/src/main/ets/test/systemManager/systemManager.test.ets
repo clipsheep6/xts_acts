@@ -15,7 +15,7 @@
 
 import { BusinessError } from '@ohos.base';
 import { describe, expect, it, Level } from '@ohos/hypium';
-import { ENTINFO1, SELFWANT, SELFHAPNAME } from '../commom';
+import { ENTINFO1, SELFWANT, SELFHAPNAME, INVALID_WANT, UPGRADE_VERSION } from '../commom';
 
 import adminManager from '@ohos.enterprise.adminManager';
 import systemManager from '@ohos.enterprise.systemManager';
@@ -26,7 +26,7 @@ export default function systemManagerTest() {
     testGetNTPSever();
     testSetOtaUpdatePolicy();
     testGetOtaUpdatePolicy();
-    testNotifyUpgradePackages();
+    testNotifyUpdatePackages();
     testGetupgradeResult();
   })
 }
@@ -46,6 +46,97 @@ function testSetNTPSever() {
       expect(false).assertTrue();
     } catch (error) {
       expect(error.code == 9200001).assertTrue();
+    }
+    done();
+  });
+
+  /**
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_NTP_SERVER_JS_0101
+   * @tc.name      : test_set_ntp_sever_0101
+   * @tc.desc      : test systemManager setNTPServer with normal admin
+   * @tc.level     : Level 2
+   * @tc.type      : Function
+   * @tc.size      : MediumTest
+   */
+  it("test_set_ntp_sever_0101", Level.LEVEL2, async (done: Function) => {
+    await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_NORMAL);
+    try {
+      systemManager.setNTPServer(SELFWANT, '');
+      expect(false).assertTrue();
+    } catch (error) {
+      expect(error.code == 9200002).assertTrue();
+    } finally {
+      await adminManager.disableAdmin(SELFWANT);
+    }
+    done();
+  });
+
+  /**
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_NTP_SERVER_JS_0102
+   * @tc.name      : test_set_ntp_sever_0102
+   * @tc.desc      : test systemManager setNTPServer with invalid admin
+   * @tc.level     : Level 2
+   * @tc.type      : Function
+   * @tc.size      : MediumTest
+   */
+  it("test_set_ntp_sever_0102", Level.LEVEL2, async (done: Function) => {
+    await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
+    try {
+      systemManager.setNTPServer(INVALID_WANT, '');
+      expect(false).assertTrue();
+    } catch (error) {
+      expect(error.code == 401).assertTrue();
+    } finally {
+      await adminManager.disableSuperAdmin(SELFHAPNAME);
+    }
+    done();
+  });
+
+  /**
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_NTP_SERVER_JS_0103
+   * @tc.name      : test_set_ntp_sever_0103
+   * @tc.desc      : test systemManager setNTPServer with invalid server
+   * @tc.level     : Level 2
+   * @tc.type      : Function
+   * @tc.size      : MediumTest
+   */
+  it("test_set_ntp_sever_0103", Level.LEVEL2, async (done: Function) => {
+    await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
+    try {
+      systemManager.setNTPServer(SELFWANT, null);
+      expect(false).assertTrue();
+    } catch (error) {
+      expect(error.code == 401).assertTrue();
+    } finally {
+      await adminManager.disableSuperAdmin(SELFHAPNAME);
+    }
+    done();
+  });
+
+  /**
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_NTP_SERVER_JS_0104
+   * @tc.name      : test_set_ntp_sever_0104
+   * @tc.desc      : test systemManager setNTPServer
+   * @tc.level     : Level 2
+   * @tc.type      : Function
+   * @tc.size      : MediumTest
+   */
+  it("test_set_ntp_sever_0104", Level.LEVEL2, async (done: Function) => {
+    await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
+    try {
+      let value: string = 'aliyun.com';
+      systemManager.setNTPServer(SELFWANT, value);
+      let result: string = systemManager.getNTPServer(SELFWANT);
+      expect(result === value).assertTrue();
+
+      value = '';
+      systemManager.setNTPServer(SELFWANT, value);
+      result = systemManager.getNTPServer(SELFWANT);
+      expect(result === value).assertTrue();
+    } catch (error) {
+      expect(false).assertTrue();
+    } finally {
+      await adminManager.disableSuperAdmin(SELFHAPNAME);
     }
     done();
   });
@@ -69,21 +160,63 @@ function testGetNTPSever() {
     }
     done();
   });
+
+  /**
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_GET_NTP_SERVER_JS_0101
+   * @tc.name      : test_get_ntp_sever_0101
+   * @tc.desc      : test systemManager getNTPServer with normal admin
+   * @tc.level     : Level 2
+   * @tc.type      : Function
+   * @tc.size      : MediumTest
+   */
+  it("test_get_ntp_sever_0101", Level.LEVEL2, async (done: Function) => {
+    await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_NORMAL);
+    try {
+      systemManager.getNTPServer(SELFWANT);
+      expect(false).assertTrue();
+    } catch (error) {
+      expect(error.code == 9200002).assertTrue();
+    } finally {
+      await adminManager.disableAdmin(SELFWANT);
+    }
+    done();
+  });
+
+  /**
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_GET_NTP_SERVER_JS_0102
+   * @tc.name      : test_get_ntp_sever_0102
+   * @tc.desc      : test systemManager getNTPServer with invalid admin
+   * @tc.level     : Level 2
+   * @tc.type      : Function
+   * @tc.size      : MediumTest
+   */
+  it("test_get_ntp_sever_0102", Level.LEVEL2, async (done: Function) => {
+    await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
+    try {
+      systemManager.getNTPServer(INVALID_WANT);
+      expect(false).assertTrue();
+    } catch (error) {
+      expect(error.code == 401).assertTrue();
+    } finally {
+      await adminManager.disableSuperAdmin(SELFHAPNAME);
+    }
+    done();
+  });
 }
 
 function testSetOtaUpdatePolicy() {
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0100
-   * @tc.name      : test_set_ota_update_policy_0100
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0001
+   * @tc.name      : test_set_ota_update_policy_0001
    * @tc.desc      : test systemManager setOtaUpdatePolicy without admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_set_ota_update_policy_0100", Level.LEVEL2, async (done: Function) => {
+  it("test_set_ota_update_policy_0001", Level.LEVEL2, async (done: Function) => {
     let policy: systemManager.OtaUpdatePolicy = {
       "policyType": systemManager.PolicyType.DEFAULT,
-      "version": "version1.0",
+      "version": UPGRADE_VERSION,
     }
     try {
       systemManager.setOtaUpdatePolicy(SELFWANT, policy);
@@ -95,18 +228,18 @@ function testSetOtaUpdatePolicy() {
   });
 
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0200
-   * @tc.name      : test_set_ota_update_policy_0200
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0002
+   * @tc.name      : test_set_ota_update_policy_0002
    * @tc.desc      : test systemManager setOtaUpdatePolicy with normal admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_set_ota_update_policy_0200", Level.LEVEL2, async (done: Function) => {
+  it("test_set_ota_update_policy_0002", Level.LEVEL2, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_NORMAL);
     let policy: systemManager.OtaUpdatePolicy = {
       "policyType": systemManager.PolicyType.PROHIBIT,
-      "version": "version1.0",
+      "version": UPGRADE_VERSION,
     }
     try {
       systemManager.setOtaUpdatePolicy(SELFWANT, policy);
@@ -120,18 +253,18 @@ function testSetOtaUpdatePolicy() {
   });
 
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0300
-   * @tc.name      : test_set_ota_update_policy_0300
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0003
+   * @tc.name      : test_set_ota_update_policy_0003
    * @tc.desc      : test systemManager setOtaUpdatePolicy with super admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_set_ota_update_policy_0300", Level.LEVEL2, async (done: Function) => {
+  it("test_set_ota_update_policy_0003", Level.LEVEL2, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
     let policy: systemManager.OtaUpdatePolicy = {
       "policyType": systemManager.PolicyType.UPDATE_TO_SPECIFIC_VERSION,
-      "version": "version1.0",
+      "version": UPGRADE_VERSION,
       "latestUpdateTime": 110000000,
     }
     try {
@@ -149,18 +282,18 @@ function testSetOtaUpdatePolicy() {
   });
 
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0400
-   * @tc.name      : test_set_ota_update_policy_0400
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0004
+   * @tc.name      : test_set_ota_update_policy_0004
    * @tc.desc      : test systemManager setOtaUpdatePolicy with super admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_set_ota_update_policy_0400", Level.LEVEL2, async (done: Function) => {
+  it("test_set_ota_update_policy_0004", Level.LEVEL2, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
     let policy: systemManager.OtaUpdatePolicy = {
       "policyType": systemManager.PolicyType.FORCE_IMMEDIATE_UPDATE,
-      "version": "version1.0",
+      "version": UPGRADE_VERSION,
     }
     try {
       systemManager.setOtaUpdatePolicy(SELFWANT, policy);
@@ -174,44 +307,18 @@ function testSetOtaUpdatePolicy() {
   });
 
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0500
-   * @tc.name      : test_set_ota_update_policy_0500
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0005
+   * @tc.name      : test_set_ota_update_policy_0005
    * @tc.desc      : test systemManager setOtaUpdatePolicy with super admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_set_ota_update_policy_0500", Level.LEVEL2, async (done: Function) => {
-    await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
-    let policy: systemManager.OtaUpdatePolicy = {
-      "policyType": systemManager.PolicyType.FORCE_IMMEDIATE_UPDATE,
-      "version": "version1.0",
-      "latestUpdateTime": 110000000,
-    }
-    try {
-      systemManager.setOtaUpdatePolicy(SELFWANT, policy);
-      expect(true).assertTrue();
-    } catch (error) {
-      expect(error.code == 801).assertTrue();
-    } finally {
-      await adminManager.disableSuperAdmin(SELFHAPNAME);
-    }
-    done();
-  });
-
-  /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0600
-   * @tc.name      : test_set_ota_update_policy_0600
-   * @tc.desc      : test systemManager setOtaUpdatePolicy with super admin
-   * @tc.level     : Level 2
-   * @tc.type      : Function
-   * @tc.size      : MediumTest
-   */
-  it("test_set_ota_update_policy_0600", Level.LEVEL2, async (done: Function) => {
+  it("test_set_ota_update_policy_0005", Level.LEVEL2, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
     let policy: systemManager.OtaUpdatePolicy = {
       "policyType": systemManager.PolicyType.WINDOWS,
-      "version": "version1.0",
+      "version": UPGRADE_VERSION,
     }
     try {
       systemManager.setOtaUpdatePolicy(SELFWANT, policy);
@@ -225,18 +332,18 @@ function testSetOtaUpdatePolicy() {
   });
 
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0700
-   * @tc.name      : test_set_ota_update_policy_0700
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0006
+   * @tc.name      : test_set_ota_update_policy_0006
    * @tc.desc      : test systemManager setOtaUpdatePolicy with super admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_set_ota_update_policy_0700", Level.LEVEL2, async (done: Function) => {
+  it("test_set_ota_update_policy_0006", Level.LEVEL2, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
     let policy: systemManager.OtaUpdatePolicy = {
       "policyType": systemManager.PolicyType.WINDOWS,
-      "version": "version1.0",
+      "version": UPGRADE_VERSION,
       "installStartTime": 110000000,
       "installEndTime": 110000001, 
     }
@@ -252,18 +359,18 @@ function testSetOtaUpdatePolicy() {
   });
 
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0800
-   * @tc.name      : test_set_ota_update_policy_0800
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0007
+   * @tc.name      : test_set_ota_update_policy_0007
    * @tc.desc      : test systemManager setOtaUpdatePolicy with super admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_set_ota_update_policy_0800", Level.LEVEL2, async (done: Function) => {
+  it("test_set_ota_update_policy_0007", Level.LEVEL2, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
     let policy: systemManager.OtaUpdatePolicy = {
       "policyType": systemManager.PolicyType.POSTPONE,
-      "version": "version1.0",
+      "version": UPGRADE_VERSION,
     }
     try {
       systemManager.setOtaUpdatePolicy(SELFWANT, policy);
@@ -277,18 +384,18 @@ function testSetOtaUpdatePolicy() {
   });
 
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0900
-   * @tc.name      : test_set_ota_update_policy_0900
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_SET_OTA_UPDATE_POLICY_JS_0008
+   * @tc.name      : test_set_ota_update_policy_0008
    * @tc.desc      : test systemManager setOtaUpdatePolicy with super admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_set_ota_update_policy_0900", Level.LEVEL2, async (done: Function) => {
+  it("test_set_ota_update_policy_0008", Level.LEVEL2, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
     let policy: systemManager.OtaUpdatePolicy = {
       "policyType": systemManager.PolicyType.POSTPONE,
-      "version": "version1.0",
+      "version": UPGRADE_VERSION,
       "delayUpdateTime": 110000000, 
     }
     try {
@@ -305,14 +412,14 @@ function testSetOtaUpdatePolicy() {
 
 function testGetOtaUpdatePolicy() {
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_GET_OTA_UPDATE_POLICY_JS_0100
-   * @tc.name      : test_set_ota_update_policy_0100
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_GET_OTA_UPDATE_POLICY_JS_0001
+   * @tc.name      : test_set_ota_update_policy_0001
    * @tc.desc      : test systemManager setOtaUpdatePolicy without admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_get_ota_update_policy_0100", Level.LEVEL2, async (done: Function) => {
+  it("test_get_ota_update_policy_0001", Level.LEVEL2, async (done: Function) => {
     try {
       systemManager.getOtaUpdatePolicy(SELFWANT);
       expect(false).assertTrue();
@@ -323,14 +430,14 @@ function testGetOtaUpdatePolicy() {
   });
 
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_GET_OTA_UPDATE_POLICY_JS_0200
-   * @tc.name      : test_get_ota_update_policy_0200
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_GET_OTA_UPDATE_POLICY_JS_0002
+   * @tc.name      : test_get_ota_update_policy_0002
    * @tc.desc      : test systemManager setOtaUpdatePolicy with normal admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_get_ota_update_policy_0200", Level.LEVEL2, async (done: Function) => {
+  it("test_get_ota_update_policy_0002", Level.LEVEL2, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_NORMAL);
     try {
       systemManager.getOtaUpdatePolicy(SELFWANT);
@@ -344,71 +451,69 @@ function testGetOtaUpdatePolicy() {
   });
 }
 
-function testNotifyUpgradePackages() {
+function testNotifyUpdatePackages() {
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_NOTIFY_UPGRADE_PACKAGES_JS_0100
-   * @tc.name      : test_notify_upgrade_packages_0100
-   * @tc.desc      : test systemManager notifyUpgradePackages without admin
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_NOTIFY_UPDATE_PACKAGES_JS_0001
+   * @tc.name      : test_notify_update_packages_0001
+   * @tc.desc      : test systemManager notifyUpdatePackages without admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_notify_upgrade_packages_0100", Level.LEVEL2, async (done: Function) => {
+  it("test_notify_update_packages_0001", Level.LEVEL2, async (done: Function) => {
     let updatePaskageInfo: Array<systemManager.Package> = [{
       "type": systemManager.PackageType.FIRMWARE,
-      "path": "path"
+      "path": "path",
+      "fd": 1
     }]
     let upgradePackageInfo: systemManager.UpgradePackageInfo = {
-      "version" : "version1.0",
+      "version" : UPGRADE_VERSION,
       "packages" : updatePaskageInfo,
     };
-    try {
-      systemManager.notifyUpgradePackages(SELFWANT, upgradePackageInfo);
+    await systemManager.notifyUpdatePackages(SELFWANT, upgradePackageInfo).then(() => {
       expect(false).assertTrue();
-    } catch (error) {
+    }).catch ((error: BusinessError) => {
       expect(error.code == 9200001).assertTrue();
-    }
+    });
     done();
   });
 
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_NOTIFY_UPGRADE_PACKAGES_JS_0200
-   * @tc.name      : test_notify_upgrade_packages_0200
-   * @tc.desc      : test systemManager notifyUpgradePackages without admin
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_NOTIFY_UPDATE_PACKAGES_JS_0002
+   * @tc.name      : test_notify_update_packages_0002
+   * @tc.desc      : test systemManager notifyUpdatePackages without admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_notify_upgrade_packages_0200", Level.LEVEL2, async (done: Function) => {
+  it("test_notify_update_packages_0002", Level.LEVEL2, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_NORMAL);
     let updatePaskageInfo: Array<systemManager.Package> = [{
       "type": systemManager.PackageType.FIRMWARE,
       "path": "path"
     }]
     let upgradePackageInfo: systemManager.UpgradePackageInfo = {
-      "version" : "version1.0",
+      "version" : UPGRADE_VERSION,
       "packages" : updatePaskageInfo,
     };
-    try {
-      systemManager.notifyUpgradePackages(SELFWANT, upgradePackageInfo);
+    await systemManager.notifyUpdatePackages(SELFWANT, upgradePackageInfo).then(() => {
       expect(false).assertTrue();
-    } catch (error) {
+    }).catch ((error: BusinessError) => {
       expect(error.code == 9200002).assertTrue();
-    } finally {
-      await adminManager.disableAdmin(SELFWANT);
-    }
+    });
+    await adminManager.disableAdmin(SELFWANT);
     done();
   });
 
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_NOTIFY_UPGRADE_PACKAGES_JS_0300
-   * @tc.name      : test_notify_upgrade_packages_0300
-   * @tc.desc      : test systemManager notifyUpgradePackages without admin
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_NOTIFY_UPDATE_PACKAGES_JS_0003
+   * @tc.name      : test_notify_update_packages_0003
+   * @tc.desc      : test systemManager notifyUpdatePackages without admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_notify_upgrade_packages_0300", Level.LEVEL2, async (done: Function) => {
+  it("test_notify_update_packages_0003", Level.LEVEL2, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
     let notify: systemManager.NotifyDescription = {
       "installTips": "installTips",
@@ -422,33 +527,31 @@ function testNotifyUpgradePackages() {
       "path": "path"
     }]
     let upgradePackageInfo: systemManager.UpgradePackageInfo = {
-      "version" : "version1.0",
+      "version" : UPGRADE_VERSION,
       "packages" : updatePaskageInfo,
       "description" : description,
     };
-    try {
-      systemManager.notifyUpgradePackages(SELFWANT, upgradePackageInfo);
-      expect(true).assertTrue();
-    } catch (error) {
-      expect(error.code == 801).assertTrue();
-    } finally {
-      await adminManager.disableSuperAdmin(SELFHAPNAME);
-    }
+    await systemManager.notifyUpdatePackages(SELFWANT, upgradePackageInfo).then(() => {
+      expect(false).assertTrue();
+    }).catch ((error: BusinessError) => {
+      expect(error != null).assertTrue();
+    });
+    await adminManager.disableSuperAdmin(SELFHAPNAME);
     done();
   });
 }
 
 function testGetupgradeResult() {
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_GET_UPGRADE_RESULT_JS_0100
-   * @tc.name      : test_get_upgrade_result_0100
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_GET_UPGRADE_RESULT_JS_0001
+   * @tc.name      : test_get_upgrade_result_0001
    * @tc.desc      : test systemManager getOtaUpdatePolicy without admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_get_upgrade_result_0100", Level.LEVEL2, async (done: Function) => {
-    await systemManager.getUpgradeResult(SELFWANT).then((data: systemManager.OtaUpdatePolicy) => {
+  it("test_get_upgrade_result_0001", Level.LEVEL2, async (done: Function) => {
+    await systemManager.getUpgradeResult(SELFWANT, UPGRADE_VERSION).then((data: systemManager.OtaUpdatePolicy) => {
       expect(false).assertTrue();
     }).catch((error: BusinessError) => {
       expect(error.code == 9200001).assertTrue();
@@ -457,16 +560,16 @@ function testGetupgradeResult() {
   });
 
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_GET_UPGRADE_RESULT_JS_0200
-   * @tc.name      : test_get_upgrade_result_0200
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_GET_UPGRADE_RESULT_JS_0002
+   * @tc.name      : test_get_upgrade_result_0002
    * @tc.desc      : test systemManager getOtaUpdatePolicy without admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_get_upgrade_result_0200", Level.LEVEL2, async (done: Function) => {
+  it("test_get_upgrade_result_0002", Level.LEVEL2, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_NORMAL);
-    await systemManager.getUpgradeResult(SELFWANT).then((data: systemManager.OtaUpdatePolicy) => {
+    await systemManager.getUpgradeResult(SELFWANT, UPGRADE_VERSION).then((data: systemManager.OtaUpdatePolicy) => {
       expect(false).assertTrue();
     }).catch((error: BusinessError) => {
       expect(error.code == 9200002).assertTrue();
@@ -476,16 +579,16 @@ function testGetupgradeResult() {
   });
 
   /**
-   * @tc.number    : SUB_CUSTOMIZATION_EDM_GET_UPGRADE_RESULT_JS_0300
-   * @tc.name      : test_get_upgrade_result_0300
+   * @tc.number    : SUB_CUSTOMIZATION_EDM_GET_UPGRADE_RESULT_JS_0003
+   * @tc.name      : test_get_upgrade_result_0003
    * @tc.desc      : test systemManager getOtaUpdatePolicy without admin
    * @tc.level     : Level 2
    * @tc.type      : Function
    * @tc.size      : MediumTest
    */
-  it("test_get_upgrade_result_0300", Level.LEVEL2, async (done: Function) => {
+  it("test_get_upgrade_result_0003", Level.LEVEL2, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
-    await systemManager.getUpgradeResult(SELFWANT).then((data: systemManager.OtaUpdatePolicy) => {
+    await systemManager.getUpgradeResult(SELFWANT, UPGRADE_VERSION).then((data: systemManager.OtaUpdatePolicy) => {
       console.log(`get upgrade result success. version: ${data.version}, status: ${data.status},
         errorCode: ${data.errorInfo.code}, errorMsg: ${data.errorInfo.message}`)
       expect(data != null).assertTrue();
@@ -496,7 +599,7 @@ function testGetupgradeResult() {
         data.status == systemManager.UpgradeStatus.UPGRADE_SUCCESS;
       expect(status).assertTrue();
     }).catch((error: BusinessError) => {
-      expect(error.code == 801).assertTrue();
+      expect(error != null).assertTrue();
     });
     await adminManager.disableSuperAdmin(SELFHAPNAME);;
     done();

@@ -418,8 +418,6 @@ export default function ApiCoverTest() {
      * @tc.level   3
      */
     it('SUB_AA_AMS_Context_0100', 0, async (done: Function) => {
-      let bundleName = "com.example.apicoverhaptest";
-      let userId = 100;
       expect("/data/storage/el2/base/haps/phone/cache")
         .assertEqual(AppStorage.get<common.UIAbilityContext>("abilityContext")!.cacheDir);
       expect("/data/storage/el2/base/haps/phone/temp")
@@ -434,7 +432,7 @@ export default function ApiCoverTest() {
         .assertEqual(AppStorage.get<common.UIAbilityContext>("abilityContext")!.bundleCodeDir);
       expect("/data/storage/el2/distributedfiles")
         .assertEqual(AppStorage.get<common.UIAbilityContext>("abilityContext")!.distributedFilesDir);
-      expect("/data/service/el2/" + userId + "/hmdfs/cloud/data/" + bundleName)
+      expect("/data/storage/el2/cloud")
         .assertEqual(AppStorage.get<common.UIAbilityContext>("abilityContext")!.cloudFileDir);
       expect(1).assertEqual(AppStorage.get<common.UIAbilityContext>("abilityContext")!.area);
       if (AppStorage.get<common.UIAbilityContext>("abilityContext")!.resourceDir != "") {
@@ -599,6 +597,7 @@ export default function ApiCoverTest() {
       expect(4).assertEqual(formInfoNew.FormDimension.Dimension_4_4);
       expect(5).assertEqual(formInfoNew.FormDimension.Dimension_2_1);
       // expect(6).assertEqual(formInfoNew.FormDimension.DIMENSION_1_1)
+      expect(7).assertEqual(formInfoNew.FormDimension.DIMENSION_6_4);
       console.info("SUB_AA_Test_InsightIntent_0100:" + formInfoNew.FormDimension.Dimension_2_1);
       expect(1).assertEqual(formInfoNew.FormType.JS);
       expect(2).assertEqual(formInfoNew.FormType.eTS);
