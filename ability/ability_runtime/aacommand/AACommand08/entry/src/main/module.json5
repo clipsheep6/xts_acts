@@ -31,7 +31,7 @@
     "abilities": [
       {
         "name": "MainAbility",
-        "srcEntry": "./ets/mainability/MainAbility.ets",
+        "srcEntry": "./ets/MainAbility/MainAbility.ets",
         "description": "$string:MainAbility_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility_label",
@@ -51,7 +51,7 @@
       },
       {
         "name": "MainAbility2",
-        "srcEntry": "./ets/mainability2/MainAbility2.ets",
+        "srcEntry": "./ets/MainAbility2/MainAbility2.ets",
         "description": "$string:MainAbility2_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility2_label",
@@ -60,7 +60,7 @@
       },
       {
         "name": "MainAbility3",
-        "srcEntry": "./ets/mainability3/MainAbility3.ets",
+        "srcEntry": "./ets/MainAbility3/MainAbility3.ets",
         "description": "$string:MainAbility3_desc",
         "icon": "$media:icon",
         "label": "$string:MainAbility3_label",
