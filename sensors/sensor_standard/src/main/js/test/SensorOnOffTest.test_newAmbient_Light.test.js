@@ -14,9 +14,11 @@
  */
 import sensor from '@ohos.sensor'
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect, TestType, Size, Level } from '@ohos/hypium'
-
 export default function SensorJsTest_sensor_41() {
 describe("SensorJsTest_sensor_41", function () {
+    let MIN = 0;
+    let intensityMax = 120000;    
+    let colorTemperatureMax = 100000;
     function callback(data) {
         console.info("callback" + JSON.stringify(data));
         if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
@@ -27,7 +29,21 @@ describe("SensorJsTest_sensor_41", function () {
             console.info('callback invalid accuracy encountered' + JSON.stringify(data));
             expect(false).assertTrue();
         }
-        expect(typeof (data.intensity)).assertEqual("number");
+        if (data.intensity >= MIN && data.intensity <= intensityMax) {
+            console.info('data.intensity :' + data.intensity);
+            expect(typeof (data.intensity)).assertEqual("number");
+        } else {
+            console.info('data.intensity out of range 0 ~ 100000 :' + data.intensity);
+            expect(false).assertTrue();
+        }        
+        if (data.colorTemperature >= MIN && data.colorTemperature <= colorTemperatureMax) {
+            console.info('data.colorTemperature :' + data.colorTemperature);
+            expect(typeof (data.colorTemperature)).assertEqual("number");
+        } else {
+            console.info('data.intensity out of range 0 ~ 100000 :' + data.intensity);
+            expect(false).assertTrue();
+        }         
+        expect(typeof (data.infraredLuminance)).assertEqual("number");
         expect(typeof (data.timestamp)).assertEqual("number");
     }
 
@@ -41,7 +57,21 @@ describe("SensorJsTest_sensor_41", function () {
             console.info('callback2 invalid accuracy encountered' + JSON.stringify(data));
             expect(false).assertTrue();
         }
-        expect(typeof (data.intensity)).assertEqual("number");
+        if (data.intensity >= MIN && data.intensity <= intensityMax) {
+            console.info('data.intensity2 :' + data.intensity);
+            expect(typeof (data.intensity)).assertEqual("number");
+        } else {
+            console.info('data.intensity2 out of range 0 ~ 100000 :' + data.intensity);
+            expect(false).assertTrue();
+        }        
+        if (data.colorTemperature >= MIN && data.colorTemperature <= colorTemperatureMax) {
+            console.info('data.colorTemperature2 :' + data.colorTemperature);
+            expect(typeof (data.colorTemperature)).assertEqual("number");
+        } else {
+            console.info('data.intensity2 out of range 0 ~ 100000 :' + data.intensity);
+            expect(false).assertTrue();
+        }         
+        expect(typeof (data.infraredLuminance)).assertEqual("number");
         expect(typeof (data.timestamp)).assertEqual("number");
     }
 
@@ -77,12 +107,14 @@ describe("SensorJsTest_sensor_41", function () {
         console.info('afterEach called')
     })
 
-    const PARAMETER_ERROR_CODE = 401
-    const SERVICE_EXCEPTION_CODE = 14500101
-    const PARAMETER_ERROR_MSG = 'The parameter invalid.'
-    const SERVICE_EXCEPTION_MSG = 'Service exception.'
     let invalid  = -1;
     let TAG  = '';
+    const PARAMETER_ERROR_CODE = 401
+    const SERVICE_EXCEPTION_CODE = 14500101
+    const SENSOR_NO_SUPPORT_CODE = 14500102
+    const PARAMETER_ERROR_MSG = 'The parameter invalid.'
+    const SERVICE_EXCEPTION_MSG = 'Service exception.'
+    const SENSOR_NO_SUPPOR_MSG = 'The sensor is not supported by the device.'    
 
     /*
      * @tc.number:SUB_SensorsSystem_NEWAMBIENT_LIGHT_JSTest_0010
@@ -110,7 +142,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -146,7 +180,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -179,7 +215,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -206,6 +244,8 @@ describe("SensorJsTest_sensor_41", function () {
                 expect(false).assertTrue();
             }
             expect(typeof (data.intensity)).assertEqual("number");
+            expect(typeof (data.colorTemperature)).assertEqual("number");
+            expect(typeof (data.infraredLuminance)).assertEqual("number");
             expect(typeof (data.timestamp)).assertEqual("number");
         }
         try{
@@ -225,7 +265,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -255,7 +297,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -293,7 +337,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -319,6 +365,8 @@ describe("SensorJsTest_sensor_41", function () {
                 expect(false).assertTrue();
             }
             expect(typeof (data.intensity)).assertEqual("number");
+            expect(typeof (data.colorTemperature)).assertEqual("number");
+            expect(typeof (data.infraredLuminance)).assertEqual("number");
             expect(typeof (data.timestamp)).assertEqual("number");
             done();
         }
@@ -333,7 +381,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -366,7 +416,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -392,6 +444,8 @@ describe("SensorJsTest_sensor_41", function () {
                 expect(false).assertTrue();
             }
             expect(typeof (data.intensity)).assertEqual("number");
+            expect(typeof (data.colorTemperature)).assertEqual("number");
+            expect(typeof (data.infraredLuminance)).assertEqual("number");
             expect(typeof (data.timestamp)).assertEqual("number");
         }
         try{
@@ -409,7 +463,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -444,7 +500,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -477,6 +535,8 @@ describe("SensorJsTest_sensor_41", function () {
                             expect(false).assertTrue();
                         }
                         expect(typeof (data.intensity)).assertEqual("number");
+                        expect(typeof (data.colorTemperature)).assertEqual("number");
+                        expect(typeof (data.infraredLuminance)).assertEqual("number");
                         expect(typeof (data.timestamp)).assertEqual("number");
                     });
                     sensor.on(sensor.SensorId.AMBIENT_LIGHT, (data)=>{
@@ -501,7 +561,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -534,7 +596,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -568,6 +632,8 @@ describe("SensorJsTest_sensor_41", function () {
                             expect(false).assertTrue();
                         }
                         expect(typeof (data.intensity)).assertEqual("number");
+                        expect(typeof (data.colorTemperature)).assertEqual("number");
+                        expect(typeof (data.infraredLuminance)).assertEqual("number");
                         expect(typeof (data.timestamp)).assertEqual("number");
                     }, {'interval': 100000000});
                     sensor.once(sensor.SensorId.AMBIENT_LIGHT, (data)=>{
@@ -592,7 +658,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -626,6 +694,8 @@ describe("SensorJsTest_sensor_41", function () {
                             expect(false).assertTrue();
                         }
                         expect(typeof (data.intensity)).assertEqual("number");
+                        expect(typeof (data.colorTemperature)).assertEqual("number");
+                        expect(typeof (data.infraredLuminance)).assertEqual("number");
                         expect(typeof (data.timestamp)).assertEqual("number");
                     }, {'interval': 100000000});
                     sensor.on(sensor.SensorId.AMBIENT_LIGHT, (data)=>{
@@ -639,7 +709,8 @@ describe("SensorJsTest_sensor_41", function () {
                             expect(false).assertTrue();
                         }
                         expect(typeof (data.intensity)).assertEqual("number");
-                        expect(typeof (data.timestamp)).assertEqual("number");
+                        expect(typeof (data.colorTemperature)).assertEqual("number");
+                        expect(typeof (data.infraredLuminance)).assertEqual("number");
                         expect(typeof (data.timestamp)).assertEqual("number");
                     }, {'interval': 100000000});
                     setTimeout(()=>{
@@ -651,7 +722,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -701,7 +774,9 @@ describe("SensorJsTest_sensor_41", function () {
             }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -744,7 +819,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
     } catch (error) {
-        console.info(TAG + ' Device does not support! ');
+        console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
     })
@@ -787,7 +864,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
     } catch (error) {
-        console.info(TAG + ' Device does not support! ');
+        console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
         done();
     }
     })
@@ -823,7 +902,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
     } catch (error) {
-        console.info(TAG + ' Device does not support! ');
+        console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+        expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+        expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
         done();
     }
     })
@@ -860,7 +941,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -900,7 +983,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -941,7 +1026,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -983,7 +1070,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -1020,7 +1109,9 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
@@ -1062,8 +1153,154 @@ describe("SensorJsTest_sensor_41", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
+    
+    /*
+     * @tc.number:SUB_SensorsSystem_NEWAMBIENT_LIGHT_JSTest_0250
+     * @tc.name: newAmbientLightSensorJsTest025
+     * @tc.desc:Verification results of the incorrect parameters of the test interface
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
+     */
+    it("newAmbientLightSensorJsTest025", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('---------newAmbientLightSensorJsTest025--------------');
+        TAG = 'newAmbientLightSensorJsTest025'
+        try{
+           sensor.getSingleSensor(sensor.SensorId.AMBIENT_LIGHT,(error, data) => {
+                if (error) {
+                    console.info(TAG + ' error:' + error);
+                    done();
+                } else {
+                    expect(typeof(data)).assertEqual("object");
+                    sensor.on(sensor.SensorId.AMBIENT_LIGHT, (data)=>{
+                        console.info(TAG + ' Callback in!' + JSON.stringify(data));
+                        if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
+                            sensor.SensorAccuracy.ACCURACY_HIGH) {
+                            console.info('callback accuracy verified' + JSON.stringify(data));
+                            expect(true).assertTrue();
+                        } else {
+                            console.info('callback invalid accuracy encountered' + JSON.stringify(data));
+                            expect(false).assertTrue();
+                        }
+                        if (data.intensity >= MIN && data.intensity <= intensityMax) {
+                            console.info('data.intensity :' + data.intensity);
+                            expect(typeof (data.intensity)).assertEqual("number");
+                        } else {
+                            console.info('data.intensity out of range 0 ~ 100000 :' + data.intensity);
+                            expect(false).assertTrue();
+                        }        
+                        if (data.colorTemperature >= MIN && data.colorTemperature <= colorTemperatureMax) {
+                            console.info('data.colorTemperature :' + data.colorTemperature);
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                        } else {
+                            console.info('data.intensity out of range 0 ~ 100000 :' + data.intensity);
+                            expect(false).assertTrue();
+                        }         
+                        expect(typeof (data.infraredLuminance)).assertEqual("number");
+                        expect(typeof (data.timestamp)).assertEqual("number");
+                    }, {'interval': 100000000});
+                    sensor.on(sensor.SensorId.AMBIENT_LIGHT, (data)=>{
+                        console.info(TAG + ' Callback2 in!' + JSON.stringify(data));;
+                        if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
+                            sensor.SensorAccuracy.ACCURACY_HIGH) {
+                            console.info('callback accuracy verified' + JSON.stringify(data));
+                            expect(true).assertTrue();
+                        } else {
+                            console.info('callback invalid accuracy encountered' + JSON.stringify(data));
+                            expect(false).assertTrue();
+                        }
+                        if (data.intensity >= MIN && data.intensity <= intensityMax) {
+                            console.info('data.intensity :' + data.intensity);
+                            expect(typeof (data.intensity)).assertEqual("number");
+                        } else {
+                            console.info('data.intensity out of range 0 ~ 100000 :' + data.intensity);
+                            expect(false).assertTrue();
+                        }        
+                        if (data.colorTemperature >= MIN && data.colorTemperature <= colorTemperatureMax) {
+                            console.info('data.colorTemperature :' + data.colorTemperature);
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                        } else {
+                            console.info('data.intensity out of range 0 ~ 100000 :' + data.intensity);
+                            expect(false).assertTrue();
+                        }         
+                        expect(typeof (data.infraredLuminance)).assertEqual("number");
+                        expect(typeof (data.timestamp)).assertEqual("number");
+                    }, {'interval': 100000000});
+                    setTimeout(()=>{
+                        sensor.off(sensor.SensorId.AMBIENT_LIGHT);
+                        done();
+                    }, 1000);
+                }
+            })
+        } catch (error) {
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
+            done();
+        }
+    })
+
+    /*
+     * @tc.number:SUB_SensorsSystem_NEWAMBIENT_LIGHT_JSTest_0260
+     * @tc.name: newAmbientLightSensorJsTest026
+     * @tc.desc: Once Normal Subscription Scenario Use Case
+     * @tc.level:Level 3
+     * @tc.type:Function
+     * @tc.size:MediumTest
+     */
+    it("newAmbientLightSensorJsTest026", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newAmbientLightSensorJsTest026'
+        try{
+           sensor.getSingleSensor(sensor.SensorId.AMBIENT_LIGHT,(error, data) => {
+                if (error) {
+                    console.info(TAG + ' error:' + error);
+                    done();
+                } else {
+                    expect(typeof(data)).assertEqual("object");
+                    sensor.on(sensor.SensorId.AMBIENT_LIGHT, (data)=>{
+                        console.info(TAG + ' Callback in!' + JSON.stringify(data));
+                        if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
+                            sensor.SensorAccuracy.ACCURACY_HIGH) {
+                            console.info('callback accuracy verified' + JSON.stringify(data));
+                            expect(true).assertTrue();
+                        } else {
+                            console.info('callback invalid accuracy encountered' + JSON.stringify(data));
+                            expect(false).assertTrue();
+                        }
+                        if (data.intensity >= MIN && data.intensity <= intensityMax) {
+                            console.info('data.intensity :' + data.intensity);
+                            expect(typeof (data.intensity)).assertEqual("number");
+                        } else {
+                            console.info('data.intensity out of range 0 ~ 100000 :' + data.intensity);
+                            expect(false).assertTrue();
+                        }        
+                        if (data.colorTemperature >= MIN && data.colorTemperature <= colorTemperatureMax) {
+                            console.info('data.colorTemperature :' + data.colorTemperature);
+                            expect(typeof (data.colorTemperature)).assertEqual("number");
+                        } else {
+                            console.info('data.intensity out of range 0 ~ 100000 :' + data.intensity);
+                            expect(false).assertTrue();
+                        }         
+                        expect(typeof (data.infraredLuminance)).assertEqual("number");
+                        expect(typeof (data.timestamp)).assertEqual("number");
+                    }, {'interval': 100000000});
+                    setTimeout(()=>{
+                        sensor.off(sensor.SensorId.AMBIENT_LIGHT);
+                        done();
+                    }, 1000);
+                }
+            })
+        } catch (error) {
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
+            done();
+        }
+    })    
 })}

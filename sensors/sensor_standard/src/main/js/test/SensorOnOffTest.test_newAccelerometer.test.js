@@ -83,10 +83,12 @@ describe("SensorJsTest_sensor_39", function () {
 
     const PARAMETER_ERROR_CODE = 401
     const SERVICE_EXCEPTION_CODE = 14500101
+    const SENSOR_NO_SUPPORT_CODE = 14500102
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
-    let invalid  = -1;
+    const SENSOR_NO_SUPPOR_MSG = 'The sensor is not supported by the device.'
     let TAG  = '';
+    let invalid  = -1;
 
      /*
      * @tc.number: SUB_SensorsSystem_NEWACCELEROMETER_JSTest_0010
@@ -113,7 +115,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -151,7 +155,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -183,7 +189,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -236,7 +244,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -271,7 +281,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -308,7 +320,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -355,7 +369,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -387,7 +403,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -432,7 +450,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -469,7 +489,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -529,7 +551,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -561,7 +585,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -622,7 +648,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -683,7 +711,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -732,7 +762,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -774,7 +806,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -816,7 +850,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -854,7 +890,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -895,7 +933,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -936,7 +976,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -972,7 +1014,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -1007,7 +1051,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })
@@ -1049,7 +1095,9 @@ describe("SensorJsTest_sensor_39", function () {
                 }
             })
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
+            expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
+            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG)
             done();
         }
     })

@@ -54,8 +54,10 @@ describe("SensorJsTest_sensor_35", function () {
     let invild = -1;
     const PARAMETER_ERROR_CODE = 401
     const SERVICE_EXCEPTION_CODE = 14500101
+    const SENSOR_NO_SUPPORT_CODE = 14500102
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
+    const SENSOR_NO_SUPPOR_MSG = 'The sensor is not supported by the device.'
     let TAG  = ''
 
    /**
@@ -79,7 +81,7 @@ describe("SensorJsTest_sensor_35", function () {
                 done();
             });
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' Device does not support! ' + error);
             done();
         }
     })
@@ -107,7 +109,7 @@ describe("SensorJsTest_sensor_35", function () {
             }
             });
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' Device does not support! ' + error);
             done();
         }
     })
@@ -120,7 +122,7 @@ describe("SensorJsTest_sensor_35", function () {
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("getSensorListsSensorJsTest003", 0, async function (done) {
+    it("getSensorListsSensorJsTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         TAG = 'getSensorListsSensorJsTest003';
         try{
             sensor.getSensorList(null).then(data => {
@@ -134,7 +136,7 @@ describe("SensorJsTest_sensor_35", function () {
                 done();
             });
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' Device does not support! ' + error);
             done();
         }
     })
@@ -147,7 +149,7 @@ describe("SensorJsTest_sensor_35", function () {
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-it("getSensorListsSensorJsTest004", 0, async function (done) {
+it("getSensorListsSensorJsTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
     TAG = 'getSensorListsSensorJsTest004';
     try{
         sensor.getSensorList(errMessage).then(data => {
@@ -161,7 +163,7 @@ it("getSensorListsSensorJsTest004", 0, async function (done) {
             done();
         });
     } catch (error) {
-        console.info(TAG + ' Device does not support! ');
+        console.info(TAG + ' Device does not support! ' + error);
         done();
     }
 })
@@ -174,7 +176,7 @@ it("getSensorListsSensorJsTest004", 0, async function (done) {
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-it("getSensorListsSensorJsTest005", 0, async function (done) {
+it("getSensorListsSensorJsTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
     TAG = 'getSensorListsSensorJsTest005';
     try{
         sensor.getSensorList('xxx').then(data => {
@@ -189,7 +191,7 @@ it("getSensorListsSensorJsTest005", 0, async function (done) {
             done();
         });
     } catch (error) {
-        console.info(TAG + ' Device does not support! ');
+        console.info(TAG + ' Device does not support! ' + error);
         done();
     }
 })
@@ -202,7 +204,7 @@ it("getSensorListsSensorJsTest005", 0, async function (done) {
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("getSensorListsSensorJsTest006", 0, async function (done) {
+    it("getSensorListsSensorJsTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         TAG = 'getSensorListsSensorJsTest006';
         try{
             sensor.getSensorList(invild).then(data => {
@@ -217,7 +219,7 @@ it("getSensorListsSensorJsTest005", 0, async function (done) {
                 done();
             });
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' Device does not support! ' + error);
             done();
         }
     })
@@ -245,7 +247,7 @@ it("getSensorListsSensorJsTest005", 0, async function (done) {
                 done();
             });
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' Device does not support! ' + error);
             done();
         }
     })
@@ -258,7 +260,7 @@ it("getSensorListsSensorJsTest005", 0, async function (done) {
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("getSensorListsSensorJsTest008", 0, async function (done) {
+    it("getSensorListsSensorJsTest008", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         TAG = 'getSensorListsSensorJsTest008';
         try{
             sensor.getSensorList(undefined).then((data) => {
@@ -272,7 +274,7 @@ it("getSensorListsSensorJsTest005", 0, async function (done) {
                 done();
             });
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' Device does not support! ' + error);
             done();
         }
     })
@@ -285,7 +287,7 @@ it("getSensorListsSensorJsTest005", 0, async function (done) {
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("getSensorListsSensorJsTest009", 0, async function (done) {
+    it("getSensorListsSensorJsTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
         TAG = 'getSensorListsSensorJsTest009';
         try{
             sensor.getSensorList(null).then((data) => {
@@ -299,7 +301,7 @@ it("getSensorListsSensorJsTest005", 0, async function (done) {
                 done();
             });
         } catch (error) {
-            console.info(TAG + ' Device does not support! ');
+            console.info(TAG + ' Device does not support! ' + error);
             done();
         }
     })
