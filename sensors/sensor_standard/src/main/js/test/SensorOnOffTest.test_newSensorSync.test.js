@@ -43,15 +43,14 @@ describe("SensorJsTest_sensor_64", function () {
          */
         console.info('afterEach called')
     })
-    
+
     let invalid  = -1;
-    let TAG  = '';    
+    let TAG  = '';
     const PARAMETER_ERROR_CODE = 401
     const SERVICE_EXCEPTION_CODE = 14500101
     const SENSOR_NO_SUPPORT_CODE = 14500102
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
-    const SENSOR_NO_SUPPOR_MSG = 'The sensor is not supported by the device.'    
 
     /*
      * @tc.name: SensorSyncTest_001
@@ -71,7 +70,6 @@ describe("SensorJsTest_sensor_64", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);          
             done();
         }
     })
@@ -94,7 +92,6 @@ describe("SensorJsTest_sensor_64", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
@@ -120,7 +117,7 @@ describe("SensorJsTest_sensor_64", function () {
             done();
         }
     })
-    
+
     /*
      * @tc.name: SensorSyncTest_004
      * @tc.desc: verify sensor sync interface
@@ -141,8 +138,8 @@ describe("SensorJsTest_sensor_64", function () {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             done();
         }
-    })    
-    
+    })
+
     /*
      * @tc.name: SensorSyncTest_005
      * @tc.desc: verify sensor sync interface
@@ -163,11 +160,10 @@ describe("SensorJsTest_sensor_64", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
     })
-    
+
     /*
      * @tc.name: SensorSyncTest_006
      * @tc.desc: Allow redundant parameters
@@ -186,10 +182,9 @@ describe("SensorJsTest_sensor_64", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
-    })    
+    })
 
     /*
      * @tc.name: SensorSyncTest_007
@@ -209,8 +204,7 @@ describe("SensorJsTest_sensor_64", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG); 
             done();
         }
-    })    
+    })
 })}

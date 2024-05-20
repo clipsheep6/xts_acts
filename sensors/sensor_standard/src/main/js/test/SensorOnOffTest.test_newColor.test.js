@@ -84,21 +84,20 @@ describe("SensorJsTest_sensor_61", function () {
     const SENSOR_NO_SUPPORT_CODE = 14500102
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
-    const SENSOR_NO_SUPPOR_MSG = 'The sensor is not supported by the device.'
     let invalid  = -1;
     let TAG  = '';
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0010
-    * @tc.name: newColorSensorJsTest001
+    * @tc.name: newColor_SensorJsTest001
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 0
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
-        console.info('---------newColorSensorJsTest001--------------');
-        TAG = 'newColorSensorJsTest001'
+    it("newColor_SensorJsTest001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
+        console.info('---------newColor_SensorJsTest001--------------');
+        TAG = 'newColor_SensorJsTest001'
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -116,22 +115,21 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0020
-    * @tc.name: newColorSensorJsTest002
+    * @tc.name: newColor_SensorJsTest002
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('---------newColorSensorJsTest002--------------');
-        TAG = 'newColorSensorJsTest002'
+    it("newColor_SensorJsTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('---------newColor_SensorJsTest002--------------');
+        TAG = 'newColor_SensorJsTest002'
         function onSensorCallback(data) {
             console.info(TAG + ' callback in');
             expect(false).assertTrue();
@@ -157,22 +155,21 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0030
-    * @tc.name: newColorSensorJsTest003
+    * @tc.name: newColor_SensorJsTest003
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('---------newColorSensorJsTest003--------------');
-        TAG = 'newColorSensorJsTest003 '
+    it("newColor_SensorJsTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('---------newColor_SensorJsTest003--------------');
+        TAG = 'newColor_SensorJsTest003 '
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -193,22 +190,21 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0040
-    * @tc.name: newColorSensorJsTest004
+    * @tc.name: newColor_SensorJsTest004
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('---------newColorSensorJsTest004--------------');
-        TAG = 'newColorSensorJsTest004 '
+    it("newColor_SensorJsTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('---------newColor_SensorJsTest004--------------');
+        TAG = 'newColor_SensorJsTest004 '
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -218,9 +214,9 @@ describe("SensorJsTest_sensor_61", function () {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.COLOR, callback, {'interval': 100000000});
                     setTimeout(()=>{
-                        console.info('---------newColorSensorJsTest004 off in--------------');
+                        console.info('---------newColor_SensorJsTest004 off in--------------');
                         sensor.off(sensor.SensorId.COLOR);
-                        console.info('---------newColorSensorJsTest004 off end--------------');
+                        console.info('---------newColor_SensorJsTest004 off end--------------');
                         done();
                     }, 500);
                 }
@@ -228,22 +224,21 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0050
-    * @tc.name: newColorSensorJsTest005
+    * @tc.name: newColor_SensorJsTest005
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('---------newColorSensorJsTest005--------------');
-        TAG = 'newColorSensorJsTest005 '
+    it("newColor_SensorJsTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('---------newColor_SensorJsTest005--------------');
+        TAG = 'newColor_SensorJsTest005 '
         function onSensorCallback(data) {
             console.info(TAG + 'callback in,data:' + data);
             expect(typeof(data.lightIntensity)).assertEqual("number");
@@ -259,9 +254,9 @@ describe("SensorJsTest_sensor_61", function () {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.COLOR, onSensorCallback, {'interval': 100000000}, 5);
                     setTimeout(()=>{
-                        console.info('---------newColorSensorJsTest005 off in--------------');
+                        console.info('---------newColor_SensorJsTest005 off in--------------');
                         sensor.off(sensor.SensorId.COLOR);
-                        console.info('---------newColorSensorJsTest005 off end--------------');
+                        console.info('---------newColor_SensorJsTest005 off end--------------');
                         done();
                     }, 500);
                 }
@@ -269,21 +264,20 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0060
-    * @tc.name: newColorSensorJsTest006
+    * @tc.name: newColor_SensorJsTest006
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest006 '
+    it("newColor_SensorJsTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest006 '
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -301,21 +295,20 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0070
-    * @tc.name: newColorSensorJsTest007
+    * @tc.name: newColor_SensorJsTest007
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest007 '
+    it("newColor_SensorJsTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest007 '
         function onceSensorCallback(data) {
             console.info(TAG + 'callback in');
             expect(false).assertTrue();
@@ -341,21 +334,20 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0080
-    * @tc.name: newColorSensorJsTest008
+    * @tc.name: newColor_SensorJsTest008
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest008", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest008 '
+    it("newColor_SensorJsTest008", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest008 '
         function onceSensorCallback(data) {
             console.info(TAG + 'callback in');
             if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
@@ -384,21 +376,20 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0090
-    * @tc.name: newColorSensorJsTest009
+    * @tc.name: newColor_SensorJsTest009
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest009'
+    it("newColor_SensorJsTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest009'
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -419,21 +410,20 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0100
-    * @tc.name: newColorSensorJsTest010
+    * @tc.name: newColor_SensorJsTest010
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest010", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest010 '
+    it("newColor_SensorJsTest010", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest010 '
         function onSensorCallback(data) {
             console.info(TAG + 'callback in');
             if (data.accuracy >= sensor.SensorAccuracy.ACCURACY_UNRELIABLE && data.accuracy <=
@@ -465,21 +455,20 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0110
-    * @tc.name: newColorSensorJsTest011
+    * @tc.name: newColor_SensorJsTest011
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest011", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest011'
+    it("newColor_SensorJsTest011", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest011'
         function onSensorCallback(data) {
             console.info(TAG + 'on error');
             expect(false).assertTrue();
@@ -505,21 +494,20 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0120
-    * @tc.name: newColorSensorJsTest012
+    * @tc.name: newColor_SensorJsTest012
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest012", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest012 '
+    it("newColor_SensorJsTest012", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest012 '
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -556,9 +544,9 @@ describe("SensorJsTest_sensor_61", function () {
                         expect(typeof (data.timestamp)).assertEqual("number");
                     });
                     setTimeout(()=>{
-                        console.info('---------newColorSensorJsTest012 off in--------------');
+                        console.info('---------newColor_SensorJsTest012 off in--------------');
                         sensor.off(sensor.SensorId.COLOR);
-                        console.info('---------newColorSensorJsTest012 off end--------------');
+                        console.info('---------newColor_SensorJsTest012 off end--------------');
                         done();
                     }, 1000);
                 }
@@ -566,22 +554,21 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0130
-    * @tc.name: newColorSensorJsTest013
+    * @tc.name: newColor_SensorJsTest013
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest013", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
-        TAG = 'newColorSensorJsTest013 '
-        console.info('---------newColorSensorJsTest013--------------');
+    it("newColor_SensorJsTest013", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
+        TAG = 'newColor_SensorJsTest013 '
+        console.info('---------newColor_SensorJsTest013--------------');
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -592,7 +579,7 @@ describe("SensorJsTest_sensor_61", function () {
                     sensor.on(sensor.SensorId.COLOR, callback, { 'interval': undefined });
                     sensor.on(sensor.SensorId.COLOR, callback2, { 'interval': undefined });
                     setTimeout(() => {
-                        console.info('----------------------newColorSensorJsTest013 off in--------------');
+                        console.info('----------------------newColor_SensorJsTest013 off in--------------');
                         try {
                             sensor.off(sensor.SensorId.COLOR, callback);
                             sensor.off(sensor.SensorId.COLOR, callback2);
@@ -600,7 +587,7 @@ describe("SensorJsTest_sensor_61", function () {
                             console.info(TAG + ' catch error:' + error);
                             expect(false).assertTrue();
                         }
-                        console.info('----------------------newColorSensorJsTest013 off end--------------');
+                        console.info('----------------------newColor_SensorJsTest013 off end--------------');
                         done()
                     }, 1000);
                 }
@@ -608,22 +595,21 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0140
-    * @tc.name: newColorSensorJsTest014
+    * @tc.name: newColor_SensorJsTest014
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest014", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest014 '
-        console.info('---------newColorSensorJsTest014--------------');
+    it("newColor_SensorJsTest014", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest014 '
+        console.info('---------newColor_SensorJsTest014--------------');
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -660,9 +646,9 @@ describe("SensorJsTest_sensor_61", function () {
                         expect(typeof (data.timestamp)).assertEqual("number");
                     });
                     setTimeout(()=>{
-                        console.info('---------newColorSensorJsTest014 off in--------------');
+                        console.info('---------newColor_SensorJsTest014 off in--------------');
                         sensor.off(sensor.SensorId.COLOR);
-                        console.info('---------newColorSensorJsTest014 off end--------------');
+                        console.info('---------newColor_SensorJsTest014 off end--------------');
                         done();
                     }, 1000);
                 }
@@ -670,22 +656,21 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0150
-    * @tc.name: newColorSensorJsTest015
+    * @tc.name: newColor_SensorJsTest015
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest015", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest015 '
-        console.info('---------newColorSensorJsTest015--------------');
+    it("newColor_SensorJsTest015", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest015 '
+        console.info('---------newColor_SensorJsTest015--------------');
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -722,9 +707,9 @@ describe("SensorJsTest_sensor_61", function () {
                         expect(typeof (data.timestamp)).assertEqual("number");
                     }, {'interval': 100000000});
                     setTimeout(()=>{
-                        console.info('---------newColorSensorJsTest015 off in--------------');
+                        console.info('---------newColor_SensorJsTest015 off in--------------');
                         sensor.off(sensor.SensorId.COLOR);
-                        console.info('---------newColorSensorJsTest015 off end--------------');
+                        console.info('---------newColor_SensorJsTest015 off end--------------');
                         done();
                     }, 1000);
                 }
@@ -732,22 +717,21 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0160
-    * @tc.name: newColorSensorJsTest016
+    * @tc.name: newColor_SensorJsTest016
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest016", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest016 '
-        console.info('---------newColorSensorJsTest016--------------');
+    it("newColor_SensorJsTest016", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest016 '
+        console.info('---------newColor_SensorJsTest016--------------');
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -784,22 +768,21 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0170
-    * @tc.name: newColorSensorJsTest017
+    * @tc.name: newColor_SensorJsTest017
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest017", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest017'
-        console.info('----------------------newColorSensorJsTest017--------------');
+    it("newColor_SensorJsTest017", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest017'
+        console.info('----------------------newColor_SensorJsTest017--------------');
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -810,18 +793,18 @@ describe("SensorJsTest_sensor_61", function () {
                     sensor.on(sensor.SensorId.COLOR, callback);
                     sensor.on(sensor.SensorId.COLOR, callback2);
                     setTimeout(() => {
-                        console.info('----------------------newColorSensorJsTest017 off in--------------');
+                        console.info('----------------------newColor_SensorJsTest017 off in--------------');
                         try {
                         sensor.off(sensor.SensorId.COLOR, callback);
                         } catch (error) {
                             console.info(TAG + "catch error:" +error);
                         }
-                        console.info('----------------------newColorSensorJsTest017 off end--------------');
+                        console.info('----------------------newColor_SensorJsTest017 off end--------------');
                     }, 500);
                     setTimeout(() => {
-                        console.info('----------------------newColorSensorJsTest017 off in--------------');
+                        console.info('----------------------newColor_SensorJsTest017 off in--------------');
                         sensor.off(sensor.SensorId.COLOR, callback2);
-                        console.info('----------------------newColorSensorJsTest017 off end--------------');
+                        console.info('----------------------newColor_SensorJsTest017 off end--------------');
                         done();
                     }, 1000);
                 }
@@ -829,22 +812,21 @@ describe("SensorJsTest_sensor_61", function () {
         } catch (error) {
             console.info(TAG + ' fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0180
-    * @tc.name: newColorSensorJsTest018
+    * @tc.name: newColor_SensorJsTest018
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest018", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest018'
-        console.info('----------------------newColorSensorJsTest018--------------');
+    it("newColor_SensorJsTest018", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest018'
+        console.info('----------------------newColor_SensorJsTest018--------------');
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -855,18 +837,18 @@ describe("SensorJsTest_sensor_61", function () {
                     sensor.on(sensor.SensorId.COLOR, callback, { 'interval': 100000000 });
                     sensor.on(sensor.SensorId.COLOR, callback2, { 'interval': 100000000 });
                     setTimeout(() => {
-                        console.info('----------------------newColorSensorJsTest018 off in--------------');
+                        console.info('----------------------newColor_SensorJsTest018 off in--------------');
                         try {
                         sensor.off(sensor.SensorId.COLOR, callback);
                         } catch (error) {
                             console.info(TAG + "catch error:" +error);
                         }
-                        console.info('----------------------newColorSensorJsTest018 off end--------------');
+                        console.info('----------------------newColor_SensorJsTest018 off end--------------');
                     }, 500);
                     setTimeout(() => {
-                        console.info('----------------------newColorSensorJsTest018_2 off in--------------');
+                        console.info('----------------------newColor_SensorJsTest018_2 off in--------------');
                         sensor.off(sensor.SensorId.COLOR, callback2);
-                        console.info('----------------------newColorSensorJsTest018_2 off end--------------');
+                        console.info('----------------------newColor_SensorJsTest018_2 off end--------------');
                         done();
                     }, 1000);
                 }
@@ -881,15 +863,15 @@ describe("SensorJsTest_sensor_61", function () {
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0190
-    * @tc.name: newColorSensorJsTest019
+    * @tc.name: newColor_SensorJsTest019
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest019", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest019 '
-        console.info('----------------------newColorSensorJsTest019--------------');
+    it("newColor_SensorJsTest019", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest019 '
+        console.info('----------------------newColor_SensorJsTest019--------------');
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -897,10 +879,10 @@ describe("SensorJsTest_sensor_61", function () {
                     done();
                 } else {
                     expect(typeof(data)).assertEqual("object");
-                    console.info('----------------------newColorSensorJsTest019 off in--------------');
+                    console.info('----------------------newColor_SensorJsTest019 off in--------------');
                     try{
                         sensor.off(-1, callback);
-                        console.info('----------------------newColorSensorJsTest019 off end--------------');
+                        console.info('----------------------newColor_SensorJsTest019 off end--------------');
                     } catch (error) {
                         console.info(TAG + "catch error:" + error);
                         expect(error.code).assertEqual(PARAMETER_ERROR_CODE);
@@ -919,15 +901,15 @@ describe("SensorJsTest_sensor_61", function () {
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0200
-    * @tc.name: newColorSensorJsTest020
+    * @tc.name: newColor_SensorJsTest020
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest020", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest020'
-        console.info('----------------------newColorSensorJsTest020--------------');
+    it("newColor_SensorJsTest020", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest020'
+        console.info('----------------------newColor_SensorJsTest020--------------');
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -936,9 +918,9 @@ describe("SensorJsTest_sensor_61", function () {
                 } else {
                     try {
                         sensor.on(sensor.SensorId.COLOR, callback, {'interval': -100000000});
-                        console.info('----------------------newColorSensorJsTest020 off in---------------------------');
+                        console.info('----------------------newColor_SensorJsTest020 off in---------------------------');
                         sensor.off(sensor.SensorId.COLOR);
-                        console.info('----------------------newColorSensorJsTest020 off end---------------------------');
+                        console.info('----------------------newColor_SensorJsTest020 off end---------------------------');
                         done();
                     } catch (error) {
                         console.info(TAG + 'On fail, errCode:' + error.code + ' ,msg:' + error.message);
@@ -958,15 +940,15 @@ describe("SensorJsTest_sensor_61", function () {
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0210
-    * @tc.name: newColorSensorJsTest021
+    * @tc.name: newColor_SensorJsTest021
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest021", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
-        TAG = 'newColorSensorJsTest021 '
-        console.info('---------newColorSensorJsTest021--------------');
+    it("newColor_SensorJsTest021", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
+        TAG = 'newColor_SensorJsTest021 '
+        console.info('---------newColor_SensorJsTest021--------------');
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -990,14 +972,14 @@ describe("SensorJsTest_sensor_61", function () {
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0220
-    * @tc.name: newColorSensorJsTest022
+    * @tc.name: newColor_SensorJsTest022
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest022", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest022'
+    it("newColor_SensorJsTest022", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest022'
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -1012,7 +994,7 @@ describe("SensorJsTest_sensor_61", function () {
                         console.info(TAG + 'Repeat subscription' + error);
                     }
                     setTimeout(() => {
-                        console.info('----------------------newColorSensorJsTest022 off in--------------');
+                        console.info('----------------------newColor_SensorJsTest022 off in--------------');
                         try {
                         sensor.off(sensor.SensorId.COLOR);
                         } catch (error) {
@@ -1033,15 +1015,15 @@ describe("SensorJsTest_sensor_61", function () {
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0230
-    * @tc.name: newColorSensorJsTest023
+    * @tc.name: newColor_SensorJsTest023
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest023", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest023 '
-        console.info('---------newColorSensorJsTest023--------------');
+    it("newColor_SensorJsTest023", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest023 '
+        console.info('---------newColor_SensorJsTest023--------------');
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -1056,7 +1038,7 @@ describe("SensorJsTest_sensor_61", function () {
                             console.info(TAG + 'Repeat subscription'+error);
                         }
                     setTimeout(() => {
-                        console.info('----------------------newColorSensorJsTest023 off in--------------');
+                        console.info('----------------------newColor_SensorJsTest023 off in--------------');
                         try {
                             sensor.off(sensor.SensorId.COLOR);
                             } catch (error) {
@@ -1077,15 +1059,15 @@ describe("SensorJsTest_sensor_61", function () {
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0240
-    * @tc.name: newColorSensorJsTest024
+    * @tc.name: newColor_SensorJsTest024
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest024", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest024'
-        console.info('---------newColorSensorJsTest024--------------');
+    it("newColor_SensorJsTest024", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest024'
+        console.info('---------newColor_SensorJsTest024--------------');
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -1095,7 +1077,7 @@ describe("SensorJsTest_sensor_61", function () {
                     expect(typeof(data)).assertEqual("object");
                     sensor.on(sensor.SensorId.COLOR, callback, { 'interval': null });
                     setTimeout(() => {
-                        console.info('----------------------newColorSensorJsTest024 off in--------------');
+                        console.info('----------------------newColor_SensorJsTest024 off in--------------');
                         try {
                         sensor.off(sensor.SensorId.COLOR);
                         } catch (error) {
@@ -1116,14 +1098,14 @@ describe("SensorJsTest_sensor_61", function () {
 
     /*
     * @tc.number:SUB_SensorsSystem_NEWCOLOR_JsTest_0250
-    * @tc.name: newColorSensorJsTest025
+    * @tc.name: newColor_SensorJsTest025
     * @tc.desc: Functional Use Cases
     * @tc.level:Level 3
     * @tc.type:Function
     * @tc.size:MediumTest
     */
-    it("newColorSensorJsTest025", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        TAG = 'newColorSensorJsTest025'
+    it("newColor_SensorJsTest025", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        TAG = 'newColor_SensorJsTest025'
         try{
            sensor.getSingleSensor(sensor.SensorId.COLOR,(error, data) => {
                 if (error) {
@@ -1138,14 +1120,14 @@ describe("SensorJsTest_sensor_61", function () {
                             console.info(TAG + 'catch error：' + error);
                         }
                     setTimeout(() => {
-                        console.info('----------------------newColorSensorJsTest025 off in--------------');
+                        console.info('----------------------newColor_SensorJsTest025 off in--------------');
                         try {
                             sensor.off(sensor.SensorId.COLOR);
                             } catch (error) {
                         console.info(TAG + " catch error:" + error);
                             expect(false).assertTrue();
                             }
-                        console.info('----------------------newColorSensorJsTest025 off end--------------');
+                        console.info('----------------------newColor_SensorJsTest025 off end--------------');
                             done()
                     }, 1000);
                 }

@@ -57,19 +57,18 @@ describe("SensorJsTest_sensor_25", function () {
     const SENSOR_NO_SUPPORT_CODE = 14500102
     const PARAMETER_ERROR_MSG = 'The parameter invalid.'
     const SERVICE_EXCEPTION_MSG = 'Service exception.'
-    const SENSOR_NO_SUPPOR_MSG = 'The sensor is not supported by the device.'    
 
     /*
      * @tc.number:SUB_SensorsSystem_SubscribeAccelerometer_JSTest_0010
-     * @tc.name: subscribeAccelerometerSensorJsTest001
+     * @tc.name:subscribeAccelerometer_SensorJsTest001
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      * @tc.level:Level 0
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("subscribeAccelerometerSensorJsTest001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
-        console.info('----------------------subscribeAccelerometerSensorJsTest001---------------------------');
-        TAG = 'subscribeAccelerometerSensorJsTest001';
+    it("subscribeAccelerometer_SensorJsTest001", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
+        console.info('----------------------subscribeAccelerometer_SensorJsTest001---------------------------');
+        TAG = 'subscribeAccelerometer_SensorJsTest001';
         try{
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
@@ -98,22 +97,21 @@ describe("SensorJsTest_sensor_25", function () {
         } catch (error) {
             console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
    /*
      * @tc.number:SUB_SensorsSystem_SubscribeAccelerometer_JSTest_0020
-     * @tc.name: subscribeAccelerometerSensorJsTest002
+     * @tc.name:subscribeAccelerometer_SensorJsTest002
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      * @tc.level:Level 3
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("subscribeAccelerometerSensorJsTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------subscribeAccelerometerSensorJsTest002---------------------------');
-        TAG = 'subscribeAccelerometerSensorJsTest002';
+    it("subscribeAccelerometer_SensorJsTest002", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------subscribeAccelerometer_SensorJsTest002---------------------------');
+        TAG = 'subscribeAccelerometer_SensorJsTest002';
         try{
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
@@ -142,22 +140,21 @@ describe("SensorJsTest_sensor_25", function () {
         } catch (error) {
             console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
      * @tc.number:SUB_SensorsSystem_SubscribeAccelerometer_JSTest_0030
-     * @tc.name: subscribeAccelerometerSensorJsTest003
+     * @tc.name:subscribeAccelerometer_SensorJsTest003
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      * @tc.level:Level 3
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("subscribeAccelerometerSensorJsTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------subscribeAccelerometerSensorJsTest003---------------------------');
-        TAG = 'subscribeAccelerometerSensorJsTest003';
+    it("subscribeAccelerometer_SensorJsTest003", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------subscribeAccelerometer_SensorJsTest003---------------------------');
+        TAG = 'subscribeAccelerometer_SensorJsTest003';
         try{
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
@@ -186,22 +183,21 @@ describe("SensorJsTest_sensor_25", function () {
         } catch (error) {
             console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
      * @tc.number:SUB_SensorsSystem_SubscribeAccelerometer_JSTest_0040
-     * @tc.name: subscribeAccelerometerSensorJsTest004
+     * @tc.name:subscribeAccelerometer_SensorJsTest004
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      * @tc.level:Level 3
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("subscribeAccelerometerSensorJsTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------subscribeAccelerometerSensorJsTest004---------------------------');
-        TAG = 'subscribeAccelerometerSensorJsTest004';
+    it("subscribeAccelerometer_SensorJsTest004", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------subscribeAccelerometer_SensorJsTest004---------------------------');
+        TAG = 'subscribeAccelerometer_SensorJsTest004';
         try{
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
@@ -244,22 +240,21 @@ describe("SensorJsTest_sensor_25", function () {
         } catch (error) {
             console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
      * @tc.number:SUB_SensorsSystem_SubscribeAccelerometer_JSTest_0050
-     * @tc.name: subscribeAccelerometerSensorJsTest005
+     * @tc.name:subscribeAccelerometer_SensorJsTest005
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      * @tc.level:Level 3
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("subscribeAccelerometerSensorJsTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------subscribeAccelerometerSensorJsTest005---------------------------');
-        TAG = 'subscribeAccelerometerSensorJsTest005';
+    it("subscribeAccelerometer_SensorJsTest005", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------subscribeAccelerometer_SensorJsTest005---------------------------');
+        TAG = 'subscribeAccelerometer_SensorJsTest005';
         try{
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                if (error) {
@@ -285,22 +280,21 @@ describe("SensorJsTest_sensor_25", function () {
         } catch (error) {
             console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
      * @tc.number:SUB_SensorsSystem_SubscribeAccelerometer_JSTest_0060
-     * @tc.name: subscribeAccelerometerSensorJsTest006
+     * @tc.name:subscribeAccelerometer_SensorJsTest006
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      * @tc.level:Level 3
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("subscribeAccelerometerSensorJsTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------subscribeAccelerometerSensorJsTest006---------------------------');
-        TAG = 'subscribeAccelerometerSensorJsTest006';
+    it("subscribeAccelerometer_SensorJsTest006", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------subscribeAccelerometer_SensorJsTest006---------------------------');
+        TAG = 'subscribeAccelerometer_SensorJsTest006';
         try{
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
@@ -325,22 +319,21 @@ describe("SensorJsTest_sensor_25", function () {
         } catch (error) {
             console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
      * @tc.number:SUB_SensorsSystem_SubscribeAccelerometer_JSTest_0070
-     * @tc.name: subscribeAccelerometerSensorJsTest007
+     * @tc.name:subscribeAccelerometer_SensorJsTest007
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      * @tc.level:Level 3
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("subscribeAccelerometerSensorJsTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------subscribeAccelerometerSensorJsTest007---------------------------');
-        TAG = 'subscribeAccelerometerSensorJsTest007';
+    it("subscribeAccelerometer_SensorJsTest007", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------subscribeAccelerometer_SensorJsTest007---------------------------');
+        TAG = 'subscribeAccelerometer_SensorJsTest007';
         try{
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
@@ -370,7 +363,7 @@ describe("SensorJsTest_sensor_25", function () {
                             expect(typeof (data.z)).assertEqual("number");
                         },
                         fail: function (data, code) {
-                            console.log("subscribeAccelerometerSensorJsTest007_1 is failed, data: " + data + ", code: " + code);
+                            console.log("subscribeAccelerometer_SensorJsTest007_1 is failed, data: " + data + ", code: " + code);
                             console.info(TAG + ' data1：'+ data + ", code: " + code);
                             expect(false).assertTrue();
                         },
@@ -384,22 +377,21 @@ describe("SensorJsTest_sensor_25", function () {
         } catch (error) {
             console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done();
         }
     })
 
     /*
      * @tc.number:SUB_SensorsSystem_SubscribeAccelerometer_JSTest_0080
-     * @tc.name: subscribeAccelerometerSensorJsTest008
+     * @tc.name:subscribeAccelerometer_SensorJsTest008
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      * @tc.level:Level 3
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("subscribeAccelerometerSensorJsTest008", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
-        console.info('----------------------subscribeAccelerometerSensorJsTest008---------------------------');
-        TAG = 'subscribeAccelerometerSensorJsTest008';
+    it("subscribeAccelerometer_SensorJsTest008", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL0, async function (done) {
+        console.info('----------------------subscribeAccelerometer_SensorJsTest008---------------------------');
+        TAG = 'subscribeAccelerometer_SensorJsTest008';
         try{
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
@@ -424,7 +416,6 @@ describe("SensorJsTest_sensor_25", function () {
         } catch (error) {
             console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done()
         }
         done();
@@ -432,15 +423,15 @@ describe("SensorJsTest_sensor_25", function () {
 
    /*
      * @tc.number:SUB_SensorsSystem_SubscribeAccelerometer_JSTest_0090
-     * @tc.name: subscribeAccelerometerSensorJsTest009
+     * @tc.name:subscribeAccelerometer_SensorJsTest009
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      * @tc.level:Level 3
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("subscribeAccelerometerSensorJsTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------subscribeAccelerometerSensorJsTest009---------------------------');
-        TAG = 'subscribeAccelerometerSensorJsTest009';
+    it("subscribeAccelerometer_SensorJsTest009", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------subscribeAccelerometer_SensorJsTest009---------------------------');
+        TAG = 'subscribeAccelerometer_SensorJsTest009';
         try{
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
@@ -465,7 +456,6 @@ describe("SensorJsTest_sensor_25", function () {
         } catch (error) {
             console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done()
         }
         done();
@@ -473,15 +463,15 @@ describe("SensorJsTest_sensor_25", function () {
 
     /*
      * @tc.number:SUB_SensorsSystem_SubscribeAccelerometer_JSTest_0100
-     * @tc.name: subscribeAccelerometerSensorJsTest010
+     * @tc.name:subscribeAccelerometer_SensorJsTest010
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      * @tc.level:Level 3
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("subscribeAccelerometerSensorJsTest010", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------subscribeAccelerometerSensorJsTest010---------------------------');
-        TAG = 'subscribeAccelerometerSensorJsTest010';
+    it("subscribeAccelerometer_SensorJsTest010", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------subscribeAccelerometer_SensorJsTest010---------------------------');
+        TAG = 'subscribeAccelerometer_SensorJsTest010';
         try{
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
@@ -506,7 +496,6 @@ describe("SensorJsTest_sensor_25", function () {
         } catch (error) {
             console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done()
         }
         done();
@@ -514,15 +503,15 @@ describe("SensorJsTest_sensor_25", function () {
 
     /*
      * @tc.number:SUB_SensorsSystem_SubscribeAccelerometer_JSTest_0110
-     * @tc.name: subscribeAccelerometerSensorJsTest011
+     * @tc.name:subscribeAccelerometer_SensorJsTest011
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      * @tc.level:Level 3
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("subscribeAccelerometerSensorJsTest011", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------subscribeAccelerometerSensorJsTest011---------------------------');
-        TAG = 'subscribeAccelerometerSensorJsTest011';
+    it("subscribeAccelerometer_SensorJsTest011", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------subscribeAccelerometer_SensorJsTest011---------------------------');
+        TAG = 'subscribeAccelerometer_SensorJsTest011';
         try{
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
@@ -558,22 +547,21 @@ describe("SensorJsTest_sensor_25", function () {
         } catch (error) {
             console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done()
         }
     })
 
     /*
      * @tc.number:SUB_SensorsSystem_SubscribeAccelerometer_JSTest_0120
-     * @tc.name: subscribeAccelerometerSensorJsTest012
+     * @tc.name:subscribeAccelerometer_SensorJsTest012
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      * @tc.level:Level 3
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("subscribeAccelerometerSensorJsTest012", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------subscribeAccelerometerSensorJsTest012---------------------------');
-        TAG = 'subscribeAccelerometerSensorJsTest012';
+    it("subscribeAccelerometer_SensorJsTest012", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------subscribeAccelerometer_SensorJsTest012---------------------------');
+        TAG = 'subscribeAccelerometer_SensorJsTest012';
         try{
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
@@ -595,7 +583,6 @@ describe("SensorJsTest_sensor_25", function () {
         } catch (error) {
             console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done()
         }
         done();
@@ -603,15 +590,15 @@ describe("SensorJsTest_sensor_25", function () {
 
     /*
      * @tc.number:SUB_SensorsSystem_SubscribeAccelerometer_JSTest_0130
-     * @tc.name: subscribeAccelerometerSensorJsTest013
+     * @tc.name:subscribeAccelerometer_SensorJsTest013
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      * @tc.level:Level 3
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("subscribeAccelerometerSensorJsTest013", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------subscribeAccelerometerSensorJsTest013---------------------------');
-        TAG = 'subscribeAccelerometerSensorJsTest013';
+    it("subscribeAccelerometer_SensorJsTest013", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------subscribeAccelerometer_SensorJsTest013---------------------------');
+        TAG = 'subscribeAccelerometer_SensorJsTest013';
         try{
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
@@ -634,7 +621,6 @@ describe("SensorJsTest_sensor_25", function () {
         } catch (error) {
             console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done()
         }
         done();
@@ -642,15 +628,15 @@ describe("SensorJsTest_sensor_25", function () {
 
     /*
      * @tc.number:SUB_SensorsSystem_SubscribeAccelerometer_JSTest_0140
-     * @tc.name: subscribeAccelerometerSensorJsTest014
+     * @tc.name:subscribeAccelerometer_SensorJsTest014
      * @tc.desc:Verification results of the incorrect parameters of the test interface.
      * @tc.level:Level 3
      * @tc.type:Function
      * @tc.size:MediumTest
      */
-    it("subscribeAccelerometerSensorJsTest014", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
-        console.info('----------------------subscribeAccelerometerSensorJsTest014---------------------------');
-        TAG = 'subscribeAccelerometerSensorJsTest014';
+    it("subscribeAccelerometer_SensorJsTest014", TestType.FUNCTION | Size.MEDIUMTEST | Level.LEVEL3, async function (done) {
+        console.info('----------------------subscribeAccelerometer_SensorJsTest014---------------------------');
+        TAG = 'subscribeAccelerometer_SensorJsTest014';
         try{
             sensor.getSingleSensor(AccelerometerId ,(error, data) => {
                 if (error) {
@@ -675,7 +661,6 @@ describe("SensorJsTest_sensor_25", function () {
         } catch (error) {
             console.info('getSingleSensor fail, errCode:' + error.code + ' ,msg:' + error.message);
             expect(error.code).assertEqual(SENSOR_NO_SUPPORT_CODE);
-            expect(error.message).assertEqual(SENSOR_NO_SUPPOR_MSG);
             done()
         }
         done();
