@@ -18,27 +18,27 @@ import events_emitter from '@ohos.events.emitter'
 @Entry
 @Component
 struct OverlayExample {
-  @State title: string = 'old title'
-  @State x: number = 0
-  @State y: number = -15
-  @State alignment: Alignment = Alignment.Bottom
+  @State title: string = 'old title';
+  @State x: number = 0;
+  @State y: number = -15;
+  @State alignment: Alignment = Alignment.Bottom;
 
   onPageShow() {
     console.info('[overlay] page show called ');
-    let stateChangeEvent = {
+    let stateChangeEvent: events_emitter.InnerEvent = {
       eventId: 143,
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent, this.stateChangCallBack);
 
-    let stateChangeEvent2 = {
+    let stateChangeEvent2: events_emitter.InnerEvent = {
       eventId: 1110,
       priority: events_emitter.EventPriority.LOW
     }
     events_emitter.on(stateChangeEvent2, this.stateChangCallBack);
   }
 
-  private stateChangCallBack = (eventData) => {
+  private stateChangCallBack = (eventData: events_emitter.EventData) => {
     console.info("[stateChangCallBack] stateChangCallBack ");
     if (eventData != null) {
       console.info("[stateChangCallBack] state change called: " + JSON.stringify(eventData));

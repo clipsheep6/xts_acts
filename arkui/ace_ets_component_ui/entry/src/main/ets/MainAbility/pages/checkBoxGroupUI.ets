@@ -12,35 +12,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct CheckboxExample {
-   @State  selectAll:boolean = true;
-   @State  selectedColor:string = "#007DFF";
-   @State  message:string = "testclick";
-   @State  message2:string = "testclick2";
-   messageManager:MessageManager = new MessageManager()
-   onPageShow() {
-    console.info('Checkbox onPageShow')
+  @State selectAll: boolean = true;
+  @State selectedColor: string = "#007DFF";
+  @State message: string = "testclick";
+  @State message2: string = "testclick2";
+  messageManager: MessageManager = new MessageManager()
+
+  onPageShow() {
+    console.info('Checkbox onPageShow');
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
-      console.error('message = ' + message.name + "--" + message.value)
+    let callback: Callback = (message: ESObject) => {
+      console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'selectAll') {
-          this.selectAll = message.value
+        this.selectAll = message.value;
       }
       if (message.name == 'selectedColor') {
-          this.selectedColor = message.value
+        this.selectedColor = message.value;
       }
-      
+
     }
-    this.messageManager.registerCallback(callback)
+    this.messageManager.registerCallback(callback);
 
   }
-
 
   build() {
     Scroll() {
@@ -52,14 +52,19 @@ struct CheckboxExample {
             .selectedColor(this.selectedColor)
             .selectAll(this.selectAll)
             .onChange((itemName: CheckboxGroupResult) => {
-              console.info("checkbox group content" + JSON.stringify(itemName))
-              console.info("checkbox group content" + JSON.stringify(itemName.status))
-              console.info("checkbox group content" + JSON.stringify(itemName.name))
+              console.info("checkbox group content" + JSON.stringify(itemName));
+              console.info("checkbox group content" + JSON.stringify(itemName.status));
+              console.info("checkbox group content" + JSON.stringify(itemName.name));
               this.message = JSON.stringify(itemName.name);
               this.message2 = JSON.stringify(itemName.status);
             }).key("allck")
-          Text('Select All').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+          Text('Select All')
+            .fontSize(14)
+            .lineHeight(20)
+            .fontColor('#182431')
+            .fontWeight(500)
         }
+
         // 选项1
         Flex({ justifyContent: FlexAlign.Start, alignItems: ItemAlign.Center }) {
           Checkbox({ name: 'checkbox1', group: 'checkboxGroup' })
@@ -68,7 +73,11 @@ struct CheckboxExample {
             .onChange((value: boolean) => {
               console.info('Checkbox1 change is' + value)
             }).key('cb1')
-          Text('Checkbox1').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+          Text('Checkbox1')
+            .fontSize(14)
+            .lineHeight(20)
+            .fontColor('#182431')
+            .fontWeight(500)
         }.margin({ left: 36 })
 
         // 选项2
@@ -78,7 +87,11 @@ struct CheckboxExample {
             .onChange((value: boolean) => {
               console.info('Checkbox2 change is' + value)
             }).key('cb2')
-          Text('Checkbox2').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+          Text('Checkbox2')
+            .fontSize(14)
+            .lineHeight(20)
+            .fontColor('#182431')
+            .fontWeight(500)
         }.margin({ left: 36 })
 
         // 选项3
@@ -88,12 +101,27 @@ struct CheckboxExample {
             .onChange((value: boolean) => {
               console.info('Checkbox3 change is' + value)
             })
-          Text('Checkbox3').fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500)
+          Text('Checkbox3')
+            .fontSize(14)
+            .lineHeight(20)
+            .fontColor('#182431')
+            .fontWeight(500)
         }.margin({ left: 36 })
 
-        Text(this.message).fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500).margin({left:20,top:20}).key('text1')
-        Text(this.message2).fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500).margin({left:20,top:20}).key('text2')
-
+        Text(this.message)
+          .fontSize(14)
+          .lineHeight(20)
+          .fontColor('#182431')
+          .fontWeight(500)
+          .margin({ left: 20, top: 20 })
+          .key('text1')
+        Text(this.message2)
+          .fontSize(14)
+          .lineHeight(20)
+          .fontColor('#182431')
+          .fontWeight(500)
+          .margin({ left: 20, top: 20 })
+          .key('text2')
       }
     }
   }

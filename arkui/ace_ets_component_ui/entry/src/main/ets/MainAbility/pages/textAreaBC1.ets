@@ -12,36 +12,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
+
 @Entry
 @Component
 struct TextAreaExampleBC1 {
-  @State text:string = 'test1'
-  @State sizeT:number = 16
-  @State weightT:number = 400
-  @State placeholderFont:string ="#FFAACCEE"
-  @State placeholderColor:string ="#FFAACCEE"
-  @State textAlign:TextAlign = TextAlign.Start
-  @State caretColor:string = "#ACDEFF"
-  @State fontSize:number = 16
-  @State textColor:string = '#000000'
-  @State copyOption:CopyOptions = CopyOptions.LocalDevice
-  @State placeholder:string ="The text area can hold an unlimited amount of text. input your word..."
-  controller1: TextAreaController = new TextAreaController()
-  controller2: TextAreaController = new TextAreaController()
-  @State message1:string = 'text'
-  @State message2:string = 'text'
-  @State message3:string = 'text'
-  @State message4:string = 'text'
-  @State text2:string = 'test2'
-  @State message5:string = 'start'
-  messageManager:MessageManager = new MessageManager()
+  @State text: string = 'test1';
+  @State sizeT: number = 16;
+  @State weightT: number = 400;
+  @State placeholderFont: string = "#FFAACCEE";
+  @State placeholderColor: string = "#FFAACCEE";
+  @State textAlign: TextAlign = TextAlign.Start;
+  @State caretColor: string = "#ACDEFF";
+  @State fontSize: number = 16;
+  @State textColor: string = '#000000';
+  @State copyOption: CopyOptions = CopyOptions.LocalDevice;
+  @State placeholder: string = "The text area can hold an unlimited amount of text. input your word...";
+  controller1: TextAreaController = new TextAreaController();
+  controller2: TextAreaController = new TextAreaController();
+  @State message1: string = 'text';
+  @State message2: string = 'text';
+  @State message3: string = 'text';
+  @State message4: string = 'text';
+  @State text2: string = 'test2';
+  @State message5: string = 'start';
+  messageManager: MessageManager = new MessageManager();
+
   onPageShow() {
     console.info('TextArea onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message: any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'text') {
         this.text = message.value
@@ -97,6 +99,7 @@ struct TextAreaExampleBC1 {
     }
     this.messageManager.registerCallback(callback)
   }
+
   build() {
     Column() {
       TextArea({
@@ -120,21 +123,21 @@ struct TextAreaExampleBC1 {
         .onChange((value: string) => {
           this.message1 = value
         })
-        .onCopy((value:string) => {
+        .onCopy((value: string) => {
           console.info("copy value is " + value);
           this.message2 = 'copy'
         })
-        .onCut((value:string) => {
+        .onCut((value: string) => {
           console.info("cut value is " + value);
           this.message3 = 'cut'
         })
-        .onPaste((value:string) => {
+        .onPaste((value: string) => {
           console.info("paste value is " + value);
           this.message4 = 'paste'
         })
         .onEditChange((isEditing: boolean) => {
           console.info("isEditing value is " + isEditing);
-          if(isEditing) {
+          if (isEditing) {
             this.message5 = 'doing'
           } else {
             this.message5 = 'Nodoing'

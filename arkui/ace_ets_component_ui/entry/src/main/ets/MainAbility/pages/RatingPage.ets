@@ -12,27 +12,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct RatingPage {
-  @State rating: number = 3.5
-  @State indicator : boolean = true
-  @State stars: number = 5
-  @State stepSize: number = 0.5
-  @State text: string = 'no change'
-  @State backgroundUri: string = 'resources/base/media/star_1.png'
-  @State foregroundUri: string = 'resources/base/media/star_2.png'
-  @State secondaryUri: string = 'resources/base/media/star_3.png'
-  messageManager:MessageManager = new MessageManager()
+  @State rating: number = 3.5;
+  @State indicator: boolean = true;
+  @State stars: number = 5;
+  @State stepSize: number = 0.5;
+  @State text: string = 'no change';
+  @State backgroundUri: string = 'resources/base/media/star_1.png';
+  @State foregroundUri: string = 'resources/base/media/star_2.png';
+  @State secondaryUri: string = 'resources/base/media/star_3.png';
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('RatingPage onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'rating') {
         this.rating = message.value
@@ -66,7 +66,11 @@ struct RatingPage {
     Column() {
       Column() {
         Rating({ rating: 0 }).margin({ top: 1, right: 8 }).key('rating')
-          .starStyle({ backgroundUri: 'resources/base/media/star_1.png', foregroundUri: 'resources/base/media/star_2.png', secondaryUri: 'resources/base/media/star_3.png' })
+          .starStyle({
+            backgroundUri: 'resources/base/media/star_1.png',
+            foregroundUri: 'resources/base/media/star_2.png',
+            secondaryUri: 'resources/base/media/star_3.png'
+          })
         Text('default rating')
           .fontSize(16)
           .fontColor('rgba(24,36,49,0.60)')
@@ -74,7 +78,11 @@ struct RatingPage {
           .stars(this.stars)
           .stepSize(this.stepSize)
           .key('rating1')
-          .starStyle({ backgroundUri: this.backgroundUri,foregroundUri: this.foregroundUri,secondaryUri: this.secondaryUri })
+          .starStyle({
+            backgroundUri: this.backgroundUri,
+            foregroundUri: this.foregroundUri,
+            secondaryUri: this.secondaryUri
+          })
           .margin({ top: 24 })
           .onChange((value: number) => {
             this.text = 'change succ'
@@ -110,7 +118,14 @@ struct RatingPage {
           .fontSize(10)
           .fontColor('#182431')
           .position({ x: 295, y: 8 })
-      }.width(360).height(56).backgroundColor('#FFFFFF').margin({ top: 64 })
-    }.width('100%').height('100%').backgroundColor('#F1F3F5')
+      }
+      .width(360)
+      .height(56)
+      .backgroundColor('#FFFFFF')
+      .margin({ top: 64 })
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor('#F1F3F5')
   }
 }

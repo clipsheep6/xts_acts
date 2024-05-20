@@ -12,24 +12,24 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct TimePickerPage {
-  @State isMilitaryTime: boolean = true
-  private selectedTime: Date = new Date('2022-02-22T08:00:00')
-  @State hour: number = 8
-  @State minute: number = 0
-  @State mode: boolean = true
-  messageManager:MessageManager = new MessageManager()
+  @State isMilitaryTime: boolean = true;
+  private selectedTime: Date = new Date('2022-02-22T08:00:00');
+  @State hour: number = 8;
+  @State minute: number = 0;
+  @State mode: boolean = true;
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('TimePicker onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'isMilitaryTime') {
         this.isMilitaryTime = message.value

@@ -12,9 +12,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
-@Styles function itemStyle () {
+@Styles
+function itemStyle() {
   .width(336)
   .height(621)
   .margin({ top: 48, left: 12 })
@@ -22,7 +23,8 @@ import {MessageManager,Callback} from '../utils/MessageManager';
   .backgroundColor('#FFFFFF')
 }
 
-@Extend(Text) function itemTextStyle () {
+@Extend(Text)
+function itemTextStyle() {
   .fontColor('#182431')
   .fontSize(36)
   .fontWeight(500)
@@ -37,35 +39,33 @@ struct StepperExample {
   @State firstState: ItemState = ItemState.Normal
   @State secondState: ItemState = ItemState.Normal
   @State thirdState: ItemState = ItemState.Normal
-  @State nextLabel:string = "下一步"
-  @State prevLabel:string = "返回"
-  @State testState:ItemState = ItemState.Normal
-  
-  messageManager:MessageManager = new MessageManager()
+  @State nextLabel: string = "下一步"
+  @State prevLabel: string = "返回"
+  @State testState: ItemState = ItemState.Normal
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('stepper onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'nextLabel') {
-          this.nextLabel = message.value
+        this.nextLabel = message.value
       }
       if (message.name == 'prevLabel') {
-          this.prevLabel = message.value
+        this.prevLabel = message.value
       }
       if (message.name == 'testState') {
-          this.testState = message.value
+        this.testState = message.value
       }
       if (message.name == 'index') {
-          this.currentIndex = message.value
+        this.currentIndex = message.value
       }
     }
     this.messageManager.registerCallback(callback)
   }
-
 
   build() {
     Stepper({
@@ -85,6 +85,7 @@ struct StepperExample {
       }
       .nextLabel('Next')
       .status(this.firstState)
+
       // 第二个步骤页
       StepperItem() {
         Column() {
@@ -100,6 +101,7 @@ struct StepperExample {
       .nextLabel(this.nextLabel)
       .prevLabel(this.prevLabel)
       .status(this.testState).key('stepperTwo')
+
       // 第三个步骤页
       StepperItem() {
         Column() {
@@ -113,6 +115,7 @@ struct StepperExample {
         }.itemStyle().key('stepperThree')
       }
       .status(this.thirdState)
+
       // 第四个步骤页
       StepperItem() {
         Column() {
@@ -133,14 +136,17 @@ struct StepperExample {
       this.currentIndex = 2
     })
     .onChange((prevIndex: number, index: number) => {
-       this.currentIndex = index
+      this.currentIndex = index
     })
-    .onNext((index:number,pendingIndex:number) => {
-        this.currentIndex = pendingIndex
+    .onNext((index: number, pendingIndex: number) => {
+      this.currentIndex = pendingIndex
     })
-    .onPrevious((index:number,pendingIndex:number) => {
-       this.currentIndex = pendingIndex
+    .onPrevious((index: number, pendingIndex: number) => {
+      this.currentIndex = pendingIndex
 
-    }).key('stepkey').width('100%').height('80%')
+    })
+    .key('stepkey')
+    .width('100%')
+    .height('80%')
   }
 }

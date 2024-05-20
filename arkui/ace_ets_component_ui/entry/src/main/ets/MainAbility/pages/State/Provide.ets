@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 import hilog from '@ohos.hilog';
 
 @Component
@@ -21,13 +21,13 @@ struct ProvideB {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility index aboutToAppear');
   }
 
-  @Consume reviewVotes: number
-  @Consume('a') c: string
-  @Consume sad: string
-  @Consume('a') d: number
-  @Consume('a') b: number
-  @Consume('o') i: number
-  @Consume('o') f: number
+  @Consume reviewVotes: number;
+  @Consume('a') c: string;
+  @Consume sad: string;
+  @Consume('a') d: number;
+  @Consume('a') b: number;
+  @Consume('o') i: number;
+  @Consume('o') f: number;
 
   build() {
     Column() {
@@ -82,10 +82,10 @@ struct ProvideA {
     hilog.info(0x0000, 'testTag', '%{public}s', 'TestAbility index aboutToAppear');
   }
 
-  @Provide reviewVotes: number = 0
-  @Provide('a') b: number = 0
-  @Provide sad: number = 0
-  @Provide('o') i: number = 0
+  @Provide reviewVotes: number = 0;
+  @Provide('a') b: number = 0;
+  @Provide sad: number = 0;
+  @Provide('o') i: number = 0;
 
   build() {
     Column() {

@@ -12,34 +12,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct SearchPage {
-  @State changeValue: string = ''
-  @State submitValue: string = ''
-  @State copyValue: string = ''
-  @State cutValue: string = ''
-  @State pasteValue: string = ''
-  @State positionValue: number = 1
-  @State placeholder: string = 'Type to search...'
-  @State icon: string = ''
-  @State searchButton: string = 'SEARCH'
-  @State placeholderColor: Color = Color.Grey
-  @State placeholderFont: Font = { size: 14, weight: 400 }
-  @State textFont: Font = { size: 14, weight: 400 }
-  @State textAlign: TextAlign = TextAlign.Start
-  @State copyOption: CopyOptions = CopyOptions.InApp
-  controller: SearchController = new SearchController()
-  messageManager:MessageManager = new MessageManager()
+  @State changeValue: string = '';
+  @State submitValue: string = '';
+  @State copyValue: string = '';
+  @State cutValue: string = '';
+  @State pasteValue: string = '';
+  @State positionValue: number = 1;
+  @State placeholder: string = 'Type to search...';
+  @State icon: string = '';
+  @State searchButton: string = 'SEARCH';
+  @State placeholderColor: Color = Color.Grey;
+  @State placeholderFont: Font = { size: 14, weight: 400 };
+  @State textFont: Font = { size: 14, weight: 400 };
+  @State textAlign: TextAlign = TextAlign.Start;
+  @State copyOption: CopyOptions = CopyOptions.InApp;
+  controller: SearchController = new SearchController();
+
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('SearchPage onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'changeValue') {
         this.changeValue = message.value
@@ -95,7 +96,8 @@ struct SearchPage {
       Text('onCut:' + this.cutValue).fontSize(10).margin(10).key('cut')
       Text('onPaste:' + this.pasteValue).fontSize(10).margin(10).key('paste')
       Search({ value: this.changeValue, placeholder: this.placeholder, icon: this.icon, controller: this.controller })
-        .searchButton(this.searchButton).id("searchButton")
+        .searchButton(this.searchButton)
+        .id("searchButton")
         .width(400)
         .height(40)
         .key('search')

@@ -15,30 +15,39 @@
 @Entry
 @Component
 struct TextInputExample {
-  @State text: string = ''
-  controller: TextInputController = new TextInputController()
-  @State isHidden:boolean = false
-  @State value1: string = ''
-  @State value2: string = ''
+  @State text: string = '';
+  controller: TextInputController = new TextInputController();
+  @State isHidden: boolean = false;
+  @State value1: string = '';
+  @State value2: string = '';
 
   // 自定义键盘组件
-  @Builder CustomKeyboardBuilder() {
+  @Builder
+  CustomKeyboardBuilder() {
     Column() {
       Grid() {
-        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item) => {
+        ForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, '*', 0, '#'], (item: string) => {
           GridItem() {
             Button(item + "")
               .width(110)
           }
         })
-      }.maxCount(3).columnsGap(10).rowsGap(10).padding(5)
+      }
+      .maxCount(3)
+      .columnsGap(10)
+      .rowsGap(10)
+      .padding(5)
     }.backgroundColor(Color.Gray)
   }
 
   build() {
     Column() {
-      Text('value1:' + this.value1).fontSize(18).margin(15)
-      Text('value2:' + this.value2).fontSize(18).margin(15)
+      Text('value1:' + this.value1)
+        .fontSize(18)
+        .margin(15)
+      Text('value2:' + this.value2)
+        .fontSize(18)
+        .margin(15)
       TextInput({ text: this.text, placeholder: 'input your word...', controller: this.controller })
         .placeholderColor(Color.Grey)
         .placeholderFont({ size: 14, weight: 400 })
@@ -50,12 +59,12 @@ struct TextInputExample {
         .key('textInputAdd')
         .fontSize(14)
         .customKeyboard(this.CustomKeyboardBuilder())
-        .onContentScroll((totalOffsetX: number, totalOffsetY: number) =>{
+        .onContentScroll((totalOffsetX: number, totalOffsetY: number) => {
         })
-        .onTextSelectionChange((selectionStart: number, selectionEnd: number)=>{
-              this.value1 = selectionStart + "";
-              this.value2  = selectionEnd + "";
-              this.controller.getTextContentLineCount();
+        .onTextSelectionChange((selectionStart: number, selectionEnd: number) => {
+          this.value1 = selectionStart + "";
+          this.value2 = selectionEnd + "";
+          this.controller.getTextContentLineCount();
         })
         .fontColor(Color.Black)
         .enableKeyboardOnFocus(true)
@@ -73,10 +82,10 @@ struct TextInputExample {
           // 将光标移动至第一个字符后
           this.controller.caretPosition(1)
         })
-       Button('stopEditing')
+      Button('stopEditing')
         .onClick(() => {
           this.controller.stopEditing();
-        }).margin({top:20})  
+        }).margin({ top: 20 })
       // 密码输入框
       TextInput({ placeholder: 'input your password...' })
         .width(400)

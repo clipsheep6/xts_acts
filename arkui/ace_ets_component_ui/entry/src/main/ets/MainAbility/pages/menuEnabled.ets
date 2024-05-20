@@ -17,7 +17,6 @@
 @Entry
 @Component
 struct menuEnabledDemo {
-
   @Builder
   SubMenu() {
     Menu() {
@@ -27,7 +26,7 @@ struct menuEnabledDemo {
   }
 
   @Builder
-  MyMenu(){
+  MyMenu() {
     Menu() {
       MenuItem({
         content: "一级菜单",
@@ -52,8 +51,8 @@ struct menuEnabledDemo {
             console.info('handle Menu select')
           }
         }
-      ]).enabled(false)
-
+      ])
+      .enabled(false)
 
 
       Column() {

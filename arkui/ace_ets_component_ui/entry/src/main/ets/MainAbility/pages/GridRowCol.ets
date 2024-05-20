@@ -12,22 +12,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct GridRowCol {
-  @State Number: String[] = ['0', '1', '2', '3', '4']
-  scroller: Scroller = new Scroller()
-  @State columnsTemplate: string = '1fr 1fr 1fr'
-  messageManager:MessageManager = new MessageManager()
+  @State Number: String[] = ['0', '1', '2', '3', '4'];
+  scroller: Scroller = new Scroller();
+  @State columnsTemplate: string = '1fr 1fr 1fr';
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('navigationPosition  onPageShow');
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'columnsTemplate') {
         this.columnsTemplate = message.value;
@@ -40,8 +40,8 @@ struct GridRowCol {
   build() {
     Column({ space: 5 }) {
       Grid() {
-        ForEach(this.Number, (day: string ,index1:number|undefined) => {
-          ForEach(this.Number, (day: string ,index2:number|undefined) => {
+        ForEach(this.Number, (day: string, index1: number | undefined) => {
+          ForEach(this.Number, (day: string, index2: number | undefined) => {
             GridItem() {
               Text(day)
                 .fontSize(16)
@@ -58,7 +58,7 @@ struct GridRowCol {
       .columnsTemplate(this.columnsTemplate)
       .rowsTemplate('1fr 1fr 1fr')
       .columnsGap(10)
-      .constraintSize({minWidth:10})
+      .constraintSize({ minWidth: 10 })
       .rowsGap(10)
       .width('90%')
       .key('GridRowCol')

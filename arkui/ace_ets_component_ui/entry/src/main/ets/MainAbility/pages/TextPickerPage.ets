@@ -12,25 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct TextPickerPage {
-  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4']
-  private select: number = 0
-  @State parameterValue: string = 'orange2'
-  @State defaultPickerItemHeight: number = 20
-  @State getValue: string = 'value'
-  @State getIndex: number = 0
-  messageManager:MessageManager = new MessageManager()
+  private fruits: string[] = ['apple1', 'orange2', 'peach3', 'grape4'];
+  private select: number = 0;
+  @State parameterValue: string = 'orange2';
+  @State defaultPickerItemHeight: number = 20;
+  @State getValue: string = 'value';
+  @State getIndex: number = 0;
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('TextPicker onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'fruits') {
         this.fruits = message.value

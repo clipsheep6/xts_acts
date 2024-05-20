@@ -12,56 +12,75 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct BlankParentWidth {
-  @State colorString : string = "#fc7fae53"
-  @State minWith: string = '120'
-  messageManager:MessageManager = new MessageManager()
+  @State colorString: string = "#fc7fae53";
+  @State minWith: string = '120';
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('blankParentWidth onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'blankColor') {
-          this.colorString = message.value
+        this.colorString = message.value
       }
       if (message.name == 'minWith') {
-          this.minWith = message.value
+        this.minWith = message.value
       }
-      
+
     }
     this.messageManager.registerCallback(callback)
 
   }
-  
+
   build() {
     Column() {
       Row() {
         Text('Bluetooth').fontSize(18).key('text')
         Blank().key('blank')
         Toggle({ type: ToggleType.Switch }).key('toggle')
-      }.width('100%').backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 }).id('row')
+      }
+      .width('100%')
+      .backgroundColor(0xFFFFFF)
+      .borderRadius(15)
+      .padding({ left: 12 })
+      .id('row')
 
       Row() {
-        Text('Bluetooth01').fontSize(18).key('text1')
-        Blank().color(Color.Yellow).key('bl1')
-        Toggle({ type: ToggleType.Switch }).key('toggle1')
-      }.backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 }).margin({top:60})
-
-      Row() {
-        Text('Bluetooth02').fontSize(18)
-        // 设置最小宽度为160
-        Blank(this.minWith).color(this.colorString).key('bl2')
+        Text('Bluetooth01')
+          .fontSize(18)
+          .key('text1')
+        Blank()
+          .color(Color.Yellow)
+          .key('bl1')
         Toggle({ type: ToggleType.Switch })
-      }.backgroundColor(0xFFFFFF).borderRadius(15).padding({ left: 12 }).margin({top:60})
+          .key('toggle1')
+      }.backgroundColor(0xFFFFFF)
+      .borderRadius(15)
+      .padding({ left: 12 })
+      .margin({ top: 60 })
 
-    }.backgroundColor(0xEFEFEF).padding(20)
-    
+      Row() {
+        Text('Bluetooth02')
+          .fontSize(18)
+        // 设置最小宽度为160
+        Blank(this.minWith)
+          .color(this.colorString)
+          .key('bl2')
+        Toggle({ type: ToggleType.Switch })
+      }.backgroundColor(0xFFFFFF)
+      .borderRadius(15)
+      .padding({ left: 12 })
+      .margin({ top: 60 })
+    }
+    .backgroundColor(0xEFEFEF)
+    .padding(20)
   }
 }

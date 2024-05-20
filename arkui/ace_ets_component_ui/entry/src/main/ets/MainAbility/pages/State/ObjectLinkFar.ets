@@ -13,9 +13,10 @@
  * limitations under the License.
  */
 
-@Observed class ClassAAA {
-  public numA: number
-  public classB: ClassBBB
+@Observed
+class ClassAAA {
+  public numA: number;
+  public classB: ClassBBB;
 
   constructor(cValue: ClassBBB, aValue: number = 0) {
     this.classB = cValue;
@@ -25,12 +26,13 @@
 
 @Observed
 class ClassBBB {
-  public numB: number
+  public numB: number;
 
   constructor(aValue: number = 0) {
     this.numB = aValue;
   }
 }
+
 // 第一层变量的状态变化可以用@State监听，二层及以下变量的状态变化则需要使用@Observed/@ObjectLink监听
 //@State无法监听到类嵌套类的属性，@ObjectLink可以监听到类嵌套@Observed修饰的类的属性
 //修改值，只会导致 @ObjectLink 装饰的变量所在的组件被刷新，当前组件不会刷新
@@ -62,7 +64,9 @@ struct ObjectLinkFarClassAAA {
           this.classA.classB.numB += 1
         })
 
-      Text('子组件').fontSize(24).margin({ top: 20 })
+      Text('子组件')
+        .fontSize(24)
+        .margin({ top: 20 })
 
       ObjectLinkSonClassBBB({ classB: this.classA.classB })
     }
@@ -73,7 +77,7 @@ struct ObjectLinkFarClassAAA {
 
 @Component
 struct ObjectLinkSonClassBBB {
-  @ObjectLink  classB: ClassBBB
+  @ObjectLink classB: ClassBBB
 
   build() {
     Column() {
@@ -83,7 +87,7 @@ struct ObjectLinkSonClassBBB {
         .fontWeight(FontWeight.Bold)
         .onClick(() => {
           // 修改值，只会导致 @ObjectLink 装饰的变量所在的组件被刷新
-          this.classB.numB += 1
+          this.classB.numB += 1;
         })
 
     }.width('100%')

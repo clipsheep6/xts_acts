@@ -15,8 +15,8 @@
 @Entry
 @Component
 struct GridExampleAdd {
-  @State Number: String[] = ['0', '1', '2', '3', '4']
-  scroller: Scroller = new Scroller()
+  @State Number: String[] = ['0', '1', '2', '3', '4'];
+  scroller: Scroller = new Scroller();
 
   build() {
     Column({ space: 5 }) {
@@ -31,8 +31,8 @@ struct GridExampleAdd {
                 .height('100%')
                 .textAlign(TextAlign.Center)
             }
-          }, day => day)
-        }, day => day)
+          }, (day: string) => day)
+        }, (day: string) => day)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .rowsTemplate('1fr 1fr 1fr 1fr 1fr')
@@ -43,22 +43,23 @@ struct GridExampleAdd {
       .height(300)
 
       Text('scroll').fontColor(0xCCCCCC).fontSize(9).width('90%')
-      Grid(this.scroller,{regularSize:[12,12],irregularIndexes:[10,5,7],onGetIrregularSizeByIndex:(index: number) => {
-        return [index,index]
-      }
+      Grid(this.scroller, {
+        regularSize: [12, 12], irregularIndexes: [10, 5, 7], onGetIrregularSizeByIndex: (index: number) => {
+          return [index, index]
+        }
       }) {
-        ForEach(this.Number, (day: string,index:number) => {
-          ForEach(this.Number, (day: string,index:number) => {
+        ForEach(this.Number, (day: string, index: number) => {
+          ForEach(this.Number, (day: string, index: number) => {
             GridItem() {
               Text(day)
                 .fontSize(16)
                 .backgroundColor(0xF9CF93)
                 .width('100%')
                 .height(80)
-                .key(''+(index+1)*(index+1))
+                .key('' + (index + 1) * (index + 1))
                 .textAlign(TextAlign.Center)
             }
-          }, day => day)
+          }, (day: string) => day)
         })
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
@@ -66,8 +67,8 @@ struct GridExampleAdd {
       .rowsGap(10)
       .enableScrollInteraction(true)
       .nestedScroll({
-        scrollForward:NestedScrollMode.PARENT_FIRST,
-        scrollBackward:NestedScrollMode.SELF_FIRST
+        scrollForward: NestedScrollMode.PARENT_FIRST,
+        scrollBackward: NestedScrollMode.SELF_FIRST
       })
       .edgeEffect(EdgeEffect.Spring)
 
@@ -75,11 +76,12 @@ struct GridExampleAdd {
         console.info(first.toString())
       })
       .onScrollBarUpdate((index: number, offset: number) => {
-        return {totalOffset: (index / 5) * (80 + 10) - 10 - offset, totalLength: 80 * 5 + 10 * 4}
+        return { totalOffset: (index / 5) * (80 + 10) - 10 - offset, totalLength: 80 * 5 + 10 * 4 }
       })
       .width('90%')
       .backgroundColor(0xFAEEE0)
       .height(300)
+
       Button('next page')
         .onClick(() => { // 点击后滑到下一页
           this.scroller.scrollPage({ next: true })

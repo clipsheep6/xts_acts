@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-let storage008 = new LocalStorage({"PropA8":1})
+let storage008 = new LocalStorage({ "PropA8": 1 })
 storage008['PropA8'] = 47;
 
 
@@ -23,7 +23,7 @@ struct SubState8 {
 
   build() {
     Column() {
-      Text('@State:'+ this.num1).id("SubState_text").margin(5)
+      Text('@State:' + this.num1).id("SubState_text").margin(5)
         .id("SubState1")
         .onClick(() => {
           this.num1 += 1
@@ -38,7 +38,7 @@ struct SubProp8 {
 
   build() {
     Column() {
-      Text('@Prop:'+ this.num1).id("SubProp_text").margin(5)
+      Text('@Prop:' + this.num1).id("SubProp_text").margin(5)
         .id("SubProp1")
         .onClick(() => {
           this.num1 += 1
@@ -53,7 +53,7 @@ struct SubProvide8 {
 
   build() {
     Column() {
-      Text('@Provide:'+ this.num1).id("SubProvide_text").margin(5)
+      Text('@Provide:' + this.num1).id("SubProvide_text").margin(5)
         .id("SubProvide1")
         .onClick(() => {
           this.num1 += 1
@@ -68,7 +68,7 @@ struct SubLink8 {
 
   build() {
     Column() {
-      Text('@Link:'+ this.num1).id("SubLink_text").margin(5)
+      Text('@Link:' + this.num1).id("SubLink_text").margin(5)
         .id("SubLink1")
         .onClick(() => {
           this.num1 += 1
@@ -87,16 +87,16 @@ struct CombinationState8 {
     Row() {
       Column({ space: 20 }) {
         Text('@LocalStorageProp支持初始化@State修饰的数据')
-        SubState8({num1: this.num})
+        SubState8({ num1: this.num })
 
         Text('@LocalStorageProp支持初始化@Prop修饰的数据')
-        SubProp8({num1: this.num})
+        SubProp8({ num1: this.num })
 
         Text('@LocalStorageProp支持初始化@Provid修饰的数据')
-        SubProvide8({num1: this.num})
+        SubProvide8({ num1: this.num })
 
         Text('@LocalStorageProp支持初始化@Link修饰的数据')
-        SubLink8({num1: this.num})
+        SubLink8({ num1: this.num })
 
       }
     }

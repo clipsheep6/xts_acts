@@ -12,25 +12,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct ScrollBarPage {
-  private scroller: Scroller = new Scroller()
-  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-  @State ScrollDirection: ScrollDirection = ScrollDirection.Vertical
-  @State scrollBarDirection: ScrollBarDirection = ScrollBarDirection.Vertical
-  @State state: BarState = BarState.Auto
-  @State backColor : Color = Color.Grey
-  messageManager:MessageManager = new MessageManager()
+  private scroller: Scroller = new Scroller();
+  private arr: number[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  @State ScrollDirection: ScrollDirection = ScrollDirection.Vertical;
+  @State scrollBarDirection: ScrollBarDirection = ScrollBarDirection.Vertical;
+  @State state: BarState = BarState.Auto;
+  @State backColor: Color = Color.Grey;
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('ScrollBarPage onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'scroller') {
         this.scroller = message.value
@@ -56,7 +56,7 @@ struct ScrollBarPage {
       Stack({ alignContent: Alignment.End }) {
         Scroll(this.scroller) {
           Flex({ direction: FlexDirection.Column }) {
-            ForEach(this.arr, (item) => {
+            ForEach(this.arr, (item: number) => {
               Row() {
                 Text(item.toString())
                   .width('90%')
@@ -67,12 +67,13 @@ struct ScrollBarPage {
                   .textAlign(TextAlign.Center)
                   .margin({ top: 5 })
               }
-            }, item => item)
+            }, (item: string) => item)
           }.margin({ left: 52 })
         }
         .scrollBar(BarState.Off)
         .scrollable(this.ScrollDirection)
-        ScrollBar({ scroller: this.scroller, direction: this.scrollBarDirection,state: this.state }) {
+
+        ScrollBar({ scroller: this.scroller, direction: this.scrollBarDirection, state: this.state }) {
           Text()
             .width(30)
             .height(100)

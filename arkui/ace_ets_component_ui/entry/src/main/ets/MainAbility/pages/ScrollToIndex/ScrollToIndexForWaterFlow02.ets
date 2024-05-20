@@ -12,21 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import { WaterFlowDataSource } from './WaterFlowDataSource'
+import { WaterFlowDataSource } from './WaterFlowDataSource';
 
 @Entry
 @Component
 struct ScrollToIndexForWaterFlow02 {
-  @State minSize: number = 80
-  @State maxSize: number = 180
-  @State fontSize: number = 24
-  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  private scrollerForWaterFlow: Scroller = new Scroller()
-  private itemScrollerForWaterFlow: Scroller = new Scroller()
-  datasource: WaterFlowDataSource = new WaterFlowDataSource()
-  private itemWidthArray: number[] = []
-  private itemHeightArray: number[] = []
-  @State isSmooth: boolean = false
+  @State minSize: number = 80;
+  @State maxSize: number = 180;
+  @State fontSize: number = 24;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  private scrollerForWaterFlow: Scroller = new Scroller();
+  private itemScrollerForWaterFlow: Scroller = new Scroller();
+  datasource: WaterFlowDataSource = new WaterFlowDataSource();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
+  @State isSmooth: boolean = false;
 
   // 计算flow item宽/高
   getSize() {
@@ -59,23 +59,30 @@ struct ScrollToIndexForWaterFlow02 {
     }
   }
 
-  @Styles buttonStyles() {
+  @Styles
+  buttonStyles() {
     .borderRadius(8)
     .backgroundColor(0x317aff)
     .width(200)
     .height(80)
   }
+
   build() {
-    Column(){
-      Text('have smooth...').fontSize(16).width('100%').height(60).backgroundColor(Color.Orange)
+    Column() {
+      Text('have smooth...')
+        .fontSize(16)
+        .width('100%')
+        .height(60)
+        .backgroundColor(Color.Orange)
         .visibility(this.isSmooth ? Visibility.Visible : Visibility.None)
-        .id('isHaveSmooth_WaterFlow02').position({x:10, y: 10})
+        .id('isHaveSmooth_WaterFlow02')
+        .position({ x: 10, y: 10 })
       Stack({ alignContent: Alignment.TopStart }) {
         Column({ space: 2 }) {
-          WaterFlow({scroller: this.scrollerForWaterFlow}) {
+          WaterFlow({ scroller: this.scrollerForWaterFlow }) {
             LazyForEach(this.datasource, (item: number) => {
               FlowItem() {
-                if(item == 66){
+                if (item == 66) {
                   WaterFlow({
                     scroller: this.itemScrollerForWaterFlow
                   }) {
@@ -111,7 +118,7 @@ struct ScrollToIndexForWaterFlow02 {
                   .backgroundColor(0xFAEEE0)
                   .width('100%')
                   .height('100%')
-                }else{
+                } else {
                   Column() {
                     Text("N" + item).textAlign(TextAlign.End)
                       .fontSize(16)
@@ -162,12 +169,12 @@ struct ScrollToIndexForWaterFlow02 {
             const yOffsetStart: number = this.itemScrollerForWaterFlow.currentOffset().yOffset;
             console.log('跳转到99，有动画')
             this.itemScrollerForWaterFlow.scrollToIndex(99, true)
-            setTimeout(()=>{
+            setTimeout(() => {
               const yOffsetEnd: number = this.scrollerForWaterFlow.currentOffset().yOffset;
-              console.info('yOffsetStart==>' + yOffsetStart + 'yOffsetEnd==>'+ yOffsetEnd)
+              console.info('yOffsetStart==>' + yOffsetStart + 'yOffsetEnd==>' + yOffsetEnd)
               this.isSmooth = (yOffsetStart == yOffsetEnd) ? false : true;
               console.info(this.isSmooth + 'isSmooth')
-            },1000)
+            }, 1000)
           }).margin({ top: 200, left: 10 })
         Button('Item-10-false', { type: ButtonType.Normal, stateEffect: true })
           .fontSize(25)

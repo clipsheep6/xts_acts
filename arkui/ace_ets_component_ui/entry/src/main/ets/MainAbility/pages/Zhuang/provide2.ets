@@ -65,12 +65,7 @@ struct  CompB{
       }.width('100%').margin({top:10})
     }
   }
-
 }
-
-
-
-
 
 
 @Entry
@@ -130,7 +125,9 @@ struct provide2 {
             }
             CompB()
 
-          }.width('100%').margin({top:10})
+          }
+          .width('100%')
+          .margin({ top: 10 })
         }
       }
     }

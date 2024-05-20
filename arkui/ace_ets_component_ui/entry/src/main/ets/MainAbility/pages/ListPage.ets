@@ -12,47 +12,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct ListPage {
-  @State arr: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-  @State listPosition: number = 0 // 0代表滚动到List顶部，1代表中间值，2代表滚动到List底
-  @State space: number = 20
-  @State initialIndex: number = 0
-  @State listDirection: Axis  = Axis.Vertical
-  @State strokeWidth: number = 2
-  @State dividerColor: Color = Color.Blue
-  @State startMargin: number = 3
-  @State endMargin: number = 2
-  @State scrollBar: BarState = BarState.Off
-  @State cachedCount: number = 1
-  @State editMode: boolean = false
-  @State edgeEffect: EdgeEffect = EdgeEffect.Spring
-  @State chainAnimation: boolean = false
-  @State multiSelectable: boolean = false
-  @State lanes: number = 1
-  @State alignListItem: ListItemAlign = ListItemAlign.End
-  @State sticky: StickyStyle = StickyStyle.None
-  @State onScrollText: string = "onScroll"
-  @State onReachStartText: string = "onReachStart"
-  @State onReachEndText: string = "onReachEnd"
-  @State onScrollBeginText: string = "onScrollBegin"
-  @State onScrollStartText: string = "onScrollStart"
-  @State onScrollStopText: string = "onScrollStop"
-  @State onItemMoveText: string = "onItemMove"
-  @State onItemDragText: string = "onItemDrag"
-  @State onItemDropText: string = "onItemDrop"
+  @State arr: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+  @State listPosition: number = 0; // 0代表滚动到List顶部，1代表中间值，2代表滚动到List底
+  @State space: number = 20;
+  @State initialIndex: number = 0;
+  @State listDirection: Axis = Axis.Vertical;
+  @State strokeWidth: number = 2;
+  @State dividerColor: Color = Color.Blue;
+  @State startMargin: number = 3;
+  @State endMargin: number = 2;
+  @State scrollBar: BarState = BarState.Off;
+  @State cachedCount: number = 1;
+  @State editMode: boolean = false;
+  @State edgeEffect: EdgeEffect = EdgeEffect.Spring;
+  @State chainAnimation: boolean = false;
+  @State multiSelectable: boolean = false;
+  @State lanes: number = 1;
+  @State alignListItem: ListItemAlign = ListItemAlign.End;
+  @State sticky: StickyStyle = StickyStyle.None;
+  @State onScrollText: string = "onScroll";
+  @State onReachStartText: string = "onReachStart";
+  @State onReachEndText: string = "onReachEnd";
+  @State onScrollBeginText: string = "onScrollBegin";
+  @State onScrollStartText: string = "onScrollStart";
+  @State onScrollStopText: string = "onScrollStop";
+  @State onItemMoveText: string = "onItemMove";
+  @State onItemDragText: string = "onItemDrag";
+  @State onItemDropText: string = "onItemDrop";
   scroller: Scroller = new Scroller()
-  messageManager:MessageManager = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('ListPage onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'space') {
         this.space = message.value
@@ -109,17 +109,20 @@ struct ListPage {
   build() {
     Column() {
       List() {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item: string) => {
           ListItem() {
             Text('' + item)
-              .width('90%').height(20).fontSize(10)
-              .textAlign(TextAlign.Center).backgroundColor(0xFFFFFF)
+              .width('90%')
+              .height(20)
+              .fontSize(10)
+              .textAlign(TextAlign.Center)
+              .backgroundColor(0xFFFFFF)
           }
-        }, item => item)
+        }, (item: string) => item)
       }.key('list_default')
 
       List({ space: this.space, initialIndex: this.initialIndex, scroller: this.scroller }) {
-        ForEach(this.arr, (item) => {
+        ForEach(this.arr, (item: string) => {
           ListItem() {
             Text('' + item)
               .width('30%')
@@ -131,15 +134,17 @@ struct ListPage {
               .key('' + item)
           }
           .border({ width: 2, color: Color.Green })
-        }, item => item)
+        }, (item: string) => item)
       }
       .height(300)
       .width("90%")
       .border({ width: 3, color: Color.Red })
       .key("list")
       .listDirection(this.listDirection)
-      .divider({strokeWidth: this.strokeWidth, color: this.dividerColor,
-        startMargin: this.startMargin, endMargin: this.endMargin })
+      .divider({
+        strokeWidth: this.strokeWidth, color: this.dividerColor,
+        startMargin: this.startMargin, endMargin: this.endMargin
+      })
       .scrollBar(this.scrollBar)
       .cachedCount(this.cachedCount)
       .editMode(this.editMode)

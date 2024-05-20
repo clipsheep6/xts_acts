@@ -12,51 +12,51 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct GridPage {
-  @State Number: String[] = ['0', '1', '2', '3', '4']
-  @State columnsTemplate: string = '1fr 1fr 1fr 1fr 1fr'
-  @State rowsTemplate: string = '1fr 1fr 1fr 1fr 1fr'
-  @State columnsGap: number = 10
-  @State rowsGap: number = 10
-  @State scrollBar: BarState = BarState.Off
-  @State scrollBarColor: Color = Color.Grey
-  @State scrollBarWidth: number = 20
-  @State cachedCount: number = 1
-  @State editMode: boolean = false
-  @State layoutDirection: GridDirection = GridDirection.Column
-  @State maxCount: number = Infinity
-  @State minCount: number = 1
-  @State cellLength: number = 40
-  @State multiSelectable: boolean = false
-  @State supportAnimation: boolean = false
-  @State onScrollIndex: number = 2
-  @State buttonName: string = 'next page'
-  @State onItemDragStart: string = 'onItemDragStart'
-  @State onItemDragEnter: string = 'onItemDragEnter'
-  @State onItemDragMove: string = 'onItemDragMove'
-  @State onItemDragLeave: string = 'onItemDragLeave'
-  @State onItemDrop: string = 'onItemDrop'
-  @State onScrollText: string = 'onScroll'
-  @State onScrollIndexText: string = 'onScrollIndex'
-  @State onReachStartText: string = 'onReachStart'
-  @State onReachEndText: string = 'onReachEnd'
-  @State onScrollStartText: string = 'onScrollStart'
-  @State onScrollStopText: string = 'onScrollStop'
-  @State onScrollFrameBeginText: string = 'onScrollFrameBegin'
-  @State myKey: number = 0
-  scroller: Scroller = new Scroller()
-  messageManager:MessageManager = new MessageManager()
+  @State Number: String[] = ['0', '1', '2', '3', '4'];
+  @State columnsTemplate: string = '1fr 1fr 1fr 1fr 1fr';
+  @State rowsTemplate: string = '1fr 1fr 1fr 1fr 1fr';
+  @State columnsGap: number = 10;
+  @State rowsGap: number = 10;
+  @State scrollBar: BarState = BarState.Off;
+  @State scrollBarColor: Color = Color.Grey;
+  @State scrollBarWidth: number = 20;
+  @State cachedCount: number = 1;
+  @State editMode: boolean = false;
+  @State layoutDirection: GridDirection = GridDirection.Column;
+  @State maxCount: number = Infinity;
+  @State minCount: number = 1;
+  @State cellLength: number = 40;
+  @State multiSelectable: boolean = false;
+  @State supportAnimation: boolean = false;
+  @State onScrollIndex: number = 2;
+  @State buttonName: string = 'next page';
+  @State onItemDragStart: string = 'onItemDragStart';
+  @State onItemDragEnter: string = 'onItemDragEnter';
+  @State onItemDragMove: string = 'onItemDragMove';
+  @State onItemDragLeave: string = 'onItemDragLeave';
+  @State onItemDrop: string = 'onItemDrop';
+  @State onScrollText: string = 'onScroll';
+  @State onScrollIndexText: string = 'onScrollIndex';
+  @State onReachStartText: string = 'onReachStart';
+  @State onReachEndText: string = 'onReachEnd';
+  @State onScrollStartText: string = 'onScrollStart';
+  @State onScrollStopText: string = 'onScrollStop';
+  @State onScrollFrameBeginText: string = 'onScrollFrameBegin';
+  @State myKey: number = 0;
+  scroller: Scroller = new Scroller();
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('GridPage onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'columnsTemplate') {
         this.columnsTemplate = message.value
@@ -112,8 +112,12 @@ struct GridPage {
       Text('default').fontColor(0xCCCCCC).fontSize(9).width('90%')
       Grid() {
         GridItem() {
-          Text("abc").fontSize(16).backgroundColor(0xF9CF93).width('100%')
-            .height(40).textAlign(TextAlign.Center)
+          Text("abc")
+            .fontSize(16)
+            .backgroundColor(0xF9CF93)
+            .width('100%')
+            .height(40)
+            .textAlign(TextAlign.Center)
         }.width('90%')
       }.columnsTemplate('1fr')
       .rowsTemplate('1fr')
@@ -132,8 +136,8 @@ struct GridPage {
                 .textAlign(TextAlign.Center)
                 .key(day)
             }
-          }, day => day)
-        }, day => day)
+          }, (day: string) => day)
+        }, (day: string) => day)
       }
       .columnsTemplate(this.columnsTemplate)
       .rowsTemplate(this.rowsTemplate)
@@ -187,8 +191,8 @@ struct GridPage {
                 .height(80)
                 .textAlign(TextAlign.Center)
             }
-          }, day => day)
-        }, day => day)
+          }, (day: string) => day)
+        }, (day: string) => day)
       }
       .columnsTemplate('1fr 1fr 1fr 1fr 1fr')
       .columnsGap(10)
@@ -205,34 +209,34 @@ struct GridPage {
       .backgroundColor(0xFAEEE0)
       .height(200)
       .onScroll((scrollOffset: number, scrollState: ScrollState) => {
-          this.onScrollText = 'onScroll:succ'
-          console.info('onScroll scrollOffset:' + scrollOffset.toString() + ' ScrollState:' + ScrollState.toString())
-        })
-      .onScrollIndex((first: number,last: number) => {
-          this.onScrollIndexText = "onScrollIndex:succ"
-          console.info("onScrollIndex first:" + first.toString() + " last:" + last.toString())
-        })
+        this.onScrollText = 'onScroll:succ'
+        console.info('onScroll scrollOffset:' + scrollOffset.toString() + ' ScrollState:' + ScrollState.toString())
+      })
+      .onScrollIndex((first: number, last: number) => {
+        this.onScrollIndexText = "onScrollIndex:succ"
+        console.info("onScrollIndex first:" + first.toString() + " last:" + last.toString())
+      })
       .onReachStart(() => {
-          this.onReachStartText = 'onReachStart:succ'
-          console.info('onReachStart !')
-        })
+        this.onReachStartText = 'onReachStart:succ'
+        console.info('onReachStart !')
+      })
       .onReachEnd(() => {
-          this.onReachEndText = 'onReachEnd:succ'
-          console.info('onReachEnd !')
-        })
+        this.onReachEndText = 'onReachEnd:succ'
+        console.info('onReachEnd !')
+      })
       .onScrollStart(() => {
-          this.onScrollStartText = 'onScrollStart:succ'
-          console.info('onScrollStart !')
-        })
+        this.onScrollStartText = 'onScrollStart:succ'
+        console.info('onScrollStart !')
+      })
       .onScrollStop(() => {
-          this.onScrollStopText = 'onScrollStop:succ'
-          console.info('onScrollStop !')
-        })
+        this.onScrollStopText = 'onScrollStop:succ'
+        console.info('onScrollStop !')
+      })
       .onScrollFrameBegin((offset: number, state: ScrollState) => {
-          this.onScrollFrameBeginText = 'onScrollFrameBegin:succ'
-          console.info('onScrollFrameBegin offset:' + offset +' state:' + state)
-          return { offsetRemain: offset }
-        })
+        this.onScrollFrameBeginText = 'onScrollFrameBegin:succ'
+        console.info('onScrollFrameBegin offset:' + offset + ' state:' + state)
+        return { offsetRemain: offset }
+      })
 
       Button(this.buttonName)
         .key('button')
@@ -246,21 +250,21 @@ struct GridPage {
       Text(this.onItemDragMove).key('onItemDragMove')
       Text(this.onItemDragLeave).key('onItemDragLeave')
       Text(this.onItemDrop).key('onItemDrop')
-      Row()
-      {
-        Text(this.onScrollText).margin({right:10}).key('onScrollText')
+      Row() {
+        Text(this.onScrollText).margin({ right: 10 }).key('onScrollText')
         Text(this.onReachStartText).key('onReachStartText')
       }
-      Row()
-      {
-        Text(this.onReachEndText).margin({right:10}).key('onReachEndText')
+
+      Row() {
+        Text(this.onReachEndText).margin({ right: 10 }).key('onReachEndText')
         Text(this.onScrollStartText).key('onScrollStartText')
       }
-      Row()
-      {
-        Text(this.onScrollIndexText).margin({right:10}).key('onScrollIndexText')
+
+      Row() {
+        Text(this.onScrollIndexText).margin({ right: 10 }).key('onScrollIndexText')
         Text(this.onScrollStopText).key('onScrollStopText')
       }
+
       Text(this.onScrollFrameBeginText).key('onScrollFrameBeginText')
     }.width('100%').margin({ top: 5 })
   }

@@ -20,7 +20,7 @@ struct CountDownComponent1{
   @Prop number2: number | undefined | null
 
   build() {
-    Row({ space: 5 }){
+    Row({ space: 5 }) {
       Column({ space: 20 }) {
 
         Row(){
@@ -134,13 +134,11 @@ struct ParentComponent1 {
               number1: this.number1,
               number2: this.number2
             })
-
-
-          }.width('100%').margin({ top: 10 })
+          }
+          .width('100%')
+          .margin({ top: 10 })
         }
       }
-
     }
-
   }
 }

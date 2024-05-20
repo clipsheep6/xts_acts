@@ -12,46 +12,44 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
+import { DrawableDescriptor, LayeredDrawableDescriptor } from '@ohos.arkui.drawableDescriptor'
 import Curves from '@ohos.curves'
 
 
 @Entry
 @Component
 struct Index2 {
-  private resManager = getContext().resourceManager
+  private resManager = getContext().resourceManager;
 
   build() {
-      Column() {
-        Image((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon').id))))
-        Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.app_icon')
-          .id))).getForeground()).getPixelMap())
-        Image($r('app.media.icon'))
-          .width('200px').height('200px')
-          .clip(new Path({commands:LayeredDrawableDescriptor.getMaskClipPath()}))
+    Column() {
+      Image((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon').id))))
+      Image(((<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.app_icon')
+        .id))).getForeground()).getPixelMap())
+      Image($r('app.media.icon'))
+        .width('200px').height('200px')
+        .clip(new Path({ commands: LayeredDrawableDescriptor.getMaskClipPath() }))
 
-        Button("getBackground()").margin({top:20})
-          .onClick(() => {
-             let drawable = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
-              .id))).getBackground();
-          })
-        Button("getMask()").margin({top:20})
-          .onClick(() => {
-            let drawable = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
-              .id))).getMask();
-          })
-        Button("getMashClipPath").margin({top:20})
-          .onClick(() => {
-            let drawable = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
-              .id))).getMask();
-          })
+      Button("getBackground()").margin({ top: 20 })
+        .onClick(() => {
+          let drawable = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
+            .id))).getBackground();
+        })
+      Button("getMask()").margin({ top: 20 })
+        .onClick(() => {
+          let drawable = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
+            .id))).getMask();
+        })
+      Button("getMashClipPath").margin({ top: 20 })
+        .onClick(() => {
+          let drawable = (<LayeredDrawableDescriptor> (this.resManager.getDrawableDescriptor($r('app.media.icon')
+            .id))).getMask();
+        })
 
-        Button("interpolatingSpring").margin({top:20}).key('drawleAdd')
-          .onClick(() => {
-            Curves.interpolatingSpring(100, 1, 228, 30) // 创建一个时长由弹簧参数决定的弹簧插值曲线
-          })
-
-
-      }.height('100%')
+      Button("interpolatingSpring").margin({ top: 20 }).key('drawleAdd')
+        .onClick(() => {
+          Curves.interpolatingSpring(100, 1, 228, 30) // 创建一个时长由弹簧参数决定的弹簧插值曲线
+        })
+    }.height('100%')
   }
 }

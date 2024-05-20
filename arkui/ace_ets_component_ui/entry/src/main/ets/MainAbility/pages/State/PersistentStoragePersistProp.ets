@@ -12,65 +12,69 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-AppStorage.clear()
+AppStorage.clear();
 PersistentStorage.persistProp('aPropA', 42);
 
 @Entry
 @Component
 struct PersistentStoragePersistProp {
-  @State text1: string = ''
-  @State text2: string = ''
-  @State num1: number = 0
-  @State num2: number = 0
-  @State num3: number = 0
-  @StorageLink('aPropA') aPropA: number = 1
-  @StorageLink('aPropB') aPropB: number = 4
-  @StorageLink('aPropC') aPropC: number = 8
+  @State text1: string = '';
+  @State text2: string = '';
+  @State num1: number = 0;
+  @State num2: number = 0;
+  @State num3: number = 0;
+  @StorageLink('aPropA') aPropA: number = 1;
+  @StorageLink('aPropB') aPropB: number = 4;
+  @StorageLink('aPropC') aPropC: number = 8;
 
   build() {
     Row() {
-      Column({space:15}) {
+      Column({ space: 15 }) {
         Text().fontSize(50)
-        Text('aPropA:'+`${this.aPropA} `+'aPropB:'+`${this.aPropB} `+'aPropC:'+`${this.aPropC} `).fontSize(25)
+        Text('aPropA:' + `${this.aPropA} ` + 'aPropB:' + `${this.aPropB} ` + 'aPropC:' + `${this.aPropC} `).fontSize(25)
         // 应用退出时会保存当前结果。重新启动后，会显示上一次的保存结果
-        Row({space:10}){
-          Button('aPropA:'+`${this.aPropA}`).fontSize(15)
+        Row({ space: 10 }) {
+          Button('aPropA:' + `${this.aPropA}`).fontSize(15)
             .onClick(() => {
               this.aPropA += 1;
             })
-          Button('aPropB:'+`${this.aPropB}`).fontSize(15)
+          Button('aPropB:' + `${this.aPropB}`).fontSize(15)
             .onClick(() => {
               this.aPropB += 1;
             })
-          Button('aPropC:'+`${this.aPropC}`).fontSize(15)
+          Button('aPropC:' + `${this.aPropC}`).fontSize(15)
             .onClick(() => {
               this.aPropC += 1;
             })
         }
 
-        Button(`PersistProp_B`).onClick(()=>{
+        Button(`PersistProp_B`).onClick(() => {
           PersistentStorage.persistProp('aPropB', 10);
           let value: number = AppStorage.get('aPropB') as number
           console.info(String(value))
         }).key('button_PersistProp')
 
-        Button(`DeleteProp_B`).onClick(()=>{
+        Button(`DeleteProp_B`).onClick(() => {
           PersistentStorage.deleteProp('aPropB');
           let keys: Array<string> = PersistentStorage.Keys()
         }).key('button_DeleteProp')
 
-        Text(`Keys:`+this.text1).fontSize(15)
+        Text(`Keys:` + this.text1).fontSize(15)
           .key('text_button_Keys')
-        Button(`Keys`).onClick(()=>{
+        Button(`Keys`).onClick(() => {
           let keys: Array<string> = PersistentStorage.Keys()
-          this.text1= JSON.stringify(keys)
+          this.text1 = JSON.stringify(keys)
 
         }).key('button_Keys')
 
-        Text('keys:'+'aPropA:'+this.num1+','+'highScore:'+this.num2+','+'wightScore:'+this.num3).fontSize(15)
+        Text('keys:' + 'aPropA:' + this.num1 + ',' + 'highScore:' + this.num2 + ',' + 'wightScore:' + this.num3)
+          .fontSize(15)
           .key('button_PersistProp_default_keys')
-        Button(`PersistProp_default`).onClick(()=>{
-          PersistentStorage.persistProps([{ key: 'highScore', defaultValue: '0' }, { key: 'wightScore', defaultValue: '1' }]);
+        Button(`PersistProp_default`).onClick(() => {
+          PersistentStorage.persistProps([{ key: 'highScore', defaultValue: '0' }, {
+            key: 'wightScore',
+            defaultValue: '1'
+          }]);
           let value1: number = AppStorage.get('aPropA') as number
           let value2: number = AppStorage.get('highScore') as number
           let value3: number = AppStorage.get('wightScore') as number

@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 class MyDataSource1 implements IDataSource {
   private list: number[] = []
@@ -39,7 +39,7 @@ class MyDataSource1 implements IDataSource {
 @Entry
 @Component
 struct SwiperMinSize {
-  messageManager:MessageManager = new MessageManager()
+  messageManager: MessageManager = new MessageManager()
   private swiperController: SwiperController = new SwiperController()
   private data: MyDataSource1 = new MyDataSource1([])
   @State minSize: number = 0
@@ -49,16 +49,14 @@ struct SwiperMinSize {
   @State swiperMargin: number = 0
   @State itemSpace: number = 0
   @State nextMargin: number = 0
-
-
   @State text: string = ''
 
   onPageShow() {
     console.info('navigationPosition  onPageShow');
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value);
       if (message.name == 'minSize') {
         this.minSize = message.value;
@@ -147,7 +145,7 @@ struct SwiperMinSize {
       .displayCount({ minSize: this.minSize })
       .itemSpace(this.itemSpace)
       .nextMargin(this.nextMargin)
-      .padding({ top: this.swiperPadding})
+      .padding({ top: this.swiperPadding })
       .margin({ top: this.swiperMargin })
       .vertical(false)
 

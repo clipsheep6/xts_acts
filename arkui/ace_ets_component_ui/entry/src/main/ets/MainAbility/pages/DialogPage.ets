@@ -13,17 +13,18 @@
  * limitations under the License.
  */
 
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
+
 @Entry
 @Component
 struct DialogPage {
-  @State title: string = 'title'
-  @State message: string = "This is the message of alertdialog"
-  @State autoCancel: boolean = true
-  @State buttonName: string = 'ButtonHORIZONTAL'
-  @State buttonName1: string = 'ButtonVERTICAL'
-  @State buttonName2: string = 'ButtonAuto'
-  messageManager: MessageManager = new MessageManager()
+  @State title: string = 'title';
+  @State message: string = "This is the message of alertdialog";
+  @State autoCancel: boolean = true;
+  @State buttonName: string = 'ButtonHORIZONTAL';
+  @State buttonName1: string = 'ButtonVERTICAL';
+  @State buttonName2: string = 'ButtonAuto';
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('DialogPage onPageShow')
@@ -31,7 +32,7 @@ struct DialogPage {
       name: 'messageManager', message: this.messageManager
     }
 
-    let callback: Callback = (message: any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'autoCancel') {
         this.autoCancel = message.value
@@ -45,22 +46,22 @@ struct DialogPage {
       Button(this.buttonName)
         .key('button')
         .onClick(() => {
-          this.buttonName = 'threeButtonHor:succ'
-          this.showThreeButtonHORIZONTAL()
+          this.buttonName = 'threeButtonHor:succ';
+          this.showThreeButtonHORIZONTAL();
         }).backgroundColor(0x317aff)
 
       Button(this.buttonName1)
         .key('button1')
         .onClick(() => {
-          this.buttonName1 = 'threeButtonVer:succ'
-          this.showThreeButtonVERTICAL()
+          this.buttonName1 = 'threeButtonVer:succ';
+          this.showThreeButtonVERTICAL();
         }).backgroundColor(0x317aff)
 
       Button(this.buttonName2)
         .key('button2')
         .onClick(() => {
-          this.buttonName2 = 'threeButtonAuto:succ'
-          this.showThreeButtonAUTO()
+          this.buttonName2 = 'threeButtonAuto:succ';
+          this.showThreeButtonAUTO();
         }).backgroundColor(0x317aff)
 
     }.width("100%").margin({ top: 150 })
@@ -72,7 +73,7 @@ struct DialogPage {
         title: this.title,
         message: this.message,
         autoCancel: this.autoCancel,
-        buttonDirection:DialogButtonDirection.HORIZONTAL,
+        buttonDirection: DialogButtonDirection.HORIZONTAL,
 
         buttons: [
           {
@@ -109,13 +110,14 @@ struct DialogPage {
       }
     )
   }
+
   private showThreeButtonVERTICAL() {
     AlertDialog.show(
       {
         title: this.title,
         message: this.message,
         autoCancel: this.autoCancel,
-        buttonDirection:DialogButtonDirection.VERTICAL,
+        buttonDirection: DialogButtonDirection.VERTICAL,
 
         buttons: [
           {
@@ -160,8 +162,7 @@ struct DialogPage {
         title: this.title,
         message: this.message,
         autoCancel: this.autoCancel,
-        buttonDirection:DialogButtonDirection.AUTO,
-
+        buttonDirection: DialogButtonDirection.AUTO,
 
 
         buttons: [

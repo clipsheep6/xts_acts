@@ -16,10 +16,10 @@
 @Entry
 @Component
 struct PanGestureEvent {
-  @State velocityX: number = 0
-  @State velocityY: number = 0
-  @State velocity: number = 0
-  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right })
+  @State velocityX: number = 0;
+  @State velocityY: number = 0;
+  @State velocity: number = 0;
+  private panOption: PanGestureOptions = new PanGestureOptions({ direction: PanDirection.Left | PanDirection.Right });
 
   build() {
     Column() {
@@ -35,12 +35,12 @@ struct PanGestureEvent {
       .margin(50)
       // 左右拖动触发该手势事件
       .gesture(
-      PanGesture(this.panOption)
-        .onActionUpdate((event: GestureEvent) => {
-          this.velocityX = event.velocityX
-          this.velocityY = event.velocityY
-          this.velocity = event.velocity
-        })
+        PanGesture(this.panOption)
+          .onActionUpdate((event: GestureEvent) => {
+            this.velocityX = event.velocityX
+            this.velocityY = event.velocityY
+            this.velocity = event.velocity
+          })
       )
     }
   }

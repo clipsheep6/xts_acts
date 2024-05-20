@@ -12,38 +12,39 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
+
 @Entry
 @Component
 struct DividerExample {
-  @State vertical:boolean = false
-  @State color:string = '#acbdef'
-  @State strokeWidth:number = 20
-  @State lineCapStyle:LineCapStyle = LineCapStyle.Butt
-  @State widthK:number = 0
-  messageManager:MessageManager = new MessageManager()
-   onPageShow() {
+  @State vertical: boolean = false;
+  @State color: string = '#acbdef';
+  @State strokeWidth: number = 20;
+  @State lineCapStyle: LineCapStyle = LineCapStyle.Butt;
+  @State widthK: number = 0;
+  messageManager: MessageManager = new MessageManager()
+
+  onPageShow() {
     console.info('divider onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'vertical') {
-          this.vertical = message.value
+        this.vertical = message.value;
       }
       if (message.name == 'color') {
-          this.color = message.value
+        this.color = message.value;
       }
       if (message.name == 'strokeWidth') {
-          this.strokeWidth = message.value
+        this.strokeWidth = message.value;
       }
       if (message.name == 'lineCapStyle') {
-          this.lineCapStyle = message.value
+        this.lineCapStyle = message.value;
       }
       if (message.name == 'widthK') {
-          this.widthK = message.value
-         
+        this.widthK = message.value;
       }
     }
     this.messageManager.registerCallback(callback)
@@ -55,27 +56,45 @@ struct DividerExample {
       // 使用横向分割线场景
       Text('Horizontal divider').fontSize(9).fontColor(0xCCCCCC)
       List() {
-        ForEach([1, 2, 3], (item) => {
+        ForEach([1, 2, 3], (item: string) => {
           ListItem() {
-            Text('list' + item).width('100%').fontSize(14).fontColor('#182431').textAlign(TextAlign.Start)
+            Text('list' + item)
+              .width('100%')
+              .fontSize(14)
+              .fontColor('#182431')
+              .textAlign(TextAlign.Start)
           }.width(244).height(48)
-        }, item => item.toString())
+        }, (item: string) => item.toString())
       }.padding({ left: 24, bottom: 8 })
 
-      Divider().strokeWidth(8).color('#F1F3F5')
+      Divider()
+        .strokeWidth(8)
+        .color('#F1F3F5')
       List() {
-        ForEach([4, 5], (item) => {
+        ForEach([4, 5], (item: string) => {
           ListItem() {
-            Text('list' + item).width('100%').fontSize(14).fontColor('#182431').textAlign(TextAlign.Start)
-          }.width(244).height(48)
-        }, item => item.toString())
+            Text('list' + item)
+              .width('100%')
+              .fontSize(14)
+              .fontColor('#182431')
+              .textAlign(TextAlign.Start)
+          }
+          .width(244)
+          .height(48)
+        }, (item: string) => item.toString())
       }.padding({ left: 24, top: 8 })
 
       // 使用纵向分割线场景
-      Text('Vertical divider').fontSize(9).fontColor(0xCCCCCC)
+      Text('Vertical divider')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
       Column() {
         Column() {
-          Row().width(288).height(64).backgroundColor('#30C9F0').opacity(0.3)
+          Row()
+            .width(288)
+            .height(64)
+            .backgroundColor('#30C9F0')
+            .opacity(0.3)
           Row() {
             Button('Button')
               .width(136)
@@ -84,7 +103,15 @@ struct DividerExample {
               .fontColor('#007DFF')
               .fontWeight(500)
               .backgroundColor(Color.Transparent)
-            Divider().vertical(this.vertical).height(22).color(this.color).width(this.widthK).margin({ left: 8, right: 8 }).strokeWidth(this.strokeWidth).lineCap(this.lineCapStyle).key("divider")
+            Divider()
+              .vertical(this.vertical)
+              .height(22)
+              .color(this.color)
+              .width(this.widthK)
+              .margin({ left: 8, right: 8 })
+              .strokeWidth(this.strokeWidth)
+              .lineCap(this.lineCapStyle)
+              .key("divider")
             Button('Button')
               .width(136)
               .height(22)
@@ -105,6 +132,8 @@ struct DividerExample {
       .backgroundColor('#F1F3F5')
       .justifyContent(FlexAlign.Center)
       .margin({ top: 8 })
-    }.width('100%').padding({ top: 24 })
+    }
+    .width('100%')
+    .padding({ top: 24 })
   }
 }

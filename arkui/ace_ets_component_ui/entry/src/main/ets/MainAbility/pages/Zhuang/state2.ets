@@ -42,7 +42,7 @@ struct state2 {
       Button('button')
         .fontSize(this.number1)
         .onClick(() => {
-          this.number1 = undefined
+          this.number1 = undefined;
         })
         .key('stBtn3')
 
@@ -50,12 +50,11 @@ struct state2 {
       Button('button')
         .fontSize(this.number2)
         .onClick(() => {
-          this.number2 = null
+          this.number2 = null;
         })
         .key('stBtn4')
-
-
-
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

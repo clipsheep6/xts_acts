@@ -12,7 +12,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 class MyDataSourceA implements IDataSource {
   private list: number[] = []
@@ -41,12 +41,12 @@ class MyDataSourceA implements IDataSource {
 struct SwiperAnimationExample {
   private swiperController: SwiperController = new SwiperController()
   private data: MyDataSourceA = new MyDataSourceA([])
-  @State onAnimationS:string = "s";
-  @State onAnimationE:string = "e";
-  @State onAnimationGesture:string = "GestureSwipe";
-  @State autoPlay:boolean = false;
+  @State onAnimationS: string = "s";
+  @State onAnimationE: string = "e";
+  @State onAnimationGesture: string = "GestureSwipe";
+  @State autoPlay: boolean = false;
+  messageManager: MessageManager = new MessageManager()
 
-  messageManager:MessageManager = new MessageManager()
   aboutToAppear(): void {
     let list: number[] = []
     for (let i = 1; i <= 10; i++) {
@@ -54,18 +54,18 @@ struct SwiperAnimationExample {
     }
     this.data = new MyDataSourceA(list)
   }
-  
- onPageShow() {
+
+  onPageShow() {
     console.info('swiperAnimation onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'autoPlay') {
         this.autoPlay = message.value
       }
-    
+
     }
     this.messageManager.registerCallback(callback)
   }
@@ -109,7 +109,7 @@ struct SwiperAnimationExample {
         console.info("current offset: " + extraInfo.currentOffset)
       })
       .onAnimationStart((index: number, targetIndex: number, extraInfo: SwiperAnimationEvent) => {
-        this.onAnimationS = "Start"+ index + "-->" + targetIndex;
+        this.onAnimationS = "Start" + index + "-->" + targetIndex;
         console.info("index: " + index)
         console.info("targetIndex: " + targetIndex)
         console.info("current offset: " + extraInfo.currentOffset)
@@ -117,7 +117,7 @@ struct SwiperAnimationExample {
         console.info("velocity: " + extraInfo.velocity)
       })
       .onAnimationEnd((index: number, extraInfo: SwiperAnimationEvent) => {
-        this.onAnimationE = "End"+ index + "-->";
+        this.onAnimationE = "End" + index + "-->";
         console.info("index: " + index)
         console.info("current offset: " + extraInfo.currentOffset)
       })
@@ -132,10 +132,10 @@ struct SwiperAnimationExample {
             this.swiperController.showPrevious()
           }).key('showPrevious')
       }.margin(5)
-    
-      Text(this.onAnimationS).margin({top:20}).key('animationStart')
-      Text(this.onAnimationE).margin({top:20}).key('animationEnd')
-      Text(this.onAnimationGesture).margin({top:20}).key('GestureSwipe')
+
+      Text(this.onAnimationS).margin({ top: 20 }).key('animationStart')
+      Text(this.onAnimationE).margin({ top: 20 }).key('animationEnd')
+      Text(this.onAnimationGesture).margin({ top: 20 }).key('GestureSwipe')
 
     }.width('100%')
     .margin({ top: 5 })

@@ -12,21 +12,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../../utils/MessageManager';
+import { MessageManager, Callback } from '../../utils/MessageManager';
 
 class MyDataSource81 implements IDataSource {
-  private list: number[] = []
+  private list: number[] = [];
 
   constructor(list: number[]) {
-    this.list = list
+    this.list = list;
   }
 
   totalCount(): number {
-    return this.list.length
+    return this.list.length;
   }
 
   getData(index: number): number {
-    return this.list[index]
+    return this.list[index];
   }
 
   registerDataChangeListener(listener: DataChangeListener): void {
@@ -39,28 +39,30 @@ class MyDataSource81 implements IDataSource {
 @Entry
 @Component
 struct SwiperNextPrevMarginExample81 {
-  private swiperController: SwiperController = new SwiperController()
-  private data: MyDataSource81 = new MyDataSource81([])
-  messageManager:MessageManager = new MessageManager()
-  @State  displayCount : number = 1;
+  private swiperController: SwiperController = new SwiperController();
+  private data: MyDataSource81 = new MyDataSource81([]);
+  messageManager: MessageManager = new MessageManager();
+  @State displayCount: number = 1;
+
   aboutToAppear(): void {
-    let list: number[] = []
+    let list: number[] = [];
     for (let i = 1; i <= 10; i++) {
       list.push(i);
     }
-    this.data = new MyDataSource81(list)
+    this.data = new MyDataSource81(list);
   }
+
   onPageShow() {
     console.info('SwiperNextPrevMargin78 onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'displayCount') {
-          this.displayCount = message.value
+        this.displayCount = message.value
       }
-         
+
     }
     this.messageManager.registerCallback(callback)
 
@@ -69,13 +71,14 @@ struct SwiperNextPrevMarginExample81 {
   build() {
     Column({ space: 5 }) {
       Swiper(this.swiperController) {
-        LazyForEach(this.data, (item: string,index:number) => {
+        LazyForEach(this.data, (item: string, index: number) => {
           Text(item)
             .width('100%')
             .height(160)
             .backgroundColor(0xAFEEEE)
             .textAlign(TextAlign.Center)
-            .fontSize(30).key(index+"")
+            .fontSize(30)
+            .key(index + "")
         }, (item: string) => item)
       }
       .cachedCount(2)

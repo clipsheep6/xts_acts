@@ -12,32 +12,32 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct SelectPage {
-  @State optionValue: string = 'aaa'
-  @State icon: string = "/resources/base/media/star_1.png"
-  @State selected: number = 0
-  @State selectValue: string = 'SelecteButton'
-  @State selectFont: Font = { size: 16, weight: 500 }
-  @State fontColor: Color = Color.Black
-  @State selectedOptionBgColor: Color = Color.Grey
-  @State selectedOptionFont: Font = { size: 16, weight: 400 }
-  @State selectedOptionFontColor: Color = Color.Red
-  @State optionBgColor: Color = Color.White
-  @State optionFont: Font = { size: 16, weight: 400 }
-  @State optionFontColor: Color = Color.Green
-  @State indexValue: number = 0
-  messageManager:MessageManager = new MessageManager()
+  @State optionValue: string = 'aaa';
+  @State icon: string = "/resources/base/media/star_1.png";
+  @State selected: number = 0;
+  @State selectValue: string = 'SelecteButton';
+  @State selectFont: Font = { size: 16, weight: 500 };
+  @State fontColor: Color = Color.Black;
+  @State selectedOptionBgColor: Color = Color.Grey;
+  @State selectedOptionFont: Font = { size: 16, weight: 400 };
+  @State selectedOptionFontColor: Color = Color.Red;
+  @State optionBgColor: Color = Color.White;
+  @State optionFont: Font = { size: 16, weight: 400 };
+  @State optionFontColor: Color = Color.Green;
+  @State indexValue: number = 0;
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('SelectPage onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'optionValue') {
         this.optionValue = message.value
@@ -83,8 +83,8 @@ struct SelectPage {
     Column() {
       Text('indexValue:' + this.indexValue).fontSize(18).margin(15).key('indexValue')
       Select([{ value: this.optionValue, icon: this.icon },
-              { value: 'bbb', icon: "/resources/base/media/star_1.png" },
-              { value: 'ccc', icon: "/resources/base/media/star_1.png" }])
+        { value: 'bbb', icon: "/resources/base/media/star_1.png" },
+        { value: 'ccc', icon: "/resources/base/media/star_1.png" }])
         .selected(this.selected)
         .value(this.selectValue)
         .font(this.selectFont)

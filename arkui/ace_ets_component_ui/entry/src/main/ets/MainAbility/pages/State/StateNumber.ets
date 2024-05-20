@@ -25,14 +25,20 @@ struct StateNumber {
   build() {
     Column() {
       Text('@State 支持 string 类型').fontSize(20).margin(5)
-      Button('string: ' + this.title).fontSize(20).margin(5).margin(10)
+      Button('string: ' + this.title)
+        .fontSize(20)
+        .margin(5)
+        .margin(10)
         .key("state_string")
         .onClick(() => {
           this.title = 'world'
         })
 
       Text('@State 支持 number 类型').fontSize(20).margin(5)
-      Button('number: ' + this.count).fontSize(20).margin(5).margin(10)
+      Button('number: ' + this.count)
+        .fontSize(20)
+        .margin(5)
+        .margin(10)
         .key("state_number")
         .onClick(() => {
           this.count = 8
@@ -40,14 +46,20 @@ struct StateNumber {
         })
 
       Text('@State 支持 Boolean 类型').fontSize(20).margin(5)
-      Button('Boolean: ' + this.flag).fontSize(20).margin(5).margin(10)
+      Button('Boolean: ' + this.flag)
+        .fontSize(20)
+        .margin(5)
+        .margin(10)
         .key("state_Boolean")
         .onClick(() => {
           this.flag = !this.flag
         })
 
       Text('@State 支持 enum 类型').fontSize(20).margin(5)
-      Button('enum: ' + this.color).fontSize(20).margin(5).margin(10)
+      Button('enum: ' + this.color)
+        .fontSize(20)
+        .margin(5)
+        .margin(10)
         .key("state_enum")
         .onClick(() => {
           this.color = Color.Red

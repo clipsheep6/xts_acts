@@ -19,9 +19,9 @@ struct PropNumber {
   @State numA: number = 10
 
   build() {
-    Column({space:5}) {
+    Column({ space: 5 }) {
       Text('@Prop 支持数据类型：number').fontSize(18)
-      Text('Father State:'+ this.numA).margin(10).width("100%")
+      Text('Father State:' + this.numA).margin(10).width("100%")
         .key("PropNumber_A")
         .onClick(() => {
           this.numA += 1
@@ -38,14 +38,18 @@ struct ChildPropNumber {
   @Prop numB: number = 0;
 
   build() {
-    Column({space:5}) {
-      Text('@Prop 单向的 内部修改不会改变父组件').fontSize(18)
-      Text('Child Prop:' + this.numB).margin(10).width("100%")
+    Column({ space: 5 }) {
+      Text('@Prop 单向的 内部修改不会改变父组件')
+        .fontSize(18)
+      Text('Child Prop:' + this.numB)
+        .margin(10)
+        .width("100%")
         .key("ChildPropNumber_A")
         .onClick(() => {
           this.numB += 1
         })
-      Text('子组件: ' + this.numB).fontSize(30)
+      Text('子组件: ' + this.numB)
+        .fontSize(30)
 
     }.width('100%')
     .margin({ top: 50 })

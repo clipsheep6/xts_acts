@@ -12,23 +12,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct RadioPage {
-  private radioValue: string = 'radio1'
-  @State radioGroup : string = 'radioGroup'
-  @State text : string = 'no change'
-  @State backColor : Color = Color.Blue
-  messageManager:MessageManager = new MessageManager()
+  private radioValue: string = 'radio1';
+  @State radioGroup: string = 'radioGroup';
+  @State text: string = 'no change';
+  @State backColor: Color = Color.Blue;
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('RadioPage onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'radioValue') {
         this.radioValue = message.value
@@ -47,7 +47,8 @@ struct RadioPage {
     Flex({ direction: FlexDirection.Row, justifyContent: FlexAlign.Center, alignItems: ItemAlign.Center }) {
       Column() {
         Text(this.radioValue).key('t1')
-        Radio({ value: this.radioValue, group: 'radioGroup' }).checked(true)
+        Radio({ value: this.radioValue, group: 'radioGroup' })
+          .checked(true)
           .height(50)
           .width(50)
           .backgroundColor(this.backColor)
@@ -56,9 +57,11 @@ struct RadioPage {
             console.log(this.radioValue + ' status is ' + isChecked)
           })
       }
+
       Column() {
         Text('Radio2')
-        Radio({ value: 'Radio2', group: this.radioGroup }).checked(false)
+        Radio({ value: 'Radio2', group: this.radioGroup })
+          .checked(false)
           .height(50)
           .width(50)
           .key('r2')
@@ -66,9 +69,11 @@ struct RadioPage {
             console.log('Radio2 status is ' + isChecked)
           })
       }
+
       Column() {
         Text('Radio3')
-        Radio({ value: 'Radio3', group: 'radioGroup' }).checked(false)
+        Radio({ value: 'Radio3', group: 'radioGroup' })
+          .checked(false)
           .height(50)
           .width(50)
           .key('r3')
@@ -77,9 +82,11 @@ struct RadioPage {
             console.log('Radio3 status is ' + isChecked)
           })
       }
+
       Column() {
         Text('Radio4')
-        Radio({ value: 'Radio4', group: this.radioGroup }).checked(false)
+        Radio({ value: 'Radio4', group: this.radioGroup })
+          .checked(false)
           .height(50)
           .width(50)
           .key('r4')
@@ -87,7 +94,11 @@ struct RadioPage {
             console.log('Radio3 status is ' + isChecked)
           })
       }
-      Text(this.text).fontSize(20).margin(10).key('text')
+
+      Text(this.text)
+        .fontSize(20)
+        .margin(10)
+        .key('text')
     }.padding({ top: 30 })
   }
 }

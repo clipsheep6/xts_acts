@@ -12,81 +12,80 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct SliderExample {
-  @State outSetValueOne: number = 40
-  @State style: SliderStyle = SliderStyle.InSet
-  @State directionT: Axis = Axis.Vertical
-  @State reverse: boolean = true
-  @State min: number = 2
-  @State max: number = 1000
-  @State step: number = 0.7
-  @State inSetValueOne: number = 40
-  @State outSetValueTwo: number = 40
-  @State inSetValueTwo: number = 40
-  @State vOutSetValueOne: number = 40
-  @State vInSetValueOne: number = 40
-  @State vInSetValueOne1: number = 40
-  @State vOutSetValueTwo: number = 40
-  @State vInSetValueTwo: number = 40
-  @State blockColor: string = "#191970"
-  @State trackColor: string = "#ADD8E6"
-  @State selectedColor: string = "#191970"
-  @State showSteps: boolean = true
-  @State showTips: boolean = true
-  @State trackThickness: string = '10px'
-  @State modeT: string = 'mode'
-
-  messageManager:MessageManager = new MessageManager()
+  @State outSetValueOne: number = 40;
+  @State style: SliderStyle = SliderStyle.InSet;
+  @State directionT: Axis = Axis.Vertical;
+  @State reverse: boolean = true;
+  @State min: number = 2;
+  @State max: number = 1000;
+  @State step: number = 0.7;
+  @State inSetValueOne: number = 40;
+  @State outSetValueTwo: number = 40;
+  @State inSetValueTwo: number = 40;
+  @State vOutSetValueOne: number = 40;
+  @State vInSetValueOne: number = 40;
+  @State vInSetValueOne1: number = 40;
+  @State vOutSetValueTwo: number = 40;
+  @State vInSetValueTwo: number = 40;
+  @State blockColor: string = "#191970";
+  @State trackColor: string = "#ADD8E6";
+  @State selectedColor: string = "#191970";
+  @State showSteps: boolean = true;
+  @State showTips: boolean = true;
+  @State trackThickness: string = '10px';
+  @State modeT: string = 'mode';
+  messageManager: MessageManager = new MessageManager()
 
   onPageShow() {
     console.info('slider onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'vInSetValueOne') {
-          this.vInSetValueOne = message.value
+        this.vInSetValueOne = message.value
       }
       if (message.name == 'style') {
-          this.style = message.value
+        this.style = message.value
       }
       if (message.name == 'directionT') {
-          this.directionT = message.value
+        this.directionT = message.value
       }
       if (message.name == 'reverse') {
-          this.reverse = message.value
+        this.reverse = message.value
       }
       if (message.name == 'min') {
-          this.min = message.value
+        this.min = message.value
       }
       if (message.name == 'max') {
-          this.max = message.value
+        this.max = message.value
       }
       if (message.name == 'step') {
-          this.step = message.value
+        this.step = message.value
       }
       if (message.name == 'blockColor') {
-          this.blockColor = message.value
+        this.blockColor = message.value
       }
       if (message.name == 'trackColor') {
-          this.trackColor = message.value
+        this.trackColor = message.value
       }
       if (message.name == 'selectedColor') {
-          this.selectedColor = message.value
+        this.selectedColor = message.value
       }
       if (message.name == 'showSteps') {
-          this.showSteps = message.value
+        this.showSteps = message.value
       }
       if (message.name == 'showTips') {
-          this.showTips = message.value
+        this.showTips = message.value
       }
       if (message.name == 'trackThickness') {
-          this.trackThickness = message.value
+        this.trackThickness = message.value
       }
 
     }
@@ -112,6 +111,7 @@ struct SliderExample {
         Text(this.outSetValueOne.toFixed(0)).fontSize(12)
       }
       .width('80%')
+
       Row() {
         Slider({
           value: this.outSetValueTwo,
@@ -146,6 +146,7 @@ struct SliderExample {
         Text(this.inSetValueOne.toFixed(0)).fontSize(12)
       }
       .width('80%')
+
       Row() {
         Slider({
           value: this.inSetValueTwo,
@@ -183,7 +184,8 @@ struct SliderExample {
               .onChange((value: number, mode: SliderChangeMode) => {
                 this.vOutSetValueOne = value
                 console.info('value:' + value + 'mode:' + mode.toString())
-              }).key('sliderA')
+              })
+              .key('sliderA')
             Slider({
               value: this.vOutSetValueTwo,
               step: 10,
@@ -202,17 +204,27 @@ struct SliderExample {
         }.width('50%').height(300)
 
         Column() {
-          Text(this.vInSetValueOne+"").fontSize(9).fontColor(0xCCCCCC).width('50%').margin(15).key('tex')
-          Text(this.modeT).fontSize(9).fontColor(0xCCCCCC).width('50%').margin(15).key('modeT')
+          Text(this.vInSetValueOne + "")
+            .fontSize(9)
+            .fontColor(0xCCCCCC)
+            .width('50%')
+            .margin(15)
+            .key('tex')
+          Text(this.modeT)
+            .fontSize(9)
+            .fontColor(0xCCCCCC)
+            .width('50%')
+            .margin(15)
+            .key('modeT')
           Row() {
             Slider({
               value: this.vInSetValueOne,
               style: this.style,
               direction: this.directionT,
-              reverse: this.reverse,// 竖向的Slider默认是上端是min值，下端是max值，因此想要从下往上滑动，需要设置reverse为true
-              min:this.min,
-              max:this.max,
-              step:this.step
+              reverse: this.reverse, // 竖向的Slider默认是上端是min值，下端是max值，因此想要从下往上滑动，需要设置reverse为true
+              min: this.min,
+              max: this.max,
+              step: this.step
             }).showTips(true)
               .onChange((value: number, mode: SliderChangeMode) => {
                 this.vInSetValueOne = value

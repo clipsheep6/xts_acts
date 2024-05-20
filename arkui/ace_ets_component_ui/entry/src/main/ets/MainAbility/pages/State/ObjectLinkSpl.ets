@@ -18,17 +18,18 @@ class ClassAB {
   public num: number;
 
   constructor(num: number) {
-    this.num = num
+    this.num = num;
   }
 }
+
 //@ObjectLink支持数据初始化
 @Entry
 @Component
-struct ViewAS{
+struct ViewAS {
   @State class_A: ClassAB = new ClassAB(5);
 
   build() {
-    Column({space:20}) {
+    Column({ space: 20 }) {
       Button("Reset").id("ViewAS_reset")
         .onClick(() => {
           this.class_A = new ClassAB(5)
@@ -37,7 +38,7 @@ struct ViewAS{
         .fontSize(20)
       Button('State + 1').key("adds_state")
         .backgroundColor('#E8A027')
-        .onClick(()=>{
+        .onClick(() => {
           this.class_A.num++;
         })
 
@@ -64,23 +65,25 @@ struct ViewAS{
 @Component
 struct ViewBs {
   @ObjectLink class_C: ClassAB;
+
   build() {
-    Column(){
+    Column() {
       Button('ObjectLink + 1').key(("btn_olk"))
         .backgroundColor('#E8A027')
         .onClick(() => {
           this.class_C.num += 1;
         })
     }
-    .margin({top:10})
+    .margin({ top: 10 })
   }
 }
 
 @Component
-struct son_Props{
+struct son_Props {
   @Prop numA: number
-  build(){
-    Column(){
+
+  build() {
+    Column() {
       Button('Prop + 1').key(("btn_prop"))
         .backgroundColor('#E8A027')
         .onClick(() => {
@@ -91,10 +94,11 @@ struct son_Props{
 }
 
 @Component
-struct son_Links{
+struct son_Links {
   @Link numB: ClassAB
-  build(){
-    Column(){
+
+  build() {
+    Column() {
       Button('Link + 1').key(("btn_link"))
         .backgroundColor('#E8A027')
         .onClick(() => {

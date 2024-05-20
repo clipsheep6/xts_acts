@@ -16,7 +16,7 @@
 @Entry
 @Component
 struct StateDatePicker2 {
-  @State selectedDate: Date = new Date('2021-08-08')
+  @State selectedDate: Date = new Date('2021-08-08');
 
   build() {
     Column() {
@@ -24,7 +24,7 @@ struct StateDatePicker2 {
         .onClick(() => {
           this.selectedDate = new Date('2021-08-08')
         })
-      Text(''+ JSON.stringify(this.selectedDate)).id("date2")
+      Text('' + JSON.stringify(this.selectedDate)).id("date2")
       Button('increase the Time by 1').margin(5)
         .id("setTime")
         .onClick(() => {

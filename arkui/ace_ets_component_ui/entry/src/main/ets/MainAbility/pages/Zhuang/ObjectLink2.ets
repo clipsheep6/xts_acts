@@ -32,7 +32,8 @@ class classA {
 
 @Component
 struct ViewA {
-  @ObjectLink a:classA
+  @ObjectLink a: classA;
+
   build() {
     Row() {
       Row({ space: 5 }) {
@@ -90,6 +91,7 @@ struct ViewA {
     }
   }
 }
+
 @Entry
 @Component
 struct ViewB {
@@ -144,7 +146,7 @@ struct ViewB {
               }
             }
 
-            ViewA({a:this.b})
+            ViewA({ a: this.b })
 
           }.width('100%').margin({ top: 10 })
         }

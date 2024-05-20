@@ -12,26 +12,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct TextClockPage {
-  @State accumulateTime: number = 0
-  @State timeZoneOffset: number = -8
-  @State format: string = 'hms'
-  @State status: string = 'run'
-  @State change: string = 'no change'
+  @State accumulateTime: number = 0;
+  @State timeZoneOffset: number = -8;
+  @State format: string = 'hms';
+  @State status: string = 'run';
+  @State change: string = 'no change';
   // 导入对象
-  controller: TextClockController = new TextClockController()
-  messageManager:MessageManager = new MessageManager()
+  controller: TextClockController = new TextClockController();
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('NavDestination onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'accumulateTime') {
         this.accumulateTime = message.value

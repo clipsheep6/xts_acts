@@ -18,11 +18,15 @@
 struct PanelExample {
   @State show: boolean = false;
   private des: Dimension;
+
   build() {
     Column() {
       Text('2021-09-30    Today Calendar: 1.afternoon......Click for details')
-        .width('90%').height(50).borderRadius(10)
-        .backgroundColor(0xFFFFFF).padding({ left: 20 })
+        .width('90%')
+        .height(50)
+        .borderRadius(10)
+        .backgroundColor(0xFFFFFF)
+        .padding({ left: 20 })
         .onClick(() => {
           this.show = !this.show
         })
@@ -33,13 +37,17 @@ struct PanelExample {
           Text('1. afternoon 4:00 The project meeting')
         }
       }
-	  .key('PanelText')
+      .key('PanelText')
       .type(PanelType.CUSTOM)
       .customHeight(PanelHeight.WRAP_CONTENT)
       .dragBar(true) // The drag bar is enabled by default
       .onChange((width: number, height: number, mode: PanelMode) => {
         console.info(`width:${width},height:${height},mode:${mode}`)
       })
-    }.width('100%').height('100%').backgroundColor(0xDCDCDC).padding({ top: 5 })
+    }
+    .width('100%')
+    .height('100%')
+    .backgroundColor(0xDCDCDC)
+    .padding({ top: 5 })
   }
 }

@@ -12,13 +12,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-AppStorage.clear()
-let storage26 = new LocalStorage({"PropA":1})
+AppStorage.clear();
+let storage26 = new LocalStorage({ "PropA": 1 });
 
 @Entry(storage26)
 @Component
 struct StorageProp26 {
-  @LocalStorageProp('') storProp1: number = 1
+  @LocalStorageProp('') storProp1: number = 1;
   @State num: number = 0;
   @State a: number = storage26.get("PropA");
 

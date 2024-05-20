@@ -15,10 +15,10 @@
 @Entry
 @Component
 struct state1 {
-  @State color1: Color | undefined | null = undefined
-  @State color2: Color | undefined | null = null
-  @State number1: number | undefined | null = undefined
-  @State number2: number | undefined | null = null
+  @State color1: Color | undefined | null = undefined;
+  @State color2: Color | undefined | null = null;
+  @State number1: number | undefined | null = undefined;
+  @State number2: number | undefined | null = null;
 
   build() {
     Column({ space: 20 }) {
@@ -26,7 +26,7 @@ struct state1 {
       Button('button')
         .backgroundColor(this.color1)
         .onClick(() => {
-          this.color1 = Color.Pink
+          this.color1 = Color.Pink;
         })
         .key('sBtn1')
 
@@ -34,7 +34,7 @@ struct state1 {
       Button('button')
         .backgroundColor(this.color2)
         .onClick(() => {
-          this.color2 = Color.Pink
+          this.color2 = Color.Pink;
         })
         .key('sBtn2')
 
@@ -42,7 +42,7 @@ struct state1 {
       Button('button')
         .fontSize(this.number1)
         .onClick(() => {
-          this.number1 = 100
+          this.number1 = 100;
         })
         .key('sBtn3')
 
@@ -50,11 +50,11 @@ struct state1 {
       Button('button')
         .fontSize(this.number2)
         .onClick(() => {
-          this.number2 = 100
+          this.number2 = 100;
         })
         .key('sBtn4')
-
-
-    }.width('100%').margin({top:10})
+    }
+    .width('100%')
+    .margin({ top: 10 })
   }
 }

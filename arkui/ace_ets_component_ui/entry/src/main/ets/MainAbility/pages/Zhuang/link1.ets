@@ -13,19 +13,20 @@
  * limitations under the License.
  */
 @Component
-struct  CompD{
-  @Link color1:Color | undefined | null
-  @Link color2: Color | undefined | null
-  @Link number1: number | undefined | null
-  @Link number2: number | undefined | null
-  build(){
-    Row({ space: 5 }){
+struct CompD {
+  @Link color1: Color | undefined | null;
+  @Link color2: Color | undefined | null;
+  @Link number1: number | undefined | null;
+  @Link number2: number | undefined | null;
+
+  build() {
+    Row({ space: 5 }) {
       Column({ space: 20 }) {
         Text("Link子组件颜色undefined-->Pink")
         Button('button')
           .backgroundColor(this.color1)
           .onClick(() => {
-            this.color1 = Color.Pink
+            this.color1 = Color.Pink;
           })
           .key('zilBtn1')
 
@@ -33,7 +34,7 @@ struct  CompD{
         Button('button')
           .backgroundColor(this.color2)
           .onClick(() => {
-            this.color2 = Color.Pink
+            this.color2 = Color.Pink;
           })
           .key('zilBtn2')
 
@@ -41,7 +42,7 @@ struct  CompD{
         Button('button')
           .fontSize(this.number1)
           .onClick(() => {
-            this.number1 = 100
+            this.number1 = 100;
           })
           .key('zilBtn3')
 
@@ -49,29 +50,24 @@ struct  CompD{
         Button('button')
           .fontSize(this.number2)
           .onClick(() => {
-            this.number2 = 100
+            this.number2 = 100;
           })
           .key('zilBtn4')
-
-
-      }.width('100%').margin({ top: 10 })
+      }
+      .width('100%')
+      .margin({ top: 10 })
     }
   }
-
 }
-
-
-
-
 
 
 @Entry
 @Component
 struct In {
-  @State color1: Color | undefined | null = undefined
-  @State color2: Color | undefined | null = null
-  @State number1:number | undefined | null = undefined
-  @State number2: number | undefined | null = null
+  @State color1: Color | undefined | null = undefined;
+  @State color2: Color | undefined | null = null;
+  @State number1: number | undefined | null = undefined;
+  @State number2: number | undefined | null = null;
 
   build() {
     Row() {
@@ -83,7 +79,7 @@ struct In {
             Button('button')
               .backgroundColor(this.color1)
               .onClick(() => {
-                this.color1 = Color.Pink
+                this.color1 = Color.Pink;
               })
               .key('lBtn1')
 
@@ -91,7 +87,7 @@ struct In {
             Button('button')
               .backgroundColor(this.color2)
               .onClick(() => {
-                this.color2 = Color.Pink
+                this.color2 = Color.Pink;
               })
               .key('lBtn2')
 
@@ -99,7 +95,7 @@ struct In {
             Button('button')
               .fontSize(this.number1)
               .onClick(() => {
-                this.number1 = 100
+                this.number1 = 100;
               })
               .key('lBtn3')
 
@@ -107,11 +103,11 @@ struct In {
             Button('button')
               .fontSize(this.number2)
               .onClick(() => {
-                this.number2 = 100
+                this.number2 = 100;
               })
               .key('lBtn4')
 
-            CompD({ color1:this.color1,color2:this.color2,number1:this.number1,number2:this.number2})
+            CompD({ color1: this.color1, color2: this.color2, number1: this.number1, number2: this.number2 })
 
           }.width('100%').margin({ top: 10 })
         }

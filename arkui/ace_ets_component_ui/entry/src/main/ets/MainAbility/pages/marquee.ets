@@ -12,47 +12,47 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 
 @Entry
 @Component
 struct MarqueeExample {
-  @State start:boolean = false
-  @State fromStart:boolean = true
-  @State step:number = 50
-  @State loop:number = 2
-  @State src:string = "Running Marquee starts rolling"
-  @State message1:string = "message1"
-  @State message2:string = "message2"
-  @State message3:string = "message3"
-  @State allowScale:boolean = false
-  messageManager:MessageManager = new MessageManager()
+  @State start: boolean = false;
+  @State fromStart: boolean = true;
+  @State step: number = 50;
+  @State loop: number = 2;
+  @State src: string = "Running Marquee starts rolling";
+  @State message1: string = "message1";
+  @State message2: string = "message2";
+  @State message3: string = "message3";
+  @State allowScale: boolean = false;
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('Gauge onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'step') {
-          this.step = message.value
+        this.step = message.value;
       }
       if (message.name == 'loop') {
-          this.loop = message.value
+        this.loop = message.value;
       }
       if (message.name == 'src') {
-          this.src = message.value
+        this.src = message.value;
       }
       if (message.name == 'allowScale') {
-          this.allowScale = message.value
+        this.allowScale = message.value;
       }
       if (message.name == 'fromStart') {
-          this.fromStart = message.value
+        this.fromStart = message.value;
       }
       if (message.name == 'start') {
-          this.start = message.value
+        this.start = message.value;
       }
 
     }
@@ -62,11 +62,11 @@ struct MarqueeExample {
   build() {
     Flex({ direction: FlexDirection.Column, alignItems: ItemAlign.Center, justifyContent: FlexAlign.Center }) {
       Marquee({
-        start:this.start,
-        step:this.step,
-        loop:this.loop,
-        fromStart:this.fromStart,
-        src:this.src
+        start: this.start,
+        step: this.step,
+        loop: this.loop,
+        fromStart: this.fromStart,
+        src: this.src
       })
         .width(360)
         .height(80)
@@ -97,11 +97,27 @@ struct MarqueeExample {
         .height(40)
         .fontSize(16)
         .fontWeight(500)
-        .backgroundColor('#007DFF').key('start')
+        .backgroundColor('#007DFF')
+        .key('start')
 
-      Text(this.message1).fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500).key('text1')
-      Text(this.message2).fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500).key('text2')
-      Text(this.message3).fontSize(14).lineHeight(20).fontColor('#182431').fontWeight(500).key('text3')
+      Text(this.message1)
+        .fontSize(14)
+        .lineHeight(20)
+        .fontColor('#182431')
+        .fontWeight(500)
+        .key('text1')
+      Text(this.message2)
+        .fontSize(14)
+        .lineHeight(20)
+        .fontColor('#182431')
+        .fontWeight(500)
+        .key('text2')
+      Text(this.message3)
+        .fontSize(14)
+        .lineHeight(20)
+        .fontColor('#182431')
+        .fontWeight(500)
+        .key('text3')
     }
     .width('100%')
     .height('100%')

@@ -17,7 +17,6 @@
 @Entry
 @Component
 struct Index {
-
   @Builder
   SubMenu() {
     Menu() {
@@ -27,13 +26,14 @@ struct Index {
   }
 
   @Builder
-  MyMenu(){
+  MyMenu() {
     Menu() {
       MenuItem({
         content: "content1",
         endIcon: "resource/base/media/icon.png",
         labelInfo: "labelInfo1",
-      }).id("menuItem_options1")
+      })
+        .id("menuItem_options1")
         .contentFont({ size: 10 })
         .contentFontColor(Color.Blue)
         .labelFont({ size: 15 })

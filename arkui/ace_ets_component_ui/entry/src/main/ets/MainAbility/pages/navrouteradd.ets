@@ -16,9 +16,9 @@
 @Entry
 @Component
 struct NavRouterExample {
-  private arr: number[] = [0, 1, 2, 3]
-  @State isActive: boolean = false
-  @State dex: number = 0
+  private arr: number[] = [0, 1, 2, 3];
+  @State isActive: boolean = false;
+  @State dex: number = 0;
 
   build() {
     Column() {
@@ -26,9 +26,13 @@ struct NavRouterExample {
         List({ space: 12, initialIndex: 0 }) {
           ForEach(this.arr, (item: number, index: number) => {
             ListItem() {
-              NavRouter({name:"",param:""}) {
+              NavRouter({ name: "", param: "" }) {
                 Row() {
-                  Image($r('app.media.icon')).width(30).height(30).borderRadius(30).margin({ left: 3, right: 10 })
+                  Image($r('app.media.icon'))
+                    .width(30)
+                    .height(30)
+                    .borderRadius(30)
+                    .margin({ left: 3, right: 10 })
                   Text(`NavRouter${item + 1}`)
                     .fontSize(22)
                     .fontWeight(500)
@@ -43,8 +47,13 @@ struct NavRouterExample {
                   Text(`我是NavDestination第${item + 1}页内容`).fontSize(50)
                   Flex({ direction: FlexDirection.Row }) {
                     Row() {
-                      Image($r('app.media.icon')).width(40).height(40).borderRadius(40).margin({ right: 15 })
-                      Text('今天共有七节课').fontSize(30)
+                      Image($r('app.media.icon'))
+                        .width(40)
+                        .height(40)
+                        .borderRadius(40)
+                        .margin({ right: 15 })
+                      Text('今天共有七节课')
+                        .fontSize(30)
                     }.padding({ left: 15 })
                   }
                 }.backgroundColor('#ccc')
@@ -55,7 +64,7 @@ struct NavRouterExample {
                 console.info("the mode is " + NavRouteMode.REPLACE);
               }).mode(NavRouteMode.PUSH)
             }
-          }, item => item)
+          }, (item: string) => item)
         }
         .height('100%')
         .margin({ top: 12, left: 12 })

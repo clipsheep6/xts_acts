@@ -12,11 +12,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-AppStorage.clear()
+AppStorage.clear();
 AppStorage.setOrCreate('PropA', 122);
 let storage37 = new LocalStorage();
 let prop: SubscribedAbstractProperty<number> = AppStorage.prop('PropA');
-let prop1: SubscribedAbstractProperty<number> = AppStorage.prop('sss')
+let prop1: SubscribedAbstractProperty<number> = AppStorage.prop('sss');
 
 @Entry(storage37)
 @Component

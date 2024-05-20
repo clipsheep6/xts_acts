@@ -18,16 +18,16 @@ import router from '@ohos.router'
 @Entry
 @Component
 struct ScrollToIndexForWaterFlow01 {
-  @State minSize: number = 80
-  @State maxSize: number = 180
-  @State fontSize: number = 24
-  @State moreItem: boolean = false
-  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F]
-  private scrollerForWaterFlow: Scroller = new Scroller()
-  @State isSmooth: boolean = false
-  datasource: WaterFlowDataSource = new WaterFlowDataSource()
-  private itemWidthArray: number[] = []
-  private itemHeightArray: number[] = []
+  @State minSize: number = 80;
+  @State maxSize: number = 180;
+  @State fontSize: number = 24;
+  @State moreItem: boolean = false;
+  @State colors: number[] = [0xFFC0CB, 0xDA70D6, 0x6B8E23, 0x6A5ACD, 0x00FFFF, 0x00FF7F];
+  private scrollerForWaterFlow: Scroller = new Scroller();
+  @State isSmooth: boolean = false;
+  datasource: WaterFlowDataSource = new WaterFlowDataSource();
+  private itemWidthArray: number[] = [];
+  private itemHeightArray: number[] = [];
 
   // 计算flow item宽/高
   getSize() {
@@ -60,7 +60,8 @@ struct ScrollToIndexForWaterFlow01 {
     }
   }
 
-  @Styles buttonStyles() {
+  @Styles
+  buttonStyles() {
     .borderRadius(8)
     .backgroundColor(0x317aff)
     .width(200)
@@ -68,10 +69,15 @@ struct ScrollToIndexForWaterFlow01 {
   }
 
   build() {
-    Column(){
-      Text('have smooth...').fontSize(16).width('100%').height(30).backgroundColor(Color.Orange)
+    Column() {
+      Text('have smooth...')
+        .fontSize(16)
+        .width('100%')
+        .height(30)
+        .backgroundColor(Color.Orange)
         .visibility(this.isSmooth ? Visibility.Visible : Visibility.None)
-        .id('isSmooth').position({x:10, y:10})
+        .id('isSmooth')
+        .position({ x: 10, y: 10 })
       Stack({ alignContent: Alignment.TopStart }) {
         WaterFlow({
           scroller: this.scrollerForWaterFlow
@@ -132,12 +138,12 @@ struct ScrollToIndexForWaterFlow01 {
             console.log('跳转到66，有动画')
             const yOffsetStart: number = this.scrollerForWaterFlow.currentOffset().yOffset;
             this.scrollerForWaterFlow.scrollToIndex(66, true)
-            setTimeout(()=>{
+            setTimeout(() => {
               const yOffsetEnd: number = this.scrollerForWaterFlow.currentOffset().yOffset;
-              console.info('yOffsetStart==>' + yOffsetStart + 'yOffsetEnd==>'+ yOffsetEnd)
+              console.info('yOffsetStart==>' + yOffsetStart + 'yOffsetEnd==>' + yOffsetEnd)
               this.isSmooth = (yOffsetStart == yOffsetEnd) ? false : true;
               console.info(this.isSmooth + 'isSmooth')
-            },1000)
+            }, 1000)
           }).margin({ top: 200, left: 10 })
         Button('u-99-false', { type: ButtonType.Normal, stateEffect: true })
           .fontSize(25)
@@ -159,7 +165,7 @@ struct ScrollToIndexForWaterFlow01 {
           .fontSize(25)
           .buttonStyles()
           .onClick(() => {
-            router.pushUrl({url:"pages/WaterFlowDomo1"})
+            router.pushUrl({ url: "pages/WaterFlowDomo1" })
           }).margin({ top: 500, left: 10 })
       }
     }

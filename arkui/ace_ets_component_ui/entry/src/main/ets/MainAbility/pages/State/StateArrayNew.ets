@@ -17,44 +17,59 @@
 @Entry
 @Component
 struct StateArrayNew {
-  @State arr_every: Array<number> = [1,2,3,4,5,6,7,]
-  @State res_every: boolean = true
-  @State arr_some: Array<number> = [1,8,3,4,5,6,7,]
-  @State res_some: boolean = true
-  @State arr_filter: Array<string> = ['spray','limit','elite','exuberant','destruction','present']
-  @State res_filter: Array<string> = []
-  @State arr_reduce: Array<number> = [1,2,3,4]
-  @State res_reduce: number = 0
-  @State arr_reduceRight: Array<Array<number>> = [[0,1],[2,3],[4,5]]
-  @State res_reduceRight: Array<number> = []
+  @State arr_every: Array<number> = [1, 2, 3, 4, 5, 6, 7,];
+  @State res_every: boolean = true;
+  @State arr_some: Array<number> = [1, 8, 3, 4, 5, 6, 7,];
+  @State res_some: boolean = true;
+  @State arr_filter: Array<string> = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+  @State res_filter: Array<string> = [];
+  @State arr_reduce: Array<number> = [1, 2, 3, 4];
+  @State res_reduce: number = 0;
+  @State arr_reduceRight: Array<Array<number>> = [[0, 1], [2, 3], [4, 5]];
+  @State res_reduceRight: Array<number> = [];
 
   build() {
     Column({ space: 20 }) {
-      Text('Click to every value to the array ' + this.res_every).fontSize(15).margin(5).margin(10)
+      Text('Click to every value to the array ' + this.res_every)
+        .fontSize(15)
+        .margin(5)
+        .margin(10)
         .id("every_Array")
         .onClick(() => {
           this.res_every = this.arr_every.every((x, i, arr) => x >= 2)
         })
 
-      Text('Click to some value to the array ' + this.res_some).fontSize(15).margin(5).margin(10)
+      Text('Click to some value to the array ' + this.res_some)
+        .fontSize(15)
+        .margin(5)
+        .margin(10)
         .id("some_Array")
         .onClick(() => {
-          this.res_some = this.arr_some.some((x, i, arr) => x==2)
+          this.res_some = this.arr_some.some((x, i, arr) => x == 2)
         })
 
-      Text('Click to filter value to the array ' + this.res_filter).fontSize(15).margin(5).margin(10)
+      Text('Click to filter value to the array ' + this.res_filter)
+        .fontSize(15)
+        .margin(5)
+        .margin(10)
         .id("filter_Array")
         .onClick(() => {
           this.res_filter = this.arr_filter.filter((x, i, arr) => x.length > 6)
         })
 
-      Text('Click to reduce value to the array ' + this.res_reduce).fontSize(15).margin(5).margin(10)
+      Text('Click to reduce value to the array ' + this.res_reduce)
+        .fontSize(15)
+        .margin(5)
+        .margin(10)
         .id("reduce_Array")
         .onClick(() => {
           this.res_reduce = this.arr_reduce.reduce((accumulator, currentValue) => accumulator + currentValue, 0)
         })
 
-      Text('Click to reduceRight value to the array ' + this.res_reduceRight).fontSize(15).margin(5).margin(10)
+      Text('Click to reduceRight value to the array ' + this.res_reduceRight)
+        .fontSize(15)
+        .margin(5)
+        .margin(10)
         .id("reduceRight_Array")
         .onClick(() => {
           this.res_reduceRight = this.arr_reduceRight.reduceRight((accumulator, currentValue) => accumulator.concat(currentValue))

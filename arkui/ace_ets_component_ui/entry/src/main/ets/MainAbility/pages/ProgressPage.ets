@@ -12,27 +12,27 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import {MessageManager,Callback} from '../utils/MessageManager';
+import { MessageManager, Callback } from '../utils/MessageManager';
 
 @Entry
 @Component
 struct ProgressPage {
-  @State value: number = 20
-  @State total: number = 100
-  @State type: ProgressType = ProgressType.Linear
-  @State color : Color = Color.Grey
-  @State backColor : Color = Color.Red
-  @State strokeWidth: number = 15
-  @State scaleCount: number = 15
-  @State scaleWidth: number = 5
-  messageManager:MessageManager = new MessageManager()
+  @State value: number = 20;
+  @State total: number = 100;
+  @State type: ProgressType = ProgressType.Linear;
+  @State color: Color = Color.Grey;
+  @State backColor: Color = Color.Red;
+  @State strokeWidth: number = 15;
+  @State scaleCount: number = 15;
+  @State scaleWidth: number = 5;
+  messageManager: MessageManager = new MessageManager();
 
   onPageShow() {
     console.info('ProgressPage onPageShow')
     globalThis.value = {
-      name:'messageManager',message:this.messageManager
+      name: 'messageManager', message: this.messageManager
     }
-    let callback:Callback = (message:any) => {
+    let callback: Callback = (message: ESObject) => {
       console.error('message = ' + message.name + "--" + message.value)
       if (message.name == 'progressValue') {
         this.value = message.value
@@ -72,24 +72,37 @@ struct ProgressPage {
 
         .backgroundColor(this.backColor)
         .key('pro1')
-      Progress({ value: 10 }).width(100).key('pro2')
+      Progress({ value: 10 })
+        .width(100)
+        .key('pro2')
 
-      Text('Eclipse Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('Eclipse Progress')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       Row({ space: 40 }) {
         Progress({ value: 10, type: ProgressType.Eclipse }).width(100)
-        Progress({ value: this.value, total: 150, type: ProgressType.Eclipse }).color(this.color).value(50).width(100)
+        Progress({ value: this.value, total: 150, type: ProgressType.Eclipse })
+          .color(this.color)
+          .value(50)
+          .width(100)
       }
 
       Text('ScaleRing Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
       Row({ space: 40 }) {
         Progress({ value: 10, type: ProgressType.ScaleRing }).width(100)
         Progress({ value: this.value, total: 150, type: ProgressType.ScaleRing })
-          .color(this.color).value(50).width(100)
+          .color(this.color)
+          .value(50)
+          .width(100)
           .style({ strokeWidth: this.strokeWidth, scaleCount: this.scaleCount, scaleWidth: this.scaleWidth })
           .key('pro3')
       }
 
-      Text('Ring Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('Ring Progress')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       Row({ space: 40 }) {
         Progress({ value: 10, type: ProgressType.Ring }).width(100)
         Progress({ value: this.value, total: 150, type: ProgressType.ScaleRing })
@@ -97,7 +110,10 @@ struct ProgressPage {
           .style({ strokeWidth: 20, scaleCount: 30, scaleWidth: 20 })
       }
 
-      Text('Capsule Progress').fontSize(9).fontColor(0xCCCCCC).width('90%')
+      Text('Capsule Progress')
+        .fontSize(9)
+        .fontColor(0xCCCCCC)
+        .width('90%')
       Row({ space: 40 }) {
         Progress({ value: 10, type: ProgressType.Capsule }).width(100).height(50)
         Progress({ value: this.value, total: 150, type: ProgressType.Capsule })
@@ -105,13 +121,15 @@ struct ProgressPage {
           .value(50)
           .width(100)
           .height(50)
-        Progress({ value: this.value, total: 150, type: ProgressType.Linear})
-          .style({ strokeWidth: 20, scaleCount: 30, scaleWidth: 20 ,strokeRadius:2})
+        Progress({ value: this.value, total: 150, type: ProgressType.Linear })
+          .style({ strokeWidth: 20, scaleCount: 30, scaleWidth: 20, strokeRadius: 2 })
           .color(this.color)
           .value(50)
           .width(100)
           .height(50)
       }
-    }.width('100%').margin({ top: 30 })
+    }
+    .width('100%')
+    .margin({ top: 30 })
   }
 }
