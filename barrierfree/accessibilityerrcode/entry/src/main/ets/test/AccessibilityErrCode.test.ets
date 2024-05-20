@@ -473,9 +473,9 @@ export default function abilityTest() {
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0301', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0301');
       try {
-        let abilityType ;
+        let abilityType: accessibility.AbilityType;
         accessibility.getAccessibilityExtensionList(abilityType, 'install', (err, data) => {
-          if (err && err.code != 0) {
+          if (err && err.code !== 0) {
             console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0301 has error: ${err.code}`);
             expect(err.code).assertEqual(401);
             done();
@@ -504,9 +504,9 @@ export default function abilityTest() {
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0302', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0302');
       try {
-        let abilityType = null;
+        let abilityType: accessibility.AbilityType = null;
         accessibility.getAccessibilityExtensionList(abilityType, 'install', (err, data) => {
-          if (err && err.code != 0) {
+          if (err && err.code !== 0) {
             console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0302 has error: ${err.code}`);
             expect(err.code).assertEqual(401);
             done();
@@ -535,9 +535,9 @@ export default function abilityTest() {
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0303', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0303');
       try {
-        let abilityState ;
+        let abilityState: accessibility.AbilityState;
         accessibility.getAccessibilityExtensionList('all', abilityState, (err, data) => {
-          if (err && err.code != 0) {
+          if (err && err.code !== 0) {
             console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0303 has error: ${err.code}`);
             expect(err.code).assertEqual(401);
             done();
@@ -566,9 +566,9 @@ export default function abilityTest() {
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0304', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0304');
       try {
-        let abilityState = null;
+        let abilityState: accessibility.AbilityState = null;
         accessibility.getAccessibilityExtensionList('all', abilityState, (err, data) => {
-          if (err && err.code != 0) {
+          if (err && err.code !== 0) {
             console.error(`AccessibleAbilityList: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0304 has error: ${err.code}`);
             expect(err.code).assertEqual(401);
             done();
@@ -597,7 +597,7 @@ export default function abilityTest() {
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305');
       try {
-        let abilityType ;
+        let abilityType: accessibility.AbilityType;
         accessibility.getAccessibilityExtensionList(abilityType, 'install').then((result) => {
           console.info(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305 result ${result.length}`);
           expect(Array.isArray(result)).assertEqual(false);
@@ -626,7 +626,7 @@ export default function abilityTest() {
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0306', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0306');
       try {
-        let abilityType = null;
+        let abilityType: accessibility.AbilityType = null;
         accessibility.getAccessibilityExtensionList(abilityType, 'install').then((result) => {
           console.info(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0305 result ${result.length}`);
           expect(Array.isArray(result)).assertEqual(false);
@@ -655,7 +655,7 @@ export default function abilityTest() {
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0307', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0307');
       try {
-        let abilityState ;
+        let abilityState: accessibility.AbilityState;
         accessibility.getAccessibilityExtensionList('all', abilityState).then((result) => {
           console.info(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0307 result ${result.length}`);
           expect(Array.isArray(result)).assertEqual(false);
@@ -685,7 +685,7 @@ export default function abilityTest() {
     it('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0308', 0, async function (done) {
       console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0308');
       try {
-        let abilityState = null;
+        let abilityState: accessibility.AbilityState = null;
         accessibility.getAccessibilityExtensionList('all', abilityState).then((result) => {
           console.info(`AccessibilityErrCodeTest: SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0308 result ${result.length}`);
           expect(Array.isArray(result)).assertEqual(false);
@@ -747,6 +747,8 @@ export default function abilityTest() {
           expect(accessibilityAbilityInfo.description != null).assertTrue();
           expect(accessibilityAbilityInfo.id != null).assertTrue();
           expect(accessibilityAbilityInfo.name != null).assertTrue();
+          expect(accessibilityAbilityInfo.needHide != null).assertTrue();
+          expect(accessibilityAbilityInfo.label != null).assertTrue();
           for (let capability of accessibilityAbilityInfo.capabilities) {
             let cap = capability.toString();
             expect(cap == 'retrieve' ||
@@ -926,6 +928,12 @@ export default function abilityTest() {
               console.log('failed to perform action, because ' + JSON.stringify(err));
             });
             done();
+            rootElement.getCursorPosition().then((data: number) => {
+              console.info('get cursorPosition success');
+            }).catch((err) => {
+              console.log('failed to getCursorPosition, because ' + JSON.stringify(err));
+            });
+            done();            
           }).catch((err) => {
             console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0400 err:' + JSON.stringify(err));
             done();
@@ -1006,11 +1014,18 @@ export default function abilityTest() {
               expect(ElementAttributeValue.indexOf("valueMin") != -1).assertTrue();
               expect(ElementAttributeValue.indexOf("valueNow") != -1).assertTrue();
               expect(ElementAttributeValue.indexOf("windowId") != -1).assertTrue();
+              expect(ElementAttributeValue.indexOf("textType") != -1).assertTrue();
+              expect(ElementAttributeValue.indexOf("offset") != -1).assertTrue();
+              expect(ElementAttributeValue.indexOf("hotArea") != -1).assertTrue();
+              expect(ElementAttributeValue.indexOf("accessibilityText") != -1).assertTrue();
             });
             rootElement.actionNames((err, data) => {
               console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0401 err' + JSON.stringify(err) + ' data:' + JSON.stringify(data));
             });
             rootElement.performAction('action', (err, data) => {
+              console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0401 err' + JSON.stringify(err) + ' data:' + JSON.stringify(data));
+            });
+            rootElement.getCursorPosition((err, data) => {
               console.info('SUB_BASIC_BARRIERFREE_API_AccessibilityErrCode_0401 err' + JSON.stringify(err) + ' data:' + JSON.stringify(data));
             });
             let actionName = 'action';
