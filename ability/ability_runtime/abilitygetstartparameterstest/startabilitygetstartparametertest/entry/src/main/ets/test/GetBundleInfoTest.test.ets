@@ -35,8 +35,8 @@ export default function getBundleInfoTest() {
 
     /**
      * @tc.number    : Sub_Bms_Framework_Get_BundleInfo_0100
-     * @tc.name      : getBundleInfoForSelfSync0100
-     * @tc.desc      : getBundleInfoForSelfSync0100
+     * @tc.name      : GetBundleInfoForSelfSync0100
+     * @tc.desc      : Get application information
      * @tc.level     : Level 3
      * @tc.size      : MediumTest
      * @tc.type      : Function
