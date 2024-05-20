@@ -7921,10 +7921,10 @@ export default function avVideoRecorderTestOne() {
         //     * @tc.level     : Level2
         // */
         // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0900', 0, async function (done) {
-            if(!isSupportUSBCamera){
-                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
-                done();
-            }
+        //    if(!isSupportUSBCamera){
+        //        console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+        //        done();
+        //    }
         //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_MPEG4_0900 start')
         //
         //     avProfileMpegAac.videoFrameRate = 5
@@ -8530,10 +8530,10 @@ export default function avVideoRecorderTestOne() {
         //     * @tc.level     : Level2
         // */
         // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0100', 0, async function (done) {
-            if(!isSupportUSBCamera){
-                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
-                done();
-            }
+        //    if(!isSupportUSBCamera){
+        //        console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+        //        done();
+        //    }
         //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0100 start')
         //     let fileName = avVideoRecorderTestBase.resourceName()
         //     fdObject = await mediaTestBase.getAvRecorderFd(fileName, "video");
@@ -8895,10 +8895,10 @@ export default function avVideoRecorderTestOne() {
         //     * @tc.level     : Level2
         // */
         // it('SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0900', 0, async function (done) {
-            if(!isSupportUSBCamera){
-                console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
-                done();
-            }
+        //    if(!isSupportUSBCamera){
+        //        console.info('Failed to obtain the default videoProfiles object.Not support usb camera');
+        //        done();
+        //    }
         //     console.info(TAG + 'SUB_MULTIMEDIA_AVRECORDER_VIDEO_FUNCTION_CALLBACK_H264_0900 start')
         //
         //     avProfileH264Aac.videoFrameRate = 5
