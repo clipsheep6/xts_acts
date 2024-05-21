@@ -17,9 +17,9 @@ import deviceInfo from '@ohos.deviceInfo'
 import media from '@ohos.multimedia.media'
 import camera from '@ohos.multimedia.camera'
 import display from '@ohos.display';
-import * as mediaTestBase from '../../../../../MediaTestBase.js';
-import * as avRecorderTestBase from '../../../../../AVRecorderTestBase.js';
-import * as avVideoRecorderTestBase from '../../../../../AvVideoRecorderTestBase.js';
+import * as mediaTestBase from '../../../../../../MediaTestBase.js';
+import * as avRecorderTestBase from '../../../../../../AVRecorderTestBase.js';
+import * as avVideoRecorderTestBase from '../../../../../../AvVideoRecorderTestBase.js';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 
 export default function avVideoRecorderTestOne() {
