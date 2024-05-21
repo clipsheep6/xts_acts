@@ -699,7 +699,7 @@ function testSetClipboardPolicy() {
    */
   it("test_set_clipboard_policy_0100", 0, async (done: Function) => {
     try {
-      securityManager.setAppClipboardPolicy(SELFWANT, TEST_TOKEN_ID, TEST_CLIPBOARD_POLICY);
+      securityManager.setAppClipboardPolicy(SELFWANT, TEST_TOKEN_ID, securityManager.ClipboardPolicy.DEFAULT);
       expect(false).assertTrue();
     } catch (error) {
       expect(error.code == 9200001).assertTrue();
@@ -718,7 +718,7 @@ function testSetClipboardPolicy() {
   it("test_set_clipboard_policy_0200", 0, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_NORMAL);
     try {
-      securityManager.setAppClipboardPolicy(SELFWANT, TEST_TOKEN_ID, TEST_CLIPBOARD_POLICY);
+      securityManager.setAppClipboardPolicy(SELFWANT, TEST_TOKEN_ID, securityManager.ClipboardPolicy.IN_APP);
       expect(false).assertTrue();
     } catch (error) {
       expect(error.code == 9200002).assertTrue();
@@ -738,7 +738,7 @@ function testSetClipboardPolicy() {
    */
   it("test_set_clipboard_policy_0300", 0, async (done: Function) => {
     try {
-      securityManager.setAppClipboardPolicy(null, TEST_TOKEN_ID, TEST_CLIPBOARD_POLICY);
+      securityManager.setAppClipboardPolicy(null, TEST_TOKEN_ID, securityManager.ClipboardPolicy.LOCAL_DEVICE);
       expect(false).assertTrue();
     } catch (error) {
       expect(error.code == 401).assertTrue();
@@ -757,7 +757,7 @@ function testSetClipboardPolicy() {
   it("test_set_clipboard_policy_0400", 0, async (done: Function) => {
     await adminManager.enableAdmin(SELFWANT, ENTINFO1, adminManager.AdminType.ADMIN_TYPE_SUPER);
     try {
-      securityManager.setAppClipboardPolicy(SELFWANT, null, TEST_CLIPBOARD_POLICY);
+      securityManager.setAppClipboardPolicy(SELFWANT, null, securityManager.ClipboardPolicy.CROSS_DEVICE);
       expect(false).assertTrue();
     } catch (error) {
       expect(error.code == 401).assertTrue();
