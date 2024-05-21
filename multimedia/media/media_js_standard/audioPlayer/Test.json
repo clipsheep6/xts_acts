@@ -1,10 +1,9 @@
 {
-    "description": "Configuration for audioPlayer Tests",
+    "description": "Configuration for hjunit demo Tests",
     "driver": {
         "type": "OHJSUnitTest",
-        "test-timeout": "2000000",
-        "shell-timeout": "2000000",
-        "testcase-timeout": 60000,
+        "test-timeout": "180000",
+        "shell-timeout": "180000",
         "bundle-name": "ohos.acts.multimedia.audio.audioplayer",
         "package-name": "ohos.acts.multimedia.audio.audioplayer"
     },
@@ -15,18 +14,13 @@
             ],
             "type": "AppInstallKit",
             "cleanup-apps": true
-        },
-        {
+        },{
             "type": "ShellKit",
             "run-command": [
-                "mkdir -p /data/app/el2/100/base/ohos.acts.multimedia.audio.audioplayer/haps/entry/files",
+                "power-shell wakeup",
                 "power-shell setmode 602"
-            ],
-            "teardown-command": [
-                "power-shell setmode 600"
             ]
-        },
-        {
+        },{
             "type": "PushKit",
             "pre-push": [],
             "push": [
