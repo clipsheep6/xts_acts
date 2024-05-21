@@ -35,7 +35,9 @@ group("ActsAceEtsModuleUITest") {
     "ace_ets_module_picker:ActsAceEtsModulePickerTest",
     "ace_ets_module_platform:ActsAceEtsModulePlatformTest",
     "ace_ets_module_scroll:ActsAceEtsModuleScrollTest",
+    "ace_ets_module_search:ActsAceEtsModuleSearchTest",
     "ace_ets_module_span_baselineOffset:ActsAceEtsModuleSpanBaselineOffsetTest",
+    "ace_ets_module_textArea:ActsAceEtsModuleTextAreaTest",
     "ace_ets_module_textInput:ActsAceEtsModuleTextInputTest",
   ]
 }
