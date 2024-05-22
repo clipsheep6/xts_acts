@@ -21,6 +21,7 @@ import resourceManager from "@ohos.resourceManager";
 import fileio from "@ohos.fileio";
 import ndkTest from 'libImageSourceNDKTest.so';
 import { testJpg } from './testImg';
+import sourceTest from 'libImageSourceTest.so';
 
 export default function ImageSourceNDKTest() {
     describe('ImageSourceNDKTest', function () {
@@ -1589,5 +1590,156 @@ export default function ImageSourceNDKTest() {
         it('SUB_MULTIMEDIA_IMAGE_SOURCENDK_CREATE_ERR_0300', 0, async function (done) {
             createImageSourceErr(done, "SUB_MULTIMEDIA_IMAGE_SOURCENDK_CREATE_ERR_0300", "fd");
         })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_SOURCE_GETIMAGEPROPERTY_0100
+         * @tc.name      : JsGetImageProperty
+         * @tc.desc      : 1.getFd
+         *               : 2.JsGetImageProperty
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_SOURCE_GETIMAGEPROPERTY_0100', 0, async function (done) {
+                let mlg = logger("SUB_MULTIMEDIA_IMAGE_SOURCE_GETIMAGEPROPERTY_0100");
+                mlg.log('SUB_MULTIMEDIA_IMAGE_SOURCE_GETIMAGEPROPERTY_0100 start');
+                let path, fd;
+                [path, fd] = await getFd('moving_test_loop5.gif');
+                mlg.log('fd = '+ fd);
+                let loopcount = sourceTest.JsGetImageProperty(fd);
+                if (loopcount == "5")
+                {
+                    mlg.log('loopcount = '+ loopcount);
+                    expect(true).assertTrue();
+                    done();
+                    return;
+                } else {
+                    mlg.log('JsGetImageProperty failed');
+                    expect(false).assertTrue();
+                    done();
+                    return;
+                }
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0100
+         * @tc.name      : test oH_ImageSourceNative_GetImageProperty obtains the number of five cycles in the dynamic graph
+         * @tc.desc      : 1.getFd()
+         *                 2.getImageProperty()
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0100', 0, async function (done) {
+                let mlg = logger("SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0100");
+                mlg.log('SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0100 start');
+                let path, fd;
+                [path, fd] = await getFd('moving_test_loop5.gif');
+                mlg.log('fd = '+ fd);
+                let loopcount = sourceTest.JsGetImageProperty(fd);
+                if (loopcount == "5")
+                {
+                    mlg.log('loopcount = '+ loopcount);
+                    expect(true).assertTrue();
+                    done();
+                    return;
+                } else {
+                    mlg.log('JsGetImageProperty failed');
+                    expect(false).assertTrue();
+                    done();
+                    return;
+                }
+        })
+
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0200
+         * @tc.name      : test oH_ImageSourceNative_GetImageProperty obtains the number of one cycle in the dynamic graph
+         * @tc.desc      : 1.getFd()
+         *                 2.getImageProperty()
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0200', 0, async function (done) {
+                let mlg = logger("SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0200");
+                mlg.log('SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0200 start');
+                let path, fd;
+                [path, fd] = await getFd('moving_test_loop1.gif');
+                mlg.log('fd = '+ fd);
+                let loopcount = sourceTest.JsGetImageProperty(fd);
+                if (loopcount == "1")
+                {
+                    mlg.log('loopcount = '+ loopcount);
+                    expect(true).assertTrue();
+                    done();
+                    return;
+                } else {
+                    mlg.log('JsGetImageProperty failed');
+                    expect(false).assertTrue();
+                    done();
+                    return;
+                }
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0300
+         * @tc.name      : test oH_ImageSourceNative_GetImageProperty to obtain the number of infinite loops in a dynamic graph
+         * @tc.desc      : 1.getFd()
+         *                 2.getImageProperty()
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0300', 0, async function (done) {
+                let mlg = logger("SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0300");
+                mlg.log('SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0300 start');
+                let path, fd;
+                [path, fd] = await getFd('moving_test_loop0.gif');
+                mlg.log('fd = '+ fd);
+                let loopcount = sourceTest.JsGetImageProperty(fd);
+                if (loopcount == "0")
+                {
+                    mlg.log('loopcount = '+ loopcount);
+                    expect(true).assertTrue();
+                    done();
+                    return;
+                } else {
+                    mlg.log('JsGetImageProperty failed');
+                    expect(false).assertTrue();
+                    done();
+                    return;
+                }
+        })
+
+        /**
+         * @tc.number    : SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0400
+         * @tc.name      : test oH_ImageSourceNative_GetImageProperty to obtain the number of loops in non dynamic graphs
+         * @tc.desc      : 1.getFd()
+         *                 2.getImageProperty()
+         * @tc.size      : MEDIUM
+         * @tc.type      : Functional
+         * @tc.level     : Level 0
+         */
+        it('SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0400', 0, async function (done) {
+                let mlg = logger("SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0400");
+                mlg.log('SUB_MULTIMEDIA_IMAGE_NATIVE_GETIMAGEPROPERTY_PROMISE_0400 start');
+                let path, fd;
+                [path, fd] = await getFd('text.jpg');
+                mlg.log('fd = '+ fd);
+                let loopcount = sourceTest.JsGetImageProperty(fd);
+                if (loopcount == undefined)
+                {
+                    mlg.log('loopcount = '+ loopcount);
+                    expect(true).assertTrue();
+                    done();
+                    return;
+                } else {
+                    mlg.log('JsGetImageProperty failed');
+                    expect(false).assertTrue();
+                    done();
+                    return;
+                }
+        }) 
     })
 }
