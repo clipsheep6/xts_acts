@@ -1,0 +1,57 @@
+{
+  "module": {
+    "name": "secondmodule",
+    "type": "feature",
+    "description": "$string:module_desc",
+    "mainElement": "SecondmoduleAbility",
+    "srcEntry": "./ets/application/SecondAbilityStage.ts",
+    "deviceTypes": [
+      "default",
+      "tablet"
+    ],
+    "deliveryWithInstall": true,
+    "installationFree": false,
+    "pages": "$profile:main_pages",
+    "abilities": [
+      {
+        "name": "SecondmoduleAbility",
+        "srcEntry": "./ets/secondmoduleability/SecondmoduleAbility.ts",
+        "description": "$string:SecondmoduleAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:SecondmoduleAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true
+      },
+      {
+        "name": "MultipleAbility",
+        "srcEntry": "./ets/Multipleability/MultipleAbility.ts",
+        "description": "$string:MultipleAbility_desc",
+        "icon": "$media:icon",
+        "label": "$string:MultipleAbility_label",
+        "startWindowIcon": "$media:icon",
+        "startWindowBackground": "$color:start_window_background",
+        "exported": true,
+        "launchType": "standard"
+      }
+    ],
+    "extensionAbilities": [
+      {
+        "name": "ServiceExtAbility",
+        "srcEntry": "./ets/serviceextability/ServiceExtAbility.ts",
+        "description": "$string:ServiceExtAbility_desc",
+        "type": "service",
+        "label": "$string:ServiceExtAbility_label",
+        "exported": true
+      },
+      {
+        "name": "UIExtAbility",
+        "icon": "$media:icon",
+        "description": "UIExtAbility",
+        "type": "sys/commonUI",
+        "exported": true,
+        "srcEntrance": "./ets/UIExtensionAbility/UIExtAbility.ts"
+      }
+    ]
+  }
+}
