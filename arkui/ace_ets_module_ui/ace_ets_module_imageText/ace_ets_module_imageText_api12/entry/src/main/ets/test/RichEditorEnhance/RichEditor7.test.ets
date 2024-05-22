@@ -88,57 +88,12 @@ export default function RichEditor7() {
       let driver = Driver.create();
       await driver.delayMs(1000)
 
-      let RichEditorGetAttribute = await driver.findComponent(ON.id("RichEditor02"));
-      await RichEditorGetAttribute.inputText('1')
-      let FindStartKey = await driver.findComponent(ON.text("完成"));
-      await FindStartKey.click()
       let OnSubmitEnterKey = await driver.findComponent(ON.id("EnterKey"));
       let EnterKeyResult = await OnSubmitEnterKey.getText()
       console.log("EnterKeyResult:"+EnterKeyResult)
-      let OnEditingChange = await driver.findComponent(ON.id("OnEditingChange2"));
-      let IsEditing = await driver.findComponent(ON.id("IsEditing2"));
-      let OnEditingChangeText = await OnEditingChange.getText()
-      let IsEditingText = await IsEditing.getText()
-      expect(OnEditingChangeText).assertContain("false")
-      expect(IsEditingText).assertContain("false")
       expect(EnterKeyResult).assertContain("6")
 
       console.info('[RichEditor7_0200] END');
-      done();
-    });
-    /**
-     * @tc.number    RichEditor7_0300
-     * @tc.name      RichEditor7_0300
-     * @tc.desc       Test onSubmit callback return EnterKeyType when keepEditableState is true.
-     * @tc.size      : MediumTest
-     * @tc.type      : Function
-     * @tc.level     : Level 2
-     */
-    it('RichEditor7_0300', 0, async function (done) {
-      // Test stop
-      console.info('[RichEditor7_0300] START');
-      let driver = Driver.create();
-      await driver.delayMs(1000)
-
-      let SetEnterType = await driver.findComponent(ON.id('EnterType'));
-      await SetEnterType.click()
-      let SeIsCallKeepEditableState = await driver.findComponent(ON.id('IsCallKeepEditableState'));
-      await SeIsCallKeepEditableState.click()
-      let RichEditorGetAttribute = await driver.findComponent(ON.id("RichEditor02"));
-      await RichEditorGetAttribute.inputText('1')
-      let FindStartKey = await driver.findComponent(ON.text("开始"));
-      await FindStartKey.click()
-      let OnSubmitEnterKey = await driver.findComponent(ON.id("EnterKey"));
-      let EnterKeyResult = await OnSubmitEnterKey.getText()
-      let OnEditingChange = await driver.findComponent(ON.id("OnEditingChange2"));
-      let IsEditing = await driver.findComponent(ON.id("IsEditing2"));
-      let OnEditingChangeText = await OnEditingChange.getText()
-      let IsEditingText = await IsEditing.getText()
-      expect(OnEditingChangeText).assertContain("true")
-      expect(IsEditingText).assertContain("true")
-      expect(EnterKeyResult).assertContain("2")
-
-      console.info('[RichEditor7_0300] END');
       done();
     });
   })

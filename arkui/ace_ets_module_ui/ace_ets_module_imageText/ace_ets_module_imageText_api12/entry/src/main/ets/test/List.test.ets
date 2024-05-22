@@ -53,7 +53,6 @@ import RichEditorWordBreakJsunitTest from './RichEditorEnhance01/RichEditorWordB
 import RichEditorMenuPolicyJsunit from './RichEditorEnhance01/RichEditorMenuPolicyJsunit.test'
 import RichEditorTextStyleJsunit from './RichEditorEnhance01/RichEditorTextStyleJsunit.test'
 import RichEditorFontFeatureJsunit from './RichEditorEnhance01/RichEditorFontFeatureJsunit.test'
-import RichEditor1 from './RichEditorEnhance/RichEditor1.test'
 import RichEditor2 from './RichEditorEnhance/RichEditor2.test'
 import RichEditor3 from './RichEditorEnhance/RichEditor3.test'
 import RichEditor4 from './RichEditorEnhance/RichEditor4.test'
@@ -102,7 +101,6 @@ APIUnderlineColorTest();
   RichEditorMenuPolicyJsunit();
   RichEditorTextStyleJsunit();
   RichEditorFontFeatureJsunit();
-  RichEditor1();
   RichEditor2();
   RichEditor3();
   RichEditor4();

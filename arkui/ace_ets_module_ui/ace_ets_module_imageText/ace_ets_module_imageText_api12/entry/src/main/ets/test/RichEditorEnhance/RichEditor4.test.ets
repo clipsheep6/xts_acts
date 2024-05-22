@@ -64,7 +64,8 @@ export default function RichEditor4() {
       let text1 = await RichEditor_supportAvoidance.getText()
       await RichEditor_supportAvoidance.click()
       let M = await driver.findComponent(ON.text("M"));
-      let point = await M.getBoundsCenter();
+      let m = await driver.findComponent(ON.text("m"));
+      let point = await (M||m).getBoundsCenter();
       await driver.click(point.x+100,point.y);
       let text2 = await RichEditor_supportAvoidance.getText()
       expect(text1.length).assertLarger(text2.length);
