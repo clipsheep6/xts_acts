@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import cameras from 'libentry.so'
 import image from '@ohos.multimedia.image';
@@ -110,6 +125,7 @@ export default function CameraInputTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraInputOpen0100
      * @tc.name       : testOHCameraInputOpen0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -123,6 +139,7 @@ export default function CameraInputTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraInputOpen0200
      * @tc.name       : testOHCameraInputOpen0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -136,6 +153,7 @@ export default function CameraInputTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraInputClose0100
      * @tc.name       : testOHCameraInputClose0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -149,6 +167,7 @@ export default function CameraInputTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraInputClose0200
      * @tc.name       : testOHCameraInputClose0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -162,6 +181,7 @@ export default function CameraInputTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraInputRelease0100
      * @tc.name       : testOHCameraInputRelease0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -188,6 +208,7 @@ export default function CameraInputTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraInputRegisterCallback0100
      * @tc.name       : testOHCameraInputRegisterCallback0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -214,6 +235,7 @@ export default function CameraInputTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraInputRegisterCallback0300
      * @tc.name       : testOHCameraInputRegisterCallback0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -240,6 +262,7 @@ export default function CameraInputTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraInputUnregisterCallback0200
      * @tc.name       : testOHCameraInputUnregisterCallback0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -253,6 +276,7 @@ export default function CameraInputTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraInputUnregisterCallback0300
      * @tc.name       : testOHCameraInputUnregisterCallback0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */

@@ -1,3 +1,17 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import cameras from 'libentry.so'
 import image from '@ohos.multimedia.image';
@@ -195,6 +209,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionBeginConfig0100
      * @tc.name       : testOHCaptureSessionBeginConfig0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -208,6 +223,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionBeginConfig0200
      * @tc.name       : testOHCaptureSessionBeginConfig0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -221,6 +237,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionAddInput0100
      * @tc.name       : testOHCaptureSessionAddInput0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -235,6 +252,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionAddInput0200
      * @tc.name       : testOHCaptureSessionAddInput0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -249,6 +267,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRemoveInput0100
      * @tc.name       : testOHCaptureSessionRemoveInput0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -263,6 +282,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRemoveInput0200
      * @tc.name       : testOHCaptureSessionRemoveInput0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -277,6 +297,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRemoveInput0300
      * @tc.name       : testOHCaptureSessionRemoveInput0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -291,6 +312,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionAddPreviewOutput0100
      * @tc.name       : testOHCaptureSessionAddPreviewOutput0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -307,6 +329,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionAddPreviewOutput0200
      * @tc.name       : testOHCaptureSessionAddPreviewOutput0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -323,6 +346,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionAddPreviewOutput0300
      * @tc.name       : testOHCaptureSessionAddPreviewOutput0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -339,6 +363,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionCommitConfig0100
      * @tc.name       : testOHCaptureSessionCommitConfig0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -355,6 +380,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionCommitConfig0200
      * @tc.name       : testOHCaptureSessionCommitConfig0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -371,6 +397,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionAddPhotoOutput0100
      * @tc.name       : testOHCaptureSessionAddPhotoOutput0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -388,6 +415,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionAddPhotoOutput0200
      * @tc.name       : testOHCaptureSessionAddPhotoOutput0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -405,6 +433,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionAddPhotoOutput0300
      * @tc.name       : testOHCaptureSessionAddPhotoOutput0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -422,6 +451,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRemovePhotoOutput0100
      * @tc.name       : testOHCaptureSessionRemovePhotoOutput0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -439,6 +469,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRemovePhotoOutput0200
      * @tc.name       : testOHCaptureSessionRemovePhotoOutput0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -457,6 +488,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRemovePhotoOutput0300
      * @tc.name       : testOHCaptureSessionRemovePhotoOutput0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -474,6 +506,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRemovePreviewOutput0100
      * @tc.name       : testOHCaptureSessionRemovePreviewOutput0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -490,6 +523,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRemovePreviewOutput0200
      * @tc.name       : testOHCaptureSessionRemovePreviewOutput0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -506,6 +540,7 @@ export default function SessionTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRemovePreviewOutput0300
      * @tc.name       : testOHCaptureSessionRemovePreviewOutput0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */

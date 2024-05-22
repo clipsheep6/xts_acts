@@ -1,3 +1,17 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import cameras from 'libentry.so'
 import image from '@ohos.multimedia.image';
@@ -205,6 +219,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputStart0100
      * @tc.name       : testOHPreviewOutputStart0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -218,6 +233,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputStart0200
      * @tc.name       : testOHPreviewOutputStart0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -231,6 +247,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputStop0100
      * @tc.name       : testOHPreviewOutputStop0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -244,6 +261,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputStop0200
      * @tc.name       : testOHPreviewOutputStop0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -257,6 +275,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputRegisterCallback0100
      * @tc.name       : testOHPhotoOutputRegisterCallback0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -270,6 +289,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputRegisterCallback0200
      * @tc.name       : testOHPhotoOutputRegisterCallback0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -283,6 +303,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputRegisterCallback0300
      * @tc.name       : testOHPhotoOutputRegisterCallback0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -296,6 +317,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputRelease0100
      * @tc.name       : testOHPreviewOutputRelease0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -309,6 +331,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputRelease0200
      * @tc.name       : testOHPreviewOutputRelease0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -322,6 +345,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputUnregisterCallback0100
      * @tc.name       : testOHPhotoOutputUnregisterCallback0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -335,6 +359,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputUnregisterCallback0200
      * @tc.name       : testOHPhotoOutputUnregisterCallback0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -348,6 +373,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputUnregisterCallback0300
      * @tc.name       : testOHPhotoOutputUnregisterCallback0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -361,6 +387,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputIsMirrorSupported0100
      * @tc.name       : testOHPhotoOutputIsMirrorSupported0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -373,6 +400,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputIsMirrorSupported0200
      * @tc.name       : testOHPhotoOutputIsMirrorSupported0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -386,6 +414,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputIsMirrorSupported0300
      * @tc.name       : testOHPhotoOutputIsMirrorSupported0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -399,6 +428,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputCapture0100
      * @tc.name       : testOHPhotoOutputCapture0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -412,6 +442,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputCapture0200
      * @tc.name       : testOHPhotoOutputCapture0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -425,6 +456,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputCapture0300
      * @tc.name       : testOHPhotoOutputCapture0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -438,6 +470,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputCaptureWithCaptureSetting0100
      * @tc.name       : testOHPhotoOutputCaptureWithCaptureSetting0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -458,6 +491,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputCaptureWithCaptureSetting0200
      * @tc.name       : testOHPhotoOutputCaptureWithCaptureSetting0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -478,6 +512,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputCaptureWithCaptureSetting0300
      * @tc.name       : testOHPhotoOutputCaptureWithCaptureSetting0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -498,6 +533,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputRelease0100
      * @tc.name       : testOHPhotoOutputRelease0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -511,6 +547,7 @@ export default function PhotoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPhotoOutputRelease0200
      * @tc.name       : testOHPhotoOutputRelease0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */

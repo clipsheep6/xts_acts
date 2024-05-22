@@ -1,3 +1,17 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 import cameras from 'libentry.so'
 import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
@@ -238,6 +252,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreateVideoOutput0100
      * @tc.name       : testOHCameraManagerCreateVideoOutput0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -251,6 +266,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreateVideoOutput0200
      * @tc.name       : testOHCameraManagerCreateVideoOutput0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -264,6 +280,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreateVideoOutput0300
      * @tc.name       : testOHCameraManagerCreateVideoOutput0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -277,6 +294,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreateVideoOutput0400
      * @tc.name       : testOHCameraManagerCreateVideoOutput0400
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -290,6 +308,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreateVideoOutput0500
      * @tc.name       : testOHCameraManagerCreateVideoOutput0500
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -303,6 +322,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionAddVideoOutput0100
      * @tc.name       : testOHCaptureSessionAddVideoOutput0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -318,6 +338,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionAddVideoOutput0200
      * @tc.name       : testOHCaptureSessionAddVideoOutput0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -331,6 +352,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionAddVideoOutput0300
      * @tc.name       : testOHCaptureSessionAddVideoOutput0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -344,6 +366,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputRegisterCallback0100
      * @tc.name       : testOHVideoOutputRegisterCallback0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -358,6 +381,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputRegisterCallback0200
      * @tc.name       : testOHVideoOutputRegisterCallback0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -372,6 +396,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputRegisterCallback0300
      * @tc.name       : testOHVideoOutputRegisterCallback0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -386,6 +411,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputUnregisterCallback0100
      * @tc.name       : testOHVideoOutputUnregisterCallback0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -400,6 +426,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputUnregisterCallback0200
      * @tc.name       : testOHVideoOutputUnregisterCallback0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -414,6 +441,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputUnregisterCallback0300
      * @tc.name       : testOHVideoOutputUnregisterCallback0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -428,6 +456,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputStart0100
      * @tc.name       : testOHVideoOutputStart0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -447,6 +476,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputStart0200
      * @tc.name       : testOHVideoOutputStart0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -464,6 +494,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputStart0300
      * @tc.name       : testOHVideoOutputStart0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -482,6 +513,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputStop0100
      * @tc.name       : testOHVideoOutputStop0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -501,6 +533,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputStop0200
      * @tc.name       : testOHVideoOutputStop0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -520,6 +553,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputStop0300
      * @tc.name       : testOHVideoOutputStop0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -539,6 +573,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputRelease0100
      * @tc.name       : testOHVideoOutputRelease0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -554,6 +589,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputRelease0200
      * @tc.name       : testOHVideoOutputRelease0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -569,6 +605,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHVideoOutputRelease0300
      * @tc.name       : testOHVideoOutputRelease0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -584,6 +621,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRemoveVideoOutput0100
      * @tc.name       : testOHCaptureSessionRemoveVideoOutput0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -600,6 +638,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRemoveVideoOutput0200
      * @tc.name       : testOHCaptureSessionRemoveVideoOutput0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -616,6 +655,7 @@ export default function VideoTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCaptureSessionRemoveVideoOutput0300
      * @tc.name       : testOHCaptureSessionRemoveVideoOutput0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */

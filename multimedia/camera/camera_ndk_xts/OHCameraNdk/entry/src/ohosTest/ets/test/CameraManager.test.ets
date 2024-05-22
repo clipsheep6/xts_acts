@@ -1,3 +1,18 @@
+/*
+ * Copyright (C) 2024 Huawei Device Co., Ltd.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
 import cameras from 'libentry.so'
 import image from '@ohos.multimedia.image';
@@ -117,6 +132,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraGetCameraManager0100
      * @tc.name       : testOHCameraGetCameraManager0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -129,6 +145,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraGetCameraManager0200
      * @tc.name       : testOHCameraGetCameraManager0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -141,6 +158,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerRegisterCallback0100
      * @tc.name       : testOHCameraManagerRegisterCallback0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -154,6 +172,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerRegisterCallback0200
      * @tc.name       : testOHCameraManagerRegisterCallback0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -167,6 +186,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerRegisterCallback0300
      * @tc.name       : testOHCameraManagerRegisterCallback0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -180,6 +200,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraDeleteCameraManager0100
      * @tc.name       : testOHCameraDeleteCameraManager0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -193,6 +214,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraDeleteCameraManager0200
      * @tc.name       : testOHCameraDeleteCameraManager0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -206,6 +228,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCreateCameraInputWithPositionAndType0100
      * @tc.name       : testOHCreateCameraInputWithPositionAndType0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -219,6 +242,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCreateCameraInputWithPositionAndType0200
      * @tc.name       : testOHCreateCameraInputWithPositionAndType0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -232,6 +256,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCreateCameraInputWithPositionAndType0300
      * @tc.name       : testOHCreateCameraInputWithPositionAndType0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -245,6 +270,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCreateCameraInputWithPositionAndType0400
      * @tc.name       : testOHCreateCameraInputWithPositionAndType0400
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -258,6 +284,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCreateCameraInputWithPositionAndType0500
      * @tc.name       : testOHCreateCameraInputWithPositionAndType0500
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -271,6 +298,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCreateCameraInputWithPositionAndType0600
      * @tc.name       : testOHCreateCameraInputWithPositionAndType0600
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -284,6 +312,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCreateCameraInputWithPositionAndType0700
      * @tc.name       : testOHCreateCameraInputWithPositionAndType0700
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -297,6 +326,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCreateCameraInputWithPositionAndType0800
      * @tc.name       : testOHCreateCameraInputWithPositionAndType0800
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -310,6 +340,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCreateCameraInputWithPositionAndType0900
      * @tc.name       : testOHCreateCameraInputWithPositionAndType0900
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -323,6 +354,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreateCaptureSession0100
      * @tc.name       : testOHCameraManagerCreateCaptureSession0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -336,6 +368,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreateCaptureSession0200
      * @tc.name       : testOHCameraManagerCreateCaptureSession0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -349,6 +382,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreateCaptureSession0300
      * @tc.name       : testOHCameraManagerCreateCaptureSession0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -362,6 +396,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerGetSupportedCameras0100
      * @tc.name       : testOHCameraManagerGetSupportedCameras0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -378,6 +413,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerGetSupportedCameras0200
      * @tc.name       : testOHCameraManagerGetSupportedCameras0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -394,6 +430,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerGetSupportedCameras0300
      * @tc.name       : testOHCameraManagerGetSupportedCameras0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -410,6 +447,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerGetSupportedCameras0400
      * @tc.name       : testOHCameraManagerGetSupportedCameras0400
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -426,6 +464,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerDeleteSupportedCameras0100
      * @tc.name       : testOHCameraManagerDeleteSupportedCameras0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -440,6 +479,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerDeleteSupportedCameras0200
      * @tc.name       : testOHCameraManagerDeleteSupportedCameras0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -454,6 +494,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerDeleteSupportedCameras0300
      * @tc.name       : testOHCameraManagerDeleteSupportedCameras0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -468,6 +509,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerDeleteSupportedCameras0400
      * @tc.name       : testOHCameraManagerDeleteSupportedCameras0400
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -482,6 +524,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreateCameraInput0100
      * @tc.name       : testOHCameraManagerCreateCameraInput0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -496,6 +539,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreateCameraInput0200
      * @tc.name       : testOHCameraManagerCreateCameraInput0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -510,6 +554,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreateCameraInput0300
      * @tc.name       : testOHCameraManagerCreateCameraInput0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -524,6 +569,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreateCameraInput0400
      * @tc.name       : testOHCameraManagerCreateCameraInput0400
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -538,6 +584,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHGetSupportedCameraOutputCapability0100
      * @tc.name       : testOHGetSupportedCameraOutputCapability0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -552,6 +599,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHGetSupportedCameraOutputCapability0200
      * @tc.name       : testOHGetSupportedCameraOutputCapability0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -566,6 +614,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHGetSupportedCameraOutputCapability0300
      * @tc.name       : testOHGetSupportedCameraOutputCapability0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -580,6 +629,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHGetSupportedCameraOutputCapability0400
      * @tc.name       : testOHGetSupportedCameraOutputCapability0400
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -594,6 +644,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerDeleteSupportedCameraOutputCapability0100
      * @tc.name       : testOHCameraManagerDeleteSupportedCameraOutputCapability0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -609,6 +660,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerDeleteSupportedCameraOutputCapability0200
      * @tc.name       : testOHCameraManagerDeleteSupportedCameraOutputCapability0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -624,6 +676,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerDeleteSupportedCameraOutputCapability0300
      * @tc.name       : testOHCameraManagerDeleteSupportedCameraOutputCapability0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -639,6 +692,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePreviewOutput0100
      * @tc.name       : testOHCameraManagerCreatePreviewOutput0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -654,6 +708,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePreviewOutput0200
      * @tc.name       : testOHCameraManagerCreatePreviewOutput0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -669,6 +724,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePreviewOutput0300
      * @tc.name       : testOHCameraManagerCreatePreviewOutput0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -684,6 +740,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePreviewOutput0400
      * @tc.name       : testOHCameraManagerCreatePreviewOutput0400
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -699,6 +756,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePreviewOutput0500
      * @tc.name       : testOHCameraManagerCreatePreviewOutput0500
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -714,6 +772,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputRegisterCallback0100
      * @tc.name       : testOHPreviewOutputRegisterCallback0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -730,6 +789,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputRegisterCallback0200
      * @tc.name       : testOHPreviewOutputRegisterCallback0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -746,6 +806,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHPreviewOutputRegisterCallback0300
      * @tc.name       : testOHPreviewOutputRegisterCallback0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -762,6 +823,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerUnRegisterCallback0100
      * @tc.name       : testOHCameraManagerUnRegisterCallback0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -778,6 +840,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerUnRegisterCallback0200
      * @tc.name       : testOHCameraManagerUnRegisterCallback0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -794,6 +857,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerUnRegisterCallback0300
      * @tc.name       : testOHCameraManagerUnRegisterCallback0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -810,6 +874,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePhotoOutput0100
      * @tc.name       : testOHCameraManagerCreatePhotoOutput0100
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -825,6 +890,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePhotoOutput0200
      * @tc.name       : testOHCameraManagerCreatePhotoOutput0200
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -840,6 +906,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePhotoOutput0300
      * @tc.name       : testOHCameraManagerCreatePhotoOutput0300
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -855,6 +922,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePhotoOutput0400
      * @tc.name       : testOHCameraManagerCreatePhotoOutput0400
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
@@ -870,6 +938,7 @@ export default function CameraManagerTest() {
      * @tc.number     : SUB_MULTIMEIDA_OHCAMWEANDK_OHCameraManagerCreatePhotoOutput0500
      * @tc.name       : testOHCameraManagerCreatePhotoOutput0500
      * @tc.size       : MediumTest
+     * @tc.desc       : The total duration of obtaining media files, accurate to milliseconds.
      * @tc.type       : Function
      * @tc.level      : Level 3
      */
