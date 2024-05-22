@@ -23,7 +23,7 @@ import hilog from '@ohos.hilog';
 export default function WantAgentTriggerNormal() {
   describe('WantAgentTriggerNormalTest', () => {
     /*
-     * @tc.number  : SUB_Ability_AbilityRuntime_wantAgent_trigger_0400
+     * @tc.number  : AbilityRuntime wantAgent trigger 0400
      * @tc.name    : SUB_Ability_AbilityRuntime_wantAgent_trigger_0400.
      * @tc.desc    : Implicitly starting UIAbility with StartOptions.
      * @tc.size    : MediumTest
