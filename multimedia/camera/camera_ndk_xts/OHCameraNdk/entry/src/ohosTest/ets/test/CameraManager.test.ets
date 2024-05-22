@@ -65,7 +65,6 @@ async function getPhotoReceiverSurface() {
   receiver = image.createImageReceiver({ width: 640, height: 480 }, 4, 8);
   if (receiver !== undefined) {
     console.log(TAG + '创建ImageReceiver实例 successfully');
-    //用于获取一个surface id供Camera或其他组件使用。使用callback返回结果。
     mPhotoSurface = await receiver.getReceivingSurfaceId();
     console.log(TAG + 'Photo received id: ' + JSON.stringify(mPhotoSurface));
   } else {
