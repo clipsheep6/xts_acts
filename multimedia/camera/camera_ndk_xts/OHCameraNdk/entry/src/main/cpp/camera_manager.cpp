@@ -59,8 +59,7 @@ NDKCamera::NDKCamera(char *str, int index)
       ret_(CAMERA_OK) {
     valid_ = false;
     // 创建CameraManager实例。
-    Camera_ErrorCode ret;
-    ret = OH_Camera_GetCameraManager(&cameraManager_);
+    Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager_);
 
     if (cameraManager_ == nullptr || ret != CAMERA_OK) {
         LOG("创建CameraManager实例 失败. %{public}d", ret)
@@ -734,7 +733,6 @@ Camera_ErrorCode NDKCamera::SessionSetFocusPoint(double point_x, double point_y,
     if (useCaseCode == ParameterOk) {
         ret_ = OH_CaptureSession_SetFocusPoint(captureSession_, point);
     } else if (useCaseCode == Parameter2Error) {
-        //point.x = 100000000000000.00;
         return CAMERA_INVALID_ARGUMENT;
         ret_ = OH_CaptureSession_SetFocusPoint(captureSession_, point);
     } else {
