@@ -46,6 +46,14 @@ export default function colorFilterTest() {
       // This API supports only one parameter: clear action function.
     })
 
+    /**
+     * @tc.number    : ColorFilter_test_createBlendModeColorFilter
+     * @tc.name      : ColorFilter_test_createBlendModeColorFilter
+     * @tc.desc      : 使用指定的颜色和混合模式创建颜色滤波器。
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
     it('ColorFilter_test_createBlendModeColorFilter', DEFAULT, () => {
       try {
         const color: common2D.Color = {
@@ -57,6 +65,14 @@ export default function colorFilterTest() {
       }
     })
 
+    /**
+     * @tc.number    : ColorFilter_test_createBlendModeColorFilter_param_null
+     * @tc.name      : ColorFilter_test_createBlendModeColorFilter_param_null
+     * @tc.desc      : 使用指定的颜色和混合模式创建颜色滤波器。（参数为空）
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
     it("ColorFilter_test_createBlendModeColorFilter_param_null", DEFAULT, () => {
       try {
         // 必填参数是null
@@ -83,6 +99,14 @@ export default function colorFilterTest() {
       }
     })
 
+    /**
+     * @tc.number    : ColorFilter_test_createBlendModeColorFilter_param_invalid
+     * @tc.name      : ColorFilter_test_createBlendModeColorFilter_param_invalid
+     * @tc.desc      : 使用指定的颜色和混合模式创建颜色滤波器。（参数非法）
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
     it("ColorFilter_test_createBlendModeColorFilter_param_invalid", DEFAULT, () => {
       try {
         // 错误类型

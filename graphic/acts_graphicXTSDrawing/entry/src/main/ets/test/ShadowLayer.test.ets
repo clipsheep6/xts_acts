@@ -20,6 +20,7 @@ import image from '@ohos.multimedia.image';
 export default function shadowLayerTest() {
   describe('ShadowLayer_test', () => {
     let pixel: image.PixelMap;
+    const DEFAULT = 0;
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async () => {
       const color: ArrayBuffer = new ArrayBuffer(40000); // 96为需要创建的像素buffer大小，取值为：height * width *4
@@ -45,7 +46,15 @@ export default function shadowLayerTest() {
       // This API supports only one parameter: clear action function.
     })
 
-    it('ShadowLayer_test_create', 0, () => {
+    /**
+     * @tc.number    : ShadowLayer_test_create
+     * @tc.name      : ShadowLayer_test_create
+     * @tc.desc      : 用于创建一个阴影层对象。
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
+    it('ShadowLayer_test_create', DEFAULT, () => {
       try {
         let color: common2D.Color = {
           alpha: 0xFF, red: 0x00, green: 0xFF, blue: 0x00
@@ -56,7 +65,15 @@ export default function shadowLayerTest() {
       }
     })
 
-    it('ShadowLayer_test_create_param_null', 0, () => {
+    /**
+     * @tc.number    : ShadowLayer_test_create_param_null
+     * @tc.name      : ShadowLayer_test_create_param_null
+     * @tc.desc      : 用于创建一个阴影层对象。（参数是空）
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
+    it('ShadowLayer_test_create_param_null', DEFAULT, () => {
       try {
         // 必填参数是null
         let color: common2D.Color = {
@@ -68,7 +85,15 @@ export default function shadowLayerTest() {
       }
     })
 
-    it("ShadowLayer_test_create_param_invalid", 0, () => {
+    /**
+     * @tc.number    : ShadowLayer_test_create_param_invalid
+     * @tc.name      : ShadowLayer_test_create_param_invalid
+     * @tc.desc      : 用于创建一个阴影层对象。（参数非法）
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
+    it("ShadowLayer_test_create_param_invalid", DEFAULT, () => {
       try {
         // 参数类型不对
         let color: Record<string, string> = {};

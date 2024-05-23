@@ -39,6 +39,15 @@ export default function samplingOptionsTest() {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
+
+    /**
+     * @tc.number    : SamplingOptions_test_constructor
+     * @tc.name      : SamplingOptions_test_constructor
+     * @tc.desc      : SamplingOptions的构造函数。
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
     it('SamplingOptions_test_constructor', DEFAULT, () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');

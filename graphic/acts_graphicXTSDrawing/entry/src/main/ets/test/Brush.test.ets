@@ -46,6 +46,14 @@ export default function brushTest() {
       // This API supports only one parameter: clear action function.
     })
 
+    /**
+     * @tc.number    : Brush_test_setMaskFilter
+     * @tc.name      : Brush_test_setMaskFilter
+     * @tc.desc      : 用于给画刷添加额外的蒙版滤镜。
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
     it('Brush_test_setMaskFilter', DEFAULT, () => {
       try {
         const brush = new drawing.Brush();
@@ -56,6 +64,14 @@ export default function brushTest() {
       }
     })
 
+    /**
+     * @tc.number    : Brush_test_setMaskFilter_param_null
+     * @tc.name      : Brush_test_setMaskFilter_param_null
+     * @tc.desc      : 用于给画刷添加额外的蒙版滤镜(参数为空)。
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
     it('Brush_test_setMaskFilter_param_null', DEFAULT, () => {
       try {
         const brush = new drawing.Brush();
@@ -65,6 +81,14 @@ export default function brushTest() {
       }
     })
 
+    /**
+     * @tc.number    : Brush_test_setShadowLayer
+     * @tc.name      : Brush_test_setShadowLayer
+     * @tc.desc      : 设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效。
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
     it('Brush_test_setShadowLayer', DEFAULT, () => {
       try {
         let color: common2D.Color = {
@@ -79,6 +103,14 @@ export default function brushTest() {
     })
 
 
+    /**
+     * @tc.number    : Brush_test_setShadowLayer_param_null
+     * @tc.name      : Brush_test_setShadowLayer_param_null
+     * @tc.desc      : 设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效(参数为空)。
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
     it('Brush_test_setShadowLayer_param_null', DEFAULT, () => {
       try {
         const brush = new drawing.Brush();

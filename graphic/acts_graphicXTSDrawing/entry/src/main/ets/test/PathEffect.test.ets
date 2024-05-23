@@ -46,6 +46,14 @@ export default function pathEffectTest() {
       // This API supports only one parameter: clear action function.
     })
 
+    /**
+     * @tc.number    : PathEffect_test_createDashPathEffect
+     * @tc.name      : PathEffect_test_createDashPathEffect
+     * @tc.desc      : 用于创建将路径变为虚线的路径效果对象。
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
     it('PathEffect_test_createDashPathEffect', DEFAULT, () => {
       try {
         let intervals = [10, 5];
@@ -55,6 +63,14 @@ export default function pathEffectTest() {
       }
     })
 
+    /**
+     * @tc.number    : PathEffect_test_createDashPathEffect_param_invalid
+     * @tc.name      : PathEffect_test_createDashPathEffect_param_invalid
+     * @tc.desc      : 用于创建将路径变为虚线的路径效果对象。（参数非法）
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
     it("PathEffect_test_createDashPathEffect_param_invalid", DEFAULT, () => {
       try {
         // 异常参数
@@ -65,6 +81,14 @@ export default function pathEffectTest() {
       }
     })
 
+    /**
+     * @tc.number    : PathEffect_test_createDashPathEffect_param_null
+     * @tc.name      : PathEffect_test_createDashPathEffect_param_null
+     * @tc.desc      : 用于创建将路径变为虚线的路径效果对象。（参数为空）
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
     it("PathEffect_test_createDashPathEffect_param_null", DEFAULT, () => {
       try {
         // 必填参数是null

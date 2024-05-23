@@ -46,6 +46,14 @@ export default function maskFilterTest() {
       // This API supports only one parameter: clear action function.
     })
 
+    /**
+     * @tc.number    : MaskFilter_test_createBlurMaskFilter
+     * @tc.name      : MaskFilter_test_createBlurMaskFilter
+     * @tc.desc      : 用于创建具有模糊效果的蒙版滤镜。
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
     it('MaskFilter_test_createBlurMaskFilter', DEFAULT, () => {
       try {
         drawing.MaskFilter.createBlurMaskFilter(drawing.BlurType.OUTER, 10);
@@ -54,6 +62,14 @@ export default function maskFilterTest() {
       }
     })
 
+    /**
+     * @tc.number    : MaskFilter_test_createBlurMaskFilter_param_null
+     * @tc.name      : MaskFilter_test_createBlurMaskFilter_param_null
+     * @tc.desc      : 用于创建具有模糊效果的蒙版滤镜。（参数为空）
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
     it("MaskFilter_test_createBlurMaskFilter_param_null", DEFAULT, () => {
       try {
         // 必填参数是null
@@ -63,6 +79,14 @@ export default function maskFilterTest() {
       }
     })
 
+    /**
+     * @tc.number    : MaskFilter_test_createBlurMaskFilter_param_invalid
+     * @tc.name      : MaskFilter_test_createBlurMaskFilter_param_invalid
+     * @tc.desc      : 用于创建具有模糊效果的蒙版滤镜。（参数非法）
+     * @tc.size      : MediumTest
+     * @tc.type      : Function
+     * @tc.level     : Level2
+     */
     it("MaskFilter_test_createBlurMaskFilter_param_invalid", DEFAULT, () => {
       try {
         // 错误类型
