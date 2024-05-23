@@ -354,7 +354,7 @@ Camera_ErrorCode NDKCamera::CameraInputClose(int useCaseCode)
 }
 Camera_ErrorCode NDKCamera::CameraInputRelease(int useCaseCode)
 {
-   if (useCaseCode == ParameterOk) {
+    if (useCaseCode == ParameterOk) {
         ret_ = OH_CameraInput_Release(cameraInput_);
     } else {
         ret_ = OH_CameraInput_Release(nullptr);
@@ -935,7 +935,7 @@ Camera_ErrorCode NDKCamera::VideoOutputStart(int useCaseCode)
 {
     if (useCaseCode == ParameterOk) {
         ret_ = OH_VideoOutput_Start(videoOutput_);
-    }else {
+    } else {
         ret_ = OH_VideoOutput_Start(nullptr);
     }
     return ret_;
@@ -1071,7 +1071,7 @@ Camera_ErrorCode NDKCamera::PhotoOutputCapture(int useCaseCode)
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::TakePictureWithPhotoSettings(Camera_PhotoCaptureSetting photoSetting,int useCaseCode) 
+Camera_ErrorCode NDKCamera::TakePictureWithPhotoSettings(Camera_PhotoCaptureSetting photoSetting, int useCaseCode) 
 {
     if (useCaseCode == ParameterOk) {
         ret_ = OH_PhotoOutput_Capture_WithCaptureSetting(photoOutput_, photoSetting);

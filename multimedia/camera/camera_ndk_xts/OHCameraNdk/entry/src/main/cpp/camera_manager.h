@@ -23,7 +23,7 @@
 #define CAMERA_LOG_TAG "CAMERA_NDK"
 #define CAMERA_LOG_DOMAIN 0x00000
 #define LOG(fmt, ...)                                                                                                  \
-    (void)OH_LOG_Print(LOG_APP, LOG_DEBUG, CAMERA_LOG_DOMAIN, CAMERA_LOG_TAG, fmt, ##__VA_ARGS__);
+    (void)OH_LOG_Print(LOG_APP, LOG_DEBUG, CAMERA_LOG_DOMAIN, CAMERA_LOG_TAG, fmt, ##__VA_ARGS__)
 
 typedef enum CameraCallbackCode {
     CameraInput_Status = 1,
@@ -76,7 +76,6 @@ public:
     Camera_OutputCapability *cameraOutputCapability_; // 特定相机和特定模式支持的输出功能
     // callback
     static CameraCallbackCode cameraCallbackCode_; // 回调码
-
 
     Camera_ErrorCode GetSupportedCameras(int useCaseCode);          // 获取支持相机的描述
     Camera_ErrorCode CreatePreviewOutput(int useCaseCode);          // 创建预览输出实例
