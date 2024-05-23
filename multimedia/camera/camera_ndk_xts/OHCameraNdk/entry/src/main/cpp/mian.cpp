@@ -19,10 +19,10 @@
 
 
 static NDKCamera *ndkCamera_ = nullptr;
-static int NUMBER_1 = 1;
-static int NUMBER_2 = 2;
-static int NUMBER_3 = 3;
-static int NUMBER_4 = 4;
+const static int NUMBER_1 = 1;
+const static int NUMBER_2 = 2;
+const static int NUMBER_3 = 3;
+const static int NUMBER_4 = 4;
 
 static void CameraManagerStatusCallback(Camera_Manager *cameraManager, Camera_StatusInfo *status)
 {
@@ -67,19 +67,19 @@ static napi_value CameraGetCameraManager(napi_env env, napi_callback_info info)
 
     int32_t index;
     napi_get_value_int32(env, args[0], &index);
-    LOG("创建CameraManager实例")
+    LOG("创建CameraManager实例");
     // 创建CameraManager实例。
     Camera_Manager *cameraManager_;
     Camera_ErrorCode code;
-    if (index == ParameterOk) {
+    if (index == Parameter_Ok) {
         code = OH_Camera_GetCameraManager(&cameraManager_);
     } else {
         // 传null代码无法继续执行
         napi_create_int32(env, -1, &result);
         return result;
-        LOG("创建CameraManager实例 1111")
+        LOG("创建CameraManager实例 1111");
         code = OH_Camera_GetCameraManager(nullptr);
-        LOG("创建CameraManager实例 22222")
+        LOG("创建CameraManager实例 22222");
     }
 
     napi_create_int32(env, code, &result);
@@ -723,7 +723,7 @@ static napi_value OHCaptureSessionSetExposureBias(napi_env env, napi_callback_in
     int32_t index;
     napi_get_value_int32(env, args[1], &index);
     
-    Camera_ErrorCode ret = ndkCamera_->SessionSetExposureBias(exposureBias, index);
+    Camera_ErrorCode ret = ndkCamera_->SessionSetExposureBias(exposureBias,index);
     napi_create_int32(env, ret, &result);
     return result;
 }
@@ -865,7 +865,7 @@ static napi_value OHCaptureSessionSetFocusPoint(napi_env env, napi_callback_info
     int32_t index;
     napi_get_value_int32(env, args[1], &index);
     
-    Camera_ErrorCode ret = ndkCamera_->SessionSetFocusPoint(x, y, index);
+    Camera_ErrorCode ret = ndkCamera_->SessionSetFocusPoint(x, y,index);
     napi_create_int32(env, ret, &result);
     return result;
 }
@@ -931,7 +931,7 @@ static napi_value OHCaptureSessionSetZoomRatio(napi_env env, napi_callback_info 
     int32_t index;
     napi_get_value_int32(env, args[1], &index);
 
-    Camera_ErrorCode code = ndkCamera_->SessionSetZoomRatio(zoomRatio, index);
+    Camera_ErrorCode code = ndkCamera_->SessionSetZoomRatio(zoomRatio,index);
 
     napi_create_int32(env, code, &result);
     return result;
@@ -1365,7 +1365,7 @@ static napi_value OHPhotoOutputCaptureWithCaptureSetting(napi_env env, napi_call
     int32_t index;
     napi_get_value_int32(env, args[1], &index);
     napi_value result;
-    Camera_ErrorCode ret = ndkCamera_->TakePictureWithPhotoSettings(photoSetting, index);
+    Camera_ErrorCode ret = ndkCamera_->TakePictureWithPhotoSettings(photoSetting,index);
     napi_create_int32(env, ret, &result);
     return result;
 }
@@ -1417,7 +1417,7 @@ static napi_value Init(napi_env env, napi_value exports)
         {"oHCameraManagerCreatePhotoOutput", nullptr, OHCameraManagerCreatePhotoOutput, nullptr, nullptr, nullptr,
          napi_default, nullptr},
         {"oHCameraManagerCreateMetadataOutput", nullptr, OHCameraManagerCreateMetadataOutput, nullptr, nullptr,
-         nullptr, napi_default, nullptr},
+         nullptr,napi_default, nullptr},
         {"oHCameraInputOpen", nullptr, OHCameraInputOpen, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHCameraInputClose", nullptr, OHCameraInputClose, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHCameraInputRelease", nullptr, OHCameraInputRelease, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -1485,7 +1485,7 @@ static napi_value Init(napi_env env, napi_value exports)
          napi_default, nullptr},
         {"oHCaptureSessionSetMeteringPoint", nullptr, OHCaptureSessionSetMeteringPoint, nullptr, nullptr,
         nullptr, napi_default, nullptr},
-        {"oHCaptureSessionIsVideoStabilizationModeSupported", nullptr,
+        {"oHCaptureSessionIsVideoStabilizationModeSupported", nullptr, 
         OHCaptureSessionIsVideoStabilizationModeSupported, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHCaptureSessionGetVideoStabilizationMode", nullptr, OHCaptureSessionGetVideoStabilizationMode,
         nullptr, nullptr, nullptr, napi_default, nullptr},

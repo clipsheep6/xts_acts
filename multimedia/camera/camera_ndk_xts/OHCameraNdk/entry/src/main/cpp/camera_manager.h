@@ -4,7 +4,7 @@
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *     http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -89,7 +89,7 @@ public:
     Camera_ErrorCode CameraInputRelease(int useCaseCode);                                 // 释放相机输入实例。
     Camera_ErrorCode CameraManagerDeleteSupportedCameraOutputCapability(int useCaseCode); // 删除支持的输出功能。
     Camera_ErrorCode CreateCameraInputWithPositionAndType(Camera_Position position, Camera_Type type,
-        int useCaseCode); // 创建具有位置和类型的相机输入实例。
+                                                          int useCaseCode); // 创建具有位置和类型的相机输入实例。
     Camera_ErrorCode CreatePhotoOutput(char *photoSurfaceId, int useCaseCode);    // 创建一个拍照输出实例。
     Camera_ErrorCode CreateVideoOutput(char *videoId, int useCaseCode);           // 创建一个录像输出实例。
     Camera_ErrorCode AddVideoOutput(int useCaseCode);                             // 添加录像输出。
@@ -116,7 +116,7 @@ public:
     Camera_ErrorCode SessionIsFlashModeSupported(uint32_t mode, int useCaseCode); // 检测闪光灯模式是否支持
     Camera_ErrorCode SessionSetFlashMode(uint32_t mode, int useCaseCode);         // 设置闪光灯模式
     Camera_ErrorCode SessionIsVideoStabilizationModeSupported(uint32_t mode,
-        int useCaseCode); // 检查是否支持指定的录像防抖模式
+                                                              int useCaseCode); // 检查是否支持指定的录像防抖模式
     Camera_ErrorCode SessionIsFocusModeSupported(uint32_t mode, int useCaseCode); // 检查是否支持指定的聚焦模式
     Camera_ErrorCode SessionSetVideoStabilizationMode(uint32_t mode, int useCaseCode); // 设置录像防抖模式
     Camera_ErrorCode SessionHasFlash(int useCaseCode);                                 // 检测是否有闪关灯
@@ -139,7 +139,7 @@ public:
     Camera_ErrorCode PhotoOutputCapture(int useCaseCode); // 拍摄照片
     Camera_ErrorCode PhotoOutputRelease(int useCaseCode); // 释放拍照输出
     Camera_ErrorCode TakePictureWithPhotoSettings(Camera_PhotoCaptureSetting photoSetting,
-        int useCaseCode); // 使用捕获设置捕获拍照
+                                                  int useCaseCode); // 使用捕获设置捕获拍照
     // RegisterCallback
     Camera_ErrorCode CameraManagerRegisterCallback(int useCaseCode);  // 注册相机状态更改事件回调。
     Camera_ErrorCode PreviewOutputRegisterCallback(int useCaseCode);  // 注册预览输出更改事件回调。

@@ -61,7 +61,7 @@ NDKCamera::NDKCamera(char *str, int index)
     // 创建CameraManager实例。
     Camera_ErrorCode ret = OH_Camera_GetCameraManager(&cameraManager_);
     if (cameraManager_ == nullptr || ret != CAMERA_OK) {
-        LOG("创建CameraManager实例 失败. %{public}d", ret)
+        LOG("创建CameraManager实例 失败. %{public}d", ret);
     }
     CameraManagerRegisterCallback(index);
     valid_ = true;
@@ -72,29 +72,29 @@ NDKCamera::~NDKCamera()
 
     Camera_ErrorCode ret = OH_CaptureSession_Release(captureSession_);
     if (ret != CAMERA_OK) {
-        LOG("释放捕获会话 失败. %{public}d", ret)
+        LOG("释放捕获会话 失败. %{public}d", ret);
     }
 
     if (cameraManager_) {
         ret = OH_CameraManager_DeleteSupportedCameras(cameraManager_, cameras_, size_);
         if (ret != CAMERA_OK) {
-            LOG("删除支持的相机成功. %{public}d", ret)
+            LOG("删除支持的相机成功. %{public}d", ret);
         } else {
-            LOG("删除支持的相机失败. %{public}d", ret)
+            LOG("删除支持的相机失败. %{public}d", ret);
         }
 
         ret = OH_CameraManager_DeleteSupportedCameraOutputCapability(cameraManager_, cameraOutputCapability_);
         if (ret != CAMERA_OK) {
-            LOG("删除支持的输出功能成功. %{public}d", ret)
+            LOG("删除支持的输出功能成功. %{public}d", ret);
         } else {
-            LOG("删除支持的输出功能失败. %{public}d", ret)
+            LOG("删除支持的输出功能失败. %{public}d", ret);
         }
 
         ret = OH_Camera_DeleteCameraManager(cameraManager_);
         if (ret != CAMERA_OK) {
-            LOG("删除CameraManager实例成功. %{public}d", ret)
+            LOG("删除CameraManager实例成功. %{public}d", ret);
         } else {
-            LOG("删除CameraManager实例失败. %{public}d", ret)
+            LOG("删除CameraManager实例失败. %{public}d", ret);
         }
         cameraManager_ = nullptr;
     }
@@ -128,9 +128,9 @@ Camera_ErrorCode NDKCamera::CameraManagerDeleteSupportedCameras(int useCaseCode)
         ret_ = OH_CameraManager_DeleteSupportedCameras(nullptr, cameras_, size_);
     }
     if (ret_ != CAMERA_OK) {
-        LOG("删除支持的相机成功. %{public}d", ret_)
+        LOG("删除支持的相机成功. %{public}d", ret_);
     } else {
-        LOG("删除支持的相机失败. %{public}d", ret_)
+        LOG("删除支持的相机失败. %{public}d", ret_);
     }
     return ret_;
 }
@@ -498,7 +498,7 @@ Camera_ErrorCode NDKCamera::SessionGetExposureBias(int useCaseCode)
 {
     if (useCaseCode == Parameter_Ok) {
         ret_ = OH_CaptureSession_GetExposureBias(captureSession_, &exposureBias_);
-        LOG("获取当前曝光补偿 %{public}f", &exposureBias_)
+        LOG("获取当前曝光补偿 %{public}f", &exposureBias_);
     } else if (useCaseCode == Parameter2_Error) {
         ret_ = OH_CaptureSession_GetExposureBias(captureSession_, nullptr);
     } else {
@@ -568,10 +568,10 @@ Camera_ErrorCode NDKCamera::SessionGetExposureBiasRange(int useCaseCode)
 }
 Camera_ErrorCode NDKCamera::IsCameraMuted(int useCaseCode)
 {
-    LOG("确定相机是否静音")
+    LOG("确定相机是否静音");
     if (useCaseCode == Parameter_Ok) {
         ret_ = OH_CameraManager_IsCameraMuted(cameraManager_, isCameraMuted_);
-        LOG("确定相机是否静音 %{public}d", ret_)
+        LOG("确定相机是否静音 %{public}d", ret_);
     } else if (useCaseCode == Parameter2_Error) {
         ret_ = OH_CameraManager_IsCameraMuted(cameraManager_, nullptr);
     } else {
@@ -595,12 +595,12 @@ Camera_ErrorCode NDKCamera::SessionIsExposureModeSupported(uint32_t mode, int us
     Camera_ExposureMode exposureMode = static_cast<Camera_ExposureMode>(mode);
     if (useCaseCode == Parameter_Ok) {
         ret_ = OH_CaptureSession_IsExposureModeSupported(captureSession_, exposureMode, &isExposureMode_);
-        LOG("检查是否支持指定的曝光模式 %{public}d 曝光:%{public}d", exposureMode, isExposureMode_)
+        LOG("检查是否支持指定的曝光模式 %{public}d 曝光:%{public}d", exposureMode, isExposureMode_);
     } else if (useCaseCode == Parameter3_Error) {
         ret_ = OH_CaptureSession_IsExposureModeSupported(captureSession_, exposureMode, nullptr);
     } else if (useCaseCode == Parameter2_Error) {
         return CAMERA_INVALID_ARGUMENT;
-        LOG("确定相机是否静音 %{public}d", exposureMode)
+        LOG("确定相机是否静音 %{public}d", exposureMode);
         ret_ = OH_CaptureSession_IsExposureModeSupported(captureSession_, exposureMode, &isExposureMode_);
     } else {
         ret_ = OH_CaptureSession_IsExposureModeSupported(nullptr, exposureMode, &isExposureMode_);
@@ -623,7 +623,7 @@ Camera_ErrorCode NDKCamera::SessionSetExposureMode(uint32_t mode, int useCaseCod
 Camera_ErrorCode NDKCamera::SessionSetExposureBias(float exposureBias, int useCaseCode)
 {
     ret_ = OH_CaptureSession_GetExposureBiasRange(captureSession_, &minExposureBias_, &maxExposureBias_, &step_);
-    LOG("最小曝光 %{public}.2f 最大曝光%{public}.2f", minExposureBias_, maxExposureBias_)
+    LOG("最小曝光 %{public}.2f 最大曝光%{public}.2f", minExposureBias_, maxExposureBias_);
     if (useCaseCode == Parameter_Ok) {
         ret_ = OH_CaptureSession_SetExposureBias(captureSession_, exposureBias);
     } else if (useCaseCode == Parameter2_Error) {
@@ -760,7 +760,7 @@ Camera_ErrorCode NDKCamera::SessionGetZoomRatioRange(int useCaseCode)
 {
     if (useCaseCode == Parameter_Ok) {
         ret_ = OH_CaptureSession_GetZoomRatioRange(captureSession_, &minZoom_, &maxZoom_);
-        LOG("最小缩放 %{public}.2f 最大缩放%{public}.2f", minZoom_, maxZoom_)
+        LOG("最小缩放 %{public}.2f 最大缩放%{public}.2f", minZoom_, maxZoom_);
     } else if (useCaseCode == Parameter2_Error) {
         ret_ = OH_CaptureSession_GetZoomRatioRange(captureSession_, &minZoom_, nullptr);
     } else if (useCaseCode == Parameter2_Error) {
@@ -770,7 +770,7 @@ Camera_ErrorCode NDKCamera::SessionGetZoomRatioRange(int useCaseCode)
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::SessionSetZoomRatio(float zoom, int useCaseCode)
+Camera_ErrorCode NDKCamera::SessionSetZoomRatio(float zoom,int useCaseCode)
 {
     if (useCaseCode == Parameter_Ok) {
         ret_ = OH_CaptureSession_SetZoomRatio(captureSession_, zoom);
@@ -781,7 +781,7 @@ Camera_ErrorCode NDKCamera::SessionSetZoomRatio(float zoom, int useCaseCode)
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::SessionSetMeteringPoint(double point_x, double point_y, int useCaseCode)
+Camera_ErrorCode NDKCamera::SessionSetMeteringPoint(double point_x, double point_y,int useCaseCode)
 {
     Camera_Point point;
     point.x = point_x;
@@ -795,7 +795,7 @@ Camera_ErrorCode NDKCamera::SessionSetMeteringPoint(double point_x, double point
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::SessionIsVideoStabilizationModeSupported(uint32_t mode, int useCaseCode)
+Camera_ErrorCode NDKCamera::SessionIsVideoStabilizationModeSupported(uint32_t mode,int useCaseCode)
 {
     Camera_VideoStabilizationMode videoMode = static_cast<Camera_VideoStabilizationMode>(mode);
     if (useCaseCode == Parameter_Ok) {
@@ -821,7 +821,7 @@ Camera_ErrorCode NDKCamera::SessionGetVideoStabilizationMode(int useCaseCode)
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::SessionSetVideoStabilizationMode(uint32_t mode, int useCaseCode)
+Camera_ErrorCode NDKCamera::SessionSetVideoStabilizationMode(uint32_t mode,int useCaseCode)
 {
     Camera_VideoStabilizationMode videoMode = static_cast<Camera_VideoStabilizationMode>(mode);
     if (useCaseCode == Parameter_Ok) {
@@ -868,7 +868,7 @@ Camera_ErrorCode NDKCamera::AddVideoOutput(int useCaseCode)
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::CreateVideoOutput(char *videoId, int useCaseCode)
+Camera_ErrorCode NDKCamera::CreateVideoOutput(char *videoId,int useCaseCode)
 {
     videoProfile_ = cameraOutputCapability_->videoProfiles[0];
     
