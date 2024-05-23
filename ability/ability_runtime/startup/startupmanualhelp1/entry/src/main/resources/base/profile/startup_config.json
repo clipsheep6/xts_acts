@@ -3,6 +3,7 @@
     {
       "name": "Sample_001",
       "srcEntry": "./ets/startup/Sample_001.ets",
+      "runOnThread": "taskpool",
       "excludeFromAutoStart": true
     },
     {
@@ -11,6 +12,7 @@
       "dependencies": [
         "Sample_003"
       ],
+      "runOnThread": "taskpool",
       "excludeFromAutoStart": true
     },
     {
@@ -19,6 +21,7 @@
       "dependencies": [
         "Sample_001"
       ],
+      "runOnThread": "taskpool",
       "excludeFromAutoStart": true
     },
     {
