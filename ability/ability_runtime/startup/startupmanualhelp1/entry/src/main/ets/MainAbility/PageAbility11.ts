@@ -173,6 +173,19 @@ export default class PageAbility11 extends UIAbility {
         }
         console.info("StartupTest PageAbility11 apiResult = " + JSON.stringify(apiResult));
         this.pushMsg("StartupTest PageAbility11 apiResult = " + JSON.stringify(apiResult));
+        this.optionApi(10);
+      }
+      if (type == 10) {
+        try {
+          startupManager.removeAllStartupTaskResults();
+          apiResult.push(true);
+        }catch (error) {
+          console.info("removeAllStartupTaskResults，StartupTest PageAbility11 removeStartupTaskResult ");
+          this.pushMsg("removeAllStartupTaskResults，StartupTest PageAbility11 removeStartupTaskResult");
+          apiResult.push(false);
+        }
+        console.info("StartupTest PageAbility11 apiResult = " + JSON.stringify(apiResult));
+        this.pushMsg("StartupTest PageAbility11 apiResult = " + JSON.stringify(apiResult));
         if (!keepAlive) {
           clearTimeout(timeOutNumber);
           uiContext.terminateSelfWithResult({

@@ -793,6 +793,7 @@ export default function abilityTest() {
             expect(apiResult[7]).assertFalse()
             expect(apiResult[8]).assertFalse()
             expect(apiResult[9]).assertFalse()
+            expect(apiResult[10]).assertTrue()
             done();
           })
       } catch (err) {
