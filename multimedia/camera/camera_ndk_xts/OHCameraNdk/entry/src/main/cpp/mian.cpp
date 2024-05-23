@@ -1355,12 +1355,12 @@ static napi_value OHPhotoOutputCaptureWithCaptureSetting(napi_env env, napi_call
     size_t argc = 2;
     napi_value args[2] = {nullptr};
     Camera_PhotoCaptureSetting photoSetting;
-    Capture_Setting setting_inner;
+    Capture_Setting settingInner;
     Camera_Location *location = new Camera_Location;
 
     napi_get_cb_info(env, info, &argc, args, nullptr, nullptr);
-    GetCaptureParam(env, args[0], &setting_inner);
-    SetConfig(setting_inner, &photoSetting, location);
+    GetCaptureParam(env, args[0], &settingInner);
+    SetConfig(settingInner, &photoSetting, location);
 
     int32_t index;
     napi_get_value_int32(env, args[1], &index);

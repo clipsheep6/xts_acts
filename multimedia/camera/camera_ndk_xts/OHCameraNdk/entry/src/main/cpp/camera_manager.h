@@ -40,24 +40,24 @@ typedef enum CameraCallbackCode {
     Session_OnFocusState_Change = 14,
     Session_OnError = 15,
     CameraManager_Status = 16,
-    NoReceived = 10086,
+    No_Received = 10086,
 } CameraCallbackCode;
 typedef enum UseCaseCode {
-    ParameterOk = 0,     // 参数正常
-    Parameter1Error = 1, // 参数1异常
-    Parameter2Error = 2, // 参数2异常
-    Parameter3Error = 3, // 参数3异常
-    Parameter4Error = 4, // 参数4异常
+    Parameter_Ok = 0,     // 参数正常
+    Parameter1_Error = 1, // 参数1异常
+    Parameter2_Error = 2, // 参数2异常
+    Parameter3_Error = 3, // 参数3异常
+    Parameter4_Error = 4, // 参数4异常
 } UseCaseCode;
 class NDKCamera {
 public:
     NDKCamera(char *str, int index);
     ~NDKCamera(void);
 
-    bool IsMirror_;         // 是否支持镜像拍照
-    bool HasFlash_;         // 检测是否有闪关灯
-    bool IsFlashMode_;      // 检测闪光灯模式是否支持
-    bool IsExposureMode_;   // 是否支持曝光模式的结果。
+    bool isMirror_;         // 是否支持镜像拍照
+    bool hasFlash_;         // 检测是否有闪关灯
+    bool isFlashMode_;      // 检测闪光灯模式是否支持
+    bool isExposureMode_;   // 是否支持曝光模式的结果。
     float minExposureBias_; // 曝光补偿的最小值。
     float maxExposureBias_; // 曝光补偿的最大值。
     float exposureBias_;    // 当前的曝光补偿。
@@ -139,7 +139,8 @@ public:
     Camera_ErrorCode IsMirrorSupported(int useCaseCode);  // 检查是否支持镜像拍照
     Camera_ErrorCode PhotoOutputCapture(int useCaseCode); // 拍摄照片
     Camera_ErrorCode PhotoOutputRelease(int useCaseCode); // 释放拍照输出
-    Camera_ErrorCode TakePictureWithPhotoSettings(Camera_PhotoCaptureSetting photoSetting, int useCaseCode); // 使用捕获设置捕获拍照
+    Camera_ErrorCode TakePictureWithPhotoSettings(Camera_PhotoCaptureSetting photoSetting, 
+                                                 int useCaseCode); // 使用捕获设置捕获拍照
     // RegisterCallback
     Camera_ErrorCode CameraManagerRegisterCallback(int useCaseCode);  // 注册相机状态更改事件回调。
     Camera_ErrorCode PreviewOutputRegisterCallback(int useCaseCode);  // 注册预览输出更改事件回调。
