@@ -781,7 +781,7 @@ Camera_ErrorCode NDKCamera::SessionSetZoomRatio(float zoom,int useCaseCode)
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::SessionSetMeteringPoint(double point_x, double point_y,int useCaseCode)
+Camera_ErrorCode NDKCamera::SessionSetMeteringPoint(double point_x, double point_y, int useCaseCode)
 {
     Camera_Point point;
     point.x = point_x;
@@ -795,7 +795,7 @@ Camera_ErrorCode NDKCamera::SessionSetMeteringPoint(double point_x, double point
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::SessionIsVideoStabilizationModeSupported(uint32_t mode,int useCaseCode)
+Camera_ErrorCode NDKCamera::SessionIsVideoStabilizationModeSupported(uint32_t mode, int useCaseCode)
 {
     Camera_VideoStabilizationMode videoMode = static_cast<Camera_VideoStabilizationMode>(mode);
     if (useCaseCode == Parameter_Ok) {
