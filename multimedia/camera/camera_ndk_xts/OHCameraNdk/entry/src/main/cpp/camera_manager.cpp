@@ -821,7 +821,7 @@ Camera_ErrorCode NDKCamera::SessionGetVideoStabilizationMode(int useCaseCode)
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::SessionSetVideoStabilizationMode(uint32_t mode,int useCaseCode)
+Camera_ErrorCode NDKCamera::SessionSetVideoStabilizationMode(uint32_t mode, int useCaseCode)
 {
     Camera_VideoStabilizationMode videoMode = static_cast<Camera_VideoStabilizationMode>(mode);
     if (useCaseCode == Parameter_Ok) {

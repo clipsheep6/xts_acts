@@ -1386,9 +1386,7 @@ static napi_value OHPhotoOutputRelease(napi_env env, napi_callback_info info)
     return result;
 }
 EXTERN_C_START
-static napi_value Init(napi_env env, napi_value exports)
-{
-    napi_property_descriptor desc[] = {
+napi_property_descriptor desc1[] = {
         {"initCamera", nullptr, InitCamera, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHCameraGetCameraManager", nullptr, CameraGetCameraManager, nullptr, nullptr, nullptr, napi_default,
          nullptr},
@@ -1439,6 +1437,8 @@ static napi_value Init(napi_env env, napi_value exports)
          napi_default, nullptr},
         {"oHCaptureSessionGetExposureBias", nullptr, OHCaptureSessionGetExposureBias, nullptr, nullptr, nullptr,
          napi_default, nullptr},
+}
+napi_property_descriptor desc2[] = {
         {"oHCaptureSessionAddInput", nullptr, OHCaptureSessionAddInput, nullptr, nullptr, nullptr, napi_default,
          nullptr},
         {"oHCaptureSessionRemoveInput", nullptr, OHCaptureSessionRemoveInput, nullptr, nullptr, nullptr,
@@ -1489,6 +1489,8 @@ static napi_value Init(napi_env env, napi_value exports)
         OHCaptureSessionIsVideoStabilizationModeSupported, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHCaptureSessionGetVideoStabilizationMode", nullptr, OHCaptureSessionGetVideoStabilizationMode,
         nullptr, nullptr, nullptr, napi_default, nullptr},
+}
+napi_property_descriptor desc3[] = {
         {"oHCaptureSessionSetVideoStabilizationMode", nullptr, OHCaptureSessionSetVideoStabilizationMode,
          nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHCaptureSessionRemovePreviewOutput", nullptr, OHCaptureSessionRemovePreviewOutput, nullptr,
@@ -1522,9 +1524,24 @@ static napi_value Init(napi_env env, napi_value exports)
         {"oHPhotoOutputCapture", nullptr, OHPhotoOutputCapture, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHPhotoOutputCaptureWithCaptureSetting", nullptr, OHPhotoOutputCaptureWithCaptureSetting, nullptr, nullptr,
          nullptr, napi_default, nullptr},
-        {"oHPhotoOutputRelease", nullptr, OHPhotoOutputRelease, nullptr, nullptr, nullptr, napi_default, nullptr},
-    };
-    napi_define_properties(env, exports, sizeof(desc) / sizeof(desc[0]), desc);
+        {"oHPhotoOutputRelease", nullptr, OHPhotoOutputRelease, nullptr, nullptr, nullptr, napi_default, nullptr}
+}
+
+static napi_value Init(napi_env env, napi_value exports) 
+{
+    size_t mergedLength = sizeof(desc1) / sizeof(desc1[0]) + 
+        sizeof(desc2) / sizeof(desc2[0]) + sizeof(desc3) / sizeof(desc3[0]);
+    napi_property_descriptor mergedArray[mergedLength];
+    for (size_t i = 0; i < sizeof(desc1) / sizeof(desc1[0]); ++i) {
+        mergedArray[i] = desc1[i];
+    }
+    for (size_t i = 0; i < sizeof(desc2) / sizeof(desc2[0]); ++i) {
+        mergedArray[sizeof(desc1) / sizeof(desc1[0]) + i] = desc2[i];
+    }
+    for (size_t i = 0; i < sizeof(desc3) / sizeof(desc3[0]); ++i) {
+        mergedArray[sizeof(desc1) / sizeof(desc1[0]) + sizeof(desc2) / sizeof(desc2[0]) + i] = desc3[i];
+    }
+    napi_define_properties(env, exports, mergedLength, mergedArray);
     return exports;
 }
 EXTERN_C_END
