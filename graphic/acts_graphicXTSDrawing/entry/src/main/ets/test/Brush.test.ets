@@ -48,7 +48,7 @@ export default function brushTest() {
 
     /**
      * @tc.number    : brush_test_setMaskFilter
-     * @tc.name      : brush_test_setMaskFilter
+     * @tc.name      : setMaskFilter()
      * @tc.desc      : 用于给画刷添加额外的蒙版滤镜。
      * @tc.size      : MediumTest
      * @tc.type      : Function
@@ -66,7 +66,7 @@ export default function brushTest() {
 
     /**
      * @tc.number    : brush_test_setMaskFilter_param_null
-     * @tc.name      : brush_test_setMaskFilter_param_null
+     * @tc.name      : setMaskFilter(null)
      * @tc.desc      : 用于给画刷添加额外的蒙版滤镜(参数为空)。
      * @tc.size      : MediumTest
      * @tc.type      : Function
@@ -83,7 +83,7 @@ export default function brushTest() {
 
     /**
      * @tc.number    : brush_test_setShadowLayer
-     * @tc.name      : brush_test_setShadowLayer
+     * @tc.name      : setShadowLayer()
      * @tc.desc      : 设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效。
      * @tc.size      : MediumTest
      * @tc.type      : Function
@@ -105,7 +105,7 @@ export default function brushTest() {
 
     /**
      * @tc.number    : brush_test_setShadowLayer_param_null
-     * @tc.name      : brush_test_setShadowLayer_param_null
+     * @tc.name      : setShadowLayer(null)
      * @tc.desc      : 设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效(参数为空)。
      * @tc.size      : MediumTest
      * @tc.type      : Function
