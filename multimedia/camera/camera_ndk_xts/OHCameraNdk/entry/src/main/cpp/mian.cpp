@@ -723,7 +723,7 @@ static napi_value OHCaptureSessionSetExposureBias(napi_env env, napi_callback_in
     int32_t index;
     napi_get_value_int32(env, args[1], &index);
     
-    Camera_ErrorCode ret = ndkCamera_->SessionSetExposureBias(exposureBias,index);
+    Camera_ErrorCode ret = ndkCamera_->SessionSetExposureBias(exposureBias, index);
     napi_create_int32(env, ret, &result);
     return result;
 }
@@ -865,7 +865,7 @@ static napi_value OHCaptureSessionSetFocusPoint(napi_env env, napi_callback_info
     int32_t index;
     napi_get_value_int32(env, args[1], &index);
     
-    Camera_ErrorCode ret = ndkCamera_->SessionSetFocusPoint(x, y,index);
+    Camera_ErrorCode ret = ndkCamera_->SessionSetFocusPoint(x, y, index);
     napi_create_int32(env, ret, &result);
     return result;
 }
@@ -931,7 +931,7 @@ static napi_value OHCaptureSessionSetZoomRatio(napi_env env, napi_callback_info 
     int32_t index;
     napi_get_value_int32(env, args[1], &index);
 
-    Camera_ErrorCode code = ndkCamera_->SessionSetZoomRatio(zoomRatio,index);
+    Camera_ErrorCode code = ndkCamera_->SessionSetZoomRatio(zoomRatio, index);
 
     napi_create_int32(env, code, &result);
     return result;
@@ -1365,7 +1365,7 @@ static napi_value OHPhotoOutputCaptureWithCaptureSetting(napi_env env, napi_call
     int32_t index;
     napi_get_value_int32(env, args[1], &index);
     napi_value result;
-    Camera_ErrorCode ret = ndkCamera_->TakePictureWithPhotoSettings(photoSetting,index);
+    Camera_ErrorCode ret = ndkCamera_->TakePictureWithPhotoSettings(photoSetting, index);
     napi_create_int32(env, ret, &result);
     return result;
 }
@@ -1417,7 +1417,7 @@ static napi_value Init(napi_env env, napi_value exports)
         {"oHCameraManagerCreatePhotoOutput", nullptr, OHCameraManagerCreatePhotoOutput, nullptr, nullptr, nullptr,
          napi_default, nullptr},
         {"oHCameraManagerCreateMetadataOutput", nullptr, OHCameraManagerCreateMetadataOutput, nullptr, nullptr,
-         nullptr,napi_default, nullptr},
+         nullptr, napi_default, nullptr},
         {"oHCameraInputOpen", nullptr, OHCameraInputOpen, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHCameraInputClose", nullptr, OHCameraInputClose, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHCameraInputRelease", nullptr, OHCameraInputRelease, nullptr, nullptr, nullptr, napi_default, nullptr},
@@ -1485,7 +1485,7 @@ static napi_value Init(napi_env env, napi_value exports)
          napi_default, nullptr},
         {"oHCaptureSessionSetMeteringPoint", nullptr, OHCaptureSessionSetMeteringPoint, nullptr, nullptr,
         nullptr, napi_default, nullptr},
-        {"oHCaptureSessionIsVideoStabilizationModeSupported", nullptr, 
+        {"oHCaptureSessionIsVideoStabilizationModeSupported", nullptr,
         OHCaptureSessionIsVideoStabilizationModeSupported, nullptr, nullptr, nullptr, napi_default, nullptr},
         {"oHCaptureSessionGetVideoStabilizationMode", nullptr, OHCaptureSessionGetVideoStabilizationMode,
         nullptr, nullptr, nullptr, napi_default, nullptr},

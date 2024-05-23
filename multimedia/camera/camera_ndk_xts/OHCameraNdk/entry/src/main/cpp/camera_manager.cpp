@@ -770,7 +770,7 @@ Camera_ErrorCode NDKCamera::SessionGetZoomRatioRange(int useCaseCode)
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::SessionSetZoomRatio(float zoom,int useCaseCode)
+Camera_ErrorCode NDKCamera::SessionSetZoomRatio(float zoom, int useCaseCode)
 {
     if (useCaseCode == Parameter_Ok) {
         ret_ = OH_CaptureSession_SetZoomRatio(captureSession_, zoom);
@@ -781,7 +781,7 @@ Camera_ErrorCode NDKCamera::SessionSetZoomRatio(float zoom,int useCaseCode)
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::SessionSetMeteringPoint(double point_x, double point_y,int useCaseCode)
+Camera_ErrorCode NDKCamera::SessionSetMeteringPoint(double point_x, double point_y, int useCaseCode)
 {
     Camera_Point point;
     point.x = point_x;
@@ -795,7 +795,7 @@ Camera_ErrorCode NDKCamera::SessionSetMeteringPoint(double point_x, double point
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::SessionIsVideoStabilizationModeSupported(uint32_t mode,int useCaseCode)
+Camera_ErrorCode NDKCamera::SessionIsVideoStabilizationModeSupported(uint32_t mode, int useCaseCode)
 {
     Camera_VideoStabilizationMode videoMode = static_cast<Camera_VideoStabilizationMode>(mode);
     if (useCaseCode == Parameter_Ok) {
@@ -821,7 +821,7 @@ Camera_ErrorCode NDKCamera::SessionGetVideoStabilizationMode(int useCaseCode)
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::SessionSetVideoStabilizationMode(uint32_t mode,int useCaseCode)
+Camera_ErrorCode NDKCamera::SessionSetVideoStabilizationMode(uint32_t mode, int useCaseCode)
 {
     Camera_VideoStabilizationMode videoMode = static_cast<Camera_VideoStabilizationMode>(mode);
     if (useCaseCode == Parameter_Ok) {
@@ -868,7 +868,7 @@ Camera_ErrorCode NDKCamera::AddVideoOutput(int useCaseCode)
     }
     return ret_;
 }
-Camera_ErrorCode NDKCamera::CreateVideoOutput(char *videoId,int useCaseCode)
+Camera_ErrorCode NDKCamera::CreateVideoOutput(char *videoId, int useCaseCode)
 {
     videoProfile_ = cameraOutputCapability_->videoProfiles[0];
     
