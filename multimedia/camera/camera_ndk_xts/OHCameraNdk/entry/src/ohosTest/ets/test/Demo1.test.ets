@@ -18,10 +18,11 @@ import image from '@ohos.multimedia.image';
 import media from '@ohos.multimedia.media';
 import mediaLibrary from '@ohos.multimedia.mediaLibrary';
 import MediaUtils from './MediaUtils';
-import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
 import { BusinessError } from '@ohos.base';
-import { Driver, ON } from '@ohos.UiTest';
 import { describe, beforeAll, beforeEach, afterEach, afterAll, it, expect } from '@ohos/hypium';
+import abilityAccessCtrl from '@ohos.abilityAccessCtrl';
+import bundleManager from '@ohos.bundle.bundleManager';
+import account from '@ohos.account.osAccount';
 
 const TAG = "CAMERA_NDK_JS";
 const CAMERA_OK = 0;
@@ -29,7 +30,6 @@ const CAMERA_ERROR_7400101 = 7400101; //参数错误
 let mediaUtil = MediaUtils.getInstance()
 let videoRecorder: media.AVRecorder;
 let videoSurfaceId: string;
-let driver: Driver = Driver.create();
 let videoConfig: media.AVRecorderConfig = {
   audioSourceType: media.AudioSourceType.AUDIO_SOURCE_TYPE_MIC,
   videoSourceType: media.VideoSourceType.VIDEO_SOURCE_TYPE_SURFACE_YUV,
@@ -208,39 +208,29 @@ function isEmpty(data: cameras.cameraInfo | number) {
   return false;
 }
 
-async function getPermission() {
-  console.info(TAG + 'Exit getPermission');
-  let mContext = AppStorage.get('context') as Context;
-  abilityAccessCtrl.createAtManager().requestPermissionsFromUser(mContext, [
-    'ohos.permission.CAMERA',
-    'ohos.permission.MICROPHONE',
-    'ohos.permission.READ_MEDIA',
-    'ohos.permission.WRITE_MEDIA'
-  ]).then(() => {
-  })
-}
-
-async function driveFn() {
-  await driver.delayMs(1000);
-  await driver.assertComponentExist(ON.text('允许'));
-  let btnStart = await driver.findComponent(ON.text('允许'));
-  await btnStart.click();
-  let i = 0;
-  while (i < 3) {
-    btnStart = await driver.findComponent(ON.text('允许'));
-    if (btnStart != null) {
-      await btnStart.click();
+async function getPermissions() {
+  console.info('getPermission start');
+  type MyPermissions = "ohos.permission.CAMERA" | "ohos.permission.READ_MEDIA" | "ohos.permission.WRITE_MEDIA"| "ohos.permission.MICROPHONE";
+  let list: MyPermissions[] = ['ohos.permission.CAMERA', 'ohos.permission.READ_MEDIA', 'ohos.permission.WRITE_MEDIA', 'ohos.permission.MICROPHONE'];
+  try {
+    let userId: number = await account.getAccountManager().getOsAccountLocalId();
+    let applicationFlags: number = bundleManager.ApplicationFlag.GET_APPLICATION_INFO_DEFAULT;
+    let applicationInfo: bundleManager.ApplicationInfo = await bundleManager.getApplicationInfoSync('com.example.ohcamerandk', applicationFlags, userId);
+    let tokenId: number = applicationInfo.accessTokenId;
+    for (let index = 0; index < list.length; index++) {
+      await abilityAccessCtrl.createAtManager().grantUserGrantedPermission(tokenId, list[index], 1);
     }
-    i++;
+  } catch (err) {
+    console.info(`getPermission error ${JSON.stringify(err)}`);
   }
-}
+  console.info('getPermission end');
+};
 
 export default function Demo1() {
   describe('DemoTest', () => {
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(async () => {
-      await getPermission();
-      await driveFn();
+      await getPermissions();
       await getPhotoReceiverSurface();
       await getVideoSurfaceID();
       getCameraManagerInstance();
