@@ -14,7 +14,20 @@
  */
 {
   "app": {
-    "signingConfigs": [],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "material": {
+          "certpath": "C:/Users/lenovo/.ohos/config/openharmony/default_OHCameraNdk_kmFPhOJd9XjY_gy3O0XX6pgb_OaCgjAD6UCKa59oPgA=.cer",
+          "storePassword": "0000001A104D0CA8623EFC49F0D206F4D70B3B2C4F5DD886148A1511268F2500F0FDB9F9FC6A3B8C0916",
+          "keyAlias": "debugKey",
+          "keyPassword": "0000001A83E518BFA07F705A580041077C302A2A6EAED81CBDDF70B08CE270AE8340364E12F43D8C2872",
+          "profile": "C:/Users/lenovo/.ohos/config/openharmony/default_OHCameraNdk_kmFPhOJd9XjY_gy3O0XX6pgb_OaCgjAD6UCKa59oPgA=.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "C:/Users/lenovo/.ohos/config/openharmony/default_OHCameraNdk_kmFPhOJd9XjY_gy3O0XX6pgb_OaCgjAD6UCKa59oPgA=.p12"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",
