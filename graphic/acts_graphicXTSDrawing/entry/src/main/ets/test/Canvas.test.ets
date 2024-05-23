@@ -18,7 +18,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from
 import image from '@ohos.multimedia.image';
 
 export default function canvasTest() {
-  describe('Canvas_test', () => {
+  describe('canvas_test', () => {
     let pixel: image.PixelMap;
     const DEFAULT = 0;
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
@@ -47,14 +47,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_drawPoint
-     * @tc.name      : Canvas_test_drawPoint
+     * @tc.number    : canvas_test_drawPoint
+     * @tc.name      : canvas_test_drawPoint
      * @tc.desc      : 用于绘制一个点。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_drawPoint', DEFAULT, () => {
+    it('canvas_test_drawPoint', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -71,14 +71,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_drawPoint_param_null
-     * @tc.name      : Canvas_test_drawPoint_param_null
+     * @tc.number    : canvas_test_drawPoint_param_null
+     * @tc.name      : canvas_test_drawPoint_param_null
      * @tc.desc      : 用于绘制一个点。(参数为空)
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_drawPoint_param_null', DEFAULT, () => {
+    it('canvas_test_drawPoint_param_null', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -123,14 +123,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_save
-     * @tc.name      : Canvas_test_save
+     * @tc.number    : canvas_test_save
+     * @tc.name      : canvas_test_save
      * @tc.desc      : 用于保存当前画布的状态（画布矩阵）到栈顶。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_save', DEFAULT, () => {
+    it('canvas_test_save', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         let rect: common2D.Rect = {
@@ -144,14 +144,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_save
-     * @tc.name      : Canvas_test_save
+     * @tc.number    : canvas_test_save
+     * @tc.name      : canvas_test_save
      * @tc.desc      : 用于恢复保存在栈顶的画布状态（画布矩阵）。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_restore', DEFAULT, () => {
+    it('canvas_test_restore', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -168,14 +168,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_restoreToCount
-     * @tc.name      : Canvas_test_restoreToCount
+     * @tc.number    : canvas_test_restoreToCount
+     * @tc.name      : canvas_test_restoreToCount
      * @tc.desc      : 用于恢复到指定数量的画布状态（画布矩阵）。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_restoreToCount', DEFAULT, () => {
+    it('canvas_test_restoreToCount', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -207,14 +207,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_restoreToCount_param_null
-     * @tc.name      : Canvas_test_restoreToCount_param_null
+     * @tc.number    : canvas_test_restoreToCount_param_null
+     * @tc.name      : canvas_test_restoreToCount_param_null
      * @tc.desc      : 用于恢复到指定数量的画布状态（画布矩阵）。（参数为空）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_restoreToCount_param_null', DEFAULT, () => {
+    it('canvas_test_restoreToCount_param_null', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -246,14 +246,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_getSaveCount
-     * @tc.name      : Canvas_test_getSaveCount
+     * @tc.number    : canvas_test_getSaveCount
+     * @tc.name      : canvas_test_getSaveCount
      * @tc.desc      : 用于获取栈中保存的画布状态（画布矩阵）的数量。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_getSaveCount', DEFAULT, () => {
+    it('canvas_test_getSaveCount', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -277,14 +277,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_scale
-     * @tc.name      : Canvas_test_scale
+     * @tc.number    : canvas_test_scale
+     * @tc.name      : canvas_test_scale
      * @tc.desc      : 用于画布缩放。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_scale', DEFAULT, () => {
+    it('canvas_test_scale', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -304,14 +304,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_scale_param_null
-     * @tc.name      : Canvas_test_scale_param_null
+     * @tc.number    : canvas_test_scale_param_null
+     * @tc.name      : canvas_test_scale_param_null
      * @tc.desc      : 用于画布缩放。（参数为空）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_scale_param_null', DEFAULT, () => {
+    it('canvas_test_scale_param_null', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -365,14 +365,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_skew
-     * @tc.name      : Canvas_test_skew
+     * @tc.number    : canvas_test_skew
+     * @tc.name      : canvas_test_skew
      * @tc.desc      : 用于画布倾斜变换，包括水平轴和垂直轴上的偏移。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_skew', DEFAULT, () => {
+    it('canvas_test_skew', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -392,14 +392,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_skew_param_null
-     * @tc.name      : Canvas_test_skew_param_null
+     * @tc.number    : canvas_test_skew_param_null
+     * @tc.name      : canvas_test_skew_param_null
      * @tc.desc      : 用于画布倾斜变换，包括水平轴和垂直轴上的偏移。（参数为空）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_skew_param_null', DEFAULT, () => {
+    it('canvas_test_skew_param_null', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -453,14 +453,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_rotate
-     * @tc.name      : Canvas_test_rotate
+     * @tc.number    : canvas_test_rotate
+     * @tc.name      : canvas_test_rotate
      * @tc.desc      : 用于画布旋转一定的角度。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_rotate', DEFAULT, () => {
+    it('canvas_test_rotate', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -480,14 +480,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_rotate_param_null
-     * @tc.name      : Canvas_test_rotate_param_null
+     * @tc.number    : canvas_test_rotate_param_null
+     * @tc.name      : canvas_test_rotate_param_null
      * @tc.desc      : 用于画布旋转一定的角度。（参数为空）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_rotate_param_null', DEFAULT, () => {
+    it('canvas_test_rotate_param_null', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -507,14 +507,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_translate
-     * @tc.name      : Canvas_test_translate
+     * @tc.number    : canvas_test_translate
+     * @tc.name      : canvas_test_translate
      * @tc.desc      : 用于平移画布一段距离。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_translate', DEFAULT, () => {
+    it('canvas_test_translate', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -534,14 +534,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_translate
-     * @tc.name      : Canvas_test_translate
+     * @tc.number    : canvas_test_translate
+     * @tc.name      : canvas_test_translate
      * @tc.desc      : 用于平移画布一段距离。（参数为空）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_translate_param_null', DEFAULT, () => {
+    it('canvas_test_translate_param_null', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -561,14 +561,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_clipPath
-     * @tc.name      : Canvas_test_clipPath
+     * @tc.number    : canvas_test_clipPath
+     * @tc.name      : canvas_test_clipPath
      * @tc.desc      : 用于裁剪一个自定义路径。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_clipPath', DEFAULT, () => {
+    it('canvas_test_clipPath', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -589,14 +589,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_clipPath_param_null
-     * @tc.name      : Canvas_test_clipPath_param_null
+     * @tc.number    : canvas_test_clipPath_param_null
+     * @tc.name      : canvas_test_clipPath_param_null
      * @tc.desc      : 用于裁剪一个自定义路径。（参数为空）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_clipPath_param_null', DEFAULT, () => {
+    it('canvas_test_clipPath_param_null', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -617,14 +617,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_clipPath_param_invalid
-     * @tc.name      : Canvas_test_clipPath_param_invalid
+     * @tc.number    : canvas_test_clipPath_param_invalid
+     * @tc.name      : canvas_test_clipPath_param_invalid
      * @tc.desc      : 用于裁剪一个自定义路径。（参数非法）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_clipPath_param_invalid', DEFAULT, () => {
+    it('canvas_test_clipPath_param_invalid', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -645,14 +645,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_clipRect
-     * @tc.name      : Canvas_test_clipRect
+     * @tc.number    : canvas_test_clipRect
+     * @tc.name      : canvas_test_clipRect
      * @tc.desc      : 用于裁剪一个矩形。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_clipRect', DEFAULT, () => {
+    it('canvas_test_clipRect', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -671,14 +671,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_clipRect_param_null
-     * @tc.name      : Canvas_test_clipRect_param_null
+     * @tc.number    : canvas_test_clipRect_param_null
+     * @tc.name      : canvas_test_clipRect_param_null
      * @tc.desc      : 用于裁剪一个矩形。（参数为空）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_clipRect_param_null', DEFAULT, () => {
+    it('canvas_test_clipRect_param_null', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();
@@ -695,14 +695,14 @@ export default function canvasTest() {
     })
 
     /**
-     * @tc.number    : Canvas_test_clipRect_param_invalid
-     * @tc.name      : Canvas_test_clipRect_param_invalid
+     * @tc.number    : canvas_test_clipRect_param_invalid
+     * @tc.name      : canvas_test_clipRect_param_invalid
      * @tc.desc      : 用于裁剪一个矩形。（参数非法）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Canvas_test_clipRect_param_invalid', DEFAULT, () => {
+    it('canvas_test_clipRect_param_invalid', DEFAULT, () => {
       try {
         const canvas = new drawing.Canvas(pixel);
         const pen = new drawing.Pen();

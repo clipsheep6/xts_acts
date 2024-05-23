@@ -18,7 +18,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from
 import image from '@ohos.multimedia.image';
 
 export default function penTest() {
-  describe('Pen_test', () => {
+  describe('pen_test', () => {
     let pixel: image.PixelMap;
     const DEFAULT = 0;
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
@@ -47,14 +47,14 @@ export default function penTest() {
     })
 
     /**
-     * @tc.number    : Pen_test_constructor
-     * @tc.name      : Pen_test_constructor
+     * @tc.number    : pen_test_constructor
+     * @tc.name      : pen_test_constructor
      * @tc.desc      : Pen的构造函数
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Pen_test_constructor', DEFAULT, () => {
+    it('pen_test_constructor', DEFAULT, () => {
       try {
         const pen = new drawing.Pen();
       } catch (e) {
@@ -63,14 +63,14 @@ export default function penTest() {
     })
 
     /**
-     * @tc.number    : Pen_test_setMaskFilter
-     * @tc.name      : Pen_test_setMaskFilter
+     * @tc.number    : pen_test_setMaskFilter
+     * @tc.name      : pen_test_setMaskFilter
      * @tc.desc      : 用于给画笔添加额外的蒙版滤镜。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Pen_test_setMaskFilter', DEFAULT, () => {
+    it('pen_test_setMaskFilter', DEFAULT, () => {
       try {
         const pen = new drawing.Pen();
         let maskFilter = drawing.MaskFilter.createBlurMaskFilter(drawing.BlurType.OUTER, 10);
@@ -81,14 +81,14 @@ export default function penTest() {
     })
 
     /**
-     * @tc.number    : Pen_test_setMaskFilter_param_null
-     * @tc.name      : Pen_test_setMaskFilter_param_null
+     * @tc.number    : pen_test_setMaskFilter_param_null
+     * @tc.name      : pen_test_setMaskFilter_param_null
      * @tc.desc      : 用于给画笔添加额外的蒙版滤镜。（参数为空）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Pen_test_setMaskFilter_param_null', DEFAULT, () => {
+    it('pen_test_setMaskFilter_param_null', DEFAULT, () => {
       try {
         const pen = new drawing.Pen();
         pen.setMaskFilter(null);
@@ -98,14 +98,14 @@ export default function penTest() {
     })
 
     /**
-     * @tc.number    : Pen_test_setPathEffect
-     * @tc.name      : Pen_test_setPathEffect
+     * @tc.number    : pen_test_setPathEffect
+     * @tc.name      : pen_test_setPathEffect
      * @tc.desc      : 设置画笔路径效果。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Pen_test_setPathEffect', DEFAULT, () => {
+    it('pen_test_setPathEffect', DEFAULT, () => {
       try {
         const pen = new drawing.Pen();
         pen.setStrokeWidth(5);
@@ -120,14 +120,14 @@ export default function penTest() {
     })
 
     /**
-     * @tc.number    : Pen_test_setPathEffect_param_null
-     * @tc.name      : Pen_test_setPathEffect_param_null
+     * @tc.number    : pen_test_setPathEffect_param_null
+     * @tc.name      : pen_test_setPathEffect_param_null
      * @tc.desc      : 设置画笔路径效果。（参数为空）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Pen_test_setPathEffect_param_null', DEFAULT, () => {
+    it('pen_test_setPathEffect_param_null', DEFAULT, () => {
       try {
         const pen = new drawing.Pen();
         pen.setStrokeWidth(5);
@@ -141,14 +141,14 @@ export default function penTest() {
     })
 
     /**
-     * @tc.number    : Pen_test_setShadowLayer
-     * @tc.name      : Pen_test_setShadowLayer
+     * @tc.number    : pen_test_setShadowLayer
+     * @tc.name      : pen_test_setShadowLayer
      * @tc.desc      : 设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Pen_test_setShadowLayer', DEFAULT, () => {
+    it('pen_test_setShadowLayer', DEFAULT, () => {
       try {
         const pen = new drawing.Pen();
         let color: common2D.Color = {
@@ -162,14 +162,14 @@ export default function penTest() {
     })
 
     /**
-     * @tc.number    : Pen_test_setShadowLayer_param_null
-     * @tc.name      : Pen_test_setShadowLayer_param_null
+     * @tc.number    : pen_test_setShadowLayer_param_null
+     * @tc.name      : pen_test_setShadowLayer_param_null
      * @tc.desc      : 设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效。（参数为空）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Pen_test_setShadowLayer_param_null', DEFAULT, () => {
+    it('pen_test_setShadowLayer_param_null', DEFAULT, () => {
       try {
         const pen = new drawing.Pen();
         pen.setShadowLayer(null);
@@ -179,14 +179,14 @@ export default function penTest() {
     })
 
     /**
-     * @tc.number    : Pen_test_setJoinStyle
-     * @tc.name      : Pen_test_setJoinStyle
+     * @tc.number    : pen_test_setJoinStyle
+     * @tc.name      : pen_test_setJoinStyle
      * @tc.desc      : 用于设置画笔绘制转角的样式。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Pen_test_setJoinStyle', DEFAULT, () => {
+    it('pen_test_setJoinStyle', DEFAULT, () => {
       try {
         const pen = new drawing.Pen();
         pen.setStrokeWidth(5);
@@ -200,14 +200,14 @@ export default function penTest() {
     })
 
     /**
-     * @tc.number    : Pen_test_getJoinStyle
-     * @tc.name      : Pen_test_getJoinStyle
+     * @tc.number    : pen_test_getJoinStyle
+     * @tc.name      : pen_test_getJoinStyle
      * @tc.desc      : 用于获取画笔绘制转角的样式。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Pen_test_getJoinStyle', DEFAULT, () => {
+    it('pen_test_getJoinStyle', DEFAULT, () => {
       try {
         const pen = new drawing.Pen();
         pen.setStrokeWidth(5);
@@ -223,14 +223,14 @@ export default function penTest() {
     })
 
     /**
-     * @tc.number    : Pen_test_setCapStyle
-     * @tc.name      : Pen_test_setCapStyle
+     * @tc.number    : pen_test_setCapStyle
+     * @tc.name      : pen_test_setCapStyle
      * @tc.desc      : 用于设置线帽样式。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Pen_test_setCapStyle', DEFAULT, () => {
+    it('pen_test_setCapStyle', DEFAULT, () => {
       try {
         const pen = new drawing.Pen();
         pen.setStrokeWidth(5);
@@ -244,14 +244,14 @@ export default function penTest() {
     })
 
     /**
-     * @tc.number    : Pen_test_getCapStyle
-     * @tc.name      : Pen_test_getCapStyle
+     * @tc.number    : pen_test_getCapStyle
+     * @tc.name      : pen_test_getCapStyle
      * @tc.desc      : 用于获取线帽样式。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Pen_test_getCapStyle', DEFAULT, () => {
+    it('pen_test_getCapStyle', DEFAULT, () => {
       try {
         const pen = new drawing.Pen();
         pen.setStrokeWidth(5);

@@ -45,8 +45,5 @@ export default function fontTest() {
       // Presets a clear action, which is performed after all test cases of the test suite end.
       // This API supports only one parameter: clear action function.
     })
-    // it('canvas_test_drawPoint', 0, () => {
-    //
-    // })
   })
 }

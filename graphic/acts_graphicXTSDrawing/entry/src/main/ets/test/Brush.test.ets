@@ -18,7 +18,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from
 import image from '@ohos.multimedia.image';
 
 export default function brushTest() {
-  describe('Brush_test', () => {
+  describe('brush_test', () => {
     let pixel: image.PixelMap;
     const DEFAULT = 0;
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
@@ -47,14 +47,14 @@ export default function brushTest() {
     })
 
     /**
-     * @tc.number    : Brush_test_setMaskFilter
-     * @tc.name      : Brush_test_setMaskFilter
+     * @tc.number    : brush_test_setMaskFilter
+     * @tc.name      : brush_test_setMaskFilter
      * @tc.desc      : 用于给画刷添加额外的蒙版滤镜。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Brush_test_setMaskFilter', DEFAULT, () => {
+    it('brush_test_setMaskFilter', DEFAULT, () => {
       try {
         const brush = new drawing.Brush();
         let maskFilter = drawing.MaskFilter.createBlurMaskFilter(drawing.BlurType.OUTER, 10);
@@ -65,14 +65,14 @@ export default function brushTest() {
     })
 
     /**
-     * @tc.number    : Brush_test_setMaskFilter_param_null
-     * @tc.name      : Brush_test_setMaskFilter_param_null
+     * @tc.number    : brush_test_setMaskFilter_param_null
+     * @tc.name      : brush_test_setMaskFilter_param_null
      * @tc.desc      : 用于给画刷添加额外的蒙版滤镜(参数为空)。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Brush_test_setMaskFilter_param_null', DEFAULT, () => {
+    it('brush_test_setMaskFilter_param_null', DEFAULT, () => {
       try {
         const brush = new drawing.Brush();
         brush.setMaskFilter(null);
@@ -82,14 +82,14 @@ export default function brushTest() {
     })
 
     /**
-     * @tc.number    : Brush_test_setShadowLayer
-     * @tc.name      : Brush_test_setShadowLayer
+     * @tc.number    : brush_test_setShadowLayer
+     * @tc.name      : brush_test_setShadowLayer
      * @tc.desc      : 设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Brush_test_setShadowLayer', DEFAULT, () => {
+    it('brush_test_setShadowLayer', DEFAULT, () => {
       try {
         let color: common2D.Color = {
           alpha: 0xFF, red: 0x00, green: 0xFF, blue: 0x00
@@ -104,14 +104,14 @@ export default function brushTest() {
 
 
     /**
-     * @tc.number    : Brush_test_setShadowLayer_param_null
-     * @tc.name      : Brush_test_setShadowLayer_param_null
+     * @tc.number    : brush_test_setShadowLayer_param_null
+     * @tc.name      : brush_test_setShadowLayer_param_null
      * @tc.desc      : 设置画笔阴影层效果。为空表示清空阴影层效果，当前仅对文字生效(参数为空)。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('Brush_test_setShadowLayer_param_null', DEFAULT, () => {
+    it('brush_test_setShadowLayer_param_null', DEFAULT, () => {
       try {
         const brush = new drawing.Brush();
         brush.setShadowLayer(null);

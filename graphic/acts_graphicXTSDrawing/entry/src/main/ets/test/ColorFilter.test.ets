@@ -18,7 +18,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from
 import image from '@ohos.multimedia.image';
 
 export default function colorFilterTest() {
-  describe('ColorFilter_test', () => {
+  describe('colorFilter_test', () => {
     let pixel: image.PixelMap;
     const DEFAULT = 0;
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
@@ -47,14 +47,14 @@ export default function colorFilterTest() {
     })
 
     /**
-     * @tc.number    : ColorFilter_test_createBlendModeColorFilter
-     * @tc.name      : ColorFilter_test_createBlendModeColorFilter
+     * @tc.number    : colorFilter_test_createBlendModeColorFilter
+     * @tc.name      : colorFilter_test_createBlendModeColorFilter
      * @tc.desc      : 使用指定的颜色和混合模式创建颜色滤波器。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('ColorFilter_test_createBlendModeColorFilter', DEFAULT, () => {
+    it('colorFilter_test_createBlendModeColorFilter', DEFAULT, () => {
       try {
         const color: common2D.Color = {
           alpha: 255, red: 255, green: 0, blue: 0
@@ -66,14 +66,14 @@ export default function colorFilterTest() {
     })
 
     /**
-     * @tc.number    : ColorFilter_test_createBlendModeColorFilter_param_null
-     * @tc.name      : ColorFilter_test_createBlendModeColorFilter_param_null
+     * @tc.number    : colorFilter_test_createBlendModeColorFilter_param_null
+     * @tc.name      : colorFilter_test_createBlendModeColorFilter_param_null
      * @tc.desc      : 使用指定的颜色和混合模式创建颜色滤波器。（参数为空）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it("ColorFilter_test_createBlendModeColorFilter_param_null", DEFAULT, () => {
+    it("colorFilter_test_createBlendModeColorFilter_param_null", DEFAULT, () => {
       try {
         // 必填参数是null
         drawing.ColorFilter.createBlendModeColorFilter(null, drawing.BlendMode.SRC);
@@ -100,14 +100,14 @@ export default function colorFilterTest() {
     })
 
     /**
-     * @tc.number    : ColorFilter_test_createBlendModeColorFilter_param_invalid
-     * @tc.name      : ColorFilter_test_createBlendModeColorFilter_param_invalid
+     * @tc.number    : colorFilter_test_createBlendModeColorFilter_param_invalid
+     * @tc.name      : colorFilter_test_createBlendModeColorFilter_param_invalid
      * @tc.desc      : 使用指定的颜色和混合模式创建颜色滤波器。（参数非法）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it("ColorFilter_test_createBlendModeColorFilter_param_invalid", DEFAULT, () => {
+    it("colorFilter_test_createBlendModeColorFilter_param_invalid", DEFAULT, () => {
       try {
         // 错误类型
         const color: common2D.Color = {

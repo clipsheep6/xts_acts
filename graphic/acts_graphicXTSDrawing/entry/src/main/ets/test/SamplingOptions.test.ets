@@ -18,7 +18,7 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from '@ohos/hypium';
 
 export default function samplingOptionsTest() {
-  describe('SamplingOptions_test', () => {
+  describe('samplingOptions_test', () => {
     const DEFAULT = 0;
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
     beforeAll(() => {
@@ -41,14 +41,14 @@ export default function samplingOptionsTest() {
     })
 
     /**
-     * @tc.number    : SamplingOptions_test_constructor
-     * @tc.name      : SamplingOptions_test_constructor
+     * @tc.number    : samplingOptions_test_constructor
+     * @tc.name      : samplingOptions_test_constructor
      * @tc.desc      : SamplingOptions的构造函数。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('SamplingOptions_test_constructor', DEFAULT, () => {
+    it('samplingOptions_test_constructor', DEFAULT, () => {
       // Defines a test case. This API supports three parameters: test case name, filter parameter, and test case function.
       hilog.info(0x0000, 'testTag', '%{public}s', 'it begin');
 

@@ -18,7 +18,7 @@ import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it } from
 import image from '@ohos.multimedia.image';
 
 export default function maskFilterTest() {
-  describe('MaskFilter_test', () => {
+  describe('maskFilter_test', () => {
     let pixel: image.PixelMap;
     const DEFAULT = 0;
     // Defines a test suite. Two parameters are supported: test suite name and test suite function.
@@ -47,14 +47,14 @@ export default function maskFilterTest() {
     })
 
     /**
-     * @tc.number    : MaskFilter_test_createBlurMaskFilter
-     * @tc.name      : MaskFilter_test_createBlurMaskFilter
+     * @tc.number    : maskFilter_test_createBlurMaskFilter
+     * @tc.name      : maskFilter_test_createBlurMaskFilter
      * @tc.desc      : 用于创建具有模糊效果的蒙版滤镜。
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it('MaskFilter_test_createBlurMaskFilter', DEFAULT, () => {
+    it('maskFilter_test_createBlurMaskFilter', DEFAULT, () => {
       try {
         drawing.MaskFilter.createBlurMaskFilter(drawing.BlurType.OUTER, 10);
       } catch (e) {
@@ -63,14 +63,14 @@ export default function maskFilterTest() {
     })
 
     /**
-     * @tc.number    : MaskFilter_test_createBlurMaskFilter_param_null
-     * @tc.name      : MaskFilter_test_createBlurMaskFilter_param_null
+     * @tc.number    : maskFilter_test_createBlurMaskFilter_param_null
+     * @tc.name      : maskFilter_test_createBlurMaskFilter_param_null
      * @tc.desc      : 用于创建具有模糊效果的蒙版滤镜。（参数为空）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it("MaskFilter_test_createBlurMaskFilter_param_null", DEFAULT, () => {
+    it("maskFilter_test_createBlurMaskFilter_param_null", DEFAULT, () => {
       try {
         // 必填参数是null
         drawing.MaskFilter.createBlurMaskFilter(drawing.BlurType.OUTER, null);
@@ -80,14 +80,14 @@ export default function maskFilterTest() {
     })
 
     /**
-     * @tc.number    : MaskFilter_test_createBlurMaskFilter_param_invalid
-     * @tc.name      : MaskFilter_test_createBlurMaskFilter_param_invalid
+     * @tc.number    : maskFilter_test_createBlurMaskFilter_param_invalid
+     * @tc.name      : maskFilter_test_createBlurMaskFilter_param_invalid
      * @tc.desc      : 用于创建具有模糊效果的蒙版滤镜。（参数非法）
      * @tc.size      : MediumTest
      * @tc.type      : Function
      * @tc.level     : Level2
      */
-    it("MaskFilter_test_createBlurMaskFilter_param_invalid", DEFAULT, () => {
+    it("maskFilter_test_createBlurMaskFilter_param_invalid", DEFAULT, () => {
       try {
         // 错误类型
         drawing.MaskFilter.createBlurMaskFilter(9999, 10);
