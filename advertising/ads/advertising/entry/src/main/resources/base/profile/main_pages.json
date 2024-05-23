@@ -1,0 +1,7 @@
+{
+  "src": [
+      "pages/index/index",
+      "pages/index/p1",
+      "pages/index/p2"
+  ]
+}
